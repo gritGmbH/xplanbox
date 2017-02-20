@@ -1,0 +1,736 @@
+<XPlanAuszug xmlns="http://www.xplanung.de/xplangml/4/1"
+  xmlns:xplan="http://www.xplanung.de/xplangml/4/1" xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.xplanung.de/xplangml/4/1
+  ../../../../../../../main/resources/schemas/XPlanGML_4_1/XPlanung-Operationen.xsd"
+  gml:id="GML_3aebe595-a72f-43b9-8dd3-c3c757edd558">
+  <gml:featureMember>
+    <xplan:BP_Plan gml:id="BP_Plan_1">
+      <gml:description>description</gml:description>    
+      <gml:name>name1</gml:name>
+      <gml:name codeSpace="codespace2">name2</gml:name>
+      <gml:name codeSpace="codespace3">name3</gml:name>
+      <xplan:beschreibung>Testdatensatz XPlabGML</xplan:beschreibung>
+      <xplan:technHerstellDatum>2001-08-06</xplan:technHerstellDatum>
+      <xplan:xPlanGMLVersion>4.0</xplan:xPlanGMLVersion>
+      <xplan:raeumlicherGeltungsbereich>
+        <gml:Polygon srsName="EPSG:31467" gml:id="Polygon_1">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList srsDimension="2" count="378">3479367.656 5889625.167 3479364.766
+                5889617.858 3479361.087 5889608.551 3479392.706 5889596.055 3479457.758 5889511.227
+                3479573.376 5889465.541 3479574.249 5889465.196 3479578.025 5889463.704 3480237.382
+                5889203.160 3480258.319 5889194.887 3480266.396 5889215.351 3480286.381 5889267.290
+                3480312.598 5889332.402 3480314.433 5889337.052 3480603.948 5889222.652 3480607.590
+                5889228.202 3480340.743 5889333.644 3480321.469 5889341.260 3480366.984 5889456.572
+                3480377.069 5889452.587 3480405.002 5889523.156 3480415.073 5889521.440 3480465.316
+                5889512.879 3480489.609 5889503.281 3480490.182 5889503.055 3480498.444 5889499.790
+                3480503.548 5889497.908 3480531.106 5889488.451 3480532.277 5889488.105 3480533.474
+                5889487.863 3480534.688 5889487.726 3480535.909 5889487.695 3480537.128 5889487.771
+                3480538.336 5889487.953 3480539.523 5889488.239 3480540.681 5889488.628 3480541.332
+                5889488.898 3480542.426 5889489.442 3480543.468 5889490.079 3480544.450 5889490.805
+                3480545.365 5889491.613 3480546.207 5889492.498 3480546.968 5889493.453 3480547.643
+                5889494.471 3480548.227 5889495.544 3480548.521 5889496.185 3480549.881 5889499.628
+                3480574.277 5889489.997 3480572.947 5889486.630 3480572.548 5889485.475 3480572.252
+                5889484.291 3480572.059 5889483.084 3480571.973 5889481.866 3480571.993 5889480.645
+                3480572.120 5889479.430 3480572.352 5889478.231 3480572.687 5889477.056 3480572.801
+                5889476.728 3480573.266 5889475.598 3480573.827 5889474.514 3480574.481 5889473.482
+                3480575.222 5889472.511 3480576.046 5889471.609 3480576.944 5889470.781 3480577.911
+                5889470.036 3480578.940 5889469.377 3480579.243 5889469.206 3480579.486 5889469.076
+                3480687.901 5889426.550 3480690.272 5889425.596 3480704.322 5889419.094 3480717.752
+                5889411.392 3480730.460 5889402.549 3480742.349 5889392.633 3480753.328 5889381.718
+                3480763.314 5889369.887 3480763.454 5889369.720 3480763.608 5889369.566 3480763.775
+                5889369.426 3480763.953 5889369.301 3480764.142 5889369.193 3480764.339 5889369.101
+                3480764.544 5889369.026 3480764.754 5889368.970 3480764.969 5889368.932 3480765.186
+                5889368.913 3480765.403 5889368.913 3480765.620 5889368.932 3480765.835 5889368.970
+                3480766.045 5889369.027 3480766.250 5889369.101 3480766.447 5889369.193 3480766.636
+                5889369.302 3480766.814 5889369.427 3480766.823 5889369.433 3480768.750 5889370.921
+                3480768.770 5889370.936 3480774.151 5889363.261 3480781.666 5889350.720 3480786.272
+                5889343.052 3480791.378 5889336.004 3480791.486 5889335.858 3480791.626 5889335.637
+                3480791.746 5889335.405 3480791.846 5889335.163 3480791.924 5889334.913 3480791.981
+                5889334.658 3480792.014 5889334.399 3480792.025 5889334.137 3480792.013 5889333.876
+                3480791.979 5889333.617 3480791.922 5889333.361 3480791.843 5889333.112 3480791.742
+                5889332.871 3480791.621 5889332.639 3480791.480 5889332.418 3480791.321 5889332.211
+                3480791.144 5889332.018 3480790.951 5889331.842 3480790.743 5889331.683 3480790.522
+                5889331.543 3480776.045 5889323.561 3480789.389 5889325.300 3480807.971 5889326.581
+                3480838.403 5889326.203 3480851.806 5889324.664 3480859.563 5889324.378 3480853.214
+                5889325.971 3480850.489 5889326.705 3480843.843 5889328.941 3480837.417 5889331.748
+                3480831.260 5889335.105 3480825.420 5889338.985 3480819.939 5889343.359 3480817.657
+                5889345.427 3480812.768 5889350.452 3480812.487 5889350.740 3480812.182 5889351.003
+                3480811.855 5889351.238 3480811.509 5889351.444 3480811.146 5889351.619 3480811.056
+                5889351.657 3480806.569 5889356.339 3480797.079 5889367.576 3480784.874 5889383.377
+                3480785.037 5889383.522 3480785.186 5889383.681 3480785.321 5889383.852 3480785.441
+                5889384.034 3480785.544 5889384.227 3480785.630 5889384.427 3480785.699 5889384.634
+                3480785.744 5889384.822 3480785.777 5889385.037 3480785.792 5889385.255 3480785.788
+                5889385.473 3480785.764 5889385.690 3480785.722 5889385.904 3480785.661 5889386.113
+                3480785.582 5889386.317 3480785.498 5889386.491 3480776.541 5889401.630 3480766.299
+                5889415.930 3480754.849 5889429.283 3480742.279 5889441.588 3480728.684 5889452.750
+                3480714.168 5889462.685 3480698.842 5889471.317 3480690.202 5889475.443 3480599.917
+                5889515.958 3480598.780 5889516.404 3480597.608 5889516.749 3480596.411 5889516.990
+                3480595.197 5889517.127 3480593.976 5889517.157 3480592.757 5889517.080 3480591.550
+                5889516.898 3480590.362 5889516.611 3480589.205 5889516.221 3480588.086 5889515.733
+                3480587.013 5889515.148 3480586.553 5889514.858 3480559.705 5889525.623 3480563.349
+                5889534.846 3480563.710 5889536.013 3480563.969 5889537.206 3480564.122 5889538.418
+                3480564.169 5889539.638 3480564.109 5889540.858 3480563.944 5889542.068 3480563.673
+                5889543.259 3480563.300 5889544.422 3480562.827 5889545.548 3480562.258 5889546.628
+                3480561.596 5889547.655 3480560.848 5889548.620 3480560.018 5889549.516 3480559.114
+                5889550.337 3480558.141 5889551.075 3480557.108 5889551.726 3480556.022 5889552.284
+                3480555.313 5889552.587 3480515.974 5889568.130 3480515.399 5889568.357 3480490.839
+                5889578.061 3480448.018 5889604.655 3480439.382 5889610.018 3480466.320 5889678.068
+                3480513.676 5889797.699 3480498.610 5889803.664 3480505.218 5889820.404 3480566.545
+                5889976.011 3480561.519 5889990.680 3480553.559 5890009.123 3480552.471 5890011.338
+                3480560.477 5890010.889 3480566.736 5890011.684 3480573.957 5890010.458 3480584.437
+                5890007.877 3480594.653 5890004.393 3480604.526 5890000.031 3480607.245 5889998.643
+                3480616.572 5889993.205 3480625.389 5889986.974 3480633.630 5889979.999 3480641.232
+                5889972.331 3480648.136 5889964.031 3480693.838 5889903.933 3480702.555 5889893.453
+                3480712.152 5889883.772 3480722.557 5889874.965 3480733.689 5889867.098 3480745.465
+                5889860.231 3480757.794 5889854.417 3480761.069 5889853.087 3480871.876 5889809.548
+                3480877.340 5889807.671 3480882.947 5889806.278 3480888.653 5889805.379 3480891.663
+                5889805.108 3480912.327 5889803.720 3480912.218 5889813.094 3480913.040 5889826.022
+                3480913.372 5889828.320 3480914.176 5889832.016 3480915.298 5889835.628 3480916.731
+                5889839.129 3480918.464 5889842.491 3480920.483 5889845.690 3480922.418 5889852.129
+                3480912.166 5889852.360 3480872.254 5889857.245 3480861.348 5889859.562 3480835.307
+                5889868.066 3480804.206 5889880.544 3480801.004 5889881.587 3480795.512 5889883.802
+                3480790.234 5889886.487 3480785.210 5889889.622 3480776.181 5889895.165 3480773.658
+                5889896.528 3480773.233 5889896.753 3480762.910 5889902.824 3480753.156 5889909.771
+                3480738.079 5889921.715 3480728.665 5889929.619 3480714.555 5889942.000 3480714.081
+                5889942.406 3480704.614 5889951.284 3480695.958 5889960.954 3480673.876 5889986.698
+                3480661.950 5889996.493 3480654.713 5890001.615 3480628.112 5890023.901 3480616.923
+                5890031.346 3480613.017 5890021.479 3480601.242 5890026.499 3480589.074 5890030.474
+                3480576.607 5890033.373 3480563.934 5890035.174 3480551.152 5890035.865 3480539.112
+                5890035.494 3480538.893 5890036.351 3480538.581 5890038.250 3480538.503 5890040.066
+                3480539.193 5890041.198 3480541.451 5890042.751 3480571.397 5890061.061 3480571.932
+                5890060.712 3480610.966 5890084.774 3480605.713 5890090.796 3480534.942 5890047.830
+                3480516.552 5890036.666 3480515.871 5890038.128 3480515.065 5890039.526 3480514.140
+                5890040.848 3480513.104 5890042.084 3480511.963 5890043.225 3480510.728 5890044.263
+                3480509.407 5890045.189 3480509.141 5890045.355 3480500.618 5890050.590 3480473.856
+                5890067.026 3480456.659 5890077.588 3480451.435 5890080.796 3480410.555 5890096.929
+                3480224.796 5890170.246 3480195.304 5890181.886 3480172.052 5890191.064 3480076.300
+                5890228.856 3479956.498 5890276.141 3479930.205 5890286.518 3479906.952 5890295.696
+                3479800.272 5890337.802 3479793.238 5890340.578 3479778.820 5890346.269 3479665.107
+                5890391.152 3479659.404 5890393.403 3479641.854 5890400.330 3479528.615 5890445.023
+                3479525.080 5890446.418 3479521.677 5890447.761 3479511.126 5890451.921 3479506.813
+                5890453.622 3479440.825 5890479.672 3479300.343 5890535.122 3479268.389 5890547.733
+                3479259.725 5890551.152 3479245.135 5890556.910 3479161.110 5890590.071 3478970.145
+                5890665.449 3478940.044 5890677.328 3478930.982 5890680.904 3478897.130 5890694.264
+                3478809.119 5890728.997 3478717.844 5890723.600 3478703.136 5890718.101 3478688.963
+                5890711.342 3478675.434 5890703.372 3478662.650 5890694.254 3478650.710 5890684.057
+                3478639.704 5890672.857 3478631.196 5890662.678 3478616.814 5890626.287 3478606.118
+                5890599.223 3478589.337 5890556.764 3478578.678 5890529.795 3478530.761 5890408.550
+                3478528.008 5890401.584 3478519.018 5890363.689 3478537.084 5890356.559 3478566.462
+                5890344.954 3478622.118 5890322.975 3478738.369 5890277.067 3478752.723 5890271.399
+                3478775.974 5890262.217 3478873.148 5890223.843 3478990.720 5890177.413 3479109.891
+                5890130.352 3479243.842 5890077.454 3479275.279 5890065.046 3479282.771 5890062.087
+                3479333.624 5890042.000 3479342.760 5890038.392 3479354.774 5890033.647 3479310.819
+                5889924.592 3479316.229 5889922.452 3479434.441 5889875.696 3479462.342 5889864.660
+                3479445.646 5889822.429 3479422.492 5889763.864 3479420.654 5889759.215 3479416.132
+                5889747.778 3479414.402 5889743.404 3479412.564 5889738.754 3479383.141 5889664.334
+                3479372.858 5889638.326 3479367.656 5889625.167 </gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </xplan:raeumlicherGeltungsbereich>
+      <xplan:verfahrensMerkmale>
+	    <xplan:XP_VerfahrensMerkmal>
+		  <xplan:vermerk>so nicht</xplan:vermerk>
+		  <xplan:datum>2013-12-13</xplan:datum>
+          <xplan:signatur>Schneider</xplan:signatur>
+          <xplan:signiert>false</xplan:signiert>
+        </xplan:XP_VerfahrensMerkmal>
+      </xplan:verfahrensMerkmale>
+      <xplan:verfahrensMerkmale>
+	    <xplan:XP_VerfahrensMerkmal>
+		  <xplan:vermerk>doch ok</xplan:vermerk>
+		  <xplan:datum>2013-12-13</xplan:datum>
+          <xplan:signatur>Goerke</xplan:signatur>
+          <xplan:signiert>true</xplan:signiert>
+        </xplan:XP_VerfahrensMerkmal>
+      </xplan:verfahrensMerkmale>
+      <xplan:refLegende>
+        <xplan:XP_ExterneReferenz>
+          <xplan:referenzName>B-Plan_Klingmuehl_Heideweg_Leg</xplan:referenzName>
+          <xplan:referenzURL>B-Plan_Klingmuehl_Heideweg_Leg.pdf</xplan:referenzURL>
+        </xplan:XP_ExterneReferenz>
+      </xplan:refLegende>
+      <xplan:refRechtsplan>
+        <xplan:XP_ExterneReferenz>
+          <xplan:georefURL>georef</xplan:georefURL>        
+          <xplan:art>PlanMitGeoreferenz</xplan:art>          
+          <xplan:referenzName>B-Plan_Klingmuehl_Heideweg</xplan:referenzName>
+          <xplan:referenzURL>B-Plan_Klingmuehl_Heideweg.tif</xplan:referenzURL>
+        </xplan:XP_ExterneReferenz>
+      </xplan:refRechtsplan>            
+      <xplan:texte xlink:href="#XP_TEXTABSCHNITT_1"/>
+      <xplan:texte xlink:href="#XP_TEXTABSCHNITT_2"/>      
+      <xplan:gemeinde>
+        <xplan:XP_Gemeinde>        
+          <xplan:ags>4011000</xplan:ags>
+          <xplan:rs>rs</xplan:rs>
+          <xplan:gemeindeName>Bremen</xplan:gemeindeName>          
+          <xplan:ortsteilName>Whatever</xplan:ortsteilName>
+        </xplan:XP_Gemeinde>
+      </xplan:gemeinde>
+      <xplan:planArt>1000</xplan:planArt>     
+      <xplan:veraenderungssperre>false</xplan:veraenderungssperre>
+      <xplan:staedtebaulicherVertrag>false</xplan:staedtebaulicherVertrag>
+      <xplan:erschliessungsVertrag>false</xplan:erschliessungsVertrag>
+      <xplan:durchfuehrungsVertrag>false</xplan:durchfuehrungsVertrag>
+      <xplan:bereich xlink:href="#BP_Bereich_1"/>
+    </xplan:BP_Plan>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_Bereich gml:id="BP_Bereich_1">
+      <xplan:nummer>0</xplan:nummer>
+      <xplan:name>defaultBereich</xplan:name>
+      <xplan:bedeutung>9999</xplan:bedeutung>
+      <xplan:nachrichtlich xlink:href="urn:GML_7e7aae7c-4b3a-4c18-8878-5e59054f56a6"/>
+      <xplan:nachrichtlich xlink:href="urn:GML_28771cf6-8f71-4b36-853e-918ec0330e20"/>
+      <xplan:nachrichtlich xlink:href="urn:GML_7afe5d54-afc1-43ab-aca6-4f66c5ae5f0b"/>
+      <xplan:nachrichtlich xlink:href="urn:GML_c3388c8c-2407-42a7-8b05-f27083b36437"/>
+      <xplan:nachrichtlich xlink:href="urn:GML_dc06e41a-280d-4711-b33a-2b130e527d0a"/>
+      <xplan:nachrichtlich xlink:href="urn:GML_4a1e33a8-6023-4c59-8bfa-ce83166726bd"/>
+      <xplan:nachrichtlich xlink:href="urn:GML_bac13b8b-c254-48ce-9eae-9643af09a369"/>
+      <xplan:nachrichtlich xlink:href="urn:GML_96378792-7183-40e1-bf9e-be16c985a57f"/>
+      <xplan:praesentationsobjekt xlink:href="urn:GML_df1bf487-807c-4ce0-a75f-90377c1656a4"/>
+      <xplan:praesentationsobjekt xlink:href="urn:GML_3a4fe1c8-226b-445d-9570-12c6e6f4ac6f"/>
+      <xplan:praesentationsobjekt xlink:href="urn:GML_20854afc-9fde-4047-801b-f70e6a1b01ad"/>
+      <xplan:rasterBasis xlink:href="#XP_RASTERPLANBASIS_1" /> 
+      <xplan:gehoertZuPlan xlink:href="#BP_Plan_1"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_28a32870-6056-4d33-aadf-e24d9175ae8f"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_a95c7054-e1a4-42ef-ac37-2076f3641e93"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_799d579d-f550-47ca-b36a-c6c96d934822"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_c62212e7-075b-4447-ac66-ca47c70631ff"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_f71ff92a-3e8a-4434-81f0-08b4609db792"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_222ff633-4f9a-42cb-958f-1928bb82b64a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_dacfa11a-311f-4f7d-887d-967cc7d6285a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_6bdf9bf4-e86a-4268-a54f-711fc3d97c88"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_2d946bcc-b294-48d5-88e6-bb09181f83f4"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_4bd86e24-1706-4317-a058-6300dc6e1ab7"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_e3afd507-cb9e-4aeb-8222-6ffeb06f4e8a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_beef514c-558a-4b63-9909-741cd92f67bd"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_23065de0-ca50-4659-a2b0-618d0c386e5b"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_fa7fabfd-a7d4-4fc8-8b9b-dab08141bc6a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_0a7e2e3a-4df6-400b-8105-3a4e5312f634"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_e04f894d-54b2-4ed5-8390-c00a31c0dd7a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_8370543b-09d9-4afa-8d65-e5d40b203448"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_c5e26a8a-aeac-4a0c-974d-607d860c15f7"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_cddd8565-aff7-4eb4-820f-5e2cb9609c3f"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d8322ff0-2ea5-4701-b956-3e9a805639e4"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_ea88ebba-781d-490b-ac9c-1d15ffc60436"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_4b095056-701d-4e66-8b1c-4b0a893261f7"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_257a9c3c-b8c3-4aa0-95bd-c947f367589b"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_df5a0687-ddc1-49db-b90f-d02150179725"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_1d04c77a-f64a-4354-9c65-cb7bc9b79161"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_7900b9eb-68db-401c-83be-e063fc4d5145"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_c35a46c6-2435-4b4a-8d4d-f7f34502ea48"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_c679338d-e373-49e0-ae7c-8ad8d61995a3"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d3d239b3-dd83-4542-9558-10afd4f68b49"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_82d7469f-6bb4-4b85-b6ae-76e8eb5f4b88"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_0ab37621-b617-4bc8-bcf1-c453e1b74463"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_44db6c8a-0f0c-47e5-a614-996e8b7ad6c9"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_1d02bbd3-b1f9-43b4-995f-a662b4e1337f"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_30c5c4d6-e5d1-4f32-8fcb-cfaee0211a2e"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_704f7ece-96af-471f-9f99-b1369d44cb03"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_a9ada70d-3cde-48ba-9ab8-9873b01f59b1"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_29e351ab-70be-4af8-9698-94d52833fb27"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_60beb52f-00d0-4287-b49c-74492ce3be1a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_4380098d-e57e-4a24-9c59-e8460ac17a4a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_1de83651-0ac7-43a2-a586-ba700e79d946"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_834f3a55-c93a-4c8d-8a36-4d783d6dfcd1"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_cf955fad-dbf8-4da5-ad0e-288911a40b30"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_2b77aa5c-02e8-4327-8ad0-aaec1b600860"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_5237f6e2-f9d9-425c-aab8-880e76a4a65a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_8cdbba2a-d8a2-4af5-8dd8-4509fd69612d"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_8a18687f-2b1f-4e6f-a209-6f97946218a2"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_8ae94eef-d7e1-40d8-9256-d812b956ab76"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_4c51e921-f450-4b6d-bee5-d5f3aa56b75b"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_15af7c15-733c-4130-beeb-2ea6ba7c2485"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_6727e7d7-40e7-4f55-8d1c-b3481e9253c9"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_7b05af30-90b0-4b34-b8f3-23e1ef6387b2"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d45c185d-0324-4f66-8d63-783966c4c34a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_1e80e6b6-5982-4cda-a5e8-d74320b94e61"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_24a312f1-5c7c-4c77-bea5-acfa50a18180"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_6a6d23f7-c8c3-4ecc-b248-4835f2ff0860"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_14f6125a-b1df-419e-9bf4-f961f5b7c352"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_6ba1abd9-8c0b-4ef4-87f9-4a75afacbba5"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_3706a209-5b52-493e-b7df-af9600606c1f"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_3e4ddc24-fd41-475f-a8ba-27830db792d9"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_210e1ffa-e959-4581-a23b-734d365a9e3c"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_10eea201-9238-488d-ae5c-665750619e84"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_afd13300-31b9-4e9a-b46d-f9de452093b1"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_426cb8ea-c4de-4361-9512-a4a7c415faa0"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d4a3a9df-53e2-4a40-a6cd-91ef6f2c4588"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_76c847af-45f5-4933-bb1b-546cae6389cb"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_5059c847-6fd6-4e94-84eb-0f275953d6d7"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_911727f1-2769-4e2d-9143-b957d13bb841"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_9506c481-acdf-4562-bcc2-5af2f2141316"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_14928876-d19d-4f71-b232-01020e321829"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_8c17a112-bb5f-4e8a-91d9-7848aed5807f"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_af7e4b99-0ef2-4dd2-ab60-646b1feed564"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_118b0f59-2e8f-43e0-9555-86b38ae4b0e3"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_4b63b99d-c17e-4278-a552-ff3f8a3548f1"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_930cc9f6-9664-4835-8b2a-6a6a1d084872"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_3650fd9e-7616-4e16-8af6-bc6fb3609b8a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_829c0947-4a96-4582-b4ac-a832fecc6f59"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_5a31f3d7-24bc-4a65-8dea-2ff8a5df43c0"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_c4d8849e-6d5a-47e4-9af8-a1d72dad8b7f"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_86c45b92-dd83-43d7-97bc-d799fd118887"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_3506ba32-80c8-4ff3-b69e-786cf3264361"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_bb2e3b0f-0634-41e7-ab2a-f56a5c6b4325"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_abb39819-4e45-4289-8184-8e0305aa3f31"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_27044c32-98c4-45e9-b825-81ede8faba0a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_05e683bc-39d6-4f5d-8e70-17389d98f2cc"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_7b913bee-556d-4cd9-9a86-60c1091ce86e"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_5c5ab1d6-c982-41da-9e99-ad5f83405245"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_50813e22-c181-4b7a-bec8-75b4088f8dc3"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_6fb2e790-e452-495e-8be7-281dca37439d"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_861efa60-bfd1-417d-af4a-ebbce12a19bf"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_73380d41-094a-4d48-aef8-124644b4464b"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_1cae7b98-fe04-4507-a3cd-190bf9eea0c3"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_af2f1fe5-0fb3-4acd-a9b3-dbf2b52872f4"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_8952adfb-2829-435c-8b67-6192e52f56f3"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_e5d13b2e-607f-4215-83c9-8dd41bfa4b9f"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_9046c229-8306-49c1-9038-d2db2ba5ce8e"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_4a5541dc-5ed8-4797-941e-3b8d3b5d1284"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_6cda61d8-2bde-4106-aa49-00f1f60556ed"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_a8753cb3-b8f2-4b2a-b1eb-869fd06502db"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_e7fda236-89a1-4169-b226-04c2969a8cb6"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_bbd07aa5-7955-4c71-addd-a6b8d81d52c2"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_fced3a94-dc7e-4f57-80db-13b59f66eb8c"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_71de174c-c728-462b-9a14-384c362b4c4e"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_29ba2ab8-c294-44cd-b7dd-fa5f738348ed"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d3f8851b-aa4a-4ad3-ac14-fa5d74d797cd"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_74364560-95dc-469d-b5ca-d6e663ec615f"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_39b9847e-5761-4606-bcba-6a8a8da10c1b"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d60cb953-7f3a-4529-836e-5ad383cf0c78"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_57f379dd-0114-42b5-b8a2-0857022ce18f"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_87fa3b50-a353-4465-953a-d2d113c3a81a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_272465e9-c734-45bf-acbe-0bb8839298db"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_822d8673-9880-4284-aa9f-d56c0d96cbc9"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_99db5be2-862c-40f5-8f53-2c4e0134c7c2"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d51983ad-e693-4dac-aa3b-65a34e025768"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_1343e922-e448-4a4d-8733-9385558f19af"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_5eaae706-b299-4c10-8a52-a8656e56b2b2"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_f8b9d25b-0676-40e3-a887-98db628af688"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_93f07848-4f6d-41d1-9096-44272b3f09bf"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_788ea3b0-7911-4b08-a694-9789089b41aa"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_02979472-c921-4b72-8a47-135eb32eede3"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_408aee6e-b038-4314-a632-0a029b45d0b9"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_1cacd802-a5b2-4186-8765-cfb860f8029c"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_946315b6-3f4b-46b0-aeef-09c5582bc0c4"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_16b3f7cf-0ee3-4937-87ce-b627dc71a21a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_a12fe7f5-f2d4-48f4-9a38-a5eb88293a29"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_c1ca9588-ad34-45f0-a5be-46454098b444"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_55061762-d758-438c-a631-bf4f9c775dbe"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_6b5012d9-8957-47a1-88ce-d2c683b2eb0e"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_ec7a52e6-a96a-4060-9d37-cf2fcc1674fe"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_5bc549f1-9744-4c29-b4e1-e25c1dffae7b"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_427d7cf2-2de2-49b2-ad8b-e40cabf991c2"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_ddb4dbe9-54e3-4ce7-90ca-3489f8fb83f2"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_858dc02c-aff6-4275-9c44-0742a61bb6ca"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_b718107a-7708-46c7-8f07-7e1b32c93fc3"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_93b02374-9109-4f54-b81d-4401d373d8d2"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_5772ae1b-0dd6-4de6-a08d-0385c6d62c78"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_2025ff22-6283-4376-a4df-d50ad9e357a8"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_c9862c0e-c050-4546-8e33-856b7d4f75a5"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_36d213be-75f4-40b7-a1fa-0a08742d2121"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_c37e0d12-6126-4989-a097-881603f5df43"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_15de059b-2e75-4519-9714-38ad4923d3bc"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_948821ff-772a-4dc5-892b-732350523948"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_c3521759-33a4-452b-9b95-e2d934d51261"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_c8860c15-d6e4-4ac6-9c6a-f9c772bf97f2"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_37de0b37-d35f-4253-a8af-743d0252758b"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d4fce499-6e1e-488e-935a-3108ce38a13f"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d197661f-3563-4562-858b-e4c7685a7ece"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_6b84862c-4f38-4913-a112-70db0c2acafa"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_7c711717-640b-4eb5-b8a9-48f8aa757b5e"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_49e0469d-4bb8-4fde-8284-0a3bc3b3c26c"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d4f88a50-e243-4011-a9a8-3e3c8ed1027b"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_a2d71190-29ef-4e28-a673-9a3d80f8b974"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_b70c8b13-07a3-460b-82d9-645f73d083e8"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_88b8aff6-8221-4537-be46-4d7f9772cf4e"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_f6f5397f-a999-469a-9c15-28487971a208"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_6bb011ad-f0d7-4ca5-a727-64496be07d21"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_6019f53f-8edf-4319-ae3a-13b10b5293b0"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_eed812b9-5c2b-44c3-86a3-da1d8c665b7a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_5fe2cb60-7543-48e1-8a33-9966b1a61521"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_581ec17f-f32a-416e-b8a8-00f38e563819"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_4caac25e-bab9-4ab5-8797-0768bd78460b"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d1a70ac4-fc47-43ba-8811-747b07e0aecf"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_efd10b98-cda4-4486-950c-6de033ac161a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_038b51a6-6b09-476d-845d-802af1701115"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_14e84500-ca46-448d-8f23-5a1513f96bbb"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_ec883ff4-2edc-4cc9-bcea-e9a5c164867c"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_ebf1a4b6-ed6d-4294-8525-a6fe35329268"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_221609ea-2607-49c9-a2e3-d1cd039f0db7"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_9591bc56-45c2-46f5-8cf7-5d34cd356861"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_f9e2558f-3222-432d-a498-58a6f7743a6e"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_855d334e-6b1f-4bcd-85f3-fad683d4c2da"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_4108a394-7bfc-4567-ae1d-8164a1039b11"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_cfb0e03b-6778-4beb-9697-b487252e7585"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_602d8113-2a29-419c-95c5-fedd52f7eab9"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_4b89c4c3-b41c-4af5-831e-d85d5a471ab3"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_fe30f354-0098-4eac-81fa-2095d9cef188"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_51bcf0fb-cb99-4e77-91c3-7eb9e6f0f477"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d10f15fa-70cc-499b-aec1-29910fb12b57"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_a735f69b-9399-475c-914f-f4b83cbdff73"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_807112d1-3be5-4e5d-959e-c98e7ab2ccd8"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_ecca0b7e-a357-4968-8a15-443fe21d4fb9"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_470904f4-3f69-465a-9ff2-01fe1d696c94"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_e39f064d-8e37-4b4e-ae7a-326e2f3a4a90"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_8f9800c2-1d78-4038-88dd-53115afdfa30"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_deccce9b-33bd-48c9-a16b-6d562fea39b7"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_3c6d3f14-59cc-448b-b55e-384c38751a91"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_3407c3f5-3758-4979-b839-090d5072441a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_527479ae-5f43-46f0-9e83-53c5152aa6c5"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_772756e4-56a1-4e1c-97d1-7919d3fee16b"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_85e68bc4-530b-45c0-805d-2a96c7f4f0c4"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_453c5c38-35fb-4337-8d8d-bff15f778de1"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_24f81a65-faaa-48c0-a1bb-843e25bbe4b8"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_83e168c7-5519-459e-b76e-ef6e038e3cc7"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_972594c7-eda4-44be-a453-94d1fd0b667c"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_4bfacac5-d30a-44e9-aa52-8fd02fd36972"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d3c2ca6e-4312-4f09-8a07-4fc49a872454"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_dc3cbb27-a593-47a7-a0b3-9de7898502d2"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_abfece32-731f-4014-a8de-bdfcde78968c"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_09eb4b5a-c653-4cb3-986d-cb0f2ae1f087"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_1cffacfd-895e-41b6-9366-2d737e228ef7"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_e9ec4a48-e525-4754-a37b-ce88a940aabd"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_61304ea3-0be9-46a3-bb7f-749458496843"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_1b77b180-eb47-4a0d-8e5d-dd452dcb6682"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_464fbab7-8380-409c-82a1-4519c788a7e2"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_de88b1fb-1724-4436-a2f9-a1209f9712da"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_7f7211da-306b-49de-be08-ca79546a40ee"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_87f0e07f-7cb2-4931-ae16-22d8af8e973a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_9320fa48-5c72-4e4d-adda-516f07a65b1d"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_4067b6be-5c04-4c06-8e16-f8472973b11c"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_8310e31a-02eb-4771-abac-4c6dc33ef31d"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_c35a6066-6176-4a20-8f20-38281b869d89"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_48ffbabe-b89a-46c9-8c07-474d3762d67e"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_f20ac75c-a7fa-4d94-84cb-08f05d2c2b15"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_f4ea964f-fa90-4885-9481-1f6ef94eacd1"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_e2cded39-6ea1-4508-9e07-8ca952ee0210"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_62452e0a-5c58-4dc7-aa3c-cf29d167d08b"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_3f06b279-5e6b-422c-b44e-5a7c04000d61"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_2528c2cc-42f2-410d-ace4-3cd4472ef214"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_2b140783-bf4e-4629-845d-38e5ab4da50f"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_32abde79-a132-4700-8bf4-3410d11b0177"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_cd493c09-9439-47f2-aeb2-c4aa26f364cf"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_52f0132a-e927-4f9a-9009-1d1e155c623d"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_67a3fab1-1b82-4ff2-8658-fe8c71b036ea"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_673717b5-cb30-4fcd-b4a0-e6bf59a5cf75"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_97217a85-e29d-492a-8b62-2893eff498b8"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d78c3383-6701-4753-8717-3eee96f045ca"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_8c9b95cc-50cb-447b-9ad5-18331e6976a7"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_2edc3856-7283-4834-932e-b427ad693744"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_f7653938-5496-4e38-ac45-4aef5b451d80"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_3de5c081-699b-442c-a4d2-989acdde06ae"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_cc2e36eb-7a45-448b-82d2-a1a088fa1e21"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_5206cffe-e4e5-4e0e-81e5-ca477bca57fd"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d81251be-6ade-4378-8422-191f59e163a8"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_f869e0f7-302b-4e02-86f0-ce955206f154"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_bcd43ed0-4777-4458-bf60-d0c2f5bfb04b"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_9b9bb31d-8937-4c6b-81e5-8ef6c4a310f9"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_56478008-ea1c-49e0-8724-403b0f30f475"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_9b6cda1d-150c-49e0-b5b1-57d1ef4fc7fd"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_96e88df4-bf34-4f2a-9d07-35ff8ba31b81"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d5e084d1-115c-4578-a55a-99c6509ad850"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_b97918dc-013d-4d20-a960-26df80f00a97"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_2c8d0815-73c3-479c-9fc8-1c51323d6367"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_3a1ca16e-5f02-48c8-8e4e-24e0e8c2e981"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_e831e788-2734-40ff-ab99-3cd436a42bdc"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_cfc23fc0-5800-427c-a25a-3729cebc2935"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_51e1035b-d7f7-4d6d-8bcf-1335cde72afc"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_844a206c-7ae7-4030-a883-7a621d9f2fe3"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_5ffe6cc1-d138-4c07-86c0-1305b0787beb"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_064d1b74-ffaf-4fde-a6e8-04ab0fceaa88"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_2f849f67-021b-49b5-a714-b0a8faa3b646"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_21e501eb-60a3-478a-b0dc-bf0864a2288d"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_37cb61d2-0b97-4dfc-b8a3-cc4caed9027d"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_80431679-63ab-4c7a-bd6c-0d33782f8019"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_e1487264-cd5d-4657-9ef5-135bc1d5b850"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_003383e6-e1d1-4544-b9af-18b7a82ffdda"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_fae9ced9-796f-4af3-b45c-230179185799"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_8598820d-1a2a-4a35-8233-3016d325eeab"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_48d43b5e-5546-4291-81a2-f613a0c8da40"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_773643a5-d46d-45dc-9bbd-8cfe9c15aa75"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_a288ba27-a5fe-451a-9123-cf0ee57d8b3e"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_92702123-880b-4a9b-b634-09766a9e0391"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_90e6cc86-3641-4b2a-9921-8fdfb37e4388"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_51a27218-8540-4f60-ad9e-472d4984d36b"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_3ff4aa1b-02d7-4d1b-97fe-d5b8d8d3dfbc"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_92d1b09e-1906-4886-8d4f-791bee08bb58"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_4eb965dd-5eb7-407a-8d52-1bfc90b489bd"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_98a54720-99b4-4861-9fa2-66318a068da2"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_bc068eee-921f-4946-903b-32c554e5b928"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_b4d36bcd-778c-4d36-a5ad-8ae0f5e0a95d"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_9cf09a0b-9857-44bd-a613-8b6dd9973425"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_6ecef469-21be-457c-bf1f-3106bf25382d"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_d795a696-b4a2-4f5a-a6af-1feeb213702e"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_bc6f0cbd-b13b-4f82-b8b2-4bf62f5f27c2"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_dc6677bf-87e4-4e25-a825-3b6264de88b1"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_b4b294ca-fa31-4bc0-ab1f-b7df228b0d1f"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_e42935e5-3619-4db5-a8be-8b3d4fe9e7f7"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_f0e664b4-eda7-409f-bfe2-9ec56177c80a"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_10f372ac-66ff-445c-8ba6-167157c289bb"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_19845b82-38da-448f-9c62-b6bb80c8e8db"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_92d5001b-adba-46bc-836c-b5f7fb5221c5"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_2f367be8-e426-431d-98cf-aa5ac6ea4500"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_4ef9e132-ffe4-47f1-bf93-48f515a188b8"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_5606f94d-dfcf-4041-b5e6-b4ce97ddebee"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_3b7ca95d-2c5f-48f8-8668-077a4482f2d8"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_2259ea0b-21ca-4cb1-a3d1-b437ae89f4b4"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_6fcd728c-e123-4bbb-a1ef-ecf0d8a7cb9b"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_de952ad1-9260-4559-9dc8-0e6adc4e0c5e"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_b67a8af2-b0b5-4aa1-8473-354ddd5ed1be"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_cf2930b6-38b1-46f5-a8b3-befcd2596e6d"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_9713f4e5-2776-4dce-b6e3-1f81da11a049"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_b088ef6c-b009-4af7-aec6-5ed090aaff10"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_ff1e862b-c938-4fe7-864c-2a59ce087256"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_bdf125ee-68dc-444f-a5cb-bd52e18d3649"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_743a7792-17be-4627-bee1-bc43efdc0481"/>
+      <xplan:inhaltBPlan xlink:href="urn:GML_16692627-2924-489d-b8cb-aa8742f3d2a9"/>
+      <xplan:rasterAenderung xlink:href="#BP_RASTERPLANAENDERUNG_1"/>
+      <xplan:rasterAenderung xlink:href="#BP_RASTERPLANAENDERUNG_2"/>      
+    </xplan:BP_Bereich>
+  </gml:featureMember>  
+  <gml:featureMember>
+    <xplan:XP_PPO gml:id="XP_PPO_1">
+      <xplan:stylesheetId>SymbolAbwasser</xplan:stylesheetId>
+      <xplan:index>0</xplan:index>
+      <xplan:index>1</xplan:index>
+      <xplan:index>2</xplan:index>
+      <xplan:gehoertZuBereich xlink:href="#BP_Bereich_1"/>
+      <xplan:dientZurDarstellungVon xlink:href="#BP_BaugebietsTeilFlaeche_1"/>
+      <xplan:position>
+        <gml:Point srsName="EPSG:31467" gml:id="GML_d17ea47e-85ae-4c0d-857e-f4dfa6faa534">
+          <gml:pos>3479320.554 5890070.195</gml:pos>
+        </gml:Point>
+      </xplan:position>
+      <xplan:drehwinkel uom="urn:adv:uom:grad">0</xplan:drehwinkel>
+      <xplan:skalierung>0.3</xplan:skalierung>
+    </xplan:XP_PPO>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:XP_PPO gml:id="XP_PPO_2">
+      <xplan:stylesheetId>SymbolAbwasser</xplan:stylesheetId>
+      <xplan:gehoertZuBereich xlink:href="#BP_Bereich_1"/>
+      <xplan:dientZurDarstellungVon xlink:href="#BP_BaugebietsTeilFlaeche_1"/>
+      <xplan:position>
+        <gml:Point srsName="EPSG:31467" gml:id="GML_1e4ee370-a3b0-4b84-9a8a-9612ad67b2d5">
+          <gml:pos>3479325.057 5890242.951</gml:pos>
+        </gml:Point>
+      </xplan:position>
+      <xplan:drehwinkel uom="urn:adv:uom:grad">0.314</xplan:drehwinkel>
+      <xplan:skalierung>0.3</xplan:skalierung>
+    </xplan:XP_PPO>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:XP_PPO gml:id="XP_PPO_3">
+      <xplan:stylesheetId>SymbolAbwasser</xplan:stylesheetId>
+      <xplan:gehoertZuBereich xlink:href="#BP_Bereich_1"/>
+      <xplan:dientZurDarstellungVon xlink:href="#BP_BaugebietsTeilFlaeche_1"/>
+      <xplan:position/>
+      <xplan:drehwinkel uom="urn:adv:uom:grad">0.314</xplan:drehwinkel>
+      <xplan:skalierung>0.3</xplan:skalierung>
+    </xplan:XP_PPO>
+  </gml:featureMember>  
+  <gml:featureMember>
+    <xplan:BP_Baugebiet gml:id="BP_Baugebiet_1">
+      <xplan:textSchluessel>text1</xplan:textSchluessel>
+      <xplan:textSchluesselBegruendung>begruendung1</xplan:textSchluesselBegruendung>
+      <xplan:hatGenerAttribut>
+        <xplan:XP_StringAttribut>
+          <xplan:name>attribut1</xplan:name>
+          <xplan:wert>aeiou</xplan:wert>
+        </xplan:XP_StringAttribut>
+      </xplan:hatGenerAttribut>
+      <xplan:hatGenerAttribut>
+        <xplan:XP_DatumAttribut>
+          <xplan:name>attribut2</xplan:name>
+          <xplan:wert>2013-12-13</xplan:wert>
+        </xplan:XP_DatumAttribut>
+      </xplan:hatGenerAttribut>
+      <xplan:hoehenangabe>
+        <xplan:XP_Hoehenangabe>
+          <xplan:abweichenderHoehenbezug>1</xplan:abweichenderHoehenbezug>
+          <xplan:hoehenbezug>1000</xplan:hoehenbezug>
+          <xplan:bezugspunkt>2000</xplan:bezugspunkt>
+          <xplan:hMin uom="meter">1</xplan:hMin>
+          <xplan:hMax uom="meter">2</xplan:hMax>
+          <xplan:hZwingend uom="meter">3</xplan:hZwingend>
+          <xplan:h uom="meter">4</xplan:h>
+        </xplan:XP_Hoehenangabe>  
+      </xplan:hoehenangabe>
+      <xplan:refTextInhalt xlink:href="#XP_TEXTABSCHNITT_2"/>
+      <xplan:refBegruendungInhalt xlink:href="#XP_BEGRUENDUNGABSCHNITT_2"/>    
+      <xplan:flaechenteil xlink:href="#BP_BaugebietsTeilFlaeche_1" />
+      <xplan:flaechenteil xlink:href="#BP_BaugebietsTeilFlaeche_2" />
+      <xplan:flaechenteil xlink:href="#BP_BaugebietsTeilFlaeche_3" />
+    </xplan:BP_Baugebiet>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_BaugebietsTeilFlaeche gml:id="BP_BaugebietsTeilFlaeche_1">
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBP_Bereich xlink:href="#BP_Bereich_1"/>
+      <xplan:position>
+        <gml:Polygon srsName="EPSG:31467" gml:id="GML_3372de37-96c9-4042-a15c-8db31e36dac3">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList srsDimension="2" count="44">3480252.383 5889479.270 3480253.487
+                5889482.061 3479913.008 5889616.581 3479887.245 5889551.380 3479886.675 5889549.731
+                3479886.251 5889548.038 3479885.976 5889546.315 3479885.853 5889544.575 3479885.881
+                5889542.830 3479886.062 5889541.095 3479886.126 5889540.690 3479886.757 5889537.769
+                3479887.640 5889534.914 3479888.768 5889532.147 3479890.133 5889529.489 3479891.725
+                5889526.960 3479893.531 5889524.579 3479895.537 5889522.365 3479897.729 5889520.334
+                3479900.090 5889518.502 3479902.601 5889516.883 3479905.244 5889515.488 3479907.376
+                5889514.567 3480223.166 5889389.782 3480225.990 5889388.806 3480228.888 5889388.080
+                3480231.839 5889387.610 3480234.819 5889387.398 3480237.807 5889387.447 3480240.779
+                5889387.756 3480243.712 5889388.323 3480246.586 5889389.143 3480249.376 5889390.211
+                3480252.063 5889391.518 3480254.626 5889393.054 3480257.045 5889394.808 3480259.302
+                5889396.766 3480261.380 5889398.913 3480263.263 5889401.233 3480264.936 5889403.708
+                3480266.388 5889406.320 3480267.599 5889409.030 3480289.585 5889464.571 3480252.383
+                5889479.270 </gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </xplan:position>
+      <xplan:flaechenschluss>true</xplan:flaechenschluss>
+      <xplan:GRZ>0.8</xplan:GRZ>
+      <xplan:besondereArtDerBaulNutzung>1700</xplan:besondereArtDerBaulNutzung>
+      <xplan:bauweise>3000</xplan:bauweise>
+      <xplan:vertikaleDifferenzierung>false</xplan:vertikaleDifferenzierung>
+    </xplan:BP_BaugebietsTeilFlaeche>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_BaugebietsTeilFlaeche gml:id="BP_BaugebietsTeilFlaeche_2">
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBP_Bereich xlink:href="#BP_Bereich_1"/>
+      <xplan:position>
+        <gml:Polygon srsName="EPSG:31467" gml:id="GML_adc96f14-448a-49f5-b59f-b36a0c2252ef">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList srsDimension="2" count="36">3480244.890 5889589.216 3480242.438
+                5889590.200 3480223.056 5889599.105 3480204.525 5889609.666 3480186.984 5889621.801
+                3480170.568 5889635.419 3480155.401 5889650.416 3480137.880 5889639.949 3480065.130
+                5889596.491 3480081.285 5889569.449 3480260.112 5889498.796 3480261.400 5889502.051
+                3480298.600 5889487.354 3480313.252 5889524.363 3480316.030 5889532.387 3480316.357
+                5889533.508 3480317.887 5889538.871 3480322.156 5889553.841 3480322.257 5889554.265
+                3480322.321 5889554.697 3480322.347 5889555.132 3480322.335 5889555.568 3480322.285
+                5889556.001 3480322.198 5889556.429 3480322.073 5889556.847 3480321.913 5889557.253
+                3480321.718 5889557.643 3480321.490 5889558.014 3480321.230 5889558.365 3480320.940
+                5889558.691 3480320.623 5889558.991 3480320.282 5889559.262 3480319.918 5889559.502
+                3480319.534 5889559.710 3480319.185 5889559.863 3480244.890 5889589.216
+              </gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </xplan:position>
+      <xplan:flaechenschluss>true</xplan:flaechenschluss>
+      <xplan:GRZ>0.8</xplan:GRZ>
+      <xplan:besondereArtDerBaulNutzung>1700</xplan:besondereArtDerBaulNutzung>
+      <xplan:bauweise>3000</xplan:bauweise>
+      <xplan:vertikaleDifferenzierung>false</xplan:vertikaleDifferenzierung>
+    </xplan:BP_BaugebietsTeilFlaeche>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_BaugebietsTeilFlaeche gml:id="BP_BaugebietsTeilFlaeche_3">
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBP_Bereich xlink:href="#BP_Bereich_1"/>
+      <xplan:position>
+        <gml:Polygon srsName="EPSG:31467" gml:id="GML_fba0be28-8a41-412d-8d9f-ba3650253d09">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList srsDimension="2" count="29">3480143.493 5889664.269 3480136.760
+                5889673.128 3480125.005 5889690.934 3480094.366 5889742.063 3480094.126 5889742.427
+                3480093.854 5889742.769 3480093.554 5889743.085 3480093.228 5889743.375 3480092.877
+                5889743.635 3480092.505 5889743.863 3480092.115 5889744.058 3480091.709 5889744.218
+                3480091.291 5889744.342 3480090.864 5889744.430 3480090.430 5889744.480 3480089.994
+                5889744.491 3480089.559 5889744.465 3480089.127 5889744.401 3480088.703 5889744.300
+                3480088.413 5889744.207 3480065.265 5889736.032 3480057.534 5889732.916 3480051.076
+                5889729.680 3480053.647 5889725.388 3480054.676 5889723.671 3480061.324 5889712.577
+                3480101.731 5889645.145 3480104.301 5889640.857 3480143.493 5889664.269
+              </gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </xplan:position>
+      <xplan:flaechenschluss>true</xplan:flaechenschluss>
+      <xplan:besondereArtDerBaulNutzung>1700</xplan:besondereArtDerBaulNutzung>
+      <xplan:bauweise>3000</xplan:bauweise>
+      <xplan:vertikaleDifferenzierung>false</xplan:vertikaleDifferenzierung>
+    </xplan:BP_BaugebietsTeilFlaeche>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:XP_BegruendungAbschnitt gml:id="XP_BEGRUENDUNGABSCHNITT_1">
+      <xplan:schluessel>begruendung1</xplan:schluessel>
+      <xplan:text>Das ist Begründungsabschnitt No 1</xplan:text>
+    </xplan:XP_BegruendungAbschnitt>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:XP_BegruendungAbschnitt gml:id="XP_BEGRUENDUNGABSCHNITT_2">
+      <xplan:schluessel>begruendung2</xplan:schluessel>
+      <xplan:text>Das ist Begründungsabschnitt No 2</xplan:text>
+    </xplan:XP_BegruendungAbschnitt>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:XP_TextAbschnitt gml:id="XP_TEXTABSCHNITT_1">
+      <xplan:schluessel>text1</xplan:schluessel>
+      <xplan:text>Das ist Textabschnitt No 1</xplan:text>
+      <xplan:refText>
+        <xplan:XP_ExterneReferenz>
+          <xplan:referenzURL>text1.pdf</xplan:referenzURL>
+        </xplan:XP_ExterneReferenz>
+      </xplan:refText>
+    </xplan:XP_TextAbschnitt>
+  </gml:featureMember>
+  <gml:featureMember>    
+    <xplan:XP_TextAbschnitt gml:id="XP_TEXTABSCHNITT_2">
+      <xplan:schluessel>text2</xplan:schluessel>
+      <xplan:gesetzlicheGrundlage>BGB</xplan:gesetzlicheGrundlage>      
+      <xplan:text>Das ist Textabschnitt No 2</xplan:text>
+      <xplan:refText>
+        <xplan:XP_ExterneReferenz>
+          <xplan:referenzURL>text2.pdf</xplan:referenzURL>
+        </xplan:XP_ExterneReferenz>
+      </xplan:refText>      
+    </xplan:XP_TextAbschnitt>    
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:XP_RasterplanBasis gml:id="XP_RASTERPLANBASIS_1">
+      <xplan:refScan>
+        <xplan:XP_ExterneReferenz>
+          <xplan:georefURL>B-Plan_Klingmuehl_Heideweg_Karte.tfw</xplan:georefURL>
+          <xplan:art>PlanMitGeoreferenz</xplan:art>
+          <xplan:referenzName>B-Plan_Klingmuehl_Heideweg_Karte</xplan:referenzName>
+          <xplan:referenzURL>B-Plan_Klingmuehl_Heideweg_Karte.tif</xplan:referenzURL>
+        </xplan:XP_ExterneReferenz>
+      </xplan:refScan>
+    </xplan:XP_RasterplanBasis>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_RasterplanAenderung gml:id="BP_RASTERPLANAENDERUNG_1">
+      <xplan:refScan>
+        <xplan:XP_ExterneReferenz>
+          <xplan:georefURL>B-Plan_Klingmuehl_Heideweg_Karte1.tfw</xplan:georefURL>
+          <xplan:art>PlanMitGeoreferenz</xplan:art>
+          <xplan:referenzName>B-Plan_Klingmuehl_Heideweg_Karte1</xplan:referenzName>
+          <xplan:referenzURL>B-Plan_Klingmuehl_Heideweg_Karte1.tif</xplan:referenzURL>
+        </xplan:XP_ExterneReferenz>
+      </xplan:refScan>
+    </xplan:BP_RasterplanAenderung>
+  </gml:featureMember>
+  <gml:featureMember>    
+    <xplan:BP_RasterplanAenderung gml:id="BP_RASTERPLANAENDERUNG_2">
+      <xplan:refScan>
+        <xplan:XP_ExterneReferenz>
+          <xplan:georefURL>B-Plan_Klingmuehl_Heideweg_Karte2.tfw</xplan:georefURL>
+          <xplan:art>PlanMitGeoreferenz</xplan:art>
+          <xplan:referenzName>B-Plan_Klingmuehl_Heideweg_Karte2</xplan:referenzName>
+          <xplan:referenzURL>B-Plan_Klingmuehl_Heideweg_Karte2.tif</xplan:referenzURL>
+        </xplan:XP_ExterneReferenz>
+      </xplan:refScan>
+    </xplan:BP_RasterplanAenderung>    
+  </gml:featureMember>
+</XPlanAuszug>
+

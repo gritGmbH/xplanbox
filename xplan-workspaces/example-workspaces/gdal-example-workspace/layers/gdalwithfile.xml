@@ -1,0 +1,10 @@
+<GDALLayers configVersion="3.4.0"
+            xmlns="http://www.deegree.org/layers/gdal" xmlns:d="http://www.deegree.org/metadata/description"
+            xmlns:l="http://www.deegree.org/layers/base" xmlns:s="http://www.deegree.org/metadata/spatial">
+  <GDALLayer>
+    <l:Name>gdalwithfile</l:Name>
+    <d:Title>gdalwithfile</d:Title>
+    <s:CRS>EPSG:25833</s:CRS>
+    <File>../data/51_FNP_Herzberg_Plan_1_Herzberg_ergb.tif</File>
+  </GDALLayer>
+</GDALLayers>

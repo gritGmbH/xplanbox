@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureTypeStyle xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.opengis.net/se"
+  xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+  <Name>transparent</Name>
+  <FeatureTypeName>xplan:LP_Denkmalschutzrecht</FeatureTypeName>
+  <!-- Fläche -->
+  <Rule>
+    <Name>LP_Denkmalschutzrecht</Name>
+    <Description>
+      <Title>LP: Denkmalschutzrecht</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:Not>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+      </ogc:Not>
+    </ogc:Filter>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>39</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>30</Size>
+        <Displacement>
+          <DisplacementX>0.3</DisplacementX>
+          <DisplacementY>0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0.0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+            <SvgParameter name="stroke-width">0.3</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>40</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+</FeatureTypeStyle>

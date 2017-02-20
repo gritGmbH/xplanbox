@@ -1,0 +1,55 @@
+Präambel
+========
+Dieses Dokument ist das offizielle Betriebshandbuch zur Installation der Software xPlanBox. Die in diesem Dokument genannten Soft- und Hardwarebezeichnungen sind in den meisten Fällen auch
+eingetragene Warenzeichen und unterliegen als solche den gesetzlichen Bestimmungen.
+
+Die in diesem Werk enthaltenen Angaben, Daten, Ergebnisse usw. wurden von den Autoren nach bestem Wissen erstellt und mit Sorgfalt überprüft. Dennoch sind inhaltliche Fehler nicht völlig auszuschließen.
+Daher erfolgen alle Angaben ohne jegliche Verpflichtung oder Garantie. Die Autoren übernehmen aus diesem Grund auch keinerlei Verantwortung oder Haftung für Fehler und deren Folgen.
+Hinweise auf eventuelle Irrtümer werden gerne entgegengenommen.
+
+Dieses Dokument ist mit reStructuredText gesetzt. Es ist als reST Quellcode erhältlich und kann als HTML und PDF angeschaut bzw. bereitgestellt werden.
+
+=======
+Autoren
+=======
+Danilo Bretschneider, 
+Jens Fitzke, 
+Torsten Friebe, 
+Dirk Stenger, 
+Sebastian Goerke, 
+Lyn Elisa Goltz,
+Carmen Tawalika, 
+Jeronimo Wanhoff,
+Lena Rippolz
+
+======
+Lizenz
+======
+Die xPlanBox ist unter der
+`GNU Lesser General Public License (LGPL), version 2.1 <http://www.gnu.org/licenses/lgpl-2.1.html>`_ veröffentlicht.
+Für die Bereitstellung des Quellcodes der XPlanBox wenden Sie sich bitte an `lat/lon <http://www.lat-lon.de>`_ - per Email an info@lat-lon.de.
+
+Softwareüberlassung
+-------------------
+Überlassung der in Binärcode übersetzten Programme (Binärprogramme) der xPlanBox sowie Überlassung von Skripten, Konfigurationsdateien und Dokumentation. Die xPlanBox basiert auf deegree und geomajas, diese sind Bestandteil der Liefereinheit.
+
+Gewährleistung
+--------------
+Die xPlanBox wird unter der LGPL bereitgestellt. Es gelten daher grundsätzlich die Haftungs- und Gewährleistungsausschlüsse der LGPL. Die Firma lat/lon GmbH übernimmt keine Gewähr zur Freiheit der Software bezüglich von Funktions- oder Sachmängeln.
+Die Gewährleistung der Firma lat/lon GmbH bei Überlassung der Binärprogramme erstreckt sich auf die im Benutzerhandbuch dokumentierte Funktionsfähigkeit sowie Benennung einer auf die xPlanBox abgestimmten, funktionsfähigen Systemumgebung. Bei auftretenden Mängeln werden Programmkorrekturen bereitgestellt, sofern diese verfügbar sind.
+
+Nutzungsbedingungen
+-------------------
+Die xPlanBox basiert auf dem Open Source Framework deegree und steht insoweit unter denselben Lizenzbedingungen. Die Binärprogramme der xPlanBox werden von lat/lon hergestellt und stehen unter einem besonderen Nutzungsvorbehalt.
+Der Quellcode der Standardsoftware ist urheberrechtlich geschützt. Als Open Source Software unterliegt sie der LGPL. Art und Umfang der Nutzungsrechte ergeben sich aus der LGPL.
+Die Binärprogramme hingegen unterliegen besonderen Nutzungsrechten.
+Der Anwender erhält das nicht dauerhafte, nicht ausschließliche, nicht übertragbare Recht zur Nutzung dieser Binärprogramme.
+Die Binärprogramme dürfen nur durch den Anwender bzw. seine Organisation genutzt werden. Sofern eine Untereinheit einer Organisation als Anwender benannt ist, ist das Nutzungsrecht auf diese Untereinheit beschränkt. Soll das Nutzungsrecht auf weitere Untereinheiten oder die gesamte Organisation ausgedehnt werden, ist die Bezeichnung des Anwenders entsprechend zu spezifizieren.
+Fremde Dritte im Sinne dieser Vereinbarung sind Personen oder Organisationen, die nicht als Anwender benannt sind.
+
+====================
+Lizenz des Dokuments
+====================
+Es wird die Erlaubnis gewährt, dieses Dokument zu kopieren, zu verteilen und/oder zu modifizieren, unter den Bestimmungen der GNU Free Documentation License, Version 1.3
+oder jeder späteren Version, veröffentlicht von der Free Software Foundation; ohne unveränderliche Abschnitte, ohne vordere Umschlagtexte und ohne hintere Umschlagtexte.
+Die Lizenz wird unter http://www.gnu.org/licenses/fdl-1.3 bereitgestellt.

@@ -1,0 +1,34 @@
+<wms:deegreeWMS xmlns:wms="http://www.deegree.org/services/wms"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                configVersion="3.2.0"
+                xsi:schemaLocation="http://www.deegree.org/services/wms http://schemas.deegree.org/services/wms/3.2.0/wms_configuration.xsd">
+
+  <wms:ServiceConfiguration>
+    <wms:DefaultLayerOptions>
+      <wms:FeatureInfoRadius>10</wms:FeatureInfoRadius>
+    </wms:DefaultLayerOptions>
+    
+    <!-- Wenn Plan ein BPlan ist, muss die Datei wms_$ID nur die ThemeID für BPläne enthalten -->
+    <wms:ThemeId>bplan_$ID_vector</wms:ThemeId>
+    <wms:ThemeId>bplan_$ID_raster</wms:ThemeId>
+    
+    <!-- Wenn Plan ein FPlan ist, muss die Datei wms_$ID nur die ThemeID für FPläne enthalten -->
+    <wms:ThemeId>fplan_$ID_vector</wms:ThemeId>
+    <wms:ThemeId>fplan_$ID_raster</wms:ThemeId>
+    
+    <!-- Wenn Plan ein LPlan ist, muss die Datei wms_$ID nur die ThemeID für LPläne enthalten -->
+    <wms:ThemeId>lplan_$ID_vector</wms:ThemeId>
+    <wms:ThemeId>lplan_$ID_raster</wms:ThemeId>
+    
+    <!-- Wenn Plan ein RPlan ist, muss die Datei wms_$ID nur die ThemeID für RPläne enthalten -->
+    <wms:ThemeId>rplan_$ID_vector</wms:ThemeId>
+    <wms:ThemeId>rplan_$ID_raster</wms:ThemeId>
+    
+  </wms:ServiceConfiguration>
+  <wms:FeatureInfoFormats>
+    <wms:GetFeatureInfoFormat>
+      <wms:File>html.gfi</wms:File>
+      <wms:Format>text/html</wms:Format>
+    </wms:GetFeatureInfoFormat>
+  </wms:FeatureInfoFormats>
+</wms:deegreeWMS>

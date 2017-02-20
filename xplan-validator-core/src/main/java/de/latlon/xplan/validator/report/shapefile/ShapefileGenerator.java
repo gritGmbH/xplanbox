@@ -1,0 +1,149 @@
+package de.latlon.xplan.validator.report.shapefile;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.deegree.cs.coordinatesystems.ICRS;
+import org.deegree.geometry.Geometry;
+import org.deegree.geometry.standard.AbstractDefaultGeometry;
+import org.geotools.geometry.jts.Geometries;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import de.latlon.xplan.validator.geometric.report.BadGeometry;
+import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
+import de.latlon.xplan.validator.report.ReportGenerationException;
+import de.latlon.xplan.validator.report.ValidatorReport;
+
+/**
+ * Creates shape files containing the bad geometries from a {@link ValidatorReport}
+ * 
+ * @author Bingel
+ * @version $Revision: $, $Date: $
+ */
+public class ShapefileGenerator {
+
+    private static final Logger LOG = LoggerFactory.getLogger( ShapefileGenerator.class );
+
+    /**
+     * Checks if the report contains at least one bad geometry
+     * 
+     * @param report
+     *            to check, never <code>null</code>
+     * @return <code>true</code> if the report contains at least one bad geometry, <code>false</code> otherwise
+     */
+    public boolean hasBadGeometry( ValidatorReport report ) {
+        GeometricValidatorResult geometricValidatorResult = report.getGeometricValidatorResult();
+        if ( geometricValidatorResult != null ) {
+            return !geometricValidatorResult.getBadGeometries().isEmpty();
+        }
+        return false;
+    }
+
+    public void generateReport( ValidatorReport report, String validationName, File directoryToCreateShapes )
+                            throws ReportGenerationException {
+
+        checkParameters( report, validationName, directoryToCreateShapes );
+
+        GeometricValidatorResult geometricValidatorResult = report.getGeometricValidatorResult();
+        if ( geometricValidatorResult != null ) {
+            writeShapefiles( validationName, directoryToCreateShapes, geometricValidatorResult.getBadGeometries(),
+                             geometricValidatorResult.getCrs() );
+        }
+    }
+
+    /**
+     * for every Geometry-Type (POINT, MULTIPOINT, LINESTRING, MULTILINESTRING, POLYGON, MULTIPOLYGON) one Shapefile is
+     * created.
+     * 
+     * @param shapefileName
+     *            the name of the Shapefiles, the Type of the Geometry will be appended to the name, never
+     *            <code>null</code>
+     * @param directoryToCreateShapes
+     *            the path to the Shapefiles, never <code>null</code>
+     * @param badGeometries
+     *            List of the bad geometries
+     * @throws ReportGenerationException
+     *             if the generation of the shapefile failed
+     */
+    void writeShapefiles( String shapefileName, File directoryToCreateShapes, List<BadGeometry> badGeometries, ICRS crs )
+                            throws ReportGenerationException {
+        try {
+            Map<Geometries, ShapefileBuilder> geomType2ShapefileBuilders = createShapefileBuilder( crs );
+            addGeometriesToShapefileBuilder( badGeometries, geomType2ShapefileBuilders );
+            writeShapefiles( shapefileName, directoryToCreateShapes, geomType2ShapefileBuilders );
+        } catch ( Exception e ) {
+            throw new ReportGenerationException( "Shapefile could not be created!", e );
+        }
+    }
+
+    private Map<Geometries, ShapefileBuilder> createShapefileBuilder( ICRS crs )
+                            throws ReportGenerationException {
+        Map<Geometries, ShapefileBuilder> geomType2Builders = new HashMap<Geometries, ShapefileBuilder>();
+        geomType2Builders.put( Geometries.POINT, new ShapefileBuilder( crs, Geometries.POINT ) );
+        geomType2Builders.put( Geometries.LINESTRING, new ShapefileBuilder( crs, Geometries.LINESTRING ) );
+        geomType2Builders.put( Geometries.POLYGON, new ShapefileBuilder( crs, Geometries.POLYGON ) );
+        geomType2Builders.put( Geometries.MULTIPOINT, new ShapefileBuilder( crs, Geometries.MULTIPOINT ) );
+        geomType2Builders.put( Geometries.MULTILINESTRING, new ShapefileBuilder( crs, Geometries.MULTILINESTRING ) );
+        geomType2Builders.put( Geometries.MULTIPOLYGON, new ShapefileBuilder( crs, Geometries.MULTIPOLYGON ) );
+        return geomType2Builders;
+    }
+
+    private void addGeometriesToShapefileBuilder( List<BadGeometry> badGeometries,
+                                                  Map<Geometries, ShapefileBuilder> geomType2Builders ) {
+        for ( BadGeometry badGeometry : badGeometries ) {
+            Geometry geom = badGeometry.getGeometry();
+            if ( geom instanceof AbstractDefaultGeometry ) {
+                AbstractDefaultGeometry defaultGeometry = (AbstractDefaultGeometry) geom;
+                com.vividsolutions.jts.geom.Geometry jtsGeom = defaultGeometry.getJTSGeometry();
+
+                Geometries geomType = Geometries.get( jtsGeom );
+                if ( geomType2Builders.containsKey( geomType ) ) {
+                    geomType2Builders.get( geomType ).addGeometry( jtsGeom, defaultGeometry.getId(),
+                                                                   badGeometry.getErrorsSingleString() );
+                }
+            } else {
+                LOG.info( "Geometrie '" + geom.getId() + "' kann nicht in Shapefile geschrieben werden." );
+            }
+        }
+    }
+
+    private void writeShapefiles( String shapefileName, File directoryToCreateShapes,
+                                  Map<Geometries, ShapefileBuilder> geomType2ShapefileBuilders )
+                            throws Exception {
+        for ( Entry<Geometries, ShapefileBuilder> geomType2Builder : geomType2ShapefileBuilders.entrySet() ) {
+            writeFile( geomType2Builder.getValue(), directoryToCreateShapes, shapefileName, geomType2Builder.getKey() );
+        }
+    }
+
+    private void writeFile( ShapefileBuilder creator, File directoryToCreateShapes, String validationName,
+                            Geometries geom )
+                            throws Exception {
+        if ( creator.hasGeometry() ) {
+            String shpFileName = validationName + "_" + geom.getName() + ".shp";
+            try {
+                File shapeFile = new File( directoryToCreateShapes, shpFileName );
+                if ( shapeFile.createNewFile() )
+                    creator.writeToShapefile( shapeFile );
+                else
+                    LOG.error( "Shapefile '" + shapeFile + "' konnte nicht erzeugt werden" );
+            } catch ( Exception e ) {
+                LOG.trace( "Shapefile could not be created!", e );
+                LOG.error( "Beim Erzeugen des Shapefiles '" + shpFileName + "' konnte nicht erzeugt werden" );
+            }
+        }
+    }
+
+    private void checkParameters( ValidatorReport report, String validationName, File directoryToCreateShapes ) {
+        if ( report == null )
+            throw new IllegalArgumentException( "ValidationReport must not be null" );
+        if ( validationName == null )
+            throw new IllegalArgumentException( "ValidationName must not be null" );
+        if ( directoryToCreateShapes == null )
+            throw new IllegalArgumentException( "DirectoryToCreateShapes must not be null" );
+    }
+
+}

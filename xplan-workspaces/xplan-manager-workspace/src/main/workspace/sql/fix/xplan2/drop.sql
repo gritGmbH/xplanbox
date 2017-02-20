@@ -1,0 +1,1 @@
+DROP SCHEMA xplan2 CASCADE;

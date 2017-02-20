@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureTypeStyle xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.opengis.net/se"
+  xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+  <Name>transparent</Name>
+  <FeatureTypeName>xplan:BP_WaldFlaeche</FeatureTypeName>
+  <!-- Naturwald -->
+  <Rule>
+    <Name>Naturwald</Name>
+    <Description>
+      <Title>Naturwald</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+            xlink:href="../../symbols/waldflnat_sym.svg" />
+          <Format>svg</Format>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.45</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>7</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- Nutzwald -->
+  <Rule>
+    <Name>Nutzwald</Name>
+    <Description>
+      <Title>Nutzwald</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>1200</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+            xlink:href="../../symbols/waldflnutzw_sym.svg" />
+          <Format>svg</Format>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.45</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>7</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- Erholungswald -->
+  <Rule>
+    <Name>Erholungswald</Name>
+    <Description>
+      <Title>Erholungswald</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>1400</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>40</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>5</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0.0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#6100c1</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>7</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- Schutzwald -->
+  <Rule>
+    <Name>Schutzwald</Name>
+    <Description>
+      <Title>Schutzwald</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>1600</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+            xlink:href="../../symbols/waldflschutzwald_sym.svg" />
+          <Format>svg</Format>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0.0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.45</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>7</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- FlaecheForstwirtschaft -->
+  <Rule>
+    <Name>FlaecheForstwirtschaft</Name>
+    <Description>
+      <Title>Fläche Forstwirtschaft</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>1800</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+            xlink:href="../../symbols/waldflforstw_sym.svg" />
+          <Format>svg</Format>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.45</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>7</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- Sonstiges -->
+  <Rule>
+    <Name>Sonstiges</Name>
+    <Description>
+      <Title>Sonstiges</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>9999</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+            xlink:href="../../symbols/waldflso_sym.svg" />
+          <Format>svg</Format>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.45</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>7</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- WaldAllgemein -->
+  <Rule>
+    <Name>WaldAllgemein</Name>
+    <Description>
+      <Title>Wald Allgemein</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>XP2_1100</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>55</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>2.5</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0.0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>3</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- Detaillierte Zweckbestimmung -->
+  <Rule>
+    <Name>detaillierteZweckbestimmung</Name>
+    <Description>
+      <Title>detaillierte Zweckbestimmung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:Not>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:detaillierteZweckbestimmung</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+      </ogc:Not>
+    </ogc:Filter>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:PropertyName>xplan:detaillierteZweckbestimmung</ogc:PropertyName>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-family">Sans-Serif</SvgParameter>
+        <SvgParameter name="font-weight">bold</SvgParameter>
+        <SvgParameter name="font-size">3</SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Displacement>
+            <DisplacementX>2.6</DisplacementX>
+            <DisplacementY>0</DisplacementY>
+          </Displacement>
+        </PointPlacement>
+      </LabelPlacement>
+      <Halo>
+        <Radius>0.3</Radius>
+        <Fill>
+          <SvgParameter name="fill">#ffffff</SvgParameter>
+          <SvgParameter name="fill-opacity">0</SvgParameter>
+        </Fill>
+      </Halo>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+</FeatureTypeStyle>

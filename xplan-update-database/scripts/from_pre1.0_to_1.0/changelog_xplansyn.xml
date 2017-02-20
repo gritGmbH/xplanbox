@@ -1,0 +1,2444 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="lyn (generated)" id="1417102916948-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_abfallentsorgung">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_typ" type="TEXT"/>
+            <column name="xplan_typcode" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_typae_nsm" type="TEXT"/>
+            <column name="xplan_typae_nsmcode" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-2" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_abwasser">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_typ" type="TEXT"/>
+            <column name="xplan_typcode" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_typaw_nsm" type="TEXT"/>
+            <column name="xplan_typaw_nsmcode" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-3" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_asb">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_funktion" type="TEXT"/>
+            <column name="xplan_funktioncode" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_zweckbindungasb_nsm" type="TEXT"/>
+            <column name="xplan_zweckbindungasb_nsmcode" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-4" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_erholung">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_istausgleichsgebiet" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_typet_nsm" type="TEXT"/>
+            <column name="xplan_typet_nsmcode" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-5" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_gib">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_funktion" type="TEXT"/>
+            <column name="xplan_funktioncode" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_zweckbindunggib_nsm" type="TEXT"/>
+            <column name="xplan_zweckbindunggib_nsmcode" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-6" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_landschaftsschutz">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_istausgleichsgebiet" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_typls_nsm" type="TEXT"/>
+            <column name="xplan_typls_nsmcode" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-7" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_luftverkehr">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_typ" type="TEXT"/>
+            <column name="xplan_typcode" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_luftverkehrtyp_nsm" type="TEXT"/>
+            <column name="xplan_luftverkehrtyp_nsmcode" type="TEXT"/>
+            <column name="xplan_sonsttyp_nsm" type="TEXT"/>
+            <column name="xplan_sonsttyp_nsmcode" type="TEXT"/>
+            <column name="xplan_status_nsm" type="TEXT"/>
+            <column name="xplan_status_nsmcode" type="TEXT"/>
+            <column name="xplan_bezeichnung_nsm" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-8" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_naturschutz">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_istausgleichsgebiet" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_typns_nsm" type="TEXT"/>
+            <column name="xplan_typns_nsmcode" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-9" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_oberflaechennahebodenschaetze">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_abbaugut" type="TEXT"/>
+            <column name="xplan_abbaugutcode" type="TEXT"/>
+            <column name="xplan_istausgleichsgebiet" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_folgenutzung_nsm" type="TEXT"/>
+            <column name="xplan_folgenutzung_nsmcode" type="TEXT"/>
+            <column name="xplan_folgenutzungtext_nsm" type="TEXT"/>
+            <column name="xplan_zeitstufe_nsm" type="TEXT"/>
+            <column name="xplan_zeitstufe_nsmcode" type="TEXT"/>
+            <column name="xplan_zeitstufetext_nsm" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-10" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_regionalbedeutsamerwanderweg">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_istausgleichsgebiet" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_typrbw_nsm" type="TEXT"/>
+            <column name="xplan_typrbw_nsmcode" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-11" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_regionalbedeutsamesportanlage">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_istausgleichsgebiet" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_typrbs_nsm" type="TEXT"/>
+            <column name="xplan_typrbs_nsmcode" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-12" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_schienenverkehr">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_typ" type="TEXT"/>
+            <column name="xplan_typcode" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_schienenverkehrtyp_nsm" type="TEXT"/>
+            <column name="xplan_schienenverkehrtyp_nsmcode" type="TEXT"/>
+            <column name="xplan_sonsttyp_nsm" type="TEXT"/>
+            <column name="xplan_sonsttyp_nsmcode" type="TEXT"/>
+            <column name="xplan_status_nsm" type="TEXT"/>
+            <column name="xplan_status_nsmcode" type="TEXT"/>
+            <column name="xplan_bezeichnung_nsm" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-13" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_sonstverkehr">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_typ" type="TEXT"/>
+            <column name="xplan_typcode" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_sonstverkehrtyp_nsm" type="TEXT"/>
+            <column name="xplan_sonstverkehrtyp_nsmcode" type="TEXT"/>
+            <column name="xplan_bezeichnung_nsm" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-14" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_strassenverkehr">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_typ" type="TEXT"/>
+            <column name="xplan_typcode" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_strassenverkehrtyp_nsm" type="TEXT"/>
+            <column name="xplan_strassenverkehrtyp_nsmcode" type="TEXT"/>
+            <column name="xplan_sonsttyp_nsm" type="TEXT"/>
+            <column name="xplan_status_nsm" type="TEXT"/>
+            <column name="xplan_status_nsmcode" type="TEXT"/>
+            <column name="xplan_bezeichnung_nsm" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-15" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_tiefliegenderohstoffe">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_abbaugut" type="TEXT"/>
+            <column name="xplan_abbaugutcode" type="TEXT"/>
+            <column name="xplan_istausgleichsgebiet" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-16" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_tourismus">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_istausgleichsgebiet" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_typtt_nsm" type="TEXT"/>
+            <column name="xplan_typtt_nsmcode" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-17" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="xplan_rp_nsm_wasserverkehr">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INT4"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INT4"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_informell" type="TEXT"/>
+            <column name="xplan_rechtsverbindlich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_konkretisierung" type="TEXT"/>
+            <column name="xplan_gebietstyp" type="TEXT"/>
+            <column name="xplan_gebietstypcode" type="TEXT"/>
+            <column name="xplan_typ" type="TEXT"/>
+            <column name="xplan_typcode" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_gehoertnachrichtlichzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_gehoertzurp_bereich" type="TEXT"/>
+            <column name="xplan_wasserverkehrtyp_nsm" type="TEXT"/>
+            <column name="xplan_wasserverkehrtyp_nsmcode" type="TEXT"/>
+            <column name="xplan_sonsttyp_nsm" type="TEXT"/>
+            <column name="xplan_status_nsm" type="TEXT"/>
+            <column name="xplan_status_nsmcode" type="TEXT"/>
+            <column name="xplan_bezeichnung_nsm" type="TEXT"/>
+            <column name="xplan_symbolposition" type="GEOMETRY"/>
+            <column name="xplan_position" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-18" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_naturschutzrechtlichesschutzgebiet">
+            <column name="xplan_besonderezweckbestimmungnsg_nsm" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-19" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_naturschutzrechtlichesschutzgebiet">
+            <column name="xplan_besonderezweckbestimmungnsg_nsmcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-20" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_zentralerort">
+            <column name="xplan_detailfunktion_nsm" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-21" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_zentralerort">
+            <column name="xplan_detailfunktion_nsmcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-22" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_nutzungsartengrenze">
+            <column name="xplan_detailtyp" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-23" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_energieversorgung">
+            <column name="xplan_detailtyp_nsm" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-24" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_energieversorgung">
+            <column name="xplan_detailtyp_nsmcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-25" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_nutzungsartengrenze">
+            <column name="xplan_detailtypcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-26" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_abgrabungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-27" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_abstandsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-28" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_abstandsmass">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-29" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_anpflanzungbindungerhaltung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-30" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_aufschuettungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-31" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_ausgleich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-32" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_ausgleichsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-33" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_ausgleichsmassnahme">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-34" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_bahnverkehr">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-35" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_baugebiet">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-36" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_baugebietsteilflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-37" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_baugrenze">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-38" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_baulinie">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-39" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_bauschutzbereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-40" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_bereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-41" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_bereichohneeinausfahrtlinie">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-42" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-43" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_bodenschaetzeflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-44" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_denkmalschutzeinzelanlage">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-45" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_denkmalschutzeinzelanlagepunkt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-46" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_denkmalschutzensembleflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-47" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_einfahrtpunkt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-48" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_einfahrtsbereichlinie">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-49" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_eingriffsbereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-50" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_erhaltungsbereichflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-51" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_erneuerbareenergieflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-52" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_fachgesetz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-53" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_festsetzungenbaugebiet">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-54" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_festsetzungnachlandesrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-55" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_firstrichtungslinie">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-56" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_foerderungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-57" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_freiflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-58" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_gebaeudeflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-59" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-60" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_gemeinschaftsanlagenflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-61" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_gemeinschaftsanlagenzuordnung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-62" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_generischesobjekt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-63" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_gestaltungbaugebiet">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-64" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_gewaesserflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-65" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_grabungsschutzgebiet">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-66" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_gruenflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-67" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_hoehenmass">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-68" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_hoehenpunkt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-69" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_immissionsschutz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-70" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_kennzeichnungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-71" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_kleintierhaltungflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-72" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_laermschutzbereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-73" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_landwirtschaft">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-74" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-75" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_landwirtschaftslinie">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-76" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_luftreinhalteflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-77" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_luftverkehrflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-78" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_nebenanlagenausschlussflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-79" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_nebenanlagenflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-80" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_nutzungsartengrenze">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-81" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_persgruppenbestimmteflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-82" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_plan">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-83" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_rasterplanaenderung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-84" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_regelungvergnuegungsstaetten">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-85" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_rekultivierungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-86" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_schutzgebiet">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-87" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_schutzpflegeentwicklungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-88" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_schutzpflegeentwicklungsmassnahme">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-89" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_speziellebauweise">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-90" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_spielsportanlagenflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-91" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_strassenbegrenzungslinie">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-92" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_strassenkoerper">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-93" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_strassenverkehrsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-94" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_technikbestimmteflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-95" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_textabschnitt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-96" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_textlichefestsetzungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-97" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_ueberbaubaregrundstuecksflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-98" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_unverbindlichevormerkung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-99" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_veraenderungssperre">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-100" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_verentsorgung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-101" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_verentsorgungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-102" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_verentsorgungsleitunglinie">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-103" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_verkehrsflaechebesondererzweckbestimmung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-104" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_vorbhochwschutzflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-105" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_waldflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-106" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_wasserrechtlichefestsetzungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-107" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_wasserwirtschaftsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-108" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_wegerecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-109" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_abgrabung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-110" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_abgrabungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-111" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_anpassungklimawandel">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-112" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_aufschuettung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-113" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_aufschuettungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-114" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_ausgleichsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-115" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_bahnverkehr">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-116" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_bauschutzbereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-117" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_bebauungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-118" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_bereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-119" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_bodenschaetze">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-120" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_bodenschaetzeflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-121" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_denkmalschutzensemble">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-122" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_erhaltungssatzung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-123" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_fachgesetz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-124" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_gemeinbedarf">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-125" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_generischesobjekt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-126" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_gewaesser">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-127" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_grabungsschutzgebiet">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-128" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_gruen">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-129" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_keinezentrabwasserbeseitigungflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-130" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_kennzeichnung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-131" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_laermschutzbereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-132" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_landwirtschaftsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-133" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_luftverkehr">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-134" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_nutzungsbeschraenkungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-135" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_plan">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-136" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_privilegiertesvorhaben">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-137" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_priviligiertesvorhaben">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-138" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_rasterplanaenderung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-139" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_schutzgebiet">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-140" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_schutzpflegeentwicklung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-141" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_spielsportanlage">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-142" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_strassenverkehr">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-143" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_textabschnitt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-144" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_textlichedarstellungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-145" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_unverbindlichevormerkung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-146" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_verentsorgung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-147" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_vorbehalteflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-148" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_vorbhochwschutz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-149" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_waldflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-150" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_wasserrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-151" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_wasserwirtschaft">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-152" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_zentralerversorgungsbereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-153" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_abgrenzung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-154" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_allggruenflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-155" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_anpflanzungbindungerhaltung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-156" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_ausgleich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-157" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_bereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-158" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_biotopverbundflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-159" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_bodenschutzrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-160" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_denkmalschutzrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-161" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_erholungfreizeit">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-162" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_forstrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-163" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_generischesobjekt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-164" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_landschaftsbild">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-165" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_biotopschutz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-166" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_brachflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-167" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_elementekulturlandschaft">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-168" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_forstlichefestsetzung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-169" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_herrichtunggrundstueck">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-170" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_pflegeanpflanzung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-171" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_pflegelandschaftsbild">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-172" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_schutzobjektlandesrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-173" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_sonstigemassnahme">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-174" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_strukturenelementebesiedelterbereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-175" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_temporaererlandschaftsschutz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-176" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_verpflichtungwrrl">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-177" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nutzungsausschluss">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-178" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nutzungserfordernisregelung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-179" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_plan">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-180" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_planerischevertiefung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-181" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_rasterplanaenderung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-182" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_schutzobjektbundesrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-183" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_schutzobjektinternatrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-184" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_schutzpflegeentwicklung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-185" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_sonstigeabgrenzuung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-186" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_sonstigesrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-187" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_textabschnitt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-188" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_textlichefestsetzungsflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-189" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-190" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_wasserrechtschutzgebiet">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-191" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_wasserrechtsonstige">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-192" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_wasserrechtwirtschaftabflusshochwschutz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-193" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_zubegruenendegrundstueckflaeche">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-194" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_zwischennutzung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-195" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_achse">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-196" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_bereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-197" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_bodenschutz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-198" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_energieversorgung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-199" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_entsorgung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-200" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_entwicklungsschwerpunkte">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-201" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_forstwirtschaft">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-202" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_freizeiterholung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-203" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_gemeindefunktionsiedlungsentwicklung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-204" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_generischesobjekt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-205" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_gewaesser">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-206" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_grenze">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-207" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_gruenzuggruenzaesur">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-208" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_klimaschutz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-209" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_kommunikation">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-210" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_kulturellessachgut">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-211" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_laermschutzbereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-212" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_landwirtschaft">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-213" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_naturlandschaft">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-214" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_naturschutzrechtlichesschutzgebiet">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-215" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_asb">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-216" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_aufschuettungablagerung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-217" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_forstwirtschaft">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-218" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_freiraumagrarbereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-219" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_gib">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-220" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_grundwassergewaesserschutz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-221" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_laermschutzzone">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-222" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_landschaftsschutz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-223" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_luftverkehr">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-224" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_naturschutz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-225" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_oberflaechengewaesser">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-226" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_oberflaechennahebodenschaetze">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-227" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_schienenverkehr">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-228" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_sonstigeinfrastruktur">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-229" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_sonstigersiedlungsbereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-230" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_sonstigezweckbindung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-231" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_sonstverkehr">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-232" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_strassenverkehr">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-233" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_ueberschwemmungsbereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-234" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_wasserverkehr">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-235" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_zeitlinie">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-236" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_plan">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-237" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_rasterplanaenderung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-238" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_raumkategorie">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-239" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_rohstoffsicherung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-240" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_sonstigeinfrastruktur">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-241" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_sonstigerfreiraumstruktur">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-242" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_sonstigesiedlungsstruktur">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-243" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_sozialeinfrastruktur">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-244" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_sperrgebiet">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-245" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_textabschnitt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-246" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_verkehr">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-247" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_vorbhochwasserschutz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-248" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_wasserschutz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-249" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_wasserwirtschaft">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-250" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_windenergie">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-251" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_windenergienutzung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-252" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_zentralerort">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-253" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_bereich">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-254" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_bodenschutzrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-255" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_denkmalschutzrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-256" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_forstrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-257" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_gebiet">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-258" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_grenze">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-259" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_linienobjekt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-260" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_luftverkehrsrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-261" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_objekt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-262" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_plan">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-263" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_rasterplanaenderung">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-264" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_schienenverkehrsrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-265" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_schutzgebietnaturschutzrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-266" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_schutzgebietsonstigesrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-267" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_schutzgebietwasserrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-268" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_sonstigesrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-269" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_strassenverkehrsrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-270" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_textabschnitt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-271" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_wasserrecht">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-272" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_begruendungabschnitt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-273" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_datumattribut">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-274" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_doubleattribut">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-275" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_externereferenz">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-276" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_externereferenzplan">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-277" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_fpo">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-278" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_grenze">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-279" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_hoehenangabe">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-280" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_integerattribut">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-281" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_lpo">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-282" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_lto">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-283" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_nutzungsschablone">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-284" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_ppo">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-285" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_praesentationsobjekt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-286" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_pto">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-287" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_rasterplanbasis">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-288" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_stringattribut">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-289" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_textabschnitt">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-290" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_urlattribut">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-291" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_xp_verfahrensmerkmal">
+            <column name="xplan_mgr_planid" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-292" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_plan">
+            <column name="xplan_refgruenordnungsplan" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-293" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_energieversorgung">
+            <column name="xplan_status_nsm" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-294" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_energieversorgung">
+            <column name="xplan_status_nsmcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-295" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_nutzungsartengrenze">
+            <column name="xplan_typ" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-296" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_nutzungsartengrenze">
+            <column name="xplan_typcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-297" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_laermschutzbereich">
+            <column name="xplan_typls_nsm" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-298" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_laermschutzbereich">
+            <column name="xplan_typls_nsmcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-299" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_landwirtschaft">
+            <column name="xplan_typlw_nsm" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-300" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_landwirtschaft">
+            <column name="xplan_typlw_nsmcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-301" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_bodenschutz">
+            <column name="xplan_zweckbestimmungbs_nsm" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-302" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_bodenschutz">
+            <column name="xplan_zweckbestimmungbs_nsmcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-303" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_forstwirtschaft">
+            <column name="xplan_zweckbestimmungfw_nsm" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-304" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_forstwirtschaft">
+            <column name="xplan_zweckbestimmungfw_nsmcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-305" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_vorbhochwasserschutz">
+            <column name="xplan_zweckbestimmunghws_nsm" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-306" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_vorbhochwasserschutz">
+            <column name="xplan_zweckbestimmunghws_nsmcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-307" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_wasserschutz">
+            <column name="xplan_zweckbestimmungws_nsm" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-308" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_wasserschutz">
+            <column name="xplan_zweckbestimmungws_nsmcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-309" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_abfallentsorgung_pkey" tableName="xplan_rp_nsm_abfallentsorgung"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-310" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_abwasser_pkey" tableName="xplan_rp_nsm_abwasser"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-311" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_asb_pkey" tableName="xplan_rp_nsm_asb"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-312" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_erholung_pkey" tableName="xplan_rp_nsm_erholung"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-313" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_gib_pkey" tableName="xplan_rp_nsm_gib"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-314" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_landschaftsschutz_pkey" tableName="xplan_rp_nsm_landschaftsschutz"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-315" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_luftverkehr_pkey" tableName="xplan_rp_nsm_luftverkehr"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-316" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_naturschutz_pkey" tableName="xplan_rp_nsm_naturschutz"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-317" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_oberflaechennahebodenschaetze_pkey" tableName="xplan_rp_nsm_oberflaechennahebodenschaetze"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-318" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_regionalbedeutsamerwanderweg_pkey" tableName="xplan_rp_nsm_regionalbedeutsamerwanderweg"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-319" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_regionalbedeutsamesportanlage_pkey" tableName="xplan_rp_nsm_regionalbedeutsamesportanlage"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-320" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_schienenverkehr_pkey" tableName="xplan_rp_nsm_schienenverkehr"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-321" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_sonstverkehr_pkey" tableName="xplan_rp_nsm_sonstverkehr"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-322" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_strassenverkehr_pkey" tableName="xplan_rp_nsm_strassenverkehr"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-323" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_tiefliegenderohstoffe_pkey" tableName="xplan_rp_nsm_tiefliegenderohstoffe"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-324" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_tourismus_pkey" tableName="xplan_rp_nsm_tourismus"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-325" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="attr_gml_id" constraintName="xplan_rp_nsm_wasserverkehr_pkey" tableName="xplan_rp_nsm_wasserverkehr"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-326" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_431" tableName="xplan_rp_nsm_abfallentsorgung" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-327" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_432" tableName="xplan_rp_nsm_abfallentsorgung" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-328" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_433" tableName="xplan_rp_nsm_abwasser" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-329" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_434" tableName="xplan_rp_nsm_abwasser" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-330" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_435" tableName="xplan_rp_nsm_erholung" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-331" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_436" tableName="xplan_rp_nsm_erholung" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-332" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_437" tableName="xplan_rp_nsm_regionalbedeutsamerwanderweg" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-333" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_438" tableName="xplan_rp_nsm_regionalbedeutsamerwanderweg" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-334" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_439" tableName="xplan_rp_nsm_regionalbedeutsamesportanlage" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-335" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_440" tableName="xplan_rp_nsm_regionalbedeutsamesportanlage" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-336" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_441" tableName="xplan_rp_nsm_tourismus" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-337" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_442" tableName="xplan_rp_nsm_tourismus" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-338" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_443" tableName="xplan_rp_nsm_asb" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-339" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_444" tableName="xplan_rp_nsm_asb" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-340" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_445" tableName="xplan_rp_nsm_gib" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-341" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_446" tableName="xplan_rp_nsm_gib" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-342" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_447" tableName="xplan_rp_nsm_landschaftsschutz" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-343" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_448" tableName="xplan_rp_nsm_landschaftsschutz" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-344" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_449" tableName="xplan_rp_nsm_naturschutz" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-345" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_450" tableName="xplan_rp_nsm_naturschutz" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-346" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_451" tableName="xplan_rp_nsm_oberflaechennahebodenschaetze" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-347" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_452" tableName="xplan_rp_nsm_oberflaechennahebodenschaetze" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-348" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_453" tableName="xplan_rp_nsm_tiefliegenderohstoffe" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-349" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_454" tableName="xplan_rp_nsm_tiefliegenderohstoffe" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-350" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_455" tableName="xplan_rp_nsm_luftverkehr" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-351" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_456" tableName="xplan_rp_nsm_luftverkehr" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-352" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_457" tableName="xplan_rp_nsm_schienenverkehr" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-353" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_458" tableName="xplan_rp_nsm_schienenverkehr" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-354" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_459" tableName="xplan_rp_nsm_sonstverkehr" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-355" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_460" tableName="xplan_rp_nsm_sonstverkehr" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-356" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_461" tableName="xplan_rp_nsm_strassenverkehr" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-357" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_462" tableName="xplan_rp_nsm_strassenverkehr" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-358" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_463" tableName="xplan_rp_nsm_wasserverkehr" unique="false">
+            <column name="xplan_symbolposition"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1417102916948-359" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="spatial_idx_464" tableName="xplan_rp_nsm_wasserverkehr" unique="false">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+  <Name>transparent</Name>
+  <FeatureTypeName>xplan:FP_Strassenverkehr</FeatureTypeName>
+  <Rule>
+    <Name>Autobahn</Name>
+    <Description>
+      <Title>FP: Autobahn</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsPoint">
+            <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>10000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>square</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>70</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- Hauptverkehrsstraße Punkt-->
+  <Rule>
+    <Name>Hauptverkehrsstrasse</Name>
+    <Description>
+      <Title>FP: Hauptverkehrsstraße</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsPoint">
+            <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>1200</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>10000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>square</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>70</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- Sonstiger Verkehrsweg Anlage  Punkt -->
+  <Rule>
+    <Name>SonstigerVerkehrswegAnlage</Name>
+    <Description>
+      <Title>FP: Sonstiger Verkehrsweg Anlage</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsPoint">
+            <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>1400</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>10000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>square</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>70</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- Ruhender Verkehr Punkt -->
+  <Rule>
+    <Name>RuhenderVerkehr</Name>
+    <Description>
+      <Title>FP: Ruhender Verkehr</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsPoint">
+            <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>1600</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>10000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+            xlink:href="../../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>1600</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+            <SvgParameter name="stroke-width">1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>90</Size>
+        <Displacement>
+          <DisplacementX>-8</DisplacementX>
+          <DisplacementY>-5</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+            xlink:href="../../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>51</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+            <SvgParameter name="stroke-width">1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>50</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- Sonstiges Punkt -->
+  <Rule>
+    <Name>Sonstiges</Name>
+    <Description>
+      <Title>FP: Sonstiges</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsPoint">
+            <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>9999</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>10000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>square</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>70</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- Überörtlicher Weg Punkt -->
+  <Rule>
+    <Name>Ueberortlicher Weg</Name>
+    <Description>
+      <Title>FP: Überörtlicher Weg</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsPoint">
+            <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>XP2_1200</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>10000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>square</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>70</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- Durchgang Punkt -->
+  <Rule>
+    <Name>Durchgang</Name>
+    <Description>
+      <Title>FP: Durchgang</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsPoint">
+            <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>XP2_1500</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>10000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>square</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>70</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:SymbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>Du</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-family">Sans-Serif</SvgParameter>
+        <SvgParameter name="font-weight">bold</SvgParameter>
+        <SvgParameter name="font-size">50</SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Displacement>
+            <DisplacementX>-3</DisplacementX>
+            <DisplacementY>0</DisplacementY>
+          </Displacement>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#FFFFFF</SvgParameter>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+
+  <!-- detailierte Zweckbestimmung -->
+  <Rule>
+    <Name>detaillierteZweckbestimmung</Name>
+    <Description>
+      <Title>detaillierte Zweckbestimmung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:Not>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:detaillierteZweckbestimmung</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+      </ogc:Not>
+    </ogc:Filter>
+    <MaxScaleDenominator>10000</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:PropertyName>xplan:detaillierteZweckbestimmung</ogc:PropertyName>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-family">Sans-Serif</SvgParameter>
+        <SvgParameter name="font-weight">bold</SvgParameter>
+        <SvgParameter name="font-size">50</SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Displacement>
+            <DisplacementX>9</DisplacementX>
+            <DisplacementY>0</DisplacementY>
+          </Displacement>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+</FeatureTypeStyle>      

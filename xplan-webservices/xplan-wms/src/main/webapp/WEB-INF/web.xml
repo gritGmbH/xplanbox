@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
+  <display-name>deegree 3 OGC services console + generic client</display-name>
+
+  <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
+  </context-param>
+
+  <filter>
+    <filter-name>PlanFilter</filter-name>
+    <filter-class>de.latlon.xplanisk2.wms.PlanFilter</filter-class>
+    <init-param>
+      <param-name>bpLayers</param-name>
+      <param-value>bplanraster_sortiert,bp_plan,bp_abgrabungsfl,bp_abstandsfl,bp_abstandsmass,bp_anpflanzbinderh,bp_aufschuettsfl,bp_ausgleich,bp_ausgleichsfl,bp_ausgleichsmassn,bp_bahnverk,bp_baugeb,bp_baugebteilfl,bp_baugr,bp_baulin,bp_bauschutzber,bp_eingriffsber,bp_ber,bp_berohneeinausflin,bp_besnutzzweckfl,bp_bsfl,bp_denkmscheinzanlpt,bp_denkmscheinzanl,bp_denkmschensfl,bp_einfpt,bp_einfberlin,bp_erhsberfl,bp_erneuerbenergiefl,bp_fachgesetz,bp_firstrilin,bp_foerderfl,bp_freifl,bp_gebaeudefl,bp_gembedarfsfl,bp_gemanlzu,bp_gemanlfl,bp_genobj,bp_gewfl,bp_grabungsschutzgeb,bp_gruenfl,bp_kleintierhfl,bp_hoehenpt,bp_hoehenmass,bp_veraendsper,bp_regvergstaett,bp_immsschutz,bp_kennzsfl,bp_laermschutzber,bp_lwfl,bp_lw,bp_lwlin,bp_luftreinhfl,bp_luftverkfl,bp_nebenanlausschlfl,bp_nebenanlfl,bp_nutzartgr,bp_persgrbestfl,bp_rasterplanaender,bp_rekultivierungsfl,bp_schutzgeb,bp_schutzpflentwfl,bp_schutzpflentwmassn,bp_speziellebauweise,bp_spispoanlfl,bp_strbegrlin,bp_strkoerper,bp_strverksfl,bp_techbestfl,bp_textlfestsfl,bp_ueberbaubgrundstsfl,bp_unverbindlvormerk,bp_verentsorgung,bp_verentsorgungsfl,bp_verentsorgungsleitlin,bp_verksflbeszwb,bp_vorbhwsfl,bp_waldfl,bp_wrlfestsfl,bp_wwssfl,bp_wegerecht,bp_festsbaugeb,bp_gestbaugeb,bp_festsland,bp_beschriftung,bp_xp_pto,bp_xp_lto,bp_xp_fpo,bp_xp_lpo,bp_xp_ppo,bp_symbole,bp_abgrabungsflsym,bp_aufschuettsflsym,bp_bahnverksym,bp_baugebteilflsym,bp_besnutzzweckflsym,bp_bsflsym,bp_denkmschensflsym,bp_erhsberflsym,bp_festsbaugebsym,bp_gembedarfsflsym,bp_gemanlflsym,bp_gewflsym,bp_gruenflsym,bp_lwflsym,bp_luftverkflsym,bp_nebenanlflsym,bp_schutzgebsym,bp_schutzpflentwmassnsym,bp_spispoanlflsym,bp_verentsorgungsflsym,bp_verentsorgungsym,bp_verksflbeszwbsym,bp_vorbhwsflsym,bp_waldflsym,bp_wrlfestsflsym,bp_wwssflsym</param-value>
+    </init-param>
+    <init-param>
+      <param-name>lpLayers</param-name>
+      <param-value>lplanraster_sortiert,lp_plan,lp_ber,lp_abgrenzung,lp_allggruenfl,lp_ausgleich,lp_biotopverbundfl,lp_bodenschutzrecht,lp_denkmschrecht,lp_erholungfreizeit,lp_forstrecht,lp_genobj,lp_nutzausschl,lp_nutzerforderregelung,lp_planerischevertief,lp_schutzobjbundesrecht,lp_schutzobjinterrecht,lp_schutzpflentw,lp_sonstsrecht,lp_wrgemgebreinschrnats,lp_wrschutzgeb,lp_wrsonst,lp_wrwirtschabflusshws,lp_zwischennutz,lp_beschr_sym,lp_beschriftung,lp_xp_pto,lp_xp_lto,lp_symbole,lp_xp_fpo,lp_xp_lpo,lp_xp_ppo,lp_schutzobjbundesrechtsym,lp_schutzobjinterrechtsym,lp_denkmschrechtsym,lp_ausgleichsym,lp_wrschutzgebsym,lp_wrgemgebreinschrnatssym,lp_wrwirtschabflusshwssym,lp_forstrechtsym,lp_nutzerforderregelungsym</param-value>
+    </init-param>
+    <init-param>
+      <param-name>fpLayers</param-name>
+      <param-value>fplanraster_sortiert,fp_plan,fp_bebausfl,fp_bahnverk,fp_strverk,fp_kennz,fp_bsfl,fp_aufschuettsfl,fp_abgrabungsfl,fp_gew,fp_waldfl,fp_gruen,fp_lwfl,fp_zentrversber,fp_textabschn,fp_anpassklimaw,fp_genobj,fp_fachgesetz,fp_ausgleichsfl,fp_vorbhws,fp_wr,fp_wws,fp_verentsorgung,fp_schutzgeb,fp_schutzpflentw,fp_gembedarf,fp_spispoanl,fp_luftverk,fp_denkmschens,fp_erhssatzung,fp_ber,fp_nutzbeschraenkfl,fp_rasterplanaender,fp_grabungsschutzgeb,fp_unverbindlvormerk,fp_textldarstfl,fp_laermschutzber,fp_bauschutzber,fp_keinezentrabwbesfl,fp_privvorh,fp_vorbehaltefl,fp_beschriftung,fp_xp_pto,fp_xp_lto,fp_xp_fpo,fp_xp_lpo,fp_xp_ppo,fp_symbole,fp_bahnverksym,fp_gembedarfsym,fp_gewflsym,fp_vorbhwssym,fp_wrsym,fp_lwflsym,fp_wsssym,fp_bsflsym,fp_aufschuettsflsym,fp_abgrabungsflsym,fp_verentsorgungsym,fp_waldflsym,fp_strverksym,fp_denkmschenssym,fp_erhssatzungsym,fp_schutzgebsym,fp_schutzpflentwsym,fp_gruensym</param-value>
+    </init-param>
+    <init-param>
+      <param-name>rpLayers</param-name>
+      <param-value>rplanraster_sortiert,rp_plan,rp_ber,rp_achse,rp_bodenschutz,rp_energieversorgung,rp_entsorgung,rp_entwschwerpte,rp_forstwirtsch,rp_freizeiterholung,rp_gemfunktsiedlentw,rp_genobj,rp_gr,rp_gruenzuggruenzaesur,rp_klimaschutz,rp_kommunikation,rp_laermschutzber,rp_lw,rp_naturlandsch,rp_natsrechtlschutzgeb,rp_raumkategorie,rp_rohstoffsicherung,rp_sonstinfrastrukt,rp_sonstrfreiraumstrukt,rp_sonstsiedlstrukt,rp_sozinfrastrukt,rp_verk,rp_vorbhwschutz,rp_wasserschutz,rp_wws,rp_windenergie,rp_windenergienutz,rp_zentralerort,nsm_rp_achse,nsm_rp_bodenschutz,nsm_rp_energieversorgung,nsm_rp_forstwirtsch,nsm_rp_freizeiterholung,nsm_rp_laermschutzber,nsm_rp_lw,nsm_rp_natsrechtlschutzgeb,nsm_rp_raumkategorie,nsm_rp_sperrgebiet,nsm_rp_vorbhwschutz,nsm_rp_wasserschutz,nsm_rp_zentralerort,rp_nsm_abfallentsorgung,rp_nsm_abwasser,rp_nsm_asb,rp_nsm_erholung,rp_nsm_gib,rp_nsm_landschaftsschutz,rp_nsm_naturschutz,rp_nsm_luftverkehr,rp_nsm_oberflaechennahebodenschaetze,rp_nsm_regionalbedeutsamerwanderweg,rp_nsm_regionalbedeutsamesportanlage,rp_nsm_schienenverkehr,rp_nsm_sonstverkehr,rp_nsm_strassenverkehr,rp_nsm_tiefliegenderohstoffe,rp_nsm_tourismus,rp_nsm_wasserverkehr,rp_beschriftung,rp_xp_pto,rp_xp_lto,rp_xp_fpo,rp_xp_lpo,rp_xp_ppo</param-value>
+    </init-param>
+  </filter>
+  <filter>
+    <filter-name>Upload Filter</filter-name>
+    <filter-class>org.deegree.client.core.filter.InputFileFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>PlanFilter</filter-name>
+    <url-pattern>/services/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>Upload Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.jsf</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>services</servlet-name>
+    <servlet-class>org.deegree.services.controller.OGCFrontController</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>resources</servlet-name>
+    <servlet-class>org.deegree.services.resources.ResourcesServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>config</servlet-name>
+    <servlet-class>org.deegree.services.config.servlet.ConfigServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>getAttachment</servlet-name>
+    <servlet-class>de.latlon.xplanisk2.wms.GetAttachmentHandler</servlet-class>
+    <init-param>
+      <param-name>workspaceName</param-name>
+      <param-value>xplansyn-wms-workspace</param-value>
+    </init-param>
+    <init-param>
+      <param-name>jdbcConnectionId</param-name>
+      <param-value>xplan</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>getAttachment</servlet-name>
+    <url-pattern>/getAttachment</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>services</servlet-name>
+    <url-pattern>/services</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>services</servlet-name>
+    <url-pattern>/services/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>resources</servlet-name>
+    <url-pattern>/resources/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>config</servlet-name>
+    <url-pattern>/config/*</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>index.xhtml</welcome-file>
+    <welcome-file>index.jsf</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>console.xhtml</welcome-file>
+  </welcome-file-list>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Configuration</web-resource-name>
+      <url-pattern>/config/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>deegree</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>deegree web configuration API</realm-name>
+  </login-config>
+
+  <security-role>
+    <description>deegree administrator role</description>
+    <role-name>deegree</role-name>
+  </security-role>
+
+  <!-- http basic auth enable -->
+  <!-- Define a security constraint on this application -->
+  <!-- User and role must be added to tomcat-users.xml -->
+  <!-- <security-constraint> <web-resource-collection> <web-resource-name>Entire Application</web-resource-name> <url-pattern>/*</url-pattern> 
+  </web-resource-collection> <auth-constraint> <role-name>demoadmin</role-name> </auth-constraint> </security-constraint> <login-config> 
+  <auth-method>BASIC</auth-method> <realm-name>Tomcat Manager Application</realm-name> </login-config> <security-role> <description>The 
+  role that is required to log in to the Manager Application</description> <role-name>demoadmin</role-name> </security-role> -->
+  <!-- end -->
+
+  <!-- error-page>
+      <exception-type>java.lang.Exception</exception-type>
+      <location>/error.xhtml</location>
+  </error-page-->
+
+</web-app>

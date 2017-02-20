@@ -1,0 +1,12 @@
+<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:ns2="http://www.deegree.org/metadata/description"
+        xmlns:ns3="http://www.deegree.org/metadata/spatial" configVersion="3.2.0">
+  <Theme>
+    <Identifier>FP_Planraster</Identifier>
+    <ns2:Title>FPlan Raster</ns2:Title>
+    <ns3:CRS>${rasterCrs}</ns3:CRS>
+    <Theme>
+      <Identifier>fplanraster_sortiert</Identifier>
+      <ns2:Title>FPlan Raster Theme</ns2:Title>
+    </Theme>
+  </Theme>
+</Themes>

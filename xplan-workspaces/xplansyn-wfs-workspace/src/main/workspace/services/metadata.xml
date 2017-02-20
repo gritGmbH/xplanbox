@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deegreeServicesMetadata configVersion="3.2.0" xmlns="http://www.deegree.org/services/metadata"
+                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                         xsi:schemaLocation="http://www.deegree.org/services/metadata http://schemas.deegree.org/services/metadata/3.2.0/metadata.xsd">
+  <!--
+    General service information for all services. Used in the GetCapabilities
+    responses.
+  -->
+  <ServiceIdentification>
+    <Title>Bauleitplanung, XPlanung-konform, WFS</Title>
+    <Abstract>Dieser WFS Dienst stellt zahlreiche, die Bauleitplanung betreffende und auf dem XPlanungsstandard basierende, WFS FeatureTypes bereit.
+    </Abstract>
+    <Keywords>
+      <Keyword>XPlanung</Keyword>
+      <Keyword>XPlanGML3</Keyword>
+      <Keyword>XPlanGML2</Keyword>
+      <Keyword>WMS</Keyword>
+      <Keyword>deegree</Keyword>
+      <Keyword>deegree3</Keyword>
+      <Keyword>Bauleitplanung</Keyword>
+    </Keywords>
+    <Fees/>
+    <AccessConstraints/>
+  </ServiceIdentification>
+  <ServiceProvider>
+    <ProviderName>lat/lon GmbH</ProviderName>
+    <ProviderSite>http://www.lat-lon.de</ProviderSite>
+    <ServiceContact>
+      <IndividualName>-</IndividualName>
+      <PositionName/>
+      <Phone>+49(0)228184960</Phone>
+      <Facsimile/>
+      <ElectronicMailAddress>info@lat-lon.de</ElectronicMailAddress>
+      <Address>
+        <DeliveryPoint>Aennchenstraße 19</DeliveryPoint>
+        <City>Bonn</City>
+        <AdministrativeArea>Nordrhein-Westfalen</AdministrativeArea>
+        <PostalCode>53177</PostalCode>
+        <Country>Germany</Country>
+      </Address>
+      <OnlineResource>http://www.deegree.org</OnlineResource>
+      <HoursOfService>24x7</HoursOfService>
+      <ContactInstructions>Do not hesitate to call</ContactInstructions>
+      <Role>PointOfContact</Role>
+    </ServiceContact>
+  </ServiceProvider>
+
+</deegreeServicesMetadata>

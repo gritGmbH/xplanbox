@@ -1,0 +1,12 @@
+<SQLFeatureStore xmlns="http://www.deegree.org/datasource/feature/sql"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 configVersion="3.1.0"
+                 xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.1.0/sql.xsd">
+  <JDBCConnId>xplan</JDBCConnId>
+  <StorageCRS srid="-1" dim="2D">${vectorCrs}</StorageCRS>
+  <GMLSchema>../../appschemas/XPlanGML_4_1/XPlanung-Operationen.xsd</GMLSchema>
+  <BLOBMapping>
+    <BlobTable>xplan41pre.gml_objects</BlobTable>
+    <FeatureTypeTable>xplan41pre.feature_types</FeatureTypeTable>
+  </BLOBMapping>
+</SQLFeatureStore>

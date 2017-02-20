@@ -1,0 +1,1 @@
+DROP SCHEMA xplansynpre CASCADE;

@@ -1,0 +1,3043 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--ADE-Erweiterung, Erstellungsdatum: 03/15/11-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2"
+        xmlns:xplan="http://www.xplanung.de/xplangml/4/0" elementFormDefault="qualified"
+        targetNamespace="http://www.xplanung.de/xplangml/4/0" version="4.0.2">
+  <include schemaLocation="XPlanGML_Basisschema.xsd"/>
+  <include schemaLocation="XPlanGML_SonstigePlanwerke.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="gmlProfile/gmlProfilexplan.xsd"/>
+
+  <!--XML Schema document created by ShapeChange-->
+  <element name="BP_GemeinschaftsanlagenZuordnung" substitutionGroup="xplan:BP_Geometrieobjekt"
+           type="xplan:BP_GemeinschaftsanlagenZuordnungType"/>
+  <complexType name="BP_GemeinschaftsanlagenZuordnungType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_GemeinschaftsanlagenZuordnung" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_GemeinschaftsanlagenZuordnung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_FirstRichtungsLinie" substitutionGroup="xplan:BP_Linienobjekt"
+           type="xplan:BP_FirstRichtungsLinieType"/>
+  <complexType name="BP_FirstRichtungsLinieType">
+    <complexContent>
+      <extension base="xplan:BP_LinienobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_FirstRichtungsLinie" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_FirstRichtungsLinie" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_RechtsstandType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="2100"/>
+      <enumeration value="2200"/>
+      <enumeration value="2300"/>
+      <enumeration value="2400"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="4500"/>
+      <enumeration value="5000"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_PersGruppenBestimmteFlaeche" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_PersGruppenBestimmteFlaecheType"/>
+  <complexType name="BP_PersGruppenBestimmteFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_PersGruppenBestimmteFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_PersGruppenBestimmteFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_Gemeinbedarf" substitutionGroup="xplan:FP_Geometrieobjekt" type="xplan:FP_GemeinbedarfType"/>
+  <complexType name="FP_GemeinbedarfType">
+    <complexContent>
+      <extension base="xplan:FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="xplan:XP_ZweckbestimmungGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2" type="xplan:XP_ZweckbestimmungGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung3" type="xplan:XP_ZweckbestimmungGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung4" type="xplan:XP_ZweckbestimmungGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung5" type="xplan:XP_ZweckbestimmungGemeinbedarfType"/>
+          <element minOccurs="0" name="besondereZweckbestimmung" type="xplan:XP_BesondereZweckbestGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung1"
+                   type="xplan:XP_BesondereZweckbestGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung2"
+                   type="xplan:XP_BesondereZweckbestGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung3"
+                   type="xplan:XP_BesondereZweckbestGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung4"
+                   type="xplan:XP_BesondereZweckbestGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung5"
+                   type="xplan:XP_BesondereZweckbestGemeinbedarfType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung2" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung3" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung4" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung5" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Gemeinbedarf" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Gemeinbedarf" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_StrassenVerkehrsFlaeche" substitutionGroup="xplan:BP_Flaechenschlussobjekt"
+           type="xplan:BP_StrassenVerkehrsFlaecheType"/>
+  <complexType name="BP_StrassenVerkehrsFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenschlussobjektType">
+        <sequence>
+          <element minOccurs="0" name="MaxZahlWohnungen" type="integer"/>
+          <element minOccurs="0" name="Fmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="Fmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="Bmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Bmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="GFZmin" type="double"/>
+          <element minOccurs="0" name="GFZmax" type="double"/>
+          <element minOccurs="0" name="GFZ" type="double"/>
+          <element minOccurs="0" name="GFZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GFmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GFmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="BMZmin" type="double"/>
+          <element minOccurs="0" name="BMZmax" type="double"/>
+          <element minOccurs="0" name="BMZ" type="double"/>
+          <element minOccurs="0" name="BMZ_Ausn" type="double"/>
+          <element minOccurs="0" name="BMmin" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BMmax" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM_Ausn" type="gml:VolumeType"/>
+          <element minOccurs="0" name="GRZmin" type="double"/>
+          <element minOccurs="0" name="GRZmax" type="double"/>
+          <element minOccurs="0" name="GRZ" type="double"/>
+          <element minOccurs="0" name="GRZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GRmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GRmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="Zmin" type="integer"/>
+          <element minOccurs="0" name="Zmax" type="integer"/>
+          <element minOccurs="0" name="Zzwingend" type="integer"/>
+          <element minOccurs="0" name="Z" type="integer"/>
+          <element minOccurs="0" name="Z_Ausn" type="integer"/>
+          <element minOccurs="0" name="ZUmin" type="integer"/>
+          <element minOccurs="0" name="ZUmax" type="integer"/>
+          <element minOccurs="0" name="ZUzwingend" type="integer"/>
+          <element minOccurs="0" name="ZU" type="integer"/>
+          <element minOccurs="0" name="ZU_Ausn" type="integer"/>
+          <element minOccurs="0" name="nutzungsform" type="xplan:XP_NutzungsformType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="begrenzungslinie" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_StrassenbegrenzungsLinie</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_StrassenVerkehrsFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_StrassenVerkehrsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_KennzeichnungsFlaeche" substitutionGroup="xplan:BP_Flaechenobjekt"
+           type="xplan:BP_KennzeichnungsFlaecheType"/>
+  <complexType name="BP_KennzeichnungsFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungKennzeichnungType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung" type="xplan:XP_ZweckbestimmungKennzeichnungType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_KennzeichnungsFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_KennzeichnungsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_Baugebiet" substitutionGroup="xplan:BP_Objekt" type="xplan:BP_BaugebietType"/>
+  <complexType name="BP_BaugebietType">
+    <complexContent>
+      <extension base="xplan:BP_ObjektType">
+        <sequence>
+          <element minOccurs="0" name="DNmin" type="gml:AngleType"/>
+          <element minOccurs="0" name="DNmax" type="gml:AngleType"/>
+          <element minOccurs="0" name="DN" type="gml:AngleType"/>
+          <element minOccurs="0" name="DNZwingend" type="gml:AngleType"/>
+          <element minOccurs="0" name="FR" type="gml:AngleType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="dachform" type="xplan:BP_DachformType"/>
+          <element minOccurs="0" name="detaillierteDachform" type="gml:CodeType"/>
+          <element minOccurs="0" name="MaxZahlWohnungen" type="integer"/>
+          <element minOccurs="0" name="Fmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="Fmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="Bmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Bmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="GFZmin" type="double"/>
+          <element minOccurs="0" name="GFZmax" type="double"/>
+          <element minOccurs="0" name="GFZ" type="double"/>
+          <element minOccurs="0" name="GFZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GFmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GFmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="BMZmin" type="double"/>
+          <element minOccurs="0" name="BMZmax" type="double"/>
+          <element minOccurs="0" name="BMZ" type="double"/>
+          <element minOccurs="0" name="BMZ_Ausn" type="double"/>
+          <element minOccurs="0" name="BMmin" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BMmax" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM_Ausn" type="gml:VolumeType"/>
+          <element minOccurs="0" name="GRZmin" type="double"/>
+          <element minOccurs="0" name="GRZmax" type="double"/>
+          <element minOccurs="0" name="GRZ" type="double"/>
+          <element minOccurs="0" name="GRZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GRmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GRmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="Zmin" type="integer"/>
+          <element minOccurs="0" name="Zmax" type="integer"/>
+          <element minOccurs="0" name="Zzwingend" type="integer"/>
+          <element minOccurs="0" name="Z" type="integer"/>
+          <element minOccurs="0" name="Z_Ausn" type="integer"/>
+          <element minOccurs="0" name="ZUmin" type="integer"/>
+          <element minOccurs="0" name="ZUmax" type="integer"/>
+          <element minOccurs="0" name="ZUzwingend" type="integer"/>
+          <element minOccurs="0" name="ZU" type="integer"/>
+          <element minOccurs="0" name="ZU_Ausn" type="integer"/>
+          <element minOccurs="0" name="allgArtDerBaulNutzung" type="xplan:XP_AllgArtDerBaulNutzungType"/>
+          <element minOccurs="0" name="besondereArtDerBaulNutzung" type="xplan:XP_BesondereArtDerBaulNutzungType"/>
+          <element minOccurs="0" name="sondernutzung" type="xplan:XP_SondernutzungenType"/>
+          <element minOccurs="0" name="detaillierteArtDerBaulNutzung" type="gml:CodeType"/>
+          <element minOccurs="0" name="nutzungText" type="string"/>
+          <element minOccurs="0" name="abweichungBauNVO" type="xplan:XP_AbweichungBauNVOTypenType"/>
+          <element minOccurs="0" name="bauweise" type="xplan:BP_BauweiseType"/>
+          <element minOccurs="0" name="abweichendeBauweise" type="gml:CodeType"/>
+          <element minOccurs="0" name="vertikaleDifferenzierung" type="boolean"/>
+          <element minOccurs="0" name="bebauungsArt" type="xplan:BP_BebauungsArtType"/>
+          <element minOccurs="0" name="bebauungVordereGrenze" type="xplan:BP_GrenzBebauungType"/>
+          <element minOccurs="0" name="bebauungRueckwaertigeGrenze" type="xplan:BP_GrenzBebauungType"/>
+          <element minOccurs="0" name="bebauungSeitlicheGrenze" type="xplan:BP_GrenzBebauungType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="refGebaedequerschnitt"
+                   type="xplan:XP_ExterneReferenzPropertyType"/>
+          <element minOccurs="0" name="zugunstenVon" type="string"/>
+          <element maxOccurs="unbounded" name="flaechenteil" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_BaugebietsTeilFlaeche</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="abweichungText" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:XP_TextAbschnitt</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Baugebiet" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Baugebiet" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_RekultivierungsFlaeche" substitutionGroup="xplan:BP_Flaechenobjekt"
+           type="xplan:BP_RekultivierungsFlaecheType"/>
+  <complexType name="BP_RekultivierungsFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_RekultivierungsFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_RekultivierungsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_AusgleichsFlaeche" substitutionGroup="xplan:FP_Flaechenobjekt"
+           type="xplan:FP_AusgleichsFlaecheType"/>
+  <complexType name="FP_AusgleichsFlaecheType">
+    <complexContent>
+      <extension base="xplan:FP_FlaechenobjektType">
+        <sequence>
+          <element minOccurs="0" name="ziel" type="xplan:XP_SPEZieleType"/>
+          <element minOccurs="0" name="massnahme" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="weitereMassnahme1" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="weitereMassnahme2" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="refMassnahmenText" type="xplan:XP_ExterneReferenzPropertyType"/>
+          <element minOccurs="0" name="refLandschaftsplan" type="xplan:XP_ExterneReferenzPropertyType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_AusgleichsFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_AusgleichsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="FP_ZweckbestimmungStrassenverkehrType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1200"/>
+      <enumeration value="1400"/>
+      <enumeration value="1600"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_Immissionsschutz" substitutionGroup="xplan:BP_Geometrieobjekt"
+           type="xplan:BP_ImmissionsschutzType"/>
+  <complexType name="BP_ImmissionsschutzType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="nutzung" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Immissionsschutz" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Immissionsschutz" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_GebaeudeFlaeche" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_GebaeudeFlaecheType"/>
+  <complexType name="BP_GebaeudeFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_GebaeudeFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_GebaeudeFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_GruenFlaeche" substitutionGroup="xplan:BP_Flaechenschlussobjekt" type="xplan:BP_GruenFlaecheType"/>
+  <complexType name="BP_GruenFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenschlussobjektType">
+        <sequence>
+          <element minOccurs="0" name="MaxZahlWohnungen" type="integer"/>
+          <element minOccurs="0" name="Fmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="Fmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="Bmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Bmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="GFZmin" type="double"/>
+          <element minOccurs="0" name="GFZmax" type="double"/>
+          <element minOccurs="0" name="GFZ" type="double"/>
+          <element minOccurs="0" name="GFZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GFmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GFmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="BMZmin" type="double"/>
+          <element minOccurs="0" name="BMZmax" type="double"/>
+          <element minOccurs="0" name="BMZ" type="double"/>
+          <element minOccurs="0" name="BMZ_Ausn" type="double"/>
+          <element minOccurs="0" name="BMmin" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BMmax" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM_Ausn" type="gml:VolumeType"/>
+          <element minOccurs="0" name="GRZmin" type="double"/>
+          <element minOccurs="0" name="GRZmax" type="double"/>
+          <element minOccurs="0" name="GRZ" type="double"/>
+          <element minOccurs="0" name="GRZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GRmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GRmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="Zmin" type="integer"/>
+          <element minOccurs="0" name="Zmax" type="integer"/>
+          <element minOccurs="0" name="Zzwingend" type="integer"/>
+          <element minOccurs="0" name="Z" type="integer"/>
+          <element minOccurs="0" name="Z_Ausn" type="integer"/>
+          <element minOccurs="0" name="ZUmin" type="integer"/>
+          <element minOccurs="0" name="ZUmax" type="integer"/>
+          <element minOccurs="0" name="ZUzwingend" type="integer"/>
+          <element minOccurs="0" name="ZU" type="integer"/>
+          <element minOccurs="0" name="ZU_Ausn" type="integer"/>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="xplan:XP_ZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2" type="xplan:XP_ZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung3" type="xplan:XP_ZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung4" type="xplan:XP_ZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="besondereZweckbestimmung" type="xplan:XP_BesondereZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung1"
+                   type="xplan:XP_BesondereZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung2"
+                   type="xplan:XP_BesondereZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung3"
+                   type="xplan:XP_BesondereZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung4"
+                   type="xplan:XP_BesondereZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung2" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung3" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung4" type="gml:CodeType"/>
+          <element minOccurs="0" name="nutzungsform" type="xplan:XP_NutzungsformType"/>
+          <element minOccurs="0" name="zugunstenVon" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_GruenFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_GruenFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_UnverbindlicheVormerkung" substitutionGroup="xplan:FP_Geometrieobjekt"
+           type="xplan:FP_UnverbindlicheVormerkungType"/>
+  <complexType name="FP_UnverbindlicheVormerkungType">
+    <complexContent>
+      <extension base="xplan:FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="vormerkung" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_UnverbindlicheVormerkung" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_UnverbindlicheVormerkung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_AbstandsFlaeche" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_AbstandsFlaecheType"/>
+  <complexType name="BP_AbstandsFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <element minOccurs="0" name="tiefe" type="gml:LengthType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_AbstandsFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_AbstandsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element abstract="true" name="BP_Ueberlagerungsobjekt" substitutionGroup="xplan:BP_Flaechenobjekt"
+           type="xplan:BP_UeberlagerungsobjektType"/>
+  <complexType abstract="true" name="BP_UeberlagerungsobjektType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Ueberlagerungsobjekt" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Ueberlagerungsobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_TextlicheFestsetzungsFlaeche" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_TextlicheFestsetzungsFlaecheType"/>
+  <complexType name="BP_TextlicheFestsetzungsFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_TextlicheFestsetzungsFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_TextlicheFestsetzungsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_BereichOhneEinAusfahrtLinie" substitutionGroup="xplan:BP_Linienobjekt"
+           type="xplan:BP_BereichOhneEinAusfahrtLinieType"/>
+  <complexType name="BP_BereichOhneEinAusfahrtLinieType">
+    <complexContent>
+      <extension base="xplan:BP_LinienobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:BP_BereichOhneEinAusfahrtTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_BereichOhneEinAusfahrtLinie" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_BereichOhneEinAusfahrtLinie" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_Veraenderungssperre" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_VeraenderungssperreType"/>
+  <complexType name="BP_VeraenderungssperreType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <element name="gueltigkeitsDatum" type="date"/>
+          <element name="verlaengerung" type="xplan:XP_VerlaengerungVeraenderungssperreType"/>
+          <element minOccurs="0" name="refBeschluss" type="xplan:XP_ExterneReferenzPropertyType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Veraenderungssperre" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Veraenderungssperre" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="FP_BesondereZweckbestimmungStrassenverkehrType">
+    <restriction base="string">
+      <enumeration value="14000"/>
+      <enumeration value="14001"/>
+      <enumeration value="14002"/>
+      <enumeration value="14003"/>
+      <enumeration value="14004"/>
+      <enumeration value="14005"/>
+      <enumeration value="14006"/>
+      <enumeration value="14007"/>
+      <enumeration value="14008"/>
+      <enumeration value="14009"/>
+      <enumeration value="14010"/>
+      <enumeration value="14011"/>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="BP_Flaechenschlussobjekt" substitutionGroup="xplan:BP_Flaechenobjekt"
+           type="xplan:BP_FlaechenschlussobjektType"/>
+  <complexType abstract="true" name="BP_FlaechenschlussobjektType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Flaechenschlussobjekt" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Flaechenschlussobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_Kennzeichnung" substitutionGroup="xplan:FP_Geometrieobjekt" type="xplan:FP_KennzeichnungType"/>
+  <complexType name="FP_KennzeichnungType">
+    <complexContent>
+      <extension base="xplan:FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungKennzeichnungType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="xplan:XP_ZweckbestimmungKennzeichnungType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Kennzeichnung" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Kennzeichnung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_VerEntsorgung" substitutionGroup="xplan:FP_Geometrieobjekt" type="xplan:FP_VerEntsorgungType"/>
+  <complexType name="FP_VerEntsorgungType">
+    <complexContent>
+      <extension base="xplan:FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="xplan:XP_ZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2" type="xplan:XP_ZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung3" type="xplan:XP_ZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="besondereZweckbestimmung"
+                   type="xplan:XP_BesondereZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung1"
+                   type="xplan:XP_BesondereZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung2"
+                   type="xplan:XP_BesondereZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung3"
+                   type="xplan:XP_BesondereZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung2" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung3" type="gml:CodeType"/>
+          <element minOccurs="0" name="textlicheErgaenzung" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_VerEntsorgung" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_VerEntsorgung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_DachformType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2100"/>
+      <enumeration value="2200"/>
+      <enumeration value="3100"/>
+      <enumeration value="3200"/>
+      <enumeration value="3300"/>
+      <enumeration value="3400"/>
+      <enumeration value="3500"/>
+      <enumeration value="3600"/>
+      <enumeration value="3700"/>
+      <enumeration value="3800"/>
+      <enumeration value="3900"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="FP_Objekt" substitutionGroup="xplan:XP_Objekt" type="xplan:FP_ObjektType"/>
+  <complexType abstract="true" name="FP_ObjektType">
+    <complexContent>
+      <extension base="xplan:XP_ObjektType">
+        <sequence>
+          <element minOccurs="0" name="rechtscharakter" type="xplan:FP_RechtscharakterType"/>
+          <element minOccurs="0" name="spezifischePraegung" type="gml:CodeType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="gehoertZuFP_Bereich" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:FP_Bereich</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">xplan:inhaltFPlan</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="wirdAusgeglichenDurchFlaeche" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:FP_AusgleichsFlaeche</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="wirdAusgeglichenDurchSPE" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:FP_SchutzPflegeEntwicklung</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Objekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Objekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element abstract="true" name="BP_Punktobjekt" substitutionGroup="xplan:BP_Objekt" type="xplan:BP_PunktobjektType"/>
+  <complexType abstract="true" name="BP_PunktobjektType">
+    <complexContent>
+      <extension base="xplan:BP_ObjektType">
+        <sequence>
+          <element name="position" type="gml:GeometryPropertyType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Punktobjekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Punktobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_GenerischesObjekt" substitutionGroup="xplan:FP_Geometrieobjekt"
+           type="xplan:FP_GenerischesObjektType"/>
+  <complexType name="FP_GenerischesObjektType">
+    <complexContent>
+      <extension base="xplan:FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung3" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_GenerischesObjekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_GenerischesObjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_SpielSportanlage" substitutionGroup="xplan:FP_Geometrieobjekt"
+           type="xplan:FP_SpielSportanlageType"/>
+  <complexType name="FP_SpielSportanlageType">
+    <complexContent>
+      <extension base="xplan:FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungSpielSportanlageType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="xplan:XP_ZweckbestimmungSpielSportanlageType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung1" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_SpielSportanlage" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_SpielSportanlage" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_ZweckbestimmungNebenanlagenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="3100"/>
+      <enumeration value="3200"/>
+      <enumeration value="3300"/>
+      <enumeration value="3400"/>
+      <enumeration value="3500"/>
+      <enumeration value="3600"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_BauLinie" substitutionGroup="xplan:BP_Linienobjekt" type="xplan:BP_BauLinieType"/>
+  <complexType name="BP_BauLinieType">
+    <complexContent>
+      <extension base="xplan:BP_LinienobjektType">
+        <sequence>
+          <element minOccurs="0" name="bautiefe" type="gml:LengthType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_BauLinie" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_BauLinie" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_GemeinschaftsanlagenFlaeche" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_GemeinschaftsanlagenFlaecheType"/>
+  <complexType name="BP_GemeinschaftsanlagenFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:BP_ZweckbestimmungGemeinschaftsanlagenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1"
+                   type="xplan:BP_ZweckbestimmungGemeinschaftsanlagenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2"
+                   type="xplan:BP_ZweckbestimmungGemeinschaftsanlagenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung3"
+                   type="xplan:BP_ZweckbestimmungGemeinschaftsanlagenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung4"
+                   type="xplan:BP_ZweckbestimmungGemeinschaftsanlagenType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung2" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung3" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung4" type="gml:CodeType"/>
+          <element minOccurs="0" name="Zmax" type="integer"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="eigentuemer" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_BaugebietsTeilFlaeche</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_GemeinschaftsanlagenFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_GemeinschaftsanlagenFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_EinfahrtsbereichLinie" substitutionGroup="xplan:BP_Linienobjekt"
+           type="xplan:BP_EinfahrtsbereichLinieType"/>
+  <complexType name="BP_EinfahrtsbereichLinieType">
+    <complexContent>
+      <extension base="xplan:BP_LinienobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_EinfahrtsbereichLinie" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_EinfahrtsbereichLinie" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_NebenanlagenAusschlussFlaeche" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_NebenanlagenAusschlussFlaecheType"/>
+  <complexType name="BP_NebenanlagenAusschlussFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:BP_NebenanlagenAusschlussTypType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="abweichungText" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:XP_TextAbschnitt</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_NebenanlagenAusschlussFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_NebenanlagenAusschlussFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_HoehenMass" substitutionGroup="xplan:BP_Geometrieobjekt" type="xplan:BP_HoehenMassType"/>
+  <complexType name="BP_HoehenMassType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_HoehenMass" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_HoehenMass" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_AusgleichsMassnahme" substitutionGroup="xplan:BP_Geometrieobjekt"
+           type="xplan:BP_AusgleichsMassnahmeType"/>
+  <complexType name="BP_AusgleichsMassnahmeType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="ziel" type="xplan:XP_SPEZieleType"/>
+          <element minOccurs="0" name="massnahme" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="weitereMassnahme1" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="weitereMassnahme2" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="refMassnahmenText" type="xplan:XP_ExterneReferenzPropertyType"/>
+          <element minOccurs="0" name="refLandschaftsplan" type="xplan:XP_ExterneReferenzPropertyType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_AusgleichsMassnahme" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_AusgleichsMassnahme" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_AufschuettungsFlaeche" substitutionGroup="xplan:BP_Flaechenobjekt"
+           type="xplan:BP_AufschuettungsFlaecheType"/>
+  <complexType name="BP_AufschuettungsFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_AufschuettungsFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_AufschuettungsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_BesondererNutzungszweckFlaeche" substitutionGroup="xplan:BP_Flaechenobjekt"
+           type="xplan:BP_BesondererNutzungszweckFlaecheType"/>
+  <complexType name="BP_BesondererNutzungszweckFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenobjektType">
+        <sequence>
+          <element minOccurs="0" name="DNmin" type="gml:AngleType"/>
+          <element minOccurs="0" name="DNmax" type="gml:AngleType"/>
+          <element minOccurs="0" name="DN" type="gml:AngleType"/>
+          <element minOccurs="0" name="DNZwingend" type="gml:AngleType"/>
+          <element minOccurs="0" name="FR" type="gml:AngleType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="dachform" type="xplan:BP_DachformType"/>
+          <element minOccurs="0" name="detaillierteDachform" type="gml:CodeType"/>
+          <element minOccurs="0" name="MaxZahlWohnungen" type="integer"/>
+          <element minOccurs="0" name="Fmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="Fmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="Bmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Bmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="GFZmin" type="double"/>
+          <element minOccurs="0" name="GFZmax" type="double"/>
+          <element minOccurs="0" name="GFZ" type="double"/>
+          <element minOccurs="0" name="GFZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GFmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GFmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="BMZmin" type="double"/>
+          <element minOccurs="0" name="BMZmax" type="double"/>
+          <element minOccurs="0" name="BMZ" type="double"/>
+          <element minOccurs="0" name="BMZ_Ausn" type="double"/>
+          <element minOccurs="0" name="BMmin" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BMmax" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM_Ausn" type="gml:VolumeType"/>
+          <element minOccurs="0" name="GRZmin" type="double"/>
+          <element minOccurs="0" name="GRZmax" type="double"/>
+          <element minOccurs="0" name="GRZ" type="double"/>
+          <element minOccurs="0" name="GRZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GRmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GRmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="Zmin" type="integer"/>
+          <element minOccurs="0" name="Zmax" type="integer"/>
+          <element minOccurs="0" name="Zzwingend" type="integer"/>
+          <element minOccurs="0" name="Z" type="integer"/>
+          <element minOccurs="0" name="Z_Ausn" type="integer"/>
+          <element minOccurs="0" name="ZUmin" type="integer"/>
+          <element minOccurs="0" name="ZUmax" type="integer"/>
+          <element minOccurs="0" name="ZUzwingend" type="integer"/>
+          <element minOccurs="0" name="ZU" type="integer"/>
+          <element minOccurs="0" name="ZU_Ausn" type="integer"/>
+          <element minOccurs="0" name="zweckbestimmung" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_BesondererNutzungszweckFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_BesondererNutzungszweckFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_TiefeProzentualBezugTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="BP_ErhaltungsGrundType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <element name="FP_TextlicheDarstellungsFlaeche" substitutionGroup="xplan:FP_Ueberlagerungsobjekt"
+           type="xplan:FP_TextlicheDarstellungsFlaecheType"/>
+  <complexType name="FP_TextlicheDarstellungsFlaecheType">
+    <complexContent>
+      <extension base="xplan:FP_UeberlagerungsobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_TextlicheDarstellungsFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_TextlicheDarstellungsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element abstract="true" name="BP_Linienobjekt" substitutionGroup="xplan:BP_Objekt" type="xplan:BP_LinienobjektType"/>
+  <complexType abstract="true" name="BP_LinienobjektType">
+    <complexContent>
+      <extension base="xplan:BP_ObjektType">
+        <sequence>
+          <element name="position" type="gml:GeometryPropertyType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Linienobjekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Linienobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element abstract="true" name="FP_Linienobjekt" substitutionGroup="xplan:FP_Objekt" type="xplan:FP_LinienobjektType"/>
+  <complexType abstract="true" name="FP_LinienobjektType">
+    <complexContent>
+      <extension base="xplan:FP_ObjektType">
+        <sequence>
+          <element name="position" type="gml:GeometryPropertyType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Linienobjekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Linienobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_NebenanlagenFlaeche" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_NebenanlagenFlaecheType"/>
+  <complexType name="BP_NebenanlagenFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:BP_ZweckbestimmungNebenanlagenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="xplan:BP_ZweckbestimmungNebenanlagenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2" type="xplan:BP_ZweckbestimmungNebenanlagenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung3" type="xplan:BP_ZweckbestimmungNebenanlagenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung4" type="xplan:BP_ZweckbestimmungNebenanlagenType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung2" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung3" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung4" type="gml:CodeType"/>
+          <element minOccurs="0" name="Zmax" type="integer"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_NebenanlagenFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_NebenanlagenFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_Landwirtschaft" substitutionGroup="xplan:BP_Geometrieobjekt" type="xplan:BP_LandwirtschaftType"/>
+  <complexType name="BP_LandwirtschaftType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungLandwirtschaftType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="xplan:XP_ZweckbestimmungLandwirtschaftType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2" type="xplan:XP_ZweckbestimmungLandwirtschaftType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung3" type="xplan:XP_ZweckbestimmungLandwirtschaftType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung2" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung3" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Landwirtschaft" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Landwirtschaft" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_SpielSportanlagenFlaeche" substitutionGroup="xplan:BP_Flaechenschlussobjekt"
+           type="xplan:BP_SpielSportanlagenFlaecheType"/>
+  <complexType name="BP_SpielSportanlagenFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenschlussobjektType">
+        <sequence>
+          <element minOccurs="0" name="MaxZahlWohnungen" type="integer"/>
+          <element minOccurs="0" name="Fmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="Fmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="Bmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Bmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="GFZmin" type="double"/>
+          <element minOccurs="0" name="GFZmax" type="double"/>
+          <element minOccurs="0" name="GFZ" type="double"/>
+          <element minOccurs="0" name="GFZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GFmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GFmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="BMZmin" type="double"/>
+          <element minOccurs="0" name="BMZmax" type="double"/>
+          <element minOccurs="0" name="BMZ" type="double"/>
+          <element minOccurs="0" name="BMZ_Ausn" type="double"/>
+          <element minOccurs="0" name="BMmin" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BMmax" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM_Ausn" type="gml:VolumeType"/>
+          <element minOccurs="0" name="GRZmin" type="double"/>
+          <element minOccurs="0" name="GRZmax" type="double"/>
+          <element minOccurs="0" name="GRZ" type="double"/>
+          <element minOccurs="0" name="GRZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GRmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GRmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="Zmin" type="integer"/>
+          <element minOccurs="0" name="Zmax" type="integer"/>
+          <element minOccurs="0" name="Zzwingend" type="integer"/>
+          <element minOccurs="0" name="Z" type="integer"/>
+          <element minOccurs="0" name="Z_Ausn" type="integer"/>
+          <element minOccurs="0" name="ZUmin" type="integer"/>
+          <element minOccurs="0" name="ZUmax" type="integer"/>
+          <element minOccurs="0" name="ZUzwingend" type="integer"/>
+          <element minOccurs="0" name="ZU" type="integer"/>
+          <element minOccurs="0" name="ZU_Ausn" type="integer"/>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungSpielSportanlageType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="xplan:XP_ZweckbestimmungSpielSportanlageType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="zugunstenVon" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_SpielSportanlagenFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_SpielSportanlagenFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_VerfahrenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="BP_Objekt" substitutionGroup="xplan:XP_Objekt" type="xplan:BP_ObjektType"/>
+  <complexType abstract="true" name="BP_ObjektType">
+    <complexContent>
+      <extension base="xplan:XP_ObjektType">
+        <sequence>
+          <element minOccurs="0" name="rechtscharakter" type="xplan:BP_RechtscharakterType"/>
+          <element minOccurs="0" name="startBedingung" type="xplan:BP_WirksamkeitBedingungPropertyType"/>
+          <element minOccurs="0" name="endeBedingung" type="xplan:BP_WirksamkeitBedingungPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="wirdAusgeglichenDurchFlaeche" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_AusgleichsFlaeche</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="wirdAusgeglichenDurchABE" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_AnpflanzungBindungErhaltung</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="wirdAusgeglichenDurchSPEMassnahme"
+                   type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_SchutzPflegeEntwicklungsMassnahme</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="wirdAusgeglichenDurchSPEFlaeche" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_SchutzPflegeEntwicklungsFlaeche</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="wirdAusgeglichenDurchMassnahme" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_AusgleichsMassnahme</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="gehoertZuBP_Bereich" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_Bereich</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">xplan:inhaltBPlan</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Objekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Objekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_BauGrenze" substitutionGroup="xplan:BP_Linienobjekt" type="xplan:BP_BauGrenzeType"/>
+  <complexType name="BP_BauGrenzeType">
+    <complexContent>
+      <extension base="xplan:BP_LinienobjektType">
+        <sequence>
+          <element minOccurs="0" name="bautiefe" type="gml:LengthType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_BauGrenze" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_BauGrenze" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_Strassenkoerper" substitutionGroup="xplan:BP_Geometrieobjekt" type="xplan:BP_StrassenkoerperType"/>
+  <complexType name="BP_StrassenkoerperType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <element name="typ" type="xplan:BP_StrassenkoerperHerstellungType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Strassenkoerper" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Strassenkoerper" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_ABEMassnahmenTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="FP_Geometrieobjekt" substitutionGroup="xplan:FP_Objekt"
+           type="xplan:FP_GeometrieobjektType"/>
+  <complexType abstract="true" name="FP_GeometrieobjektType">
+    <complexContent>
+      <extension base="xplan:FP_ObjektType">
+        <sequence>
+          <element name="position" type="gml:GeometryPropertyType"/>
+          <element minOccurs="0" name="flaechenschluss" type="boolean"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Geometrieobjekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Geometrieobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_AbgrabungsFlaeche" substitutionGroup="xplan:BP_Flaechenobjekt"
+           type="xplan:BP_AbgrabungsFlaecheType"/>
+  <complexType name="BP_AbgrabungsFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_AbgrabungsFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_AbgrabungsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_VorbehalteFlaeche" substitutionGroup="xplan:FP_Flaechenobjekt"
+           type="xplan:FP_VorbehalteFlaecheType"/>
+  <complexType name="FP_VorbehalteFlaecheType">
+    <complexContent>
+      <extension base="xplan:FP_FlaechenobjektType">
+        <sequence>
+          <element minOccurs="0" name="vorbehalt" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_VorbehalteFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_VorbehalteFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_EinfahrtPunkt" substitutionGroup="xplan:BP_Punktobjekt" type="xplan:BP_EinfahrtPunktType"/>
+  <complexType name="BP_EinfahrtPunktType">
+    <complexContent>
+      <extension base="xplan:BP_PunktobjektType">
+        <sequence>
+          <element name="richtung" type="gml:AngleType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_EinfahrtPunkt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_EinfahrtPunkt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_BebauungsFlaeche" substitutionGroup="xplan:FP_Flaechenschlussobjekt"
+           type="xplan:FP_BebauungsFlaecheType"/>
+  <complexType name="FP_BebauungsFlaecheType">
+    <complexContent>
+      <extension base="xplan:FP_FlaechenschlussobjektType">
+        <sequence>
+          <element minOccurs="0" name="allgArtDerBaulNutzung" type="xplan:XP_AllgArtDerBaulNutzungType"/>
+          <element minOccurs="0" name="besondereArtDerBaulNutzung" type="xplan:XP_BesondereArtDerBaulNutzungType"/>
+          <element minOccurs="0" name="sonderNutzung" type="xplan:XP_SondernutzungenType"/>
+          <element minOccurs="0" name="detaillierteArtDerBaulNutzung" type="gml:CodeType"/>
+          <element minOccurs="0" name="nutzungText" type="string"/>
+          <element minOccurs="0" name="GFZ" type="double"/>
+          <element minOccurs="0" name="GFZmin" type="double"/>
+          <element minOccurs="0" name="GFZmax" type="double"/>
+          <element minOccurs="0" name="BMZ" type="double"/>
+          <element minOccurs="0" name="GRZ" type="double"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_BebauungsFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_BebauungsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_PrivilegiertesVorhaben" substitutionGroup="xplan:FP_Geometrieobjekt"
+           type="xplan:FP_PrivilegiertesVorhabenType"/>
+  <complexType name="FP_PrivilegiertesVorhabenType">
+    <complexContent>
+      <extension base="xplan:FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:FP_ZweckbestimmungPrivilegiertesVorhabenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1"
+                   type="xplan:FP_ZweckbestimmungPrivilegiertesVorhabenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2"
+                   type="xplan:FP_ZweckbestimmungPrivilegiertesVorhabenType"/>
+          <element minOccurs="0" name="besondereZweckbestimmung"
+                   type="xplan:FP_BesondZweckbestPrivilegiertesVorhabenType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung1"
+                   type="xplan:FP_BesondZweckbestPrivilegiertesVorhabenType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung2"
+                   type="xplan:FP_BesondZweckbestPrivilegiertesVorhabenType"/>
+          <element minOccurs="0" name="vorhaben" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_PrivilegiertesVorhaben" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_PrivilegiertesVorhaben" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_SchutzPflegeEntwicklungsFlaeche" substitutionGroup="xplan:BP_Flaechenobjekt"
+           type="xplan:BP_SchutzPflegeEntwicklungsFlaecheType"/>
+  <complexType name="BP_SchutzPflegeEntwicklungsFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenobjektType">
+        <sequence>
+          <element minOccurs="0" name="ziel" type="xplan:XP_SPEZieleType"/>
+          <element minOccurs="0" name="massnahme" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="weitereMassnahme1" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="weitereMassnahme2" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="istAusgleich" type="boolean"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_SchutzPflegeEntwicklungsFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_SchutzPflegeEntwicklungsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_StrassenkoerperHerstellungType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_NutzungsartenGrenze" substitutionGroup="xplan:BP_Linienobjekt"
+           type="xplan:BP_NutzungsartenGrenzeType"/>
+  <complexType name="BP_NutzungsartenGrenzeType">
+    <complexContent>
+      <extension base="xplan:BP_LinienobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_NutzungsartenGrenze" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_NutzungsartenGrenze" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element abstract="true" name="BP_Flaechenobjekt" substitutionGroup="xplan:BP_Objekt"
+           type="xplan:BP_FlaechenobjektType"/>
+  <complexType abstract="true" name="BP_FlaechenobjektType">
+    <complexContent>
+      <extension base="xplan:BP_ObjektType">
+        <sequence>
+          <element name="position" type="gml:GeometryPropertyType"/>
+          <element name="flaechenschluss" type="boolean"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Flaechenobjekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Flaechenobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="FP_PlanArtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="FP_LandwirtschaftsFlaeche" substitutionGroup="xplan:FP_Flaechenschlussobjekt"
+           type="xplan:FP_LandwirtschaftsFlaecheType"/>
+  <complexType name="FP_LandwirtschaftsFlaecheType">
+    <complexContent>
+      <extension base="xplan:FP_FlaechenschlussobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungLandwirtschaftType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="xplan:XP_ZweckbestimmungLandwirtschaftType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2" type="xplan:XP_ZweckbestimmungLandwirtschaftType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung3" type="xplan:XP_ZweckbestimmungLandwirtschaftType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung2" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung3" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_LandwirtschaftsFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_LandwirtschaftsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="FP_BesondZweckbestPrivilegiertesVorhabenType">
+    <restriction base="string">
+      <enumeration value="10000"/>
+      <enumeration value="10001"/>
+      <enumeration value="10002"/>
+      <enumeration value="10003"/>
+      <enumeration value="10004"/>
+      <enumeration value="12000"/>
+      <enumeration value="12001"/>
+      <enumeration value="12002"/>
+      <enumeration value="12003"/>
+      <enumeration value="12004"/>
+      <enumeration value="12005"/>
+      <enumeration value="16000"/>
+      <enumeration value="16001"/>
+      <enumeration value="16002"/>
+      <enumeration value="18000"/>
+      <enumeration value="18001"/>
+      <enumeration value="18002"/>
+      <enumeration value="18003"/>
+      <enumeration value="20000"/>
+      <enumeration value="20001"/>
+      <enumeration value="99990"/>
+      <enumeration value="99991"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_FoerderungsFlaeche" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_FoerderungsFlaecheType"/>
+  <complexType name="BP_FoerderungsFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_FoerderungsFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_FoerderungsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element abstract="true" name="FP_Ueberlagerungsobjekt" substitutionGroup="xplan:FP_Flaechenobjekt"
+           type="xplan:FP_UeberlagerungsobjektType"/>
+  <complexType abstract="true" name="FP_UeberlagerungsobjektType">
+    <complexContent>
+      <extension base="xplan:FP_FlaechenobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Ueberlagerungsobjekt" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Ueberlagerungsobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element abstract="true" name="FP_Flaechenobjekt" substitutionGroup="xplan:FP_Objekt"
+           type="xplan:FP_FlaechenobjektType"/>
+  <complexType abstract="true" name="FP_FlaechenobjektType">
+    <complexContent>
+      <extension base="xplan:FP_ObjektType">
+        <sequence>
+          <element name="position" type="gml:GeometryPropertyType"/>
+          <element name="flaechenschluss" type="boolean"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Flaechenobjekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Flaechenobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_SchutzPflegeEntwicklung" substitutionGroup="xplan:FP_Geometrieobjekt"
+           type="xplan:FP_SchutzPflegeEntwicklungType"/>
+  <complexType name="FP_SchutzPflegeEntwicklungType">
+    <complexContent>
+      <extension base="xplan:FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="ziel" type="xplan:XP_SPEZieleType"/>
+          <element minOccurs="0" name="massnahme" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="weitereMassnahme1" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="weitereMassnahme2" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="istAusgleich" type="boolean"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_SchutzPflegeEntwicklung" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_SchutzPflegeEntwicklung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_Gruen" substitutionGroup="xplan:FP_Geometrieobjekt" type="xplan:FP_GruenType"/>
+  <complexType name="FP_GruenType">
+    <complexContent>
+      <extension base="xplan:FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="xplan:XP_ZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2" type="xplan:XP_ZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung3" type="xplan:XP_ZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung4" type="xplan:XP_ZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung5" type="xplan:XP_ZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="besondereZweckbestimmung" type="xplan:XP_BesondereZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung1"
+                   type="xplan:XP_BesondereZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung2"
+                   type="xplan:XP_BesondereZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung3"
+                   type="xplan:XP_BesondereZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung4"
+                   type="xplan:XP_BesondereZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung5"
+                   type="xplan:XP_BesondereZweckbestimmungGruenType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung2" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung3" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung4" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung5" type="gml:CodeType"/>
+          <element minOccurs="0" name="nutzungsform" type="xplan:XP_NutzungsformType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Gruen" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Gruen" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_WegerechtTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+    </restriction>
+  </simpleType>
+  <element name="FP_Strassenverkehr" substitutionGroup="xplan:FP_Geometrieobjekt" type="xplan:FP_StrassenverkehrType"/>
+  <complexType name="FP_StrassenverkehrType">
+    <complexContent>
+      <extension base="xplan:FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:FP_ZweckbestimmungStrassenverkehrType"/>
+          <element minOccurs="0" name="besondereZweckbestimmung"
+                   type="xplan:FP_BesondereZweckbestimmungStrassenverkehrType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="nutzungsform" type="xplan:XP_NutzungsformType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Strassenverkehr" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Strassenverkehr" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_UnverbindlicheVormerkung" substitutionGroup="xplan:BP_Geometrieobjekt"
+           type="xplan:BP_UnverbindlicheVormerkungType"/>
+  <complexType name="BP_UnverbindlicheVormerkungType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="vormerkung" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_UnverbindlicheVormerkung" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_UnverbindlicheVormerkung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_Schutzgebiet" substitutionGroup="xplan:BP_Geometrieobjekt" type="xplan:BP_SchutzgebietType"/>
+  <complexType name="BP_SchutzgebietType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:SO_KlassifizSchutzgebietNaturschutzrechtType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Schutzgebiet" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Schutzgebiet" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="FP_RechtscharakterType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_DenkmalschutzEinzelanlage" substitutionGroup="xplan:BP_Geometrieobjekt"
+           type="xplan:BP_DenkmalschutzEinzelanlageType"/>
+  <complexType name="BP_DenkmalschutzEinzelanlageType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_DenkmalschutzEinzelanlage" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_DenkmalschutzEinzelanlage" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_LuftreinhalteFlaeche" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_LuftreinhalteFlaecheType"/>
+  <complexType name="BP_LuftreinhalteFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_LuftreinhalteFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_LuftreinhalteFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_BereichOhneEinAusfahrtTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_RasterplanAenderung" substitutionGroup="xplan:XP_RasterplanAenderung"
+           type="xplan:BP_RasterplanAenderungType"/>
+  <complexType name="BP_RasterplanAenderungType">
+    <complexContent>
+      <extension base="xplan:XP_RasterplanAenderungType">
+        <sequence>
+          <element minOccurs="0" name="aufstellungsbeschlussDatum" type="date"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="auslegungsStartDatum" type="date"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="auslegungsEndDatum" type="date"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="traegerbeteiligungsStartDatum" type="date"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="traegerbeteiligungsEndDatum" type="date"/>
+          <element minOccurs="0" name="veraenderungssperreDatum" type="date"/>
+          <element minOccurs="0" name="satzungsbeschlussDatum" type="date"/>
+          <element minOccurs="0" name="rechtsverordnungsDatum" type="date"/>
+          <element minOccurs="0" name="inkrafttretensDatum" type="date"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_RasterplanAenderung" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_RasterplanAenderung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_DenkmalschutzEnsembleFlaeche" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_DenkmalschutzEnsembleFlaecheType"/>
+  <complexType name="BP_DenkmalschutzEnsembleFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <element minOccurs="0" name="denkmal" type="string"/>
+          <element minOccurs="0" name="weltkulturerbe" type="boolean"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_DenkmalschutzEnsembleFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_DenkmalschutzEnsembleFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_VerkehrsflaecheBesondererZweckbestimmung" substitutionGroup="xplan:BP_Flaechenschlussobjekt"
+           type="xplan:BP_VerkehrsflaecheBesondererZweckbestimmungType"/>
+  <complexType name="BP_VerkehrsflaecheBesondererZweckbestimmungType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenschlussobjektType">
+        <sequence>
+          <element minOccurs="0" name="MaxZahlWohnungen" type="integer"/>
+          <element minOccurs="0" name="Fmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="Fmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="Bmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Bmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="GFZmin" type="double"/>
+          <element minOccurs="0" name="GFZmax" type="double"/>
+          <element minOccurs="0" name="GFZ" type="double"/>
+          <element minOccurs="0" name="GFZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GFmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GFmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="BMZmin" type="double"/>
+          <element minOccurs="0" name="BMZmax" type="double"/>
+          <element minOccurs="0" name="BMZ" type="double"/>
+          <element minOccurs="0" name="BMZ_Ausn" type="double"/>
+          <element minOccurs="0" name="BMmin" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BMmax" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM_Ausn" type="gml:VolumeType"/>
+          <element minOccurs="0" name="GRZmin" type="double"/>
+          <element minOccurs="0" name="GRZmax" type="double"/>
+          <element minOccurs="0" name="GRZ" type="double"/>
+          <element minOccurs="0" name="GRZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GRmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GRmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="Zmin" type="integer"/>
+          <element minOccurs="0" name="Zmax" type="integer"/>
+          <element minOccurs="0" name="Zzwingend" type="integer"/>
+          <element minOccurs="0" name="Z" type="integer"/>
+          <element minOccurs="0" name="Z_Ausn" type="integer"/>
+          <element minOccurs="0" name="ZUmin" type="integer"/>
+          <element minOccurs="0" name="ZUmax" type="integer"/>
+          <element minOccurs="0" name="ZUzwingend" type="integer"/>
+          <element minOccurs="0" name="ZU" type="integer"/>
+          <element minOccurs="0" name="ZU_Ausn" type="integer"/>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:BP_ZweckbestimmungStrassenverkehrType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="nutzungsform" type="xplan:XP_NutzungsformType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="begrenzungslinie" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_StrassenbegrenzungsLinie</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_VerkehrsflaecheBesondererZweckbestimmung" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_VerkehrsflaecheBesondererZweckbestimmung" type="anyType"
+           abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_ErhaltungsBereichFlaeche" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_ErhaltungsBereichFlaecheType"/>
+  <complexType name="BP_ErhaltungsBereichFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <element name="grund" type="xplan:BP_ErhaltungsGrundType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_ErhaltungsBereichFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_ErhaltungsBereichFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_SchutzPflegeEntwicklungsMassnahme" substitutionGroup="xplan:BP_Geometrieobjekt"
+           type="xplan:BP_SchutzPflegeEntwicklungsMassnahmeType"/>
+  <complexType name="BP_SchutzPflegeEntwicklungsMassnahmeType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="ziel" type="xplan:XP_SPEZieleType"/>
+          <element minOccurs="0" name="massnahme" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="weitereMassnahme1" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="weitereMassnahme2" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="istAusgleich" type="boolean"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_SchutzPflegeEntwicklungsMassnahme" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_SchutzPflegeEntwicklungsMassnahme" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_GewaesserFlaeche" substitutionGroup="xplan:BP_Flaechenschlussobjekt"
+           type="xplan:BP_GewaesserFlaecheType"/>
+  <complexType name="BP_GewaesserFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenschlussobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungGewaesserType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_GewaesserFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_GewaesserFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_RasterplanAenderung" substitutionGroup="xplan:XP_RasterplanAenderung"
+           type="xplan:FP_RasterplanAenderungType"/>
+  <complexType name="FP_RasterplanAenderungType">
+    <complexContent>
+      <extension base="xplan:XP_RasterplanAenderungType">
+        <sequence>
+          <element minOccurs="0" name="aufstellungbeschlussDatum" type="date"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="auslegungsStartDatum" type="date"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="auslegungsEndDatum" type="date"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="traegerbeteiligungsStartDatum" type="date"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="traegerbeteiligungsEndDatum" type="date"/>
+          <element minOccurs="0" name="aenderungenBisDatum" type="date"/>
+          <element minOccurs="0" name="entwurfsbeschlussDatum" type="date"/>
+          <element minOccurs="0" name="planbeschlussDatum" type="date"/>
+          <element minOccurs="0" name="wirksamkeitsDatum" type="date"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_RasterplanAenderung" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_RasterplanAenderung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_Plan" substitutionGroup="xplan:XP_Plan" type="xplan:FP_PlanType"/>
+  <complexType name="FP_PlanType">
+    <complexContent>
+      <extension base="xplan:XP_PlanType">
+        <sequence>
+          <element maxOccurs="unbounded" name="gemeinde" type="xplan:XP_GemeindePropertyType"/>
+          <element minOccurs="0" name="plangeber" type="xplan:XP_PlangeberPropertyType"/>
+          <element minOccurs="0" name="planArt" type="xplan:FP_PlanArtType"/>
+          <element minOccurs="0" name="sonstPlanArt" type="gml:CodeType"/>
+          <element minOccurs="0" name="verfahren" type="xplan:FP_VerfahrenType"/>
+          <element minOccurs="0" name="rechtsstand" type="xplan:FP_RechtsstandType"/>
+          <element minOccurs="0" name="status" type="gml:CodeType"/>
+          <element minOccurs="0" name="aufstellungsbeschlussDatum" type="date"/>
+          <element minOccurs="0" name="auslegungsStartDatum" type="date"/>
+          <element minOccurs="0" name="auslegungsEndDatum" type="date"/>
+          <element minOccurs="0" name="traegerbeteiligungsStartDatum" type="date"/>
+          <element minOccurs="0" name="traegerbeteiligungsEndDatum" type="date"/>
+          <element minOccurs="0" name="aenderungenBisDatum" type="date"/>
+          <element minOccurs="0" name="entwurfsbeschlussDatum" type="date"/>
+          <element minOccurs="0" name="planbeschlussDatum" type="date"/>
+          <element minOccurs="0" name="wirksamkeitsDatum" type="date"/>
+          <element minOccurs="0" name="refUmweltbericht" type="xplan:XP_ExterneReferenzPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="bereich" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:FP_Bereich</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">xplan:gehoertZuPlan</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Plan" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Plan" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_Bereich" substitutionGroup="xplan:XP_Bereich" type="xplan:FP_BereichType"/>
+  <complexType name="FP_BereichType">
+    <complexContent>
+      <extension base="xplan:XP_BereichType">
+        <sequence>
+          <element minOccurs="0" name="versionBauNVO" type="xplan:XP_VersionBauNVOType"/>
+          <element minOccurs="0" name="versionBauNVOText" type="string"/>
+          <element minOccurs="0" name="versionBauGB" type="date"/>
+          <element minOccurs="0" name="versionBauGBText" type="string"/>
+          <element name="gehoertZuPlan" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:FP_Plan</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">xplan:bereich</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="inhaltFPlan" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:FP_Objekt</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">xplan:gehoertZuFP_Bereich
+                </reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="rasterAenderung" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:FP_RasterplanAenderung</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Bereich" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Bereich" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_AbgrabungsFlaeche" substitutionGroup="xplan:FP_Flaechenobjekt"
+           type="xplan:FP_AbgrabungsFlaecheType"/>
+  <complexType name="FP_AbgrabungsFlaecheType">
+    <complexContent>
+      <extension base="xplan:FP_FlaechenobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_AbgrabungsFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_AbgrabungsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_AusgleichsFlaeche" substitutionGroup="xplan:BP_Flaechenobjekt"
+           type="xplan:BP_AusgleichsFlaecheType"/>
+  <complexType name="BP_AusgleichsFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenobjektType">
+        <sequence>
+          <element minOccurs="0" name="ziel" type="xplan:XP_SPEZieleType"/>
+          <element minOccurs="0" name="massnahme" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="weitereMassnahme1" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="weitereMassnahme2" type="xplan:XP_SPEMassnahmenDatenPropertyType"/>
+          <element minOccurs="0" name="refMassnahmenText" type="xplan:XP_ExterneReferenzPropertyType"/>
+          <element minOccurs="0" name="refLandschaftsplan" type="xplan:XP_ExterneReferenzPropertyType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_AusgleichsFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_AusgleichsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_WirksamkeitBedingung" substitutionGroup="gml:AbstractObject"
+           type="xplan:BP_WirksamkeitBedingungType"/>
+  <complexType name="BP_WirksamkeitBedingungType">
+    <sequence>
+      <element minOccurs="0" name="bedingung" type="string"/>
+      <element minOccurs="0" name="datumAbsolut" type="date"/>
+      <element minOccurs="0" name="datumRelativ" type="duration"/>
+      <!--== ADE ===================================================================-->
+      <element ref="xplan:_GenericApplicationPropertyOfBP_WirksamkeitBedingung" minOccurs="0" maxOccurs="unbounded"/>
+      <!--==========================================================================-->
+    </sequence>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_WirksamkeitBedingung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <complexType name="BP_WirksamkeitBedingungPropertyType">
+    <sequence>
+      <element ref="xplan:BP_WirksamkeitBedingung"/>
+    </sequence>
+  </complexType>
+  <element name="BP_UeberbaubareGrundstuecksFlaeche" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_UeberbaubareGrundstuecksFlaecheType"/>
+  <complexType name="BP_UeberbaubareGrundstuecksFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <element minOccurs="0" name="MaxZahlWohnungen" type="integer"/>
+          <element minOccurs="0" name="Fmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="Fmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="Bmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Bmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="GFZmin" type="double"/>
+          <element minOccurs="0" name="GFZmax" type="double"/>
+          <element minOccurs="0" name="GFZ" type="double"/>
+          <element minOccurs="0" name="GFZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GFmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GFmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="BMZmin" type="double"/>
+          <element minOccurs="0" name="BMZmax" type="double"/>
+          <element minOccurs="0" name="BMZ" type="double"/>
+          <element minOccurs="0" name="BMZ_Ausn" type="double"/>
+          <element minOccurs="0" name="BMmin" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BMmax" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM_Ausn" type="gml:VolumeType"/>
+          <element minOccurs="0" name="GRZmin" type="double"/>
+          <element minOccurs="0" name="GRZmax" type="double"/>
+          <element minOccurs="0" name="GRZ" type="double"/>
+          <element minOccurs="0" name="GRZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GRmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GRmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="Zmin" type="integer"/>
+          <element minOccurs="0" name="Zmax" type="integer"/>
+          <element minOccurs="0" name="Zzwingend" type="integer"/>
+          <element minOccurs="0" name="Z" type="integer"/>
+          <element minOccurs="0" name="Z_Ausn" type="integer"/>
+          <element minOccurs="0" name="ZUmin" type="integer"/>
+          <element minOccurs="0" name="ZUmax" type="integer"/>
+          <element minOccurs="0" name="ZUzwingend" type="integer"/>
+          <element minOccurs="0" name="ZU" type="integer"/>
+          <element minOccurs="0" name="ZU_Ausn" type="integer"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="baugrenze" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_BauGrenze</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="baulinie" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_BauLinie</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_UeberbaubareGrundstuecksFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_UeberbaubareGrundstuecksFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_PlanArtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="10000"/>
+      <enumeration value="10001"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="40000"/>
+      <enumeration value="40001"/>
+      <enumeration value="40002"/>
+      <enumeration value="5000"/>
+      <enumeration value="7000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="BP_RechtscharakterType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_FreiFlaeche" substitutionGroup="xplan:BP_Ueberlagerungsobjekt" type="xplan:BP_FreiFlaecheType"/>
+  <complexType name="BP_FreiFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <element minOccurs="0" name="nutzung" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_FreiFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_FreiFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_BodenschaetzeFlaeche" substitutionGroup="xplan:FP_Flaechenobjekt"
+           type="xplan:FP_BodenschaetzeFlaecheType"/>
+  <complexType name="FP_BodenschaetzeFlaecheType">
+    <complexContent>
+      <extension base="xplan:FP_FlaechenobjektType">
+        <sequence>
+          <element minOccurs="0" name="abbaugut" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_BodenschaetzeFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_BodenschaetzeFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_Wasserwirtschaft" substitutionGroup="xplan:FP_Geometrieobjekt"
+           type="xplan:FP_WasserwirtschaftType"/>
+  <complexType name="FP_WasserwirtschaftType">
+    <complexContent>
+      <extension base="xplan:FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungWasserwirtschaftType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Wasserwirtschaft" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Wasserwirtschaft" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_BebauungsArtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+      <enumeration value="6000"/>
+      <enumeration value="7000"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="FP_ZweckbestimmungPrivilegiertesVorhabenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1200"/>
+      <enumeration value="1400"/>
+      <enumeration value="1600"/>
+      <enumeration value="1800"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="BP_AnpflanzungBindungErhaltungsGegenstandType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="2000"/>
+      <enumeration value="2100"/>
+      <enumeration value="2200"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+      <enumeration value="6000"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_GemeinbedarfsFlaeche" substitutionGroup="xplan:BP_Flaechenschlussobjekt"
+           type="xplan:BP_GemeinbedarfsFlaecheType"/>
+  <complexType name="BP_GemeinbedarfsFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenschlussobjektType">
+        <sequence>
+          <element minOccurs="0" name="MaxZahlWohnungen" type="integer"/>
+          <element minOccurs="0" name="Fmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="Fmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="Bmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Bmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="GFZmin" type="double"/>
+          <element minOccurs="0" name="GFZmax" type="double"/>
+          <element minOccurs="0" name="GFZ" type="double"/>
+          <element minOccurs="0" name="GFZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GFmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GFmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="BMZmin" type="double"/>
+          <element minOccurs="0" name="BMZmax" type="double"/>
+          <element minOccurs="0" name="BMZ" type="double"/>
+          <element minOccurs="0" name="BMZ_Ausn" type="double"/>
+          <element minOccurs="0" name="BMmin" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BMmax" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM_Ausn" type="gml:VolumeType"/>
+          <element minOccurs="0" name="GRZmin" type="double"/>
+          <element minOccurs="0" name="GRZmax" type="double"/>
+          <element minOccurs="0" name="GRZ" type="double"/>
+          <element minOccurs="0" name="GRZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GRmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GRmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="Zmin" type="integer"/>
+          <element minOccurs="0" name="Zmax" type="integer"/>
+          <element minOccurs="0" name="Zzwingend" type="integer"/>
+          <element minOccurs="0" name="Z" type="integer"/>
+          <element minOccurs="0" name="Z_Ausn" type="integer"/>
+          <element minOccurs="0" name="ZUmin" type="integer"/>
+          <element minOccurs="0" name="ZUmax" type="integer"/>
+          <element minOccurs="0" name="ZUzwingend" type="integer"/>
+          <element minOccurs="0" name="ZU" type="integer"/>
+          <element minOccurs="0" name="ZU_Ausn" type="integer"/>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="xplan:XP_ZweckbestimmungGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2" type="xplan:XP_ZweckbestimmungGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung3" type="xplan:XP_ZweckbestimmungGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung4" type="xplan:XP_ZweckbestimmungGemeinbedarfType"/>
+          <element minOccurs="0" name="besondereZweckbestimmung" type="xplan:XP_BesondereZweckbestGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung1"
+                   type="xplan:XP_BesondereZweckbestGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung2"
+                   type="xplan:XP_BesondereZweckbestGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung3"
+                   type="xplan:XP_BesondereZweckbestGemeinbedarfType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung4"
+                   type="xplan:XP_BesondereZweckbestGemeinbedarfType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung2" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung3" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung4" type="gml:CodeType"/>
+          <element minOccurs="0" name="zugunstenVon" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_GemeinbedarfsFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_GemeinbedarfsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_ErneuerbareEnergieFlaeche" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_ErneuerbareEnergieFlaecheType"/>
+  <complexType name="BP_ErneuerbareEnergieFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_ErneuerbareEnergieFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_ErneuerbareEnergieFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_SpezielleBauweise" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_SpezielleBauweiseType"/>
+  <complexType name="BP_SpezielleBauweiseType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:BP_SpezielleBauweiseTypenType"/>
+          <element minOccurs="0" name="sonstTyp" type="gml:CodeType"/>
+          <element minOccurs="0" name="Bmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Bmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmax" type="gml:LengthType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_SpezielleBauweise" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_SpezielleBauweise" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_VerEntsorgung" substitutionGroup="xplan:BP_Geometrieobjekt" type="xplan:BP_VerEntsorgungType"/>
+  <complexType name="BP_VerEntsorgungType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="MaxZahlWohnungen" type="integer"/>
+          <element minOccurs="0" name="Fmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="Fmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="Bmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Bmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="GFZmin" type="double"/>
+          <element minOccurs="0" name="GFZmax" type="double"/>
+          <element minOccurs="0" name="GFZ" type="double"/>
+          <element minOccurs="0" name="GFZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GFmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GFmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="BMZmin" type="double"/>
+          <element minOccurs="0" name="BMZmax" type="double"/>
+          <element minOccurs="0" name="BMZ" type="double"/>
+          <element minOccurs="0" name="BMZ_Ausn" type="double"/>
+          <element minOccurs="0" name="BMmin" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BMmax" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM_Ausn" type="gml:VolumeType"/>
+          <element minOccurs="0" name="GRZmin" type="double"/>
+          <element minOccurs="0" name="GRZmax" type="double"/>
+          <element minOccurs="0" name="GRZ" type="double"/>
+          <element minOccurs="0" name="GRZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GRmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GRmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="Zmin" type="integer"/>
+          <element minOccurs="0" name="Zmax" type="integer"/>
+          <element minOccurs="0" name="Zzwingend" type="integer"/>
+          <element minOccurs="0" name="Z" type="integer"/>
+          <element minOccurs="0" name="Z_Ausn" type="integer"/>
+          <element minOccurs="0" name="ZUmin" type="integer"/>
+          <element minOccurs="0" name="ZUmax" type="integer"/>
+          <element minOccurs="0" name="ZUzwingend" type="integer"/>
+          <element minOccurs="0" name="ZU" type="integer"/>
+          <element minOccurs="0" name="ZU_Ausn" type="integer"/>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="xplan:XP_ZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2" type="xplan:XP_ZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung3" type="xplan:XP_ZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="besondereZweckbestimmung"
+                   type="xplan:XP_BesondereZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung1"
+                   type="xplan:XP_BesondereZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung2"
+                   type="xplan:XP_BesondereZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="weitereBesondZweckbestimmung3"
+                   type="xplan:XP_BesondereZweckbestimmungVerEntsorgungType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung2" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung3" type="gml:CodeType"/>
+          <element minOccurs="0" name="textlicheErgaenzung" type="string"/>
+          <element minOccurs="0" name="zugunstenVon" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_VerEntsorgung" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_VerEntsorgung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_NebenanlagenAusschlussTypType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_GenerischesObjekt" substitutionGroup="xplan:BP_Geometrieobjekt"
+           type="xplan:BP_GenerischesObjektType"/>
+  <complexType name="BP_GenerischesObjektType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung3" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung4" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_GenerischesObjekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_GenerischesObjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element abstract="true" name="BP_Geometrieobjekt" substitutionGroup="xplan:BP_Objekt"
+           type="xplan:BP_GeometrieobjektType"/>
+  <complexType abstract="true" name="BP_GeometrieobjektType">
+    <complexContent>
+      <extension base="xplan:BP_ObjektType">
+        <sequence>
+          <element name="position" type="gml:GeometryPropertyType"/>
+          <element minOccurs="0" name="flaechenschluss" type="boolean"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Geometrieobjekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Geometrieobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_Bereich" substitutionGroup="xplan:XP_Bereich" type="xplan:BP_BereichType"/>
+  <complexType name="BP_BereichType">
+    <complexContent>
+      <extension base="xplan:XP_BereichType">
+        <sequence>
+          <element minOccurs="0" name="versionBauNVO" type="xplan:XP_VersionBauNVOType"/>
+          <element minOccurs="0" name="versionBauNVOText" type="string"/>
+          <element minOccurs="0" name="versionBauGB" type="date"/>
+          <element minOccurs="0" name="versionBauGBText" type="string"/>
+          <element name="gehoertZuPlan" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_Plan</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">xplan:bereich</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="inhaltBPlan" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_Objekt</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">xplan:gehoertZuBP_Bereich
+                </reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="rasterAenderung" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_RasterplanAenderung</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Bereich" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Bereich" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_ZweckbestimmungGemeinschaftsanlagenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="3100"/>
+      <enumeration value="3200"/>
+      <enumeration value="3300"/>
+      <enumeration value="3400"/>
+      <enumeration value="3500"/>
+      <enumeration value="3600"/>
+      <enumeration value="3700"/>
+      <enumeration value="3800"/>
+      <enumeration value="3900"/>
+      <enumeration value="4000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="FP_Punktobjekt" substitutionGroup="xplan:FP_Objekt" type="xplan:FP_PunktobjektType"/>
+  <complexType abstract="true" name="FP_PunktobjektType">
+    <complexContent>
+      <extension base="xplan:FP_ObjektType">
+        <sequence>
+          <element name="position" type="gml:GeometryPropertyType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Punktobjekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Punktobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_AufschuettungsFlaeche" substitutionGroup="xplan:FP_Flaechenobjekt"
+           type="xplan:FP_AufschuettungsFlaecheType"/>
+  <complexType name="FP_AufschuettungsFlaecheType">
+    <complexContent>
+      <extension base="xplan:FP_FlaechenobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_AufschuettungsFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_AufschuettungsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="FP_RechtsstandType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="2100"/>
+      <enumeration value="2200"/>
+      <enumeration value="2300"/>
+      <enumeration value="2400"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_AbstandsMass" substitutionGroup="xplan:BP_Geometrieobjekt" type="xplan:BP_AbstandsMassType"/>
+  <complexType name="BP_AbstandsMassType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <element name="wert" type="gml:LengthType"/>
+          <element minOccurs="0" name="startWinkel" type="gml:AngleType"/>
+          <element minOccurs="0" name="endWinkel" type="gml:AngleType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_AbstandsMass" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_AbstandsMass" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_GrenzBebauungType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_Plan" substitutionGroup="xplan:XP_Plan" type="xplan:BP_PlanType"/>
+  <complexType name="BP_PlanType">
+    <complexContent>
+      <extension base="xplan:XP_PlanType">
+        <sequence>
+          <element maxOccurs="unbounded" name="gemeinde" type="xplan:XP_GemeindePropertyType"/>
+          <element minOccurs="0" name="plangeber" type="xplan:XP_PlangeberPropertyType"/>
+          <element maxOccurs="unbounded" name="planArt" type="xplan:BP_PlanArtType"/>
+          <element minOccurs="0" name="sonstPlanArt" type="gml:CodeType"/>
+          <element minOccurs="0" name="verfahren" type="xplan:BP_VerfahrenType"/>
+          <element minOccurs="0" name="rechtsstand" type="xplan:BP_RechtsstandType"/>
+          <element minOccurs="0" name="status" type="gml:CodeType"/>
+          <element minOccurs="0" name="hoehenbezug" type="string"/>
+          <element minOccurs="0" name="aenderungenBisDatum" type="date"/>
+          <element minOccurs="0" name="aufstellungsbeschlussDatum" type="date"/>
+          <element minOccurs="0" name="veraenderungssperreDatum" type="date"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="auslegungsStartDatum" type="date"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="auslegungsEndDatum" type="date"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="traegerbeteiligungsStartDatum" type="date"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="traegerbeteiligungsEndDatum" type="date"/>
+          <element minOccurs="0" name="satzungsbeschlussDatum" type="date"/>
+          <element minOccurs="0" name="rechtsverordnungsDatum" type="date"/>
+          <element minOccurs="0" name="inkrafttretensDatum" type="date"/>
+          <element minOccurs="0" name="veraenderungssperre" type="boolean"/>
+          <element minOccurs="0" name="staedtebaulicherVertrag" type="boolean"/>
+          <element minOccurs="0" name="erschliessungsVertrag" type="boolean"/>
+          <element minOccurs="0" name="durchfuehrungsVertrag" type="boolean"/>
+          <element minOccurs="0" name="gruenordnungsplan" type="boolean"/>
+          <element minOccurs="0" name="refKoordinatenListe" type="xplan:XP_ExterneReferenzPropertyType"/>
+          <element minOccurs="0" name="refGrundstuecksverzeichnis" type="xplan:XP_ExterneReferenzPropertyType"/>
+          <element minOccurs="0" name="refPflanzliste" type="xplan:XP_ExterneReferenzPropertyType"/>
+          <element minOccurs="0" name="refUmweltbericht" type="xplan:XP_ExterneReferenzPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="bereich" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:BP_Bereich</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">xplan:gehoertZuPlan</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Plan" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Plan" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_KleintierhaltungFlaeche" substitutionGroup="xplan:BP_Flaechenschlussobjekt"
+           type="xplan:BP_KleintierhaltungFlaecheType"/>
+  <complexType name="BP_KleintierhaltungFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenschlussobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_KleintierhaltungFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_KleintierhaltungFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="FP_VerfahrenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_EingriffsBereich" substitutionGroup="xplan:BP_Ueberlagerungsobjekt"
+           type="xplan:BP_EingriffsBereichType"/>
+  <complexType name="BP_EingriffsBereichType">
+    <complexContent>
+      <extension base="xplan:BP_UeberlagerungsobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_EingriffsBereich" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_EingriffsBereich" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_KeineZentrAbwasserBeseitigungFlaeche" substitutionGroup="xplan:FP_Flaechenobjekt"
+           type="xplan:FP_KeineZentrAbwasserBeseitigungFlaecheType"/>
+  <complexType name="FP_KeineZentrAbwasserBeseitigungFlaecheType">
+    <complexContent>
+      <extension base="xplan:FP_FlaechenobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_KeineZentrAbwasserBeseitigungFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_KeineZentrAbwasserBeseitigungFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_Wegerecht" substitutionGroup="xplan:BP_Geometrieobjekt" type="xplan:BP_WegerechtType"/>
+  <complexType name="BP_WegerechtType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:BP_WegerechtTypenType"/>
+          <element minOccurs="0" name="zugunstenVon" type="string"/>
+          <element minOccurs="0" name="thema" type="string"/>
+          <element minOccurs="0" name="breite" type="gml:LengthType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_Wegerecht" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_Wegerecht" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_StrassenbegrenzungsLinie" substitutionGroup="xplan:BP_Linienobjekt"
+           type="xplan:BP_StrassenbegrenzungsLinieType"/>
+  <complexType name="BP_StrassenbegrenzungsLinieType">
+    <complexContent>
+      <extension base="xplan:BP_LinienobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_StrassenbegrenzungsLinie" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_StrassenbegrenzungsLinie" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_BodenschaetzeFlaeche" substitutionGroup="xplan:BP_Flaechenobjekt"
+           type="xplan:BP_BodenschaetzeFlaecheType"/>
+  <complexType name="BP_BodenschaetzeFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenobjektType">
+        <sequence>
+          <element minOccurs="0" name="abbaugut" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_BodenschaetzeFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_BodenschaetzeFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_ZweckbestimmungStrassenverkehrType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1300"/>
+      <enumeration value="1400"/>
+      <enumeration value="1500"/>
+      <enumeration value="1550"/>
+      <enumeration value="1580"/>
+      <enumeration value="1600"/>
+      <enumeration value="1700"/>
+      <enumeration value="1800"/>
+      <enumeration value="2000"/>
+      <enumeration value="2100"/>
+      <enumeration value="2200"/>
+      <enumeration value="2300"/>
+      <enumeration value="2400"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="FP_NutzungsbeschraenkungsFlaeche" substitutionGroup="xplan:FP_Ueberlagerungsobjekt"
+           type="xplan:FP_NutzungsbeschraenkungsFlaecheType"/>
+  <complexType name="FP_NutzungsbeschraenkungsFlaecheType">
+    <complexContent>
+      <extension base="xplan:FP_UeberlagerungsobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_NutzungsbeschraenkungsFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_NutzungsbeschraenkungsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="FP_Gewaesser" substitutionGroup="xplan:FP_Geometrieobjekt" type="xplan:FP_GewaesserType"/>
+  <complexType name="FP_GewaesserType">
+    <complexContent>
+      <extension base="xplan:FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungGewaesserType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Gewaesser" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Gewaesser" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_SpezielleBauweiseTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1300"/>
+      <enumeration value="1400"/>
+      <enumeration value="1500"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_WasserwirtschaftsFlaeche" substitutionGroup="xplan:BP_Flaechenobjekt"
+           type="xplan:BP_WasserwirtschaftsFlaecheType"/>
+  <complexType name="BP_WasserwirtschaftsFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungWasserwirtschaftType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_WasserwirtschaftsFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_WasserwirtschaftsFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_BaugebietsTeilFlaeche" substitutionGroup="xplan:BP_Flaechenschlussobjekt"
+           type="xplan:BP_BaugebietsTeilFlaecheType"/>
+  <complexType name="BP_BaugebietsTeilFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenschlussobjektType">
+        <sequence>
+          <element minOccurs="0" name="DNmin" type="gml:AngleType"/>
+          <element minOccurs="0" name="DNmax" type="gml:AngleType"/>
+          <element minOccurs="0" name="DN" type="gml:AngleType"/>
+          <element minOccurs="0" name="DNZwingend" type="gml:AngleType"/>
+          <element minOccurs="0" name="FR" type="gml:AngleType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="dachform" type="xplan:BP_DachformType"/>
+          <element minOccurs="0" name="detaillierteDachform" type="gml:CodeType"/>
+          <element minOccurs="0" name="MaxZahlWohnungen" type="integer"/>
+          <element minOccurs="0" name="Fmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="Fmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="Bmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Bmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmin" type="gml:LengthType"/>
+          <element minOccurs="0" name="Tmax" type="gml:LengthType"/>
+          <element minOccurs="0" name="GFZmin" type="double"/>
+          <element minOccurs="0" name="GFZmax" type="double"/>
+          <element minOccurs="0" name="GFZ" type="double"/>
+          <element minOccurs="0" name="GFZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GFmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GFmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF" type="gml:AreaType"/>
+          <element minOccurs="0" name="GF_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="BMZmin" type="double"/>
+          <element minOccurs="0" name="BMZmax" type="double"/>
+          <element minOccurs="0" name="BMZ" type="double"/>
+          <element minOccurs="0" name="BMZ_Ausn" type="double"/>
+          <element minOccurs="0" name="BMmin" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BMmax" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM" type="gml:VolumeType"/>
+          <element minOccurs="0" name="BM_Ausn" type="gml:VolumeType"/>
+          <element minOccurs="0" name="GRZmin" type="double"/>
+          <element minOccurs="0" name="GRZmax" type="double"/>
+          <element minOccurs="0" name="GRZ" type="double"/>
+          <element minOccurs="0" name="GRZ_Ausn" type="double"/>
+          <element minOccurs="0" name="GRmin" type="gml:AreaType"/>
+          <element minOccurs="0" name="GRmax" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR" type="gml:AreaType"/>
+          <element minOccurs="0" name="GR_Ausn" type="gml:AreaType"/>
+          <element minOccurs="0" name="Zmin" type="integer"/>
+          <element minOccurs="0" name="Zmax" type="integer"/>
+          <element minOccurs="0" name="Zzwingend" type="integer"/>
+          <element minOccurs="0" name="Z" type="integer"/>
+          <element minOccurs="0" name="Z_Ausn" type="integer"/>
+          <element minOccurs="0" name="ZUmin" type="integer"/>
+          <element minOccurs="0" name="ZUmax" type="integer"/>
+          <element minOccurs="0" name="ZUzwingend" type="integer"/>
+          <element minOccurs="0" name="ZU" type="integer"/>
+          <element minOccurs="0" name="ZU_Ausn" type="integer"/>
+          <element minOccurs="0" name="allgArtDerBaulNutzung" type="xplan:XP_AllgArtDerBaulNutzungType"/>
+          <element minOccurs="0" name="besondereArtDerBaulNutzung" type="xplan:XP_BesondereArtDerBaulNutzungType"/>
+          <element minOccurs="0" name="sondernutzung" type="xplan:XP_SondernutzungenType"/>
+          <element minOccurs="0" name="detaillierteArtDerBaulNutzung" type="gml:CodeType"/>
+          <element minOccurs="0" name="nutzungText" type="string"/>
+          <element minOccurs="0" name="abweichungBauNVO" type="xplan:XP_AbweichungBauNVOTypenType"/>
+          <element minOccurs="0" name="bauweise" type="xplan:BP_BauweiseType"/>
+          <element minOccurs="0" name="abweichendeBauweise" type="gml:CodeType"/>
+          <element minOccurs="0" name="vertikaleDifferenzierung" type="boolean"/>
+          <element minOccurs="0" name="bebauungsArt" type="xplan:BP_BebauungsArtType"/>
+          <element minOccurs="0" name="bebauungVordereGrenze" type="xplan:BP_GrenzBebauungType"/>
+          <element minOccurs="0" name="bebauungRueckwaertigeGrenze" type="xplan:BP_GrenzBebauungType"/>
+          <element minOccurs="0" name="bebauungSeitlicheGrenze" type="xplan:BP_GrenzBebauungType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="refGebaedequerschnitt"
+                   type="xplan:XP_ExterneReferenzPropertyType"/>
+          <element minOccurs="0" name="zugunstenVon" type="string"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="abweichungText" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:XP_TextAbschnitt</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_BaugebietsTeilFlaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_BaugebietsTeilFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element abstract="true" name="FP_Flaechenschlussobjekt" substitutionGroup="xplan:FP_Flaechenobjekt"
+           type="xplan:FP_FlaechenschlussobjektType"/>
+  <complexType abstract="true" name="FP_FlaechenschlussobjektType">
+    <complexContent>
+      <extension base="xplan:FP_FlaechenobjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_Flaechenschlussobjekt" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_Flaechenschlussobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_AnpflanzungBindungErhaltung" substitutionGroup="xplan:BP_Geometrieobjekt"
+           type="xplan:BP_AnpflanzungBindungErhaltungType"/>
+  <complexType name="BP_AnpflanzungBindungErhaltungType">
+    <complexContent>
+      <extension base="xplan:BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="massnahme" type="xplan:BP_ABEMassnahmenTypenType"/>
+          <element minOccurs="0" name="gegenstand" type="xplan:BP_AnpflanzungBindungErhaltungsGegenstandType"/>
+          <element minOccurs="0" name="kronendurchmesser" type="gml:LengthType"/>
+          <element minOccurs="0" name="pflanztiefe" type="gml:LengthType"/>
+          <element minOccurs="0" name="istAusgleich" type="boolean"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_AnpflanzungBindungErhaltung" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_AnpflanzungBindungErhaltung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="BP_BauweiseType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <element name="FP_WaldFlaeche" substitutionGroup="xplan:FP_Flaechenschlussobjekt" type="xplan:FP_WaldFlaecheType"/>
+  <complexType name="FP_WaldFlaecheType">
+    <complexContent>
+      <extension base="xplan:FP_FlaechenschlussobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungWaldType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="xplan:XP_ZweckbestimmungWaldType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2" type="xplan:XP_ZweckbestimmungWaldType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung2" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfFP_WaldFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfFP_WaldFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="BP_WaldFlaeche" substitutionGroup="xplan:BP_Flaechenschlussobjekt" type="xplan:BP_WaldFlaecheType"/>
+  <complexType name="BP_WaldFlaecheType">
+    <complexContent>
+      <extension base="xplan:BP_FlaechenschlussobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:XP_ZweckbestimmungWaldType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung1" type="xplan:XP_ZweckbestimmungWaldType"/>
+          <element minOccurs="0" name="weitereZweckbestimmung2" type="xplan:XP_ZweckbestimmungWaldType"/>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung1" type="gml:CodeType"/>
+          <element minOccurs="0" name="weitereDetailZweckbestimmung2" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfBP_WaldFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfBP_WaldFlaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+</schema>

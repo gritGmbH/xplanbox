@@ -1,0 +1,159 @@
+/*Folgend der allgemeine Style für Formatierung der Objekte, am Ende kann das Theme projektspezifisch angepasst werden*/
+
+/* Style der XPlanValidator Startseite */
+html, body, tr{
+  margin: 0;
+  padding: 0;
+  top:0;
+  }
+body, table td, select, button {
+  font-family: Arial Unicode MS, Arial, sans-serif;
+  font-size: small;
+  }
+select {
+  background: white;
+  border-bottom-color: #000000;
+  border-bottom-width: 1px;
+  padding:2px;
+  }
+.gwt-Label{
+  padding-right:30px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  }
+.gwt-TextBox {
+  padding: 3px 5px;
+  font-size: small;
+  font-family: Arial Unicode MS, Arial, sans-serif;
+  margin-left:10px;
+  }
+.gwt-FileUpload{
+  background-color: #E6E6E6;
+  border-radius:2px;
+  }
+
+/* Buttons */
+button{
+  padding: 3px 5px;
+  cursor:pointer;
+  border-radius:4px;
+  color:#fff;
+  }
+button:hover, button:focus, button:active:focus, button:active{
+  text-decoration:none;
+  color:#fff;
+  }
+button:active{
+  -webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);
+  box-shadow:inset 0 3px 5px rgba(0,0,0,.125);
+  }
+button[disabled], button[disabled]:hover, button[disabled]:active, button[disabled]:focus, button[disabled]:active:focus{
+  cursor: default;
+  color: #666;
+  background-color: #bbb;
+  border-color: #bbb;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  }
+
+/*Dialogboxen*/
+.gwt-DialogBox{
+  background-color: #FFF;
+  padding:20px;
+  border: 1em solid #bbb;
+  margin: 1em;
+  }
+.gwt-DialogBox .Caption {
+  padding: 5px 5px 5px 16px;
+  margin-bottom: 20px;
+  cursor: default;
+  font-weight: bold;
+  font-size: larger;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #bbbbbb;
+  border-top: 1px solid #D2D2D2;
+  }
+.gwt-DialogBox .dialogMiddleCenter {
+  padding: 3px;
+  }
+
+
+/*Projektspezifisches Theme*/
+
+/*xplanweb*/
+body{
+  background-color: #fcfcfc;
+  }
+#header{
+  background-color: #fcfcfc;
+  background-image: url(latilong.png);
+  background-repeat:no-repeat;
+  width:100%;
+  height:70px;
+  margin: auto;
+  margin-bottom: 1em;
+  padding-top: 20px;
+  border-bottom: 5px solid #ff9900;
+  }
+h1, h2{
+  margin-top: 1px;	
+  padding-left:137px;
+  letter-spacing: 0.16em;
+  font-weight: normal;
+  }
+h1{
+  color: #757575;
+  }
+h2{
+  color: #8e8e8e;
+  }
+#header img{
+  position: absolute;
+  width: 200px;
+  right: 150px;
+  top:10px;
+  }
+form{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #fafafa;
+  margin:auto;
+  width:1000px;
+  border: 1px solid #fafafa;
+  }
+button{
+  border:2px solid #ffa31a;
+  background-color: #ff9900;
+  font-family: Univers Condensed, Arial;
+  color: #E9FFF8;
+  }
+button:hover, button:focus, button:active:focus, button:active{
+  background-color: #ffad34;
+  border-color: #ffa31a;
+  color: #E9FFF8;
+  }
+.removeButtonColumn button{
+  border:1px solid #e70026;
+  background-color:#cd0022;
+  font-family: Univers Condensed, Arial;
+  }
+.removeButtonColumn button:hover, .removeButtonColumn button:focus, .removeButtonColumn button:active:focus, .removeButtonColumn button:active{
+  background-color:#ff012b;
+  border-color:#e70026;
+  }
+button[disabled], button[disabled]:hover, button[disabled]:active, button[disabled]:focus, button[disabled]:active:focus{
+  color: #666;
+  background-color: #bbb;
+  border-color: #bbb;
+  }
+.gwt-DialogBox{
+  background-color: #FFF;
+  padding:20px;
+  border: 10px solid #ff9900;
+  margin: 1em;
+  }
+
+/*Stylingversuch für den Durchsuchenbutton*/
+input[type=file] button {
+  background-color:#00997F;
+  }

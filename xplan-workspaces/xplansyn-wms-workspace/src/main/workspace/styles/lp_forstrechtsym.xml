@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureTypeStyle xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.opengis.net/se"
+  xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+  <Name>vollflaechig</Name>
+  <FeatureTypeName>xplan:LP_Forstrecht</FeatureTypeName>
+
+  <Rule>
+    <Name>lp_forstrecht</Name>
+    <Description>
+      <Title>Naturwaldreservate</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:typ</ogc:PropertyName>
+        <ogc:Literal>1000</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:Function name="Centroid">
+          <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+        </ogc:Function>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#FFFFFF</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>50</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>58</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>20</Size>
+        <Displacement>
+          <DisplacementX>-1.3</DisplacementX>
+          <DisplacementY>0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>53</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>15</Size>
+        <Displacement>
+          <DisplacementX>3</DisplacementX>
+          <DisplacementY>-2.0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>lp_forstrecht</Name>
+    <Description>
+      <Title>Schutzwald</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:typ</ogc:PropertyName>
+        <ogc:Literal>2000</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:Function name="Centroid">
+          <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+        </ogc:Function>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#FFFFFF</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>50</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>54</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>20</Size>
+        <Displacement>
+          <DisplacementX>-0.3</DisplacementX>
+          <DisplacementY>0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+
+  </Rule>
+  <Rule>
+    <Name>lp_forstrecht</Name>
+    <Description>
+      <Title>Lawinenschutzwald</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:typ</ogc:PropertyName>
+        <ogc:Literal>2100</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:Function name="Centroid">
+          <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+        </ogc:Function>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#FFFFFF</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>50</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>54</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>20</Size>
+        <Displacement>
+          <DisplacementX>-1.3</DisplacementX>
+          <DisplacementY>0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>47</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>15</Size>
+        <Displacement>
+          <DisplacementX>3</DisplacementX>
+          <DisplacementY>-2.0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>lp_forstrecht</Name>
+    <Description>
+      <Title>Bodenschutzwald</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:typ</ogc:PropertyName>
+        <ogc:Literal>2200</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:Function name="Centroid">
+          <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+        </ogc:Function>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#FFFFFF</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>50</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>54</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>20</Size>
+        <Displacement>
+          <DisplacementX>-1.3</DisplacementX>
+          <DisplacementY>0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>37</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>15</Size>
+        <Displacement>
+          <DisplacementX>3</DisplacementX>
+          <DisplacementY>-2.0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>lp_forstrecht</Name>
+    <Description>
+      <Title>Klimaschutzwald</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:typ</ogc:PropertyName>
+        <ogc:Literal>2300</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:Function name="Centroid">
+          <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+        </ogc:Function>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#FFFFFF</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>50</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>54</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>20</Size>
+        <Displacement>
+          <DisplacementX>-1.3</DisplacementX>
+          <DisplacementY>0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>46</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>15</Size>
+        <Displacement>
+          <DisplacementX>3</DisplacementX>
+          <DisplacementY>-2.0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>lp_forstrecht</Name>
+    <Description>
+      <Title>Immissionsschutzwald</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:typ</ogc:PropertyName>
+        <ogc:Literal>2400</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:Function name="Centroid">
+          <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+        </ogc:Function>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#FFFFFF</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>50</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>54</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>20</Size>
+        <Displacement>
+          <DisplacementX>-1.3</DisplacementX>
+          <DisplacementY>0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>44</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>15</Size>
+        <Displacement>
+          <DisplacementX>3</DisplacementX>
+          <DisplacementY>-2.0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>lp_forstrecht</Name>
+    <Description>
+      <Title>Naturwald, Biotopschutzwald</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:typ</ogc:PropertyName>
+        <ogc:Literal>2500</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:Function name="Centroid">
+          <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+        </ogc:Function>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#FFFFFF</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>50</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>54</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>20</Size>
+        <Displacement>
+          <DisplacementX>-1.3</DisplacementX>
+          <DisplacementY>0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>49</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>15</Size>
+        <Displacement>
+          <DisplacementX>3</DisplacementX>
+          <DisplacementY>-2.0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>lp_forstrecht</Name>
+    <Description>
+      <Title>Erholungswald</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:typ</ogc:PropertyName>
+        <ogc:Literal>3000</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:Function name="Centroid">
+          <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+        </ogc:Function>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#FFFFFF</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>50</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>40</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>20</Size>
+        <Displacement>
+          <DisplacementX>-0.3</DisplacementX>
+          <DisplacementY>0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>lp_forstrecht</Name>
+    <Description>
+      <Title>Erholungswald bei Heilbädern, Kurorten, Erholungsorten</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:typ</ogc:PropertyName>
+        <ogc:Literal>3100</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:Function name="Centroid">
+          <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+        </ogc:Function>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#FFFFFF</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>50</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>40</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>20</Size>
+        <Displacement>
+          <DisplacementX>-1.3</DisplacementX>
+          <DisplacementY>0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>43</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>15</Size>
+        <Displacement>
+          <DisplacementX>3</DisplacementX>
+          <DisplacementY>-2.0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>lp_forstrecht</Name>
+    <Description>
+      <Title>Erholungswald bei Ballungs-/Verdichtungsräumen, Städten</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:typ</ogc:PropertyName>
+        <ogc:Literal>3200</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:Function name="Centroid">
+          <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+        </ogc:Function>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#FFFFFF</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>50</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>40</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>20</Size>
+        <Displacement>
+          <DisplacementX>-1.3</DisplacementX>
+          <DisplacementY>0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <Format>ttf</Format>
+          <MarkIndex>54</MarkIndex>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke-opacity">0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>15</Size>
+        <Displacement>
+          <DisplacementX>3</DisplacementX>
+          <DisplacementY>-2.0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+</FeatureTypeStyle>

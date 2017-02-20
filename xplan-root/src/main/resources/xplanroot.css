@@ -1,0 +1,158 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  }
+body {
+  font-family: Arial Unicode MS, Arial, sans-serif;
+  font-size: small;
+  }
+
+/* links */
+a:link {
+  font-weight: bold;
+  text-decoration: none;
+  color: #ff9900;
+  }
+a:visited {
+    font-weight: bold;
+    text-decoration: none;
+    color: #b4001e;
+}
+a:hover, a:active {
+    text-decoration: underline;
+    color: #ff6f00;
+}
+
+/* header */
+#header{
+  background-color: #fcfcfc;
+  background-image: url(latilong.png);
+  background-repeat:no-repeat;
+  width:100%;
+  height:70px;
+  margin: auto;
+  margin-bottom: 1em;
+  padding-top: 20px;
+  border-bottom: 5px solid #ff9900;
+  }
+h1, h2{
+  margin-top: 1px;	
+  padding-left:137px;
+  letter-spacing: 0.16em;
+  font-weight: normal;
+  }
+h1{
+  color: #757575;
+  }
+h2{
+  color: #8e8e8e;
+  }
+#header img{
+  position: absolute;
+  width: 200px;
+  right: 150px;
+  top:10px;
+  }
+
+/* main content */
+div.content {
+    margin: 40px;
+    }
+div.section{
+  padding: 15px;
+  padding-left: 30px;
+  background-color: #fafafa;
+  margin:auto;
+  margin-bottom: 3em;
+  width:800px;
+  border: 1px solid #fafafa;
+
+  }
+div.section#a, #c, #e{
+  border-right: 4px solid #ff9900;
+}
+div.section#b, #d, #f{
+  border-left: 4px solid #ff9900;
+}
+h3{
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #424242;
+  }
+h4{
+  font-size: 1.1em;
+  font-weight: normal;
+  color: #424242;
+  }
+ul{
+display: inline-block;
+  }
+p#dienste{
+  text-align: justify;
+  float: right;
+  padding-right: 4em;
+  width: 25em;
+  }
+    
+/* Portale Vorschau */
+#a li{
+  display: inline;
+ }
+#b-plan, #f-plan, #l-plan{
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  background-image:url("osm.png");
+  background-size: cover;
+  margin-right: 30px;
+  text-align: center;	
+  color: #ff9900;
+  font-size: 1.3em;
+  font-weight: bold;
+  letter-spacing: .1em;
+  opacity: 0.8;
+  }
+#b-plan:hover, #f-plan:hover, #l-plan:hover{
+  text-decoration: none;
+  background-color: #F3F6FC;
+  opacity: 1;
+  }
+#a li p{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #f3f6fc;
+  opacity: 0.7;
+  }
+/*Logo Anordnung */  
+div.footer {
+  padding: 15px;
+  padding-left: 30px;
+  background-color: #fafafa;
+  margin:auto;
+  margin-bottom: 3em;
+  width:809px;
+  }
+div.footer td{
+  width: 30%;
+  }
+
+/* Subfooter */
+div.subfooter{
+  text-align: center;
+  margin-bottom: 5em;
+}
+.subfooter a:link {
+  font-weight: bold;
+  text-decoration: none;
+  color: #939393;
+  }
+.subfooter a:visited {
+  font-weight: bold;
+    text-decoration: none;
+    color: #939393;
+}
+.subfooter a:hover, .subfooter a:active {
+    font-weight: bold;
+    text-decoration: none;
+    color: #ff9900;
+}

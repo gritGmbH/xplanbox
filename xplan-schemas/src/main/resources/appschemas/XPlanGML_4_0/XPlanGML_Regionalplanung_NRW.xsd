@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--ADE-Erweiterung, Erstellungsdatum: 03/15/11-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2"
+        xmlns:xplan="http://www.xplanung.de/xplangml/4/0" elementFormDefault="qualified"
+        targetNamespace="http://www.xplanung.de/xplangml/4/0" version="4.0.2">
+  <include schemaLocation="XPlanGML_Regionalplanung_Kernmodell.xsd"/>
+  <include schemaLocation="XPlanGML_SonstigePlanwerke.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="./gmlprofile/gmlProfilexplan.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="RP_NRW_Wasserverkehr" substitutionGroup="xplan:RP_Verkehr" type="xplan:RP_NRW_WasserverkehrType"/>
+  <complexType name="RP_NRW_WasserverkehrType">
+    <complexContent>
+      <extension base="xplan:RP_VerkehrType">
+        <sequence>
+          <element minOccurs="0" name="wasserverkehrTyp" type="xplan:RP_NRW_WasserverkehrTypenType"/>
+          <element minOccurs="0" name="sonstTyp" type="gml:CodeType"/>
+          <element minOccurs="0" name="bezeichnung" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_Wasserverkehr" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_Wasserverkehr" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_NRW_FreiraumAgrarbereich" substitutionGroup="xplan:RP_Landwirtschaft"
+           type="xplan:RP_NRW_FreiraumAgrarbereichType"/>
+  <complexType name="RP_NRW_FreiraumAgrarbereichType">
+    <complexContent>
+      <extension base="xplan:RP_LandwirtschaftType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_NRW_AgrarbereichTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_FreiraumAgrarbereich" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_FreiraumAgrarbereich" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_NRW_SonstigeZweckbindung" substitutionGroup="xplan:RP_SonstigerFreiraumstruktur"
+           type="xplan:RP_NRW_SonstigeZweckbindungType"/>
+  <complexType name="RP_NRW_SonstigeZweckbindungType">
+    <complexContent>
+      <extension base="xplan:RP_SonstigerFreiraumstrukturType">
+        <sequence>
+          <element minOccurs="0" name="zweckbindung" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_SonstigeZweckbindung" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_SonstigeZweckbindung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_NRW_Luftverkehr" substitutionGroup="xplan:RP_Verkehr" type="xplan:RP_NRW_LuftverkehrType"/>
+  <complexType name="RP_NRW_LuftverkehrType">
+    <complexContent>
+      <extension base="xplan:RP_VerkehrType">
+        <sequence>
+          <element minOccurs="0" name="luftverkehrTyp" type="xplan:RP_NRW_LuftverkehrTypenType"/>
+          <element minOccurs="0" name="sonstTyp" type="gml:CodeType"/>
+          <element minOccurs="0" name="bezeichnung" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_Luftverkehr" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_Luftverkehr" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_NRW_Landschaftsschutz" substitutionGroup="xplan:RP_NaturLandschaft"
+           type="xplan:RP_NRW_LandschaftsschutzType"/>
+  <complexType name="RP_NRW_LandschaftsschutzType">
+    <complexContent>
+      <extension base="xplan:RP_NaturLandschaftType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_NRW_LandschaftsschutzTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_Landschaftsschutz" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_Landschaftsschutz" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_NRW_Schienenverkehr" substitutionGroup="xplan:RP_Verkehr" type="xplan:RP_NRW_SchienenverkehrType"/>
+  <complexType name="RP_NRW_SchienenverkehrType">
+    <complexContent>
+      <extension base="xplan:RP_VerkehrType">
+        <sequence>
+          <element minOccurs="0" name="schienenverkehrTyp" type="xplan:RP_NRW_SchienenverkehrTypenType"/>
+          <element minOccurs="0" name="sonstTyp" type="gml:CodeType"/>
+          <element minOccurs="0" name="status" type="xplan:RP_NRW_SchienenverkehrStatusType"/>
+          <element minOccurs="0" name="bezeichnung" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_Schienenverkehr" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_Schienenverkehr" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_NRW_SchienenverkehrTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+      <enumeration value="6000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_NRW_ASB_ZweckbindungenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1500"/>
+      <enumeration value="2000"/>
+      <enumeration value="2500"/>
+      <enumeration value="3000"/>
+      <enumeration value="3500"/>
+      <enumeration value="4000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_NRW_AufschuettungAblagerungTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_NRW_SonstigeInfrastruktur" substitutionGroup="xplan:RP_SonstigeInfrastruktur"
+           type="xplan:RP_NRW_SonstigeInfrastrukturType"/>
+  <complexType name="RP_NRW_SonstigeInfrastrukturType">
+    <complexContent>
+      <extension base="xplan:RP_SonstigeInfrastrukturType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_SonstigeInfrastruktur" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_SonstigeInfrastruktur" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_NRW_LandschaftsschutzTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_NRW_TagebauFolgenutzungType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_NRW_OberflaechennaheBodenschaetze" substitutionGroup="xplan:RP_Rohstoffsicherung"
+           type="xplan:RP_NRW_OberflaechennaheBodenschaetzeType"/>
+  <complexType name="RP_NRW_OberflaechennaheBodenschaetzeType">
+    <complexContent>
+      <extension base="xplan:RP_RohstoffsicherungType">
+        <sequence>
+          <element minOccurs="0" name="folgenutzung" type="xplan:RP_NRW_TagebauFolgenutzungType"/>
+          <element minOccurs="0" name="folgenutzungText" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_OberflaechennaheBodenschaetze" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_OberflaechennaheBodenschaetze" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_NRW_Forstwirtschaft" substitutionGroup="xplan:RP_Forstwirtschaft"
+           type="xplan:RP_NRW_ForstwirtschaftType"/>
+  <complexType name="RP_NRW_ForstwirtschaftType">
+    <complexContent>
+      <extension base="xplan:RP_ForstwirtschaftType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_NRW_ForstwirtschaftTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_Forstwirtschaft" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_Forstwirtschaft" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_NRW_Naturschutz" substitutionGroup="xplan:RP_NaturLandschaft" type="xplan:RP_NRW_NaturschutzType"/>
+  <complexType name="RP_NRW_NaturschutzType">
+    <complexContent>
+      <extension base="xplan:RP_NaturLandschaftType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_NRW_NaturschutzTypenType"/>
+          <element minOccurs="0" name="massnahmen" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_Naturschutz" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_Naturschutz" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_NRW_Laermschutzzone" substitutionGroup="xplan:RP_Laermschutzbereich"
+           type="xplan:RP_NRW_LaermschutzzoneType"/>
+  <complexType name="RP_NRW_LaermschutzzoneType">
+    <complexContent>
+      <extension base="xplan:RP_LaermschutzbereichType">
+        <sequence>
+          <element name="zone" type="xplan:RP_NRW_LaermschutzzoneTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_Laermschutzzone" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_Laermschutzzone" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_NRW_UeberschwemmungsbereichTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_NRW_NaturschutzTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1400"/>
+      <enumeration value="1500"/>
+      <enumeration value="1700"/>
+      <enumeration value="3000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_NRW_Zeitlinie" substitutionGroup="xplan:RP_Rohstoffsicherung" type="xplan:RP_NRW_ZeitlinieType"/>
+  <complexType name="RP_NRW_ZeitlinieType">
+    <complexContent>
+      <extension base="xplan:RP_RohstoffsicherungType">
+        <sequence>
+          <element minOccurs="0" name="zeitlinieText" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_Zeitlinie" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_Zeitlinie" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_NRW_Strassenverkehr" substitutionGroup="xplan:RP_Verkehr" type="xplan:RP_NRW_StrassenverkehrType"/>
+  <complexType name="RP_NRW_StrassenverkehrType">
+    <complexContent>
+      <extension base="xplan:RP_VerkehrType">
+        <sequence>
+          <element minOccurs="0" name="strassenverkehrTyp" type="xplan:RP_NRW_StrassenverkehrTypenType"/>
+          <element minOccurs="0" name="sonstTyp" type="gml:CodeType"/>
+          <element minOccurs="0" name="status" type="xplan:RP_NRW_StrassenverkehrStatusType"/>
+          <element minOccurs="0" name="bezeichnung" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_Strassenverkehr" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_Strassenverkehr" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_NRW_StrassenverkehrStatusType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_NRW_GrundwasserGewaesserschutz" substitutionGroup="xplan:RP_Wasserschutz"
+           type="xplan:RP_NRW_GrundwasserGewaesserschutzType"/>
+  <complexType name="RP_NRW_GrundwasserGewaesserschutzType">
+    <complexContent>
+      <extension base="xplan:RP_WasserschutzType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_NRW_WasserschutzTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_GrundwasserGewaesserschutz" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_GrundwasserGewaesserschutz" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_NRW_AufschuettungAblagerung" substitutionGroup="xplan:RP_SonstigerFreiraumstruktur"
+           type="xplan:RP_NRW_AufschuettungAblagerungType"/>
+  <complexType name="RP_NRW_AufschuettungAblagerungType">
+    <complexContent>
+      <extension base="xplan:RP_SonstigerFreiraumstrukturType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:RP_NRW_AufschuettungAblagerungTypenType"/>
+          <element minOccurs="0" name="detailZweckbestimmung" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_AufschuettungAblagerung" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_AufschuettungAblagerung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_NRW_ASB" substitutionGroup="xplan:RP_GemeindeFunktionSiedlungsentwicklung"
+           type="xplan:RP_NRW_ASBType"/>
+  <complexType name="RP_NRW_ASBType">
+    <complexContent>
+      <extension base="xplan:RP_GemeindeFunktionSiedlungsentwicklungType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbindung" type="xplan:RP_NRW_ASB_ZweckbindungenType"/>
+          <element minOccurs="0" name="sonstZweckbindung" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_ASB" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_ASB" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_NRW_SonstVerkehr" substitutionGroup="xplan:RP_Verkehr" type="xplan:RP_NRW_SonstVerkehrType"/>
+  <complexType name="RP_NRW_SonstVerkehrType">
+    <complexContent>
+      <extension base="xplan:RP_VerkehrType">
+        <sequence>
+          <element name="sonstVerkehrrTyp" type="gml:CodeType"/>
+          <element minOccurs="0" name="bezeichnung" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_SonstVerkehr" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_SonstVerkehr" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_NRW_WasserschutzTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_NRW_AgrarbereichTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_NRW_Ueberschwemmungsbereich" substitutionGroup="xplan:RP_VorbHochwasserschutz"
+           type="xplan:RP_NRW_UeberschwemmungsbereichType"/>
+  <complexType name="RP_NRW_UeberschwemmungsbereichType">
+    <complexContent>
+      <extension base="xplan:RP_VorbHochwasserschutzType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_NRW_UeberschwemmungsbereichTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_Ueberschwemmungsbereich" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_Ueberschwemmungsbereich" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_NRW_StrassenverkehrTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="2500"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_NRW_WasserverkehrTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_NRW_SchienenverkehrStatusType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_NRW_GIB" substitutionGroup="xplan:RP_GemeindeFunktionSiedlungsentwicklung"
+           type="xplan:RP_NRW_GIBType"/>
+  <complexType name="RP_NRW_GIBType">
+    <complexContent>
+      <extension base="xplan:RP_GemeindeFunktionSiedlungsentwicklungType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbindung" type="xplan:RP_NRW_GIB_ZweckbindungenType"/>
+          <element minOccurs="0" name="sonstZweckbindung" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_GIB" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_GIB" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_NRW_GIB_ZweckbindungenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_NRW_OberflaechenGewaesser" substitutionGroup="xplan:RP_NaturLandschaft"
+           type="xplan:RP_NRW_OberflaechenGewaesserType"/>
+  <complexType name="RP_NRW_OberflaechenGewaesserType">
+    <complexContent>
+      <extension base="xplan:RP_NaturLandschaftType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_OberflaechenGewaesser" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_OberflaechenGewaesser" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_NRW_ForstwirtschaftTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_NRW_LaermschutzzoneTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_NRW_LuftverkehrTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1500"/>
+      <enumeration value="2000"/>
+      <enumeration value="2500"/>
+      <enumeration value="3000"/>
+      <enumeration value="3500"/>
+      <enumeration value="4000"/>
+      <enumeration value="4500"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_NRW_SonstigerSiedlungsbereich" substitutionGroup="xplan:RP_GemeindeFunktionSiedlungsentwicklung"
+           type="xplan:RP_NRW_SonstigerSiedlungsbereichType"/>
+  <complexType name="RP_NRW_SonstigerSiedlungsbereichType">
+    <complexContent>
+      <extension base="xplan:RP_GemeindeFunktionSiedlungsentwicklungType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_NRW_SonstigerSiedlungsbereich" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_NRW_SonstigerSiedlungsbereich" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+</schema>

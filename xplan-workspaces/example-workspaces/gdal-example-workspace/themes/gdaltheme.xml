@@ -1,0 +1,25 @@
+<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:ns2="http://www.deegree.org/metadata/description"
+        xmlns:ns3="http://www.deegree.org/metadata/spatial" configVersion="3.2.0">
+  <LayerStoreId>gdalwithtiledataset</LayerStoreId>
+  <LayerStoreId>gdalwithfile</LayerStoreId>
+  <LayerStoreId>geotiff</LayerStoreId>
+  <Theme>
+    <ns2:Title>gdaltheme</ns2:Title>
+    <ns3:CRS>EPSG:25833 EPSG:25832 EPSG:4326 EPSG:31466 EPSG:31467 CRS:84</ns3:CRS>
+    <Theme>
+      <Identifier>gdalwithtiledataset</Identifier>
+      <ns2:Title>gdalwithtiledataset</ns2:Title>
+      <Layer layerStore="gdalwithtiledataset">gdalwithtiledataset</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>gdalwithfile</Identifier>
+      <ns2:Title>gdalwithfile</ns2:Title>
+      <Layer layerStore="gdalwithfile">gdalwithfile</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>geotiff</Identifier>
+      <ns2:Title>geotiff</ns2:Title>
+      <Layer layerStore="geotiff">geotiff</Layer>
+    </Theme>
+  </Theme>
+</Themes>

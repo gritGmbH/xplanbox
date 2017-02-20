@@ -1,0 +1,18 @@
+.. _installation-startup:
+
+=================
+Anwendung starten
+=================
+Zum Start der Webanwendungen muss das Start-Skript der Tomcat-Installationen ausgeführt werden. Es ist darauf zu achten, dass zunächst der Tomcat mit den XPlan Diensten gestartet wird: ::
+
+   ~/tomcat7/bin/catalina.sh [start | stop]
+
+Sind die XPlan Dienste nicht gestartet und initialisiert, so kommt es zu Fehlern beim Starten des Tomcats für die XPlanPortale.
+
+.. important:: Der Tomcat für die XPlan Dienste muss vollständig hochgefahren sein.
+
+Der Tomcat für die XPlanPortale kann anschließend gestartet werden: ::
+
+   ~/tomcat7-portals/bin/catalina.sh [start | stop]
+
+Die Kommandozeilenwerkzeuge werden über die Kommandozeile und das entsprechende Skript gestartet.

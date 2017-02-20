@@ -1,0 +1,60 @@
+.. _known-bugs:
+
+=================
+Bekannte Probleme
+=================
+
+Mozilla Firefox
+---------------
+
+Derzeit ist die Nutzbarkeit der XPlan Portale unter Windows und Linux mit einigen Mozilla Firefox Version nur eingeschränkt möglich. Bei häufiger Interaktion mit der Karte (z.B. durch zoomen oder verschieben des Kartenausschnitts) kann es zu Bildfehlern und Abstürzen kommen. Es sind insbesondere die Versionen 35, 37 und 38 des Mozilla Firefox betroffen.
+
+.. hint:: Das Problem resultiert aus einer hohen Speicherallokation und einer langsamen Freisetzung des allokierten Speichers durch den Firefox. Somit tritt das Problem auf, wenn viele speicherintensive Interaktionen innerhalb kurzer Zeit durchgeführt werden (z.B. zoomen oder verschieben des Kartenausschnitts). Wenn solche Interaktionen nicht innerhalb kürzester Zeit direkt hintereinander ausgeführt werden, tritt der Fehler nicht auf, da der Speicher nach einer gewissen Zeit wieder automatisch freigesetzt wird. Zudem sind PCs mit wenig Arbeitsspeicher (1-2 GB RAM) stärker betroffen als welche mit größerem Arbeitsspeicher (mehr als 4 GB RAM).
+
+Internet Explorer
+-----------------
+Beim Importieren (Hochladen) von Planarchiven über den XPlanManager kann es vorkommen, dass das Archiv für die Dauer der Sitzung im Dateisystem blockiert wird.
+
+Kapazitätsbezogene Einschränkungen
+----------------------------------
+
+Sowohl für das XPlanManager CLI als auch den XPlanManager Web gelten Obergrenzen beim Import von Planarchiven.
+Planarchive (ZIP-Datei inklusive Anhänge) größer 500 MB können die Systemstabilität beeinträchtigen. Wenn Planarchive
+mit größeren Anhängen importiert werden sollen, so müssen Server-seitig entsprechende Systemvoraussetzungen erfüllt sein.
+Kontaktieren Sie den Systemadministrator für weitere Informationen. Aktuell liegt die technische Obergrenze für die Verarbeitung
+eines Planarchivs bei 1 GB.
+
+xPlanBox - Durch Kartenvorschau generierter GetMap-Request
+----------------------------------------------------------
+
+Der durch den Button "Plan im neuen Fenster öffnen", welcher sich im unteren Teil der Kartenvorschau befindet, generierte GetMap-Request gibt im Fall, dass noch kein Rasterplan in das System importiert wurde, folgende Meldung aus:
+
+.. code-block:: text
+
+   Style default is not defined for layer *P_Planraster
+
+Dieses Verhalten resultiert daraus, dass der Raster-Layer wegen fehlender Rasterpläne noch nicht von dem WMS angeboten wird.
+
+Wenn die URL dennoch genutzt werden soll, muss der Layer [*]P_Planraster manuell aus der Request URL entfernt werden (Wert des Parameters "LAYERS").
+
+Dies gilt für jeden Plan-Typ einzeln: Für die URL für BPläne muss z.B. mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens ein FPlan mit Rasterdaten.
+
+=============
+Fehler melden
+=============
+
+Die xPlanBox basiert auf den beiden Open Source Software-Paketen `deegree <http://www.deegree.org>`_ und
+`geomajas <http://www.geomajas.org>`_ der `OSGeo Foundation <http://www.osgeo.org/>`_.
+
+Für den Fall, dass Sie einen Fehler in einer der xPlanBox Komponenten XPlanWMS, XPlanWFS oder XPlanSynWFS entdecken, dann melden Sie den
+ Fehler in deegree unter: `https://github.com/deegree/deegree3/issues <https://github.com/deegree/deegree3/issues>`_
+
+Bei Fehlern in der Komponente XPlanPortal melden Sie den Fehler in geomajas unter:
+ `http://jira.geomajas.org/secure/Dashboard.jspa <http://jira.geomajas.org/secure/Dashboard.jspa>`_
+
+=======
+Support
+=======
+
+Professionellen Support per Telefon oder eMail bieten Ihnen die Entwickler von `lat/lon <http://www.lat-lon.de>`_ an.
+Kontaktieren Sie uns unter info@lat-lon.de. Gern unterstützen Sie die Mitarbeiter der Firma lat/lon GmbH bei Ihrer Arbeit mit der xPlanBox.

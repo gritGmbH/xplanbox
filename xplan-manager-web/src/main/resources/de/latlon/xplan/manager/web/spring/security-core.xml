@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:security="http://www.springframework.org/schema/security" xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+             http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+  <context:property-placeholder location="classpath:security.properties,classpath:manager.properties" />
+
+  <security:http pattern="/favicon.ico" security="none" />
+
+  <security:http use-expressions="true">
+    <security:http-basic />
+    <security:intercept-url pattern="/**" access="hasAnyRole('ROLE_XPLAN_USER','ROLE_XPLAN_SUPERUSER')" />
+  </security:http>
+
+  <security:global-method-security pre-post-annotations="enabled">
+    <security:expression-handler ref="expressionHandler" />
+  </security:global-method-security>
+
+  <beans:bean id="expressionHandler"
+    class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
+    <beans:property name="permissionEvaluator" ref="permissionEvaluator" />
+  </beans:bean>
+
+  <beans:bean id="permissionEvaluator" class="de.latlon.xplan.manager.web.spring.security.ManagerPermissionEvaluator">
+    <beans:constructor-arg>
+      <beans:map key-type="java.lang.String" value-type="de.latlon.xplan.manager.web.spring.security.Permission">
+        <beans:entry key="hasDistrictPermission" value-ref="districtPermission" />
+      </beans:map>
+    </beans:constructor-arg>
+  </beans:bean>
+
+  <beans:bean id="districtPermission" class="de.latlon.xplan.manager.web.spring.security.DistrictPermission" />
+
+  <beans:bean id="securityController" class="de.latlon.xplan.manager.web.server.service.rest.SecurityController">
+    <beans:constructor-arg ref="securityManager" />
+  </beans:bean>
+
+  <beans:bean id="securityManager" class="de.latlon.xplan.manager.web.server.service.security.AuthorizationManager">
+    <beans:constructor-arg value="true" />
+  </beans:bean>
+
+</beans:beans>

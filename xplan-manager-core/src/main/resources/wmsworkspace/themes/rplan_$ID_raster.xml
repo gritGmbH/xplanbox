@@ -1,0 +1,13 @@
+<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:ns2="http://www.deegree.org/metadata/description"
+        xmlns:ns3="http://www.deegree.org/metadata/spatial" configVersion="3.2.0">
+  <LayerStoreId>rplan_$ID_raster</LayerStoreId>
+  <Theme>
+    <ns2:Title>RPlan Raster</ns2:Title>
+    <ns3:CRS>EPSG:25833</ns3:CRS>
+    <Theme>
+      <Identifier>rplan_$ID_raster_sortiert</Identifier>
+      <ns2:Title>RPlan Raster Theme $ID</ns2:Title>
+      <Layer layerStore="rplan_$ID_raster">rplan_$ID_raster</Layer>
+    </Theme>
+  </Theme>
+</Themes>

@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--ADE-Erweiterung, Erstellungsdatum: 03/15/11-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2"
+        xmlns:xplan="http://www.xplanung.de/xplangml/4/0" elementFormDefault="qualified"
+        targetNamespace="http://www.xplanung.de/xplangml/4/0" version="4.0.2">
+  <include schemaLocation="XPlanGML_Basisschema.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="gmlProfile/gmlProfilexplan.xsd"/>
+
+  <!--XML Schema document created by ShapeChange-->
+  <simpleType name="SO_KlassifizNachDenkmalschutzrechtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_KlassifizSchutzgebietWasserrechtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="10000"/>
+      <enumeration value="10001"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_BesondereKlassifizNachSchienenverkehrsrechtType">
+    <restriction base="string">
+      <enumeration value="10000"/>
+      <enumeration value="10001"/>
+      <enumeration value="10002"/>
+      <enumeration value="10003"/>
+      <enumeration value="12000"/>
+      <enumeration value="12001"/>
+      <enumeration value="12002"/>
+      <enumeration value="12003"/>
+      <enumeration value="12004"/>
+      <enumeration value="12005"/>
+      <enumeration value="14000"/>
+      <enumeration value="14001"/>
+      <enumeration value="14002"/>
+      <enumeration value="14003"/>
+    </restriction>
+  </simpleType>
+  <element name="SO_SchutzgebietWasserrecht" substitutionGroup="xplan:SO_Geometrieobjekt"
+           type="xplan:SO_SchutzgebietWasserrechtType"/>
+  <complexType name="SO_SchutzgebietWasserrechtType">
+    <complexContent>
+      <extension base="xplan:SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type="xplan:SO_KlassifizSchutzgebietWasserrechtType"/>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType"/>
+          <element minOccurs="0" name="zone" type="xplan:SO_SchutzzonenWasserrechtType"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="nummer" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_SchutzgebietWasserrecht" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_SchutzgebietWasserrecht" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="SO_SchutzzonenNaturschutzrechtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="2000"/>
+      <enumeration value="2100"/>
+      <enumeration value="2200"/>
+      <enumeration value="2300"/>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="SO_Punktobjekt" substitutionGroup="xplan:SO_Objekt" type="xplan:SO_PunktobjektType"/>
+  <complexType abstract="true" name="SO_PunktobjektType">
+    <complexContent>
+      <extension base="xplan:SO_ObjektType">
+        <sequence>
+          <element name="position" type="gml:GeometryPropertyType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Punktobjekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Punktobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="SO_RechtscharakterType">
+    <restriction base="string">
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="SO_Geometrieobjekt" substitutionGroup="xplan:SO_Objekt"
+           type="xplan:SO_GeometrieobjektType"/>
+  <complexType abstract="true" name="SO_GeometrieobjektType">
+    <complexContent>
+      <extension base="xplan:SO_ObjektType">
+        <sequence>
+          <element name="position" type="gml:GeometryPropertyType"/>
+          <element minOccurs="0" name="flaechenschluss" type="boolean"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Geometrieobjekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Geometrieobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="SO_RasterplanAenderung" substitutionGroup="xplan:XP_RasterplanAenderung"
+           type="xplan:SO_RasterplanAenderungType"/>
+  <complexType name="SO_RasterplanAenderungType">
+    <complexContent>
+      <extension base="xplan:XP_RasterplanAenderungType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_RasterplanAenderung" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_RasterplanAenderung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="SO_Schienenverkehrsrecht" substitutionGroup="xplan:SO_Geometrieobjekt"
+           type="xplan:SO_SchienenverkehrsrechtType"/>
+  <complexType name="SO_SchienenverkehrsrechtType">
+    <complexContent>
+      <extension base="xplan:SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type="xplan:SO_KlassifizNachSchienenverkehrsrechtType"/>
+          <element minOccurs="0" name="besondereArtDerFestlegung"
+                   type="xplan:SO_BesondereKlassifizNachSchienenverkehrsrechtType"/>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="nummer" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Schienenverkehrsrecht" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Schienenverkehrsrecht" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="SO_Forstrecht" substitutionGroup="xplan:SO_Geometrieobjekt" type="xplan:SO_ForstrechtType"/>
+  <complexType name="SO_ForstrechtType">
+    <complexContent>
+      <extension base="xplan:SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type="xplan:SO_KlassifizNachForstrechtType"/>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="nummer" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Forstrecht" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Forstrecht" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="SO_KlassifizSchutzgebietNaturschutzrechtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1300"/>
+      <enumeration value="1400"/>
+      <enumeration value="1500"/>
+      <enumeration value="1600"/>
+      <enumeration value="1700"/>
+      <enumeration value="1800"/>
+      <enumeration value="18000"/>
+      <enumeration value="18001"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="SO_Grenze" substitutionGroup="xplan:SO_Linienobjekt" type="xplan:SO_GrenzeType"/>
+  <complexType name="SO_GrenzeType">
+    <complexContent>
+      <extension base="xplan:SO_LinienobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:SO_GrenzeTypenType"/>
+          <element minOccurs="0" name="sonstTyp" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Grenze" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Grenze" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="SO_SonstigesRecht" substitutionGroup="xplan:SO_Geometrieobjekt" type="xplan:SO_SonstigesRechtType"/>
+  <complexType name="SO_SonstigesRechtType">
+    <complexContent>
+      <extension base="xplan:SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type="xplan:SO_KlassifizNachSonstigemRechtType"/>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="nummer" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_SonstigesRecht" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_SonstigesRecht" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="SO_Luftverkehrsrecht" substitutionGroup="xplan:SO_Geometrieobjekt"
+           type="xplan:SO_LuftverkehrsrechtType"/>
+  <complexType name="SO_LuftverkehrsrechtType">
+    <complexContent>
+      <extension base="xplan:SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type="xplan:SO_KlassifizNachLuftverkehrsrechtType"/>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="nummer" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Luftverkehrsrecht" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Luftverkehrsrecht" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="SO_Wasserrecht" substitutionGroup="xplan:SO_Geometrieobjekt" type="xplan:SO_WasserrechtType"/>
+  <complexType name="SO_WasserrechtType">
+    <complexContent>
+      <extension base="xplan:SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type="xplan:SO_KlassifizNachWasserrechtType"/>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType"/>
+          <element minOccurs="0" name="istNatuerlichesUberschwemmungsgebiet" type="boolean"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="nummer" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Wasserrecht" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Wasserrecht" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="SO_SchutzgebietNaturschutzrecht" substitutionGroup="xplan:SO_Geometrieobjekt"
+           type="xplan:SO_SchutzgebietNaturschutzrechtType"/>
+  <complexType name="SO_SchutzgebietNaturschutzrechtType">
+    <complexContent>
+      <extension base="xplan:SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type="xplan:SO_KlassifizSchutzgebietNaturschutzrechtType"/>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType"/>
+          <element minOccurs="0" name="zone" type="xplan:SO_SchutzzonenNaturschutzrechtType"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="nummer" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_SchutzgebietNaturschutzrecht" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_SchutzgebietNaturschutzrecht" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="SO_KlassifizNachLuftverkehrsrechtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+      <enumeration value="5200"/>
+      <enumeration value="5400"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_KlassifizNachWasserrechtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1300"/>
+      <enumeration value="2000"/>
+      <enumeration value="20000"/>
+      <enumeration value="20001"/>
+      <enumeration value="20002"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_KlassifizNachForstrechtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="SO_Flaechenobjekt" substitutionGroup="xplan:SO_Objekt"
+           type="xplan:SO_FlaechenobjektType"/>
+  <complexType abstract="true" name="SO_FlaechenobjektType">
+    <complexContent>
+      <extension base="xplan:SO_ObjektType">
+        <sequence>
+          <element name="position" type="gml:GeometryPropertyType"/>
+          <element name="flaechenschluss" type="boolean"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Flaechenobjekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Flaechenobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="SO_KlassifizNachBodenschutzrechtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="20000"/>
+      <enumeration value="20001"/>
+      <enumeration value="20002"/>
+    </restriction>
+  </simpleType>
+  <element name="SO_Gebiet" substitutionGroup="xplan:SO_Flaechenobjekt" type="xplan:SO_GebietType"/>
+  <complexType name="SO_GebietType">
+    <complexContent>
+      <extension base="xplan:SO_FlaechenobjektType">
+        <sequence>
+          <element minOccurs="0" name="gemeinde" type="xplan:XP_GemeindePropertyType"/>
+          <element minOccurs="0" name="gebietsArt" type="xplan:SO_GebietsArtType"/>
+          <element minOccurs="0" name="sonstGebietsArt" type="gml:CodeType"/>
+          <element minOccurs="0" name="rechtsstandGebiet" type="xplan:SO_RechtsstandGebietTypType"/>
+          <element minOccurs="0" name="sonstRechtsstandGebiet" type="gml:CodeType"/>
+          <element minOccurs="0" name="aufstellungsbeschhlussDatum" type="date"/>
+          <element minOccurs="0" name="durchfuehrungStartDatum" type="date"/>
+          <element minOccurs="0" name="durchfuehrungEndDatum" type="date"/>
+          <element minOccurs="0" name="traegerMassnahme" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Gebiet" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Gebiet" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="SO_KlassifizNachSonstigemRechtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1300"/>
+      <enumeration value="1400"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_KlassifizNachSchienenverkehrsrechtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1200"/>
+      <enumeration value="1400"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="SO_Strassenverkehrsrecht" substitutionGroup="xplan:SO_Geometrieobjekt"
+           type="xplan:SO_StrassenverkehrsrechtType"/>
+  <complexType name="SO_StrassenverkehrsrechtType">
+    <complexContent>
+      <extension base="xplan:SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type="xplan:SO_KlassifizNachStrassenverkehrsrechtType"/>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="nummer" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Strassenverkehrsrecht" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Strassenverkehrsrecht" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="SO_Bereich" substitutionGroup="xplan:XP_Bereich" type="xplan:SO_BereichType"/>
+  <complexType name="SO_BereichType">
+    <complexContent>
+      <extension base="xplan:XP_BereichType">
+        <sequence>
+          <element name="gehoertZuPlan" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:SO_Plan</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">xplan:bereich</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="inhaltSoPlan" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:SO_Objekt</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">xplan:gehoertZuSO_Bereich
+                </reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="rasterAenderung" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:SO_RasterplanAenderung</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Bereich" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Bereich" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="SO_Objekt" substitutionGroup="xplan:XP_Objekt" type="xplan:SO_ObjektType"/>
+  <complexType name="SO_ObjektType">
+    <complexContent>
+      <extension base="xplan:XP_ObjektType">
+        <sequence>
+          <element minOccurs="0" name="rechtscharakter" type="xplan:SO_RechtscharakterType"/>
+          <element minOccurs="0" name="sonstRechtscharakter" type="gml:CodeType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="gehoertZuSO_Bereich" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:SO_Bereich</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">xplan:inhaltSoPlan</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Objekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Objekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="SO_KlassifizNachStrassenverkehrsrechtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1300"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="SO_Denkmalschutzrecht" substitutionGroup="xplan:SO_Geometrieobjekt"
+           type="xplan:SO_DenkmalschutzrechtType"/>
+  <complexType name="SO_DenkmalschutzrechtType">
+    <complexContent>
+      <extension base="xplan:SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type="xplan:SO_KlassifizNachDenkmalschutzrechtType"/>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType"/>
+          <element minOccurs="0" name="weltkulturerbe" type="boolean"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="nummer" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Denkmalschutzrecht" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Denkmalschutzrecht" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="SO_Plan" substitutionGroup="xplan:XP_Plan" type="xplan:SO_PlanType"/>
+  <complexType name="SO_PlanType">
+    <complexContent>
+      <extension base="xplan:XP_PlanType">
+        <sequence>
+          <element name="planTyp" type="gml:CodeType"/>
+          <element minOccurs="0" name="plangeber" type="xplan:XP_PlangeberPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="bereich" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:SO_Bereich</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">xplan:gehoertZuPlan</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Plan" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Plan" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="SO_KlassifizSchutzgebietSonstRechtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_GrenzeTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1250"/>
+      <enumeration value="1300"/>
+      <enumeration value="1400"/>
+      <enumeration value="1450"/>
+      <enumeration value="1500"/>
+      <enumeration value="1510"/>
+      <enumeration value="1550"/>
+      <enumeration value="1600"/>
+      <enumeration value="2000"/>
+      <enumeration value="2100"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_GebietsArtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1300"/>
+      <enumeration value="1400"/>
+      <enumeration value="1500"/>
+      <enumeration value="1600"/>
+      <enumeration value="2000"/>
+      <enumeration value="2100"/>
+      <enumeration value="2200"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_RechtsstandGebietTypType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="SO_Linienobjekt" substitutionGroup="xplan:SO_Objekt" type="xplan:SO_LinienobjektType"/>
+  <complexType name="SO_LinienobjektType">
+    <complexContent>
+      <extension base="xplan:SO_ObjektType">
+        <sequence>
+          <element name="position" type="gml:GeometryPropertyType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Linienobjekt" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Linienobjekt" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="SO_LaermschutzzoneTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <element name="SO_SchutzgebietSonstigesRecht" substitutionGroup="xplan:SO_Geometrieobjekt"
+           type="xplan:SO_SchutzgebietSonstigesRechtType"/>
+  <complexType name="SO_SchutzgebietSonstigesRechtType">
+    <complexContent>
+      <extension base="xplan:SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type="xplan:SO_KlassifizSchutzgebietSonstRechtType"/>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType"/>
+          <element minOccurs="0" name="zone" type="xplan:SO_LaermschutzzoneTypenType"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="nummer" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_SchutzgebietSonstigesRecht" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_SchutzgebietSonstigesRecht" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="SO_Bodenschutzrecht" substitutionGroup="xplan:SO_Geometrieobjekt"
+           type="xplan:SO_BodenschutzrechtType"/>
+  <complexType name="SO_BodenschutzrechtType">
+    <complexContent>
+      <extension base="xplan:SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type="xplan:SO_KlassifizNachBodenschutzrechtType"/>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType"/>
+          <element minOccurs="0" name="istVerdachtsflaeche" type="boolean"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="nummer" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfSO_Bodenschutzrecht" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfSO_Bodenschutzrecht" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="SO_SchutzzonenWasserrechtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1300"/>
+      <enumeration value="1400"/>
+      <enumeration value="1500"/>
+    </restriction>
+  </simpleType>
+</schema>

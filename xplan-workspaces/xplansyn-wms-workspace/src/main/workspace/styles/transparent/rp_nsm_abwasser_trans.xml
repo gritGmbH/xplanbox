@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+  <sld:NamedLayer>
+    <sld:Name>RP_NSM_Abwasser</sld:Name>
+    <sld:UserStyle>
+      <sld:Name>transparent</sld:Name>
+      <sld:FeatureTypeStyle>
+        <sld:FeatureTypeName>xplan:RP_NSM_Abwasser</sld:FeatureTypeName>
+
+        <!--ZentraleKlaeranlage-->
+
+        <sld:Rule>
+          <sld:Name>VR Klaeranlage</sld:Name>
+          <sld:Title>VR Klaeranlage</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typAW_NSMCode</ogc:PropertyName>
+              <ogc:Literal>1000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Fill>
+              <sld:CssParameter name="fill-opacity">0</sld:CssParameter>
+            </sld:Fill>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">2.</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
+            </sld:Stroke>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+
+        <!--Hauptabwasserleitung-->
+
+        <sld:Rule>
+          <sld:Name>Abwasserltg</sld:Name>
+          <sld:Title>Abwasserleitung</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typAW_NSMCode</ogc:PropertyName>
+              <ogc:Literal>2000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+        </sld:Rule>
+
+
+        <sld:Rule>
+          <sld:Name>VR_Abwasserleitung</sld:Name>
+          <sld:Title>VR_Abwasserleitung</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typAW_NSMCode</ogc:PropertyName>
+                <ogc:Literal>2000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">2</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+
+        <sld:Rule>
+          <sld:Name>vb_Abwasserleitung</sld:Name>
+          <sld:Title>vb_Abwasserleitung</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>2000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typAW_NSMCode</ogc:PropertyName>
+                <ogc:Literal>2000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">2</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">45 6</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+
+        <!--Abwasserverwertungsflaeche-->
+
+        <sld:Rule>
+          <sld:Name>vb_Abwasserverwertung</sld:Name>
+          <sld:Title>vb_Abwasserverwertung</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typAW_NSMCode</ogc:PropertyName>
+              <ogc:Literal>3000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Fill>
+              <sld:CssParameter name="fill-opacity">0</sld:CssParameter>
+            </sld:Fill>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">2</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">40 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+
+      </sld:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+</sld:StyledLayerDescriptor>

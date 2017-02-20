@@ -1,0 +1,3 @@
+Following external dependencies exist:
+ * PostgreSQL Database with PostGIS (see integrationtest-database-setup.txt)
+ * Active Directory (uses default connection properties configured in module "xplan-manager-web")

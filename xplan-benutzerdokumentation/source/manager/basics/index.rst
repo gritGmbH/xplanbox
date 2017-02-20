@@ -1,0 +1,134 @@
+.. _anchor-manager-cli:
+
+=======================
+XPlanManager Grundlagen
+=======================
+
+Verwaltung der zentralen externen Codelisten
+--------------------------------------------
+Vor dem erstmaligen Import eines Planes muss die zentral gepflegte XPlanGML 3.0 *ExternalCodelist.xml* in das Verzeichnis des XPlanManager gelegt werden, sofern es bereits eine Erweiterung gibt, die über den Standardinhalt hinaus geht. Planspezifische ExternalCodelisten werden nicht angewendet.
+
+Das Verzeichnis zum ablegen dieser Datei befindet sich unter:
+ - *xplan-manager/classes/schema/XPlanGML_Syn*
+
+Dabei muss diese folgendermaßen lauten:
+ - *XplanSyn_ExternalCodeLists_XP3.xml*
+
+Wird diese aktualisiert, so kann sie auch regelmäßig neu eingespielt werden. Nur wenn diese Codeliste aktuell ist, können die in den XPlanGML Instanzdokumenten enthaltenen Codes beim Import in das synthetisierte Schema in ihre *sprechenden* Bezeichnungen aufgelöst werden. Befinden sich in Instanzdokumenten Codes, die nicht in der Liste aufgeführt sind, werden die Codes unverändert übernommen.
+
+Anlegen von deegree Konfigurationsstrukturen für Rasterdaten
+------------------------------------------------------------
+Beim Import von XPlanGML-Rasterdaten werden in der Datenbasis Konfigurationen angelegt, welche die Visualisierung der Rasterdaten im WMS ermöglichen.
+
+Für jede importierte Rasterdatei werden folgende Konfigurationen angelegt:
+ - eine Konfigurationsdatei für einen GeoTiffTileStore oder GDALTileStore,
+ - eine Konfigurationsdatei für einen TileLayer und
+ - in der Ebenenbaum-Konfiguration wird ein neuer Layer in die Kategorieebene eingefügt, die die Rasterpläne nach Datum sortiert beinhaltet.
+
+Referenzierung von Rasterdaten im XPlanGML
+++++++++++++++++++++++++++++++++++++++++++
+Die Rasterdaten müssen mit in dem Zip-Archiv verpackt sein und neben der Datei xplan.gml liegen.
+
+Innerhalb des XPlanGML müssen die Rasterdateien wie folgt referenziert sein:
+
+**XPlanGML 2 und 3:**
+
+Rasterdateien werden im Feature-Type XP_RasterplanBasis, XP_RasterplanAenderung, BP_RasterplanAenderung oder FP_RasterplanAenderung über einen xlink referenziert:
+
+.. code-block:: text
+
+  gml:featureMember
+    xplan:XP_RasterplanBasis
+    (oder) xplan:XP_RasterplanAenderung
+    (oder) xplan:BP_RasterplanAenderung
+    (oder) xplan:FP_RasterplanAenderung
+      xplan:refScan (mit xlink Attribut)
+
+xlink zeigt auf den Feature-Type XP_ExterneReferenz oder XP_ExterneReferenzPlan:
+
+.. code-block:: text
+
+  gml:featureMember
+    xplan:XP_ExterneReferenz
+    (oder) xplan:XP_ExterneReferenzPlan (nur XPlanGML 3) (jeweils mit id Attribut)
+      xplan:referenzName
+      xplan:referenzURL
+      xplan:referenzMimeType
+      xplan:georefURL (falls Feature-Type XP_ExterneReferenzPlan, nur XPlanGML 3)
+      xplan:georefMimeType (falls Feature-Type XP_ExterneReferenzPlan, nur XPlanGML 3)
+
+Das Element referenzURL beinhaltet die relative Referenz auf die Rasterdatei. Beispiel:
+
+.. code-block:: xml
+
+	<gml:featureMember>
+		<xplan:XP_ExterneReferenzPlan gml:id="GML_1234567890">
+			<xplan:referenzName>rasterdatei</xplan:referenzName>
+			<xplan:referenzURL>rasterdatei.tif</xplan:referenzURL>
+			<xplan:georefURL>rasterdatei.tfw</xplan:georefURL>
+		</xplan:XP_ExterneReferenzPlan>
+	</gml:featureMember>
+
+**XPlanGML 4.x:**
+
+Rasterdateien werden im Feature-Type XP_RasterplanBasis, XP_RasterplanAenderung, BP_RasterplanAenderung, FP_RasterplanAenderung, LP_RasterplanAenderung oder RP_RasterplanAenderung referenziert:
+
+.. code-block:: text
+
+  gml:featureMember
+    xplan:XP_RasterplanBasis
+    (oder) xplan:XP_RasterplanAenderung
+    (oder) xplan:BP_RasterplanAenderung
+    (oder) xplan:FP_RasterplanAenderung
+    (oder) xplan:LP_RasterplanAenderung
+    (oder) xplan:RP_RasterplanAenderung
+      xplan:refScan (kann auch mehrfach vorkommen)
+        xplan:XP_ExterneReferenz (jeweils mit id Attribut)
+          xplan:georefURL
+          xplan:art
+          xplan:referenzName
+          xplan:referenzURL
+
+Das Element refScan kann beliebig häufig vorkommen. Das Element referenzURL beinhaltet die relative Referenz auf die Rasterdatei. Beispiel:
+
+.. code-block:: xml
+
+	<gml:featureMember>
+		<xplan:XP_RasterplanBasis gml:id="FEATURE_1234567890">
+			<xplan:refScan>
+				<xplan:XP_ExterneReferenz>
+					<xplan:georefURL>rasterdatei.tfw</xplan:georefURL>
+					<xplan:art>PlanMitGeoreferenz</xplan:art>
+					<xplan:referenzName>rasterdatei</xplan:referenzName>
+					<xplan:referenzURL>rasterdatei.tif</xplan:referenzURL>
+				</xplan:XP_ExterneReferenz>
+			</xplan:refScan>
+		</xplan:XP_RasterplanBasis>
+	</gml:featureMember>
+
+Voraussetzungen für die Rasterdaten
++++++++++++++++++++++++++++++++++++
+Um Rasterdaten importieren und diese u.a. als WMS-Ebene zur Verfügung stellen zu können, müssen die Daten folgende Anforderungen erfüllen.
+
+Die Unterstützung verschiedener Rasterdatentypen ist vom gesetzten Raster-Konfigurationstyp abhängig (**Wichtig: Dies kann nur zentral für die Anwendung konfiguriert und nicht durch den Nutzer geändert werden. Hinweise zur Konfiguration sind im Betriebshandbuch zu finden.**). Unterschieden wird dabei zwischen den Konfigurationstypen *GeoTiff* und *GDAL*:
+
+**GeoTiff** - Konfigurationstyp
+ - Es werden ausschließlich Rasterdaten im GeoTiff Format unterstützt.
+
+**GDAL** - Konfigurationstyp
+ - Grundsätzlich können alle durch GDAL unterstützten Rasterdatenformate auch durch deegree und somit dem XPlanManager verarbeitet werden.
+ - Getestet wurden bisher nur die Formate GeoTiff und PNG. 
+ 
+Folgende Voraussetzung werden an die einzelnen Formate gestellt:
+
+**GeoTiff**
+ - GeoTiff-Dateien liegen als gekachelte BIGTIFF GeoTiff-Dateien vor.
+ - GeoTiff-Dateien liegen in dem Koordinatenreferenzsystem vor, welches für den XPlanManager und die Portale konfiguriert ist.
+ - GeoTiff-Dateien enthalten ihre räumliche Ausdehnung.
+ - Zur Optimierung der Antwortzeit beim Zugriff auf die GeoTiff-Dateien wird empfohlen, in den GeoTiff-Dateien Overlays mit geringerer Auflösung hinzuzufügen.
+
+**PNG**
+ - PNG-Dateien enthalten ein oder vier Bänder (RGBA).
+ - PNG-Dateien liegen in dem Koordinatenreferenzsystem vor, welches für den XPlanManager und die Portale konfiguriert ist.
+ - PNG-Dateien enthalten ihre räumliche Ausdehnung in einer ausgelagerten pgw-Datei (PNG World File).
+ - Wenn das Kommandozeilentool XPlanManagerCLI verwendet wird, muss in einer aux.xml-Datei das Koordinatenreferenzsystem der PNGs definiert sein. Für den XPlanManagerWeb ist dies keine Voraussetzung und der Nutzer kann beim Import der Daten das Koordinatenreferenzsystem der PNGs bestätigen.
