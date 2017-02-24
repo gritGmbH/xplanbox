@@ -10,6 +10,21 @@
       <directory>${basedir}/src/main/workspace</directory>
       <outputDirectory>/</outputDirectory>
       <filtered>true</filtered>
+      <includes>
+        <include>**/*.properties</include>
+        <include>**/*.xml</include>
+        <include>**/*.gfi</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace</directory>
+      <outputDirectory>/</outputDirectory>
+      <filtered>false</filtered>
+      <excludes>
+        <exclude>**/*.properties</exclude>
+        <exclude>**/*.xml</exclude>
+        <exclude>**/*.gfi</exclude>
+      </excludes>
     </fileSet>
   </fileSets>
   <dependencySets>
