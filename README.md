@@ -5,6 +5,7 @@ In diesem Repository werden alle Ressourcen zu deegree Enterprise xPlanBox Produ
 
 Branch                   | Beschreibung
 :----------------------- |:-----------------------
+`master`                 | Aktueller Branch
 
 ## Reporting
 
