@@ -40,17 +40,16 @@ Wenn die URL dennoch genutzt werden soll, muss der Layer [*]P_Planraster manuell
 Dies gilt für jeden Plan-Typ einzeln: Für die URL für BPläne muss z.B. mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens ein FPlan mit Rasterdaten.
 
 
- Fehler beim Import eines Plans mit dem Kommandozeilenwerkzeug XPlanManager CLI
--------------------------------------------------------------------------------
+Alternativer Betriebsmodus (XPlanManager CLI) - Nutzung falscher Bibliotheken kann beim Import eines Plans zu fehlerhaft erzeugter Konfiguration führen
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Beim Import eines Planarchives über das Kommandozeilenwerkzeug XPlanManager CLI werden XML deegree Konfigurationsdateien für Layer und Themes geneiert, die leere XML Namespace Attribute in Form von "xmlns="" " aufweisen.
-Diese Konfigurationsdateien können dann nicht von deegree 3.4-pre16 (xPlanBox 1.9) geparst werden.
+Für die Erzeugung der deegree Konfigurationsdateien im alternativen Betriebsmodus muss zwingend die Bibliothek Apache Xalan 2.7.1 verwendet werden.
+Zusätzlich muss sichergestellt sein, dass im Java Classpath des Prozesses, der den XPlanManager CLI aufruft, keine anderen JAXP (SAX/DOM) Implementierungen vorhanden sind als Saxon-HE-9.4.jar und xalan-2.7.1.jar.
 
-Für die Erzeugung der deegree Konfigurationsdateien im alternativen Betriebsmodus muss zwingend für die Implementierung der "java.xml.transform.TransformerFactory" die Klasse "org.apache.xalan.processor.TransformerFactoryImpl" aus Apache Xalan 2.7.1 verwendet werden. Dazu kann die Java Systemvariable "-Djava.xml.transform.TransformerFactory" gesetzt werden.
-Zusätzlich muss sichergestellt sein, dass im Java Classpath, des Prozesses der den XPlanManager CLI aufruft, keine anderen JAXP (SAX/DOM) Implementierungen vorhanden sind als:
- * Saxon-HE-9.4.jar
- * xalan-2.7.1.jar
+Falls diese Voraussetzungen nicht erfüllt werden, können die erzeugten deegree Konfigurationsdateien für Layer und Themes leere XML Namespace Attribute in Form von xmlns="" aufweisen.
+Diese Konfigurationsdateien können nicht von deegree geparst werden.
 
+Wenn die die leeren XML Namespace Attribute manuell entfernt werden, ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
 
 =============
 Fehler melden
