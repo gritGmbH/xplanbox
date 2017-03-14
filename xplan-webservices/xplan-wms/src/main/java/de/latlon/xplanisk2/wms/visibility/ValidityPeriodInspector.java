@@ -1,4 +1,4 @@
-package de.latlon.xplanisk2.wms;
+package de.latlon.xplanisk2.wms.visibility;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,12 +17,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * {@link LayerVisibilityInspector} to check if the plan a (raster) layer is part if currently valid according the
- * validity period.
+ * Abstract {@link LayerVisibilityInspector} to check if the plan a (raster) layer is part if currently valid according
+ * the validity period. Subclasses have to specify the database schema.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class ValidityPeriodInspector implements LayerVisibilityInspector {
+public abstract class ValidityPeriodInspector implements LayerVisibilityInspector {
 
     private static final Logger LOG = LoggerFactory.getLogger( ValidityPeriodInspector.class );
 
@@ -30,8 +30,15 @@ public class ValidityPeriodInspector implements LayerVisibilityInspector {
 
     private final Workspace workspace;
 
-    public ValidityPeriodInspector() {
-        workspace = OGCFrontController.getServiceWorkspace().getNewWorkspace();
+    private final String schema;
+
+    /**
+     * @param schema
+     *            the database schema (depends on the plan status), never <code>null</code>
+     */
+    public ValidityPeriodInspector( String schema ) {
+        this.schema = schema;
+        this.workspace = OGCFrontController.getServiceWorkspace().getNewWorkspace();
     }
 
     public boolean isVisible( LayerMetadata layerMetadata ) {
@@ -80,13 +87,17 @@ public class ValidityPeriodInspector implements LayerVisibilityInspector {
         sql.append( "((a.xplan_gueltigkeitbeginn < ? OR a.xplan_gueltigkeitbeginn IS NULL) " );
         sql.append( "AND (a.xplan_gueltigkeitende > ? OR a.xplan_gueltigkeitende IS NULL )) AS isVisible " );
         sql.append( "FROM (" );
-        sql.append( "SELECT xplan_gueltigkeitbeginn, xplan_gueltigkeitende FROM xplansynpre.xplan_bp_plan WHERE xplan_mgr_planid = ? " );
+        sql.append( "SELECT xplan_gueltigkeitbeginn, xplan_gueltigkeitende FROM " );
+        sql.append( schema ).append( ".xplan_bp_plan WHERE xplan_mgr_planid = ? " );
         sql.append( "UNION " );
-        sql.append( "SELECT xplan_gueltigkeitbeginn, xplan_gueltigkeitende FROM xplansynpre.xplan_fp_plan WHERE xplan_mgr_planid = ? " );
+        sql.append( "SELECT xplan_gueltigkeitbeginn, xplan_gueltigkeitende FROM " );
+        sql.append( schema ).append( ".xplan_fp_plan WHERE xplan_mgr_planid = ? " );
         sql.append( "UNION " );
-        sql.append( "SELECT xplan_gueltigkeitbeginn, xplan_gueltigkeitende FROM xplansynpre.xplan_lp_plan WHERE xplan_mgr_planid = ? " );
+        sql.append( "SELECT xplan_gueltigkeitbeginn, xplan_gueltigkeitende FROM " );
+        sql.append( schema ).append( ".xplan_lp_plan WHERE xplan_mgr_planid = ? " );
         sql.append( "UNION " );
-        sql.append( "SELECT xplan_gueltigkeitbeginn, xplan_gueltigkeitende FROM xplansynpre.xplan_rp_plan WHERE xplan_mgr_planid = ? " );
+        sql.append( "SELECT xplan_gueltigkeitbeginn, xplan_gueltigkeitende FROM " );
+        sql.append( schema ).append( ".xplan_rp_plan WHERE xplan_mgr_planid = ? " );
         sql.append( ") AS a" );
         return sql.toString();
     }
