@@ -13,9 +13,7 @@ des Kartenausschnitts) kann es zu Bildfehlern und Abstürzen kommen. Es
 sind insbesondere die Versionen 35, 37 und 38 des Mozilla Firefox
 betroffen.
 
-
-
-NOTE: Das Problem resultiert aus einer hohen Speicherallokation und einer
+NOTE: Problem resultiert aus einer hohen Speicherallokation und einer
 langsamen Freisetzung des allokierten Speichers durch den Firefox. Somit
 tritt das Problem auf, wenn viele speicherintensive Interaktionen
 innerhalb kurzer Zeit durchgeführt werden (z.B. zoomen oder verschieben
@@ -35,6 +33,7 @@ Beim Importieren (Hochladen) von Planarchiven über den XPlanManager kann
 es vorkommen, dass das Archiv für die Dauer der Sitzung im Dateisystem
 blockiert wird.
 
+
 [[kapazitaetsbezogene-einschraenkungen]]
 Kapazitätsbezogene Einschränkungen
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -52,7 +51,7 @@ technische Obergrenze für die Verarbeitung eines Planarchivs bei 1 GB.
 xPlanBox - Durch Kartenvorschau generierter GetMap-Request
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Der durch den Button "Plan im neuen Fenster öffnen", welcher sich im
+Der durch den Button ``Plan im neuen Fenster öffnen'', welcher sich im
 unteren Teil der Kartenvorschau befindet, generierte GetMap-Request gibt
 im Fall, dass noch kein Rasterplan in das System importiert wurde,
 folgende Meldung aus:
@@ -67,31 +66,11 @@ fehlender Rasterpläne noch nicht von dem WMS angeboten wird.
 
 Wenn die URL dennoch genutzt werden soll, muss der Layer [*]P_Planraster
 manuell aus der Request URL entfernt werden (Wert des Parameters
-"LAYERS").
+``LAYERS'').
 
 Dies gilt für jeden Plan-Typ einzeln: Für die URL für BPläne muss z.B.
 mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens
 ein FPlan mit Rasterdaten.
-
-[[alternativer-betriebsmodus-xplanmanager-cli---nutzung-falscher-bibliotheken-kann-beim-import-eines-plans-zu-fehlerhaft-erzeugter-konfiguration-fuehren]]
-Alternativer Betriebsmodus (XPlanManager CLI) - Nutzung falscher Bibliotheken kann beim Import eines Plans zu fehlerhaft erzeugter Konfiguration führen
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Für die Erzeugung der deegree Konfigurationsdateien im alternativen
-Betriebsmodus muss zwingend die Bibliothek Apache Xalan 2.7.1 verwendet
-werden. Zusätzlich muss sichergestellt sein, dass im Java Classpath des
-Prozesses, der den XPlanManager CLI aufruft, keine anderen JAXP
-(SAX/DOM) Implementierungen vorhanden sind als Saxon-HE-9.4.jar und
-xalan-2.7.1.jar.
-
-Falls diese Voraussetzungen nicht erfüllt werden, können die erzeugten
-deegree Konfigurationsdateien für Layer und Themes leere XML Namespace
-Attribute in Form von xmlns="" aufweisen. Diese Konfigurationsdateien
-können nicht von deegree geparst werden.
-
-Wenn die die leeren XML Namespace Attribute manuell entfernt werden, ist
-ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree
-wieder möglich.
 
 [[fehler-melden]]
 Fehler melden
@@ -102,11 +81,12 @@ http://www.deegree.org[deegree] und http://www.geomajas.org[geomajas]
 der http://www.osgeo.org/[OSGeo Foundation].
 
 Für den Fall, dass Sie einen Fehler in einer der xPlanBox Komponenten
-XPlanWMS, XPlanWFS oder XPlanSynWFS entdecken, dann melden Sie den::
+XPlanWMS, XPlanWFS oder XPlanSynWFS entdecken, dann melden Sie den
   Fehler in deegree unter:
   https://github.com/deegree/deegree3/issues[https://github.com/deegree/deegree3/issues]
 Bei Fehlern in der Komponente XPlanPortal melden Sie den Fehler in
-geomajas unter: http://jira.geomajas.org/secure/Dashboard.jspa[http://jira.geomajas.org/secure/Dashboard.jspa]
+geomajas unter:
+  http://jira.geomajas.org/secure/Dashboard.jspa[http://jira.geomajas.org/secure/Dashboard.jspa]
 
 [[support]]
 Support
