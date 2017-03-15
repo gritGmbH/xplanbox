@@ -74,11 +74,11 @@ public class XPlanSynthesizer {
     }
 
     /**
-     * @param rulesDIrectory
+     * @param rulesDirectory
      *            the directory containing the rules, if <code>null</code> the internal rules directory is used
      */
-    public XPlanSynthesizer( File rulesDIrectory ) {
-        this.rulesDIrectory = rulesDIrectory;
+    public XPlanSynthesizer( File rulesDirectory ) {
+        this.rulesDIrectory = rulesDirectory;
     }
 
     /**
