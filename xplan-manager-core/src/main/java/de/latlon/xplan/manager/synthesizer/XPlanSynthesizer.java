@@ -3,6 +3,9 @@ package de.latlon.xplan.manager.synthesizer;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,6 +28,8 @@ import org.deegree.feature.GenericFeatureCollection;
 import org.deegree.feature.property.GenericProperty;
 import org.deegree.feature.types.AppSchema;
 import org.deegree.feature.types.FeatureType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.latlon.xplan.commons.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanSchemas;
@@ -42,11 +47,15 @@ import de.latlon.xplan.manager.synthesizer.expression.Expression;
  */
 public class XPlanSynthesizer {
 
+    private static final Logger LOG = LoggerFactory.getLogger( XPlanSynthesizer.class );
+
     private final static String SYN_NS = XPLAN_SYN.getNamespace();
 
     private static AppSchema synSchema;
 
     private final Map<String, Expression> rules = new HashMap<String, Expression>();
+
+    private final File rulesDIrectory;
 
     static {
         try {
@@ -55,6 +64,21 @@ public class XPlanSynthesizer {
             e.printStackTrace();
             throw new RuntimeException( e.getMessage() );
         }
+    }
+
+    /**
+     * Instantiates a new XPlanSynthesizer with default rules (from internal rules directory).
+     */
+    public XPlanSynthesizer() {
+        this( null );
+    }
+
+    /**
+     * @param rulesDIrectory
+     *            the directory containing the rules, if <code>null</code> the internal rules directory is used
+     */
+    public XPlanSynthesizer( File rulesDIrectory ) {
+        this.rulesDIrectory = rulesDIrectory;
     }
 
     /**
@@ -101,26 +125,9 @@ public class XPlanSynthesizer {
 
     private void processRuleFile( XPlanVersion version, String xplanType, String xplanName ) {
         rules.clear();
-        String rulesResource = "/rules/";
-        switch ( version ) {
-        case XPLAN_2:
-            rulesResource += "xplan2.syn";
-            break;
-        case XPLAN_3:
-            rulesResource += "xplan3.syn";
-            break;
-        case XPLAN_40:
-            rulesResource += "xplan40.syn";
-            break;
-        case XPLAN_41:
-            rulesResource += "xplan41.syn";
-            break;
-        default:
-            throw new IllegalArgumentException();
-        }
-        try ( InputStream is = XPlanSynthesizer.class.getResourceAsStream( rulesResource );
-              InputStreamReader in = new InputStreamReader( is );
-              BufferedReader reader = new BufferedReader( in ) ) {
+        try (InputStream is = retrieveRulesFile( version );
+             InputStreamReader in = new InputStreamReader( is );
+             BufferedReader reader = new BufferedReader( in ) ) {
             String line;
             RuleParser parser = new RuleParser( xplanType, xplanName );
             while ( ( line = reader.readLine() ) != null ) {
@@ -128,8 +135,36 @@ public class XPlanSynthesizer {
                 rules.put( line.substring( 0, firstEquals ), parser.parse( line.substring( firstEquals + 1 ) ) );
             }
         } catch ( IOException e ) {
-            String msg = "Error while reading the rules file " + rulesResource;
-            throw new RuntimeException( msg, e );
+            throw new RuntimeException( "Error while reading the rules file ", e );
+        }
+    }
+
+    private InputStream retrieveRulesFile( XPlanVersion version )
+                            throws FileNotFoundException {
+        String rulesFileName = detectRulesFileName( version );
+
+        if ( rulesDIrectory == null ) {
+            String rulesResource = "/rules/" + rulesFileName;
+            LOG.info( "Read rules from internal directory: {}", rulesResource );
+            return XPlanSynthesizer.class.getResourceAsStream( rulesResource );
+        }
+        File rulesFile = new File( rulesDIrectory, rulesFileName );
+        LOG.info( "Read rules from directory: {}", rulesFile );
+        return new FileInputStream( rulesFile );
+    }
+
+    private String detectRulesFileName( XPlanVersion version  ) {
+        switch ( version ) {
+        case XPLAN_2:
+            return "xplan2.syn";
+        case XPLAN_3:
+            return "xplan3.syn";
+        case XPLAN_40:
+            return "xplan40.syn";
+        case XPLAN_41:
+            return "xplan41.syn";
+        default:
+            throw new IllegalArgumentException();
         }
     }
 
