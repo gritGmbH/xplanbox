@@ -55,7 +55,7 @@ public class XPlanSynthesizer {
 
     private final Map<String, Expression> rules = new HashMap<String, Expression>();
 
-    private final File rulesDIrectory;
+    private final File rulesDirectory;
 
     static {
         try {
@@ -78,7 +78,7 @@ public class XPlanSynthesizer {
      *            the directory containing the rules, if <code>null</code> the internal rules directory is used
      */
     public XPlanSynthesizer( File rulesDirectory ) {
-        this.rulesDIrectory = rulesDirectory;
+        this.rulesDirectory = rulesDirectory;
     }
 
     /**
@@ -143,12 +143,12 @@ public class XPlanSynthesizer {
                             throws FileNotFoundException {
         String rulesFileName = detectRulesFileName( version );
 
-        if ( rulesDIrectory == null ) {
+        if ( rulesDirectory == null ) {
             String rulesResource = "/rules/" + rulesFileName;
             LOG.info( "Read rules from internal directory: {}", rulesResource );
             return XPlanSynthesizer.class.getResourceAsStream( rulesResource );
         }
-        File rulesFile = new File( rulesDIrectory, rulesFileName );
+        File rulesFile = new File( rulesDirectory, rulesFileName );
         LOG.info( "Read rules from directory: {}", rulesFile );
         return new FileInputStream( rulesFile );
     }
