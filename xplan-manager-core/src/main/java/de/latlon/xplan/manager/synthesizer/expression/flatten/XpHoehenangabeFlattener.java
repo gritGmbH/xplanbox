@@ -16,7 +16,15 @@ import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 
 public class XpHoehenangabeFlattener extends AbstractFlattener {
 
-    private final XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
+    private final XPlanSynthesizer xPlanSynthesizer;
+
+    /**
+     * @param xPlanSynthesizer
+     *            the XPlanSynthesizer currently used (containing the parsed rules), never <code>null</code>
+     */
+    public XpHoehenangabeFlattener( XPlanSynthesizer xPlanSynthesizer ) {
+        this.xPlanSynthesizer = xPlanSynthesizer;
+    }
 
     @Override
     public boolean accepts( TypedObjectNode node ) {

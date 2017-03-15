@@ -36,9 +36,11 @@ import de.latlon.xplan.manager.synthesizer.expression.XplanTextAbschnitte;
  */
 class RuleParser {
 
-    private String xplanType;
+    private final String xplanType;
 
-    private String xplanName;
+    private final String xplanName;
+
+    private final XPlanSynthesizer xPlanSynthesizer;
 
     /**
      * @param xplanType
@@ -46,9 +48,10 @@ class RuleParser {
      * @param xplanName
      *            the name of xplan document, i.e. the name of the XP_Plan-descendant feature in the document
      */
-    public RuleParser( String xplanType, String xplanName ) {
+    public RuleParser( String xplanType, String xplanName, XPlanSynthesizer xPlanSynthesizer ) {
         this.xplanType = xplanType;
         this.xplanName = xplanName;
+        this.xPlanSynthesizer = xPlanSynthesizer;
     }
 
     private String trimString( String s ) {
@@ -64,7 +67,7 @@ class RuleParser {
     }
 
     private Expression parseXPlanFlattenFeature( List<String> args ) {
-        return new XplanFlattenProperty( parse( args.get( 0 ) ) );
+        return new XplanFlattenProperty( parse( args.get( 0 ) ), xPlanSynthesizer );
     }
 
     private Expression parseXPlanCodeNormalize( List<String> args ) {

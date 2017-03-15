@@ -51,18 +51,21 @@ public class XPlanFlattenFeature implements Expression {
 
     final static public String SYN_NS = XPLAN_SYN.getNamespace();
 
-    private final XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
-
     private static final Logger LOG = LoggerFactory.getLogger( XPlanFlattenFeature.class );
     
     private final Expression exp;
 
+    private final XPlanSynthesizer xPlanSynthesizer;
+
     /**
      * @param exp
      *            an expression that targets a property node
+     * @param xPlanSynthesizer
+     *            the XPlanSynthesizer currently used (containing the parsed rules), never <code>null</code>
      */
-    public XPlanFlattenFeature( Expression exp ) {
+    public XPlanFlattenFeature( Expression exp, XPlanSynthesizer xPlanSynthesizer ) {
         this.exp = exp;
+        this.xPlanSynthesizer = xPlanSynthesizer;
     }
 
     @Override

@@ -129,7 +129,7 @@ public class XPlanSynthesizer {
              InputStreamReader in = new InputStreamReader( is );
              BufferedReader reader = new BufferedReader( in ) ) {
             String line;
-            RuleParser parser = new RuleParser( xplanType, xplanName );
+            RuleParser parser = new RuleParser( xplanType, xplanName, this );
             while ( ( line = reader.readLine() ) != null ) {
                 int firstEquals = line.indexOf( "=" );
                 rules.put( line.substring( 0, firstEquals ), parser.parse( line.substring( firstEquals + 1 ) ) );
