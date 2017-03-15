@@ -51,6 +51,8 @@ public class XPlanFlattenFeature implements Expression {
 
     final static public String SYN_NS = XPLAN_SYN.getNamespace();
 
+    private final XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
+
     private static final Logger LOG = LoggerFactory.getLogger( XPlanFlattenFeature.class );
     
     private final Expression exp;
@@ -134,7 +136,7 @@ public class XPlanFlattenFeature implements Expression {
                     for ( Property prop : props ) {
                         if ( prop.getType() instanceof SimplePropertyType ) {
                             String propLocal = prop.getName().getLocalPart();
-                            TypedObjectNode value = XPlanSynthesizer.rules.get( ftName + "/" + propLocal ).evaluate( feature );
+                            TypedObjectNode value = xPlanSynthesizer.getRules().get( ftName + "/" + propLocal ).evaluate( feature );
                             s += concatenateValues( propLocal, value ) + ";";
                         }
                     }

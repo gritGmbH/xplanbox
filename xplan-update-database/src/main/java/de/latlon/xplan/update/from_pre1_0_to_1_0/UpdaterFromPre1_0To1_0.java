@@ -80,6 +80,8 @@ public class UpdaterFromPre1_0To1_0 extends AbstractUpdater {
 
     private final Logger LOG = LoggerFactory.getLogger( UpdaterFromPre1_0To1_0.class );
 
+    private final XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
+
     /**
      * @param xplanDao
      *            allows access to the database, never <code>null</code>
@@ -144,7 +146,7 @@ public class UpdaterFromPre1_0To1_0 extends AbstractUpdater {
             FeatureCollection featureCollection = createFeatureCollection( conn, planId, version, ade );
 
             XPlanFeatureCollection fc = new XPlanFeatureCollection( featureCollection, type );
-            FeatureCollection synFc = XPlanSynthesizer.synthesize( version, fc );
+            FeatureCollection synFc = xPlanSynthesizer.synthesize( version, fc );
 
             updatePlanInPlansTable( conn, type, version, fc, synFc, planId );
         } catch ( Exception e ) {

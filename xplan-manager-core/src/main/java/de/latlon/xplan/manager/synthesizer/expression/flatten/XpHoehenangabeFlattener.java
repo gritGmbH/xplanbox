@@ -16,6 +16,8 @@ import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 
 public class XpHoehenangabeFlattener extends AbstractFlattener {
 
+    private final XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
+
     @Override
     public boolean accepts( TypedObjectNode node ) {
         String elName = null;
@@ -38,7 +40,7 @@ public class XpHoehenangabeFlattener extends AbstractFlattener {
             for ( Property prop : props ) {
                 if ( prop.getType() instanceof SimplePropertyType ) {
                     String propLocal = prop.getName().getLocalPart();
-                    TypedObjectNode value = XPlanSynthesizer.rules.get( ftName + "/" + propLocal ).evaluate( feature );
+                    TypedObjectNode value = xPlanSynthesizer.getRules().get( ftName + "/" + propLocal ).evaluate( feature );
                     s += concatenateValues( propLocal, asString( value ) ) + ";";
                 }
             }

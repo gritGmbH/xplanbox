@@ -51,6 +51,8 @@ import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 
 public class XplanSynthesizerXplan3Test {
 
+    private final XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
+
     private AppSchema synSchema;
 
     @Before
@@ -183,7 +185,7 @@ public class XplanSynthesizerXplan3Test {
         for ( Feature feature : xplanFc.getFeatures() ) {
             feature.setId( "FEATURE_" + id++ );
         }
-        return XPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
+        return xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
     }
 
     private void writeTemp( FeatureCollection fc ) {

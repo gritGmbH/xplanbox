@@ -109,6 +109,8 @@ public class XPlanManager {
 
     private static final DateFormat DATEFORMAT = createDateFormat();
 
+    private final XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
+
     private final XPlanArchiveCreator archiveCreator;
 
     private final XPlanDao xplanDao;
@@ -422,7 +424,8 @@ public class XPlanManager {
     }
 
     /**
-     * @param pathToArchive
+     * @param xPlanToEdit
+     * @param uploadedArtefacts
      *            the absolute path to the XPlanArchive to evaluate.
      * @return a list of {@link RasterEvaluationResult}, one for each referenced raster plan, may be
      *         {@link EmptyStackException} but never <code>null</code>
@@ -836,7 +839,7 @@ public class XPlanManager {
         FeatureCollection synFc;
         long begin = System.currentTimeMillis();
         LOG.info( "- Erzeugen der XPlan-Syn Features..." );
-        synFc = XPlanSynthesizer.synthesize( version, fc );
+        synFc = xPlanSynthesizer.synthesize( version, fc );
         long elapsed = System.currentTimeMillis() - begin;
         LOG.info( "OK [" + elapsed + " ms]" );
         return synFc;

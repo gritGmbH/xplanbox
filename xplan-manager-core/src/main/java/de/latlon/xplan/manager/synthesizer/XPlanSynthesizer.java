@@ -44,9 +44,9 @@ public class XPlanSynthesizer {
 
     private final static String SYN_NS = XPLAN_SYN.getNamespace();
 
-    public static AppSchema synSchema;
+    private static AppSchema synSchema;
 
-    public static Map<String, Expression> rules = new HashMap<String, Expression>();
+    private final Map<String, Expression> rules = new HashMap<String, Expression>();
 
     static {
         try {
@@ -57,7 +57,49 @@ public class XPlanSynthesizer {
         }
     }
 
-    private static void processRuleFile( XPlanVersion version, String xplanType, String xplanName ) {
+    /**
+     * Transforms the features of the passed {@link XPlanFeatureCollection} to flat XPlanSyn features. First the
+     * required rules are parsed from the rules files, then the transformation starts.
+     * 
+     * @param version
+     *            the version of the XPlanGML, never <code>null</code>
+     * @param xplanFc
+     *            the feature collection to transform, never <code>null</code>
+     * @return a feature collection with the flat XPlanSyn features, never <code>null</code>
+     */
+    public FeatureCollection synthesize( XPlanVersion version, XPlanFeatureCollection xplanFc ) {
+
+        XPlanType xplanType = xplanFc.getType();
+        String xplanName = xplanFc.getPlanName();
+        FeatureCollection fc = xplanFc.getFeatures();
+
+        processRuleFile( version, xplanType.name(), xplanName );
+
+        // initialize lookup of XP_TextAbschnitt and XP_BegruendungAbschnitt features
+        XplanAbschnittLookup.init( fc );
+        // initialize lookup for all Fachobjekte that are referenced by XP_PPO features
+        XpPpoLookup.init( fc );
+
+        List<Feature> featureMembers = new ArrayList<Feature>();
+        for ( Feature feature : fc ) {
+            Feature synFeature = synthesize( feature );
+            featureMembers.add( synFeature );
+        }
+
+        return new GenericFeatureCollection( fc.getId(), featureMembers );
+    }
+
+    /**
+     * Retrieve the rules applied to the last transformation. Invoke synthesize first, otherwise no rules are available.
+     * 
+     * @return the rules of the last transformation. may be <code>null</code> (if #synthesize() was not invoked before)
+     *         but never <code>null</code>
+     */
+    public Map<String, Expression> getRules() {
+        return rules;
+    }
+
+    private void processRuleFile( XPlanVersion version, String xplanType, String xplanName ) {
         rules.clear();
         String rulesResource = "/rules/";
         switch ( version ) {
@@ -91,35 +133,7 @@ public class XPlanSynthesizer {
         }
     }
 
-    /**
-     * @param version
-     * @param xplanFc
-     * @return
-     */
-    public static FeatureCollection synthesize( XPlanVersion version, XPlanFeatureCollection xplanFc ) {
-
-        XPlanType xplanType = xplanFc.getType();
-        String xplanName = xplanFc.getPlanName();
-        FeatureCollection fc = xplanFc.getFeatures();
-
-        processRuleFile( version, xplanType.name(), xplanName );
-
-        // initialize lookup of XP_TextAbschnitt and XP_BegruendungAbschnitt features
-        XplanAbschnittLookup.init( fc );
-        // initialize lookup for all Fachobjekte that are referenced by XP_PPO features
-        XpPpoLookup.init( fc );
-
-        List<Feature> featureMembers = new ArrayList<Feature>();
-        for ( Feature feature : fc ) {
-            Feature synFeature = synthesize( feature );
-            featureMembers.add( synFeature );
-        }
-
-        FeatureCollection newFc = new GenericFeatureCollection( fc.getId(), featureMembers );
-        return newFc;
-    }
-
-    private static Feature synthesize( Feature feature ) {
+    private Feature synthesize( Feature feature ) {
         List<Property> newProps = new ArrayList<Property>();
         QName synFeatureName = new QName( SYN_NS, feature.getType().getName().getLocalPart() );
 
@@ -178,7 +192,7 @@ public class XPlanSynthesizer {
         return synType.newFeature( feature.getId(), newProps, null );
     }
 
-    private static PrimitiveValue toString( TypedObjectNodeArray<?> array ) {
+    private PrimitiveValue toString( TypedObjectNodeArray<?> array ) {
         StringBuilder sBuilder = new StringBuilder();
         for ( TypedObjectNode n : array.getElements() ) {
             sBuilder.append( n );
