@@ -186,7 +186,7 @@ public class ManagerConfiguration {
                 parseSortConfiguration( loadProperties );
                 parseSemanticConformityLinkConfiguration( loadProperties );
             }
-            configDirectory = propertiesLoader.getConfigDirectory();
+            configDirectory = getConfigDirectory( propertiesLoader );
         }
     }
 
@@ -345,10 +345,18 @@ public class ManagerConfiguration {
         }
     }
 
+    private File getConfigDirectory( PropertiesLoader propertiesLoader ) {
+        File configDirectory = propertiesLoader.getConfigDirectory();
+        if ( configDirectory != null )
+            return new File( configDirectory, "synthesizer" );
+        return null;
+    }
+
     private boolean parseBoolean( Properties loadProperties, String propName, boolean defaultValue ) {
         String property = loadProperties.getProperty( propName );
         if ( property == null || "".equals( property ) )
             return defaultValue;
         return Boolean.parseBoolean( property );
     }
+
 }
