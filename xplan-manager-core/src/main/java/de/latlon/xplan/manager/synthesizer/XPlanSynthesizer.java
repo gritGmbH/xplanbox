@@ -143,14 +143,16 @@ public class XPlanSynthesizer {
                             throws FileNotFoundException {
         String rulesFileName = detectRulesFileName( version );
 
-        if ( rulesDirectory == null ) {
-            String rulesResource = "/rules/" + rulesFileName;
-            LOG.info( "Read rules from internal directory: {}", rulesResource );
-            return XPlanSynthesizer.class.getResourceAsStream( rulesResource );
+        if ( rulesDirectory != null ) {
+            File rulesFile = new File( rulesDirectory, rulesFileName );
+            LOG.info( "Try to read rules from directory: {}", rulesFile );
+            if ( rulesFile.exists() )
+                return new FileInputStream( rulesFile );
+            LOG.info( "Could not find rules in configuration directory, use internal configuration." );
         }
-        File rulesFile = new File( rulesDirectory, rulesFileName );
-        LOG.info( "Read rules from directory: {}", rulesFile );
-        return new FileInputStream( rulesFile );
+        String rulesResource = "/rules/" + rulesFileName;
+        LOG.info( "Read rules from internal directory: {}", rulesResource );
+        return XPlanSynthesizer.class.getResourceAsStream( rulesResource );
     }
 
     private String detectRulesFileName( XPlanVersion version  ) {
