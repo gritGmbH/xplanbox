@@ -18,6 +18,7 @@ import de.latlon.xplan.manager.synthesizer.expression.Xplan2CodeLookupExt;
 import de.latlon.xplan.manager.synthesizer.expression.Xplan2CodeNormalize;
 import de.latlon.xplan.manager.synthesizer.expression.XplanBaugebietFlaechenteile;
 import de.latlon.xplan.manager.synthesizer.expression.XplanBegruendungAbschnitte;
+import de.latlon.xplan.manager.synthesizer.expression.XPlanExternalCodeLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookupExt;
 import de.latlon.xplan.manager.synthesizer.expression.XplanFlattenProperty;
@@ -116,6 +117,13 @@ class RuleParser {
         return new XPlanGeometry( parseXPath( args ) );
     }
 
+    private Expression parseXPlanExternalCodeLookup( List<String> args ) {
+        Expression expression = parse( args.get( 0 ) );
+        String codeListFile = trimString( args.get( 1 ) );
+        String codeListName = args.size() > 2 ? trimString( args.get( 2 ) ) : null;
+        return new XPlanExternalCodeLookup( expression, codeListFile, codeListName, xPlanSynthesizer.getExternalConfigurationFile() );
+    }
+
     private Expression parseFunction( String functionName, List<String> args ) {
         Expression result;
         switch ( functionName ) {
@@ -181,6 +189,9 @@ class RuleParser {
             break;
         case "xplanFlatten":
             result = parseXPlanFlattenFeature( args );
+            break;
+        case "xplanExternalCodeLookup":
+            result = parseXPlanExternalCodeLookup( args );
             break;
         default:
             throw new RuntimeException( String.format( "Expression %s is not expected.", functionName ) );

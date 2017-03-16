@@ -1,9 +1,13 @@
 package de.latlon.xplan.manager.codelists;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 import de.latlon.xplan.commons.XPlanVersion;
+
+import javax.xml.stream.XMLStreamException;
 
 /**
  * Instantiates {@link XPlanCodeLists} for different XPlan GML versions.
@@ -70,6 +74,18 @@ public class XPlanCodeListsFactory {
         }
     }
 
+    /**
+     *
+     * @param codeListUrl
+     *            the url to parse the code list from, never <code>null</code>
+     * @return the {@link XPlanCodeLists} parsed from the codeListUrl, never <code>null</code>
+     * @throws IOException
+     * @throws XMLStreamException
+     */
+    public static XPlanCodeLists getXPlanCodeLists( URL codeListUrl )
+                            throws IOException, XMLStreamException {
+        return new XPlanCodeLists( codeListUrl );
+    }
 
     public static synchronized XPlanCodeLists getXPlanSyn() {
         if ( xplanSynCodeLists == null ) {

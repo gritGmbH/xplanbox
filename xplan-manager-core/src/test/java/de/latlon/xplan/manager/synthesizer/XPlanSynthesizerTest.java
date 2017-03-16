@@ -2,6 +2,7 @@ package de.latlon.xplan.manager.synthesizer;
 
 import static org.apache.commons.io.IOUtils.closeQuietly;
 import static org.apache.commons.io.IOUtils.copy;
+import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -10,7 +11,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.util.Iterator;
+import java.util.List;
 
+import javax.xml.namespace.QName;
+
+import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.Feature;
@@ -89,9 +95,21 @@ public class XPlanSynthesizerTest {
 
         XPlanArchive archive = getTestArchive( "xplan41/LA22.zip" );
         XPlanFeatureCollection xplanFc = parseFeatureCollection( archive );
-        xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
+        FeatureCollection synthesizedFeatures = xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
 
         assertThat( xPlanSynthesizer.getRules().size(), is( 7885 ) );
+        Iterator<Feature> it = synthesizedFeatures.iterator();
+        while ( it.hasNext() ) {
+            Feature feature = it.next();
+            if ( "BP_BaugebietsTeilFlaeche".equals( feature.getName().getLocalPart() ) ) {
+                List<Property> properties = feature.getProperties( new QName( feature.getName().getNamespaceURI(),
+                                                                              "besondereArtDerBaulNutzung" ) );
+
+                assertThat( properties.get( 0 ).getValue().toString(),
+                            anyOf( is( "AllgWohngebietTest" ), is( "MischgebietTest" ) ) );
+            }
+
+        }
     }
 
     private XPlanFeatureCollection parseFeatureCollection( XPlanArchive archive )
@@ -124,18 +142,23 @@ public class XPlanSynthesizerTest {
     private File createTmpDirectoryAndCopyRuleFile()
                             throws IOException {
         File tmpDirectory = createTmpDirectory();
-        File ruleFile = new File( tmpDirectory, "xplan41.syn" );
-        ruleFile.createNewFile();
-        FileOutputStream ruleFileOutput = new FileOutputStream( ruleFile );
-        InputStream resourceAsStream = XPlanSynthesizerTest.class.getResourceAsStream( "xplan41.syn" );
+        copyFile( tmpDirectory, "xplan41.syn" );
+        copyFile( tmpDirectory, "XP_BesondereArtDerBaulNutzung.xml" );
+        return tmpDirectory;
+    }
+
+    private void copyFile( File tmpDirectory, String fileName )
+                            throws IOException {
+        File targetFile = new File( tmpDirectory, fileName );
+        targetFile.createNewFile();
+        FileOutputStream targetOutputStream = new FileOutputStream( targetFile );
+        InputStream resourceAsStream = XPlanSynthesizerTest.class.getResourceAsStream( fileName );
         try {
-            copy( resourceAsStream, ruleFileOutput );
+            copy( resourceAsStream, targetOutputStream );
         } finally {
             closeQuietly( resourceAsStream );
-            closeQuietly( ruleFileOutput );
+            closeQuietly( targetOutputStream );
         }
-
-        return tmpDirectory;
     }
 
     private File createTmpDirectory()

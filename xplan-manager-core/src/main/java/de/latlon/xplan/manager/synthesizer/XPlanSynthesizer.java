@@ -4,10 +4,11 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static org.apache.commons.io.IOUtils.closeQuietly;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,7 +56,7 @@ public class XPlanSynthesizer {
 
     private final Map<String, Expression> rules = new HashMap<String, Expression>();
 
-    private final File rulesDirectory;
+    private final Path rulesDirectory;
 
     static {
         try {
@@ -78,7 +79,10 @@ public class XPlanSynthesizer {
      *            the directory containing additional rules overwritting the internal rules, may be <code>null</code>
      */
     public XPlanSynthesizer( File rulesDirectory ) {
-        this.rulesDirectory = rulesDirectory;
+        if ( rulesDirectory != null )
+            this.rulesDirectory = Paths.get( rulesDirectory.toURI() );
+        else
+            this.rulesDirectory = null;
     }
 
     /**
@@ -114,13 +118,23 @@ public class XPlanSynthesizer {
     }
 
     /**
-     * Retrieve the rules applied to the last transformation. Invoke synthesize first, otherwise no rules are available.
+     * Retrieve the rules applied to the transformation. Invoke synthesize first, otherwise no rules are available.
      * 
-     * @return the rules of the last transformation. may be <code>null</code> (if #synthesize() was not invoked before)
-     *         but never <code>null</code>
+     * @return the rules of the last transformation. may be empty (if #synthesize() was not invoked before) but never
+     *         <code>null</code>
      */
     public Map<String, Expression> getRules() {
         return rules;
+    }
+
+    /**
+     * Retrieve the directory containing the external rules configuration used for the transformation.
+     *
+     * @return the external rules configuration file of the transformation. may be <code>null</code>if not set)
+     * 
+     */
+    public Path getExternalConfigurationFile() {
+        return rulesDirectory;
     }
 
     private void processRuleFile( XPlanVersion version, String xplanType, String xplanName ) {
@@ -151,13 +165,13 @@ public class XPlanSynthesizer {
 
     private InputStream retrieveRulesFileFromFileSystem( String rulesFileName ) {
         if ( rulesDirectory != null ) {
-            File rulesFile = new File( rulesDirectory, rulesFileName );
+            Path rulesFile = rulesDirectory.resolve( rulesFileName );
             LOG.info( "Read additional/overwritting rules from directory: {}", rulesFile );
-            if ( rulesFile.exists() ) {
+            if ( Files.exists( rulesFile ) ) {
                 try {
-                    return new FileInputStream( rulesFile );
-                } catch ( FileNotFoundException e ) {
-                    LOG.info( "Could not find rules in configuration directory." );
+                    return Files.newInputStream( rulesFile );
+                } catch ( IOException e ) {
+                    LOG.info( "Could not read rules in configuration directory." );
                 }
             }
             LOG.info( "Could not find rules in configuration directory." );

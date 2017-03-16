@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Dictionary gml:id="CodeLists" xmlns="http://www.opengis.net/gml" xmlns:gml="http://www.opengis.net/gml">
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="XP_BesondereArtDerBaulNutzung">
+      <name>xplan:XP_BesondereArtDerBaulNutzung</name>
+      <definitionMember>
+        <Definition gml:id="XP_BesondereArtDerBaulNutzung_1000">
+          <description>KleinsiedlungsgebietTest</description>
+          <name>1000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_BesondereArtDerBaulNutzung_1100">
+          <description>ReinesWohngebietTest</description>
+          <name>1100</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_BesondereArtDerBaulNutzung_1200">
+          <description>AllgWohngebietTest</description>
+          <name>1200</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_BesondereArtDerBaulNutzung_1300">
+          <description>BesonderesWohngebietTest</description>
+          <name>1300</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_BesondereArtDerBaulNutzung_1400">
+          <description>DorfgebietTest</description>
+          <name>1400</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_BesondereArtDerBaulNutzung_1500">
+          <description>MischgebietTest</description>
+          <name>1500</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_BesondereArtDerBaulNutzung_1600">
+          <description>KerngebietTest</description>
+          <name>1600</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_BesondereArtDerBaulNutzung_1700">
+          <description>GewerbegebietTest</description>
+          <name>1700</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_BesondereArtDerBaulNutzung_1800">
+          <description>IndustriegebietTest</description>
+          <name>1800</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_BesondereArtDerBaulNutzung_2000">
+          <description>SondergebietErholungTest</description>
+          <name>2000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_BesondereArtDerBaulNutzung_2100">
+          <description>SondergebietSonstTest</description>
+          <name>2100</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_BesondereArtDerBaulNutzung_3000">
+          <description>WochenendhausgebietTest</description>
+          <name>3000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_BesondereArtDerBaulNutzung_4000">
+          <description>SondergebietTest</description>
+          <name>4000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_BesondereArtDerBaulNutzung_9999">
+          <description>SonstigesGebietTest</description>
+          <name>9999</name>
+        </Definition>
+      </definitionMember>
+    </DefinitionCollection>
+  </dictionaryEntry>
+</Dictionary>
