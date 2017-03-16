@@ -59,39 +59,55 @@ public class XPlanCodeLists {
         codeLists = gmlStream.readDictionary();
         gmlStream.close();
 
-        for ( Definition codeListDef : codeLists ) {
-            Dictionary codeListDict = (Dictionary) codeListDef;
-            String codeListId = codeListDict.getId();
-            if ( codeListIdToMapping.get( codeListId ) != null ) {
-                String msg = "CodeList '" + codeListId + "' ist in Dictionary '" + codeListUrl + "' doppelt vorhanden.";
-                throw new RuntimeException( msg );
+        if ( !codeLists.isEmpty() ) {
+            Definition firstDefinition = codeLists.get( 0 );
+            if ( firstDefinition instanceof Dictionary ) {
+                for ( Definition codeListDef : codeLists ) {
+                    parseDictionary( codeListUrl, (Dictionary) codeListDef );
+                }
+            } else {
+                parseDictionary( codeListUrl, codeLists );
             }
+        }
+    }
 
-            if ( codeListDict.isEmpty() ) {
-                codeListIdToMapping.put( codeListId, new HashMap<String, String>() );
-                codeListIdToReverseMapping.put( codeListId, new HashMap<String, String>() );
-            }
+    private void parseDictionary( URL codeListUrl, Dictionary codeListDef ) {
+        Dictionary codeListDict = codeListDef;
+        String codeListId = codeListDict.getId();
+        if ( codeListIdToMapping.get( codeListId ) != null ) {
+            String msg = "CodeList '" + codeListId + "' ist in Dictionary '" + codeListUrl +
+                         "' doppelt vorhanden.";
+            throw new RuntimeException( msg );
+        }
 
-            for ( Definition def : codeListDict ) {
-                if ( def.getNames().length == 1 ) {
-                    if ( def.getDescription() != null ) {
-                        String description = def.getDescription().getString();
-                        if ( def.getNames() == null || def.getNames().length != 1 ) {
-                            String msg = "CodeList '" + codeListId + "' in Dictionary '" + codeListUrl
-                                         + "' definiert mehrerere Codes für '" + description + "'.";
-                            throw new RuntimeException( msg );
-                        }
-                        addCodeAndDescription( codeListId, def.getNames()[0].getCode(), description );
-                    } else {
-                        // no description -> treat
-                        addCodeAndDescription( codeListId, def.getNames()[0].getCode(), def.getNames()[0].getCode() );
-                    }
-                } else {
+        if ( codeListDict.isEmpty() ) {
+            codeListIdToMapping.put( codeListId, new HashMap<String, String>() );
+            codeListIdToReverseMapping.put( codeListId, new HashMap<String, String>() );
+        }
+
+        for ( Definition def : codeListDict ) {
+            parseDefinition( codeListUrl, codeListId, def );
+        }
+    }
+
+    private void parseDefinition( URL codeListUrl, String codeListId, Definition def ) {
+        if ( def.getNames().length == 1 ) {
+            if ( def.getDescription() != null ) {
+                String description = def.getDescription().getString();
+                if ( def.getNames() == null || def.getNames().length != 1 ) {
                     String msg = "CodeList '" + codeListId + "' in Dictionary '" + codeListUrl
-                                 + "' enthält Einträge mit keinem oder mehreren Codes.";
+                                 + "' definiert mehrerere Codes für '" + description + "'.";
                     throw new RuntimeException( msg );
                 }
+                addCodeAndDescription( codeListId, def.getNames()[0].getCode(), description );
+            } else {
+                // no description -> treat
+                addCodeAndDescription( codeListId, def.getNames()[0].getCode(), def.getNames()[0].getCode() );
             }
+        } else {
+            String msg = "CodeList '" + codeListId + "' in Dictionary '" + codeListUrl
+                         + "' enthält Einträge mit keinem oder mehreren Codes.";
+            throw new RuntimeException( msg );
         }
     }
 

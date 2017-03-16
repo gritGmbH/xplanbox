@@ -71,7 +71,6 @@ public class XPlanCodeListsTest {
         assertThat( codesToDescriptions.values().iterator().next().size(), is( 14 ) );
     }
 
-    @Ignore
     @Test
     public void testParseNew()
                             throws Exception {
