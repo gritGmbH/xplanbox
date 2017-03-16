@@ -1,14 +1,13 @@
 package de.latlon.xplan.manager.synthesizer;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
+import static org.apache.commons.io.IOUtils.closeQuietly;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +15,7 @@ import java.util.Map;
 
 import javax.xml.namespace.QName;
 
+import org.apache.commons.io.IOUtils;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.genericxml.GenericXMLElement;
@@ -75,7 +75,7 @@ public class XPlanSynthesizer {
 
     /**
      * @param rulesDirectory
-     *            the directory containing the rules, if <code>null</code> the internal rules directory is used
+     *            the directory containing additional rules overwritting the internal rules, may be <code>null</code>
      */
     public XPlanSynthesizer( File rulesDirectory ) {
         this.rulesDirectory = rulesDirectory;
@@ -125,37 +125,53 @@ public class XPlanSynthesizer {
 
     private void processRuleFile( XPlanVersion version, String xplanType, String xplanName ) {
         rules.clear();
-        try (InputStream is = retrieveRulesFile( version );
-             InputStreamReader in = new InputStreamReader( is );
-             BufferedReader reader = new BufferedReader( in ) ) {
-            String line;
+        String rulesFileName = detectRulesFileName( version );
+        InputStream rulesFromClasspath = retrieveRulesFileFromClasspath( rulesFileName );
+        processRules( xplanType, xplanName, rulesFromClasspath );
+        InputStream rulesFromFileSystem = retrieveRulesFileFromFileSystem( rulesFileName );
+        if ( rulesFromFileSystem != null )
+            processRules( xplanType, xplanName, rulesFromFileSystem );
+    }
+
+    private void processRules( String xplanType, String xplanName, InputStream is ) {
+        try {
             RuleParser parser = new RuleParser( xplanType, xplanName, this );
-            while ( ( line = reader.readLine() ) != null ) {
-                int firstEquals = line.indexOf( "=" );
-                rules.put( line.substring( 0, firstEquals ), parser.parse( line.substring( firstEquals + 1 ) ) );
+            for ( String line : IOUtils.readLines( is ) ) {
+                if ( !line.startsWith( "#" ) ) {
+                    int firstEquals = line.indexOf( "=" );
+                    rules.put( line.substring( 0, firstEquals ), parser.parse( line.substring( firstEquals + 1 ) ) );
+                }
             }
         } catch ( IOException e ) {
             throw new RuntimeException( "Error while reading the rules file ", e );
+        } finally {
+            closeQuietly( is );
         }
     }
 
-    private InputStream retrieveRulesFile( XPlanVersion version )
-                            throws FileNotFoundException {
-        String rulesFileName = detectRulesFileName( version );
-
+    private InputStream retrieveRulesFileFromFileSystem( String rulesFileName ) {
         if ( rulesDirectory != null ) {
             File rulesFile = new File( rulesDirectory, rulesFileName );
-            LOG.info( "Try to read rules from directory: {}", rulesFile );
-            if ( rulesFile.exists() )
-                return new FileInputStream( rulesFile );
-            LOG.info( "Could not find rules in configuration directory, use internal configuration." );
+            LOG.info( "Read additional/overwritting rules from directory: {}", rulesFile );
+            if ( rulesFile.exists() ) {
+                try {
+                    return new FileInputStream( rulesFile );
+                } catch ( FileNotFoundException e ) {
+                    LOG.info( "Could not find rules in configuration directory." );
+                }
+            }
+            LOG.info( "Could not find rules in configuration directory." );
         }
+        return null;
+    }
+
+    private InputStream retrieveRulesFileFromClasspath( String rulesFileName ) {
         String rulesResource = "/rules/" + rulesFileName;
         LOG.info( "Read rules from internal directory: {}", rulesResource );
         return XPlanSynthesizer.class.getResourceAsStream( rulesResource );
     }
 
-    private String detectRulesFileName( XPlanVersion version  ) {
+    private String detectRulesFileName( XPlanVersion version ) {
         switch ( version ) {
         case XPLAN_2:
             return "xplan2.syn";

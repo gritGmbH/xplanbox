@@ -37,9 +37,9 @@ public class XPlanSynthesizerTest {
 
         XPlanArchive archive = getTestArchive( "xplan41/LA22.zip" );
         XPlanFeatureCollection xplanFc = parseFeatureCollection( archive );
-        FeatureCollection synthesize = xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
+        xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
 
-        assertThat( synthesize.size(), is( 1349 ) );
+        assertThat( xPlanSynthesizer.getRules().size(), is( 7884 ) );
     }
 
     @Test
@@ -50,9 +50,9 @@ public class XPlanSynthesizerTest {
 
         XPlanArchive archive = getTestArchive( "xplan41/LA22.zip" );
         XPlanFeatureCollection xplanFc = parseFeatureCollection( archive );
-        FeatureCollection synthesize = xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
+        xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
 
-        assertThat( synthesize.size(), is( 1349 ) );
+        assertThat( xPlanSynthesizer.getRules().size(), is( 7884 ) );
     }
 
     @Test
@@ -63,9 +63,9 @@ public class XPlanSynthesizerTest {
 
         XPlanArchive archive = getTestArchive( "xplan41/LA22.zip" );
         XPlanFeatureCollection xplanFc = parseFeatureCollection( archive );
-        FeatureCollection synthesize = xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
+        xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
 
-        assertThat( synthesize.size(), is( 1349 ) );
+        assertThat( xPlanSynthesizer.getRules().size(), is( 7884 ) );
     }
 
     @Test
@@ -76,9 +76,9 @@ public class XPlanSynthesizerTest {
 
         XPlanArchive archive = getTestArchive( "xplan41/LA22.zip" );
         XPlanFeatureCollection xplanFc = parseFeatureCollection( archive );
-        FeatureCollection synthesize = xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
+        xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
 
-        assertThat( synthesize.size(), is( 1349 ) );
+        assertThat( xPlanSynthesizer.getRules().size(), is( 7884 ) );
     }
 
     @Test
@@ -89,9 +89,9 @@ public class XPlanSynthesizerTest {
 
         XPlanArchive archive = getTestArchive( "xplan41/LA22.zip" );
         XPlanFeatureCollection xplanFc = parseFeatureCollection( archive );
-        FeatureCollection synthesize = xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
+        xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
 
-        assertThat( synthesize.size(), is( 1349 ) );
+        assertThat( xPlanSynthesizer.getRules().size(), is( 7885 ) );
     }
 
     private XPlanFeatureCollection parseFeatureCollection( XPlanArchive archive )
@@ -127,7 +127,7 @@ public class XPlanSynthesizerTest {
         File ruleFile = new File( tmpDirectory, "xplan41.syn" );
         ruleFile.createNewFile();
         FileOutputStream ruleFileOutput = new FileOutputStream( ruleFile );
-        InputStream resourceAsStream = XPlanSynthesizerTest.class.getResourceAsStream( "/rules/xplan41.syn" );
+        InputStream resourceAsStream = XPlanSynthesizerTest.class.getResourceAsStream( "xplan41.syn" );
         try {
             copy( resourceAsStream, ruleFileOutput );
         } finally {
