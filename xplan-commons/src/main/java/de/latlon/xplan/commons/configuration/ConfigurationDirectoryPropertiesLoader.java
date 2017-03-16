@@ -74,4 +74,9 @@ public class ConfigurationDirectoryPropertiesLoader extends AbstractPropertiesLo
         return defaultBaseClass.getResourceAsStream( configurationFileName );
     }
 
+    @Override
+    public File getConfigDirectory() {
+        return directoryContainingTheConfig;
+    }
+
 }

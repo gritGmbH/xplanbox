@@ -109,7 +109,7 @@ public class XPlanManager {
 
     private static final DateFormat DATEFORMAT = createDateFormat();
 
-    private final XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
+    private final XPlanSynthesizer xPlanSynthesizer;
 
     private final XPlanArchiveCreator archiveCreator;
 
@@ -205,6 +205,7 @@ public class XPlanManager {
         this.sortPropertyReader = new SortPropertyReader( sortConfiguration );
         this.sortPropertyUpdater = new SortPropertyUpdater( sortPropertyReader, xplanDao, xPlanRasterManager );
         this.xPlanExporter = new XPlanExporter( managerConfiguration );
+        this.xPlanSynthesizer = new XPlanSynthesizer( managerConfiguration.getConfigurationDirectory() );
     }
 
     public XPlanArchive analyzeArchive( String fileName )

@@ -3,6 +3,7 @@ package de.latlon.xplan.manager.configuration;
 import static java.lang.Double.parseDouble;
 import static org.deegree.cs.CRSUtils.EPSG_4326;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -76,6 +77,8 @@ public class ManagerConfiguration {
     private InternalIdRetrieverConfiguration internalIdRetrieverConfiguration = new InternalIdRetrieverConfiguration();
 
     private SemanticConformityLinkConfiguration semanticConformityLinkConfiguration = new SemanticConformityLinkConfiguration();
+
+    private File configDirectory;
 
     public ManagerConfiguration( PropertiesLoader propertiesLoader ) throws ConfigurationException {
         loadProperties( propertiesLoader );
@@ -155,6 +158,13 @@ public class ManagerConfiguration {
         return isExportOfReexportedActive;
     }
 
+    /**
+     * @return the directory containing the configuration, may be <code>null</code>
+     */
+    public File getConfigurationDirectory(){
+        return configDirectory;
+    }
+
     private void loadProperties( PropertiesLoader propertiesLoader )
                     throws ConfigurationException {
         if ( propertiesLoader != null ) {
@@ -176,12 +186,15 @@ public class ManagerConfiguration {
                 parseSortConfiguration( loadProperties );
                 parseSemanticConformityLinkConfiguration( loadProperties );
             }
+            configDirectory = propertiesLoader.getConfigDirectory();
         }
     }
 
     private void logConfiguration() {
         LOG.info( "-------------------------------------------" );
         LOG.info( "Configuration of the XPlanManager:" );
+        LOG.info( "-------------------------------------------" );
+        LOG.info( "  directory containing the configuration: {}", configDirectory );
         LOG.info( "-------------------------------------------" );
         LOG.info( "  raster configuration" );
         LOG.info( "   - crs: {}", rasterConfigurationCrs );

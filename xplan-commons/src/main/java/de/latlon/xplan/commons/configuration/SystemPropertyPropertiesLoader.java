@@ -1,7 +1,6 @@
 package de.latlon.xplan.commons.configuration;
 
-import static java.io.File.separatorChar;
-
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -21,9 +20,9 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
 
     private static final Logger LOG = LoggerFactory.getLogger( SystemPropertyPropertiesLoader.class );
 
-    private final String configurationFilePathVariable;
+    private final File configurationDirectory;
 
-    private Class<?> defaultBaseClass;
+    private final Class<?> defaultBaseClass;
 
     /**
      * Instantiates a {@link SystemPropertyPropertiesLoader} loading properties from files specified with the given
@@ -37,7 +36,7 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
      *            <code>null</code> (this class is used then)
      */
     public SystemPropertyPropertiesLoader( String configurationFilePathVariable, Class<?> defaultBaseClass ) {
-        this.configurationFilePathVariable = configurationFilePathVariable;
+        this.configurationDirectory = getConfigDirectory( configurationFilePathVariable );
         if ( defaultBaseClass != null )
             this.defaultBaseClass = defaultBaseClass;
         else
@@ -58,24 +57,40 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
 
     @Override
     InputStream retrieveAsStream( String configurationFileName ) {
+        if ( configurationDirectory != null ) {
+            File pathToConfigFile = new File( configurationDirectory, configurationFileName );
+            LOG.info( "Configuration {} is read from file {}", configurationFileName, pathToConfigFile );
+            try {
+                return new FileInputStream( pathToConfigFile );
+            } catch ( FileNotFoundException e ) {
+                LOG.info( "Configuration does not exist: {}", e.getMessage() );
+                LOG.info( "Internal {} configuration is used.", configurationFileName );
+                return defaultBaseClass.getResourceAsStream( configurationFileName );
+            }
+        }
+        LOG.info( "Internal {} configuration is used.", configurationFileName );
+        return defaultBaseClass.getResourceAsStream( configurationFileName );
+    }
+
+    @Override
+    public File getConfigDirectory() {
+        return configurationDirectory;
+    }
+
+    private File getConfigDirectory( String configurationFilePathVariable ) {
         if ( configurationFilePathVariable != null ) {
             LOG.info( "Configuration directory system property is {}", configurationFilePathVariable );
             String configFilePath = System.getProperty( configurationFilePathVariable );
             LOG.info( "Configuration directory is {}", configFilePath );
             if ( configFilePath != null ) {
-                String pathToConfigFile = configFilePath + separatorChar + configurationFileName;
-                LOG.info( "Configuration {} is read from file {}", configurationFileName, pathToConfigFile );
-                try {
-                    return new FileInputStream( pathToConfigFile );
-                } catch ( FileNotFoundException e ) {
-                    LOG.info( "Configuration does not exist: {}", e.getMessage() );
-                    LOG.info( "Internal {} configuration is used.", configurationFileName );
-                    return defaultBaseClass.getResourceAsStream( configurationFileName );
-                }
+                File configDirectory = new File( configFilePath );
+                if ( configDirectory.isDirectory() && configDirectory.exists() )
+                    return configDirectory;
+                else
+                    LOG.info( "Configuration directory {} does not exist or is not a directory.", configFilePath );
             }
         }
-        LOG.info( "Internal {} configuration is used.", configurationFileName );
-        return defaultBaseClass.getResourceAsStream( configurationFileName );
+        return null;
     }
 
 }

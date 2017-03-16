@@ -1,5 +1,6 @@
 package de.latlon.xplan.commons.configuration;
 
+import java.io.File;
 import java.io.InputStream;
 
 /**
@@ -25,6 +26,11 @@ public class DefaultPropertiesLoader extends AbstractPropertiesLoader {
     @Override
     InputStream retrieveAsStream( String propertiesFileName ) {
         return baseClass.getResourceAsStream( propertiesFileName );
+    }
+
+    @Override
+    public File getConfigDirectory() {
+        return null;
     }
 
 }
