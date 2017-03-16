@@ -3,7 +3,10 @@ package de.latlon.xplan.commons.configuration;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +24,7 @@ public class ConfigurationDirectoryPropertiesLoader extends AbstractPropertiesLo
 
     private static final Logger LOG = LoggerFactory.getLogger( ConfigurationDirectoryPropertiesLoader.class );
 
-    private final File directoryContainingTheConfig;
+    private final Path directoryContainingTheConfig;
 
     private final Class<?> defaultBaseClass;
 
@@ -36,7 +39,7 @@ public class ConfigurationDirectoryPropertiesLoader extends AbstractPropertiesLo
      *            fallback to retrieve properties file from, if system property is not available, may be
      *            <code>null</code> (this class is used then)
      */
-    public ConfigurationDirectoryPropertiesLoader( File directoryContainingTheConfig, Class<?> defaultBaseClass ) {
+    public ConfigurationDirectoryPropertiesLoader( Path directoryContainingTheConfig, Class<?> defaultBaseClass ) {
         this.directoryContainingTheConfig = directoryContainingTheConfig;
         if ( defaultBaseClass != null )
             this.defaultBaseClass = defaultBaseClass;
@@ -52,7 +55,7 @@ public class ConfigurationDirectoryPropertiesLoader extends AbstractPropertiesLo
      *            the directory containing the configuration, may be <code>null</code> if the configuration should be
      *            retrieved from classpath
      */
-    public ConfigurationDirectoryPropertiesLoader( File directoryContainingTheConfig ) {
+    public ConfigurationDirectoryPropertiesLoader( Path directoryContainingTheConfig ) {
         this( directoryContainingTheConfig, null );
     }
 
@@ -60,11 +63,11 @@ public class ConfigurationDirectoryPropertiesLoader extends AbstractPropertiesLo
     InputStream retrieveAsStream( String configurationFileName ) {
         if ( directoryContainingTheConfig != null ) {
             LOG.info( "Configuration directory is {}", directoryContainingTheConfig );
-            File pathToConfigFile = new File( directoryContainingTheConfig, configurationFileName );
+            Path pathToConfigFile = directoryContainingTheConfig.resolve( configurationFileName );
             LOG.info( "Configuration is read from file {}", pathToConfigFile );
             try {
-                return new FileInputStream( pathToConfigFile );
-            } catch ( FileNotFoundException e ) {
+                return Files.newInputStream( pathToConfigFile );
+            } catch ( IOException e ) {
                 LOG.info( "Configuration does not exist: {}", e.getMessage() );
                 LOG.info( "Internal {} configuration is used.", configurationFileName );
                 return defaultBaseClass.getResourceAsStream( configurationFileName );
@@ -75,7 +78,7 @@ public class ConfigurationDirectoryPropertiesLoader extends AbstractPropertiesLo
     }
 
     @Override
-    public File getConfigDirectory() {
+    public Path getConfigDirectory() {
         return directoryContainingTheConfig;
     }
 

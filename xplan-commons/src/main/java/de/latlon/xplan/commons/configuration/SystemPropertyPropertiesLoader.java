@@ -1,9 +1,10 @@
 package de.latlon.xplan.commons.configuration;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,7 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
 
     private static final Logger LOG = LoggerFactory.getLogger( SystemPropertyPropertiesLoader.class );
 
-    private final File configurationDirectory;
+    private final Path configurationDirectory;
 
     private final Class<?> defaultBaseClass;
 
@@ -58,11 +59,11 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
     @Override
     InputStream retrieveAsStream( String configurationFileName ) {
         if ( configurationDirectory != null ) {
-            File pathToConfigFile = new File( configurationDirectory, configurationFileName );
+            Path pathToConfigFile = configurationDirectory.resolve( configurationFileName );
             LOG.info( "Configuration {} is read from file {}", configurationFileName, pathToConfigFile );
             try {
-                return new FileInputStream( pathToConfigFile );
-            } catch ( FileNotFoundException e ) {
+                return Files.newInputStream( pathToConfigFile );
+            } catch ( IOException e ) {
                 LOG.info( "Configuration does not exist: {}", e.getMessage() );
                 LOG.info( "Internal {} configuration is used.", configurationFileName );
                 return defaultBaseClass.getResourceAsStream( configurationFileName );
@@ -73,18 +74,18 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
     }
 
     @Override
-    public File getConfigDirectory() {
+    public Path getConfigDirectory() {
         return configurationDirectory;
     }
 
-    private File getConfigDirectory( String configurationFilePathVariable ) {
+    private Path getConfigDirectory( String configurationFilePathVariable ) {
         if ( configurationFilePathVariable != null ) {
             LOG.info( "Configuration directory system property is {}", configurationFilePathVariable );
             String configFilePath = System.getProperty( configurationFilePathVariable );
             LOG.info( "Configuration directory is {}", configFilePath );
             if ( configFilePath != null ) {
-                File configDirectory = new File( configFilePath );
-                if ( configDirectory.isDirectory() && configDirectory.exists() )
+                Path configDirectory = Paths.get( configFilePath );
+                if ( Files.isDirectory( configDirectory ) && Files.exists( configDirectory ) )
                     return configDirectory;
                 else
                     LOG.info( "Configuration directory {} does not exist or is not a directory.", configFilePath );

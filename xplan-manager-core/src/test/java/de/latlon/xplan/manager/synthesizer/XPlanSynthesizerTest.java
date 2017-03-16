@@ -1,16 +1,16 @@
 package de.latlon.xplan.manager.synthesizer;
 
 import static org.apache.commons.io.IOUtils.closeQuietly;
-import static org.apache.commons.io.IOUtils.copy;
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 
@@ -51,7 +51,7 @@ public class XPlanSynthesizerTest {
     @Test
     public void testSynthesize_ConfigDirectoryIsInvalid()
                             throws Exception {
-        File notExist = new File( "/tmp/notExistDir" );
+        Path notExist = Paths.get( "/tmp/notExistDir" );
         XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer( notExist );
 
         XPlanArchive archive = getTestArchive( "xplan41/LA22.zip" );
@@ -64,7 +64,7 @@ public class XPlanSynthesizerTest {
     @Test
     public void testSynthesize_ConfigDirectoryIsFile()
                             throws Exception {
-        File configFile = File.createTempFile( "synConfig", "" );
+        Path configFile = Files.createTempFile( "synConfig", "" );
         XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer( configFile );
 
         XPlanArchive archive = getTestArchive( "xplan41/LA22.zip" );
@@ -77,7 +77,7 @@ public class XPlanSynthesizerTest {
     @Test
     public void testSynthesize_ConfigDirectoryDoesNotContainRules()
                             throws Exception {
-        File configDirectory = createTmpDirectory();
+        Path configDirectory = createTmpDirectory();
         XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer( configDirectory );
 
         XPlanArchive archive = getTestArchive( "xplan41/LA22.zip" );
@@ -90,7 +90,7 @@ public class XPlanSynthesizerTest {
     @Test
     public void testSynthesize_ConfigDirectoryWithRule()
                             throws Exception {
-        File notExist = createTmpDirectoryAndCopyRuleFile();
+        Path notExist = createTmpDirectoryAndCopyRuleFile();
         XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer( notExist );
 
         XPlanArchive archive = getTestArchive( "xplan41/LA22.zip" );
@@ -139,34 +139,28 @@ public class XPlanSynthesizerTest {
         return archiveCreator.createXPlanArchive( name, ResourceAccessor.readResourceStream( name ) );
     }
 
-    private File createTmpDirectoryAndCopyRuleFile()
+    private Path createTmpDirectoryAndCopyRuleFile()
                             throws IOException {
-        File tmpDirectory = createTmpDirectory();
+        Path tmpDirectory = createTmpDirectory();
         copyFile( tmpDirectory, "xplan41.syn" );
         copyFile( tmpDirectory, "XP_BesondereArtDerBaulNutzung.xml" );
         return tmpDirectory;
     }
 
-    private void copyFile( File tmpDirectory, String fileName )
+    private void copyFile( Path tmpDirectory, String fileName )
                             throws IOException {
-        File targetFile = new File( tmpDirectory, fileName );
-        targetFile.createNewFile();
-        FileOutputStream targetOutputStream = new FileOutputStream( targetFile );
+        Path targetFile = tmpDirectory.resolve( fileName );
         InputStream resourceAsStream = XPlanSynthesizerTest.class.getResourceAsStream( fileName );
         try {
-            copy( resourceAsStream, targetOutputStream );
+            Files.copy( resourceAsStream, targetFile );
         } finally {
             closeQuietly( resourceAsStream );
-            closeQuietly( targetOutputStream );
         }
     }
 
-    private File createTmpDirectory()
+    private Path createTmpDirectory()
                             throws IOException {
-        File notExist = File.createTempFile( "configDirectory", "" );
-        notExist.delete();
-        notExist.mkdir();
-        return notExist;
+        return Files.createTempDirectory( "configDirectory" );
     }
 
 }

@@ -2,7 +2,6 @@ package de.latlon.xplan.validator.cli;
 
 import static java.nio.file.Paths.get;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -80,10 +79,9 @@ public class XPlanValidatorCliSpringConfig {
         return new ConfigurationDirectoryPropertiesLoader( retrieveEtcPath(), ValidatorConfiguration.class );
     }
 
-    private File retrieveEtcPath() throws URISyntaxException {
+    private Path retrieveEtcPath() throws URISyntaxException {
         URL jarPath = XPlanValidatorCliSpringConfig.class.getProtectionDomain().getCodeSource().getLocation();
-        Path etcPath = get( jarPath.toURI() ).getParent().resolve( "etc" );
-        return etcPath.toFile();
+        return get( jarPath.toURI() ).getParent().resolve( "etc" );
     }
 
 }

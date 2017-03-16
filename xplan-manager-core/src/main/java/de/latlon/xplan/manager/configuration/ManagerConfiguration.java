@@ -4,6 +4,7 @@ import static java.lang.Double.parseDouble;
 import static org.deegree.cs.CRSUtils.EPSG_4326;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -78,7 +79,7 @@ public class ManagerConfiguration {
 
     private SemanticConformityLinkConfiguration semanticConformityLinkConfiguration = new SemanticConformityLinkConfiguration();
 
-    private File configDirectory;
+    private Path configDirectory;
 
     public ManagerConfiguration( PropertiesLoader propertiesLoader ) throws ConfigurationException {
         loadProperties( propertiesLoader );
@@ -161,7 +162,7 @@ public class ManagerConfiguration {
     /**
      * @return the directory containing the configuration, may be <code>null</code>
      */
-    public File getConfigurationDirectory(){
+    public Path getConfigurationDirectory(){
         return configDirectory;
     }
 
@@ -345,10 +346,10 @@ public class ManagerConfiguration {
         }
     }
 
-    private File getConfigDirectory( PropertiesLoader propertiesLoader ) {
-        File configDirectory = propertiesLoader.getConfigDirectory();
+    private Path getConfigDirectory( PropertiesLoader propertiesLoader ) {
+        Path configDirectory = propertiesLoader.getConfigDirectory();
         if ( configDirectory != null )
-            return new File( configDirectory, "synthesizer" );
+            return configDirectory.resolve( "synthesizer" );
         return null;
     }
 

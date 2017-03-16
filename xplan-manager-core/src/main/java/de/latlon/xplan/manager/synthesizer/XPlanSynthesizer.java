@@ -3,12 +3,10 @@ package de.latlon.xplan.manager.synthesizer;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static org.apache.commons.io.IOUtils.closeQuietly;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -78,11 +76,8 @@ public class XPlanSynthesizer {
      * @param rulesDirectory
      *            the directory containing additional rules overwritting the internal rules, may be <code>null</code>
      */
-    public XPlanSynthesizer( File rulesDirectory ) {
-        if ( rulesDirectory != null )
-            this.rulesDirectory = Paths.get( rulesDirectory.toURI() );
-        else
-            this.rulesDirectory = null;
+    public XPlanSynthesizer( Path rulesDirectory ) {
+        this.rulesDirectory = rulesDirectory;
     }
 
     /**

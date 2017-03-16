@@ -1,7 +1,7 @@
 package de.latlon.xplan.commons.configuration;
 
-import java.io.File;
 import java.io.InputStream;
+import java.nio.file.Path;
 
 /**
  * Loads properties from base class.
@@ -29,7 +29,7 @@ public class DefaultPropertiesLoader extends AbstractPropertiesLoader {
     }
 
     @Override
-    public File getConfigDirectory() {
+    public Path getConfigDirectory() {
         return null;
     }
 
