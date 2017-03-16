@@ -11,7 +11,7 @@ import org.deegree.feature.types.property.SimplePropertyType;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.util.XPlanVersionUtils;
-import de.latlon.xplan.manager.codelists.XPlanCodeLists;
+import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 
 public class XpHoehenangabeFlattener extends AbstractFlattener {
@@ -86,7 +86,7 @@ public class XpHoehenangabeFlattener extends AbstractFlattener {
         }
         if ( codeListName != null ) {
             XPlanVersion version = XPlanVersionUtils.determineBaseVersion( elNode.getName() );
-            return XPlanCodeLists.get( version ).getDescription( codeListName, valueAsString );
+            return XPlanCodeListsFactory.get( version ).getDescription( codeListName, valueAsString );
         }
         return valueAsString;
     }

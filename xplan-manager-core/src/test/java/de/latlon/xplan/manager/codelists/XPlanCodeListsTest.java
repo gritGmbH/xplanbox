@@ -50,7 +50,7 @@ public class XPlanCodeListsTest {
     @Test
     public void testGetDescription() {
         XPlanVersion version = XPlanVersion.XPLAN_41;
-        XPlanCodeLists xPlanCodeLists = XPlanCodeLists.get( version );
+        XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get( version );
         String legislationStatusTranslation = xPlanCodeLists.getDescription( "BP_Rechtsstand", "4000" );
 
         assertThat( legislationStatusTranslation, is( "InkraftGetreten" ) );

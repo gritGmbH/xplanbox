@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.manager.codelists.XPlanCodeLists;
+import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 
 /**
  * {@link Expression} for translating codes from internal codelists (aka key enumerations) to their textual
@@ -46,7 +46,7 @@ public class XplanCodeLookup implements Expression {
                 translation = "";
                 for ( TypedObjectNode o : codes.getElements() ) {
                     String code = o.toString();
-                    String desc = XPlanCodeLists.get( version ).getDescription( codeListName, code );
+                    String desc = XPlanCodeListsFactory.get( version ).getDescription( codeListName, code );
                     translation += "[" + escape( desc ) + "]";
                 }
                 if ( codes.getElements().length == 1 ) {

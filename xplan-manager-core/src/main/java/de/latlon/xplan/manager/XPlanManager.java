@@ -65,6 +65,7 @@ import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.manager.codelists.XPlanCodeLists;
+import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfigurationAnalyser;
 import de.latlon.xplan.manager.database.DatabaseCreator;
@@ -889,7 +890,7 @@ public class XPlanManager {
 
     private String translateLegislationStatusCode( XPlanArchive archive, XPlanFeatureCollection fc,
                                                    int legislationStatusCode ) {
-        XPlanCodeLists xPlanCodeLists = XPlanCodeLists.get( archive.getVersion() );
+        XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get( archive.getVersion() );
         String codeListId = findCodeListId( fc.getType() );
         try {
             return xPlanCodeLists.getDescription( codeListId, Integer.toString( legislationStatusCode ) );

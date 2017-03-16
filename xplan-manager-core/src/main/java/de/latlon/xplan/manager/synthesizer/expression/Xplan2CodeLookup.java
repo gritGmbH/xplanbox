@@ -4,7 +4,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersion;
 import static de.latlon.xplan.manager.codelists.XPlanCodeConverter.xplan2ToSynCode;
-import static de.latlon.xplan.manager.codelists.XPlanCodeLists.getXPlanSyn;
+import static de.latlon.xplan.manager.codelists.XPlanCodeListsFactory.getXPlanSyn;
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimitiveValue;
 

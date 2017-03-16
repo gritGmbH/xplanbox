@@ -72,11 +72,11 @@ public class XPlan2CodeTranslation {
 
     @Override
     public String toString() {
-        String s = XPlanCodeLists.getXPlan2().getDescription( xplan2CodeList, xplan2Code ) + " (" + xplan2Code
-                   + ") -> " + XPlanCodeLists.getXPlanSyn().getDescription( xplanSynCodeList, xplanSynCode )
+        String s = XPlanCodeListsFactory.getXPlan2().getDescription( xplan2CodeList, xplan2Code ) + " (" + xplan2Code
+                   + ") -> " + XPlanCodeListsFactory.getXPlanSyn().getDescription( xplanSynCodeList, xplanSynCode )
                    + " (" + xplanSynCode + ")";
         if ( xplanSynExtCode != null ) {
-            s += ", " + XPlanCodeLists.getXPlanSyn().getDescription( xplanSynExtCodeList, xplanSynExtCode )
+            s += ", " + XPlanCodeListsFactory.getXPlanSyn().getDescription( xplanSynExtCodeList, xplanSynExtCode )
                  + " (" + xplanSynExtCode + "), ext list:  " + xplanSynExtCodeList;
         }
         return s;
