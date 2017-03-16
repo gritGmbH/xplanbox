@@ -15,6 +15,8 @@ import org.deegree.gml.GMLInputFactory;
 import org.deegree.gml.GMLStreamReader;
 import org.deegree.gml.dictionary.Definition;
 import org.deegree.gml.dictionary.Dictionary;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Encapsulates the internal or external code lists for one XPlan schema.
@@ -24,6 +26,8 @@ import org.deegree.gml.dictionary.Dictionary;
  * @version $Revision: 940 $, $Date: 2010-02-11 15:24:52 +0100 (Do, 11 Feb 2010) $
  */
 public class XPlanCodeLists {
+
+    private static final Logger LOG = LoggerFactory.getLogger( XPlanCodeLists.class );
 
     private Dictionary codeLists;
 
@@ -115,7 +119,7 @@ public class XPlanCodeLists {
      * @param codeListIdToReverseMapping
      */
     XPlanCodeLists( Map<String, Map<String, String>> codeListIdToMapping,
-                           Map<String, Map<String, String>> codeListIdToReverseMapping ) {
+                    Map<String, Map<String, String>> codeListIdToReverseMapping ) {
         this.codeListIdToMapping = codeListIdToMapping;
         this.codeListIdToReverseMapping = codeListIdToReverseMapping;
     }
@@ -178,7 +182,8 @@ public class XPlanCodeLists {
      * @return
      */
     public String getDescription( String codeListId, String code ) {
-        Map<String, String> codeToDesc = codeListIdToMapping.get( codeListId );
+        String codeListIdToUse = checkCodeListIdForNull( codeListId );
+        Map<String, String> codeToDesc = codeListIdToMapping.get( codeListIdToUse );
         if ( codeToDesc == null ) {
             throw new IllegalArgumentException( "Unbekannte CodeList '" + codeListId + "'." );
         }
@@ -196,7 +201,8 @@ public class XPlanCodeLists {
      * @return
      */
     public String getCode( String codeListId, String description ) {
-        Map<String, String> codeToDesc = codeListIdToReverseMapping.get( codeListId );
+        String codeListIdToUse = checkCodeListIdForNull( codeListId );
+        Map<String, String> codeToDesc = codeListIdToReverseMapping.get( codeListIdToUse );
         if ( codeToDesc == null ) {
             throw new IllegalArgumentException( "Unbekannte CodeList '" + codeListId + "'." );
         }
@@ -220,6 +226,19 @@ public class XPlanCodeLists {
      */
     public Map<String, Map<String, String>> getDescriptionsToCodes() {
         return codeListIdToReverseMapping;
+    }
+
+    private String checkCodeListIdForNull( String codeListId ) {
+        if ( codeListId != null ) {
+            return codeListId;
+        }
+        if ( codeListIdToMapping.size() == 0 )
+            LOG.warn( "Code list is empty!" );
+        else if ( codeListIdToMapping.size() == 1 )
+            return codeListIdToMapping.keySet().iterator().next();
+        else
+            LOG.warn( "XPlanCodeLists contains multiple codelists!" );
+        return null;
     }
 
 }
