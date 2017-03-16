@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gml:Dictionary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" gml:id="xplan_XP_BesondereArtDerBaulNutzung"
+                xmlns:gml="http://www.opengis.net/gml" xsi:schemaLocation="http://www.opengis.net/gml http://schemas.opengis.net/gml/3.0.1/base/dictionary.xsd">
+  <gml:name>xplan:XP_BesondereArtDerBaulNutzung</gml:name>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="id_1100">
+      <gml:description>Art1</gml:description>
+      <gml:name codeSpace="www.lat-lon/test/4.1/0">1100</gml:name>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="id_1200">
+      <gml:description>Art12</gml:description>
+      <gml:name codeSpace="www.lat-lon/test/4.1/0">1200</gml:name>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="id_1300">
+      <gml:description>Art3</gml:description>
+      <gml:name codeSpace="www.lat-lon/test/4.1/0">1300</gml:name>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+</gml:Dictionary>
