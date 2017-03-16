@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import de.latlon.xplan.commons.XPlanVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +25,7 @@ public class XPlanCodeConverter {
 
     // key: name of internal XPlan 2 code list, value: name of corresponding internal XPlan Syn code list
     private static final Map<String, String> xp2ToSynCodeList =
-          buildCodeListMapping( XPlanCodeListsFactory.getXPlan2(),
+          buildCodeListMapping( XPlanCodeListsFactory.get( XPlanVersion.XPLAN_2 ),
                                 "/codelists/xp2codelists.rules" );
 
     // key: name of external XPlan 2 code list, value: name of corresponding external XPlan Syn code list
@@ -96,7 +97,7 @@ public class XPlanCodeConverter {
                     } else {
                         String[] parts = line.split( "->" );
                         String xplan2Desc = parts[0];
-                        String xplan2Code = XPlanCodeListsFactory.getXPlan2().getCode( xp2CodeListId, xplan2Desc );
+                        String xplan2Code = XPlanCodeListsFactory.get( XPlanVersion.XPLAN_2 ).getCode( xp2CodeListId, xplan2Desc );
                         String[] xplanSynDesc = parts[1].split( "," );
                         String xplanSynCode;
                         if ( xplanSynDesc[0].startsWith( "XP2_" ) ) {
@@ -151,8 +152,8 @@ public class XPlanCodeConverter {
                 xp2CodeListToRules.put( xp2CodeList, mapping );
             }
 
-            Map<String, String> xp2CodesAndDesc = XPlanCodeListsFactory.getXPlan2().getCodesToDescriptions()
-                  .get( xp2CodeList );
+            Map<String, String> xp2CodesAndDesc = XPlanCodeListsFactory.get( XPlanVersion.XPLAN_2 ).getCodesToDescriptions()
+                                                                       .get( xp2CodeList );
             for ( Entry<String, String> xplan2CodeAndDesc : xp2CodesAndDesc.entrySet() ) {
                 String xplan2Code = xplan2CodeAndDesc.getKey();
                 String xplan2Desc = xplan2CodeAndDesc.getValue();
