@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplanbox</artifactId>
@@ -684,49 +685,44 @@
   </dependencyManagement>
 
   <scm>
-    <connection>scm:git:git@github.com:deegree-enterprise/xplanbox.git</connection>
-    <developerConnection>scm:git:git@github.com:deegree-enterprise/xplanbox.git</developerConnection>
-    <url>https://github.com/deegree-enterprise/xplanbox</url>
+    <connection>scm:git:http://criador.lat-lon:8080/scm/git/xplanbox</connection>
+    <developerConnection>scm:git:http://criador.lat-lon:8080/scm/git/xplanbox</developerConnection>
+    <url>http://criador.lat-lon:8080/scm/git/xplanbox</url>
     <tag>HEAD</tag>
   </scm>
 
   <repositories>
     <repository>
-      <id>dee</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/groups/dee/</url>
-      <releases>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
+      <id>latlon-repository</id>
+      <url>http://repo.lat-lon/nexus/content/groups/public/</url>
+    </repository>
+    <repository>
+      <id>xplanbox-release</id>
+      <url>http://repo.lat-lon/nexus/content/repositories/xplanbox-release/</url>
+    </repository>
+    <repository>
+      <id>xplanbox-snapshot</id>
+      <url>http://repo.lat-lon/nexus/content/repositories/xplanbox-snapshot/</url>
     </repository>
   </repositories>
 
-  <distributionManagement>
-    <repository>
-      <id>dee-releases</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/repositories/dee-releases/</url>
-    </repository>
-    <snapshotRepository>
-      <id>dee-snapshots</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/repositories/dee-snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
-
   <pluginRepositories>
     <pluginRepository>
-      <id>dee</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/groups/dee/</url>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
+      <id>latlon-plugin-repository</id>
+      <url>http://repo.lat-lon/nexus/content/groups/public/</url>
     </pluginRepository>
   </pluginRepositories>
+
+  <distributionManagement>
+    <repository>
+      <id>xplanbox-release</id>
+      <url>http://repo.lat-lon/nexus/content/repositories/xplanbox-release/</url>
+    </repository>
+    <snapshotRepository>
+      <id>xplanbox-snapshot</id>
+      <url>http://repo.lat-lon/nexus/content/repositories/xplanbox-snapshot/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <licenses>
     <license>
