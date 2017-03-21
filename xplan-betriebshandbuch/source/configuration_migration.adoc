@@ -1,0 +1,130 @@
+== Migration der Anwendung (Beispiele)
+
+
+Bei einem Hostumzug, bei dem sich der Hostname des Servers ändert, muss
+die URL in mehreren Konfigurationen angepasst werden, damit die
+Funktionalität der Anwendungen gewährleistet ist. Dabei müssen folgende
+Anpassungen erfolgen:
+
+[[fuer-die-planungs-portale]]
+=== Für die Planungs-Portale:
+
+
+____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+* __layer[B|F|L]Plan.xml__, __layer[B|F|L]PlanWFS.xml__,
+_layer[B|F|L]PRaster.xml_ und _featureHitsRetriever[B|F|L]P.xml_ (in der
+jeweiligen jar-Datei der XPlanPortal-Webkomponenten
+__.deegree/portal-configuration/<portal>-config.jar__)
+* _dropDownList.xml_ (im Ordner der jeweiligen XPlanPortal-Webkomponente
+__<tomcat>/webapps/<portal-portalname>__)
+____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+*Anpassung in den Dateien layer[B|F|L]Plan.xml, layer[B|F|L]PlanWFS.xml,
+layer[B|F|L]PRaster.xml und featureHitsRetriever[B|F|L]P.xml:*
+
+Für die Planungs-Portale müssen in den genannten Dateien alle Werte der
+Properties _baseWmsUrl_ (layer[B|F|L]Plan.xml und
+layer[B|F|L]PRaster.xml) bzw. _values_ (layer[B|F|L]PlanWFS.xml) und
+_wfsRequestUrlForBboxFeatureHits_ (featureHitsRetriever[B|F|L]P.xml),
+die einen der deegree Dienste referenzieren, angepasst werden.
+
+Beispiel __layerBPlan.xml__:
+
+----
+...
+<bean name="bp_plan" class="de.latlon.xplanung.layer.wms.XPlanWmsLayer">
+    <property name="layerInfo" ref="layer_bp_plan_ref" />
+    <property name="baseWmsUrl" value="http://<host>:<port>/<service>/service/wms?" />
+    <property name="version" value="1.1.1" />
+...
+----
+
+Für mehr Details sowie Hinweise zur Bearbeitung von jar-Dateien siehe
+Kapitel link:../portale/index.adoc[XPlanPortal]
+
+*Anpassungen in der Datei dropDownList.xml:*
+
+Damit ein Wechsel zwischen den Planungs-Portalen über die Dropdown Liste
+möglich ist, muss die <link>-Referenz der jeweiligen Portale angepasst
+werden.
+
+----
+<List>
+  <entry>
+    <label>Bebauungspläne</label>
+    <link>http://<host>:<port>/portal-<portalname>/</link>
+  </entry>
+  ...
+</List>
+----
+
+Für mehr Details siehe Kapitel link:../portale/index.adoc[XPlanPortal]
+
+[[fuer-den-xplanmanager]]
+=== Für den XPlanManager:
+
+
+________________________________________________________________________________________________________________________
+* _managerWebConfiguration.properties_ (im Verzeichnis
+_.deegree/manager-configuration_ im Home-Verzeichnis des Nutzers)
+* _managerConfiguration.properties_ (im Verzeichnis
+_.deegree/manager-configuration_ im Home-Verzeichnis des Nutzers)
+________________________________________________________________________________________________________________________
+
+*Anpassungen in der Datei managerWebConfiguration.properties:*
+
+In dieser Datei müssen Anpassungen an der URL erfolgen, damit die
+Kartenvorschau im XPlanManager funktioniert. Dazu muss der Wert des
+Schlüssels _wmsUrl_ angepasst werden.
+
+----
+wmsUrl=http://<host>:<port>/xplan-wms/services
+----
+
+Für mehr Details siehe Kapitel link:../mappreview/index.adoc[Kartenvorschau]
+
+*Anpassungen in der Datei managerConfiguration.properties:*
+
+Für einen Workspace-Reload, muss der XPlanManager den deegree-Dienst
+erreichen können. Es muss daher der Wert des Schlüssels
+_workspaceReloadUrls_ angepasst werden
+
+----
+#workspace reloader configuration
+workspaceReloadUrls=http://<host>:<port>/<service>/
+workspaceReloadUser=<user>
+workspaceReloadPassword=<passwort>
+----
+
+
+
+NOTE: Werden der deegree-Dienst und der XPlanmanager auf dem selben Server
+betrieben, so können die Dienste über den Hostnamen _localhost_
+kommunizieren.
+
+
+Für mehr Details siehe Kapitel
+link:../workspacereload[Automatischer Workspace-Reload]
+
+[[fuer-den-xplanwms]]
+=== Für den XPlanWMS:
+
+
+__________________________________________________________________________________
+* _html.gfi_ (im Verzeichnis _.deegree/xplansyn-wms-workspace_ unter
+__services__)
+__________________________________________________________________________________
+
+*Anpassungen in der Datei html.gfi:*
+
+Damit die Links auf Dokumente in der GetFeatureInfo Ausgabe
+funktionsfähig ist, muss eine Anpassung der URL in der Datei _html.gfi_
+erfolgen.
+
+----
+<?template makeitalink>
+<tr>
+  <td <?odd:maybegray>><?name:map propname></td>
+  <td <?odd:maybegray>><?link:http://<host>:<port>/<service>:Dokument herunterladen></td>
+</tr>
+----

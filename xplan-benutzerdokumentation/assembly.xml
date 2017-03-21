@@ -12,7 +12,7 @@
       <outputDirectory>/userdocumentation</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>${project.build.directory}/latex/</directory>
+      <directory>target/pdf</directory>
       <outputDirectory>/userdocumentation</outputDirectory>
       <includes>
         <include>*.pdf</include>
