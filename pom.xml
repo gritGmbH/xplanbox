@@ -21,8 +21,8 @@
     <geomajas-dep-version>1.13.12-latlon-SNAPSHOT</geomajas-dep-version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.version>3.2.8.RELEASE</spring.version>
-    <spring.security.version>3.2.4.RELEASE</spring.security.version>
+    <spring.version>3.2.18.RELEASE</spring.version>
+    <spring.security.version>3.2.10.RELEASE</spring.security.version>
   </properties>
 
   <prerequisites>
