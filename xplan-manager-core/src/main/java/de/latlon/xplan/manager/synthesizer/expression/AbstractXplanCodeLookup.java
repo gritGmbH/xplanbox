@@ -3,10 +3,13 @@ package de.latlon.xplan.manager.synthesizer.expression;
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimitiveValue;
 
+import java.util.List;
+
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.property.GenericProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +45,7 @@ public abstract class AbstractXplanCodeLookup implements Expression {
             if ( codes != null ) {
                 translation = "";
                 for ( TypedObjectNode o : codes.getElements() ) {
-                    String code = o.toString();
+                    String code = toString( o );
                     String desc = xPlanCodeLists.getDescription( codeListName, code );
                     translation += "[" + escape( desc ) + "]";
                 }
@@ -65,4 +68,12 @@ public abstract class AbstractXplanCodeLookup implements Expression {
         return desc.replace( "][", "][][" );
     }
 
+    private String toString( TypedObjectNode o ) {
+        if ( o instanceof GenericProperty   ) {
+            TypedObjectNode value = ( (GenericProperty) o ).getValue();
+            return value.toString();
+        }
+        return o.toString();
+    }
+    
 }

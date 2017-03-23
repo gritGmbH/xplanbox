@@ -22,7 +22,6 @@ import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import de.latlon.xplan.ResourceAccessor;
@@ -125,21 +124,11 @@ public class XPlanSynthesizerTest {
         FeatureCollection synthesizedFeatures = xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
 
         assertThat( xPlanSynthesizer.getRules().size(), is( 7884 ) );
-        Iterator<Feature> it = synthesizedFeatures.iterator();
-        while ( it.hasNext() ) {
-            Feature feature = it.next();
-            if ( "BP_BaugebietsTeilFlaeche".equals( feature.getName().getLocalPart() ) ) {
-                List<Property> properties = feature.getProperties( new QName( feature.getName().getNamespaceURI(),
-                                                                              "besondereArtDerBaulNutzung" ) );
 
-                assertThat( properties.get( 0 ).getValue().toString(),
-                            anyOf( is( "Art2" ), is( "" ) ) );
-            }
-
-        }
+        String firstPropertyValue = valueOfFirstProperty( synthesizedFeatures, "BP_BaugebietsTeilFlaeche", "besondereArtDerBaulNutzung" );
+        assertThat( firstPropertyValue, is("Art2") );
     }
 
-    @Ignore
     @Test
     public void testSynthesize_Synthesize_Codelist_BP_DetailArtDerBaulNutzung()
                             throws Exception {
@@ -152,18 +141,9 @@ public class XPlanSynthesizerTest {
         FeatureCollection synthesizedFeatures = xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
 
         assertThat( xPlanSynthesizer.getRules().size(), is( 7884 ) );
-        Iterator<Feature> it = synthesizedFeatures.iterator();
-        while ( it.hasNext() ) {
-            Feature feature = it.next();
-            if ( "BP_BaugebietsTeilFlaeche".equals( feature.getName().getLocalPart() ) ) {
-                List<Property> properties = feature.getProperties( new QName( feature.getName().getNamespaceURI(),
-                                                                              "detaillierteArtDerBaulNutzung" ) );
 
-                assertThat( properties.get( 0 ).getValue().toString(),
-                            anyOf( is( "Wohngebiet11" ), is( "" ) ) );
-            }
-
-        }
+        String firstPropertyValue = valueOfFirstProperty( synthesizedFeatures, "BP_BaugebietsTeilFlaeche", "detaillierteArtDerBaulNutzung" );
+        assertThat( firstPropertyValue, is("Wohngebiet11") );
     }
 
     private XPlanFeatureCollection parseFeatureCollection( XPlanArchive archive )
@@ -216,6 +196,21 @@ public class XPlanSynthesizerTest {
     private Path createTmpDirectory()
                             throws IOException {
         return Files.createTempDirectory( "configDirectory" );
+    }
+
+    private String valueOfFirstProperty( FeatureCollection synthesizedFeatures, String featureType, String propertyName ) {
+        Iterator<Feature> it = synthesizedFeatures.iterator();
+        while ( it.hasNext() ) {
+            Feature feature = it.next();
+            if ( featureType.equals( feature.getName().getLocalPart() ) ) {
+                List<Property> properties = feature.getProperties( new QName( feature.getName().getNamespaceURI(),
+                                                                              propertyName) );
+
+                    return properties.get( 0 ).getValue().toString();
+            }
+
+        }
+        return null;
     }
 
 }
