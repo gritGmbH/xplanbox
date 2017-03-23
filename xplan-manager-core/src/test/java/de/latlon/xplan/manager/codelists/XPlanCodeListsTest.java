@@ -74,7 +74,7 @@ public class XPlanCodeListsTest {
     @Test
     public void testParseNew()
                             throws Exception {
-        URL codeListFile = XPlanCodeListsTest.class.getResource( "../synthesizer/XP_BesondereArtDerBaulNutzung_neu.xml" );
+        URL codeListFile = XPlanCodeListsTest.class.getResource( "../synthesizer/xplan_XP_BesondereArtDerBaulNutzung.xml" );
         XPlanCodeLists codeLists = new XPlanCodeLists( codeListFile );
 
         Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
