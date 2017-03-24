@@ -1,7 +1,6 @@
 :doctype: book
 :encoding: utf-8
 :toc: macro
-:toclevels: 3
 :numbered:
 
 
@@ -22,6 +21,10 @@ include::wms.adoc[]
 include::wfs.adoc[]
 
 include::synwfs.adoc[]
+
+include::manager.adoc[]
+
+include::validator.adoc[]
 
 include::known-bugs.adoc[]
 

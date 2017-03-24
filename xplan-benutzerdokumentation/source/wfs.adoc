@@ -94,7 +94,7 @@ http://<host>:<port>/xplan-wfs/services/dls?request=DescribeFeatureType&Service=
 
 
 [[operationen]]
-==== Operationen
+=== Operationen
 
 
 Das folgende Kapitel beschreibt die Operationen, die mit dem XPlanWFS

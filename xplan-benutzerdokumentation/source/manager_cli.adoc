@@ -1,4 +1,4 @@
-== XPlanManager CLI
+=== XPlanManager CLI
 
 
 Die Komponente XPlanManager CLI ist ein Kommandozeilenwerkzeug, welches
@@ -9,7 +9,7 @@ Listenausgaben zu erzeugen sowie eingebettete Rasterpläne zu
 importieren.
 
 [[benutzungsanleitung]]
-=== Benutzungsanleitung
+==== Benutzungsanleitung
 
 
 Beim XPlanManager CLI handelt es ich um ein Kommandozeilentool, das
@@ -18,7 +18,7 @@ in die PATH Variable aufgenommen wird, ist diese von einem beliebigen
 Ort aufrufbar.
 
 [[konfiguration-ueber-datei]]
-==== Konfiguration über Datei
+===== Konfiguration über Datei
 
 
 In dem Verzeichnis _<manager-cli-directory>/etc/_ befindet sich die
@@ -42,7 +42,7 @@ Falls dieser Parameter nicht gesetzt oder leer ist, wird eine default
 Bounding-Box genutzt, welche die gesamte Welt abdeckt.
 
 [[hilfe]]
-==== Hilfe
+===== Hilfe
 
 
 Die Hilfe mit den Angaben zu den möglichen Eingabeparametern lässt sich
@@ -84,8 +84,7 @@ Raster-Operationen:
 ----
 
 [[auflistung]]
-Auflistung
-~~~~~~~~~~
+===== Auflistung
 
 Der _-list_ Parameter gibt die Liste der geladenen Pläne aus.
 
@@ -112,7 +111,7 @@ Id: 12, Version: XPLAN_3, Typ: BP_Plan, Name: Bebauungsplan LA 22, Nummer: LA 22
 ----
 
 [[import]]
-==== Import
+===== Import
 
 
 Ein Import kann durch Angabe des _-import_ Parameters gefolgt vom Pfad
@@ -226,7 +225,7 @@ Plan wurde eingefügt. Zugewiesene Id: 13
 ----
 
 [[rasterdatenanalyse]]
-==== Rasterdatenanalyse
+===== Rasterdatenanalyse
 
 
 Die Rasterdaten können beim Import auf Nutzbarkeit überprüft werden,
@@ -273,7 +272,7 @@ Aufgrund invalider Rasterdaten wird der Import abgebrochen. Sie können den Impo
 ----
 
 [[bearbeitung-von-ebenenbaeumen]]
-==== Bearbeitung von Ebenenbäumen
+===== Bearbeitung von Ebenenbäumen
 
 
 Die Bearbeitung von Ebenenbäumen wird als Erweiterung des XPlanManagers
@@ -323,7 +322,7 @@ XPlanManager -movelayer <bplan|rplan|fplan|lplan> <layername> <categoryname>
 ----
 
 [[export]]
-==== Export
+===== Export
 
 
 Der Export eines Planes erfolgt unter Angabe des _-export_ Parameters
@@ -346,7 +345,7 @@ Plan 9 wurde nach 'xplan-exported-9.zip' exportiert.
 ----
 
 [[loeschen]]
-==== Löschen
+===== Löschen
 
 
 Beim Löschen wird dem _-delete_ Parameter die PlanID (kann zuvor mit
@@ -371,7 +370,7 @@ Plan 1 wurde gelöscht.
 ----
 
 [[alternativer-betriebsmodus]]
-==== Alternativer Betriebsmodus
+===== Alternativer Betriebsmodus
 
 
 Alternativ zum normalen Import von Plänen bietet der XPlanManager die
@@ -453,7 +452,7 @@ XPlanManager -deletewithconfig 1
 ----
 
 [[troubleshooting]]
-==== Troubleshooting
+===== Troubleshooting
 
 
 Beim Import sehr großer Archive, kann es zu einem _OutOfMemoryError_

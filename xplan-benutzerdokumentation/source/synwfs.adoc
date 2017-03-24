@@ -70,7 +70,7 @@ http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=DescribeFeatureTy
 
 
 [[operationen]]
-==== Operationen
+=== Operationen
 
 
 Das folgende Kapitel beschreibt die Operationen, die mit dem XPlanSynWFS

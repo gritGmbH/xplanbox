@@ -1,4 +1,4 @@
-== XPlanValidator CLI
+=== XPlanValidator CLI
 
 
 Die Komponente XPlanValidator CLI ist ein Kommandozeilenwerkzeug,
@@ -6,7 +6,7 @@ welches dem Fachadministrator der xPlanBox ermöglicht, XPlanGML
 Instanzdokumente vor dem Import zu validieren.
 
 [[benutzungsanleitung]]
-=== Benutzungsanleitung
+==== Benutzungsanleitung
 
 
 Beim XPlanValidator CLI handelt es ich um ein Kommandozeilentool, das
@@ -15,7 +15,7 @@ in die PATH Variable aufgenommen wird, ist diese von einem beliebigen
 Ort aufrufbar.
 
 [[konfiguration-ueber-datei]]
-==== Konfiguration über Datei
+===== Konfiguration über Datei
 
 
 In dem Verzeichnis _<validator-cli-directory>/etc/_ befindet sich die
@@ -33,7 +33,7 @@ wo die Reports mit dem Validierungsergebnis, die während der Ausführung
 des Tools generiert werden, abgespeichert werden sollen.
 
 [[auswahl-planarchiv]]
-==== Auswahl Planarchiv
+===== Auswahl Planarchiv
 
 
 Über den Parameter _-validate <planarchiv>_ kann der Pfad zu dem
@@ -48,7 +48,7 @@ XPlanValidator -validate Plan.zip
 ----
 
 [[bezeichnung-der-validation]]
-==== Bezeichnung der Validation
+===== Bezeichnung der Validation
 
 
 Über den Parameter _-name <bezeichnung>_ kann dem Validationsdurchlauf
@@ -62,7 +62,7 @@ XPlanValidator -name Validierung
 ----
 
 [[validierungsart]]
-==== Validierungsart
+===== Validierungsart
 
 
 Die Kommandozeilenschnittstelle des XPlanValidator kann zur Auswahl der
@@ -117,7 +117,7 @@ Fortsetzung trotz Geometrie-Fehlern (--force).
 ----
 
 [[validierungsoption]]
-==== Validierungsoption
+===== Validierungsoption
 
 
 Die Kommandozeilenschnittstelle des XPlanValidator kann zur Auswahl von
@@ -139,7 +139,7 @@ Zuordnung der Werte:
   * ignore-xp -> Präsentationsobjekte ignorieren [ja]
 
 [[validierungsergebnis]]
-==== Validierungsergebnis
+===== Validierungsergebnis
 
 
 Am Ende des Validierungsdurchlaufs wird dem Benutzer der Pfad zu dem

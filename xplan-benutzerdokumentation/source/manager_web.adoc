@@ -1,4 +1,4 @@
-== XPlanManager Web
+=== XPlanManager Web
 
 
 Die Komponente XPlanManager Web ist eine Web-Oberfläche, die dem
@@ -9,7 +9,7 @@ Instanzdokumente in die Datenhaltung zu Laden, zu Löschen sowie
 importiere Pläne in einer Liste anzuzeigen.
 
 [[benutzungsanleitung]]
-=== Benutzungsanleitung
+==== Benutzungsanleitung
 
 
 Die Webanwendung XPlanManager dient der Verwaltung von XPlanGML
@@ -23,14 +23,14 @@ http://<host>:<port>/xplanmanager/
 verfügbar.
 
 [[hilfe]]
-==== Hilfe
+===== Hilfe
 
 
 Die Hilfe mit den Angaben zu den möglichen Funktionen lässt sich durch
 Betätigen des Buttons _Hilfe_ ausgeben.
 
 [[hinzufuegen]]
-==== Hinzufügen
+===== Hinzufügen
 
 
 Vor dem Importieren eines XPlanGML Instanzdokumentes in die Datenbasis,
@@ -46,7 +46,7 @@ validiert wurde, kann der Plan in die Datenbasis importiert werden.
 Andernfalls ist der Button _Import_ deaktiviert.
 
 [[import]]
-==== Import
+===== Import
 
 
 Nachdem der Plan erfolgreich validiert wurde, kann der Plan durch einen
@@ -55,7 +55,7 @@ Benutzer wird über den erfolgreichen bzw. fehlerhaften Import des Plans
 in Form eines PopUps informiert.
 
 [[auflistung]]
-==== Auflistung
+===== Auflistung
 
 
 Standardmäßig werden alle importierten Pläne in einer Liste angezeigt.
@@ -65,7 +65,7 @@ __Veröffentlichungsdatum__, dem _Importdatum_ oder nach dem _Planstatus_
 auf- oder absteigend sortiert werden.
 
 [[kartenvorschau]]
-==== Kartenvorschau
+===== Kartenvorschau
 
 
 Durch den Klick auf den Button _Kartenvorschau_ öffnet sich ein neues
@@ -74,7 +74,7 @@ eine OpenStreetMap Karte. Durch den Klick auf _Schließen_ wird die
 Kartenvorschau wieder geschlossen.
 
 [[herunterladen]]
-==== Herunterladen
+===== Herunterladen
 
 
 Die importierten Pläne können vom Benutzer durch den Klick auf den
@@ -89,7 +89,7 @@ auf den Button _Löschen_ aus der Datenbasis gelöscht werden. Hat ein
 Benutzer keine Rechte, so wird der Button grau dargestellt.
 
 [[editieren]]
-==== Editieren
+===== Editieren
 
 
 Abhängig von den Benutzerrechten können Pläne editiert

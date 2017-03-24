@@ -1,4 +1,4 @@
-== XPlanValidator Web
+=== XPlanValidator Web
 
 
 Die Komponente XPlanValidator Web ist eine Web-Oberfläche, welche dem
@@ -7,7 +7,7 @@ validieren. Der XPlanValidator Web ist auf dem Kommandozeilenwerkzeug
 aufgebaut.
 
 [[benutzungsanleitung]]
-=== Benutzungsanleitung
+==== Benutzungsanleitung
 
 
 Die Webanwendung XPlanValidator dient der Validierung von XPlanGML und
@@ -21,7 +21,7 @@ http://<host>:<port>/xplanvalidator/
 verfügbar.
 
 [[hinzufuegen]]
-==== Hinzufügen
+===== Hinzufügen
 
 
 Das Planarchiv kann über den Button _Durchsuchen_ ausgewählt und über
@@ -32,14 +32,14 @@ Der Benutzer erhält einen Hinweis, dass der Plan in die Web-Anwendung
 geladen wurde.
 
 [[bezeichnung-der-validation]]
-==== Bezeichnung der Validation
+===== Bezeichnung der Validation
 
 
 Für jede Validation kann eine Bezeichnung vergeben werden, sodass der
 Durchlauf zu einem späterem Zeitpunkt eindeutig zugeordnet werden kann.
 
 [[validierungsart]]
-==== Validierungsart
+===== Validierungsart
 
 
 Die folgenden Validierungsarten können über ein Menü ausgewählt
@@ -51,7 +51,7 @@ werden:
 Die Auswahl ist obligatorisch.
 
 [[validierungsoption]]
-==== Validierungsoption
+===== Validierungsoption
 
 
 Die folgenden Validierungsoptionen können über den Button _weitere
@@ -66,7 +66,7 @@ Die Änderungen können über den Button _Speichern_ für den aktuellen
 Validationsdurchlauf gespeichert werden. Die Auswahl ist optional.
 
 [[validierung]]
-==== Validierung
+===== Validierung
 
 
 Die Validation kann über den Button _Validierung starten_ gestartet
