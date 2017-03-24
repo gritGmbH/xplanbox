@@ -72,6 +72,18 @@ Dies gilt für jeden Plan-Typ einzeln: Für die URL für BPläne muss z.B.
 mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens
 ein FPlan mit Rasterdaten.
 
+
+=== Alternativer Betriebsmodus (XPlanManager CLI) - Nutzung falscher Bibliotheken kann beim Import eines Plans zu fehlerhaft erzeugter Konfiguration führen
+
+Für die Erzeugung der deegree Konfigurationsdateien im alternativen Betriebsmodus muss zwingend die Bibliothek Apache Xalan 2.7.1 verwendet werden.
+Zusätzlich muss sichergestellt sein, dass im Java Classpath des Prozesses, der den XPlanManager CLI aufruft, keine anderen JAXP (SAX/DOM) Implementierungen vorhanden sind als Saxon-HE-9.4.jar und xalan-2.7.1.jar.
+
+Falls diese Voraussetzungen nicht erfüllt werden, können die erzeugten deegree Konfigurationsdateien für Layer und Themes leere XML Namespace Attribute in Form von xmlns="" aufweisen.
+Diese Konfigurationsdateien können nicht von deegree geparst werden.
+
+Wenn die die leeren XML Namespace Attribute manuell entfernt werden, ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
+
+
 [[fehler-melden]]
 == Fehler melden
 
