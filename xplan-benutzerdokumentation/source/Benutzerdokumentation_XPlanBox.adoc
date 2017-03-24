@@ -2,9 +2,7 @@
 :encoding: utf-8
 :toc: macro
 :numbered:
-
-
-
+:toc-title: Inhaltsverzeichnis
 
 = Benutzerdokumentation für die xPlanBox
 
