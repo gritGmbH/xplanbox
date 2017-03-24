@@ -1,4 +1,4 @@
-== Anwendung starten
+=== Anwendung starten
 
 
 Zum Start der Webanwendungen muss das Start-Skript der

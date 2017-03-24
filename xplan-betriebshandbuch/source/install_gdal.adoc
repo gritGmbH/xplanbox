@@ -1,4 +1,4 @@
-== Installation und Konfiguration von GDAL
+=== Installation und Konfiguration von GDAL
 
 
 Die xPlanBox unterstützt die Darstellung von Rasterdaten mittels
@@ -17,7 +17,7 @@ getrennten Tomcat Instanzen deployt werden.
 
 
 [[linux]]
-=== Linux
+==== Linux
 
 
 Für Ubuntu (14.04) kann GDAL aus einer Paketquelle installiert werden:
@@ -41,7 +41,7 @@ zeigen, in dem sich die Datei libgdaljni.so befindet.
 
 
 [[windows]]
-=== Windows
+==== Windows
 
 
 GDAL für Windows kann bei http://www.gisinternals.com/[GISInternals]

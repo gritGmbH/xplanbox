@@ -1,4 +1,4 @@
-== XPlanPortal
+=== XPlanPortal
 
 
 Alle Konfigurationsdateien der XPlanPortale liegen im _.deegree_ des
@@ -8,7 +8,7 @@ geomajas Dokumentation (http://geomajas.org/gis-documentation)
 verwiesen.
 
 [[wms-ebene-hinzufuegen]]
-=== WMS-Ebene hinzufügen
+==== WMS-Ebene hinzufügen
 
 
 Um eine neue WMS-Ebene hinzuzufügen, muss diese im entsprechenden
@@ -95,7 +95,7 @@ Hinzufügen der Ebene zur Karte
 ----
 
 [[zeichenreihenfolge-der-layer-im-kartenfenster-aendern]]
-=== Zeichenreihenfolge der Layer im Kartenfenster ändern
+==== Zeichenreihenfolge der Layer im Kartenfenster ändern
 
 
 Um die Zeichenreihenfolge der Layer in der Ebenenübersicht im
@@ -123,7 +123,7 @@ Zeichenreihenfolge:
 ----
 
 [[statische-legenden-zu-einer-wms-ebene-hinzufuegen]]
-=== Statische Legenden zu einer WMS-Ebene hinzufügen
+==== Statische Legenden zu einer WMS-Ebene hinzufügen
 
 
 Für alle WMS-Ebenen kann ein statisches Legendenbild konfiguriert
@@ -186,7 +186,7 @@ ausgeführt werden:
 ====
 
 [[dropdown-menue-zum-wechseln-der-portale-anpassen]]
-=== Dropdown-Menü zum wechseln der Portale anpassen
+==== Dropdown-Menü zum wechseln der Portale anpassen
 
 
 Innerhalb der Planungs-Portale ist es möglich, mit einem Dropdown-Menü

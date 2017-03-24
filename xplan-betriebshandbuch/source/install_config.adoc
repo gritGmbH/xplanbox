@@ -1,4 +1,4 @@
-== Konfiguration der Applikationsserver
+=== Konfiguration der Applikationsserver
 
 
 Wie im Abschnitt link:install_install.adoc[Installation] beschrieben,
@@ -7,7 +7,7 @@ der _Dienste-Tomcat_ sowie __Anwendungs-Tomcat__. Im Folgenden wird die
 Konfiguration beider Tomcats beschrieben.
 
 [[anwendungs-tomcat]]
-=== Anwendungs-Tomcat
+==== Anwendungs-Tomcat
 
 
 Im Anwendungs-Tomcat müssen folgende Konfigurationen vorgenommen werden:
@@ -36,7 +36,7 @@ abgelegt.
 __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 [[linux]]
-==== Linux
+===== Linux
 
 
 Für die Konfiguration der oben genannten Punkte muss zunächst im
@@ -65,7 +65,7 @@ Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, müssen
 integriert werden.
 
 [[windows]]
-==== Windows
+===== Windows
 
 .  Für die Konfiguration der *XPlanPortale* wird im Verzeichnis
 _<tomcat-root>/conf_ die Datei mit dem Namen _catalina.properties_
@@ -98,7 +98,7 @@ JAVA_OPTS=``-Xmx4096m''_ erfolgen.
 
 
 [[dienste-tomcat]]
-=== Dienste-Tomcat
+==== Dienste-Tomcat
 
 
 Falls der XPlanManager nach jedem Einfügen und Löschen eines Plan den

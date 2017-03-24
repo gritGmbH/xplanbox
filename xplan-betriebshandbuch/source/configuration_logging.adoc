@@ -1,4 +1,4 @@
-== Logging
+=== Logging
 
 
 Die Anwendungen XPlanManager Web, XPlanManager CLI, XPlanValidator Web

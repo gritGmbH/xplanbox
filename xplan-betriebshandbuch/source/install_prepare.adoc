@@ -1,4 +1,4 @@
-== Vorbereitung der Installation
+=== Vorbereitung der Installation
 
 
 Nachdem die Datei heruntergeladen wurde, muss das ZIP-Archiv entpackt

@@ -1,4 +1,4 @@
-== LDAP
+=== LDAP
 
 
 Als LDAP Server wird Active Directory verwendet.
@@ -143,7 +143,7 @@ genutzt. Der nächste Absatz muss zwingend beachtet werden.
 ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 [[gruppenhierarchien]]
-=== Gruppenhierarchien
+==== Gruppenhierarchien
 
 
 Es können Gruppenhierarchien konfiguriert werden, um hierarchische

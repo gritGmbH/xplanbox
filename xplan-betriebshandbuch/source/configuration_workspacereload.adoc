@@ -1,4 +1,4 @@
-== Automatischer Workspace-Reload
+=== Automatischer Workspace-Reload
 
 
 Der XPlanManager kann nach jedem Import, jeder Aktualiserung und jedem

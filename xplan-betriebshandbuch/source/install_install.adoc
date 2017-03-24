@@ -1,8 +1,8 @@
-== Anwendung installieren
+=== Anwendung installieren
 
 
 [[konfiguration]]
-=== Konfiguration
+==== Konfiguration
 
 
 Die im Verzeichnis _config_ enthaltenen __zip__-Archive müssen in das
@@ -35,7 +35,7 @@ ______________________
 ______________________
 
 [[web-anwendungen]]
-=== Web-Anwendungen
+==== Web-Anwendungen
 
 
 Um das korrekte Zusammenarbeiten der verschiedenen im Abschnitt
@@ -76,7 +76,7 @@ NOTE: Da die Komponente XPlanResources eine Einstiegsseite bereit stellt, bietet
 
 
 [[kommandozeilen-anwendungen]]
-=== Kommandozeilen-Anwendungen
+==== Kommandozeilen-Anwendungen
 
 
 
@@ -87,7 +87,7 @@ _XPlanManager_ bzw. _XPlanValidator_.
 
 
 [[dokumentation]]
-=== Dokumentation
+==== Dokumentation
 
 
 Im Verzeichnis _doc_ findet sich eine gezippte Version der
@@ -95,7 +95,7 @@ Dokumentation. Dieses Archiv enthält die Benutzerdokumentation zu den
 Komponenten in den Formaten HTML und PDF.
 
 [[installation-über-ein-install-skript]]
-=== Installation über ein Install-Skript
+==== Installation über ein Install-Skript
 
 
 Das Ablegen bzw. der Austausch der Web-Archive sowie das Ablegen bzw.

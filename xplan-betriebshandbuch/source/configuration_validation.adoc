@@ -1,4 +1,4 @@
-== Weiterführende Informationen zur semantischen Validierung
+=== Weiterführende Informationen zur semantischen Validierung
 
 
 Bei der Ausgabe des Ergebnisses der semantischen Validerung kann eine

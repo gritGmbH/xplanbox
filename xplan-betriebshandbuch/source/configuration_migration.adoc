@@ -1,4 +1,4 @@
-== Migration der Anwendung (Beispiele)
+=== Migration der Anwendung (Beispiele)
 
 
 Bei einem Hostumzug, bei dem sich der Hostname des Servers ändert, muss
@@ -7,7 +7,7 @@ Funktionalität der Anwendungen gewährleistet ist. Dabei müssen folgende
 Anpassungen erfolgen:
 
 [[fuer-die-planungs-portale]]
-=== Für die Planungs-Portale:
+==== Für die Planungs-Portale:
 
 
 ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
@@ -61,7 +61,7 @@ werden.
 Für mehr Details siehe Kapitel link:../portale/index.adoc[XPlanPortal]
 
 [[fuer-den-xplanmanager]]
-=== Für den XPlanManager:
+==== Für den XPlanManager:
 
 
 ________________________________________________________________________________________________________________________
@@ -107,7 +107,7 @@ Für mehr Details siehe Kapitel
 link:../workspacereload[Automatischer Workspace-Reload]
 
 [[fuer-den-xplanwms]]
-=== Für den XPlanWMS:
+==== Für den XPlanWMS:
 
 
 __________________________________________________________________________________

@@ -1,4 +1,4 @@
-== Sortierung der Daten in der Visualisierung
+=== Sortierung der Daten in der Visualisierung
 
 
 Für die Sortierung von Plandaten im WMS nach einem Datumsfeld stehen

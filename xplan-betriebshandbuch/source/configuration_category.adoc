@@ -1,4 +1,4 @@
-== Kategorien
+=== Kategorien
 
 
 Die Kategorien, auf die ein Benutzer im XPlanManager Web filtern kann,
@@ -6,7 +6,7 @@ kann in der Datei _managerWebConfiguration.properties_ im Verzeichnis
 _~/.deegree/manager-configuration/_ konfiguriert werden.
 
 [[bezirke]]
-== Bezirke
+==== Bezirke
 
 
 Es besteht die Möglichkeit nach einzelnen Bezirken zu filtern: :
@@ -32,7 +32,7 @@ NOTE: Umlaute müssen codiert werden.
 
 
 [[ortsteile]]
-== Ortsteile
+==== Ortsteile
 
 
 Ortsteile können zusätzlich in der Datei

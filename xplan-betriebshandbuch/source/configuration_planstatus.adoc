@@ -1,4 +1,4 @@
-== Planstatus
+=== Planstatus
 
 
 Der Dialog zur Auswahl des Planstatus, in den ein Plan einsortiert

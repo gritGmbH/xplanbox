@@ -1,4 +1,4 @@
-== Editieren von Plänen
+=== Editieren von Plänen
 
 
 Die Möglichkeit Pläne zu editieren, kann in der Datei

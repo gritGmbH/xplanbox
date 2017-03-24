@@ -1,4 +1,4 @@
-== XPlanResources
+=== XPlanResources
 
 
 Die Einstiegsseite der Komponente XPlanResources enthält Referenzen zu
