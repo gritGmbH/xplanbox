@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplanbox</artifactId>
@@ -13,15 +14,15 @@
     <sonar.host.url>http://vento.lat-lon:9000</sonar.host.url>
     <sonar.jdbc.url>jdbc:postgresql://habub/sonar</sonar.jdbc.url>
     <!-- version properties -->
-    <deegree3.version>3.4-RC1-xplanbox-1.5</deegree3.version>
+    <deegree3.version>3.4-RC1-xplanbox-1.6-SNAPSHOT</deegree3.version>
     <gwt.version>2.5.0</gwt.version>
     <geotools.version>10.0</geotools.version>
     <slf4j.version>1.7.5</slf4j.version>
     <geomajas-dep-version>1.13.12-latlon-SNAPSHOT</geomajas-dep-version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.version>3.2.8.RELEASE</spring.version>
-    <spring.security.version>3.2.4.RELEASE</spring.security.version>
+    <spring.version>3.2.18.RELEASE</spring.version>
+    <spring.security.version>3.2.10.RELEASE</spring.security.version>
   </properties>
 
   <prerequisites>
@@ -390,6 +391,16 @@
         <artifactId>deegree-connectionprovider-datasource</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.deegree</groupId>
+        <artifactId>deegree-core-layer</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.deegree</groupId>
+        <artifactId>deegree-services-wms</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
       <!-- geotools -->
       <dependency>
         <groupId>org.geotools</groupId>
@@ -680,49 +691,44 @@
   </dependencyManagement>
 
   <scm>
-    <connection>scm:git:git@github.com:deegree-enterprise/xplanbox.git</connection>
-    <developerConnection>scm:git:git@github.com:deegree-enterprise/xplanbox.git</developerConnection>
-    <url>https://github.com/deegree-enterprise/xplanbox</url>
+    <connection>scm:git:http://criador.lat-lon:8080/scm/git/xplanbox</connection>
+    <developerConnection>scm:git:http://criador.lat-lon:8080/scm/git/xplanbox</developerConnection>
+    <url>http://criador.lat-lon:8080/scm/git/xplanbox</url>
     <tag>HEAD</tag>
   </scm>
 
   <repositories>
     <repository>
-      <id>dee</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/groups/dee/</url>
-      <releases>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
+      <id>latlon-repository</id>
+      <url>http://repo.lat-lon/nexus/content/groups/public/</url>
+    </repository>
+    <repository>
+      <id>xplanbox-release</id>
+      <url>http://repo.lat-lon/nexus/content/repositories/xplanbox-release/</url>
+    </repository>
+    <repository>
+      <id>xplanbox-snapshot</id>
+      <url>http://repo.lat-lon/nexus/content/repositories/xplanbox-snapshot/</url>
     </repository>
   </repositories>
 
-  <distributionManagement>
-    <repository>
-      <id>dee-releases</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/repositories/dee-releases/</url>
-    </repository>
-    <snapshotRepository>
-      <id>dee-snapshots</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/repositories/dee-snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
-
   <pluginRepositories>
     <pluginRepository>
-      <id>dee</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/groups/dee/</url>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
+      <id>latlon-plugin-repository</id>
+      <url>http://repo.lat-lon/nexus/content/groups/public/</url>
     </pluginRepository>
   </pluginRepositories>
+
+  <distributionManagement>
+    <repository>
+      <id>xplanbox-release</id>
+      <url>http://repo.lat-lon/nexus/content/repositories/xplanbox-release/</url>
+    </repository>
+    <snapshotRepository>
+      <id>xplanbox-snapshot</id>
+      <url>http://repo.lat-lon/nexus/content/repositories/xplanbox-snapshot/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <licenses>
     <license>
