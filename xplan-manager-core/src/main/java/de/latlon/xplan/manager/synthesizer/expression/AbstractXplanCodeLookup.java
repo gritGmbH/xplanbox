@@ -69,11 +69,11 @@ public abstract class AbstractXplanCodeLookup implements Expression {
     }
 
     private String toString( TypedObjectNode o ) {
-        if ( o instanceof GenericProperty   ) {
+        if ( o instanceof GenericProperty ) {
             TypedObjectNode value = ( (GenericProperty) o ).getValue();
             return value.toString();
         }
         return o.toString();
     }
-    
+
 }
