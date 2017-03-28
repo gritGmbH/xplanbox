@@ -46,6 +46,7 @@
                 <revdate>${maven.build.timestamp}</revdate>
               </attributes>
               <sourceDirectory>source/</sourceDirectory>
+              <sourceDocumentName>index.adoc</sourceDocumentName>
               <outputDirectory>target/html</outputDirectory>
             </configuration>
           </execution>
