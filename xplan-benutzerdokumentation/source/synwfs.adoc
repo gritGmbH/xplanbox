@@ -77,7 +77,7 @@ Das folgende Kapitel beschreibt die Operationen, die mit dem XPlanSynWFS
 durchführbar sind.
 
 [[getcapabilities-1]]
-===== GetCapabilities
+==== GetCapabilities
 
 
 Die GetCapabilities Abfrage dient der Auskunft über die Fähigkeiten des
@@ -86,7 +86,7 @@ Dienstbetreiber, zu den unterstützten Operationen sowie zu den durch den
 WFS angebotenen WFS Objektarten.
 
 [[getfeature-1]]
-===== GetFeature
+==== GetFeature
 
 
 Die Operation GetFeature stellt die Kernfunktionalität des XPlanSynWFS
@@ -95,7 +95,7 @@ Planinhalten mit GIS Clients zu nutzen, die die Schnittstellen WFS 1.1.0
 bzw. WFS 2.0.0 unterstützen.
 
 [[describefeaturetype-1]]
-===== DescribeFeatureType
+==== DescribeFeatureType
 
 
 Die Operation DescribeFeatureType gibt Informationen zur Struktur der
