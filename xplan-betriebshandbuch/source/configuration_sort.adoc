@@ -1,0 +1,54 @@
+=== Sortierung der Daten in der Visualisierung
+
+
+Für die Sortierung von Plandaten im WMS nach einem Datumsfeld stehen
+alle Datumsfelder zur Verfügung. Welches Feld für die Sortierung
+verwendet wird, kann in der Datei _managerConfiguration.properties_ im
+Verzeichnis _~/.deegree/manager-configuration/_ konfiguriert werden.
+
+----
+wmsSortDate_BP_Plan_XPLAN_2=BP_Plan,inkrafttretensDatum
+wmsSortDate_BP_Plan_XPLAN_3=BP_Plan,inkrafttretensDatum
+wmsSortDate_BP_Plan_XPLAN_40=BP_Plan,inkrafttretensDatum
+wmsSortDate_BP_Plan_XPLAN_41=BP_Plan,inkrafttretensDatum
+wmsSortDate_FP_Plan_XPLAN_2=FP_Plan,wirksamkeitsDatum
+wmsSortDate_FP_Plan_XPLAN_3=FP_Plan,wirksamkeitsDatum
+wmsSortDate_FP_Plan_XPLAN_40=FP_Plan,wirksamkeitsDatum
+wmsSortDate_FP_Plan_XPLAN_41=FP_Plan,wirksamkeitsDatum
+wmsSortDate_RP_Plan_XPLAN_2=RP_Plan,datumDesInkrafttretens
+wmsSortDate_RP_Plan_XPLAN_3=RP_Plan,datumDesInkrafttretens
+wmsSortDate_RP_Plan_XPLAN_40=RP_Plan,datumDesInkrafttretens
+wmsSortDate_RP_Plan_XPLAN_41=RP_Plan,datumDesInkrafttretens
+wmsSortDate_LP_Plan_XPLAN_2=
+wmsSortDate_LP_Plan_XPLAN_3=
+wmsSortDate_LP_Plan_XPLAN_40=LP_Plan,inkrafttretenDatum
+wmsSortDate_LP_Plan_XPLAN_41=LP_Plan,inkrafttretenDatum
+----
+
+
+
+NOTE: Es müssen ggf. Zeilenumbrüche entfernt werden.
+
+
+Die Angabe eines Sortierfeldes kann für jeden Plan-Type und Plan-Version
+differenziert erfolgen und kann am Aufbau des Schlüsselnamens erkannt
+werden.
+
+----
+wmsSortDate_<TYP>_<VERSION>
+----
+
+Der Wert gibt immer den Namen des FeatureTypes sowie den Namen der
+Eigenschaft durch ein Komma separiert an.
+
+----
+<FEATURETYPE>,<PROPERTYNAME>
+----
+
+Wird kein Wert angegeben, oder fehlt ein Eintrag vollständig, kann für
+die Version/den Typ keine Zuordnung gefunden werden. Das Datumsfeld
+bleibt leer. Eine Änderung dieser Konfiguration während des laufenden
+Betriebs führt zu unterschiedlichen Grundlagen der Sortierung, über die
+Option _-updatewmssortdate_ des XPlanManager-CLIs kann die Änderung aber
+für bereits importierte Daten nachgezogen werden. Dies ist im
+entsprechenden Kapitel der Benutzerdokumentation beschrieben.

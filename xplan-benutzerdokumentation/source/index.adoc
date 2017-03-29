@@ -1,0 +1,29 @@
+:doctype: book
+:encoding: utf-8
+:toc: macro
+:numbered:
+:toc-title: Inhaltsverzeichnis
+
+= Benutzerdokumentation für die xPlanBox
+
+toc::[]
+
+include::license.adoc[]
+
+include::isk.adoc[]
+
+include::portal.adoc[]
+
+include::wms.adoc[]
+
+include::wfs.adoc[]
+
+include::synwfs.adoc[]
+
+include::manager.adoc[]
+
+include::validator.adoc[]
+
+include::known-bugs.adoc[]
+
+

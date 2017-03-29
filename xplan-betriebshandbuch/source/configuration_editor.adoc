@@ -1,0 +1,10 @@
+=== Editieren von Plänen
+
+
+Die Möglichkeit Pläne zu editieren, kann in der Datei
+_managerWebConfiguration.properties_ im Verzeichnis
+_~/.deegree/manager-configuration/_ aktiviert oder deaktiviert werden:
+
+----
+activateEditor=[true|false]
+----
