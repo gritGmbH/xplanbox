@@ -30,6 +30,8 @@
   </prerequisites>
 
   <modules>
+    <module>xplan-benutzerdokumentation</module>
+    <module>xplan-betriebshandbuch</module>
     <module>xplan-commons</module>
     <module>xplan-commons-web</module>
     <module>xplan-configuration</module>
@@ -51,13 +53,6 @@
   </modules>
 
   <profiles>
-    <profile>
-      <id>handbook</id>
-      <modules>
-        <module>xplan-benutzerdokumentation</module>
-        <module>xplan-betriebshandbuch</module>
-      </modules>
-    </profile>
     <profile>
       <!-- The geomajas portals are not part of deegree enterprise. They must not be included in deegree enterprise releases. -->
       <id>include-geomajas-portals</id>
@@ -252,6 +247,12 @@
               </configuration>
             </execution>
           </executions>
+        </plugin>
+        <!-- asciidoc -->
+        <plugin>
+          <groupId>org.asciidoctor</groupId>
+          <artifactId>asciidoctor-maven-plugin</artifactId>
+          <version>1.5.5</version>
         </plugin>
       </plugins>
     </pluginManagement>
