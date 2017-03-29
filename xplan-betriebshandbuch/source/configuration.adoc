@@ -3,6 +3,8 @@
 In den nachfolgenden Kapiteln wird die Konfiguration der einzelnen Komponenten erläutert:
 
 
+include::configuration_codelists.adoc[]
+
 include::configuration_resources.adoc[]
 
 include::configuration_mappreview.adoc[]
