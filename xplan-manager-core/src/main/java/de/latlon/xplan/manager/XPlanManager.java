@@ -144,7 +144,7 @@ public class XPlanManager {
      * @param archiveCreator
      *            archive creator
      * @param managerConfiguration
-     *            manager configuration
+     *            manager configuration, may be <code>null</code>
      * @param workspaceReloader
      *            reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
      * @throws Exception
@@ -161,7 +161,7 @@ public class XPlanManager {
      * @param archiveCreator
      *            archive creator
      * @param managerConfiguration
-     *            manager configuration
+     *            manager configuration, may be <code>null</code>
      * @param workspaceDir
      *            workspace directory
      * @param workspaceReloader
@@ -180,7 +180,7 @@ public class XPlanManager {
      * @param archiveCreator
      *            archive creator
      * @param managerConfiguration
-     *            manager configuration
+     *            manager configuration, may be <code>null</code>
      * @param workspaceDir
      *            workspace directory
      * @param workspaceReloader
@@ -206,7 +206,10 @@ public class XPlanManager {
         this.sortPropertyReader = new SortPropertyReader( sortConfiguration );
         this.sortPropertyUpdater = new SortPropertyUpdater( sortPropertyReader, xplanDao, xPlanRasterManager );
         this.xPlanExporter = new XPlanExporter( managerConfiguration );
-        this.xPlanSynthesizer = new XPlanSynthesizer( managerConfiguration.getConfigurationDirectory() );
+        if ( managerConfiguration != null )
+            this.xPlanSynthesizer = new XPlanSynthesizer( managerConfiguration.getConfigurationDirectory() );
+        else
+            this.xPlanSynthesizer = new XPlanSynthesizer();
     }
 
     public XPlanArchive analyzeArchive( String fileName )
