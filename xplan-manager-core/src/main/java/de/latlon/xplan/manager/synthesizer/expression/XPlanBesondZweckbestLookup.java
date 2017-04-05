@@ -1,7 +1,7 @@
 package de.latlon.xplan.manager.synthesizer.expression;
 
 import static de.latlon.xplan.manager.codelists.XPlanCodeConverter.xplan2ToSynCode;
-import static de.latlon.xplan.manager.codelists.XPlanCodeLists.getXPlanSyn;
+import static de.latlon.xplan.manager.codelists.XPlanCodeListsFactory.getXPlanSyn;
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
 
 import org.deegree.commons.tom.TypedObjectNode;

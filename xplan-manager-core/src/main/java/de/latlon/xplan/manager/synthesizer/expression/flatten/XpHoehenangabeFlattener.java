@@ -11,10 +11,20 @@ import org.deegree.feature.types.property.SimplePropertyType;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.util.XPlanVersionUtils;
-import de.latlon.xplan.manager.codelists.XPlanCodeLists;
+import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 
 public class XpHoehenangabeFlattener extends AbstractFlattener {
+
+    private final XPlanSynthesizer xPlanSynthesizer;
+
+    /**
+     * @param xPlanSynthesizer
+     *            the XPlanSynthesizer currently used (containing the parsed rules), never <code>null</code>
+     */
+    public XpHoehenangabeFlattener( XPlanSynthesizer xPlanSynthesizer ) {
+        this.xPlanSynthesizer = xPlanSynthesizer;
+    }
 
     @Override
     public boolean accepts( TypedObjectNode node ) {
@@ -38,7 +48,7 @@ public class XpHoehenangabeFlattener extends AbstractFlattener {
             for ( Property prop : props ) {
                 if ( prop.getType() instanceof SimplePropertyType ) {
                     String propLocal = prop.getName().getLocalPart();
-                    TypedObjectNode value = XPlanSynthesizer.rules.get( ftName + "/" + propLocal ).evaluate( feature );
+                    TypedObjectNode value = xPlanSynthesizer.getRules().get( ftName + "/" + propLocal ).evaluate( feature );
                     s += concatenateValues( propLocal, asString( value ) ) + ";";
                 }
             }
@@ -76,7 +86,7 @@ public class XpHoehenangabeFlattener extends AbstractFlattener {
         }
         if ( codeListName != null ) {
             XPlanVersion version = XPlanVersionUtils.determineBaseVersion( elNode.getName() );
-            return XPlanCodeLists.get( version ).getDescription( codeListName, valueAsString );
+            return XPlanCodeListsFactory.get( version ).getDescription( codeListName, valueAsString );
         }
         return valueAsString;
     }

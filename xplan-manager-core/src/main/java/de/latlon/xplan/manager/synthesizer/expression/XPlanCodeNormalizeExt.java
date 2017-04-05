@@ -5,7 +5,7 @@ import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 
-import static de.latlon.xplan.manager.codelists.XPlanCodeLists.*;
+import static de.latlon.xplan.manager.codelists.XPlanCodeListsFactory.*;
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
 
 /**

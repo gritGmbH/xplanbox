@@ -1,5 +1,6 @@
 package de.latlon.xplan.commons.configuration;
 
+import java.nio.file.Path;
 import java.util.Properties;
 
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
@@ -25,4 +26,13 @@ public interface PropertiesLoader {
      */
     Properties loadProperties( String propertiesFileName )
                             throws ConfigurationException;
+
+    /**
+     * Retrieves the directory containing the configuration.
+     *
+     * @return the directory containing the configuration, may be <code>null</code> if the configuration os read from
+     *         classpath
+     */
+    Path getConfigDirectory();
+
 }

@@ -65,6 +65,7 @@ import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.manager.codelists.XPlanCodeLists;
+import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfigurationAnalyser;
 import de.latlon.xplan.manager.database.DatabaseCreator;
@@ -109,6 +110,8 @@ public class XPlanManager {
 
     private static final DateFormat DATEFORMAT = createDateFormat();
 
+    private final XPlanSynthesizer xPlanSynthesizer;
+
     private final XPlanArchiveCreator archiveCreator;
 
     private final XPlanDao xplanDao;
@@ -141,14 +144,14 @@ public class XPlanManager {
      * @param archiveCreator
      *            archive creator
      * @param managerConfiguration
-     *            manager configuration
+     *            manager configuration, may be <code>null</code>
      * @param workspaceReloader
      *            reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
      * @throws Exception
      */
     public XPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
-                         ManagerConfiguration managerConfiguration,
-                         WorkspaceReloader workspaceReloader ) throws Exception {
+                         ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader )
+                                                                                                         throws Exception {
         this( categoryMapper, archiveCreator, managerConfiguration, null, null, workspaceReloader );
     }
 
@@ -158,7 +161,7 @@ public class XPlanManager {
      * @param archiveCreator
      *            archive creator
      * @param managerConfiguration
-     *            manager configuration
+     *            manager configuration, may be <code>null</code>
      * @param workspaceDir
      *            workspace directory
      * @param workspaceReloader
@@ -177,7 +180,7 @@ public class XPlanManager {
      * @param archiveCreator
      *            archive creator
      * @param managerConfiguration
-     *            manager configuration
+     *            manager configuration, may be <code>null</code>
      * @param workspaceDir
      *            workspace directory
      * @param workspaceReloader
@@ -203,6 +206,10 @@ public class XPlanManager {
         this.sortPropertyReader = new SortPropertyReader( sortConfiguration );
         this.sortPropertyUpdater = new SortPropertyUpdater( sortPropertyReader, xplanDao, xPlanRasterManager );
         this.xPlanExporter = new XPlanExporter( managerConfiguration );
+        if ( managerConfiguration != null )
+            this.xPlanSynthesizer = new XPlanSynthesizer( managerConfiguration.getConfigurationDirectory() );
+        else
+            this.xPlanSynthesizer = new XPlanSynthesizer();
     }
 
     public XPlanArchive analyzeArchive( String fileName )
@@ -234,7 +241,7 @@ public class XPlanManager {
      */
     public void importPlan( String archiveFileName, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
                             boolean makeRasterConfig, String internalId )
-                                            throws Exception {
+                    throws Exception {
         importPlan( archiveFileName, defaultCRS, force, makeWMSConfig, makeRasterConfig, null, internalId );
     }
 
@@ -261,7 +268,7 @@ public class XPlanManager {
      */
     public void importPlan( String archiveFileName, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
                             boolean makeRasterConfig, File workspaceFolder, String internalId )
-                                            throws Exception {
+                    throws Exception {
         XPlanArchive archive = analyzeArchive( archiveFileName );
         importPlan( archive, defaultCRS, force, makeWMSConfig, makeRasterConfig, workspaceFolder, internalId,
                     new XPlanMetadata() );
@@ -291,7 +298,7 @@ public class XPlanManager {
     @PreAuthorize("hasPermission(#archive, 'hasDistrictPermission') or hasRole('ROLE_XPLAN_SUPERUSER')")
     public void importPlan( XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
                             boolean makeRasterConfig, String internalId, XPlanMetadata xPlanMetadata )
-                                            throws Exception {
+                    throws Exception {
         importPlan( archive, defaultCRS, force, makeWMSConfig, makeRasterConfig, null, internalId, xPlanMetadata );
     }
 
@@ -321,7 +328,7 @@ public class XPlanManager {
     public void importPlan( XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
                             boolean makeRasterConfig, File workspaceFolder, String internalId,
                             XPlanMetadata xPlanMetadata )
-                                            throws Exception {
+                    throws Exception {
         LOG.info( "- Importiere Plan " + archive );
         ICRS crs = determineActiveCrs( defaultCRS, archive );
         PlanStatus planStatus = xPlanMetadata.getPlanStatus();
@@ -329,7 +336,8 @@ public class XPlanManager {
         FeatureCollection synFc = createSynFeatures( fc, archive.getVersion() );
         Date sortDate = sortPropertyReader.readSortDate( archive.getType(), archive.getVersion(), fc.getFeatures() );
         int planId = xplanDao.insert( archive, fc, synFc, xPlanMetadata, sortDate );
-        createRasterConfigurations( archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus, sortDate );
+        createRasterConfigurations( archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus,
+                                    sortDate );
         reloadWorkspace();
         LOG.info( "XPlan-Archiv wurde erfolgreich importiert. Zugewiesene Id: " + planId );
         LOG.info( "OK." );
@@ -422,7 +430,8 @@ public class XPlanManager {
     }
 
     /**
-     * @param pathToArchive
+     * @param xPlanToEdit
+     * @param uploadedArtefacts
      *            the absolute path to the XPlanArchive to evaluate.
      * @return a list of {@link RasterEvaluationResult}, one for each referenced raster plan, may be
      *         {@link EmptyStackException} but never <code>null</code>
@@ -490,15 +499,15 @@ public class XPlanManager {
      * @throws Exception
      */
     @PreAuthorize("(hasPermission(#plan, 'hasDistrictPermission') and hasRole('ROLE_XPLAN_EDITOR')) or hasRole('ROLE_XPLAN_SUPERUSER')")
-    public XPlanToEdit getXPlanToEdit( XPlan plan )
-                    throws Exception {
+    public
+                    XPlanToEdit getXPlanToEdit( XPlan plan )
+                                    throws Exception {
         InputStream originalPlan = null;
         XMLStreamReader originalPlanAsXmlReader = null;
         try {
             XPlanVersion version = XPlanVersion.valueOf( plan.getVersion() );
             XPlanAde ade = plan.getAde() != null ? XPlanAde.valueOf( plan.getAde() ) : null;
-            AppSchema appSchema = xplanDao.lookupStore( version, ade,
-                                                        plan.getXplanMetadata().getPlanStatus() ).getSchema();
+            AppSchema appSchema = xplanDao.lookupStore( version, ade, plan.getXplanMetadata().getPlanStatus() ).getSchema();
             originalPlan = xplanDao.retrieveXPlanArtefact( plan.getId() );
             originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader( originalPlan );
             FeatureCollection originalPlanFC = parseFeatureCollection( originalPlanAsXmlReader, version, appSchema );
@@ -524,9 +533,10 @@ public class XPlanManager {
      * @throws Exception
      */
     @PreAuthorize("(hasPermission(#oldXplan, 'hasDistrictPermission') and hasRole('ROLE_XPLAN_EDITOR')) or hasRole('ROLE_XPLAN_SUPERUSER')")
-    public void editPlan( XPlan oldXplan, XPlanToEdit xPlanToEdit, boolean makeRasterConfig,
-                          List<File> uploadedArtefacts )
-                                          throws Exception {
+    public
+                    void editPlan( XPlan oldXplan, XPlanToEdit xPlanToEdit, boolean makeRasterConfig,
+                                   List<File> uploadedArtefacts )
+                                    throws Exception {
         InputStream originalPlan = null;
         XMLStreamReader originalPlanAsXmlReader = null;
         try {
@@ -540,8 +550,8 @@ public class XPlanManager {
             AppSchema appSchema = xplanDao.lookupStore( version, ade, oldPlanStatus ).getSchema();
             originalPlan = xplanDao.retrieveXPlanArtefact( planId );
             originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader( originalPlan );
-            XPlanFeatureCollection originalPlanFC = parseXPlanFeatureCollection( originalPlanAsXmlReader, type, version,
-                                                                                 appSchema );
+            XPlanFeatureCollection originalPlanFC = parseXPlanFeatureCollection( originalPlanAsXmlReader, type,
+                                                                                 version, appSchema );
             FeatureCollection featuresToModify = originalPlanFC.getFeatures();
             ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan( featuresToModify );
             planModifier.modifyXPlan( featuresToModify, xPlanToEdit, version, type, appSchema );
@@ -671,7 +681,7 @@ public class XPlanManager {
     private void createRasterConfigurations( XPlanArchive archive, boolean makeWMSConfig, boolean makeRasterConfig,
                                              File workspaceFolder, XPlanFeatureCollection fc, int planId,
                                              PlanStatus planStatus, Date sortDate )
-                                                             throws Exception {
+                    throws Exception {
         if ( makeRasterConfig ) {
             List<String> rasterIds = createRasterConfiguration( archive, fc, planId, archive.getType(), planStatus,
                                                                 null, sortDate );
@@ -687,7 +697,7 @@ public class XPlanManager {
     private List<String> createRasterConfiguration( XPlanArchiveContentAccess archive, XPlanFeatureCollection fc,
                                                     int planId, XPlanType type, PlanStatus planStatus,
                                                     PlanStatus newPlanStatus, Date sortDate )
-                                                                    throws SQLException, WorkspaceException {
+                    throws SQLException, WorkspaceException {
         String moreRecentPlanId = null;
         if ( sortDate != null ) {
             moreRecentPlanId = xplanDao.getPlanIdOfMoreRecentRasterPlan( sortDate );
@@ -723,11 +733,12 @@ public class XPlanManager {
 
     private XPlanFeatureCollection readAndValidateMainDocument( XPlanArchive archive, ICRS crs, boolean force,
                                                                 String internalId, PlanStatus planStatus )
-                                                                                throws Exception {
+                    throws Exception {
         performSchemaValidation( archive );
         XPlanFeatureCollection fc = null;
         try {
-            fc = ( new GeometricValidatorImpl() ).retrieveGeometricallyValidXPlanFeatures( archive, crs,
+            fc = ( new GeometricValidatorImpl() ).retrieveGeometricallyValidXPlanFeatures( archive,
+                                                                                           crs,
                                                                                            getAppSchemaFromStore( archive,
                                                                                                                   planStatus ),
                                                                                            force, internalId );
@@ -753,7 +764,7 @@ public class XPlanManager {
 
     private FeatureCollection renewFeatureCollection( XPlanVersion version, XPlanType type, AppSchema appSchema,
                                                       FeatureCollection modifiedFeatures )
-                                                                      throws Exception {
+                    throws Exception {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         xPlanExporter.export( outputStream, version, modifiedFeatures, null );
         ByteArrayInputStream originalPlan = new ByteArrayInputStream( outputStream.toByteArray() );
@@ -824,7 +835,7 @@ public class XPlanManager {
             if ( defaultCRS == null ) {
                 throw new Exception(
                                 "Fehler: Das Dokument enthält keine CRS-Informationen. Hinweis: Sie können das CRS als weiteren "
-                                     + "Kommandozeilen-Parameter übergeben." );
+                                                + "Kommandozeilen-Parameter übergeben." );
             } else {
                 LOG.info( "OK. Keine CRS-Informationen, verwende " + defaultCRS.getName() );
             }
@@ -836,7 +847,7 @@ public class XPlanManager {
         FeatureCollection synFc;
         long begin = System.currentTimeMillis();
         LOG.info( "- Erzeugen der XPlan-Syn Features..." );
-        synFc = XPlanSynthesizer.synthesize( version, fc );
+        synFc = xPlanSynthesizer.synthesize( version, fc );
         long elapsed = System.currentTimeMillis() - begin;
         LOG.info( "OK [" + elapsed + " ms]" );
         return synFc;
@@ -853,8 +864,7 @@ public class XPlanManager {
 
     private XPlanFeatureCollection parseXPlanFeatureCollection( XMLStreamReader plan, XPlanType type,
                                                                 XPlanVersion version, AppSchema appSchema )
-                                                                                throws XMLStreamException,
-                                                                                UnknownCRSException {
+                    throws XMLStreamException, UnknownCRSException {
         FeatureCollection xplanFeatures = parseFeatureCollection( plan, version, appSchema );
         return new XPlanFeatureCollection( xplanFeatures, type );
     }
@@ -885,7 +895,7 @@ public class XPlanManager {
 
     private String translateLegislationStatusCode( XPlanArchive archive, XPlanFeatureCollection fc,
                                                    int legislationStatusCode ) {
-        XPlanCodeLists xPlanCodeLists = XPlanCodeLists.get( archive.getVersion() );
+        XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get( archive.getVersion() );
         String codeListId = findCodeListId( fc.getType() );
         try {
             return xPlanCodeLists.getDescription( codeListId, Integer.toString( legislationStatusCode ) );

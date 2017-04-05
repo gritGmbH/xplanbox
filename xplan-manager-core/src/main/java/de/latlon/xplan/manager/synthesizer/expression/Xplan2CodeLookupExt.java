@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.latlon.xplan.manager.codelists.XPlanCodeLists;
+import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 
 /**
  * Expression for retrieving the textual description for an external XPlan 2.0 / 3.0 code.
@@ -48,7 +49,7 @@ public class Xplan2CodeLookupExt implements Expression {
             }
             for ( TypedObjectNode code : codes.getElements() ) {
                 String desc;
-                XPlanCodeLists synExt = XPlanCodeLists.getXPlanSynExt();
+                XPlanCodeLists synExt = XPlanCodeListsFactory.getXPlanSynExt();
                 String xplanCodeList = xplan2CodeList;
                 try {
                     if ( isXPlan2 ) {

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gml:Dictionary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" gml:id="xplan_BP_DetailArtDerBaulNutzung" xmlns:gml="http://www.opengis.net/gml">
+  <gml:name>xplan:BP_DetailArtDerBaulNutzung</gml:name>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="id_11000">
+      <gml:description>Wohngebiet11</gml:description>
+      <gml:name codeSpace="www.mysynergis.com/XPlanungR/4.1/0">11000</gml:name>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="id_13000">
+      <gml:description>BesondersGeschütztesWohngebiet13</gml:description>
+      <gml:name codeSpace="www.mysynergis.com/XPlanungR/4.1/0">13000</gml:name>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="id_17000">
+      <gml:description>Geschäftsgebiet17</gml:description>
+      <gml:name codeSpace="www.mysynergis.com/XPlanungR/4.1/0">17000</gml:name>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="id_17100">
+      <gml:description>Ladengebiet171</gml:description>
+      <gml:name codeSpace="www.mysynergis.com/XPlanungR/4.1/0">17100</gml:name>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+</gml:Dictionary>

@@ -1,0 +1,25 @@
+:doctype: book
+:encoding: utf-8
+:toc: macro
+:numbered:
+:toc-title: Inhaltsverzeichnis
+
+= Betriebshandbuch für die xPlanBox
+
+toc::[]
+
+include::license.adoc[]
+
+include::overview.adoc[]
+
+include::architecture.adoc[]
+
+include::install.adoc[]
+
+include::configuration.adoc[]
+
+include::update.adoc[]
+
+
+
+

@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -81,13 +84,13 @@ public class XPlanManagerCLI {
     }
 
     private static XPlanManager instantiateManager( String[] args ) {
-        File directoryContainingTheManagerConfig = parseDirectoryFromArgs( args );
+        Path directoryContainingTheManagerConfig = parseDirectoryFromArgs( args );
         System.out.println( "Die Konfigurationsdatei für den Manager (managerConfiguration.properties) wird im Verzeichnis "
                             + directoryContainingTheManagerConfig + " erwartet." );
         return createManager( directoryContainingTheManagerConfig );
     }
 
-    private static XPlanManager createManager( File directoryContainingTheManagerConfig ) {
+    private static XPlanManager createManager( Path directoryContainingTheManagerConfig ) {
 
         try {
             PropertiesLoader propertiesLoader = new ConfigurationDirectoryPropertiesLoader(
@@ -319,18 +322,18 @@ public class XPlanManagerCLI {
         System.setProperty( "derby.stream.error.method", "de.latlon.xplan.manager.XPlanManager.disableDerbyLogFile" );
     }
 
-    private static File parseDirectoryFromArgs( String[] args ) {
+    private static Path parseDirectoryFromArgs( String[] args ) {
         for ( int i = 0; i < args.length; i++ ) {
             if ( "--managerconfiguration".equals( args[i] ) && args.length > i + 1 ) {
                 String pathToDirectory = args[i + 1];
-                File managerConfigurationDirectory = new File( pathToDirectory );
-                if ( managerConfigurationDirectory.exists() && managerConfigurationDirectory.isDirectory() )
+                Path managerConfigurationDirectory = Paths.get( pathToDirectory );
+                if ( Files.exists( managerConfigurationDirectory ) && Files.isDirectory( managerConfigurationDirectory ) )
                     return managerConfigurationDirectory;
             }
         }
         String path = XPlanManagerCLI.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         File jarLocation = new File( path );
-        return new File( jarLocation.getParentFile().getParent(), "etc" );
+        return Paths.get( jarLocation.getParentFile().getParent()).resolve( "etc" );
     }
 
     static void printUsage() {

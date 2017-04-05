@@ -32,12 +32,16 @@
  http://www.geographie.uni-bonn.de/deegree/
 
  e-mail: info@deegree.org
-----------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.codelists;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.net.URL;
+import java.util.Map;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.latlon.xplan.commons.XPlanVersion;
@@ -50,10 +54,32 @@ public class XPlanCodeListsTest {
     @Test
     public void testGetDescription() {
         XPlanVersion version = XPlanVersion.XPLAN_41;
-        XPlanCodeLists xPlanCodeLists = XPlanCodeLists.get( version );
+        XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get( version );
         String legislationStatusTranslation = xPlanCodeLists.getDescription( "BP_Rechtsstand", "4000" );
 
         assertThat( legislationStatusTranslation, is( "InkraftGetreten" ) );
+    }
+
+    @Test
+    public void testParseOld()
+                            throws Exception {
+        URL codeListFile = XPlanCodeListsTest.class.getResource( "../synthesizer/XP_BesondereArtDerBaulNutzung.xml" );
+        XPlanCodeLists codeLists = new XPlanCodeLists( codeListFile );
+
+        Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
+        assertThat( codesToDescriptions.size(), is( 1 ) );
+        assertThat( codesToDescriptions.values().iterator().next().size(), is( 14 ) );
+    }
+
+    @Test
+    public void testParseNew()
+                            throws Exception {
+        URL codeListFile = XPlanCodeListsTest.class.getResource( "../synthesizer/xplan_XP_BesondereArtDerBaulNutzung.xml" );
+        XPlanCodeLists codeLists = new XPlanCodeLists( codeListFile );
+
+        Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
+        assertThat( codesToDescriptions.size(), is( 1 ) );
+        assertThat( codesToDescriptions.values().iterator().next().size(), is( 3 ) );
     }
 
 }

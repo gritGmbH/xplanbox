@@ -1,5 +1,6 @@
 package de.latlon.xplan.manager.synthesizer.expression;
 
+import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.*;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.Reference;
@@ -35,14 +36,17 @@ public class XplanFlattenProperty implements Expression {
     private final List<Flattener> customFlatteners = new ArrayList<Flattener>();
 
     /**
-     * @param exp an expression that targets a property node
+     * @param exp
+     *            an expression that targets a property node
+     * @param xPlanSynthesizer
+     *            the XPlanSynthesizer currently used (containing the parsed rules), never <code>null</code>
      */
-    public XplanFlattenProperty( Expression exp ) {
+    public XplanFlattenProperty( Expression exp, XPlanSynthesizer xPlanSynthesizer) {
         this.exp = exp;
         customFlatteners.add( new XpBegruendungAbschnittFlattener() );
         customFlatteners.add( new XpGemeindeFlattener() );
         customFlatteners.add( new XpGenerAttributFlattener() );
-        customFlatteners.add( new XpHoehenangabeFlattener() );
+        customFlatteners.add( new XpHoehenangabeFlattener( xPlanSynthesizer ) );
         customFlatteners.add( new XpRasterplanFlattener() );
         customFlatteners.add( new XpTextAbschnittFlattener() );
         customFlatteners.add( new XpVerfahrensMerkmalFlattener() );

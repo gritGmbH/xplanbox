@@ -1,7 +1,6 @@
 package de.latlon.xplan.manager.synthesizer;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
-import static de.latlon.xplan.manager.synthesizer.XPlanSynthesizer.synthesize;
 import static org.deegree.gml.GMLVersion.GML_31;
 import static org.junit.Assert.assertEquals;
 
@@ -43,6 +42,8 @@ import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 
 public class XplanSynthesizerXplan2Test {
+
+    private final XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
 
     private AppSchema synSchema;
 
@@ -159,7 +160,7 @@ public class XplanSynthesizerXplan2Test {
         for ( Feature feature : xplanFc.getFeatures() ) {
             feature.setId( "FEATURE_" + id++ );
         }
-        return synthesize( archive.getVersion(), xplanFc );
+        return xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
     }
 
     private XPlanArchive getTestArchive( String name )

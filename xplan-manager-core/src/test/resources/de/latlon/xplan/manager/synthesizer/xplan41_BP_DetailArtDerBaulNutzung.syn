@@ -1,0 +1,2 @@
+BP_Baugebiet/detaillierteArtDerBaulNutzung=xplanExternalCodeLookup(xpath('xplan:detaillierteArtDerBaulNutzung'), 'xplan_BP_DetailArtDerBaulNutzung.xml')
+BP_BaugebietsTeilFlaeche/detaillierteArtDerBaulNutzung=xplanExternalCodeLookup(xpath('xplan:detaillierteArtDerBaulNutzung'), 'xplan_BP_DetailArtDerBaulNutzung.xml')

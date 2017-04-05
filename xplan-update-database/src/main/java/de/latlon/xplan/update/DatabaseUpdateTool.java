@@ -5,6 +5,8 @@ import static de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION.FROM_1_0
 import static java.util.Arrays.asList;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,7 +109,7 @@ public class DatabaseUpdateTool {
 
     private static XPlanDao createXplanDao( String configurationFilePathVariable, Workspace workspace )
                     throws ConfigurationException {
-        File file = configurationFilePathVariable != null ? new File( configurationFilePathVariable ) : null;
+        Path file = configurationFilePathVariable != null ? Paths.get( configurationFilePathVariable ) : null;
         ConfigurationDirectoryPropertiesLoader loader = new ConfigurationDirectoryPropertiesLoader( file );
         ManagerConfiguration managerConfiguration = new ManagerConfiguration( loader );
         CategoryMapper categoryMapper = new CategoryMapper( managerConfiguration );

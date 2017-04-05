@@ -24,6 +24,8 @@ import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 
 public class XplanSynthesizerXplan40Test {
 
+    private final XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
+
     @Ignore ("File size of referenced plan was too large for Github. Test plan was removed from repository.")
     @Test
     public void testId106()
@@ -39,7 +41,7 @@ public class XplanSynthesizerXplan40Test {
         for ( Feature feature : xplanFc.getFeatures() ) {
             feature.setId( "FEATURE_" + id++ );
         }
-        return XPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
+        return xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
     }
 
     private XPlanArchive getTestArchive( String name )

@@ -1,5 +1,7 @@
 package de.latlon.xplan.manager.codelists;
 
+import de.latlon.xplan.commons.XPlanVersion;
+
 /**
  * Encapsulates the translation of an internal XPlan 2 code to it's corresponding XPlan Syn code.
  * <p>
@@ -72,11 +74,11 @@ public class XPlan2CodeTranslation {
 
     @Override
     public String toString() {
-        String s = XPlanCodeLists.getXPlan2().getDescription( xplan2CodeList, xplan2Code ) + " (" + xplan2Code
-                   + ") -> " + XPlanCodeLists.getXPlanSyn().getDescription( xplanSynCodeList, xplanSynCode )
+        String s = XPlanCodeListsFactory.get( XPlanVersion.XPLAN_2 ).getDescription( xplan2CodeList, xplan2Code ) + " (" + xplan2Code
+                   + ") -> " + XPlanCodeListsFactory.getXPlanSyn().getDescription( xplanSynCodeList, xplanSynCode )
                    + " (" + xplanSynCode + ")";
         if ( xplanSynExtCode != null ) {
-            s += ", " + XPlanCodeLists.getXPlanSyn().getDescription( xplanSynExtCodeList, xplanSynExtCode )
+            s += ", " + XPlanCodeListsFactory.getXPlanSyn().getDescription( xplanSynExtCodeList, xplanSynExtCode )
                  + " (" + xplanSynExtCode + "), ext list:  " + xplanSynExtCodeList;
         }
         return s;

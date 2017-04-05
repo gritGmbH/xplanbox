@@ -55,12 +55,17 @@ public class XPlanFlattenFeature implements Expression {
     
     private final Expression exp;
 
+    private final XPlanSynthesizer xPlanSynthesizer;
+
     /**
      * @param exp
      *            an expression that targets a property node
+     * @param xPlanSynthesizer
+     *            the XPlanSynthesizer currently used (containing the parsed rules), never <code>null</code>
      */
-    public XPlanFlattenFeature( Expression exp ) {
+    public XPlanFlattenFeature( Expression exp, XPlanSynthesizer xPlanSynthesizer ) {
         this.exp = exp;
+        this.xPlanSynthesizer = xPlanSynthesizer;
     }
 
     @Override
@@ -134,7 +139,7 @@ public class XPlanFlattenFeature implements Expression {
                     for ( Property prop : props ) {
                         if ( prop.getType() instanceof SimplePropertyType ) {
                             String propLocal = prop.getName().getLocalPart();
-                            TypedObjectNode value = XPlanSynthesizer.rules.get( ftName + "/" + propLocal ).evaluate( feature );
+                            TypedObjectNode value = xPlanSynthesizer.getRules().get( ftName + "/" + propLocal ).evaluate( feature );
                             s += concatenateValues( propLocal, value ) + ";";
                         }
                     }

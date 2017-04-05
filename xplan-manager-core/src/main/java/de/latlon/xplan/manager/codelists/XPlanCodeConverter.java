@@ -1,8 +1,5 @@
 package de.latlon.xplan.manager.codelists;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +7,10 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import de.latlon.xplan.commons.XPlanVersion;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Handles the translation of XPlan 2 code list names and codes to their XPlan Syn counterparts.
@@ -24,12 +25,12 @@ public class XPlanCodeConverter {
 
     // key: name of internal XPlan 2 code list, value: name of corresponding internal XPlan Syn code list
     private static final Map<String, String> xp2ToSynCodeList =
-          buildCodeListMapping( XPlanCodeLists.getXPlan2(),
+          buildCodeListMapping( XPlanCodeListsFactory.get( XPlanVersion.XPLAN_2 ),
                                 "/codelists/xp2codelists.rules" );
 
     // key: name of external XPlan 2 code list, value: name of corresponding external XPlan Syn code list
     private static final Map<String, String> xp2ToSynCodeListExt =
-          buildCodeListMapping( XPlanCodeLists.getXPlan2Ext(),
+          buildCodeListMapping( XPlanCodeListsFactory.getXPlan2Ext(),
                                 "/codelists/xp2codelists_external.rules" );
 
     private static Map<String, Map<String, XPlan2CodeTranslation>> xp2CodeListToRules = buildCodeMapping();
@@ -96,14 +97,14 @@ public class XPlanCodeConverter {
                     } else {
                         String[] parts = line.split( "->" );
                         String xplan2Desc = parts[0];
-                        String xplan2Code = XPlanCodeLists.getXPlan2().getCode( xp2CodeListId, xplan2Desc );
+                        String xplan2Code = XPlanCodeListsFactory.get( XPlanVersion.XPLAN_2 ).getCode( xp2CodeListId, xplan2Desc );
                         String[] xplanSynDesc = parts[1].split( "," );
                         String xplanSynCode;
                         if ( xplanSynDesc[0].startsWith( "XP2_" ) ) {
                             xplanSynCode = xplanSynDesc[0];
                             xplanSynDesc[0] = xplan2Desc;
                         } else {
-                            xplanSynCode = XPlanCodeLists.getXPlanSyn().getCode( synCodeListId, xplanSynDesc[0] );
+                            xplanSynCode = XPlanCodeListsFactory.getXPlanSyn().getCode( synCodeListId, xplanSynDesc[0] );
                         }
                         XPlan2CodeTranslation translation;
                         if ( xplanSynDesc.length == 1 ) {
@@ -118,7 +119,7 @@ public class XPlanCodeConverter {
                             }
                             String xplanSynExtCodeList = extRuleTokens[0];
                             String xplanSynExtDesc = extRuleTokens[1];
-                            String xplanSynExtCode = XPlanCodeLists.getXPlanSyn().getCode( xplanSynExtCodeList,
+                            String xplanSynExtCode = XPlanCodeListsFactory.getXPlanSyn().getCode( xplanSynExtCodeList,
                                                                                            xplanSynExtDesc );
 
                             translation = new XPlan2CodeTranslation( xp2CodeListId, xplan2Code, synCodeListId,
@@ -151,16 +152,16 @@ public class XPlanCodeConverter {
                 xp2CodeListToRules.put( xp2CodeList, mapping );
             }
 
-            Map<String, String> xp2CodesAndDesc = XPlanCodeLists.getXPlan2().getCodesToDescriptions()
-                  .get( xp2CodeList );
+            Map<String, String> xp2CodesAndDesc = XPlanCodeListsFactory.get( XPlanVersion.XPLAN_2 ).getCodesToDescriptions()
+                                                                       .get( xp2CodeList );
             for ( Entry<String, String> xplan2CodeAndDesc : xp2CodesAndDesc.entrySet() ) {
                 String xplan2Code = xplan2CodeAndDesc.getKey();
                 String xplan2Desc = xplan2CodeAndDesc.getValue();
                 // only add if no special rule applies
                 if ( !mapping.containsKey( xplan2Code ) ) {
                     String synCodeListId = xp2ToSynCodeList.get( xp2CodeList );
-                    String xplanSynCode = XPlanCodeLists.getXPlanSyn().getCode( synCodeListId, xplan2Desc );
-                    String xplanSynDesc = XPlanCodeLists.getXPlanSyn().getDescription( synCodeListId, xplanSynCode );
+                    String xplanSynCode = XPlanCodeListsFactory.getXPlanSyn().getCode( synCodeListId, xplan2Desc );
+                    String xplanSynDesc = XPlanCodeListsFactory.getXPlanSyn().getDescription( synCodeListId, xplanSynCode );
                     LOG.debug( xplan2Desc + ": " + xplanSynDesc );
                     XPlan2CodeTranslation translation = new XPlan2CodeTranslation( xp2CodeList, xplan2Code,
                                                                                    synCodeListId,

@@ -3,6 +3,8 @@ package de.latlon.xplan.manager.configuration;
 import static java.lang.Double.parseDouble;
 import static org.deegree.cs.CRSUtils.EPSG_4326;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -76,6 +78,8 @@ public class ManagerConfiguration {
     private InternalIdRetrieverConfiguration internalIdRetrieverConfiguration = new InternalIdRetrieverConfiguration();
 
     private SemanticConformityLinkConfiguration semanticConformityLinkConfiguration = new SemanticConformityLinkConfiguration();
+
+    private Path configDirectory;
 
     public ManagerConfiguration( PropertiesLoader propertiesLoader ) throws ConfigurationException {
         loadProperties( propertiesLoader );
@@ -155,6 +159,13 @@ public class ManagerConfiguration {
         return isExportOfReexportedActive;
     }
 
+    /**
+     * @return the directory containing the configuration, may be <code>null</code>
+     */
+    public Path getConfigurationDirectory(){
+        return configDirectory;
+    }
+
     private void loadProperties( PropertiesLoader propertiesLoader )
                     throws ConfigurationException {
         if ( propertiesLoader != null ) {
@@ -176,12 +187,15 @@ public class ManagerConfiguration {
                 parseSortConfiguration( loadProperties );
                 parseSemanticConformityLinkConfiguration( loadProperties );
             }
+            configDirectory = getConfigDirectory( propertiesLoader );
         }
     }
 
     private void logConfiguration() {
         LOG.info( "-------------------------------------------" );
         LOG.info( "Configuration of the XPlanManager:" );
+        LOG.info( "-------------------------------------------" );
+        LOG.info( "  directory containing the configuration: {}", configDirectory );
         LOG.info( "-------------------------------------------" );
         LOG.info( "  raster configuration" );
         LOG.info( "   - crs: {}", rasterConfigurationCrs );
@@ -332,10 +346,18 @@ public class ManagerConfiguration {
         }
     }
 
+    private Path getConfigDirectory( PropertiesLoader propertiesLoader ) {
+        Path configDirectory = propertiesLoader.getConfigDirectory();
+        if ( configDirectory != null )
+            return configDirectory.resolve( "synthesizer" );
+        return null;
+    }
+
     private boolean parseBoolean( Properties loadProperties, String propName, boolean defaultValue ) {
         String property = loadProperties.getProperty( propName );
         if ( property == null || "".equals( property ) )
             return defaultValue;
         return Boolean.parseBoolean( property );
     }
+
 }

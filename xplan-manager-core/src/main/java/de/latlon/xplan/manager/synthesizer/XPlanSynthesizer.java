@@ -1,11 +1,12 @@
 package de.latlon.xplan.manager.synthesizer;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
+import static org.apache.commons.io.IOUtils.closeQuietly;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Map;
 
 import javax.xml.namespace.QName;
 
+import org.apache.commons.io.IOUtils;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.genericxml.GenericXMLElement;
@@ -25,6 +27,8 @@ import org.deegree.feature.GenericFeatureCollection;
 import org.deegree.feature.property.GenericProperty;
 import org.deegree.feature.types.AppSchema;
 import org.deegree.feature.types.FeatureType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.latlon.xplan.commons.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanSchemas;
@@ -42,11 +46,15 @@ import de.latlon.xplan.manager.synthesizer.expression.Expression;
  */
 public class XPlanSynthesizer {
 
+    private static final Logger LOG = LoggerFactory.getLogger( XPlanSynthesizer.class );
+
     private final static String SYN_NS = XPLAN_SYN.getNamespace();
 
-    public static AppSchema synSchema;
+    private static AppSchema synSchema;
 
-    public static Map<String, Expression> rules = new HashMap<String, Expression>();
+    private final Map<String, Expression> rules = new HashMap<String, Expression>();
+
+    private final Path rulesDirectory;
 
     static {
         try {
@@ -57,46 +65,32 @@ public class XPlanSynthesizer {
         }
     }
 
-    private static void processRuleFile( XPlanVersion version, String xplanType, String xplanName ) {
-        rules.clear();
-        String rulesResource = "/rules/";
-        switch ( version ) {
-        case XPLAN_2:
-            rulesResource += "xplan2.syn";
-            break;
-        case XPLAN_3:
-            rulesResource += "xplan3.syn";
-            break;
-        case XPLAN_40:
-            rulesResource += "xplan40.syn";
-            break;
-        case XPLAN_41:
-            rulesResource += "xplan41.syn";
-            break;
-        default:
-            throw new IllegalArgumentException();
-        }
-        try ( InputStream is = XPlanSynthesizer.class.getResourceAsStream( rulesResource );
-              InputStreamReader in = new InputStreamReader( is );
-              BufferedReader reader = new BufferedReader( in ) ) {
-            String line;
-            RuleParser parser = new RuleParser( xplanType, xplanName );
-            while ( ( line = reader.readLine() ) != null ) {
-                int firstEquals = line.indexOf( "=" );
-                rules.put( line.substring( 0, firstEquals ), parser.parse( line.substring( firstEquals + 1 ) ) );
-            }
-        } catch ( IOException e ) {
-            String msg = "Error while reading the rules file " + rulesResource;
-            throw new RuntimeException( msg, e );
-        }
+    /**
+     * Instantiates a new XPlanSynthesizer with default rules (from internal rules directory).
+     */
+    public XPlanSynthesizer() {
+        this( null );
     }
 
     /**
-     * @param version
-     * @param xplanFc
-     * @return
+     * @param rulesDirectory
+     *            the directory containing additional rules overwritting the internal rules, may be <code>null</code>
      */
-    public static FeatureCollection synthesize( XPlanVersion version, XPlanFeatureCollection xplanFc ) {
+    public XPlanSynthesizer( Path rulesDirectory ) {
+        this.rulesDirectory = rulesDirectory;
+    }
+
+    /**
+     * Transforms the features of the passed {@link XPlanFeatureCollection} to flat XPlanSyn features. First the
+     * required rules are parsed from the rules files, then the transformation starts.
+     * 
+     * @param version
+     *            the version of the XPlanGML, never <code>null</code>
+     * @param xplanFc
+     *            the feature collection to transform, never <code>null</code>
+     * @return a feature collection with the flat XPlanSyn features, never <code>null</code>
+     */
+    public FeatureCollection synthesize( XPlanVersion version, XPlanFeatureCollection xplanFc ) {
 
         XPlanType xplanType = xplanFc.getType();
         String xplanName = xplanFc.getPlanName();
@@ -115,11 +109,93 @@ public class XPlanSynthesizer {
             featureMembers.add( synFeature );
         }
 
-        FeatureCollection newFc = new GenericFeatureCollection( fc.getId(), featureMembers );
-        return newFc;
+        return new GenericFeatureCollection( fc.getId(), featureMembers );
     }
 
-    private static Feature synthesize( Feature feature ) {
+    /**
+     * Retrieve the rules applied to the transformation. Invoke synthesize first, otherwise no rules are available.
+     * 
+     * @return the rules of the last transformation. may be empty (if #synthesize() was not invoked before) but never
+     *         <code>null</code>
+     */
+    public Map<String, Expression> getRules() {
+        return rules;
+    }
+
+    /**
+     * Retrieve the directory containing the external rules configuration used for the transformation.
+     *
+     * @return the external rules configuration file of the transformation. may be <code>null</code>if not set)
+     * 
+     */
+    public Path getExternalConfigurationFile() {
+        return rulesDirectory;
+    }
+
+    private void processRuleFile( XPlanVersion version, String xplanType, String xplanName ) {
+        rules.clear();
+        String rulesFileName = detectRulesFileName( version );
+        InputStream rulesFromClasspath = retrieveRulesFileFromClasspath( rulesFileName );
+        processRules( xplanType, xplanName, rulesFromClasspath );
+        InputStream rulesFromFileSystem = retrieveRulesFileFromFileSystem( rulesFileName );
+        if ( rulesFromFileSystem != null )
+            processRules( xplanType, xplanName, rulesFromFileSystem );
+    }
+
+    private void processRules( String xplanType, String xplanName, InputStream is ) {
+        try {
+            RuleParser parser = new RuleParser( xplanType, xplanName, this );
+            for ( String line : IOUtils.readLines( is ) ) {
+                if ( !line.startsWith( "#" ) && !"".equals( line.trim() ) ) {
+                    int firstEquals = line.indexOf( "=" );
+                    rules.put( line.substring( 0, firstEquals ), parser.parse( line.substring( firstEquals + 1 ) ) );
+                }
+            }
+        } catch ( IOException e ) {
+            throw new RuntimeException( "Error while reading the rules file ", e );
+        } finally {
+            closeQuietly( is );
+        }
+    }
+
+    private InputStream retrieveRulesFileFromFileSystem( String rulesFileName ) {
+        if ( rulesDirectory != null ) {
+            Path rulesFile = rulesDirectory.resolve( rulesFileName );
+            LOG.info( "Read additional/overwritting rules from directory: {}", rulesFile );
+            if ( Files.exists( rulesFile ) ) {
+                try {
+                    return Files.newInputStream( rulesFile );
+                } catch ( IOException e ) {
+                    LOG.info( "Could not read rules in configuration directory." );
+                }
+            }
+            LOG.info( "Could not find rules in configuration directory." );
+        }
+        return null;
+    }
+
+    private InputStream retrieveRulesFileFromClasspath( String rulesFileName ) {
+        String rulesResource = "/rules/" + rulesFileName;
+        LOG.info( "Read rules from internal directory: {}", rulesResource );
+        return XPlanSynthesizer.class.getResourceAsStream( rulesResource );
+    }
+
+    private String detectRulesFileName( XPlanVersion version ) {
+        switch ( version ) {
+        case XPLAN_2:
+            return "xplan2.syn";
+        case XPLAN_3:
+            return "xplan3.syn";
+        case XPLAN_40:
+            return "xplan40.syn";
+        case XPLAN_41:
+            return "xplan41.syn";
+        default:
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private Feature synthesize( Feature feature ) {
         List<Property> newProps = new ArrayList<Property>();
         QName synFeatureName = new QName( SYN_NS, feature.getType().getName().getLocalPart() );
 
@@ -178,7 +254,7 @@ public class XPlanSynthesizer {
         return synType.newFeature( feature.getId(), newProps, null );
     }
 
-    private static PrimitiveValue toString( TypedObjectNodeArray<?> array ) {
+    private PrimitiveValue toString( TypedObjectNodeArray<?> array ) {
         StringBuilder sBuilder = new StringBuilder();
         for ( TypedObjectNode n : array.getElements() ) {
             sBuilder.append( n );

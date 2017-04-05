@@ -18,6 +18,7 @@ import de.latlon.xplan.manager.synthesizer.expression.Xplan2CodeLookupExt;
 import de.latlon.xplan.manager.synthesizer.expression.Xplan2CodeNormalize;
 import de.latlon.xplan.manager.synthesizer.expression.XplanBaugebietFlaechenteile;
 import de.latlon.xplan.manager.synthesizer.expression.XplanBegruendungAbschnitte;
+import de.latlon.xplan.manager.synthesizer.expression.XPlanExternalCodeLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookupExt;
 import de.latlon.xplan.manager.synthesizer.expression.XplanFlattenProperty;
@@ -36,9 +37,11 @@ import de.latlon.xplan.manager.synthesizer.expression.XplanTextAbschnitte;
  */
 class RuleParser {
 
-    private String xplanType;
+    private final String xplanType;
 
-    private String xplanName;
+    private final String xplanName;
+
+    private final XPlanSynthesizer xPlanSynthesizer;
 
     /**
      * @param xplanType
@@ -46,9 +49,10 @@ class RuleParser {
      * @param xplanName
      *            the name of xplan document, i.e. the name of the XP_Plan-descendant feature in the document
      */
-    public RuleParser( String xplanType, String xplanName ) {
+    public RuleParser( String xplanType, String xplanName, XPlanSynthesizer xPlanSynthesizer ) {
         this.xplanType = xplanType;
         this.xplanName = xplanName;
+        this.xPlanSynthesizer = xPlanSynthesizer;
     }
 
     private String trimString( String s ) {
@@ -64,7 +68,7 @@ class RuleParser {
     }
 
     private Expression parseXPlanFlattenFeature( List<String> args ) {
-        return new XplanFlattenProperty( parse( args.get( 0 ) ) );
+        return new XplanFlattenProperty( parse( args.get( 0 ) ), xPlanSynthesizer );
     }
 
     private Expression parseXPlanCodeNormalize( List<String> args ) {
@@ -111,6 +115,13 @@ class RuleParser {
 
     private Expression parseXPlanGeometry( List<String> args ) {
         return new XPlanGeometry( parseXPath( args ) );
+    }
+
+    private Expression parseXPlanExternalCodeLookup( List<String> args ) {
+        Expression expression = parse( args.get( 0 ) );
+        String codeListFile = trimString( args.get( 1 ) );
+        String codeListName = args.size() > 2 ? trimString( args.get( 2 ) ) : null;
+        return new XPlanExternalCodeLookup( expression, codeListFile, codeListName, xPlanSynthesizer.getExternalConfigurationFile() );
     }
 
     private Expression parseFunction( String functionName, List<String> args ) {
@@ -178,6 +189,9 @@ class RuleParser {
             break;
         case "xplanFlatten":
             result = parseXPlanFlattenFeature( args );
+            break;
+        case "xplanExternalCodeLookup":
+            result = parseXPlanExternalCodeLookup( args );
             break;
         default:
             throw new RuntimeException( String.format( "Expression %s is not expected.", functionName ) );
