@@ -12,12 +12,11 @@ Anpassungen erfolgen:
 
 
 ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-* __layer[B|F|L]Plan.xml__, __layer[B|F|L]PlanWFS.xml__,
-_layer[B|F|L]PRaster.xml_ und _featureHitsRetriever[B|F|L]P.xml_ (in der
+* _layer[B|F|L]Plan.xml_, _layer[B|F|L]PlanWFS.xml_, _layer[B|F|L]PRaster.xml_ und _featureHitsRetriever[B|F|L]P.xml_ (in der
 jeweiligen jar-Datei der XPlanPortal-Webkomponenten
-__.deegree/portal-configuration/<portal>-config.jar__)
+_.deegree/portal-configuration/<portal>-config.jar_)
 * _dropDownList.xml_ (im Ordner der jeweiligen XPlanPortal-Webkomponente
-__<tomcat>/webapps/<portal-portalname>__)
+_<tomcat>/webapps/<portal-portalname>_)
 ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 *Anpassung in den Dateien layer[B|F|L]Plan.xml, layer[B|F|L]PlanWFS.xml,
@@ -29,7 +28,7 @@ layer[B|F|L]PRaster.xml) bzw. _values_ (layer[B|F|L]PlanWFS.xml) und
 _wfsRequestUrlForBboxFeatureHits_ (featureHitsRetriever[B|F|L]P.xml),
 die einen der deegree Dienste referenzieren, angepasst werden.
 
-Beispiel __layerBPlan.xml__:
+Beispiel _layerBPlan.xml_:
 
 ----
 ...

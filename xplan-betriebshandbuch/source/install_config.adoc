@@ -61,8 +61,8 @@ JAVA_OPTS=’-DMANAGER_WEB=/home/xplanbox/.deegree/manager-configuration
 -Dxplan.logdir=/home/xplanbox/logs’
 
 Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, müssen
-*`-DMANAGER_WEB=/home/xplanbox/.deegree/manager-configuration'* und
-*`-Dxplan.logdir=/home/xplanbox/logs'* in die bestehenden JAVA_OPTS
+*’-DMANAGER_WEB=/home/xplanbox/.deegree/manager-configuration’* und
+*’-Dxplan.logdir=/home/xplanbox/logs’* in die bestehenden JAVA_OPTS
 integriert werden.
 
 [[windows]]
@@ -88,14 +88,13 @@ export JAVA_OPTS=’-DMANAGER_WEB=C:\.deegree\manager-configuration
 -Dxplan.logdir=C:\logs’
 
 Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, müssen
-*`-DMANAGER_WEB=C:\.deegree\manager-configuration'* und
-*`-Dxplan.logdir=C:\logs'* in die bestehenden JAVA_OPTS integriert
+*’-DMANAGER_WEB=C:\.deegree\manager-configuration’* und
+*’-Dxplan.logdir=C:\logs’* in die bestehenden JAVA_OPTS integriert
 werden.
 
 
 NOTE: Der Tomcat-Server sollte mindestens über 4GB Arbeitsspeicher verfügen,
-dies kann durch setzen der Umgebungsvariable: _export
-JAVA_OPTS=``-Xmx4096m''_ erfolgen.
+dies kann durch setzen der Umgebungsvariable: _exportJAVA_OPTS=’-Xmx4096m’_ erfolgen.
 
 
 [[dienste-tomcat]]

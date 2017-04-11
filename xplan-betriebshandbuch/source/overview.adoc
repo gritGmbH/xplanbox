@@ -32,10 +32,10 @@ R2/2012 R2.
 
 
 
-NOTE: Das Gebietsschema des Betriebssystems (``Locale'') sollte auf deutsch
+NOTE: Das Gebietsschema des Betriebssystems ("Locale") sollte auf deutsch
 konfiguriert sein, da einzelne Fehlerbeschreibungen in dieser Sprache
 ausgegeben werden (z.B. im Validator-Report). Unter Linux kann das
-Gebietsschema beispielsweise in der Datei ``/etc/default/locale''
+Gebietsschema beispielsweise in der Datei "/etc/default/locale"
 angepasst werden.
 
 

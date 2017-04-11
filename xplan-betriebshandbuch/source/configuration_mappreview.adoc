@@ -26,14 +26,14 @@ wmsArchiveEndpoint=wmsarchive
 
 Über die Schlüssel __wmsEndpoint__, _wmsPreEndpoint_ und
 _wmsArchiveEndpoint_ wird angegeben welcher XPlanWMS für die
-Kartenvorschau verwendet wird, wenn ein Plan `In Aufstellung',
-`Festgestellt' oder `Archiviert' ist. Wird nur eine
+Kartenvorschau verwendet wird, wenn ein Plan 'In Aufstellung',
+'Festgestellt' oder 'Archiviert' ist. Wird nur eine
 Datenhaltungskomponente verwendet, sollte die _wmsUrl_ konfiguriert sein
-(mit einem `?' am Ende). Andernfalls wird bei Plänen mit dem Status
-`Festgestellt' der mit dem Schlüssel _wmsEndpoint_ konfigurierte
-Endpunkt an die wms url angehängt, bei Plänen mit dem Status `In
+(mit einem '?' am Ende). Andernfalls wird bei Plänen mit dem Status
+'Festgestellt' der mit dem Schlüssel _wmsEndpoint_ konfigurierte
+Endpunkt an die wms url angehängt, bei Plänen mit dem Status 'In
 Aufstellung' der mit dem Schlüssel _wmsPreEndpoint_ konfigurierte
-Endpunkt oder bei Plänen mit dem Status `Archiviert' der mit dem
+Endpunkt oder bei Plänen mit dem Status 'Archiviert' der mit dem
 Schlüssel _wmsArchiveEndpoint_ konfigurierte Endpunkt.
 
 _Beispiel 1 - Konfiguration bei Verwendung einer

@@ -5,7 +5,7 @@
 Alle Konfigurationsdateien der XPlanPortale liegen im _.deegree_ des
 Benutzers und werden im Folgenden als _<portal-config-jar>_ benannt. Für
 die allgemeine Konfiguration der XPlanPortale wird außerdem auf die
-geomajas Dokumentation (http://geomajas.org/gis-documentation)
+geomajas Dokumentation (http://www.geomajas.org/geomajas/docs)
 verwiesen.
 
 [[wms-ebene-hinzufuegen]]
