@@ -1,3 +1,4 @@
+[XPlanValidator]
 == XPlanValidator
 
 Der XPlanValidator ist ein Prüftool, das ein Planarchiv und die darin enthaltene XPlanGML-Datei validieren kann.
