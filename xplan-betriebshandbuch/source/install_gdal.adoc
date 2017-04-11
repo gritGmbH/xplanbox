@@ -1,3 +1,4 @@
+[Installation und Konfiguration von GDAL]
 === Installation und Konfiguration von GDAL
 
 
@@ -5,7 +6,7 @@ Die xPlanBox unterstützt die Darstellung von Rasterdaten mittels
 GDAL-Integration. Es wird GDAL in der Version 1.10.1 empfohlen (s. auch
 https://github.com/deegree/deegree3/blob/master/deegree-services/deegree-webservices-handbook/src/main/sphinx/gdal.rst[deegree
 Handbook]). Die GDAL Unterstützung ist optional, die Konfiguration im
-XPlanManager ist unter link:configuration_gdal.adoc[Konfiguration-Gdal] beschrieben.
+XPlanManager ist unter <<GDAL>> beschrieben.
 
 
 

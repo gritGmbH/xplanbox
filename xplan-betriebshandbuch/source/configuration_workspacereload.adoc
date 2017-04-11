@@ -1,3 +1,4 @@
+[Automatischer Workspace-Reload]
 === Automatischer Workspace-Reload
 
 
@@ -27,7 +28,7 @@ workspaceReloadUrls=http://server1/xplan-wms/,http://server2/xplan-wms/
 
 
 NOTE: Der Nutzername und das Passwort müssen in der _tomcat-users.xml_
-eingetragen werden (siehe dazu das Kapitel link:install_config.adoc[Installation]).
+eingetragen werden (siehe dazu das Kapitel <<Konfiguration der Applikationsserver>>).
 
 
 

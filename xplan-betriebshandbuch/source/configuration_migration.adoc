@@ -1,3 +1,4 @@
+[Migration der Anwendung (Beispiele)]
 === Migration der Anwendung (Beispiele)
 
 
@@ -40,7 +41,7 @@ Beispiel __layerBPlan.xml__:
 ----
 
 Für mehr Details sowie Hinweise zur Bearbeitung von jar-Dateien siehe
-Kapitel link:../portale/index.adoc[XPlanPortal]
+Kapitel <<XPlanPortal>>
 
 *Anpassungen in der Datei dropDownList.xml:*
 
@@ -58,7 +59,7 @@ werden.
 </List>
 ----
 
-Für mehr Details siehe Kapitel link:../portale/index.adoc[XPlanPortal]
+Für mehr Details siehe Kapitel <<XPlanPortal>>
 
 [[fuer-den-xplanmanager]]
 ==== Für den XPlanManager:
@@ -81,7 +82,7 @@ Schlüssels _wmsUrl_ angepasst werden.
 wmsUrl=http://<host>:<port>/xplan-wms/services
 ----
 
-Für mehr Details siehe Kapitel link:../mappreview/index.adoc[Kartenvorschau]
+Für mehr Details siehe Kapitel <<Kartenvorschau>>
 
 *Anpassungen in der Datei managerConfiguration.properties:*
 
@@ -103,8 +104,7 @@ betrieben, so können die Dienste über den Hostnamen _localhost_
 kommunizieren.
 
 
-Für mehr Details siehe Kapitel
-link:../workspacereload[Automatischer Workspace-Reload]
+Für mehr Details siehe Kapitel <<Automatischer Workspace-Reload>>
 
 [[fuer-den-xplanwms]]
 ==== Für den XPlanWMS:

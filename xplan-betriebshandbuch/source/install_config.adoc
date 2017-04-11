@@ -1,7 +1,8 @@
+[Konfiguration der Applikationsserver]
 === Konfiguration der Applikationsserver
 
 
-Wie im Abschnitt link:install_install.adoc[Installation] beschrieben,
+Wie im Abschnitt <<Anwendung installieren>> beschrieben,
 werden zum Betreiben aller Komponenten zwei Tomcat-Instanzen empfohlen,
 der _Dienste-Tomcat_ sowie __Anwendungs-Tomcat__. Im Folgenden wird die
 Konfiguration beider Tomcats beschrieben.
@@ -16,7 +17,7 @@ ________________________________________________________________________________
 .  Die Konfiguration der XPlanPortale müssen dem Tomcat bekannt gegeben
 werden. Dazu muss der Classpath um die Referenzen auf die
 Konfigurations-JARs der Portale erweitert werden. Wurde die Anleitung in
-Abschnitt link:install_install.adoc[Installation] befolgt, befinden sich die
+Abschnitt <<Anwendung installieren>> befolgt, befinden sich die
 drei jar-Dateien im Verzeichnis _.deegree_ im Home-Verzeichnis des
 Nutzers.
 .  Für den XPlanManager Web muss die Variable _MANAGER_WEB_ als Java
@@ -24,12 +25,12 @@ Property gesetzt werden. Das mit Hilfe dieser Variable referenzierte
 Verzeichnis muss die Konfiguration des XPlanManager Web enthalten (es
 handelt sich um die Dateien managerConfiguration.properties und
 managerWebConfiguration.properties). Wurde der Anleitung in Abschnitt
-link:install_install.adoc[Installation] gefolgt, befindet sich das
+<<Anwendung installieren>> gefolgt, befindet sich das
 Verzeichnis mit dem Namen _manager-configuration_ im Verzeichnis
 _.deegree_ im Home-Verzeichnis des Nutzers.
 .  Um das Logging der Anwendungen XPlanManager Web und XPlanValidator
 Web in ein gesondertes Verzeichnis zu aktivieren (s. Details im
-Abschnitt link:configuration_logging.adoc[Logging]) muss die Variable
+Abschnitt <<Logging>> muss die Variable
 _xplan.logdir_ als Java Property gesetzt werden. In dem so
 konfigurierten Verzeichnis werden die log-Dateien der beiden Anwendungen
 abgelegt.
@@ -119,5 +120,5 @@ Zeilen hinzugefügt werden. :
 
 NOTE: Der Nutzername und das Passwort müssen in die
 managerConfiguration.properties eingetragen werden (s. Kapitel
-link:configuration_workspacereload.adoc[Konfiguration - Workspace Reload]).
+<<Automatischer Workspace-Reload>>.
 
