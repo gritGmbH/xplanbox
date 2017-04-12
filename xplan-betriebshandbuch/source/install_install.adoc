@@ -102,7 +102,7 @@ Komponenten in den Formaten HTML und PDF.
 Das Ablegen bzw. der Austausch der Web-Archive sowie das Ablegen bzw.
 die Aktualisierung der betroffenen Konfigurationsdateien in den
 Workspaces kann auf Linux-Umgebungen auch über das angehängte 
-link:downloads/install.sh[Installations-Skript] ausgeführt werden:
+Installations-Skript (s. <<Anhang>>) ausgeführt werden:
 
 ----
 sh ${WORK_DIR}/install.sh
