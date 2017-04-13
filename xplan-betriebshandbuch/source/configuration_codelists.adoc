@@ -2,6 +2,7 @@
 
 
 Externe Codelisten können im Verzeichnis <MANAGER_WEB>/synthesizer abgelegt werden (s. 4.4.1 für die Konfiguration des Verzeichnis <MANAGER_WEB>).
+Das Verzeichnis ist manuell anzulegen, wenn es nicht bereits existiert.
 Dazu müssen für die Zuordnung zu dem Property im vereinfachten XPlan-Syn Schema und dem komplexen XPlan-GML Regeln konfiguriert werden.
 Die Regeln müssen abhängig von der XPlan-GML Version in einer der folgenden Dateien angelegt werden (die Dateinamen dürfen dabei nicht verändert werden):
 
