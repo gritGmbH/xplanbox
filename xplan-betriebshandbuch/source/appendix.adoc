@@ -1,6 +1,6 @@
-[Anhang]
-== Anhang
-=== Installations-Skript
+[appendix]
+[[Installations-Skript]]
+== Installations-Skript
 
 Im folgenden befindet sich das Installations-Skript, welches für das Ablegen bzw. für den Austausch der Web-Archive sowie das Ablegen bzw. die Aktualisierung der betroffenen Konfigurationsdateien benutzt werden kann:
 

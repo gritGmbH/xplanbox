@@ -3,6 +3,7 @@
 :toc: macro
 :numbered:
 :toc-title: Inhaltsverzeichnis
+:appendix-caption: Anhang
 
 = Betriebshandbuch für die xPlanBox
 
@@ -20,8 +21,4 @@ include::configuration.adoc[]
 
 include::update.adoc[]
 
-include::attachment.adoc[]
-
-
-
-
+include::appendix.adoc[]
