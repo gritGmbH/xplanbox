@@ -574,7 +574,7 @@ public class XPlanManager {
             FeatureCollection synFc = createSynFeatures( modifiedPlanFc, version );
 
             // TODO: Validation required?
-            PlanStatus newPlanStatus = detectNewPlanStatus( version, type, xPlanToEdit, oldLegislationStatus, oldPlanStatus );
+            PlanStatus newPlanStatus = detectNewPlanStatus( xPlanToEdit, oldLegislationStatus, oldPlanStatus );
             XPlanMetadata xPlanMetadata = new XPlanMetadata( newPlanStatus, xPlanToEdit.getValidityPeriod().getStart(),
                             xPlanToEdit.getValidityPeriod().getEnd() );
             Date sortDate = sortPropertyReader.readSortDate( type, version, modifiedFeatures );
@@ -597,18 +597,6 @@ public class XPlanManager {
             if ( originalPlanAsXmlReader != null )
                 originalPlanAsXmlReader.close();
         }
-    }
-
-    private PlanStatus detectNewPlanStatus( XPlanVersion version, XPlanType type, XPlanToEdit xPlanToEdit,
-                                            String oldLegislationStatus,
-                                            PlanStatus oldPlanStatus ) {
-        int newLegislationStatusCode = xPlanToEdit.getBaseData().getLegislationStatusCode();
-        String newTranslatedLegislationStatusCode = translateLegislationStatusCode( version, type,
-                                                                                    newLegislationStatusCode );
-        if ( ( newTranslatedLegislationStatusCode == null && oldLegislationStatus == null )
-             || ( newTranslatedLegislationStatusCode != null && newTranslatedLegislationStatusCode.equals( oldLegislationStatus ) ) )
-            return oldPlanStatus;
-        return PlanStatus.findByLegislationStatusCode( newLegislationStatusCode );
     }
 
     /**
@@ -953,6 +941,21 @@ public class XPlanManager {
         DateFormat simpleDateFormat = new SimpleDateFormat( "dd MMM yyyy HH:mm:ss z" );
         simpleDateFormat.setTimeZone( TimeZone.getTimeZone( "CET" ) );
         return simpleDateFormat;
+    }
+
+    private PlanStatus detectNewPlanStatus( XPlanToEdit xPlanToEdit, String oldLegislationStatus,
+                                            PlanStatus oldPlanStatus ) {
+        int newLegislationStatusCode = xPlanToEdit.getBaseData().getLegislationStatusCode();
+        int oldLegislationStatusCode = -1;
+        try {
+            if ( oldLegislationStatus != null )
+                oldLegislationStatusCode = Integer.parseInt( oldLegislationStatus );
+        } catch ( NumberFormatException e ) {
+            LOG.warn( "Could not parse legislation status code {} as integer", oldLegislationStatus );
+        }
+        if ( newLegislationStatusCode != oldLegislationStatusCode )
+            return PlanStatus.findByLegislationStatusCode( newLegislationStatusCode );
+        return oldPlanStatus;
     }
 
 }
