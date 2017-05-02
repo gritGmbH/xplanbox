@@ -46,7 +46,7 @@ XPlanManagers in der Datei _WEB-INF/classes/security.properties_
 konfiguriert werden:
 
 ----
-ldap.server.domain=adserver
+ldap.server.domain=adserver.lat-lon
 ldap.server.url=ldap://adserver:389
 ----
 
