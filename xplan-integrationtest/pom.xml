@@ -145,7 +145,7 @@
               <testFailIgnore>false</testFailIgnore>
               <projectProperties>
                 <!-- JDBC -->
-                <value>JdbcHost=lgvxplanisk.lat-lon</value>
+                <value>JdbcHost=lgvxplanisk</value>
                 <value>JdbcPort=5433</value>
                 <value>Database=xplanbox_integrationtest</value>
                 <value>JdbcUser=lgvxplanisk</value>

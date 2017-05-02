@@ -10,7 +10,7 @@
     <java.version>1.7</java.version>
     <maven.version>3.0.3</maven.version>
     <!-- sonar settings -->
-    <sonar.host.url>http://vento.lat-lon:9000</sonar.host.url>
+    <sonar.host.url>http://vento:9000</sonar.host.url>
     <sonar.jdbc.url>jdbc:postgresql://habub/sonar</sonar.jdbc.url>
     <!-- version properties -->
     <deegree3.version>3.4-RC3-xplanbox-1.6</deegree3.version>
@@ -685,42 +685,42 @@
   </dependencyManagement>
 
   <scm>
-    <connection>scm:git:http://criador.lat-lon:8080/scm/git/xplanbox</connection>
-    <developerConnection>scm:git:http://criador.lat-lon:8080/scm/git/xplanbox</developerConnection>
-    <url>http://criador.lat-lon:8080/scm/git/xplanbox</url>
+    <connection>scm:git:http://criador:8080/scm/git/xplanbox</connection>
+    <developerConnection>scm:git:http://criador:8080/scm/git/xplanbox</developerConnection>
+    <url>http://criador:8080/scm/git/xplanbox</url>
     <tag>HEAD</tag>
   </scm>
 
   <repositories>
     <repository>
       <id>latlon-repository</id>
-      <url>http://repo.lat-lon/nexus/content/groups/public/</url>
+      <url>http://repo/nexus/content/groups/public/</url>
     </repository>
     <repository>
       <id>xplanbox-release</id>
-      <url>http://repo.lat-lon/nexus/content/repositories/xplanbox-release/</url>
+      <url>http://repo/nexus/content/repositories/xplanbox-release/</url>
     </repository>
     <repository>
       <id>xplanbox-snapshot</id>
-      <url>http://repo.lat-lon/nexus/content/repositories/xplanbox-snapshot/</url>
+      <url>http://repo/nexus/content/repositories/xplanbox-snapshot/</url>
     </repository>
   </repositories>
 
   <pluginRepositories>
     <pluginRepository>
       <id>latlon-plugin-repository</id>
-      <url>http://repo.lat-lon/nexus/content/groups/public/</url>
+      <url>http://repo/nexus/content/groups/public/</url>
     </pluginRepository>
   </pluginRepositories>
 
   <distributionManagement>
     <repository>
       <id>xplanbox-release</id>
-      <url>http://repo.lat-lon/nexus/content/repositories/xplanbox-release/</url>
+      <url>http://repo/nexus/content/repositories/xplanbox-release/</url>
     </repository>
     <snapshotRepository>
       <id>xplanbox-snapshot</id>
-      <url>http://repo.lat-lon/nexus/content/repositories/xplanbox-snapshot/</url>
+      <url>http://repo/nexus/content/repositories/xplanbox-snapshot/</url>
     </snapshotRepository>
   </distributionManagement>
 
