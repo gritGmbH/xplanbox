@@ -14,12 +14,12 @@ sich im Abschnitt XPlanManager CLI in der Benutzerdokumentation. Die
 erforderlichen Informationen sind in Abschnitt _Alternativer
 Betriebsmodus_ beschrieben.
 
-MIt dem CLI werden auch die Verbindungsdetails im XPlanManger Workspace anhand der übergebenden Parameter gesetzt, so dass der XPlanManager nach Ausführung ohne ḿanuelle Anpassungen auf die Datenbank zugreifen kann. +
+Mit dem CLI werden auch die Verbindungsdetails im XPlanManger Workspace anhand der übergebenden Parameter gesetzt, so dass der XPlanManager nach Ausführung ohne manuelle Anpassungen auf die Datenbank zugreifen kann.
 Dagegen müssen die Datenbank Verbindung in den XPlan-Diensten manuell angepasst werden. Betroffen sind folgende Dateien:
 
  * _.deegree/xplansyn-wms-workspace/jdbc/xplan.xml_
  * _.deegree/xplan-wms-workspace/jdbc/xplan.xml_
-  * _.deegree/xplan-wfs-workspace/jdbc/xplan.xml_
+ * _.deegree/xplan-wfs-workspace/jdbc/xplan.xml_
 
 Dabei kann auf zwei verschiedene Arten vorgegangen werden:
 
@@ -32,4 +32,4 @@ In den __xplan.xml__-Datei werden die ConnectionsPools für den Zugriff auf die 
 * maxActive: Die maximale Anzahl von offenen Verbindungen die von Pool zeitgleich verwendet werden können.
 * maxIdle: Die maximale Anzahl der  Verbindungen, die sich ungenutzt im Pool befinden können.
 
-Da die Anzahl der zugelassenen Verbindungen des Datenbankservers ebenfalls begrenzt sein kann, ist es, abhängig von der Installation der xPlanBox, der Anzahl der Nutzer und ggf. weiterer Faktoren sinnvoll die vordefinierten Werte an die Installationsumgebung anzupassen.
+Da die Anzahl der zugelassenen Verbindungen des Datenbankservers begrenzt sein kann, ist es abhängig von der Installation der xPlanBox, der Anzahl der Nutzer und gegebenenfalls weiterer Faktoren sinnvoll, die vordefinierten Werte an die Installationsumgebung anzupassen.
