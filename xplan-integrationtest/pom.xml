@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-integrationtest</artifactId>
   <packaging>jar</packaging>
-  <description>Contains integration tests (SoapUI).</description>
+  <description>Contains integration tests (SoapUI and Java).</description>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
@@ -115,13 +115,10 @@
         <configuration>
           <systemPropertyVariables>
             <url>http://${tomcat.host}:${tomcat.port}/</url>
-            <managerWebContextPath>${managerWeb.contextPath}</managerWebContextPath>
             <adContextPath>${managerWeb.adContextPath}</adContextPath>
-            <baseDir>${project.build.outputDirectory}</baseDir>
           </systemPropertyVariables>
         </configuration>
       </plugin>
-      <!-- TODO: prepare database! Use Manager CLI -->
       <plugin>
         <groupId>com.smartbear.soapui</groupId>
         <artifactId>soapui-maven-plugin</artifactId>

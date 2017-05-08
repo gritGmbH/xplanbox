@@ -7,7 +7,7 @@
   </formats>
   <dependencySets>
     <dependencySet>
-      <outputFileNameMapping>xplan-wfs-workspace</outputFileNameMapping>
+      <outputDirectory>xplan-wfs-workspace</outputDirectory>
       <includes>
         <include>de.latlon.product.xplanbox:xplan-wfs-workspace</include>
       </includes>
@@ -20,7 +20,7 @@
       </unpackOptions>
     </dependencySet>
     <dependencySet>
-      <outputFileNameMapping>xplansyn-wfs-workspace</outputFileNameMapping>
+      <outputDirectory>xplansyn-wfs-workspace</outputDirectory>
       <includes>
         <include>de.latlon.product.xplanbox:xplansyn-wfs-workspace</include>
       </includes>
@@ -33,7 +33,7 @@
       </unpackOptions>
     </dependencySet>
     <dependencySet>
-      <outputFileNameMapping>xplansyn-wms-workspace</outputFileNameMapping>
+      <outputDirectory>xplansyn-wms-workspace</outputDirectory>
       <includes>
         <include>de.latlon.product.xplanbox:xplansyn-wms-workspace</include>
       </includes>
@@ -49,7 +49,7 @@
       </unpackOptions>
     </dependencySet>
     <dependencySet>
-      <outputFileNameMapping>xplan-manager-workspace</outputFileNameMapping>
+      <outputDirectory>xplan-manager-workspace</outputDirectory>
       <includes>
         <include>de.latlon.product.xplanbox:xplan-manager-workspace</include>
       </includes>
