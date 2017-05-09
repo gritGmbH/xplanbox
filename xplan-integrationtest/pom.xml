@@ -180,6 +180,19 @@
         </executions>
       </plugin>
 
+      <!-- Execute Java integration tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <configuration>
+          <systemPropertyVariables>
+            <url>http://${tomcat.host}:${tomcat.port}/</url>
+            <managerWebContextPath>${managerWeb.contextPath}</managerWebContextPath>
+            <adContextPath>${managerWeb.adContextPath}</adContextPath>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+
       <!-- Execute SoapUI integration tests -->
       <plugin>
         <groupId>com.smartbear.soapui</groupId>
@@ -229,19 +242,6 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-
-      <!-- Execute Java integration tests -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <configuration>
-          <systemPropertyVariables>
-            <url>http://${tomcat.host}:${tomcat.port}/</url>
-            <managerWebContextPath>${managerWeb.contextPath}</managerWebContextPath>
-            <adContextPath>${managerWeb.adContextPath}</adContextPath>
-          </systemPropertyVariables>
-        </configuration>
       </plugin>
     </plugins>
   </build>
