@@ -13,11 +13,9 @@
       </includes>
       <unpack>true</unpack>
       <unpackOptions>
-        <includes>
-          <include>**</include>
-        </includes>
         <filtered>true</filtered>
       </unpackOptions>
+      <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
     <dependencySet>
       <outputDirectory>xplansyn-wfs-workspace</outputDirectory>
@@ -26,11 +24,9 @@
       </includes>
       <unpack>true</unpack>
       <unpackOptions>
-        <includes>
-          <include>**</include>
-        </includes>
         <filtered>true</filtered>
       </unpackOptions>
+      <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
     <dependencySet>
       <outputDirectory>xplansyn-wms-workspace</outputDirectory>
@@ -39,14 +35,30 @@
       </includes>
       <unpack>true</unpack>
       <unpackOptions>
-        <includes>
-          <include>**</include>
-        </includes>
-        <excludes>
-          <exclude>gdal.xml</exclude>
-        </excludes>
         <filtered>true</filtered>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+          <include>**/*.gfi</include>
+        </includes>
       </unpackOptions>
+      <useProjectArtifact>false</useProjectArtifact>
+    </dependencySet>
+    <dependencySet>
+      <outputDirectory>xplansyn-wms-workspace</outputDirectory>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplansyn-wms-workspace</include>
+      </includes>
+      <unpack>true</unpack>
+      <unpackOptions>
+        <filtered>false</filtered>
+        <excludes>
+          <exclude>**/*.properties</exclude>
+          <exclude>**/*.xml</exclude>
+          <exclude>**/*.gfi</exclude>
+        </excludes>
+      </unpackOptions>
+      <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
     <dependencySet>
       <outputDirectory>xplan-manager-workspace</outputDirectory>
@@ -55,11 +67,9 @@
       </includes>
       <unpack>true</unpack>
       <unpackOptions>
-        <includes>
-          <include>**</include>
-        </includes>
         <filtered>true</filtered>
       </unpackOptions>
+      <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
   </dependencySets>
 </assembly>

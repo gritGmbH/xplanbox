@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-integrationtest</artifactId>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
   <description>Contains integration tests (SoapUI and Java).</description>
 
   <parent>
@@ -13,18 +13,19 @@
   </parent>
 
   <properties>
+    <!-- Tomcat configuration -->
     <tomcat.host>localhost</tomcat.host>
     <tomcat.port>9001</tomcat.port>
-    <workspaces.path>${project.build.directory}/workspaces</workspaces.path>
+    <!-- Context paths of webapps -->
     <managerWeb.contextPath>manager-web</managerWeb.contextPath>
     <managerWeb.adContextPath>manager-web-ad</managerWeb.adContextPath>
     <wfs.contextPath>xplan-wfs</wfs.contextPath>
     <synwfs.contextPath>xplansyn-wfs</synwfs.contextPath>
     <wms.contextPath>xplan-wms</wms.contextPath>
-    <soapui.test.dir>src/test/soapui</soapui.test.dir>
   </properties>
 
   <build>
+    <!-- Prepare environment -->
     <plugins>
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
@@ -35,8 +36,8 @@
               <descriptors>
                 <descriptor>src/test/assembly/assembly-ad.xml</descriptor>
               </descriptors>
-              <finalName>${managerWeb.adContextPath}</finalName>
               <appendAssemblyId>false</appendAssemblyId>
+              <finalName>${managerWeb.adContextPath}</finalName>
             </configuration>
             <phase>package</phase>
             <goals>
@@ -52,8 +53,8 @@
               <filters>
                 <filter>src/test/filter/workspace.properties</filter>
               </filters>
-              <finalName>workspaces</finalName>
               <appendAssemblyId>false</appendAssemblyId>
+              <finalName>workspaces</finalName>
             </configuration>
             <phase>package</phase>
             <goals>
@@ -74,7 +75,7 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${workspaces.path}</outputDirectory>
+              <outputDirectory>${project.build.directory}/workspaces</outputDirectory>
               <resources>
                 <resource>
                   <directory>src/test/resources/workspaces</directory>
@@ -109,77 +110,20 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <configuration>
-          <systemPropertyVariables>
-            <url>http://${tomcat.host}:${tomcat.port}/</url>
-            <adContextPath>${managerWeb.adContextPath}</adContextPath>
-          </systemPropertyVariables>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>com.smartbear.soapui</groupId>
-        <artifactId>soapui-maven-plugin</artifactId>
-        <dependencies>
-          <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.3-1102-jdbc4</version>
-          </dependency>
-        </dependencies>
-        <configuration>
-          <outputFolder>${project.build.directory}/soapui</outputFolder>
-          <junitReport>true</junitReport>
-          <exportAll>false</exportAll>
-          <printReport>true</printReport>
-          <testFailIgnore>false</testFailIgnore>
-          <projectProperties>
-            <!-- JDBC -->
-            <value>JdbcHost=lgvxplanisk</value>
-            <value>JdbcPort=5433</value>
-            <value>Database=xplanbox_integrationtest</value>
-            <value>JdbcUser=lgvxplanisk</value>
-            <value>JdbcPassword=lgvxplanisk</value>
-            <!-- Services -->
-            <value>ServiceEndpointHost=${tomcat.host}</value>
-            <value>ServiceEndpointPort=${tomcat.port}</value>
-            <value>ServiceContextWms=${wms.contextPath}</value>
-            <value>ServiceContextWfs=${wfs.contextPath}</value>
-            <value>ServiceContextWfsSyn=${synwfs.contextPath}</value>
-            <!-- Manager -->
-            <value>ManagerHost=${tomcat.host}</value>
-            <value>ManagerPort=${tomcat.port}</value>
-            <value>ManagerContext=${managerWeb.contextPath}</value>
-            <value>ManagerContextAd=${managerWeb.adContextPath}</value>
-          </projectProperties>
-        </configuration>
-        <executions>
-          <execution>
-            <id>integration-test</id>
-            <phase>integration-test</phase>
-            <goals>
-              <goal>test</goal>
-            </goals>
-            <configuration>
-              <projectFile>${soapui.test.dir}/xplan-soapui-project.xml</projectFile>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+
+      <!-- Run Tomcat -->
       <plugin>
         <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat6-maven-plugin</artifactId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
         <configuration>
           <systemProperties>
-            <DEEGREE_WORKSPACE_ROOT>${workspaces.path}</DEEGREE_WORKSPACE_ROOT>
+            <DEEGREE_WORKSPACE_ROOT>${project.build.directory}/workspaces</DEEGREE_WORKSPACE_ROOT>
           </systemProperties>
           <ignorePackaging>true</ignorePackaging>
           <port>${tomcat.port}</port>
-          <warFile>target/${managerWeb.adContextPath}.war</warFile>
-          <warDirectory>target/${managerWeb.adContextPath}</warDirectory>
           <path>/${managerWeb.adContextPath}</path>
+          <warFile>${project.build.directory}/${managerWeb.adContextPath}.war</warFile>
+          <warDirectory>${project.build.directory}/${managerWeb.adContextPath}</warDirectory>
           <webapps>
             <webapp>
               <groupId>${project.groupId}</groupId>
@@ -235,9 +179,69 @@
           </execution>
         </executions>
       </plugin>
+
+      <!-- Execute SoapUI integration tests -->
+      <plugin>
+        <groupId>com.smartbear.soapui</groupId>
+        <artifactId>soapui-maven-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.3-1102-jdbc4</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <outputFolder>${project.build.directory}/soapui</outputFolder>
+          <junitReport>true</junitReport>
+          <exportAll>false</exportAll>
+          <printReport>true</printReport>
+          <testFailIgnore>false</testFailIgnore>
+          <projectProperties>
+            <!-- JDBC -->
+            <value>JdbcHost=lgvxplanisk</value>
+            <value>JdbcPort=5433</value>
+            <value>Database=xplanbox_integrationtest</value>
+            <value>JdbcUser=lgvxplanisk</value>
+            <value>JdbcPassword=lgvxplanisk</value>
+            <!-- Services -->
+            <value>ServiceEndpointHost=${tomcat.host}</value>
+            <value>ServiceEndpointPort=${tomcat.port}</value>
+            <value>ServiceContextWms=${wms.contextPath}</value>
+            <value>ServiceContextWfs=${wfs.contextPath}</value>
+            <value>ServiceContextWfsSyn=${synwfs.contextPath}</value>
+            <!-- Manager -->
+            <value>ManagerHost=${tomcat.host}</value>
+            <value>ManagerPort=${tomcat.port}</value>
+            <value>ManagerContext=${managerWeb.contextPath}</value>
+            <value>ManagerContextAd=${managerWeb.adContextPath}</value>
+          </projectProperties>
+        </configuration>
+        <executions>
+          <execution>
+            <id>integration-test</id>
+            <phase>integration-test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
+            <configuration>
+              <projectFile>src/test/soapui/xplan-soapui-project.xml</projectFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Execute Java integration tests -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <configuration>
+          <systemPropertyVariables>
+            <url>http://${tomcat.host}:${tomcat.port}/</url>
+            <managerWebContextPath>${managerWeb.contextPath}</managerWebContextPath>
+            <adContextPath>${managerWeb.adContextPath}</adContextPath>
+          </systemPropertyVariables>
+        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -247,6 +251,15 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+    </dependency>
+    <!-- selenium -->
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-htmlunit-driver</artifactId>
     </dependency>
     <!-- xplanung -->
     <dependency>
