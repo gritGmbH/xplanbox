@@ -238,7 +238,7 @@
               <goal>test</goal>
             </goals>
             <configuration>
-              <projectFile>src/test/soapui/xplan-soapui-project.xml</projectFile>
+              <projectFile>${project.basedir}/src/test/soapui/xplan-soapui-project.xml</projectFile>
             </configuration>
           </execution>
         </executions>
