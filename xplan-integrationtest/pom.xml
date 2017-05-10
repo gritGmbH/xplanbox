@@ -252,15 +252,6 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
     </dependency>
-    <!-- selenium -->
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-htmlunit-driver</artifactId>
-    </dependency>
     <!-- xplanung -->
     <dependency>
       <groupId>${project.groupId}</groupId>
