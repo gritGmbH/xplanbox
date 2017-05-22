@@ -1,15 +1,14 @@
 === XPlanWMS/ XPlanWFS/ XPlanSynWFS
 
-
 [[manuelle-anpassung-der-bbox_cache.properties]]
 ==== Manuelle Anpassung der bbox_cache.properties
 
+Damit eine Abfrage von Vektor- bzw. Rasterdaten über den XPlanWMS, XPlanWFS und XPlanSynWFS erfolgen kann, muss eine BoundingBox definiert werden, in der alle räumlichen Daten liegen, die sich in dem System befinden.
+Diese BoundingBox wird in der Datei bbox_cache.properties in dem Verzeichnis _.deegree/<XPlan-Dienst-Workspace>/datasources/feature_ konfiguriert. Dabei muss für jeden FeatureType der EPSG-Code und die BoundingBox, die alle räumlichen Daten des Systems umfasst, gesetzt werden.
 
-Für die Darstellung von Vektorlayer bzw. Rasterlayer ist ein räumlich korrekter Kartenausschnitt notwendig, der durch eine BoundingBox definiert wird. Diese BoundingBox wird automatisch durch das einfügen von Vekror bzw. Rasterdateien oder durch die GetCapabilities-Anfrage jedes Featuretypes als bbox_cache.properties generiert. Die Konfigurationsdatei ist in _.deegree/<Xplan-Workspace>/datasources/feature_ zufinden.
+Falls die bbox_cache.properties Datei nicht korrekt konfiguriert wurde, ist die in den Capabilities-Dokumenten angegebene BoundingBox gegebenenfalls falsch. Dies kann unter anderem dazu führen, dass die Daten durch Clients nicht angezeigt werden.
 
-Da es oft durch z.B. das Fehlen des CRS in den Daten zu fehlerhaften Einträgen kommt, muss die bbox_cache.properties in den Workspaces der Dienste manuell so angepasst werden, dass in dieser immer die richtige BoundingBox enthalten ist. 
-
-Auschnitt aus der bbox_cache.properties Datei
+Beispiel: Auschnitt aus der bbox_cache.properties Datei
 
 ----
 ....
@@ -22,6 +21,3 @@ Auschnitt aus der bbox_cache.properties Datei
 {http\://www.deegree.org/xplanung/1/0}BP_UeberbaubareGrundstuecksFlaeche=epsg\:4326,8.0,53.0,9.0,54.0
 ....
 ----
-
-
-
