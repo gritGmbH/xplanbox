@@ -14,10 +14,22 @@ sich im Abschnitt XPlanManager CLI in der Benutzerdokumentation. Die
 erforderlichen Informationen sind in Abschnitt _Alternativer
 Betriebsmodus_ beschrieben.
 
-Datenbank Verbindung in xplansyn-wms-workspace manuell anpassen: Nach
-der Erzeugung der Datenbank in PostgreSQL muss die __xplan.xml__-Datei
-im XPlanmanger Workspace _.deegree/xplan-manager-workspace/jdbc/_
-kopiert und in das Verzeichnis _.deegree/xplansyn-wms-workspace/jdbc/_
-eingefügt werden. Dabei wird die bereits vorhandene Konfiguration
-ausgetauscht. Alternativ ist auch eine direkte Anpassung in der bereits
-vorhandenen __xplan.xml__-Datei im _xplansyn-wms-workspace_ möglich.
+Mit dem CLI werden auch die Verbindungsdetails im XPlanManger Workspace anhand der übergebenden Parameter gesetzt, so dass der XPlanManager nach Ausführung ohne manuelle Anpassungen auf die Datenbank zugreifen kann.
+Dagegen müssen die Datenbank Verbindung in den XPlan-Diensten manuell angepasst werden. Betroffen sind folgende Dateien:
+
+ * _.deegree/xplansyn-wms-workspace/jdbc/xplan.xml_
+ * _.deegree/xplan-wms-workspace/jdbc/xplan.xml_
+ * _.deegree/xplan-wfs-workspace/jdbc/xplan.xml_
+
+Dabei kann auf zwei verschiedene Arten vorgegangen werden:
+
+ * Die __xplan.xml__-Datei aus dem XPlanManger Workspace _.deegree/xplan-manager-workspace/jdbc/_ wird kopiert und die bereits vorhandene Konfiguration damit überschrieben.
+ * Alternativ ist auch eine direkte Anpassung in der bereits vorhandenen __xplan.xml__-Datei möglich.
+
+In den __xplan.xml__-Datei werden die ConnectionsPools für den Zugriff auf die Datenbank konfiguriert . Diese beinhalten neben den Verbindungsdetails wie die Url, den Nutzernamen und das Passwort weitere Details, die ggf. bei einer Installation zu berücksichtigen sind. Darunter:
+
+* initialSize: Die Anzahl der initialen Verbindungen, die beim Start geöffnet werden.
+* maxActive: Die maximale Anzahl von offenen Verbindungen die von Pool zeitgleich verwendet werden können.
+* maxIdle: Die maximale Anzahl der  Verbindungen, die sich ungenutzt im Pool befinden können.
+
+Da die Anzahl der zugelassenen Verbindungen des Datenbankservers begrenzt sein kann, ist es abhängig von der Installation der xPlanBox, der Anzahl der Nutzer und gegebenenfalls weiterer Faktoren sinnvoll, die vordefinierten Werte an die Installationsumgebung anzupassen.

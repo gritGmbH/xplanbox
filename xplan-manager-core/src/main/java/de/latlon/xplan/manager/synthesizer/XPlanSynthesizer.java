@@ -146,7 +146,7 @@ public class XPlanSynthesizer {
         try {
             RuleParser parser = new RuleParser( xplanType, xplanName, this );
             for ( String line : IOUtils.readLines( is ) ) {
-                if ( !line.startsWith( "#" ) ) {
+                if ( !line.startsWith( "#" ) && !"".equals( line.trim() ) ) {
                     int firstEquals = line.indexOf( "=" );
                     rules.put( line.substring( 0, firstEquals ), parser.parse( line.substring( firstEquals + 1 ) ) );
                 }
