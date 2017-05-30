@@ -1,12 +1,12 @@
 === LDAP
 
 
-Als LDAP Server wird Active Directory verwendet.
+Als LDAP Server kann Microsoft Active Directory verwendet.
 
 Um die Security zu aktivieren, müssen folgende Änderungen an der
 _WEB-INF/web.xml_ vorgenommen werden.
 
-Der Security Filter muss hinzugefügt werden:
+Der Spring Security Servlet-Filter muss hinzugefügt werden:
 
 ----
 <filter>
