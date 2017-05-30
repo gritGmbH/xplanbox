@@ -1,7 +1,8 @@
+[Konfiguration der Applikationsserver]
 === Konfiguration der Applikationsserver
 
 
-Wie im Abschnitt link:install_install.adoc[Installation] beschrieben,
+Wie im Abschnitt <<Anwendung installieren>> beschrieben,
 werden zum Betreiben aller Komponenten zwei Tomcat-Instanzen empfohlen,
 der _Dienste-Tomcat_ sowie __Anwendungs-Tomcat__. Im Folgenden wird die
 Konfiguration beider Tomcats beschrieben.
@@ -16,7 +17,7 @@ ________________________________________________________________________________
 .  Die Konfiguration der XPlanPortale müssen dem Tomcat bekannt gegeben
 werden. Dazu muss der Classpath um die Referenzen auf die
 Konfigurations-JARs der Portale erweitert werden. Wurde die Anleitung in
-Abschnitt link:install_install.adoc[Installation] befolgt, befinden sich die
+Abschnitt <<Anwendung installieren>> befolgt, befinden sich die
 drei jar-Dateien im Verzeichnis _.deegree_ im Home-Verzeichnis des
 Nutzers.
 .  Für den XPlanManager Web muss die Variable _MANAGER_WEB_ als Java
@@ -24,12 +25,12 @@ Property gesetzt werden. Das mit Hilfe dieser Variable referenzierte
 Verzeichnis muss die Konfiguration des XPlanManager Web enthalten (es
 handelt sich um die Dateien managerConfiguration.properties und
 managerWebConfiguration.properties). Wurde der Anleitung in Abschnitt
-link:install_install.adoc[Installation] gefolgt, befindet sich das
+<<Anwendung installieren>> gefolgt, befindet sich das
 Verzeichnis mit dem Namen _manager-configuration_ im Verzeichnis
 _.deegree_ im Home-Verzeichnis des Nutzers.
 .  Um das Logging der Anwendungen XPlanManager Web und XPlanValidator
 Web in ein gesondertes Verzeichnis zu aktivieren (s. Details im
-Abschnitt link:configuration_logging.adoc[Logging]) muss die Variable
+Abschnitt <<Logging>> muss die Variable
 _xplan.logdir_ als Java Property gesetzt werden. In dem so
 konfigurierten Verzeichnis werden die log-Dateien der beiden Anwendungen
 abgelegt.
@@ -60,8 +61,8 @@ JAVA_OPTS=’-DMANAGER_WEB=/home/xplanbox/.deegree/manager-configuration
 -Dxplan.logdir=/home/xplanbox/logs’
 
 Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, müssen
-*`-DMANAGER_WEB=/home/xplanbox/.deegree/manager-configuration'* und
-*`-Dxplan.logdir=/home/xplanbox/logs'* in die bestehenden JAVA_OPTS
+*’-DMANAGER_WEB=/home/xplanbox/.deegree/manager-configuration’* und
+*’-Dxplan.logdir=/home/xplanbox/logs’* in die bestehenden JAVA_OPTS
 integriert werden.
 
 [[windows]]
@@ -87,14 +88,13 @@ export JAVA_OPTS=’-DMANAGER_WEB=C:\.deegree\manager-configuration
 -Dxplan.logdir=C:\logs’
 
 Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, müssen
-*`-DMANAGER_WEB=C:\.deegree\manager-configuration'* und
-*`-Dxplan.logdir=C:\logs'* in die bestehenden JAVA_OPTS integriert
+*’-DMANAGER_WEB=C:\.deegree\manager-configuration’* und
+*’-Dxplan.logdir=C:\logs’* in die bestehenden JAVA_OPTS integriert
 werden.
 
 
 NOTE: Der Tomcat-Server sollte mindestens über 4GB Arbeitsspeicher verfügen,
-dies kann durch setzen der Umgebungsvariable: _export
-JAVA_OPTS=``-Xmx4096m''_ erfolgen.
+dies kann durch setzen der Umgebungsvariable: _exportJAVA_OPTS=’-Xmx4096m’_ erfolgen.
 
 
 [[dienste-tomcat]]
@@ -119,5 +119,5 @@ Zeilen hinzugefügt werden. :
 
 NOTE: Der Nutzername und das Passwort müssen in die
 managerConfiguration.properties eingetragen werden (s. Kapitel
-link:configuration_workspacereload.adoc[Konfiguration - Workspace Reload]).
+<<Automatischer Workspace-Reload>>.
 

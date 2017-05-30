@@ -1,3 +1,4 @@
+[XPlanManager CLI]
 === XPlanManager CLI
 
 
@@ -31,7 +32,7 @@ Kommandozeilentools nicht mitgegeben wird, nutzt das Tool die unter
 _etc_ abgelegte Datei. Wenn der Parameter mitgegeben wird, muss sich die
 Konfigurationsdatei in dem referenzierten Verzeichnis befinden.
 
-So kann über das Property _defaultBboxIn4326_ für den `Alternativen
+So kann über das Property _defaultBboxIn4326_ für den 'Alternativen
 Betriebsmodus' konfiguriert werden, welche default Bounding-Box während
 der Konfigurationserzeugung für einen neuen Services genutzt werden
 soll. Dieser Wert wird genutzt, falls von dem zu importierenden GML

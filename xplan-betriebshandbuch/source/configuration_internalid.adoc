@@ -1,3 +1,4 @@
+[Verfahrensdatenbank]
 === Verfahrensdatenbank
 
 
@@ -33,7 +34,7 @@ adressiert werden. Diese müssen zwingend über die Schlüssel
 _selectMatchingIdsSql_ und _selectAllIdsSql_ konfigurierten
 SQL-Statments selektiert werden. Das SQL-Statment _selectMatchingIdsSql_
 erlaubt die Anfrage der Verfahren, die dem Plan über den Plan-Namen
-zugeordnet sind. Der Plan-Name wird an der Stelle des `?' eingesetzt.
+zugeordnet sind. Der Plan-Name wird an der Stelle des '?' eingesetzt.
 Das SQL-Statement _selectAllIdsSql_ ermöglicht dagegen die Anfrage aller
 Verfahren.
 
@@ -45,7 +46,7 @@ Anforderungen an die Konfiguration im Überblick:
 * _selectMatchingIdsSql_ und _selectAllIdsSql_ müssen die mit
 _internalIdLabel_ und _internalNameLabel_ angegeben Spalten
 selektierten.
-* _selectMatchingIdsSql_ muss exakt einen Platzhalten `?' für den
+* _selectMatchingIdsSql_ muss exakt einen Platzhalten '?' für den
 Plan-Namen beinhalten.
 * _selectAllIdsSql_ darf keinen Platzhalter beinhalten.
 

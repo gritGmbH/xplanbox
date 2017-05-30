@@ -1,3 +1,4 @@
+[Installation und Konfiguration von GDAL]
 === Installation und Konfiguration von GDAL
 
 
@@ -5,7 +6,7 @@ Die xPlanBox unterstützt die Darstellung von Rasterdaten mittels
 GDAL-Integration. Es wird GDAL in der Version 1.10.1 empfohlen (s. auch
 https://github.com/deegree/deegree3/blob/master/deegree-services/deegree-webservices-handbook/src/main/sphinx/gdal.rst[deegree
 Handbook]). Die GDAL Unterstützung ist optional, die Konfiguration im
-XPlanManager ist unter link:configuration_gdal.adoc[Konfiguration-Gdal] beschrieben.
+XPlanManager ist unter <<GDAL>> beschrieben.
 
 
 
@@ -36,7 +37,7 @@ export LD_LIBRARY_PATH=/usr/lib/jni/
 
 
 
-NOTE: Die Umgebungsvariable ``LD_LIBRARY_PATH'' muss auf das Verzeichnis
+NOTE: Die Umgebungsvariable "LD_LIBRARY_PATH" muss auf das Verzeichnis
 zeigen, in dem sich die Datei libgdaljni.so befindet.
 
 
@@ -46,7 +47,7 @@ zeigen, in dem sich die Datei libgdaljni.so befindet.
 
 GDAL für Windows kann bei http://www.gisinternals.com/[GISInternals]
 heruntergeladen werden. Die empfohlene Version 1.10.1 befindet sich
-unter ``Archive Versions''. Die Architektur der GDAL-Bibliothek (32bit
+unter "Archive Versions". Die Architektur der GDAL-Bibliothek (32bit
 oder 64bit) muss der Architektur von Java und
 http://windows.microsoft.com/de-de/windows/32-bit-and-64-bit-windows[Windows]
 entsprechen. Bei den Downloads sollten die kompilierten Binaries in
@@ -70,7 +71,7 @@ müssen folgende Einstellungen vorgenommen werden:
 * Setzen der Variable `JAVA_HOME` mit der Referenz zur Java Installation
 (JDK), z.B.: `C:\Program Files (x86)\Java\jdk1.7.0_45`
 * Setzen der Variable `GDAL_DATA` mit der Referenz auf den Ordner, der
-Datei ``gcs.csv'' enthält, z.B.:
+Datei "gcs.csv" enthält, z.B.:
 `C:\Program Files (x86)\gdal\bin\gdal-data`
 * Der bestehenden Umgebungsvariable _PATH_ müssen zwei Pfade hinzugefügt
 werden (Annahme: Entpacktes Zip-Archiv von GISInternals wurde genutzt):

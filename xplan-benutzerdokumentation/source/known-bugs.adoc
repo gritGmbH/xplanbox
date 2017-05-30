@@ -51,7 +51,7 @@ technische Obergrenze für die Verarbeitung eines Planarchivs bei 1 GB.
 === xPlanBox - Durch Kartenvorschau generierter GetMap-Request
 
 
-Der durch den Button ``Plan im neuen Fenster öffnen'', welcher sich im
+Der durch den Button "Plan im neuen Fenster öffnen", welcher sich im
 unteren Teil der Kartenvorschau befindet, generierte GetMap-Request gibt
 im Fall, dass noch kein Rasterplan in das System importiert wurde,
 folgende Meldung aus:
@@ -66,7 +66,7 @@ fehlender Rasterpläne noch nicht von dem WMS angeboten wird.
 
 Wenn die URL dennoch genutzt werden soll, muss der Layer [*]P_Planraster
 manuell aus der Request URL entfernt werden (Wert des Parameters
-``LAYERS'').
+"LAYERS").
 
 Dies gilt für jeden Plan-Typ einzeln: Für die URL für BPläne muss z.B.
 mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens

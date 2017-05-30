@@ -1,9 +1,10 @@
+[Überschrift]
 == Übersicht
 
 
 Die xPlanBox dient der Abbildung der Bauleit- und der
 Landschaftsplanung. Die xPlanBox basiert auf den Standards des
-http://http://www.opengeospatial.org[Open Geospatial Consortium], der
+http://www.opengeospatial.org[Open Geospatial Consortium], der
 http://inspire.ec.europa.eu[INSPIRE Richtlinie] und insbesondere dem
 Standard http://www.xplanung.de[XPlanung] zur Abbildung des deutschen
 Planungsrechts durch ein GML Anwendungsschema.
