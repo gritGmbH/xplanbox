@@ -4,6 +4,7 @@
   <includeBaseDirectory>false</includeBaseDirectory>
   <formats>
     <format>war</format>
+    <format>dir</format>
   </formats>
   <dependencySets>
     <dependencySet>
@@ -16,6 +17,7 @@
           <exclude>WEB-INF/web.xml</exclude>
         </excludes>
       </unpackOptions>
+      <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
   </dependencySets>
   <files>

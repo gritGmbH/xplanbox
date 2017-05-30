@@ -7,59 +7,69 @@
   </formats>
   <dependencySets>
     <dependencySet>
-      <outputFileNameMapping>xplan-wfs-workspace</outputFileNameMapping>
+      <outputDirectory>xplan-wfs-workspace</outputDirectory>
       <includes>
         <include>de.latlon.product.xplanbox:xplan-wfs-workspace</include>
       </includes>
       <unpack>true</unpack>
       <unpackOptions>
-        <includes>
-          <include>**</include>
-        </includes>
         <filtered>true</filtered>
       </unpackOptions>
+      <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
     <dependencySet>
-      <outputFileNameMapping>xplansyn-wfs-workspace</outputFileNameMapping>
+      <outputDirectory>xplansyn-wfs-workspace</outputDirectory>
       <includes>
         <include>de.latlon.product.xplanbox:xplansyn-wfs-workspace</include>
       </includes>
       <unpack>true</unpack>
       <unpackOptions>
-        <includes>
-          <include>**</include>
-        </includes>
         <filtered>true</filtered>
       </unpackOptions>
+      <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
     <dependencySet>
-      <outputFileNameMapping>xplansyn-wms-workspace</outputFileNameMapping>
+      <outputDirectory>xplansyn-wms-workspace</outputDirectory>
       <includes>
         <include>de.latlon.product.xplanbox:xplansyn-wms-workspace</include>
       </includes>
       <unpack>true</unpack>
       <unpackOptions>
-        <includes>
-          <include>**</include>
-        </includes>
-        <excludes>
-          <exclude>gdal.xml</exclude>
-        </excludes>
         <filtered>true</filtered>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+          <include>**/*.gfi</include>
+        </includes>
       </unpackOptions>
+      <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
     <dependencySet>
-      <outputFileNameMapping>xplan-manager-workspace</outputFileNameMapping>
+      <outputDirectory>xplansyn-wms-workspace</outputDirectory>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplansyn-wms-workspace</include>
+      </includes>
+      <unpack>true</unpack>
+      <unpackOptions>
+        <filtered>false</filtered>
+        <excludes>
+          <exclude>**/*.properties</exclude>
+          <exclude>**/*.xml</exclude>
+          <exclude>**/*.gfi</exclude>
+        </excludes>
+      </unpackOptions>
+      <useProjectArtifact>false</useProjectArtifact>
+    </dependencySet>
+    <dependencySet>
+      <outputDirectory>xplan-manager-workspace</outputDirectory>
       <includes>
         <include>de.latlon.product.xplanbox:xplan-manager-workspace</include>
       </includes>
       <unpack>true</unpack>
       <unpackOptions>
-        <includes>
-          <include>**</include>
-        </includes>
         <filtered>true</filtered>
       </unpackOptions>
+      <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
   </dependencySets>
 </assembly>
