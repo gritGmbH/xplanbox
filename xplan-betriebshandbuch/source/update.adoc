@@ -1,3 +1,4 @@
+[Aktualisierung]
 == Aktualisierung
 
 
@@ -16,9 +17,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 
 Bei einer vollständigen Aktualisierung kann auch das Installationsskript
-aus dem Kapitel
-Installation über ein link:/downloads/install.sh[Install-Skript]
-verwendet werden.
+aus dem Kapitel Installation über ein Installations-Skript (s. <<Anhang>>) verwendet werden.
 
 [[austausch-der-web-archive]]
 === Austausch der Web-Archive

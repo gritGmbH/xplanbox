@@ -1,3 +1,4 @@
+[Migration der Anwendung (Beispiele)]
 === Migration der Anwendung (Beispiele)
 
 
@@ -11,12 +12,11 @@ Anpassungen erfolgen:
 
 
 ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-* __layer[B|F|L]Plan.xml__, __layer[B|F|L]PlanWFS.xml__,
-_layer[B|F|L]PRaster.xml_ und _featureHitsRetriever[B|F|L]P.xml_ (in der
+* _layer[B|F|L]Plan.xml_, _layer[B|F|L]PlanWFS.xml_, _layer[B|F|L]PRaster.xml_ und _featureHitsRetriever[B|F|L]P.xml_ (in der
 jeweiligen jar-Datei der XPlanPortal-Webkomponenten
-__.deegree/portal-configuration/<portal>-config.jar__)
+_.deegree/portal-configuration/<portal>-config.jar_)
 * _dropDownList.xml_ (im Ordner der jeweiligen XPlanPortal-Webkomponente
-__<tomcat>/webapps/<portal-portalname>__)
+_<tomcat>/webapps/<portal-portalname>_)
 ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 *Anpassung in den Dateien layer[B|F|L]Plan.xml, layer[B|F|L]PlanWFS.xml,
@@ -28,7 +28,7 @@ layer[B|F|L]PRaster.xml) bzw. _values_ (layer[B|F|L]PlanWFS.xml) und
 _wfsRequestUrlForBboxFeatureHits_ (featureHitsRetriever[B|F|L]P.xml),
 die einen der deegree Dienste referenzieren, angepasst werden.
 
-Beispiel __layerBPlan.xml__:
+Beispiel _layerBPlan.xml_:
 
 ----
 ...
@@ -40,7 +40,7 @@ Beispiel __layerBPlan.xml__:
 ----
 
 Für mehr Details sowie Hinweise zur Bearbeitung von jar-Dateien siehe
-Kapitel link:../portale/index.adoc[XPlanPortal]
+Kapitel <<XPlanPortal>>
 
 *Anpassungen in der Datei dropDownList.xml:*
 
@@ -58,7 +58,7 @@ werden.
 </List>
 ----
 
-Für mehr Details siehe Kapitel link:../portale/index.adoc[XPlanPortal]
+Für mehr Details siehe Kapitel <<XPlanPortal>>
 
 [[fuer-den-xplanmanager]]
 ==== Für den XPlanManager:
@@ -81,7 +81,7 @@ Schlüssels _wmsUrl_ angepasst werden.
 wmsUrl=http://<host>:<port>/xplan-wms/services
 ----
 
-Für mehr Details siehe Kapitel link:../mappreview/index.adoc[Kartenvorschau]
+Für mehr Details siehe Kapitel <<Kartenvorschau>>
 
 *Anpassungen in der Datei managerConfiguration.properties:*
 
@@ -103,8 +103,7 @@ betrieben, so können die Dienste über den Hostnamen _localhost_
 kommunizieren.
 
 
-Für mehr Details siehe Kapitel
-link:../workspacereload[Automatischer Workspace-Reload]
+Für mehr Details siehe Kapitel <<Automatischer Workspace-Reload>>
 
 [[fuer-den-xplanwms]]
 ==== Für den XPlanWMS:

@@ -1,3 +1,4 @@
+[XPlanManager Web]
 === XPlanManager Web
 
 
@@ -116,14 +117,14 @@ ________________________
 Das Editieren des Rechtsstands kann dazu führen, dass eine
 Zustandsänderung des Plans eintritt Damit verbunden ist das Verschieben
 der Vektor- und Rasterdaten in die entsprechende Datenhaltung. Übergänge
-sind beliebig zwischen den drei Zuständen `Festgestellt', `In
-Aufstellung' und `Archiviert' möglich. Eine Zustandsänderung von
-`Festgestellt' nach `In Aufstellung' tritt beispielsweise beim Ändern
-des Rechtsstands von `InkraftGetreten' nach `Untergegangen' ein.
+sind beliebig zwischen den drei Zuständen 'Festgestellt', 'In
+Aufstellung' und 'Archiviert' möglich. Eine Zustandsänderung von
+'Festgestellt' nach 'In Aufstellung' tritt beispielsweise beim Ändern
+des Rechtsstands von 'InkraftGetreten' nach 'Untergegangen' ein.
 
 Achtung: Beim Import kann der Nutzer den Zustand eines Planes über eine
-Auswahlliste mit den Optionen `Festgestellt, ’In Aufstellung' und
-`Archiviert' ändern. Abhängig von dem im Plan gesetzten Rechtsstand wird
+Auswahlliste mit den Optionen 'Festgestellt, ’In Aufstellung' und
+'Archiviert' ändern. Abhängig von dem im Plan gesetzten Rechtsstand wird
 eine Vorauswahl getroffen, die der Nutzer aber überschreiben kann. Beim
 Öffnen der Editieransicht wird der Rechtsstand aus dem Plan
 berücksichtigt, der vom Nutzer ausgewählte Zustand bleibt dagegen
@@ -175,7 +176,7 @@ _________________
 
 Werden Referenzen entfernt oder verändert, so werden die nicht mehr
 referenzierten Dateien aus der Datenhaltung entfernt. In den Bereichen
-`Rasterbasis' und `Änderungen von Rasterplänen' kann lediglich ein
+'Rasterbasis' und 'Änderungen von Rasterplänen' kann lediglich ein
 Austausch bereits referenzierter Dateien erfolgen. Änderungen führen zu
 einer Aktualisierung der WMS-Konfiguration. Klickt der Nutzer auf
 __Speichern__, wird zunächst eine Validierung der Rasterdaten

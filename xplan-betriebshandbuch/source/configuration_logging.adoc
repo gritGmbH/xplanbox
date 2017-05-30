@@ -1,3 +1,4 @@
+[Logging]
 === Logging
 
 
@@ -20,8 +21,8 @@ Anwendungen in eine separate Datei geschrieben:
 Während die log-Dateien des CLIs immer in dem Verzeichnis abgelegt
 werden in dem das Kommandozeilen ausgeführt wurde, ist das Verzeichnis
 in den Web-Anwendungen mit der Variable $\{xplan.logdir} zu
-konfigurieren. Dies ist bereits in Abschnitt ref:`Konfiguration der
-Applikationsserver <installation-configuration>’ beschrieben. Ist die
+konfigurieren. Dies ist bereits in Abschnitt <<Konfiguration der
+Applikationsserver>> beschrieben. Ist die
 Variable nicht korrekt konfiguriert, kommt es zu einer Fehlermeldung
 beim Starten der Anwendung (java.io.FileNotFoundException:
 /xplan-manager-web.log (Keine Berechtigung)).
