@@ -9,3 +9,16 @@ link:./downloads/install.sh[Installations-Skript]
 ----
 include::downloads/install.sh[]
 ----
+
+
+[[bbox_cache.properties]]
+== bbox_cache.properties Konfiguration
+
+Im folgenden befindet sich eine vollständige bbox_cache.properties. Diese ist vorkonfiguriert auf ganz Deutschland:
+
+link:./downloads/bbox_cache.properties[bbox_cache.properties]
+
+----
+include::downloads/bbox_cache.properties[]
+----
+
