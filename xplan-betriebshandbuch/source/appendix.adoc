@@ -10,7 +10,7 @@ link:./downloads/install.sh[Installations-Skript]
 include::downloads/install.sh[]
 ----
 
-
+[appendix]
 [[bbox_cache.properties]]
 == bbox_cache.properties Konfiguration
 
@@ -21,4 +21,3 @@ link:./downloads/bbox_cache.properties[bbox_cache.properties]
 ----
 include::downloads/bbox_cache.properties[]
 ----
-
