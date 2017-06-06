@@ -3,9 +3,9 @@
 [[manuelle-anpassung-der-bbox_cache.properties]]
 ==== Manuelle Anpassung der bbox_cache.properties
 
-Aktuell kann es dazu kommen, dass die in den Capabilities-Dokumenten angegebene BoundingBox nicht alle in der xPlanBox importierten Daten umfasst. Dies kann unter anderem dazu führen, dass die Daten durch Clients nicht oder nur unvollständig angezeigt werden. Betroffen sind sowohl der XPlanWMS, XPlanWFS sowie XPlanSynWFS.
+Aktuell kann es dazu kommen, dass die in den Capabilities-Dokumenten angegebene BoundingBox nicht alle in der xPlanBox importierten Daten umfasst. Dies kann unter anderem zur Folge haben, dass die Daten durch Clients nicht oder nur unvollständig angezeigt werden. Betroffen sind sowohl der XPlanWMS, XPlanWFS sowie XPlanSynWFS.
 
-Es wird daher empfohlen die BoundingBox manuell auf den Bereich zu konfigurieren, der den gesamten zu beplanenen Bereich umfasst. Dieser kann sowohl bereits importierte als auch noch zukünftig einzupflegende Planwerke beinhalten.
+Es wird daher empfohlen, die BoundingBox manuell auf den Bereich zu konfigurieren, der den gesamten zu beplanenden Bereich umfasst. Dieser kann sowohl bereits importierte als auch zukünftig noch einzupflegende Planwerke beinhalten.
 
 Die BoundingBox wird für jeden Workspace in der Datei bbox_cache.properties in dem Verzeichnis _.deegree/<XPlan-Dienst-Workspace>/datasources/feature_ konfiguriert. Sollte die Datei noch nicht existieren, ist diese manuell anzulegen. Andernfalls kann der Inhalt ausgetauscht werden (sofern keine weiteren manuellen Anpassungen erfolgt sind). Die Dienste dürfen beim Anlegen und Anpassen der Datei nicht gestartet sein.
 
