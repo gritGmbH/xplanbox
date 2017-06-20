@@ -1,11 +1,27 @@
 [Gültigkeitszeitraum]
 === Gültigkeitszeitraum
 
-
 Der Dialog zur Angabe des Zeitraums, in dem ein Plan gültig ist, kann in
 der Datei _managerWebConfiguration.properties_ im Verzeichnis
 _~/.deegree/manager-configuration/_ aktiviert oder deaktiviert werden:
 
 ----
 activateValidityPeriodDialog=[true|false]
+----
+
+Weiterhin muss die Auswertung des  Gültigkeitszeitraums für Rasterdaten im XPlanWMS konfiguriert sein, andernfalls werden die im Plan referenzierten Rasterdaten grundsätzlich angezeigt. Diese Option ist standardmäßig für den XPlanWMSPre konfiguriert. Soll diese auch für den XPlanWMS und/oder XPlanWMSArchive gelten, muss die Dienste-Konfiguration im jeweiligen Workspace angepasst werden. Dazu ist der folgende Abschnitt in die Dateien _.deegree/xplansyn-wms-workspace/wms.xml_ und/oder _.deegree/xplansyn-wms-workspace/wmsarchive.xml_ zu ergänzen. Anschließend ist ein Neustart des Applikationsserver erforderlich.
+
+
+----
+<wms:VisibilityInspector xmlns:wms="http://www.deegree.org/services/wms">
+  <wms:JavaClass>de.latlon.xplanisk2.wms.visibility.PreValidityPeriodInspector</wms:JavaClass>
+  <wms:CategoryLayerIdentifier>BP_Planraster</wms:CategoryLayerIdentifier>
+  <wms:CategoryLayerIdentifier>bplanraster_sortiert</wms:CategoryLayerIdentifier>
+  <wms:CategoryLayerIdentifier>FP_Planraster</wms:CategoryLayerIdentifier>
+  <wms:CategoryLayerIdentifier>fplanraster_sortiert</wms:CategoryLayerIdentifier>
+  <wms:CategoryLayerIdentifier>LP_Planraster</wms:CategoryLayerIdentifier>
+  <wms:CategoryLayerIdentifier>lplanraster_sortiert</wms:CategoryLayerIdentifier>
+  <wms:CategoryLayerIdentifier>RP_Planraster</wms:CategoryLayerIdentifier>
+  <wms:CategoryLayerIdentifier>rplanraster_sortiert</wms:CategoryLayerIdentifier>
+</wms:VisibilityInspector>
 ----
