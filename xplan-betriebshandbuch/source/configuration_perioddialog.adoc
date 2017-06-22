@@ -9,8 +9,9 @@ _~/.deegree/manager-configuration/_ aktiviert oder deaktiviert werden:
 activateValidityPeriodDialog=[true|false]
 ----
 
-Weiterhin muss die Auswertung des  Gültigkeitszeitraums für Rasterdaten im XPlanWMS konfiguriert sein, andernfalls werden die im Plan referenzierten Rasterdaten grundsätzlich angezeigt. Diese Option ist standardmäßig für den XPlanWMSPre konfiguriert. Soll diese auch für den XPlanWMS und/oder XPlanWMSArchive gelten, muss die Dienste-Konfiguration im jeweiligen Workspace angepasst werden. Dazu ist der folgende Abschnitt in die Dateien _.deegree/xplansyn-wms-workspace/wms.xml_ und/oder _.deegree/xplansyn-wms-workspace/wmsarchive.xml_ zu ergänzen. Anschließend ist ein Neustart des Applikationsserver erforderlich.
+Weiterhin muss die Auswertung des Gültigkeitszeitraums für Rasterdaten im XPlanWMSPre konfiguriert sein. Andernfalls werden die im Plan referenzierten Rasterdaten grundsätzlich angezeigt. Diese Option ist  für den XPlanWMSPre implementiert und standardmäßig konfiguriert. Bei den anderen beiden Endpunkten (XPlanWMS und XPlanWMSArchive) erfolgt keine Auswertung des Gültigkeitszeitraums für Rasterdaten.
 
+Dazu ist folgender Abschnitt in der Datei _.deegree/xplansyn-wms-workspace/wmspre.xml_ vorhanden. Bei Bedarf kann dieser entfernt werden, wodurch auch für den XPlanWMSPre keine Auswertung des Gültigkeitszeitraums für Rasterdaten erfolgt. Anschließend ist ein Neustart des Applikationsservers erforderlich.
 
 ----
 <wms:VisibilityInspector xmlns:wms="http://www.deegree.org/services/wms">
