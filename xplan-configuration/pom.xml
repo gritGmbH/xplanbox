@@ -12,9 +12,6 @@
   </parent>
 
   <modules>
-    <module>portal-bplan-config</module>
-    <module>portal-fplan-config</module>
-    <module>portal-lplan-config</module>
     <module>xplan-manager-config</module>
   </modules>
 

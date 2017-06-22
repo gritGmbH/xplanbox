@@ -18,7 +18,6 @@
     <gwt.version>2.5.0</gwt.version>
     <geotools.version>10.0</geotools.version>
     <slf4j.version>1.7.5</slf4j.version>
-    <geomajas-dep-version>1.13.12-latlon-SNAPSHOT</geomajas-dep-version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.version>3.2.18.RELEASE</spring.version>
@@ -56,13 +55,6 @@
       <id>integrationtest</id>
       <modules>
         <module>xplan-integrationtest</module>
-      </modules>
-    </profile>
-    <!-- The geomajas portals are not part of deegree enterprise. They must not be included in deegree enterprise releases. -->
-    <profile>
-      <id>include-geomajas-portals</id>
-      <modules>
-        <module>xplan-portals</module>
       </modules>
     </profile>
     <profile>
