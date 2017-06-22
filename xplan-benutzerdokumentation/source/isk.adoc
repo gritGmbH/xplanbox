@@ -18,7 +18,6 @@ folgenden Komponenten:
 __________________________________________________________________________________
 * XPlanManager: Web-Oberfläche für das Datenmanagement
 * XPlanValidator: Web-Oberfläche für den Validator
-* XPlanPortal: Geo-Viewer für die Auskunft
 * XPlanWMS: Standard-Karten-Dienst für die Auskunft
 * XPlanWFS: Standard-Daten-Dienst für die Auskunft (originale
 Datenstruktur)

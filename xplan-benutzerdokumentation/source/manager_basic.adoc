@@ -149,7 +149,7 @@ Folgende Voraussetzung werden an die einzelnen Formate gestellt:
 
   * GeoTiff-Dateien liegen als gekachelte BIGTIFF GeoTiff-Dateien vor.
   * GeoTiff-Dateien liegen in dem Koordinatenreferenzsystem vor, welches
-  für den XPlanManager und die Portale konfiguriert ist.
+  für den XPlanManager konfiguriert ist.
   * GeoTiff-Dateien enthalten ihre räumliche Ausdehnung.
   * Zur Optimierung der Antwortzeit beim Zugriff auf die GeoTiff-Dateien
   wird empfohlen, in den GeoTiff-Dateien Overlays mit geringerer
@@ -160,7 +160,7 @@ Folgende Voraussetzung werden an die einzelnen Formate gestellt:
 
   * PNG-Dateien enthalten ein oder vier Bänder (RGBA).
   * PNG-Dateien liegen in dem Koordinatenreferenzsystem vor, welches für
-  den XPlanManager und die Portale konfiguriert ist.
+  den XPlanManager konfiguriert ist.
   * PNG-Dateien enthalten ihre räumliche Ausdehnung in einer
   ausgelagerten pgw-Datei (PNG World File).
   * Wenn das Kommandozeilentool XPlanManagerCLI verwendet wird, muss in

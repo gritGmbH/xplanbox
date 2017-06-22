@@ -12,8 +12,6 @@ include::license.adoc[]
 
 include::isk.adoc[]
 
-include::portal.adoc[]
-
 include::wms.adoc[]
 
 include::wfs.adoc[]
