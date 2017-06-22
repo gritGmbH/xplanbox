@@ -1,7 +1,6 @@
 [Aktualisierung]
 == Aktualisierung
 
-
 Bei einer Aktualisierung der xPlanBox müssen folgende Schritte
 durchgeführt werden:
 
@@ -22,14 +21,10 @@ aus dem Kapitel Installation über ein Installations-Skript (s. <<Installations-
 [[austausch-der-web-archive]]
 === Austausch der Web-Archive
 
-
 Es müssen die bereit gestellten Web-Archive in das Webapps-Verzeichnis
 des jeweiligen Tomcats kopiert werden:
 
 ----
-cp ${WORK_DIR}/web/portal-bplan.war <CATALINA_HOME>/webapps/
-cp ${WORK_DIR}/web/portal-fplan.war <CATALINA_HOME>/webapps/
-cp ${WORK_DIR}/web/portal-lplan.war <CATALINA_HOME>/webapps/
 cp ${WORK_DIR}/web/xplanmanager.war <CATALINA_HOME>/webapps/
 cp ${WORK_DIR}/web/xplanvalidator.war <CATALINA_HOME>/webapps/
 
@@ -41,13 +36,7 @@ cp ${WORK_DIR}/web/xplan-wms.war <CATALINA_HOME>/webapps/
 [[neustart-der-tomcats]]
 === Neustart der Tomcats
 
-
-Es müssen die Tomcats für die Dienste und anschließend für die Portale
-neu gestartet werden:
-
-----
-<CATALINA_HOME>/bin/catalina.sh stop && <CATALINA_HOME>/bin/catalina.sh start
-----
+Es müssen beide Applikationsserver neu gestartet werden.
 
 [[austausch-der-commandline-tools]]
 === Austausch der Commandline-Tools
@@ -74,9 +63,6 @@ cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-wfs-workspace-${VERSION}-$
 cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplansyn-wfs-workspace-${VERSION}-${ENV}.zip
 cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplansyn-wms-workspace-${VERSION}-${ENV}.zip
 cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-${ENV}.zip
-cp ${WORK_DIR}/config/xplan-bplan-config-${VERSION}-${ENV}.jar ${DEEGEE_DIR}/portal-configuration/xplan-bplan-config.jar
-cp ${WORK_DIR}/config/xplan-fplan-config-${VERSION}-${ENV}.jar ${DEEGEE_DIR}/portal-configuration/xplan-fplan-config.jar
-cp ${WORK_DIR}/config/xplan-lplan-config-${VERSION}-${ENV}.jar ${DEEGEE_DIR}/portal-configuration/xplan-lplan-config.jar
 ----
 
 [[aktualisierung-des-wms-workspaces-auf-die-version-2.0-der-xplanbox]]

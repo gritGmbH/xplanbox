@@ -1,4 +1,4 @@
-[Installation und Konfiguration von GDAL]
+[[installation-gdal]]
 === Installation und Konfiguration von GDAL
 
 

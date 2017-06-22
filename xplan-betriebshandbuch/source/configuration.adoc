@@ -35,8 +35,6 @@ include::configuration_gdal.adoc[]
 
 include::configuration_ldap.adoc[]
 
-include::configuration_portal.adoc[]
-
 include::configuration_wms_wfs_synwfs.adoc[]
 
 include::configuration_logging.adoc[]

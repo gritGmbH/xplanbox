@@ -1,68 +1,13 @@
 [Migration der Anwendung (Beispiele)]
 === Migration der Anwendung (Beispiele)
 
-
 Bei einem Hostumzug, bei dem sich der Hostname des Servers ändert, muss
 die URL in mehreren Konfigurationen angepasst werden, damit die
 Funktionalität der Anwendungen gewährleistet ist. Dabei müssen folgende
 Anpassungen erfolgen:
 
-[[fuer-die-planungs-portale]]
-==== Für die Planungs-Portale:
-
-
-____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-* _layer[B|F|L]Plan.xml_, _layer[B|F|L]PlanWFS.xml_, _layer[B|F|L]PRaster.xml_ und _featureHitsRetriever[B|F|L]P.xml_ (in der
-jeweiligen jar-Datei der XPlanPortal-Webkomponenten
-_.deegree/portal-configuration/<portal>-config.jar_)
-* _dropDownList.xml_ (im Ordner der jeweiligen XPlanPortal-Webkomponente
-_<tomcat>/webapps/<portal-portalname>_)
-____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-
-*Anpassung in den Dateien layer[B|F|L]Plan.xml, layer[B|F|L]PlanWFS.xml,
-layer[B|F|L]PRaster.xml und featureHitsRetriever[B|F|L]P.xml:*
-
-Für die Planungs-Portale müssen in den genannten Dateien alle Werte der
-Properties _baseWmsUrl_ (layer[B|F|L]Plan.xml und
-layer[B|F|L]PRaster.xml) bzw. _values_ (layer[B|F|L]PlanWFS.xml) und
-_wfsRequestUrlForBboxFeatureHits_ (featureHitsRetriever[B|F|L]P.xml),
-die einen der deegree Dienste referenzieren, angepasst werden.
-
-Beispiel _layerBPlan.xml_:
-
-----
-...
-<bean name="bp_plan" class="de.latlon.xplanung.layer.wms.XPlanWmsLayer">
-    <property name="layerInfo" ref="layer_bp_plan_ref" />
-    <property name="baseWmsUrl" value="http://<host>:<port>/<service>/service/wms?" />
-    <property name="version" value="1.1.1" />
-...
-----
-
-Für mehr Details sowie Hinweise zur Bearbeitung von jar-Dateien siehe
-Kapitel <<XPlanPortal>>
-
-*Anpassungen in der Datei dropDownList.xml:*
-
-Damit ein Wechsel zwischen den Planungs-Portalen über die Dropdown Liste
-möglich ist, muss die <link>-Referenz der jeweiligen Portale angepasst
-werden.
-
-----
-<List>
-  <entry>
-    <label>Bebauungspläne</label>
-    <link>http://<host>:<port>/portal-<portalname>/</link>
-  </entry>
-  ...
-</List>
-----
-
-Für mehr Details siehe Kapitel <<XPlanPortal>>
-
 [[fuer-den-xplanmanager]]
 ==== Für den XPlanManager:
-
 
 ________________________________________________________________________________________________________________________
 * _managerWebConfiguration.properties_ (im Verzeichnis

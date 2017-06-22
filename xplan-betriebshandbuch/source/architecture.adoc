@@ -9,7 +9,6 @@ ____________________
 * XPlanManager Web
 * XPlanValidator CLI
 * XPlanValidator Web
-* XPlanPortal
 * XPlanWMS
 * XPlanWFS
 * XPlanSynWFS
@@ -57,13 +56,6 @@ Die Komponente XPlanValidator Web ist eine Web-Oberfläche, welche dem
 Fachadministrator des XPlanung Infrastrukturknotens ermöglicht, XPlanGML
 Instanzdokumente zu validieren. Der XPlanValidator Web ist auf dem
 Kommandozeilenwerkzeug aufgebaut.
-
-[[xplanportal]]
-=== XPlanPortal
-
-
-Die Komponente XPlanPortal dient als zentrale Anlaufstelle zur
-Information und Recherche der bereitgestellten Planwerke.
 
 [[xplanwms]]
 === XPlanWMS

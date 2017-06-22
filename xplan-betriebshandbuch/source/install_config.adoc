@@ -1,7 +1,6 @@
 [Konfiguration der Applikationsserver]
 === Konfiguration der Applikationsserver
 
-
 Wie im Abschnitt <<Anwendung installieren>> beschrieben,
 werden zum Betreiben aller Komponenten zwei Tomcat-Instanzen empfohlen,
 der _Dienste-Tomcat_ sowie __Anwendungs-Tomcat__. Im Folgenden wird die
@@ -10,16 +9,9 @@ Konfiguration beider Tomcats beschrieben.
 [[anwendungs-tomcat]]
 ==== Anwendungs-Tomcat
 
-
 Im Anwendungs-Tomcat müssen folgende Konfigurationen vorgenommen werden:
 
 __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-.  Die Konfiguration der XPlanPortale müssen dem Tomcat bekannt gegeben
-werden. Dazu muss der Classpath um die Referenzen auf die
-Konfigurations-JARs der Portale erweitert werden. Wurde die Anleitung in
-Abschnitt <<Anwendung installieren>> befolgt, befinden sich die
-drei jar-Dateien im Verzeichnis _.deegree_ im Home-Verzeichnis des
-Nutzers.
 .  Für den XPlanManager Web muss die Variable _MANAGER_WEB_ als Java
 Property gesetzt werden. Das mit Hilfe dieser Variable referenzierte
 Verzeichnis muss die Konfiguration des XPlanManager Web enthalten (es
@@ -39,21 +31,11 @@ ________________________________________________________________________________
 [[linux]]
 ===== Linux
 
-
 Für die Konfiguration der oben genannten Punkte muss zunächst im
 Verzeichnis _<tomcat-root>/bin_ eine neue Datei mit dem Namen
 _setenv.sh_ angelegt werden.
 
-.  Für die Konfiguration der XPlanPortale werden die Verweise auf die
-Konfigurations-JARs der Portale eingetragen, getrennt mit einem
-Doppelpunkt (__:__):
-+
-CLASSPATH=<root>/.deegree/xplan-bplan-config-1.0.jar:<root>/.deegree/xplan-fplan-config-1.0.jar:<root>/.deegree/xplan-lplan-config-1.0.jar
-+
-
-NOTE: Es müssen ggf. Zeilenumbrüche entfernt werden.
-
-.  und 3. In der Datei _setenv.sh_ erfolgt das Setzen der Variable
+In dieser Datei erfolgt das Setzen der Variable
 _MANAGER_WEB_ sowie _xplan.logdir_ durch das Hinzufügen von: :
 +
 export
@@ -68,18 +50,7 @@ integriert werden.
 [[windows]]
 ===== Windows
 
-.  Für die Konfiguration der *XPlanPortale* wird im Verzeichnis
-_<tomcat-root>/conf_ die Datei mit dem Namen _catalina.properties_
-angepasst. Der Verweis auf die Konfigurations-JARs der XPlanPortale muss
-unter _common.loader_ eingetragen werden, getrennt mit einem Komma
-(__,__). Die Tomcat eigenen JAR Dateien, müssen unbedingt beibehalten
-werden. :
-+
-common.loader=C:\.deegree\xplan-bplan-config-1.0.jar;,C:\.deegree\xplan-fplan-config-1.0.jar;,C:\.deegree\xplan-lplan-config-1.0.jar;,$\{catalina.base}\lib,$\{catalina.base}\lib\__.jar,$\{catalina.home}\lib,$\{catalina.home}\lib\__.jar
-+
-NOTE: Es müssen ggf. Zeilenumbrüche entfernt werden.
-
-.  und 3. Für das Setzen der Variable _MANAGER_WEB_ sowie
+Für das Setzen der Variable _MANAGER_WEB_ sowie
 _xplan.logdir_ muss zunächst eine neue Datei mit dem Namen _setenv.bat_
 im Verzeichnis _<tomcat-root>/bin_ angelegt werden. Dort werden die
 Variablen wie folgt hinzugefügt: :
@@ -92,14 +63,11 @@ Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, müssen
 *’-Dxplan.logdir=C:\logs’* in die bestehenden JAVA_OPTS integriert
 werden.
 
-
 NOTE: Der Tomcat-Server sollte mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch setzen der Umgebungsvariable: _exportJAVA_OPTS=’-Xmx4096m’_ erfolgen.
 
-
 [[dienste-tomcat]]
 ==== Dienste-Tomcat
-
 
 Falls der XPlanManager nach jedem Einfügen und Löschen eines Plan den
 XPlanWMS aktualisieren soll, muss ein Tomcat-Nutzer angelegt werden.
@@ -114,7 +82,6 @@ Zeilen hinzugefügt werden. :
 <role rolename="deegree"/>
 <user username="<NUTZERNAME>" password="<PASSWORT>" roles="deegree"/>
 ----
-
 
 
 NOTE: Der Nutzername und das Passwort müssen in die
