@@ -44,7 +44,6 @@
                 <revnumber>${project.version}</revnumber>
                 <revdate>${maven.build.timestamp}</revdate>
               </attributes>
-              <sourceDirectory>source/</sourceDirectory>
               <sourceDocumentName>index.adoc</sourceDocumentName>
               <outputDirectory>target/html</outputDirectory>
             </configuration>
@@ -61,7 +60,6 @@
                 <revnumber>${project.version}</revnumber>
                 <revdate>${maven.build.timestamp}</revdate>
               </attributes>
-              <sourceDirectory>source/</sourceDirectory>
               <sourceDocumentName>index.adoc</sourceDocumentName>
               <outputDirectory>target/pdf</outputDirectory>
             </configuration>
