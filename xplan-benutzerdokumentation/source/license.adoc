@@ -1,7 +1,6 @@
 [Präambel]
 == Präambel
 
-
 Dieses Dokument ist die offizielle Benutzerdokumentation zur Benutzung
 der Software xPlanBox. Die in diesem Dokument genannten Soft- und
 Hardwarebezeichnungen sind in den meisten Fällen auch eingetragene
@@ -15,15 +14,14 @@ Autoren übernehmen aus diesem Grund auch keinerlei Verantwortung oder
 Haftung für Fehler und deren Folgen. Hinweise auf eventuelle Irrtümer
 werden gerne entgegengenommen.
 
-Dieses Dokument ist mit reStructuredText gesetzt. Es ist als reST
+Dieses Dokument ist mit Asciidoc gesetzt. Es ist als
 Quellcode erhältlich und kann als HTML und PDF angeschaut bzw.
-bereitgestellt werden. Für die Bereitstellung des reST Quellcode wenden
+bereitgestellt werden. Für die Bereitstellung des Asciidoc Quellcode wenden
 Sie sich bitte an http://www.lat-lon.de[lat/lon] - per Email an
 info@lat-lon.de.
 
 [[autoren]]
 === Autoren
-
 
 Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Dirk Stenger,
 Sebastian Goerke, Lyn Elisa Goltz, Carmen Tawalika, Jeronimo Wanhoff,
@@ -32,13 +30,11 @@ Lena Rippolz
 [[lizenz]]
 === Lizenz
 
-
 Die xPlanBox ist unter der http://www.gnu.org/licenses/lgpl-2.1.html[GNU
 Lesser General Public License (LGPL), version 2.1] veröffentlicht.
 
 [[lizenz-des-dokuments]]
 === Lizenz des Dokuments
-
 
 Es wird die Erlaubnis gewährt, dieses Dokument zu kopieren, zu verteilen
 und/oder zu modifizieren, unter den Bestimmungen der GNU Free

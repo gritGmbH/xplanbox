@@ -1,7 +1,6 @@
 [Präambel]
 == Präambel
 
-
 Dieses Dokument ist das offizielle Betriebshandbuch zur Installation der
 Software xPlanBox. Die in diesem Dokument genannten Soft- und
 Hardwarebezeichnungen sind in den meisten Fällen auch eingetragene
@@ -15,13 +14,14 @@ Autoren übernehmen aus diesem Grund auch keinerlei Verantwortung oder
 Haftung für Fehler und deren Folgen. Hinweise auf eventuelle Irrtümer
 werden gerne entgegengenommen.
 
-Dieses Dokument ist mit reStructuredText gesetzt. Es ist als reST
+Dieses Dokument ist mit Asciidoc gesetzt. Es ist als
 Quellcode erhältlich und kann als HTML und PDF angeschaut bzw.
-bereitgestellt werden.
+bereitgestellt werden. Für die Bereitstellung des Asciidoc Quellcode wenden
+Sie sich bitte an http://www.lat-lon.de[lat/lon] - per Email an
+info@lat-lon.de.
 
 [[autoren]]
 === Autoren
-
 
 Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Dirk Stenger,
 Sebastian Goerke, Lyn Elisa Goltz, Carmen Tawalika, Jeronimo Wanhoff,
@@ -29,7 +29,6 @@ Lena Rippolz
 
 [[lizenz]]
 === Lizenz
-
 
 Die xPlanBox ist unter der http://www.gnu.org/licenses/lgpl-2.1.html[GNU
 Lesser General Public License (LGPL), version 2.1] veröffentlicht. Für
@@ -39,7 +38,6 @@ http://www.lat-lon.de[lat/lon] - per Email an info@lat-lon.de.
 [[softwareüberlassung]]
 ==== Softwareüberlassung
 
-
 Überlassung der in Binärcode übersetzten Programme (Binärprogramme) der
 xPlanBox sowie Überlassung von Skripten, Konfigurationsdateien und
 Dokumentation. Die xPlanBox basiert auf deegree und geomajas, diese sind
@@ -47,7 +45,6 @@ Bestandteil der Liefereinheit.
 
 [[gewährleistung]]
 ==== Gewährleistung
-
 
 Die xPlanBox wird unter der LGPL bereitgestellt. Es gelten daher
 grundsätzlich die Haftungs- und Gewährleistungsausschlüsse der LGPL. Die
@@ -61,7 +58,6 @@ sofern diese verfügbar sind.
 
 [[nutzungsbedingungen]]
 ==== Nutzungsbedingungen
-
 
 Die xPlanBox basiert auf dem Open Source Framework deegree und steht
 insoweit unter denselben Lizenzbedingungen. Die Binärprogramme der
@@ -82,7 +78,6 @@ oder Organisationen, die nicht als Anwender benannt sind.
 
 [[lizenz-des-dokuments]]
 === Lizenz des Dokuments
-
 
 Es wird die Erlaubnis gewährt, dieses Dokument zu kopieren, zu verteilen
 und/oder zu modifizieren, unter den Bestimmungen der GNU Free
