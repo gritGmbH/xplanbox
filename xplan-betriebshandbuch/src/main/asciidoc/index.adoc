@@ -9,18 +9,18 @@
 
 toc::[]
 
-include::license.adoc[]
+include::praeambel.adoc[]
 
-include::overview.adoc[]
+include::ueberblick.adoc[]
 
-include::architecture.adoc[]
+include::architektur.adoc[]
 
-include::install.adoc[]
+include::installation.adoc[]
 
-include::configuration.adoc[]
+include::konfiguration.adoc[]
 
-include::update.adoc[]
+include::aktualisierung.adoc[]
 
-include::xplan-portal.adoc[]
+include::weiterfuehrendeInformationen.adoc[]
 
-include::appendix.adoc[]
+include::anhang.adoc[]
