@@ -40,7 +40,7 @@ http://www.lat-lon.de[lat/lon] - per Email an info@lat-lon.de.
 
 Überlassung der in Binärcode übersetzten Programme (Binärprogramme) der
 xPlanBox sowie Überlassung von Skripten, Konfigurationsdateien und
-Dokumentation. Die xPlanBox basiert auf deegree und geomajas, diese sind
+Dokumentation. Die xPlanBox basiert auf deegree, dies ist
 Bestandteil der Liefereinheit.
 
 [[gewährleistung]]

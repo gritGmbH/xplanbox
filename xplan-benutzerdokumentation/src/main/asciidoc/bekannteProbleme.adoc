@@ -63,8 +63,7 @@ Wenn die die leeren XML Namespace Attribute manuell entfernt werden, ist ein erf
 == Fehler melden
 
 
-Die xPlanBox basiert auf den beiden Open Source Software-Paketen
-http://www.deegree.org[deegree] und http://www.geomajas.org[geomajas]
+Die xPlanBox basiert auf der Open Source Software http://www.deegree.org[deegree]
 der http://www.osgeo.org/[OSGeo Foundation].
 
 Für den Fall, dass Sie einen Fehler in einer der xPlanBox Komponenten

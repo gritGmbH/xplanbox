@@ -4,9 +4,8 @@
 
 In diesem Betriebshandbuch befinden sich Informationen zu
 Systemvoraussetzungen, Schnittstellen und Installation für den Betrieb
-der xPlanBox. Die Webanwendungen basieren auf den Komponenten der
-Open-Source-Projekte http://www.deegree.org/[deegree] und
-http://www.geomajas.org/[Geomajas]. Als zugrunde liegende
+der xPlanBox. Die Webanwendungen basieren auf den Komponenten des
+Open-Source-Projekts http://www.deegree.org/[deegree]. Als zugrunde liegende
 Basistechnologien werden Java, Apache Tomcat und PostgreSQL / PostGIS
 verwendet.
 
