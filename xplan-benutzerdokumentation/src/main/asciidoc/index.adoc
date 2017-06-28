@@ -8,20 +8,20 @@
 
 toc::[]
 
-include::license.adoc[]
+include::praeambel.adoc[]
 
-include::isk.adoc[]
+include::ueberblick.adoc[]
 
-include::wms.adoc[]
+include::XPlanWMS.adoc[]
 
-include::wfs.adoc[]
+include::XPlanWFS.adoc[]
 
-include::synwfs.adoc[]
+include::XPlanSynWFS.adoc[]
 
-include::manager.adoc[]
+include::XPlanManager.adoc[]
 
-include::validator.adoc[]
+include::XPlanValidator.adoc[]
 
-include::known-bugs.adoc[]
+include::bekannteProbleme.adoc[]
 
 

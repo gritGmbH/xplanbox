@@ -11,6 +11,6 @@ erfüllen. Darüber hinaus prüft der Validator eine XPlan-GML-Datei auf die Kon
 
 Der Validator kann über ein Kommandozeilentool und eine Web-Oberfläche aufgerufen werden.
 
-include::validator_cli.adoc[]
+include::XPlanValidator-CLI.adoc[]
 
-include::validator_web.adoc[]
+include::XPlanValidator-Web.adoc[]
