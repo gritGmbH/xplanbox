@@ -1,8 +1,7 @@
 [XPlanManager CLI]
-=== XPlanManager CLI
+=== XPlanManagerCLI
 
-
-Die Komponente XPlanManager CLI ist ein Kommandozeilenwerkzeug, welches
+Die Komponente XPlanManagerCLI ist ein Kommandozeilenwerkzeug, welches
 dem Fachadministrator der xPlanBox ermöglicht, die Datenhaltung zu
 kontrollieren. Dabei ist das Kommandozeilenwerkzeug in der Lage,
 XPlanGML Instanzdokumente in die Datenhaltung zu Laden, zu Löschen,
@@ -12,15 +11,13 @@ importieren.
 [[benutzungsanleitung]]
 ==== Benutzungsanleitung
 
-
-Beim XPlanManager CLI handelt es ich um ein Kommandozeilentool, das
+Beim XPlanManagerCLI handelt es ich um ein Kommandozeilentool, das
 parametrisiert aufgerufen wird. Da diese Anwendung bei der Installation
 in die PATH Variable aufgenommen wird, ist diese von einem beliebigen
 Ort aufrufbar.
 
 [[konfiguration-ueber-datei]]
 ===== Konfiguration über Datei
-
 
 In dem Verzeichnis _<manager-cli-directory>/etc/_ befindet sich die
 Konfigurationsdatei __managerConfiguration.properties__, welche genutzt
@@ -45,19 +42,16 @@ Bounding-Box genutzt, welche die gesamte Welt abdeckt.
 [[hilfe]]
 ===== Hilfe
 
-
 Die Hilfe mit den Angaben zu den möglichen Eingabeparametern lässt sich
 mit dem Parameter _-help_ ausgeben.
 
 Aufruf:
-
 
 ----
 XPlanManager -help
 ----
 
 Ausgabe:
-
 
 ----
 Usage: XPlanManager <options>
@@ -91,13 +85,11 @@ Der _-list_ Parameter gibt die Liste der geladenen Pläne aus.
 
 Aufruf:
 
-
 ----
 XPlanManager -list
 ----
 
 Beispiel Ausgabe:
-
 
 ----
 Id: 3, Version: XPLAN_3, Typ: FP_Plan, Name: Gesamtgeltungsbereich Flächennutzungsplan, Nummer: 12062024, GKZ: 12062024, Features: 2808, Importiert: 2010-02-18 17:57:11.669
@@ -114,14 +106,12 @@ Id: 12, Version: XPLAN_3, Typ: BP_Plan, Name: Bebauungsplan LA 22, Nummer: LA 22
 [[import]]
 ===== Import
 
-
 Ein Import kann durch Angabe des _-import_ Parameters gefolgt vom Pfad
-zum Planarchiv angestoßen werden. Bei dem Import können
+zum XPlanArchiv angestoßen werden. Bei dem Import können
 XPlanGML-Vektordaten und XPlanGML-Rasterdaten ohne zusätzlichen
 Parameter in die Datenbasis geladen werden.
 
 Beispiel Aufruf:
-
 
 ----
 XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip
@@ -134,7 +124,6 @@ Koordinatenreferenzsystemen, u.v.m.
 
 Folgende Zusatzparameter können mit angegeben werden, um z.B. fehlende
 Informationen anzugeben.
-
 
 ----
 --force
@@ -153,13 +142,10 @@ Inkaufnahme von unerwartetem Diensteverhalten ist es dennoch möglich,
 den Import eines Planes zu erzwingen. Das Erzwingen eines Imports
 erfolgt mit dem Zusatzparameter __–force__.
 
-
 NOTE: Bitte beachten Sie, dass dabei vorhandene Geometriefehler o.ä.
 übernommen werden und der importierte Plan dadurch fehlerhaft ist. Die
 Auswirkungen können von einer fehlerhaften Darstellung des Plans bis hin
 zu unerwarteten Verhalten der xPlanBox reichen.
-
-
 
 ----
 XPlanManager -import --force ../Input-Planverzeichnis/Infrastruktur.zip
@@ -172,7 +158,6 @@ diese mit dem Parameter _–crs_ übergeben werden.
 
 Beispiel Aufruf:
 
-
 ----
 XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --crs EPSG:31467
 ----
@@ -183,24 +168,21 @@ Sind mehrere Workspac Verzeichnisse vorhanden, so kann durch den
 Zusatzparameter _–workspace_ das entsprechende Verzeichnis übergeben
 werden.
 
-
 ----
 XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --workspace ~/.deegree/xplansyn-wms-workspace-test
 ----
 
 _–managerconfiguration_
 
-Sind mehrere Manager Konfigurationen vorhanden, so kann durch den
+Sind mehrere Konfigurationen für den XPlanManager vorhanden, so kann durch den
 Zusatzparameter _–managerconfiguration_ die entsprechende Konfiguration
 übergeben werden.
-
 
 ----
 XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --managerconfiguration ~/.deegree/managerConfiguration/
 ----
 
 Beispiel Ausgabe für erfolgreichen Import
-
 
 ----
 Analyse des XPlan-Archivs
@@ -228,9 +210,8 @@ Plan wurde eingefügt. Zugewiesene Id: 13
 [[rasterdatenanalyse]]
 ===== Rasterdatenanalyse
 
-
 Die Rasterdaten können beim Import auf Nutzbarkeit überprüft werden,
-damit sichergestellt ist, dass diese korrekt in den XPlan-WMS
+damit sichergestellt ist, dass diese korrekt in den XPlanWMS
 eingebettet werden können.
 
 Beim Import wird das CRS des Rasterplans überprüft.
@@ -274,7 +255,6 @@ Aufgrund invalider Rasterdaten wird der Import abgebrochen. Sie können den Impo
 
 [[bearbeitung-von-ebenenbaeumen]]
 ===== Bearbeitung von Ebenenbäumen
-
 
 Die Bearbeitung von Ebenenbäumen wird als Erweiterung des XPlanManagers
 bereitgestellt. Hiermit ist es möglich, Rasterlayer zusätzlich zur
@@ -325,20 +305,17 @@ XPlanManager -movelayer <bplan|rplan|fplan|lplan> <layername> <categoryname>
 [[export]]
 ===== Export
 
-
 Der Export eines Planes erfolgt unter Angabe des _-export_ Parameters
 gefolgt von der PlanID (kann zuvor mit _-list_ herausgefunden werden)
 und dem Ausgabeverzeichnis.
 
 Beispiel Aufruf:
 
-
 ----
 XPlanManager -export 9 outputverzeichnis
 ----
 
 Beispiel Ausgabe für erfolgreichen Export:
-
 
 ----
 - Schreibe Artefakt 'xplan.gml'...OK.
@@ -348,19 +325,16 @@ Plan 9 wurde nach 'xplan-exported-9.zip' exportiert.
 [[loeschen]]
 ===== Löschen
 
-
 Beim Löschen wird dem _-delete_ Parameter die PlanID (kann zuvor mit
 _-list_ herausgefunden werden) übergeben.
 
 Beispiel Aufruf:
-
 
 ----
 XPlanManager -delete 1
 ----
 
 Beispiel Ausgabe:
-
 
 ----
 - Entferne Plan 1 aus dem FeatureStore (XPLAN_3)...OK
@@ -373,11 +347,10 @@ Plan 1 wurde gelöscht.
 [[alternativer-betriebsmodus]]
 ===== Alternativer Betriebsmodus
 
-
-Alternativ zum normalen Import von Plänen bietet der XPlanManager die
+Alternativ zum normalen Import von Plänen bietet der XPlanManagerCLI die
 Möglichkeit, für jeden Plan eigene WMS Konfigurationen zu verwalten,
 sodass planspezifische WMS Dienste möglich sind. Dazu gibt es insgesamt
-3 verschiedene Optionen für den XPlanManager.
+3 verschiedene Optionen für den XPlanManagerCLI.
 
 Datenbank erzeugen:
   Mit dem XPlanManager kann die Datenhaltung für Xplan-Archive erzeugt
@@ -388,7 +361,6 @@ Bei Nutzung von PostgreSQL-Datenbanken mit PostGIS bis Version 1.5 muss
 die Datenbank über ein Template mit installierten postgis-Erweiterungen
 erzeugt werden.
 
-
 ----
 XPlanManager -createdb 'test' jdbc:postgresql://localhost:5432 -u postgres -p postgres -t template_postgis
 ----
@@ -397,20 +369,18 @@ In PostgreSQL-Datenbanken mit PostGIS ab Version 2.0 wird die
 Erweiterung vom Manager automatisch installiert. Daher entfällt die
 Angabe eines Templates mit PostGIS-Erweiterung.
 
-
 ----
 XPlanManager -createdb 'test' jdbc:postgresql://localhost:5432 -u postgres -p postgres
 ----
 
 Aktualisierung des Sortierfeldes für die Visualisierung:
-  Mit dem XPlanManager können die Werte der Sortierfelder in der
+  Mit dem XPlanManagerCLI können die Werte der Sortierfelder in der
   Datenbank anhand einer bestehenden managerConfiguration.properties
   Datei aktualisiert werden. Der Aufruf kann ohne Parameter oder mit dem
   optionalen Parameter _–managerconfiguration_ erfolgen. Details zu
   diesem Parameter sind im Abschnitt
   Konfiguration über Datei <_anchor-manager-cli-managerConfigFile> zu
   finden.
-
 
 ----
 XPlanManager -updatewmssortdate
@@ -419,7 +389,6 @@ XPlanManager -updatewmssortdate
 Konfiguration erzeugen:
   Soll beim Import eine WMS Konfiguration erzeugt werden, so muss der
   Import-Befehl folgendermaßen aussehen:
-
 
 ----
 XPlanManager -importmakeconfig ../../resources/testdata/XPlanGML_4_0/Infrastruktur.zip
@@ -432,7 +401,6 @@ Services genutzt werden soll (für weitere Details siehe _Konfiguration
 über Datei_ weiter oben).
 
 Folgende Zusatzparameter können mit angegeben werden:
-
 
 ----
 --force
@@ -447,7 +415,6 @@ Konfiguration löschen:
   Nutzers abgelegt. Soll ein so importierter Plan gelöscht werden, ist
   folgender Befehl notwendig:
 
-
 ----
 XPlanManager -deletewithconfig 1
 ----
@@ -455,13 +422,11 @@ XPlanManager -deletewithconfig 1
 [[troubleshooting]]
 ===== Troubleshooting
 
-
 Beim Import sehr großer Archive, kann es zu einem _OutOfMemoryError_
 Laufzeitfehler kommen, da die Java Virtual Machine keinen weiteren
 freien Speicher allokieren kann. Wenn der Server noch über freien
 Arbeitspeicher verfügt, dann kann dieser über die Umgebungsvariable
 _JAVA_OPTS_ unter Linux wie folgt erhöht werden:
-
 
 ----
 export JAVA_OPTS="-Xmx4096m"

@@ -1,19 +1,16 @@
 [XPlanValidator Web]
-=== XPlanValidator Web
+=== XPlanValidatorWeb
 
-
-Die Komponente XPlanValidator Web ist eine Web-Oberfläche, welche dem
+Die Komponente XPlanValidatorWeb ist eine Web-Oberfläche, welche dem
 Fachadministrator der xPlanBox ermöglicht, XPlanGML Instanzdokumente zu
-validieren. Der XPlanValidator Web ist auf dem Kommandozeilenwerkzeug
+validieren. Der XPlanValidatorWeb ist auf dem Kommandozeilenwerkzeug
 aufgebaut.
 
 [[benutzungsanleitung]]
 ==== Benutzungsanleitung
 
-
-Die Webanwendung XPlanValidator dient der Validierung von XPlanGML und
+Die Webanwendung XPlanValidatorWeb dient der Validierung von XPlanGML und
 ist unter:
-
 
 ----
 http://<host>:<port>/xplanvalidator/
@@ -24,24 +21,20 @@ verfügbar.
 [[hinzufuegen]]
 ===== Hinzufügen
 
-
-Das Planarchiv kann über den Button _Durchsuchen_ ausgewählt und über
+Das XPlanArchiv kann über den Button _Durchsuchen_ ausgewählt und über
 die Auswahl _Hochladen und Validierungsoption einstellen_ zur
 Web-Anwendung hinzugefügt werden.
 
 Der Benutzer erhält einen Hinweis, dass der Plan in die Web-Anwendung
 geladen wurde.
 
-[[bezeichnung-der-validation]]
-===== Bezeichnung der Validation
+===== Bezeichnung der Validierung
 
-
-Für jede Validation kann eine Bezeichnung vergeben werden, sodass der
+Für jede Validierung kann eine Bezeichnung vergeben werden, sodass der
 Durchlauf zu einem späterem Zeitpunkt eindeutig zugeordnet werden kann.
 
 [[validierungsart]]
 ===== Validierungsart
-
 
 Die folgenden Validierungsarten können über ein Menü ausgewählt
 werden:
@@ -54,7 +47,6 @@ Die Auswahl ist obligatorisch.
 [[validierungsoption]]
 ===== Validierungsoption
 
-
 Die folgenden Validierungsoptionen können über den Button _weitere
 Validierungsoptionen_ ausgewählt werden:
   * falsche Laufrichtung von Polygonen ignorieren
@@ -64,18 +56,16 @@ Validierungsoptionen_ ausgewählt werden:
   * Präsentationsobjekte ignorieren
 
 Die Änderungen können über den Button _Speichern_ für den aktuellen
-Validationsdurchlauf gespeichert werden. Die Auswahl ist optional.
+Validierungsdurchlauf gespeichert werden. Die Auswahl ist optional.
 
 [[validierung]]
 ===== Validierung
 
-
-Die Validation kann über den Button _Validierung starten_ gestartet
+Die Validierung kann über den Button _Validierung starten_ gestartet
 werden.
 
 [[validierungsergebnis]]
 ==== Validierungsergebnis
-
 
 Das Ergebnis der Validierung kann im Anschluss als HTML, PDF und XML
 Report herunter geladen werden. Je nachdem ob ein Geometriefehler
@@ -83,4 +73,4 @@ enthalten ist, können die Geometriefehler als Shapefile und als Grafik
 gespeichert werden.
 
 Alle Ergebnisdateien werden in einem Zip Archiv gespeichert. Der
-Dateiname enthält die Bezeichnung der Validation.
+Dateiname enthält die Bezeichnung der Validierung.
