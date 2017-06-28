@@ -1,4 +1,0 @@
-[Anwendung starten]
-=== Anwendung starten
-
-Zum Start der Webanwendungen müssen die beiden Applikationsserver gestartet werden. Dazu sein auf die jeweilige Dokumentation des verwendeten Applikationsserver verwiesen.

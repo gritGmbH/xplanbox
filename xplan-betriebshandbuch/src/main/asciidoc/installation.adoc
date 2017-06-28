@@ -11,8 +11,8 @@ include::installation_installation.adoc[]
 
 include::installation_datenbank.adoc[]
 
-include::installation_konfigurationApplicationserver.adoc[]
+include::installation_konfigurationApplikationsserver.adoc[]
 
 include::installation_gdal.adoc[]
 
-include::installation_startApplicationserver.adoc[]
+include::installation_startApplikationsserver.adoc[]

@@ -182,7 +182,7 @@ Bei der Aktualisierung der Daten auf die Version 2.0 sowie 2.2 (z.B. von
 1.8 auf 2.0 oder 2.1 auf 2.2) der xPlanBox ist abschließend die
 Ausführung des CLIs zur Aktualisierung des Sortierfeldes für die
 Visualisierung erforderlich. Informationen dazu finden sich im Abschnitt
-_XPlanManager CLI_ in der Benutzerdokumentation. Die erforderliche
+_XPlanManagerCLI_ im XPlanBenutzerhandbuch. Die erforderliche
 Konfiguration ist im Abschnitt _Konfiguration_ -> _Sortierung der Daten
 in der Visualisierung_ in dieser Dokumentation beschrieben.
 

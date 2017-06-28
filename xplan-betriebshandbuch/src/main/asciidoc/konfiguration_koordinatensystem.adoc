@@ -1,10 +1,8 @@
 [Standard-Koordinatenreferenzsystem (Import)]
 === Standard-Koordinatenreferenzsystem (Import)
 
-
 [[vektordaten]]
 ==== Vektordaten
-
 
 Die nachfolgenden Konfigurationen müssen in der Datei
 _managerWebConfiguration.properties_ im Verzeichnis
@@ -27,7 +25,6 @@ chooseCrs=EPSG:4326,EPSG:25833,EPSG:31466,EPSG:31467,EPSG:31468,EPSG:31469
 
 [[rasterdaten]]
 ==== Rasterdaten
-
 
 Die nachfolgende Konfiguration muss in der Datei
 _managerConfiguration.properties_ im Verzeichnis

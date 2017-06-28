@@ -1,7 +1,6 @@
 [Verfahrensdatenbank]
 === Verfahrensdatenbank
 
-
 Die Verfahrensdatenbank kann in der Datei
 _managerWebConfiguration.properties_ im Verzeichnis
 _~/.deegree/manager-configuration/_ aktiviert oder deaktiviert werden: :
@@ -52,8 +51,7 @@ Plan-Namen beinhalten.
 
 ====
 
-Die Datenbank-Anbindung kann in der Datei _vfdb.xml_ im XPlanManager
-Workspace konfiguriert werden (der Name des workspaces und die ID der
+Die Datenbank-Anbindung kann in der Datei _vfdb.xml_ im XPlanManagerWorkspace konfiguriert werden (der Name des workspaces und die ID der
 Konfigurationsdatei können wie zuvor beschrieben geändert werden):
 
 ----

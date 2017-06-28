@@ -41,18 +41,14 @@ workspaceReloadUser=<user>
 workspaceReloadPassword=<passwort>
 ----
 
-
-
-NOTE: Werden der deegree-Dienst und der XPlanmanager auf dem selben Server
+NOTE: Werden der deegree-Dienst und der XPlanManager auf dem selben Server
 betrieben, so können die Dienste über den Hostnamen _localhost_
 kommunizieren.
-
 
 Für mehr Details siehe Kapitel <<Automatischer Workspace-Reload>>
 
 [[fuer-den-xplanwms]]
 ==== Für den XPlanWMS:
-
 
 __________________________________________________________________________________
 * _html.gfi_ (im Verzeichnis _.deegree/xplansyn-wms-workspace_ unter

@@ -1,9 +1,8 @@
 [Logging]
 === Logging
 
-
-Die Anwendungen XPlanManager Web, XPlanManager CLI, XPlanValidator Web
-und XPlanValidator CLI schreiben Log-Ausgaben standardmäßig nach
+Die Anwendungen XPlanManagerWeb, XPlanManagerCLI, XPlanValidatorWeb
+und XPlanValidatorCLI schreiben Log-Ausgaben standardmäßig nach
 Standard-Out. Für die Web-Anwendungen ist dies die Logging-Datei des
 Java Applikationsserver (Tomcat: catalina.out) und bei den
 CLI-Anwendungen die Konsole. Zusätzlich wird das Logging für alle
@@ -12,10 +11,10 @@ Anwendungen in eine separate Datei geschrieben:
 [width="88%",cols="35%,65%",options="header",]
 |============================================================
 |Anwendung |Log-Datei
-|XPlanManager Web |$\{xplan.logdir}/xplan-manager-web.log
-|XPlanManager CLI |./xplan-manager-cli.log
-|XPlanValidator Web |$\{xplan.logdir}/xplan-validator-web.log
-|XPlanValidator CLI |./xplan-validator-cli.log
+|XPlanManagerWeb |$\{xplan.logdir}/xplan-manager-web.log
+|XPlanManagerCLI |./xplan-manager-cli.log
+|XPlanValidatorWeb |$\{xplan.logdir}/xplan-validator-web.log
+|XPlanValidatorCLI |./xplan-validator-cli.log
 |============================================================
 
 Während die log-Dateien des CLIs immer in dem Verzeichnis abgelegt

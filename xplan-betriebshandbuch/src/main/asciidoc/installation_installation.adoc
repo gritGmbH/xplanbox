@@ -26,7 +26,7 @@ Um das korrekte Zusammenarbeiten der verschiedenen im Abschnitt
 Systemarchitektur und Schnittstellen <architecture> beschriebenen
 Komponenten zu gewährleisten, wird eine Trennung der Dienste und
 Anwendungskomponenten empfohlen. Zwingend erforderlich ist dies beim
-Einsatz von GDAL (s. <<[[installation-gdal]]>>).
+Einsatz von GDAL (s. <<installation-gdal>>).
 
 Die folgenden WAR-Archive aus dem Ordner _web_ müssen in das Verzeichnis
 der Tomcat-Installation (__Dienste-Tomcat__, z.B. Port: 8080) kopiert
@@ -48,7 +48,7 @@ ______________________
 * _xplan-root.war_
 ______________________
 
-NOTE: Da die Komponente XPlanResources eine Einstiegsseite bereit stellt, bietet es sich an, diese als ROOT-Webapp des Anwendungs-Tomcat zu installieren. Das war-Archiv muss dafür im Verzeichnis ROOT entpackt werden.
+NOTE: Da die Komponente XPlanRessourcen eine Einstiegsseite bereit stellt, bietet es sich an, diese als ROOT-Webapp des Anwendungs-Tomcat zu installieren. Das war-Archiv xplan-root.war muss dafür im Verzeichnis ROOT entpackt werden.
 
 [[kommandozeilen-anwendungen]]
 ==== Kommandozeilen-Anwendungen
@@ -56,21 +56,19 @@ NOTE: Da die Komponente XPlanResources eine Einstiegsseite bereit stellt, bietet
 Die Kommandozeilenkomponenten aus dem Ordner _cli_ können an beliebiger
 Stelle entpackt werden. Im jeweiligen _bin_ Verzeichnis der beiden
 Kommandozeilenwerkzeuge findet sich das entsprechende Ausführungsskript
-_XPlanManager_ bzw. _XPlanValidator_.
+_XPlanManager_ für die Komponente XPlanManagerCLI bzw. _XPlanValidator_ für die Komponente XPlanValidatorCLI.
 
 [[dokumentation]]
 ==== Dokumentation
 
 Im Verzeichnis _doc_ findet sich eine gezippte Version der
-Dokumentation. Dieses Archiv enthält die Benutzerdokumentation zu den
+XPlanDokumentation. Dieses Archiv enthält die XPlanBenutzerhandbuch zu den
 Komponenten in den Formaten HTML und PDF.
 
 [[installation-über-ein-install-skript]]
 ==== Installation über ein Install-Skript
 
-Das Ablegen bzw. der Austausch der Web-Archive sowie das Ablegen bzw.
-die Aktualisierung der betroffenen Konfigurationsdateien in den
-Workspaces kann auf Linux-Umgebungen auch über das angehängte 
+Das Ablegen der Web-Archive sowie der Konfigurationsdateien kann auf Linux-Umgebungen auch über das angehängte
 Installations-Skript (s. <<Installations-Skript, Anhang>>) ausgeführt werden:
 
 ----

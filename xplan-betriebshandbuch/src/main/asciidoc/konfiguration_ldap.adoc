@@ -1,7 +1,6 @@
 [LDAP]
 === LDAP
 
-
 Als LDAP Server kann Microsoft Active Directory verwendet.
 
 Um die Security zu aktivieren, müssen folgende Änderungen an der
@@ -69,7 +68,7 @@ und die Domänen Komponenten mit DC in kommaseparierter Form notiert.
 
 Die Active Directory-Gruppen mit den dazugehörigen Bezirken auf die die
 Gruppe zugreifen darf, die Superuser-Gruppen und die Editor-Gruppen
-können in der Webapp des XPlanManagers in der Datei
+können in der Webapp des XPlanManagerWebs in der Datei
 _WEB-INF/classes/security-configuration.xml_ konfiguriert werden:
 
 ----
@@ -146,7 +145,6 @@ ________________________________________________________________________________
 [[gruppenhierarchien]]
 ==== Gruppenhierarchien
 
-
 Es können Gruppenhierarchien konfiguriert werden, um hierarchische
 Abhängigkeiten zwischen Gruppen abzubilden. So kann eine Gruppen
 Mitglied einer anderen Gruppe sein und dabei die Eigenschaften der
@@ -214,8 +212,6 @@ Beispiel 2 - Konfiguration einer dynamischen Rollenhierarchie:
   </beans:constructor-arg>
 </beans:bean>
 ----
-
-
 
 NOTE: Sowohl die dynamische als auch die statische Gruppenhierarchie wird
 während des Starts der Webapp ausgewertet. Falls es nachträgliche

@@ -1,8 +1,7 @@
 [Sortierung der Daten in der Visualisierung]
 === Sortierung der Daten in der Visualisierung
 
-
-Für die Sortierung von Plandaten im WMS nach einem Datumsfeld stehen
+Für die Sortierung von Plandaten im XPlanWMS nach einem Datumsfeld stehen
 alle Datumsfelder zur Verfügung. Welches Feld für die Sortierung
 verwendet wird, kann in der Datei _managerConfiguration.properties_ im
 Verzeichnis _~/.deegree/manager-configuration/_ konfiguriert werden.
@@ -26,10 +25,7 @@ wmsSortDate_LP_Plan_XPLAN_40=LP_Plan,inkrafttretenDatum
 wmsSortDate_LP_Plan_XPLAN_41=LP_Plan,inkrafttretenDatum
 ----
 
-
-
 NOTE: Es müssen ggf. Zeilenumbrüche entfernt werden.
-
 
 Die Angabe eines Sortierfeldes kann für jeden Plan-Type und Plan-Version
 differenziert erfolgen und kann am Aufbau des Schlüsselnamens erkannt
@@ -50,6 +46,6 @@ Wird kein Wert angegeben, oder fehlt ein Eintrag vollständig, kann für
 die Version/den Typ keine Zuordnung gefunden werden. Das Datumsfeld
 bleibt leer. Eine Änderung dieser Konfiguration während des laufenden
 Betriebs führt zu unterschiedlichen Grundlagen der Sortierung, über die
-Option _-updatewmssortdate_ des XPlanManager-CLIs kann die Änderung aber
+Option _-updatewmssortdate_ des XPlanManagerCLIs kann die Änderung aber
 für bereits importierte Daten nachgezogen werden. Dies ist im
-entsprechenden Kapitel der Benutzerdokumentation beschrieben.
+entsprechenden Kapitel des XPlanBenutzerhandbuchs beschrieben.

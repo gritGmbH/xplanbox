@@ -1,18 +1,17 @@
 [Systemarchitektur und Schnittstellen]
 == Systemarchitektur und Schnittstellen
 
-
 Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 
 ____________________
-* XPlanManager CLI
-* XPlanManager Web
-* XPlanValidator CLI
-* XPlanValidator Web
+* XPlanManagerCLI
+* XPlanManagerWeb
+* XPlanValidatorCLI
+* XPlanValidatorWeb
 * XPlanWMS
 * XPlanWFS
 * XPlanSynWFS
-* XPlanResources
+* XPlanRessourcen
 ____________________
 
 image:../images/Architektur_xPlanBox_einfach.png[Einfache Darstellung]
@@ -21,55 +20,50 @@ Abbildung 1: Einfache Datenhaltung
 
 image:../images/Architektur_xPlanBox_komplex.png[Komplexe Darstellung]
 
-Abbildung 2: Seperate Datenhaltung
+Abbildung 2: Separate Datenhaltung
 
 [[xplanmanager-cli]]
-=== XPlanManager CLI
+=== XPlanManagerCLI
 
-
-Die Komponente XPlanManager CLI ist ein Kommandozeilenwerkzeug, welches
+Die Komponente XPlanManagerCLI ist ein Kommandozeilenwerkzeug, welches
 dem Fachadministrator des XPlanung Infrastrukturknotens ermöglicht, die
 Datenhaltung zu kontrollieren.
 
 [[xplanmanager-web]]
-=== XPlanManager Web
+=== XPlanManagerWeb
 
-
-Die Komponente XPlanManager Web ist eine Web-Oberfläche, die dem
+Die Komponente XPlanManagerWeb ist eine Web-Oberfläche, die dem
 Fachadministrator des XPlanung Infrastrukturknotens ermöglicht, die
 Datenhaltung zu kontrollieren. Die Web-Oberfläche ist auf dem
 Kommandozeilenwerkzeug aufgebaut.
 
 [[xplanvalidator-cli]]
-=== XPlanValidator CLI
+=== XPlanValidatorCLI
 
-
-Die Komponente XPlanValidator CLI ist ein Kommandozeilenwerkzeug,
+Die Komponente XPlanValidatorCLI ist ein Kommandozeilenwerkzeug,
 welches dem Fachadministrator des XPlanung Infrastrukturknotens
 ermöglicht, XPlanGML Instanzdokumente vor dem Import zu validieren.
 
 [[xplanvalidator-web]]
-=== XPlanValidator Web
+=== XPlanValidatorWeb
 
-
-Die Komponente XPlanValidator Web ist eine Web-Oberfläche, welche dem
+Die Komponente XPlanValidatorWeb ist eine Web-Oberfläche, welche dem
 Fachadministrator des XPlanung Infrastrukturknotens ermöglicht, XPlanGML
-Instanzdokumente zu validieren. Der XPlanValidator Web ist auf dem
+Instanzdokumente zu validieren. Der XPlanValidatorWeb ist auf dem
 Kommandozeilenwerkzeug aufgebaut.
 
 [[xplanwms]]
 === XPlanWMS
 
-
-Der XPlanWMS (xplan-wms) ist ein auf dem Standard Web Map Service
+Der XPlanWMS ist ein auf dem Standard Web Map Service
 (Version 1.1.1 und 1.3.0) des Open Geospatial Consortium (OGC)
 basierender Kartendienst. Dieser bietet die Möglichkeit,
 Visualisierungen von Plandaten sowie Sachinformationsabfragen zu
 einzelnen Planinhalten abzufragen. Um diese Plandaten zu visualisieren
 bzw. Sachinformationen abzufragen ist es möglich, sowohl eine einfache
-(siehe Abbildung 1) als auch eine seperate Datenhaltung (siehe Abbildung
+(siehe Abbildung 1) als auch eine separate Datenhaltung (siehe Abbildung
 2) zu benutzen, in der die Plandaten hinterlegt sind. Dabei wird bei
-einer seperaten Datenhaltung (In Aufstellung, Festgestellt, Archiviert)
+einer separaten Datenhaltung (In Aufstellung, Festgestellt, Archiviert)
 durch die Auswahl des Planstatus, die dazugehörige Datenhaltung und
 somit der entsprechende XPlanWMS-Endpoint angesprochen.
 
@@ -79,31 +73,26 @@ ________________________________
 * XPlanWMSArchive ==> Archiviert
 ________________________________
 
-
-
 NOTE: Gleiches gilt für den XPlanWFS bzw. XPlanSynWFS
 
 [[xplanwfs]]
 === XPlanWFS
 
-
-Der XPlanWFS (xplan-wfs) ist ein auf dem Standard Web Feature Service
+Der XPlanWFS ist ein auf dem Standard Web Feature Service
 (Version 1.1.0 und 2.0.0) des Open Geospatial Consortium (OGC)
 basierender Dienst zur Abfrage von Vektordaten.
 
 [[xplansynwfs]]
 === XPlanSynWFS
 
-
-Der XPlanSynWFS (xplansyn-wfs) dient der Abbildung des synthetisierten
+Der XPlanSynWFS dient der Abbildung des synthetisierten
 XPlanung GML Anwendungsschemas (XPlanSynGML). Dieses stellt eine
 vereinfachte und zusammenfassende Form der verschiedenen XPlanGML
 Versionen dar.
 
 [[xplanresources]]
-=== XPlanResources
+=== XPlanRessourcen
 
-
-Die optionale Komponente XPlanResources (xplan-root) bietet eine
-Einstiegsseite zu den einzelnen Komponenten der XPlanBox an und stellt
+Die optionale Komponente XPlanRessourcen bietet eine
+Einstiegsseite zu den einzelnen Komponenten der XPlanBox und stellt
 verschiedene Dokumente bereit.
