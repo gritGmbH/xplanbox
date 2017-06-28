@@ -1,7 +1,7 @@
 == XPlanManager
 
-include::XPlanManager-Grundlagen.adoc[]
+include::XPlanManager_Grundlagen.adoc[]
 
-include::XPlanManager-CLI.adoc[]
+include::XPlanManager_CLI.adoc[]
 
-include::XPlanManager-Web.adoc[]
+include::XPlanManager_Web.adoc[]
