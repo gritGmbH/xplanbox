@@ -68,9 +68,9 @@ durch die Auswahl des Planstatus, die dazugehörige Datenhaltung und
 somit der entsprechende XPlanWMS-Endpoint angesprochen.
 
 ________________________________
-* XPlanWMS ==> Festgestellt
-* XPlanWMSpre ==> In Aufstellung
-* XPlanWMSArchive ==> Archiviert
+* XPlanWMSInAufstellung ==> In Aufstellung
+* XPlanWMSFestgestellt ==> Festgestellt
+* XPlanWMSArchiviert ==> Archiviert
 ________________________________
 
 NOTE: Gleiches gilt für den XPlanWFS bzw. XPlanSynWFS
