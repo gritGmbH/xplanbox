@@ -22,8 +22,8 @@ function cleantomcat () {
   rm -rf ${TOMCAT_SERVICES_ROOT}/webapps/xplansyn-wfs.war
   rm -rf ${TOMCAT_SERVICES_ROOT}/webapps/xplan-wfs
   rm -rf ${TOMCAT_SERVICES_ROOT}/webapps/xplan-wfs.war
-  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/userdocumentation
-  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/operationmanual
+  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/benutzerhandbuch
+  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/betriebshandbuch
   rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/ROOT*
 }
 
@@ -51,7 +51,7 @@ function copywarstotomcat () {
 }
 
 function unzipdocumentationtotomcat () {
-  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/benutzerdokumentation.zip
+  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/benutzerhandbuch.zip
   unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/betriebshandbuch.zip
 }
 

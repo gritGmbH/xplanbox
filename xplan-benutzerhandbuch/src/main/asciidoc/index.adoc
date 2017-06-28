@@ -4,7 +4,7 @@
 :numbered:
 :toc-title: Inhaltsverzeichnis
 
-= Benutzerdokumentation für die xPlanBox
+= Benutzerhandbuch für die xPlanBox
 
 toc::[]
 

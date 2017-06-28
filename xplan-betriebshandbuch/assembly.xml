@@ -10,11 +10,11 @@
   <fileSets>
     <fileSet>
       <directory>target/html</directory>
-      <outputDirectory>/operationmanual</outputDirectory>
+      <outputDirectory>/betriebshandbuch</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>target/pdf</directory>
-      <outputDirectory>/operationmanual</outputDirectory>
+      <outputDirectory>/betriebshandbuch</outputDirectory>
       <includes>
         <include>*.pdf</include>
       </includes>
