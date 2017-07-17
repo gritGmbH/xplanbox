@@ -57,32 +57,6 @@
         <module>xplan-integrationtest</module>
       </modules>
     </profile>
-    <profile>
-      <id>include-test-config</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <dependencyManagement>
-        <dependencies>
-          <!-- internal -->
-          <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>portal-bplan-config</artifactId>
-            <version>${project.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>portal-lplan-config</artifactId>
-            <version>${project.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>portal-fplan-config</artifactId>
-            <version>${project.version}</version>
-          </dependency>
-        </dependencies>
-      </dependencyManagement>
-    </profile>
   </profiles>
 
   <build>
