@@ -5,14 +5,17 @@ Bei einer Aktualisierung der xPlanBox müssen folgende Schritte
 durchgeführt werden:
 
 ______________________________________________________________________
-* bei jeder Version:
-  * Austausch der Web-Archive (.war) in den Tomcat-Applikationsservern
-  * Neustart der Tomcats
-  * Austausch der Commandline-Tools
-* bei Aktualisierungen der Datenhaltung:
-  * Aktualisierung betroffenen Konfigurationsdateien in den Workspaces
-  * Aktualisierung der Schemas
-  * Aktualisierung der Daten
+Datenunabhängige Aktualisierungsschritte:
+
+* Austausch der Web-Archive (.war) in den Tomcat-Applikationsservern
+* Neustart der Tomcats
+* Austausch der Commandline-Tools
+
+Aktualisierungsschritte, die die Datenhaltung betreffen:
+
+* Aktualisierung der betroffenen Konfigurationsdateien in den Workspaces
+* Aktualisierung der Schemas
+* Aktualisierung der Daten
 ______________________________________________________________________
 
 Bei einer vollständigen Aktualisierung kann auch das Installationsskript
@@ -41,7 +44,6 @@ Es müssen beide Applikationsserver neu gestartet werden.
 [[austausch-der-commandline-tools]]
 === Austausch der Commandline-Tools
 
-
 Es müssen die bereit gestellten Zip-Archive für die Kommandozeilen-Tools
 entpackt werden:
 
@@ -57,6 +59,7 @@ Bei der Aktualisierung der Workspaces ist zwischen einer vollständigen und teil
 
 [[vollstaendige-aktualisierung]]
 ==== Vollständige Aktualisierung des Workspaces
+
 Es müssen die bereit gestellten Konfigurationsdateien in das Verzeichnis
 _.deegree_ kopiert werden. Diese ersetzen die bereits vorhandenen:
 
@@ -85,7 +88,6 @@ cp ${WORK_DIR}/config/xplan-lplan-config-${VERSION}-${ENV}.jar ${DEEGEE_DIR}/por
 
 [[aktualisierung-des-wms-workspaces-auf-die-version-2.0-der-xplanbox]]
 ===== Aktualisierung des WMS-Workspaces auf die Version 2.0 der xPlanBox
-
 
 Bei Übernahme eines alten Workspaces für den WMS
 (xplansyn-wms-workspace) mit bereits importierten Rasterdaten sind die
@@ -130,14 +132,12 @@ ________________________________________________________________________________
 Die Themes-Konfigurationen der Vektordaten sollten komplett ausgetauscht
 werden, Daten gehen dadurch nicht verloren. Folgende Dateien sind davon
 betroffen:
-
 ___________________________________________
 * bplan.xml, bplanpre.xml, bplanarchive.xml
 * fplan.xml, fplanpre.xml, fplanarchive.xml
 * lplan.xml, lplanpre.xml, lplanarchive.xml
 * rplan.xml, rplanpre.xml, rplanarchive.xml
 ___________________________________________
-
 
 [[aktualisierung-des-wms-workspaces-auf-die-version-2.4-der-xplanbox]]
 ===== Aktualisierung des WMS-Workspaces auf die Version 2.4 der xPlanBox
@@ -147,6 +147,9 @@ Mit der Version 2.4 der xPlanBox wurde eine Möglichkeit eingeführt, die Ausgab
 [[aktualisierung-der-schemas]]
 === Aktualisierung der Schemas
 
+Achtung: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in das System importierten Daten beibehalten werden sollen.
+Für den Fall, dass dies nicht notwendig ist, muss lediglich die Datenbank neu aufgesetzt werden.
+Mehr Details hierzu finden Sie im Kapitel <<Konfiguration der Datenbank>>.
 
 Die Datenbankschemas jeder Version befinden sich im
 xplan-manager-workspace im Ordner sql und für jedes Schema gibt es dort
@@ -157,17 +160,17 @@ Update-Skript überführt und damit an der Datenbank durchgeführt werden.
 Für einige Aktualisierungen sind Aktualisierungsskripte im Modul
 xplan-update-database verfügbar.
 
-
-
 NOTE: Es gibt sowohl SQL-Update-Skripte als auch Liquibase-Skripte, die mit
 der Software http://www.liquibase.org/[Liquibase] ausgeführt werden
 können. Falls beide Skript-Typen vorhanden sind, kann der Nutzer wählen,
 ob das Update per SQL oder Liquibase durchgeführt werden soll.
 
-
 [[aktualisierung-der-daten]]
 === Aktualisierung der Daten
 
+Achtung: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in das System importierten Daten beibehalten werden sollen.
+Für den Fall, dass dies nicht notwendig ist, muss lediglich die Datenbank neu aufgesetzt werden.
+Dieser Schritt sollte bereits während der Anwendung des Kapitels <<aktualisierung-der-schemas>> durchgeführt worden sein.
 
 Im Modul xplan-update-database wird das Programm databaseUpdate für die
 Datenaktualisierung bestimmter xPlanBox-Versionen bereitgestellt. Eine
@@ -176,7 +179,6 @@ Programmaufruf mit dem Parameter –help angezeigt.
 
 [[datenaktualisierung-auf-die-version-2.0-sowie-2.2-der-xplanbox]]
 ==== Datenaktualisierung auf die Version 2.0 sowie 2.2 der xPlanBox
-
 
 Bei der Aktualisierung der Daten auf die Version 2.0 sowie 2.2 (z.B. von
 1.8 auf 2.0 oder 2.1 auf 2.2) der xPlanBox ist abschließend die
@@ -191,3 +193,21 @@ ausgewählte Versionen auf Anfrage zusammen mit der Liefereinheit
 bereitgestellt. Für professionelle Unterstützung bei ihrem
 Aktualisierungsvorhaben wenden Sie sich bitte an die
 http://www.lat-lon.de[lat/lon GmbH].
+
+=== Übersicht - Aktualisierungsschritte, die die Datenhaltung betreffen, sind zwingend notwendig
+
+Folgende Tabelle listet auf, bei welchen xPlanBox Versionen zwingend Aktualisierungsschritte notwendig sind, die die Datenhaltung betreffen.
+Die Details zu dem jeweiligen Aktualisierungsschritt werden in den dazugehörigen vorigen Kapiteln erläutert.
+
+Diese Tabelle dient lediglich der besseren Übersicht und ist bezüglich älterer xPlanBox Versionen (vor Version 2.3) lückenhaft. Falls Sie mehr Details zu einem Aktualisierungsvorhaben vor Version 2.3 wünschen, wenden Sie sich bitte an die http://www.lat-lon.de[lat/lon GmbH].
+
+[options="header"]
+|=================
+| xPlanBox Version | Aktualisierung Workspaces notwendig | Aktualisierung Schemas notwendig | Aktualisierung Daten notwendig |
+| 1.0 | | ja | ja |
+| 1.3.1 | | ja | ja |
+| 1.8 | | ja | |
+| 2.0 | ja | ja | ja |
+| 2.2 | | ja | ja |
+| 2.4 | ja | | |
+|=================
