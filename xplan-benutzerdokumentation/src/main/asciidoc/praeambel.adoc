@@ -14,9 +14,9 @@ Autoren übernehmen aus diesem Grund auch keinerlei Verantwortung oder
 Haftung für Fehler und deren Folgen. Hinweise auf eventuelle Irrtümer
 werden gerne entgegengenommen.
 
-Dieses Dokument ist mit Asciidoc gesetzt. Es ist als
+Dieses Dokument ist mit AsciiDoc gesetzt. Es ist als
 Quellcode erhältlich und kann als HTML und PDF angeschaut bzw.
-bereitgestellt werden. Für die Bereitstellung des Asciidoc Quellcode wenden
+bereitgestellt werden. Für die Bereitstellung des AsciiDoc Quellcode wenden
 Sie sich bitte an http://www.lat-lon.de[lat/lon] - per Email an
 info@lat-lon.de.
 
