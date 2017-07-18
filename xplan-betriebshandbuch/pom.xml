@@ -70,11 +70,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
-        <configuration>
-          <descriptors>
-            <descriptor>src/assembly/assembly.xml</descriptor>
-          </descriptors>
-        </configuration>
         <executions>
           <execution>
             <id>assemble-html</id>
@@ -83,7 +78,11 @@
               <goal>single</goal>
             </goals>
             <configuration>
-              <appendAssemblyId>false</appendAssemblyId>
+              <descriptors>
+                <descriptor>src/assembly/assembly-html.xml</descriptor>
+                <descriptor>src/assembly/assembly-pdf.xml</descriptor>
+              </descriptors>
+              <appendAssemblyId>true</appendAssemblyId>
               <ignoreMissingDescriptor>true</ignoreMissingDescriptor>
             </configuration>
           </execution>
