@@ -54,22 +54,23 @@ unzip ${WORK_DIR}/cli/xplan-validator-cli-${VERSION}.zip
 
 === Übersicht über die Datenhaltung betreffende Änderungen
 
-Folgende Tabelle listet auf, bei welchen xPlanBox Versionen die Datenhaltung betreffende Änderungen im Vergleich zur vorherigen Version vorgenommen wurden.
-Änderungen werden grundsätzlich nur bei höheren Versionen vorgenommen, Bugfix-Versionen (dritte Stelle in der Versionsangabe, z.B. die 1 in 2.3.1) enthalten keine Änderungen. In der Tabelle sind nur Versionen aufgelistet, die auch Änderungen enthalten. In der Version 2.3 wurden gegenüber der Version 2.2 beispielsweise keine Änderungen vorgenommen.
+Folgende Tabelle listet auf, bei welchen xPlanBox Versionen die Datenhaltung betreffende Änderungen vorgenommen wurden (ab Version 2.0).
 
-Anhand der Übersicht lässt sich ableiten welche Schritte bei einer Aktualisierung ausgeführt werden müssen. Die Details zu den jeweiligen Aktualisierungsschritten werden in den nachfolgenden Kapiteln erläutert.
+In der Tabelle sind nur Versionen aufgelistet, die auch Änderungen enthalten. In der Version 2.3 wurden gegenüber der Version 2.2 beispielsweise keine Änderungen vorgenommen. Somit können Version 2.2 und 2.3 mit exakt den gleichen Workspaces und dem gleichen Datenbankschema betrieben werden.
+
+Anhand der Übersicht lässt sich ableiten, welche Schritte bei einer Aktualisierung ausgeführt werden müssen. Die Details zu den jeweiligen Aktualisierungsschritten werden in den nachfolgenden Kapiteln erläutert.
 
 Falls Sie mehr Details zu einem Aktualisierungsvorhaben vor Version 2.0 wünschen, wenden Sie sich bitte an die http://www.lat-lon.de[lat/lon GmbH].
 
 .Überblick über die Datenhaltung betreffenden Änderungen
-[cols="4*^", options="header,footer"]
-|=================
-| xPlanBox Version | Änderungen am Workspaces? | Änderungen am Datenbankschema? | Änderung der Daten?
-| 2.0 | ja | ja | ja
-| 2.2 |    | ja | ja
-| 2.4 | ja |    |
-|Hinweise zur Aktualisierung | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> | <<aktualisierung-der-daten>>
-|=================
+[cols="3*^", options="header,footer"]
+|====================================
+| xPlanBox Version | Änderungen an den Workspaces? | Änderungen am Datenbankschema?
+| 2.0              | ja                            | ja
+| 2.2              |                               | ja
+| 2.4              | ja                            |
+|Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
+|====================================
 
 [[aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces]]
 === Aktualisierung der betroffenen Konfigurationsdateien in den Workspaces
