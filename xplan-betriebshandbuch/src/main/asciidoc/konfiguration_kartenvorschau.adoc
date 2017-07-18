@@ -1,14 +1,12 @@
 [Kartenvorschau]
 === Kartenvorschau
 
-
 Die nachfolgenden Konfigurationen müssen in der Datei
 _managerWebConfiguration.properties_ im Verzeichnis
 _~/.deegree/manager-configuration/_ angepasst werden.
 
 [[xplanwms]]
 ==== XPlanWMS
-
 
 Um den XPlanWMS zu konfigurieren, muss der Wert des Schlüssels _wmsUrl_
 angepasst werden. Über die Schlüssel _vectorWmsName_ und _rasterWmsName_
@@ -63,7 +61,6 @@ wmsArchiveEndpoint=wmsarchive
 [[hintergrundkarte]]
 ==== Hintergrundkarte
 
-
 Um die Hintergrundkarte zu konfigurieren, muss der Wert des Schlüssels
 _basemapUrl_ angepasst werden. Über den Schlüssel _basemapName_ kann der
 in der Kartenvorschau dargestellte Name konfiguriert werden:
@@ -75,7 +72,6 @@ basemapName=Basiskarte
 
 [[koordinatensystem]]
 ==== Koordinatensystem
-
 
 Das Koordinatensystem, indem die Kartenvorschau angezeigt werden soll,
 kann über den Schlüssel _mapCrs_ und dem dazugehörigen Wert konfiguriert
@@ -94,7 +90,6 @@ mapExtent=464540.516097552,4294418.79680585,760676.555028607,9320086.20690937
 
 [[ebenen]]
 ==== Ebenen
-
 
 Die in der Kartenvorschau dargestellten Ebenen können ebenfalls über
 Schlüssel-Wert-Paare konfiguriert werden. Für die Hintergrundkarte wird

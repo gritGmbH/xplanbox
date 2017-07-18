@@ -1,8 +1,7 @@
 [XPlanWMS]
 == XPlanWMS
 
-
-Der XPlanWMS (xplan-wms) ist ein auf dem Standard Web Map Service
+Der XPlanWMS ist ein auf dem Standard Web Map Service
 (Version 1.1.1 und 1.3.0) des Open Geospatial Consortium (OGC)
 basierender Kartendienst. Dieser bietet die Möglichkeit Visualisierungen
 von Plandaten sowie Sachinformationsabfragen zu einzelnen Planinhalten
@@ -10,7 +9,6 @@ abzufragen.
 
 [[benutzung-des-xplanwms]]
 === Benutzung des XPlanWMS
-
 
 Mit dem XPlanWMS ist ein Benutzer in der Lage, WMS-Ebenen (Layer) mit
 einem Browser oder einem GIS anzufragen. Der XPlanWMS basiert auf der
@@ -32,8 +30,6 @@ WMS, die in den weiteren Kapiteln noch näher erläutert werden.
 [[adresse-des-dienstes]]
 ==== Adresse des Dienstes
 
-
-
 ----
 http://<host>:<port>/xplan-wms/services/wms?
 ----
@@ -45,8 +41,6 @@ http://<host>:<port>/xplan-wms/services/wms?
 [[getcapabilities]]
 ===== GetCapabilities
 
-
-
 ----
 http://<host>:<port>/xplan-wms/services/wms?request=GetCapabilities&service=WMS&version=1.1.1
 http://<host>:<port>/xplan-wms/services/wms?request=GetCapabilities&service=WMS&version=1.3.0
@@ -54,8 +48,6 @@ http://<host>:<port>/xplan-wms/services/wms?request=GetCapabilities&service=WMS&
 
 [[getmap]]
 ===== GetMap
-
-
 
 ----
 http://<host>:<port>/xplan-wms/services/wms?request=GetMap&Service=WMS&Version=1.1.1&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Srs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
@@ -65,8 +57,6 @@ http://<host>:<port>/xplan-wms/services/wms?request=GetMap&Service=WMS&Version=1
 [[getfeatureinfo]]
 ===== GetFeatureInfo
 
-
-
 ----
 http://<host>:<port>/xplan-wms/services/wms?request=GetFeatureInfo&Service=WMS&Version=1.3.0&Width=460&Height=348&Layers=fp_bebausfl&Transparent=TRUE&Format=image%2Fpng&BBox=381754.08781343646,5716831.670553746,382351.0673120646,5717283.298522273&Crs=EPSG:25833&Styles=&Query_layers=fp_bebausfl&I=217&J=94&Feature_count=10&Info_format=text/html
 http://<host>:<port>/xplan-wms/services/wms?request=GetFeatureInfo&Service=WMS&Version=1.3.0&Width=460&Height=348&Layers=fp_bebausfl&Transparent=TRUE&Format=image%2Fpng&BBox=381754.08781343646,5716831.670553746,382351.0673120646,5717283.298522273&Crs=EPSG:25833&Styles=&Query_layers=fp_bebausfl&I=217&J=94&Feature_count=10&info_format=application/vnd.ogc.gml
@@ -74,7 +64,6 @@ http://<host>:<port>/xplan-wms/services/wms?request=GetFeatureInfo&Service=WMS&V
 
 [[getlegendgraphic]]
 ===== GetLegendGraphic
-
 
 ----
 http://<host>:<port>/xplan-wms/services/wms?request=GetLegendGraphic&Service=WMS&Version=1.1.1&layer=bp_gruenfl&format=image/png
@@ -84,26 +73,20 @@ http://<host>:<port>/xplan-wms/services/wms?request=GetLegendGraphic&Service=WMS
 [[inhalte-des-kartendienstes]]
 === Inhalte des Kartendienstes
 
-
 Der XPlanWMS dient der Darstellung der Bauleitplanung. Die Datenbasis
-besteht aus XPlanGML (Versionen: 2, 3, 4) konformen Plandaten. Dabei
-wurden für alle FeatureTypes der 3 unterstützten XPlanGML Versionen, die
-Geometrie-Attribute besitzen, Ebenen angelegt. Aus den 3 XPlanGML
-Versionen wird ein abgeleitetes synthetische XPlanSynGML Schema
-dargestellt. Zusätzlich zu den aus den Objektarten abgeleiteten Ebenen
-enthält der XPlanWMS ebenfalls Ebenen zur Darstellung von gescanten
+besteht aus XPlanGML (Versionen: 2, 3, 4.0 und 4.1) konformen Plandaten.
+Für jede Objektarte des XPLanGML, der Geometrie-Attribute enthält, existiert ein entsprechende Ebene im WMS. Zusätzlich zu den aus den Objektarten abgeleiteten Ebenen
+enthält der XPlanWMS Ebenen zur Darstellung von gescanten
 Rasterplan-Dateien.
 
 [[operationen]]
 === Operationen
-
 
 Das folgende Kapitel beschreibt die Operationen, die mit dem XPlanWMS
 durchführbar sind.
 
 [[getcapabilities-1]]
 ==== GetCapabilities
-
 
 Die GetCapabilities Abfrage dient der Auskunft über die Fähigkeiten des
 WMS Dienstes. Dabei handelt es sich beispielsweise um Informationen zum
@@ -113,7 +96,6 @@ WMS angebotenen WMS Ebenen.
 [[getmap-1]]
 ==== GetMap
 
-
 Die Operation GetMap stellt die Kernfunktionalität des XPlanWMS dar. Die
 Operation ermöglicht es, die angebotenen Ebene zu den Planinhalten mit
 GIS Clients zu nutzen, die die Schnittstellen WMS 1.1.1 bzw. WMS 1.3.0
@@ -122,21 +104,19 @@ unterstützen.
 [[styles]]
 ===== Styles
 
-
 Bei der GetMap Operation gibt es die Möglichkeit zwischen zwei
 verschieden Styles zu wechseln, die die Darstellung der Inhalte des
 Kartendienstes beeinflussen. Dabei liegen alle Zeichenvorschriften
 (Styles) für alle Ebenen des XPlanWMS in transparenter und in
 vollflaechiger Form vor. Bei GetMap Operationen kann mittels des
 Style-Parameter zwischen beiden Darstellungen gewechselt werden. Im
-WMS-Endponit ist als default Style die vollflaechige Darstellung
+WMS-Endpoint ist als default Style die vollflaechige Darstellung
 eingestellt, im WMSpre-Endpoint und im WMSarchive-Endpoint hingegen die
 transparente. Wenn der transparente Style ausgewählt wird, sind
 lediglich die Planumringe sichtbar.
 
 [[gueltigkeitszeitraum]]
 ===== Gültigkeitszeitraum
-
 
 Der Gültigkeitszeitraum bestimmt die Sichtbarkeit der Inhalte des
 Kartendienstes bei der GetMap Operation. Der Gültigkeitszeitraum eines
@@ -152,7 +132,6 @@ Ausnahme: Die Layer, die den Geltungsbereich darstellen, werden nicht
 [[getfeatureinfo-1]]
 ==== GetFeatureInfo
 
-
 Die Operation GetFeatureInfo ermöglicht die Ausgabe von
 Sachinformationen zu Planobjekten. In der HTML Ausgabe dieser
 Sachinformationen besteht neben der Ausgabe der entsprechenden
@@ -162,7 +141,6 @@ Dokumente und Grafiken abzurufen.
 [[getlegendgraphic-1]]
 ==== GetLegendGraphic
 
-
 Mit der GetLegendGraphic Operation können Legendengrafiken zu allen
 Ebenen des XPlanWMS abgefragt werden. Dies ermöglicht das gezielte
 Abfragen von Legendengrafiken der Ebenen.
@@ -170,8 +148,7 @@ Abfragen von Legendengrafiken der Ebenen.
 [[koordinatenreferenzsysteme]]
 === Koordinatenreferenzsysteme
 
-
-Der XPlanWMS (xplan-wms) unterstützt die folgenden
+Der XPlanWMS unterstützt die folgenden
 Koordinatenreferenzsysteme für Vektordaten:
 
 ______________

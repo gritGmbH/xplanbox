@@ -1,7 +1,6 @@
 [GDAL]
 === GDAL
 
-
 Die GDAL Unterstützung erfordert die Installation von GDAL, diese ist im
 Abschnitt Installation <<Installation und Konfiguration von GDAL>> beschrieben.
 

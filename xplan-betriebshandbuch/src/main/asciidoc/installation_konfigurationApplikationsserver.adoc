@@ -12,16 +12,15 @@ Konfiguration beider Tomcats beschrieben.
 Im Anwendungs-Tomcat müssen folgende Konfigurationen vorgenommen werden:
 
 __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-.  Für den XPlanManager Web muss die Variable _MANAGER_WEB_ als Java
+.  Für den XPlanManagerWeb muss die Variable _MANAGER_WEB_ als Java
 Property gesetzt werden. Das mit Hilfe dieser Variable referenzierte
-Verzeichnis muss die Konfiguration des XPlanManager Web enthalten (es
+Verzeichnis muss die Konfiguration des XPlanManagerWeb enthalten (es
 handelt sich um die Dateien managerConfiguration.properties und
 managerWebConfiguration.properties). Wurde der Anleitung in Abschnitt
 <<Anwendung installieren>> gefolgt, befindet sich das
 Verzeichnis mit dem Namen _manager-configuration_ im Verzeichnis
 _.deegree_ im Home-Verzeichnis des Nutzers.
-.  Um das Logging der Anwendungen XPlanManager Web und XPlanValidator
-Web in ein gesondertes Verzeichnis zu aktivieren (s. Details im
+.  Um das Logging der Anwendungen XPlanManagerWeb und XPlanValidatorWeb in ein gesondertes Verzeichnis zu aktivieren (s. Details im
 Abschnitt <<Logging>> muss die Variable
 _xplan.logdir_ als Java Property gesetzt werden. In dem so
 konfigurierten Verzeichnis werden die log-Dateien der beiden Anwendungen
@@ -83,8 +82,6 @@ Zeilen hinzugefügt werden. :
 <user username="<NUTZERNAME>" password="<PASSWORT>" roles="deegree"/>
 ----
 
-
 NOTE: Der Nutzername und das Passwort müssen in die
 managerConfiguration.properties eingetragen werden (s. Kapitel
 <<Automatischer Workspace-Reload>>.
-

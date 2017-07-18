@@ -29,7 +29,7 @@
   </prerequisites>
 
   <modules>
-    <module>xplan-benutzerdokumentation</module>
+    <module>xplan-benutzerhandbuch</module>
     <module>xplan-betriebshandbuch</module>
     <module>xplan-commons</module>
     <module>xplan-commons-web</module>

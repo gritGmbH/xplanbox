@@ -26,16 +26,16 @@ Um das korrekte Zusammenarbeiten der verschiedenen im Abschnitt
 Systemarchitektur und Schnittstellen <architecture> beschriebenen
 Komponenten zu gewährleisten, wird eine Trennung der Dienste und
 Anwendungskomponenten empfohlen. Zwingend erforderlich ist dies beim
-Einsatz von GDAL (s. <<[[installation-gdal]]>>).
+Einsatz von GDAL (s. <<installation-gdal>>).
 
 Die folgenden WAR-Archive aus dem Ordner _web_ müssen in das Verzeichnis
 der Tomcat-Installation (__Dienste-Tomcat__, z.B. Port: 8080) kopiert
 werden:
 
 ____________________
-* _xplan-wms.war_
-* _xplan-wfs.war_
-* _xplansyn-wfs.war_
+* _xplan-wms.war_ (XPlanWMS)
+* _xplan-wfs.war_ (XPlanWFS)
+* _xplansyn-wfs.war_ (XPlanSynWFS)
 ____________________
 
 Die WAR-Archive der Anwendungskomponenten werden über eine
@@ -43,34 +43,36 @@ weitere Tomcat-Installation (_Anwendungs-Tomcat_, z.B. Port: 8081)
 bereitgestellt:
 
 ______________________
-* _xplanmanager.war_
-* _xplanvalidator.war_
-* _xplan-root.war_
+* _xplanmanager.war_ (XPlanManagerWeb)
+* _xplanvalidator.war_ (XPlanValidatorWeb)
+* _xplan-root.war_ (XPlanRessourcen)
 ______________________
 
-NOTE: Da die Komponente XPlanResources eine Einstiegsseite bereit stellt, bietet es sich an, diese als ROOT-Webapp des Anwendungs-Tomcat zu installieren. Das war-Archiv muss dafür im Verzeichnis ROOT entpackt werden.
+NOTE: Da die Komponente XPlanRessourcen eine Einstiegsseite bereit stellt, bietet es sich an, diese als ROOT-Webapp des Anwendungs-Tomcat zu installieren. Das war-Archiv xplan-root.war muss dafür im Verzeichnis ROOT entpackt werden.
 
 [[kommandozeilen-anwendungen]]
 ==== Kommandozeilen-Anwendungen
 
 Die Kommandozeilenkomponenten aus dem Ordner _cli_ können an beliebiger
 Stelle entpackt werden. Im jeweiligen _bin_ Verzeichnis der beiden
-Kommandozeilenwerkzeuge findet sich das entsprechende Ausführungsskript
-_XPlanManager_ bzw. _XPlanValidator_.
+Kommandozeilenwerkzeuge findet sich das entsprechende Ausführungsskript:
+
+______________________
+* _XPlanManager_ (XPlanManagerCLI)
+* _XPlanValidator_ (XPlanValidatorCLI)
+______________________
 
 [[dokumentation]]
 ==== Dokumentation
 
 Im Verzeichnis _doc_ findet sich eine gezippte Version der
-Dokumentation. Dieses Archiv enthält die Benutzerdokumentation zu den
+XPlanDokumentation. Dieses Archiv enthält die XPlanBenutzerhandbuch zu den
 Komponenten in den Formaten HTML und PDF.
 
 [[installation-über-ein-install-skript]]
 ==== Installation über ein Install-Skript
 
-Das Ablegen bzw. der Austausch der Web-Archive sowie das Ablegen bzw.
-die Aktualisierung der betroffenen Konfigurationsdateien in den
-Workspaces kann auf Linux-Umgebungen auch über das angehängte 
+Das Ablegen der Web-Archive sowie der Konfigurationsdateien kann auf Linux-Umgebungen auch über das angehängte
 Installations-Skript (s. <<Installations-Skript, Anhang>>) ausgeführt werden:
 
 ----

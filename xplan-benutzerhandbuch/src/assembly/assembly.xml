@@ -10,11 +10,11 @@
   <fileSets>
     <fileSet>
       <directory>target/html</directory>
-      <outputDirectory>/userdocumentation</outputDirectory>
+      <outputDirectory>/benutzerhandbuch</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>target/pdf</directory>
-      <outputDirectory>/userdocumentation</outputDirectory>
+      <outputDirectory>/benutzerhandbuch</outputDirectory>
       <includes>
         <include>*.pdf</include>
       </includes>

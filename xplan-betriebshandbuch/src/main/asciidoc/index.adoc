@@ -4,6 +4,7 @@
 :numbered:
 :toc-title: Inhaltsverzeichnis
 :appendix-caption: Anhang
+:table-caption: Tabelle
 
 = Betriebshandbuch für die xPlanBox
 

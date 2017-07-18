@@ -1,23 +1,20 @@
-[XPlanValidator CLI]
-=== XPlanValidator CLI
+[XPlanValidatorCLI]
+=== XPlanValidatorCLI
 
-
-Die Komponente XPlanValidator CLI ist ein Kommandozeilenwerkzeug,
+Die Komponente XPlanValidatorCLI ist ein Kommandozeilenwerkzeug,
 welches dem Fachadministrator der xPlanBox ermöglicht, XPlanGML
-Instanzdokumente vor dem Import zu validieren.
+Instanzdokumente zu validieren.
 
 [[benutzungsanleitung]]
 ==== Benutzungsanleitung
 
-
-Beim XPlanValidator CLI handelt es ich um ein Kommandozeilentool, das
+Beim XPlanValidatorCLI handelt es ich um ein Kommandozeilentool, das
 parametrisiert aufgerufen wird. Da diese Anwendung bei der Installation
 in die PATH Variable aufgenommen wird, ist diese von einem beliebigen
 Ort aufrufbar.
 
 [[konfiguration-ueber-datei]]
 ===== Konfiguration über Datei
-
 
 In dem Verzeichnis _<validator-cli-directory>/etc/_ befindet sich die
 Konfigurationsdatei __validatorConfiguration.properties__, welche
@@ -34,29 +31,24 @@ wo die Reports mit dem Validierungsergebnis, die während der Ausführung
 des Tools generiert werden, abgespeichert werden sollen.
 
 [[auswahl-planarchiv]]
-===== Auswahl Planarchiv
+===== Auswahl XPlanArchiv
 
-
-Über den Parameter _-validate <planarchiv>_ kann der Pfad zu dem
-Planarchiv auswählt werden, welcher validiert werden soll. Die Angabe
+Über den Parameter _-validate <planarchiv>_ kann der Pfad zum XPlanArchiv
+ auswählt werden, welcher validiert werden soll. Die Angabe
 des Parameters ist obligatorisch.
 
 Aufruf:
-
 
 ----
 XPlanValidator -validate Plan.zip
 ----
 
-[[bezeichnung-der-validation]]
-===== Bezeichnung der Validation
+===== Bezeichnung der Validierung
 
-
-Über den Parameter _-name <bezeichnung>_ kann dem Validationsdurchlauf
+Über den Parameter _-name <bezeichnung>_ kann dem Validierungsdurchlauf
 ein Name vergeben werden. Die Angabe des Parameters ist obligatorisch.
 
 Aufruf:
-
 
 ----
 XPlanValidator -name Validierung
@@ -65,13 +57,11 @@ XPlanValidator -name Validierung
 [[validierungsart]]
 ===== Validierungsart
 
-
 Die Kommandozeilenschnittstelle des XPlanValidator kann zur Auswahl der
 Validierungsart parametrisiert aufgerufen werden. Die Angabe des
 Parameters ist optional.
 
 Aufruf:
-
 
 ----
 XPlanValidator -validate Plan.zip -vtype [syntax|geometric|semantic]
@@ -89,7 +79,6 @@ Wird kein _-vtype_ Parameter gewählt, werden alle Validierungsarten
 durchgeführt
 
 Ausgabe:
-
 
 ----
 [16:13:34]  INFO: [CRSManager] --------------------------------------------------------------------------------
@@ -120,13 +109,11 @@ Fortsetzung trotz Geometrie-Fehlern (--force).
 [[validierungsoption]]
 ===== Validierungsoption
 
-
 Die Kommandozeilenschnittstelle des XPlanValidator kann zur Auswahl von
 zusätzlichen Validierungsoptionen parametrisiert aufgerufen werden. Die
 Angabe des Parameters ist optional.
 
 Aufruf:
-
 
 ----
 XPlanValidator -validate Plan.zip -vo ignore-orientation -vo ignore-so -vo node-tolerance=1 -vo ignore-xp
@@ -141,7 +128,6 @@ Zuordnung der Werte:
 
 [[validierungsergebnis]]
 ===== Validierungsergebnis
-
 
 Am Ende des Validierungsdurchlaufs wird dem Benutzer der Pfad zu dem
 Validierungsergebnis ausgegeben. Das Validierungsergebnis wird als HTML,

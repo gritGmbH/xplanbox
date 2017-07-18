@@ -5,7 +5,7 @@ In den nachfolgenden Kapiteln wird die Konfiguration der einzelnen Komponenten e
 
 include::konfiguration_codelisten.adoc[]
 
-include::konfiguration_XPlanResourcen.adoc[]
+include::konfiguration_XPlanRessourcen.adoc[]
 
 include::konfiguration_kartenvorschau.adoc[]
 

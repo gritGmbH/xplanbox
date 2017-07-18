@@ -1,21 +1,18 @@
-[XPlanManager Web]
-=== XPlanManager Web
+[XPlanManagerWeb]
+=== XPlanManagerWeb
 
-
-Die Komponente XPlanManager Web ist eine Web-Oberfläche, die dem
+Die Komponente XPlanManagerWeb ist eine Web-Oberfläche, die dem
 Fachadministrator der xPlanBox ermöglicht, die Datenhaltung zu
 kontrollieren. Die Web-Oberfläche ist auf dem Kommandozeilenwerkzeug
-aufgebaut. Der XPlanManager Web ist in der Lage, XPlanGML
+aufgebaut. Der XPlanManagerWeb ist in der Lage, XPlanGML
 Instanzdokumente in die Datenhaltung zu Laden, zu Löschen sowie
 importiere Pläne in einer Liste anzuzeigen.
 
 [[benutzungsanleitung]]
 ==== Benutzungsanleitung
 
-
-Die Webanwendung XPlanManager dient der Verwaltung von XPlanGML
+Die Webanwendung XPlanManagerWeb dient der Verwaltung von XPlanGML
 konformen Plänen und ist unter:
-
 
 ----
 http://<host>:<port>/xplanmanager/
@@ -26,29 +23,26 @@ verfügbar.
 [[hilfe]]
 ===== Hilfe
 
-
 Die Hilfe mit den Angaben zu den möglichen Funktionen lässt sich durch
 Betätigen des Buttons _Hilfe_ ausgeben.
 
 [[hinzufuegen]]
 ===== Hinzufügen
 
-
 Vor dem Importieren eines XPlanGML Instanzdokumentes in die Datenbasis,
-muss dieser zur Web-Oberfläche hinzugefügt werden. Hierfür kann der Plan
+muss dieser über die Web-Oberfläche hochgeladen werden. Hierfür kann der Plan
 über den Button _Durchsuchen_ ausgewählt und durch einen Klick auf
-_Import_ in die Web-Oberfläche hinzugefügt werden. Der Benutzer wird
+_Import_ hochgeladen werden. Der Benutzer wird
 über das erfolgreiche bzw. fehlerhafte Hinzufügen des Plans in Form
 eines PopUps informiert.
 
-Nachdem der Plan zur Web-Oberfläche hinzugefügt wurde, kann dieser
+Nachdem der Plan hochgeladen wurde, kann dieser
 validiert bzw. entfernt werden. Erst nachdem der Plan erfolgreich
 validiert wurde, kann der Plan in die Datenbasis importiert werden.
 Andernfalls ist der Button _Import_ deaktiviert.
 
 [[import]]
 ===== Import
-
 
 Nachdem der Plan erfolgreich validiert wurde, kann der Plan durch einen
 Klick auf den Button _Import_ in die Datenbasis importiert werden. Der
@@ -57,7 +51,6 @@ in Form eines PopUps informiert.
 
 [[auflistung]]
 ===== Auflistung
-
 
 Standardmäßig werden alle importierten Pläne in einer Liste angezeigt.
 Diese Liste kann nach dem __Namen__, der __ID__, dem __Plantyp__, der
@@ -68,7 +61,6 @@ auf- oder absteigend sortiert werden.
 [[kartenvorschau]]
 ===== Kartenvorschau
 
-
 Durch den Klick auf den Button _Kartenvorschau_ öffnet sich ein neues
 Fenster, indem der XPlan visualisiert wird. Im Hintergrund befindet sich
 eine OpenStreetMap Karte. Durch den Klick auf _Schließen_ wird die
@@ -77,13 +69,11 @@ Kartenvorschau wieder geschlossen.
 [[herunterladen]]
 ===== Herunterladen
 
-
 Die importierten Pläne können vom Benutzer durch den Klick auf den
 Button _Herunterladen_ wieder heruntergeladen werden.
 
 [[loeschen]]
 ==== Löschen
-
 
 Je nach Benutzerrechten können die importierten Pläne durch den Klick
 auf den Button _Löschen_ aus der Datenbasis gelöscht werden. Hat ein
@@ -92,10 +82,8 @@ Benutzer keine Rechte, so wird der Button grau dargestellt.
 [[editieren]]
 ===== Editieren
 
-
-Abhängig von den Benutzerrechten können Pläne editiert
-(Funktion aktiviert) bzw. nicht editiert (Funktion nicht aktiviert)
-werden. Das Editieren ist beschränkt auf BPläne in der XPlanGML Version
+Abhängig von den Benutzerrechten können Pläne editiert werden. Fehlen dem Benutzer
+die entsprechenden Rechte ist die Funktion deaktiviert und der Button __Editieren__ wird grau dargestellt. Das Editieren ist beschränkt auf BPläne in der XPlanGML Version
 3.0 und 4.1. Die Editieransicht öffnet sich durch den Klick auf den
 Button __Editieren__. Die Ansicht ist in verschiedene Bereiche
 aufgeteilt, die insgesamt die Bearbeitung folgender Elemente zulässt:
@@ -137,7 +125,7 @@ unbeabsichtigt eine Zustandsänderung vorgenommen werden kann.
 
 ___________________________________________________________________________________________________________________________________________________________________________
 * Der Zeitraum in dem ein Plan gültig ist. Für dieses Feld gibt es keine
-Entsprechung im XPlan-GML. Die Einschränkung, wie sie beim Import
+Entsprechung im XPlanGML. Die Einschränkung, wie sie beim Import
 erfolgt ist, wird überschrieben.
 ___________________________________________________________________________________________________________________________________________________________________________
 
@@ -178,7 +166,7 @@ Werden Referenzen entfernt oder verändert, so werden die nicht mehr
 referenzierten Dateien aus der Datenhaltung entfernt. In den Bereichen
 'Rasterbasis' und 'Änderungen von Rasterplänen' kann lediglich ein
 Austausch bereits referenzierter Dateien erfolgen. Änderungen führen zu
-einer Aktualisierung der WMS-Konfiguration. Klickt der Nutzer auf
+einer Aktualisierung der XPlanWMS-Konfiguration. Klickt der Nutzer auf
 __Speichern__, wird zunächst eine Validierung der Rasterdaten
 vorgenommen. Bei invaliden Dateien bekommt der Nutzer eine
 Entscheidungsoption wie mit diesen Daten umgegangen werden soll.

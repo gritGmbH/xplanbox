@@ -1,7 +1,7 @@
 [Präambel]
 == Präambel
 
-Dieses Dokument ist die offizielle Benutzerdokumentation zur Benutzung
+Dieses Dokument ist das offizielle Handbuch zur Benutzung
 der Software xPlanBox. Die in diesem Dokument genannten Soft- und
 Hardwarebezeichnungen sind in den meisten Fällen auch eingetragene
 Warenzeichen und unterliegen als solche den gesetzlichen Bestimmungen.
