@@ -72,7 +72,8 @@
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
           <descriptors>
-            <descriptor>src/assembly/assembly.xml</descriptor>
+            <descriptor>src/assembly/assembly-html.xml</descriptor>
+            <descriptor>src/assembly/assembly-pdf.xml</descriptor>
           </descriptors>
         </configuration>
         <executions>
@@ -83,7 +84,7 @@
               <goal>single</goal>
             </goals>
             <configuration>
-              <appendAssemblyId>false</appendAssemblyId>
+              <appendAssemblyId>true</appendAssemblyId>
               <ignoreMissingDescriptor>true</ignoreMissingDescriptor>
             </configuration>
           </execution>
