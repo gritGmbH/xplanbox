@@ -66,7 +66,7 @@ ______________________
 ==== Dokumentation
 
 Im Verzeichnis _doc_ findet sich eine gezippte Version der
-XPlanDokumentation. Dieses Archiv enthält die XPlanBenutzerhandbuch zu den
+XPlanDokumentation. Enthalten ist das XPlanBenutzerhandbuch zu den
 Komponenten in den Formaten HTML und PDF.
 
 [[installation-über-ein-install-skript]]

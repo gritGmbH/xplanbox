@@ -22,8 +22,10 @@ function cleantomcat () {
   rm -rf ${TOMCAT_SERVICES_ROOT}/webapps/xplansyn-wfs.war
   rm -rf ${TOMCAT_SERVICES_ROOT}/webapps/xplan-wfs
   rm -rf ${TOMCAT_SERVICES_ROOT}/webapps/xplan-wfs.war
-  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/benutzerhandbuch
-  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/betriebshandbuch
+  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/xPlanBox-Benutzerhandbuch.pdf
+  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/xPlanBox-Betriebshandbuch.pdf
+  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/xPlanBox-Benutzerhandbuch
+  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/xPlanBox-Betriebshandbuch
   rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/ROOT*
 }
 
@@ -51,8 +53,10 @@ function copywarstotomcat () {
 }
 
 function unzipdocumentationtotomcat () {
-  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/benutzerhandbuch.zip
-  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/betriebshandbuch.zip
+  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/xPlanBox-Benutzerhandbuch-html.zip
+  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/xPlanBox-Benutzerhandbuch-pdf.zip
+  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/xPlanBox-Betriebshandbuch-html.zip
+  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/xPlanBox-Betriebshandbuch-pdf.zip
 }
 
 function installconfiguration () {
