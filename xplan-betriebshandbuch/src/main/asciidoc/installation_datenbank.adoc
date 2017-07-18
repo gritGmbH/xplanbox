@@ -34,3 +34,5 @@ In den __xplan.xml__-Datei werden die ConnectionsPools für den Zugriff auf die 
 * maxIdle: Die maximale Anzahl der  Verbindungen, die sich ungenutzt im Pool befinden können.
 
 Da die Anzahl der zugelassenen Verbindungen des Datenbankservers begrenzt sein kann, ist es abhängig von der Installation der xPlanBox, der Anzahl der Nutzer und gegebenenfalls weiterer Faktoren sinnvoll, die vordefinierten Werte an die Installationsumgebung anzupassen.
+
+Alternativ zur Konfiguration von ConnectionsPools für den ZUgriff auf die Datenbank kann auch eine JNDI DataSource konfiguriert werden. Details dazu finden sich im Handbuch von deegree.
