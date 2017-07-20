@@ -642,42 +642,47 @@
   </dependencyManagement>
 
   <scm>
-    <connection>scm:git:http://criador:8080/scm/git/xplanbox</connection>
-    <developerConnection>scm:git:http://criador:8080/scm/git/xplanbox</developerConnection>
-    <url>http://criador:8080/scm/git/xplanbox</url>
+    <connection>scm:git:git@github.com:deegree-enterprise/xplanbox.git</connection>
+    <developerConnection>scm:git:git@github.com:deegree-enterprise/xplanbox.git</developerConnection>
+    <url>https://github.com/deegree-enterprise/xplanbox</url>
     <tag>HEAD</tag>
   </scm>
 
   <repositories>
     <repository>
-      <id>latlon-repository</id>
-      <url>http://repo/nexus/content/groups/public/</url>
-    </repository>
-    <repository>
-      <id>xplanbox-release</id>
-      <url>http://repo/nexus/content/repositories/xplanbox-release/</url>
-    </repository>
-    <repository>
-      <id>xplanbox-snapshot</id>
-      <url>http://repo/nexus/content/repositories/xplanbox-snapshot/</url>
+      <id>dee</id>
+      <url>http://buildserver.deegree-enterprise.de/nexus/content/groups/dee/</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
     </repository>
   </repositories>
 
   <pluginRepositories>
     <pluginRepository>
-      <id>latlon-plugin-repository</id>
-      <url>http://repo/nexus/content/groups/public/</url>
+      <id>dee</id>
+      <url>http://buildserver.deegree-enterprise.de/nexus/content/groups/dee/</url>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
     </pluginRepository>
   </pluginRepositories>
 
   <distributionManagement>
     <repository>
-      <id>xplanbox-release</id>
-      <url>http://repo/nexus/content/repositories/xplanbox-release/</url>
+      <id>dee-releases</id>
+      <url>http://buildserver.deegree-enterprise.de/nexus/content/repositories/dee-releases/</url>
     </repository>
     <snapshotRepository>
-      <id>xplanbox-snapshot</id>
-      <url>http://repo/nexus/content/repositories/xplanbox-snapshot/</url>
+      <id>dee-snapshots</id>
+      <url>http://buildserver.deegree-enterprise.de/nexus/content/repositories/dee-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 
