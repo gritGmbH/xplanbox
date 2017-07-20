@@ -5,8 +5,7 @@
 ==== Konfiguration
 
 Die im Verzeichnis _config_ enthaltenen __zip__-Archive müssen in das
-Verzeichnis _.deegree_ im Home-Verzeichnis des Nutzers kopiert und
-entpackt werden:
+Verzeichnis _.deegree_ im Home-Verzeichnis (s. <<vorbereitung-der-installation>>) des Nutzers kopiert und entpackt werden:
 
 _____________________________________________________________________________________________
 * _xplan-wfs-workspace_

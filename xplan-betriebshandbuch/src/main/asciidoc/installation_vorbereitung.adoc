@@ -1,13 +1,7 @@
-[Vorbereitung der Installation]
+[[vorbereitung-der-installation]]
 === Vorbereitung der Installation
 
-Nachdem die Datei heruntergeladen wurde, muss das ZIP-Archiv entpackt
-werden. Das entpackte Archiv hat folgende Verzeichnisstruktur:
+Die folgende Installationsanleitung setzt voraus, dass die im Abschnitt <<systemeuberblick>> beschriebenen Komponenten, soweit erforderlich, installiert sind.
 
-___________
-* _cli/_
-* _config/_
-* _doc/_
-* _update/_
-* _web/_
-___________
+Weiterhin ist vorbereitend das Anlagen eines Verzeichni mit dem Namen _.deegree_ im Home-Verzeichnis erforderlich, wenn dieses nicht bereits existiert.
+Dem Nutzer mit dem der Tomcat gestartet wird, müssen Lese- und Schreibrechte für dieses Verzeichnis eingeräumt werden.

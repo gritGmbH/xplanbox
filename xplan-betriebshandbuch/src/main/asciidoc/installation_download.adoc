@@ -1,15 +1,26 @@
 [Download der benötigten Komponenten]
-=== Download der benötigten Komponenten
+=== Auflistung der Komponenten
 
-Alle Komponenten der xPlanBox können gesammelt in einem ZIP-Archiv
-(Liefereinheit) unter folgender Adresse heruntergeladen werden:
+Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefereinheit darstellen:
 
-[source,text]
-----
-http://repo.lat-lon.de/nexus/content/repositories/<project>/de/latlon/xplan-dist/<version>/xplan-dist-<version>-<environment>.zip
-----
+ * Software (Kommandozeilenwerkzeuge)
+ ** xplan-manager-cli-<VERSION>.zip
+ ** xplan-validator-cli-<VERSION>.zip
+ ** xplan-update-database-<VERSION>.zip
 
-Der Zugriff auf Quellcode und die Binärprogramme der xPlanBox ist nur
-mit Logindaten möglich. Bitte kontaktieren Sie
-http://www.lat-lon.de[lat/lon GmbH], per Email an info@lat-lon.de, wenn
-Sie keine Logindaten haben.
+ * Webapps
+ ** xplan-root-<VERSION>.war
+ ** xplan-validator-web-<VERSION>.war
+ ** xplan-manager-web-<VERSION>.war
+ ** xplansyn-wfs-<VERSION>.war
+ ** xplan-wfs-<VERSION>.war
+ ** xplan-wms-<VERSION>.war
+
+ * Konfiguration
+ ** xplan-manager-workspace-<VERSION>.zip
+ ** xplansyn-wfs-workspace-<VERSION>.zip
+ ** xplansyn-wms-workspace-<VERSION>.zip
+ ** xplan-wfs-workspace-<VERSION>.zip
+
+Bitte kontaktieren Sie http://www.lat-lon.de[lat/lon GmbH], per Email an info@lat-lon.de, wenn
+Installationskomponenten fehlen.
