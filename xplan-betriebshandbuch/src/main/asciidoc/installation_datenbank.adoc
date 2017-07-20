@@ -34,10 +34,10 @@ Dabei kann auf zwei verschiedene Arten vorgegangen werden:
 
 Alternativ zum Aufsetzen über das XPlanManagerCLI kann die Datenbank auch manuell ausgeführt werden. Dafür müssen die folgende Schritte ausgfeührt werden:
 
- * Anlegen einer neuen Datenbank
- * Installation der Postgis Erweiterung für die neue Datenbank
- * Create-Skripte im Verzeichnis _xplan-manager-workspace/sql_ ausführen
- * Anpassen der Datenbank Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace:
+ * Anlegen einer neuen Datenbank.
+ * Installation der Postgis Erweiterung für die neue Datenbank.
+ * SQL-Create-Skripte aus dem Verzeichnis _xplan-manager-workspace/sql_ in der neu angelegten Datenbank ausführen.
+ * Anpassen der Datenbank-Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace:
  ** _.deegree/xplansyn-wms-workspace/jdbc/xplan.xml_
  ** _.deegree/xplan-wms-workspace/jdbc/xplan.xml_
  ** _.deegree/xplan-wfs-workspace/jdbc/xplan.xml_
@@ -45,7 +45,7 @@ Alternativ zum Aufsetzen über das XPlanManagerCLI kann die Datenbank auch manue
 
 ==== Weiterführende Informationen zur Konfiguration des Datenbankzugriffs
 
-In den __xplan.xml__-Datei werden die ConnectionsPools für den Zugriff auf die Datenbank konfiguriert . Diese beinhalten neben den Verbindungsdetails wie die Url, den Nutzernamen und das Passwort weitere Details, die ggf. bei einer Installation zu berücksichtigen sind. Darunter:
+In den __xplan.xml__-Datei werden die ConnectionsPools für den Zugriff auf die Datenbank konfiguriert. Diese beinhalten neben den Verbindungsdetails wie die URL, den Nutzernamen und das Passwort weitere Details, die ggf. bei einer Installation zu berücksichtigen sind. Darunter:
 
 * initialSize: Die Anzahl der initialen Verbindungen, die beim Start geöffnet werden.
 * maxActive: Die maximale Anzahl von offenen Verbindungen die von Pool zeitgleich verwendet werden können.
