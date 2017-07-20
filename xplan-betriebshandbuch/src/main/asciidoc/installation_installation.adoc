@@ -4,7 +4,7 @@
 [[konfiguration]]
 ==== Konfiguration
 
-Die im Verzeichnis _config_ enthaltenen __zip__-Archive müssen in das
+Die __zip__-Archive mit den Konfigurationen (s. <<installationskomponenten>>) müssen in das
 Verzeichnis _.deegree_ im Home-Verzeichnis (s. <<vorbereitung-der-installation>>) des Nutzers kopiert und entpackt werden:
 
 _____________________________________________________________________________________________
@@ -27,7 +27,7 @@ Komponenten zu gewährleisten, wird eine Trennung der Dienste und
 Anwendungskomponenten empfohlen. Zwingend erforderlich ist dies beim
 Einsatz von GDAL (s. <<installation-gdal>>).
 
-Die folgenden WAR-Archive aus dem Ordner _web_ müssen in das Verzeichnis
+Die folgenden WAR-Archive (s. <<installationskomponenten>>) müssen in das Verzeichnis
 der Tomcat-Installation (__Dienste-Tomcat__, z.B. Port: 8080) kopiert
 werden:
 
@@ -52,9 +52,7 @@ NOTE: Da die Komponente XPlanRessourcen eine Einstiegsseite bereit stellt, biete
 [[kommandozeilen-anwendungen]]
 ==== Kommandozeilen-Anwendungen
 
-Die Kommandozeilenkomponenten aus dem Ordner _cli_ können an beliebiger
-Stelle entpackt werden. Im jeweiligen _bin_ Verzeichnis der beiden
-Kommandozeilenwerkzeuge findet sich das entsprechende Ausführungsskript:
+Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an beliebiger Stelle entpackt werden. _xplan-update-database_ wird nur für eine Aktualisierung der xPlanBox benötigt (weitere Informationen befinden sich im Abschnitt <<aktualisierung>>). Im jeweiligen _bin_ Verzeichnis der beiden Kommandozeilenwerkzeuge findet sich das entsprechende Ausführungsskript:
 
 ______________________
 * _XPlanManager_ (XPlanManagerCLI)
@@ -64,9 +62,7 @@ ______________________
 [[dokumentation]]
 ==== Dokumentation
 
-Im Verzeichnis _doc_ findet sich eine gezippte Version der
-XPlanDokumentation. Enthalten ist das XPlanBenutzerhandbuch zu den
-Komponenten in den Formaten HTML und PDF.
+Das XPlanBenutzerhandbuch (s. <<installationskomponenten>>) zu den verschiedenen Komponenten liegt in den Formaten HTML und PDF.
 
 [[installation-über-ein-install-skript]]
 ==== Installation über ein Install-Skript

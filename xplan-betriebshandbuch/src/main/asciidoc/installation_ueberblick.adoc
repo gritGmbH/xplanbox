@@ -1,14 +1,14 @@
-[Download der benötigten Komponenten]
-=== Auflistung der Komponenten
+[[installationskomponenten]]
+=== Überblick der Installationskomponenten
 
 Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefereinheit darstellen:
 
- * Software (Kommandozeilenwerkzeuge)
+ * Kommandozeilenwerkzeuge (im Verzeichnis _software_)
  ** xplan-manager-cli-<VERSION>.zip
  ** xplan-validator-cli-<VERSION>.zip
  ** xplan-update-database-<VERSION>.zip
 
- * Webapps
+ * Web-Anwendungen und Web-Dienste (im Verzeichnis _webapps_)
  ** xplan-root-<VERSION>.war
  ** xplan-validator-web-<VERSION>.war
  ** xplan-manager-web-<VERSION>.war
@@ -16,11 +16,15 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
  ** xplan-wfs-<VERSION>.war
  ** xplan-wms-<VERSION>.war
 
- * Konfiguration
+ * Konfiguration (im Verzeichnis _configuration_)
  ** xplan-manager-workspace-<VERSION>.zip
  ** xplansyn-wfs-workspace-<VERSION>.zip
  ** xplansyn-wms-workspace-<VERSION>.zip
  ** xplan-wfs-workspace-<VERSION>.zip
+
+ * Dokumentation (im Verzeichnis _documentation/manuals_)
+ ** xPlanBox-Benutzerhandbuch.pdf
+ ** xPlanBox-Benutzerhandbuch (html Version)
 
 Bitte kontaktieren Sie http://www.lat-lon.de[lat/lon GmbH], per Email an info@lat-lon.de, wenn
 Installationskomponenten fehlen.

@@ -1,4 +1,4 @@
-[Aktualisierung]
+[[aktualisierung]]
 == Aktualisierung
 
 Bei einer Aktualisierung der xPlanBox müssen folgende Schritte
