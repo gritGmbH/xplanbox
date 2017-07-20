@@ -1,10 +1,13 @@
 [Konfiguration der Datenbank]
 === Konfiguration der Datenbank
 
-
 Wie in Abschitt _Systemüberblick_ beschrieben, ist mindestens die
 Installation von PostgreSQL 8.4 mit der Erweiterung PostGIS 1.5.4
 erforderlich.
+
+Das Anlegen der Datenbank kann entweder über das XPlanManagerCLI oder manuell erfolgen. Beide Varianten sind in den folgenden Abschnitten beschrieben.
+
+==== Aufsetzen der Datenbank über das XPlanManagerCLI
 
 Für die Konfiguration der Datenbank-Anbindung muss die
 __xplan-manager-cli__-Datei entpackt sein. Dabei spielt das Verzeichnis
@@ -26,6 +29,21 @@ Dabei kann auf zwei verschiedene Arten vorgegangen werden:
 
  * Die __xplan.xml__-Datei aus dem XPlanManger Workspace _.deegree/xplan-manager-workspace/jdbc/_ wird kopiert und die bereits vorhandene Konfiguration damit überschrieben.
  * Alternativ ist auch eine direkte Anpassung in der bereits vorhandenen __xplan.xml__-Datei möglich.
+
+==== Manuelles Aufsetzen der Datenbank
+
+Alternativ zum Aufsetzen über das XPlanManagerCLI kann die Datenbank auch manuell ausgeführt werden. Dafür müssen die folgende Schritte ausgfeührt werden:
+
+ * Anlegen einer neuen Datenbank
+ * Installation der Postgis Erweiterung für die neue Datenbank
+ * Create-Skripte im Verzeichnis _xplan-manager-workspace/sql_ ausführen
+ * Anpassen der Datenbank Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace:
+ ** _.deegree/xplansyn-wms-workspace/jdbc/xplan.xml_
+ ** _.deegree/xplan-wms-workspace/jdbc/xplan.xml_
+ ** _.deegree/xplan-wfs-workspace/jdbc/xplan.xml_
+ ** _.deegree/xplan-manager-workspace/jdbc/_
+
+==== Weiterführende Informationen zur Konfiguration des Datenbankzugriffs
 
 In den __xplan.xml__-Datei werden die ConnectionsPools für den Zugriff auf die Datenbank konfiguriert . Diese beinhalten neben den Verbindungsdetails wie die Url, den Nutzernamen und das Passwort weitere Details, die ggf. bei einer Installation zu berücksichtigen sind. Darunter:
 
