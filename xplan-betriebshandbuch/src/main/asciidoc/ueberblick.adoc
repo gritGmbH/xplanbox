@@ -52,6 +52,11 @@ Erweiterung PostGIS 1.5.4 erforderlich. Ab der xPlanBox Produktversion
 1.10 werden auch PostgreSQL 9.3 mit der Erweiterung PostGIS 2.1.6
 unterstützt.
 
+=== GDAL
+
+Optional kann die Installation von GDAL erforderlich sein. Liegen Teil-Vektorielle Pläne mit Rasterdaten in anderen Formaten als GeoTiff vor, die mit der xPlanBox verwaltet werden sollen, ist der Einsatz von GDAL erforderlich. Liegen die Rasterdaten dagegen nur im GeoTiff-Format vor, wird GDAL nicht benötig.
+Empfohlen wird GDAL in der Version 1.10.1. Weitere Informationen zur Installation von GDAL befinden sich im Abschnitt <<installation-gdal>>.
+
 [[systemvoraussetzungen]]
 === Systemvoraussetzungen
 
