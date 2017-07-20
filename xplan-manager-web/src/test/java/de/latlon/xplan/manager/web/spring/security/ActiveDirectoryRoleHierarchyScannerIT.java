@@ -52,7 +52,7 @@ import org.junit.Test;
  */
 public class ActiveDirectoryRoleHierarchyScannerIT {
 
-    private static final String PROVIDERURL = "ldap://adserver.lat-lon:389";
+    private static final String PROVIDERURL = "ldap://adserver:389";
 
     private static final String DOMAIN = "adserver.lat-lon";
 

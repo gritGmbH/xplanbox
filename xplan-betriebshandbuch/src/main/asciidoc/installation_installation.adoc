@@ -1,0 +1,79 @@
+[Anwendung installieren]
+=== Anwendung installieren
+
+[[konfiguration]]
+==== Konfiguration
+
+Die __zip__-Archive mit den Konfigurationen (s. <<installationskomponenten>>) müssen in das
+Verzeichnis _.deegree_ im Home-Verzeichnis (s. <<vorbereitung-der-installation>>) des Nutzers kopiert und entpackt werden:
+
+_____________________________________________________________________________________________
+* _xplan-wfs-workspace_
+* _xplansyn-wfs-workspace_
+* _xplansyn-wms-workspace_
+* _xplan-manager-workspace_
+* _xplan-manager-config_ (Name des Verzeichnis nach dem Entpacken:
+__manager-configuration__)
+_____________________________________________________________________________________________
+
+NOTE: Alle Workspaces müssen in dem selben Verzeichnis liegen.
+
+[[web-anwendungen]]
+==== Web-Anwendungen
+
+Um das korrekte Zusammenarbeiten der verschiedenen im Abschnitt
+Systemarchitektur und Schnittstellen <architecture> beschriebenen
+Komponenten zu gewährleisten, wird eine Trennung der Dienste und
+Anwendungskomponenten empfohlen. Zwingend erforderlich ist dies beim
+Einsatz von GDAL (s. <<installation-gdal>>).
+
+Die folgenden WAR-Archive (s. <<installationskomponenten>>) müssen in das Verzeichnis
+der Tomcat-Installation (__Dienste-Tomcat__, z.B. Port: 8080) kopiert
+werden:
+
+____________________
+* _xplan-wms.war_ (XPlanWMS)
+* _xplan-wfs.war_ (XPlanWFS)
+* _xplansyn-wfs.war_ (XPlanSynWFS)
+____________________
+
+Die WAR-Archive der Anwendungskomponenten werden über eine
+weitere Tomcat-Installation (_Anwendungs-Tomcat_, z.B. Port: 8081)
+bereitgestellt:
+
+______________________
+* _xplanmanager.war_ (XPlanManagerWeb)
+* _xplanvalidator.war_ (XPlanValidatorWeb)
+* _xplan-root.war_ (XPlanRessourcen)
+______________________
+
+NOTE: Da die Komponente XPlanRessourcen eine Einstiegsseite bereit stellt, bietet es sich an, diese als ROOT-Webapp des Anwendungs-Tomcat zu installieren. Das war-Archiv xplan-root.war muss dafür im Verzeichnis ROOT entpackt werden.
+
+[[kommandozeilen-anwendungen]]
+==== Kommandozeilen-Anwendungen
+
+Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an beliebiger Stelle entpackt werden. _xplan-update-database_ wird nur für eine Aktualisierung der xPlanBox benötigt (weitere Informationen befinden sich im Abschnitt <<aktualisierung>>). Im jeweiligen _bin_ Verzeichnis der beiden Kommandozeilenwerkzeuge findet sich das entsprechende Ausführungsskript:
+
+______________________
+* _XPlanManager_ (XPlanManagerCLI)
+* _XPlanValidator_ (XPlanValidatorCLI)
+______________________
+
+[[dokumentation]]
+==== Dokumentation
+
+Das XPlanBenutzerhandbuch (s. <<installationskomponenten>>) zu den verschiedenen Komponenten liegt in den Formaten HTML und PDF.
+
+[[installation-über-ein-install-skript]]
+==== Installation über ein Install-Skript
+
+Das Ablegen der Web-Archive sowie der Konfigurationsdateien kann auf Linux-Umgebungen auch über das angehängte
+Installations-Skript (s. <<Installations-Skript, Anhang>>) ausgeführt werden:
+
+----
+sh ${WORK_DIR}/install.sh
+----
+
+Installationswerkzeuge und -skripte werden ohne Gewähr bereitgestellt.
+Für professionelle Unterstützung wenden Sie sich bitte an die
+http://www.lat-lon.de[lat/lon GmbH].

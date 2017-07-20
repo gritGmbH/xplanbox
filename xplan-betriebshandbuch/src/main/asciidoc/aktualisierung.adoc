@@ -1,0 +1,215 @@
+[[aktualisierung]]
+== Aktualisierung
+
+Bei einer Aktualisierung der xPlanBox müssen folgende Schritte
+durchgeführt werden:
+
+______________________________________________________________________
+Datenunabhängige Aktualisierungsschritte:
+
+* Austausch der Web-Archive (.war) in den Tomcat-Applikationsservern
+* Neustart der Tomcats
+* Austausch der Commandline-Tools
+
+Aktualisierungsschritte, die die Datenhaltung betreffen:
+
+* Aktualisierung der betroffenen Konfigurationsdateien in den Workspaces
+* Aktualisierung des Datenbankschemas
+* Aktualisierung der Daten
+______________________________________________________________________
+
+Bei einer vollständigen Aktualisierung kann auch das Installationsskript
+aus dem Kapitel Installation über ein Installations-Skript (s. <<Installations-Skript, Anhang>>) verwendet werden.
+
+[[austausch-der-web-archive]]
+=== Austausch der Web-Archive
+
+Es müssen die bereit gestellten Web-Archive in das Webapps-Verzeichnis
+des jeweiligen Tomcats kopiert werden:
+
+----
+cp ${WORK_DIR}/web/xplanmanager.war <CATALINA_HOME>/webapps/
+cp ${WORK_DIR}/web/xplanvalidator.war <CATALINA_HOME>/webapps/
+
+cp ${WORK_DIR}/web/xplansyn-wfs.war <CATALINA_HOME>/webapps/
+cp ${WORK_DIR}/web/xplan-wfs.war <CATALINA_HOME>/webapps/
+cp ${WORK_DIR}/web/xplan-wms.war <CATALINA_HOME>/webapps/
+----
+
+[[neustart-der-tomcats]]
+=== Neustart der Tomcats
+
+Es müssen beide Applikationsserver neu gestartet werden.
+
+[[austausch-der-commandline-tools]]
+=== Austausch der Commandline-Tools
+
+Es müssen die bereit gestellten Zip-Archive für die Kommandozeilen-Tools
+entpackt werden:
+
+----
+unzip ${WORK_DIR}/cli/xplan-manager-cli-${VERSION}.zip 
+unzip ${WORK_DIR}/cli/xplan-validator-cli-${VERSION}.zip 
+----
+
+=== Übersicht über die Datenhaltung betreffende Änderungen
+
+Folgende Tabelle listet auf, bei welchen xPlanBox Versionen die Datenhaltung betreffende Änderungen vorgenommen wurden (ab Version 2.0).
+
+In der Tabelle sind nur Versionen aufgelistet, die auch Änderungen enthalten. In der Version 2.3 wurden gegenüber der Version 2.2 beispielsweise keine Änderungen vorgenommen. Somit können Version 2.2 und 2.3 mit exakt den gleichen Workspaces und dem gleichen Datenbankschema betrieben werden.
+
+Anhand der Übersicht lässt sich ableiten, welche Schritte bei einer Aktualisierung ausgeführt werden müssen. Die Details zu den jeweiligen Aktualisierungsschritten werden in den nachfolgenden Kapiteln erläutert.
+
+Falls Sie mehr Details zu einem Aktualisierungsvorhaben vor Version 2.0 wünschen, wenden Sie sich bitte an die http://www.lat-lon.de[lat/lon GmbH].
+
+.Überblick über die Datenhaltung betreffenden Änderungen
+[cols="3*^", options="header,footer"]
+|====================================
+| xPlanBox Version | Änderungen an den Workspaces? | Änderungen am Datenbankschema?
+| 2.0              | ja                            | ja
+| 2.2              |                               | ja
+| 2.4              | ja                            |
+|Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
+|====================================
+
+[[aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces]]
+=== Aktualisierung der betroffenen Konfigurationsdateien in den Workspaces
+
+Bei der Aktualisierung der Workspaces ist zwischen einer vollständigen und teilweisen Aktualisierung zu unterscheiden. Bei der im Abschnitt <<vollstaendige-aktualisierung>> beschriebenen vollständigen Aktualisierung werden z.B. Rasterdaten aus Plänen die bereits importiert wurden verworfen. Sollen vorhandene Daten beibehalten werden, ist die im Abschnitt <<teilweise-aktualisierung>> beschriebene Variante durchzuführen.
+
+[[vollstaendige-aktualisierung]]
+==== Vollständige Aktualisierung des Workspaces
+
+Es müssen die bereit gestellten Konfigurationsdateien in das Verzeichnis
+_.deegree_ kopiert werden. Diese ersetzen die bereits vorhandenen:
+
+----
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-workspace-${VERSION}-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-wfs-workspace-${VERSION}-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplansyn-wfs-workspace-${VERSION}-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplansyn-wms-workspace-${VERSION}-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-${ENV}.zip
+----
+
+[[teilweise-aktualisierung]]
+==== Teilweise Aktualisierung des Workspaces
+Es müssen die bereit gestellten Konfigurationsdateien mit Ausnahme des xplansyn-wms-workspace in das Verzeichnis
+_.deegree_ kopiert werden. Diese ersetzen die bereits vorhanden:
+
+----
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-workspace-${VERSION}-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-wfs-workspace-${VERSION}-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplansyn-wfs-workspace-${VERSION}-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-${ENV}.zip
+cp ${WORK_DIR}/config/xplan-bplan-config-${VERSION}-${ENV}.jar ${DEEGEE_DIR}/portal-configuration/xplan-bplan-config.jar
+cp ${WORK_DIR}/config/xplan-fplan-config-${VERSION}-${ENV}.jar ${DEEGEE_DIR}/portal-configuration/xplan-fplan-config.jar
+cp ${WORK_DIR}/config/xplan-lplan-config-${VERSION}-${ENV}.jar ${DEEGEE_DIR}/portal-configuration/xplan-lplan-config.jar
+----
+
+[[aktualisierung-des-wms-workspaces-auf-die-version-2.0-der-xplanbox]]
+===== Aktualisierung des WMS-Workspaces auf die Version 2.0 der xPlanBox
+
+Bei Übernahme eines alten Workspaces für den WMS
+(xplansyn-wms-workspace) mit bereits importierten Rasterdaten sind die
+Themes-Konfigurationen anzupassen. Im ersten `Theme`-Block ist ein neuer
+Identifier, z.B. `<Identifier>BP_Planraster</Identifier>` vor dem
+Element `Title` einzutragen.
+
+[source,xml]
+----
+<Themes xmlns="http://www.deegree.org/themes/standard"
+        xmlns:ns2="http://www.deegree.org/metadata/description"
+        xmlns:ns3="http://www.deegree.org/metadata/spatial"
+        configVersion="3.2.0">
+  <Theme>
+    <!-- Die folgende Zeile ist beim Update auf die Version 2.0 der xPlanBox hinzuzufügen -->
+    <Identifier>BP_Planraster</Identifier>
+    <ns2:Title>BPlan Raster</ns2:Title>
+    <ns3:CRS>EPSG:25832</ns3:CRS>
+    <Theme>
+      <Identifier>bplanraster_sortiert</Identifier>
+      <ns2:Title>BPlan Raster Theme</ns2:Title>
+      <Layer layerStore="1_Testplan.png">1_Testplan.png</Layer>
+      ....
+    </Theme>
+  </Theme>
+</Themes>
+----
+
+Die Benamung des Identifiers richtet sich nach dem Typ des Plans:
+
+______________________________________________________________________________________
+* BP_Planraster (Dateien: bplanpreraster.xml, bplanarchiveraster.xml,
+bplanraster.xml)
+* FP_Planraster (Dateien: fplanpreraster.xml, fplanarchiveraster.xml,
+fplanraster.xml)
+* LP_Planraster (Dateien: lplanpreraster.xml, lplanarchiveraster.xml,
+lplanraster.xml)
+* RP_Planraster (Dateien: rplanpreraster.xml, rplanarchiveraster.xml,
+rplanraster.xml)
+______________________________________________________________________________________
+
+Die Themes-Konfigurationen der Vektordaten sollten komplett ausgetauscht
+werden, Daten gehen dadurch nicht verloren. Folgende Dateien sind davon
+betroffen:
+___________________________________________
+* bplan.xml, bplanpre.xml, bplanarchive.xml
+* fplan.xml, fplanpre.xml, fplanarchive.xml
+* lplan.xml, lplanpre.xml, lplanarchive.xml
+* rplan.xml, rplanpre.xml, rplanarchive.xml
+___________________________________________
+
+[[aktualisierung-des-wms-workspaces-auf-die-version-2.4-der-xplanbox]]
+===== Aktualisierung des WMS-Workspaces auf die Version 2.4 der xPlanBox
+
+Mit der Version 2.4 der xPlanBox wurde eine Möglichkeit eingeführt, die Ausgabe der Rasterdaten durch den XPlanWMSInAufstellung abhängig vom gesetzten Gültigkeitszeitraum steuern zu können. Dazu ist in Abschnitt  <<Gültigkeitszeitraum>> beschrieben, wie die Konfiguration im XPlanWMS und XPlanWMSArchive zu erfolgen hat. Bei einer Aktualisierung auf die Version 2.4 ist dieser Schritt für den XPlanWMSInAufstellung manuell durchzuführen, um die Standardkonfiguration wiederherzustellen. Dies ist nicht notwendig, wenn der Workspace des XPlanWMS vollständig durch die neue Version ausgetauscht wird.
+
+[[aktualisierung-der-schemas]]
+=== Aktualisierung des Datenbankschemas
+
+Achtung: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in das System importierten Daten beibehalten werden sollen.
+Für den Fall, dass dies nicht notwendig ist, muss lediglich die Datenbank neu aufgesetzt werden.
+Mehr Details hierzu finden Sie im Kapitel <<Konfiguration der Datenbank>>.
+
+Die Datenbankschemas jeder Version befinden sich im
+xplan-manager-workspace im Ordner sql und für jedes Schema gibt es dort
+einen eigenen Unterordner. Neu hinzugekommene Schemas können direkt auf
+der Datenbank ausgeführt werden und stehen danach für die Anwendung
+bereit. Bei Änderungen in einem Schema müssen diese durch in ein
+Update-Skript überführt und damit an der Datenbank durchgeführt werden.
+Für einige Aktualisierungen sind Aktualisierungsskripte im Modul
+xplan-update-database verfügbar.
+
+NOTE: Es gibt sowohl SQL-Update-Skripte als auch Liquibase-Skripte, die mit
+der Software http://www.liquibase.org/[Liquibase] ausgeführt werden
+können. Falls beide Skript-Typen vorhanden sind, kann der Nutzer wählen,
+ob das Update per SQL oder Liquibase durchgeführt werden soll.
+
+[[aktualisierung-der-daten]]
+=== Aktualisierung der Daten
+
+Achtung: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in das System importierten Daten beibehalten werden sollen.
+Für den Fall, dass dies nicht notwendig ist, muss lediglich die Datenbank neu aufgesetzt werden.
+Dieser Schritt sollte bereits während der Anwendung des Kapitels <<aktualisierung-der-schemas>> durchgeführt worden sein.
+
+Im Modul xplan-update-database wird das Programm databaseUpdate für die
+Datenaktualisierung bestimmter xPlanBox-Versionen bereitgestellt. Eine
+Liste der für die Datenaktualisierung unterstützten Versionen wird beim
+Programmaufruf mit dem Parameter –help angezeigt.
+
+[[datenaktualisierung-auf-die-version-2.0-sowie-2.2-der-xplanbox]]
+==== Datenaktualisierung auf die Version 2.0 sowie 2.2 der xPlanBox
+
+Bei der Aktualisierung der Daten auf die Version 2.0 sowie 2.2 (z.B. von
+1.8 auf 2.0 oder 2.1 auf 2.2) der xPlanBox ist abschließend die
+Ausführung des CLIs zur Aktualisierung des Sortierfeldes für die
+Visualisierung erforderlich. Informationen dazu finden sich im Abschnitt
+_XPlanManagerCLI_ im XPlanBenutzerhandbuch. Die erforderliche
+Konfiguration ist im Abschnitt _Konfiguration_ -> _Sortierung der Daten
+in der Visualisierung_ in dieser Dokumentation beschrieben.
+
+Aktualisierungswerkzeuge und -skripte werden ohne Gewähr und nur für
+ausgewählte Versionen auf Anfrage zusammen mit der Liefereinheit
+bereitgestellt. Für professionelle Unterstützung bei ihrem
+Aktualisierungsvorhaben wenden Sie sich bitte an die
+http://www.lat-lon.de[lat/lon GmbH].

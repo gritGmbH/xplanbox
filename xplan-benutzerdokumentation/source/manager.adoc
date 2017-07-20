@@ -1,7 +1,0 @@
-== XPlanManager
-
-include::manager_basic.adoc[]
-
-include::manager_cli.adoc[]
-
-include::manager_web.adoc[]

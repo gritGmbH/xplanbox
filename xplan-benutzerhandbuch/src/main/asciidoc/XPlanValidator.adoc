@@ -1,0 +1,16 @@
+[XPlanValidator]
+== XPlanValidator
+
+Der XPlanValidator ist ein Prüftool, das ein XPlanArchiv und die darin enthaltene XPlanGML-Datei validieren kann.
+Der Validator prüft XPlanGML-Dateien der Versionen 3.x und 4.x, ob diese die im zugehörigen XML-Schema festgelegten Syntaxregeln
+erfüllen. Darüber hinaus prüft der Validator eine XPlan-GML-Datei auf die Konformitätsbedingungen:
+
+ * http://www.xplanungwiki.de/images/d/d1/Konformit%C3%A4tsbedingungen_XPlanGML_3.pdf[Konformitätsbedingungen für XPlanGML 3.0]
+ * http://www.xplanungwiki.de/images/7/77/Konformit%C3%A4tsbedingungen_XPlanGML_4_0_2.pdf[Konformitätsbedingungen für XPlanGML 4.0]
+ * http://www.xplanungwiki.de/images/e/ee/Konformit%C3%A4tsbedingungen-XPlanGML_4_1V2.pdf[Konformitätsbedingungen für XPlanGML 4.1]
+
+Der Validator kann über ein Kommandozeilentool (XPlanValidatorCLI) und eine Web-Oberfläche (XPlanValidatorWeb) aufgerufen werden.
+
+include::XPlanValidator_CLI.adoc[]
+
+include::XPlanValidator_Web.adoc[]

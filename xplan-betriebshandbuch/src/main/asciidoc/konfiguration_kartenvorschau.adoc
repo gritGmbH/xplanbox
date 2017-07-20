@@ -1,0 +1,123 @@
+[Kartenvorschau]
+=== Kartenvorschau
+
+Die nachfolgenden Konfigurationen müssen in der Datei
+_managerWebConfiguration.properties_ im Verzeichnis
+_~/.deegree/manager-configuration/_ angepasst werden.
+
+[[xplanwms]]
+==== XPlanWMS
+
+Um den XPlanWMS zu konfigurieren, muss der Wert des Schlüssels _wmsUrl_
+angepasst werden. Über die Schlüssel _vectorWmsName_ und _rasterWmsName_
+können die in der Kartenvorschau dargestellte Namen für Vektor- und
+Rasterlayer konfiguriert werden:
+
+----
+wmsUrl=http://<host>:<port>/xplan-wms/services
+vectorWmsName=XPlan-WMS: Vektorkarten
+rasterWmsName=XPlan-WMS: Rasterkarten
+wmsEndpoint=wms
+wmsPreEndpoint=wmspre
+wmsArchiveEndpoint=wmsarchive
+----
+
+Über die Schlüssel __wmsEndpoint__, _wmsPreEndpoint_ und
+_wmsArchiveEndpoint_ wird angegeben welcher XPlanWMS für die
+Kartenvorschau verwendet wird, wenn ein Plan 'In Aufstellung',
+'Festgestellt' oder 'Archiviert' ist. Wird nur eine
+Datenhaltungskomponente verwendet, sollte die _wmsUrl_ konfiguriert sein
+(mit einem '?' am Ende). Andernfalls wird bei Plänen mit dem Status
+'Festgestellt' der mit dem Schlüssel _wmsEndpoint_ konfigurierte
+Endpunkt an die wms url angehängt, bei Plänen mit dem Status 'In
+Aufstellung' der mit dem Schlüssel _wmsPreEndpoint_ konfigurierte
+Endpunkt oder bei Plänen mit dem Status 'Archiviert' der mit dem
+Schlüssel _wmsArchiveEndpoint_ konfigurierte Endpunkt.
+
+_Beispiel 1 - Konfiguration bei Verwendung einer
+Datenhaltungskomponente:_
+
+----
+wmsUrl=http://<host>:<port>/xplan-wms/services[/wms]?
+vectorWmsName=XPlan-WMS: Vektorkarten
+rasterWmsName=XPlan-WMS: Rasterkarten
+wmsEndpoint=
+wmsPreEndpoint=
+wmsArchiveEndpoint=
+----
+
+_Beispiel 2 - Konfiguration bei Verwendung von zwei
+Datenhaltungskomponenten:_
+
+----
+wmsUrl=http://<host>:<port>/xplan-wms/services
+vectorWmsName=XPlan-WMS: Vektorkarten
+rasterWmsName=XPlan-WMS: Rasterkarten
+wmsEndpoint=wms
+wmsPreEndpoint=wmspre
+wmsArchiveEndpoint=wmsarchive
+----
+
+[[hintergrundkarte]]
+==== Hintergrundkarte
+
+Um die Hintergrundkarte zu konfigurieren, muss der Wert des Schlüssels
+_basemapUrl_ angepasst werden. Über den Schlüssel _basemapName_ kann der
+in der Kartenvorschau dargestellte Name konfiguriert werden:
+
+----
+basemapUrl=http://<host>:<port>/basemap/service
+basemapName=Basiskarte
+----
+
+[[koordinatensystem]]
+==== Koordinatensystem
+
+Das Koordinatensystem, indem die Kartenvorschau angezeigt werden soll,
+kann über den Schlüssel _mapCrs_ und dem dazugehörigen Wert konfiguriert
+werden:
+
+----
+mapCrs=epsg:25832
+----
+
+[[kartenausschnitt]]
+==== Kartenausschnitt
+
+----
+mapExtent=464540.516097552,4294418.79680585,760676.555028607,9320086.20690937
+----
+
+[[ebenen]]
+==== Ebenen
+
+Die in der Kartenvorschau dargestellten Ebenen können ebenfalls über
+Schlüssel-Wert-Paare konfiguriert werden. Für die Hintergrundkarte wird
+der Schlüssel _basemapLayer_ benötigt:
+
+----
+basemapLayer=Basemap
+----
+
+Des Weiteren können die Layer für die Bebauungspläne,
+Flächennutzungspläne, Landschaftspläne und Raumordnungspläne (Vektor-
+und Rasterlayer) einzeln in einer kommaseparierten Liste konfiguriert
+werden.
+
+Vektorlayer:
+
+----
+bpLayer=BP_Planvektor
+fpLayer=FP_Planvektor
+lpLayer=LP_Planvektor
+rpLayer=RP_Planvektor
+----
+
+Rasterlayer:
+
+----
+bpRasterLayer=BP_Planraster
+fpRasterLayer=FP_Planraster
+lpRasterLayer=LP_Planraster
+rpRasterLayer=RP_Planraster
+----
