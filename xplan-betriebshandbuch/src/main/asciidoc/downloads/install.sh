@@ -53,10 +53,10 @@ function copywarstotomcat () {
 }
 
 function unzipdocumentationtotomcat () {
-  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/xPlanBox-Benutzerhandbuch-html.zip
-  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/xPlanBox-Benutzerhandbuch-pdf.zip
-  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/xPlanBox-Betriebshandbuch-html.zip
-  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/doc/xPlanBox-Betriebshandbuch-pdf.zip
+  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/ ${WORK_DIR}/doc/xPlanBox-Benutzerhandbuch-html.zip
+  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/ ${WORK_DIR}/doc/xPlanBox-Benutzerhandbuch-pdf.zip
+  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/ ${WORK_DIR}/doc/xPlanBox-Betriebshandbuch-html.zip
+  unzip -d ${TOMCAT_APPLICATIONS_ROOT}/webapps/ ${WORK_DIR}/doc/xPlanBox-Betriebshandbuch-pdf.zip
 }
 
 function installconfiguration () {
