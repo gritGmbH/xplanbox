@@ -185,6 +185,8 @@ der Software http://www.liquibase.org/[Liquibase] ausgeführt werden
 können. Falls beide Skript-Typen vorhanden sind, kann der Nutzer wählen,
 ob das Update per SQL oder Liquibase durchgeführt werden soll.
 
+NOTE: Werden mehrere Aktualisierungschritte mit Liquibase ausgeführt, kommt es zu folgender Fehlermeldungen: _ERROR:  relation "databasechangeloglock" already exists_. Diese Fehlermeldung kann ignoriert werden.
+
 [[aktualisierung-der-daten]]
 === Aktualisierung der Daten
 
