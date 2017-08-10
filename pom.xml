@@ -56,6 +56,12 @@
         <module>xplan-integrationtest</module>
       </modules>
     </profile>
+    <profile>
+      <id>docker</id>
+      <modules>
+        <module>xplan-docker</module>
+      </modules>
+    </profile>
   </profiles>
 
   <build>
@@ -78,7 +84,7 @@
           <configuration>
             <preparationGoals>clean install</preparationGoals>
             <autoVersionSubmodules>true</autoVersionSubmodules>
-            <releaseProfiles>release</releaseProfiles>
+            <releaseProfiles>release,docker</releaseProfiles>
           </configuration>
         </plugin>
         <plugin>
