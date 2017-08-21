@@ -47,6 +47,7 @@
     <module>xplan-workspaces</module>
     <module>xplan-update-database</module>
     <module>xplan-root</module>
+    <module>xplan-sql-scripts</module>
   </modules>
 
   <profiles>
