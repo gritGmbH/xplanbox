@@ -58,6 +58,7 @@
 
   <modules>
     <module>xplan-db-docker</module>
+    <module>xplan-manager-web-docker</module>
     <module>xplan-services-docker</module>
     <module>xplan-validator-web-docker</module>
   </modules>
