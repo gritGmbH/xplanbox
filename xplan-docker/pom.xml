@@ -57,6 +57,7 @@
   </build>
 
   <modules>
+    <module>xplan-db-docker</module>
     <module>xplan-validator-web-docker</module>
   </modules>
 
