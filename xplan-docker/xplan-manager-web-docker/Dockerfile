@@ -1,10 +1,10 @@
-FROM tomcat:8.0-jre8
+FROM tomcat:8.0-jre7
 
 MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
 # set environment variables
-ENV JAVA_OPTS="-Xmx8192m"
+ENV JAVA_OPTS="-Xmx8192m -DMANAGER_WEB=/root/xplan-manager-config/"
 
 # add xplan-manager-web
 ADD target/xplan-manager-web-*.war /root/
