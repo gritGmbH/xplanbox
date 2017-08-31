@@ -11,7 +11,7 @@ RUN apt-get -y remove openjdk-8-jre-headless
 RUN apt-get update && apt-get -y install openjdk-8-jre
 
 # configure tomcat
-ADD tomcat-users.xml /usr/local/tomcat/config/tomcat-users.xml
+ADD tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
 
 # add xplan-wms
 ADD target/xplan-wms-*.war /root/
