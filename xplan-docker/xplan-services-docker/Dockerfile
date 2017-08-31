@@ -6,6 +6,9 @@ MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 # set environment variables
 ENV JAVA_OPTS="-Xmx8192m"
 
+# configure tomcat
+ADD tomcat-users.xml /usr/local/tomcat/config/tomcat-users.xml
+
 # add xplan-wms
 ADD target/xplan-wms-*.war /root/
 RUN cd /root/ && unzip -q xplan-wms-*.war -d /usr/local/tomcat/webapps/xplan-wms
