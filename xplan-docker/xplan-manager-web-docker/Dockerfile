@@ -5,6 +5,10 @@ MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
 # set environment variables
 ENV JAVA_OPTS="-Xmx8192m -DMANAGER_WEB=/root/xplan-manager-config/"
+ENV LD_LIBRARY_PATH="/usr/lib/jni"
+
+# install gdal plus jni
+RUN apt-get update && apt-get -y install libgdal-java
 
 # add xplan-manager-web
 ADD target/xplan-manager-web-*.war /root/
