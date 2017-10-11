@@ -4,12 +4,12 @@
 Die Komponente XPlanValidatorWeb ist eine Web-Oberfläche, welche dem
 Fachadministrator der xPlanBox ermöglicht, XPlanGML Instanzdokumente zu
 validieren. Der XPlanValidatorWeb ist auf dem Kommandozeilenwerkzeug
-aufgebaut.
+XPlanValidatorCLI aufgebaut.
 
 [[benutzungsanleitung]]
 ==== Benutzungsanleitung
 
-Die Webanwendung XPlanValidatorWeb dient der Validierung von XPlanGML und
+Die Web-Anwendung XPlanValidatorWeb dient der Validierung von XPlanGML und
 ist unter:
 
 ----
@@ -19,13 +19,13 @@ http://<host>:<port>/xplanvalidator/
 verfügbar.
 
 [[hinzufuegen]]
-===== Hinzufügen
+===== XPlanArchiv Hinzufügen
 
-Das XPlanArchiv kann über den Button _Durchsuchen_ ausgewählt und über
-die Auswahl _Hochladen und Validierungsoption einstellen_ zur
-Web-Anwendung hinzugefügt werden.
+Ein im lokalen Dateisystem vorliegendes XPlanArchiv kann über den Button _Durchsuchen_ ausgewählt und über
+die Auswahl _Hochladen und Validierungsoption einstellen_ auf den Server
+hochgeladen werden.
 
-Der Benutzer erhält einen Hinweis, dass der Plan in die Web-Anwendung
+Nachdem die Datei erfolgreich übertragen wurde, erhält der Benutzer einen Hinweis, dass das XPlanArchiv in die Web-Anwendung
 geladen wurde.
 
 ===== Bezeichnung der Validierung
@@ -34,25 +34,29 @@ Für jede Validierung kann eine Bezeichnung vergeben werden, sodass der
 Durchlauf zu einem späterem Zeitpunkt eindeutig zugeordnet werden kann.
 
 [[validierungsart]]
-===== Validierungsart
+===== Validierungstyp
 
-Die folgenden Validierungsarten können über ein Menü ausgewählt
+Die folgenden Validierungstypen können über eine Auswahlliste ausgewählt
 werden:
-  * Syntaktische Validierung
-  * Geometrische Validierung
-  * Semantische Validierung
 
-Die Auswahl ist obligatorisch.
+  * Semantische Validierung
+  * Geometrische Validierung
+  * Syntaktische Validierung
+
+Die Auswahl ist obligatorisch. Wenn die semantische Validierung ausgewählt wird, werden die geometrische und
+syntaktische Validierung zusätzlich ausgeführt. Wird die geometrische Validierung ausgewählt, dann wird
+zusätzlich auch die syntaktische Validierung ausgeführt.
 
 [[validierungsoption]]
 ===== Validierungsoption
 
 Die folgenden Validierungsoptionen können über den Button _weitere
 Validierungsoptionen_ ausgewählt werden:
-  * falsche Laufrichtung von Polygonen ignorieren
+
   * Selbstüberschneidungen ignorieren
-  * Toleranz für Stützpunktabstände in m
-  * Sonstige Planwerke ignorieren
+  * falsche Laufrichtung von Polygonen ignorieren
+  * Toleranz für Stützpunktabstände in Metern
+  * Sonstige Planobjekte ignorieren
   * Präsentationsobjekte ignorieren
 
 Die Änderungen können über den Button _Speichern_ für den aktuellen
