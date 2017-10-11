@@ -25,7 +25,7 @@ info@lat-lon.de.
 
 Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Dirk Stenger,
 Sebastian Goerke, Lyn Elisa Goltz, Carmen Tawalika, Jeronimo Wanhoff,
-Lena Rippolz
+Lena Rippolz.
 
 [[lizenz]]
 === Lizenz
