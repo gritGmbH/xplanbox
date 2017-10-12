@@ -3,8 +3,7 @@
 
 Die Komponente XPlanManagerWeb ist eine Web-Oberfläche, die dem
 Fachadministrator der xPlanBox ermöglicht, die Datenhaltung zu
-kontrollieren. Die Web-Oberfläche ist auf dem Kommandozeilenwerkzeug
-aufgebaut. Der XPlanManagerWeb ist in der Lage, XPlanGML
+kontrollieren. Der XPlanManagerWeb ist in der Lage, XPlanGML
 Instanzdokumente in die Datenhaltung zu Laden, zu Löschen sowie
 importiere Pläne in einer Liste anzuzeigen.
 
@@ -173,6 +172,6 @@ Entscheidungsoption wie mit diesen Daten umgegangen werden soll.
 Anschließend erfolgt die Aktualisierung der Daten.
 
 
-NOTE: Die Editierfunktion steht nur für BPläne in der XPlanGML Version 3.0 und
+NOTE: Die Editierfunktion steht nur für BPläne in der XPlanGML Version
 4.1 zur Verfügung.
 
