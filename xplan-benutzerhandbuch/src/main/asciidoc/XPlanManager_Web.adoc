@@ -89,7 +89,6 @@ aufgeteilt, die insgesamt die Bearbeitung folgender Elemente zulässt:
 
 *Basisdaten*
 
-________________________
 * name
 * beschreibung
 * technHerstellDatum
@@ -99,17 +98,16 @@ ________________________
 * verfahren
 * rechtsstand
 * rechtsverordnungsDatum
-________________________
 
 Das Editieren des Rechtsstands kann dazu führen, dass eine
-Zustandsänderung des Plans eintritt Damit verbunden ist das Verschieben
+Zustandsänderung des Plans eintritt. Damit verbunden ist das Verschieben
 der Vektor- und Rasterdaten in die entsprechende Datenhaltung. Übergänge
 sind beliebig zwischen den drei Zuständen 'Festgestellt', 'In
 Aufstellung' und 'Archiviert' möglich. Eine Zustandsänderung von
 'Festgestellt' nach 'In Aufstellung' tritt beispielsweise beim Ändern
 des Rechtsstands von 'InkraftGetreten' nach 'Untergegangen' ein.
 
-Achtung: Beim Import kann der Nutzer den Zustand eines Planes über eine
+NOTE: __Achtung__: Beim Import kann der Nutzer den Zustand eines Planes über eine
 Auswahlliste mit den Optionen 'Festgestellt, ’In Aufstellung' und
 'Archiviert' ändern. Abhängig von dem im Plan gesetzten Rechtsstand wird
 eine Vorauswahl getroffen, die der Nutzer aber überschreiben kann. Beim
@@ -118,48 +116,36 @@ berücksichtigt, der vom Nutzer ausgewählte Zustand bleibt dagegen
 unberücksichtigt. Somit entspricht die Auswahl des Rechtsstands nicht
 dem Zustand des Plans, falls dieser beim Import manipuliert wurde. Beim
 Abspeichern eines Editiervorgangs ist hier somit Vorsicht geboten, da so
-unbeabsichtigt eine Zustandsänderung vorgenommen werden kann.
+unbeabsichtigt eine Zustandsänderung vorgenommen werden kann!
 
 *Gültigkeitszeitraum*
 
-___________________________________________________________________________________________________________________________________________________________________________
 * Der Zeitraum in dem ein Plan gültig ist. Für dieses Feld gibt es keine
 Entsprechung im XPlanGML. Die Einschränkung, wie sie beim Import
 erfolgt ist, wird überschrieben.
-___________________________________________________________________________________________________________________________________________________________________________
 
 *Änderungen*
 
-___________________
 * aendert
 * wurdeGeaendertVon
-___________________
 
 *Texte*
 
-_______
 * texte
-_______
 
 *Referenzen*
 
-______________________
 * refBegruendung
 * refRechtsplan
 * refGruenordnungsplan
-______________________
 
 *Rasterbasis*
 
-_____________
 * rasterbasis
-_____________
 
 *Änderungen von Rasterplänen*
 
-_________________
 * rasterAenderung
-_________________
 
 Werden Referenzen entfernt oder verändert, so werden die nicht mehr
 referenzierten Dateien aus der Datenhaltung entfernt. In den Bereichen
@@ -174,4 +160,3 @@ Anschließend erfolgt die Aktualisierung der Daten.
 
 NOTE: Die Editierfunktion steht nur für BPläne in der XPlanGML Version
 4.1 zur Verfügung.
-
