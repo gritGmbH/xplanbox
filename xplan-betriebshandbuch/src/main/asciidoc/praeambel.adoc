@@ -32,7 +32,7 @@ Lena Rippolz
 
 Die xPlanBox ist unter der http://www.gnu.org/licenses/lgpl-2.1.html[GNU
 Lesser General Public License (LGPL), version 2.1] veröffentlicht. Für
-die Bereitstellung des Quellcodes der XPlanBox wenden Sie sich bitte an
+die Bereitstellung des Quellcodes der xPlanBox wenden Sie sich bitte an
 http://www.lat-lon.de[lat/lon] - per Email an info@lat-lon.de.
 
 [[softwareüberlassung]]
