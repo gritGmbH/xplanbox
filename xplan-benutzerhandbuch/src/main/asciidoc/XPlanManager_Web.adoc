@@ -15,10 +15,10 @@ Die Webanwendung XPlanManagerWeb dient der Verwaltung von XPlanGML
 konformen Plänen und ist unter:
 
 ----
-http://<host>:<port>/xplanmanager/
+http://${xplanbox.host}:${xplanbox.port}/xplan-manager/
 ----
 
-verfügbar.
+verfügbar und kann mit einem gängigen Web-Browser aufgerufen werden.
 
 [[hilfe]]
 ===== Hilfe

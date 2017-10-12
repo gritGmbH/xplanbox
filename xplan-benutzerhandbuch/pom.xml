@@ -16,6 +16,18 @@
   </properties>
 
   <build>
+    <filters>
+      <filter>src/main/filters/defaults.properties</filter>
+    </filters>
+    <resources>
+      <resource>
+        <directory>src/main/asciidoc</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*.adoc</include>
+        </includes>
+      </resource>
+    </resources>
     <!-- create HTML, PDF-->
     <plugins>
       <plugin>
@@ -31,7 +43,7 @@
         <executions>
           <execution>
             <id>output-html</id>
-            <phase>generate-resources</phase>
+            <phase>prepare-package</phase>
             <goals>
               <goal>process-asciidoc</goal>
             </goals>
@@ -44,13 +56,14 @@
                 <revnumber>${project.version}</revnumber>
                 <revdate>${maven.build.timestamp}</revdate>
               </attributes>
+              <sourceDirectory>${build.outputDirectory}</sourceDirectory>
               <sourceDocumentName>index.adoc</sourceDocumentName>
               <outputDirectory>target/html</outputDirectory>
             </configuration>
           </execution>
           <execution>
             <id>pdf</id>
-            <phase>generate-resources</phase>
+            <phase>prepare-package</phase>
             <goals>
               <goal>process-asciidoc</goal>
             </goals>
@@ -61,6 +74,7 @@
                 <revdate>${maven.build.timestamp}</revdate>
               </attributes>
               <sourceDocumentName>index.adoc</sourceDocumentName>
+              <sourceDirectory>${build.outputDirectory}/</sourceDirectory>
               <outputDirectory>target/pdf</outputDirectory>
             </configuration>
           </execution>
