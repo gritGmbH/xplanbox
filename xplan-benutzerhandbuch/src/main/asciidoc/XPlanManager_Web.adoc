@@ -3,9 +3,9 @@
 
 Die Komponente XPlanManagerWeb ist eine Web-Oberfläche, die dem
 Fachadministrator der xPlanBox ermöglicht, die Datenhaltung zu
-kontrollieren. Der XPlanManagerWeb ist in der Lage, XPlanGML
-Instanzdokumente in die Datenhaltung zu Laden, zu Löschen sowie
-importiere Pläne in einer Liste anzuzeigen.
+kontrollieren und zu verwalten. Mit dem XPlanManagerWeb kann der Benutzer ein XPlanGML
+Instanzdokumente in die Datenhaltung laden, editieren, löschen sowie
+bereits importiere XPlanArchive in einer Liste anzeigen.
 
 [[benutzungsanleitung]]
 ==== Benutzungsanleitung
@@ -62,14 +62,14 @@ auf- oder absteigend sortiert werden.
 
 Durch den Klick auf den Button _Kartenvorschau_ öffnet sich ein neues
 Fenster, indem der XPlan visualisiert wird. Im Hintergrund befindet sich
-eine OpenStreetMap Karte. Durch den Klick auf _Schließen_ wird die
+eine Hintergrundkarte. Durch den Klick auf _Schließen_ wird die
 Kartenvorschau wieder geschlossen.
 
 [[herunterladen]]
 ===== Herunterladen
 
 Die importierten Pläne können vom Benutzer durch den Klick auf den
-Button _Herunterladen_ wieder heruntergeladen werden.
+Button _Herunterladen_ wieder als XPlanArchiv heruntergeladen werden.
 
 [[loeschen]]
 ==== Löschen
@@ -82,8 +82,8 @@ Benutzer keine Rechte, so wird der Button grau dargestellt.
 ===== Editieren
 
 Abhängig von den Benutzerrechten können Pläne editiert werden. Fehlen dem Benutzer
-die entsprechenden Rechte ist die Funktion deaktiviert und der Button __Editieren__ wird grau dargestellt. Das Editieren ist beschränkt auf BPläne in der XPlanGML Version
-3.0 und 4.1. Die Editieransicht öffnet sich durch den Klick auf den
+die entsprechenden Rechte ist die Funktion deaktiviert und der Button __Editieren__ wird grau dargestellt. Die Editier-Funktion
+ist beschränkt auf BPläne in der XPlanGML Version 4.1. Die Editieransicht öffnet sich durch den Klick auf den
 Button __Editieren__. Die Ansicht ist in verschiedene Bereiche
 aufgeteilt, die insgesamt die Bearbeitung folgender Elemente zulässt:
 
@@ -108,7 +108,7 @@ Aufstellung' und 'Archiviert' möglich. Eine Zustandsänderung von
 des Rechtsstands von 'InkraftGetreten' nach 'Untergegangen' ein.
 
 NOTE: __Achtung__: Beim Import kann der Nutzer den Zustand eines Planes über eine
-Auswahlliste mit den Optionen 'Festgestellt, ’In Aufstellung' und
+Auswahlliste mit den Optionen 'Festgestellt', 'In Aufstellung' und
 'Archiviert' ändern. Abhängig von dem im Plan gesetzten Rechtsstand wird
 eine Vorauswahl getroffen, die der Nutzer aber überschreiben kann. Beim
 Öffnen der Editieransicht wird der Rechtsstand aus dem Plan
