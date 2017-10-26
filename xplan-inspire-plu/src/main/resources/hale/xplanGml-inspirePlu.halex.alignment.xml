@@ -1,0 +1,1120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<alignment xmlns="http://www.esdi-humboldt.eu/hale/alignment">
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="Cb2da79f2-2579-426e-ad3d-43a39fb167dd" priority="normal">
+        <source>
+            <class>
+                <type name="XP_BegruendungAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="C29cfb29b-f2c4-49fe-947c-a0b1636a347a" priority="normal">
+        <source>
+            <class>
+                <type name="XP_ExterneReferenzType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="Cd7537f13-db53-44e6-8c27-fb114a07f961" priority="normal">
+        <source>
+            <class>
+                <type name="XP_ExterneReferenzType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="C1286739c-7d81-46b4-996b-ab3a5b5f87af" priority="normal">
+        <source>
+            <class>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc6ba5e41-eb43-4303-8d66-a5d21e17652b" priority="normal">
+        <source>
+            <property>
+                <type name="BP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cdd783a97-f0bd-4fc1-8fab-d78038531613" priority="normal">
+        <source>
+            <property>
+                <type name="XP_BegruendungAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C10edd1a4-cede-4212-91ca-0c136b587ef9" priority="normal">
+        <source>
+            <property>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cee5c1007-623c-4c3b-af30-9bb58c0c402e" priority="normal">
+        <source>
+            <property>
+                <type name="XP_ExterneReferenzType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="datum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="date" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C42658650-733b-4153-a6c3-e903b3eab2d9" priority="normal">
+        <source>
+            <property>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="datum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="date" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C725d06af-6872-4fe8-84f5-562fb7df63fb" priority="normal">
+        <source>
+            <property>
+                <type name="XP_ExterneReferenzType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="georefURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="link" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8f1ccf6a-2116-479e-be8e-595e1fce0518" priority="normal">
+        <source>
+            <property>
+                <type name="XP_ExterneReferenzType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="informationssystemURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="link" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cddf740bf-9bef-4625-a201-5a7d1a34acb1" priority="normal">
+        <source>
+            <property>
+                <type name="XP_ExterneReferenzType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="link" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cac982d2c-e6f5-41c2-add0-afad001a2d1c" priority="normal">
+        <source>
+            <property>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="georefURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="link" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc9292ef3-6aac-411a-926e-684780c8e6cd" priority="normal">
+        <source>
+            <property>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="informationssystemURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="link" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8a290d5e-685e-40bd-8253-23dc25eead9b" priority="normal">
+        <source>
+            <property>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="link" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C440f1f69-d110-426a-8fb4-7375b714b51b" priority="normal">
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="TODO: name of the property" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C99f60ec1-fe99-4a20-82fe-359c5964b53d" priority="normal">
+        <source>
+            <property>
+                <type name="XP_ExterneReferenzType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzName" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C45e1e249-cf30-4c90-a4e7-61474714ca04" priority="normal">
+        <source>
+            <property>
+                <type name="XP_BegruendungAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="text" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="regulationText" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cdde87f57-38d7-4ead-9e28-3e5f390ad493" priority="normal">
+        <source>
+            <property>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="text" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="regulationText" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C095e3a6b-1ad3-474d-9608-d1c784478b73" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="hatGenerAttribut" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/4/1/XP_GenerAttribut"/>
+                <child name="XP_DatumAttribut" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="wert" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OrdinanceValueType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceDate" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca8591537-0661-4cfb-8a98-4b9ec1c06642" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="hatGenerAttribut" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/4/1/XP_GenerAttribut"/>
+                <child name="XP_DatumAttribut" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="name" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OrdinanceValueType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="Cf42cd890-7c67-42b1-9124-55a5906ae09a" priority="normal">
+        <source>
+            <class>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8f325b1e-144a-477f-978e-4d5307228d69" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="nummer" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="alternativeTitle" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C3e9d62fc-f432-416a-b4f1-1e28f4622b48" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refPlangrundlage" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="backgroundMap" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="BackgroundMapValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="backgroudMapURI" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C582675d4-123f-4b16-9a55-9df3fae1ede1" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refPlangrundlage" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="datum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="backgroundMap" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="BackgroundMapValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="backgroundMapDate" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cae45717b-e3c0-418b-a98d-e431db819d1a" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refPlangrundlage" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzName" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="backgroundMap" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="BackgroundMapValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="backgroundMapReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C12a6b75b-1d39-4776-af61-d5194b91675c" priority="normal">
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="nilReason"/>
+            </property>
+        </target>
+        <parameter value="UNKNOWN" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C69aa0f64-23e6-4772-acb3-d479aabdad07" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="raeumlicherGeltungsbereich" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="extent" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.generateuid" id="C20a8a09d-1197-4989-a356-52bb9d254a1a" priority="normal">
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C20cfdad7-c983-49b5-8933-7f0a61cf3f0c" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C685c93df-7ba9-4d86-9367-27929f61396b" priority="normal">
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="http://lat-lon/test" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="Cabd596ca-bf3a-4660-9428-fd8b068a9b3e" priority="normal">
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="levelOfSpatialPlan" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="infraLocal" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca4c9c29c-0804-4f46-a838-eb839a86c63f" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="begruendungsTexte" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="officialDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd6a10a59-764e-4d9f-b591-3ba691ba7a11" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="texte" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="officialDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce88fcecc-abed-410a-8542-3b71bff4e620" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="name" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="officialTitle" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C3f625f39-90a3-4e3e-aeee-64797c6e77ef" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="aenderungenBisDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceDate" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd61b4b12-b2e3-409f-b831-a4071cefdf92" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="aufstellungsbeschlussDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceDate" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbc2f4383-74bc-4654-9087-8b8c2ad40faf" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="ausfertigungsDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceDate" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C7682aecb-3f49-4e16-be94-aae8e8bf88d4" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="auslegungsEndDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceDate" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C5f74cceb-58d7-4804-9240-a354cf1bf923" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="auslegungsStartDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceDate" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc8fe0e30-d542-41d0-9424-1e936fd2e72e" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="genehmigungsDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceDate" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C0069e105-17e7-4cc6-b812-6d8751d0b013" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="rechtsverordnungsDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceDate" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C0cfb30da-2d9d-4b0a-9b4e-4a87cd804dc1" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="satzungsbeschlussDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceDate" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C13ea1db3-6a43-4f0d-a655-3a243961148e" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="technHerstellDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceDate" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8218c673-befb-4dea-b668-8df09df8d1da" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="traegerbeteiligungsEndDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceDate" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc933c33e-24bb-4849-a9cb-6567cba43eb2" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="traegerbeteiligungsStartDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceDate" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C65b6adab-03a3-4ae0-b667-f892aae5ea11" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="veraenderungssperreDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceDate" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C979ff153-6644-4883-9e50-a03832dbcbae" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="aenderungenBisDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="aenderungenBisDatum" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C8d568cf0-91ff-40ed-88f8-e83bb1426b7b" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="aufstellungsbeschlussDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="aufstellungsbeschlussDatum" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C40a39c68-c1b1-49ab-a124-5d03d5673f13" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="ausfertigungsDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="ausfertigungsDatum" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Caf0b1de7-81fd-419e-bc00-ffc25e53bebb" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="auslegungsEndDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="auslegungsEndDatum" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C71ecfad3-1258-4260-a9e3-489c70e2f8c5" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="auslegungsStartDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="auslegungsSartDatum" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cd5155c28-5994-407d-bbfc-329c40b5d3bb" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="genehmigungsDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="genehmigungsDatum" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C721a98e9-8e56-4e38-ae3a-b88eaa724941" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="rechtsverordnungsDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="rechtsverordnungsDatum" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cfffd1ef4-923d-425a-add2-a26e6b33273b" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="satzungsbeschlussDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="satzungsbeschlussDatum" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C9afac9e9-8545-4c4f-9c4a-6a2a9dd049bb" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="technHerstellDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="technHerstellDatum" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cc6d9feba-1f2a-473d-96b1-cec75255366a" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="traegerbeteiligungsEndDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="traegerbeteiligungsEndDatum" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ceeb59a86-b6eb-4380-8054-61ee1a164ffe" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="traegerbeteiligungsStartDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="traegerbeteiligungsStartDatum" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ce8e6af02-a634-4989-aaa0-b73f5024b95a" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="veraenderungssperreDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinance" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="OrdinanceValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="ordinanceReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="veraenderunssperreDatum" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.classification" id="C028b931a-d491-46eb-a840-21846b248a03" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="planArt" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planTypeName" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <complexParameter name="lookupTable">
+            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+                <entry>
+                    <key value="1000"/>
+                    <value value="BP_Plan"/>
+                </entry>
+            </lookup-table>
+        </complexParameter>
+        <parameter value="null" name="notClassifiedAction"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.classification" id="Cb2ce7fd6-62ad-41ce-a76c-0bf05e5ba339" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="rechtsstand" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="processStepGeneral" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <complexParameter name="lookupTable">
+            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+                <entry>
+                    <key value="1000"/>
+                    <value value="elaboration"/>
+                </entry>
+                <entry>
+                    <key value="2000"/>
+                    <value value="elaboration"/>
+                </entry>
+                <entry>
+                    <key value="2100"/>
+                    <value value="elaboration"/>
+                </entry>
+                <entry>
+                    <key value="2200"/>
+                    <value value="elaboration"/>
+                </entry>
+                <entry>
+                    <key value="2300"/>
+                    <value value="elaboration"/>
+                </entry>
+                <entry>
+                    <key value="2400"/>
+                    <value value="elaboration"/>
+                </entry>
+                <entry>
+                    <key value="3000"/>
+                    <value value="adoption"/>
+                </entry>
+                <entry>
+                    <key value="4000"/>
+                    <value value="legalForce"/>
+                </entry>
+                <entry>
+                    <key value="4500"/>
+                    <value value="obsolete"/>
+                </entry>
+                <entry>
+                    <key value="5000"/>
+                    <value value="obsolete"/>
+                </entry>
+            </lookup-table>
+        </complexParameter>
+        <parameter value="null" name="notClassifiedAction"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca4ae42a4-3090-482f-b1ea-babac234989f" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="inkrafttretensDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C5f794046-bd8b-4050-b728-c352f62f2402" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="untergangsDatum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+</alignment>
