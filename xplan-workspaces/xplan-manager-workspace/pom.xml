@@ -45,6 +45,12 @@
       <artifactId>xplan-schemas</artifactId>
       <type>zip</type>
     </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-sql-scripts</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
   </dependencies>
 
 </project>

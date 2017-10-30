@@ -151,7 +151,6 @@ Abfragen von Legendengrafiken der Ebenen.
 Der XPlanWMS unterstützt die folgenden
 Koordinatenreferenzsysteme für Vektordaten:
 
-______________
 * EPSG:25833,
 * EPSG:25832,
 * EPSG:325833,
@@ -163,7 +162,6 @@ ______________
 * EPSG:4326,
 * EPSG:4839,
 * CRS:84.
-______________
 
 Für Rasterdaten wird dagegen nur eines dieser Koordinatenreferenzsysteme
 unterstützt.

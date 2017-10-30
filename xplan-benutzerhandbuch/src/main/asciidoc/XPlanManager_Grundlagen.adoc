@@ -1,6 +1,21 @@
 [XPlanManager Grundlagen]
 === XPlanManager Grundlagen
 
+Der XPlanManager dient zur Verwaltung von XPlanArchiven innerhalb der xPlanBox. Mit
+dem XPlanManager können XPlanArchive importiert, editiert oder gelöscht werden.
+
+[xplanarchiv]
+==== Das XPlanArchiv
+
+Das XPlanArchiv ist eine ZIP-Datei mit folgendem Aufbau:
+
+ * Im Basisverzeichnis muss das XPlanGML Instanzdokument mit dem Dateinamen __xplan.gml__ vorhanden sein.
+ * Rasterdaten sowie alle im __xplan.gml__ referenzierten Anhänge liegen ebenfalls im Basisverzeichnis.
+
+Wenn ein XPlanArchiv erfolgreich über den XPlanManager importiert werden konnte, können die Daten über die Dienste
+XPlanWFS und XPlanWMS abgerufen werden.
+
+
 [[anlegen-von-deegree-konfigurationsstrukturen-fuer-rasterdaten]]
 ==== Anlegen von deegree Konfigurationsstrukturen für Rasterdaten
 
