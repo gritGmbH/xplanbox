@@ -67,16 +67,14 @@ Aufruf:
 XPlanValidator -validate Plan.zip -vtype [syntax|geometric|semantic]
 ----
 
-Zuordnung der Werte
+Zuordnung der Werte:
 
-_________________________
 * syntax = Syntaktisch
 * geometric = Geometrisch
 * semantic = Semantisch
-_________________________
 
 Wird kein _-vtype_ Parameter gewählt, werden alle Validierungsarten
-durchgeführt
+durchgeführt.
 
 Ausgabe:
 

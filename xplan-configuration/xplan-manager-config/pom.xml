@@ -7,7 +7,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-configuration</artifactId>
-    <version>2.6-SNAPSHOT</version>
+    <version>2.7-SNAPSHOT</version>
   </parent>
 
   <build>
@@ -16,6 +16,23 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
+          <execution>
+            <id>default</id>
+            <goals>
+              <goal>attached</goal>
+            </goals>
+            <configuration>
+              <filters>
+                <filter>${project.basedir}/src/main/filter/filter-default.properties</filter>
+              </filters>
+              <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+              <descriptors>
+                <descriptor>${project.basedir}/src/main/assembly/assembly-default.xml</descriptor>
+              </descriptors>
+              <appendAssemblyId>true</appendAssemblyId>
+            </configuration>
+            <phase>package</phase>
+          </execution>
           <execution>
             <id>docker</id>
             <goals>

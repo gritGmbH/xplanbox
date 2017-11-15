@@ -5,7 +5,7 @@
 === Internet Explorer
 
 Beim Importieren (Hochladen) von XPlanArchiven über den XPlanManagerWeb kann
-es vorkommen, dass das XPlanArchiv für die Dauer der Sitzung im Dateisystem
+es vorkommen, dass das XPlanArchiv für die Dauer der Sitzung im Windows Dateisystem
 blockiert wird.
 
 [[kapazitaetsbezogene-einschraenkungen]]

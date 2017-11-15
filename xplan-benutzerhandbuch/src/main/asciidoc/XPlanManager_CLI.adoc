@@ -433,5 +433,5 @@ export JAVA_OPTS="-Xmx4096m"
 ----
 
 Weitere Informationen zur Konfiguration des Servers im Kapitel
-Bekannte Probleme - Kapazitätsbezogene Einschränkungen <_known-bugs> und
+<<bekannte-probleme,Bekannte Probleme - Kapazitätsbezogene Einschränkungen>> und
 im Betriebshandbuch.

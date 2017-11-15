@@ -28,5 +28,12 @@
       <unpack>true</unpack>
       <outputDirectory>/</outputDirectory>
     </dependencySet>
+    <dependencySet>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplan-sql-scripts</include>
+      </includes>
+      <unpack>true</unpack>
+      <outputDirectory>/sql</outputDirectory>
+    </dependencySet>
   </dependencySets>
 </assembly>
