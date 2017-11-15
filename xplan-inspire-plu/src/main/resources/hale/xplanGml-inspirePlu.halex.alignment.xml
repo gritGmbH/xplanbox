@@ -90,6 +90,27 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.generateuid" id="C893970c2-bd3b-48a6-bfa8-055f7b965dbf" priority="normal">
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="Cb91c441f-6a97-4b0d-a54c-018d3910a71e" priority="normal">
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="http://lat-lon/test" name="value"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cee5c1007-623c-4c3b-af30-9bb58c0c402e" priority="normal">
         <source>
             <property>
@@ -1133,6 +1154,9 @@
         <parameter value="false" name="structuralRename"/>
     </cell>
     <modifier cell="C69aa0f64-23e6-4772-acb3-d479aabdad07">
+        <disable-for parent="Cf42cd890-7c67-42b1-9124-55a5906ae09a"/>
+    </modifier>
+    <modifier cell="Ca4c9c29c-0804-4f46-a838-eb839a86c63f">
         <disable-for parent="Cf42cd890-7c67-42b1-9124-55a5906ae09a"/>
     </modifier>
 </alignment>
