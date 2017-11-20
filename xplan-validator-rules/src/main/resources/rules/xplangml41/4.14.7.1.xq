@@ -6,4 +6,6 @@ declare namespace xlink='http://www.w3.org/1999/xlink';
 declare namespace xsi='http://www.w3.org/2001/XMLSchema-instance';
 
 every $h in //BP_HoehenMass satisfies
-count(exists($h/hoehenangabe/XP_Hoehenangabe)) = 1
+    count(exists($h/hoehenangabe/XP_Hoehenangabe)) = 1 and
+    not(exists($h/hoehenangabe/XP_Hoehenangabe/bezugspunkt)) and
+    exists($h/hoehenangabe/XP_Hoehenangabe/h)
