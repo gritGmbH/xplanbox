@@ -81,6 +81,12 @@ button[disabled], button[disabled]:hover, button[disabled]:active, button[disabl
   	width: 25px;
   	height: 25px;
     }
+.publishPluButtonColumn button {
+  	background-image: url('xplanmgrweb/img/publishplu.png');
+  	background-size: contain;
+  	width: 25px;
+  	height: 25px;
+    }
 th.actionHeaderStyle {
 	text-align: center;
 }

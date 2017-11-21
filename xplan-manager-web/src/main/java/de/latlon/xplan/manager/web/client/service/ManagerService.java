@@ -126,5 +126,9 @@ public interface ManagerService extends RestService {
     @Path("/legislationstatus/{id}")
     void determineLegislationStatus( @PathParam("id")
     String id, MethodCallback<LegislationStatus> callback );
-    
+
+    @GET
+    @Path("/plu/plan/{planId}")
+    void publishPlan( @PathParam("planId") String planId, MethodCallback<Void> callback );
+
 }

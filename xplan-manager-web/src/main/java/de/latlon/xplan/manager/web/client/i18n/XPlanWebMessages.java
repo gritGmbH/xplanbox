@@ -368,4 +368,12 @@ public interface XPlanWebMessages extends Messages {
 
     String editCaptionReferencesRemoveFileTooltip();
 
+    String publishPlu();
+
+    String publishingPlu();
+
+    String unauthorizedPublishingPlu();
+
+    String publishingPluSuccessful();
+
 }
