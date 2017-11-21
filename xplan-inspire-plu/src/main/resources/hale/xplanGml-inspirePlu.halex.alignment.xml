@@ -28,6 +28,20 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="Cb1fe9056-57c4-4e6c-9fa8-d28f000c0335" priority="normal">
+        <source>
+            <class>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C1286739c-7d81-46b4-996b-ab3a5b5f87af" priority="normal">
         <source>
             <class>
@@ -130,6 +144,27 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C64f0d9f7-9579-48cd-a64f-1ace46ddbec2" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="datum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="date" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C42658650-733b-4153-a6c3-e903b3eab2d9" priority="normal">
         <source>
             <property>
@@ -193,6 +228,69 @@
         <source>
             <property>
                 <type name="XP_ExterneReferenzType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="link" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf2cadaef-c30b-47a4-bc38-ad9932906432" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="georefURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="link" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cda38d150-1433-4811-a054-018e6e745ef1" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="informationssystemURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="link" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8f4938dd-e2b2-4e0c-b1df-2c05d07562a7" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
                 <child name="referenzURL" ns="http://www.xplanung.de/xplangml/4/1"/>
             </property>
         </source>
@@ -290,6 +388,27 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C7e6f4674-bc28-4172-b00d-ea5c829c8267" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzName" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C45e1e249-cf30-4c90-a4e7-61474714ca04" priority="normal">
         <source>
             <property>
@@ -360,10 +479,15 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.retype" id="Cf42cd890-7c67-42b1-9124-55a5906ae09a" priority="normal">
-        <source>
+    <cell relation="eu.esdihumboldt.hale.align.join" id="C51ea00ae-c6fe-453e-841d-d0aa1a089dd2" priority="normal">
+        <source name="types">
             <class>
                 <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <source name="types">
+            <class>
+                <type name="BP_BereichType" ns="http://www.xplanung.de/xplangml/4/1"/>
             </class>
         </source>
         <target>
@@ -371,8 +495,27 @@
                 <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
             </class>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <complexParameter name="join">
+            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
+                <class>
+                    <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                </class>
+                <class>
+                    <type name="BP_BereichType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                </class>
+                <jp:condition>
+                    <property>
+                        <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                        <child name="bereich" ns="http://www.xplanung.de/xplangml/4/1"/>
+                        <child name="href" ns="http://www.w3.org/1999/xlink"/>
+                    </property>
+                    <property>
+                        <type name="BP_BereichType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                        <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+                    </property>
+                </jp:condition>
+            </jp:join-parameter>
+        </complexParameter>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8f325b1e-144a-477f-978e-4d5307228d69" priority="normal">
         <source>
