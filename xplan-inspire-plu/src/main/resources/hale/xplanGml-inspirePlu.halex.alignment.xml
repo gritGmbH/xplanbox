@@ -707,6 +707,24 @@
         </target>
         <parameter value="infraLocal" name="value"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbf65f880-fa4f-4e52-9816-a819b903c409" priority="normal">
+        <source>
+            <property>
+                <type name="BP_BereichType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="rasterBasis" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="officialDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca4c9c29c-0804-4f46-a838-eb839a86c63f" priority="normal">
         <source>
             <property>
