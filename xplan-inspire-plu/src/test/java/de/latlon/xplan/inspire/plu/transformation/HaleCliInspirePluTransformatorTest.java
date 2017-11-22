@@ -8,7 +8,6 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -32,15 +31,17 @@ import de.latlon.xplan.inspire.plu.transformation.hale.HaleCliInspirePluTransfor
 @Ignore
 public class HaleCliInspirePluTransformatorTest {
 
-    private final String haleCli = "/home/lyn/Programme/hale/bin/hale";
+    private final String testResource = "/tmp/Billstedt28/xplan.gml";
 
-    private final String haleProject = HaleCliInspirePluTransformator.class.getResource( "/hale/xplanGml-inspirePlu.halex" ).toString();
+    private final String haleCli = "/tmp/hale/bin/hale";
+
+    private final String haleProject = "/tmp/hale/xplanGml-inspirePlu.halex";
 
     @Test
     public void testTransformationToPlu()
                             throws Exception {
         HaleCliInspirePluTransformator transformator = new HaleCliInspirePluTransformator( haleCli, haleProject );
-        Path inspirePlu = transformator.transformToPlu( xPlanGml() );
+        Path inspirePlu = transformator.transformToPlu( Paths.get( testResource ) );
 
         assertThat( inspirePlu, notNullValue() );
         assertThat( the( inspirePlu ), hasXPath( "//plu:SpatialPlan", nsContext() ) );
@@ -59,12 +60,6 @@ public class HaleCliInspirePluTransformatorTest {
             line = buf.readLine();
         }
         return XmlConverters.the( sb.toString() );
-    }
-
-    private Path xPlanGml()
-                            throws URISyntaxException {
-        URL resource = HaleCliInspirePluTransformatorTest.class.getResource( "/testdata/Billstedt28/xplan.gml" );
-        return Paths.get( resource.toURI() );
     }
 
     private NamespaceContext nsContext() {
