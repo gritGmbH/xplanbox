@@ -1,6 +1,7 @@
 :doctype: book
 :encoding: utf-8
 :toc: macro
+:chapter-label:
 :numbered:
 :toc-title: Inhaltsverzeichnis
 :appendix-caption: Anhang
