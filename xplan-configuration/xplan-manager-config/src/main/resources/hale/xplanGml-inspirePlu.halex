@@ -14,7 +14,7 @@
         <setting name="charset">UTF-8</setting>
         <setting name="onlyElementsMappable">true</setting>
         <setting name="resourceId">f36433ef-c7fc-41ed-ad0e-8249b887aa58</setting>
-        <setting name="source">../../../../../xplan-schemas/src/main/resources/appschemas/XPlanGML_4_1/XPlanGML.xsd</setting>
+        <setting name="source">../../../../../../xplan-schemas/src/main/resources/appschemas/XPlanGML_4_1/XPlanGML.xsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xsd</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.target" provider-id="eu.esdihumboldt.hale.io.xsd.reader">
