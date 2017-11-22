@@ -170,25 +170,6 @@ public class XPlanManager {
      * @throws Exception
      */
     public XPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
-                         ManagerConfiguration managerConfiguration, File workspaceDir,
-                         WorkspaceReloader workspaceReloader ) throws Exception {
-        this( categoryMapper, archiveCreator, managerConfiguration, workspaceDir, null, workspaceReloader );
-    }
-
-    /**
-     * @param categoryMapper
-     *            category mapper
-     * @param archiveCreator
-     *            archive creator
-     * @param managerConfiguration
-     *            manager configuration, may be <code>null</code>
-     * @param workspaceDir
-     *            workspace directory
-     * @param workspaceReloader
-     *            reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
-     * @throws Exception
-     */
-    public XPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
                          ManagerConfiguration managerConfiguration, File workspaceDir, File wmsWorkspaceDir,
                          WorkspaceReloader workspaceReloader ) throws Exception {
         this.archiveCreator = archiveCreator;
@@ -957,5 +938,4 @@ public class XPlanManager {
             return PlanStatus.findByLegislationStatusCode( newLegislationStatusCode );
         return oldPlanStatus;
     }
-
 }
