@@ -154,8 +154,9 @@ public class BasicSpringConfig {
     @Bean
     public InspirePluTransformator inspirePluTransformator( ManagerConfiguration managerConfiguration ) {
         String pathToHaleCli = managerConfiguration.getPathToHaleCli();
-        if ( pathToHaleCli != null )
-            return new HaleCliInspirePluTransformator( pathToHaleCli );
+        String pathToHaleProject = managerConfiguration.getPathToHaleProject();
+        if ( pathToHaleCli != null && pathToHaleProject != null )
+            return new HaleCliInspirePluTransformator( pathToHaleCli , pathToHaleProject );
         return null;
     }
     

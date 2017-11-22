@@ -34,10 +34,12 @@ public class HaleCliInspirePluTransformatorTest {
 
     private final String haleCli = "/home/lyn/Programme/hale/bin/hale";
 
+    private final String haleProject = HaleCliInspirePluTransformator.class.getResource( "/hale/xplanGml-inspirePlu.halex" ).toString();
+
     @Test
     public void testTransformationToPlu()
                             throws Exception {
-        HaleCliInspirePluTransformator transformator = new HaleCliInspirePluTransformator( haleCli );
+        HaleCliInspirePluTransformator transformator = new HaleCliInspirePluTransformator( haleCli, haleProject );
         Path inspirePlu = transformator.transformToPlu( xPlanGml() );
 
         assertThat( inspirePlu, notNullValue() );

@@ -3,7 +3,6 @@ package de.latlon.xplan.manager.configuration;
 import static java.lang.Double.parseDouble;
 import static org.deegree.cs.CRSUtils.EPSG_4326;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +35,6 @@ import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
  */
 public class ManagerConfiguration {
 
-
     static final String CATEGORIES_TO_PARTS_KEY = "categoriesToParts";
 
     static final String RASTER_CONFIG_CRS = "rasterConfigurationCrs";
@@ -44,7 +42,7 @@ public class ManagerConfiguration {
     static final String ACTIVATE_SEPARATED_DATAMANAGEMENT = "activateSeparatedDataManagement";
 
     static final String ACTIVATE_EXPORT_OF_REEXPORTED = "activateExportOfReexported";
-    
+
     static final String RASTER_CONFIG_TYPE = "rasterConfigurationType";
 
     static final String DEFAULT_BBOX_IN_4326 = "defaultBboxIn4326";
@@ -84,6 +82,8 @@ public class ManagerConfiguration {
     private Path configDirectory;
 
     private String pathToHaleCli;
+
+    private String pathToHaleProject;
 
     public ManagerConfiguration( PropertiesLoader propertiesLoader ) throws ConfigurationException {
         loadProperties( propertiesLoader );
@@ -166,19 +166,26 @@ public class ManagerConfiguration {
     /**
      * @return the directory containing the configuration, may be <code>null</code>
      */
-    public Path getConfigurationDirectory(){
+    public Path getConfigurationDirectory() {
         return configDirectory;
     }
 
     /**
-     * @return the absolute path to the hale cle
+     * @return the absolute path to the hale cli
      */
     public String getPathToHaleCli() {
         return pathToHaleCli;
     }
 
+    /**
+     * @return the path to the hale project
+     */
+    public String getPathToHaleProject() {
+        return pathToHaleProject;
+    }
+
     private void loadProperties( PropertiesLoader propertiesLoader )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         if ( propertiesLoader != null ) {
             Properties loadProperties = propertiesLoader.loadProperties( MANAGER_CONFIGURATION );
             if ( loadProperties != null ) {
@@ -198,8 +205,9 @@ public class ManagerConfiguration {
                 parseSortConfiguration( loadProperties );
                 parseSemanticConformityLinkConfiguration( loadProperties );
                 pathToHaleCli = loadProperties.getProperty( PATH_TO_HALE_CLI );
+                pathToHaleProject = parsePathToHaleProject( propertiesLoader );
             }
-            configDirectory = getConfigDirectory( propertiesLoader );
+            configDirectory = getConfigDirectory( propertiesLoader, "synthesizer" );
         }
     }
 
@@ -234,6 +242,7 @@ public class ManagerConfiguration {
         LOG.info( "   - SQL All: {}", internalIdRetrieverConfiguration.getSelectAllSql() );
         LOG.info( "-------------------------------------------" );
         LOG.info( "  path to HALE CLI: {}", pathToHaleCli );
+        LOG.info( "  path to HALE project: {}", pathToHaleProject );
         LOG.info( "-------------------------------------------" );
         sortConfiguration.logConfiguration( LOG );
         LOG.info( "-------------------------------------------" );
@@ -242,7 +251,7 @@ public class ManagerConfiguration {
     }
 
     private void parseCategories( String[] categoriesWithParts )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         for ( String categoryWithParts : categoriesWithParts ) {
             String categoryName = parseCategoryName( categoryWithParts );
             List<String> partsAsList = parseParts( categoryWithParts );
@@ -251,7 +260,7 @@ public class ManagerConfiguration {
     }
 
     private String parseCategoryName( String categoryWithParts )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         if ( categoryWithParts.contains( "(" ) ) {
             int indexOfCategoryEnd = categoryWithParts.indexOf( "(" );
             return categoryWithParts.substring( 0, indexOfCategoryEnd );
@@ -360,10 +369,17 @@ public class ManagerConfiguration {
         }
     }
 
-    private Path getConfigDirectory( PropertiesLoader propertiesLoader ) {
+    private String parsePathToHaleProject( PropertiesLoader propertiesLoader ) {
+        Path haleProject = getConfigDirectory( propertiesLoader, "hale/xplanGml-inspirePlu.halex" );
+        if ( haleProject != null )
+            return haleProject.toString();
+        return null;
+    }
+
+    private Path getConfigDirectory( PropertiesLoader propertiesLoader, String subdirectory ) {
         Path configDirectory = propertiesLoader.getConfigDirectory();
         if ( configDirectory != null )
-            return configDirectory.resolve( "synthesizer" );
+            return configDirectory.resolve( subdirectory );
         return null;
     }
 

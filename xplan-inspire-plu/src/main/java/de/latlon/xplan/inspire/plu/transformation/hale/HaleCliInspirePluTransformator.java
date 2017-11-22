@@ -21,10 +21,9 @@ public class HaleCliInspirePluTransformator implements InspirePluTransformator {
 
     private final String haleProject;
 
-    public HaleCliInspirePluTransformator( String haleCli ) {
+    public HaleCliInspirePluTransformator( String haleCli, String haleProject ) {
         this.haleCli = haleCli;
-        this.haleProject = HaleCliInspirePluTransformator.class.getResource( "/hale/xplanGml-inspirePlu.halex" ).toString();
-
+        this.haleProject = haleProject;
     }
 
     @Override
