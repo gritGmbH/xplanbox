@@ -7,6 +7,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 
+import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
+import de.latlon.xplan.inspire.plu.transformation.hale.HaleCliInspirePluTransformator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -94,9 +96,9 @@ public class BasicSpringConfig {
 
     @Bean
     public XPlanManager xPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
-                                      ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader )
+                                      ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader, InspirePluTransformator inspirePluTransformator )
                                                       throws Exception {
-        return new XPlanManager( categoryMapper, archiveCreator, managerConfiguration, workspaceReloader );
+        return new XPlanManager( categoryMapper, archiveCreator, managerConfiguration, workspaceReloader, inspirePluTransformator );
     }
 
     @Bean
@@ -149,6 +151,14 @@ public class BasicSpringConfig {
         return new WorkspaceReloader();
     }
 
+    @Bean
+    public InspirePluTransformator inspirePluTransformator( ManagerConfiguration managerConfiguration ) {
+        String pathToHaleCli = managerConfiguration.getPathToHaleCli();
+        if ( pathToHaleCli != null )
+            return new HaleCliInspirePluTransformator( pathToHaleCli );
+        return null;
+    }
+    
     private ValidatorConfiguration validatorConfiguration()
                     throws IOException, ConfigurationException {
         ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();

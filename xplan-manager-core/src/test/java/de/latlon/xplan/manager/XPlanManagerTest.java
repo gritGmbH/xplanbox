@@ -126,7 +126,7 @@ public class XPlanManagerTest {
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
         ManagerConfiguration managerConfiguration = mockManagerConfig();
         return new XPlanManager( categoryMapper, archiveCreator, managerConfiguration,
-                        workspaceDirectory.getAbsoluteFile(), null,null );
+                        workspaceDirectory.getAbsoluteFile(), null, null, null );
     }
 
     private ManagerConfiguration mockManagerConfig() {
