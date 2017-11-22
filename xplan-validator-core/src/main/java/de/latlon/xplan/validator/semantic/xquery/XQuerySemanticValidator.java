@@ -35,8 +35,7 @@ public class XQuerySemanticValidator implements SemanticValidator {
 
     private static final Logger LOG = LoggerFactory.getLogger( XQuerySemanticValidator.class );
 
-    private static final String DETAILS_HINT = "Das Instanzobjekt 'xplan.gml' ist semantisch nicht konform. Details "
-                                               + "zu den angewendeten Regeln können in folgenden Dokument nachgeschlagen werden: %s";
+    private static final String DETAILS_HINT = "Details zu den angewendeten Regeln können in folgenden Dokument nachgeschlagen werden: %s";
 
     private final SemanticValidatorConfiguration semanticValidatorConfiguration;
 
