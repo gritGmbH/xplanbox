@@ -20,7 +20,7 @@
           <execution>
             <id>schemas</id>
             <goals>
-              <goal>attached</goal>
+              <goal>single</goal>
             </goals>
             <configuration>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
