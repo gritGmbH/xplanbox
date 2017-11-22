@@ -13,6 +13,7 @@
 
   <modules>
     <module>xplan-commons-webservices</module>
+    <module>xplan-inspireplu-webservices</module>
     <module>xplansyn-wfs</module>
     <module>xplan-wfs</module>
     <module>xplan-wms</module>

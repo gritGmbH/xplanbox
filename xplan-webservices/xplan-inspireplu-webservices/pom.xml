@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.latlon.product.xplanbox</groupId>
+  <artifactId>xplan-inspireplu-webservices</artifactId>
+  <version>2.7-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <description>deegree INSPIRE PLU webservices</description>
+
+  <properties>
+    <deegree3.inspireplu.version>3.4-RC5</deegree3.inspireplu.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <overlays>
+            <overlay>
+              <id>create-overlay</id>
+              <groupId>org.deegree</groupId>
+              <artifactId>deegree-webservices</artifactId>
+            </overlay>
+          </overlays>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.deegree</groupId>
+      <artifactId>deegree-webservices</artifactId>
+      <version>${deegree3.inspireplu.version}</version>
+      <type>war</type>
+    </dependency>
+  </dependencies>
+
+</project>
