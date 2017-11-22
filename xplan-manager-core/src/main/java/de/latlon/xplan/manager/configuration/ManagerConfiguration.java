@@ -55,6 +55,8 @@ public class ManagerConfiguration {
 
     static final String WORKSPACE_RELOAD_PASSWORD = "workspaceReloadPassword";
 
+    static final String PATH_TO_HALE_CLI = "pathToHaleCli";
+
     private static final Logger LOG = LoggerFactory.getLogger( ManagerConfiguration.class );
 
     private static final String MANAGER_CONFIGURATION = "managerConfiguration.properties";
@@ -80,6 +82,8 @@ public class ManagerConfiguration {
     private SemanticConformityLinkConfiguration semanticConformityLinkConfiguration = new SemanticConformityLinkConfiguration();
 
     private Path configDirectory;
+
+    private String pathToHaleCli;
 
     public ManagerConfiguration( PropertiesLoader propertiesLoader ) throws ConfigurationException {
         loadProperties( propertiesLoader );
@@ -166,6 +170,13 @@ public class ManagerConfiguration {
         return configDirectory;
     }
 
+    /**
+     * @return the absolute path to the hale cle
+     */
+    public String getPathToHaleCli() {
+        return pathToHaleCli;
+    }
+
     private void loadProperties( PropertiesLoader propertiesLoader )
                     throws ConfigurationException {
         if ( propertiesLoader != null ) {
@@ -186,6 +197,7 @@ public class ManagerConfiguration {
                 internalIdRetrieverConfiguration = parseInternalIdRetrieverConfiguration( loadProperties );
                 parseSortConfiguration( loadProperties );
                 parseSemanticConformityLinkConfiguration( loadProperties );
+                pathToHaleCli = loadProperties.getProperty( PATH_TO_HALE_CLI );
             }
             configDirectory = getConfigDirectory( propertiesLoader );
         }
@@ -220,6 +232,8 @@ public class ManagerConfiguration {
         LOG.info( "   - internalName label: {}", internalIdRetrieverConfiguration.getInternalNameLabel() );
         LOG.info( "   - SQL Matching Ids: {}", internalIdRetrieverConfiguration.getSelectMatchingIdsSql() );
         LOG.info( "   - SQL All: {}", internalIdRetrieverConfiguration.getSelectAllSql() );
+        LOG.info( "-------------------------------------------" );
+        LOG.info( "  path to HALE CLI: {}", pathToHaleCli );
         LOG.info( "-------------------------------------------" );
         sortConfiguration.logConfiguration( LOG );
         LOG.info( "-------------------------------------------" );
@@ -359,5 +373,4 @@ public class ManagerConfiguration {
             return defaultValue;
         return Boolean.parseBoolean( property );
     }
-
 }
