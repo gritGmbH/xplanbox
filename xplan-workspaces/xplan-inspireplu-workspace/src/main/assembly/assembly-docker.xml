@@ -8,7 +8,7 @@
   <fileSets>
     <fileSet>
       <directory>${basedir}/src/main/workspace</directory>
-      <outputDirectory>/</outputDirectory>
+      <outputDirectory>.</outputDirectory>
       <filtered>true</filtered>
       <includes>
         <include>**/*.properties</include>
@@ -18,7 +18,7 @@
     </fileSet>
     <fileSet>
       <directory>${basedir}/src/main/workspace</directory>
-      <outputDirectory>/</outputDirectory>
+      <outputDirectory>.</outputDirectory>
       <filtered>false</filtered>
       <excludes>
         <exclude>**/*.properties</exclude>
