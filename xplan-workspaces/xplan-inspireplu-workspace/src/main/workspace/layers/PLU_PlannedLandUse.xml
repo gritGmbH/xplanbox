@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureLayers xmlns="http://www.deegree.org/layers/feature"
+               xmlns:l="http://www.deegree.org/layers/base"
+               xmlns:d="http://www.deegree.org/metadata/description"
+               xmlns:s="http://www.deegree.org/metadata/spatial"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://www.deegree.org/layers/feature http://schemas.deegree.org/layers/feature/3.4.0/feature.xsd"
+               configVersion="3.4.0">
+
+  <FeatureStoreId>plu_canonical</FeatureStoreId>
+
+  <FeatureLayer>
+    <l:Name>LU.SpatialPlan</l:Name>
+    <d:Title>LU.SpatialPlan</d:Title>
+    <s:CRS>EPSG:4258 EPSG:4326 EPSG:900913 EPSG:28992</s:CRS>
+    <l:MetadataSetId>SpatialPlan</l:MetadataSetId>
+    <l:StyleRef>
+      <l:StyleStoreId>LU_SpatialPlan_Default</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>LandUse.SpatialPlan.Default</l:StyleName>
+        <l:LayerNameRef>LandUse.SpatialPlan.Default</l:LayerNameRef>
+        <l:StyleNameRef>LandUse.SpatialPlan.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <l:Name>LU.ZoningElement</l:Name>
+    <d:Title>LU.ZoningElement</d:Title>
+    <s:CRS>EPSG:4258 EPSG:4326 EPSG:900913 EPSG:28992</s:CRS>
+    <l:MetadataSetId>ZoningElement</l:MetadataSetId>
+    <l:StyleRef>
+      <l:StyleStoreId>LU_ZoningElement_Default</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>LU.ZoningElement.Default</l:StyleName>
+        <l:LayerNameRef>LU.ZoningElement.Default</l:LayerNameRef>
+        <l:StyleNameRef>LU.ZoningElement.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <l:Name>LU.SupplementaryRegulation</l:Name>
+    <d:Title>LU.SupplementaryRegulation</d:Title>
+    <s:CRS>EPSG:4258 EPSG:4326 EPSG:900913 EPSG:28992</s:CRS>
+    <l:MetadataSetId>SupplementaryRegulation</l:MetadataSetId>
+    <l:StyleRef>
+      <l:StyleStoreId>LU_SupplementaryRegulation_Default</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>LandUse.SupplementaryRegulation.Default</l:StyleName>
+        <l:LayerNameRef>LandUse.SupplementaryRegulation.Default</l:LayerNameRef>
+        <l:StyleNameRef>LandUse.SupplementaryRegulation.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+  </FeatureLayer>
+
+</FeatureLayers>
