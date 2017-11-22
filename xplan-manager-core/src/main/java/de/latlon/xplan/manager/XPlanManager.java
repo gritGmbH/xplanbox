@@ -662,6 +662,16 @@ public class XPlanManager {
         sortPropertyUpdater.updateSortProperty();
     }
 
+    /**
+     * Transforms the plans with the passed ID to INSPIRE PLU and imports them in the INSPIRE Download Service for PLU.
+     * 
+     * @param id
+     *            the id of the plan to transform and publish
+     */
+    public void publishPlu( String id ) {
+        System.out.println( "TODO: Transformation to INSPIRE PLU" );
+    }
+
     private void createRasterConfigurations( XPlanArchive archive, boolean makeWMSConfig, boolean makeRasterConfig,
                                              File workspaceFolder, XPlanFeatureCollection fc, int planId,
                                              PlanStatus planStatus, Date sortDate )

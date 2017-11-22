@@ -402,6 +402,25 @@ public class ManagerController {
         }
     }
 
+
+    @RequestMapping(value = "/plu/plan/{planId}", method = GET)
+    @ResponseBody
+    // @formatter:off
+    public void publishPlu( @PathVariable String planId,
+                            @Context HttpServletResponse response )
+                            throws Exception {
+        // @formatter:on
+        response.addHeader( "Expires", "-1" );
+        LOG.info( "Publish plan with id {} as INSPIRE dataset.", planId );
+        try {
+            manager.publishPlu( planId );
+        } catch ( Exception e ) {
+            String message = BUNDLE.getString( "publishingPluFailed" ) + ": " + e.getMessage();
+            LOG.error( message, e );
+            throw e;
+        }
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
