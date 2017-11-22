@@ -49,6 +49,7 @@ import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.persistence.FeatureStore;
 import org.deegree.feature.persistence.FeatureStoreException;
 import org.deegree.feature.persistence.FeatureStoreProvider;
+import org.deegree.feature.persistence.FeatureStoreTransaction;
 import org.deegree.feature.persistence.query.Query;
 import org.deegree.feature.persistence.sql.SQLFeatureStoreTransaction;
 import org.deegree.feature.types.AppSchema;
@@ -58,6 +59,7 @@ import org.deegree.geometry.Geometry;
 import org.deegree.geometry.io.WKTReader;
 import org.deegree.geometry.io.WKTWriter;
 import org.deegree.protocol.wfs.getfeature.TypeName;
+import org.deegree.protocol.wfs.transaction.action.IDGenMode;
 import org.deegree.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -135,6 +137,8 @@ public class XPlanDao {
     private static final String XPLAN41ARCHIVE_NSM_FS_ID = "xplan41nsmarchive";
 
     private static final String XPLANSYNARCHIVE_FS_ID = "xplansynarchive";
+
+    private static final String INSPIREPLU_FS_ID = "inspireplu";
 
     private final Workspace ws;
 
@@ -215,6 +219,19 @@ public class XPlanDao {
             throw new Exception( "Fehler beim Einfügen: " + e.getMessage(), e );
         } finally {
             closeQuietly( conn );
+        }
+    }
+
+    public void insertInspirePlu( FeatureCollection featureCollection )
+                            throws Exception {
+        try {
+            LOG.info( "Insert INSPIRE PLU dataset" );
+            FeatureStore inspirePluStore = lookupStore( INSPIREPLU_FS_ID );
+            FeatureStoreTransaction transaction = inspirePluStore.acquireTransaction();
+
+            transaction.performInsert( featureCollection, IDGenMode.GENERATE_NEW );
+        } catch ( FeatureStoreException e ) {
+            throw new Exception( "Fehler beim Einfügen des INSPIRE PLU Datensatz: " + e.getMessage(), e );
         }
     }
 

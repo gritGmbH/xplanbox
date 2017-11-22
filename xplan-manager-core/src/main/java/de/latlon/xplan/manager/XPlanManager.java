@@ -34,6 +34,7 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
+import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.xml.XMLParsingException;
@@ -134,6 +135,8 @@ public class XPlanManager {
     private final SortPropertyReader sortPropertyReader;
 
     private final SortPropertyUpdater sortPropertyUpdater;
+    
+    private final InspirePluPublisher inspirePluPublisher;
 
     public XPlanManager() throws Exception {
         this( null, new XPlanArchiveCreator(), null, null );
@@ -192,6 +195,8 @@ public class XPlanManager {
             this.xPlanSynthesizer = new XPlanSynthesizer( managerConfiguration.getConfigurationDirectory() );
         else
             this.xPlanSynthesizer = new XPlanSynthesizer();
+        // TODO
+        this.inspirePluPublisher = null;
     }
 
     public XPlanArchive analyzeArchive( String fileName )
@@ -665,11 +670,15 @@ public class XPlanManager {
     /**
      * Transforms the plans with the passed ID to INSPIRE PLU and imports them in the INSPIRE Download Service for PLU.
      * 
-     * @param id
+     * @param planId
      *            the id of the plan to transform and publish
      */
-    public void publishPlu( String id ) {
-        System.out.println( "TODO: Transformation to INSPIRE PLU" );
+    public void publishPlu( String planId )
+                            throws Exception {
+        if ( inspirePluPublisher == null )
+            LOG.warn( "Transformation and publishing INSPIRE PLU datasets is not supported" );
+        else
+            inspirePluPublisher.transformAndPublish( planId );
     }
 
     private void createRasterConfigurations( XPlanArchive archive, boolean makeWMSConfig, boolean makeRasterConfig,
