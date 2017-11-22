@@ -22,6 +22,8 @@ public class ManagerWebConfiguration implements Serializable {
 
     private boolean editorActivated;
 
+    private boolean publishingInspirePluActivated;
+
     private String crsDialogDefaultCrs;
 
     private String[] crsDialogChooseCrs;
@@ -32,7 +34,7 @@ public class ManagerWebConfiguration implements Serializable {
      * Instantiates a {@link ManagerWebConfiguration} with default values.
      */
     public ManagerWebConfiguration() {
-        this( false, false, false, false, null, new String[] {}, new String[] {} );
+        this( false, false, false, false, false, null, new String[] {}, new String[] {} );
     }
 
     /**
@@ -55,12 +57,13 @@ public class ManagerWebConfiguration implements Serializable {
      */
     public ManagerWebConfiguration( boolean internalIdActivated, boolean legislationStatusActivated,
                                     boolean validityPeriodActivated, boolean editorActivated,
-                                    String crsDialogDefaultCrs, String[] crsDialogChooseCrs,
-                                    String[] categoryFilterValues ) {
+                                    boolean publishingInspirePluActivated, String crsDialogDefaultCrs,
+                                    String[] crsDialogChooseCrs, String[] categoryFilterValues ) {
         this.internalIdActivated = internalIdActivated;
         this.legislationStatusActivated = legislationStatusActivated;
         this.validityPeriodActivated = validityPeriodActivated;
         this.editorActivated = editorActivated;
+        this.publishingInspirePluActivated = publishingInspirePluActivated;
         this.crsDialogDefaultCrs = crsDialogDefaultCrs;
         this.crsDialogChooseCrs = crsDialogChooseCrs;
         this.categoryFilterValues = categoryFilterValues;
@@ -99,6 +102,14 @@ public class ManagerWebConfiguration implements Serializable {
     }
 
     /**
+     * @return <code>true</code> if publishing of plans as INSPIRE PLU datasets is activated, <code>false</code>
+     *         otherwise
+     */
+    public boolean isPublishingInspirePluActivated() {
+        return publishingInspirePluActivated;
+    }
+
+    /**
      * @return default crs of the crs dialog, never <code>null</code>
      */
     public String getCrsDialogDefaultCrs() {
@@ -134,6 +145,7 @@ public class ManagerWebConfiguration implements Serializable {
         result = prime * result + ( internalIdActivated ? 1231 : 1237 );
         result = prime * result + ( legislationStatusActivated ? 1231 : 1237 );
         result = prime * result + ( validityPeriodActivated ? 1231 : 1237 );
+        result = prime * result + ( publishingInspirePluActivated ? 1231 : 1237 );
         return result;
     }
 
@@ -163,7 +175,8 @@ public class ManagerWebConfiguration implements Serializable {
             return false;
         if ( validityPeriodActivated != other.validityPeriodActivated )
             return false;
+        if ( publishingInspirePluActivated != other.publishingInspirePluActivated )
+            return false;
         return true;
     }
-
 }

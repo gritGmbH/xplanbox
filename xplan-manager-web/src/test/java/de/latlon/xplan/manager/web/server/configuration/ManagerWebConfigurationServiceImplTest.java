@@ -95,7 +95,7 @@ public class ManagerWebConfigurationServiceImplTest {
     }
 
     private static ManagerWebConfiguration createManagerWbConfig() {
-        return new ManagerWebConfiguration( true, true, true,true, "EPSG:25832", new String[] { "EPSG:25832" },
+        return new ManagerWebConfiguration( true, true, true,true, true, "EPSG:25832", new String[] { "EPSG:25832" },
                         new String[] { "Testdorf" } );
     }
 

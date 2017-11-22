@@ -211,7 +211,8 @@ public class PlanListPanel extends DecoratorPanel {
         if ( configuration.isEditorActivated() )
             addEditColumn( planList, actionHeader );
         addPreviewColumn( planList, actionHeader );
-        addPublishPluColumn( planList, actionHeader );
+        if ( configuration.isPublishingInspirePluActivated() )
+            addPublishPluColumn( planList, actionHeader );
         addDownloadColumn( planList, actionHeader );
         addRemoveColumn( planList, actionHeader );
     }
