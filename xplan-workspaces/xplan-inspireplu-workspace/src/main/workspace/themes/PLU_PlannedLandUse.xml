@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Themes xmlns="http://www.deegree.org/themes/standard"
+        xmlns:d="http://www.deegree.org/metadata/description"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.deegree.org/themes/standard http://schemas.deegree.org/themes/3.4.0/themes.xsd"
+        configVersion="3.4.0">
+
+  <LayerStoreId>PLU_PlannedLandUse</LayerStoreId>
+
+  <Theme>
+    <d:Title>INSPIRE Planned Land Use</d:Title>
+    <Theme>
+      <Identifier>LU.SpatialPlan</Identifier>
+      <d:Title>LU.SpatialPlan</d:Title>
+      <d:Keywords>
+        <d:Keyword>Land Use</d:Keyword>
+        <d:Keyword>Spatial Plan</d:Keyword>
+      </d:Keywords>
+      <Layer>LU.SpatialPlan</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>LU.ZoningElement</Identifier>
+      <d:Title>LU.ZoningElement</d:Title>
+      <d:Keywords>
+        <d:Keyword>Land Use</d:Keyword>
+        <d:Keyword>Spatial Plan</d:Keyword>
+        <d:Keyword>zoning</d:Keyword>
+      </d:Keywords>
+      <Layer>LU.ZoningElement</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>LU.SupplementaryRegulation</Identifier>
+      <d:Title>LU.SupplementaryRegulation</d:Title>
+      <d:Keywords>
+        <d:Keyword>Land Use</d:Keyword>
+        <d:Keyword>Spatial Plan</d:Keyword>
+        <d:Keyword>regulation zone</d:Keyword>
+      </d:Keywords>
+      <Layer>LU.SupplementaryRegulation</Layer>
+    </Theme>
+  </Theme>
+
+</Themes>
