@@ -68,7 +68,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-inspire-plu</artifactId>
+      <artifactId>xplan-inspireplu</artifactId>
       <version>2.6-SNAPSHOT</version>
     </dependency>
     <dependency>

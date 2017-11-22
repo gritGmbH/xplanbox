@@ -48,7 +48,7 @@
     <module>xplan-update-database</module>
     <module>xplan-root</module>
     <module>xplan-sql-scripts</module>
-    <module>xplan-inspire-plu</module>
+    <module>xplan-inspireplu</module>
   </modules>
 
   <profiles>
