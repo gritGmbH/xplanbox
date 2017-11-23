@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <se:FeatureTypeStyle version="1.1.0" xmlns:se="http://www.opengis.net/se"
                      xmlns:ogc="http://www.opengis.net/ogc"
+                     xmlns:plu="http://inspire.ec.europa.eu/schemas/plu/4.0"
                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                      xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <se:Name>LandUse.ZoningElement.Default</se:Name>
@@ -10,7 +11,7 @@
       from HILUCS level 1 nomenclature and their boundaries as black lines of 2 pixels...
     </se:Abstract>
   </se:Description>
-  <se:FeatureTypeName>ZoningElement</se:FeatureTypeName>
+  <se:FeatureTypeName>plu:ZoningElement</se:FeatureTypeName>
   <se:Rule>
     <se:LineSymbolizer>
       <se:Geometry>
