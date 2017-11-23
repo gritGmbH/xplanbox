@@ -224,13 +224,16 @@ public class XPlanDao {
 
     public void insertInspirePlu( FeatureCollection featureCollection )
                             throws Exception {
+        FeatureStoreTransaction transaction = null;
         try {
             LOG.info( "Insert INSPIRE PLU dataset" );
             FeatureStore inspirePluStore = lookupStore( INSPIREPLU_FS_ID );
-            FeatureStoreTransaction transaction = inspirePluStore.acquireTransaction();
+            transaction = inspirePluStore.acquireTransaction();
 
             transaction.performInsert( featureCollection, IDGenMode.GENERATE_NEW );
+            transaction.commit();
         } catch ( FeatureStoreException e ) {
+            rollbackTransaction( transaction, e );
             throw new Exception( "Fehler beim Einfügen des INSPIRE PLU Datensatz: " + e.getMessage(), e );
         }
     }
@@ -1420,6 +1423,17 @@ public class XPlanDao {
             return new java.sql.Date( dateToConvert.getTime() );
         }
         return null;
+    }
+
+    private void rollbackTransaction( FeatureStoreTransaction transaction, FeatureStoreException e ) {
+        if ( transaction != null )
+            try {
+                transaction.rollback();
+            } catch ( FeatureStoreException fse ) {
+                LOG.warn( "Rollback failed: " + e.getMessage() );
+                LOG.trace( "Rollback failed.", e );
+
+            }
     }
 
     private class XPlanMetadata {
