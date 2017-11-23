@@ -16,8 +16,8 @@
         <ogc:PropertyName>extent</ogc:PropertyName>
       </se:Geometry>
       <se:Stroke>
-        <se:SvgParameter name="stroke">#FF0033</se:SvgParameter>
-        <se:SvgParameter name="stroke-width">4</se:SvgParameter>
+        <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
       </se:Stroke>
     </se:LineSymbolizer>
   </se:Rule>

@@ -12,16 +12,142 @@
     </se:Abstract>
   </se:Description>
   <se:FeatureTypeName>plu:ZoningElement</se:FeatureTypeName>
+
+  <!--PrimaryProduction-->
   <se:Rule>
-    <se:LineSymbolizer>
+    <se:Name>Primary  Production</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
+        <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/1_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:PolygonSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>geometry</ogc:PropertyName>
+        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
       </se:Geometry>
+      <se:Fill>
+        <se:SvgParameter name="fill">#B4E66E</se:SvgParameter>
+      </se:Fill>
       <se:Stroke>
-        <se:SvgParameter name="stroke">#FF0033</se:SvgParameter>
-        <se:SvgParameter name="stroke-width">4</se:SvgParameter>
+        <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
       </se:Stroke>
-    </se:LineSymbolizer>
+    </se:PolygonSymbolizer>
   </se:Rule>
 
+  <!--SecondaryProduction-->
+  <se:Rule>
+    <se:Name>Secondary Production</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
+        <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/2_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:PolygonSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Fill>
+        <se:SvgParameter name="fill">#646464</se:SvgParameter>
+      </se:Fill>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:PolygonSymbolizer>
+  </se:Rule>
+
+  <!--TertiaryProduction-->
+  <se:Rule>
+    <se:Name>Tertiary Production</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
+        <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/3_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:PolygonSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Fill>
+        <se:SvgParameter name="fill">#969696</se:SvgParameter>
+      </se:Fill>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:PolygonSymbolizer>
+  </se:Rule>
+
+  <!--TransportNetworkdLogisticsAndUtilities-->
+  <se:Rule>
+    <se:Name>Transport Networkd Logistics AndU tilities</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
+        <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/4_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:PolygonSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Fill>
+        <se:SvgParameter name="fill">#B478F0</se:SvgParameter>
+      </se:Fill>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:PolygonSymbolizer>
+  </se:Rule>
+
+  <!--ResidentialUse-->
+  <se:Rule>
+    <se:Name>Residential Use</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
+        <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/5_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:PolygonSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Fill>
+        <se:SvgParameter name="fill">#F07864</se:SvgParameter>
+      </se:Fill>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:PolygonSymbolizer>
+  </se:Rule>
+
+  <!--OtherUses-->
+  <se:Rule>
+    <se:Name>Other Uses</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
+        <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/6_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:PolygonSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Fill>
+        <se:SvgParameter name="fill">#DCDCDC</se:SvgParameter>
+      </se:Fill>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:PolygonSymbolizer>
+  </se:Rule>
 </se:FeatureTypeStyle>
