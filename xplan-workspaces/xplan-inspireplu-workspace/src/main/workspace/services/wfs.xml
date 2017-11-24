@@ -8,7 +8,7 @@
   </SupportedVersions>
 
   <!-- Add here the list of FeatureStores following the naming convention <featureStoreId>.xml -->
-  <FeatureStoreId>plu_canonical</FeatureStoreId>
+  <FeatureStoreId>inspireplu</FeatureStoreId>
 
   <EnableTransactions>true</EnableTransactions>
 

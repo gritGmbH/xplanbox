@@ -8,7 +8,7 @@
   <MetadataURLTemplate>http://discovery.eu/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;id=${metadataSetId}&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full</MetadataURLTemplate>
 
   <ServiceConfiguration>
-    <ThemeId>PLU_PlannedLandUse</ThemeId>
+    <ThemeId>inspireplu</ThemeId>
   </ServiceConfiguration>
 
   <ExtendedCapabilities>
