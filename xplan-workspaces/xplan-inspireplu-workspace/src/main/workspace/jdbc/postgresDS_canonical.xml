@@ -9,9 +9,9 @@
 
     <!-- Configuration of DataSource properties -->
     <Property name="driverClassName" value="org.postgresql.Driver"/>
-    <Property name="url" value="jdbc:postgresql://deegree3workshopdb:5432/plu_canonical"/>
-    <Property name="username" value="deegree"/>
-    <Property name="password" value="deegree"/>
+    <Property name="url" value="${inspireplu.jdbc.url}"/>
+    <Property name="username" value="${inspireplu.jdbc.user}"/>
+    <Property name="password" value="${inspireplu.jdbc.password}"/>
     <Property name="initialSize" value="10"/>
     <Property name="maxActive" value="20"/>
     <Property name="maxIdle" value="10"/>
