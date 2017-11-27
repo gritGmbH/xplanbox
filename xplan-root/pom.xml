@@ -19,7 +19,7 @@
           <execution>
             <id>root</id>
             <goals>
-              <goal>attached</goal>
+              <goal>single</goal>
             </goals>
             <configuration>
               <descriptors>
@@ -32,7 +32,7 @@
           <execution>
             <id>default</id>
             <goals>
-              <goal>attached</goal>
+              <goal>single</goal>
             </goals>
             <configuration>
               <filters>
@@ -48,7 +48,7 @@
           <execution>
             <id>docker</id>
             <goals>
-              <goal>attached</goal>
+              <goal>single</goal>
             </goals>
             <configuration>
               <filters>

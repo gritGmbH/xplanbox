@@ -36,10 +36,6 @@
       <groupId>org.mockito</groupId>
       <artifactId>mockito-all</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.deegree</groupId>
-      <artifactId>deegree-core-layer</artifactId>
-    </dependency>
   </dependencies>
 
 </project>

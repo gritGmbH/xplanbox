@@ -29,7 +29,7 @@
             <execution>
               <id>zip</id>
               <goals>
-                <goal>attached</goal>
+                <goal>single</goal>
               </goals>
               <configuration>
                 <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
@@ -43,7 +43,7 @@
             <execution>
               <id>zip-default</id>
               <goals>
-                <goal>attached</goal>
+                <goal>single</goal>
               </goals>
               <configuration>
                 <filters>
@@ -60,7 +60,7 @@
             <execution>
               <id>dir-docker</id>
               <goals>
-                <goal>attached</goal>
+                <goal>single</goal>
               </goals>
               <configuration>
                 <filters>
