@@ -5,7 +5,6 @@ MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
 # set environment variables
 ENV JAVA_OPTS="-Xmx8192m"
-ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
 # install java
 RUN apt-get -y remove openjdk-8-jre-headless
