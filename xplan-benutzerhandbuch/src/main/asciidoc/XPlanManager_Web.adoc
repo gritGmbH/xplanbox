@@ -7,7 +7,7 @@ kontrollieren und zu verwalten. Mit dem XPlanManagerWeb kann der Benutzer ein XP
 Instanzdokumente in die Datenhaltung laden, editieren, löschen sowie
 bereits importiere XPlanArchive in einer Liste anzeigen.
 
-[[benutzungsanleitung]]
+[[xplanmanager-web-benutzungsanleitung]]
 ==== Benutzungsanleitung
 
 Die Webanwendung XPlanManagerWeb dient der Verwaltung von XPlanGML
@@ -19,13 +19,13 @@ http://${xplanbox.host}:${xplanbox.port}/xplan-manager/
 
 verfügbar und kann mit einem gängigen Web-Browser aufgerufen werden.
 
-[[hilfe]]
+[[xplanmanager-web-hilfe]]
 ===== Hilfe
 
 Die Hilfe mit den Angaben zu den möglichen Funktionen lässt sich durch
 Betätigen des Buttons _Hilfe_ ausgeben.
 
-[[hinzufuegen]]
+[[xplanmanager-web-hinzufuegen]]
 ===== Hinzufügen
 
 Vor dem Importieren eines XPlanGML Instanzdokumentes in die Datenbasis,
@@ -40,7 +40,7 @@ validiert bzw. entfernt werden. Erst nachdem der Plan erfolgreich
 validiert wurde, kann der Plan in die Datenbasis importiert werden.
 Andernfalls ist der Button _Import_ deaktiviert.
 
-[[import]]
+[[xplanmanager-web-import]]
 ===== Import
 
 Nachdem der Plan erfolgreich validiert wurde, kann der Plan durch einen
@@ -48,7 +48,7 @@ Klick auf den Button _Import_ in die Datenbasis importiert werden. Der
 Benutzer wird über den erfolgreichen bzw. fehlerhaften Import des Plans
 in Form eines PopUps informiert.
 
-[[auflistung]]
+[[xplanmanager-web-auflistung]]
 ===== Auflistung
 
 Standardmäßig werden alle importierten Pläne in einer Liste angezeigt.
@@ -57,7 +57,7 @@ __sonstige Planart__, dem __Rechtsstand__, dem
 __Veröffentlichungsdatum__, dem _Importdatum_ oder nach dem _Planstatus_
 auf- oder absteigend sortiert werden.
 
-[[kartenvorschau]]
+[[xplanmanager-web-kartenvorschau]]
 ===== Kartenvorschau
 
 Durch den Klick auf den Button _Kartenvorschau_ öffnet sich ein neues
@@ -65,7 +65,7 @@ Fenster, indem der XPlan visualisiert wird. Im Hintergrund befindet sich
 eine Hintergrundkarte. Durch den Klick auf _Schließen_ wird die
 Kartenvorschau wieder geschlossen.
 
-[[herunterladen]]
+[[xplanmanager-web-herunterladen]]
 ===== Herunterladen
 
 Die importierten Pläne können vom Benutzer durch den Klick auf den
@@ -78,7 +78,7 @@ Je nach Benutzerrechten können die importierten Pläne durch den Klick
 auf den Button _Löschen_ aus der Datenbasis gelöscht werden. Hat ein
 Benutzer keine Rechte, so wird der Button grau dargestellt.
 
-[[editieren]]
+[[xplanmanager-web-editieren]]
 ===== Editieren
 
 Abhängig von den Benutzerrechten können Pläne editiert werden. Fehlen dem Benutzer

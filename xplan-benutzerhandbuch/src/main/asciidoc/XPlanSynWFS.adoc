@@ -6,7 +6,7 @@ XPlanGML Anwendungsschemas (XPlanSynGML). Dieses stellt eine
 vereinfachte und zusammenfassende Form der verschiedenen XPlanGML
 Versionen dar.
 
-[[benutzung-des-xplansynwfs]]
+[[xplansynwfs-benutzung-des-xplansynwfs]]
 === Benutzung des XPlanSynWFS
 
 Die folgende Tabelle fasst die vom XPlanSynWFS unterstützten Operationen
@@ -24,48 +24,48 @@ die die o.g. Versionen für OGC WFS Dienste unterstützen.
 |DescribeFeatureType |Abfrage der Struktur von Objektarten
 |=========================================================
 
-[[adresse-des-dienstes]]
+[[xplansynwfs-adresse-des-dienstes]]
 ==== Adresse des Dienstes
 
 ----
 http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?
 ----
 
-[[beispielanfragen]]
+[[xplansynwfs-beispielanfragen]]
 ==== Beispielanfragen
 
 
-[[getcapabilities]]
+[[xplansynwfs-getcapabilities]]
 ===== GetCapabilities
 
 ----
 http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetCapabilities&Service=WFS&Version=1.1.0
 ----
 
-[[getfeature]]
+[[xplansynwfs-getfeature]]
 ===== GetFeature
 
 ----
 http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetFeature&Service=WFS&Version=1.1.0&typename=xplan:BP_Bereich
 ----
 
-[[describefeaturetype]]
+[[xplansynwfs-describefeaturetype]]
 ===== DescribeFeatureType
 
 ----
 http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=DescribeFeatureType&Service=WFS&Version=1.1.0
 ----
 
-[[inhalte-des-datendienstes]]
+[[xplansynwfs-inhalte-des-datendienstes]]
 === Inhalte des Datendienstes
 
-[[operationen]]
+[[xplansynwfs-operationen]]
 === Operationen
 
 Das folgende Kapitel beschreibt die Operationen, die mit dem XPlanSynWFS
 durchführbar sind.
 
-[[getcapabilities-1]]
+[[xplansynwfs-getcapabilities-1]]
 ==== GetCapabilities
 
 Die GetCapabilities Abfrage dient der Auskunft über die Fähigkeiten des
@@ -73,7 +73,7 @@ WFS Dienstes. Dabei handelt es sich beispielsweise um Informationen zum
 Dienstbetreiber, zu den unterstützten Operationen sowie den durch den
 WFS angebotenen Objektarten.
 
-[[getfeature-1]]
+[[xplansynwfs-getfeature-1]]
 ==== GetFeature
 
 Die Operation GetFeature stellt die Kernfunktionalität des XPlanSynWFS
@@ -81,13 +81,13 @@ dar. Die Operation ermöglicht es, die angebotenen Ebene zu den
 Planinhalten mit GIS Clients zu nutzen, die die Schnittstellen WFS 1.1.0
 bzw. WFS 2.0.0 unterstützen.
 
-[[describefeaturetype-1]]
+[[xplansynwfs-describefeaturetype-1]]
 ==== DescribeFeatureType
 
 Die Operation DescribeFeatureType gibt Informationen zur Struktur der
 einzelnen Feature Types wieder.
 
-[[koordinatenreferenzsysteme]]
+[[xplansynwfs-koordinatenreferenzsysteme]]
 === Koordinatenreferenzsysteme
 
 Der XPlanSynWFS unterstützt die folgenden
