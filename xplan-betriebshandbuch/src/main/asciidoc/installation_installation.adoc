@@ -36,7 +36,7 @@ ____________________
 * _xplan-wms.war_ (XPlanWMS)
 * _xplan-wfs.war_ (XPlanWFS)
 * _xplansyn-wfs.war_ (XPlanSynWFS)
-* _xplansyn-inspireplu.war_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
+* _xplan-inspireplu.war_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
 ____________________
 
 Die WAR-Archive der Anwendungskomponenten werden über eine

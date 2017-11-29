@@ -43,6 +43,7 @@ Alternativ zum Aufsetzen über das XPlanManagerCLI kann die Datenbank auch manue
  ** _.deegree/xplan-wfs-workspace/jdbc/xplan.xml_
  ** _.deegree/xplan-manager-workspace/jdbc/xplan.xml_
 
+[[aufsetzen-plu-db-schema]]
 ==== Manuelles Aufsetzen der Datenbank für die Bereitstellung von INSPIRE PLU
 
 Für die Bereitstellung von Plänen, die vom XPlanManager verwaltet werden, als INSPIRE PLU konforme Datensätze ist eine weitere Datenbank erforderlich. Diese kann aktuell nur manuell aufgesetzt werden. Es müssen die folgende Schritte ausgeführt werden:

@@ -22,7 +22,7 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
  ** xplansyn-wfs-workspace-<VERSION>.zip
  ** xplansyn-wms-workspace-<VERSION>.zip
  ** xplan-wfs-workspace-<VERSION>.zip
- ** xplan-inspireplu-workspace-<VERSION>.war
+ ** xplan-inspireplu-workspace-<VERSION>.zip
 
  * Dokumentation (im Verzeichnis _documentation/manuals_)
  ** xPlanBox-Benutzerhandbuch.pdf
