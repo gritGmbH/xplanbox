@@ -72,7 +72,7 @@ Die importierten Pläne können vom Benutzer durch den Klick auf den
 Button _Herunterladen_ wieder als XPlanArchiv heruntergeladen werden.
 
 [[loeschen]]
-==== Löschen
+===== Löschen
 
 Je nach Benutzerrechten können die importierten Pläne durch den Klick
 auf den Button _Löschen_ aus der Datenbasis gelöscht werden. Hat ein
