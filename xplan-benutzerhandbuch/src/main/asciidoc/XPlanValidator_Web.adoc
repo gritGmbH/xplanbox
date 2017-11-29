@@ -1,4 +1,4 @@
-[XPlanValidator Web]
+[[xplanvalidator-web]]
 === XPlanValidatorWeb
 
 Die Komponente XPlanValidatorWeb ist eine Web-Oberfläche, welche dem

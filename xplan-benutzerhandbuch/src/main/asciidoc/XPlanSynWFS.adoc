@@ -1,4 +1,4 @@
-[XPlanSynWFS]
+[[xplansynwfs]]
 == XPlanSynWFS
 
 Der XPlanSynWFS dient der Abbildung des synthetisierten

@@ -1,4 +1,4 @@
-[XPlanManager CLI]
+[[xplanmanager-cli]]
 === XPlanManagerCLI
 
 Die Komponente XPlanManagerCLI ist ein Kommandozeilenwerkzeug, welches

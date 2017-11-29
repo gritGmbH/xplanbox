@@ -1,4 +1,4 @@
-[XPlanValidatorCLI]
+[[xplanvalidator-cli]]
 === XPlanValidatorCLI
 
 Die Komponente XPlanValidatorCLI ist ein Kommandozeilenwerkzeug,

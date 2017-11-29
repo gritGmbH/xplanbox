@@ -1,4 +1,4 @@
-[XPlanManagerWeb]
+[[xplanmanager-web]]
 === XPlanManagerWeb
 
 Die Komponente XPlanManagerWeb ist eine Web-Oberfläche, die dem

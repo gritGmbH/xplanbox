@@ -1,4 +1,4 @@
-[XPlanWFS]
+[[xplanwfs]]
 == XPlanWFS
 
 Der XPlanWFS ist ein auf dem Standard Web Feature Service

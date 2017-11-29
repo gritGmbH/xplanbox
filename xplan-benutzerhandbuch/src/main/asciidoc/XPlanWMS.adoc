@@ -1,4 +1,4 @@
-[XPlanWMS]
+[[xplanwms]]
 == XPlanWMS
 
 Der XPlanWMS ist ein auf dem Standard Web Map Service
