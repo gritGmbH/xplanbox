@@ -22,6 +22,10 @@ include::XPlanWFS.adoc[]
 
 include::XPlanSynWFS.adoc[]
 
+include::XPlanInspirePluWMS.adoc[]
+
+include::XPlanInspirePluWFS.adoc[]
+
 include::bekannteProbleme.adoc[]
 
 
