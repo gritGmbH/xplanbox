@@ -162,14 +162,14 @@ ___________________________________________
 [[aktualisierung-des-wms-workspaces-auf-die-version-2.4-der-xplanbox]]
 ===== Aktualisierung des WMS-Workspaces auf die Version 2.4 der xPlanBox
 
-Mit der Version 2.4 der xPlanBox wurde eine Möglichkeit eingeführt, die Ausgabe der Rasterdaten durch den XPlanWMSInAufstellung abhängig vom gesetzten Gültigkeitszeitraum steuern zu können. Dazu ist in Abschnitt  <<Gültigkeitszeitraum>> beschrieben, wie die Konfiguration im XPlanWMS und XPlanWMSArchive zu erfolgen hat. Bei einer Aktualisierung auf die Version 2.4 ist dieser Schritt für den XPlanWMSInAufstellung manuell durchzuführen, um die Standardkonfiguration wiederherzustellen. Dies ist nicht notwendig, wenn der Workspace des XPlanWMS vollständig durch die neue Version ausgetauscht wird.
+Mit der Version 2.4 der xPlanBox wurde eine Möglichkeit eingeführt, die Ausgabe der Rasterdaten durch den XPlanWMSInAufstellung abhängig vom gesetzten Gültigkeitszeitraum steuern zu können. Dazu ist in Abschnitt  <<gueltigkeitszeitraum>> beschrieben, wie die Konfiguration im XPlanWMS und XPlanWMSArchive zu erfolgen hat. Bei einer Aktualisierung auf die Version 2.4 ist dieser Schritt für den XPlanWMSInAufstellung manuell durchzuführen, um die Standardkonfiguration wiederherzustellen. Dies ist nicht notwendig, wenn der Workspace des XPlanWMS vollständig durch die neue Version ausgetauscht wird.
 
 [[aktualisierung-der-schemas]]
 === Aktualisierung des Datenbankschemas
 
 Achtung: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in das System importierten Daten beibehalten werden sollen.
 Für den Fall, dass dies nicht notwendig ist, muss lediglich die Datenbank neu aufgesetzt werden.
-Mehr Details hierzu finden Sie im Kapitel <<Konfiguration der Datenbank>>.
+Mehr Details hierzu finden Sie im Kapitel <<konfiguration-der-datenbank>>.
 
 Die Datenbankschemas jeder Version befinden sich im
 xplan-manager-workspace im Ordner sql und für jedes Schema gibt es dort

@@ -1,4 +1,4 @@
-[Standard-Koordinatenreferenzsystem (Import)]
+[[standard-crs-import]]
 === Standard-Koordinatenreferenzsystem (Import)
 
 [[vektordaten]]

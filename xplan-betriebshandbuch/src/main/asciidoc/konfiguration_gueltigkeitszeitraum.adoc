@@ -1,4 +1,4 @@
-[Gültigkeitszeitraum]
+[[gueltigkeitszeitraum]]
 === Gültigkeitszeitraum
 
 Der Dialog zur Angabe des Zeitraums, in dem ein Plan gültig ist, kann in

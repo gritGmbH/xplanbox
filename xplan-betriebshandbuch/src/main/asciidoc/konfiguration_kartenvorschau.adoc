@@ -1,4 +1,4 @@
-[Kartenvorschau]
+[[kartenvorschau]]
 === Kartenvorschau
 
 Die nachfolgenden Konfigurationen müssen in der Datei
