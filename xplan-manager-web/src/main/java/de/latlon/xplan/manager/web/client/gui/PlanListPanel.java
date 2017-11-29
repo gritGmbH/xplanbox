@@ -614,7 +614,7 @@ public class PlanListPanel extends DecoratorPanel {
 
     private void publishPlu( String id ) {
         final DialogBox publishingPlu = createAndShowDialogBox( messages.publishingPlu() );
-        ManagerService.Util.getService().publishPlan( id, new MethodCallback<Void>() {
+        ManagerService.Util.getService().publishPlan( id, new MethodCallback<Boolean>() {
 
             @Override
             public void onFailure( Method method, Throwable exception ) {
