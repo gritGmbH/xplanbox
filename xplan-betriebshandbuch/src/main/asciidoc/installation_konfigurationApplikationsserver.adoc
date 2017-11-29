@@ -27,7 +27,7 @@ konfigurierten Verzeichnis werden die log-Dateien der beiden Anwendungen
 abgelegt.
 __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
-[[linux]]
+[[anwendungs-tomcat-linux]]
 ===== Linux
 
 Für die Konfiguration der oben genannten Punkte muss zunächst im
@@ -46,7 +46,7 @@ Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, müssen
 *’-Dxplan.logdir=/home/xplanbox/logs’* in die bestehenden JAVA_OPTS
 integriert werden.
 
-[[windows]]
+[[anwendungs-tomcat-windows]]
 ===== Windows
 
 Für das Setzen der Variable _MANAGER_WEB_ sowie

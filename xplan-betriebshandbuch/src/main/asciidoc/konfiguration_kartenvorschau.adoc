@@ -5,7 +5,7 @@ Die nachfolgenden Konfigurationen müssen in der Datei
 _managerWebConfiguration.properties_ im Verzeichnis
 _~/.deegree/manager-configuration/_ angepasst werden.
 
-[[xplanwms]]
+[[kartenvorschau-xplanwms]]
 ==== XPlanWMS
 
 Um den XPlanWMS zu konfigurieren, muss der Wert des Schlüssels _wmsUrl_
