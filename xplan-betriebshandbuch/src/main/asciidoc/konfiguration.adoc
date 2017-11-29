@@ -37,6 +37,8 @@ include::konfiguration_ldap.adoc[]
 
 include::konfiguration_XPlanDienste.adoc[]
 
+include::konfiguration_inspireplu.adoc[]
+
 include::konfiguration_logging.adoc[]
 
 include::konfiguration_migration.adoc[]

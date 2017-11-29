@@ -69,6 +69,7 @@ Falls Sie mehr Details zu einem Aktualisierungsvorhaben vor Version 2.0 wünsche
 | 2.0              | ja                            | ja
 | 2.2              |                               | ja
 | 2.4              | ja                            |
+| 2.7              | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>) |
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -213,3 +214,12 @@ ausgewählte Versionen auf Anfrage zusammen mit der Liefereinheit
 bereitgestellt. Für professionelle Unterstützung bei ihrem
 Aktualisierungsvorhaben wenden Sie sich bitte an die
 http://www.lat-lon.de[lat/lon GmbH].
+
+[[aktualisierung-auf-die-version-2.7-der-xplanbox]]
+== Aktualisierung auf die Version 2.7 der xPlanBox
+
+Mit der Version 2.7 bietet die xPlanBox die Möglichkeit die vom XPlanManager verwalteten Pläne im Datenthema Planned Land Use (PLU) bereitzustellen. Um diese Option für eine bestehende Installation zu aktivieren, sind folgende Schritte notwendig:
+
+ * Aktualisierung von _xplan-manager-workspace_ und _xplan-manager-config_ (s. <<teilweise-aktualisierung>>).
+ * Installation von HALE CLI wie in <<installation-hale-cli>> beschrieben
+ * Konfiguration der neuen Option, wie in <<konfiguration-inspire-plu>> beschrieben
