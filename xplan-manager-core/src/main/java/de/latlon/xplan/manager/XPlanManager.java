@@ -691,15 +691,17 @@ public class XPlanManager {
     /**
      * Transforms the plans with the passed ID to INSPIRE PLU and imports them in the INSPIRE Download Service for PLU.
      * 
-     * @param planId
-     *            the id of the plan to transform and publish
+     * @param plan
+     *            plan to transform and publish
      */
-    public void publishPlu( String planId )
+    @PreAuthorize("hasPermission(#plan, 'hasDistrictPermission') or hasRole('ROLE_XPLAN_SUPERUSER')")
+    public void publishPlu( XPlan plan )
                             throws Exception {
         if ( inspirePluPublisher == null ) {
             LOG.warn( "Transformation and publishing INSPIRE PLU datasets is not supported" );
             throw new Exception( "Transformation and publishing INSPIRE PLU datasets is not supported" );
         } else {
+            String planId = plan.getId();
             inspirePluPublisher.transformAndPublish( planId );
         }
     }

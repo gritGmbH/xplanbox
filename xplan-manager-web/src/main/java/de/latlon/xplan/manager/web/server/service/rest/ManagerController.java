@@ -406,19 +406,27 @@ public class ManagerController {
     @RequestMapping(value = "/plu/plan/{planId}", method = GET)
     @ResponseBody
     // @formatter:off
-    public void publishPlu( @PathVariable String planId,
+    public boolean publishPlu( @PathVariable String planId,
                             @Context HttpServletResponse response )
                             throws Exception {
         // @formatter:on
         response.addHeader( "Expires", "-1" );
         LOG.info( "Publish plan with id {} as INSPIRE dataset.", planId );
+        if ( planId == null )
+            return false;
         try {
-            manager.publishPlu( planId );
+            int id = Integer.parseInt( planId );
+            XPlan plan = manager.getXPlanById( id );
+            if ( plan != null ) {
+                manager.publishPlu( plan );
+                return true;
+            }
         } catch ( Exception e ) {
             String message = BUNDLE.getString( "publishingPluFailed" ) + ": " + e.getMessage();
             LOG.error( message, e );
             throw e;
         }
+        return false;
     }
 
     @ExceptionHandler(Exception.class)
