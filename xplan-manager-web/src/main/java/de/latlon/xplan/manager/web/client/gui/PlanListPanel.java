@@ -629,11 +629,14 @@ public class PlanListPanel extends DecoratorPanel {
             }
 
             @Override
-            public void onSuccess( Method method, Void response ) {
+            public void onSuccess( Method method, Boolean isSuccessful ) {
                 reload( false );
                 if ( publishingPlu != null )
                     publishingPlu.hide();
-                Window.alert( messages.publishingPluSuccessful() );
+                if ( isSuccessful )
+                    Window.alert( messages.publishingPluSuccessful() );
+                else
+                    Window.alert( messages.publishingPluFailed() );
             }
         } );
     }

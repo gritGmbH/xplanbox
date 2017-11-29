@@ -376,4 +376,6 @@ public interface XPlanWebMessages extends Messages {
 
     String publishingPluSuccessful();
 
+    String publishingPluFailed();
+
 }

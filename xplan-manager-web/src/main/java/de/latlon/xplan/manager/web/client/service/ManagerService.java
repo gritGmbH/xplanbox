@@ -129,6 +129,6 @@ public interface ManagerService extends RestService {
 
     @GET
     @Path("/plu/plan/{planId}")
-    void publishPlan( @PathParam("planId") String planId, MethodCallback<Void> callback );
+    void publishPlan( @PathParam("planId") String planId, MethodCallback<Boolean> callback );
 
 }
