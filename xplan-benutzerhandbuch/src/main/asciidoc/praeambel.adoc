@@ -1,4 +1,4 @@
-[Präambel]
+[[praeambel]]
 == Präambel
 
 Dieses Dokument ist das offizielle Handbuch zur Benutzung

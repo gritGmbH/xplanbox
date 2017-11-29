@@ -10,7 +10,7 @@ GDAL-Bibliothek nur einmal geladen werden. Deswegen muss jede Webapp der
 xPlanBox, die GDAL verwendet (`xplan-wms` und `xplan-manager-web`) in
 getrennten Tomcat Instanzen deployt werden.
 
-[[linux]]
+[[installation-gdal-linux]]
 ==== Linux
 
 Für Ubuntu (14.04) kann GDAL aus einer Paketquelle installiert werden:
@@ -29,7 +29,7 @@ export LD_LIBRARY_PATH=/usr/lib/jni/
 NOTE: Die Umgebungsvariable "LD_LIBRARY_PATH" muss auf das Verzeichnis
 zeigen, in dem sich die Datei libgdaljni.so befindet.
 
-[[windows]]
+[[installation-gdal-windows]]
 ==== Windows
 
 GDAL für Windows kann bei http://www.gisinternals.com/[GISInternals]

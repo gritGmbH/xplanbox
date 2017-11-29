@@ -1,11 +1,11 @@
-[XPlanValidator Web]
+[[xplanvalidator-web]]
 === XPlanValidatorWeb
 
 Die Komponente XPlanValidatorWeb ist eine Web-Oberfläche, welche dem
 Fachadministrator der xPlanBox ermöglicht, XPlanGML Instanzdokumente zu
 validieren.
 
-[[benutzungsanleitung]]
+[[xplanvalidator-web-benutzungsanleitung]]
 ==== Benutzungsanleitung
 
 Die Web-Anwendung XPlanValidatorWeb dient der Validierung von XPlanGML und
@@ -17,7 +17,7 @@ http://${xplanbox.host}:${xplanbox.port}/xplan-validator/
 
 verfügbar kann mit einem gängigen Web-Browser aufgerufen werden.
 
-[[hinzufuegen]]
+[[xplanvalidator-web-hinzufuegen]]
 ===== XPlanArchiv Hinzufügen
 
 Ein im lokalen Dateisystem vorliegendes XPlanArchiv kann über den Button _Durchsuchen_ ausgewählt und über
@@ -27,12 +27,13 @@ hochgeladen werden.
 Nachdem die Datei erfolgreich übertragen wurde, erhält der Benutzer einen Hinweis, dass das XPlanArchiv in die Web-Anwendung
 geladen wurde.
 
+[[xplanvalidator-web--bezeichnung-der-validierung]]
 ===== Bezeichnung der Validierung
 
 Für jede Validierung kann eine Bezeichnung vergeben werden, sodass der
 Durchlauf zu einem späterem Zeitpunkt eindeutig zugeordnet werden kann.
 
-[[validierungsart]]
+[[xplanvalidator-web-validierungsart]]
 ===== Validierungstyp
 
 Die folgenden Validierungstypen können über eine Auswahlliste ausgewählt
@@ -46,7 +47,7 @@ Die Auswahl des Validierungstyps ist obligatorisch. Wenn die semantische Validie
 syntaktische Validierung zusätzlich ausgeführt. Wird die geometrische Validierung ausgewählt, dann wird
 zusätzlich auch die syntaktische Validierung ausgeführt.
 
-[[validierungsoption]]
+[[xplanvalidator-web-validierungsoption]]
 ===== Validierungsoption
 
 Die folgenden Validierungsoptionen können über den Button _weitere
@@ -61,13 +62,13 @@ Validierungsoptionen_ ausgewählt werden:
 Die Änderungen können über den Button _Speichern_ für den aktuellen
 Validierungsdurchlauf gespeichert werden. Die Auswahl der Validierungsoptionen ist optional.
 
-[[validierung]]
+[[xplanvalidator-web-validierung]]
 ===== Validierung
 
 Die Validierung kann über den Button _Validierung starten_ gestartet
 werden.
 
-[[validierungsergebnis]]
+[[xplanvalidator-web-validierungsergebnis]]
 ==== Validierungsergebnis
 
 Das Ergebnis der Validierung kann im Anschluss als HTML, PDF und XML

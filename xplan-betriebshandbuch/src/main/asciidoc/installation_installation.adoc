@@ -1,4 +1,4 @@
-[Anwendung installieren]
+[[anwendung-installieren]]
 === Anwendung installieren
 
 [[konfiguration]]

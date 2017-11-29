@@ -1,10 +1,10 @@
-[XPlanManager Grundlagen]
+[[xplanmanager-grundlagen]]
 === XPlanManager Grundlagen
 
 Der XPlanManager dient zur Verwaltung von XPlanArchiven innerhalb der xPlanBox. Mit
 dem XPlanManager können XPlanArchive importiert, editiert oder gelöscht werden.
 
-[xplanarchiv]
+[[xplanarchiv]]
 ==== Das XPlanArchiv
 
 Das XPlanArchiv ist eine ZIP-Datei mit folgendem Aufbau:

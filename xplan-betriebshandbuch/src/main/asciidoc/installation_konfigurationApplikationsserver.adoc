@@ -1,7 +1,7 @@
-[Konfiguration der Applikationsserver]
+[[konfiguration-der-applikationsserver]]
 === Konfiguration der Applikationsserver
 
-Wie im Abschnitt <<Anwendung installieren>> beschrieben,
+Wie im Abschnitt <<anwendung-installieren>> beschrieben,
 werden zum Betreiben aller Komponenten zwei Tomcat-Instanzen empfohlen,
 der _Dienste-Tomcat_ sowie __Anwendungs-Tomcat__. Im Folgenden wird die
 Konfiguration beider Tomcats beschrieben.
@@ -17,7 +17,7 @@ Property gesetzt werden. Das mit Hilfe dieser Variable referenzierte
 Verzeichnis muss die Konfiguration des XPlanManagerWeb enthalten (es
 handelt sich um die Dateien managerConfiguration.properties und
 managerWebConfiguration.properties). Wurde der Anleitung in Abschnitt
-<<Anwendung installieren>> gefolgt, befindet sich das
+<<anwendung-installieren>> gefolgt, befindet sich das
 Verzeichnis mit dem Namen _manager-configuration_ im Verzeichnis
 _.deegree_ im Home-Verzeichnis des Nutzers.
 .  Um das Logging der Anwendungen XPlanManagerWeb und XPlanValidatorWeb in ein gesondertes Verzeichnis zu aktivieren (s. Details im
@@ -27,7 +27,7 @@ konfigurierten Verzeichnis werden die log-Dateien der beiden Anwendungen
 abgelegt.
 __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
-[[linux]]
+[[anwendungs-tomcat-linux]]
 ===== Linux
 
 Für die Konfiguration der oben genannten Punkte muss zunächst im
@@ -46,7 +46,7 @@ Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, müssen
 *’-Dxplan.logdir=/home/xplanbox/logs’* in die bestehenden JAVA_OPTS
 integriert werden.
 
-[[windows]]
+[[anwendungs-tomcat-windows]]
 ===== Windows
 
 Für das Setzen der Variable _MANAGER_WEB_ sowie
@@ -84,4 +84,4 @@ Zeilen hinzugefügt werden. :
 
 NOTE: Der Nutzername und das Passwort müssen in die
 managerConfiguration.properties eingetragen werden (s. Kapitel
-<<Automatischer Workspace-Reload>>.
+<<automatischer-workspace-reload>>.

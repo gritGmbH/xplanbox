@@ -1,4 +1,4 @@
-[LDAP]
+[[ldap]]
 === LDAP
 
 Als LDAP Server kann Microsoft Active Directory verwendet.
