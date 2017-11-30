@@ -12,6 +12,24 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
+  <scm>
+    <connection>scm:git:git@github.com:deegree-enterprise/xplanbox.git</connection>
+    <developerConnection>scm:git:git@github.com:deegree-enterprise/xplanbox.git</developerConnection>
+    <url>https://github.com/deegree-enterprise/xplanbox</url>
+    <tag>HEAD</tag>
+  </scm>
+  
+  <distributionManagement>
+    <repository>
+      <id>dee-releases</id>
+      <url>http://buildserver.deegree-enterprise.de/nexus/content/repositories/dee-releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>dee-snapshots</id>
+      <url>http://buildserver.deegree-enterprise.de/nexus/content/repositories/dee-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <repositories>
     <repository>
       <id>deegree-repo</id>
