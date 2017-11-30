@@ -65,9 +65,11 @@ Wenn die die leeren XML Namespace Attribute manuell entfernt werden, ist ein erf
 
 === Transformation in das INSPIRE Planned Land Use Datenschema
 
-Bei der Transformation von XPlanGML in das INSPIRE Planned Land Use Datenschema werden in der vorliegenden Version der xPlanBox eventuell nicht alle Daten vollständig transformiert.
-Eine vollständige Überführung aller Daten ist mit den aktuell vorliegenden Transformationsregeln noch nicht möglich.
+Bei der Transformation von XPlanGML in das INSPIRE Planned Land Use Datenschema können in der vorliegenden Version der xPlanBox nicht alle Daten vollständig transformiert werden.
 So fehlen u.a. Transformationsregeln für Werte aus Codelisten als auch konfigurierbare Abbildungsregeln für Elemente wie z.B. der INSPIRE ID.
+Zugesichert werden kann, dass das über den XPlanInspirePluWFS abgegebene GML gegen das GML-Applikationsschema validiert.
+Nicht zugesichert werden kann, dass das GML alle Vorgaben aus den Technical Guidelines für das INSPIRE Annex III Datenthema Land Use erfüllt sowie dass alle Daten aus dem XPlanGML in das
+Zielschema INSPIRE PLU transformiert werden.
 
 [[fehler-melden]]
 == Fehler melden
