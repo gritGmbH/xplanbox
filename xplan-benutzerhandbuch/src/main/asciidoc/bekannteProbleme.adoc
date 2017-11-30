@@ -13,6 +13,11 @@ Der Fehler ist Microsoft bekannt und es wird folgender Workaround empfohlen:
     - Neu-Laden der Seite mit "Refresh/F5" oder
     - Schließen des Browser-Fenster/Tabs mit "Ctrl+W"
 
+Referenzen:
+
+    - https://connect.microsoft.com/IE/feedback/details/817183/ie10-and-ie11-keep-files-locked-after-uploading[IE10 and IE11 keep files locked after uploading]
+    - https://connect.microsoft.com/IE/feedback/details/794708/uploaded-file-is-locked-on-file-system-after-upload[Uploaded file is locked on file system after upload]
+
 [[kapazitaetsbezogene-einschraenkungen]]
 === Kapazitätsbezogene Einschränkungen
 
