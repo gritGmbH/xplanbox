@@ -167,6 +167,6 @@ NOTE: Die Editierfunktion steht nur für BPläne in der XPlanGML Version
 
 Abhängig von den Benutzerrechten können Pläne im Datenthema INSPIRE Planned Land Use veröffentlicht werden. Fehlen dem Benutzer die entsprechenden Rechte ist die Funktion deaktiviert und der Button __Bereitstellung als INSPIRE Datensatz__ wird nicht dargestellt. Die Funktion ist beschränkt auf BPläne in der XPlanGML Version 4.1.
 
-Durch Klick auf den Button __Bereitstellung als INSPIRE Datensatz__ wird der Plan in das INSPIRE PLU Datenschema überführt und in den INSPIRE konformen Discovery Service importiert. Anschließend kann der transformierte Plan über den INSPIRE Discovery Service (XPlanInspirePluWFS) und INSPIRE View Service (XPlanInspirePluWMS) abgerufen werden.
+Durch Klick auf den Button __Bereitstellung als INSPIRE Datensatz__ wird der Plan in das INSPIRE PLU Datenschema überführt und in den INSPIRE konformen Download Service importiert. Anschließend kann der transformierte Plan über den INSPIRE Download Service (XPlanInspirePluWFS) und INSPIRE View Service (XPlanInspirePluWMS) abgerufen werden.
 
 NOTE: Die Bereitstellung als INSPIRE PLU Datensatz steht nur für BPläne in der XPlanGML Version 4.1 zur Verfügung.
