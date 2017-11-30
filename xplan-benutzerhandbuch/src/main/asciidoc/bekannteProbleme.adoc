@@ -4,9 +4,13 @@
 [[internet-explorer]]
 === Internet Explorer
 
-Beim Importieren (Hochladen) von XPlanArchiven über den XPlanManagerWeb kann
+Beim Importieren (Hochladen) von XPlanArchiven über den XPlanManagerWeb mit Microsoft Internet Explorer 9/10/11 kann
 es vorkommen, dass das XPlanArchiv für die Dauer der Sitzung im Windows Dateisystem
 blockiert wird.
+
+Der Fehler ist Microsoft bekannt und es wird folgender Workaround empfohlen:
+    - Neu-Laden der Seite mit "Refresh/F5" oder
+    - Schließen des Browser-Fenster/Tabs mit "Ctrl+W"
 
 [[kapazitaetsbezogene-einschraenkungen]]
 === Kapazitätsbezogene Einschränkungen
