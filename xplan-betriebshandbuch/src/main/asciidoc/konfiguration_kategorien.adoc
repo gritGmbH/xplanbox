@@ -1,4 +1,4 @@
-[Kategorien]
+[[kategorien]]
 === Kategorien
 
 Die Kategorien, auf die ein Benutzer im XPlanManagerWeb filtern kann,

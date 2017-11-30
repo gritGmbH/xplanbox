@@ -1,4 +1,4 @@
-[Migration der Anwendung (Beispiele)]
+[[migration-der-anwendung-beispiele]]
 === Migration der Anwendung (Beispiele)
 
 Bei einem Hostumzug, bei dem sich der Hostname des Servers ändert, muss
@@ -26,7 +26,7 @@ Schlüssels _wmsUrl_ angepasst werden.
 wmsUrl=http://<host>:<port>/xplan-wms/services
 ----
 
-Für mehr Details siehe Kapitel <<Kartenvorschau>>
+Für mehr Details siehe Kapitel <<kartenvorschau>>
 
 *Anpassungen in der Datei managerConfiguration.properties:*
 
@@ -45,7 +45,7 @@ NOTE: Werden der deegree-Dienst und der XPlanManager auf dem selben Server
 betrieben, so können die Dienste über den Hostnamen _localhost_
 kommunizieren.
 
-Für mehr Details siehe Kapitel <<Automatischer Workspace-Reload>>
+Für mehr Details siehe Kapitel <<automatischer-workspace-reload>>
 
 [[fuer-den-xplanwms]]
 ==== Für den XPlanWMS:

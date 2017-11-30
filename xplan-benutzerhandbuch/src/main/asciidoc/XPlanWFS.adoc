@@ -1,11 +1,11 @@
-[XPlanWFS]
+[[xplanwfs]]
 == XPlanWFS
 
 Der XPlanWFS ist ein auf dem Standard Web Feature Service
 (Version 1.1.0 und 2.0.0) des Open Geospatial Consortium (OGC)
 basierender Dienst zur Abfrage von Vektordaten.
 
-[[benutzung-des-xplanwfs]]
+[[xplanwfs-benutzung-des-xplanwfs]]
 === Benutzung des XPlanWFS
 
 Der XPlanWFS basiert auf der Open Source Software
@@ -44,7 +44,7 @@ zusammen.
 |DescribeFeatureType |Abfrage der Struktur von Objektarten
 |=========================================================
 
-[[adresse-des-dienstes]]
+[[xplanwfs-adresse-des-dienstes]]
 ==== Adresse des Dienstes
 
 ----
@@ -52,11 +52,11 @@ http://<host>:<port>/xplan-wfs/services/wfs110?
 http://<host>:<port>/xplan-wfs/services/dls?
 ----
 
-[[beispielanfragen]]
+[[xplanwfs-beispielanfragen]]
 ==== Beispielanfragen
 
 
-[[getcapabilities]]
+[[xplanwfs-getcapabilities]]
 ===== GetCapabilities
 
 ----
@@ -64,7 +64,7 @@ http://<host>:<port>/xplan-wfs/services/wfs110?request=GetCapabilities&Service=W
 http://<host>:<port>/xplan-wfs/services/dls?request=GetCapabilities&Service=WFS&Version=2.0.0
 ----
 
-[[getfeature]]
+[[xplanwfs-getfeature]]
 ===== GetFeature
 
 ----
@@ -72,7 +72,7 @@ http://<host>:<port>/xplan-wfs/services/wfs110?request=GetFeature&Service=WFS&Ve
 http://<host>:<port>/xplan-wfs/services/dls?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_GruenFlaeche
 ----
 
-[[describefeaturetype]]
+[[xplanwfs-describefeaturetype]]
 ===== DescribeFeatureType
 
 ----
@@ -80,16 +80,16 @@ http://<host>:<port>/xplan-wfs/services/wfs110?request=DescribeFeatureType&Servi
 http://<host>:<port>/xplan-wfs/services/dls?request=DescribeFeatureType&Service=WFS&Version=2.0.0
 ----
 
-[[inhalte-des-datendienstes]]
+[[xplanwfs-inhalte-des-datendienstes]]
 === Inhalte des Datendienstes
 
-[[operationen]]
+[[xplanwfs-operationen]]
 === Operationen
 
 Das folgende Kapitel beschreibt die Operationen, die mit dem XPlanWFS
 durchführbar sind.
 
-[[getcapabilities-1]]
+[[xplanwfs-getcapabilities-1]]
 ==== GetCapabilities
 
 Die GetCapabilities Abfrage dient der Auskunft über die Fähigkeiten des
@@ -97,7 +97,7 @@ WFS Dienstes. Dabei handelt es sich beispielsweise um Informationen zum
 Dienstbetreiber, zu den unterstützten Operationen sowie zu den durch den
 WFS angebotenen WFS Objektarten.
 
-[[getfeature-1]]
+[[xplanwfs-getfeature-1]]
 ==== GetFeature
 
 Die Operation GetFeature stellt die Kernfunktionalität des XPlanWFS dar.
@@ -105,13 +105,13 @@ Die Operation ermöglicht es, die angebotenen Ebene zu den Planinhalten
 mit GIS Clients zu nutzen, die die Schnittstellen WFS 1.1.0 bzw. WFS
 2.0.0 unterstützen.
 
-[[describefeaturetype-1]]
+[[xplanwfs-describefeaturetype-1]]
 ==== DescribeFeatureType
 
 Die Operation DescribeFeatureType gibt Informationen zur Struktur der
 einzelnen Feature Types wieder.
 
-[[koordinatenreferenzsysteme]]
+[[xplanwfs-koordinatenreferenzsysteme]]
 === Koordinatenreferenzsysteme
 
 Der XPlanWFS unterstützt die folgenden

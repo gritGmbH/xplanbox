@@ -10,7 +10,7 @@
   <files>
     <file>
       <source>${project.build.directory}/pdf/index.pdf</source>
-      <outputDirectory>/</outputDirectory>
+      <outputDirectory>${file.separator}</outputDirectory>
       <destName>xPlanBox-Benutzerhandbuch.pdf</destName>
     </file>
   </files>

@@ -1,4 +1,4 @@
-[Konfiguration der Datenbank]
+[[konfiguration-der-datenbank]]
 === Konfiguration der Datenbank
 
 Wie in Abschitt _Systemüberblick_ beschrieben, ist mindestens die

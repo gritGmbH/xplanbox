@@ -1,4 +1,4 @@
-[Konfiguration von externen Codelisten]
+[[konfiguration-von-externen-codelisten]]
 === Konfiguration von externen Codelisten
 
 Externe Codelisten können im Verzeichnis <MANAGER_WEB>/synthesizer abgelegt werden. Dabei weist die Variable <MANAGER_WEB> auf das Verzeichnis, in dem sich die Dateien _managerConfiguration.properties_ und _managerWebConfiguration.properties_ begfindet (s. auch <<Anwendungs-Tomcat>>).

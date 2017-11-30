@@ -1,4 +1,4 @@
-[Verfahrensdatenbank]
+[[verfahrensdatenbank]]
 === Verfahrensdatenbank
 
 Die Verfahrensdatenbank kann in der Datei

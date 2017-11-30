@@ -1,4 +1,4 @@
-[Sortierung der Daten in der Visualisierung]
+[[sortierung-der-daten-in-dervisualisierung]]
 === Sortierung der Daten in der Visualisierung
 
 Für die Sortierung von Plandaten im XPlanWMS nach einem Datumsfeld stehen

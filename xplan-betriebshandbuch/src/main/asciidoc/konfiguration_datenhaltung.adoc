@@ -1,4 +1,4 @@
-[Getrennte Datenhaltung]
+[[getrennte-datenhaltung]]
 === Getrennte Datenhaltung
 
 Der XPlanMananger kann auf eine getrennte Datenhaltung zugreifen. Es

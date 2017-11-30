@@ -1,4 +1,4 @@
-[Systemarchitektur und Schnittstellen]
+[[systemarchitektur-und-schnittstellen]]
 == Systemarchitektur und Schnittstellen
 
 Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:

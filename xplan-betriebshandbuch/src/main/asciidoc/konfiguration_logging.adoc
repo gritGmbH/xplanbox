@@ -1,4 +1,4 @@
-[Logging]
+[[logging]]
 === Logging
 
 Die Anwendungen XPlanManagerWeb, XPlanManagerCLI, XPlanValidatorWeb
