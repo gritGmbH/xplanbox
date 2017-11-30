@@ -9,6 +9,7 @@ es vorkommen, dass das XPlanArchiv für die Dauer der Sitzung im Windows Dateisy
 blockiert wird.
 
 Der Fehler ist Microsoft bekannt und es wird folgender Workaround empfohlen:
+
     - Neu-Laden der Seite mit "Refresh/F5" oder
     - Schließen des Browser-Fenster/Tabs mit "Ctrl+W"
 
