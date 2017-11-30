@@ -123,7 +123,7 @@
                 <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
-        <parameter value="http://lat-lon/test" name="value"/>
+        <parameter value="https://registry.gdi-de.org/id/de.bw" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cee5c1007-623c-4c3b-af30-9bb58c0c402e" priority="normal">
         <source>
@@ -739,7 +739,7 @@
                 <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
-        <parameter value="http://lat-lon/test" name="value"/>
+        <parameter value="https://registry.gdi-de.org/id/de.bw" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cabd596ca-bf3a-4660-9428-fd8b068a9b3e" priority="normal">
         <target>
@@ -2757,7 +2757,7 @@
                 <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
-        <parameter value="http://lat-lon/test" name="value"/>
+        <parameter value="https://registry.gdi-de.org/id/de.bw" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C82fc08ca-ec80-40c0-84ab-c4ad122ff5d3" priority="normal">
         <source>
@@ -3389,6 +3389,17 @@
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C4b819c34-1d86-4417-b6e5-a0d21b3a8707" priority="normal">
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="https://registry.gdi-de.org/id/de.bw" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C06c1c54a-2721-49ee-b8c7-d5d1a0817c22" priority="normal">
         <source>
