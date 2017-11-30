@@ -65,10 +65,11 @@ Falls Sie mehr Details zu einem Aktualisierungsvorhaben vor Version 2.0 wünsche
 .Überblick über die Datenhaltung betreffenden Änderungen
 [cols="3*^", options="header,footer"]
 |====================================
-| xPlanBox Version | Änderungen an den Workspaces? | Änderungen am Datenbankschema?
-| 2.0              | ja                            | ja
-| 2.2              |                               | ja
-| 2.4              | ja                            |
+| xPlanBox Version | Änderungen an den Workspaces/ der Konfiguration? | Änderungen am Datenbankschema?
+| 2.0              | ja                                               | ja
+| 2.2              |                                                  | ja
+| 2.4              | ja                                               |
+| 2.7              | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -101,9 +102,6 @@ cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-workspace-${VERSIO
 cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-wfs-workspace-${VERSION}-${ENV}.zip
 cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplansyn-wfs-workspace-${VERSION}-${ENV}.zip
 cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-${ENV}.zip
-cp ${WORK_DIR}/config/xplan-bplan-config-${VERSION}-${ENV}.jar ${DEEGEE_DIR}/portal-configuration/xplan-bplan-config.jar
-cp ${WORK_DIR}/config/xplan-fplan-config-${VERSION}-${ENV}.jar ${DEEGEE_DIR}/portal-configuration/xplan-fplan-config.jar
-cp ${WORK_DIR}/config/xplan-lplan-config-${VERSION}-${ENV}.jar ${DEEGEE_DIR}/portal-configuration/xplan-lplan-config.jar
 ----
 
 [[aktualisierung-des-wms-workspaces-auf-die-version-2.0-der-xplanbox]]
@@ -213,3 +211,17 @@ ausgewählte Versionen auf Anfrage zusammen mit der Liefereinheit
 bereitgestellt. Für professionelle Unterstützung bei ihrem
 Aktualisierungsvorhaben wenden Sie sich bitte an die
 http://www.lat-lon.de[lat/lon GmbH].
+
+[[aktualisierung-auf-die-version-2.7-der-xplanbox]]
+=== Aktualisierung auf die Version 2.7 der xPlanBox
+
+Mit der Version 2.7 bietet die xPlanBox die Möglichkeit die vom XPlanManager verwalteten Pläne im INSPIRE Datenthema Planned Land Use (PLU) bereitzustellen. Um diese Option für eine bestehende Installation zu aktivieren, sind folgende Schritte notwendig:
+
+ * Aktualisierung von _xplan-manager-workspace_ und _xplan-manager-config_ (s. <<teilweise-aktualisierung>>).
+ * Aufsetzen des INSPIRE PLU Datenbankschemas (s. <<aufsetzen-plu-db-schema>>).
+ * Anlegen des _xplan-inspireplu-workspace_ Workspaces (s. <<konfiguration>>).
+ * Installation der _xplan-inspireplu.war_ Webanwendung (s. <<web-anwendungen>>). Achtung: Anschließend muss der _xplan-inspireplu-workspace_ Workspace initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt über die webapps.properties-Datei plus Neustart der Webanwendung geschehen.
+ * Installation von HALE CLI, wie in <<installation-hale-cli>> beschrieben.
+ * Konfiguration der neuen Option, wie in <<konfiguration-inspire-plu>> beschrieben.
+
+Falls die neue Funktionalität nicht genutzt werden soll, müssen die Änderungen nicht durchgeführt werden.

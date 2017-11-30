@@ -59,6 +59,11 @@ NOTE: Empfohlen wird PostgreSQL 9.6+ mit PostGIS 2.3+.
 Optional kann die Installation von GDAL erforderlich sein. Liegen Teil-Vektorielle Pläne mit Rasterdaten in anderen Formaten als GeoTiff vor, die mit der xPlanBox verwaltet werden sollen, ist der Einsatz von GDAL erforderlich. Liegen die Rasterdaten dagegen nur im GeoTiff-Format vor, wird GDAL nicht benötig.
 Empfohlen wird GDAL in der Version 1.10.1. Weitere Informationen zur Installation von GDAL befinden sich im Abschnitt <<installation-gdal>>.
 
+=== HALE CLI
+
+Optional kann die Installation von HALE CLI erforderlich sein. HALE CLI wird benötigt, wenn die Bereitstellung von Plänen in XPlanGML, die im XPlanManager verwaltet werden, im INSPIRE Planned Land Use (PLU) Datenthema, genutzt werden soll. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-hale>>.
+
+
 [[systemvoraussetzungen]]
 === Systemvoraussetzungen
 

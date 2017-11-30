@@ -12,6 +12,7 @@
   </parent>
 
   <modules>
+    <module>xplan-inspireplu-workspace</module>
     <module>xplan-manager-workspace</module>
     <module>xplan-wfs-workspace</module>
     <module>xplansyn-wfs-workspace</module>

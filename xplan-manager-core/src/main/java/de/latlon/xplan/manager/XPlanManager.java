@@ -34,6 +34,8 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
+import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
+import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.xml.XMLParsingException;
@@ -134,6 +136,8 @@ public class XPlanManager {
     private final SortPropertyReader sortPropertyReader;
 
     private final SortPropertyUpdater sortPropertyUpdater;
+    
+    private final InspirePluPublisher inspirePluPublisher;
 
     public XPlanManager() throws Exception {
         this( null, new XPlanArchiveCreator(), null, null );
@@ -153,7 +157,7 @@ public class XPlanManager {
     public XPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
                          ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader )
                                                                                                          throws Exception {
-        this( categoryMapper, archiveCreator, managerConfiguration, null, null, workspaceReloader );
+        this( categoryMapper, archiveCreator, managerConfiguration, workspaceReloader, null );
     }
 
     /**
@@ -163,17 +167,16 @@ public class XPlanManager {
      *            archive creator
      * @param managerConfiguration
      *            manager configuration, may be <code>null</code>
-     * @param workspaceDir
-     *            workspace directory
      * @param workspaceReloader
      *            reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
      * @throws Exception
      */
     public XPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
-                         ManagerConfiguration managerConfiguration, File workspaceDir,
-                         WorkspaceReloader workspaceReloader ) throws Exception {
-        this( categoryMapper, archiveCreator, managerConfiguration, workspaceDir, null, workspaceReloader );
+                         ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader, InspirePluTransformator inspirePluTransformator )
+                            throws Exception {
+        this( categoryMapper, archiveCreator, managerConfiguration, null, null, workspaceReloader, inspirePluTransformator );
     }
+
 
     /**
      * @param categoryMapper
@@ -190,7 +193,7 @@ public class XPlanManager {
      */
     public XPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
                          ManagerConfiguration managerConfiguration, File workspaceDir, File wmsWorkspaceDir,
-                         WorkspaceReloader workspaceReloader ) throws Exception {
+                         WorkspaceReloader workspaceReloader, InspirePluTransformator inspirePluTransformator ) throws Exception {
         this.archiveCreator = archiveCreator;
         this.managerConfiguration = managerConfiguration;
         this.managerWorkspace = instantiateManagerWorkspace( workspaceDir );
@@ -211,6 +214,10 @@ public class XPlanManager {
             this.xPlanSynthesizer = new XPlanSynthesizer( managerConfiguration.getConfigurationDirectory() );
         else
             this.xPlanSynthesizer = new XPlanSynthesizer();
+        if ( inspirePluTransformator != null )
+            this.inspirePluPublisher = new InspirePluPublisher( xplanDao, inspirePluTransformator );
+        else
+            this.inspirePluPublisher = null;
     }
 
     public XPlanArchive analyzeArchive( String fileName )
@@ -681,6 +688,24 @@ public class XPlanManager {
         sortPropertyUpdater.updateSortProperty();
     }
 
+    /**
+     * Transforms the plans with the passed ID to INSPIRE PLU and imports them in the INSPIRE Download Service for PLU.
+     * 
+     * @param plan
+     *            plan to transform and publish
+     */
+    @PreAuthorize("hasPermission(#plan, 'hasDistrictPermission') or hasRole('ROLE_XPLAN_SUPERUSER')")
+    public void publishPlu( XPlan plan )
+                            throws Exception {
+        if ( inspirePluPublisher == null ) {
+            LOG.warn( "Transformation and publishing INSPIRE PLU datasets is not supported" );
+            throw new Exception( "Transformation and publishing INSPIRE PLU datasets is not supported" );
+        } else {
+            String planId = plan.getId();
+            inspirePluPublisher.transformAndPublish( planId );
+        }
+    }
+
     private void createRasterConfigurations( XPlanArchive archive, boolean makeWMSConfig, boolean makeRasterConfig,
                                              File workspaceFolder, XPlanFeatureCollection fc, int planId,
                                              PlanStatus planStatus, Date sortDate )
@@ -957,5 +982,4 @@ public class XPlanManager {
             return PlanStatus.findByLegislationStatusCode( newLegislationStatusCode );
         return oldPlanStatus;
     }
-
 }

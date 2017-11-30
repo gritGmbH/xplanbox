@@ -93,12 +93,14 @@ public class ManagerWebConfigurationRetriever {
         boolean legislationStatusActivated = parseActivateLegislationStatusDialog( props );
         boolean validityPeriodActivated = parseActivateValidityPeriodDialog( props );
         boolean editorActivated = parseActivateEditor( props );
+        boolean publishingInspirePluActivated = parseActivatePublishingInspirePlu( props );
 
         String defaultCrs = retrieveMandatoryPropertyValue( props, "defaultCrs" );
         String[] chooseCrs = parseChooseCrs( props );
         String[] categoryFilterValues = parseCategoryFilterValues( props );
         return new ManagerWebConfiguration( internalIdActivated, legislationStatusActivated, validityPeriodActivated,
-                        editorActivated, defaultCrs, chooseCrs, categoryFilterValues );
+                                            editorActivated, publishingInspirePluActivated, defaultCrs, chooseCrs,
+                                            categoryFilterValues );
     }
 
     private MapPreviewConfiguration createMapPreviewConfigurationFromProperties( Properties props )
@@ -159,6 +161,12 @@ public class ManagerWebConfigurationRetriever {
         return "true".equals( props.getProperty( "activateEditor" ) );
     }
 
+
+    private boolean parseActivatePublishingInspirePlu( Properties props )
+                            throws ConfigurationException {
+        return "true".equals( props.getProperty( "activatePublishingInspirePlu" ) );
+    }
+    
     private String[] parseChooseCrs( Properties props )
                     throws ConfigurationException {
         return parseAsArray( props, "chooseCrs" );

@@ -9,8 +9,17 @@
   <fileSets>
     <fileSet>
       <directory>${basedir}/src/main/resources</directory>
-      <outputDirectory>/</outputDirectory>
+      <outputDirectory>${file.separator}</outputDirectory>
       <filtered>true</filtered>
     </fileSet>
   </fileSets>
+  <dependencySets>
+    <dependencySet>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplan-schemas:zip:*</include>
+      </includes>
+      <useProjectArtifact>false</useProjectArtifact>
+      <unpack>true</unpack>
+    </dependencySet>
+  </dependencySets>
 </assembly>

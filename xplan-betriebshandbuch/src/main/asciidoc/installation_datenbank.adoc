@@ -32,16 +32,28 @@ Dabei kann auf zwei verschiedene Arten vorgegangen werden:
 
 ==== Manuelles Aufsetzen der Datenbank
 
-Alternativ zum Aufsetzen über das XPlanManagerCLI kann die Datenbank auch manuell ausgeführt werden. Dafür müssen die folgende Schritte ausgfeührt werden:
+Alternativ zum Aufsetzen über das XPlanManagerCLI kann die Datenbank auch manuell ausgeführt werden. Dafür müssen die folgende Schritte ausgeführt werden:
 
  * Anlegen einer neuen Datenbank.
  * Installation der Postgis Erweiterung für die neue Datenbank.
- * SQL-Create-Skripte aus dem Verzeichnis _xplan-manager-workspace/sql_ in der neu angelegten Datenbank ausführen.
+ * SQL-Create-Skript _create.sql_ aus dem Verzeichnis _xplan-manager-workspace/sql_ in der neu angelegten Datenbank ausführen.
  * Anpassen der Datenbank-Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace:
  ** _.deegree/xplansyn-wms-workspace/jdbc/xplan.xml_
  ** _.deegree/xplan-wms-workspace/jdbc/xplan.xml_
  ** _.deegree/xplan-wfs-workspace/jdbc/xplan.xml_
- ** _.deegree/xplan-manager-workspace/jdbc/_
+ ** _.deegree/xplan-manager-workspace/jdbc/xplan.xml_
+
+[[aufsetzen-plu-db-schema]]
+==== Manuelles Aufsetzen der Datenbank für die Bereitstellung von INSPIRE PLU
+
+Für die Bereitstellung von Plänen, die vom XPlanManager verwaltet werden, als INSPIRE PLU konforme Datensätze ist eine weitere Datenbank erforderlich. Diese kann aktuell nur manuell aufgesetzt werden. Es müssen die folgende Schritte ausgeführt werden:
+
+ * Anlegen einer neuen Datenbank.
+ * Installation der Postgis Erweiterung für die neue Datenbank.
+ * SQL-Create-Skript _04_create_inspireplu_schema.sql_ aus dem Verzeichnis _xplan-manager-workspace/sql/inspireplu_ in der neu angelegten Datenbank ausführen.
+ * Anpassen der Datenbank-Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace:
+ ** _.deegree/xplan-inspireplu-workspace/jdbc/inspireplu.xml_
+ ** _.deegree/xplan-manager-workspace/jdbc/inspireplu.xml_
 
 ==== Weiterführende Informationen zur Konfiguration des Datenbankzugriffs
 

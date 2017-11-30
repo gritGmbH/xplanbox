@@ -15,4 +15,6 @@ include::installation_konfigurationApplikationsserver.adoc[]
 
 include::installation_gdal.adoc[]
 
+include::installation_hale-cli.adoc[]
+
 include::installation_startApplikationsserver.adoc[]

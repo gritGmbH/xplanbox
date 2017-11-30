@@ -99,7 +99,7 @@ public class XPlanManagerCLI {
             CategoryMapper categoryMapper = new CategoryMapper( managerConfiguration );
             XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator( categoryMapper );
             WorkspaceReloader workspaceReloader = new WorkspaceReloader();
-            return new XPlanManager( categoryMapper, archiveCreator, managerConfiguration, workspaceReloader );
+            return new XPlanManager( categoryMapper, archiveCreator, managerConfiguration, workspaceReloader, null );
         } catch ( Exception e ) {
             endWithFatalError( e.getMessage() );
         }

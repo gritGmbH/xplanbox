@@ -1,0 +1,6 @@
+[[installation-hale-cli]]
+=== Installation und Konfiguration von HALE CLI
+
+Optional unterstützt die xPlanBox die Bereitstellung vom XPlanManager verwalteter Pläne im INSPIRE Datenthema Planned Land Use (PLU). Die Transformation der Pläne aus dem XPlanGML Format nach PLU erfolgt mittels HALE. Wird die Bereitstellung über INSPIRE nicht benötigt, ist die Installation des HALE CLI auch nicht erforderlich.
+
+Für die Installation muss das HALE CLI zunächst heruntergeladen (https://github.com/halestudio/hale-cli/releases/tag/v3.3.1) werden. Anschließend muss es auf dem Server, auf dem auch der XPlanManager installiert wird, entpackt werden.

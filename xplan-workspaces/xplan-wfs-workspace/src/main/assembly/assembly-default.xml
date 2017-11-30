@@ -8,7 +8,7 @@
   <fileSets>
     <fileSet>
       <directory>${basedir}/src/main/workspace</directory>
-      <outputDirectory>/</outputDirectory>
+      <outputDirectory>.</outputDirectory>
       <filtered>true</filtered>
     </fileSet>
   </fileSets>

@@ -211,6 +211,8 @@ public class PlanListPanel extends DecoratorPanel {
         if ( configuration.isEditorActivated() )
             addEditColumn( planList, actionHeader );
         addPreviewColumn( planList, actionHeader );
+        if ( configuration.isPublishingInspirePluActivated() )
+            addPublishPluColumn( planList, actionHeader );
         addDownloadColumn( planList, actionHeader );
         addRemoveColumn( planList, actionHeader );
     }
@@ -487,6 +489,31 @@ public class PlanListPanel extends DecoratorPanel {
         addStaticToolTip( xPlanTable, downloadButtonColumn, messages.downloadPlan() );
     }
 
+
+    private void addPublishPluColumn( final CellTable<XPlan> xPlanTable, TextHeader columnHeader ) {
+        final DisengageableButtonCell publishPluButtonCell = new DisengageableButtonCell();
+        publishPluButtonCell.setDisabled();
+        final Column<XPlan, String> publishPluButtonColumn = new Column<XPlan, String>( publishPluButtonCell) {
+            @Override
+            public String getValue( XPlan xPlan ) {
+                if ( "BP_Plan".equals( xPlan.getType() ) && "XPLAN_41".equals( xPlan.getVersion() )
+                     && isPublishingPluPermitted( xPlan ) )
+                    publishPluButtonCell.setEnabled();
+                else
+                    publishPluButtonCell.setDisabled();
+                return "";
+            }
+        };
+        publishPluButtonColumn.setFieldUpdater( new FieldUpdater<XPlan, String>() {
+            public void update( int index, XPlan object, String value ) {
+                    publishPlu( object.getId() );
+            }
+        } );
+        publishPluButtonColumn.setCellStyleNames( "planListColumn publishPluButtonColumn" );
+        xPlanTable.addColumn( publishPluButtonColumn, columnHeader );
+        addStaticToolTip( xPlanTable, publishPluButtonColumn, messages.publishPlu() );
+    }
+
     private void addStaticToolTip( final CellTable<XPlan> xPlanTable, final Column<XPlan, String> column,
                                    final String tooltip ) {
         xPlanTable.addCellPreviewHandler( new Handler<XPlan>() {
@@ -585,12 +612,45 @@ public class PlanListPanel extends DecoratorPanel {
         } );
     }
 
+    private void publishPlu( String id ) {
+        final DialogBox publishingPlu = createAndShowDialogBox( messages.publishingPlu() );
+        ManagerService.Util.getService().publishPlan( id, new MethodCallback<Boolean>() {
+
+            @Override
+            public void onFailure( Method method, Throwable exception ) {
+                reload( false );
+                if ( publishingPlu != null )
+                    publishingPlu.hide();
+                if ( 403 == method.getResponse().getStatusCode() ) {
+                    Window.alert( messages.unauthorizedPublishingPlu() );
+                } else {
+                    Window.alert( exception.getMessage() + " " + method.getResponse().getStatusCode() );
+                }
+            }
+
+            @Override
+            public void onSuccess( Method method, Boolean isSuccessful ) {
+                reload( false );
+                if ( publishingPlu != null )
+                    publishingPlu.hide();
+                if ( isSuccessful )
+                    Window.alert( messages.publishingPluSuccessful() );
+                else
+                    Window.alert( messages.publishingPluFailed() );
+            }
+        } );
+    }
+
     private DialogBox createAndShowDialogBox( String text ) {
         DialogBox dialog = new DialogBox( false, true );
         dialog.setText( text );
         dialog.center();
         dialog.show();
         return dialog;
+    }
+
+    private boolean isPublishingPluPermitted( XPlan xPlan ) {
+        return authorizationInfo.isSuperUser() || isOwner( xPlan );
     }
 
     private boolean isDeletingPermitted( XPlan xPlan ) {
