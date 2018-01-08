@@ -45,6 +45,28 @@
   </ServiceProvider>
 
 
+  <DatasetMetadata>
+    <MetadataUrlTemplate>http://gdk.gdi-de.org/gdi-de/srv/ger/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;id=${metadataSetId}&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full</MetadataUrlTemplate>
+    <Dataset>
+      <Name>LU.SpatialPlan</Name>
+      <Title>LU.SpatialPlan</Title>
+      <Abstract>Harmonized INSPIRE SpatialPlans (PLU, Annex III)</Abstract>
+      <MetadataSetId>SPATIALPLAN</MetadataSetId>
+    </Dataset>
+    <Dataset>
+      <Name>LU.SupplementaryRegulation</Name>
+      <Title>LU.SupplementaryRegulation</Title>
+      <Abstract>Harmonized INSPIRE SupplementaryRegulations (PLU, Annex III)</Abstract>
+      <MetadataSetId>SUPPLEMENTARYREGULATION</MetadataSetId>
+    </Dataset>
+    <Dataset>
+      <Name>LU.ZoningElement</Name>
+      <Title>LU.ZoningElement</Title>
+      <Abstract>Harmonized INSPIRE ZoningElements (PLU, Annex III)</Abstract>
+      <MetadataSetId>ZONINGELEMENT</MetadataSetId>
+    </Dataset>
+  </DatasetMetadata>
+
   <ExtendedCapabilities protocolVersions="1.3.0">
     <inspire_vs:ExtendedCapabilities xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
                                      xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"

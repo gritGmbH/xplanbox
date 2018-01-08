@@ -13,7 +13,6 @@
     <l:Name>LU.SpatialPlan</l:Name>
     <d:Title>LU.SpatialPlan</d:Title>
     <s:CRS>EPSG:4258 EPSG:4326 EPSG:900913 EPSG:28992</s:CRS>
-    <l:MetadataSetId>SpatialPlan</l:MetadataSetId>
     <l:StyleRef>
       <l:StyleStoreId>LU_SpatialPlan_Default</l:StyleStoreId>
       <l:Style>
@@ -27,7 +26,6 @@
     <l:Name>LU.ZoningElement</l:Name>
     <d:Title>LU.ZoningElement</d:Title>
     <s:CRS>EPSG:4258 EPSG:4326 EPSG:900913 EPSG:28992</s:CRS>
-    <l:MetadataSetId>ZoningElement</l:MetadataSetId>
     <l:StyleRef>
       <l:StyleStoreId>LU_ZoningElement_Default</l:StyleStoreId>
       <l:Style>
@@ -41,7 +39,6 @@
     <l:Name>LU.SupplementaryRegulation</l:Name>
     <d:Title>LU.SupplementaryRegulation</d:Title>
     <s:CRS>EPSG:4258 EPSG:4326 EPSG:900913 EPSG:28992</s:CRS>
-    <l:MetadataSetId>SupplementaryRegulation</l:MetadataSetId>
     <l:StyleRef>
       <l:StyleStoreId>LU_SupplementaryRegulation_Default</l:StyleStoreId>
       <l:Style>
