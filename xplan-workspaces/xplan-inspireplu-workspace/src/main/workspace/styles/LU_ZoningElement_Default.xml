@@ -18,7 +18,7 @@
     <se:Name>Primary  Production</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
+        <ogc:PropertyName>plu:hilucsLandUse/@xlink:href</ogc:PropertyName>
         <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/1_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
@@ -41,7 +41,7 @@
     <se:Name>Secondary Production</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
+        <ogc:PropertyName>plu:hilucsLandUse/@xlink:href</ogc:PropertyName>
         <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/2_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
@@ -64,7 +64,7 @@
     <se:Name>Tertiary Production</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
+        <ogc:PropertyName>plu:hilucsLandUse/@xlink:href</ogc:PropertyName>
         <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/3_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
@@ -87,7 +87,7 @@
     <se:Name>Transport Networkd Logistics AndU tilities</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
+        <ogc:PropertyName>plu:hilucsLandUse/@xlink:href</ogc:PropertyName>
         <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/4_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
@@ -110,7 +110,7 @@
     <se:Name>Residential Use</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
+        <ogc:PropertyName>plu:hilucsLandUse/@xlink:href</ogc:PropertyName>
         <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/5_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
@@ -133,7 +133,7 @@
     <se:Name>Other Uses</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
+        <ogc:PropertyName>plu:hilucsLandUse/@xlink:href</ogc:PropertyName>
         <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/6_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
