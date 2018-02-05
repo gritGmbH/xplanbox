@@ -135,9 +135,11 @@ Um Rasterdaten importieren und diese über den XPlanWMS-Ebene zur Verfügung
 stellen zu können, müssen die Daten folgende Anforderungen erfüllen.
 
 Die Unterstützung verschiedener Rasterdatentypen ist vom gesetzten
-Raster-Konfigurationstyp abhängig (**Wichtig: Dies kann nur zentral für
-die Anwendung konfiguriert und nicht durch den Nutzer geändert werden.
-Hinweise zur Konfiguration sind im Betriebshandbuch zu finden.**).
+Raster-Konfigurationstyp abhängig.
+
+NOTE: *Wichtig*: Dies kann nur zentral für die xPlanBox konfiguriert und nicht durch den Nutzer geändert werden.
+Hinweise zur Konfiguration sind im Betriebshandbuch zu finden.**
+
 Unterschieden wird dabei zwischen den Konfigurationstypen _GeoTiff_ und
 __GDAL__:
 
@@ -168,7 +170,9 @@ Folgende Voraussetzung werden an die einzelnen Formate gestellt:
 
 *PNG*:
 
-  * PNG-Dateien enthalten ein oder vier Bänder (RGBA).
+  * Farbbild (RGBA) hat ein, drei oder vier Bänder.
+  * Farbtiefe ist 8bit, 16bit oder 256 indizierten Farben im Farbpalettenmodus.
+  * Transparenz ist als Alphakanal je Band oder als "NoData Value" angegeben.
   * PNG-Dateien liegen in dem Koordinatenreferenzsystem vor, welches für
   den XPlanManager konfiguriert ist.
   * PNG-Dateien enthalten ihre räumliche Ausdehnung in einer
