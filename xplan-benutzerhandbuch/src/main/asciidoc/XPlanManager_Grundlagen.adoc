@@ -170,9 +170,9 @@ Folgende Voraussetzung werden an die einzelnen Formate gestellt:
 
 *PNG*:
 
-  * Farbbild (RGBA) hat ein, drei oder vier Bänder.
+  * Farbmodell (RGB) mit ein, drei oder vier Bändern.
   * Farbtiefe ist 8bit, 16bit oder 256 indizierten Farben im Farbpalettenmodus.
-  * Transparenz ist als Alphakanal je Band oder als "NoData Value" angegeben.
+  * Transparenz ist als Alphakanal je Band (RGBA) oder als "NoData Value" angegeben.
   * PNG-Dateien liegen in dem Koordinatenreferenzsystem vor, welches für
   den XPlanManager konfiguriert ist.
   * PNG-Dateien enthalten ihre räumliche Ausdehnung in einer
