@@ -104,7 +104,7 @@ optional mit SSD
 ______________________________________________________________________________________________________________
 
 NOTE: Hohe Datentransferraten sind bei Bereitstellung von großen
-Datenbeständen sowohl Rasterdaten als auch Vektordaten aus Datenbanken
+Datenbeständen sowohl von Raster- als auch Vektordaten
 notwendig, u.a. um die Vorgaben der INSPIRE-Richtlinien zu erfüllen.
 
 [[client]]
@@ -116,5 +116,5 @@ _____________________________________________
 _____________________________________________
 
 NOTE: Weitere Informationen zu den Systemvoraussetzungen bei den unterstützten
-Browsern: Microsoft Internet Explorer (9, 10, 11), Mozilla Firefox: 36+,
+Browsern: Microsoft Internet Explorer (10, 11), Mozilla Firefox: 36+,
 Google Chrome: 40+
