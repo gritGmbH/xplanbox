@@ -62,7 +62,7 @@ Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, müssen
 *’-Dxplan.logdir=C:\logs’* in die bestehenden JAVA_OPTS integriert
 werden.
 
-NOTE: Der Tomcat-Server sollte mindestens über 4GB Arbeitsspeicher verfügen,
+NOTE: Der Anwendungs-Tomcat muss mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch setzen der Umgebungsvariable: _exportJAVA_OPTS=’-Xmx4096m’_ erfolgen.
 
 [[dienste-tomcat]]
@@ -85,3 +85,6 @@ Zeilen hinzugefügt werden. :
 NOTE: Der Nutzername und das Passwort müssen in die
 managerConfiguration.properties eingetragen werden (s. Kapitel
 <<automatischer-workspace-reload>>.
+
+NOTE: Der Dienste-Tomcat muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
+dies kann durch setzen der Umgebungsvariable: _exportJAVA_OPTS=’-Xmx4096m’_ erfolgen.
