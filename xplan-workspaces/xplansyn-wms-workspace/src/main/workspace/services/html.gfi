@@ -40,7 +40,7 @@
 <?template makeitalink>
 <tr>
   <td <?odd:maybegray>><?name:map propname></td>
-  <td <?odd:maybegray>><a target="_blank" href="/xplan-wms<?value>">Dokument herunterladen</a></td>
+  <td <?odd:maybegray>><a target="_blank" href="${wms.url}<?value>">Dokument herunterladen</a></td>
 </tr>
 
 <?template property>
