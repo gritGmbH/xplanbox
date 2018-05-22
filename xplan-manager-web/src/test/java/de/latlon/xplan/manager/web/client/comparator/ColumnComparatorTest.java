@@ -6,8 +6,8 @@ import org.junit.Test;
 
 import java.util.Date;
 
-import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.IMPORT_DATE;
-import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.NAME;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.IMPORTDATE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NAME;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -96,7 +96,7 @@ public class ColumnComparatorTest {
                             throws Exception {
         plan1.setImportDate( new Date( 112014 ) );
         plan2.setImportDate( new Date( 212014 ) );
-        ColumnComparator comparator = new ColumnComparator( IMPORT_DATE );
+        ColumnComparator comparator = new ColumnComparator( IMPORTDATE );
         int result = comparator.compare( plan1, plan2 );
 
         assertThat( result, is( -1 ) );

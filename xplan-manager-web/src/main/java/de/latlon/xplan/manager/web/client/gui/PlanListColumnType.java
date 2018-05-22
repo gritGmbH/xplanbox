@@ -1,4 +1,4 @@
-package de.latlon.xplan.manager.web.client.filter;
+package de.latlon.xplan.manager.web.client.gui;
 
 /**
  * Discriminates the different columns.
@@ -8,8 +8,8 @@ package de.latlon.xplan.manager.web.client.filter;
  * 
  * @version $Revision: $, $Date: $
  */
-public enum SearchColumn {
+public enum PlanListColumnType {
 
-    ID, NUMBER, NAME, TYPE, ADDITIONALTYPE, LEGISLATIONSTATUS, RELEASEDATE, IMPORTDATE, ADE
+    ID, NUMBER, NAME, TYPE, ADDITIONALTYPE, LEGISLATIONSTATUS, RELEASEDATE, IMPORTDATE, PLANSTATUS, ADE
 
 }
