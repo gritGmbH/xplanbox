@@ -3033,10 +3033,7 @@
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
-      <Feature path=".">
-        <Join table="?" fromColumns="fk" toColumns="attr_gml_id"/>
-        <Href mapping="href"/>
-      </Feature>
+      <Primitive path="@xlink:href" mapping="href"/>
     </Complex>
     <Complex path="plu:officialDocument">
       <Join table="plu_supplementaryregulation_plu_officialdocument" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
@@ -3100,10 +3097,7 @@
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
-      <Feature path=".">
-        <Join table="?" fromColumns="fk" toColumns="attr_gml_id"/>
-        <Href mapping="href"/>
-      </Feature>
+      <Primitive path="@xlink:href" mapping="href"/>
     </Complex>
     <Complex path="plu:beginLifespanVersion">
       <Primitive path="text()" mapping="plu_beginlifespanversion"/>
