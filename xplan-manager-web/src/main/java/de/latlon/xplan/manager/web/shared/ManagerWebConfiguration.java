@@ -1,5 +1,7 @@
 package de.latlon.xplan.manager.web.shared;
 
+import de.latlon.xplan.manager.web.client.gui.PlanListColumnType;
+
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -30,11 +32,13 @@ public class ManagerWebConfiguration implements Serializable {
 
     private String[] categoryFilterValues;
 
+    private String[] hiddenColumns;
+
     /**
      * Instantiates a {@link ManagerWebConfiguration} with default values.
      */
     public ManagerWebConfiguration() {
-        this( false, false, false, false, false, null, new String[] {}, new String[] {} );
+        this( false, false, false, false, false, null, new String[] {}, new String[] {}, new String[] {} );
     }
 
     /**
@@ -58,7 +62,7 @@ public class ManagerWebConfiguration implements Serializable {
     public ManagerWebConfiguration( boolean internalIdActivated, boolean legislationStatusActivated,
                                     boolean validityPeriodActivated, boolean editorActivated,
                                     boolean publishingInspirePluActivated, String crsDialogDefaultCrs,
-                                    String[] crsDialogChooseCrs, String[] categoryFilterValues ) {
+                                    String[] crsDialogChooseCrs, String[] categoryFilterValues, String[] hiddenColumns ) {
         this.internalIdActivated = internalIdActivated;
         this.legislationStatusActivated = legislationStatusActivated;
         this.validityPeriodActivated = validityPeriodActivated;
@@ -67,7 +71,7 @@ public class ManagerWebConfiguration implements Serializable {
         this.crsDialogDefaultCrs = crsDialogDefaultCrs;
         this.crsDialogChooseCrs = crsDialogChooseCrs;
         this.categoryFilterValues = categoryFilterValues;
-
+        this.hiddenColumns = hiddenColumns;
     }
 
     /**
@@ -134,12 +138,30 @@ public class ManagerWebConfiguration implements Serializable {
         return categoryFilterValues;
     }
 
+    /**
+     * @return list of hidden columns, never <code>null</code>
+     */
+
+
+    /**
+     * @param planListColumnType
+     * @return
+     */
+    public boolean isColumnVisible( PlanListColumnType planListColumnType ) {
+        for ( String hiddenColumn : hiddenColumns ) {
+            if ( hiddenColumn != null && hiddenColumn.trim().equalsIgnoreCase( planListColumnType.name() ) )
+                return false;
+        }
+        return true;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + Arrays.hashCode( categoryFilterValues );
         result = prime * result + Arrays.hashCode( crsDialogChooseCrs );
+        result = prime * result + Arrays.hashCode( hiddenColumns );
         result = prime * result + ( ( crsDialogDefaultCrs == null ) ? 0 : crsDialogDefaultCrs.hashCode() );
         result = prime * result + ( editorActivated ? 1231 : 1237 );
         result = prime * result + ( internalIdActivated ? 1231 : 1237 );
@@ -161,6 +183,8 @@ public class ManagerWebConfiguration implements Serializable {
         if ( !Arrays.equals( categoryFilterValues, other.categoryFilterValues ) )
             return false;
         if ( !Arrays.equals( crsDialogChooseCrs, other.crsDialogChooseCrs ) )
+            return false;
+        if ( !Arrays.equals( hiddenColumns, other.hiddenColumns ) )
             return false;
         if ( crsDialogDefaultCrs == null ) {
             if ( other.crsDialogDefaultCrs != null )

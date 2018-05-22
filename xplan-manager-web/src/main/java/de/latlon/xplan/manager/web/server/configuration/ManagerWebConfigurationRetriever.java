@@ -98,9 +98,10 @@ public class ManagerWebConfigurationRetriever {
         String defaultCrs = retrieveMandatoryPropertyValue( props, "defaultCrs" );
         String[] chooseCrs = parseChooseCrs( props );
         String[] categoryFilterValues = parseCategoryFilterValues( props );
+        String[] hiddenColumns = parseHiddenColumns( props );
         return new ManagerWebConfiguration( internalIdActivated, legislationStatusActivated, validityPeriodActivated,
                                             editorActivated, publishingInspirePluActivated, defaultCrs, chooseCrs,
-                                            categoryFilterValues );
+                                            categoryFilterValues, hiddenColumns );
     }
 
     private MapPreviewConfiguration createMapPreviewConfigurationFromProperties( Properties props )
@@ -175,6 +176,13 @@ public class ManagerWebConfigurationRetriever {
     private String[] parseCategoryFilterValues( Properties props )
                     throws ConfigurationException {
         return parseAsArray( props, "categoryFilterValues" );
+    }
+
+    private String[] parseHiddenColumns( Properties props )
+                            throws ConfigurationException {
+        if ( props.containsKey( "hiddenColumns" ) )
+            return parseAsArray( props, "hiddenColumns" );
+        return new String[]{};
     }
 
     private String[] parseAsArray( Properties props, String key )
