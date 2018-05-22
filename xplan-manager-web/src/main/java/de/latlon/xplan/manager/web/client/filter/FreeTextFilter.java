@@ -70,6 +70,8 @@ public class FreeTextFilter implements PlanFilter {
             return isMatching( plan.getLegislationStatus() );
         case NAME:
             return isMatching( plan.getName() );
+        case NUMBER:
+            return isMatching( plan.getNumber() );
         case RELEASEDATE:
             return isMatching( convertDateToString( plan.getReleaseDate(), getReleaseDateFormat() ) );
         case TYPE:

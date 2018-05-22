@@ -7,6 +7,7 @@ import static de.latlon.xplan.manager.web.client.filter.SearchColumn.ID;
 import static de.latlon.xplan.manager.web.client.filter.SearchColumn.IMPORTDATE;
 import static de.latlon.xplan.manager.web.client.filter.SearchColumn.LEGISLATIONSTATUS;
 import static de.latlon.xplan.manager.web.client.filter.SearchColumn.NAME;
+import static de.latlon.xplan.manager.web.client.filter.SearchColumn.NUMBER;
 import static de.latlon.xplan.manager.web.client.filter.SearchColumn.RELEASEDATE;
 import static de.latlon.xplan.manager.web.client.filter.SearchColumn.TYPE;
 
@@ -140,6 +141,7 @@ public class SearchFilterPanel extends AbstractFilterPanel implements ResetableF
     private static Map<String, SearchColumn> initColumns() {
         Map<String, SearchColumn> labelsToColumns = new HashMap<String, SearchColumn>();
         labelsToColumns.put( messages.idColumn(), ID );
+        labelsToColumns.put( messages.numberColumn(), NUMBER );
         labelsToColumns.put( messages.nameColumn(), NAME );
         labelsToColumns.put( messages.planArt(), TYPE );
         labelsToColumns.put( messages.sonstPlanArt(), ADDITIONALTYPE );
