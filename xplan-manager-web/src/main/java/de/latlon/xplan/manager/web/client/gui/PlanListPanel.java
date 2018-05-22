@@ -8,6 +8,7 @@ import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.Com
 import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.IMPORT_DATE;
 import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.LEGISLATION_STATUS;
 import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.NAME;
+import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.NUMBER;
 import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.PLANSTATUS;
 import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.RELEASE_DATE;
 import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.TYPE;
@@ -564,13 +565,14 @@ public class PlanListPanel extends DecoratorPanel {
         ColumnSortEvent.ListHandler<XPlan> columnSortHandler = new ColumnSortEvent.ListHandler<XPlan>( plans );
         columnSortHandler.setComparator( planList.getColumn( 0 ), new ColumnComparator( NAME ) );
         columnSortHandler.setComparator( planList.getColumn( 1 ), new ColumnComparator( ID ) );
-        columnSortHandler.setComparator( planList.getColumn( 2 ), new ColumnComparator( TYPE ) );
-        columnSortHandler.setComparator( planList.getColumn( 3 ), new ColumnComparator( ADDITIONAL_TYPE ) );
-        columnSortHandler.setComparator( planList.getColumn( 4 ), new ColumnComparator( LEGISLATION_STATUS ) );
-        columnSortHandler.setComparator( planList.getColumn( 5 ), new ColumnComparator( RELEASE_DATE ) );
-        columnSortHandler.setComparator( planList.getColumn( 6 ), new ColumnComparator( IMPORT_DATE ) );
-        columnSortHandler.setComparator( planList.getColumn( 7 ), new ColumnComparator( PLANSTATUS ) );
-        columnSortHandler.setComparator( planList.getColumn( 8 ), new ColumnComparator( ADE ) );
+        columnSortHandler.setComparator( planList.getColumn( 2 ), new ColumnComparator( NUMBER ) );
+        columnSortHandler.setComparator( planList.getColumn( 3 ), new ColumnComparator( TYPE ) );
+        columnSortHandler.setComparator( planList.getColumn( 4 ), new ColumnComparator( ADDITIONAL_TYPE ) );
+        columnSortHandler.setComparator( planList.getColumn( 5 ), new ColumnComparator( LEGISLATION_STATUS ) );
+        columnSortHandler.setComparator( planList.getColumn( 6 ), new ColumnComparator( RELEASE_DATE ) );
+        columnSortHandler.setComparator( planList.getColumn( 7 ), new ColumnComparator( IMPORT_DATE ) );
+        columnSortHandler.setComparator( planList.getColumn( 8 ), new ColumnComparator( PLANSTATUS ) );
+        columnSortHandler.setComparator( planList.getColumn( 9 ), new ColumnComparator( ADE ) );
         planList.addColumnSortHandler( columnSortHandler );
     }
 
