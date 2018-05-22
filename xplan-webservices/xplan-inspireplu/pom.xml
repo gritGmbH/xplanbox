@@ -8,7 +8,7 @@
   <description>deegree INSPIRE PLU webservices</description>
 
   <properties>
-    <deegree3.inspireplu.version>3.4-RC5</deegree3.inspireplu.version>
+    <deegree3.inspireplu.version>3.4.0</deegree3.inspireplu.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
