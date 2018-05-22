@@ -30,7 +30,6 @@ import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.filter.FreeTextFilter;
 import de.latlon.xplan.manager.web.client.filter.PlanFilter;
 import de.latlon.xplan.manager.web.client.gui.PlanListColumnType;
-import de.latlon.xplan.manager.web.client.gui.PlanListPanel;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 
