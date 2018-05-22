@@ -3,6 +3,8 @@
 In den nachfolgenden Kapiteln wird die Konfiguration der einzelnen Komponenten erläutert:
 
 
+include::konfiguration_planliste.adoc[]
+
 include::konfiguration_codelisten.adoc[]
 
 include::konfiguration_XPlanRessourcen.adoc[]
