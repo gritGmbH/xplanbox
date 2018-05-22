@@ -2,6 +2,7 @@ package de.latlon.xplan.manager.web.client.gui;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADDITIONALTYPE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ID;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.IMPORTDATE;
@@ -11,6 +12,7 @@ import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NUMBER;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.PLANSTATUS;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.RELEASEDATE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.TYPE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.VALIDITIYPERIOD;
 import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getImportDateFormat;
 import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getReleaseDateFormat;
 
@@ -195,17 +197,28 @@ public class PlanListPanel extends DecoratorPanel {
     }
 
     private void initPlanListColumns( ColumnSortEvent.ListHandler<XPlan> columnSortHandler ) {
-        addNameColumn( columnSortHandler, planList );
-        addIdColumn( columnSortHandler, planList );
-        addNumberColumn( columnSortHandler, planList );
-        addTypeColumn( columnSortHandler, planList );
-        addAdditionalTypeColumn( columnSortHandler, planList );
-        addLegislationStatusColumn( columnSortHandler, planList );
-        addReleaseDateColumn( columnSortHandler, planList );
-        addImportDateColumn( columnSortHandler, planList );
-        addPlanStatusColumn( columnSortHandler, planList );
-        addValidityPeriodColumn( columnSortHandler, planList );
-        addAdeColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( NAME ) )
+            addNameColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( ID ) )
+            addIdColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( NUMBER ) )
+            addNumberColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( TYPE ) )
+            addTypeColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( ADDITIONALTYPE ) )
+            addAdditionalTypeColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( LEGISLATIONSTATUS ) )
+            addLegislationStatusColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( RELEASEDATE ) )
+            addReleaseDateColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( IMPORTDATE ) )
+            addImportDateColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( PLANSTATUS ) )
+            addPlanStatusColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( VALIDITIYPERIOD ) )
+            addValidityPeriodColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( ADE ) )
+            addAdeColumn( columnSortHandler, planList );
 
         TextHeader actionHeader = new TextHeader( messages.actions() );
         actionHeader.setHeaderStyleNames( "actionHeaderStyle" );

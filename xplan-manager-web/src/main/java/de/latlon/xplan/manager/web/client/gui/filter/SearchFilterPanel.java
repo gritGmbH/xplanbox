@@ -30,7 +30,9 @@ import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.filter.FreeTextFilter;
 import de.latlon.xplan.manager.web.client.filter.PlanFilter;
 import de.latlon.xplan.manager.web.client.gui.PlanListColumnType;
+import de.latlon.xplan.manager.web.client.gui.PlanListPanel;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 
 /**
  * GUI component containing the search filter of the plan list.
@@ -44,16 +46,17 @@ public class SearchFilterPanel extends AbstractFilterPanel implements ResetableF
 
     private static final XPlanWebMessages messages = GWT.create( XPlanWebMessages.class );
 
-    private static final Map<String, PlanListColumnType> labelsToColumns = initColumns();
+    private final Map<String, PlanListColumnType> labelsToColumns;
 
     private final ListBox listBox;
 
     private final TextBox textBox;
 
-    public SearchFilterPanel( FilterExecutor filterExecutor ) {
+    public SearchFilterPanel( FilterExecutor filterExecutor, ManagerWebConfiguration configuration ) {
         super( filterExecutor );
-        listBox = createListBox();
-        textBox = createTextBox();
+        labelsToColumns = initColumns( configuration );
+        this.listBox = createListBox();
+        this.textBox = createTextBox();
         createUi();
     }
 
@@ -138,18 +141,24 @@ public class SearchFilterPanel extends AbstractFilterPanel implements ResetableF
         return null;
     }
 
-    private static Map<String, PlanListColumnType> initColumns() {
+    private Map<String, PlanListColumnType> initColumns( ManagerWebConfiguration configuration ) {
         Map<String, PlanListColumnType> labelsToColumns = new HashMap<String, PlanListColumnType>();
-        labelsToColumns.put( messages.idColumn(), ID );
-        labelsToColumns.put( messages.numberColumn(), NUMBER );
-        labelsToColumns.put( messages.nameColumn(), NAME );
-        labelsToColumns.put( messages.planArt(), TYPE );
-        labelsToColumns.put( messages.sonstPlanArt(), ADDITIONALTYPE );
-        labelsToColumns.put( messages.legislationStatus(), LEGISLATIONSTATUS );
-        labelsToColumns.put( messages.releaseDate(), RELEASEDATE );
-        labelsToColumns.put( messages.importDate(), IMPORTDATE );
-        labelsToColumns.put( messages.ade(), ADE );
+        addColumn( labelsToColumns, messages.idColumn(), ID, configuration );
+        addColumn( labelsToColumns, messages.numberColumn(), NUMBER, configuration );
+        addColumn( labelsToColumns, messages.nameColumn(), NAME, configuration );
+        addColumn( labelsToColumns, messages.planArt(), TYPE, configuration );
+        addColumn( labelsToColumns, messages.sonstPlanArt(), ADDITIONALTYPE, configuration );
+        addColumn( labelsToColumns, messages.legislationStatus(), LEGISLATIONSTATUS, configuration );
+        addColumn( labelsToColumns, messages.releaseDate(), RELEASEDATE, configuration );
+        addColumn( labelsToColumns, messages.importDate(), IMPORTDATE, configuration );
+        addColumn( labelsToColumns, messages.ade(), ADE, configuration );
         return labelsToColumns;
+    }
+
+    private void addColumn( Map<String, PlanListColumnType> labelsToColumns, String label,
+                            PlanListColumnType columnType, ManagerWebConfiguration configuration ) {
+        if ( configuration.isColumnVisible( columnType ) )
+            labelsToColumns.put( label, columnType );
     }
 
 }
