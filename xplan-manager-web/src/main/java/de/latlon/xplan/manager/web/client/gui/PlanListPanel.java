@@ -197,6 +197,7 @@ public class PlanListPanel extends DecoratorPanel {
     private void initPlanListColumns() {
         addNameColumn( planList );
         addIdColumn( planList );
+        addNumberColumn( planList );
         addTypeColumn( planList );
         addAdditionalTypeColumn( planList );
         addLegislationStatusColumn( planList );
@@ -246,6 +247,18 @@ public class PlanListPanel extends DecoratorPanel {
         idColumn.setSortable( true );
         idColumn.setCellStyleNames( "planListColumn idColumn" );
         xPlanTable.addColumn( idColumn, messages.idColumn() );
+    }
+
+    private void addNumberColumn( CellTable<XPlan> xPlanTable ) {
+        TextColumn<XPlan> idnumber = new TextColumn<XPlan>() {
+            @Override
+            public String getValue( XPlan object ) {
+                return object.getNumber();
+            }
+        };
+        idnumber.setSortable( true );
+        idnumber.setCellStyleNames( "planListColumn numberColumn" );
+        xPlanTable.addColumn( idnumber, messages.numberColumn() );
     }
 
     private void addTypeColumn( CellTable<XPlan> xPlanTable ) {
