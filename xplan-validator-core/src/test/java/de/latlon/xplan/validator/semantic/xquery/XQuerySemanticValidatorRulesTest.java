@@ -16,6 +16,7 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.latlon.xplan.commons.XPlanVersion;
@@ -31,6 +32,7 @@ import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
+@Ignore
 public class XQuerySemanticValidatorRulesTest {
 
     @Test
@@ -169,6 +171,7 @@ public class XQuerySemanticValidatorRulesTest {
         assertThat( rules.size(), is( 1 ) );
         assertThat( rules.get( 0 ).isValid(), is( true ) );
     }
+
     @Test
     public void testRule_41_2211_valid_noPosition()
                             throws Exception {
