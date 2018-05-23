@@ -99,8 +99,7 @@ public class XQuerySemanticValidatorRulesTest {
     @Test
     public void testRule_41_451313_invalid_nurWeitereZweckbestimmung()
                             throws Exception {
-        List<RuleResult> rules = testRule( "BP_NebenanlagenFlaeche-nurWeitereZB.xml",
-                                           "xplangml41/4.5.13.1.xq" );
+        List<RuleResult> rules = testRule( "BP_NebenanlagenFlaeche-nurWeitereZB.xml", "xplangml41/4.5.13.1.xq" );
 
         assertThat( rules.size(), is( 1 ) );
         assertThat( rules.get( 0 ).isValid(), is( false ) );
@@ -110,6 +109,25 @@ public class XQuerySemanticValidatorRulesTest {
     public void testRule_41_451313_invalid_mehrfacheZweckbestimmungUndWeitere()
                             throws Exception {
         List<RuleResult> rules = testRule( "BP_NebenanlagenFlaeche-mehrfacheZBUndWeitere.xml", "xplangml41/4.5.13.1.xq" );
+
+        assertThat( rules.size(), is( 1 ) );
+        assertThat( rules.get( 0 ).isValid(), is( false ) );
+    }
+
+    @Test
+    public void testRule_41_4961()
+                            throws Exception {
+        List<RuleResult> rules = testRule( "xplan.gml", "xplangml41/4.9.6.1.xq" );
+
+        assertThat( rules.size(), is( 1 ) );
+        assertThat( rules.get( 0 ).isValid(), is( true ) );
+    }
+
+    @Test
+    public void testRule_41_4961_invalid_Polygon_flaechenschlussTrue()
+                            throws Exception {
+        List<RuleResult> rules = testRule( "BP_AnpflanzungBindungErhaltung-Polygon-flaechenschlussTrue.xml",
+                                           "xplangml41/4.9.6.1.xq" );
 
         assertThat( rules.size(), is( 1 ) );
         assertThat( rules.get( 0 ).isValid(), is( false ) );

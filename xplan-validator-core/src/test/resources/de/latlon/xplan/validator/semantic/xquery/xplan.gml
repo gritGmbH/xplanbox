@@ -351,6 +351,7 @@
       <xplan:inhaltBPlan xlink:href="#GML_ebf1a4b6-ed6d-4294-8525-a6fe35329268"/>
       <xplan:inhaltBPlan xlink:href="#GML_221609ea-2607-49c9-a2e3-d1cd039f0db7"/>
       <xplan:inhaltBPlan xlink:href="#GML_9591bc56-45c2-46f5-8cf7-5d34cd356861"/>
+      <xplan:inhaltBPlan xlink:href="#GML_9591bc56-45c2-46f5-8cf7-5d34cd356862"/>
       <xplan:inhaltBPlan xlink:href="#GML_f9e2558f-3222-432d-a498-58a6f7743a6e"/>
       <xplan:inhaltBPlan xlink:href="#GML_855d334e-6b1f-4bcd-85f3-fad683d4c2da"/>
       <xplan:inhaltBPlan xlink:href="#GML_4108a394-7bfc-4567-ae1d-8164a1039b11"/>
@@ -4656,6 +4657,39 @@
         <gml:Point srsName="EPSG:31467" gml:id="GML_6c597874-ed40-4efb-b1a2-8adcadfd806a">
           <gml:pos>3480276.858 5889990.381</gml:pos>
         </gml:Point>
+      </xplan:position>
+      <xplan:flaechenschluss>false</xplan:flaechenschluss>
+      <xplan:massnahme>2000</xplan:massnahme>
+      <xplan:gegenstand>1000</xplan:gegenstand>
+      <xplan:kronendurchmesser uom="urn:adv:uom:m">1</xplan:kronendurchmesser>
+      <xplan:istAusgleich>false</xplan:istAusgleich>
+    </xplan:BP_AnpflanzungBindungErhaltung>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_AnpflanzungBindungErhaltung gml:id="GML_9591bc56-45c2-46f5-8cf7-5d34cd356862">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:31467">
+          <gml:lowerCorner>3479682.131 5890103.604</gml:lowerCorner>
+          <gml:upperCorner>3479762.688 5890278.598</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBP_Bereich xlink:href="#GML_7af470e9-0167-43ae-823d-56e4241eab9d"/>
+      <xplan:position>
+        <gml:Polygon srsName="EPSG:31467" gml:id="GML_3e2e8601-ce42-48fa-8a06-03fe0e041cb2">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList srsDimension="2" count="5">3479682.131 5890109.853 3479729.428 5890229.489
+                3479729.785 5890230.519 3479730.051 5890231.577 3479730.223 5890232.653 3479730.302
+                5890233.741 3479730.285 5890234.831 3479730.173 5890235.915 3479729.967 5890236.986
+                3479729.668 5890238.034 3479729.280 5890239.052 3479725.801 5890247.079 3479725.800
+                5890247.081 3479725.411 5890248.099 3479725.112 5890249.148 3479724.906 5890250.218
+                3479724.794 5890251.302 3479724.776 5890252.392 3479724.854 5890253.480 3479725.026
+                5890254.556 3479725.291 5890255.614 3479725.648 5890256.644 3479734.327 5890278.598
+                3479762.688 5890267.386 3479756.989 5890252.970 3479697.937 5890103.604 3479682.131 5890109.853</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
       </xplan:position>
       <xplan:flaechenschluss>false</xplan:flaechenschluss>
       <xplan:massnahme>2000</xplan:massnahme>
