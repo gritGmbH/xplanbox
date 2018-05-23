@@ -143,9 +143,9 @@ public class XQuerySemanticValidatorRulesTest {
     }
 
     @Test
-    public void testRule_41_41421_invalid_Wegerecht_Polygon_flaechenschlussTrue()
+    public void testRule_41_41421_invalid_Wegerecht_Polygon_flaechenschlussFehlt()
                             throws Exception {
-        List<RuleResult> rules = testRule( "BP_Wegerecht-Polygon-flaechenschlussTrue.xml", "xplangml41/4.14.2.1.xq" );
+        List<RuleResult> rules = testRule( "BP_Wegerecht-Polygon-flaechenschlussFehlt.xml", "xplangml41/4.14.2.1.xq" );
 
         assertThat( rules.size(), is( 1 ) );
         assertThat( rules.get( 0 ).isValid(), is( false ) );
@@ -156,6 +156,32 @@ public class XQuerySemanticValidatorRulesTest {
                             throws Exception {
         List<RuleResult> rules = testRule( "BP_UnverbindlicheVormerkung-Polygon-flaechenschlussTrue.xml",
                                            "xplangml41/4.14.2.1.xq" );
+
+        assertThat( rules.size(), is( 1 ) );
+        assertThat( rules.get( 0 ).isValid(), is( false ) );
+    }
+
+    @Test
+    public void testRule_41_2211()
+                            throws Exception {
+        List<RuleResult> rules = testRule( "xplan.gml", "2.2.1.1.xq" );
+
+        assertThat( rules.size(), is( 1 ) );
+        assertThat( rules.get( 0 ).isValid(), is( true ) );
+    }
+    @Test
+    public void testRule_41_2211_valid_noPosition()
+                            throws Exception {
+        List<RuleResult> rules = testRule( "inhaltBPPlan-referenziertSO.xml", "2.2.1.1.xq" );
+
+        assertThat( rules.size(), is( 1 ) );
+        assertThat( rules.get( 0 ).isValid(), is( true ) );
+    }
+
+    @Test
+    public void testRule_41_2211_invalid_flaechenschlussFehlt()
+                            throws Exception {
+        List<RuleResult> rules = testRule( "BP_Wegerecht-Polygon-flaechenschlussFehlt.xml", "2.2.1.1.xq" );
 
         assertThat( rules.size(), is( 1 ) );
         assertThat( rules.get( 0 ).isValid(), is( false ) );
