@@ -43,9 +43,9 @@ public class XQuerySemanticValidatorRulesTest {
     }
 
     @Test
-    public void testRule_41_4121_invalid()
+    public void testRule_41_4121_invalid_inhaltBPPlanReferenziertSO()
                             throws Exception {
-        List<RuleResult> rules = testRule( "xplan-invalid.gml", "xplangml41/4.1.2.1.xq" );
+        List<RuleResult> rules = testRule( "inhaltBPPlan-referenziertSO.xml", "xplangml41/4.1.2.1.xq" );
 
         assertThat( rules.size(), is( 1 ) );
         assertThat( rules.get( 0 ).isValid(), is( false ) );
@@ -61,9 +61,9 @@ public class XQuerySemanticValidatorRulesTest {
     }
 
     @Test
-    public void testRule_41_423_invalid()
+    public void testRule_41_423_invalid_GFZundGF()
                             throws Exception {
-        List<RuleResult> rules = testRule( "xplan-invalid.gml", "xplangml41/4.2.3.xq" );
+        List<RuleResult> rules = testRule( "BP_BaugebietsTeilFlaeche-GFZ_GF_GRZ_GZ.xml", "xplangml41/4.2.3.xq" );
 
         assertThat( rules.size(), is( 1 ) );
         assertThat( rules.get( 0 ).isValid(), is( false ) );
@@ -79,9 +79,9 @@ public class XQuerySemanticValidatorRulesTest {
     }
 
     @Test
-    public void testRule_41_429_invalid()
+    public void testRule_41_429_invalid_GRZundGZ()
                             throws Exception {
-        List<RuleResult> rules = testRule( "xplan-invalid.gml", "xplangml41/4.2.9.xq" );
+        List<RuleResult> rules = testRule( "BP_BaugebietsTeilFlaeche-GFZ_GF_GRZ_GZ.xml", "xplangml41/4.2.9.xq" );
 
         assertThat( rules.size(), is( 1 ) );
         assertThat( rules.get( 0 ).isValid(), is( false ) );
