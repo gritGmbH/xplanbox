@@ -43,6 +43,15 @@ public class XQuerySemanticValidatorRulesTest {
     }
 
     @Test
+    public void testRule_41_4121_invalid()
+                            throws Exception {
+        List<RuleResult> rules = testRule( "xplan-invalid.gml", "xplangml41/4.1.2.1.xq" );
+
+        assertThat( rules.size(), is( 1 ) );
+        assertThat( rules.get( 0 ).isValid(), is( false ) );
+    }
+
+    @Test
     public void testRule_41_423()
                             throws Exception {
         List<RuleResult> rules = testRule( "xplan.gml", "xplangml41/4.2.3.xq" );

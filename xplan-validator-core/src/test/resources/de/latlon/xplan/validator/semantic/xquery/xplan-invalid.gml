@@ -478,6 +478,7 @@
       <xplan:inhaltBPlan xlink:href="#GML_bdf125ee-68dc-444f-a5cb-bd52e18d3649"/>
       <xplan:inhaltBPlan xlink:href="#GML_743a7792-17be-4627-bee1-bc43efdc0481"/>
       <xplan:inhaltBPlan xlink:href="#GML_16692627-2924-489d-b8cb-aa8742f3d2a9"/>
+      <xplan:inhaltBPlan xlink:href="#GML_999-so-textabschnitt"/>
     </xplan:BP_Bereich>
   </gml:featureMember>
   <gml:featureMember>
@@ -9612,5 +9613,10 @@
       <xplan:flaechenschluss>true</xplan:flaechenschluss>
       <xplan:zweckbestimmung>1000</xplan:zweckbestimmung>
     </xplan:BP_WaldFlaeche>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:SO_TextAbschnitt gml:id="GML_999-so-textabschnitt">
+      <xplan:rechtscharakter>3000</xplan:rechtscharakter>
+    </xplan:SO_TextAbschnitt>
   </gml:featureMember>
 </XPlanAuszug>
