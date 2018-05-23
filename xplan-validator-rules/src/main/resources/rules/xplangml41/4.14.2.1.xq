@@ -1,50 +1,32 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/4/1';
-declare namespace xplan='http://www.xplanung.de/xplangml/4/1';
-declare namespace gml='http://www.opengis.net/gml/3.2';
-declare namespace wfs='http://www.opengis.net/wfs';
-declare namespace xlink='http://www.w3.org/1999/xlink';
-declare namespace xsi='http://www.w3.org/2001/XMLSchema-instance';
+declare namespace gml = 'http://www.opengis.net/gml/3.2';
 
 (
+  every $h in //BP_UnverbindlicheVormerkung satisfies
   if (
-    let $ids := (
-      for $h in //BP_UnverbindlicheVormerkung/position/@xlink:href
-      return substring($h,2)
-    )
-    return
-    
-    every $id in $ids satisfies
-    exists(//BP_Geometrieobjekt/gml:Polygon[@gml:id = $id]) or
-    exists(//BP_Geometrieobjekt/gml:MultiSurface[@gml:id = $id]) or
-    exists(//BP_Geometrieobjekt/gml:LinearRing[@gml:id = $id]) or
-    exists(//BP_Geometrieobjekt/gml:PolygonPatch[@gml:id = $id]) or
-    exists(//BP_Geometrieobjekt/gml:Ring[@gml:id = $id])
+    exists(//$h/position/gml:Polygon) or
+      exists(//$h/position/gml:MultiSurface) or
+      exists(//$h/position/gml:LinearRing) or
+      exists(//$h/position/gml:PolygonPatch) or
+      exists(//$h/position/gml:Ring)
   )
   then (
-    every $h in //BP_UnverbindlicheVormerkung satisfies
     exists(//$h/flaechenschluss[text() = 'false'])
   )
-  else boolean ('false')
+  else boolean('false')
 )
 and
 (
+  every $h in //BP_Wegerecht satisfies
   if (
-    let $ids := (
-      for $h in //BP_Wegerecht/position/@xlink:href
-      return substring($h,2)
-    )
-    return
-    
-    every $id in $ids satisfies
-    exists(//BP_Geometrieobjekt/gml:Polygon[@gml:id = $id]) or
-    exists(//BP_Geometrieobjekt/gml:MultiSurface[@gml:id = $id]) or
-    exists(//BP_Geometrieobjekt/gml:LinearRing[@gml:id = $id]) or
-    exists(//BP_Geometrieobjekt/gml:PolygonPatch[@gml:id = $id]) or
-    exists(//BP_Geometrieobjekt/gml:Ring[@gml:id = $id])
+    exists(//$h/position/gml:Polygon) or
+      exists(//$h/position/gml:MultiSurface) or
+      exists(//$h/position/gml:LinearRing) or
+      exists(//$h/position/gml:PolygonPatch) or
+      exists(//$h/position/gml:Ring)
   )
   then (
-    every $h in //BP_Wegerecht satisfies
     exists(//$h/flaechenschluss[text() = 'false'])
   )
-  else boolean ('false')
+  else boolean('false')
 )

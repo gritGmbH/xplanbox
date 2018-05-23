@@ -133,6 +133,34 @@ public class XQuerySemanticValidatorRulesTest {
         assertThat( rules.get( 0 ).isValid(), is( false ) );
     }
 
+    @Test
+    public void testRule_41_41421()
+                            throws Exception {
+        List<RuleResult> rules = testRule( "xplan.gml", "xplangml41/4.14.2.1.xq" );
+
+        assertThat( rules.size(), is( 1 ) );
+        assertThat( rules.get( 0 ).isValid(), is( true ) );
+    }
+
+    @Test
+    public void testRule_41_41421_invalid_Wegerecht_Polygon_flaechenschlussTrue()
+                            throws Exception {
+        List<RuleResult> rules = testRule( "BP_Wegerecht-Polygon-flaechenschlussTrue.xml", "xplangml41/4.14.2.1.xq" );
+
+        assertThat( rules.size(), is( 1 ) );
+        assertThat( rules.get( 0 ).isValid(), is( false ) );
+    }
+
+    @Test
+    public void testRule_41_41421_invalid_UnverbindlicheVormerkung_Polygon_flaechenschlussTrue()
+                            throws Exception {
+        List<RuleResult> rules = testRule( "BP_UnverbindlicheVormerkung-Polygon-flaechenschlussTrue.xml",
+                                           "xplangml41/4.14.2.1.xq" );
+
+        assertThat( rules.size(), is( 1 ) );
+        assertThat( rules.get( 0 ).isValid(), is( false ) );
+    }
+
     private List<RuleResult> testRule( String resourceUnderTest, String rulePath )
                             throws URISyntaxException, ValidatorException, XMLStreamException {
         Path xqueryFilePath = XPlanRules.retrieveInternalRulesPath( rulePath );

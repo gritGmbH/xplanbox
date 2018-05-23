@@ -479,6 +479,8 @@
       <xplan:inhaltBPlan xlink:href="#GML_bdf125ee-68dc-444f-a5cb-bd52e18d3649"/>
       <xplan:inhaltBPlan xlink:href="#GML_743a7792-17be-4627-bee1-bc43efdc0481"/>
       <xplan:inhaltBPlan xlink:href="#GML_16692627-2924-489d-b8cb-aa8742f3d2a9"/>
+      <xplan:inhaltBPlan xlink:href="#GML_9591bc56-45c2-46f5-8cf7-5d34cd356865"/>
+      <xplan:inhaltBPlan xlink:href="#GML_9591bc56-45c2-46f5-8cf7-5d34cd356866"/>
     </xplan:BP_Bereich>
   </gml:featureMember>
   <gml:featureMember>
@@ -9673,5 +9675,69 @@
       <xplan:flaechenschluss>true</xplan:flaechenschluss>
       <xplan:zweckbestimmung>1000</xplan:zweckbestimmung>
     </xplan:BP_WaldFlaeche>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_UnverbindlicheVormerkung gml:id="GML_9591bc56-45c2-46f5-8cf7-5d34cd356865">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:31467">
+          <gml:lowerCorner>3479682.131 5890103.604</gml:lowerCorner>
+          <gml:upperCorner>3479762.688 5890278.598</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:rechtscharakter>1000</xplan:rechtscharakter>
+      <xplan:gehoertZuBP_Bereich xlink:href="#GML_7af470e9-0167-43ae-823d-56e4241eab9d" />
+      <xplan:position>
+        <gml:Polygon srsName="EPSG:31467" gml:id="GML_3e2e8601-ce42-48fa-8a06-03fe0e041cb3">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList srsDimension="2" count="5">3479682.131 5890109.853 3479729.428 5890229.489
+                3479729.785 5890230.519 3479730.051 5890231.577 3479730.223 5890232.653 3479730.302
+                5890233.741 3479730.285 5890234.831 3479730.173 5890235.915 3479729.967 5890236.986
+                3479729.668 5890238.034 3479729.280 5890239.052 3479725.801 5890247.079 3479725.800
+                5890247.081 3479725.411 5890248.099 3479725.112 5890249.148 3479724.906 5890250.218
+                3479724.794 5890251.302 3479724.776 5890252.392 3479724.854 5890253.480 3479725.026
+                5890254.556 3479725.291 5890255.614 3479725.648 5890256.644 3479734.327 5890278.598
+                3479762.688 5890267.386 3479756.989 5890252.970 3479697.937 5890103.604 3479682.131 5890109.853
+              </gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </xplan:position>
+      <xplan:flaechenschluss>false</xplan:flaechenschluss>
+      <xplan:vormerkung>abc</xplan:vormerkung>
+    </xplan:BP_UnverbindlicheVormerkung>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_Wegerecht gml:id="GML_9591bc56-45c2-46f5-8cf7-5d34cd356866">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:31467">
+          <gml:lowerCorner>3479682.131 5890103.604</gml:lowerCorner>
+          <gml:upperCorner>3479762.688 5890278.598</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:rechtscharakter>1000</xplan:rechtscharakter>
+      <xplan:gehoertZuBP_Bereich xlink:href="#GML_7af470e9-0167-43ae-823d-56e4241eab9d" />
+      <xplan:position>
+        <gml:Polygon srsName="EPSG:31467" gml:id="GML_3e2e8601-ce42-48fa-8a06-03fe0e041cb4">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList srsDimension="2" count="5">3479682.131 5890109.853 3479729.428 5890229.489
+                3479729.785 5890230.519 3479730.051 5890231.577 3479730.223 5890232.653 3479730.302
+                5890233.741 3479730.285 5890234.831 3479730.173 5890235.915 3479729.967 5890236.986
+                3479729.668 5890238.034 3479729.280 5890239.052 3479725.801 5890247.079 3479725.800
+                5890247.081 3479725.411 5890248.099 3479725.112 5890249.148 3479724.906 5890250.218
+                3479724.794 5890251.302 3479724.776 5890252.392 3479724.854 5890253.480 3479725.026
+                5890254.556 3479725.291 5890255.614 3479725.648 5890256.644 3479734.327 5890278.598
+                3479762.688 5890267.386 3479756.989 5890252.970 3479697.937 5890103.604 3479682.131 5890109.853
+              </gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </xplan:position>
+      <xplan:flaechenschluss>false</xplan:flaechenschluss>
+      <xplan:typ>4100</xplan:typ>
+      <xplan:thema>zugunsten der Anlieger und Versorgungsträger</xplan:thema>
+      <xplan:breite uom="m">3.0</xplan:breite>
+    </xplan:BP_Wegerecht>
   </gml:featureMember>
 </XPlanAuszug>
