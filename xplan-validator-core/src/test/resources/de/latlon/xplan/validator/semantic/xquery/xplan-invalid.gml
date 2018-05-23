@@ -3,6 +3,7 @@
 <XPlanAuszug xmlns="http://www.xplanung.de/xplangml/4/1"
              xmlns:xplan="http://www.xplanung.de/xplangml/4/1" xmlns:gml="http://www.opengis.net/gml/3.2"
              xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:wfs="http://www.opengis.net/wfs"
              xsi:schemaLocation="http://www.xplanung.de/xplangml/4/1 ../../../../../../../.././../../xplan-schemas/src/main/resources/appschemas/XPlanGML_4_1/XPlanung-Operationen.xsd"
              gml:id="GML_3aebe595-a72f-43b9-8dd3-c3c757edd558">
   <gml:boundedBy>
@@ -4696,6 +4697,8 @@
         </gml:Polygon>
       </xplan:position>
       <xplan:flaechenschluss>true</xplan:flaechenschluss>
+      <xplan:GFZ>1.0</xplan:GFZ>
+      <xplan:GF>0.9</xplan:GF>
       <xplan:GRZ>0.8</xplan:GRZ>
       <xplan:besondereArtDerBaulNutzung>1700</xplan:besondereArtDerBaulNutzung>
       <xplan:bauweise>3000</xplan:bauweise>

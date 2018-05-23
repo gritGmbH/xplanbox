@@ -7,6 +7,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +20,7 @@ import org.junit.Test;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.rules.XPlanRules;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
@@ -34,18 +36,41 @@ public class XQuerySemanticValidatorRulesTest {
     @Test
     public void testRule_41_4121()
                             throws Exception {
-        Path xqueryFilePath = XPlanRules.retrieveInternalRulesPath( "xplangml41/4.1.2.1.xq" );
-        XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-                                                                                                                     xqueryFilePath );
-        SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator( retriever );
-        ValidatorResult result = xQuerySemanticValidator.validateSemantic( mockArchive( "xplan.gml" ),
-                                                                           Collections.emptyList() );
-        SemanticValidatorResult semanticValidatorResult = (SemanticValidatorResult) result;
-
-        List<RuleResult> rules = semanticValidatorResult.getRules();
+        List<RuleResult> rules = testRule( "xplan.gml", "xplangml41/4.1.2.1.xq" );
 
         assertThat( rules.size(), is( 1 ) );
         assertThat( rules.get( 0 ).isValid(), is( true ) );
+    }
+
+    @Test
+    public void testRule_41_423()
+                            throws Exception {
+        List<RuleResult> rules = testRule( "xplan.gml", "xplangml41/4.2.3.xq" );
+
+        assertThat( rules.size(), is( 1 ) );
+        assertThat( rules.get( 0 ).isValid(), is( true ) );
+    }
+
+    @Test
+    public void testRule_41_423_invalid()
+                            throws Exception {
+        List<RuleResult> rules = testRule( "xplan-invalid.gml", "xplangml41/4.2.3.xq" );
+
+        assertThat( rules.size(), is( 1 ) );
+        assertThat( rules.get( 0 ).isValid(), is( false ) );
+    }
+
+    private List<RuleResult> testRule( String resourceUnderTest, String rulePath )
+                            throws URISyntaxException, ValidatorException, XMLStreamException {
+        Path xqueryFilePath = XPlanRules.retrieveInternalRulesPath( rulePath );
+        XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
+                                                                                                                     xqueryFilePath );
+        SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator( retriever );
+        ValidatorResult result = xQuerySemanticValidator.validateSemantic( mockArchive( resourceUnderTest ),
+                                                                           Collections.emptyList() );
+        SemanticValidatorResult semanticValidatorResult = (SemanticValidatorResult) result;
+
+        return semanticValidatorResult.getRules();
     }
 
     private XPlanArchive mockArchive( String resourceName )
