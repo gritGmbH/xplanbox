@@ -394,6 +394,7 @@
       <xplan:inhaltBPlan xlink:href="#GML_8310e31a-02eb-4771-abac-4c6dc33ef31d"/>
       <xplan:inhaltBPlan xlink:href="#GML_c35a6066-6176-4a20-8f20-38281b869d89"/>
       <xplan:inhaltBPlan xlink:href="#GML_48ffbabe-b89a-46c9-8c07-474d3762d67e"/>
+      <xplan:inhaltBPlan xlink:href="#GML_48ffbabe-b89a-46c9-8c07-474d3762d67f"/>
       <xplan:inhaltBPlan xlink:href="#GML_f20ac75c-a7fa-4d94-84cb-08f05d2c2b15"/>
       <xplan:inhaltBPlan xlink:href="#GML_f4ea964f-fa90-4885-9481-1f6ef94eacd1"/>
       <xplan:inhaltBPlan xlink:href="#GML_e2cded39-6ea1-4508-9e07-8ca952ee0210"/>
@@ -6055,6 +6056,35 @@
       </xplan:position>
       <xplan:flaechenschluss>false</xplan:flaechenschluss>
       <xplan:zweckbestimmung>9999</xplan:zweckbestimmung>
+    </xplan:BP_NebenanlagenFlaeche>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_NebenanlagenFlaeche gml:id="GML_48ffbabe-b89a-46c9-8c07-474d3762d67f">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:31467">
+          <gml:lowerCorner>3479654.676 5889215.351</gml:lowerCorner>
+          <gml:upperCorner>3480286.381 5889469.973</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBP_Bereich xlink:href="#GML_7af470e9-0167-43ae-823d-56e4241eab9d"/>
+      <xplan:position>
+        <gml:Polygon srsName="EPSG:31467" gml:id="GML_284ef322-72a3-4e20-9e0f-b274b90c27dc">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList srsDimension="2" count="17">3480169.387 5889253.684 3480245.548
+                5889223.589 3480266.396 5889215.351 3480286.381 5889267.290 3480281.031 5889266.045
+                3480264.773 5889263.049 3480244.207 5889260.908 3480223.533 5889260.568 3480202.908
+                5889262.031 3480182.489 5889265.286 3480162.431 5889270.308 3480142.887 5889277.059
+                3479664.301 5889466.170 3479654.676 5889469.973 3479670.497 5889450.817 3479853.599
+                5889378.465 3480169.387 5889253.684 </gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </xplan:position>
+      <xplan:flaechenschluss>false</xplan:flaechenschluss>
+      <xplan:zweckbestimmung>1000</xplan:zweckbestimmung>
+      <xplan:weitereZweckbestimmung1>3100</xplan:weitereZweckbestimmung1>
     </xplan:BP_NebenanlagenFlaeche>
   </gml:featureMember>
   <gml:featureMember>
