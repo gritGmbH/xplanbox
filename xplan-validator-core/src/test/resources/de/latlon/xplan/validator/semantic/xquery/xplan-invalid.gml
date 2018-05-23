@@ -4701,6 +4701,7 @@
       <xplan:GFZ>1.0</xplan:GFZ>
       <xplan:GF>0.9</xplan:GF>
       <xplan:GRZ>0.8</xplan:GRZ>
+      <xplan:GR>0.7</xplan:GR>
       <xplan:besondereArtDerBaulNutzung>1700</xplan:besondereArtDerBaulNutzung>
       <xplan:bauweise>3000</xplan:bauweise>
       <xplan:vertikaleDifferenzierung>false</xplan:vertikaleDifferenzierung>

@@ -69,6 +69,24 @@ public class XQuerySemanticValidatorRulesTest {
         assertThat( rules.get( 0 ).isValid(), is( false ) );
     }
 
+    @Test
+    public void testRule_41_429()
+                            throws Exception {
+        List<RuleResult> rules = testRule( "xplan.gml", "xplangml41/4.2.9.xq" );
+
+        assertThat( rules.size(), is( 1 ) );
+        assertThat( rules.get( 0 ).isValid(), is( true ) );
+    }
+
+    @Test
+    public void testRule_41_429_invalid()
+                            throws Exception {
+        List<RuleResult> rules = testRule( "xplan-invalid.gml", "xplangml41/4.2.9.xq" );
+
+        assertThat( rules.size(), is( 1 ) );
+        assertThat( rules.get( 0 ).isValid(), is( false ) );
+    }
+
     private List<RuleResult> testRule( String resourceUnderTest, String rulePath )
                             throws URISyntaxException, ValidatorException, XMLStreamException {
         Path xqueryFilePath = XPlanRules.retrieveInternalRulesPath( rulePath );
