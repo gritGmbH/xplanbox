@@ -70,6 +70,7 @@ Falls Sie mehr Details zu einem Aktualisierungsvorhaben vor Version 2.0 wünsche
 | 2.2              |                                                  | ja
 | 2.4              | ja                                               |
 | 2.7              | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>)
+| 2.8              |                                                  | ja
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 

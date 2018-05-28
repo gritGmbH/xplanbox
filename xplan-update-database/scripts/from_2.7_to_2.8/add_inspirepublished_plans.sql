@@ -1,0 +1,1 @@
+ALTER TABLE xplanmgr.plans ADD COLUMN inspirepublished boolean DEFAULT FALSE;
