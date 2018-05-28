@@ -533,6 +533,23 @@ public class XPlanDao {
         }
     }
 
+    /**
+     * @param planId
+     *            of the plan to set the status
+     * @throws SQLException
+     *             if the sql could not be executed
+     */
+    public void setPlanWasInspirePublished( String planId )
+                            throws SQLException {
+        Connection conn = null;
+        try {
+            conn = openConnection( ws, JDBC_POOL_ID );
+            updateInspirePublishedStatus( conn, planId, true );
+        } finally {
+            closeQuietly( conn );
+        }
+    }
+    
     private void updateSortPropertyInSynSchema( Date sortDate, XPlan plan, Connection conn )
                     throws Exception {
         String selectSchemaAndColumnsToModify = "SELECT column_name, table_schema, table_name "
@@ -1067,6 +1084,25 @@ public class XPlanDao {
             stmt.setString( 7, retrievePlanStatusMessage( newXPlanMetadata ) );
             stmt.setObject( 8, Integer.parseInt( xplan.getId() ) );
             LOG.trace( "SQL Update XPlanManager Metadata: {}", stmt );
+            stmt.executeUpdate();
+        } finally {
+            closeQuietly( stmt );
+        }
+    }
+
+    private void updateInspirePublishedStatus( Connection conn, String xplanId, boolean isPiublished )
+                            throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append( "UPDATE xplanmgr.plans SET " );
+        sql.append( "inspirepublished = ? " );
+        sql.append( "WHERE id = ? " );
+        String updateSql = sql.toString();
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement( updateSql );
+            stmt.setBoolean( 1, isPiublished );
+            stmt.setObject( 2, Integer.parseInt( xplanId ) );
+            LOG.trace( "SQL Update XPlanManager INSPIRE Published status: {}", stmt );
             stmt.executeUpdate();
         } finally {
             closeQuietly( stmt );
