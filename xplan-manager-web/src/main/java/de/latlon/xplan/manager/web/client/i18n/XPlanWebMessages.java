@@ -378,4 +378,14 @@ public interface XPlanWebMessages extends Messages {
 
     String publishingPluFailed();
 
+    String publishingPluButtonTooltip();
+
+    String publishingPluButtonTooltipPermissionDenied();
+
+    String publishingPluButtonTooltipIncorrectPlanType();
+
+    String publishingPluButtonTooltipIncorrectVersion();
+
+    String publishingPluButtonTooltipAlreadyPublished();
+
 }

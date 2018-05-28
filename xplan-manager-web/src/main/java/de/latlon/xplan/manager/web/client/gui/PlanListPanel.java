@@ -497,7 +497,7 @@ public class PlanListPanel extends DecoratorPanel {
             @Override
             public String getValue( XPlan xPlan ) {
                 if ( "BP_Plan".equals( xPlan.getType() ) && "XPLAN_41".equals( xPlan.getVersion() )
-                     && isPublishingPluPermitted( xPlan ) )
+                     && isPublishingPluPermitted( xPlan ) && !xPlan.isInspirePublished() )
                     publishPluButtonCell.setEnabled();
                 else
                     publishPluButtonCell.setDisabled();
@@ -512,6 +512,22 @@ public class PlanListPanel extends DecoratorPanel {
         publishPluButtonColumn.setCellStyleNames( "planListColumn publishPluButtonColumn" );
         xPlanTable.addColumn( publishPluButtonColumn, columnHeader );
         addStaticToolTip( xPlanTable, publishPluButtonColumn, messages.publishPlu() );
+
+        addDataDependentToolTip( xPlanTable, publishPluButtonColumn, new TooltipCreator() {
+            @Override
+            public String createTooltip( CellPreviewEvent<XPlan> event ) {
+                XPlan xPlan = event.getValue();
+                if ( !isPublishingPluPermitted( xPlan ) )
+                    return messages.publishingPluButtonTooltipPermissionDenied();
+                else if ( !"BP_Plan".equals( xPlan.getType() ) )
+                    return messages.publishingPluButtonTooltipIncorrectPlanType();
+                else if ( !"XPLAN_41".equals( xPlan.getVersion() ) )
+                    return messages.publishingPluButtonTooltipIncorrectVersion();
+                else if ( xPlan.isInspirePublished() )
+                    return messages.publishingPluButtonTooltipAlreadyPublished();
+                return messages.publishingPluButtonTooltip();
+            }
+        } );
     }
 
     private void addStaticToolTip( final CellTable<XPlan> xPlanTable, final Column<XPlan, String> column,
