@@ -316,7 +316,7 @@ public class XPlanDao {
             stmt = mgrConn.prepareStatement( "SELECT id, import_date, xp_version, xp_type, name, "
                                              + "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
                                              + "ade, sonst_plan_art, planstatus, rechtsstand, district, "
-                                             + "gueltigkeitBeginn, gueltigkeitEnde FROM xplanmgr.plans" );
+                                             + "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished FROM xplanmgr.plans" );
             rs = stmt.executeQuery();
             List<XPlan> xplanList = new ArrayList<>();
             while ( rs.next() ) {
@@ -351,7 +351,7 @@ public class XPlanDao {
             stmt = mgrConn.prepareStatement( "SELECT id, import_date, xp_version, xp_type, name, "
                                              + "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
                                              + "ade, sonst_plan_art, planstatus, rechtsstand, district, "
-                                             + "gueltigkeitBeginn, gueltigkeitEnde FROM xplanmgr.plans WHERE id =?" );
+                                             + "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished FROM xplanmgr.plans WHERE id =?" );
             stmt.setInt( 1, planId );
             rs = stmt.executeQuery();
             if ( rs.next() )
@@ -644,6 +644,7 @@ public class XPlanDao {
         String district = rs.getString( 15 );
         Timestamp startDateTime = rs.getTimestamp( 16 );
         Timestamp endDateTime = rs.getTimestamp( 17 );
+        Boolean isInspirePublished = rs.getBoolean( 18 );
 
         int numFeatures = retrieveNumberOfFeatures( connection, id );
 
@@ -661,6 +662,7 @@ public class XPlanDao {
         xPlan.setBbox( bbox );
         xPlan.setXplanMetadata( createXPlanMetadata( planStatus, startDateTime, endDateTime ) );
         xPlan.setDistrict( categoryMapper.mapToCategory( district ) );
+        xPlan.setInspirePublished( isInspirePublished );
         return xPlan;
     }
 
