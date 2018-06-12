@@ -2,15 +2,17 @@ package de.latlon.xplan.manager.web.client.gui;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.ADDITIONAL_TYPE;
-import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.ADE;
-import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.ID;
-import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.IMPORT_DATE;
-import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.LEGISLATION_STATUS;
-import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.NAME;
-import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.PLANSTATUS;
-import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.RELEASE_DATE;
-import static de.latlon.xplan.manager.web.client.comparator.ColumnComparator.ComparatorType.TYPE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADDITIONALTYPE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ID;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.IMPORTDATE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.LEGISLATIONSTATUS;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NAME;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NUMBER;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.PLANSTATUS;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.RELEASEDATE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.TYPE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.VALIDITIYPERIOD;
 import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getImportDateFormat;
 import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getReleaseDateFormat;
 
@@ -41,8 +43,8 @@ import com.google.gwt.user.client.ui.DecoratorPanel;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.view.client.CellPreviewEvent;
-import com.google.gwt.view.client.CellPreviewEvent.Handler;
 import com.google.gwt.view.client.ListDataProvider;
+import com.google.gwt.view.client.CellPreviewEvent.Handler;
 
 import de.latlon.xplan.commons.web.DisengageableButtonCell;
 import de.latlon.xplan.manager.web.client.comparator.ColumnComparator;
@@ -188,23 +190,35 @@ public class PlanListPanel extends DecoratorPanel {
 
     private void initPlanList() {
         planList.setKeyboardSelectionPolicy( HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED );
-        initPlanListColumns();
+        ColumnSortEvent.ListHandler<XPlan> columnSortHandler = createAndAddColumnSortHandler();
+        initPlanListColumns( columnSortHandler );
         dataProviderManager.addDataDisplay( planList );
-        addColumnSortHandler();
         planList.getColumnSortList().push( planList.getColumn( 0 ) );
     }
 
-    private void initPlanListColumns() {
-        addNameColumn( planList );
-        addIdColumn( planList );
-        addTypeColumn( planList );
-        addAdditionalTypeColumn( planList );
-        addLegislationStatusColumn( planList );
-        addReleaseDateColumn( planList );
-        addImportDateColumn( planList );
-        addPlanStatusColumn( planList );
-        addValidityPeriodColumn( planList );
-        addAdeColumn( planList );
+    private void initPlanListColumns( ColumnSortEvent.ListHandler<XPlan> columnSortHandler ) {
+        if ( configuration.isColumnVisible( NAME ) )
+            addNameColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( ID ) )
+            addIdColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( NUMBER ) )
+            addNumberColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( TYPE ) )
+            addTypeColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( ADDITIONALTYPE ) )
+            addAdditionalTypeColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( LEGISLATIONSTATUS ) )
+            addLegislationStatusColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( RELEASEDATE ) )
+            addReleaseDateColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( IMPORTDATE ) )
+            addImportDateColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( PLANSTATUS ) )
+            addPlanStatusColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( VALIDITIYPERIOD ) )
+            addValidityPeriodColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( ADE ) )
+            addAdeColumn( columnSortHandler, planList );
 
         TextHeader actionHeader = new TextHeader( messages.actions() );
         actionHeader.setHeaderStyleNames( "actionHeaderStyle" );
@@ -217,7 +231,7 @@ public class PlanListPanel extends DecoratorPanel {
         addRemoveColumn( planList, actionHeader );
     }
 
-    private void addNameColumn( CellTable<XPlan> xPlanTable ) {
+    private void addNameColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
         TextColumn<XPlan> nameColumn = new TextColumn<XPlan>() {
             @Override
             public String getValue( XPlan object ) {
@@ -233,10 +247,11 @@ public class PlanListPanel extends DecoratorPanel {
                 return xplan.getName();
             }
         } );
+        columnSortHandler.setComparator( nameColumn, new ColumnComparator( NAME ) );
         xPlanTable.addColumn( nameColumn, messages.nameColumn() );
     }
 
-    private void addIdColumn( CellTable<XPlan> xPlanTable ) {
+    private void addIdColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
         TextColumn<XPlan> idColumn = new TextColumn<XPlan>() {
             @Override
             public String getValue( XPlan object ) {
@@ -245,10 +260,24 @@ public class PlanListPanel extends DecoratorPanel {
         };
         idColumn.setSortable( true );
         idColumn.setCellStyleNames( "planListColumn idColumn" );
+        columnSortHandler.setComparator( idColumn, new ColumnComparator( ID ) );
         xPlanTable.addColumn( idColumn, messages.idColumn() );
     }
 
-    private void addTypeColumn( CellTable<XPlan> xPlanTable ) {
+    private void addNumberColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
+        TextColumn<XPlan> numberColumn = new TextColumn<XPlan>() {
+            @Override
+            public String getValue( XPlan object ) {
+                return object.getNumber();
+            }
+        };
+        numberColumn.setSortable( true );
+        numberColumn.setCellStyleNames( "planListColumn numberColumn" );
+        columnSortHandler.setComparator( numberColumn, new ColumnComparator( NUMBER ) );
+        xPlanTable.addColumn( numberColumn, messages.numberColumn() );
+    }
+
+    private void addTypeColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
         TextColumn<XPlan> typeColumn = new TextColumn<XPlan>() {
             @Override
             public String getValue( XPlan object ) {
@@ -257,10 +286,12 @@ public class PlanListPanel extends DecoratorPanel {
         };
         typeColumn.setSortable( true );
         typeColumn.setCellStyleNames( "planListColumn typeColumn" );
+        columnSortHandler.setComparator( typeColumn, new ColumnComparator( TYPE ) );
         xPlanTable.addColumn( typeColumn, messages.planArt() );
     }
 
-    private void addAdditionalTypeColumn( CellTable<XPlan> xPlanTable ) {
+    private void addAdditionalTypeColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler,
+                                          CellTable<XPlan> xPlanTable ) {
         TextColumn<XPlan> additionalTypeColumn = new TextColumn<XPlan>() {
             @Override
             public String getValue( XPlan object ) {
@@ -272,7 +303,8 @@ public class PlanListPanel extends DecoratorPanel {
         xPlanTable.addColumn( additionalTypeColumn, messages.sonstPlanArt() );
     }
 
-    private void addLegislationStatusColumn( CellTable<XPlan> xPlanTable ) {
+    private void addLegislationStatusColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler,
+                                             CellTable<XPlan> xPlanTable ) {
         TextColumn<XPlan> legislationStatusColumn = new TextColumn<XPlan>() {
             @Override
             public String getValue( XPlan object ) {
@@ -281,38 +313,41 @@ public class PlanListPanel extends DecoratorPanel {
         };
         legislationStatusColumn.setSortable( true );
         legislationStatusColumn.setCellStyleNames( "planListColumn legislationStatusColumn" );
+        columnSortHandler.setComparator( legislationStatusColumn, new ColumnComparator( LEGISLATIONSTATUS ) );
         xPlanTable.addColumn( legislationStatusColumn, messages.legislationStatus() );
     }
 
-    private void addReleaseDateColumn( CellTable<XPlan> xPlanTable ) {
+    private void addReleaseDateColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
         DateTimeFormat dateFormat = getReleaseDateFormat();
         DateCell dateCell = new DateCell( dateFormat );
-        Column<XPlan, Date> releaseDateColumn = new Column<XPlan, Date>( dateCell) {
+        Column<XPlan, Date> releaseDateColumn = new Column<XPlan, Date>( dateCell ) {
             @Override
             public Date getValue( XPlan object ) {
-                return object.getReleaseDate( );
+                return object.getReleaseDate();
             }
         };
         releaseDateColumn.setSortable( true );
         releaseDateColumn.setCellStyleNames( "planListColumn releaseDateColumn" );
+        columnSortHandler.setComparator( releaseDateColumn, new ColumnComparator( RELEASEDATE ) );
         xPlanTable.addColumn( releaseDateColumn, messages.releaseDate() );
     }
 
-    private void addImportDateColumn( CellTable<XPlan> xPlanTable ) {
+    private void addImportDateColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
         DateTimeFormat dateFormat = getImportDateFormat();
         DateCell dateCell = new DateCell( dateFormat );
-        Column<XPlan, Date> importDateColumn = new Column<XPlan, Date>( dateCell) {
+        Column<XPlan, Date> importDateColumn = new Column<XPlan, Date>( dateCell ) {
             @Override
             public Date getValue( XPlan object ) {
-                return object.getImportDate( );
+                return object.getImportDate();
             }
         };
         importDateColumn.setSortable( true );
         importDateColumn.setCellStyleNames( "planListColumn importDateColumn" );
+        columnSortHandler.setComparator( importDateColumn, new ColumnComparator( IMPORTDATE ) );
         xPlanTable.addColumn( importDateColumn, messages.importDate() );
     }
 
-    private void addPlanStatusColumn( CellTable<XPlan> xPlanTable ) {
+    private void addPlanStatusColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
         TextColumn<XPlan> planStatusColumn = new TextColumn<XPlan>() {
             @Override
             public String getValue( XPlan object ) {
@@ -324,12 +359,14 @@ public class PlanListPanel extends DecoratorPanel {
         };
         planStatusColumn.setSortable( true );
         planStatusColumn.setCellStyleNames( "planListColumn planStatusColumn" );
+        columnSortHandler.setComparator( planStatusColumn, new ColumnComparator( PLANSTATUS ) );
         xPlanTable.addColumn( planStatusColumn, messages.planStatus() );
     }
 
-    private void addValidityPeriodColumn( final CellTable<XPlan> xPlanTable ) {
+    private void addValidityPeriodColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler,
+                                          final CellTable<XPlan> xPlanTable ) {
         TextCell validatedButtonCell = new TextCell();
-        final Column<XPlan, String> validityStatusColumn = new Column<XPlan, String>( validatedButtonCell) {
+        final Column<XPlan, String> validityStatusColumn = new Column<XPlan, String>( validatedButtonCell ) {
             @Override
             public String getValue( XPlan object ) {
                 return " ";
@@ -374,7 +411,7 @@ public class PlanListPanel extends DecoratorPanel {
         xPlanTable.addColumn( validityStatusColumn, messages.validityStatus() );
     }
 
-    private void addAdeColumn( CellTable<XPlan> xPlanTable ) {
+    private void addAdeColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
         TextColumn<XPlan> adeColumn = new TextColumn<XPlan>() {
             @Override
             public String getValue( XPlan object ) {
@@ -383,19 +420,20 @@ public class PlanListPanel extends DecoratorPanel {
         };
         adeColumn.setSortable( true );
         adeColumn.setCellStyleNames( "planListColumn adeColumn" );
+        columnSortHandler.setComparator( adeColumn, new ColumnComparator( ADE ) );
         xPlanTable.addColumn( adeColumn, messages.ade() );
     }
 
     private void addRemoveColumn( final CellTable<XPlan> xPlanTable, TextHeader columnHeader ) {
         final DisengageableButtonCell removeButtonCell = new DisengageableButtonCell();
         removeButtonCell.setDisabled();
-        final Column<XPlan, String> removeButtonColumn = new Column<XPlan, String>( removeButtonCell) {
+        final Column<XPlan, String> removeButtonColumn = new Column<XPlan, String>( removeButtonCell ) {
             @Override
             public String getValue( XPlan xPlan ) {
                 if ( isDeletingPermitted( xPlan ) )
                     removeButtonCell.setEnabled();
                 else
-                    removeButtonCell.setDisabled( );
+                    removeButtonCell.setDisabled();
                 return "";
             }
         };
@@ -412,7 +450,7 @@ public class PlanListPanel extends DecoratorPanel {
 
     private void addEditColumn( final CellTable<XPlan> xPlanTable, TextHeader columnHeader ) {
         final DisengageableButtonCell editButtonCell = new DisengageableButtonCell();
-        final Column<XPlan, String> editButtonColumn = new Column<XPlan, String>( editButtonCell) {
+        final Column<XPlan, String> editButtonColumn = new Column<XPlan, String>( editButtonCell ) {
             @Override
             public String getValue( XPlan xPlan ) {
                 if ( "BP_Plan".equals( xPlan.getType() )
@@ -420,7 +458,7 @@ public class PlanListPanel extends DecoratorPanel {
                      && isEditingPermitted( xPlan ) )
                     editButtonCell.setEnabled();
                 else
-                    editButtonCell.setDisabled( );
+                    editButtonCell.setDisabled();
                 return "";
             }
         };
@@ -448,7 +486,7 @@ public class PlanListPanel extends DecoratorPanel {
 
     private void addPreviewColumn( final CellTable<XPlan> xPlanTable, TextHeader columnHeader ) {
         ButtonCell previewButtonCell = new ButtonCell();
-        final Column<XPlan, String> previewButtonColumn = new Column<XPlan, String>( previewButtonCell) {
+        final Column<XPlan, String> previewButtonColumn = new Column<XPlan, String>( previewButtonCell ) {
             @Override
             public String getValue( XPlan object ) {
                 return "";
@@ -459,7 +497,7 @@ public class PlanListPanel extends DecoratorPanel {
                 String planName = xplan.getName();
                 String planType = xplan.getType();
                 PlanStatus planStatus = xplan.getXplanMetadata() != null ? xplan.getXplanMetadata().getPlanStatus()
-                                                                         : null;
+                                                                        : null;
                 XPlanEnvelope bbox = xplan.getBbox();
                 MapPreviewDialog mapPreview = new MapPreviewDialog( planName, planType, planStatus, bbox );
                 mapPreview.show();
@@ -472,7 +510,7 @@ public class PlanListPanel extends DecoratorPanel {
 
     private void addDownloadColumn( final CellTable<XPlan> xPlanTable, TextHeader columnHeader ) {
         ButtonCell downloadButtonCell = new ButtonCell();
-        final Column<XPlan, String> downloadButtonColumn = new Column<XPlan, String>( downloadButtonCell) {
+        final Column<XPlan, String> downloadButtonColumn = new Column<XPlan, String>( downloadButtonCell ) {
             @Override
             public String getValue( XPlan object ) {
                 return "";
@@ -489,11 +527,10 @@ public class PlanListPanel extends DecoratorPanel {
         addStaticToolTip( xPlanTable, downloadButtonColumn, messages.downloadPlan() );
     }
 
-
     private void addPublishPluColumn( final CellTable<XPlan> xPlanTable, TextHeader columnHeader ) {
         final DisengageableButtonCell publishPluButtonCell = new DisengageableButtonCell();
         publishPluButtonCell.setDisabled();
-        final Column<XPlan, String> publishPluButtonColumn = new Column<XPlan, String>( publishPluButtonCell) {
+        final Column<XPlan, String> publishPluButtonColumn = new Column<XPlan, String>( publishPluButtonCell ) {
             @Override
             public String getValue( XPlan xPlan ) {
                 if ( "BP_Plan".equals( xPlan.getType() ) && "XPLAN_41".equals( xPlan.getVersion() )
@@ -506,7 +543,7 @@ public class PlanListPanel extends DecoratorPanel {
         };
         publishPluButtonColumn.setFieldUpdater( new FieldUpdater<XPlan, String>() {
             public void update( int index, XPlan object, String value ) {
-                    publishPlu( object.getId() );
+                publishPlu( object.getId() );
             }
         } );
         publishPluButtonColumn.setCellStyleNames( "planListColumn publishPluButtonColumn" );
@@ -546,19 +583,11 @@ public class PlanListPanel extends DecoratorPanel {
         } );
     }
 
-    private void addColumnSortHandler() {
+    private ColumnSortEvent.ListHandler<XPlan> createAndAddColumnSortHandler() {
         List<XPlan> plans = dataProviderManager.getList();
         ColumnSortEvent.ListHandler<XPlan> columnSortHandler = new ColumnSortEvent.ListHandler<XPlan>( plans );
-        columnSortHandler.setComparator( planList.getColumn( 0 ), new ColumnComparator( NAME ) );
-        columnSortHandler.setComparator( planList.getColumn( 1 ), new ColumnComparator( ID ) );
-        columnSortHandler.setComparator( planList.getColumn( 2 ), new ColumnComparator( TYPE ) );
-        columnSortHandler.setComparator( planList.getColumn( 3 ), new ColumnComparator( ADDITIONAL_TYPE ) );
-        columnSortHandler.setComparator( planList.getColumn( 4 ), new ColumnComparator( LEGISLATION_STATUS ) );
-        columnSortHandler.setComparator( planList.getColumn( 5 ), new ColumnComparator( RELEASE_DATE ) );
-        columnSortHandler.setComparator( planList.getColumn( 6 ), new ColumnComparator( IMPORT_DATE ) );
-        columnSortHandler.setComparator( planList.getColumn( 7 ), new ColumnComparator( PLANSTATUS ) );
-        columnSortHandler.setComparator( planList.getColumn( 8 ), new ColumnComparator( ADE ) );
         planList.addColumnSortHandler( columnSortHandler );
+        return columnSortHandler;
     }
 
     private void editPlan( final String version, final String id ) {

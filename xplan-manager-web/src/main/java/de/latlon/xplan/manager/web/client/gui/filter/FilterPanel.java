@@ -72,7 +72,7 @@ public class FilterPanel extends HorizontalPanel implements FilterExecutor {
         addResetableFilterPanel( categoryFilterPanel );
         PlanStatusFilterPanel planStatusFilterPanel = new PlanStatusFilterPanel( this );
         addResetableFilterPanel( planStatusFilterPanel );
-        SearchFilterPanel searchFilterPanel = new SearchFilterPanel( this );
+        SearchFilterPanel searchFilterPanel = new SearchFilterPanel( this, configuration );
         addResetableFilterPanel( searchFilterPanel );
 
         Widget resetButton = createResetButtonWidget();

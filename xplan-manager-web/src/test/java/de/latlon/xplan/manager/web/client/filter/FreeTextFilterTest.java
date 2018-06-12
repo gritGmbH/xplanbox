@@ -4,8 +4,8 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static de.latlon.xplan.manager.web.client.filter.SearchColumn.ID;
-import static de.latlon.xplan.manager.web.client.filter.SearchColumn.LEGISLATIONSTATUS;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ID;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.LEGISLATIONSTATUS;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 

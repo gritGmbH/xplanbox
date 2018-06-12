@@ -1,6 +1,7 @@
 package de.latlon.xplan.manager.web.client.filter;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
+import de.latlon.xplan.manager.web.client.gui.PlanListColumnType;
 import de.latlon.xplan.manager.web.shared.XPlan;
 
 import java.util.Date;
@@ -22,7 +23,7 @@ public class FreeTextFilter implements PlanFilter {
 
     private final String searchString;
 
-    private final SearchColumn column;
+    private final PlanListColumnType column;
 
     /**
      * Instantiates a filter for a free text search in all columns.
@@ -42,7 +43,7 @@ public class FreeTextFilter implements PlanFilter {
      * @param searchString
      *            used for search, if <code>null</code> all plans matches
      */
-    public FreeTextFilter( SearchColumn column, String searchString ) {
+    public FreeTextFilter( PlanListColumnType column, String searchString ) {
         this.column = column;
         this.searchString = normalizeSearchString( searchString );
     }
@@ -56,7 +57,7 @@ public class FreeTextFilter implements PlanFilter {
         return isMatchingFreeText( plan );
     }
 
-    private boolean isMatchingColumn( SearchColumn columnToSearchIn, XPlan plan ) {
+    private boolean isMatchingColumn( PlanListColumnType columnToSearchIn, XPlan plan ) {
         switch ( columnToSearchIn ) {
         case ADDITIONALTYPE:
             return isMatching( plan.getAdditionalType() );
@@ -70,6 +71,8 @@ public class FreeTextFilter implements PlanFilter {
             return isMatching( plan.getLegislationStatus() );
         case NAME:
             return isMatching( plan.getName() );
+        case NUMBER:
+            return isMatching( plan.getNumber() );
         case RELEASEDATE:
             return isMatching( convertDateToString( plan.getReleaseDate(), getReleaseDateFormat() ) );
         case TYPE:
@@ -87,7 +90,7 @@ public class FreeTextFilter implements PlanFilter {
     }
 
     private boolean isMatchingFreeText( XPlan plan ) {
-        for ( SearchColumn searchColumn : SearchColumn.values() ) {
+        for ( PlanListColumnType searchColumn : PlanListColumnType.values() ) {
             if ( isMatchingColumn( searchColumn, plan ) )
                 return true;
         }

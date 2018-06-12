@@ -5,6 +5,7 @@ import static java.lang.Integer.parseInt;
 import java.util.Comparator;
 import java.util.Date;
 
+import de.latlon.xplan.manager.web.client.gui.PlanListColumnType;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.XPlanMetadata;
 
@@ -24,16 +25,7 @@ public class ColumnComparator implements Comparator<XPlan> {
 
     private static final int IS_SMALLER = -1;
 
-    private ComparatorType type;
-
-    /**
-     * Discriminates the different types of comparators used in the table showing all plans
-     * 
-     * @author erben
-     */
-    public enum ComparatorType {
-        NAME, ID, TYPE, ADDITIONAL_TYPE, LEGISLATION_STATUS, RELEASE_DATE, IMPORT_DATE, PLANSTATUS, ADE
-    }
+    private PlanListColumnType type;
 
     /**
      * @param type
@@ -41,7 +33,7 @@ public class ColumnComparator implements Comparator<XPlan> {
      * @throws NullPointerException
      *             if type is <code>null</code>
      */
-    public ColumnComparator( ComparatorType type ) {
+    public ColumnComparator( PlanListColumnType type ) {
         if ( type == null )
             throw new NullPointerException();
         this.type = type;
@@ -64,15 +56,17 @@ public class ColumnComparator implements Comparator<XPlan> {
             Integer firstIdNumber = parseInt( first.getId() );
             Integer secondIdNumber = parseInt( second.getId() );
             return firstIdNumber.compareTo( secondIdNumber );
+        case NUMBER:
+            return compareString( first.getNumber(), second.getNumber() );
         case TYPE:
             return compareString( first.getType(), second.getType() );
-        case ADDITIONAL_TYPE:
+        case ADDITIONALTYPE:
             return compareString( first.getAdditionalType(), second.getAdditionalType() );
-        case LEGISLATION_STATUS:
+        case LEGISLATIONSTATUS:
             return compareString( first.getLegislationStatus(), second.getLegislationStatus() );
-        case RELEASE_DATE:
+        case RELEASEDATE:
             return compareDate( first.getReleaseDate(), second.getReleaseDate() );
-        case IMPORT_DATE:
+        case IMPORTDATE:
             return compareDate( first.getImportDate(), second.getImportDate() );
         case PLANSTATUS:
             String firstPlanStatus = retrievePlanStatus( first );
