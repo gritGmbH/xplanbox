@@ -46,6 +46,8 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
     private Boolean valid = false;
 
+    private Boolean inspirePublished = false;
+
     private XPlanEnvelope bbox;
 
     private String district;
@@ -206,6 +208,14 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
     public void setXplanMetadata( XPlanMetadata xplanMetadata ) {
         this.xplanMetadata = xplanMetadata;
+    }
+
+    public Boolean isInspirePublished() {
+        return inspirePublished;
+    }
+
+    public void setInspirePublished( Boolean inspirePublished ) {
+        this.inspirePublished = inspirePublished;
     }
 
     @Override

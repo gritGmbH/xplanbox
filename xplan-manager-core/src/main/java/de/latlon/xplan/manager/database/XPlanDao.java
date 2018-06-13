@@ -316,7 +316,7 @@ public class XPlanDao {
             stmt = mgrConn.prepareStatement( "SELECT id, import_date, xp_version, xp_type, name, "
                                              + "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
                                              + "ade, sonst_plan_art, planstatus, rechtsstand, district, "
-                                             + "gueltigkeitBeginn, gueltigkeitEnde FROM xplanmgr.plans" );
+                                             + "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished FROM xplanmgr.plans" );
             rs = stmt.executeQuery();
             List<XPlan> xplanList = new ArrayList<>();
             while ( rs.next() ) {
@@ -351,7 +351,7 @@ public class XPlanDao {
             stmt = mgrConn.prepareStatement( "SELECT id, import_date, xp_version, xp_type, name, "
                                              + "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
                                              + "ade, sonst_plan_art, planstatus, rechtsstand, district, "
-                                             + "gueltigkeitBeginn, gueltigkeitEnde FROM xplanmgr.plans WHERE id =?" );
+                                             + "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished FROM xplanmgr.plans WHERE id =?" );
             stmt.setInt( 1, planId );
             rs = stmt.executeQuery();
             if ( rs.next() )
@@ -533,6 +533,23 @@ public class XPlanDao {
         }
     }
 
+    /**
+     * @param planId
+     *            of the plan to set the status
+     * @throws SQLException
+     *             if the sql could not be executed
+     */
+    public void setPlanWasInspirePublished( String planId )
+                            throws SQLException {
+        Connection conn = null;
+        try {
+            conn = openConnection( ws, JDBC_POOL_ID );
+            updateInspirePublishedStatus( conn, planId, true );
+        } finally {
+            closeQuietly( conn );
+        }
+    }
+    
     private void updateSortPropertyInSynSchema( Date sortDate, XPlan plan, Connection conn )
                     throws Exception {
         String selectSchemaAndColumnsToModify = "SELECT column_name, table_schema, table_name "
@@ -627,6 +644,7 @@ public class XPlanDao {
         String district = rs.getString( 15 );
         Timestamp startDateTime = rs.getTimestamp( 16 );
         Timestamp endDateTime = rs.getTimestamp( 17 );
+        Boolean isInspirePublished = rs.getBoolean( 18 );
 
         int numFeatures = retrieveNumberOfFeatures( connection, id );
 
@@ -644,6 +662,7 @@ public class XPlanDao {
         xPlan.setBbox( bbox );
         xPlan.setXplanMetadata( createXPlanMetadata( planStatus, startDateTime, endDateTime ) );
         xPlan.setDistrict( categoryMapper.mapToCategory( district ) );
+        xPlan.setInspirePublished( isInspirePublished );
         return xPlan;
     }
 
@@ -1067,6 +1086,25 @@ public class XPlanDao {
             stmt.setString( 7, retrievePlanStatusMessage( newXPlanMetadata ) );
             stmt.setObject( 8, Integer.parseInt( xplan.getId() ) );
             LOG.trace( "SQL Update XPlanManager Metadata: {}", stmt );
+            stmt.executeUpdate();
+        } finally {
+            closeQuietly( stmt );
+        }
+    }
+
+    private void updateInspirePublishedStatus( Connection conn, String xplanId, boolean isPiublished )
+                            throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append( "UPDATE xplanmgr.plans SET " );
+        sql.append( "inspirepublished = ? " );
+        sql.append( "WHERE id = ? " );
+        String updateSql = sql.toString();
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement( updateSql );
+            stmt.setBoolean( 1, isPiublished );
+            stmt.setObject( 2, Integer.parseInt( xplanId ) );
+            LOG.trace( "SQL Update XPlanManager INSPIRE Published status: {}", stmt );
             stmt.executeUpdate();
         } finally {
             closeQuietly( stmt );

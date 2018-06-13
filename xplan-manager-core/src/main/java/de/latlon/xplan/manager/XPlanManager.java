@@ -703,6 +703,7 @@ public class XPlanManager {
         } else {
             String planId = plan.getId();
             inspirePluPublisher.transformAndPublish( planId );
+            xplanDao.setPlanWasInspirePublished( planId );
         }
     }
 

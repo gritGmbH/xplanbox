@@ -23,6 +23,7 @@ CREATE TABLE plans (
     wmsSortDate date,
     gueltigkeitBeginn timestamp,
     gueltigkeitEnde timestamp,
+    inspirepublished boolean DEFAULT FALSE,
     bbox geometry
 );
 COMMENT ON TABLE plans IS 'Imported plans';
