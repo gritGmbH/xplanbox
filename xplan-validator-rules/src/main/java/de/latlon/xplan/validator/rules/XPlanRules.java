@@ -18,6 +18,7 @@ public class XPlanRules {
 
     /**
      * retrieves path to xplan rules
+     * 
      * @return <code>Path</code> to xplan rules
      * @throws URISyntaxException
      */
@@ -25,4 +26,20 @@ public class XPlanRules {
                             throws URISyntaxException {
         return Paths.get( XPlanRules.class.getClassLoader().getResource( "rules" ).toURI() );
     }
+
+    /**
+     * retrieves path to xplan rules
+     * 
+     * @return <code>Path</code> to xplan rules
+     * @param path
+     *            The path to the rule, e.g. 'xplangml41/xp/4.1.2.1.xq', may be null
+     * @throws URISyntaxException
+     */
+    public static Path retrieveInternalRulesPath( String path )
+                            throws URISyntaxException {
+        if ( path == null || path.isEmpty() )
+            return retrieveInternalRulesPath();
+        return Paths.get( XPlanRules.class.getClassLoader().getResource( "rules/" + path ).toURI() );
+    }
+
 }

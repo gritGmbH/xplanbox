@@ -1,23 +1,30 @@
 package de.latlon.xplan.validator.semantic.configuration.xquery;
 
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
-import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
-import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfigurationRetriever;
-import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
-import net.sf.saxon.trans.XPathException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.NONE;
+import static java.lang.String.format;
+import static java.lang.String.valueOf;
+import static java.nio.file.Files.isDirectory;
+import static java.nio.file.Files.newDirectoryStream;
+import static java.nio.file.Files.newInputStream;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Path;
 
-import static de.latlon.xplan.commons.XPlanVersion.*;
-import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.NONE;
-import static java.lang.String.format;
-import static java.lang.String.valueOf;
-import static java.nio.file.Files.*;
+import net.sf.saxon.trans.XPathException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
+import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
+import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfigurationRetriever;
+import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
 
 /**
  * Retrieves XQuery configurations from file system
@@ -44,25 +51,31 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
     public SemanticValidatorConfiguration retrieveConfiguration()
                             throws IOException, XPathException {
         SemanticValidatorConfiguration config = new SemanticValidatorConfiguration();
-        try (DirectoryStream<Path> directoryStream = retrieveDirectoriesAndRules( rulesPath )) {
-            for ( Path path : directoryStream ) {
-                if ( isDirectory( path ) ) {
-                    XPlanVersion planVersion = parseXPlanVersion( path );
-                    SemanticValidationOptions validationOption = parseSemanticValidationOption( path );
-                    boolean isVersionDirectory = isVersionDirectory( planVersion );
-                    boolean isIgnoreOptionDirectory = isIgnoreOptionDirectory( validationOption );
-                    if ( isVersionDirectory ) {
-                        collectAllRulesFromVersionDirectory( config, path, planVersion );
-                    } else if ( isIgnoreOptionDirectory ) {
-                        collectAllRulesFromDirectory( config, path, UNKNOWN_VERSION, validationOption );
+
+        if ( isDirectory( rulesPath ) ) {
+            try (DirectoryStream<Path> directoryStream = retrieveDirectoriesAndRules( rulesPath )) {
+                for ( Path path : directoryStream ) {
+                    if ( isDirectory( path ) ) {
+                        XPlanVersion planVersion = parseXPlanVersion( path );
+                        SemanticValidationOptions validationOption = parseSemanticValidationOption( path );
+                        boolean isVersionDirectory = isVersionDirectory( planVersion );
+                        boolean isIgnoreOptionDirectory = isIgnoreOptionDirectory( validationOption );
+                        if ( isVersionDirectory ) {
+                            collectAllRulesFromVersionDirectory( config, path, planVersion );
+                        } else if ( isIgnoreOptionDirectory ) {
+                            collectAllRulesFromDirectory( config, path, UNKNOWN_VERSION, validationOption );
+                        } else {
+                            collectAllRulesFromDirectory( config, path, UNKNOWN_VERSION, UNKNOWN_OPTION );
+                        }
                     } else {
-                        collectAllRulesFromDirectory( config, path, UNKNOWN_VERSION, UNKNOWN_OPTION );
+                        createAndAddRule( config, path, UNKNOWN_VERSION, UNKNOWN_OPTION );
                     }
-                } else {
-                    createAndAddRule( config, path, UNKNOWN_VERSION, UNKNOWN_OPTION );
                 }
             }
+        } else {
+            createAndAddRule( config, rulesPath, UNKNOWN_VERSION, UNKNOWN_OPTION );
         }
+
         return config;
     }
 
@@ -103,7 +116,7 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
                                    SemanticValidationOptions option )
                             throws IOException, XPathException {
         String nameWithType = path.getFileName().toString();
-        String name = nameWithType.substring(0, nameWithType.lastIndexOf('.'));
+        String name = nameWithType.substring( 0, nameWithType.lastIndexOf( '.' ) );
         XQuerySemanticValidatorRule rule = new XQuerySemanticValidatorRule( newInputStream( path ), name, version,
                                                                             option );
         config.addRule( rule );
