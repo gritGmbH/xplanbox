@@ -13,7 +13,7 @@ declare namespace gml = 'http://www.opengis.net/gml/3.2';
   then (
     exists(//$h/flaechenschluss[text() = 'false'])
   )
-  else boolean('false')
+  else true()
 )
 and
 (
@@ -28,5 +28,5 @@ and
   then (
     exists(//$h/flaechenschluss[text() = 'false'])
   )
-  else boolean('false')
+  else true()
 )

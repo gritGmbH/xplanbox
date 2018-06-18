@@ -182,6 +182,15 @@ public class XQuerySemanticValidatorRulesTest {
     }
 
     @Test
+    public void testRule_41_2211_valid_withPositionPoint_flaechenschlussFehlt()
+                            throws Exception {
+        List<RuleResult> rules = testRule( "XP_PPO-positionPoint-keinFlaechenschluss.xml", "2.2.1.1.xq" );
+
+        assertThat( rules.size(), is( 1 ) );
+        assertThat( rules.get( 0 ).isValid(), is( true ) );
+    }
+
+    @Test
     public void testRule_41_2211_invalid_flaechenschlussFehlt()
                             throws Exception {
         List<RuleResult> rules = testRule( "BP_Wegerecht-Polygon-flaechenschlussFehlt.xml", "2.2.1.1.xq" );

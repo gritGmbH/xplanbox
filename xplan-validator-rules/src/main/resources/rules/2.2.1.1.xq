@@ -12,4 +12,4 @@ if (
 then (
   exists($h/flaechenschluss)
 )
-else boolean('false')
+else true()

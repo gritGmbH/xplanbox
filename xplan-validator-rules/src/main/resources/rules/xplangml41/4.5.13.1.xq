@@ -11,7 +11,7 @@ declare default element namespace 'http://www.xplanung.de/xplangml/4/1';
     then (
       exists($h/zweckbestimmung)
     )
-    else boolean('false')
+    else true()
   )
     and
     (: Wenn zur Spezifikation mehrerer Zweckbestimmungen das Attribut zweckbestimmung mehrfach verwendet wird, dürfen die Attribute weitereZweckbestimmung i (i = 1, 2, 3, 4) nicht verwendet werden. :)
@@ -23,7 +23,7 @@ declare default element namespace 'http://www.xplanung.de/xplangml/4/1';
       not(exists($h/weitereZweckbestimmung3)) and
       not(exists($h/weitereZweckbestimmung4))
     )
-    else boolean('false')
+    else true()
   )
     and
     (: Wenn mehr als eine Zweckbestimmung durch unterschiedliche Attribute spezifiziert werden sollen, sind die Attribute weitereZweckbestimmung i (i = 1, 2, 3, 4) in aufsteigender Reihenfolge zu belegen. :)
@@ -35,7 +35,7 @@ declare default element namespace 'http://www.xplanung.de/xplangml/4/1';
       exists($h/weitereZweckbestimmung4)
     )
     then (
-      boolean('true')
+      true()
     )
     else if (
       exists($h/weitereZweckbestimmung1) and
@@ -43,21 +43,27 @@ declare default element namespace 'http://www.xplanung.de/xplangml/4/1';
       exists($h/weitereZweckbestimmung3)
     )
     then (
-        boolean('true')
+        true()
       )
     else if (
         exists($h/weitereZweckbestimmung1) and
         exists($h/weitereZweckbestimmung2)
       )
       then (
-          boolean('true')
+          true()
         )
       else if (
           exists($h/weitereZweckbestimmung1)
         )
         then (
-            boolean('true')
+            true()
           )
-        else boolean('false')
+        else if (
+            not(exists($h/weitereZweckbestimmung1))
+          )
+          then (
+              true()
+            )
+          else false()
   )
 )
