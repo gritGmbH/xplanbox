@@ -59,7 +59,10 @@ declare default element namespace 'http://www.xplanung.de/xplangml/4/1';
             true()
           )
         else if (
-            not(exists($h/weitereZweckbestimmung1))
+            not(exists($h/weitereZweckbestimmung1)) and
+            not(exists($h/weitereZweckbestimmung2)) and
+            not(exists($h/weitereZweckbestimmung3)) and
+            not(exists($h/weitereZweckbestimmung4))
           )
           then (
               true()
