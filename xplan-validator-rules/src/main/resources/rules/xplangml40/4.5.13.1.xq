@@ -5,47 +5,56 @@ declare default element namespace 'http://www.xplanung.de/xplangml/4/1';
   (
     if (
       exists($h/weitereZweckbestimmung1) or
-        exists($h/weitereZweckbestimmung2) or
-        exists($h/weitereZweckbestimmung3) or
-        exists($h/weitereZweckbestimmung4))
+      exists($h/weitereZweckbestimmung2) or
+      exists($h/weitereZweckbestimmung3) or
+      exists($h/weitereZweckbestimmung4))
     then (
       exists($h/zweckbestimmung)
     )
-    else boolean('false')
+    else true()
   )
     and
     (: Wenn mehr als eine Zweckbestimmung durch unterschiedliche Attribute spezifiziert werden sollen, sind die Attribute weitereZweckbestimmung i (i = 1, 2, 3, 4) in aufsteigender Reihenfolge zu belegen. :)
   (
     if (
       exists($h/weitereZweckbestimmung1) and
-        exists($h/weitereZweckbestimmung2) and
-        exists($h/weitereZweckbestimmung3) and
-        exists($h/weitereZweckbestimmung4)
+      exists($h/weitereZweckbestimmung2) and
+      exists($h/weitereZweckbestimmung3) and
+      exists($h/weitereZweckbestimmung4)
     )
     then (
-      boolean('true')
+      true()
     )
     else if (
       exists($h/weitereZweckbestimmung1) and
-        exists($h/weitereZweckbestimmung2) and
-        exists($h/weitereZweckbestimmung3)
+      exists($h/weitereZweckbestimmung2) and
+      exists($h/weitereZweckbestimmung3)
     )
     then (
-        boolean('true')
+        true()
       )
     else if (
         exists($h/weitereZweckbestimmung1) and
-          exists($h/weitereZweckbestimmung2)
+        exists($h/weitereZweckbestimmung2)
       )
       then (
-          boolean('true')
+          true()
         )
       else if (
           exists($h/weitereZweckbestimmung1)
         )
         then (
-            boolean('true')
+            true()
           )
-        else boolean('false')
+        else if (
+            not(exists($h/weitereZweckbestimmung1)) and
+            not(exists($h/weitereZweckbestimmung2)) and
+            not(exists($h/weitereZweckbestimmung3)) and
+            not(exists($h/weitereZweckbestimmung4))
+          )
+          then (
+              true()
+            )
+          else false()
   )
 )
