@@ -39,6 +39,10 @@ public class ManagerConfiguration {
 
     static final String RASTER_CONFIG_CRS = "rasterConfigurationCrs";
 
+    static final String RASTER_LAYER_SCALE_DENOMINATOR_MIN = "rasterLayerMinScaleDenominator";
+
+    static final String RASTER_LAYER_SCALE_DENOMINATOR_MAX = "rasterLayerMaxScaleDenominator";
+
     static final String ACTIVATE_SEPARATED_DATAMANAGEMENT = "activateSeparatedDataManagement";
 
     static final String ACTIVATE_EXPORT_OF_REEXPORTED = "activateExportOfReexported";
@@ -66,6 +70,10 @@ public class ManagerConfiguration {
     private String rasterConfigurationCrs;
 
     private RasterConfigurationType rasterConfigurationType;
+
+    private double rasterLayerMinScaleDenominator;
+
+    private double rasterLayerMaxScaleDenominator;
 
     private boolean isSeperatedDataManagementActived = false;
 
@@ -111,6 +119,22 @@ public class ManagerConfiguration {
      */
     public RasterConfigurationType getRasterConfigurationType() {
         return rasterConfigurationType;
+    }
+
+    /**
+     * @return the max scale denominator the raster layer is visible (a value less then 0 means the visibility is not
+     *         limited)
+     */
+    public double getRasterLayerMaxScaleDenominator() {
+        return rasterLayerMaxScaleDenominator;
+    }
+
+    /**
+     * @return the min scale denominator the raster layer is visible (a value less then 0 means the visibility is not
+     *         limited)
+     */
+    public double getRasterLayerMinScaleDenominator() {
+        return rasterLayerMinScaleDenominator;
     }
 
     /**
@@ -196,6 +220,10 @@ public class ManagerConfiguration {
                 }
                 rasterConfigurationCrs = loadProperties.getProperty( RASTER_CONFIG_CRS );
                 rasterConfigurationType = parseRasterConfigurationType( loadProperties );
+                rasterLayerMinScaleDenominator = parseScaleDenominator( loadProperties,
+                                                                        RASTER_LAYER_SCALE_DENOMINATOR_MIN );
+                rasterLayerMaxScaleDenominator = parseScaleDenominator( loadProperties,
+                                                                        RASTER_LAYER_SCALE_DENOMINATOR_MAX );
                 isSeperatedDataManagementActived = parseBoolean( loadProperties, ACTIVATE_SEPARATED_DATAMANAGEMENT,
                                                                  false );
                 isExportOfReexportedActive = parseBoolean( loadProperties, ACTIVATE_EXPORT_OF_REEXPORTED, false );
@@ -220,6 +248,8 @@ public class ManagerConfiguration {
         LOG.info( "  raster configuration" );
         LOG.info( "   - crs: {}", rasterConfigurationCrs );
         LOG.info( "   - type: {}", rasterConfigurationType );
+        LOG.info( "   - min scale denominator: {}", rasterLayerMinScaleDenominator );
+        LOG.info( "   - max scale denominator: {}", rasterLayerMaxScaleDenominator );
         LOG.info( "-------------------------------------------" );
         LOG.info( "  separated data management" );
         LOG.info( "   - is activated: {}", isSeperatedDataManagementActived );
@@ -381,6 +411,13 @@ public class ManagerConfiguration {
         if ( configDirectory != null )
             return configDirectory.resolve( subdirectory );
         return null;
+    }
+
+    private double parseScaleDenominator( Properties properties, String propName ) {
+        String propertyValue = properties.getProperty( propName );
+        if ( propertyValue == null || "".equals( propertyValue ) )
+            return -1;
+        return Double.parseDouble( propertyValue );
     }
 
     private boolean parseBoolean( Properties loadProperties, String propName, boolean defaultValue ) {
