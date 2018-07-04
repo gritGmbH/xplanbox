@@ -3,7 +3,6 @@
 set -e
 
 ##### CONSTANTS
-HOST=localhost
 PORT=5432
 POSTGRES_USER=postgres
 
@@ -15,27 +14,27 @@ else
 
     #Create ```INSPIRE``` databases:
     echo "01: create db with postgis extension"
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -c "CREATE DATABASE xplanbox"
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -c "CREATE EXTENSION postgis"
+    psql -q -p $PORT -U $POSTGRES_USER -c "CREATE DATABASE xplanbox"
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -c "CREATE EXTENSION postgis"
 
     echo "02: setup dbs"
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplan2/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplan3/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplan40/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplan41/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplan41nsm/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplansyn/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan2/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan3/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan40/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan41/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan41nsm/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplansyn/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan2/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan3/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan40/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan41/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan41nsm/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplansyn/create.sql
-    psql -q  -h $HOST -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/xplanmgr/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplan2/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplan3/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplan40/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplan41/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplan41nsm/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplansyn/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan2/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan3/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan40/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan41/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan41nsm/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplansyn/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan2/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan3/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan40/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan41/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan41nsm/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplansyn/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/xplanmgr/create.sql
 fi
