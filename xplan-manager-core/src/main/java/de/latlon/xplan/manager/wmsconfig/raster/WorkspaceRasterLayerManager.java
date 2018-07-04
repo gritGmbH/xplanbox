@@ -214,12 +214,10 @@ public class WorkspaceRasterLayerManager {
     }
 
     private void setScaleDenominator( TileLayerType lay, double minScaleDenominator, double maxScaleDenominator ) {
-        if ( minScaleDenominator > 0 && maxScaleDenominator > 0 ) {
-            double minScaleDenominatorToSet = minScaleDenominator > 0 ? minScaleDenominator : 0;
-            double maxScaleDenominatorToSet = maxScaleDenominator > 0 ? maxScaleDenominator : Double.MAX_VALUE;
+        if ( minScaleDenominator >= 0 && maxScaleDenominator > 0 ) {
             ScaleDenominatorsType scaleDenominators = new ScaleDenominatorsType();
-            scaleDenominators.setMin( minScaleDenominatorToSet );
-            scaleDenominators.setMax( maxScaleDenominatorToSet );
+            scaleDenominators.setMin( minScaleDenominator );
+            scaleDenominators.setMax( maxScaleDenominator );
             lay.setScaleDenominators( scaleDenominators );
         }
     }
