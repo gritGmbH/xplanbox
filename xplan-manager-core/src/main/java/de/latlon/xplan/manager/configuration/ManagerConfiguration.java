@@ -95,6 +95,7 @@ public class ManagerConfiguration {
 
     public ManagerConfiguration( PropertiesLoader propertiesLoader ) throws ConfigurationException {
         loadProperties( propertiesLoader );
+        verifyConfiguration();
         logConfiguration();
     }
 
@@ -237,6 +238,12 @@ public class ManagerConfiguration {
             }
             configDirectory = getConfigDirectory( propertiesLoader, "synthesizer" );
         }
+    }
+
+    private void verifyConfiguration() {
+        if ( rasterLayerMinScaleDenominator >= rasterLayerMaxScaleDenominator )
+            throw new IllegalArgumentException(
+                                                "rasterLayerMinScaleDenominator is greater or equal then rasterLayerMaxScaleDenominator" );
     }
 
     private void logConfiguration() {
