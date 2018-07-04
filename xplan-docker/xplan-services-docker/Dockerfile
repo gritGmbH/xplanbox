@@ -16,6 +16,7 @@ RUN apt-get update && apt-get -y install libgdal-java
 
 # configure tomcat
 ADD tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
+ADD web.xml /usr/local/tomcat/conf/web.xml
 
 # add xplan-wms
 ADD target/xplan-wms-*.war /root/

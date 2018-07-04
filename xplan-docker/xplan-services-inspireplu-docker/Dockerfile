@@ -12,6 +12,7 @@ RUN apt-get update && apt-get -y install openjdk-8-jre
 
 # configure tomcat
 ADD tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
+ADD web.xml /usr/local/tomcat/conf/web.xml
 
 # add xplan-inspireplu
 ADD target/xplan-inspireplu-*.war /root/
