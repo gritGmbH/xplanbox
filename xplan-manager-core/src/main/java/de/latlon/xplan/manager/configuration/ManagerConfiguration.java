@@ -71,9 +71,9 @@ public class ManagerConfiguration {
 
     private RasterConfigurationType rasterConfigurationType;
 
-    private double rasterLayerMinScaleDenominator;
+    private double rasterLayerMinScaleDenominator = -1;
 
-    private double rasterLayerMaxScaleDenominator;
+    private double rasterLayerMaxScaleDenominator = -1;
 
     private boolean isSeperatedDataManagementActived = false;
 
@@ -241,9 +241,10 @@ public class ManagerConfiguration {
     }
 
     private void verifyConfiguration() {
-        if ( rasterLayerMinScaleDenominator >= rasterLayerMaxScaleDenominator )
+        if ( rasterLayerMinScaleDenominator >= 0 && rasterLayerMaxScaleDenominator >= 0
+             && rasterLayerMinScaleDenominator >= rasterLayerMaxScaleDenominator )
             throw new IllegalArgumentException(
-                                                "rasterLayerMinScaleDenominator is greater or equal then rasterLayerMaxScaleDenominator" );
+                            "rasterLayerMinScaleDenominator is greater or equal then rasterLayerMaxScaleDenominator" );
     }
 
     private void logConfiguration() {
