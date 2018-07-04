@@ -214,12 +214,14 @@ public class WorkspaceRasterLayerManager {
     }
 
     private void setScaleDenominator( TileLayerType lay, double minScaleDenominator, double maxScaleDenominator ) {
-        double minScaleDenominatorToSet = minScaleDenominator > 0 ? minScaleDenominator : 0;
-        double maxScaleDenominatorToSet = maxScaleDenominator > 0 ? maxScaleDenominator : Double.MAX_VALUE;
-        ScaleDenominatorsType scaleDenominators = new ScaleDenominatorsType();
-        scaleDenominators.setMin( minScaleDenominatorToSet );
-        scaleDenominators.setMax( maxScaleDenominatorToSet );
-        lay.setScaleDenominators( scaleDenominators );
+        if ( minScaleDenominator > 0 && maxScaleDenominator > 0 ) {
+            double minScaleDenominatorToSet = minScaleDenominator > 0 ? minScaleDenominator : 0;
+            double maxScaleDenominatorToSet = maxScaleDenominator > 0 ? maxScaleDenominator : Double.MAX_VALUE;
+            ScaleDenominatorsType scaleDenominators = new ScaleDenominatorsType();
+            scaleDenominators.setMin( minScaleDenominatorToSet );
+            scaleDenominators.setMax( maxScaleDenominatorToSet );
+            lay.setScaleDenominators( scaleDenominators );
+        }
     }
 
     private void createGeotiffTileMatrixSetConfig( String rasterId, String rasterFileName )
