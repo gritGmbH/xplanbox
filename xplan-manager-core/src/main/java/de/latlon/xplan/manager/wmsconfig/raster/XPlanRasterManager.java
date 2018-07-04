@@ -564,7 +564,9 @@ public class XPlanRasterManager {
         FileUtils.copyInputStreamToFile( archive.retrieveInputStreamFor( entryName ), target );
         String rasterId = createRasterId( dataFileName );
         rasterIds.add( rasterId );
-        layerMgr.createRasterConfigurations( rasterId, dataFileName );
+        layerMgr.createRasterConfigurations( rasterId, dataFileName,
+                                             managerConfiguration.getRasterLayerMinScaleDenominator(),
+                                             managerConfiguration.getRasterLayerMaxScaleDenominator() );
     }
 
     private String createRasterId( String dataFileName ) {

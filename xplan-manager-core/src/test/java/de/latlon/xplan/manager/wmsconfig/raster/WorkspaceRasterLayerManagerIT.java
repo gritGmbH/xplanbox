@@ -35,17 +35,29 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.wmsconfig.raster;
 
+import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
+import static java.nio.file.Files.copy;
+import static java.nio.file.Files.createDirectory;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
+
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.deegree.commons.config.DeegreeWorkspace;
+import org.deegree.commons.utils.DoublePair;
+import org.deegree.layer.persistence.LayerStore;
+import org.deegree.layer.persistence.LayerStoreProvider;
+import org.deegree.layer.persistence.tile.TileLayer;
+import org.deegree.workspace.Workspace;
 import org.junit.Before;
 import org.junit.Test;
 
 import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType;
-import de.latlon.xplan.manager.workspace.WorkspaceUtils;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -61,44 +73,94 @@ public class WorkspaceRasterLayerManagerIT {
 
     private static final String THEMES = "themes";
 
-    private File workspaceDirectory;
+    private static final String DATA = "data";
 
-    private DeegreeWorkspace workspace;
+    public static final String TIFF_FILE = "dem30_geotiff_tiled_epsg4326.tiff";
+
+    public static final String RASTER_ID = "rasterId";
+
+    private File workspaceDirectory;
 
     @Before
     public void createTestWorkspaceFrame()
-                    throws Exception {
+                            throws Exception {
         workspaceDirectory = createTmpWorkspace().toFile();
-        workspace = WorkspaceUtils.instantiateWorkspace( workspaceDirectory.getName(), workspaceDirectory );
     }
 
-    @Test
+    // Fails cause of missing GeoTiff installation
+    @Test(expected = UnsatisfiedLinkError.class)
     public void testCreateRasterConfigurationsWithGdalTilestore()
-                    throws Exception {
-        WorkspaceRasterLayerManager workspaceRasterLayerManager = new WorkspaceRasterLayerManager( workspaceDirectory,
-                        RasterConfigurationType.gdal, "epsg:25833" );
-        workspaceRasterLayerManager.createRasterConfigurations( "rasterId", "tiffFileName" );
+                            throws Exception {
+        WorkspaceRasterLayerManager workspaceRasterLayerManager = new WorkspaceRasterLayerManager(
+                                                                                                   workspaceDirectory,
+                                                                                                   RasterConfigurationType.gdal,
+                                                                                                   "EPSG:4326" );
+        workspaceRasterLayerManager.createRasterConfigurations( RASTER_ID, TIFF_FILE, 0, Double.MAX_VALUE );
 
-        workspace.initManagers();
+        instantiateWorkspace( workspaceDirectory.getName(), workspaceDirectory );
     }
 
     @Test
     public void testCreateRasterConfigurationsWithGeotiffTilestore()
-                    throws Exception {
-        WorkspaceRasterLayerManager workspaceRasterLayerManager = new WorkspaceRasterLayerManager( workspaceDirectory,
-                        RasterConfigurationType.geotiff, "epsg:25833" );
-        workspaceRasterLayerManager.createRasterConfigurations( "rasterId", "tiffFileName" );
+                            throws Exception {
+        WorkspaceRasterLayerManager workspaceRasterLayerManager = new WorkspaceRasterLayerManager(
+                                                                                                   workspaceDirectory,
+                                                                                                   RasterConfigurationType.geotiff,
+                                                                                                   "EPSG:4326" );
+        double minScaleDenominator = 10;
+        double maxScaleDenominator = 1500;
+        workspaceRasterLayerManager.createRasterConfigurations( RASTER_ID, TIFF_FILE, minScaleDenominator,
+                                                                maxScaleDenominator );
 
-        workspace.initManagers();
+        DeegreeWorkspace workspace = instantiateWorkspace( workspaceDirectory.getName(), workspaceDirectory );
+        Workspace newWorkspace = workspace.getNewWorkspace();
+        newWorkspace.initAll();
+        LayerStore layerStoreMap = newWorkspace.getResource( LayerStoreProvider.class, RASTER_ID );
+
+        assertThat( layerStoreMap, is( notNullValue() ) );
+        TileLayer tileLayer = (TileLayer) layerStoreMap.get( RASTER_ID );
+        DoublePair scaleDenominators = tileLayer.getMetadata().getScaleDenominators();
+        assertThat( scaleDenominators.first, is( minScaleDenominator ) );
+        assertThat( scaleDenominators.second, is( maxScaleDenominator ) );
+    }
+
+    @Test
+    public void testCreateRasterConfigurations_LayerWithDefaultScaleDenominators()
+                            throws Exception {
+        WorkspaceRasterLayerManager workspaceRasterLayerManager = new WorkspaceRasterLayerManager(
+                                                                                                   workspaceDirectory,
+                                                                                                   RasterConfigurationType.geotiff,
+                                                                                                   "EPSG:4326" );
+        workspaceRasterLayerManager.createRasterConfigurations( RASTER_ID, TIFF_FILE, -1, -1 );
+
+        DeegreeWorkspace workspace = instantiateWorkspace( workspaceDirectory.getName(), workspaceDirectory );
+        Workspace newWorkspace = workspace.getNewWorkspace();
+        newWorkspace.initAll();
+        LayerStore layerStoreMap = newWorkspace.getResource( LayerStoreProvider.class, RASTER_ID );
+
+        assertThat( layerStoreMap, is( notNullValue() ) );
+        TileLayer tileLayer = (TileLayer) layerStoreMap.get( RASTER_ID );
+        DoublePair scaleDenominators = tileLayer.getMetadata().getScaleDenominators();
+        assertThat( scaleDenominators.first, is( 0.0 ) );
+        assertThat( scaleDenominators.second, is( Double.MAX_VALUE ) );
     }
 
     private Path createTmpWorkspace()
-                    throws IOException {
+                            throws IOException {
         Path workspaceDirectory = Files.createTempDirectory( "WorkspaceRasterLayerManagerIT_" );
-        Files.createDirectory( workspaceDirectory.resolve( THEMES ) );
-        Files.createDirectory( workspaceDirectory.resolve( LAYERS ) );
-        Files.createDirectory( workspaceDirectory.resolve( SERVICES ) );
+        createDirectory( workspaceDirectory.resolve( THEMES ) );
+        createDirectory( workspaceDirectory.resolve( LAYERS ) );
+        createDirectory( workspaceDirectory.resolve( SERVICES ) );
+        Path dataPath = createDirectory( workspaceDirectory.resolve( DATA ) );
+        copyFile( TIFF_FILE, dataPath );
         return workspaceDirectory;
+    }
+
+    private void copyFile( String resourceName, Path dataPath )
+                            throws IOException {
+        InputStream resourceAsStream = getClass().getResourceAsStream( resourceName );
+        Path targetFile = dataPath.resolve( resourceName );
+        copy( resourceAsStream, targetFile );
     }
 
 }

@@ -17,6 +17,7 @@ import org.apache.commons.io.FileUtils;
 import org.deegree.commons.gdal.jaxb.GDALSettings;
 import org.deegree.commons.gdal.jaxb.GDALSettings.GDALOption;
 import org.deegree.commons.metadata.description.jaxb.LanguageStringType;
+import org.deegree.layer.persistence.base.jaxb.ScaleDenominatorsType;
 import org.deegree.layer.persistence.tile.jaxb.TileLayerType;
 import org.deegree.layer.persistence.tile.jaxb.TileLayers;
 import org.deegree.tile.persistence.gdal.jaxb.GdalTileStoreJaxb;
@@ -73,14 +74,15 @@ public class WorkspaceRasterLayerManager {
         this.rasterConfigurationCrs = rasterConfigurationCrs;
     }
 
-    public void createRasterConfigurations( String rasterId, String rasterFileName )
-                    throws JAXBException, IOException {
+    public void createRasterConfigurations( String rasterId, String rasterFileName, double minScaleDenominator,
+                                            double maxScaleDenominator )
+                            throws JAXBException, IOException {
         switch ( tileStoreType ) {
         case geotiff:
-            createGeotiffConfiguration( rasterId, rasterFileName );
+            createGeotiffConfiguration( rasterId, rasterFileName, minScaleDenominator, maxScaleDenominator );
             break;
         default:
-            createGdalConfiguration( rasterId, rasterFileName );
+            createGdalConfiguration( rasterId, rasterFileName, minScaleDenominator, maxScaleDenominator );
             break;
         }
     }
@@ -120,7 +122,7 @@ public class WorkspaceRasterLayerManager {
      * 
      * @param planId
      *            the id of the plan to remove configuration for, never <code>null</code>
-     * @param the
+     * @param rasterId
      *            id of the raster to remove, never <code>null</code>
      */
     public void deleteDataFilesAndRasterConfigurations( String planId, String rasterId ) {
@@ -172,29 +174,32 @@ public class WorkspaceRasterLayerManager {
         }
     }
 
-    private void createGdalConfiguration( String rasterId, String rasterFileName )
-                    throws JAXBException, IOException {
+    private void createGdalConfiguration( String rasterId, String rasterFileName, double minScaleDenominator,
+                                          double maxScaleDenominator )
+                            throws JAXBException, IOException {
         createGdalConfiguration();
         createGdalTileMatrixSetConfig( rasterId, rasterFileName );
         createGdalTileStoreConfig( rasterId, rasterFileName );
-        createTileLayerConfig( rasterId );
+        createTileLayerConfig( rasterId, minScaleDenominator, maxScaleDenominator );
     }
 
-    private void createGeotiffConfiguration( String rasterId, String rasterFileName )
-                    throws JAXBException, PropertyException {
+    private void createGeotiffConfiguration( String rasterId, String rasterFileName, double minScaleDenominator,
+                                             double maxScaleDenominator )
+                            throws JAXBException, PropertyException {
         createGeotiffTileMatrixSetConfig( rasterId, rasterFileName );
         createGeotiffTileStoreConfig( rasterId, rasterFileName );
-        createTileLayerConfig( rasterId );
+        createTileLayerConfig( rasterId, minScaleDenominator, maxScaleDenominator );
     }
 
-    private void createTileLayerConfig( String rasterId )
-                    throws JAXBException {
+    private void createTileLayerConfig( String rasterId, double minScaleDenominator, double maxScaleDenominator )
+                            throws JAXBException {
         TileLayers cfg = new TileLayers();
         cfg.setConfigVersion( "3.2.0" );
         TileLayerType lay = new TileLayerType();
         cfg.getTileLayer().add( lay );
         lay.setName( rasterId );
         lay.setCRS( rasterConfigurationCrs );
+        setScaleDenominator( lay, minScaleDenominator, maxScaleDenominator );
         LanguageStringType title = new LanguageStringType();
         title.setValue( rasterId );
         lay.getTitle().add( title );
@@ -208,8 +213,17 @@ public class WorkspaceRasterLayerManager {
         marshallConfig( cfg, "org.deegree.layer.persistence.tile.jaxb", file );
     }
 
+    private void setScaleDenominator( TileLayerType lay, double minScaleDenominator, double maxScaleDenominator ) {
+        if ( minScaleDenominator >= 0 && maxScaleDenominator > 0 ) {
+            ScaleDenominatorsType scaleDenominators = new ScaleDenominatorsType();
+            scaleDenominators.setMin( minScaleDenominator );
+            scaleDenominators.setMax( maxScaleDenominator );
+            lay.setScaleDenominators( scaleDenominators );
+        }
+    }
+
     private void createGeotiffTileMatrixSetConfig( String rasterId, String rasterFileName )
-                    throws JAXBException {
+                            throws JAXBException {
         GeoTIFFTileMatrixSetConfig cfg = new GeoTIFFTileMatrixSetConfig();
         cfg.setConfigVersion( "3.2.0" );
         cfg.setStorageCRS( rasterConfigurationCrs );
@@ -221,7 +235,7 @@ public class WorkspaceRasterLayerManager {
     }
 
     private void createGdalTileMatrixSetConfig( String rasterId, String rasterFileName )
-                    throws JAXBException {
+                            throws JAXBException {
         GdalTileMatrixSetConfig cfg = new GdalTileMatrixSetConfig();
         cfg.setConfigVersion( "3.4.0" );
         cfg.setStorageCRS( rasterConfigurationCrs );
@@ -233,7 +247,7 @@ public class WorkspaceRasterLayerManager {
     }
 
     private void createGeotiffTileStoreConfig( String rasterId, String rasterFileName )
-                    throws JAXBException, PropertyException {
+                            throws JAXBException, PropertyException {
         GeoTIFFTileStoreJAXB cfg = new GeoTIFFTileStoreJAXB();
         cfg.setConfigVersion( "3.2.0" );
         GeoTIFFTileStoreJAXB.TileDataSet tds = new GeoTIFFTileStoreJAXB.TileDataSet();
@@ -246,7 +260,7 @@ public class WorkspaceRasterLayerManager {
     }
 
     private void createGdalTileStoreConfig( String rasterId, String rasterFileName )
-                    throws JAXBException, PropertyException {
+                            throws JAXBException, PropertyException {
         GdalTileStoreJaxb cfg = new GdalTileStoreJaxb();
         cfg.setConfigVersion( "3.4.0" );
         GdalTileStoreJaxb.TileDataSet tds = new GdalTileStoreJaxb.TileDataSet();
@@ -259,7 +273,7 @@ public class WorkspaceRasterLayerManager {
     }
 
     private void createGdalConfiguration()
-                    throws JAXBException, IOException {
+                            throws JAXBException, IOException {
         GDALSettings gdalSettings = new GDALSettings();
         gdalSettings.setConfigVersion( "3.4.0" );
         gdalSettings.setOpenDatasets( BigInteger.valueOf( 10 ) );
@@ -272,7 +286,7 @@ public class WorkspaceRasterLayerManager {
     }
 
     private void marshallConfig( Object cfg, String contextPath, File toWriteIn )
-                    throws JAXBException {
+                            throws JAXBException {
         JAXBContext ctx = JAXBContext.newInstance( contextPath );
         Marshaller marshaller = ctx.createMarshaller();
         marshaller.setProperty( JAXB_FORMATTED_OUTPUT, TRUE );

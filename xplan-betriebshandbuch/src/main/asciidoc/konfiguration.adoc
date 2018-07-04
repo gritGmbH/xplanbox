@@ -44,3 +44,5 @@ include::konfiguration_inspireplu.adoc[]
 include::konfiguration_logging.adoc[]
 
 include::konfiguration_migration.adoc[]
+
+include::konfiguration_massstabsbereich.adoc[]
