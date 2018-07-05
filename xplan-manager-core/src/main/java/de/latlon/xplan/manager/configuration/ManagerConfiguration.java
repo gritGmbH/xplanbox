@@ -71,9 +71,9 @@ public class ManagerConfiguration {
 
     private RasterConfigurationType rasterConfigurationType;
 
-    private double rasterLayerMinScaleDenominator = -1;
+    private double rasterLayerMinScaleDenominator = Double.NaN;
 
-    private double rasterLayerMaxScaleDenominator = -1;
+    private double rasterLayerMaxScaleDenominator = Double.NaN;
 
     private boolean isSeperatedDataManagementActived = false;
 
@@ -241,10 +241,15 @@ public class ManagerConfiguration {
     }
 
     private void verifyConfiguration() {
-        if ( rasterLayerMinScaleDenominator >= 0 && rasterLayerMaxScaleDenominator >= 0
-             && rasterLayerMinScaleDenominator >= rasterLayerMaxScaleDenominator )
+        if ( Double.isNaN( rasterLayerMinScaleDenominator ) && Double.isNaN( rasterLayerMaxScaleDenominator ) )
+            return;
+        if ( rasterLayerMinScaleDenominator < 0 )
+            throw new IllegalArgumentException( "rasterLayerMinScaleDenominator should not be a negative value" );
+        if ( rasterLayerMaxScaleDenominator < 0 )
+            throw new IllegalArgumentException( "rasterLayerMaxScaleDenominator should not be a negative value" );
+        if ( rasterLayerMinScaleDenominator >= rasterLayerMaxScaleDenominator )
             throw new IllegalArgumentException(
-                            "rasterLayerMinScaleDenominator is greater or equal then rasterLayerMaxScaleDenominator" );
+                                                "rasterLayerMinScaleDenominator must be less than rasterLayerMaxScaleDenominator" );
     }
 
     private void logConfiguration() {
@@ -421,10 +426,10 @@ public class ManagerConfiguration {
         return null;
     }
 
-    private double parseScaleDenominator( Properties properties, String propName ) {
+    private Double parseScaleDenominator( Properties properties, String propName ) {
         String propertyValue = properties.getProperty( propName );
         if ( propertyValue == null || "".equals( propertyValue ) )
-            return -1;
+            return Double.NaN;
         return Double.parseDouble( propertyValue );
     }
 

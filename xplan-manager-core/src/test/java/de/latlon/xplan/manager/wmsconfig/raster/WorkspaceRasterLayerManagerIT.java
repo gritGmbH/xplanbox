@@ -131,7 +131,7 @@ public class WorkspaceRasterLayerManagerIT {
                                                                                                    workspaceDirectory,
                                                                                                    RasterConfigurationType.geotiff,
                                                                                                    "EPSG:4326" );
-        workspaceRasterLayerManager.createRasterConfigurations( RASTER_ID, TIFF_FILE, -1, -1 );
+        workspaceRasterLayerManager.createRasterConfigurations( RASTER_ID, TIFF_FILE, Double.NaN, Double.NaN );
 
         DeegreeWorkspace workspace = instantiateWorkspace( workspaceDirectory.getName(), workspaceDirectory );
         Workspace newWorkspace = workspace.getNewWorkspace();
@@ -141,8 +141,8 @@ public class WorkspaceRasterLayerManagerIT {
         assertThat( layerStoreMap, is( notNullValue() ) );
         TileLayer tileLayer = (TileLayer) layerStoreMap.get( RASTER_ID );
         DoublePair scaleDenominators = tileLayer.getMetadata().getScaleDenominators();
-        assertThat( scaleDenominators.first, is( 0.0 ) );
-        assertThat( scaleDenominators.second, is( Double.MAX_VALUE ) );
+        assertThat( scaleDenominators.first, is( Double.NEGATIVE_INFINITY ) );
+        assertThat( scaleDenominators.second, is( Double.POSITIVE_INFINITY ) );
     }
 
     private Path createTmpWorkspace()
