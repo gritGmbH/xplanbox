@@ -1,8 +1,8 @@
 [[massstabsbereich]]
 === Massstabsbereich
 
-Für die Rasterdaten empfiehlt es sich einen Massstabsbereich anzugeben,
-in dem diese durch den XPlanWMS angezeigt wird.
+Für die Rasterdaten empfiehlt es sich, einen Massstabsbereich anzugeben,
+in dem diese durch den XPlanWMS angezeigt werden.
 
 Der Massstabsbereich kann in der Datei _managerWebConfiguration.properties_
 im Verzeichnis _~/.deegree/manager-configuration/_ konfiguriert werden.
@@ -13,3 +13,7 @@ angezeigt werden, ist folgendes zu konfigurieren:
 rasterLayerMinScaleDenominator=100
 rasterLayerMaxScaleDenominator=50000
 ----
+
+NOTE: Der Massstabsbereich wird direkt in die generierte deegree Konfiguration geschrieben.
+Somit wirkt sich eine solche Konfiguration nur auf neu importierte Rasterdaten aus.
+Auf alle bereits importierten Pläne hat diese Konfigurationsoption keine Auswirkungen.
