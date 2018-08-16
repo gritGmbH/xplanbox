@@ -1,14 +1,15 @@
 package de.latlon.xplan.manager.web.client.gui.filter;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static de.latlon.xplan.manager.web.client.filter.SearchColumn.ADDITIONALTYPE;
-import static de.latlon.xplan.manager.web.client.filter.SearchColumn.ADE;
-import static de.latlon.xplan.manager.web.client.filter.SearchColumn.ID;
-import static de.latlon.xplan.manager.web.client.filter.SearchColumn.IMPORTDATE;
-import static de.latlon.xplan.manager.web.client.filter.SearchColumn.LEGISLATIONSTATUS;
-import static de.latlon.xplan.manager.web.client.filter.SearchColumn.NAME;
-import static de.latlon.xplan.manager.web.client.filter.SearchColumn.RELEASEDATE;
-import static de.latlon.xplan.manager.web.client.filter.SearchColumn.TYPE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADDITIONALTYPE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ID;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.IMPORTDATE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.LEGISLATIONSTATUS;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NAME;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NUMBER;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.RELEASEDATE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.TYPE;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,8 +29,9 @@ import com.google.gwt.user.client.ui.Widget;
 
 import de.latlon.xplan.manager.web.client.filter.FreeTextFilter;
 import de.latlon.xplan.manager.web.client.filter.PlanFilter;
-import de.latlon.xplan.manager.web.client.filter.SearchColumn;
+import de.latlon.xplan.manager.web.client.gui.PlanListColumnType;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 
 /**
  * GUI component containing the search filter of the plan list.
@@ -43,16 +45,17 @@ public class SearchFilterPanel extends AbstractFilterPanel implements ResetableF
 
     private static final XPlanWebMessages messages = GWT.create( XPlanWebMessages.class );
 
-    private static final Map<String, SearchColumn> labelsToColumns = initColumns();
+    private final Map<String, PlanListColumnType> labelsToColumns;
 
     private final ListBox listBox;
 
     private final TextBox textBox;
 
-    public SearchFilterPanel( FilterExecutor filterExecutor ) {
+    public SearchFilterPanel( FilterExecutor filterExecutor, ManagerWebConfiguration configuration ) {
         super( filterExecutor );
-        listBox = createListBox();
-        textBox = createTextBox();
+        labelsToColumns = initColumns( configuration );
+        this.listBox = createListBox();
+        this.textBox = createTextBox();
         createUi();
     }
 
@@ -123,12 +126,12 @@ public class SearchFilterPanel extends AbstractFilterPanel implements ResetableF
 
     private void performSearch() {
         String searchString = textBox.getValue();
-        SearchColumn searchColumn = detectSearchColumn( listBox );
+        PlanListColumnType searchColumn = detectSearchColumn( listBox );
         PlanFilter freeTextFilter = new FreeTextFilter( searchColumn, searchString );
         updateAndExecuteFilter( freeTextFilter );
     }
 
-    private SearchColumn detectSearchColumn( final ListBox listBox ) {
+    private PlanListColumnType detectSearchColumn( final ListBox listBox ) {
         int selectedIndex = listBox.getSelectedIndex();
         if ( selectedIndex > 0 ) {
             String selectedValue = listBox.getValue( selectedIndex );
@@ -137,17 +140,24 @@ public class SearchFilterPanel extends AbstractFilterPanel implements ResetableF
         return null;
     }
 
-    private static Map<String, SearchColumn> initColumns() {
-        Map<String, SearchColumn> labelsToColumns = new HashMap<String, SearchColumn>();
-        labelsToColumns.put( messages.idColumn(), ID );
-        labelsToColumns.put( messages.nameColumn(), NAME );
-        labelsToColumns.put( messages.planArt(), TYPE );
-        labelsToColumns.put( messages.sonstPlanArt(), ADDITIONALTYPE );
-        labelsToColumns.put( messages.legislationStatus(), LEGISLATIONSTATUS );
-        labelsToColumns.put( messages.releaseDate(), RELEASEDATE );
-        labelsToColumns.put( messages.importDate(), IMPORTDATE );
-        labelsToColumns.put( messages.ade(), ADE );
+    private Map<String, PlanListColumnType> initColumns( ManagerWebConfiguration configuration ) {
+        Map<String, PlanListColumnType> labelsToColumns = new HashMap<String, PlanListColumnType>();
+        addColumn( labelsToColumns, messages.idColumn(), ID, configuration );
+        addColumn( labelsToColumns, messages.numberColumn(), NUMBER, configuration );
+        addColumn( labelsToColumns, messages.nameColumn(), NAME, configuration );
+        addColumn( labelsToColumns, messages.planArt(), TYPE, configuration );
+        addColumn( labelsToColumns, messages.sonstPlanArt(), ADDITIONALTYPE, configuration );
+        addColumn( labelsToColumns, messages.legislationStatus(), LEGISLATIONSTATUS, configuration );
+        addColumn( labelsToColumns, messages.releaseDate(), RELEASEDATE, configuration );
+        addColumn( labelsToColumns, messages.importDate(), IMPORTDATE, configuration );
+        addColumn( labelsToColumns, messages.ade(), ADE, configuration );
         return labelsToColumns;
+    }
+
+    private void addColumn( Map<String, PlanListColumnType> labelsToColumns, String label,
+                            PlanListColumnType columnType, ManagerWebConfiguration configuration ) {
+        if ( configuration.isColumnVisible( columnType ) )
+            labelsToColumns.put( label, columnType );
     }
 
 }

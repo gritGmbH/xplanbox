@@ -49,6 +49,7 @@ import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.persistence.FeatureStore;
 import org.deegree.feature.persistence.FeatureStoreException;
 import org.deegree.feature.persistence.FeatureStoreProvider;
+import org.deegree.feature.persistence.FeatureStoreTransaction;
 import org.deegree.feature.persistence.query.Query;
 import org.deegree.feature.persistence.sql.SQLFeatureStoreTransaction;
 import org.deegree.feature.types.AppSchema;
@@ -58,6 +59,7 @@ import org.deegree.geometry.Geometry;
 import org.deegree.geometry.io.WKTReader;
 import org.deegree.geometry.io.WKTWriter;
 import org.deegree.protocol.wfs.getfeature.TypeName;
+import org.deegree.protocol.wfs.transaction.action.IDGenMode;
 import org.deegree.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -135,6 +137,8 @@ public class XPlanDao {
     private static final String XPLAN41ARCHIVE_NSM_FS_ID = "xplan41nsmarchive";
 
     private static final String XPLANSYNARCHIVE_FS_ID = "xplansynarchive";
+
+    private static final String INSPIREPLU_FS_ID = "inspireplu";
 
     private final Workspace ws;
 
@@ -218,6 +222,22 @@ public class XPlanDao {
         }
     }
 
+    public void insertInspirePlu( FeatureCollection featureCollection )
+                            throws Exception {
+        FeatureStoreTransaction transaction = null;
+        try {
+            LOG.info( "Insert INSPIRE PLU dataset" );
+            FeatureStore inspirePluStore = lookupStore( INSPIREPLU_FS_ID );
+            transaction = inspirePluStore.acquireTransaction();
+
+            transaction.performInsert( featureCollection, IDGenMode.GENERATE_NEW );
+            transaction.commit();
+        } catch ( FeatureStoreException e ) {
+            rollbackTransaction( transaction, e );
+            throw new Exception( "Fehler beim Einfügen des INSPIRE PLU Datensatz: " + e.getMessage(), e );
+        }
+    }
+
     /**
      * @param oldXplan
      *            the {@link XPlan} describing the plan before update, never <code>null</code>
@@ -296,7 +316,7 @@ public class XPlanDao {
             stmt = mgrConn.prepareStatement( "SELECT id, import_date, xp_version, xp_type, name, "
                                              + "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
                                              + "ade, sonst_plan_art, planstatus, rechtsstand, district, "
-                                             + "gueltigkeitBeginn, gueltigkeitEnde FROM xplanmgr.plans" );
+                                             + "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished FROM xplanmgr.plans" );
             rs = stmt.executeQuery();
             List<XPlan> xplanList = new ArrayList<>();
             while ( rs.next() ) {
@@ -331,7 +351,7 @@ public class XPlanDao {
             stmt = mgrConn.prepareStatement( "SELECT id, import_date, xp_version, xp_type, name, "
                                              + "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
                                              + "ade, sonst_plan_art, planstatus, rechtsstand, district, "
-                                             + "gueltigkeitBeginn, gueltigkeitEnde FROM xplanmgr.plans WHERE id =?" );
+                                             + "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished FROM xplanmgr.plans WHERE id =?" );
             stmt.setInt( 1, planId );
             rs = stmt.executeQuery();
             if ( rs.next() )
@@ -513,6 +533,23 @@ public class XPlanDao {
         }
     }
 
+    /**
+     * @param planId
+     *            of the plan to set the status
+     * @throws SQLException
+     *             if the sql could not be executed
+     */
+    public void setPlanWasInspirePublished( String planId )
+                            throws SQLException {
+        Connection conn = null;
+        try {
+            conn = openConnection( ws, JDBC_POOL_ID );
+            updateInspirePublishedStatus( conn, planId, true );
+        } finally {
+            closeQuietly( conn );
+        }
+    }
+    
     private void updateSortPropertyInSynSchema( Date sortDate, XPlan plan, Connection conn )
                     throws Exception {
         String selectSchemaAndColumnsToModify = "SELECT column_name, table_schema, table_name "
@@ -607,6 +644,7 @@ public class XPlanDao {
         String district = rs.getString( 15 );
         Timestamp startDateTime = rs.getTimestamp( 16 );
         Timestamp endDateTime = rs.getTimestamp( 17 );
+        Boolean isInspirePublished = rs.getBoolean( 18 );
 
         int numFeatures = retrieveNumberOfFeatures( connection, id );
 
@@ -624,6 +662,7 @@ public class XPlanDao {
         xPlan.setBbox( bbox );
         xPlan.setXplanMetadata( createXPlanMetadata( planStatus, startDateTime, endDateTime ) );
         xPlan.setDistrict( categoryMapper.mapToCategory( district ) );
+        xPlan.setInspirePublished( isInspirePublished );
         return xPlan;
     }
 
@@ -1053,6 +1092,25 @@ public class XPlanDao {
         }
     }
 
+    private void updateInspirePublishedStatus( Connection conn, String xplanId, boolean isPiublished )
+                            throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append( "UPDATE xplanmgr.plans SET " );
+        sql.append( "inspirepublished = ? " );
+        sql.append( "WHERE id = ? " );
+        String updateSql = sql.toString();
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement( updateSql );
+            stmt.setBoolean( 1, isPiublished );
+            stmt.setObject( 2, Integer.parseInt( xplanId ) );
+            LOG.trace( "SQL Update XPlanManager INSPIRE Published status: {}", stmt );
+            stmt.executeUpdate();
+        } finally {
+            closeQuietly( stmt );
+        }
+    }
+
     private void insertArtefacts( XPlanArchive archive, Connection conn, int planId )
                     throws Exception {
         PreparedStatement stmt = null;
@@ -1403,6 +1461,17 @@ public class XPlanDao {
             return new java.sql.Date( dateToConvert.getTime() );
         }
         return null;
+    }
+
+    private void rollbackTransaction( FeatureStoreTransaction transaction, FeatureStoreException e ) {
+        if ( transaction != null )
+            try {
+                transaction.rollback();
+            } catch ( FeatureStoreException fse ) {
+                LOG.warn( "Rollback failed: " + e.getMessage() );
+                LOG.trace( "Rollback failed.", e );
+
+            }
     }
 
     private class XPlanMetadata {

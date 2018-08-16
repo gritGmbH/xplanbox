@@ -1,4 +1,4 @@
-[Automatischer Workspace-Reload]
+[[automatischer-workspace-reload]]
 === Automatischer Workspace-Reload
 
 Der XPlanManager kann nach jedem Import, jeder Aktualiserung und jedem
@@ -25,7 +25,7 @@ Beispiel:
 workspaceReloadUrls=http://server1/xplan-wms/,http://server2/xplan-wms/
 
 NOTE: Der Nutzername und das Passwort müssen in der _tomcat-users.xml_
-eingetragen werden (siehe dazu das Kapitel <<Konfiguration der Applikationsserver>>).
+eingetragen werden (siehe dazu das Kapitel <<konfiguration-der-applikationsserver>>).
 
 NOTE: Diese Konfigurations-Optionen sind optional. Sind sie nicht gesetzt,
 muss der Workspace-Reload des XPlanWMS manuell durchgeführt werden,

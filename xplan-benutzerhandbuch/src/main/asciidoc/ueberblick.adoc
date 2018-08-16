@@ -1,4 +1,4 @@
-[Überschrift]
+[[ueberblick]]
 == Überblick
 
 
@@ -14,7 +14,6 @@ Software http://www.deegree.org[deegree] eingesetzt, das ein
 Projekt der OSGeo Foundation ist. Die xPlanBox besteht aus den
 folgenden Komponenten:
 
-__________________________________________________________________________________
 * XPlanManager: Web-Oberfläche für das Datenmanagement
 * XPlanValidator: Web-Oberfläche für den Validator
 * XPlanWMS: Standard-Karten-Dienst für die Auskunft
@@ -22,7 +21,7 @@ ________________________________________________________________________________
 Datenstruktur)
 * XPlanSynWFS: Standard-Daten-Dienst für die Auskunft (vereinfachte
 Datenstruktur)
-__________________________________________________________________________________
+
 
 Die Komponenten der xPlanBox werden in diesem Benutzerhandbuch im
 Einzelnen erläutert.

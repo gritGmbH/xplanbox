@@ -10,7 +10,7 @@
   <fileSets>
     <fileSet>
       <directory>target/html</directory>
-      <outputDirectory>/xPlanBox-Benutzerhandbuch</outputDirectory>
+      <outputDirectory>xPlanBox-Benutzerhandbuch</outputDirectory>
     </fileSet>
   </fileSets>
 </assembly>

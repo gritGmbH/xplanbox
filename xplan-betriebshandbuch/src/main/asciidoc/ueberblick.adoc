@@ -19,6 +19,8 @@ werden, das Java SE 7
 (http://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle
 JRE 1.7]) unterstützt.
 
+NOTE: Empfohlen wird Oracle JDK 1.7_45+.
+
 NOTE: Empfohlen wird die Nutzung eines der folgenden Betriebssysteme: Debian
 Wheezy, SLES 11 SP4, Oracle Linux 7, CentOS 7.x, Windows Server 2008
 R2/2012 R2.
@@ -28,8 +30,6 @@ konfiguriert sein, da einzelne Fehlerbeschreibungen in dieser Sprache
 ausgegeben werden (z.B. im Validator-Report). Unter Linux kann das
 Gebietsschema beispielsweise in der Datei "/etc/default/locale"
 angepasst werden.
-
-NOTE: Empfohlen wird Oracle JDK 1.7_45+.
 
 [[java-applikationsserver]]
 === Java Applikationsserver
@@ -49,13 +49,20 @@ Profil. Empfohlen wird Apache Tomcat Version 7.0.32+.
 
 Als Datenbanksystem ist eine Installation von PostgreSQL 8.4 mit der
 Erweiterung PostGIS 1.5.4 erforderlich. Ab der xPlanBox Produktversion
-1.10 werden auch PostgreSQL 9.3 mit der Erweiterung PostGIS 2.1.6
+1.10 werden auch PostgreSQL 9.3 mit der Erweiterung PostGIS 2.1
 unterstützt.
+
+NOTE: Empfohlen wird PostgreSQL 9.6+ mit PostGIS 2.3+.
 
 === GDAL
 
 Optional kann die Installation von GDAL erforderlich sein. Liegen Teil-Vektorielle Pläne mit Rasterdaten in anderen Formaten als GeoTiff vor, die mit der xPlanBox verwaltet werden sollen, ist der Einsatz von GDAL erforderlich. Liegen die Rasterdaten dagegen nur im GeoTiff-Format vor, wird GDAL nicht benötig.
 Empfohlen wird GDAL in der Version 1.10.1. Weitere Informationen zur Installation von GDAL befinden sich im Abschnitt <<installation-gdal>>.
+
+=== HALE CLI
+
+Optional kann die Installation von HALE CLI erforderlich sein. HALE CLI wird benötigt, wenn die Bereitstellung von Plänen in XPlanGML, die im XPlanManager verwaltet werden, im INSPIRE Planned Land Use (PLU) Datenthema, genutzt werden soll. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-hale>>.
+
 
 [[systemvoraussetzungen]]
 === Systemvoraussetzungen
@@ -97,7 +104,7 @@ optional mit SSD
 ______________________________________________________________________________________________________________
 
 NOTE: Hohe Datentransferraten sind bei Bereitstellung von großen
-Datenbeständen sowohl Rasterdaten als auch Vektordaten aus Datenbanken
+Datenbeständen sowohl von Raster- als auch Vektordaten
 notwendig, u.a. um die Vorgaben der INSPIRE-Richtlinien zu erfüllen.
 
 [[client]]
@@ -109,5 +116,5 @@ _____________________________________________
 _____________________________________________
 
 NOTE: Weitere Informationen zu den Systemvoraussetzungen bei den unterstützten
-Browsern: Microsoft Internet Explorer (9, 10, 11), Mozilla Firefox: 36+,
+Browsern: Microsoft Internet Explorer (10, 11), Mozilla Firefox: 36+,
 Google Chrome: 40+

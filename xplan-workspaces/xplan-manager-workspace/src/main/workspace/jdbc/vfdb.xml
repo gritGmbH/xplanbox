@@ -11,9 +11,9 @@
   <Property name="url" value="${vfdb.jdbc.url}"/>
   <Property name="username" value="${vfdb.jdbc.user}"/>
   <Property name="password" value="${vfdb.jdbc.password}"/>
-  <Property name="initialSize" value="10"/>
-  <Property name="maxActive" value="25"/>
-  <Property name="maxIdle" value="10"/>
+  <Property name="initialSize" value="1"/>
+  <Property name="maxActive" value="10"/>
+  <Property name="maxIdle" value="1"/>
   <Property name="maxWait" value="5000"/>
   <Property name="testOnReturn" value="true"/>
   <Property name="testOnBorrow" value="true"/>

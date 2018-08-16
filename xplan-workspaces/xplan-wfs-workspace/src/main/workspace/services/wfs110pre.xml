@@ -34,16 +34,4 @@
   <QueryCRS>EPSG:4839</QueryCRS>
   <QueryCRS>CRS:84</QueryCRS>
 
-    <GMLFormat gmlVersion="GML_30">
-        <MimeType>text/xml; subtype=gml/3.0.0</MimeType>
-        <GenerateBoundedByForFeatures>false</GenerateBoundedByForFeatures>
-        <GetFeatureResponse xmlns:gml="http://www.opengis.net/gml">
-            <ContainerElement>gml:FeatureCollection</ContainerElement>
-            <FeatureMemberElement>gml:featureMember</FeatureMemberElement>
-            <AdditionalSchemaLocation>http://www.opengis.net/gml
-                http://www.xplanungwiki.de/upload/XPlanGML/3.0/Schema/gml/3.0.0/base/gml3nas.xsd
-            </AdditionalSchemaLocation>
-            <DisableStreaming>false</DisableStreaming>
-        </GetFeatureResponse>
-    </GMLFormat>
 </deegreeWFS>

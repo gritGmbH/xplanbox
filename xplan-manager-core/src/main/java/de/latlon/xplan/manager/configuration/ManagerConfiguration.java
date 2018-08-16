@@ -3,7 +3,6 @@ package de.latlon.xplan.manager.configuration;
 import static java.lang.Double.parseDouble;
 import static org.deegree.cs.CRSUtils.EPSG_4326;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,15 +35,18 @@ import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
  */
 public class ManagerConfiguration {
 
-
     static final String CATEGORIES_TO_PARTS_KEY = "categoriesToParts";
 
     static final String RASTER_CONFIG_CRS = "rasterConfigurationCrs";
 
+    static final String RASTER_LAYER_SCALE_DENOMINATOR_MIN = "rasterLayerMinScaleDenominator";
+
+    static final String RASTER_LAYER_SCALE_DENOMINATOR_MAX = "rasterLayerMaxScaleDenominator";
+
     static final String ACTIVATE_SEPARATED_DATAMANAGEMENT = "activateSeparatedDataManagement";
 
     static final String ACTIVATE_EXPORT_OF_REEXPORTED = "activateExportOfReexported";
-    
+
     static final String RASTER_CONFIG_TYPE = "rasterConfigurationType";
 
     static final String DEFAULT_BBOX_IN_4326 = "defaultBboxIn4326";
@@ -54,6 +56,8 @@ public class ManagerConfiguration {
     static final String WORKSPACE_RELOAD_USER = "workspaceReloadUser";
 
     static final String WORKSPACE_RELOAD_PASSWORD = "workspaceReloadPassword";
+
+    static final String PATH_TO_HALE_CLI = "pathToHaleCli";
 
     private static final Logger LOG = LoggerFactory.getLogger( ManagerConfiguration.class );
 
@@ -66,6 +70,10 @@ public class ManagerConfiguration {
     private String rasterConfigurationCrs;
 
     private RasterConfigurationType rasterConfigurationType;
+
+    private double rasterLayerMinScaleDenominator = Double.NaN;
+
+    private double rasterLayerMaxScaleDenominator = Double.NaN;
 
     private boolean isSeperatedDataManagementActived = false;
 
@@ -81,8 +89,13 @@ public class ManagerConfiguration {
 
     private Path configDirectory;
 
+    private String pathToHaleCli;
+
+    private String pathToHaleProject;
+
     public ManagerConfiguration( PropertiesLoader propertiesLoader ) throws ConfigurationException {
         loadProperties( propertiesLoader );
+        verifyConfiguration();
         logConfiguration();
     }
 
@@ -107,6 +120,22 @@ public class ManagerConfiguration {
      */
     public RasterConfigurationType getRasterConfigurationType() {
         return rasterConfigurationType;
+    }
+
+    /**
+     * @return the max scale denominator the raster layer is visible (a value less then 0 means the visibility is not
+     *         limited)
+     */
+    public double getRasterLayerMaxScaleDenominator() {
+        return rasterLayerMaxScaleDenominator;
+    }
+
+    /**
+     * @return the min scale denominator the raster layer is visible (a value less then 0 means the visibility is not
+     *         limited)
+     */
+    public double getRasterLayerMinScaleDenominator() {
+        return rasterLayerMinScaleDenominator;
     }
 
     /**
@@ -162,12 +191,26 @@ public class ManagerConfiguration {
     /**
      * @return the directory containing the configuration, may be <code>null</code>
      */
-    public Path getConfigurationDirectory(){
+    public Path getConfigurationDirectory() {
         return configDirectory;
     }
 
+    /**
+     * @return the absolute path to the hale cli
+     */
+    public String getPathToHaleCli() {
+        return pathToHaleCli;
+    }
+
+    /**
+     * @return the path to the hale project
+     */
+    public String getPathToHaleProject() {
+        return pathToHaleProject;
+    }
+
     private void loadProperties( PropertiesLoader propertiesLoader )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         if ( propertiesLoader != null ) {
             Properties loadProperties = propertiesLoader.loadProperties( MANAGER_CONFIGURATION );
             if ( loadProperties != null ) {
@@ -178,6 +221,10 @@ public class ManagerConfiguration {
                 }
                 rasterConfigurationCrs = loadProperties.getProperty( RASTER_CONFIG_CRS );
                 rasterConfigurationType = parseRasterConfigurationType( loadProperties );
+                rasterLayerMinScaleDenominator = parseScaleDenominator( loadProperties,
+                                                                        RASTER_LAYER_SCALE_DENOMINATOR_MIN );
+                rasterLayerMaxScaleDenominator = parseScaleDenominator( loadProperties,
+                                                                        RASTER_LAYER_SCALE_DENOMINATOR_MAX );
                 isSeperatedDataManagementActived = parseBoolean( loadProperties, ACTIVATE_SEPARATED_DATAMANAGEMENT,
                                                                  false );
                 isExportOfReexportedActive = parseBoolean( loadProperties, ACTIVATE_EXPORT_OF_REEXPORTED, false );
@@ -186,9 +233,23 @@ public class ManagerConfiguration {
                 internalIdRetrieverConfiguration = parseInternalIdRetrieverConfiguration( loadProperties );
                 parseSortConfiguration( loadProperties );
                 parseSemanticConformityLinkConfiguration( loadProperties );
+                pathToHaleCli = loadProperties.getProperty( PATH_TO_HALE_CLI );
+                pathToHaleProject = parsePathToHaleProject( propertiesLoader );
             }
-            configDirectory = getConfigDirectory( propertiesLoader );
+            configDirectory = getConfigDirectory( propertiesLoader, "synthesizer" );
         }
+    }
+
+    private void verifyConfiguration() {
+        if ( Double.isNaN( rasterLayerMinScaleDenominator ) && Double.isNaN( rasterLayerMaxScaleDenominator ) )
+            return;
+        if ( rasterLayerMinScaleDenominator < 0 )
+            throw new IllegalArgumentException( "rasterLayerMinScaleDenominator should not be a negative value" );
+        if ( rasterLayerMaxScaleDenominator < 0 )
+            throw new IllegalArgumentException( "rasterLayerMaxScaleDenominator should not be a negative value" );
+        if ( rasterLayerMinScaleDenominator >= rasterLayerMaxScaleDenominator )
+            throw new IllegalArgumentException(
+                                                "rasterLayerMinScaleDenominator must be less than rasterLayerMaxScaleDenominator" );
     }
 
     private void logConfiguration() {
@@ -200,6 +261,8 @@ public class ManagerConfiguration {
         LOG.info( "  raster configuration" );
         LOG.info( "   - crs: {}", rasterConfigurationCrs );
         LOG.info( "   - type: {}", rasterConfigurationType );
+        LOG.info( "   - min scale denominator: {}", rasterLayerMinScaleDenominator );
+        LOG.info( "   - max scale denominator: {}", rasterLayerMaxScaleDenominator );
         LOG.info( "-------------------------------------------" );
         LOG.info( "  separated data management" );
         LOG.info( "   - is activated: {}", isSeperatedDataManagementActived );
@@ -221,6 +284,9 @@ public class ManagerConfiguration {
         LOG.info( "   - SQL Matching Ids: {}", internalIdRetrieverConfiguration.getSelectMatchingIdsSql() );
         LOG.info( "   - SQL All: {}", internalIdRetrieverConfiguration.getSelectAllSql() );
         LOG.info( "-------------------------------------------" );
+        LOG.info( "  path to HALE CLI: {}", pathToHaleCli );
+        LOG.info( "  path to HALE project: {}", pathToHaleProject );
+        LOG.info( "-------------------------------------------" );
         sortConfiguration.logConfiguration( LOG );
         LOG.info( "-------------------------------------------" );
         semanticConformityLinkConfiguration.logConfiguration( LOG );
@@ -228,7 +294,7 @@ public class ManagerConfiguration {
     }
 
     private void parseCategories( String[] categoriesWithParts )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         for ( String categoryWithParts : categoriesWithParts ) {
             String categoryName = parseCategoryName( categoryWithParts );
             List<String> partsAsList = parseParts( categoryWithParts );
@@ -237,7 +303,7 @@ public class ManagerConfiguration {
     }
 
     private String parseCategoryName( String categoryWithParts )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         if ( categoryWithParts.contains( "(" ) ) {
             int indexOfCategoryEnd = categoryWithParts.indexOf( "(" );
             return categoryWithParts.substring( 0, indexOfCategoryEnd );
@@ -346,11 +412,25 @@ public class ManagerConfiguration {
         }
     }
 
-    private Path getConfigDirectory( PropertiesLoader propertiesLoader ) {
+    private String parsePathToHaleProject( PropertiesLoader propertiesLoader ) {
+        Path haleProject = getConfigDirectory( propertiesLoader, "hale/xplanGml-inspirePlu.halex" );
+        if ( haleProject != null )
+            return haleProject.toString();
+        return null;
+    }
+
+    private Path getConfigDirectory( PropertiesLoader propertiesLoader, String subdirectory ) {
         Path configDirectory = propertiesLoader.getConfigDirectory();
         if ( configDirectory != null )
-            return configDirectory.resolve( "synthesizer" );
+            return configDirectory.resolve( subdirectory );
         return null;
+    }
+
+    private Double parseScaleDenominator( Properties properties, String propName ) {
+        String propertyValue = properties.getProperty( propName );
+        if ( propertyValue == null || "".equals( propertyValue ) )
+            return Double.NaN;
+        return Double.parseDouble( propertyValue );
     }
 
     private boolean parseBoolean( Properties loadProperties, String propName, boolean defaultValue ) {
@@ -359,5 +439,4 @@ public class ManagerConfiguration {
             return defaultValue;
         return Boolean.parseBoolean( property );
     }
-
 }

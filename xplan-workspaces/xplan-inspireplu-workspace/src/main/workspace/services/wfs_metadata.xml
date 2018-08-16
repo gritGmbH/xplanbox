@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deegreeServicesMetadata configVersion="3.4.0" xmlns="http://www.deegree.org/services/metadata"
+                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                         xsi:schemaLocation="http://www.deegree.org/services/metadata http://schemas.deegree.org/services/metadata/3.4.0/metadata.xsd">
+  <ServiceIdentification>
+    <Title>Bauleitplanung, XPlanung-konform, WFS</Title>
+    <Abstract>Dieser INSPIRE Download Dienst stellt zahlreiche, die Bauleitplanung betreffende und auf dem
+      XPlanungsstandard basierende, WFS FeatureTypes bereit.
+    </Abstract>
+    <Keywords>
+      <Keyword>XPlanung</Keyword>
+      <Keyword>XPlanGML</Keyword>
+      <Keyword>WFS</Keyword>
+      <Keyword>deegree</Keyword>
+      <Keyword>deegree3</Keyword>
+      <Keyword>Bauleitplanung</Keyword>
+      <Keyword>Land Use</Keyword>
+    </Keywords>
+    <Fees />
+    <AccessConstraints />
+  </ServiceIdentification>
+  <ServiceProvider>
+    <ProviderName>lat/lon GmbH</ProviderName>
+    <ProviderSite>http://www.lat-lon.de</ProviderSite>
+    <ServiceContact>
+      <IndividualName>-</IndividualName>
+      <PositionName />
+      <Phone>+49(0)228184960</Phone>
+      <Facsimile />
+      <ElectronicMailAddress>info@lat-lon.de</ElectronicMailAddress>
+      <Address>
+        <DeliveryPoint>Aennchenstraße 19</DeliveryPoint>
+        <City>Bonn</City>
+        <AdministrativeArea>Nordrhein-Westfalen</AdministrativeArea>
+        <PostalCode>53177</PostalCode>
+        <Country>Germany</Country>
+      </Address>
+      <OnlineResource>http://www.deegree.org</OnlineResource>
+      <HoursOfService>24x7</HoursOfService>
+      <ContactInstructions>Do not hesitate to call</ContactInstructions>
+      <Role>PointOfContact</Role>
+    </ServiceContact>
+  </ServiceProvider>
+
+  <DatasetMetadata xmlns:plu="http://inspire.ec.europa.eu/schemas/plu/4.0" >
+    <MetadataUrlTemplate>http://gdk.gdi-de.org/gdi-de/srv/ger/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;id=${metadataSetId}&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full</MetadataUrlTemplate>
+    <Dataset>
+      <Name>plu:SpatialPlan</Name>
+      <Title>plu:SpatialPlan</Title>
+      <Abstract>Harmonized INSPIRE SpatialPlans (PLU, Annex III)</Abstract>
+      <MetadataSetId>SPATIALPLAN</MetadataSetId>
+    </Dataset>
+    <Dataset>
+      <Name>plu:SupplementaryRegulation</Name>
+      <Title>plu:SupplementaryRegulation</Title>
+      <Abstract>Harmonized INSPIRE SupplementaryRegulations (PLU, Annex III)</Abstract>
+      <MetadataSetId>SUPPLEMENTARYREGULATION</MetadataSetId>
+    </Dataset>
+    <Dataset>
+      <Name>plu:ZoningElement</Name>
+      <Title>plu:ZoningElement</Title>
+      <Abstract>Harmonized INSPIRE ZoningElements (PLU, Annex III)</Abstract>
+      <MetadataSetId>ZONINGELEMENT</MetadataSetId>
+    </Dataset>
+    <Dataset>
+      <Name>plu:OfficialDocumentation</Name>
+      <Title>plu:OfficialDocumentation</Title>
+      <Abstract>Harmonized INSPIRE OfficialDocumentations (PLU, Annex III)</Abstract>
+      <MetadataSetId>OFFICIALDOCUMENTATION_</MetadataSetId>
+    </Dataset>
+  </DatasetMetadata>
+
+  <ExtendedCapabilities protocolVersions="2.0.0">
+    <ows:ExtendedCapabilities xsi:schemaLocation="http://inspire.ec.europa.eu/schemas/inspire_dls/1.0 http://inspire.ec.europa.eu/schemas/inspire_dls/1.0/inspire_dls.xsd 
+                                                  http://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd"
+                              xmlns:ows="http://www.opengis.net/ows/1.1"
+                              xmlns:inspire_dls="http://inspire.ec.europa.eu/schemas/inspire_dls/1.0"
+                              xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0">
+      <inspire_dls:ExtendedCapabilities>
+        <inspire_common:MetadataUrl>
+          <inspire_common:URL>http://gdk.gdi-de.org/gdi-de/srv/ger/csw?Service=CSW&amp;Request=GetRecordById&amp;Version=2.0.2&amp;id=fileIdentifier&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full</inspire_common:URL>
+        </inspire_common:MetadataUrl>
+        <inspire_common:SupportedLanguages>
+          <inspire_common:DefaultLanguage>
+            <inspire_common:Language>ger</inspire_common:Language>
+          </inspire_common:DefaultLanguage>
+        </inspire_common:SupportedLanguages>
+        <inspire_common:ResponseLanguage>
+          <inspire_common:Language>ger</inspire_common:Language>
+        </inspire_common:ResponseLanguage>
+        <inspire_dls:SpatialDataSetIdentifier>
+          <inspire_common:Code>-</inspire_common:Code>
+        </inspire_dls:SpatialDataSetIdentifier>
+      </inspire_dls:ExtendedCapabilities>
+    </ows:ExtendedCapabilities>
+  </ExtendedCapabilities>
+</deegreeServicesMetadata>

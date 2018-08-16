@@ -4,21 +4,37 @@
 [[internet-explorer]]
 === Internet Explorer
 
-Beim Importieren (Hochladen) von XPlanArchiven über den XPlanManagerWeb kann
-es vorkommen, dass das XPlanArchiv für die Dauer der Sitzung im Dateisystem
+Beim Importieren (Hochladen) von XPlanArchiven über den XPlanManagerWeb mit Microsoft Internet Explorer 9/10/11 kann
+es vorkommen, dass das XPlanArchiv für die Dauer der Sitzung im Windows Dateisystem
 blockiert wird.
+
+Der Fehler ist Microsoft bekannt und es wird folgender Workaround empfohlen:
+
+    - Neu-Laden der Seite mit "Refresh/F5" oder
+    - Schließen des Browser-Fenster/Tabs mit "Ctrl+W"
+
+Referenzen:
+
+    - https://connect.microsoft.com/IE/feedback/details/817183/ie10-and-ie11-keep-files-locked-after-uploading[IE10 and IE11 keep files locked after uploading]
+    - https://connect.microsoft.com/IE/feedback/details/794708/uploaded-file-is-locked-on-file-system-after-upload[Uploaded file is locked on file system after upload]
 
 [[kapazitaetsbezogene-einschraenkungen]]
 === Kapazitätsbezogene Einschränkungen
 
-Sowohl für das XPlanManagerCLI als auch den XPlanManagerWeb gelten
+Sowohl für das XPlanManagerCLI, den XPlanManagerWeb als auch den XPlanValidator gelten
 Obergrenzen beim Import von XPlanArchiven. XPlanArchive (ZIP-Datei
 inklusive Anhänge) größer 500 MB können die Systemstabilität
 beeinträchtigen. Wenn XPlanArchive mit größeren Anhängen importiert
 werden sollen, so müssen Server-seitig entsprechende
-Systemvoraussetzungen erfüllt sein. Kontaktieren Sie den
-Systemadministrator für weitere Informationen. Aktuell liegt die
-technische Obergrenze für die Verarbeitung eines XPlanArchivs bei 1 GB.
+Systemvoraussetzungen erfüllt sein.
+
+Für die Bereitstellung von mehr als 500 XPlanArchiven über die Dienste
+XPlanWMS, XPlanWFS oder XPlanSynWFS müssen Server-seitig ebenfalls entsprechende
+Systemvoraussetzungen erfüllt sein. Das Antwortzeitverhalten der Dienste ist von den verfügbaren
+System-Ressourcen abhängig.
+
+Weitere Informationen zu den Systemanforderungen der xPlanBox finden Sie im
+Betriebshandbuch.
 
 [[xplanbox---durch-kartenvorschau-generierter-getmap-request]]
 === xPlanBox - Durch Kartenvorschau generierter GetMap-Request
@@ -52,6 +68,14 @@ Falls diese Voraussetzungen nicht erfüllt werden, können die erzeugten deegree
 Diese Konfigurationsdateien können nicht von deegree geparst werden.
 
 Wenn die die leeren XML Namespace Attribute manuell entfernt werden, ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
+
+=== Transformation in das INSPIRE Planned Land Use Datenschema
+
+Bei der Transformation von XPlanGML in das INSPIRE Planned Land Use Datenschema können in der vorliegenden Version der xPlanBox nicht alle Daten vollständig transformiert werden.
+So fehlen u.a. Transformationsregeln für Werte aus Codelisten als auch konfigurierbare Abbildungsregeln für Elemente wie z.B. der INSPIRE ID.
+Zugesichert werden kann, dass das über den XPlanInspirePluWFS abgegebene GML gegen das GML-Applikationsschema validiert.
+Nicht zugesichert werden kann, dass das GML alle Vorgaben aus den Technical Guidelines für das INSPIRE Annex III Datenthema Land Use erfüllt sowie dass alle Daten aus dem XPlanGML in das
+Zielschema INSPIRE PLU transformiert werden.
 
 [[fehler-melden]]
 == Fehler melden

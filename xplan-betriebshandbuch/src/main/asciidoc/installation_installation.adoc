@@ -1,4 +1,4 @@
-[Anwendung installieren]
+[[anwendung-installieren]]
 === Anwendung installieren
 
 [[konfiguration]]
@@ -11,6 +11,7 @@ ________________________________________________________________________________
 * _xplan-wfs-workspace_
 * _xplansyn-wfs-workspace_
 * _xplansyn-wms-workspace_
+* _xplan-inspireplu-workspace_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
 * _xplan-manager-workspace_
 * _xplan-manager-config_ (Name des Verzeichnis nach dem Entpacken:
 __manager-configuration__)
@@ -35,6 +36,7 @@ ____________________
 * _xplan-wms.war_ (XPlanWMS)
 * _xplan-wfs.war_ (XPlanWFS)
 * _xplansyn-wfs.war_ (XPlanSynWFS)
+* _xplan-inspireplu.war_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
 ____________________
 
 Die WAR-Archive der Anwendungskomponenten werden über eine
@@ -62,7 +64,7 @@ ______________________
 [[dokumentation]]
 ==== Dokumentation
 
-Das XPlanBenutzerhandbuch (s. <<installationskomponenten>>) zu den verschiedenen Komponenten liegt in den Formaten HTML und PDF.
+Das XPlanBenutzerhandbuch (s. <<installationskomponenten>>) zu den verschiedenen Komponenten liegt in den Formaten HTML und PDF vor.
 
 [[installation-über-ein-install-skript]]
 ==== Installation über ein Install-Skript

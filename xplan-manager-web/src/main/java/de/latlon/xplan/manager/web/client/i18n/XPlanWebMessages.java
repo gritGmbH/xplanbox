@@ -24,6 +24,8 @@ public interface XPlanWebMessages extends Messages {
 
     String idColumn();
 
+    String numberColumn();
+
     String planArt();
 
     String sonstPlanArt();
@@ -367,5 +369,25 @@ public interface XPlanWebMessages extends Messages {
     String editCaptionReferencesCurrentFile();
 
     String editCaptionReferencesRemoveFileTooltip();
+
+    String publishPlu();
+
+    String publishingPlu();
+
+    String unauthorizedPublishingPlu();
+
+    String publishingPluSuccessful();
+
+    String publishingPluFailed();
+
+    String publishingPluButtonTooltip();
+
+    String publishingPluButtonTooltipPermissionDenied();
+
+    String publishingPluButtonTooltipIncorrectPlanType();
+
+    String publishingPluButtonTooltipIncorrectVersion();
+
+    String publishingPluButtonTooltipAlreadyPublished();
 
 }

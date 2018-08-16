@@ -8,11 +8,12 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplanbox</artifactId>
-    <version>2.5-SNAPSHOT</version>
+    <version>2.9-SNAPSHOT</version>
   </parent>
 
   <modules>
     <module>xplan-commons-webservices</module>
+    <module>xplan-inspireplu</module>
     <module>xplansyn-wfs</module>
     <module>xplan-wfs</module>
     <module>xplan-wms</module>

@@ -1,37 +1,32 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/4/1';
-declare namespace xplan='http://www.xplanung.de/xplangml/4/1';
-declare namespace gml='http://www.opengis.net/gml/3.2';
-declare namespace wfs='http://www.opengis.net/wfs';
-declare namespace xlink='http://www.w3.org/1999/xlink';
-declare namespace xsi='http://www.w3.org/2001/XMLSchema-instance';
-
 (
   every $h in //BP_NebenanlagenFlaeche satisfies
+  (: Wenn nur eine Zweckbestimmung spezifiziert werden soll, muss dafür immer das Attribut zweckbestimmung verwendet werden. :)
   (
     if (
-      exists($h/zweckbestimmung[1]) and
-      not(exists($h/zweckbestimmung[2]))
+      exists($h/weitereZweckbestimmung1) or
+      exists($h/weitereZweckbestimmung2) or
+      exists($h/weitereZweckbestimmung3) or
+      exists($h/weitereZweckbestimmung4))
+    then (
+      exists($h/zweckbestimmung)
     )
+    else true()
+  )
+    and
+    (: Wenn zur Spezifikation mehrerer Zweckbestimmungen das Attribut zweckbestimmung mehrfach verwendet wird, dürfen die Attribute weitereZweckbestimmung i (i = 1, 2, 3, 4) nicht verwendet werden. :)
+  (
+    if ( count($h/zweckbestimmung) > 1)
     then (
       not(exists($h/weitereZweckbestimmung1)) and
       not(exists($h/weitereZweckbestimmung2)) and
       not(exists($h/weitereZweckbestimmung3)) and
       not(exists($h/weitereZweckbestimmung4))
     )
-    else boolean('false')
+    else true()
   )
-)
-and
-(
-  every $h in //BP_NebenanlagenFlaeche[zweckbestimmung[2]] satisfies
-  not(exists($h/weitereZweckbestimmung1)) and
-  not(exists($h/weitereZweckbestimmung2)) and
-  not(exists($h/weitereZweckbestimmung3)) and
-  not(exists($h/weitereZweckbestimmung4))
-)
-and
-(
-  every $h in //BP_NebenanlagenFlaeche satisfies
+    and
+    (: Wenn mehr als eine Zweckbestimmung durch unterschiedliche Attribute spezifiziert werden sollen, sind die Attribute weitereZweckbestimmung i (i = 1, 2, 3, 4) in aufsteigender Reihenfolge zu belegen. :)
   (
     if (
       exists($h/weitereZweckbestimmung1) and
@@ -40,7 +35,7 @@ and
       exists($h/weitereZweckbestimmung4)
     )
     then (
-      boolean('true')
+      true()
     )
     else if (
       exists($h/weitereZweckbestimmung1) and
@@ -48,21 +43,30 @@ and
       exists($h/weitereZweckbestimmung3)
     )
     then (
-      boolean('true')
-    )
+        true()
+      )
     else if (
-      exists($h/weitereZweckbestimmung1) and
-      exists($h/weitereZweckbestimmung2)
-    )
-    then (
-      boolean('true')
-    )
-    else if (
-      exists($h/weitereZweckbestimmung1)
-    )
-    then (
-      boolean('true')
-    )
-    else boolean('false')
+        exists($h/weitereZweckbestimmung1) and
+        exists($h/weitereZweckbestimmung2)
+      )
+      then (
+          true()
+        )
+      else if (
+          exists($h/weitereZweckbestimmung1)
+        )
+        then (
+            true()
+          )
+        else if (
+            not(exists($h/weitereZweckbestimmung1)) and
+            not(exists($h/weitereZweckbestimmung2)) and
+            not(exists($h/weitereZweckbestimmung3)) and
+            not(exists($h/weitereZweckbestimmung4))
+          )
+          then (
+              true()
+            )
+          else false()
   )
 )

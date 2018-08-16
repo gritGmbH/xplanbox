@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deegreeWMS configVersion="3.4.0" xmlns="http://www.deegree.org/services/wms"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.deegree.org/services/wms http://schemas.deegree.org/services/wms/3.4.0/wms_configuration.xsd">
+
+  <MetadataURLTemplate>http://gdk.gdi-de.org/gdi-de/srv/ger/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;id=${metadataSetId}&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full</MetadataURLTemplate>
+
+  <ServiceConfiguration>
+    <ThemeId>inspireplu</ThemeId>
+  </ServiceConfiguration>
+
+</deegreeWMS>

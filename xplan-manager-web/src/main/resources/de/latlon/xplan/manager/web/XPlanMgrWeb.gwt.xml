@@ -26,6 +26,9 @@
   <script src="js/proj4/proj4js/lib/proj4js-compressed.js"></script>
   <script src="js/proj4/proj4js/lib/defs/EPSG25832.js"></script>
   <script src="js/proj4/proj4js/lib/defs/EPSG25833.js"></script>
+  <script src="js/proj4/proj4js/lib/defs/EPSG31466.js"></script>
+  <script src="js/proj4/proj4js/lib/defs/EPSG31467.js"></script>
+  <script src="js/proj4/proj4js/lib/defs/EPSG31468.js"></script>
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='de.latlon.xplan.manager.web.client.gui.ManagerWebEntryPoint'/>

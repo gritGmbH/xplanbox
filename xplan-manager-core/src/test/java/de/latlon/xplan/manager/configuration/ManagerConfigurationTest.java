@@ -1,4 +1,4 @@
-  package de.latlon.xplan.manager.configuration;
+package de.latlon.xplan.manager.configuration;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
@@ -7,6 +7,8 @@ import static de.latlon.xplan.manager.configuration.ManagerConfiguration.ACTIVAT
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.CATEGORIES_TO_PARTS_KEY;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.DEFAULT_BBOX_IN_4326;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.RASTER_CONFIG_CRS;
+import static de.latlon.xplan.manager.configuration.ManagerConfiguration.RASTER_LAYER_SCALE_DENOMINATOR_MAX;
+import static de.latlon.xplan.manager.configuration.ManagerConfiguration.RASTER_LAYER_SCALE_DENOMINATOR_MIN;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.WORKSPACE_RELOAD_PASSWORD;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.WORKSPACE_RELOAD_URLS;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.WORKSPACE_RELOAD_USER;
@@ -41,7 +43,7 @@ public class ManagerConfigurationTest {
 
     @Test
     public void testGetCategoryMapping()
-                    throws Exception {
+                            throws Exception {
         ManagerConfiguration managerConfiguration = new ManagerConfiguration( mockPropertiesLoader() );
 
         Map<String, List<String>> categoryMapping = managerConfiguration.getCategoryMapping();
@@ -63,7 +65,7 @@ public class ManagerConfigurationTest {
 
     @Test
     public void testGetRasterConfigurationCrs()
-                    throws Exception {
+                            throws Exception {
         ManagerConfiguration managerConfiguration = new ManagerConfiguration( mockPropertiesLoader() );
 
         String rasterConfigurationCrs = managerConfiguration.getRasterConfigurationCrs();
@@ -73,7 +75,7 @@ public class ManagerConfigurationTest {
 
     @Test
     public void testGetCategoryMappingWithLoaderReturningNull()
-                    throws Exception {
+                            throws Exception {
         ManagerConfiguration managerConfiguration = new ManagerConfiguration( mockPropertiesLoaderReturningNull() );
 
         Map<String, List<String>> categoryMapping = managerConfiguration.getCategoryMapping();
@@ -82,7 +84,7 @@ public class ManagerConfigurationTest {
 
     @Test
     public void testGetDefaultBboxIn4326()
-                    throws Exception {
+                            throws Exception {
         ManagerConfiguration managerConfiguration = new ManagerConfiguration( mockPropertiesLoader() );
 
         Envelope defaultBboxIn4326 = managerConfiguration.getDefaultBboxIn4326();
@@ -95,7 +97,7 @@ public class ManagerConfigurationTest {
 
     @Test
     public void testGetDefaultBboxIn4326WithNullValue()
-                    throws Exception {
+                            throws Exception {
         ManagerConfiguration managerConfiguration = new ManagerConfiguration( mockPropertiesLoaderReturningNull() );
 
         Envelope defaultBboxIn4326 = managerConfiguration.getDefaultBboxIn4326();
@@ -105,7 +107,7 @@ public class ManagerConfigurationTest {
 
     @Test
     public void testGetSortConfiguration()
-                    throws Exception {
+                            throws Exception {
         ManagerConfiguration managerConfiguration = new ManagerConfiguration( mockPropertiesLoader() );
 
         SortConfiguration sortConfiguration = managerConfiguration.getSortConfiguration();
@@ -116,7 +118,7 @@ public class ManagerConfigurationTest {
 
     @Test
     public void testGetSemanticConformityLinkConfiguration()
-                    throws Exception {
+                            throws Exception {
         ManagerConfiguration managerConfiguration = new ManagerConfiguration( mockPropertiesLoader() );
 
         SemanticConformityLinkConfiguration semanticConformityLinkConfiguration = managerConfiguration.getSemanticConformityLinkConfiguration();
@@ -126,7 +128,7 @@ public class ManagerConfigurationTest {
 
     @Test
     public void testGetWorkspaceReloaderConfiguration()
-                    throws Exception {
+                            throws Exception {
         ManagerConfiguration managerConfiguration = new ManagerConfiguration( mockPropertiesLoader() );
 
         WorkspaceReloaderConfiguration workspaceReloaderConfiguration = managerConfiguration.getWorkspaceReloaderConfiguration();
@@ -140,29 +142,83 @@ public class ManagerConfigurationTest {
 
     @Test
     public void testIsExportOfReexportedActive()
-                    throws Exception {
+                            throws Exception {
         ManagerConfiguration managerConfigurationWithTrue = new ManagerConfiguration( mockPropertiesLoader( "true" ) );
         assertThat( managerConfigurationWithTrue.isExportOfReexportedActive(), is( true ) );
 
-        ManagerConfiguration managerConfigurationWithFalse = new ManagerConfiguration(
-                        mockPropertiesLoader( "false" ) );
+        ManagerConfiguration managerConfigurationWithFalse = new ManagerConfiguration( mockPropertiesLoader( "false" ) );
         assertThat( managerConfigurationWithFalse.isExportOfReexportedActive(), is( false ) );
 
         ManagerConfiguration managerConfigurationWithUnknown = new ManagerConfiguration(
-                        mockPropertiesLoader( "unknown" ) );
+                                                                                         mockPropertiesLoader( "unknown" ) );
         assertThat( managerConfigurationWithUnknown.isExportOfReexportedActive(), is( false ) );
 
         ManagerConfiguration managerConfigurationWithEmpty = new ManagerConfiguration( mockPropertiesLoader( "" ) );
         assertThat( managerConfigurationWithEmpty.isExportOfReexportedActive(), is( false ) );
     }
 
+    @Test
+    public void testDefaultScaleDenominators()
+                            throws Exception {
+        ManagerConfiguration managerConfiguration = new ManagerConfiguration( mockPropertiesLoader() );
+
+        assertThat( managerConfiguration.getRasterLayerMinScaleDenominator(), is( Double.NaN ) );
+        assertThat( managerConfiguration.getRasterLayerMaxScaleDenominator(), is( Double.NaN ) );
+    }
+
+    @Test
+    public void testScaleDenominators()
+                            throws Exception {
+        double min = 5;
+        double max = 1000;
+        ManagerConfiguration managerConfiguration = new ManagerConfiguration( mockPropertiesLoader( min, max ) );
+
+        assertThat( managerConfiguration.getRasterLayerMinScaleDenominator(), is( min ) );
+        assertThat( managerConfiguration.getRasterLayerMaxScaleDenominator(), is( max ) );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testScaleDenominators_maxLessMin()
+                            throws Exception {
+        double min = 5;
+        double max = 1;
+        new ManagerConfiguration( mockPropertiesLoader( min, max ) );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testScaleDenominators_maxNegative()
+                            throws Exception {
+        double min = 5;
+        double max = -1;
+        new ManagerConfiguration( mockPropertiesLoader( min, max ) );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testScaleDenominators_minNegative()
+                            throws Exception {
+        double min = -5;
+        double max = 1;
+        new ManagerConfiguration( mockPropertiesLoader( min, max ) );
+    }
+
     private PropertiesLoader mockPropertiesLoader()
-                    throws ConfigurationException {
-        return mockPropertiesLoader( "true" );
+                            throws ConfigurationException {
+        return mockPropertiesLoader( "true", Double.NaN, Double.NaN );
     }
 
     private PropertiesLoader mockPropertiesLoader( String isExportOfReexportedActive )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
+        return mockPropertiesLoader( isExportOfReexportedActive, Double.NaN, Double.NaN );
+    }
+
+    private PropertiesLoader mockPropertiesLoader( double minScaleDenominator, double maxScaleDenominator )
+                            throws ConfigurationException {
+        return mockPropertiesLoader( "true", minScaleDenominator, maxScaleDenominator );
+    }
+
+    private PropertiesLoader mockPropertiesLoader( String isExportOfReexportedActive, double minScaleDenominator,
+                                                   double maxScaleDenominator )
+                            throws ConfigurationException {
         PropertiesLoader propertiesLoader = mock( PropertiesLoader.class );
         Properties properties = new Properties();
         properties.put( CATEGORIES_TO_PARTS_KEY, "Cat1(A,B,C D);Cat2(1 , 7)" );
@@ -174,12 +230,16 @@ public class ManagerConfigurationTest {
         properties.put( WORKSPACE_RELOAD_USER, "user" );
         properties.put( WORKSPACE_RELOAD_PASSWORD, "password" );
         properties.put( ACTIVATE_EXPORT_OF_REEXPORTED, isExportOfReexportedActive );
+        if ( !Double.isNaN( minScaleDenominator ) )
+            properties.put( RASTER_LAYER_SCALE_DENOMINATOR_MIN, Double.toString( minScaleDenominator ) );
+        if ( !Double.isNaN( maxScaleDenominator ) )
+            properties.put( RASTER_LAYER_SCALE_DENOMINATOR_MAX, Double.toString( maxScaleDenominator ) );
         when( propertiesLoader.loadProperties( anyString() ) ).thenReturn( properties );
         return propertiesLoader;
     }
 
     private PropertiesLoader mockPropertiesLoaderReturningNull()
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         PropertiesLoader propertiesLoader = mock( PropertiesLoader.class );
         when( propertiesLoader.loadProperties( anyString() ) ).thenReturn( null );
         return propertiesLoader;

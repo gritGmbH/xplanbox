@@ -1,0 +1,72 @@
+[[xplaninspirepluwfs]]
+== XPlanInspirePluWFS
+
+Der XPlanInspirePluWFS ist INSPIRE konformer Download Service zur Abfrage von Vektordaten.
+
+[[xplaninspirepluwfs-benutzung-des-xplaninspirepluwfs]]
+=== Benutzung des XPlanInspirePluWFS
+
+Der XPlanInspirePluWFS ist ein INSPIRE Download Service basierend auf der Open Source Software http://www.deegree.org[deegree]. Die folgende Tabelle gibt einen Überblick über die zur Verfügung stehenden Operationen des XPlanInspirePluWFS, die in den weiteren Kapiteln noch näher erläutert werden.
+
+[width="97%",cols="30%,70%",options="header",]
+|=========================================================
+|WFS Operation |Inhalt
+|GetCapabilities |Abfrage der Fähigkeiten des Dienstes
+|GetFeature |Abfrage von Planobjekten
+|DescribeFeatureType |Abfrage der Struktur von Objektarten
+|=========================================================
+
+[[xplaninspirepluwfs-adresse-des-dienstes]]
+==== Adresse des Dienstes
+
+----
+http://<host>:<port>/xplan-inspireplu/services/wfs?
+----
+
+[[xplaninspirepluwfs-beispielanfragen]]
+==== Beispielanfragen
+
+
+[[xplaninspirepluwfs-getcapabilities]]
+===== GetCapabilities
+
+----
+http://<host>:<port>/xplan-inspireplu/services/wfs?request=GetCapabilities&Service=WFS&Version=2.0.0
+----
+
+[[xplaninspirepluwfs-getfeature]]
+===== GetFeature
+
+----
+http://<host>:<port>/xplan-inspireplu/services/wfs?request=GetFeature&Service=WFS&Version=2.0.0&typename=plu:SpatialPlan
+----
+
+[[xplaninspirepluwfs-describefeaturetype]]
+===== DescribeFeatureType
+
+----
+http://<host>:<port>/xplan-inspireplu/services/wfs?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+----
+
+[[xplaninspirepluwfs-inhalte-des-datendienstes]]
+=== Inhalte des Datendienstes
+
+[[xplaninspirepluwfs-operationen]]
+=== Operationen
+
+Das folgende Kapitel beschreibt die Operationen, die mit dem XPlanInspirePluWFS durchführbar sind.
+
+[[xplaninspirepluwfs-getcapabilities-1]]
+==== GetCapabilities
+
+Die GetCapabilities Abfrage dient der Auskunft über die Fähigkeiten des WFS Dienstes. Dabei handelt es sich beispielsweise um Informationen zum Dienstbetreiber, zu den unterstützten Operationen sowie zu den durch den WFS angebotenen WFS Objektarten.
+
+[[xplaninspirepluwfs-getfeature-1]]
+==== GetFeature
+
+Die Operation GetFeature stellt die Kernfunktionalität des XPlanInspirePluWFS dar. Die Operation ermöglicht es, die angebotenen Vektordaten anzufragen.
+
+[[xplaninspirepluwfs-describefeaturetype-1]]
+==== DescribeFeatureType
+
+Die Operation DescribeFeatureType gibt Informationen zur Struktur der einzelnen Feature Types wieder.

@@ -1,4 +1,4 @@
-[Präambel]
+[[praeambel]]
 == Präambel
 
 Dieses Dokument ist das offizielle Handbuch zur Benutzung
@@ -25,13 +25,7 @@ info@lat-lon.de.
 
 Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Dirk Stenger,
 Sebastian Goerke, Lyn Elisa Goltz, Carmen Tawalika, Jeronimo Wanhoff,
-Lena Rippolz
-
-[[lizenz]]
-=== Lizenz
-
-Die xPlanBox ist unter der http://www.gnu.org/licenses/lgpl-2.1.html[GNU
-Lesser General Public License (LGPL), version 2.1] veröffentlicht.
+Lena Rippolz.
 
 [[lizenz-des-dokuments]]
 === Lizenz des Dokuments
