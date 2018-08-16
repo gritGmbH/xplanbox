@@ -1,0 +1,39 @@
+[Konfiguration von externen Codelisten]
+=== Konfiguration von externen Codelisten
+
+Externe Codelisten können im Verzeichnis <MANAGER_WEB>/synthesizer abgelegt werden. Dabei weist die Variable <MANAGER_WEB> auf das Verzeichnis, in dem sich die Dateien _managerConfiguration.properties_ und _managerWebConfiguration.properties_ begfindet (s. auch <<Anwendungs-Tomcat>>).
+Dazu müssen für die Zuordnung zu dem Property im vereinfachten XPlanSyn Schema und dem komplexen XPlanGML Regeln konfiguriert werden.
+Die Regeln müssen abhängig von der XPlanGML Version in einer der folgenden Dateien angelegt werden (die Dateinamen dürfen dabei nicht verändert werden):
+
+* xplan2.syn
+* xplan3.syn
+* xplan40.syn
+* xplan41.syn
+
+Eine Zeile in diesen Dateien entspricht einer Regel.
+Beispiele für eine Regel:
+
+----
+# Beispiel 1:
+BP_BaugebietsTeilFlaeche/besondereArtDerBaulNutzung=xplanExternalCodeLookup(xpath('xplan:besondereArtDerBaulNutzung'), 'XP_BesondereArtDerBaulNutzung.xml')
+
+# Beispiel 2:
+BP_BaugebietsTeilFlaeche/besondereArtDerBaulNutzung=xplanExternalCodeLookup(xpath('xplan:besondereArtDerBaulNutzung'), 'XP_BesondereArtDerBaulNutzung.xml', 'XP_BesondereArtDerBaulNutzung')
+----
+
+Aufbau der Regel:
+
+----
+<XPATH_XPLANSYN>=xplanExternalCodeLookup(xpath('<PROPERTY_XPLAN_GML>'), '<CODELIST_DATEI>', '<CODELIST_NAME>')
+----
+
+Erläuterungen:
+
+* <XPATH_XPLANSYN>: XPath-Ausdruck im XPlan-Syn-Schema, in der der übersetze Code eingetragen werden soll.
+* <PROPERTY_XPLAN_GML>: Property im XPlan-GML-Schema.
+* <CODELIST_DATEI>: Relativer Pfad zur Codelist-Datei.
+* <CODELIST_NAME>: Optionale Angabe des Namens der Codeliste. Wird nur benötigt, wenn die mit <CODELIST_DATEI> angegebene Datei mehr als eine Codeliste enthält.
+
+Änderungen an den Regel-Dateien sowie Codeliste-Dateien werden sofort wirksam.
+Sie gelten für den Import von Plänen und werden auch beim Editieren verwenden.
+Codes aus bereits importierten Plänen werden nicht neu übersetzt, für diese ist ein erneuter Import durchzuführen.

@@ -1,0 +1,32 @@
+[Automatischer Workspace-Reload]
+=== Automatischer Workspace-Reload
+
+Der XPlanManager kann nach jedem Import, jeder Aktualiserung und jedem
+Löschvorgang automatisch einen Workspace-Reload des XPlanWMS
+anstoßen. Dadurch werden neu importierte, editierte und gelöschte
+Rasterpläne sofort im WMS aktualisiert.
+
+In der Datei _managerConfiguration.properties_ im Verzeichnis
+_~/.deegree/manager-configuration/_ müssen folgende Felder gefüllt
+werden:
+
+----
+workspaceReloadUrls=<XPLANWMS-URLS>
+workspaceReloadUser=<TOMCAT-NUTZERNAME>
+workspaceReloadPassword=<TOMCAT-PASSWORT>
+----
+
+Es können mehrere URLs kommasepariert eingetragen werden, für den Fall das der XPlanWMS dupliziert wurde. In dem Fall
+wird für alle eingetragenen Dienste eine Reload durchgeführt.
+Achtung: Alle Dienste müssen über die gleiche
+Nutzer/Passwort-Kombination angesprochen werden können.
+
+Beispiel:
+workspaceReloadUrls=http://server1/xplan-wms/,http://server2/xplan-wms/
+
+NOTE: Der Nutzername und das Passwort müssen in der _tomcat-users.xml_
+eingetragen werden (siehe dazu das Kapitel <<Konfiguration der Applikationsserver>>).
+
+NOTE: Diese Konfigurations-Optionen sind optional. Sind sie nicht gesetzt,
+muss der Workspace-Reload des XPlanWMS manuell durchgeführt werden,
+damit die Rasterpläne aktualisiert werden.

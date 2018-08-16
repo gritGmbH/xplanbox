@@ -1,0 +1,27 @@
+:doctype: book
+:encoding: utf-8
+:toc: macro
+:numbered:
+:toc-title: Inhaltsverzeichnis
+:appendix-caption: Anhang
+:table-caption: Tabelle
+
+= Betriebshandbuch für die xPlanBox
+
+toc::[]
+
+include::praeambel.adoc[]
+
+include::ueberblick.adoc[]
+
+include::architektur.adoc[]
+
+include::installation.adoc[]
+
+include::konfiguration.adoc[]
+
+include::aktualisierung.adoc[]
+
+include::weiterfuehrendeInformationen.adoc[]
+
+include::anhang.adoc[]

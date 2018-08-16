@@ -18,7 +18,7 @@
 	</div>
 	<div class="content">
 		<div class="section" id="a" style="display:${geomajas.portals.style.display}">
-			<h3>Planungs-Portal</h3>
+			<h3>XPlanPortal</h3>
 				<ul>
 					<li><a id="b-plan" href="${portal.bplan}"><p>Bebauungs-<br>pl&auml;ne</p></a></li>
 					<li><a id="f-plan" href="${portal.fplan}"><p>Fl&auml;chennutzungs-<br>pl&auml;ne</p></a></li>
@@ -28,30 +28,30 @@
 		<div class="section" id="b">
 				<h3>XPlanManager und XPlanValidator</h3>
 				<ul>
-					<li><a href="${webapp.manager}">XPlanManager</a></li>
-					<li><a href="${webapp.validator}">XPlanValidator</a></li>
+					<li><a href="${webapp.manager}">XPlanManagerWeb</a></li>
+					<li><a href="${webapp.validator}">XPlanValidatorWeb</a></li>
 				</ul>
 		</div>
       <!-- Die folgende Sektion listet alle URLS bei einfacher Datenhaltung auf -->
       <!-- Deaktivieren bei getrennter Datenhaltung -->
 		<div class="section" id="c" style="display:${urls.separated.off.style.display}">
-				<h3>deegree-XPlanung-Dienste</h3>
+				<h3>XPlanDienste</h3>
 				<ul id="diensteliste">
 					<li><a
 						href="${service.wms}"
-						target="_blank">deegree XPlan WMS (Capabilities)</a></li>
+						target="_blank">XPlanWMS (Capabilities)</a></li>
 					<li><a
 						href="${service.xplansynwfs}"
-						target="_blank">deegree XPlanSyn WFS (Capabilities)</a></li>
+						target="_blank">XPlanSynWFS (Capabilities)</a></li>
 					<li><a
-						href="${service.wfs110}">deegree
-							XPlan WFS (Capabilities)</a></li>
+						href="${service.wfs110}"
+						target="_blank">XPlanWFS (Capabilities)</a></li>
 					<li><a
-						href="${service.dls}">deegree
-							XPlan WFS Download Service (Capabilities)</a></li>
+						href="${service.dls}"
+						target="_blank">XPlanWFS Download Service (Capabilities)</a></li>
 				</ul>
 				<p id="dienste">
-					<small>Der INSPIRE Dienst (<em>XPlan WFS Download Service</em>),
+					<small>Der INSPIRE Dienst (<em>XPlanWFS Download Service</em>),
                         bietet nur Daten aus den Modellversionen
 						XPLanGML 4.0 und 4.1 an. Dadurch wird die Konformität zum
 						XPlanGML Datenmodell (GML 3.2.1) sichergestellt.
@@ -61,55 +61,55 @@
         <!-- Die folgende Sektion listet alle URLS bei getrennter Datenhaltung auf -->
         <!-- Aktivieren bei getrennter Datenhaltung -->
         <div class="section" id="c" style="display:${urls.separated.on.style.display}">
-            <h3>deegree-XPlanung-Dienste</h3>
+            <h3>XPlanDienste</h3>
             <div class="sublist">
               <h4>Datenhaltung für <em>in Aufstellung</em> befindliche Pläne</h4>
               <ul id="prediensteliste">
                 <li><a
                   href="${service.pre.wms}"
-                  target="_blank">deegree XPlan WMS (Capabilities)</a></li>
+                  target="_blank">XPlanWMSInAufstellung (Capabilities)</a></li>
                 <li><a
                   href="${service.pre.xplansynwfs}"
-                  target="_blank">deegree XPlanSyn WFS (Capabilities)</a></li>
+                  target="_blank">XPlanSynWFSInAufstellung (Capabilities)</a></li>
                 <li><a
-                  href="${service.pre.wfs110}">deegree
-                    XPlan WFS (Capabilities)</a></li>
+                  href="${service.pre.wfs110}"
+				  target="_blank">XPlanWFSInAufstellung (Capabilities)</a></li>
                 <li><a
-                  href="${service.pre.dls}">deegree
-                    XPlan WFS Download Service (Capabilities)</a></li>
+                  href="${service.pre.dls}"
+				  target="_blank">XPlanWFSInAufstellung Download Service (Capabilities)</a></li>
               </ul>
               <h4>Datenhaltung für <em>festgestellte</em> Pläne</h4>
               <ul id="fixdiensteliste">
                 <li><a
                   href="${service.wms}"
-                  target="_blank">deegree XPlan WMS (Capabilities)</a></li>
+                  target="_blank">XPlanWMSFestgestellt (Capabilities)</a></li>
                 <li><a
                   href="${service.xplansynwfs}"
-                  target="_blank">deegree XPlanSyn WFS (Capabilities)</a></li>
+                  target="_blank">XPlanSynWFSFestgestellt (Capabilities)</a></li>
                 <li><a
-                  href="${service.wfs110}">deegree
-                    XPlan WFS (Capabilities)</a></li>
+                  href="${service.wfs110}"
+				  target="_blank">XPlanWFSFestgestellt (Capabilities)</a></li>
                 <li><a
-                  href="${service.dls}">deegree
-                    XPlan WFS Download Service (Capabilities)</a></li>
+                  href="${service.dls}"
+				  target="_blank">XPlanWFSFestgestellt Download Service (Capabilities)</a></li>
               </ul>
               <h4>Datenhaltung für <em>archivierte</em> Pläne</h4>
               <ul id="archivediensteliste">
                 <li><a
                   href="${service.archive.wms}"
-                  target="_blank">deegree XPlan WMS (Capabilities)</a></li>
+                  target="_blank">XPlanWMSArchiviert (Capabilities)</a></li>
                 <li><a
                   href="${service.archive.xplansynwfs}"
-                  target="_blank">deegree XPlanSyn WFS (Capabilities)</a></li>
+                  target="_blank">XPlanSynWFSArchiviert (Capabilities)</a></li>
                 <li><a
-                  href="${service.archive.wfs110}">deegree
-                    XPlan WFS (Capabilities)</a></li>
+                  href="${service.archive.wfs110}"
+				  target="_blank">XPlanWFSArchiviert (Capabilities)</a></li>
                 <li><a
-                  href="${service.archive.dls}">deegree
-                    XPlan WFS Download Service (Capabilities)</a></li>
+                  href="${service.archive.dls}"
+				  target="_blank">XPlanWFSArchiviert Download Service (Capabilities)</a></li>
               </ul>
               <p id="dienstegetrennt">
-                <small>Die INSPIRE Dienste (<em>XPlan WFS Download Service</em>),
+                <small>Die INSPIRE Dienste (<em>XPlanWFS Download Service</em>),
                        bieten nur Daten aus den Modellversionen
                        XPLanGML 4.0 und 4.1 an. Dadurch wird die Konformität zum
                        XPlanGML Datenmodell (GML 3.2.1) sichergestellt.
@@ -119,11 +119,11 @@
         </div>
 
 		<div class="section" id="d">
-				<h3>Dokumentation</h3>
+				<h3>XPlanDokumentation</h3>
 				<ul>
-					<li><a href="userdocumentation/" target="_blank">Benutzerdokumentation
+					<li><a href="xPlanBox-Benutzerhandbuch/" target="_blank">XPlanBenutzerhandbuch
 							für den XPlanung Infrastrukturknoten</a></li>
-					<li><a href="operationmanual/" target="_blank">Betriebshandbuch
+					<li><a href="xPlanBox-Betriebshandbuch/" target="_blank">XPlanBetriebshandbuch
 						   für den XPlanung Infrastrukturknoten</a></li>
 				</ul>
 		</div>

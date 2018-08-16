@@ -1,0 +1,23 @@
+[appendix]
+[[Installations-Skript]]
+== Installations-Skript
+
+Im folgenden befindet sich das Installations-Skript, welches für das Ablegen bzw. für den Austausch der Web-Archive sowie das Ablegen bzw. die Aktualisierung der betroffenen Konfigurationsdateien benutzt werden kann:
+
+link:./downloads/install.sh[Installations-Skript]
+
+----
+include::downloads/install.sh[]
+----
+
+[appendix]
+[[bbox_cache.properties]]
+== bbox_cache.properties Konfiguration
+
+Im folgenden befindet sich eine vollständige bbox_cache.properties. Diese ist vorkonfiguriert auf ganz Deutschland:
+
+link:./downloads/bbox_cache.properties[bbox_cache.properties]
+
+----
+include::downloads/bbox_cache.properties[]
+----

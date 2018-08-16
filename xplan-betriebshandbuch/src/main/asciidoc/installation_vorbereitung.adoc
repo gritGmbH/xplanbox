@@ -1,0 +1,7 @@
+[[vorbereitung-der-installation]]
+=== Vorbereitung der Installation
+
+Die folgende Installationsanleitung setzt voraus, dass die im Abschnitt <<systemeuberblick>> beschriebenen Komponenten, soweit erforderlich, installiert sind.
+
+Weiterhin ist vorbereitend das Anlagen eines Verzeichni mit dem Namen _.deegree_ im Home-Verzeichnis erforderlich, wenn dieses nicht bereits existiert.
+Dem Nutzer mit dem der Tomcat gestartet wird, müssen Lese- und Schreibrechte für dieses Verzeichnis eingeräumt werden.

@@ -1,0 +1,136 @@
+[XPlanValidatorCLI]
+=== XPlanValidatorCLI
+
+Die Komponente XPlanValidatorCLI ist ein Kommandozeilenwerkzeug,
+welches dem Fachadministrator der xPlanBox ermöglicht, XPlanGML
+Instanzdokumente zu validieren.
+
+[[benutzungsanleitung]]
+==== Benutzungsanleitung
+
+Beim XPlanValidatorCLI handelt es ich um ein Kommandozeilentool, das
+parametrisiert aufgerufen wird. Da diese Anwendung bei der Installation
+in die PATH Variable aufgenommen wird, ist diese von einem beliebigen
+Ort aufrufbar.
+
+[[konfiguration-ueber-datei]]
+===== Konfiguration über Datei
+
+In dem Verzeichnis _<validator-cli-directory>/etc/_ befindet sich die
+Konfigurationsdatei __validatorConfiguration.properties__, welche
+genutzt werden kann, um generelle Konfigurationen an dem
+Kommandozeilentool durchzuführen.
+
+Falls der Parameter _–managerconfiguration_ während eines Aufrufs des
+Kommandozeilentools nicht mitgegeben wird, nutzt das Tool die unter
+_etc_ abgelegte Datei. Wenn der Parameter mitgegeben wird, muss sich die
+Konfigurationsdatei in dem referenzierten Verzeichnis befinden.
+
+Über _validationReportDirectory=<directory>_ kann konfiguriert werden,
+wo die Reports mit dem Validierungsergebnis, die während der Ausführung
+des Tools generiert werden, abgespeichert werden sollen.
+
+[[auswahl-planarchiv]]
+===== Auswahl XPlanArchiv
+
+Über den Parameter _-validate <planarchiv>_ kann der Pfad zum XPlanArchiv
+ auswählt werden, welcher validiert werden soll. Die Angabe
+des Parameters ist obligatorisch.
+
+Aufruf:
+
+----
+XPlanValidator -validate Plan.zip
+----
+
+===== Bezeichnung der Validierung
+
+Über den Parameter _-name <bezeichnung>_ kann dem Validierungsdurchlauf
+ein Name vergeben werden. Die Angabe des Parameters ist obligatorisch.
+
+Aufruf:
+
+----
+XPlanValidator -name Validierung
+----
+
+[[validierungsart]]
+===== Validierungsart
+
+Die Kommandozeilenschnittstelle des XPlanValidator kann zur Auswahl der
+Validierungsart parametrisiert aufgerufen werden. Die Angabe des
+Parameters ist optional.
+
+Aufruf:
+
+----
+XPlanValidator -validate Plan.zip -vtype [syntax|geometric|semantic]
+----
+
+Zuordnung der Werte
+
+_________________________
+* syntax = Syntaktisch
+* geometric = Geometrisch
+* semantic = Semantisch
+_________________________
+
+Wird kein _-vtype_ Parameter gewählt, werden alle Validierungsarten
+durchgeführt
+
+Ausgabe:
+
+----
+[16:13:34]  INFO: [CRSManager] --------------------------------------------------------------------------------
+[16:13:34]  INFO: [CRSManager] No 'crs' directory -- use default configuration.
+[16:13:34]  INFO: [CRSManager] --------------------------------------------------------------------------------
+[16:13:34]  INFO: [CRSManager] Setting up crs store 'default' from file 'file:/home/xplanbox/install-packages/1.0-RC2/workspace/cli/xplan-validator-cli-1.0-RC2/repo/deegree-core-cs-3.2.5.jar!/org/deegree/cs/persistence/default.xml'...
+[16:13:36]  INFO: [CRSManager] Registering global crs store with id 'default', type: 'org.deegree.cs.persistence.deegree.d3.DeegreeCRSStore'
+- Einlesen der Features (+ Geometrievalidierung)...Fehler.
+
+Geometrie-Warnungen: 6
+ - Polygon (Zeile 30, Spalte 7): Äußerer Ring verwendet falsche Laufrichtung (CW).
+ - Polygon (Zeile 55, Spalte 7): Äußerer Ring verwendet falsche Laufrichtung (CW).
+ - Polygon (Zeile 1031, Spalte 5): Äußerer Ring verwendet falsche Laufrichtung (CW).
+ - Polygon (Zeile 1054, Spalte 5): Äußerer Ring verwendet falsche Laufrichtung (CW).
+ - Polygon (Zeile 1077, Spalte 5): Äußerer Ring verwendet falsche Laufrichtung (CW).
+ - Polygon (Zeile 1100, Spalte 5): Äußerer Ring verwendet falsche Laufrichtung (CW).
+
+Geometrie-Fehler: 5
+ - Polygon (Zeile 55, Spalte 7): Äußerer Ring schneidet den inneren Ring mit Index 0.
+ - Polygon (Zeile 55, Spalte 7): Innerer Ring mit Index 0 befindet sich nicht innerhalb des äußeren Rings.
+ - Polygon (Zeile 55, Spalte 7): Äußerer Ring schneidet den inneren Ring mit Index 1.
+ - Polygon (Zeile 55, Spalte 7): Innerer Ring mit Index 1 befindet sich nicht innerhalb des äußeren Rings.
+ - Polygon (Zeile 55, Spalte 7): Der innere Ring 0 schneidet den inneren Ring mit Index 1.
+Fortsetzung trotz Geometrie-Fehlern (--force).
+- Überprüfung der XLink-Integrität...OK [1 ms]
+----
+
+[[validierungsoption]]
+===== Validierungsoption
+
+Die Kommandozeilenschnittstelle des XPlanValidator kann zur Auswahl von
+zusätzlichen Validierungsoptionen parametrisiert aufgerufen werden. Die
+Angabe des Parameters ist optional.
+
+Aufruf:
+
+----
+XPlanValidator -validate Plan.zip -vo ignore-orientation -vo ignore-so -vo node-tolerance=1 -vo ignore-xp
+----
+
+Zuordnung der Werte:
+  * ignore-orientation -> Polygonlaufrichtung ignorieren [ja]
+  * ignore-self-intersection -> Selbstüberschneidungen ignorieren [ja]
+  * node-tolerance -> Toleranz für Stützpunktabstände in m
+  * ignore-so -> sonstige Planwerke ignorieren [ja]
+  * ignore-xp -> Präsentationsobjekte ignorieren [ja]
+
+[[validierungsergebnis]]
+===== Validierungsergebnis
+
+Am Ende des Validierungsdurchlaufs wird dem Benutzer der Pfad zu dem
+Validierungsergebnis ausgegeben. Das Validierungsergebnis wird als HTML,
+XML sowie PDF in einem Archiv gespeichert. Das Archiv ist nach dem
+Validierungsdurchlaufs benannt und kann somit leicht identifiziert
+werden.

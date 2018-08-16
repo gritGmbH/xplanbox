@@ -1,0 +1,45 @@
+[Präambel]
+== Präambel
+
+Dieses Dokument ist das offizielle Handbuch zur Benutzung
+der Software xPlanBox. Die in diesem Dokument genannten Soft- und
+Hardwarebezeichnungen sind in den meisten Fällen auch eingetragene
+Warenzeichen und unterliegen als solche den gesetzlichen Bestimmungen.
+
+Die in diesem Werk enthaltenen Angaben, Daten, Ergebnisse usw. wurden
+von den Autoren nach bestem Wissen erstellt und mit Sorgfalt überprüft.
+Dennoch sind inhaltliche Fehler nicht völlig auszuschließen. Daher
+erfolgen alle Angaben ohne jegliche Verpflichtung oder Garantie. Die
+Autoren übernehmen aus diesem Grund auch keinerlei Verantwortung oder
+Haftung für Fehler und deren Folgen. Hinweise auf eventuelle Irrtümer
+werden gerne entgegengenommen.
+
+Dieses Dokument ist mit AsciiDoc gesetzt. Es ist als
+Quellcode erhältlich und kann als HTML und PDF angeschaut bzw.
+bereitgestellt werden. Für die Bereitstellung des AsciiDoc Quellcode wenden
+Sie sich bitte an http://www.lat-lon.de[lat/lon] - per Email an
+info@lat-lon.de.
+
+[[autoren]]
+=== Autoren
+
+Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Dirk Stenger,
+Sebastian Goerke, Lyn Elisa Goltz, Carmen Tawalika, Jeronimo Wanhoff,
+Lena Rippolz
+
+[[lizenz]]
+=== Lizenz
+
+Die xPlanBox ist unter der http://www.gnu.org/licenses/lgpl-2.1.html[GNU
+Lesser General Public License (LGPL), version 2.1] veröffentlicht.
+
+[[lizenz-des-dokuments]]
+=== Lizenz des Dokuments
+
+Es wird die Erlaubnis gewährt, dieses Dokument zu kopieren, zu verteilen
+und/oder zu modifizieren, unter den Bestimmungen der GNU Free
+Documentation License, Version 1.3 oder jeder späteren Version,
+veröffentlicht von der Free Software Foundation; ohne unveränderliche
+Abschnitte, ohne vordere Umschlagtexte und ohne hintere Umschlagtexte.
+Die Lizenz wird unter http://www.gnu.org/licenses/fdl-1.3
+bereitgestellt.
