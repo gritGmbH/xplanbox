@@ -1,5 +1,6 @@
 package de.latlon.xplan.validator.report;
 
+import static de.latlon.xplan.validator.web.shared.ArtifactType.HTML;
 import static org.apache.commons.io.IOUtils.copy;
 
 import java.io.File;
@@ -73,17 +74,8 @@ public class ReportWriter {
         addFailureLog( failures, targetDirectory );
     }
 
-    public File retrieveReport( ArtifactType artifactType, String validationName, File sourceDirectory ) {
-        switch ( artifactType ) {
-        case SHP:
-            return new File( sourceDirectory, SHAPES );
-        case PNG:
-        case HTML:
-        case XML:
-        case PDF:
-            return retrieveArtifactFile( sourceDirectory, validationName, artifactType );
-        }
-        return null;
+    public File retrieveHtmlReport( String validationName, File sourceDirectory ) {
+        return retrieveArtifactFile( sourceDirectory, validationName, HTML );
     }
 
     public void writeZipWithArtifacts( OutputStream outputStream, String validationName, List<ArtifactType> artifacts,

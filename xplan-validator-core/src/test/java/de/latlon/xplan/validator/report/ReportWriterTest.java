@@ -68,9 +68,9 @@ public class ReportWriterTest {
     }
 
     @Test
-    public void testRetrieveReportShouldExistWithCorrectName() {
+    public void testRetrieveHtmlReport_ShouldExistWithCorrectName() {
         ReportWriter reportWriter = new ReportWriter();
-        File htmlReport = reportWriter.retrieveReport( HTML, VALIDATION_NAME, targetDirectory );
+        File htmlReport = reportWriter.retrieveHtmlReport( VALIDATION_NAME, targetDirectory );
 
         assertThat( htmlReport.exists(), is( true ) );
         assertThat( htmlReport.getName(), is( VALIDATION_NAME + ".html" ) );

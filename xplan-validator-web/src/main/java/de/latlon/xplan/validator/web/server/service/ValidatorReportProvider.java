@@ -1,6 +1,5 @@
 package de.latlon.xplan.validator.web.server.service;
 
-import static de.latlon.xplan.validator.web.shared.ArtifactType.HTML;
 import static org.apache.commons.io.IOUtils.copy;
 
 import java.io.File;
@@ -34,7 +33,7 @@ public class ValidatorReportProvider implements ReportProvider {
     public void writeHtmlReport( HttpServletResponse response, String planUuid, String validationName )
                             throws IOException {
         File planDirectory = planArchiveManager.createReportDirectory( planUuid );
-        File htmlReport = reportWriter.retrieveReport( HTML, validationName, planDirectory );
+        File htmlReport = reportWriter.retrieveHtmlReport( validationName, planDirectory );
         try (FileInputStream fileInputStream = new FileInputStream( htmlReport )) {
             copy( fileInputStream, response.getOutputStream() );
         }
