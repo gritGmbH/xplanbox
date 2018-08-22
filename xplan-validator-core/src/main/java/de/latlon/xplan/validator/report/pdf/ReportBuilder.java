@@ -138,7 +138,7 @@ class ReportBuilder {
 
     private ComponentBuilder<?, ?> appendHeaderAndResult( ValidatorResult result ) {
         ComponentBuilder<?, ?> rulesHead = cmp.text( result.getType() ).setStyle( bold14LeftStyle );
-        TextFieldBuilder<String> validString = cmp.text( createValidLabel( result.isValid() ) ).setStyle( bold14LeftStyle.setBottomBorder( stl.pen1Point() ) );
+        TextFieldBuilder<String> validString = cmp.text( getResultMessage( result ) ).setStyle( bold14LeftStyle.setBottomBorder( stl.pen1Point() ) );
         return cmp.horizontalList().add( rulesHead ).add( validString );
     }
 
@@ -176,6 +176,13 @@ class ReportBuilder {
         JasperReport jasperTitleSubreport = JasperCompileManager.compileReport( is );
         Map<String, Object> parameters = createParams( validationName, planName, report );
         return cmp.verticalList().add( cmp.subreport( jasperTitleSubreport ).setParameters( parameters ) ).add( cmp.verticalGap( VERTICAL_GAP ) );
+    }
+
+    private String getResultMessage( ValidatorResult result ) {
+        if ( result.isSkipped() ) {
+            return result.getSkipCode().getMessage();
+        }
+        return createValidLabel( result.isValid() );
     }
 
     private Map<String, Object> createParams( String validationName, String planName, ValidatorReport report ) {
