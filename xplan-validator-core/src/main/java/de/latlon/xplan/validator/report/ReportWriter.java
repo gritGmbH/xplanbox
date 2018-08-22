@@ -125,13 +125,16 @@ public class ReportWriter {
 
     private void addPNGEntry( ValidatorReport report, String validationName, File directoryToCreateZip,
                               List<String> failures ) {
-        if ( badGeometryImgGenerator.hasBadGeometry( report ) ) {
-            File pngFile = new File( directoryToCreateZip, validationName + ".png" );
-            try (FileOutputStream fileOutputStream = new FileOutputStream( pngFile )) {
-                badGeometryImgGenerator.generateReport( report, fileOutputStream );
-            } catch ( Exception e ) {
-                failures.add( e.getMessage() );
+        try {
+            if ( badGeometryImgGenerator.hasBadGeometry( report ) ) {
+                File pngFile = new File( directoryToCreateZip, validationName + ".png" );
+                try (FileOutputStream fileOutputStream = new FileOutputStream( pngFile )) {
+                    badGeometryImgGenerator.generateReport( report, fileOutputStream );
+
+                }
             }
+        } catch ( Exception e ) {
+            failures.add( e.getMessage() );
         }
     }
 
