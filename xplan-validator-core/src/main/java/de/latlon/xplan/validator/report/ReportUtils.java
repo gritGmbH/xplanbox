@@ -17,12 +17,31 @@ public class ReportUtils {
 
     public static final String LABEL_VALID = "valide";
 
+    public enum SkipCode {
+
+        SYNTAX_ERRORS( "Nicht ausgefuehrt aufgrund von syntaktischen Fehlern." );
+
+        private String message;
+
+        SkipCode( String message ) {
+            this.message = message;
+        }
+
+        /**
+         * @return the message of the failure
+         */
+        public String getMessage() {
+            return message;
+        }
+
+    }
+
     private ReportUtils() {
     }
 
     /**
      * @param isValid
-     *            , true if valid, false otherwise
+     *            true if valid, false otherwise
      * @return the string representation of the valid statue ('valid' if valid, 'nicht valide' if not)
      */
     public static String createValidLabel( boolean isValid ) {
@@ -30,7 +49,7 @@ public class ReportUtils {
     }
 
     static void writeShapefilesToZipOS( File directory, ZipOutputStream out )
-                    throws IOException {
+                            throws IOException {
         ZipEntry shapeDirEntry = new ZipEntry( "shapes/" );
         out.putNextEntry( shapeDirEntry );
         for ( File file : directory.listFiles() ) {

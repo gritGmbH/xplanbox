@@ -5,6 +5,7 @@ import java.util.List;
 
 import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorResult;
+import de.latlon.xplan.validator.report.ReportUtils.SkipCode;
 
 /**
  * contains the validator result of the semantic validator
@@ -17,11 +18,15 @@ public class SemanticValidatorResult extends ValidatorResult {
 
     private final List<RuleResult> rules = new ArrayList<>();
 
+    public SemanticValidatorResult( SkipCode skipCode ) {
+        super( skipCode );
+    }
+
     /**
      * Instantiates a new {@link SemanticValidatorResult} without detailsHint.
      */
     public SemanticValidatorResult() {
-        this( null );
+        this( (ValidatorDetail) null );
     }
 
     /**
