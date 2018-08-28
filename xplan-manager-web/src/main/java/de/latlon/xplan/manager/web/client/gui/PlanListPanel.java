@@ -592,8 +592,9 @@ public class PlanListPanel extends DecoratorPanel {
                 if ( xPlanTable.getColumnIndex( column ) == columnIndex
                      && "mouseover".equals( event.getNativeEvent().getType() ) ) {
                     int index = event.getIndex();
+                    int indexOnPage = index - xPlanTable.getPageStart();
                     String tooltip = tooltipCreator.createTooltip( event );
-                    xPlanTable.getRowElement( index ).getCells().getItem( columnIndex ).setTitle( tooltip );
+                    xPlanTable.getRowElement( indexOnPage ).getCells().getItem( columnIndex ).setTitle( tooltip );
                 }
             }
         } );
