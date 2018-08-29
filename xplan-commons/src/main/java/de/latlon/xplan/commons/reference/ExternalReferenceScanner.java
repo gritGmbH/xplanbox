@@ -59,6 +59,9 @@ public class ExternalReferenceScanner {
         case XPLAN_41:
             scanXplan4( fc );
             break;
+        case XPLAN_50:
+            scanXplan5( fc );
+            break;
         default:
             throw new IllegalArgumentException();
         }
@@ -147,6 +150,10 @@ public class ExternalReferenceScanner {
                 }
             }
         }
+    }
+
+    private void scanXplan5( FeatureCollection fc ) {
+        // TODO
     }
 
     private boolean isRasterplanAenderungFeature( String name ) {
