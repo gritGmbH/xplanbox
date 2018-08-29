@@ -34,10 +34,12 @@ public class ParameterizedSyntacticValidatorTest {
                                               { "xplan41/BP2070.zip" }, { "xplan41/BP2135.zip" },
                                               { "xplan41/Demo.zip" }, { "xplan41/Eidelstedt_4_V4.zip" },
                                               { "xplan41/FPlan.zip" }, { "xplan41/LA22.zip" }, { "xplan41/LA67.zip" },
-                                              { "xplan41/V4_1_ID_103.zip" }, { "xplan40/V4_1_ID_66.zip" } } );
+                                              { "xplan41/V4_1_ID_103.zip" }, { "xplan40/V4_1_ID_66.zip" },
+                                              { "xplan50/BP2070.zip" }, { "xplan50/BP2135.zip" },
+                                              { "xplan50/FPlan.zip" }, { "xplan50/LA22.zip" }, { "xplan50/LA67.zip" } } );
     }
 
-    public ParameterizedSyntacticValidatorTest(String testResource ) {
+    public ParameterizedSyntacticValidatorTest( String testResource ) {
         this.testResource = testResource;
     }
 
