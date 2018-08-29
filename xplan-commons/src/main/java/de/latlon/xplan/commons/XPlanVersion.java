@@ -33,6 +33,10 @@ public enum XPlanVersion {
      */
     XPLAN_41( "http://www.xplanung.de/xplangml/4/1", "/appschemas/XPlanGML_4_1/XPlanung-Operationen.xsd", GML_32 ),
     /**
+     * XPlan 5.0
+     */
+    XPLAN_50( "http://www.xplanung.de/xplangml/5/0", "/appschemas/XPlanGML_5_0/XPlanung-Operationen.xsd", GML_32 ),
+    /**
      * XPlan Syn
      */
     XPLAN_SYN( "http://www.deegree.org/xplanung/1/0", "/appschemas/XPlanGML_Syn/XPlanSyn.xsd", GML_31 );
@@ -43,7 +47,7 @@ public enum XPlanVersion {
 
     private final GMLVersion gmlVersion;
 
-    private XPlanVersion( String namespace, String schemaResourcePath, GMLVersion gmlVersion ) {
+    XPlanVersion( String namespace, String schemaResourcePath, GMLVersion gmlVersion ) {
         this.namespace = namespace;
         schemaUrl = this.getClass().getResource( schemaResourcePath );
         this.gmlVersion = gmlVersion;
@@ -86,17 +90,12 @@ public enum XPlanVersion {
      *             in case the namespace is not a known XPlanGML namespace
      */
     public static XPlanVersion valueOfNamespace( String ns ) {
-        if ( XPLAN_2.getNamespace().equals( ns ) ) {
-            return XPLAN_2;
-        }
-        if ( XPLAN_3.getNamespace().equals( ns ) ) {
-            return XPLAN_3;
-        }
-        if ( XPLAN_40.getNamespace().equals( ns ) ) {
-            return XPLAN_40;
-        }
-        if ( XPLAN_41.getNamespace().equals( ns ) ) {
-            return XPLAN_41;
+        if ( !XPLAN_SYN.getNamespace().equals( ns ) ) {
+            for ( XPlanVersion version : XPlanVersion.values() ) {
+                if ( version.getNamespace().equals( ns ) ) {
+                    return version;
+                }
+            }
         }
         throw new IllegalArgumentException( ns + " is not a known XPlanGML namespace." );
     }
