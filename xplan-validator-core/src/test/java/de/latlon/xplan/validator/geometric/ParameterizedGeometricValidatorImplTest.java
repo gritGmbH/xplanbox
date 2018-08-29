@@ -36,7 +36,7 @@ import de.latlon.xplan.validator.web.shared.ValidationOption;
 @RunWith(JUnitParamsRunner.class)
 public class ParameterizedGeometricValidatorImplTest {
 
-    public static final String NULL = "null";
+    private static final String NULL = "null";
 
     @FileParameters("src/test/resources/de/latlon/xplan/validator/geometric/geometricValidatorImplTest-validateGeometry-input.csv")
     @Test
