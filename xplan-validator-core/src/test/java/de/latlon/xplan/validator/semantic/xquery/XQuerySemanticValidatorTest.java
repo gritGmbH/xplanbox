@@ -34,62 +34,6 @@ import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 public class XQuerySemanticValidatorTest {
 
     @Test
-    public void testValidatorShouldReturnTrueOnValidRules()
-                    throws Exception {
-        Path xqueryFilePath = Paths.get( XQuerySemanticValidatorTest.class.getResource( "../configuration/xquery/rules" ).toURI() );
-        XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-                        xqueryFilePath );
-        SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator( retriever );
-        ValidatorResult result = xQuerySemanticValidator.validateSemantic( getTestArchive( "xplan41/BP2070.zip" ),
-                                                                           Collections.<SemanticValidationOptions>emptyList() );
-        SemanticValidatorResult semanticValidatorResult = (SemanticValidatorResult) result;
-
-        assertThat( semanticValidatorResult.getRules().size(), is( 7 ) );
-    }
-
-    @Test
-    public void testValidatorShouldReturnFalseOnNonMatchingRules()
-                    throws Exception {
-        Path xqueryFilePath = Paths.get( XQuerySemanticValidatorTest.class.getResource( "../configuration/xquery/rules" ).toURI() );
-        XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-                        xqueryFilePath );
-        SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator( retriever );
-        ValidatorResult result = xQuerySemanticValidator.validateSemantic( getTestArchive( "xplan41/BP2070.zip" ),
-                                                                           Collections.<SemanticValidationOptions>emptyList() );
-        SemanticValidatorResult semanticValidatorResult = (SemanticValidatorResult) result;
-
-        assertThat( semanticValidatorResult.getRules().size(), is( 7 ) );
-    }
-
-    @Test
-    public void testValidatorWithXPlanNSMShouldReturnTrueOnValidRules()
-                    throws Exception {
-        Path xqueryFilePath = Paths.get( XQuerySemanticValidatorTest.class.getResource( "../configuration/xquery/rules" ).toURI() );
-        XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-                        xqueryFilePath );
-        SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator( retriever );
-        ValidatorResult result = xQuerySemanticValidator.validateSemantic( getTestArchive( "xplan41/nsm/nsm_niedersachsen_lrop_small.zip" ),
-                                                                           Collections.<SemanticValidationOptions>emptyList() );
-        SemanticValidatorResult semanticValidatorResult = (SemanticValidatorResult) result;
-
-        assertThat( semanticValidatorResult.getRules().size(), is( 7 ) );
-    }
-
-    @Test
-    public void testValidatorWithXPlanNSMShouldReturnFalseOnNonMatchingRules()
-                    throws Exception {
-        Path xqueryFilePath = Paths.get( XQuerySemanticValidatorTest.class.getResource( "../configuration/xquery/rules" ).toURI() );
-        XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-                        xqueryFilePath );
-        SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator( retriever );
-        ValidatorResult result = xQuerySemanticValidator.validateSemantic( getTestArchive( "xplan41/nsm/nsm_niedersachsen_lrop_small.zip" ),
-                                                                           Collections.<SemanticValidationOptions>emptyList() );
-        SemanticValidatorResult semanticValidatorResult = (SemanticValidatorResult) result;
-
-        assertThat( semanticValidatorResult.getRules().size(), is( 7 ) );
-    }
-
-    @Test
     public void testValidatorResultContainsDetailsHint()
                     throws Exception {
         Path xqueryFilePath = Paths.get( XQuerySemanticValidatorTest.class.getResource( "../configuration/xquery/rules" ).toURI() );
