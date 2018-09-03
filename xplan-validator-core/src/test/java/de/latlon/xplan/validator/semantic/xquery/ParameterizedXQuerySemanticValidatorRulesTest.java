@@ -42,7 +42,7 @@ public class ParameterizedXQuerySemanticValidatorRulesTest {
 
     @FileParameters("src/test/resources/de/latlon/xplan/validator/semantic/xquery/validateSemanticRulesTest-input.csv")
     @Test
-    public void testRule_41_4121( String resourceUnderTest, String rulePath, boolean isValid )
+    public void testValidationOfSingleRule( String resourceUnderTest, String rulePath, boolean isValid )
                             throws Exception {
         List<RuleResult> rules = testRule( resourceUnderTest, rulePath );
 
