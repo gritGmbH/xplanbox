@@ -1,0 +1,18 @@
+xplan.gml, xplangml41/4.1.2.1.xq, true
+inhaltBPPlan-referenziertSO.xml, xplangml41/4.1.2.1.xq, false
+xplan.gml, xplangml41/4.2.3.xq, true
+BP_BaugebietsTeilFlaeche-GFZ_GF_GRZ_GZ.xml, xplangml41/4.2.3.xq, false
+xplan.gml, xplangml41/4.2.9.xq, true
+BP_BaugebietsTeilFlaeche-GFZ_GF_GRZ_GZ.xml, xplangml41/4.2.9.xq, false
+xplan.gml, xplangml41/4.5.13.1.xq, true
+BP_NebenanlagenFlaeche-nurWeitereZB.xml, xplangml41/4.5.13.1.xq, false
+BP_NebenanlagenFlaeche-mehrfacheZBUndWeitere.xml, xplangml41/4.5.13.1.xq, false
+xplan.gml, xplangml41/4.9.6.1.xq, true
+BP_AnpflanzungBindungErhaltung-Polygon-flaechenschlussTrue.xml,xplangml41/4.9.6.1.xq, false
+xplan.gml, xplangml41/4.14.2.1.xq, true
+BP_Wegerecht-Polygon-flaechenschlussFehlt.xml, xplangml41/4.14.2.1.xq, false
+BP_UnverbindlicheVormerkung-Polygon-flaechenschlussTrue.xml,xplangml41/4.14.2.1.xq, false
+xplan.gml, 2.2.1.1.xq, true
+inhaltBPPlan-referenziertSO.xml, 2.2.1.1.xq, true
+XP_PPO-positionPoint-keinFlaechenschluss.xml, 2.2.1.1.xq, true
+BP_Wegerecht-Polygon-flaechenschlussFehlt.xml, 2.2.1.1.xq, false
