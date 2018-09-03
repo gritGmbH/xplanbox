@@ -12,7 +12,7 @@ and
                                          sondernutzung/text() = '1400'] satisfies
   not(exists($h/besondereArtDerBaulNutzung)) or $h/besondereArtDerBaulNutzung/text() = '2000'
 )
-
+and
 (
   every $h in //BP_BaugebietsTeilFlaeche[sondernutzung/text() = '1500' or
                                          sondernutzung/text() = '1600' or
