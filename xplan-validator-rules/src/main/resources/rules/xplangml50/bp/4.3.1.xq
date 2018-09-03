@@ -1,0 +1,16 @@
+declare default element namespace 'http://www.xplanung.de/xplangml/5/0';
+
+(
+  every $h in //BP_BaugebietsTeilFlaeche satisfies
+  $h/DNmin or ($h/DNmin and $h/DNmax) or $h/DN or $h/DNzwingend
+)
+and
+(
+  every $h in //BP_BesondererNutzungszweckFlaeche satisfies
+  $h/DNmin or ($h/DNmin and $h/DNmax) or $h/DN or $h/DNzwingend
+)
+and
+(
+  every $h in //BP_UeberbaubareGrundstuecksFlaeche satisfies
+  $h/DNmin or ($h/DNmin and $h/DNmax) or $h/DN or $h/DNzwingend
+)
