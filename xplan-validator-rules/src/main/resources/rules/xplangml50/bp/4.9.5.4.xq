@@ -1,7 +1,7 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/0';
 declare namespace gml='http://www.opengis.net/gml/3.2';
 
-every $h in //BP_GemeinschaftsanlagenZuordnung satisfies
+every $h in //BP_AusgleichsMassnahme satisfies
   if(exists($h/position/gml:Polygon) or
      exists($h/position/gml:MultiSurface) or
      exists($h/position/gml:LinearRing) or
