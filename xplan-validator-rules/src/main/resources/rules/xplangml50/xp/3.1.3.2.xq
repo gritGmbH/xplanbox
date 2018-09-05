@@ -243,6 +243,60 @@ and
 )
 and
 (
+  every $h in //BP_BaugebietsTeilFlaeche/@xlink:href satisfies
+  let $id := substring($h,2) return
+    exists(//XP_BegruendungAbschnitt[@gml:id = $id])
+)
+and
+(
+  every $h in //BP_GemeinbedarfsFlaeche/@xlink:href satisfies
+  let $id := substring($h,2) return
+    exists(//XP_BegruendungAbschnitt[@gml:id = $id])
+)
+and
+(
+  every $h in //BP_GewaesserFlaeche/@xlink:href satisfies
+  let $id := substring($h,2) return
+    exists(//XP_BegruendungAbschnitt[@gml:id = $id])
+)
+and
+(
+  every $h in //BP_GruenFlaeche/@xlink:href satisfies
+  let $id := substring($h,2) return
+    exists(//XP_BegruendungAbschnitt[@gml:id = $id])
+)
+and
+(
+  every $h in //BP_KleintierhaltungFlaeche/@xlink:href satisfies
+  let $id := substring($h,2) return
+    exists(//XP_BegruendungAbschnitt[@gml:id = $id])
+)
+and
+(
+  every $h in //BP_SpielSportanlagenFlaeche/@xlink:href satisfies
+  let $id := substring($h,2) return
+    exists(//XP_BegruendungAbschnitt[@gml:id = $id])
+)
+and
+(
+  every $h in //BP_StrassenVerkehrsFlaeche/@xlink:href satisfies
+  let $id := substring($h,2) return
+    exists(//XP_BegruendungAbschnitt[@gml:id = $id])
+)
+and
+(
+  every $h in //BP_VerkehrsflaecheBesondererZweckbestimmung/@xlink:href satisfies
+  let $id := substring($h,2) return
+    exists(//XP_BegruendungAbschnitt[@gml:id = $id])
+)
+and
+(
+  every $h in //BP_WaldFlaeche/@xlink:href satisfies
+  let $id := substring($h,2) return
+    exists(//XP_BegruendungAbschnitt[@gml:id = $id])
+)
+and
+(
   every $h in //BP_BauGrenze/@xlink:href satisfies
   let $id := substring($h,2) return
   exists(//XP_BegruendungAbschnitt[@gml:id = $id])
