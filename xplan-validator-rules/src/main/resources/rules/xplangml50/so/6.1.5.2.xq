@@ -1,16 +1,123 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/0';
 declare namespace gml='http://www.opengis.net/gml/3.2';
 
-if (
-  every $h in //SO_Geometrieobjekt satisfies
-  exists($h/position/gml:Polygon) or
-  exists($h/position/gml:MultiSurface) or
-  exists($h/position/gml:LinearRing) or
-  exists($h/position/gml:PolygonPatch) or
-  exists($h/position/gml:Ring)
+(
+  every $h in //SO_Bodenschutzrecht satisfies
+  if(exists($h/position/gml:Polygon) or
+          exists($h/position/gml:MultiSurface) or
+          exists($h/position/gml:LinearRing) or
+          exists($h/position/gml:PolygonPatch) or
+          exists($h/position/gml:Ring))
+  then exists($h/flaechenschluss)
+  else true()
 )
-then (
-  every $h in //SO_Geometrieobjekt satisfies
-  exists($h/flaechenschluss)
+and
+(
+  every $h in //SO_Denkmalschutzrecht satisfies
+  if(exists($h/position/gml:Polygon) or
+          exists($h/position/gml:MultiSurface) or
+          exists($h/position/gml:LinearRing) or
+          exists($h/position/gml:PolygonPatch) or
+          exists($h/position/gml:Ring))
+  then exists($h/flaechenschluss)
+  else true()
 )
-else boolean('false')
+and
+(
+  every $h in //SO_Forstrecht satisfies
+  if(exists($h/position/gml:Polygon) or
+          exists($h/position/gml:MultiSurface) or
+          exists($h/position/gml:LinearRing) or
+          exists($h/position/gml:PolygonPatch) or
+          exists($h/position/gml:Ring))
+  then exists($h/flaechenschluss)
+  else true()
+)
+and
+(
+  every $h in //SO_Luftverkehrsrecht satisfies
+  if(exists($h/position/gml:Polygon) or
+          exists($h/position/gml:MultiSurface) or
+          exists($h/position/gml:LinearRing) or
+          exists($h/position/gml:PolygonPatch) or
+          exists($h/position/gml:Ring))
+  then exists($h/flaechenschluss)
+  else true()
+)
+and
+(
+  every $h in //SO_Schienenverkehrsrecht satisfies
+  if(exists($h/position/gml:Polygon) or
+          exists($h/position/gml:MultiSurface) or
+          exists($h/position/gml:LinearRing) or
+          exists($h/position/gml:PolygonPatch) or
+          exists($h/position/gml:Ring))
+  then exists($h/flaechenschluss)
+  else true()
+)
+and
+(
+  every $h in //SO_SchutzgebietNaturschutzrecht satisfies
+  if(exists($h/position/gml:Polygon) or
+          exists($h/position/gml:MultiSurface) or
+          exists($h/position/gml:LinearRing) or
+          exists($h/position/gml:PolygonPatch) or
+          exists($h/position/gml:Ring))
+  then exists($h/flaechenschluss)
+  else true()
+)
+and
+(
+  every $h in //SO_SchutzgebietSonstigesRecht satisfies
+  if(exists($h/position/gml:Polygon) or
+          exists($h/position/gml:MultiSurface) or
+          exists($h/position/gml:LinearRing) or
+          exists($h/position/gml:PolygonPatch) or
+          exists($h/position/gml:Ring))
+  then exists($h/flaechenschluss)
+  else true()
+)
+and
+(
+  every $h in //SO_SchutzgebietWasserrecht satisfies
+  if(exists($h/position/gml:Polygon) or
+          exists($h/position/gml:MultiSurface) or
+          exists($h/position/gml:LinearRing) or
+          exists($h/position/gml:PolygonPatch) or
+          exists($h/position/gml:Ring))
+  then exists($h/flaechenschluss)
+  else true()
+)
+and
+(
+  every $h in //SO_SonstigesRecht satisfies
+  if(exists($h/position/gml:Polygon) or
+          exists($h/position/gml:MultiSurface) or
+          exists($h/position/gml:LinearRing) or
+          exists($h/position/gml:PolygonPatch) or
+          exists($h/position/gml:Ring))
+  then exists($h/flaechenschluss)
+  else true()
+)
+and
+(
+  every $h in //SO_Strassenverkehrsrecht satisfies
+  if(exists($h/position/gml:Polygon) or
+          exists($h/position/gml:MultiSurface) or
+          exists($h/position/gml:LinearRing) or
+          exists($h/position/gml:PolygonPatch) or
+          exists($h/position/gml:Ring))
+  then exists($h/flaechenschluss)
+  else true()
+)
+and
+(
+  every $h in //SO_Wasserrecht satisfies
+  if(exists($h/position/gml:Polygon) or
+          exists($h/position/gml:MultiSurface) or
+          exists($h/position/gml:LinearRing) or
+          exists($h/position/gml:PolygonPatch) or
+          exists($h/position/gml:Ring))
+  then exists($h/flaechenschluss)
+  else true()
+)
