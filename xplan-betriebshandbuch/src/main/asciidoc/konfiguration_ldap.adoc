@@ -57,7 +57,7 @@ Gruppenhierarchien genutzt werden (siehe weiter unten):
 ----
 ldap.server.searchUser=ll-technical
 ldap.server.searchPassword=ADServer!
-ldap.server.searchNode=OU=lgvxplanisk,DC=adserver,DC=lat-lon
+ldap.server.searchNode=OU=xplanisk,DC=adserver,DC=lat-lon
 ----
 
 Hier muss ein (technischer) Nutzer konfiguriert werden, der lesenden
