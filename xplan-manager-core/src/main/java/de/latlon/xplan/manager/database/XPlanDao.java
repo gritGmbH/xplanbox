@@ -107,11 +107,13 @@ public class XPlanDao {
     private static final String XPLAN3_FS_ID = "xplan3";
 
     private static final String XPLAN40_FS_ID = "xplan40";
-
+    
     private static final String XPLAN41_FS_ID = "xplan41";
 
     private static final String XPLAN41_NSM_FS_ID = "xplan41nsm";
 
+    private static final String XPLAN50_FS_ID = "xplan50";
+    
     private static final String XPLANSYN_FS_ID = "xplansyn";
 
     private static final String XPLAN2PRE_FS_ID = "xplan2pre";
@@ -124,6 +126,8 @@ public class XPlanDao {
 
     private static final String XPLAN41PRE_NSM_FS_ID = "xplan41nsmpre";
 
+    private static final String XPLAN50PRE_FS_ID = "xplan50pre";
+    
     private static final String XPLANSYNPRE_FS_ID = "xplansynpre";
 
     private static final String XPLAN2ARCHIVE_FS_ID = "xplan2archive";
@@ -136,6 +140,8 @@ public class XPlanDao {
 
     private static final String XPLAN41ARCHIVE_NSM_FS_ID = "xplan41nsmarchive";
 
+    private static final String XPLAN50ARCHIVE_FS_ID = "xplan50archive";
+    
     private static final String XPLANSYNARCHIVE_FS_ID = "xplansynarchive";
 
     private static final String INSPIREPLU_FS_ID = "inspireplu";
@@ -461,6 +467,8 @@ public class XPlanDao {
             } else {
                 return decideIfPreStore( planStatus, XPLAN41_FS_ID, XPLAN41PRE_FS_ID, XPLAN41ARCHIVE_FS_ID );
             }
+        case XPLAN_50:
+            return decideIfPreStore( planStatus, XPLAN50_FS_ID, XPLAN50PRE_FS_ID, XPLAN50ARCHIVE_FS_ID );
         case XPLAN_SYN:
             return decideIfPreStore( planStatus, XPLANSYN_FS_ID, XPLANSYNPRE_FS_ID, XPLANSYNARCHIVE_FS_ID );
         }
