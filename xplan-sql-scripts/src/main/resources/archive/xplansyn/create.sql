@@ -14607,6 +14607,26 @@ CREATE TABLE xplansynarchive.xplan_xp_rasterplanbasis (
     xplan_texturl text,
     CONSTRAINT xplan_xp_rasterplanbasis_pkey PRIMARY KEY (attr_gml_id)
 );
+CREATE TABLE xplansynarchive.xplan_xp_rasterdarstellung (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+    xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_refscan text,
+    xplan_reftext text,
+    xplan_reflegende text,
+    xplan_scanurl text,
+    xplan_georefurl text,
+    xplan_legendeurl text,
+    xplan_texturl text,
+    CONSTRAINT xplan_xp_rasterdarstellung_pkey PRIMARY KEY (attr_gml_id)
+);
 CREATE TABLE xplansynarchive.xplan_xp_stringattribut (
     attr_gml_id text,
     xplan_gmlid text,

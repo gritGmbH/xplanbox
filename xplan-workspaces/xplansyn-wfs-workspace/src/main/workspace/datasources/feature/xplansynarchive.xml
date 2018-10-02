@@ -14706,6 +14706,28 @@
     <Primitive path="xplan:legendeURL" mapping="xplan_legendeurl" />
     <Primitive path="xplan:textURL" mapping="xplan_texturl" />
   </FeatureTypeMapping>
+  <FeatureTypeMapping name="xplan:XP_Rasterdarstellung" table="xplansynarchive.xplan_xp_rasterdarstellung">
+    <FIDMapping prefix="XPLAN_XP_RASTERDARSTELLUNG_">
+      <Column name="attr_gml_id" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
+    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
+    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
+    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
+    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
+    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
+    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
+    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
+    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:refScan" mapping="xplan_refscan" />
+    <Primitive path="xplan:refText" mapping="xplan_reftext" />
+    <Primitive path="xplan:refLegende" mapping="xplan_reflegende" />
+    <Primitive path="xplan:scanURL" mapping="xplan_scanurl" />
+    <Primitive path="xplan:georefURL" mapping="xplan_georefurl" />
+    <Primitive path="xplan:legendeURL" mapping="xplan_legendeurl" />
+    <Primitive path="xplan:textURL" mapping="xplan_texturl" />
+  </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:XP_StringAttribut" table="xplansynarchive.xplan_xp_stringattribut">
     <FIDMapping prefix="XPLAN_XP_STRINGATTRIBUT_">
       <Column name="attr_gml_id" type="string" />
