@@ -14628,6 +14628,7 @@
     <Primitive path="xplan:drehwinkelUOM" mapping="xplan_drehwinkeluom" />
     <Primitive path="xplan:skalierung" mapping="xplan_skalierung" />
     <Primitive path="xplan:index" mapping="xplan_index" />
+    <Primitive path="xplan:hat" mapping="xplan_hat" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:XP_PTO" table="xplansynarchive.xplan_xp_pto">
     <FIDMapping prefix="XPLAN_XP_PTO_">

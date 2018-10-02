@@ -14531,6 +14531,7 @@ CREATE TABLE xplansynarchive.xplan_xp_ppo (
     xplan_drehwinkeluom text,
     xplan_skalierung numeric,
     xplan_index text,
+    xplan_hat text,
     CONSTRAINT xplan_xp_ppo_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_xp_ppo','xplan_position','-1','GEOMETRY', 2);
