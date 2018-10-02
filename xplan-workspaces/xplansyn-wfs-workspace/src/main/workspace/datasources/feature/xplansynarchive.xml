@@ -1124,9 +1124,12 @@
     <Primitive path="xplan:rasterAenderung" mapping="xplan_rasteraenderung" />
     <Primitive path="xplan:detaillierteBedeutung" mapping="xplan_detailliertebedeutung" />
     <Primitive path="xplan:nachrichtlich" mapping="xplan_nachrichtlich" />
+    <Primitive path="xplan:versionBauNVODatum" mapping="xplan_versionbaunvodatum" />
     <Primitive path="xplan:versionBauNVOText" mapping="xplan_versionbaunvotext" />
     <Primitive path="xplan:versionBauGB" mapping="xplan_versionbaugb" />
     <Primitive path="xplan:versionBauGBText" mapping="xplan_versionbaugbtext" />
+    <Primitive path="xplan:versionSonstRechtsgrundlageDatum" mapping="xplan_versionsonstrechtsgrundlagedatum" />
+    <Primitive path="xplan:versionSonstRechtsgrundlageText" mapping="xplan_versionsonstrechtsgrundlagetext" />
     <Primitive path="xplan:inhaltBPlan" mapping="xplan_inhaltbplan" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_BereichOhneEinAusfahrtLinie" table="xplansynarchive.xplan_bp_bereichohneeinausfahrtlinie">
@@ -6382,9 +6385,12 @@
     <Primitive path="xplan:rasterAenderung" mapping="xplan_rasteraenderung" />
     <Primitive path="xplan:detaillierteBedeutung" mapping="xplan_detailliertebedeutung" />
     <Primitive path="xplan:nachrichtlich" mapping="xplan_nachrichtlich" />
+    <Primitive path="xplan:versionBauNVODatum" mapping="xplan_versionbaunvodatum" />
     <Primitive path="xplan:versionBauNVOText" mapping="xplan_versionbaunvotext" />
     <Primitive path="xplan:versionBauGB" mapping="xplan_versionbaugb" />
     <Primitive path="xplan:versionBauGBText" mapping="xplan_versionbaugbtext" />
+    <Primitive path="xplan:versionSonstRechtsgrundlageDatum" mapping="xplan_versionsonstrechtsgrundlagedatum" />
+    <Primitive path="xplan:versionSonstRechtsgrundlageText" mapping="xplan_versionsonstrechtsgrundlagetext" />
     <Primitive path="xplan:inhaltFPlan" mapping="xplan_inhaltfplan" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Bodenschaetze" table="xplansynarchive.xplan_fp_bodenschaetze">
@@ -10131,6 +10137,7 @@
     <Primitive path="xplan:versionBROGText" mapping="xplan_versionbrogtext" />
     <Primitive path="xplan:versionLPLG" mapping="xplan_versionlplg" />
     <Primitive path="xplan:versionLPLGText" mapping="xplan_versionlplgtext" />
+    <Primitive path="xplan:geltungsmassstab" mapping="xplan_geltungsmassstab" />
     <Primitive path="xplan:inhaltRPlan" mapping="xplan_inhaltrplan" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Bodenschutz" table="xplansynarchive.xplan_rp_bodenschutz">

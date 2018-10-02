@@ -1115,9 +1115,12 @@ CREATE TABLE xplansynarchive.xplan_bp_bereich (
     xplan_rasteraenderung text,
     xplan_detailliertebedeutung text,
     xplan_nachrichtlich text,
+    xplan_versionbaunvodatum date,
     xplan_versionbaunvotext text,
     xplan_versionbaugb date,
     xplan_versionbaugbtext text,
+    xplan_versionsonstrechtsgrundlagedatum date,
+    xplan_versionsonstrechtsgrundlagetext text,
     xplan_inhaltbplan text,
     CONSTRAINT xplan_bp_bereich_pkey PRIMARY KEY (attr_gml_id)
 );
@@ -6352,9 +6355,12 @@ CREATE TABLE xplansynarchive.xplan_fp_bereich (
     xplan_rasteraenderung text,
     xplan_detailliertebedeutung text,
     xplan_nachrichtlich text,
+    xplan_versionbaunvodatum date,
     xplan_versionbaunvotext text,
     xplan_versionbaugb date,
     xplan_versionbaugbtext text,
+    xplan_versionsonstrechtsgrundlagedatum date,
+    xplan_versionsonstrechtsgrundlagetext text,
     xplan_inhaltfplan text,
     CONSTRAINT xplan_fp_bereich_pkey PRIMARY KEY (attr_gml_id)
 );
@@ -10082,6 +10088,7 @@ CREATE TABLE xplansynarchive.xplan_rp_bereich (
     xplan_versionbrogtext text,
     xplan_versionlplg date,
     xplan_versionlplgtext text,
+    xplan_geltungsmassstab integer,
     xplan_inhaltrplan text,
     CONSTRAINT xplan_rp_bereich_pkey PRIMARY KEY (attr_gml_id)
 );
