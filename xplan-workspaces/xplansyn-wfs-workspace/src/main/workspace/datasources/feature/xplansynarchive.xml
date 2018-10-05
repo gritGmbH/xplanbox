@@ -3151,6 +3151,7 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPEMassnahme" mapping="xplan_wirdausgeglichendurchspemassnahme" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
     <Primitive path="xplan:gehoertZuBP_Bereich" mapping="xplan_gehoertzubp_bereich" />
+    <Primitive path="xplan:laermpegelbereich" mapping="xplan_laermpegelbereich" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_KennzeichnungsFlaeche" table="xplansynarchive.xplan_bp_kennzeichnungsflaeche">
     <FIDMapping prefix="XPLAN_BP_KENNZEICHNUNGSFLAECHE_">

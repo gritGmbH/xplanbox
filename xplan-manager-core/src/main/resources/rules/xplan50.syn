@@ -1375,6 +1375,7 @@ BP_Immissionsschutz/wirdAusgeglichenDurchABE=xplanFlattenFeature(xpath('xplan:wi
 BP_Immissionsschutz/wirdAusgeglichenDurchSPEMassnahme=xplanFlattenFeature(xpath('xplan:wirdAusgeglichenDurchSPEMassnahme'))
 BP_Immissionsschutz/wirdAusgeglichenDurchSPEFlaeche=xplanFlattenFeature(xpath('xplan:wirdAusgeglichenDurchSPEFlaeche'))
 BP_Immissionsschutz/gehoertZuBP_Bereich=xplanFlattenFeature(xpath('xplan:gehoertZuBereich'))
+BP_Immissionsschutz/laermpegelbereich=xplanCodeLookupExt(xpath('xplan:laermpegelbereich'), 'BP_Laerrmpegelbereich')
 BP_KennzeichnungsFlaeche/gmlId=xpath('@gml:id')
 BP_KennzeichnungsFlaeche/gmlName=xplanGmlName()
 BP_KennzeichnungsFlaeche/gmlDescription=xplanGmlDescription()
