@@ -224,6 +224,7 @@ BP_AusgleichsFlaeche/wirdAusgeglichenDurchABE=xplanFlattenFeature(xpath('xplan:w
 BP_AusgleichsFlaeche/wirdAusgeglichenDurchSPEMassnahme=xplanFlattenFeature(xpath('xplan:wirdAusgeglichenDurchSPEMassnahme'))
 BP_AusgleichsFlaeche/wirdAusgeglichenDurchSPEFlaeche=xplanFlattenFeature(xpath('xplan:wirdAusgeglichenDurchSPEFlaeche'))
 BP_AusgleichsFlaeche/gehoertZuBP_Bereich=xplanFlattenFeature(xpath('xplan:gehoertZuBereich'))
+BP_AusgleichsFlaeche/sonstZiel=xpath('xplan:sonstZiel')
 BP_AusgleichsMassnahme/gmlId=xpath('@gml:id')
 BP_AusgleichsMassnahme/gmlName=xplanGmlName()
 BP_AusgleichsMassnahme/gmlDescription=xplanGmlDescription()
