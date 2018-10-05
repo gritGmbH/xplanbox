@@ -269,6 +269,7 @@
     <Primitive path="xplan:gehoertZuBP_Bereich" mapping="xplan_gehoertzubp_bereich" />
     <Primitive path="xplan:pflanztiefe" mapping="xplan_pflanztiefe" />
     <Primitive path="xplan:pflanztiefeUOM" mapping="xplan_pflanztiefeuom" />
+    <Primitive path="xplan:baumArt" mapping="xplan_baumart" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_AufschuettungsFlaeche" table="xplansynarchive.xplan_bp_aufschuettungsflaeche">
     <FIDMapping prefix="XPLAN_BP_AUFSCHUETTUNGSFLAECHE_">

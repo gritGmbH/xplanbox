@@ -153,6 +153,7 @@ BP_AnpflanzungBindungErhaltung/wirdAusgeglichenDurchSPEFlaeche=xplanFlattenFeatu
 BP_AnpflanzungBindungErhaltung/gehoertZuBP_Bereich=xplanFlattenFeature(xpath('xplan:gehoertZuBereich'))
 BP_AnpflanzungBindungErhaltung/pflanztiefe=xpath('xplan:pflanztiefe/text()')
 BP_AnpflanzungBindungErhaltung/pflanztiefeUOM=xpath('xplan:pflanztiefe/@uom')
+BP_AnpflanzungBindungErhaltung/baumArt=xplanCodeLookup(xpath('xplan:baumArt'), 'VegetationsobjektTypen')
 BP_AufschuettungsFlaeche/gmlId=xpath('@gml:id')
 BP_AufschuettungsFlaeche/gmlName=xplanGmlName()
 BP_AufschuettungsFlaeche/gmlDescription=xplanGmlDescription()
