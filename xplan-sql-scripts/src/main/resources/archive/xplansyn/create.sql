@@ -1615,6 +1615,7 @@ CREATE TABLE xplansynarchive.xplan_bp_einfahrtpunkt (
     xplan_hoehenangabe text,
     xplan_richtung numeric,
     xplan_richtunguom text,
+    xplan_typ text,
     xplan_realisiert text,
     xplan_nachrichtlicheuebernahme text,
     xplan_hinweis text,

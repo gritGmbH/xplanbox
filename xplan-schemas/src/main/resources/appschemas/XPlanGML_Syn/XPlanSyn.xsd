@@ -1715,6 +1715,7 @@
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="richtung" minOccurs="0" type="double" />
             <element name="richtungUOM" minOccurs="0" type="string" />
+            <element name="typ" minOccurs="0" type="string" />
             <element name="realisiert" minOccurs="0" type="string" />
             <element name="nachrichtlicheUebernahme" minOccurs="0" type="string" />
             <element name="hinweis" minOccurs="0" type="string" />

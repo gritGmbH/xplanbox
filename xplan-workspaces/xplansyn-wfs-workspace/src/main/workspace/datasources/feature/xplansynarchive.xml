@@ -1627,6 +1627,7 @@
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:richtung" mapping="xplan_richtung" />
     <Primitive path="xplan:richtungUOM" mapping="xplan_richtunguom" />
+    <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:realisiert" mapping="xplan_realisiert" />
     <Primitive path="xplan:nachrichtlicheUebernahme" mapping="xplan_nachrichtlicheuebernahme" />
     <Primitive path="xplan:hinweis" mapping="xplan_hinweis" />
