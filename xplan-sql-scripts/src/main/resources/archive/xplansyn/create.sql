@@ -4845,6 +4845,48 @@ SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_technikbestimmteflaeche','
 CREATE INDEX spatial_idx_121 ON xplan_bp_technikbestimmteflaeche USING GIST ( xplan_symbolposition  );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_technikbestimmteflaeche','xplan_position','-1','GEOMETRY', 2);
 CREATE INDEX spatial_idx_122 ON xplan_bp_technikbestimmteflaeche USING GIST ( xplan_position  );
+CREATE TABLE xplansynarchive.xplan_bp_technischemassnahmenflaeche (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+	xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_uuid text,
+    xplan_text text,
+    xplan_rechtsstand text,
+    xplan_rechtsstandcode text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
+    xplan_gliederung1 text,
+    xplan_gliederung2 text,
+    xplan_ebene integer,
+    xplan_hatgenerattribut text,
+    xplan_hoehenangabe text,
+    xplan_gehoertzubereich text,
+    xplan_wirddargestelltdurch text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_wirdausgeglichendurchflaeche text,
+    xplan_wirdausgeglichendurchabe text,
+    xplan_wirdausgeglichendurchspemassnahme text,
+    xplan_wirdausgeglichendurchspeflaeche text,
+    xplan_wirdausgeglichendurchmassnahme text,
+    xplan_flaechenschluss text,
+    xplan_zweckbestimmung text,
+    xplan_zweckbestimmungcode text,
+    xplan_technischemassnahme text,
+    CONSTRAINT xplan_bp_technischemassnahmenflaeche_pkey PRIMARY KEY (attr_gml_id)
+);
+SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_technischemassnahmenflaeche','xplan_position','-1','GEOMETRY', 2);
+CREATE INDEX spatial_idx_83 ON xplan_bp_technischemassnahmenflaeche USING GIST ( xplan_position  );
 CREATE TABLE xplansynarchive.xplan_bp_textabschnitt (
     attr_gml_id text,
     xplan_gmlid text,
