@@ -4229,6 +4229,7 @@ CREATE TABLE xplansynarchive.xplan_bp_schutzpflegeentwicklungsmassnahme (
     xplan_nordwinkelUOM text,
     xplan_ziel text,
     xplan_zielcode text,
+    xplan_sonstziel text,
     xplan_massnahme text,
     xplan_massnahmecode text,
     xplan_massnahmetext text,

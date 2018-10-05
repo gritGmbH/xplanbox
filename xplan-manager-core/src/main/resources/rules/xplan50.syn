@@ -1830,6 +1830,7 @@ BP_SchutzPflegeEntwicklungsMassnahme/wirdAusgeglichenDurchSPEFlaeche=xplanFlatte
 BP_SchutzPflegeEntwicklungsMassnahme/gehoertZuBP_Bereich=xplanFlattenFeature(xpath('xplan:gehoertZuBereich'))
 BP_SchutzPflegeEntwicklungsMassnahme/refMassnahmenText=xplanFlatten(xpath('xplan:refMassnahmenText'))
 BP_SchutzPflegeEntwicklungsMassnahme/refLandschaftsplan=xplanFlatten(xpath('xplan:refLandschaftsplan'))
+BP_SchutzPflegeEntwicklungsMassnahme/sonstZiel=xpath('xplan:sonstZiel')
 BP_SpezielleBauweise/gmlId=xpath('@gml:id')
 BP_SpezielleBauweise/gmlName=xplanGmlName()
 BP_SpezielleBauweise/gmlDescription=xplanGmlDescription()
