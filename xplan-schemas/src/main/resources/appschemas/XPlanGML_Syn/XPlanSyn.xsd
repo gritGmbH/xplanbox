@@ -6680,6 +6680,7 @@
             <element name="flaechenschluss" minOccurs="0" type="string" />
             <element name="ziel" minOccurs="0" type="string" />
             <element name="zielCode" minOccurs="0" type="string" />
+            <element name="sonstZiel" minOccurs="0" type="string" />
             <element name="massnahme" minOccurs="0" type="string" />
             <element name="massnahmeCode" minOccurs="0" type="string" />
             <element name="massnahmeText" minOccurs="0" type="string" />
@@ -8215,6 +8216,7 @@
             <element name="flaechenschluss" minOccurs="0" type="string" />
             <element name="ziel" minOccurs="0" type="string" />
             <element name="zielCode" minOccurs="0" type="string" />
+            <element name="sonstZiel" minOccurs="0" type="string" />
             <element name="massnahme" minOccurs="0" type="string" />
             <element name="massnahmeCode" minOccurs="0" type="string" />
             <element name="massnahmeText" minOccurs="0" type="string" />
@@ -8643,6 +8645,7 @@
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
+            <element name="zugunstenVon" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

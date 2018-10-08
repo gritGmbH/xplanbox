@@ -6320,6 +6320,7 @@
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
     <Primitive path="xplan:ziel" mapping="xplan_ziel" />
     <Primitive path="xplan:zielCode" mapping="xplan_zielcode" />
+    <Primitive path="xplan:sonstZiel" mapping="xplan_sonstziel" />
     <Primitive path="xplan:massnahme" mapping="xplan_massnahme" />
     <Primitive path="xplan:massnahmeCode" mapping="xplan_massnahmecode" />
     <Primitive path="xplan:massnahmeText" mapping="xplan_massnahmetext" />
@@ -7755,6 +7756,7 @@
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
     <Primitive path="xplan:ziel" mapping="xplan_ziel" />
     <Primitive path="xplan:zielCode" mapping="xplan_zielcode" />
+    <Primitive path="xplan:sonstZiel" mapping="xplan_sonstziel" />
     <Primitive path="xplan:massnahme" mapping="xplan_massnahme" />
     <Primitive path="xplan:massnahmeCode" mapping="xplan_massnahmecode" />
     <Primitive path="xplan:massnahmeText" mapping="xplan_massnahmetext" />
@@ -8155,6 +8157,7 @@
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Primitive path="xplan:zugunstenVon" mapping="xplan_zugunstenvon" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_VorbHochwSchutz" table="xplansynarchive.xplan_fp_vorbhochwschutz">
     <FIDMapping prefix="XPLAN_FP_VORBHOCHWSCHUTZ_">
