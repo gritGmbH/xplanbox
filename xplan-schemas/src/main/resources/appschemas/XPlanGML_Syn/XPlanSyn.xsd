@@ -6418,6 +6418,9 @@
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -6525,6 +6528,9 @@
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -6573,6 +6579,9 @@
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -6973,6 +6982,9 @@
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="abbaugut" minOccurs="0" type="string" />
           </sequence>
         </extension>
@@ -7241,6 +7253,9 @@
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="zweckbestimmung" minOccurs="0" type="string" />
             <element name="zweckbestimmungCode" minOccurs="0" type="string" />
             <element name="weitereZweckbestimmung1" minOccurs="0" type="string" />
@@ -7336,6 +7351,9 @@
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="zweckbestimmung" minOccurs="0" type="string" />
             <element name="zweckbestimmungCode" minOccurs="0" type="string" />
             <element name="weitereZweckbestimmung1" minOccurs="0" type="string" />
@@ -7403,6 +7421,9 @@
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="zweckbestimmung" minOccurs="0" type="string" />
             <element name="zweckbestimmungCode" minOccurs="0" type="string" />
             <element name="detaillierteZweckbestimmung" minOccurs="0" type="string" />
@@ -7509,6 +7530,9 @@
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="zweckbestimmung" minOccurs="0" type="string" />
             <element name="zweckbestimmungCode" minOccurs="0" type="string" />
             <element name="weitereZweckbestimmung1" minOccurs="0" type="string" />
@@ -7665,6 +7689,9 @@
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="zweckbestimmung" minOccurs="0" type="string" />
             <element name="zweckbestimmungCode" minOccurs="0" type="string" />
             <element name="weitereZweckbestimmung1" minOccurs="0" type="string" />
@@ -8047,6 +8074,9 @@
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="zweckbestimmung" minOccurs="0" type="string" />
             <element name="zweckbestimmungCode" minOccurs="0" type="string" />
             <element name="weitereZweckbestimmung1" minOccurs="0" type="string" />
@@ -8214,6 +8244,9 @@
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="ziel" minOccurs="0" type="string" />
             <element name="zielCode" minOccurs="0" type="string" />
             <element name="sonstZiel" minOccurs="0" type="string" />
@@ -8340,6 +8373,9 @@
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="zweckbestimmung" minOccurs="0" type="string" />
             <element name="zweckbestimmungCode" minOccurs="0" type="string" />
             <element name="weitereZweckbestimmung1" minOccurs="0" type="string" />
@@ -8411,6 +8447,9 @@
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="zweckbestimmung" minOccurs="0" type="string" />
             <element name="zweckbestimmungCode" minOccurs="0" type="string" />
             <element name="besondereZweckbestimmung" minOccurs="0" type="string" />
@@ -8555,6 +8594,9 @@
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="vormerkung" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
@@ -8606,6 +8648,9 @@
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="zweckbestimmung" minOccurs="0" type="string" />
             <element name="zweckbestimmungCode" minOccurs="0" type="string" />
             <element name="weitereZweckbestimmung1" minOccurs="0" type="string" />
@@ -8935,6 +8980,9 @@
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="zweckbestimmung" minOccurs="0" type="string" />
             <element name="zweckbestimmungCode" minOccurs="0" type="string" />
             <element name="detaillierteZweckbestimmung" minOccurs="0" type="string" />

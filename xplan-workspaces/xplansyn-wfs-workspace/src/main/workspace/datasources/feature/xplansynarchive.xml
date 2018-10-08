@@ -6078,6 +6078,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_AbgrabungsFlaeche" table="xplansynarchive.xplan_fp_abgrabungsflaeche">
     <FIDMapping prefix="XPLAN_FP_ABGRABUNGSFLAECHE_">
@@ -6177,6 +6180,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Aufschuettung" table="xplansynarchive.xplan_fp_aufschuettung">
     <FIDMapping prefix="XPLAN_FP_AUFSCHUETTUNG_">
@@ -6221,6 +6227,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_AufschuettungsFlaeche" table="xplansynarchive.xplan_fp_aufschuettungsflaeche">
     <FIDMapping prefix="XPLAN_FP_AUFSCHUETTUNGSFLAECHE_">
@@ -6593,6 +6602,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:abbaugut" mapping="xplan_abbaugut" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_BodenschaetzeFlaeche" table="xplansynarchive.xplan_fp_bodenschaetzeflaeche">
@@ -6841,6 +6853,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung" />
     <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
     <Primitive path="xplan:weitereZweckbestimmung1" mapping="xplan_weiterezweckbestimmung1" />
@@ -6932,6 +6947,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung" />
     <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
     <Primitive path="xplan:weitereZweckbestimmung1" mapping="xplan_weiterezweckbestimmung1" />
@@ -6995,6 +7013,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung" />
     <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
     <Primitive path="xplan:detaillierteZweckbestimmung" mapping="xplan_detailliertezweckbestimmung" />
@@ -7093,6 +7114,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung" />
     <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
     <Primitive path="xplan:weitereZweckbestimmung1" mapping="xplan_weiterezweckbestimmung1" />
@@ -7241,6 +7265,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung" />
     <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
     <Primitive path="xplan:weitereZweckbestimmung1" mapping="xplan_weiterezweckbestimmung1" />
@@ -7599,6 +7626,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung" />
     <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
     <Primitive path="xplan:weitereZweckbestimmung1" mapping="xplan_weiterezweckbestimmung1" />
@@ -7754,6 +7784,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:ziel" mapping="xplan_ziel" />
     <Primitive path="xplan:zielCode" mapping="xplan_zielcode" />
     <Primitive path="xplan:sonstZiel" mapping="xplan_sonstziel" />
@@ -7872,6 +7905,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung" />
     <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
     <Primitive path="xplan:weitereZweckbestimmung1" mapping="xplan_weiterezweckbestimmung1" />
@@ -7939,6 +7975,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung" />
     <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
     <Primitive path="xplan:besondereZweckbestimmung" mapping="xplan_besonderezweckbestimmung" />
@@ -8071,6 +8110,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:vormerkung" mapping="xplan_vormerkung" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
@@ -8118,6 +8160,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung" />
     <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
     <Primitive path="xplan:weitereZweckbestimmung1" mapping="xplan_weiterezweckbestimmung1" />
@@ -8427,6 +8472,9 @@
     <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung" />
     <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
     <Primitive path="xplan:detaillierteZweckbestimmung" mapping="xplan_detailliertezweckbestimmung" />
