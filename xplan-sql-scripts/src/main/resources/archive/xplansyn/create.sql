@@ -8633,6 +8633,9 @@ CREATE TABLE xplansynarchive.xplan_lp_anpflanzungbindungerhaltung (
     xplan_pflanzart text,
     xplan_pflanzartcode text,
     xplan_mindesthoehe integer,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_anpflanzungbindungerhaltung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_anpflanzungbindungerhaltung','xplan_position','-1','GEOMETRY', 2);
@@ -8677,6 +8680,9 @@ CREATE TABLE xplansynarchive.xplan_lp_ausgleich (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_ausgleich_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_ausgleich','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -8750,6 +8756,9 @@ CREATE TABLE xplansynarchive.xplan_lp_biotopverbundflaeche (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_biotopverbundflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_biotopverbundflaeche','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -8796,6 +8805,9 @@ CREATE TABLE xplansynarchive.xplan_lp_bodenschutzrecht (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_bodenschutzrecht_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_bodenschutzrecht','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -8894,6 +8906,9 @@ CREATE TABLE xplansynarchive.xplan_lp_erholungfreizeit (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_erholungfreizeit_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_erholungfreizeit','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -8940,6 +8955,9 @@ CREATE TABLE xplansynarchive.xplan_lp_forstrecht (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_forstrecht_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_forstrecht','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -8984,6 +9002,9 @@ CREATE TABLE xplansynarchive.xplan_lp_generischesobjekt (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_generischesobjekt_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_generischesobjekt','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -9027,6 +9048,9 @@ CREATE TABLE xplansynarchive.xplan_lp_landschaftsbild (
     xplan_gehoertzulp_bereich text,
     xplan_massnahme text,
     xplan_massnahmecode text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_landschaftsbild_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_landschaftsbild','xplan_position','-1','GEOMETRY', 2);
@@ -9593,6 +9617,9 @@ CREATE TABLE xplansynarchive.xplan_lp_nutzungsausschluss (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_nutzungsausschluss_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_nutzungsausschluss','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -9641,6 +9668,9 @@ CREATE TABLE xplansynarchive.xplan_lp_nutzungserfordernisregelung (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_nutzungserfordernisregelung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_nutzungserfordernisregelung','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -9746,6 +9776,9 @@ CREATE TABLE xplansynarchive.xplan_lp_planerischevertiefung (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_planerischevertiefung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_planerischevertiefung','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -9828,6 +9861,9 @@ CREATE TABLE xplansynarchive.xplan_lp_schutzpflegeentwicklung (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_schutzpflegeentwicklung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_schutzpflegeentwicklung','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -9920,6 +9956,9 @@ CREATE TABLE xplansynarchive.xplan_lp_schutzobjektinternatrecht (
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
     xplan_eigenname text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_schutzobjektinternatrecht_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_schutzobjektinternatrecht','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -9980,6 +10019,9 @@ CREATE TABLE xplansynarchive.xplan_lp_sonstigesrecht (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_sonstigesrecht_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_sonstigesrecht','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -10085,6 +10127,9 @@ CREATE TABLE xplansynarchive.xplan_lp_wasserrechtgemeingebreinschraenkungnatursc
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -10132,6 +10177,9 @@ CREATE TABLE xplansynarchive.xplan_lp_wasserrechtschutzgebiet (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_wasserrechtschutzgebiet_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_wasserrechtschutzgebiet','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -10176,6 +10224,9 @@ CREATE TABLE xplansynarchive.xplan_lp_wasserrechtsonstige (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_wasserrechtsonstige_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_wasserrechtsonstige','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -10222,6 +10273,9 @@ CREATE TABLE xplansynarchive.xplan_lp_wasserrechtwirtschaftabflusshochwschutz (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_wasserrechtwirtschaftabflusshochwschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_wasserrechtwirtschaftabflusshochwschutz','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -10309,6 +10363,9 @@ CREATE TABLE xplansynarchive.xplan_lp_zwischennutzung (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzulp_bereich text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_lp_zwischennutzung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_zwischennutzung','xplan_symbolposition','-1','GEOMETRY', 2);

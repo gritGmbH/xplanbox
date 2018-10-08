@@ -9186,6 +9186,9 @@
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="gehoertZuLP_Bereich" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="massnahme" minOccurs="0" type="string" />
             <element name="massnahmeCode" minOccurs="0" type="string" />
             <element name="gegenstand" minOccurs="0" type="string" />
@@ -9240,6 +9243,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="ziel" minOccurs="0" type="string" />
             <element name="zielCode" minOccurs="0" type="string" />
             <element name="massnahme" minOccurs="0" type="string" />
@@ -9326,6 +9332,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
@@ -9372,6 +9381,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="detailTyp" minOccurs="0" type="string" />
@@ -9470,6 +9482,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="funktion" minOccurs="0" type="string" />
             <element name="funktionCode" minOccurs="0" type="string" />
             <element name="weitereFunktion1" minOccurs="0" type="string" />
@@ -9528,6 +9543,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="detailTyp" minOccurs="0" type="string" />
@@ -9578,6 +9596,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="zweckbestimmung" minOccurs="0" type="string" />
             <element name="zweckbestimmungCode" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
@@ -9628,6 +9649,9 @@
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="gehoertZuLP_Bereich" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="massnahme" minOccurs="0" type="string" />
             <element name="massnahmeCode" minOccurs="0" type="string" />
           </sequence>
@@ -10242,6 +10266,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="auszuschliessendeNutzungen" minOccurs="0" type="string" />
             <element name="auszuschliessendeNutzungenKuerzel" minOccurs="0" type="string" />
             <element name="begruendung" minOccurs="0" type="string" />
@@ -10292,6 +10319,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="ziel" minOccurs="0" type="string" />
             <element name="zielCode" minOccurs="0" type="string" />
             <element name="regelung" minOccurs="0" type="string" />
@@ -10411,6 +10441,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="vertiefung" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
@@ -10496,6 +10529,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="ziel" minOccurs="0" type="string" />
             <element name="zielCode" minOccurs="0" type="string" />
             <element name="massnahme" minOccurs="0" type="string" />
@@ -10598,6 +10634,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="sonstTyp" minOccurs="0" type="string" />
@@ -10669,6 +10708,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="detailTyp" minOccurs="0" type="string" />
@@ -10791,6 +10833,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="detailTyp" minOccurs="0" type="string" />
             <element name="detailTypCode" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
@@ -10839,6 +10884,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="detailTyp" minOccurs="0" type="string" />
@@ -10890,6 +10938,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
@@ -10938,6 +10989,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="detailTyp" minOccurs="0" type="string" />
@@ -11034,6 +11088,9 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="ziel" minOccurs="0" type="string" />
             <element name="zielCode" minOccurs="0" type="string" />
             <element name="bindung" minOccurs="0" type="string" />

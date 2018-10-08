@@ -8662,6 +8662,9 @@
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Primitive path="xplan:gehoertZuLP_Bereich" mapping="xplan_gehoertzulp_bereich" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:massnahme" mapping="xplan_massnahme" />
     <Primitive path="xplan:massnahmeCode" mapping="xplan_massnahmecode" />
     <Primitive path="xplan:gegenstand" mapping="xplan_gegenstand" />
@@ -8712,6 +8715,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:ziel" mapping="xplan_ziel" />
     <Primitive path="xplan:zielCode" mapping="xplan_zielcode" />
     <Primitive path="xplan:massnahme" mapping="xplan_massnahme" />
@@ -8790,6 +8796,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
@@ -8832,6 +8841,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
     <Primitive path="xplan:detailTyp" mapping="xplan_detailtyp" />
@@ -8922,6 +8934,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:funktion" mapping="xplan_funktion" />
     <Primitive path="xplan:funktionCode" mapping="xplan_funktioncode" />
     <Primitive path="xplan:weitereFunktion1" mapping="xplan_weiterefunktion1" />
@@ -8976,6 +8991,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
     <Primitive path="xplan:detailTyp" mapping="xplan_detailtyp" />
@@ -9022,6 +9040,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung" />
     <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -9068,6 +9089,9 @@
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Primitive path="xplan:gehoertZuLP_Bereich" mapping="xplan_gehoertzulp_bereich" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:massnahme" mapping="xplan_massnahme" />
     <Primitive path="xplan:massnahmeCode" mapping="xplan_massnahmecode" />
   </FeatureTypeMapping>
@@ -9630,6 +9654,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:auszuschliessendeNutzungen" mapping="xplan_auszuschliessendenutzungen" />
     <Primitive path="xplan:auszuschliessendeNutzungenKuerzel" mapping="xplan_auszuschliessendenutzungenkuerzel" />
     <Primitive path="xplan:begruendung" mapping="xplan_begruendung" />
@@ -9676,6 +9703,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:ziel" mapping="xplan_ziel" />
     <Primitive path="xplan:zielCode" mapping="xplan_zielcode" />
     <Primitive path="xplan:regelung" mapping="xplan_regelung" />
@@ -9787,6 +9817,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:vertiefung" mapping="xplan_vertiefung" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
@@ -9864,6 +9897,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:ziel" mapping="xplan_ziel" />
     <Primitive path="xplan:zielCode" mapping="xplan_zielcode" />
     <Primitive path="xplan:massnahme" mapping="xplan_massnahme" />
@@ -9958,6 +9994,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
     <Primitive path="xplan:sonstTyp" mapping="xplan_sonsttyp" />
@@ -10021,6 +10060,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
     <Primitive path="xplan:detailTyp" mapping="xplan_detailtyp" />
@@ -10131,6 +10173,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:detailTyp" mapping="xplan_detailtyp" />
     <Primitive path="xplan:detailTypCode" mapping="xplan_detailtypcode" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -10175,6 +10220,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
     <Primitive path="xplan:detailTyp" mapping="xplan_detailtyp" />
@@ -10222,6 +10270,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -10266,6 +10317,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
     <Primitive path="xplan:detailTyp" mapping="xplan_detailtyp" />
@@ -10354,6 +10408,9 @@
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:ziel" mapping="xplan_ziel" />
     <Primitive path="xplan:zielCode" mapping="xplan_zielcode" />
     <Primitive path="xplan:bindung" mapping="xplan_bindung" />
