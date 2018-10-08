@@ -9023,6 +9023,7 @@
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung" />
+    <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />

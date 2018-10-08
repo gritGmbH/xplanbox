@@ -8979,6 +8979,7 @@ CREATE TABLE xplansynarchive.xplan_lp_generischesobjekt (
     xplan_statuscode text,
     xplan_konkretisierung text,
     xplan_zweckbestimmung text,
+    xplan_zweckbestimmungcode text,
     xplan_hoehenangabe text,
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,

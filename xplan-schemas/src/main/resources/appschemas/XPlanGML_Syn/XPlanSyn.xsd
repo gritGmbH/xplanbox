@@ -9579,6 +9579,7 @@
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="zweckbestimmung" minOccurs="0" type="string" />
+            <element name="zweckbestimmungCode" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
