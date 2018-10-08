@@ -10702,6 +10702,8 @@
             <element name="refText" minOccurs="0" type="string" />
             <element name="status" minOccurs="0" type="string" />
             <element name="statusCode" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

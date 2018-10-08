@@ -10050,6 +10050,8 @@
     <Primitive path="xplan:refText" mapping="xplan_reftext" />
     <Primitive path="xplan:status" mapping="xplan_status" />
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
+    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
+    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:LP_TextlicheFestsetzungsFlaeche" table="xplansynarchive.xplan_lp_textlichefestsetzungsflaeche">
     <FIDMapping prefix="XPLAN_LP_TEXTLICHEFESTSETZUNGSFLAECHE_">

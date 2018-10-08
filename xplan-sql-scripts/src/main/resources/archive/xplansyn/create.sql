@@ -10003,6 +10003,8 @@ CREATE TABLE xplansynarchive.xplan_lp_textabschnitt (
     xplan_reftext text,
     xplan_status text,
     xplan_statuscode text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
     CONSTRAINT xplan_lp_textabschnitt_pkey PRIMARY KEY (attr_gml_id)
 );
 CREATE TABLE xplansynarchive.xplan_lp_textlichefestsetzungsflaeche (
