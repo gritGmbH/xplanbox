@@ -1114,6 +1114,17 @@
             <element name="refGebaedequerschnitt" minOccurs="0" type="string" />
             <element name="zugunstenVon" minOccurs="0" type="string" />
             <element name="Z_Staffel" minOccurs="0" type="integer" />
+            <element name="wohnnutzungEGStrasse" minOccurs="0" type="string" />
+            <element name="wohnnutzungEGStrasseCode" minOccurs="0" type="string" />
+            <element name="ZWohn" minOccurs="0" type="integer" />
+            <element name="GFAntWohnen" minOccurs="0" type="double" />
+            <element name="GFAntWohnenUOM" minOccurs="0" type="string" />
+            <element name="GFWohnen" minOccurs="0" type="double" />
+            <element name="GFWohnenUOM" minOccurs="0" type="string" />
+            <element name="GFAntGewerbe" minOccurs="0" type="string" />
+            <element name="GFAntGewerbeUOM" minOccurs="0" type="double" />
+            <element name="GFGewerbe" minOccurs="0" type="string" />
+            <element name="GFGewerbeUOM" minOccurs="0" type="double" />
           </sequence>
         </extension>
       </complexContent>
@@ -5411,6 +5422,45 @@
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="geschossMin" minOccurs="0" type="integer" />
             <element name="geschossMax" minOccurs="0" type="integer" />
+            <element name="DNmin" minOccurs="0" type="double" />
+            <element name="DNminUOM" minOccurs="0" type="string" />
+            <element name="DNmax" minOccurs="0" type="double" />
+            <element name="DNmaxUOM" minOccurs="0" type="string" />
+            <element name="DN" minOccurs="0" type="double" />
+            <element name="DNUOM" minOccurs="0" type="string" />
+            <element name="DNZwingend" minOccurs="0" type="double" />
+            <element name="DNZwingendUOM" minOccurs="0" type="string" />
+            <element name="FR" minOccurs="0" type="double" />
+            <element name="FRUOM" minOccurs="0" type="string" />
+            <element name="dachform" minOccurs="0" type="string" />
+            <element name="dachformCode" minOccurs="0" type="string" />
+            <element name="detaillierteDachform" minOccurs="0" type="string" />
+            <element name="detaillierteDachformCode" minOccurs="0" type="string" />
+            <element name="wohnnutzungEGStrasseC" minOccurs="0" type="string" />
+            <element name="wohnnutzungEGStrasseCode" minOccurs="0" type="string" />
+            <element name="ZWohn" minOccurs="0" type="integer" />
+            <element name="GFAntWohnen" minOccurs="0" type="double" />
+            <element name="GFAntWohnenUOM" minOccurs="0" type="string" />
+            <element name="GFWohnen" minOccurs="0" type="double" />
+            <element name="GFWohnenUOM" minOccurs="0" type="string" />
+            <element name="GFAntGewerbe" minOccurs="0" type="double" />
+            <element name="GFAntGewerbeUOM" minOccurs="0" type="string" />
+            <element name="GFGewerbe" minOccurs="0" type="double" />
+            <element name="GFGewerbeUOM" minOccurs="0" type="string" />
+            <element name="bauweise" minOccurs="0" type="string" />
+            <element name="bauweiseCode" minOccurs="0" type="string" />
+            <element name="abweichendeBauweise" minOccurs="0" type="string" />
+            <element name="abweichendeBauweiseCode" minOccurs="0" type="string" />
+            <element name="vertikaleDifferenzierung" minOccurs="0" type="string" />
+            <element name="bebauungsArt" minOccurs="0" type="string" />
+            <element name="bebauungsArtCode" minOccurs="0" type="string" />
+            <element name="bebauungVordereGrenze" minOccurs="0" type="string" />
+            <element name="bebauungVordereGrenzeCode" minOccurs="0" type="string" />
+            <element name="bebauungRueckwaertigeGrenze" minOccurs="0" type="string" />
+            <element name="bebauungRueckwaertigeGrenzeCode" minOccurs="0" type="string" />
+            <element name="bebauungSeitlicheGrenze" minOccurs="0" type="string" />
+            <element name="bebauungSeitlicheGrenzeCode" minOccurs="0" type="string" />
+            <element name="refGebaeudequerschnitt" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

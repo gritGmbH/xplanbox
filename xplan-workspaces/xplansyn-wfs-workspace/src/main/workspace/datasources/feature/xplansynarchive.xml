@@ -1062,6 +1062,17 @@
     <Primitive path="xplan:refGebaedequerschnitt" mapping="xplan_refgebaedequerschnitt" />
     <Primitive path="xplan:zugunstenVon" mapping="xplan_zugunstenvon" />
     <Primitive path="xplan:Z_Staffel" mapping="xplan_z_staffel" />
+    <Primitive path="xplan:wohnnutzungEGStrasse" mapping="xplan_wohnnutzungwgstrasse" />
+    <Primitive path="xplan:wohnnutzungEGStrasseCode" mapping="xplan_wohnnutzungwgstrassecode" />
+    <Primitive path="xplan:ZWohn" mapping="xplan_zwohn" />
+    <Primitive path="xplan:GFAntWohnen" mapping="xplan_gfantwohnen" />
+    <Primitive path="xplan:GFAntWohnenUOM" mapping="xplan_gfantwohnenuom" />
+    <Primitive path="xplan:GFWohnen" mapping="xplan_gfwohnen" />
+    <Primitive path="xplan:GFWohnenUOM" mapping="xplan_gfwohnenuom" />
+    <Primitive path="xplan:GFAntGewerbe" mapping="xplan_gfantGewerbe" />
+    <Primitive path="xplan:GFAntGewerbeUOM" mapping="xplan_gfantGewerbeuom" />
+    <Primitive path="xplan:GFGewerbe" mapping="xplan_gfgewerbe" />
+    <Primitive path="xplan:GFGewerbeUOM" mapping="xplan_gfgewerbeuom" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_Bauschutzbereich" table="xplansynarchive.xplan_bp_bauschutzbereich">
     <FIDMapping prefix="XPLAN_BP_BAUSCHUTZBEREICH_">
@@ -5119,6 +5130,45 @@
     <Primitive path="xplan:Z_Staffel" mapping="xplan_z_staffel" />
     <Primitive path="xplan:geschossMin" mapping="xplan_geschossmin" />
     <Primitive path="xplan:geschossMax" mapping="xplan_geschossmax" />
+    <Primitive path="xplan:DNmin" mapping="xplan_dnmin" />
+    <Primitive path="xplan:DNminUOM" mapping="xplan_dnminuom" />
+    <Primitive path="xplan:DNmax" mapping="xplan_dnmax" />
+    <Primitive path="xplan:DNmaxUOM" mapping="xplan_dnmaxuom" />
+    <Primitive path="xplan:DN" mapping="xplan_dn" />
+    <Primitive path="xplan:DNUOM" mapping="xplan_dnuom" />
+    <Primitive path="xplan:DNZwingend" mapping="xplan_dnzwingend" />
+    <Primitive path="xplan:DNZwingendUOM" mapping="xplan_dnzwingendUOM" />
+    <Primitive path="xplan:FR" mapping="xplan_fr" />
+    <Primitive path="xplan:FRUOM" mapping="xplan_fruom" />
+    <Primitive path="xplan:dachform" mapping="xplan_dachform" />
+    <Primitive path="xplan:dachformCode" mapping="xplan_dachformcode" />
+    <Primitive path="xplan:detaillierteDachform" mapping="xplan_detailliertedachform" />
+    <Primitive path="xplan:detaillierteDachformCode" mapping="xplan_detailliertedachformcode" />
+    <Primitive path="xplan:wohnnutzungEGStrasse" mapping="xplan_wohnnutzungegstrasse" />
+    <Primitive path="xplan:wohnnutzungEGStrasseCode" mapping="xplan_wohnnutzungegstrassecode" />
+    <Primitive path="xplan:ZWohn" mapping="xplan_zwohn" />
+    <Primitive path="xplan:GFAntWohnen" mapping="xplan_gfantwohnen" />
+    <Primitive path="xplan:GFAntWohnenUOM" mapping="xplan_gfantwohnenuom" />
+    <Primitive path="xplan:GFWohnen" mapping="xplan_gfwohnen" />
+    <Primitive path="xplan:GFWohnenUOM" mapping="xplan_gfwohnenuom" />
+    <Primitive path="xplan:GFAntGewerbe" mapping="xplan_gfantgewerbe" />
+    <Primitive path="xplan:GFAntGewerbeUOM" mapping="xplan_gfantgewerbeuom" />
+    <Primitive path="xplan:GFGewerbe" mapping="xplan_gfgewerbe" />
+    <Primitive path="xplan:GFGewerbeUOM" mapping="xplan_gfgewerbeuom" />
+    <Primitive path="xplan:bauweise" mapping="xplan_bauweise" />
+    <Primitive path="xplan:bauweiseCode" mapping="xplan_bauweisecode" />
+    <Primitive path="xplan:abweichendeBauweise" mapping="xplan_abweichendebauweise" />
+    <Primitive path="xplan:abweichendeBauweiseCode" mapping="xplan_abweichendebauweisecode" />
+    <Primitive path="xplan:vertikaleDifferenzierung" mapping="xplan_vertikaledifferenzierung" />
+    <Primitive path="xplan:bebauungsArt" mapping="xplan_bebauungsart" />
+    <Primitive path="xplan:bebauungsArtCode" mapping="xplan_bebauungsartcode" />
+    <Primitive path="xplan:bebauungVordereGrenze" mapping="xplan_bebauungvorderegrenze" />
+    <Primitive path="xplan:bebauungVordereGrenzeCode" mapping="xplan_bebauungvorderegrenzecode" />
+    <Primitive path="xplan:bebauungRueckwaertigeGrenze" mapping="xplan_bebauungrueckwaertigegrenze" />
+    <Primitive path="xplan:bebauungRueckwaertigeGrenzeCode" mapping="xplan_bebauungrueckwaertigegrenzecode" />
+    <Primitive path="xplan:bebauungSeitlicheGrenze" mapping="xplan_bebauungseitlichegrenze" />
+    <Primitive path="xplan:bebauungSeitlicheGrenzeCode" mapping="xplan_bebauungseitlichegrenzecode" />
+    <Primitive path="xplan:refGebaeudequerschnitt" mapping="xplan_refgebaeudequerschnitt" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_UnverbindlicheVormerkung" table="xplansynarchive.xplan_bp_unverbindlichevormerkung">
     <FIDMapping prefix="XPLAN_BP_UNVERBINDLICHEVORMERKUNG_">
