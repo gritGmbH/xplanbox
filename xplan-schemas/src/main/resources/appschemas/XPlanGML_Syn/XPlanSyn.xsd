@@ -184,6 +184,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -1874,6 +1875,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -2115,6 +2117,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -2720,6 +2723,7 @@
             <element name="wirdAusgeglichenVon" minOccurs="0" type="string" />
             <element name="unterirdisch" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -3218,6 +3222,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -3483,6 +3488,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -3581,6 +3587,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -4347,6 +4354,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -5907,6 +5915,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -6465,6 +6474,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -6576,6 +6586,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -6628,6 +6639,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -7035,6 +7047,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -8136,6 +8149,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -9120,6 +9134,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -9265,6 +9280,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="status" minOccurs="0" type="string" />
             <element name="statusCode" minOccurs="0" type="string" />
@@ -9735,6 +9751,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="status" minOccurs="0" type="string" />
             <element name="statusCode" minOccurs="0" type="string" />
@@ -10931,6 +10948,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="status" minOccurs="0" type="string" />
             <element name="statusCode" minOccurs="0" type="string" />
@@ -11189,6 +11207,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="status" minOccurs="0" type="string" />
             <element name="statusCode" minOccurs="0" type="string" />
@@ -12201,6 +12220,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -14288,6 +14308,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15036,6 +15057,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15092,6 +15114,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15148,6 +15171,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15203,6 +15227,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15262,6 +15287,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15311,6 +15337,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15356,6 +15383,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15413,6 +15441,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15537,6 +15566,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15594,6 +15624,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15651,6 +15682,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15708,6 +15740,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15765,6 +15798,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15820,6 +15854,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -15900,6 +15935,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />

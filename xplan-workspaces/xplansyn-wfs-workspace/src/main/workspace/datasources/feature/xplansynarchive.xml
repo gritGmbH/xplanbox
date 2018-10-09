@@ -172,6 +172,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -1778,6 +1779,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -2003,6 +2005,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -2622,6 +2625,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -3050,6 +3054,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -3299,6 +3304,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -3400,6 +3406,7 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
     <Primitive path="xplan:wirdAusgeglichenDurchMassnahme" mapping="xplan_wirdausgeglichendurchmassnahme" />
     <Primitive path="xplan:gehoertZuBP_Bereich" mapping="xplan_gehoertzubp_bereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
@@ -4111,6 +4118,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -5595,6 +5603,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -6125,6 +6134,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -6228,6 +6238,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -6276,6 +6287,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -6655,6 +6667,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -7688,6 +7701,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -8608,6 +8622,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -8741,6 +8756,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:status" mapping="xplan_status" />
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
@@ -9175,6 +9191,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:status" mapping="xplan_status" />
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
@@ -10271,6 +10288,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:status" mapping="xplan_status" />
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
@@ -10509,6 +10527,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:status" mapping="xplan_status" />
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
@@ -11056,6 +11075,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -13571,6 +13591,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -13984,6 +14005,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -14036,6 +14058,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -14088,6 +14111,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -14139,6 +14163,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -14194,6 +14219,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -14239,6 +14265,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -14280,6 +14307,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -14333,6 +14361,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -14445,6 +14474,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -14498,6 +14528,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -14551,6 +14582,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -14604,6 +14636,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -14657,6 +14690,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -14708,6 +14742,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
@@ -14780,6 +14815,7 @@
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
