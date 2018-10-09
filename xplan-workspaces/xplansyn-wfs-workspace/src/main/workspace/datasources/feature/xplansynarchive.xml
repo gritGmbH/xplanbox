@@ -10845,6 +10845,19 @@
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
+    <Primitive path="xplan:kuestenmeer" mapping="xplan_kuestenmeer" />
+    <Primitive path="xplan:bedeutsamkeit" mapping="xplan_bedeutsamkeit" />
+    <Primitive path="xplan:bedeutsamkeitCode" mapping="xplan_bedeutsamkeitcode" />
+    <Primitive path="xplan:istZweckbindung" mapping="xplan_istzweckbindung" />
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:typAE" mapping="xplan_typae" />
+    <Primitive path="xplan:typAECode" mapping="xplan_typaecode" />
+    <Primitive path="xplan:abfallTyp" mapping="xplan_abfalltyp" />
+    <Primitive path="xplan:abfallTypCode" mapping="xplan_abfalltypcode" />
+    <Primitive path="xplan:typAW" mapping="xplan_typaw" />
+    <Primitive path="xplan:typAWCode" mapping="xplan_typawcode" />
+    <Primitive path="xplan:istAufschuettungAblagerung" mapping="xplan_istaufschuettungablagerung" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Entwicklungsschwerpunkte" table="xplansynarchive.xplan_rp_entwicklungsschwerpunkte">
     <FIDMapping prefix="XPLAN_RP_ENTWICKLUNGSSCHWERPUNKTE_">

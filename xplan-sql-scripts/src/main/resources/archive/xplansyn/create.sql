@@ -10792,6 +10792,19 @@ CREATE TABLE xplansynarchive.xplan_rp_entsorgung (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzurp_bereich text,
+    xplan_kuestenmeer text,
+    xplan_bedeutsamkeit text,
+    xplan_bedeutsamkeitcode text,
+    xplan_istzweckbindung text,
+    xplan_flaechenschluss text,
+    xplan_flussrichtung text,
+    xplan_typae text,
+    xplan_typaecode text,
+    xplan_abfalltyp text,
+    xplan_abfalltypcode text,
+    xplan_typaw text,
+    xplan_typawcode text,
+    xplan_istaufschuettungablagerung text,
     CONSTRAINT xplan_rp_entsorgung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_entsorgung','xplan_symbolposition','-1','GEOMETRY', 2);
