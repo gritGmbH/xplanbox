@@ -15020,6 +15020,12 @@
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
+            <element name="kuestenmeer" minOccurs="0" type="string" />
+            <element name="bedeutsamkeit" minOccurs="0" type="string" />
+            <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
+            <element name="istZweckbindung" minOccurs="0" type="string" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
