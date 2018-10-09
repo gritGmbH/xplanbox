@@ -14080,6 +14080,18 @@ CREATE TABLE xplansynarchive.xplan_rp_zentralerort (
     xplan_gehoertzurp_bereich text,
     xplan_detailfunktion_nsm text,
     xplan_detailfunktion_nsmcode text,
+    xplan_gebietstyp text,
+    xplan_gebietstypcode text,
+    xplan_kuestenmeer text,
+    xplan_bedeutsamkeit text,
+    xplan_bedeutsamkeitcode text,
+    xplan_istzweckbindung text,
+    xplan_flaechenschluss text,
+    xplan_flussrichtung text,
+    xplan_typ text,
+    xplan_typcode text,
+    xplan_sonstigertyp text,
+    xplan_sonstigertypcode text,
     CONSTRAINT xplan_rp_zentralerort_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_zentralerort','xplan_symbolposition','-1','GEOMETRY', 2);
