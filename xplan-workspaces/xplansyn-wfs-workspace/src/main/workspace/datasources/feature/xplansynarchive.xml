@@ -14369,6 +14369,8 @@
     <Primitive path="xplan:begruendungsTexte" mapping="xplan_begruendungstexte" />
     <Primitive path="xplan:planTyp" mapping="xplan_plantyp" />
     <Primitive path="xplan:planTypCode" mapping="xplan_plantypcode" />
+    <Primitive path="xplan:planArt" mapping="xplan_planart" />
+    <Primitive path="xplan:planArtCode" mapping="xplan_planartcode" />
     <Primitive path="xplan:plangeber" mapping="xplan_plangeber" />
     <Primitive path="xplan:bereich" mapping="xplan_bereich" />
     <Primitive path="xplan:refTextAbschnitte" mapping="xplan_reftextabschnitte" />

@@ -14301,6 +14301,8 @@ CREATE TABLE xplansynarchive.xplan_so_plan (
     xplan_begruendungstexte text,
     xplan_plantyp text,
     xplan_plantypcode text,
+    xplan_planart text,
+    xplan_planartcode text,
     xplan_plangeber text,
     xplan_bereich text,
     xplan_reftextabschnitte text,

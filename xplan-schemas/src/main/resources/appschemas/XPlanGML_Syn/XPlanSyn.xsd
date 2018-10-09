@@ -15453,6 +15453,8 @@
             <element name="begruendungsTexte" minOccurs="0" type="string" />
             <element name="planTyp" minOccurs="0" type="string" />
             <element name="planTypCode" minOccurs="0" type="string" />
+            <element name="planArt" minOccurs="0" type="string" />
+            <element name="planArtCode" minOccurs="0" type="string" />
             <element name="plangeber" minOccurs="0" type="string" />
             <element name="bereich" minOccurs="0" type="string" />
             <element name="refTextAbschnitte" minOccurs="0" type="string" />
