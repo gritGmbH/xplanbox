@@ -12273,7 +12273,17 @@
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="gebietsTyp" minOccurs="0" type="string" />
+            <element name="gebietsTypCode" minOccurs="0" type="string" />
+            <element name="kuestenmeer" minOccurs="0" type="string" />
+            <element name="bedeutsamkeit" minOccurs="0" type="string" />
+            <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
+            <element name="istZweckbindung" minOccurs="0" type="string" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
             <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
+            <element name="imVerbund" minOccurs="0" type="string" />
+            <element name="gewaesserTyp" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

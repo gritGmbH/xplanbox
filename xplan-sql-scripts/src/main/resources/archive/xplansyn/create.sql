@@ -11092,6 +11092,16 @@ CREATE TABLE xplansynarchive.xplan_rp_gewaesser (
     xplan_konkretisierung text,
     xplan_gehoertzurp_bereich text,
     xplan_istausgleichsgebiet text,
+    xplan_gebietstyp text,
+    xplan_gebietstypcode text,
+    xplan_kuestenmeer text,
+    xplan_bedeutsamkeit text,
+    xplan_bedeutsamkeitcode text,
+    xplan_istzweckbindung text,
+    xplan_flaechenschluss text,
+    xplan_flussrichtung text,
+    xplan_imverbund text,
+    xplan_gewaessertyp text,
     CONSTRAINT xplan_rp_gewaesser_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_gewaesser','xplan_position','-1','GEOMETRY', 2);
