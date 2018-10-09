@@ -10735,6 +10735,16 @@ CREATE TABLE xplansynarchive.xplan_rp_energieversorgung (
     xplan_detailtyp_nsmcode text,
     xplan_status_nsm text,
     xplan_status_nsmcode text,
+    xplan_kuestenmeer text,
+    xplan_bedeutsamkeit text,
+    xplan_bedeutsamkeitcode text,
+    xplan_istzweckbindung text,
+    xplan_flaechenschluss text,
+    xplan_flussrichtung text,
+    xplan_primaerenergietyp text,
+    xplan_primaerenergietypcode text,
+    xplan_spannung text,
+    xplan_spannungcode text,
     CONSTRAINT xplan_rp_energieversorgung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_energieversorgung','xplan_symbolposition','-1','GEOMETRY', 2);

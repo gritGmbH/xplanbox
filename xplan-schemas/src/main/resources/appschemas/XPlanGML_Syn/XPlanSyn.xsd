@@ -11474,12 +11474,20 @@
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema mehrfach, hier in eine Zeichenkette zusammengefasst: -->
             <element name="detailTyp_NSM" minOccurs="0" type="string" />
             <element name="detailTyp_NSMCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema mehrfach, hier in eine Zeichenkette zusammengefasst: -->
             <element name="status_NSM" minOccurs="0" type="string" />
             <element name="status_NSMCode" minOccurs="0" type="string" />
+            <element name="kuestenmeer" minOccurs="0" type="string" />
+            <element name="bedeutsamkeit" minOccurs="0" type="string" />
+            <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
+            <element name="istZweckbindung" minOccurs="0" type="string" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="primaerenergieTyp" minOccurs="0" type="string" />
+            <element name="primaerenergieTypCode" minOccurs="0" type="string" />
+            <element name="spannung" minOccurs="0" type="string" />
+            <element name="spannungCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
