@@ -13405,6 +13405,18 @@ CREATE TABLE xplansynarchive.xplan_rp_raumkategorie (
     xplan_gehoertzurp_bereich text,
     xplan_typRK_nsm text,
     xplan_typRK_nsmcode text,
+    xplan_gebietstyp text,
+    xplan_gebietstypcode text,
+    xplan_kuestenmeer text,
+    xplan_bedeutsamkeit text,
+    xplan_bedeutsamkeitcode text,
+    xplan_istzweckbindung text,
+    xplan_flaechenschluss text,
+    xplan_flussrichtung text,
+    xplan_typ text,
+    xplan_typcode text,
+    xplan_besonderertyp text,
+    xplan_besonderertypcode text,
     CONSTRAINT xplan_rp_raumkategorie_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_raumkategorie','xplan_symbolposition','-1','GEOMETRY', 2);
