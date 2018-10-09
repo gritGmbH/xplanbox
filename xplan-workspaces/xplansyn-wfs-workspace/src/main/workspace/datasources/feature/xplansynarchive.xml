@@ -13239,6 +13239,15 @@
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
+    <Primitive path="xplan:kuestenmeer" mapping="xplan_kuestenmeer" />
+    <Primitive path="xplan:bedeutsamkeit" mapping="xplan_bedeutsamkeit" />
+    <Primitive path="xplan:bedeutsamkeitCode" mapping="xplan_bedeutsamkeitcode" />
+    <Primitive path="xplan:istZweckbindung" mapping="xplan_istzweckbindung" />
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
+    <Primitive path="xplan:typ" mapping="xplan_typ" />
+    <Primitive path="xplan:typCode" mapping="xplan_typcode" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_NaturschutzrechtlichesSchutzgebiet" table="xplansynarchive.xplan_rp_naturschutzrechtlichesschutzgebiet">
     <FIDMapping prefix="XPLAN_RP_NATURSCHUTZRECHTLICHESSCHUTZGEBIET_">
