@@ -11147,6 +11147,16 @@ CREATE TABLE xplansynarchive.xplan_rp_grenze (
     xplan_gehoertzurp_bereich text,
     xplan_sonsttyp text,
     xplan_sonsttypcode text,
+    xplan_gebietstyp text,
+    xplan_gebietstypcode text,
+    xplan_kuestenmeer text,
+    xplan_bedeutsamkeit text,
+    xplan_bedeutsamkeitcode text,
+    xplan_istzweckbindung text,
+    xplan_flaechenschluss text,
+    xplan_flussrichtung text,
+    xplan_spezifischertyp text,
+    xplan_spezifischertypcode text,
     CONSTRAINT xplan_rp_grenze_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_grenze','xplan_symbolposition','-1','GEOMETRY', 2);

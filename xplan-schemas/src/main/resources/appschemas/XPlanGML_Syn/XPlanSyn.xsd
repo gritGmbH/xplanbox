@@ -12326,13 +12326,23 @@
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="typ" minOccurs="0" type="string" />
-            <element name="typCode" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
+            <element name="gebietsTyp" minOccurs="0" type="string" />
+            <element name="gebietsTypCode" minOccurs="0" type="string" />
+            <element name="kuestenmeer" minOccurs="0" type="string" />
+            <element name="bedeutsamkeit" minOccurs="0" type="string" />
+            <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
+            <element name="istZweckbindung" minOccurs="0" type="string" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="typ" minOccurs="0" type="string" />
+            <element name="typCode" minOccurs="0" type="string" />
+            <element name="spezifischerTyp" minOccurs="0" type="string" />
+            <element name="spezifischerTypCode" minOccurs="0" type="string" />
             <element name="sonstTyp" minOccurs="0" type="string" />
             <element name="sonstTypCode" minOccurs="0" type="string" />
           </sequence>
