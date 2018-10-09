@@ -11258,6 +11258,15 @@ CREATE TABLE xplansynarchive.xplan_rp_klimaschutz (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzurp_bereich text,
+    xplan_kuestenmeer text,
+    xplan_bedeutsamkeit text,
+    xplan_bedeutsamkeitcode text,
+    xplan_istzweckbindung text,
+    xplan_flaechenschluss text,
+    xplan_flussrichtung text,
+    xplan_imverbund text,
+    xplan_typ text,
+    xplan_typcode text,
     CONSTRAINT xplan_rp_klimaschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_klimaschutz','xplan_symbolposition','-1','GEOMETRY', 2);
