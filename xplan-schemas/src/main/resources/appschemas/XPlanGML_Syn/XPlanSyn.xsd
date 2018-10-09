@@ -11488,18 +11488,6 @@
             <element name="primaerenergieTypCode" minOccurs="0" type="string" />
             <element name="spannung" minOccurs="0" type="string" />
             <element name="spannungCode" minOccurs="0" type="string" />
-            <element name="kuestenmeer" minOccurs="0" type="string" />
-            <element name="bedeutsamkeit" minOccurs="0" type="string" />
-            <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
-            <element name="istZweckbindung" minOccurs="0" type="string" />
-            <element name="flaechenschluss" minOccurs="0" type="string" />
-            <element name="flussrichtung" minOccurs="0" type="string" />
-            <element name="typAE" minOccurs="0" type="string" />
-            <element name="typAECode" minOccurs="0" type="string" />
-            <element name="abfallTyp" minOccurs="0" type="string" />
-            <element name="abfallTypCode" minOccurs="0" type="string" />
-            <element name="typAW" minOccurs="0" type="string" />
-            <element name="typAWCode" minOccurs="0" type="string" />
             <element name="istAufschuettungAblagerung" minOccurs="0" type="string" />
           </sequence>
         </extension>
@@ -11552,6 +11540,18 @@
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
+            <element name="kuestenmeer" minOccurs="0" type="string" />
+            <element name="bedeutsamkeit" minOccurs="0" type="string" />
+            <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
+            <element name="istZweckbindung" minOccurs="0" type="string" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="typAE" minOccurs="0" type="string" />
+            <element name="typAECode" minOccurs="0" type="string" />
+            <element name="abfallTyp" minOccurs="0" type="string" />
+            <element name="abfallTypCode" minOccurs="0" type="string" />
+            <element name="typAW" minOccurs="0" type="string" />
+            <element name="typAWCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
