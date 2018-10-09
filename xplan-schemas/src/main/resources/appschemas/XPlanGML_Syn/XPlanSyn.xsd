@@ -15044,6 +15044,9 @@
             <element name="gehoertZuSO_Bereich" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="artDerFestlegung" minOccurs="0" type="string" />
             <element name="artDerFestlegungCode" minOccurs="0" type="string" />
             <element name="detailArtDerFestlegung" minOccurs="0" type="string" />
@@ -15097,6 +15100,9 @@
             <element name="gehoertZuSO_Bereich" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="artDerFestlegung" minOccurs="0" type="string" />
             <element name="artDerFestlegungCode" minOccurs="0" type="string" />
             <element name="detailArtDerFestlegung" minOccurs="0" type="string" />
@@ -15150,6 +15156,9 @@
             <element name="gehoertZuSO_Bereich" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="artDerFestlegung" minOccurs="0" type="string" />
             <element name="artDerFestlegungCode" minOccurs="0" type="string" />
             <element name="detailArtDerFestlegung" minOccurs="0" type="string" />
@@ -15355,6 +15364,9 @@
             <element name="gehoertZuSO_Bereich" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="artDerFestlegung" minOccurs="0" type="string" />
             <element name="artDerFestlegungCode" minOccurs="0" type="string" />
             <element name="detailArtDerFestlegung" minOccurs="0" type="string" />
@@ -15533,6 +15545,9 @@
             <element name="gehoertZuSO_Bereich" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="artDerFestlegung" minOccurs="0" type="string" />
             <element name="artDerFestlegungCode" minOccurs="0" type="string" />
             <element name="besondereArtDerFestlegung" minOccurs="0" type="string" />
@@ -15587,6 +15602,9 @@
             <element name="gehoertZuSO_Bereich" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="artDerFestlegung" minOccurs="0" type="string" />
             <element name="artDerFestlegungCode" minOccurs="0" type="string" />
             <element name="detailArtDerFestlegung" minOccurs="0" type="string" />
@@ -15641,6 +15659,9 @@
             <element name="gehoertZuSO_Bereich" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="artDerFestlegung" minOccurs="0" type="string" />
             <element name="artDerFestlegungCode" minOccurs="0" type="string" />
             <element name="detailArtDerFestlegung" minOccurs="0" type="string" />
@@ -15695,6 +15716,9 @@
             <element name="gehoertZuSO_Bereich" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="artDerFestlegung" minOccurs="0" type="string" />
             <element name="artDerFestlegungCode" minOccurs="0" type="string" />
             <element name="detailArtDerFestlegung" minOccurs="0" type="string" />
@@ -15749,6 +15773,9 @@
             <element name="gehoertZuSO_Bereich" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="artDerFestlegung" minOccurs="0" type="string" />
             <element name="artDerFestlegungCode" minOccurs="0" type="string" />
             <element name="detailArtDerFestlegung" minOccurs="0" type="string" />
@@ -15801,6 +15828,9 @@
             <element name="gehoertZuSO_Bereich" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="artDerFestlegung" minOccurs="0" type="string" />
             <element name="artDerFestlegungCode" minOccurs="0" type="string" />
             <element name="detailArtDerFestlegung" minOccurs="0" type="string" />
@@ -15878,6 +15908,9 @@
             <element name="gehoertZuSO_Bereich" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="artDerFestlegung" minOccurs="0" type="string" />
             <element name="artDerFestlegungCode" minOccurs="0" type="string" />
             <element name="detailArtDerFestlegung" minOccurs="0" type="string" />

@@ -13992,6 +13992,9 @@
     <Primitive path="xplan:gehoertZuSO_Bereich" mapping="xplan_gehoertzuso_bereich" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:artDerFestlegung" mapping="xplan_artderfestlegung" />
     <Primitive path="xplan:artDerFestlegungCode" mapping="xplan_artderfestlegungcode" />
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung" />
@@ -14041,6 +14044,9 @@
     <Primitive path="xplan:gehoertZuSO_Bereich" mapping="xplan_gehoertzuso_bereich" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:artDerFestlegung" mapping="xplan_artderfestlegung" />
     <Primitive path="xplan:artDerFestlegungCode" mapping="xplan_artderfestlegungcode" />
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung" />
@@ -14090,6 +14096,9 @@
     <Primitive path="xplan:gehoertZuSO_Bereich" mapping="xplan_gehoertzuso_bereich" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:artDerFestlegung" mapping="xplan_artderfestlegung" />
     <Primitive path="xplan:artDerFestlegungCode" mapping="xplan_artderfestlegungcode" />
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung" />
@@ -14279,6 +14288,9 @@
     <Primitive path="xplan:gehoertZuSO_Bereich" mapping="xplan_gehoertzuso_bereich" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:artDerFestlegung" mapping="xplan_artderfestlegung" />
     <Primitive path="xplan:artDerFestlegungCode" mapping="xplan_artderfestlegungcode" />
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung" />
@@ -14441,6 +14453,9 @@
     <Primitive path="xplan:gehoertZuSO_Bereich" mapping="xplan_gehoertzuso_bereich" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:artDerFestlegung" mapping="xplan_artderfestlegung" />
     <Primitive path="xplan:artDerFestlegungCode" mapping="xplan_artderfestlegungcode" />
     <Primitive path="xplan:besondereArtDerFestlegung" mapping="xplan_besondereartderfestlegung" />
@@ -14491,6 +14506,9 @@
     <Primitive path="xplan:gehoertZuSO_Bereich" mapping="xplan_gehoertzuso_bereich" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:artDerFestlegung" mapping="xplan_artderfestlegung" />
     <Primitive path="xplan:artDerFestlegungCode" mapping="xplan_artderfestlegungcode" />
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung" />
@@ -14541,6 +14559,9 @@
     <Primitive path="xplan:gehoertZuSO_Bereich" mapping="xplan_gehoertzuso_bereich" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:artDerFestlegung" mapping="xplan_artderfestlegung" />
     <Primitive path="xplan:artDerFestlegungCode" mapping="xplan_artderfestlegungcode" />
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung" />
@@ -14591,6 +14612,9 @@
     <Primitive path="xplan:gehoertZuSO_Bereich" mapping="xplan_gehoertzuso_bereich" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:artDerFestlegung" mapping="xplan_artderfestlegung" />
     <Primitive path="xplan:artDerFestlegungCode" mapping="xplan_artderfestlegungcode" />
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung" />
@@ -14641,6 +14665,9 @@
     <Primitive path="xplan:gehoertZuSO_Bereich" mapping="xplan_gehoertzuso_bereich" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:artDerFestlegung" mapping="xplan_artderfestlegung" />
     <Primitive path="xplan:artDerFestlegungCode" mapping="xplan_artderfestlegungcode" />
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung" />
@@ -14689,6 +14716,9 @@
     <Primitive path="xplan:gehoertZuSO_Bereich" mapping="xplan_gehoertzuso_bereich" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:artDerFestlegung" mapping="xplan_artderfestlegung" />
     <Primitive path="xplan:artDerFestlegungCode" mapping="xplan_artderfestlegungcode" />
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung" />
@@ -14758,6 +14788,9 @@
     <Primitive path="xplan:gehoertZuSO_Bereich" mapping="xplan_gehoertzuso_bereich" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:artDerFestlegung" mapping="xplan_artderfestlegung" />
     <Primitive path="xplan:artDerFestlegungCode" mapping="xplan_artderfestlegungcode" />
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung" />
