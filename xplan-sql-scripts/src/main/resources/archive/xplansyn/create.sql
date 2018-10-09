@@ -13510,6 +13510,12 @@ CREATE TABLE xplansynarchive.xplan_rp_sonstigeinfrastruktur (
     xplan_gehoertnachrichtlichzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_gehoertzurp_bereich text,
+    xplan_kuestenmeer text,
+    xplan_bedeutsamkeit text,
+    xplan_bedeutsamkeitcode text,
+    xplan_istzweckbindung text,
+    xplan_flaechenschluss text,
+    xplan_flussrichtung text,
     CONSTRAINT xplan_rp_sonstigeinfrastruktur_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_sonstigeinfrastruktur','xplan_symbolposition','-1','GEOMETRY', 2);
