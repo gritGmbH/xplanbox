@@ -13382,6 +13382,10 @@
     <Primitive path="xplan:traegerbeteiligungsEndDatum" mapping="xplan_traegerbeteiligungsenddatum" />
     <Primitive path="xplan:refUmweltbericht" mapping="xplan_refumweltbericht" />
     <Primitive path="xplan:refSatzung" mapping="xplan_refsatzung" />
+    <Primitive path="xplan:genehmigungsDatum" mapping="xplan_genehmigungsdatum" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
+    <Primitive path="xplan:verfahren" mapping="xplan_verfahren" />
+    <Primitive path="xplan:amtlicherSchluessel" mapping="xplan_amtlicherschluessel" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_RasterplanAenderung" table="xplansynarchive.xplan_rp_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_RP_RASTERPLANAENDERUNG_">

@@ -13328,6 +13328,10 @@ CREATE TABLE xplansynarchive.xplan_rp_plan (
     xplan_traegerbeteiligungsenddatum date,
     xplan_refumweltbericht text,
     xplan_refsatzung text,
+    xplan_genehmigungsdatum date,
+    xplan_externereferenz text,
+    xplan_verfahren text,
+    xplan_amtlicherschluessel integer,
     CONSTRAINT xplan_rp_plan_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_plan','xplan_raeumlichergeltungsbereich','-1','GEOMETRY', 2);
