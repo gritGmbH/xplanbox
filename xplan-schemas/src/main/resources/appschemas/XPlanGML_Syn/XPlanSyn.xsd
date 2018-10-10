@@ -15426,7 +15426,7 @@
             <element name="allgemeinerTyp" minOccurs="0" type="string" />
             <element name="allgemeinerTypCode" minOccurs="0" type="string" />
             <element name="status" minOccurs="0" type="string" />
-            <element name="Code" minOccurs="0" type="string" />
+            <element name="statusCode" minOccurs="0" type="string" />
             <element name="bezeichnung" minOccurs="0" type="string" />
           </sequence>
         </extension>
