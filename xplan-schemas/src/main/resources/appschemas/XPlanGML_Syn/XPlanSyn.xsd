@@ -2769,6 +2769,7 @@
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
@@ -5492,7 +5493,7 @@
             <element name="dachformCode" minOccurs="0" type="string" />
             <element name="detaillierteDachform" minOccurs="0" type="string" />
             <element name="detaillierteDachformCode" minOccurs="0" type="string" />
-            <element name="wohnnutzungEGStrasseC" minOccurs="0" type="string" />
+            <element name="wohnnutzungEGStrasse" minOccurs="0" type="string" />
             <element name="wohnnutzungEGStrasseCode" minOccurs="0" type="string" />
             <element name="ZWohn" minOccurs="0" type="integer" />
             <element name="GFAntWohnen" minOccurs="0" type="double" />
@@ -11320,6 +11321,16 @@
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
             <element name="weitererAchsenTyp_NSM" minOccurs="0" type="string" />
             <element name="weitererAchsenTyp_NSMCode" minOccurs="0" type="string" />
+            <element name="gebietsTyp" minOccurs="0" type="string" />
+            <element name="gebietsTypCode" minOccurs="0" type="string" />
+            <element name="kuestenmeer" minOccurs="0" type="string" />
+            <element name="bedeutsamkeit" minOccurs="0" type="string" />
+            <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
+            <element name="istZweckbindung" minOccurs="0" type="string" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="typ" minOccurs="0" type="string" />
+            <element name="typCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -11605,6 +11616,7 @@
             <element name="abfallTypCode" minOccurs="0" type="string" />
             <element name="typAW" minOccurs="0" type="string" />
             <element name="typAWCode" minOccurs="0" type="string" />
+            <element name="istAufschuettungAblagerung" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14310,18 +14322,6 @@
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
             <element name="typLS_NSM" minOccurs="0" type="string" />
             <element name="typLS_NSMCode" minOccurs="0" type="string" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="kuestenmeer" minOccurs="0" type="string" />
-            <element name="bedeutsamkeit" minOccurs="0" type="string" />
-            <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
-            <element name="istZweckbindung" minOccurs="0" type="string" />
-            <element name="flaechenschluss" minOccurs="0" type="string" />
-            <element name="flussrichtung" minOccurs="0" type="string" />
-            <element name="imVerbund" minOccurs="0" type="string" />
-            <element name="typ" minOccurs="0" type="string" />
-            <element name="typCode" minOccurs="0" type="string" />
-            <element name="istKernzone" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14426,6 +14426,18 @@
             <!-- Im Originalschema mehrfach, hier in eine Zeichenkette zusammengefasst: -->
             <element name="besondereZweckbestimmungNSG_NSM" minOccurs="0" type="string" />
             <element name="besondereZweckbestimmungNSG_NSMCode" minOccurs="0" type="string" />
+            <element name="gebietsTyp" minOccurs="0" type="string" />
+            <element name="gebietsTypCode" minOccurs="0" type="string" />
+            <element name="kuestenmeer" minOccurs="0" type="string" />
+            <element name="bedeutsamkeit" minOccurs="0" type="string" />
+            <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
+            <element name="istZweckbindung" minOccurs="0" type="string" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="imVerbund" minOccurs="0" type="string" />
+            <element name="typ" minOccurs="0" type="string" />
+            <element name="typCode" minOccurs="0" type="string" />
+            <element name="istKernzone" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -17377,16 +17389,6 @@
             <element name="istNatuerlichesUberschwemmungsgebiet" minOccurs="0" type="string" />
             <element name="name" minOccurs="0" type="string" />
             <element name="nummer" minOccurs="0" type="string" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="kuestenmeer" minOccurs="0" type="string" />
-            <element name="bedeutsamkeit" minOccurs="0" type="string" />
-            <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
-            <element name="istZweckbindung" minOccurs="0" type="string" />
-            <element name="flaechenschluss" minOccurs="0" type="string" />
-            <element name="flussrichtung" minOccurs="0" type="string" />
-            <element name="typ" minOccurs="0" type="string" />
-            <element name="typCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

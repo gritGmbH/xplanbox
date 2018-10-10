@@ -10765,7 +10765,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -10936,7 +10936,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -10990,7 +10990,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -11135,7 +11135,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -11183,7 +11183,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -11545,7 +11545,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -11595,7 +11595,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -11722,7 +11722,6 @@
     <Primitive path="xplan:istZweckbindung" mapping="xplan_istzweckbindung" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
-    <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
   </FeatureTypeMapping>
@@ -11753,7 +11752,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -11847,7 +11846,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -12018,7 +12017,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -13935,7 +13934,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -13957,6 +13956,7 @@
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_RadwegWanderweg" table="xplansynarchive.xplan_rp_radwegwanderweg">
     <FIDMapping prefix="XPLAN_RP_RADWEGWANDERWEG_">
+      <Column name="attr_gml_id" type="string" />
       <UUIDGenerator />
     </FIDMapping>
     <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
@@ -13981,7 +13981,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14123,7 +14123,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14232,7 +14232,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14287,7 +14287,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14386,7 +14386,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14434,7 +14434,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14573,7 +14573,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14733,7 +14733,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14783,7 +14783,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -15027,7 +15027,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -15213,7 +15213,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
