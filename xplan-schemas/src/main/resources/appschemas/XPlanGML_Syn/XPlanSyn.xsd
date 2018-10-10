@@ -15025,6 +15025,58 @@
       </complexContent>
     </complexType>
   </element>
+  <element name="RP_SonstigerSiedlungsbereich" substitutionGroup="gml:_Feature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="refBegruendungInhalt" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="konkretisierung" minOccurs="0" type="string" />
+            <element name="gebietsTyp" minOccurs="0" type="string" />
+            <element name="gebietsTypCode" minOccurs="0" type="string" />
+            <element name="kuestenmeer" minOccurs="0" type="string" />
+            <element name="bedeutsamkeit" minOccurs="0" type="string" />
+            <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
+            <element name="istZweckbindung" minOccurs="0" type="string" />
+            <element name="refTextInhalt" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="bauhoehenbeschraenkung" minOccurs="0" type="integer" />
+            <element name="istSiedlungsbeschraenkung" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
   <element name="RP_SonstigeSiedlungsstruktur" substitutionGroup="gml:_Feature">
     <complexType>
       <complexContent>
