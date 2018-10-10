@@ -11904,6 +11904,23 @@ SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_landwirtschaft','xplan_sym
 CREATE INDEX spatial_idx_329 ON xplan_rp_landwirtschaft USING GIST ( xplan_symbolposition  );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_landwirtschaft','xplan_position','-1','GEOMETRY', 2);
 CREATE INDEX spatial_idx_330 ON xplan_rp_landwirtschaft USING GIST ( xplan_position  );
+CREATE TABLE xplansynarchive.xplan_rp_legendenobjekt (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+    xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_legendenbezeichnung text,
+    xplan_reflegendenbild text,
+    xplan_gehoertzupraesentationsobjekt text,
+    CONSTRAINT xplan_rp_legendenobjekt_pkey PRIMARY KEY (attr_gml_id)
+);
 CREATE TABLE xplansynarchive.xplan_rp_luftverkehr (
     attr_gml_id text,
     xplan_gmlid text,

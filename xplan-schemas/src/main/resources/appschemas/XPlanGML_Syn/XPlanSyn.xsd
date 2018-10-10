@@ -13171,6 +13171,29 @@
       </complexContent>
     </complexType>
   </element>
+  <element name="RP_Legendenobjekt" substitutionGroup="gml:_Feature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="legendenBezeichnung" minOccurs="0" type="string" />
+            <element name="reflegendenBild" minOccurs="0" type="string" />
+            <element name="gehoertZuPraesentationsobjekt" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
   <element name="RP_Luftverkehr" substitutionGroup="gml:_Feature">
     <complexType>
       <complexContent>

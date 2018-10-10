@@ -11972,6 +11972,25 @@
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
   </FeatureTypeMapping>
+  <FeatureTypeMapping name="xplan:RP_Legendenobjekt" table="xplansynarchive.xplan_rp_legendenobjekt">
+    <FIDMapping prefix="XPLAN_RP_LEGENDENOBJEKT_">
+      <Column name="attr_gml_id" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
+    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
+    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
+    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
+    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
+    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
+    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
+    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
+    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
+    <Primitive path="xplan:legendenBezeichnung" mapping="xplan_legendenbezeichnung" />
+    <Primitive path="xplan:reflegendenBild" mapping="xplan_reflegendenbild" />
+    <Primitive path="xplan:gehoertZuPraesentationsobjekt" mapping="xplan_gehoertzupraesentationsobjekt" />
+  </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Luftverkehr" table="xplansynarchive.xplan_rp_luftverkehr">
     <FIDMapping prefix="XPLAN_RP_LUFTVERKEHR_">
       <Column name="attr_gml_id" type="string" />
