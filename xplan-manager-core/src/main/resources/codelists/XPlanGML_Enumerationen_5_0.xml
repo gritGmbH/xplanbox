@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!-- http://www.xplanungwiki.de/upload/XPlanGML/5.0/Schema/Enumerationen/XPlanGML_Enumerationen_5_0.xml -->
 <!--Erzeugt mit KIT (www.kit.edu) GML-Toolbox, Erstellungsdatum: 02/09/18-->
-<Dictionary   gml:id="CodeLists" xmlns="http://www.opengis.net/gml/3.2" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <identifier />
+<Dictionary   gml:id="CodeLists" xmlns="http://www.opengis.net/gml" xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <dictionaryEntry>
     <DefinitionCollection gml:id="">
-      <identifier />
       <name />
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_AbgrenzungenTypen">
-      <identifier>xplan:BP_AbgrenzungenTypen</identifier>
       <name>xplan:BP_AbgrenzungenTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_AbgrenzungenTypen_1000">
@@ -29,13 +26,11 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_AbweichendeBauweise">
-      <identifier>xplan:BP_AbweichendeBauweise</identifier>
       <name>xplan:BP_AbweichendeBauweise</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_Bauweise">
-      <identifier>xplan:BP_Bauweise</identifier>
       <name>xplan:BP_Bauweise</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_Bauweise_1000">
@@ -59,7 +54,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_BebauungsArt">
-      <identifier>xplan:BP_BebauungsArt</identifier>
       <name>xplan:BP_BebauungsArt</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_BebauungsArt_1000">
@@ -107,7 +101,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_BereichOhneEinAusfahrtTypen">
-      <identifier>xplan:BP_BereichOhneEinAusfahrtTypen</identifier>
       <name>xplan:BP_BereichOhneEinAusfahrtTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_BereichOhneEinAusfahrtTypen_1000">
@@ -131,7 +124,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_Dachform">
-      <identifier>xplan:BP_Dachform</identifier>
       <name>xplan:BP_Dachform</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_Dachform_1000">
@@ -227,91 +219,76 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_DetailAbgrenzungenTypen">
-      <identifier>xplan:BP_DetailAbgrenzungenTypen</identifier>
       <name>xplan:BP_DetailAbgrenzungenTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_DetailArtDerBaulNutzung">
-      <identifier>xplan:BP_DetailArtDerBaulNutzung</identifier>
       <name>xplan:BP_DetailArtDerBaulNutzung</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_DetailDachform">
-      <identifier>xplan:BP_DetailDachform</identifier>
       <name>xplan:BP_DetailDachform</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_DetailZweckbestGemeinbedarf">
-      <identifier>xplan:BP_DetailZweckbestGemeinbedarf</identifier>
       <name>xplan:BP_DetailZweckbestGemeinbedarf</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_DetailZweckbestGemeinschaftsanlagen">
-      <identifier>xplan:BP_DetailZweckbestGemeinschaftsanlagen</identifier>
       <name>xplan:BP_DetailZweckbestGemeinschaftsanlagen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_DetailZweckbestGewaesser">
-      <identifier>xplan:BP_DetailZweckbestGewaesser</identifier>
       <name>xplan:BP_DetailZweckbestGewaesser</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_DetailZweckbestGruenFlaeche">
-      <identifier>xplan:BP_DetailZweckbestGruenFlaeche</identifier>
       <name>xplan:BP_DetailZweckbestGruenFlaeche</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_DetailZweckbestLandwirtschaft">
-      <identifier>xplan:BP_DetailZweckbestLandwirtschaft</identifier>
       <name>xplan:BP_DetailZweckbestLandwirtschaft</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_DetailZweckbestNebenanlagen">
-      <identifier>xplan:BP_DetailZweckbestNebenanlagen</identifier>
       <name>xplan:BP_DetailZweckbestNebenanlagen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_DetailZweckbestSpielSportanlage">
-      <identifier>xplan:BP_DetailZweckbestSpielSportanlage</identifier>
       <name>xplan:BP_DetailZweckbestSpielSportanlage</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_DetailZweckbestStrassenverkehr">
-      <identifier>xplan:BP_DetailZweckbestStrassenverkehr</identifier>
       <name>xplan:BP_DetailZweckbestStrassenverkehr</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_DetailZweckbestVerEntsorgung">
-      <identifier>xplan:BP_DetailZweckbestVerEntsorgung</identifier>
       <name>xplan:BP_DetailZweckbestVerEntsorgung</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_DetailZweckbestWaldFlaeche">
-      <identifier>xplan:BP_DetailZweckbestWaldFlaeche</identifier>
       <name>xplan:BP_DetailZweckbestWaldFlaeche</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_DetailZweckbestWasserwirtschaft">
-      <identifier>xplan:BP_DetailZweckbestWasserwirtschaft</identifier>
       <name>xplan:BP_DetailZweckbestWasserwirtschaft</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_EinfahrtTypen">
-      <identifier>xplan:BP_EinfahrtTypen</identifier>
       <name>xplan:BP_EinfahrtTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_EinfahrtTypen_1000">
@@ -335,7 +312,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_ErhaltungsGrund">
-      <identifier>xplan:BP_ErhaltungsGrund</identifier>
       <name>xplan:BP_ErhaltungsGrund</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_ErhaltungsGrund_1000">
@@ -359,7 +335,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_GrenzBebauung">
-      <identifier>xplan:BP_GrenzBebauung</identifier>
       <name>xplan:BP_GrenzBebauung</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_GrenzBebauung_1000">
@@ -383,7 +358,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_NebenanlagenAusschlussTyp">
-      <identifier>xplan:BP_NebenanlagenAusschlussTyp</identifier>
       <name>xplan:BP_NebenanlagenAusschlussTyp</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_NebenanlagenAusschlussTyp_1000">
@@ -401,7 +375,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_PlanArt">
-      <identifier>xplan:BP_PlanArt</identifier>
       <name>xplan:BP_PlanArt</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_PlanArt_1000">
@@ -473,7 +446,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_Rechtscharakter">
-      <identifier>xplan:BP_Rechtscharakter</identifier>
       <name>xplan:BP_Rechtscharakter</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_Rechtscharakter_1000">
@@ -509,7 +481,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_Rechtsstand">
-      <identifier>xplan:BP_Rechtsstand</identifier>
       <name>xplan:BP_Rechtsstand</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_Rechtsstand_1000">
@@ -575,19 +546,16 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_SonstPlanArt">
-      <identifier>xplan:BP_SonstPlanArt</identifier>
       <name>xplan:BP_SonstPlanArt</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_SpezielleBauweiseSonstTypen">
-      <identifier>xplan:BP_SpezielleBauweiseSonstTypen</identifier>
       <name>xplan:BP_SpezielleBauweiseSonstTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_SpezielleBauweiseTypen">
-      <identifier>xplan:BP_SpezielleBauweiseTypen</identifier>
       <name>xplan:BP_SpezielleBauweiseTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_SpezielleBauweiseTypen_1000">
@@ -635,13 +603,11 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_Status">
-      <identifier>xplan:BP_Status</identifier>
       <name>xplan:BP_Status</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_StrassenkoerperHerstellung">
-      <identifier>xplan:BP_StrassenkoerperHerstellung</identifier>
       <name>xplan:BP_StrassenkoerperHerstellung</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_StrassenkoerperHerstellung_1000">
@@ -665,7 +631,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_Verfahren">
-      <identifier>xplan:BP_Verfahren</identifier>
       <name>xplan:BP_Verfahren</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_Verfahren_1000">
@@ -689,7 +654,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_WegerechtTypen">
-      <identifier>xplan:BP_WegerechtTypen</identifier>
       <name>xplan:BP_WegerechtTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_WegerechtTypen_1000">
@@ -737,7 +701,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_ZulaessigkeitVergnuegungsstaetten">
-      <identifier>xplan:BP_ZulaessigkeitVergnuegungsstaetten</identifier>
       <name>xplan:BP_ZulaessigkeitVergnuegungsstaetten</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_ZulaessigkeitVergnuegungsstaetten_1000">
@@ -761,7 +724,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_ZweckbestimmungGemeinschaftsanlagen">
-      <identifier>xplan:BP_ZweckbestimmungGemeinschaftsanlagen</identifier>
       <name>xplan:BP_ZweckbestimmungGemeinschaftsanlagen</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_ZweckbestimmungGemeinschaftsanlagen_1000">
@@ -851,13 +813,11 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_ZweckbestimmungGenerischeObjekte">
-      <identifier>xplan:BP_ZweckbestimmungGenerischeObjekte</identifier>
       <name>xplan:BP_ZweckbestimmungGenerischeObjekte</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_ZweckbestimmungNebenanlagen">
-      <identifier>xplan:BP_ZweckbestimmungNebenanlagen</identifier>
       <name>xplan:BP_ZweckbestimmungNebenanlagen</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_ZweckbestimmungNebenanlagen_1000">
@@ -923,7 +883,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_ZweckbestimmungStrassenverkehr">
-      <identifier>xplan:BP_ZweckbestimmungStrassenverkehr</identifier>
       <name>xplan:BP_ZweckbestimmungStrassenverkehr</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_ZweckbestimmungStrassenverkehr_1000">
@@ -1031,7 +990,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:BP_ZweckbestimmungenTMF">
-      <identifier>xplan:BP_ZweckbestimmungenTMF</identifier>
       <name>xplan:BP_ZweckbestimmungenTMF</name>
       <definitionMember>
         <Definition gml:id="xplan:BP_ZweckbestimmungenTMF_1000">
@@ -1055,67 +1013,56 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_DetailArtDerBaulNutzung">
-      <identifier>xplan:FP_DetailArtDerBaulNutzung</identifier>
       <name>xplan:FP_DetailArtDerBaulNutzung</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_DetailZweckbestGemeinbedarf">
-      <identifier>xplan:FP_DetailZweckbestGemeinbedarf</identifier>
       <name>xplan:FP_DetailZweckbestGemeinbedarf</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_DetailZweckbestGewaesser">
-      <identifier>xplan:FP_DetailZweckbestGewaesser</identifier>
       <name>xplan:FP_DetailZweckbestGewaesser</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_DetailZweckbestGruen">
-      <identifier>xplan:FP_DetailZweckbestGruen</identifier>
       <name>xplan:FP_DetailZweckbestGruen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_DetailZweckbestLandwirtschaftsFlaeche">
-      <identifier>xplan:FP_DetailZweckbestLandwirtschaftsFlaeche</identifier>
       <name>xplan:FP_DetailZweckbestLandwirtschaftsFlaeche</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_DetailZweckbestSpielSportanlage">
-      <identifier>xplan:FP_DetailZweckbestSpielSportanlage</identifier>
       <name>xplan:FP_DetailZweckbestSpielSportanlage</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_DetailZweckbestStrassenverkehr">
-      <identifier>xplan:FP_DetailZweckbestStrassenverkehr</identifier>
       <name>xplan:FP_DetailZweckbestStrassenverkehr</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_DetailZweckbestVerEntsorgung">
-      <identifier>xplan:FP_DetailZweckbestVerEntsorgung</identifier>
       <name>xplan:FP_DetailZweckbestVerEntsorgung</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_DetailZweckbestWaldFlaeche">
-      <identifier>xplan:FP_DetailZweckbestWaldFlaeche</identifier>
       <name>xplan:FP_DetailZweckbestWaldFlaeche</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_DetailZweckbestWasserwirtschaft">
-      <identifier>xplan:FP_DetailZweckbestWasserwirtschaft</identifier>
       <name>xplan:FP_DetailZweckbestWasserwirtschaft</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_PlanArt">
-      <identifier>xplan:FP_PlanArt</identifier>
       <name>xplan:FP_PlanArt</name>
       <definitionMember>
         <Definition gml:id="xplan:FP_PlanArt_1000">
@@ -1157,7 +1104,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_Rechtscharakter">
-      <identifier>xplan:FP_Rechtscharakter</identifier>
       <name>xplan:FP_Rechtscharakter</name>
       <definitionMember>
         <Definition gml:id="xplan:FP_Rechtscharakter_1000">
@@ -1193,7 +1139,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_Rechtsstand">
-      <identifier>xplan:FP_Rechtsstand</identifier>
       <name>xplan:FP_Rechtsstand</name>
       <definitionMember>
         <Definition gml:id="xplan:FP_Rechtsstand_1000">
@@ -1253,25 +1198,21 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_SonstPlanArt">
-      <identifier>xplan:FP_SonstPlanArt</identifier>
       <name>xplan:FP_SonstPlanArt</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_SpezifischePraegungTypen">
-      <identifier>xplan:FP_SpezifischePraegungTypen</identifier>
       <name>xplan:FP_SpezifischePraegungTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_Status">
-      <identifier>xplan:FP_Status</identifier>
       <name>xplan:FP_Status</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_Verfahren">
-      <identifier>xplan:FP_Verfahren</identifier>
       <name>xplan:FP_Verfahren</name>
       <definitionMember>
         <Definition gml:id="xplan:FP_Verfahren_1000">
@@ -1289,19 +1230,16 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_ZentralerVersorgungsbereichAuspraegung">
-      <identifier>xplan:FP_ZentralerVersorgungsbereichAuspraegung</identifier>
       <name>xplan:FP_ZentralerVersorgungsbereichAuspraegung</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_ZweckbestimmungGenerischeObjekte">
-      <identifier>xplan:FP_ZweckbestimmungGenerischeObjekte</identifier>
       <name>xplan:FP_ZweckbestimmungGenerischeObjekte</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_ZweckbestimmungPrivilegiertesVorhaben">
-      <identifier>xplan:FP_ZweckbestimmungPrivilegiertesVorhaben</identifier>
       <name>xplan:FP_ZweckbestimmungPrivilegiertesVorhaben</name>
       <definitionMember>
         <Definition gml:id="xplan:FP_ZweckbestimmungPrivilegiertesVorhaben_1000">
@@ -1481,7 +1419,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:FP_ZweckbestimmungStrassenverkehr">
-      <identifier>xplan:FP_ZweckbestimmungStrassenverkehr</identifier>
       <name>xplan:FP_ZweckbestimmungStrassenverkehr</name>
       <definitionMember>
         <Definition gml:id="xplan:FP_ZweckbestimmungStrassenverkehr_1000">
@@ -1589,13 +1526,11 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_BodenschutzrechtDetailTypen">
-      <identifier>xplan:LP_BodenschutzrechtDetailTypen</identifier>
       <name>xplan:LP_BodenschutzrechtDetailTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_BodenschutzrechtTypen">
-      <identifier>xplan:LP_BodenschutzrechtTypen</identifier>
       <name>xplan:LP_BodenschutzrechtTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:LP_BodenschutzrechtTypen_1000">
@@ -1613,13 +1548,11 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_ErholungFreizeitDetailFunktionen">
-      <identifier>xplan:LP_ErholungFreizeitDetailFunktionen</identifier>
       <name>xplan:LP_ErholungFreizeitDetailFunktionen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_ErholungFreizeitFunktionen">
-      <identifier>xplan:LP_ErholungFreizeitFunktionen</identifier>
       <name>xplan:LP_ErholungFreizeitFunktionen</name>
       <definitionMember>
         <Definition gml:id="xplan:LP_ErholungFreizeitFunktionen_1000">
@@ -1841,7 +1774,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_ForstrechtTypen">
-      <identifier>xplan:LP_ForstrechtTypen</identifier>
       <name>xplan:LP_ForstrechtTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:LP_ForstrechtTypen_1000">
@@ -1913,13 +1845,11 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_InternatSchutzobjektDetailTypen">
-      <identifier>xplan:LP_InternatSchutzobjektDetailTypen</identifier>
       <name>xplan:LP_InternatSchutzobjektDetailTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_InternatSchutzobjektTypen">
-      <identifier>xplan:LP_InternatSchutzobjektTypen</identifier>
       <name>xplan:LP_InternatSchutzobjektTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:LP_InternatSchutzobjektTypen_1000">
@@ -1943,19 +1873,16 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_MassnahmeLandschaftsbild">
-      <identifier>xplan:LP_MassnahmeLandschaftsbild</identifier>
       <name>xplan:LP_MassnahmeLandschaftsbild</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_Pflanzart">
-      <identifier>xplan:LP_Pflanzart</identifier>
       <name>xplan:LP_Pflanzart</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_PlanArt">
-      <identifier>xplan:LP_PlanArt</identifier>
       <name>xplan:LP_PlanArt</name>
       <definitionMember>
         <Definition gml:id="xplan:LP_PlanArt_1000">
@@ -1991,7 +1918,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_Rechtsstand">
-      <identifier>xplan:LP_Rechtsstand</identifier>
       <name>xplan:LP_Rechtsstand</name>
       <definitionMember>
         <Definition gml:id="xplan:LP_Rechtsstand_1000">
@@ -2027,7 +1953,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_Regelungen">
-      <identifier>xplan:LP_Regelungen</identifier>
       <name>xplan:LP_Regelungen</name>
       <definitionMember>
         <Definition gml:id="xplan:LP_Regelungen_1000">
@@ -2045,25 +1970,21 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_SchutzobjektLandesrechtDetailTypen">
-      <identifier>xplan:LP_SchutzobjektLandesrechtDetailTypen</identifier>
       <name>xplan:LP_SchutzobjektLandesrechtDetailTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_SonstPlanArt">
-      <identifier>xplan:LP_SonstPlanArt</identifier>
       <name>xplan:LP_SonstPlanArt</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_SonstRechtDetailTypen">
-      <identifier>xplan:LP_SonstRechtDetailTypen</identifier>
       <name>xplan:LP_SonstRechtDetailTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_SonstRechtTypen">
-      <identifier>xplan:LP_SonstRechtTypen</identifier>
       <name>xplan:LP_SonstRechtTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:LP_SonstRechtTypen_1000">
@@ -2087,25 +2008,21 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_WaldschutzDetailTypen">
-      <identifier>xplan:LP_WaldschutzDetailTypen</identifier>
       <name>xplan:LP_WaldschutzDetailTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_WasserrechtGemeingebrEinschraenkungNaturschutzDetailTypen">
-      <identifier>xplan:LP_WasserrechtGemeingebrEinschraenkungNaturschutzDetailTypen</identifier>
       <name>xplan:LP_WasserrechtGemeingebrEinschraenkungNaturschutzDetailTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_WasserrechtSchutzgebietDetailTypen">
-      <identifier>xplan:LP_WasserrechtSchutzgebietDetailTypen</identifier>
       <name>xplan:LP_WasserrechtSchutzgebietDetailTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_WasserrechtSchutzgebietTypen">
-      <identifier>xplan:LP_WasserrechtSchutzgebietTypen</identifier>
       <name>xplan:LP_WasserrechtSchutzgebietTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:LP_WasserrechtSchutzgebietTypen_1000">
@@ -2135,19 +2052,16 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_WasserrechtSonstigeTypen">
-      <identifier>xplan:LP_WasserrechtSonstigeTypen</identifier>
       <name>xplan:LP_WasserrechtSonstigeTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_WasserrechtWirtschaftAbflussHochwSchutzDetailTypen">
-      <identifier>xplan:LP_WasserrechtWirtschaftAbflussHochwSchutzDetailTypen</identifier>
       <name>xplan:LP_WasserrechtWirtschaftAbflussHochwSchutzDetailTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_WasserrechtWirtschaftAbflussHochwSchutzTypen">
-      <identifier>xplan:LP_WasserrechtWirtschaftAbflussHochwSchutzTypen</identifier>
       <name>xplan:LP_WasserrechtWirtschaftAbflussHochwSchutzTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:LP_WasserrechtWirtschaftAbflussHochwSchutzTypen_1000">
@@ -2171,13 +2085,11 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:LP_ZweckbestimmungGenerischeObjekte">
-      <identifier>xplan:LP_ZweckbestimmungGenerischeObjekte</identifier>
       <name>xplan:LP_ZweckbestimmungGenerischeObjekte</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_AbfallTypen">
-      <identifier>xplan:RP_AbfallTypen</identifier>
       <name>xplan:RP_AbfallTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_AbfallTypen_1000">
@@ -2219,7 +2131,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_AbfallentsorgungTypen">
-      <identifier>xplan:RP_AbfallentsorgungTypen</identifier>
       <name>xplan:RP_AbfallentsorgungTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_AbfallentsorgungTypen_1000">
@@ -2291,7 +2202,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_AbwasserTypen">
-      <identifier>xplan:RP_AbwasserTypen</identifier>
       <name>xplan:RP_AbwasserTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_AbwasserTypen_1000">
@@ -2339,7 +2249,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_AchsenTypen">
-      <identifier>xplan:RP_AchsenTypen</identifier>
       <name>xplan:RP_AchsenTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_AchsenTypen_1000">
@@ -2405,7 +2314,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_Art">
-      <identifier>xplan:RP_Art</identifier>
       <name>xplan:RP_Art</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_Art_1000">
@@ -2465,7 +2373,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_Bedeutsamkeit">
-      <identifier>xplan:RP_Bedeutsamkeit</identifier>
       <name>xplan:RP_Bedeutsamkeit</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_Bedeutsamkeit_1000">
@@ -2525,7 +2432,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_BergbauFolgenutzung">
-      <identifier>xplan:RP_BergbauFolgenutzung</identifier>
       <name>xplan:RP_BergbauFolgenutzung</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_BergbauFolgenutzung_1000">
@@ -2591,7 +2497,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_BergbauplanungTypen">
-      <identifier>xplan:RP_BergbauplanungTypen</identifier>
       <name>xplan:RP_BergbauplanungTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_BergbauplanungTypen_1000">
@@ -2663,7 +2568,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_BesondereRaumkategorieTypen">
-      <identifier>xplan:RP_BesondereRaumkategorieTypen</identifier>
       <name>xplan:RP_BesondereRaumkategorieTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_BesondereRaumkategorieTypen_1000">
@@ -2687,7 +2591,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_BesondereTourismusErholungTypen">
-      <identifier>xplan:RP_BesondereTourismusErholungTypen</identifier>
       <name>xplan:RP_BesondereTourismusErholungTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_BesondereTourismusErholungTypen_1000">
@@ -2711,7 +2614,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_BesondererSchienenverkehrTypen">
-      <identifier>xplan:RP_BesondererSchienenverkehrTypen</identifier>
       <name>xplan:RP_BesondererSchienenverkehrTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_BesondererSchienenverkehrTypen_1000">
@@ -2807,7 +2709,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_BesondererStrassenverkehrTypen">
-      <identifier>xplan:RP_BesondererStrassenverkehrTypen</identifier>
       <name>xplan:RP_BesondererStrassenverkehrTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_BesondererStrassenverkehrTypen_1000">
@@ -2849,7 +2750,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_BodenschatzTiefen">
-      <identifier>xplan:RP_BodenschatzTiefen</identifier>
       <name>xplan:RP_BodenschatzTiefen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_BodenschatzTiefen_1000">
@@ -2867,7 +2767,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_BodenschutzTypen">
-      <identifier>xplan:RP_BodenschutzTypen</identifier>
       <name>xplan:RP_BodenschutzTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_BodenschutzTypen_1000">
@@ -2897,7 +2796,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_EinzelhandelTypen">
-      <identifier>xplan:RP_EinzelhandelTypen</identifier>
       <name>xplan:RP_EinzelhandelTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_EinzelhandelTypen_1000">
@@ -2963,7 +2861,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_EnergieversorgungTypen">
-      <identifier>xplan:RP_EnergieversorgungTypen</identifier>
       <name>xplan:RP_EnergieversorgungTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_EnergieversorgungTypen_1000">
@@ -3059,7 +2956,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_ErholungTypen">
-      <identifier>xplan:RP_ErholungTypen</identifier>
       <name>xplan:RP_ErholungTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_ErholungTypen_1000">
@@ -3119,7 +3015,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_ErneuerbareEnergieTypen">
-      <identifier>xplan:RP_ErneuerbareEnergieTypen</identifier>
       <name>xplan:RP_ErneuerbareEnergieTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_ErneuerbareEnergieTypen_1000">
@@ -3155,7 +3050,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_ForstwirtschaftTypen">
-      <identifier>xplan:RP_ForstwirtschaftTypen</identifier>
       <name>xplan:RP_ForstwirtschaftTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_ForstwirtschaftTypen_1000">
@@ -3221,7 +3115,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_FunktionszuweisungTypen">
-      <identifier>xplan:RP_FunktionszuweisungTypen</identifier>
       <name>xplan:RP_FunktionszuweisungTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_FunktionszuweisungTypen_1000">
@@ -3281,7 +3174,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_GebietsTyp">
-      <identifier>xplan:RP_GebietsTyp</identifier>
       <name>xplan:RP_GebietsTyp</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_GebietsTyp_1000">
@@ -3365,13 +3257,11 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_GenerischesObjektTypen">
-      <identifier>xplan:RP_GenerischesObjektTypen</identifier>
       <name>xplan:RP_GenerischesObjektTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_HochwasserschutzTypen">
-      <identifier>xplan:RP_HochwasserschutzTypen</identifier>
       <name>xplan:RP_HochwasserschutzTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_HochwasserschutzTypen_1000">
@@ -3479,7 +3369,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_IndustrieGewerbeTypen">
-      <identifier>xplan:RP_IndustrieGewerbeTypen</identifier>
       <name>xplan:RP_IndustrieGewerbeTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_IndustrieGewerbeTypen_1000">
@@ -3575,7 +3464,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_KommunikationTypen">
-      <identifier>xplan:RP_KommunikationTypen</identifier>
       <name>xplan:RP_KommunikationTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_KommunikationTypen_1000">
@@ -3611,7 +3499,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_KulturlandschaftTypen">
-      <identifier>xplan:RP_KulturlandschaftTypen</identifier>
       <name>xplan:RP_KulturlandschaftTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_KulturlandschaftTypen_1000">
@@ -3647,7 +3534,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_LaermschutzTypen">
-      <identifier>xplan:RP_LaermschutzTypen</identifier>
       <name>xplan:RP_LaermschutzTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_LaermschutzTypen_1000">
@@ -3695,7 +3581,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_LandwirtschaftTypen">
-      <identifier>xplan:RP_LandwirtschaftTypen</identifier>
       <name>xplan:RP_LandwirtschaftTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_LandwirtschaftTypen_1000">
@@ -3761,7 +3646,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_LuftTypen">
-      <identifier>xplan:RP_LuftTypen</identifier>
       <name>xplan:RP_LuftTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_LuftTypen_1000">
@@ -3785,7 +3669,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_LuftverkehrTypen">
-      <identifier>xplan:RP_LuftverkehrTypen</identifier>
       <name>xplan:RP_LuftverkehrTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_LuftverkehrTypen_1000">
@@ -3893,7 +3776,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_NaturLandschaftTypen">
-      <identifier>xplan:RP_NaturLandschaftTypen</identifier>
       <name>xplan:RP_NaturLandschaftTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_NaturLandschaftTypen_1000">
@@ -4043,7 +3925,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_PrimaerenergieTypen">
-      <identifier>xplan:RP_PrimaerenergieTypen</identifier>
       <name>xplan:RP_PrimaerenergieTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_PrimaerenergieTypen_1000">
@@ -4121,7 +4002,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_RadwegWanderwegTypen">
-      <identifier>xplan:RP_RadwegWanderwegTypen</identifier>
       <name>xplan:RP_RadwegWanderwegTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_RadwegWanderwegTypen_1000">
@@ -4169,7 +4049,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_RaumkategorieTypen">
-      <identifier>xplan:RP_RaumkategorieTypen</identifier>
       <name>xplan:RP_RaumkategorieTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_RaumkategorieTypen_1000">
@@ -4343,7 +4222,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_Rechtscharakter">
-      <identifier>xplan:RP_Rechtscharakter</identifier>
       <name>xplan:RP_Rechtscharakter</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_Rechtscharakter_1000">
@@ -4403,7 +4281,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_Rechtsstand">
-      <identifier>xplan:RP_Rechtsstand</identifier>
       <name>xplan:RP_Rechtsstand</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_Rechtsstand_1000">
@@ -4475,7 +4352,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_RohstoffTypen">
-      <identifier>xplan:RP_RohstoffTypen</identifier>
       <name>xplan:RP_RohstoffTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_RohstoffTypen_1000">
@@ -4859,7 +4735,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_SchienenverkehrTypen">
-      <identifier>xplan:RP_SchienenverkehrTypen</identifier>
       <name>xplan:RP_SchienenverkehrTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_SchienenverkehrTypen_1000">
@@ -4961,19 +4836,16 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_SonstGrenzeTypen">
-      <identifier>xplan:RP_SonstGrenzeTypen</identifier>
       <name>xplan:RP_SonstGrenzeTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_SonstPlanArt">
-      <identifier>xplan:RP_SonstPlanArt</identifier>
       <name>xplan:RP_SonstPlanArt</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_SonstVerkehrTypen">
-      <identifier>xplan:RP_SonstVerkehrTypen</identifier>
       <name>xplan:RP_SonstVerkehrTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_SonstVerkehrTypen_1000">
@@ -5051,7 +4923,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_SozialeInfrastrukturTypen">
-      <identifier>xplan:RP_SozialeInfrastrukturTypen</identifier>
       <name>xplan:RP_SozialeInfrastrukturTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_SozialeInfrastrukturTypen_1000">
@@ -5105,7 +4976,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_SpannungTypen">
-      <identifier>xplan:RP_SpannungTypen</identifier>
       <name>xplan:RP_SpannungTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_SpannungTypen_1000">
@@ -5135,7 +5005,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_SperrgebietTypen">
-      <identifier>xplan:RP_SperrgebietTypen</identifier>
       <name>xplan:RP_SperrgebietTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_SperrgebietTypen_1000">
@@ -5189,7 +5058,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_SpezifischeGrenzeTypen">
-      <identifier>xplan:RP_SpezifischeGrenzeTypen</identifier>
       <name>xplan:RP_SpezifischeGrenzeTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_SpezifischeGrenzeTypen_1000">
@@ -5249,7 +5117,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_SportanlageTypen">
-      <identifier>xplan:RP_SportanlageTypen</identifier>
       <name>xplan:RP_SportanlageTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_SportanlageTypen_1000">
@@ -5303,13 +5170,11 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_Status">
-      <identifier>xplan:RP_Status</identifier>
       <name>xplan:RP_Status</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_StrassenverkehrTypen">
-      <identifier>xplan:RP_StrassenverkehrTypen</identifier>
       <name>xplan:RP_StrassenverkehrTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_StrassenverkehrTypen_1000">
@@ -5399,7 +5264,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_TourismusTypen">
-      <identifier>xplan:RP_TourismusTypen</identifier>
       <name>xplan:RP_TourismusTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_TourismusTypen_1000">
@@ -5423,7 +5287,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_Verfahren">
-      <identifier>xplan:RP_Verfahren</identifier>
       <name>xplan:RP_Verfahren</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_Verfahren_1000">
@@ -5459,7 +5322,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_VerkehrStatus">
-      <identifier>xplan:RP_VerkehrStatus</identifier>
       <name>xplan:RP_VerkehrStatus</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_VerkehrStatus_1000">
@@ -5525,7 +5387,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_VerkehrTypen">
-      <identifier>xplan:RP_VerkehrTypen</identifier>
       <name>xplan:RP_VerkehrTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_VerkehrTypen_1000">
@@ -5561,7 +5422,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_WasserschutzTypen">
-      <identifier>xplan:RP_WasserschutzTypen</identifier>
       <name>xplan:RP_WasserschutzTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_WasserschutzTypen_1000">
@@ -5627,7 +5487,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_WasserschutzZonen">
-      <identifier>xplan:RP_WasserschutzZonen</identifier>
       <name>xplan:RP_WasserschutzZonen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_WasserschutzZonen_1000">
@@ -5651,7 +5510,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_WasserverkehrTypen">
-      <identifier>xplan:RP_WasserverkehrTypen</identifier>
       <name>xplan:RP_WasserverkehrTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_WasserverkehrTypen_1000">
@@ -5735,7 +5593,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_WasserwirtschaftTypen">
-      <identifier>xplan:RP_WasserwirtschaftTypen</identifier>
       <name>xplan:RP_WasserwirtschaftTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_WasserwirtschaftTypen_1000">
@@ -5789,7 +5646,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_WohnenSiedlungTypen">
-      <identifier>xplan:RP_WohnenSiedlungTypen</identifier>
       <name>xplan:RP_WohnenSiedlungTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_WohnenSiedlungTypen_1000">
@@ -5855,7 +5711,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_ZaesurTypen">
-      <identifier>xplan:RP_ZaesurTypen</identifier>
       <name>xplan:RP_ZaesurTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_ZaesurTypen_1000">
@@ -5879,7 +5734,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_Zeitstufen">
-      <identifier>xplan:RP_Zeitstufen</identifier>
       <name>xplan:RP_Zeitstufen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_Zeitstufen_1000">
@@ -5897,7 +5751,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_ZentralerOrtSonstigeTypen">
-      <identifier>xplan:RP_ZentralerOrtSonstigeTypen</identifier>
       <name>xplan:RP_ZentralerOrtSonstigeTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_ZentralerOrtSonstigeTypen_1000">
@@ -6017,7 +5870,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:RP_ZentralerOrtTypen">
-      <identifier>xplan:RP_ZentralerOrtTypen</identifier>
       <name>xplan:RP_ZentralerOrtTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:RP_ZentralerOrtTypen_1000">
@@ -6119,73 +5971,61 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_DetailKlassifizNachBodenschutzrecht">
-      <identifier>xplan:SO_DetailKlassifizNachBodenschutzrecht</identifier>
       <name>xplan:SO_DetailKlassifizNachBodenschutzrecht</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_DetailKlassifizNachDenkmalschutzrecht">
-      <identifier>xplan:SO_DetailKlassifizNachDenkmalschutzrecht</identifier>
       <name>xplan:SO_DetailKlassifizNachDenkmalschutzrecht</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_DetailKlassifizNachForstrecht">
-      <identifier>xplan:SO_DetailKlassifizNachForstrecht</identifier>
       <name>xplan:SO_DetailKlassifizNachForstrecht</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_DetailKlassifizNachLuftverkehrsrecht">
-      <identifier>xplan:SO_DetailKlassifizNachLuftverkehrsrecht</identifier>
       <name>xplan:SO_DetailKlassifizNachLuftverkehrsrecht</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_DetailKlassifizNachSchienenverkehrsrecht">
-      <identifier>xplan:SO_DetailKlassifizNachSchienenverkehrsrecht</identifier>
       <name>xplan:SO_DetailKlassifizNachSchienenverkehrsrecht</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_DetailKlassifizNachSonstigemRecht">
-      <identifier>xplan:SO_DetailKlassifizNachSonstigemRecht</identifier>
       <name>xplan:SO_DetailKlassifizNachSonstigemRecht</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_DetailKlassifizNachStrassenverkehrsrecht">
-      <identifier>xplan:SO_DetailKlassifizNachStrassenverkehrsrecht</identifier>
       <name>xplan:SO_DetailKlassifizNachStrassenverkehrsrecht</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_DetailKlassifizNachWasserrecht">
-      <identifier>xplan:SO_DetailKlassifizNachWasserrecht</identifier>
       <name>xplan:SO_DetailKlassifizNachWasserrecht</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_DetailKlassifizSchutzgebietNaturschutzrecht">
-      <identifier>xplan:SO_DetailKlassifizSchutzgebietNaturschutzrecht</identifier>
       <name>xplan:SO_DetailKlassifizSchutzgebietNaturschutzrecht</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_DetailKlassifizSchutzgebietSonstRecht">
-      <identifier>xplan:SO_DetailKlassifizSchutzgebietSonstRecht</identifier>
       <name>xplan:SO_DetailKlassifizSchutzgebietSonstRecht</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_DetailKlassifizSchutzgebietWasserrecht">
-      <identifier>xplan:SO_DetailKlassifizSchutzgebietWasserrecht</identifier>
       <name>xplan:SO_DetailKlassifizSchutzgebietWasserrecht</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_GebietsArt">
-      <identifier>xplan:SO_GebietsArt</identifier>
       <name>xplan:SO_GebietsArt</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_GebietsArt_1000">
@@ -6263,7 +6103,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_KlassifizNachBodenschutzrecht">
-      <identifier>xplan:SO_KlassifizNachBodenschutzrecht</identifier>
       <name>xplan:SO_KlassifizNachBodenschutzrecht</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_KlassifizNachBodenschutzrecht_1000">
@@ -6299,7 +6138,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_KlassifizNachDenkmalschutzrecht">
-      <identifier>xplan:SO_KlassifizNachDenkmalschutzrecht</identifier>
       <name>xplan:SO_KlassifizNachDenkmalschutzrecht</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_KlassifizNachDenkmalschutzrecht_1000">
@@ -6341,7 +6179,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_KlassifizNachForstrecht">
-      <identifier>xplan:SO_KlassifizNachForstrecht</identifier>
       <name>xplan:SO_KlassifizNachForstrecht</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_KlassifizNachForstrecht_1000">
@@ -6365,7 +6202,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_KlassifizNachLuftverkehrsrecht">
-      <identifier>xplan:SO_KlassifizNachLuftverkehrsrecht</identifier>
       <name>xplan:SO_KlassifizNachLuftverkehrsrecht</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_KlassifizNachLuftverkehrsrecht_1000">
@@ -6431,7 +6267,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_KlassifizNachSchienenverkehrsrecht">
-      <identifier>xplan:SO_KlassifizNachSchienenverkehrsrecht</identifier>
       <name>xplan:SO_KlassifizNachSchienenverkehrsrecht</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_KlassifizNachSchienenverkehrsrecht_1000">
@@ -6545,7 +6380,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_KlassifizNachSonstigemRecht">
-      <identifier>xplan:SO_KlassifizNachSonstigemRecht</identifier>
       <name>xplan:SO_KlassifizNachSonstigemRecht</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_KlassifizNachSonstigemRecht_1000">
@@ -6587,7 +6421,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_KlassifizNachStrassenverkehrsrecht">
-      <identifier>xplan:SO_KlassifizNachStrassenverkehrsrecht</identifier>
       <name>xplan:SO_KlassifizNachStrassenverkehrsrecht</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_KlassifizNachStrassenverkehrsrecht_1000">
@@ -6623,7 +6456,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_KlassifizNachWasserrecht">
-      <identifier>xplan:SO_KlassifizNachWasserrecht</identifier>
       <name>xplan:SO_KlassifizNachWasserrecht</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_KlassifizNachWasserrecht_1000">
@@ -6677,7 +6509,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_KlassifizSchutzgebietSonstRecht">
-      <identifier>xplan:SO_KlassifizSchutzgebietSonstRecht</identifier>
       <name>xplan:SO_KlassifizSchutzgebietSonstRecht</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_KlassifizSchutzgebietSonstRecht_1000">
@@ -6701,7 +6532,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_KlassifizSchutzgebietWasserrecht">
-      <identifier>xplan:SO_KlassifizSchutzgebietWasserrecht</identifier>
       <name>xplan:SO_KlassifizSchutzgebietWasserrecht</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_KlassifizSchutzgebietWasserrecht_1000">
@@ -6737,7 +6567,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_LaermschutzzoneTypen">
-      <identifier>xplan:SO_LaermschutzzoneTypen</identifier>
       <name>xplan:SO_LaermschutzzoneTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_LaermschutzzoneTypen_1000">
@@ -6761,13 +6590,11 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_PlanArt">
-      <identifier>xplan:SO_PlanArt</identifier>
       <name>xplan:SO_PlanArt</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_Rechtscharakter">
-      <identifier>xplan:SO_Rechtscharakter</identifier>
       <name>xplan:SO_Rechtscharakter</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_Rechtscharakter_2000">
@@ -6803,7 +6630,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_RechtsstandGebietTyp">
-      <identifier>xplan:SO_RechtsstandGebietTyp</identifier>
       <name>xplan:SO_RechtsstandGebietTyp</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_RechtsstandGebietTyp_1000">
@@ -6845,7 +6671,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_SchutzzonenNaturschutzrecht">
-      <identifier>xplan:SO_SchutzzonenNaturschutzrecht</identifier>
       <name>xplan:SO_SchutzzonenNaturschutzrecht</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_SchutzzonenNaturschutzrecht_1000">
@@ -6893,7 +6718,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_SchutzzonenWasserrecht">
-      <identifier>xplan:SO_SchutzzonenWasserrecht</identifier>
       <name>xplan:SO_SchutzzonenWasserrecht</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_SchutzzonenWasserrecht_1000">
@@ -6935,19 +6759,16 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_SonstGebietsArt">
-      <identifier>xplan:SO_SonstGebietsArt</identifier>
       <name>xplan:SO_SonstGebietsArt</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_SonstGrenzeTypen">
-      <identifier>xplan:SO_SonstGrenzeTypen</identifier>
       <name>xplan:SO_SonstGrenzeTypen</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_SonstRechtscharakter">
-      <identifier>xplan:SO_SonstRechtscharakter</identifier>
       <name>xplan:SO_SonstRechtscharakter</name>
       <definitionMember>
         <Definition gml:id="xplan:SO_SonstRechtscharakter_DarstellungFPlan">
@@ -6965,13 +6786,11 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:SO_SonstRechtsstandGebietTyp">
-      <identifier>xplan:SO_SonstRechtsstandGebietTyp</identifier>
       <name>xplan:SO_SonstRechtsstandGebietTyp</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_ABEMassnahmenTypen">
-      <identifier>xplan:XP_ABEMassnahmenTypen</identifier>
       <name>xplan:XP_ABEMassnahmenTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_ABEMassnahmenTypen_1000">
@@ -6995,7 +6814,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_AbweichungBauNVOTypen">
-      <identifier>xplan:XP_AbweichungBauNVOTypen</identifier>
       <name>xplan:XP_AbweichungBauNVOTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_AbweichungBauNVOTypen_1000">
@@ -7025,7 +6843,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_AllgArtDerBaulNutzung">
-      <identifier>xplan:XP_AllgArtDerBaulNutzung</identifier>
       <name>xplan:XP_AllgArtDerBaulNutzung</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_AllgArtDerBaulNutzung_1000">
@@ -7061,7 +6878,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_AnpflanzungBindungErhaltungsGegenstand">
-      <identifier>xplan:XP_AnpflanzungBindungErhaltungsGegenstand</identifier>
       <name>xplan:XP_AnpflanzungBindungErhaltungsGegenstand</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_AnpflanzungBindungErhaltungsGegenstand_1000">
@@ -7133,7 +6949,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_ArtHoehenbezug">
-      <identifier>xplan:XP_ArtHoehenbezug</identifier>
       <name>xplan:XP_ArtHoehenbezug</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_ArtHoehenbezug_1000">
@@ -7163,7 +6978,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_ArtHoehenbezugspunkt">
-      <identifier>xplan:XP_ArtHoehenbezugspunkt</identifier>
       <name>xplan:XP_ArtHoehenbezugspunkt</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_ArtHoehenbezugspunkt_1000">
@@ -7223,7 +7037,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_BedeutungenBereich">
-      <identifier>xplan:XP_BedeutungenBereich</identifier>
       <name>xplan:XP_BedeutungenBereich</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_BedeutungenBereich_1600">
@@ -7247,7 +7060,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_BesondereArtDerBaulNutzung">
-      <identifier>xplan:XP_BesondereArtDerBaulNutzung</identifier>
       <name>xplan:XP_BesondereArtDerBaulNutzung</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_BesondereArtDerBaulNutzung_1000">
@@ -7343,7 +7155,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_Bundeslaender">
-      <identifier>xplan:XP_Bundeslaender</identifier>
       <name>xplan:XP_Bundeslaender</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_Bundeslaender_1000">
@@ -7451,7 +7262,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_ExterneReferenzArt">
-      <identifier>xplan:XP_ExterneReferenzArt</identifier>
       <name>xplan:XP_ExterneReferenzArt</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_ExterneReferenzArt_Dokument">
@@ -7469,7 +7279,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_ExterneReferenzTyp">
-      <identifier>xplan:XP_ExterneReferenzTyp</identifier>
       <name>xplan:XP_ExterneReferenzTyp</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_ExterneReferenzTyp_1000">
@@ -7583,13 +7392,11 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_GesetzlicheGrundlage">
-      <identifier>xplan:XP_GesetzlicheGrundlage</identifier>
       <name>xplan:XP_GesetzlicheGrundlage</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_GrenzeTypen">
-      <identifier>xplan:XP_GrenzeTypen</identifier>
       <name>xplan:XP_GrenzeTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_GrenzeTypen_1000">
@@ -7679,7 +7486,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_HorizontaleAusrichtung">
-      <identifier>xplan:XP_HorizontaleAusrichtung</identifier>
       <name>xplan:XP_HorizontaleAusrichtung</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_HorizontaleAusrichtung_linksbündig">
@@ -7703,7 +7509,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_KlassifizSchutzgebietNaturschutzrecht">
-      <identifier>xplan:XP_KlassifizSchutzgebietNaturschutzrecht</identifier>
       <name>xplan:XP_KlassifizSchutzgebietNaturschutzrecht</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_KlassifizSchutzgebietNaturschutzrecht_1000">
@@ -7787,7 +7592,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_MimeTypes">
-      <identifier>xplan:XP_MimeTypes</identifier>
       <name>xplan:XP_MimeTypes</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_MimeTypes_application/msexcel">
@@ -7889,7 +7693,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_Nutzungsform">
-      <identifier>xplan:XP_Nutzungsform</identifier>
       <name>xplan:XP_Nutzungsform</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_Nutzungsform_1000">
@@ -7907,7 +7710,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_RechtscharakterPlanaenderung">
-      <identifier>xplan:XP_RechtscharakterPlanaenderung</identifier>
       <name>xplan:XP_RechtscharakterPlanaenderung</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_RechtscharakterPlanaenderung_1000">
@@ -7931,7 +7733,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_Rechtsstand">
-      <identifier>xplan:XP_Rechtsstand</identifier>
       <name>xplan:XP_Rechtsstand</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_Rechtsstand_1000">
@@ -7955,7 +7756,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_SPEMassnahmenTypen">
-      <identifier>xplan:XP_SPEMassnahmenTypen</identifier>
       <name>xplan:XP_SPEMassnahmenTypen</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_SPEMassnahmenTypen_1000">
@@ -8051,7 +7851,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_SPEZiele">
-      <identifier>xplan:XP_SPEZiele</identifier>
       <name>xplan:XP_SPEZiele</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_SPEZiele_1000">
@@ -8087,7 +7886,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_Sondernutzungen">
-      <identifier>xplan:XP_Sondernutzungen</identifier>
       <name>xplan:XP_Sondernutzungen</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_Sondernutzungen_1000">
@@ -8237,13 +8035,11 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_StylesheetListe">
-      <identifier>xplan:XP_StylesheetListe</identifier>
       <name>xplan:XP_StylesheetListe</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_VerlaengerungVeraenderungssperre">
-      <identifier>xplan:XP_VerlaengerungVeraenderungssperre</identifier>
       <name>xplan:XP_VerlaengerungVeraenderungssperre</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_VerlaengerungVeraenderungssperre_1000">
@@ -8267,7 +8063,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_VertikaleAusrichtung">
-      <identifier>xplan:XP_VertikaleAusrichtung</identifier>
       <name>xplan:XP_VertikaleAusrichtung</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_VertikaleAusrichtung_Basis">
@@ -8291,7 +8086,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_ZweckbestimmungGemeinbedarf">
-      <identifier>xplan:XP_ZweckbestimmungGemeinbedarf</identifier>
       <name>xplan:XP_ZweckbestimmungGemeinbedarf</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_ZweckbestimmungGemeinbedarf_1000">
@@ -8549,7 +8343,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_ZweckbestimmungGewaesser">
-      <identifier>xplan:XP_ZweckbestimmungGewaesser</identifier>
       <name>xplan:XP_ZweckbestimmungGewaesser</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_ZweckbestimmungGewaesser_1000">
@@ -8579,7 +8372,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_ZweckbestimmungGruen">
-      <identifier>xplan:XP_ZweckbestimmungGruen</identifier>
       <name>xplan:XP_ZweckbestimmungGruen</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_ZweckbestimmungGruen_1000">
@@ -8801,7 +8593,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_ZweckbestimmungKennzeichnung">
-      <identifier>xplan:XP_ZweckbestimmungKennzeichnung</identifier>
       <name>xplan:XP_ZweckbestimmungKennzeichnung</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_ZweckbestimmungKennzeichnung_1000">
@@ -8861,7 +8652,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_ZweckbestimmungLandwirtschaft">
-      <identifier>xplan:XP_ZweckbestimmungLandwirtschaft</identifier>
       <name>xplan:XP_ZweckbestimmungLandwirtschaft</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_ZweckbestimmungLandwirtschaft_1000">
@@ -8921,7 +8711,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_ZweckbestimmungSpielSportanlage">
-      <identifier>xplan:XP_ZweckbestimmungSpielSportanlage</identifier>
       <name>xplan:XP_ZweckbestimmungSpielSportanlage</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_ZweckbestimmungSpielSportanlage_1000">
@@ -8951,7 +8740,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_ZweckbestimmungVerEntsorgung">
-      <identifier>xplan:XP_ZweckbestimmungVerEntsorgung</identifier>
       <name>xplan:XP_ZweckbestimmungVerEntsorgung</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_ZweckbestimmungVerEntsorgung_1000">
@@ -9383,7 +9171,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_ZweckbestimmungWald">
-      <identifier>xplan:XP_ZweckbestimmungWald</identifier>
       <name>xplan:XP_ZweckbestimmungWald</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_ZweckbestimmungWald_1000">
@@ -9425,7 +9212,6 @@
   </dictionaryEntry>
   <dictionaryEntry>
     <DefinitionCollection gml:id="xplan:XP_ZweckbestimmungWasserwirtschaft">
-      <identifier>xplan:XP_ZweckbestimmungWasserwirtschaft</identifier>
       <name>xplan:XP_ZweckbestimmungWasserwirtschaft</name>
       <definitionMember>
         <Definition gml:id="xplan:XP_ZweckbestimmungWasserwirtschaft_1000">

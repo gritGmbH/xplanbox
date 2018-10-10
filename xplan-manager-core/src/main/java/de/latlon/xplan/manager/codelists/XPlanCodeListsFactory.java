@@ -28,7 +28,7 @@ public class XPlanCodeListsFactory {
 
     private static final String XPLAN_41_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_4_1.xml";
 
-    private static final String XPLAN_50_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_4_1.xml";
+    private static final String XPLAN_50_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_5_0.xml";
 
     private static final String XPLAN_SYN_CODE_LISTS = "/appschemas/XPlanGML_Syn/XPlanSyn_CodeLists.xml";
 
