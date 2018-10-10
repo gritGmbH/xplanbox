@@ -477,6 +477,12 @@
           <name>5000</name>
         </Definition>
       </definitionMember>
+      <definitionMember>
+        <Definition gml:id="BP_Rechtscharakter_9998">
+          <description>Unbekannt</description>
+          <name>9998</name>
+        </Definition>
+      </definitionMember>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
