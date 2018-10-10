@@ -11108,6 +11108,55 @@ SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_freiraum','xplan_symbolpos
 CREATE INDEX spatial_idx_392 ON xplan_rp_freiraum USING GIST ( xplan_symbolposition  );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_freiraum','xplan_position','-1','GEOMETRY', 2);
 CREATE INDEX spatial_idx_393 ON xplan_rp_freiraum USING GIST ( xplan_position  );
+CREATE TABLE xplansynarchive.xplan_rp_funktionszuweisung (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+    xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_uuid text,
+    xplan_text text,
+    xplan_rechtsstand text,
+    xplan_rechtsstandcode text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
+    xplan_gliederung1 text,
+    xplan_gliederung2 text,
+    xplan_ebene integer,
+    xplan_hatgenerattribut text,
+    xplan_hoehenangabe text,
+    xplan_externereferenz text,
+    xplan_wirddargestelltdurch text,
+    xplan_refbegruendunginhalt text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_konkretisierung text,
+    xplan_gebietstyp text,
+    xplan_gebietstypcode text,
+    xplan_kuestenmeer text,
+    xplan_bedeutsamkeit text,
+    xplan_bedeutsamkeitcode text,
+    xplan_istzweckbindung text,
+    xplan_reftextinhalt text,
+    xplan_flaechenschluss text,
+    xplan_flussrichtung text,
+    xplan_typ text,
+    xplan_typcode text,
+    xplan_bezeichnung text,
+    CONSTRAINT xplan_rp_verkehr_pkey PRIMARY KEY (attr_gml_id)
+);
+SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_funktionszuweisung','xplan_symbolposition','-1','GEOMETRY', 2);
+CREATE INDEX spatial_idx_392 ON xplan_rp_funktionszuweisung USING GIST ( xplan_symbolposition  );
+SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_funktionszuweisung','xplan_position','-1','GEOMETRY', 2);
+CREATE INDEX spatial_idx_393 ON xplan_rp_funktionszuweisung USING GIST ( xplan_position  );
 CREATE TABLE xplansynarchive.xplan_rp_freizeiterholung (
     attr_gml_id text,
     xplan_gmlid text,
