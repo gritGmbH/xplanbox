@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 public class XpRasterplanFlattener extends AbstractFlattener {
 
     private static final Logger LOG = LoggerFactory.getLogger( XpRasterplanFlattener.class );
-    
+
     @Override
     public boolean accepts( TypedObjectNode node ) {
         if ( node instanceof Feature ) {
@@ -26,11 +26,11 @@ public class XpRasterplanFlattener extends AbstractFlattener {
             AppSchema schema = feature.getType().getSchema();
             String ns = feature.getName().getNamespaceURI();
             FeatureType rasterAenderungFt = schema.getFeatureType( new QName( ns, "XP_RasterplanAenderung" ) );
-            if ( schema.isSubType( rasterAenderungFt, ft ) ) {
+            if ( rasterAenderungFt != null && schema.isSubType( rasterAenderungFt, ft ) ) {
                 return true;
             }
             FeatureType rasterBasisFt = schema.getFeatureType( new QName( ns, "XP_RasterplanBasis" ) );
-            if ( schema.isSubType( rasterBasisFt, ft ) ) {
+            if ( rasterBasisFt != null && schema.isSubType( rasterBasisFt, ft ) ) {
                 return true;
             }
         }

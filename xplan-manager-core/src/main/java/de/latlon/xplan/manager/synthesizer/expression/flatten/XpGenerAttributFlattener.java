@@ -2,6 +2,7 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersion;
 
 import javax.xml.namespace.QName;
@@ -30,7 +31,7 @@ public class XpGenerAttributFlattener extends AbstractFlattener {
 
     private boolean isGenerAttribut( Feature feature ) {
         XPlanVersion version = determineBaseVersion( feature.getName() );
-        if ( version == XPLAN_40 || version == XPLAN_41 ) {
+        if ( version == XPLAN_40 || version == XPLAN_41 || version == XPLAN_50 ) {
             return false;
         }
         FeatureType ft = feature.getType();
