@@ -13829,6 +13829,7 @@ CREATE TABLE xplansynarchive.xplan_rp_plan (
     xplan_genehmigungsdatum date,
     xplan_externereferenz text,
     xplan_verfahren text,
+    xplan_verfahrencode text,
     xplan_amtlicherschluessel integer,
     CONSTRAINT xplan_rp_plan_pkey PRIMARY KEY (attr_gml_id)
 );
