@@ -240,7 +240,7 @@ public class PlanListPanel extends DecoratorPanel {
         };
         nameColumn.setSortable( true );
         nameColumn.setCellStyleNames( "planListColumn nameColumn" );
-        addDataDependentToolTip( xPlanTable, nameColumn, new TooltipCreator() {
+        addToolTip( xPlanTable, nameColumn, new TooltipCreator() {
             @Override
             public String createTooltip( CellPreviewEvent<XPlan> event ) {
                 XPlan xplan = event.getValue();
@@ -391,7 +391,7 @@ public class PlanListPanel extends DecoratorPanel {
             }
         };
         validityStatusColumn.setCellStyleNames( "planListColumn validityStatusColumn" );
-        addDataDependentToolTip( xPlanTable, validityStatusColumn, new TooltipCreator() {
+        addToolTip( xPlanTable, validityStatusColumn, new TooltipCreator() {
             @Override
             public String createTooltip( CellPreviewEvent<XPlan> event ) {
                 XPlanMetadata xplanMetadata = event.getValue().getXplanMetadata();
@@ -445,7 +445,7 @@ public class PlanListPanel extends DecoratorPanel {
         } );
         removeButtonColumn.setCellStyleNames( "planListColumn removeButtonColumn" );
         xPlanTable.addColumn( removeButtonColumn, columnHeader );
-        addStaticToolTip( xPlanTable, removeButtonColumn, messages.deletePlan() );
+        addToolTip( xPlanTable, removeButtonColumn, new FixValueTooltipCreator( messages.deletePlan() ) );
     }
 
     private void addEditColumn( final CellTable<XPlan> xPlanTable, TextHeader columnHeader ) {
@@ -469,7 +469,7 @@ public class PlanListPanel extends DecoratorPanel {
         } );
         editButtonColumn.setCellStyleNames( "planListColumn editButtonColumn" );
         xPlanTable.addColumn( editButtonColumn, columnHeader );
-        addDataDependentToolTip( xPlanTable, editButtonColumn, new TooltipCreator() {
+        addToolTip( xPlanTable, editButtonColumn, new TooltipCreator() {
             @Override
             public String createTooltip( CellPreviewEvent<XPlan> event ) {
                 XPlan xPlan = event.getValue();
@@ -505,7 +505,7 @@ public class PlanListPanel extends DecoratorPanel {
         } );
         previewButtonColumn.setCellStyleNames( "planListColumn previewButtonColumn" );
         xPlanTable.addColumn( previewButtonColumn, columnHeader );
-        addStaticToolTip( xPlanTable, previewButtonColumn, messages.mapPreview() );
+        addToolTip( xPlanTable, previewButtonColumn, new FixValueTooltipCreator( messages.mapPreview() ) );
     }
 
     private void addDownloadColumn( final CellTable<XPlan> xPlanTable, TextHeader columnHeader ) {
@@ -524,7 +524,7 @@ public class PlanListPanel extends DecoratorPanel {
         } );
         downloadButtonColumn.setCellStyleNames( "planListColumn downloadButtonColumn" );
         xPlanTable.addColumn( downloadButtonColumn, columnHeader );
-        addStaticToolTip( xPlanTable, downloadButtonColumn, messages.downloadPlan() );
+        addToolTip( xPlanTable, downloadButtonColumn, new FixValueTooltipCreator( messages.downloadPlan() ) );
     }
 
     private void addPublishPluColumn( final CellTable<XPlan> xPlanTable, TextHeader columnHeader ) {
@@ -548,9 +548,9 @@ public class PlanListPanel extends DecoratorPanel {
         } );
         publishPluButtonColumn.setCellStyleNames( "planListColumn publishPluButtonColumn" );
         xPlanTable.addColumn( publishPluButtonColumn, columnHeader );
-        addStaticToolTip( xPlanTable, publishPluButtonColumn, messages.publishPlu() );
+        addToolTip( xPlanTable, publishPluButtonColumn, new FixValueTooltipCreator( messages.publishPlu() ) );
 
-        addDataDependentToolTip( xPlanTable, publishPluButtonColumn, new TooltipCreator() {
+        addToolTip( xPlanTable, publishPluButtonColumn, new TooltipCreator() {
             @Override
             public String createTooltip( CellPreviewEvent<XPlan> event ) {
                 XPlan xPlan = event.getValue();
@@ -567,23 +567,8 @@ public class PlanListPanel extends DecoratorPanel {
         } );
     }
 
-    private void addStaticToolTip( final CellTable<XPlan> xPlanTable, final Column<XPlan, String> column,
-                                   final String tooltip ) {
-        xPlanTable.addCellPreviewHandler( new Handler<XPlan>() {
-            @Override
-            public void onCellPreview( CellPreviewEvent<XPlan> event ) {
-                int columnIndex = event.getColumn();
-                if ( xPlanTable.getColumnIndex( column ) == columnIndex
-                     && "mouseover".equals( event.getNativeEvent().getType() ) ) {
-                    int index = event.getIndex();
-                    xPlanTable.getRowElement( index ).getCells().getItem( columnIndex ).setTitle( tooltip );
-                }
-            }
-        } );
-    }
-
-    private void addDataDependentToolTip( final CellTable<XPlan> xPlanTable, final Column<XPlan, String> column,
-                                          final TooltipCreator tooltipCreator ) {
+    private void addToolTip( final CellTable<XPlan> xPlanTable, final Column<XPlan, String> column,
+                             final TooltipCreator tooltipCreator ) {
         xPlanTable.addCellPreviewHandler( new Handler<XPlan>() {
 
             @Override
@@ -713,6 +698,20 @@ public class PlanListPanel extends DecoratorPanel {
 
     private interface TooltipCreator {
         String createTooltip( CellPreviewEvent<XPlan> event );
+    }
+
+    private class FixValueTooltipCreator implements TooltipCreator {
+
+        private String tooltip;
+
+        FixValueTooltipCreator( String tooltip ) {
+            this.tooltip = tooltip;
+        }
+
+        @Override
+        public String createTooltip( CellPreviewEvent<XPlan> event ) {
+            return tooltip;
+        }
     }
 
 }
