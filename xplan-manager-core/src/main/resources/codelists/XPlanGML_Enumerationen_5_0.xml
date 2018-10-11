@@ -357,6 +357,53 @@
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
+    <DefinitionCollection gml:id="BP_Laermpegelbereich">
+      <name>xplan:BP_Laermpegelbereich</name>
+      <definitionMember>
+        <Definition gml:id="BP_Laermpegelbereich_1000">
+          <description>I</description>
+          <name>1000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="BP_Laermpegelbereich_1100">
+          <description>II</description>
+          <name>1100</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="BP_Laermpegelbereich_1200">
+          <description>ITT</description>
+          <name>1200</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="BP_Laermpegelbereich_1300">
+          <description>IV</description>
+          <name>1300</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="BP_Laermpegelbereich_1400">
+          <description>V</description>
+          <name>1400</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="BP_Laermpegelbereich_1500">
+          <description>VI</description>
+          <name>1500</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="BP_Laermpegelbereich_1600">
+          <description>VII</description>
+          <name>1600</name>
+        </Definition>
+      </definitionMember>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
     <DefinitionCollection gml:id="BP_NebenanlagenAusschlussTyp">
       <name>xplan:BP_NebenanlagenAusschlussTyp</name>
       <definitionMember>

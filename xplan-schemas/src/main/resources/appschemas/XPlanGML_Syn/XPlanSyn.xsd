@@ -3374,6 +3374,7 @@
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
             <element name="gehoertZuBP_Bereich" minOccurs="0" type="string" />
             <element name="laermpegelbereich" minOccurs="0" type="string" />
+            <element name="laermpegelbereichCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

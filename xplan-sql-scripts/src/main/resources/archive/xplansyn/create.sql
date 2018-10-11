@@ -3177,6 +3177,7 @@ CREATE TABLE xplansynarchive.xplan_bp_immissionsschutz (
     xplan_wirdausgeglichendurchspeflaeche text,
     xplan_gehoertzubp_bereich text,
     xplan_laermpegelbereich text,
+    xplan_laermpegelbereichcode text,
     CONSTRAINT xplan_bp_immissionsschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_immissionsschutz','xplan_symbolposition','-1','GEOMETRY', 2);
