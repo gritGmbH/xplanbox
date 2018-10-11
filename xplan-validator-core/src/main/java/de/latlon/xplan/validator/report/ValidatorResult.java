@@ -1,5 +1,7 @@
 package de.latlon.xplan.validator.report;
 
+import de.latlon.xplan.validator.report.ReportUtils.SkipCode;
+
 /**
  * Encapsulates a single validation result.
  *
@@ -11,13 +13,15 @@ public abstract class ValidatorResult {
 
     private boolean isValid;
 
+    private SkipCode skipCode;
+
     private ValidatorDetail validatorDetails;
 
     /**
      * Instantiates a {@link ValidatorResult} which is invalid and without detailsHint.
      */
     public ValidatorResult() {
-        this( null );
+        this( (ValidatorDetail) null );
     }
 
     /**
@@ -52,6 +56,16 @@ public abstract class ValidatorResult {
     }
 
     /**
+     * Instantiates a {@link ValidatorResult} for a skipped validation.
+     *
+     * @param skipCode
+     *            the reason why the validation was skipped, never <code>null</code>
+     */
+    public ValidatorResult( SkipCode skipCode ) {
+        this.skipCode = skipCode;
+    }
+
+    /**
      * @param valid
      *            <code>true</code> if the validation results is valid, <code>false</code> otherwise
      */
@@ -64,6 +78,20 @@ public abstract class ValidatorResult {
      */
     public boolean isValid() {
         return isValid;
+    }
+
+    /**
+     * @return <code>true</code> if the validation was skipped, <code>false</code> otherwise
+     */
+    public boolean isSkipped() {
+        return skipCode != null;
+    }
+
+    /**
+     * @return the reason why the validation was skipped, may be <code>null</code> (if not skipped)
+     */
+    public SkipCode getSkipCode() {
+        return skipCode;
     }
 
     /**
