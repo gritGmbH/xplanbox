@@ -79,8 +79,8 @@ public class XPlanValidationServiceImpl extends RemoteServiceServlet implements 
                                          reportDirectory );
 
             return new ValidationSummary( planUuid, validationSettings.getValidationName() );
-        } catch ( ValidatorException | IOException | ReportGenerationException e ) {
-            LOG.error( "An exception occured during validation", e );
+        } catch ( ValidatorException | IOException e ) {
+            LOG.error( "An exception occurred during validation", e );
             throw new ValidationException( e.getMessage() );
         }
     }
