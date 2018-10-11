@@ -1970,6 +1970,53 @@
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
+    <DefinitionCollection gml:id="LP_Rechtscharakter">
+      <name>xplan:LP_Rechtscharakter</name>
+      <definitionMember>
+        <Definition gml:id="LP_Rechtscharakter_1000">
+          <description>Festsetzung</description>
+          <name>1000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="LP_Rechtscharakter_2000">
+          <description>Geplant</description>
+          <name>2000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="LP_Rechtscharakter_3000">
+          <description>NachrichtlicheUebernahme</description>
+          <name>3000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="LP_Rechtscharakter_4000">
+          <description>DarstellungKennzeichnung</description>
+          <name>4000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="LP_Rechtscharakter_5000">
+          <description>FestsetzungInBPlan</description>
+          <name>5000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="LP_Rechtscharakter_9998">
+          <description>Unbekannt</description>
+          <name>9998</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="LP_Rechtscharakter_9999">
+          <description>SonstigerStatus</description>
+          <name>9999</name>
+        </Definition>
+      </definitionMember>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
     <DefinitionCollection gml:id="LP_Rechtsstand">
       <name>xplan:LP_Rechtsstand</name>
       <definitionMember>
