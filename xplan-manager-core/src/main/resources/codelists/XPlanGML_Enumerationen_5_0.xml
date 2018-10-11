@@ -9351,4 +9351,9 @@
       </definitionMember>
     </DefinitionCollection>
   </dictionaryEntry>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="VegetationsobjektTypen">
+      <name>xplan:VegetationsobjektTypen</name>
+    </DefinitionCollection>
+  </dictionaryEntry>
 </Dictionary  >
