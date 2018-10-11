@@ -265,6 +265,7 @@ CREATE TABLE xplansynarchive.xplan_bp_anpflanzungbindungerhaltung (
     xplan_pflanztiefe numeric,
     xplan_pflanztiefeuom text,
     xplan_baumart text,
+    xplan_baumartcode text,
     CONSTRAINT xplan_bp_anpflanzungbindungerhaltung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_anpflanzungbindungerhaltung','xplan_symbolposition','-1','GEOMETRY', 2);

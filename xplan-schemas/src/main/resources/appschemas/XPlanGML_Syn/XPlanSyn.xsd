@@ -291,6 +291,7 @@
             <element name="pflanztiefe" minOccurs="0" type="double" />
             <element name="pflanztiefeUOM" minOccurs="0" type="string" />
             <element name="baumArt" minOccurs="0" type="string" />
+            <element name="baumArtCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
