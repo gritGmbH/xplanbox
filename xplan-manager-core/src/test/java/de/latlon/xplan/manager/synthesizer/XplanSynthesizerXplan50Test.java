@@ -49,7 +49,6 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
-import org.xmlmatchers.xpath.XpathReturnType;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -66,9 +65,8 @@ public class XplanSynthesizerXplan50Test {
         synSchema = XPlanSchemas.getInstance().getAppSchema( XPLAN_SYN, null );
     }
 
-    // , "xplan50/BP2135.zip", "xplan50/FPlan.zip", "xplan50/LA22.zip",
-    // "xplan50/LA67.zip"
-    @Parameters({ "xplan50/BP2070.zip" })
+    @Parameters({ "xplan50/BP2070.zip", "xplan50/BP2135.zip", "xplan50/FPlan.zip", "xplan50/LA22.zip",
+                 "xplan50/LA67.zip" })
     @Test
     public void testCreateSynFeatures( String archiveName )
                             throws Exception {
@@ -80,9 +78,11 @@ public class XplanSynthesizerXplan50Test {
         int numberOfSynFeatures = synFeatureCollection.size();
 
         assertThat( numberOfSynFeatures, is( numberOfOriginalFeatures ) );
-        Path synGml = writeSynFeatureCollection( synFeatureCollection );
+        Path synGml = writeSynFeatureCollection( synFeatureCollection, archive.getName() );
 
-        assertThat( the( synGml ), hasXPath( "count(//xplansyn:rechtscharakter[text() = ''])", nsContext(), returningANumber(), is( 0d ) ) );
+        assertThat( the( synGml ),
+                    hasXPath( "count(//xplansyn:rechtscharakter[text() = ''])", nsContext(), returningANumber(),
+                              is( 0d ) ) );
     }
 
     public static Source the( Path synGml )
@@ -105,9 +105,11 @@ public class XplanSynthesizerXplan50Test {
         return xPlanSynthesizer.synthesize( version, xplanFc );
     }
 
-    private Path writeSynFeatureCollection( FeatureCollection fc )
+    private Path writeSynFeatureCollection( FeatureCollection fc, String archiveName )
                             throws Exception {
-        Path tempFile = Files.createTempFile( "XplanSynthesizerXplan50Test", "gml" );
+        String fileName = archiveName.substring( archiveName.indexOf( "/" ) + 1, archiveName.indexOf( "." ) );
+        System.out.println( fileName );
+        Path tempFile = Files.createTempFile( "XplanSynthesizerXplan50Test_" + fileName + "_", ".gml" );
         OutputStream os = Files.newOutputStream( tempFile );
         XMLStreamWriter xmlWriter = XMLOutputFactory.newInstance().createXMLStreamWriter( os );
         xmlWriter = new IndentingXMLStreamWriter( xmlWriter );
