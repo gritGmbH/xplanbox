@@ -42,6 +42,7 @@ import org.deegree.commons.jdbc.TableName;
 import org.deegree.commons.tom.primitive.BaseType;
 import org.deegree.feature.persistence.sql.MappedAppSchema;
 import org.deegree.feature.persistence.sql.expressions.TableJoin;
+import org.deegree.feature.persistence.sql.id.FIDMapping;
 import org.deegree.feature.persistence.sql.rules.FeatureMapping;
 import org.deegree.feature.persistence.sql.rules.GeometryMapping;
 import org.deegree.feature.persistence.sql.rules.PrimitiveMapping;
@@ -171,7 +172,7 @@ class PostGISDDLCreator extends DDLCreator {
     }
 
     @Override
-    protected StringBuffer createJoinedTable( TableName fromTable, TableJoin jc, List<StringBuffer> ddls ) {
+    protected StringBuffer createJoinedTable(TableName fromTable, TableJoin jc, List<StringBuffer> ddls, FIDMapping fidMapping) {
         StringBuffer sb = new StringBuffer( "CREATE TABLE " );
         sb.append( jc.getToTable() );
         sb.append( " (\n    " );
