@@ -568,9 +568,9 @@ public class XPlanManager {
             FeatureCollection featuresToModify = originalPlanFC.getFeatures();
             ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan( featuresToModify );
             planModifier.modifyXPlan( featuresToModify, xPlanToEdit, version, type, appSchema );
-            FeatureCollection modifiedFeatures = renewFeatureCollection( version, type, appSchema, featuresToModify );
             String internalId = xplanDao.retrieveInternalId( planId, type );
             featureCollectionManipulator.addInternalId( featuresToModify, appSchema, internalId );
+            FeatureCollection modifiedFeatures = renewFeatureCollection( version, type, appSchema, featuresToModify );
             ExternalReferenceInfo externalReferencesModified = new ExternalReferenceScanner().scan( modifiedFeatures );
 
             byte[] xPlanGml = createXPlanGml( version, modifiedFeatures );
