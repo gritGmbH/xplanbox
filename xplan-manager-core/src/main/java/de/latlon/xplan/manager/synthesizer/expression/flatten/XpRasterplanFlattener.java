@@ -33,6 +33,10 @@ public class XpRasterplanFlattener extends AbstractFlattener {
             if ( rasterBasisFt != null && schema.isSubType( rasterBasisFt, ft ) ) {
                 return true;
             }
+            FeatureType rasterDarstellungFt = schema.getFeatureType( new QName( ns, "XP_Rasterdarstellung" ) );
+            if ( rasterDarstellungFt != null && schema.isSubType( rasterDarstellungFt, ft ) ) {
+                return true;
+            }
         }
         return false;
     }
