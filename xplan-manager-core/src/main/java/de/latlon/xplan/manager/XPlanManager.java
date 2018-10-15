@@ -34,8 +34,6 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
-import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
-import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.xml.XMLParsingException;
@@ -63,10 +61,12 @@ import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.archive.XPlanPartArchive;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
+import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
+import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
 import de.latlon.xplan.manager.codelists.XPlanCodeLists;
 import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
@@ -78,6 +78,7 @@ import de.latlon.xplan.manager.edit.XPlanManipulator;
 import de.latlon.xplan.manager.edit.XPlanToEditFactory;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
+import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
 import de.latlon.xplan.manager.jdbcconfig.JaxbJdbcConfigWriter;
 import de.latlon.xplan.manager.jdbcconfig.JdbcConfigWriter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
@@ -131,6 +132,8 @@ public class XPlanManager {
 
     private final XPlanManipulator planModifier = new XPlanManipulator();
 
+    private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
+    
     private final XPlanRasterManager xPlanRasterManager;
 
     private final SortPropertyReader sortPropertyReader;
@@ -565,6 +568,8 @@ public class XPlanManager {
             FeatureCollection featuresToModify = originalPlanFC.getFeatures();
             ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan( featuresToModify );
             planModifier.modifyXPlan( featuresToModify, xPlanToEdit, version, type, appSchema );
+            String internalId = xplanDao.retrieveInternalId( planId, type );
+            featureCollectionManipulator.addInternalId( featuresToModify, appSchema, internalId );
             FeatureCollection modifiedFeatures = renewFeatureCollection( version, type, appSchema, featuresToModify );
             ExternalReferenceInfo externalReferencesModified = new ExternalReferenceScanner().scan( modifiedFeatures );
 
