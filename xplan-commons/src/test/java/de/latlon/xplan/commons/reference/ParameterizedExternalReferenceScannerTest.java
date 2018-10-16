@@ -23,14 +23,12 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 @RunWith(JUnitParamsRunner.class)
 public class ParameterizedExternalReferenceScannerTest {
 
-    private final ExternalReferenceScanner scanner = new ExternalReferenceScanner();
-
     @FileParameters("src/test/resources/de/latlon/xplan/commons/reference/externalReferenceScanner-test-input.csv")
     @Test
     public void testValidationOfSingleRule( String resourceUnderTest, int externalRefs, int rasterPlanBaseScans )
                             throws Exception {
         FeatureCollection fc = getMainFileAsFeatureCollection( resourceUnderTest );
-        ExternalReferenceInfo referenceInfo = scanner.scan( fc );
+        ExternalReferenceInfo referenceInfo = new ExternalReferenceScanner().scan( fc );
         assertEquals( externalRefs, referenceInfo.getExternalRefs().size() );
         assertEquals( rasterPlanBaseScans, referenceInfo.getRasterPlanBaseScans().size() );
 

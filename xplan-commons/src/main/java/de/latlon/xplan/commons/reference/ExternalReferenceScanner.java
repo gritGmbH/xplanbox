@@ -126,55 +126,76 @@ public class ExternalReferenceScanner {
                 for ( Property prop : feature.getProperties() ) {
                     if ( "refScan".equals( prop.getName().getLocalPart() ) ) {
                         List<ExternalReference> scanRefs = new ArrayList<ExternalReference>();
-                        scanXplan4( prop, scanRefs );
+                        scanXplan4or5( prop, scanRefs );
                         externalRefs.addAll( scanRefs );
                         rasterPlanBaseScans.addAll( scanRefs );
                     } else {
-                        scanXplan4( prop, externalRefs );
+                        scanXplan4or5( prop, externalRefs );
                     }
                 }
             } else if ( isRasterplanAenderungFeature( name ) ) {
                 for ( Property prop : feature.getProperties() ) {
                     if ( "refScan".equals( prop.getName().getLocalPart() ) ) {
                         List<ExternalReference> scanRefs = new ArrayList<ExternalReference>();
-                        scanXplan4( prop, scanRefs );
+                        scanXplan4or5( prop, scanRefs );
                         externalRefs.addAll( scanRefs );
                         rasterPlanUpdateScans.addAll( scanRefs );
                     } else {
-                        scanXplan4( prop, externalRefs );
+                        scanXplan4or5( prop, externalRefs );
                     }
                 }
             } else {
                 for ( Property prop : feature.getProperties() ) {
-                    scanXplan4( prop, externalRefs );
+                    scanXplan4or5( prop, externalRefs );
                 }
             }
         }
     }
 
     private void scanXplan5( FeatureCollection fc ) {
-        // TODO
+        for ( Feature feature : fc ) {
+            String name = feature.getName().getLocalPart();
+            if ( "XP_Rasterdarstellung".equals( name ) ) {
+                for ( Property prop : feature.getProperties() ) {
+                    if ( "refScan".equals( prop.getName().getLocalPart() ) ) {
+                        List<ExternalReference> scanRefs = new ArrayList<ExternalReference>();
+                        scanXplan4or5( prop, scanRefs );
+                        externalRefs.addAll( scanRefs );
+                        rasterPlanBaseScans.addAll( scanRefs );
+                    } else {
+                        scanXplan4or5( prop, externalRefs );
+                    }
+                }
+            } else {
+                for ( Property prop : feature.getProperties() ) {
+                    scanXplan4or5( prop, externalRefs );
+                }
+            }
+        }
     }
 
     private boolean isRasterplanAenderungFeature( String name ) {
         return "P_RasterplanAenderung".equals( name.substring( 1 ) );
     }
 
-    private void scanXplan4( ElementNode elNode, List<ExternalReference> refs ) {
+    private void scanXplan4or5(ElementNode elNode, List<ExternalReference> refs ) {
         String name = elNode.getName().getLocalPart();
         if ( "XP_ExterneReferenz".equals( name ) ) {
-            ExternalReference externalRef = createExternalReferenceXplan4( elNode );
+            ExternalReference externalRef = createExternalReferenceXplan4or5( elNode );
+            refs.add( externalRef );
+        } else if ( "XP_SpezExterneReferenz".equals( name ) ) {
+            ExternalReference externalRef = createExternalReferenceXplan4or5( elNode );
             refs.add( externalRef );
         } else {
             for ( TypedObjectNode childNode : elNode.getChildren() ) {
                 if ( childNode instanceof ElementNode ) {
-                    scanXplan4( (ElementNode) childNode, refs );
+                    scanXplan4or5( (ElementNode) childNode, refs );
                 }
             }
         }
     }
 
-    private ExternalReference createExternalReferenceXplan4( ElementNode elNode ) {
+    private ExternalReference createExternalReferenceXplan4or5(ElementNode elNode ) {
         String referenzName = null;
         String referenzUrl = null;
         String referenzMimeTypeCode = null;
