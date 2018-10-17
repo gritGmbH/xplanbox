@@ -658,8 +658,8 @@
   </dependencyManagement>
 
   <scm>
-    <connection>scm:git:git@bitbucket.org:latlon/xplanbox.git</connection>
-    <developerConnection>scm:git:git@bitbucket.org:latlon/xplanbox.git</developerConnection>
+    <connection>scm:git:https://bitbucket.org/latlon/xplanbox.git</connection>
+    <developerConnection>scm:git:https://bitbucket.org/latlon/xplanbox.git</developerConnection>
     <url>https://bitbucket.org/latlon/xplanbox</url>
     <tag>HEAD</tag>
   </scm>
