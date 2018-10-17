@@ -658,16 +658,16 @@
   </dependencyManagement>
 
   <scm>
-    <connection>scm:git:git@github.com:deegree-enterprise/xplanbox.git</connection>
-    <developerConnection>scm:git:git@github.com:deegree-enterprise/xplanbox.git</developerConnection>
-    <url>https://github.com/deegree-enterprise/xplanbox</url>
+    <connection>scm:git:git@bitbucket.org:latlon/xplanbox.git</connection>
+    <developerConnection>scm:git:git@bitbucket.org:latlon/xplanbox.git</developerConnection>
+    <url>https://bitbucket.org/latlon/xplanbox</url>
     <tag>HEAD</tag>
   </scm>
 
   <repositories>
     <repository>
-      <id>dee</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/groups/dee/</url>
+      <id>latlon-repo</id>
+      <url>http://repo/nexus/content/groups/public/</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
@@ -679,8 +679,8 @@
 
   <pluginRepositories>
     <pluginRepository>
-      <id>dee</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/groups/dee/</url>
+      <id>latlon-plugin-repo</id>
+      <url>http://repo/nexus/content/groups/public/</url>
       <releases>
         <enabled>true</enabled>
         <updatePolicy>never</updatePolicy>
@@ -693,12 +693,12 @@
 
   <distributionManagement>
     <repository>
-      <id>dee-releases</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/repositories/dee-releases/</url>
+      <id>xplanbox-release</id>
+      <url>http://repo/nexus/content/repositories/xplanbox-release/</url>
     </repository>
     <snapshotRepository>
-      <id>dee-snapshots</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/repositories/dee-snapshots/</url>
+      <id>xplanbox-snapshot</id>
+      <url>http://repo/nexus/content/repositories/xplanbox-snapshot/</url>
     </snapshotRepository>
   </distributionManagement>
 
