@@ -675,6 +675,14 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
+    <repository>
+      <id>xplanbox-release</id>
+      <url>http://repo/nexus/content/repositories/xplanbox-release/</url>
+    </repository>
+    <repository>
+      <id>xplanbox-snapshot</id>
+      <url>http://repo/nexus/content/repositories/xplanbox-snapshot/</url>
+    </repository>
   </repositories>
 
   <pluginRepositories>
