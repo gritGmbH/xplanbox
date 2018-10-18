@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+                           xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+  <sld:NamedLayer>
+    <sld:Name>RP_SonstigerFreiraumschutz</sld:Name>
+    <sld:UserStyle>
+      <sld:Name>transparent</sld:Name>
+      <sld:FeatureTypeStyle>
+        <sld:FeatureTypeName>xplan:RP_SonstigerFreiraumschutz</sld:FeatureTypeName>
+
+        <!--RP_SonstigerFreiraumschutz-->
+        <sld:Rule>
+          <sld:Name>RP_SonstigerFreiraumschutz</sld:Name>
+          <sld:Title>SonstigerFreiraumschutz</sld:Title>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Fill>
+              <sld:CssParameter name="fill-opacity">0</sld:CssParameter>
+            </sld:Fill>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
+            </sld:Stroke>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+      </sld:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+</sld:StyledLayerDescriptor>
+

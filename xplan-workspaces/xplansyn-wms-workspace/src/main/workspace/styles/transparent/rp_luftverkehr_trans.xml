@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+  <sld:NamedLayer>
+    <sld:Name>RP_Luftverkehr</sld:Name>
+    <sld:UserStyle>
+      <sld:Name>transparent</sld:Name>
+      <sld:FeatureTypeStyle>
+        <sld:FeatureTypeName>xplan:RP_Luftverkehr</sld:FeatureTypeName>
+
+        <!--Verkehrsflughafen-->
+
+        <sld:Rule>
+          <sld:Name>VR_Verkehrsflughafen</sld:Name>
+          <sld:Title>VR_Verkehrsflughafen</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+              <ogc:Literal>1001</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Fill>
+              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
+            </sld:Fill>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">2.</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
+            </sld:Stroke>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+
+        <!--Verkehrslandeplatz-->
+
+        <sld:Rule>
+          <sld:Name>VR_Verkehrslandeplatz</sld:Name>
+          <sld:Title>VR_Verkehrslandeplatz</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+              <ogc:Literal>5001</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Fill>
+              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
+            </sld:Fill>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">2.</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
+            </sld:Stroke>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+
+      </sld:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+</sld:StyledLayerDescriptor>
