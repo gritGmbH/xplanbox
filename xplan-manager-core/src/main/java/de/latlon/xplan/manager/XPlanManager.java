@@ -569,7 +569,9 @@ public class XPlanManager {
             ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan( featuresToModify );
             planModifier.modifyXPlan( featuresToModify, xPlanToEdit, version, type, appSchema );
             String internalId = xplanDao.retrieveInternalId( planId, type );
-            featureCollectionManipulator.addInternalId( featuresToModify, appSchema, internalId );
+            if ( internalId != null ) {
+                featureCollectionManipulator.addInternalId( featuresToModify, appSchema, internalId );
+            }
             FeatureCollection modifiedFeatures = renewFeatureCollection( version, type, appSchema, featuresToModify );
             ExternalReferenceInfo externalReferencesModified = new ExternalReferenceScanner().scan( modifiedFeatures );
 
