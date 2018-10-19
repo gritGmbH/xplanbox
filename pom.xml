@@ -107,7 +107,7 @@
           <configuration>
             <preparationGoals>clean install</preparationGoals>
             <autoVersionSubmodules>true</autoVersionSubmodules>
-            <releaseProfiles>release,docker</releaseProfiles>
+            <releaseProfiles>release</releaseProfiles><!--Add docker profile again when it shall be released: <releaseProfiles>release,docker</releaseProfiles>-->
           </configuration>
         </plugin>
         <plugin>
