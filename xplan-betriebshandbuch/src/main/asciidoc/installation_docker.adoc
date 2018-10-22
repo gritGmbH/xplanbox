@@ -1,0 +1,222 @@
+[[installation-docker]]
+== Installation mit Docker
+
+Alternativ zur Installation wie sie im Kapitel <<installation>> beschrieben ist, kann die Installation mit den bereitgestellten Docker-Images erfolgen. Die Spezifikation der Images und Schnittstellen, sowie Hinweise zur Inbetriebnahme sind im folgenden beschrieben.
+
+=== Spezifikation der Docker Images
+
+Die folgende Grafik gibt einen Überblick über die im folgenden näher beschriebenen Komponenten und Schnittstellen:
+
+image:../images/docker-spezifikation.png[]
+
+*Erläuterungen:*
+ * Grau: Docker Container; Orange: Docker Volume
+ * r: lesender Zugriff, rw: schreibender Zugriff
+
+
+Die xPlanBox besteht aus verschiedenen Komponenten, die z.T. auf verschiedene Docker Images bzw. Docker Container aufgeteilt werden. Dies sind konkret: 
+
+ * *XPlanValidator*
+ ** zur Validierung von Planwerken im XPlanGML
+ ** Imagename: xplanbox/xplan-validator-web-docker
+ * *XPlanManager*
+ ** zur Verwaltung von Planwerken im XPlanGML
+ ** Imagename: xplanbox/xplan-manager-web-docker
+ * *XPlanDienste*
+ ** zur Bereitstellung der Planwerke über OGC-konforme Schnittstellen
+ ** mit dem XPlanWMS, XPlanWFS und XPlanSynWFS
+ ** Imagename: xplanbox/xplan-services-docker
+ * *XPlanDB*
+ ** ein PostgreSQL DBMS als Datenhaltungskomponente
+ ** Imagename: xplanbox/xplan-db-docker
+ * *XPlanInspirePluDienste*
+ ** mit Netzwerkdiensten zur Bereitstellung von ursprünglich in XPlanGML vorgehaltenen Planwerken in INSPIRE PLU
+ ** Imagename: xplanbox/xplan-services-inspireplu-docker
+ * *XPlanInspirePluDB*
+ ** ein PostgreSQL DBMS als Datenhaltungskomponente für INSPIRE PLU
+ ** Imagename: xplanbox/xplan-db-inspireplu-docker
+
+Daneben sind zur Speicherung der Daten und Konfigurationen folgende Volumes zu nennen:
+
+ * *dbdata* 
+ ** Daten der *XPlanDB*
+ * *inspirepludbdata* 
+ ** Daten der *XPlanInspirePluDB*
+ * *workspace* 
+ ** Konfiguration der Workspaces der *XPlanDienste*. Der Workspace des XPlanWMS beinhaltet außerdem Rasterdaten von teilvektoriellen Planwerken und deren Konfigurationsdateien zur Einbindung in den XPlanWMS.
+ * *managerconfig*
+ ** Konfiguration für den *XPlanManager*
+ * *inspirepluworkspace*
+ ** Konfiguration für die *XPlanInspirePluDienste*
+
+Für das gemeinsam genutzte Volume *workspace* wird empfohlen, ein Shared-Storage als Named Volume anzulegen. Generell wird die Nutzung von Named Volumes für alle Volumes emfohlen.
+
+
+=== Docker Images
+
+==== XPlanValidator
+
+Hinweise zur Konfiguration des Images:
+
+ * JVM mit maximal 8GB Speicher
+
+Folgende Punkte sind zu beachten:
+
+ * Der Port 8080 des Tomcats aus dem Container muss nach außen freigegeben werden (-p 8081:8080).
+ * Der Kontextname der Webanwendung ist xplan-validator
+
+Bei Freigabe des Ports 8080 auf 8081 ist der XPlanValidator über folgende URL erreichbar: http://localhost:8081/xplan-validator/
+
+*Beispiel*
+
+Um einen neuen Container anzulegen und zu starten, kann folgender Aufruf verwendet werden:
+
+----
+docker run -p 8081:8080 --name xplan-validator-web-docker --rm xplanbox/xplan-validator-web-docker:<VERSION>
+----
+
+==== XPlanDB
+
+Folgende Punkte sind zu beachten:
+
+ * Der Port 5432 des Datenbankservers aus dem Container kann zum Testen nach außen auf Port 5433 freigegeben werden (-p 5433:5432).
+ * Die Daten werden automatisch in ein Volume ausgelagert. Hier ist zu beachten, dass dieses automatisch erstellte Volume ein Anonymes Volume ist, wodurch ein Management des Volumes stark erschwert wird. Von daher sollte die Nutzung eines Named Volumes in Erwägung gezogen werden.
+
+*Beispiel*
+
+Um einen neuen Container anzulegen und zu starten, kann folgender Aufruf verwendet werden:
+
+----
+docker run -p 5433:5432 --name xplan-db-docker --rm xplanbox/xplan-db-docker:<VERSION>
+----
+
+==== XPlanInspirePluDB
+
+Folgende Punkte sind zu beachten:
+
+ * Der Port 5432 des Datenbankservers aus dem Container kann zum Testen nach außen auf Port 5434 freigegeben werden (-p 5434:5432).
+ * Die Daten werden automatisch in ein Volume ausgelagert. Hier ist zu beachten, dass dieses automatisch erstellte Volume ein Anonymes Volume ist, wodurch ein Management des Volumes stark erschwert wird. Von daher sollte die Nutzung eines Named Volumes in Erwägung gezogen werden.
+
+*Beispiel*
+
+Um einen neuen Container anzulegen und zu starten, kann folgender Aufruf verwendet werden:
+
+----
+docker run -p 5434:5432 --name xplan-db-inspireplu-docker --rm xplanbox/xplan-db-inspireplu-docker:<VERSION>
+----
+
+==== XPlanManager
+
+Hinweise zur Konfiguration des Images:
+
+ * JVM mit maximal 8GB Speicher
+
+Folgende Punkte sind zu beachten:
+
+ * Der Port 8080 des Tomcats aus dem Container muss nach außen freigegeben werden (-p 8082:8080).
+ * Der Kontextname der Webanwendung ist xplan-manager
+ * Das Volume _managerconfig_ (s. <<volumeManagerconfig>>) muss als Verzeichnis _/root/xplan-manager-config_ eingebunden werden.
+ * Das Volume _workspace_ (s. <<volumeWorkspace>>) muss als Verzeichnis _/root/.deegree_ eingebunden werden.
+
+Bei Freigabe des Ports 8080 auf 8082 ist der XPlanManager über folgende URL erreichbar: http://localhost:8082/xplan-manager/
+
+*Beispiel*
+
+Um einen neuen Container anzulegen und zu starten, kann folgender Aufruf verwendet werden:
+
+----
+docker run -p 8082:8080 --name xplan-manager-web-docker --rm xplanbox/xplan-manager-web-docker:<VERSION>
+----
+
+==== XPlanDienste
+
+Hinweise zur Konfiguration des Images:
+
+ * JVM mit maximal 8GB Speicher
+
+Folgende Punkte sind zu beachten:
+
+ * Der Port 8080 des Tomcats aus dem Container muss nach außen freigegeben werden (-p 8083:8080).
+ * Die Kontextnamen der Webanwendungen sind
+ ** xplan-wms
+ ** xplan-wfs
+ ** xplansyn-wfs
+ * Das Volume _workspace_ (s. <<volumeWorkspace>>) muss als Verzeichnis _/root/.deegree_ eingebunden werden.
+ * Die deegree REST API kann mit folgenden Credentials genutzt werden: deegree/deegree
+
+Bei Freigabe des Ports 8080 auf 8083 sind die XPlanDienste über folgende URLs erreichbar:
+
+ * http://localhost:8083/xplan-wms/
+ * http://localhost:8083/xplan-wfs/
+ * http://localhost:8083/xplansyn-wfs/
+
+*Beispiel*
+
+Um einen neuen Container anzulegen und zu starten, kann folgender Aufruf verwendet werden:
+
+----
+docker run -p 8083:8080 --name xplan-services-docker --rm xplanbox/xplan-services-docker:<VERSION>
+----
+
+==== XPlanInspirePluDienste
+
+Hinweise zur Konfiguration des Images:
+
+ * JVM mit maximal 8GB Speicher
+
+Folgende Punkte sind zu beachten:
+
+ * Der Port 8080 des Tomcats aus dem Container muss nach außen freigegeben werden (-p 8084:8080).
+ * Der Kontextname der Webanwendung ist xplan-inspireplu
+ * Das Volume _inspirepluworkspace_ (s. <<volumeInspirePluWorkspace>>) muss als Verzeichnis _/root/.deegree_ eingebunden werden.
+ * Die deegree REST API kann mit folgenden Credentials genutzt werden: deegree/deegree
+
+Bei Freigabe des Ports 8080 auf 8084 sind die XPlanDienste über folgende URLs erreichbar: 
+ * http://localhost:8084/xplan-inspireplu/
+
+*Beispiel*
+
+Um einen neuen Container anzulegen und zu starten, kann folgender Aufruf verwendet werden:
+
+----
+docker run -p 8084:8080 --name xplan-services-inspireplu-docker --rm xplanbox/xplan-services-inspireplu-docker:<VERSION>
+----
+
+=== Volumes
+
+==== workspace
+
+Innerhalb des Volumes müssen folgende Dateien/Artefakte abgelegt werden:
+
+* xplan-wfs-workspace (Das Archiv muss in ein Verzeichnis mit dem Workspace-Namen entpackt werden.)
+* xplansyn-wfs-workspace (Das Archiv muss in ein Verzeichnis mit dem Workspace-Namen entpackt werden.)
+* xplansyn-wms-workspace (Das Archiv muss in ein Verzeichnis mit dem Workspace-Namen entpackt werden.)
+* xplan-manager-workspace (Das Archiv muss in ein Verzeichnis mit dem Workspace-Namen entpackt werden.)
+* _webapps.properties_ mit folgendem Inhalt:
+----
+/xplan-wms=xplansyn-wms-workspace
+/xplan-wfs=xplan-wfs-workspace
+/xplansyn-wfs=xplansyn-wfs-workspace
+----
+
+[[volumeManagerconfig]]
+==== managerconfig
+
+Innerhalb des Volumes müssen folgende Dateien/Artefakte abgelegt werden:
+
+* xplan-manager-config (Das Archiv muss entpackt werden.)
+
+[[volumeWorkspace]]
+==== inspirepluworkspace
+
+Innerhalb des Volumes müssen folgende Dateien/Artefakte abgelegt werden:
+
+* xplan-inspireplu-workspace (Das Archiv muss in ein Verzeichnis mit dem Workspace-Namen entpackt werden.)
+* _webapps.properties_ mit folgendem Inhalt:
+----
+/xplan-inspireplu=xplan-inspireplu-workspace
+----
+
+=== Konfiguration
+
+Die im folgenden beschriebene Konfigration gilt auch bei der Installation über Docker. Die Konfigrationsdaten befinden sich in den jeweiligen Volumes.
