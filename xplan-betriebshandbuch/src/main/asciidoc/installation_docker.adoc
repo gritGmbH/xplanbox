@@ -1,11 +1,11 @@
 [[installation-docker]]
 == Installation mit Docker
 
-Alternativ zur Installation wie sie im Kapitel <<installation>> beschrieben ist, kann die Installation mit den bereitgestellten Docker-Images erfolgen. Die Spezifikation der Images und Schnittstellen, sowie Hinweise zur Inbetriebnahme sind im folgenden beschrieben.
+Alternativ zur Installation, wie sie im Kapitel <<installation>> beschrieben ist, kann die Installation mit den bereitgestellten Docker-Images erfolgen. Die Spezifikation der Images und Schnittstellen sowie Hinweise zur Inbetriebnahme sind im Folgenden beschrieben.
 
 === Spezifikation der Docker Images
 
-Die folgende Grafik gibt einen Überblick über die im folgenden näher beschriebenen Komponenten und Schnittstellen:
+Die Grafik gibt einen Überblick über die im Folgenden näher beschriebenen Komponenten und Schnittstellen:
 
 image:../images/docker-spezifikation.png[]
 
@@ -50,7 +50,6 @@ Daneben sind zur Speicherung der Daten und Konfigurationen folgende Volumes zu n
  ** Konfiguration für die *XPlanInspirePluDienste*
 
 Für das gemeinsam genutzte Volume *workspace* wird empfohlen, ein Shared-Storage als Named Volume anzulegen. Generell wird die Nutzung von Named Volumes für alle Volumes emfohlen.
-
 
 === Docker Images
 
@@ -219,4 +218,4 @@ Innerhalb des Volumes müssen folgende Dateien/Artefakte abgelegt werden:
 
 === Konfiguration
 
-Die im folgenden beschriebene Konfigration gilt auch bei der Installation über Docker. Die Konfigrationsdaten befinden sich in den jeweiligen Volumes.
+Die im Folgenden beschriebene Konfigration gilt auch bei der Installation über Docker. Die Konfigrationsdaten befinden sich in den jeweiligen Volumes.
