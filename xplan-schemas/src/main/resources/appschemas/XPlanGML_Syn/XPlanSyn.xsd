@@ -14521,7 +14521,7 @@
             <element name="genehmigungsDatum" minOccurs="0" type="date" />
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="verfahren" minOccurs="0" type="string" />
-            <element name="verfahrencode" minOccurs="0" type="string" />
+            <element name="verfahrenCode" minOccurs="0" type="string" />
             <element name="amtlicherSchluessel" minOccurs="0" type="integer" />
           </sequence>
         </extension>

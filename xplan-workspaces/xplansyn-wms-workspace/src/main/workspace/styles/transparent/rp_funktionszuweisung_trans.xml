@@ -6,7 +6,7 @@
     <sld:UserStyle>
       <sld:Name>transparent</sld:Name>
       <sld:FeatureTypeStyle>
-        <sld:FeatureTypeName>RP_Funktionszuweisung:RP_Freiraum</sld:FeatureTypeName>
+        <sld:FeatureTypeName>RP_Funktionszuweisung</sld:FeatureTypeName>
 
         <!--RP_Funktionszuweisung-->
         <sld:Rule>

@@ -1401,7 +1401,6 @@
                 <ogc:Literal>1000</ogc:Literal>
               </ogc:PropertyIsEqualTo>
               <ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
                 <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
                 <ogc:Literal>1001</ogc:Literal>
               </ogc:PropertyIsEqualTo>
