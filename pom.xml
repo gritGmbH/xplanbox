@@ -105,7 +105,7 @@
           <artifactId>maven-release-plugin</artifactId>
           <version>2.5.3</version>
           <configuration>
-            <preparationGoals>clean install -Pintegrationtest,docker</preparationGoals>
+            <preparationGoals>clean install</preparationGoals>
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <releaseProfiles>integrationtest,docker</releaseProfiles>
           </configuration>
