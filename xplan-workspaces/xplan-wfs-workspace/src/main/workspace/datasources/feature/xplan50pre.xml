@@ -5,7 +5,7 @@
     <StorageCRS srid="-1" dim="2D">${vectorCrs}</StorageCRS>
     <GMLSchema>../../appschemas/XPlanGML_5_0/XPlanGML.xsd</GMLSchema>
     <BLOBMapping>
-        <BlobTable>xplan50.gml_objects</BlobTable>
-        <FeatureTypeTable>xplan50.feature_types</FeatureTypeTable>
+        <BlobTable>xplan50pre.gml_objects</BlobTable>
+        <FeatureTypeTable>xplan50pre.feature_types</FeatureTypeTable>
     </BLOBMapping>
 </SQLFeatureStore>
