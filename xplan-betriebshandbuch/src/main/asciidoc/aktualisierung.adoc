@@ -236,5 +236,10 @@ Falls die neue Funktionalität nicht genutzt werden soll, müssen die Änderunge
 
 Mit der Version 2.9 der xPlanBox können auch Pläne der der XPlanGML Version 5.0 verwaltet werden. Für die Aktualisierung auf diese Version sind folgende Schritte auszuführen:
 
- * TODO: Aktualisierung von _xplan-manager-workspace_ und _xplan-manager-config_ (s. <<teilweise-aktualisierung>>).
- * TODO: Aktualisierung der Datenbank.
+ * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+ * Aktualisierung der Datenbank:
+ ** Ausführen der Skripte im Verzeichnis _from_2.8_to_2.9_ im Modul xplan-update-database
+ ** Ausführen der Skripte für die Erstelllung der Datenhaltung für 5.0 aus dem Modul _xplan-manager-workspace_:
+ *** _fix/xplan50/create.sql_
+ *** _pre/xplan50/create.sql_
+ *** _archive/xplan50/create.sql_
