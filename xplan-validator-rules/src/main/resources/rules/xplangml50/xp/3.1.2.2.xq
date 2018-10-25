@@ -53,6 +53,15 @@ declare namespace xlink='http://www.w3.org/1999/xlink';
   exists(//BP_NutzungsartenGrenze[@gml:id = $id]) or
   exists(//BP_StrassenbegrenzungsLinie[@gml:id = $id]) or
   exists(//BP_EinfahrtPunkt[@gml:id = $id]) or
+  exists(//BP_BaugebietsTeilFlaeche[@gml:id = $id]) or
+  exists(//BP_GemeinbedarfsFlaeche[@gml:id = $id]) or
+  exists(//BP_GewaesserFlaeche[@gml:id = $id]) or
+  exists(//BP_GruenFlaeche[@gml:id = $id]) or
+  exists(//BP_KleintierhaltungFlaeche[@gml:id = $id]) or
+  exists(//BP_SpielSportanlagenFlaeche[@gml:id = $id]) or
+  exists(//BP_StrassenVerkehrsFlaeche[@gml:id = $id]) or
+  exists(//BP_VerkehrsflaecheBesondererZweckbestimmung[@gml:id = $id]) or
+  exists(//BP_WaldFlaeche[@gml:id = $id]) or
 
   exists(//FP_AusgleichsFlaeche[@gml:id = $id]) or
   exists(//FP_Flaechenschlussobjekt[@gml:id = $id]) or
@@ -201,6 +210,15 @@ and
   exists(//BP_NutzungsartenGrenze[@gml:id = $id]) or
   exists(//BP_StrassenbegrenzungsLinie[@gml:id = $id]) or
   exists(//BP_EinfahrtPunkt[@gml:id = $id]) or
+  exists(//BP_BaugebietsTeilFlaeche[@gml:id = $id]) or
+  exists(//BP_GemeinbedarfsFlaeche[@gml:id = $id]) or
+  exists(//BP_GewaesserFlaeche[@gml:id = $id]) or
+  exists(//BP_GruenFlaeche[@gml:id = $id]) or
+  exists(//BP_KleintierhaltungFlaeche[@gml:id = $id]) or
+  exists(//BP_SpielSportanlagenFlaeche[@gml:id = $id]) or
+  exists(//BP_StrassenVerkehrsFlaeche[@gml:id = $id]) or
+  exists(//BP_VerkehrsflaecheBesondererZweckbestimmung[@gml:id = $id]) or
+  exists(//BP_WaldFlaeche[@gml:id = $id]) or
 
   exists(//FP_AusgleichsFlaeche[@gml:id = $id]) or
   exists(//FP_Flaechenschlussobjekt[@gml:id = $id]) or
@@ -349,6 +367,15 @@ and
   exists(//BP_NutzungsartenGrenze[@gml:id = $id]) or
   exists(//BP_StrassenbegrenzungsLinie[@gml:id = $id]) or
   exists(//BP_EinfahrtPunkt[@gml:id = $id]) or
+  exists(//BP_BaugebietsTeilFlaeche[@gml:id = $id]) or
+  exists(//BP_GemeinbedarfsFlaeche[@gml:id = $id]) or
+  exists(//BP_GewaesserFlaeche[@gml:id = $id]) or
+  exists(//BP_GruenFlaeche[@gml:id = $id]) or
+  exists(//BP_KleintierhaltungFlaeche[@gml:id = $id]) or
+  exists(//BP_SpielSportanlagenFlaeche[@gml:id = $id]) or
+  exists(//BP_StrassenVerkehrsFlaeche[@gml:id = $id]) or
+  exists(//BP_VerkehrsflaecheBesondererZweckbestimmung[@gml:id = $id]) or
+  exists(//BP_WaldFlaeche[@gml:id = $id]) or
 
   exists(//FP_AusgleichsFlaeche[@gml:id = $id]) or
   exists(//FP_Flaechenschlussobjekt[@gml:id = $id]) or
@@ -497,6 +524,15 @@ and
   exists(//BP_NutzungsartenGrenze[@gml:id = $id]) or
   exists(//BP_StrassenbegrenzungsLinie[@gml:id = $id]) or
   exists(//BP_EinfahrtPunkt[@gml:id = $id]) or
+  exists(//BP_BaugebietsTeilFlaeche[@gml:id = $id]) or
+  exists(//BP_GemeinbedarfsFlaeche[@gml:id = $id]) or
+  exists(//BP_GewaesserFlaeche[@gml:id = $id]) or
+  exists(//BP_GruenFlaeche[@gml:id = $id]) or
+  exists(//BP_KleintierhaltungFlaeche[@gml:id = $id]) or
+  exists(//BP_SpielSportanlagenFlaeche[@gml:id = $id]) or
+  exists(//BP_StrassenVerkehrsFlaeche[@gml:id = $id]) or
+  exists(//BP_VerkehrsflaecheBesondererZweckbestimmung[@gml:id = $id]) or
+  exists(//BP_WaldFlaeche[@gml:id = $id]) or
 
   exists(//FP_AusgleichsFlaeche[@gml:id = $id]) or
   exists(//FP_Flaechenschlussobjekt[@gml:id = $id]) or
@@ -645,6 +681,15 @@ and
   exists(//BP_NutzungsartenGrenze[@gml:id = $id]) or
   exists(//BP_StrassenbegrenzungsLinie[@gml:id = $id]) or
   exists(//BP_EinfahrtPunkt[@gml:id = $id]) or
+  exists(//BP_BaugebietsTeilFlaeche[@gml:id = $id]) or
+  exists(//BP_GemeinbedarfsFlaeche[@gml:id = $id]) or
+  exists(//BP_GewaesserFlaeche[@gml:id = $id]) or
+  exists(//BP_GruenFlaeche[@gml:id = $id]) or
+  exists(//BP_KleintierhaltungFlaeche[@gml:id = $id]) or
+  exists(//BP_SpielSportanlagenFlaeche[@gml:id = $id]) or
+  exists(//BP_StrassenVerkehrsFlaeche[@gml:id = $id]) or
+  exists(//BP_VerkehrsflaecheBesondererZweckbestimmung[@gml:id = $id]) or
+  exists(//BP_WaldFlaeche[@gml:id = $id]) or
 
   exists(//FP_AusgleichsFlaeche[@gml:id = $id]) or
   exists(//FP_Flaechenschlussobjekt[@gml:id = $id]) or
