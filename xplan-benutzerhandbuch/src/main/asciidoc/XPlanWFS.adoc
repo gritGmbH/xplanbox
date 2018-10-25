@@ -84,6 +84,15 @@ http://<host>:<port>/xplan-wfs/services/wfs110?request=DescribeFeatureType&Servi
 http://<host>:<port>/xplan-wfs/services/dls?request=DescribeFeatureType&Service=WFS&Version=2.0.0
 ----
 
+
+[[xplanwfs-liststoredqueries]]
+===== ListStoredQueries
+
+----
+http://<host>:<port>/xplan-wfs/services/dls?request=ListStoredQueries&Service=WFS&Version=2.0.0
+----
+
+
 [[xplanwfs-inhalte-des-datendienstes]]
 === Inhalte des Datendienstes
 
@@ -114,6 +123,38 @@ mit GIS Clients zu nutzen, die die Schnittstellen WFS 1.1.0 bzw. WFS
 
 Die Operation DescribeFeatureType gibt Informationen zur Struktur der
 einzelnen Feature Types wieder.
+
+[[xplanwfs-liststoredqueries-1]]
+==== ListStoredQueries
+
+Die Operation ListStoredQueries gibt Informationen über die verfügbaren
+StoredQueries zurück. Diese Operation steht nur in der Protokollversion
+2.0.0 über den Endpoint __dls__ zur Verfügung.
+
+=== StoredQueries
+
+Neben den üblichen StoredQueries urn:ogc:def:query:OGC-WFS::GetFeatureById
+und urn:ogc:def:query:OGC-WFS::GetFeatureByType bietet der Endpoint __dls__
+drei weitere StoredQueries an:
+
+ * urn:ogc:def:query:OGC-WFS::InternalId
+ * urn:ogc:def:query:OGC-WFS::PlanId
+ * urn:ogc:def:query:OGC-WFS::PlanName
+
+Darüber lassen sich die Vektordaten eines einzelnen Plans über die vom
+XPlanManager vergebene interne Id, die im XPlanGML vergebene Nummer bzw.
+den im XPlanGML angegebenen Namen abrufen.
+
+Um die Eindeutigkeit der StoredQueries _PlanId_ und _PlanName_ zu gewährleisten,
+muss sichergestellt werden, dass bei den importierten Plänen die Nummer und der Name
+des Plans eindeutig sind.
+
+Die Nutzung der StoredQueries erfolgt über GetFeature-Anfragen. Beispielanfrage für
+den Plan mit dem Namen _Musterdorf_:
+
+----
+http://<host>:<port>/xplan-wfs/services/dls?request=GetFeature&service=WFS&version=2.0.0&resolvedepth=*&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf
+----
 
 [[xplanwfs-koordinatenreferenzsysteme]]
 === Koordinatenreferenzsysteme

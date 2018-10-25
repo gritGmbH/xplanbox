@@ -59,13 +59,23 @@ class ShapefileBuilder {
         try {
             String location = "Location";
             String geom = "the_geom:" + GEOM_TYPE.toString();
-            String srid = (crs == null) ? "" : ":srid=" + crs.getCode().getCode();
+            String crsCode = getCrsCode(crs);
+            String srid = crsCode != null ? ":srid=" + crsCode : "";
             String tail = ",ID:String,Fehler:String";
             TYPE = createType(location, geom + srid + tail);
             featureBuilder = new SimpleFeatureBuilder( TYPE );
         } catch ( SchemaException e ) {
             throw new ReportGenerationException( "ShapefileBuilder could not be instantiated!", e );
         }
+    }
+
+    private String getCrsCode( ICRS crs ) {
+        if ( crs != null ) {
+            String crsCode = crs.getCode().getCode();
+            if ( crsCode != null && !crsCode.isEmpty() )
+                return crsCode;
+        }
+        return null;
     }
 
     /**

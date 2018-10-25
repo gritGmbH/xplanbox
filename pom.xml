@@ -13,7 +13,7 @@
     <sonar.host.url>http://vento:9000</sonar.host.url>
     <sonar.jdbc.url>jdbc:postgresql://habub/sonar</sonar.jdbc.url>
     <!-- version properties -->
-    <deegree3.version>3.4-RC3-xplanbox-1.6</deegree3.version>
+    <deegree3.version>3.4.3-xplanbox-1.7</deegree3.version>
     <gwt.version>2.5.0</gwt.version>
     <geotools.version>10.0</geotools.version>
     <slf4j.version>1.7.5</slf4j.version>
@@ -107,7 +107,7 @@
           <configuration>
             <preparationGoals>clean install</preparationGoals>
             <autoVersionSubmodules>true</autoVersionSubmodules>
-            <releaseProfiles>release,docker</releaseProfiles>
+            <releaseProfiles>integrationtest,docker</releaseProfiles>
           </configuration>
         </plugin>
         <plugin>
@@ -665,16 +665,16 @@
   </dependencyManagement>
 
   <scm>
-    <connection>scm:git:git@github.com:deegree-enterprise/xplanbox.git</connection>
-    <developerConnection>scm:git:git@github.com:deegree-enterprise/xplanbox.git</developerConnection>
-    <url>https://github.com/deegree-enterprise/xplanbox</url>
+    <connection>scm:git:https://bitbucket.org/latlon/xplanbox.git</connection>
+    <developerConnection>scm:git:https://bitbucket.org/latlon/xplanbox.git</developerConnection>
+    <url>https://bitbucket.org/latlon/xplanbox</url>
     <tag>HEAD</tag>
   </scm>
 
   <repositories>
     <repository>
-      <id>dee</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/groups/dee/</url>
+      <id>latlon-repo</id>
+      <url>http://repo/nexus/content/groups/public/</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
@@ -682,12 +682,20 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
+    <repository>
+      <id>xplanbox-release</id>
+      <url>http://repo/nexus/content/repositories/xplanbox-release/</url>
+    </repository>
+    <repository>
+      <id>xplanbox-snapshot</id>
+      <url>http://repo/nexus/content/repositories/xplanbox-snapshot/</url>
+    </repository>
   </repositories>
 
   <pluginRepositories>
     <pluginRepository>
-      <id>dee</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/groups/dee/</url>
+      <id>latlon-plugin-repo</id>
+      <url>http://repo/nexus/content/groups/public/</url>
       <releases>
         <enabled>true</enabled>
         <updatePolicy>never</updatePolicy>
@@ -700,12 +708,12 @@
 
   <distributionManagement>
     <repository>
-      <id>dee-releases</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/repositories/dee-releases/</url>
+      <id>xplanbox-release</id>
+      <url>http://repo/nexus/content/repositories/xplanbox-release/</url>
     </repository>
     <snapshotRepository>
-      <id>dee-snapshots</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/repositories/dee-snapshots/</url>
+      <id>xplanbox-snapshot</id>
+      <url>http://repo/nexus/content/repositories/xplanbox-snapshot/</url>
     </snapshotRepository>
   </distributionManagement>
 

@@ -239,7 +239,7 @@ OK [1591 ms]
 
 Rasterscans:
  - B-Plan_Klingmuehl_Heideweg_Karte.tif
-WMS Konfiguration für Id 79 nach /home/lgvxplanisk/.deegree/xplansyn-wms-workspace geschrieben.
+WMS Konfiguration für Id 79 nach /home/user/.deegree/xplansyn-wms-workspace geschrieben.
 XPlan-Archiv wurde erfolgreich importiert. Zugewiesene Id: 79
 ----
 

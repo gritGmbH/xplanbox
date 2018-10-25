@@ -1,16 +1,21 @@
 package de.latlon.xplan.validator.report;
 
+import static de.latlon.xplan.validator.web.shared.ArtifactType.HTML;
 import static org.apache.commons.io.IOUtils.copy;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.latlon.xplan.validator.report.badgeometryimg.BadGeometryImgGenerator;
 import de.latlon.xplan.validator.report.html.HtmlReportGenerator;
@@ -28,7 +33,11 @@ import de.latlon.xplan.validator.web.shared.ArtifactType;
  */
 public class ReportWriter {
 
+    private static final Logger LOG = LoggerFactory.getLogger( ReportWriter.class );
+
     private static final String SHAPES = "shapes";
+
+    public static final String ERROR_LOG_FILENAME = "error.log";
 
     private final XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
 
@@ -54,30 +63,19 @@ public class ReportWriter {
      * @throws ReportGenerationException
      *             if an exception occurred during writing the reports or zip archive
      */
-    public void writeArtefacts( ValidatorReport report, String planName, String validationName, File targetDirectory )
-                            throws ReportGenerationException {
-        try {
-            addXmlEntry( report, planName, validationName, targetDirectory );
-            addHtmlEntry( report, planName, validationName, targetDirectory );
-            addPdfEntry( report, planName, validationName, targetDirectory );
-            addPNGEntry( report, validationName, targetDirectory );
-            addShapeDirectoryEntry( report, planName, validationName, targetDirectory );
-        } catch ( IOException e ) {
-            throw new ReportGenerationException( e );
-        }
+    public void writeArtefacts( ValidatorReport report, String planName, String validationName, File targetDirectory ) {
+        List<String> failures = new ArrayList<>();
+        addXmlEntry( report, planName, validationName, targetDirectory, failures );
+        addHtmlEntry( report, planName, validationName, targetDirectory, failures );
+        addPdfEntry( report, planName, validationName, targetDirectory, failures );
+        addPNGEntry( report, validationName, targetDirectory, failures );
+        addShapeDirectoryEntry( report, validationName, targetDirectory, failures );
+
+        addFailureLog( failures, targetDirectory );
     }
 
-    public File retrieveReport( ArtifactType artifactType, String validationName, File sourceDirectory ) {
-        switch ( artifactType ) {
-        case SHP:
-            return new File( sourceDirectory, SHAPES );
-        case PNG:
-        case HTML:
-        case XML:
-        case PDF:
-            return retrieveArtifactFile( sourceDirectory, validationName, artifactType );
-        }
-        return null;
+    public File retrieveHtmlReport( String validationName, File sourceDirectory ) {
+        return retrieveArtifactFile( sourceDirectory, validationName, HTML );
     }
 
     public void writeZipWithArtifacts( OutputStream outputStream, String validationName, List<ArtifactType> artifacts,
@@ -87,51 +85,81 @@ public class ReportWriter {
             for ( ArtifactType artifactType : artifacts ) {
                 addZipEntry( artifactType, validationName, zipOutputStream, sourceDirectory );
             }
-        }
-    }
-
-    private void addPdfEntry( ValidatorReport report, String planName, String validationName, File directoryToCreateZip )
-                            throws IOException, ReportGenerationException {
-        File pdfFile = new File( directoryToCreateZip, validationName + ".pdf" );
-        try (FileOutputStream fileOutputStream = new FileOutputStream( pdfFile )) {
-            pdfGenerator.createPdfReport( report, validationName, planName, fileOutputStream );
-        }
-    }
-
-    private void addXmlEntry( ValidatorReport report, String planName, String validationName, File directoryToCreateZip )
-                            throws IOException, ReportGenerationException {
-        File xmlFile = new File( directoryToCreateZip, validationName + ".xml" );
-        try (FileOutputStream fileOutputStream = new FileOutputStream( xmlFile )) {
-            xmlReportGenerator.generateXmlReport( report, validationName, planName, fileOutputStream );
-        }
-    }
-
-    private void addHtmlEntry( ValidatorReport report, String planName, String validationName, File directoryToCreateZip )
-                            throws IOException, ReportGenerationException {
-        File htmlFile = new File( directoryToCreateZip, validationName + ".html" );
-        try (FileOutputStream fileOutputStream = new FileOutputStream( htmlFile )) {
-            htmlGenerator.generateHtmlReport( report, validationName, planName, fileOutputStream );
-
-        }
-    }
-
-    private void addPNGEntry( ValidatorReport report, String validationName, File directoryToCreateZip )
-                            throws IOException, ReportGenerationException {
-        if ( badGeometryImgGenerator.hasBadGeometry( report ) ) {
-            File pngFile = new File( directoryToCreateZip, validationName + ".png" );
-            try (FileOutputStream fileOutputStream = new FileOutputStream( pngFile )) {
-                badGeometryImgGenerator.generateReport( report, fileOutputStream );
+            File errorlog = new File( sourceDirectory, ERROR_LOG_FILENAME );
+            if ( errorlog.exists() ) {
+                addArtifact( zipOutputStream, errorlog );
             }
         }
     }
 
-    private void addShapeDirectoryEntry( ValidatorReport report, String planName, String validationName,
-                                         File directoryToCreateZip )
-                            throws IOException, ReportGenerationException {
-        if ( shapefileGenerator.hasBadGeometry( report ) ) {
-            File directoryToCreateShapes = new File( directoryToCreateZip, "shapes" );
-            directoryToCreateShapes.mkdir();
-            shapefileGenerator.generateReport( report, validationName, directoryToCreateShapes );
+    private void addPdfEntry( ValidatorReport report, String planName, String validationName,
+                              File directoryToCreateZip, List<String> failures ) {
+        File pdfFile = new File( directoryToCreateZip, validationName + ".pdf" );
+        try (FileOutputStream fileOutputStream = new FileOutputStream( pdfFile )) {
+            pdfGenerator.createPdfReport( report, validationName, planName, fileOutputStream );
+        } catch ( Exception e ) {
+            failures.add( e.getMessage() );
+        }
+    }
+
+    private void addXmlEntry( ValidatorReport report, String planName, String validationName,
+                              File directoryToCreateZip, List<String> failures ) {
+        File xmlFile = new File( directoryToCreateZip, validationName + ".xml" );
+        try (FileOutputStream fileOutputStream = new FileOutputStream( xmlFile )) {
+            xmlReportGenerator.generateXmlReport( report, validationName, planName, fileOutputStream );
+        } catch ( Exception e ) {
+            failures.add( e.getMessage() );
+        }
+
+    }
+
+    private void addHtmlEntry( ValidatorReport report, String planName, String validationName,
+                               File directoryToCreateZip, List<String> failures ) {
+        File htmlFile = new File( directoryToCreateZip, validationName + ".html" );
+        try (FileOutputStream fileOutputStream = new FileOutputStream( htmlFile )) {
+            htmlGenerator.generateHtmlReport( report, validationName, planName, fileOutputStream );
+        } catch ( Exception e ) {
+            failures.add( e.getMessage() );
+        }
+    }
+
+    private void addPNGEntry( ValidatorReport report, String validationName, File directoryToCreateZip,
+                              List<String> failures ) {
+        try {
+            if ( badGeometryImgGenerator.hasBadGeometry( report ) ) {
+                File pngFile = new File( directoryToCreateZip, validationName + ".png" );
+                try (FileOutputStream fileOutputStream = new FileOutputStream( pngFile )) {
+                    badGeometryImgGenerator.generateReport( report, fileOutputStream );
+
+                }
+            }
+        } catch ( Exception e ) {
+            failures.add( e.getMessage() );
+        }
+    }
+
+    private void addShapeDirectoryEntry( ValidatorReport report, String validationName, File directoryToCreateZip,
+                                         List<String> failures ) {
+        try {
+            if ( shapefileGenerator.hasBadGeometry( report ) ) {
+                File directoryToCreateShapes = new File( directoryToCreateZip, "shapes" );
+                directoryToCreateShapes.mkdir();
+                shapefileGenerator.generateReport( report, validationName, directoryToCreateShapes );
+            }
+        } catch ( Exception e ) {
+            failures.add( e.getMessage() );
+        }
+    }
+
+    private void addFailureLog( List<String> failures, File directoryToCreateZip ) {
+        if ( !failures.isEmpty() ) {
+            File errorlog = new File( directoryToCreateZip, ERROR_LOG_FILENAME );
+            try (FileOutputStream fos = new FileOutputStream( errorlog )) {
+                String errorlogContent = String.join( "\n", failures );
+                IOUtils.write( errorlogContent, fos );
+            } catch ( IOException e ) {
+                LOG.error( "Could not wtite error.log", e );
+            }
         }
     }
 
@@ -155,7 +183,7 @@ public class ReportWriter {
 
     private void addSimpleArtifact( ArtifactType artifactType, String validationName, ZipOutputStream zipOutputStream,
                                     File sourceDirectory )
-                            throws IOException, FileNotFoundException {
+                            throws IOException {
         File artifactFile = retrieveArtifactFile( sourceDirectory, validationName, artifactType );
         if ( artifactFile.exists() ) {
             addArtifact( zipOutputStream, artifactFile );
@@ -180,7 +208,7 @@ public class ReportWriter {
     }
 
     private void addArtifact( ZipOutputStream zipOutputStream, File artifactFile )
-                            throws IOException, FileNotFoundException {
+                            throws IOException {
         ZipEntry entry = new ZipEntry( artifactFile.getName() );
         zipOutputStream.putNextEntry( entry );
         try (FileInputStream input = new FileInputStream( artifactFile )) {

@@ -258,8 +258,6 @@ public class XPlanDao {
      * @param sortDate
      *            the date added to syn feature collection, may be <code>null</code>
      * @param removedRefs
-     * @param artefactUploadFolder
-     *            the folder containing all the uploaded files, may be <code>null</code> if no files was updated
      * @throws Exception
      */
     public void update( XPlan oldXplan, de.latlon.xplan.manager.web.shared.XPlanMetadata newXPlanMetadata,
@@ -518,6 +516,61 @@ public class XPlanDao {
             closeQuietly( conn );
         }
     }
+
+    /**
+     * Retrieve internalId by the manager id from xplansyn schema.
+     * 
+     * @return the internal id of a plan (if available), <code>null</code> if an error occurred
+     * @param planId
+     *            the planId of the plan, never <code>null</code>
+     * @param type
+     *            the type of the plan, never <code>null</code>
+     */
+    public String retrieveInternalId( String planId, XPlanType type ) {
+        ensureWorkspaceInitialized();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try (Connection mgrConn = openConnection( ws, JDBC_POOL_ID )) {
+            StringBuilder sqlBuilder = new StringBuilder();
+            sqlBuilder.append( "SELECT xplan_internalid FROM " );
+            switch ( type ) {
+            case BP_Plan:
+                sqlBuilder.append( "xplansyn.xplan_bp_plan" );
+                break;
+            case FP_Plan:
+                sqlBuilder.append( "xplansyn.xplan_fp_plan" );
+                break;
+            case LP_Plan:
+                sqlBuilder.append( "xplansyn.xplan_lp_plan" );
+                break;
+            case RP_Plan:
+                sqlBuilder.append( "xplansyn.xplan_rp_plan" );
+                break;
+            default:
+                LOG.warn( "Unsupported xplan type " + type );
+                return null;
+
+            }
+            sqlBuilder.append( " WHERE " );
+            sqlBuilder.append( " xplan_mgr_planid = ?" );
+
+            LOG.trace( "SQL Select to retrieve the internal id: " + sqlBuilder.toString() );
+
+            stmt = mgrConn.prepareStatement( sqlBuilder.toString() );
+            stmt.setInt( 1, getXPlanIdAsInt( planId ) );
+            rs = stmt.executeQuery();
+            if ( rs.next() ) {
+                return rs.getString( 1 );
+            }
+        } catch ( Exception e ) {
+            LOG.warn( "Die internalId des Plans mit der ID " + planId + " konnte nicht angefragt werden." );
+        } finally {
+            closeQuietly( stmt, rs );
+        }
+        return null;
+    }
+
     /**
      * Updates the wmsSortDate column of all tables in the syn schema and in xplanmgr.plans table.
      * 

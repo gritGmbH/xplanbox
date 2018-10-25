@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import org.deegree.geometry.Envelope;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.primitive.GeometricPrimitive;
@@ -26,20 +27,25 @@ import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.report.ValidatorReport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Creates a PNG showing bad geometries from a {@link ValidatorReport}
- * 
+ *
  * @author bingel
  * @version $Revision: $, $Date: $
  */
 public class BadGeometryImgGenerator {
 
+
+    private static final Logger LOG = LoggerFactory.getLogger( BadGeometryImgGenerator.class );
+
     private static final String IMAGE_TYPE = "image/png";
 
     /**
      * Checks if the report contains some bad geometries to write in the image
-     * 
+     *
      * @param report
      *            to check for bad geometries, never <code>null</code>
      * @return <code>true</code> if the report contains {@link BadGeometry}s, <code>false</code> otherwise
@@ -54,7 +60,7 @@ public class BadGeometryImgGenerator {
 
     /**
      * Writes an image with {@link BadGeometry}s into the passed {@link OutputStream}.
-     * 
+     *
      * @param report
      *            to retrieve bad geometries from, never <code>null</code>
      * @param os
@@ -98,21 +104,26 @@ public class BadGeometryImgGenerator {
                                       RenderContext ctx ) {
         Renderer renderer = ctx.getVectorRenderer();
         for ( BadGeometry badGeometry : badGeometries ) {
-            GeometricPrimitive geom = (GeometricPrimitive) badGeometry.getGeometry();
-            switch ( geom.getPrimitiveType() ) {
-            case Point:
-                renderer.render( defaultPointStyle, geom );
-                break;
-            case Curve:
-                renderer.render( defaultLineStyle, geom );
-                break;
-            case Surface:
-                renderer.render( defaultPolygonStyle, geom );
-                break;
-            case Solid:
-                break;
-            default:
-                // nothing to do (unknown geometry)
+            try{
+                GeometricPrimitive geom = (GeometricPrimitive) badGeometry.getGeometry();
+                switch ( geom.getPrimitiveType() ) {
+                case Point:
+                    renderer.render( defaultPointStyle, geom );
+                    break;
+                case Curve:
+                    renderer.render( defaultLineStyle, geom );
+                    break;
+                case Surface:
+                    renderer.render( defaultPolygonStyle, geom );
+                    break;
+                case Solid:
+                    break;
+                default:
+                    // nothing to do (unknown geometry)
+                }
+            } catch ( Exception e ){
+                LOG.warn( "Geometry is broken (could not be rendered): " +  e.getMessage() );
+                LOG.trace( "Geometry is broken (could not be rendered).", e );
             }
         }
     }
@@ -179,9 +190,16 @@ public class BadGeometryImgGenerator {
         // the envelope has to be bigger than the geometry, otherwise an exception will occur
         Envelope boundingBox = badGeometries.get( 0 ).getGeometry().getEnvelope();
         for ( BadGeometry badGeometry : badGeometries ) {
-            Geometry geom = badGeometry.getGeometry();
-            Envelope envelope = geom.getEnvelope();
-            boundingBox = boundingBox.merge( envelope );
+            try {
+                Geometry geom = badGeometry.getGeometry();
+                Envelope envelope = geom.getEnvelope();
+                boundingBox = boundingBox.merge(envelope);
+            } catch ( Exception e ){
+                LOG.warn( "Geometry is broken (could not be used to calculate the bounding box " +
+                        "of all broken geometries): " +  e.getMessage() );
+                LOG.trace( "Geometry is broken (could not be used to calculate the bounding box " +
+                        "of all broken geometries).", e );
+            }
         }
         return boundingBox;
     }
