@@ -1,9 +1,23 @@
 package de.latlon.xplan.validator.semantic.configuration.xquery;
 
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
+import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
+import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfigurationRetriever;
+import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
+import net.sf.saxon.trans.XPathException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Path;
+
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.NONE;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
@@ -11,24 +25,9 @@ import static java.nio.file.Files.isDirectory;
 import static java.nio.file.Files.newDirectoryStream;
 import static java.nio.file.Files.newInputStream;
 
-import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Path;
-
-import net.sf.saxon.trans.XPathException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
-import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
-import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfigurationRetriever;
-import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
-
 /**
  * Retrieves XQuery configurations from file system
- * 
+ *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
@@ -147,19 +146,20 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
         return SemanticValidationOptions.getByDirectoryName( dirName );
     }
 
-    private XPlanVersion parseXPlanVersion( Path path ) {
-        String dirName = extractDirectoryName( path );
-        if ( "xplangml41".equals( dirName ) ) {
+    private XPlanVersion parseXPlanVersion(Path path) {
+        String dirName = extractDirectoryName(path);
+        if ("xplangml50".equals(dirName))
+            return XPLAN_50;
+        if ("xplangml41".equals(dirName))
             return XPLAN_41;
-        } else if ( "xplangml40".equals( dirName ) ) {
+        if ("xplangml40".equals(dirName))
             return XPLAN_40;
-        } else if ( "xplangml3".equals( dirName ) ) {
+        if ("xplangml3".equals(dirName))
             return XPLAN_3;
-        } else if ( "xplangml2".equals( dirName ) ) {
+        if ("xplangml2".equals(dirName))
             return XPLAN_2;
-        }
-        LOG.info( "{} is not a known XPlanVersion", dirName );
-        return null;
+        LOG.info("{} is not a known XPlanVersion", dirName);
+        return UNKNOWN_VERSION;
     }
 
     private String extractDirectoryName( Path path ) {
