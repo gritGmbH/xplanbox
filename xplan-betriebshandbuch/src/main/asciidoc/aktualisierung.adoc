@@ -71,6 +71,7 @@ Falls Sie mehr Details zu einem Aktualisierungsvorhaben vor Version 2.0 wünsche
 | 2.4              | ja                                               |
 | 2.7              | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>)
 | 2.8              |                                                  | ja
+| 2.9              | ja (<<aktualisierung-auf-die-version-2.9-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.9-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -228,3 +229,12 @@ Mit der Version 2.7 bietet die xPlanBox die Möglichkeit die vom XPlanManager ve
  * Konfiguration der neuen Option, wie in <<konfiguration-inspire-plu>> beschrieben.
 
 Falls die neue Funktionalität nicht genutzt werden soll, müssen die Änderungen nicht durchgeführt werden.
+
+
+[[aktualisierung-auf-die-version-2.9-der-xplanbox]]
+=== Aktualisierung auf die Version 2.9 der xPlanBox
+
+Mit der Version 2.9 der xPlanBox können auch Pläne der der XPlanGML Version 5.0 verwaltet werden. Für die Aktualisierung auf diese Version sind folgende Schritte auszuführen:
+
+ * TODO: Aktualisierung von _xplan-manager-workspace_ und _xplan-manager-config_ (s. <<teilweise-aktualisierung>>).
+ * TODO: Aktualisierung der Datenbank.
