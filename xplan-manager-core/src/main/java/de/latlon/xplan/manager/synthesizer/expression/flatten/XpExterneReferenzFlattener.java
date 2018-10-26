@@ -20,7 +20,7 @@ public class XpExterneReferenzFlattener extends AbstractFlattener {
         } else if ( node instanceof ElementNode ) {
             elName = ( (ElementNode) node ).getName().getLocalPart();
         }
-        return "XP_ExterneReferenz".equals( elName ) || "XP_ExterneReferenzPlan".equals( elName );
+        return "XP_ExterneReferenz".equals( elName ) || "XP_ExterneReferenzPlan".equals( elName ) || "XP_SpezExterneReferenz".equals( elName );
     }
 
     @Override

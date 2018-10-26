@@ -1,0 +1,1755 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+  <sld:NamedLayer>
+    <sld:Name>RP_Strassenverkehr</sld:Name>
+    <sld:UserStyle>
+      <sld:Name>vollflaechig</sld:Name>
+      <sld:FeatureTypeStyle>
+        <sld:FeatureTypeName>xplan:RP_Strassenverkehr</sld:FeatureTypeName>
+
+        <!--Autobahn-->
+        <sld:Rule>
+          <sld:Name>Autobahn</sld:Name>
+          <sld:Title>Autobahn</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+              <ogc:Literal>1002</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">5</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FFFFFF</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">3</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_BAB</sld:Name>
+          <sld:Title>Vorranggebiet Autobahn</sld:Title>
+          <MinScaleDenominator>35000</MinScaleDenominator>
+          <MaxScaleDenominator>75000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">11</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_BAB</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Autobahn</sld:Title>
+          <MinScaleDenominator>35000</MinScaleDenominator>
+          <MaxScaleDenominator>75000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">11</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_BAB</sld:Name>
+          <sld:Title>Vorranggebiet Autobahn</sld:Title>
+          <MinScaleDenominator>35000</MinScaleDenominator>
+          <MaxScaleDenominator>75000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">3</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_BAB</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Autobahn</sld:Title>
+          <MinScaleDenominator>35000</MinScaleDenominator>
+          <MaxScaleDenominator>75000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">3</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_BAB</sld:Name>
+          <sld:Title>Vorranggebiet Autobahn</sld:Title>
+          <MinScaleDenominator>15000</MinScaleDenominator>
+          <MaxScaleDenominator>35000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">24</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_BAB</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Autobahn</sld:Title>
+          <MinScaleDenominator>15000</MinScaleDenominator>
+          <MaxScaleDenominator>35000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">24</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_BAB</sld:Name>
+          <sld:Title>Vorranggebiet Autobahn</sld:Title>
+          <MinScaleDenominator>15000</MinScaleDenominator>
+          <MaxScaleDenominator>35000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">7</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_BAB</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Autobahn</sld:Title>
+          <MinScaleDenominator>15000</MinScaleDenominator>
+          <MaxScaleDenominator>35000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">7</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_BAB</sld:Name>
+          <sld:Title>Vorranggebiet Autobahn</sld:Title>
+          <MinScaleDenominator>75000</MinScaleDenominator>
+          <MaxScaleDenominator>125000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">6</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_BAB</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Autobahn</sld:Title>
+          <MinScaleDenominator>75000</MinScaleDenominator>
+          <MaxScaleDenominator>125000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">6</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_BAB</sld:Name>
+          <sld:Title>Vorranggebiet Autobahn</sld:Title>
+          <MinScaleDenominator>75000</MinScaleDenominator>
+          <MaxScaleDenominator>125000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">1.5</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_BAB</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Autobahn</sld:Title>
+          <MinScaleDenominator>75000</MinScaleDenominator>
+          <MaxScaleDenominator>125000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">1.5</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_BAB</sld:Name>
+          <sld:Title>Vorranggebiet Autobahn</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>450000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>2000000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">5</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_BAB</sld:Name>
+          <sld:Title>Vorranggebiet Autobahn</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>450000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>2000000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">1.5</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_BAB</sld:Name>
+          <sld:Title>Vorranggebiet Autobahn</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>150000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>450000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">10</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_BAB</sld:Name>
+          <sld:Title>Vorranggebiet Autobahn</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>150000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>450000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">3</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_BAB</sld:Name>
+          <sld:Title>Vorranggebiet Autobahn</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>80000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>150000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">24</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_BAB</sld:Name>
+          <sld:Title>Vorranggebiet Autobahn</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>80000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>150000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">8</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_BAB</sld:Name>
+          <sld:Title>Vorranggebiet Autobahn</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>40000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>80000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">50</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_BAB</sld:Name>
+          <sld:Title>Vorranggebiet Autobahn</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>40000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>80000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">17</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+
+        <!--HauptverkehrsstrasseVierstreifig-->
+
+        <sld:Rule>
+          <sld:Name>vierstreifige Hauptverkehrsstrasse</sld:Name>
+          <sld:Title>vierstreifige Hauptverkehrsstrasse</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+                <ogc:PropertyIsEqualTo>
+                  <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                  <ogc:Literal>1002</ogc:Literal>
+                </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">2.5</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <MinScaleDenominator>35000</MinScaleDenominator>
+          <MaxScaleDenominator>75000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">8</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VB_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <MinScaleDenominator>35000</MinScaleDenominator>
+          <MaxScaleDenominator>75000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">8</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <MinScaleDenominator>35000</MinScaleDenominator>
+          <MaxScaleDenominator>75000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">3</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VB_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <MinScaleDenominator>35000</MinScaleDenominator>
+          <MaxScaleDenominator>75000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">3</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <MinScaleDenominator>15000</MinScaleDenominator>
+          <MaxScaleDenominator>35000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">16</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VB_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <MinScaleDenominator>15000</MinScaleDenominator>
+          <MaxScaleDenominator>35000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">16</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <MinScaleDenominator>15000</MinScaleDenominator>
+          <MaxScaleDenominator>35000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">5</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VB_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <MinScaleDenominator>15000</MinScaleDenominator>
+          <MaxScaleDenominator>35000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">5</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <MinScaleDenominator>75000</MinScaleDenominator>
+          <MaxScaleDenominator>125000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">4</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VB_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <MinScaleDenominator>75000</MinScaleDenominator>
+          <MaxScaleDenominator>125000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">4</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <MinScaleDenominator>75000</MinScaleDenominator>
+          <MaxScaleDenominator>125000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">1.5</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VB_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <MinScaleDenominator>75000</MinScaleDenominator>
+          <MaxScaleDenominator>125000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FBFBFB</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">1.5</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>450000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>2000000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">4</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>150000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>450000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">8</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>80000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>150000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">19</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrassevierstreifig</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse-vierstreifig</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+                <ogc:Literal>1002</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>40000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>80000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">38</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+
+        <!--Hauptverkehrsstrasse-->
+
+        <sld:Rule>
+          <sld:Name>Hauptverkehrsstrasse</sld:Name>
+          <sld:Title>Hauptverkehrsstrasse</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+              <ogc:Literal>1001</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FA3411</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">1.8</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrasse</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse</sld:Title>
+          <MinScaleDenominator>35000</MinScaleDenominator>
+          <MaxScaleDenominator>75000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">6</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_Haupstrasse</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Hauptverkehrsstrasse</sld:Title>
+          <MinScaleDenominator>35000</MinScaleDenominator>
+          <MaxScaleDenominator>75000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">6</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrasse</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse</sld:Title>
+          <MinScaleDenominator>15000</MinScaleDenominator>
+          <MaxScaleDenominator>35000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">12</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_Haupstra\DFe</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Hauptverkehrsstra\DFe</sld:Title>
+          <MinScaleDenominator>15000</MinScaleDenominator>
+          <MaxScaleDenominator>35000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">12</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrasse</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse</sld:Title>
+          <MinScaleDenominator>75000</MinScaleDenominator>
+          <MaxScaleDenominator>125000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">3</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_Haupstrasse</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Hauptverkehrsstrasse</sld:Title>
+          <MinScaleDenominator>75000</MinScaleDenominator>
+          <MaxScaleDenominator>125000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">3</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrasse</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>450000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>2000000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">2.5</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrasse</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>150000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>450000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">5</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrasse</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>80000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>150000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">13</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Haupstrasse</sld:Name>
+          <sld:Title>Vorranggebiet Hauptverkehrsstrasse</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1001</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>40000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>80000</sld:MaxScaleDenominator>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">26</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+
+        <!--StrasseVonRegionalerBedeutung (aktuell: Bundesstrass)-->
+
+        <sld:Rule>
+          <sld:Name>VR_Strasse</sld:Name>
+          <sld:Title>Vorranggebiet Strasse regional</sld:Title>
+          <MinScaleDenominator>35000</MinScaleDenominator>
+          <MaxScaleDenominator>75000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1003</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">4</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_Strasse</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Strasse regional</sld:Title>
+          <MinScaleDenominator>35000</MinScaleDenominator>
+          <MaxScaleDenominator>75000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1003</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">4</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 5</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Strasse</sld:Name>
+          <sld:Title>Vorranggebiet Strasse regional</sld:Title>
+          <MinScaleDenominator>15000</MinScaleDenominator>
+          <MaxScaleDenominator>35000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1003</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">8</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_Strasse</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Strasse regional</sld:Title>
+          <MinScaleDenominator>15000</MinScaleDenominator>
+          <MaxScaleDenominator>35000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1003</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">8</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 5</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Strasse</sld:Name>
+          <sld:Title>Vorranggebiet Strasse regional</sld:Title>
+          <MinScaleDenominator>75000</MinScaleDenominator>
+          <MaxScaleDenominator>125000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1003</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">2</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_Strasse</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Strasse regional</sld:Title>
+          <MinScaleDenominator>75000</MinScaleDenominator>
+          <MaxScaleDenominator>125000</MaxScaleDenominator>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>1003</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">2</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+              <sld:CssParameter name="stroke-dasharray">50 5</sld:CssParameter>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+        <!--Anschlussstelle-->
+
+        <sld:Rule>
+          <sld:Name>VR_Anschlussstelle</sld:Name>
+          <sld:Title>Vorranggebiet Anschlussstelle</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>5000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Anschlussstelle_VR.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>43</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_Anschlussstelle</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Anschlussstelle</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1100</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+                <ogc:Literal>5000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Anschlussstelle_vb.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>43</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+
+
+      </sld:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+</sld:StyledLayerDescriptor>
+

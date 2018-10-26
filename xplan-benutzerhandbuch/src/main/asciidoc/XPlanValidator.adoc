@@ -6,7 +6,7 @@ der XPlanValidator verschiedene Prüfmethoden zur Validierung an.
 
 === Syntaktische Validierung
 
-Der XPlanValidator kann XPlanGML-Dateien in den Versionen 2.0, 3.0, 4.0 und 4.1 prüfen, ob diese die im zugehörigen XML-Schema festgelegten Syntaxregeln
+Der XPlanValidator kann XPlanGML-Dateien in allen unterstützen Versionen prüfen, ob diese die im zugehörigen XML-Schema festgelegten Syntaxregeln
 erfüllen. Die Minimalvoraussetzung wird damit sichergestellt: die XPlanGML-Datei ist wohlgeformt und valide gegenüber den jeweiligen XML-Schema.
 
 === Geometrische Validierung

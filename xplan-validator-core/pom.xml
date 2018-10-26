@@ -164,6 +164,11 @@
       <artifactId>powermock-api-mockito</artifactId>
     </dependency>
     <dependency>
+      <groupId>pl.pragmatists</groupId>
+      <artifactId>JUnitParams</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.geotools</groupId>
       <artifactId>gt-shapefile</artifactId>
     </dependency>

@@ -190,6 +190,8 @@ public class XPlanSynthesizer {
             return "xplan40.syn";
         case XPLAN_41:
             return "xplan41.syn";
+        case XPLAN_50:
+            return "xplan50.syn";
         default:
             throw new IllegalArgumentException();
         }

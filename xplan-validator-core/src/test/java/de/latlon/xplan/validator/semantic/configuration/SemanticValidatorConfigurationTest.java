@@ -2,6 +2,7 @@ package de.latlon.xplan.validator.semantic.configuration;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_SO;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -24,19 +25,17 @@ import de.latlon.xplan.validator.semantic.SemanticValidatorRule;
  */
 public class SemanticValidatorConfigurationTest {
 
-    private static final SemanticValidationOptions optionIgnore = SemanticValidationOptions.IGNORE_SO;
-
     @Test
     public void testGetRulesForVersion40AndOptionToIgnore() {
         SemanticValidatorConfiguration configuration = createConfigurationWithRules();
-        List<SemanticValidatorRule> rules = configuration.getRules( XPLAN_40, singletonList( optionIgnore ) );
+        List<SemanticValidatorRule> rules = configuration.getRules( XPLAN_40, singletonList( IGNORE_SO ) );
         assertThat( rules.size(), is( 1 ) );
     }
 
     @Test
     public void testGetRulesForVersion41AndOptionToIgnore() {
         SemanticValidatorConfiguration configuration = createConfigurationWithRules();
-        List<SemanticValidatorRule> rules = configuration.getRules( XPLAN_41, singletonList( optionIgnore ) );
+        List<SemanticValidatorRule> rules = configuration.getRules( XPLAN_41, singletonList( IGNORE_SO ) );
         assertThat( rules.size(), is( 2 ) );
     }
 
@@ -51,7 +50,7 @@ public class SemanticValidatorConfigurationTest {
     @Test(expected = IllegalArgumentException.class)
     public void testGetRUlesWithNullVersionShouldFail() {
         SemanticValidatorConfiguration configuration = createConfigurationWithRules();
-        configuration.getRules( null, singletonList( optionIgnore ) );
+        configuration.getRules( null, singletonList( IGNORE_SO ) );
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -72,7 +71,7 @@ public class SemanticValidatorConfigurationTest {
     private SemanticValidatorRule createMockedRule( XPlanVersion xplanVersion, boolean ignoreOption ) {
         SemanticValidatorRule rule = mock( SemanticValidatorRule.class );
         when( rule.getXPlanVersion() ).thenReturn( xplanVersion );
-        when( rule.isIgnoredByOption( optionIgnore ) ).thenReturn( ignoreOption );
+        when( rule.isIgnoredByOption( IGNORE_SO ) ).thenReturn( ignoreOption );
         return rule;
     }
 }
