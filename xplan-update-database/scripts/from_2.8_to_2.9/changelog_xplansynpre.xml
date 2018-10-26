@@ -42,7 +42,7 @@
             <column name="xplan_zweckbestimmung" type="TEXT"/>
             <column name="xplan_zweckbestimmungcode" type="TEXT"/>
             <column name="xplan_technischemassnahme" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-2">
@@ -86,7 +86,7 @@
             <column name="xplan_nordwinkeluom" type="TEXT"/>
             <column name="xplan_detailtyp" type="TEXT"/>
             <column name="xplan_detailtypcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-3">
@@ -136,7 +136,7 @@
             <column name="xplan_istsiedlungsbeschraenkung" type="TEXT"/>
             <column name="xplan_typ" type="TEXT"/>
             <column name="xplan_typcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-4">
@@ -190,7 +190,7 @@
             <column name="xplan_typtourismuscode" type="TEXT"/>
             <column name="xplan_besonderertyp" type="TEXT"/>
             <column name="xplan_besonderertypcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-5">
@@ -240,7 +240,7 @@
             <column name="xplan_imverbund" type="TEXT"/>
             <column name="xplan_typ" type="TEXT"/>
             <column name="xplan_typcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-6">
@@ -288,7 +288,7 @@
             <column name="xplan_flussrichtung" type="TEXT"/>
             <column name="xplan_istausgleichsgebiet" type="TEXT"/>
             <column name="xplan_imverbund" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-7">
@@ -337,7 +337,7 @@
             <column name="xplan_typ" type="TEXT"/>
             <column name="xplan_typcode" type="TEXT"/>
             <column name="xplan_bezeichnung" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-8">
@@ -387,7 +387,7 @@
             <column name="xplan_imverbund" type="TEXT"/>
             <column name="xplan_typ" type="TEXT"/>
             <column name="xplan_typcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-9">
@@ -437,7 +437,7 @@
             <column name="xplan_istsiedlungsbeschraenkung" type="TEXT"/>
             <column name="xplan_typ" type="TEXT"/>
             <column name="xplan_typcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-10">
@@ -487,7 +487,7 @@
             <column name="xplan_imverbund" type="TEXT"/>
             <column name="xplan_typ" type="TEXT"/>
             <column name="xplan_typcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-11">
@@ -535,7 +535,7 @@
             <column name="xplan_flussrichtung" type="TEXT"/>
             <column name="xplan_typ" type="TEXT"/>
             <column name="xplan_typcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-12">
@@ -608,7 +608,7 @@
             <column name="xplan_bezeichnung" type="TEXT"/>
             <column name="xplan_typ" type="TEXT"/>
             <column name="xplan_typcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-14">
@@ -655,7 +655,7 @@
             <column name="xplan_flaechenschluss" type="TEXT"/>
             <column name="xplan_flussrichtung" type="TEXT"/>
             <column name="xplan_planungsraumbeschreibung" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-15">
@@ -705,7 +705,7 @@
             <column name="xplan_imverbund" type="TEXT"/>
             <column name="xplan_typ" type="TEXT"/>
             <column name="xplan_typcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-16">
@@ -766,7 +766,7 @@
             <column name="xplan_bergbauplanungtyp" type="TEXT"/>
             <column name="xplan_bergbauplanungtypcode" type="TEXT"/>
             <column name="xplan_istaufschuettungablagerung" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-17">
@@ -821,7 +821,7 @@
             <column name="xplan_typcode" type="TEXT"/>
             <column name="xplan_besonderertyp" type="TEXT"/>
             <column name="xplan_besonderertypcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-18">
@@ -869,7 +869,7 @@
             <column name="xplan_flussrichtung" type="TEXT"/>
             <column name="xplan_bauhoehenbeschraenkung" type="INT4"/>
             <column name="xplan_istsiedlungsbeschraenkung" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-19">
@@ -917,7 +917,7 @@
             <column name="xplan_flussrichtung" type="TEXT"/>
             <column name="xplan_istausgleichsgebiet" type="TEXT"/>
             <column name="xplan_imverbund" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-20">
@@ -965,7 +965,7 @@
             <column name="xplan_flussrichtung" type="TEXT"/>
             <column name="xplan_bauhoehenbeschraenkung" type="INT4"/>
             <column name="xplan_istsiedlungsbeschraenkung" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-21">
@@ -1018,7 +1018,7 @@
             <column name="xplan_bezeichnung" type="TEXT"/>
             <column name="xplan_typ" type="TEXT"/>
             <column name="xplan_typcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-22">
@@ -1068,7 +1068,7 @@
             <column name="xplan_imverbund" type="TEXT"/>
             <column name="xplan_typ" type="TEXT"/>
             <column name="xplan_typcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-23">
@@ -1123,7 +1123,7 @@
             <column name="xplan_typcode" type="TEXT"/>
             <column name="xplan_besonderertyp" type="TEXT"/>
             <column name="xplan_besonderertypcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-24">
@@ -1176,7 +1176,7 @@
             <column name="xplan_bezeichnung" type="TEXT"/>
             <column name="xplan_typ" type="TEXT"/>
             <column name="xplan_typcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-25">
@@ -1226,7 +1226,7 @@
             <column name="xplan_istsiedlungsbeschraenkung" type="TEXT"/>
             <column name="xplan_typ" type="TEXT"/>
             <column name="xplan_typcode" type="TEXT"/>
-            <column name="xplan_position" type="GEOMETRY(2147483647)"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1540475405117-26">
