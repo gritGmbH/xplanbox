@@ -107,7 +107,7 @@
           <configuration>
             <preparationGoals>clean install</preparationGoals>
             <autoVersionSubmodules>true</autoVersionSubmodules>
-            <releaseProfiles>integrationtest,docker</releaseProfiles>
+            <releaseProfiles>docker</releaseProfiles>
           </configuration>
         </plugin>
         <plugin>
