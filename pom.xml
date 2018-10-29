@@ -4,7 +4,7 @@
   <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplanbox</artifactId>
   <packaging>pom</packaging>
-  <version>2.9-SNAPSHOT</version>
+  <version>2.10-SNAPSHOT</version>
 
   <properties>
     <java.version>1.8</java.version>
@@ -107,7 +107,7 @@
           <configuration>
             <preparationGoals>clean install</preparationGoals>
             <autoVersionSubmodules>true</autoVersionSubmodules>
-            <releaseProfiles>release,docker</releaseProfiles>
+            <releaseProfiles>docker</releaseProfiles>
           </configuration>
         </plugin>
         <plugin>
@@ -499,7 +499,7 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.11</version>
+        <version>4.12</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -532,6 +532,13 @@
         <version>1.0-RC1</version>
         <scope>test</scope>
       </dependency>
+      <dependency>
+        <groupId>pl.pragmatists</groupId>
+        <artifactId>JUnitParams</artifactId>
+        <version>1.1.1</version>
+        <scope>test</scope>
+      </dependency>
+
       <!-- for map preview -->
       <dependency>
         <groupId>org.gwtopenmaps.openlayers</groupId>

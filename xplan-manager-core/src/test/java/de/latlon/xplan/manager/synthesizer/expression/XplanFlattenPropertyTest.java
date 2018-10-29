@@ -6,6 +6,7 @@ import org.deegree.feature.Feature;
 import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static org.junit.Assert.assertEquals;
 
 public class XplanFlattenPropertyTest {
@@ -111,5 +112,13 @@ public class XplanFlattenPropertyTest {
         PrimitiveValue value = expr.evaluate( feature );
         assertEquals( "[2013-12-13: \"so nicht\" (Schneider, nicht signiert)][2013-12-13: \"doch ok\" (Goerke, signiert)]",
                       value.toString() );
+    }
+
+    @Test
+    public void testEvaluate50WithXpBegruendungAbschnitt() {
+        Feature feature = new ScenarioLoader().getTestFeature( XPLAN_50, "BP_VerEntsorgung" );
+        XplanFlattenProperty expr = new XplanFlattenProperty( new Xpath( "xplan:refBegruendungInhalt" ), new XPlanSynthesizer() );
+        PrimitiveValue value = expr.evaluate( feature );
+        assertEquals( "[Beg. No 1]", value.toString() );
     }
 }

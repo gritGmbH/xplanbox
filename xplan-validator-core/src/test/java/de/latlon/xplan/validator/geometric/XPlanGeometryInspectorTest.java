@@ -49,64 +49,56 @@ import de.latlon.xplan.validator.web.shared.ValidationOption;
 public class XPlanGeometryInspectorTest {
 
     @Test
-    public void testInspectLineStringShouldIgnoreOrientationOnOption()
-                            throws Exception {
+    public void testInspectLineStringShouldIgnoreOrientationOnOption() {
         XPlanGeometryInspector inspector = mockInspectorWithOptions( ignoreOrientation() );
         inspector.inspect( mockLineString() );
         verify( inspector, never() ).checkOrientation( any( Curve.class ), any( Curve.class ) );
     }
 
     @Test
-    public void testInspectLineStringShouldNotIgnoreOrientationOnNoOption()
-                            throws Exception {
+    public void testInspectLineStringShouldNotIgnoreOrientationOnNoOption() {
         XPlanGeometryInspector inspector = mockInspectorWithOptions( noOption() );
         inspector.inspect( mockLineString() );
         verify( inspector, times( 1 ) ).checkOrientation( any( Curve.class ), any( Curve.class ) );
     }
 
     @Test
-    public void testInspectRingShouldIgnoreSelfIntersectionOnOption()
-                            throws Exception {
+    public void testInspectRingShouldIgnoreSelfIntersectionOnOption() {
         XPlanGeometryInspector inspector = mockInspectorWithOptions( ignoreSelfIntersection() );
         inspector.inspect( mockRing() );
         verify( inspector, never() ).checkSelfIntersection( any( Ring.class ) );
     }
 
     @Test
-    public void testInspectRingShouldNotIgnoreSelfIntersectionOnNoOption()
-                            throws Exception {
+    public void testInspectRingShouldNotIgnoreSelfIntersectionOnNoOption() {
         XPlanGeometryInspector inspector = mockInspectorWithOptions( noOption() );
         inspector.inspect( mockRing() );
         verify( inspector, times( 1 ) ).checkSelfIntersection( any( Ring.class ) );
     }
 
     @Test
-    public void testInspectPolygonPatchShouldIgnoreSelfIntersectionOnOption()
-                            throws Exception {
+    public void testInspectPolygonPatchShouldIgnoreSelfIntersectionOnOption() {
         XPlanGeometryInspector inspector = mockInspectorWithOptions( ignoreSelfIntersection() );
         inspector.inspect( mockPolygon() );
         verify( inspector, never() ).checkSelfIntersection( any( Ring.class ) );
     }
 
     @Test
-    public void testInspectPolygonPatchShouldNotIgnoreSelfIntersectionOnNoOption()
-                            throws Exception {
+    public void testInspectPolygonPatchShouldNotIgnoreSelfIntersectionOnNoOption() {
         XPlanGeometryInspector inspector = mockInspectorWithOptions( noOption() );
         inspector.inspect( mockPolygon() );
         verify( inspector, times( 1 ) ).checkSelfIntersection( any( PolygonPatch.class ) );
     }
 
     @Test
-    public void testInspectPolygonPatchShouldIgnoreOrientationOnOption()
-                            throws Exception {
+    public void testInspectPolygonPatchShouldIgnoreOrientationOnOption() {
         XPlanGeometryInspector inspector = mockInspectorWithOptions( ignoreOrientation() );
         inspector.inspect( mockPolygon() );
         verify( inspector, never() ).checkRingOrientations( any( PolygonPatch.class ) );
     }
 
     @Test
-    public void testInspectPolygonPatchShouldNotIgnoreOrientationOnNoOption()
-                            throws Exception {
+    public void testInspectPolygonPatchShouldNotIgnoreOrientationOnNoOption() {
         XPlanGeometryInspector inspector = mockInspectorWithOptions( noOption() );
         inspector.inspect( mockPolygon() );
         verify( inspector, times( 1 ) ).checkRingOrientations( any( PolygonPatch.class ) );
@@ -116,7 +108,7 @@ public class XPlanGeometryInspectorTest {
     public void testInspectRingWithInvalidGeometryWithoutIdShouldBeAddedAsBadGeometry()
                             throws Exception {
         Geometry geometryToInspect = createSelfIntersectingRing();
-        XPlanGeometryInspector inspector = createInspectorWithMockedStream( geometryToInspect );
+        XPlanGeometryInspector inspector = createInspectorWithMockedStream();
         inspector.inspect( geometryToInspect );
 
         List<BadGeometry> badGeometries = inspector.getBadGeometries();
@@ -130,7 +122,7 @@ public class XPlanGeometryInspectorTest {
         Mockito.when( polygonPatch.getGeometryType() ).thenReturn( PRIMITIVE_GEOMETRY );
         when( polygonPatch.getPrimitiveType() ).thenReturn( Surface );
         when( polygonPatch.getSurfaceType() ).thenReturn( Polygon );
-        when( polygonPatch.getPatches() ).thenReturn( Collections.<PolygonPatch> singletonList( mockPolygonPatch() ) );
+        when( polygonPatch.getPatches() ).thenReturn( Collections.singletonList( mockPolygonPatch() ) );
         return polygonPatch;
 
     }
@@ -171,7 +163,7 @@ public class XPlanGeometryInspectorTest {
         return inspector;
     }
 
-    private XPlanGeometryInspector createInspectorWithMockedStream( Geometry geometryToInspect ) {
+    private XPlanGeometryInspector createInspectorWithMockedStream() {
         double epsilon = 0.1;
         List<ValidationOption> voOptions = Collections.emptyList();
         XMLStreamReaderWrapper mockXmlStream = mock( XMLStreamReaderWrapper.class );

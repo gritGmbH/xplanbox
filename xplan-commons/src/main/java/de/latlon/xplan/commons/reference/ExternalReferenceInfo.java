@@ -17,6 +17,9 @@ public class ExternalReferenceInfo {
 
     private final List<ExternalReference> rasterPlanBaseScans;
 
+    /**
+    * Externe Referenzen von XP_RasterplanAenderung (<= XPlan 4.1)
+     */
     private final List<ExternalReference> rasterPlanUpdateScans;
 
     public ExternalReferenceInfo() {
