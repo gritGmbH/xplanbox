@@ -2612,6 +2612,7 @@ CREATE TABLE xplansynpre.xplan_bp_gemeinschaftsanlagenzuordnung (
     xplan_hoehenangabe text,
     xplan_externereferenz text,
     xplan_gehoertnachrichtlichzubereich text,
+    xplan_gehoertzubereich text,
     xplan_wirddargestelltdurch text,
     xplan_rechtscharakter text,
     xplan_rechtscharaktercode text,
