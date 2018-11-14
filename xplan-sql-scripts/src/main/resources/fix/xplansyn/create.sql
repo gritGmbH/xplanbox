@@ -8514,6 +8514,8 @@ CREATE TABLE xplansyn.xplan_fp_wasserwirtschaft (
     xplan_begruendungabschnitte text,
     xplan_gliederung1 text,
     xplan_gliederung2 text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
     xplan_ebene integer,
     xplan_gehoertzubereich text,
     xplan_informell text,
