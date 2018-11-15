@@ -78,7 +78,6 @@ import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
@@ -251,14 +250,31 @@ public class XPlanManipulatorTest {
         assertThatPlanIsSchemaValid( featureCollection, version );
     }
 
-    // TODO: "xplan50/BP2070.gml, XPLAN_50",
     @Test
-    @Parameters({ "Eidelstedt_4_V4-Blankenese.gml, XPLAN_41" })
-    public void testModifyXPlan_Referenzen( String planResource, String xplanVersion )
+    public void testModifyXPlan_XPlan50_Referenzen()
                     throws Exception {
-        XPlanVersion version = XPlanVersion.valueOf( xplanVersion );
+        XPlanVersion version = XPLAN_50;
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, null );
-        FeatureCollection featureCollection = readXPlanGml( version, planResource, schema );
+        FeatureCollection featureCollection = readXPlanGml( version, "xplan50/BP2070.gml", schema );
+
+        XPlanToEdit editedXplan = createSimpleXPlan();
+        editedXplan.getReferences().add( new Reference( "ref1", "georef1", GREEN_STRUCTURES_PLAN ) );
+        editedXplan.getReferences().add( new Reference( "ref2", "georef2", LEGISLATION_PLAN ) );
+        editedXplan.getReferences().add( new Reference( "ref3", "georef3", REASON ) );
+
+        planManipulator.modifyXPlan( featureCollection, editedXplan, version, BP_Plan, schema );
+
+        assertThat( featureCollection, hasPropertyCount( version, "BP_Plan", "externeReferenz", 3 ) );
+
+        assertThatPlanIsSchemaValid( featureCollection, version );
+    }
+
+    @Test
+    public void testModifyXPlan_XPlan41_Referenzen()
+                    throws Exception {
+        XPlanVersion version = XPLAN_41;
+        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, null );
+        FeatureCollection featureCollection = readXPlanGml( version, "Eidelstedt_4_V4-Blankenese.gml", schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
         Reference reference1 = new Reference( "ref1", "georef1", GREEN_STRUCTURES_PLAN );

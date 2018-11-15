@@ -104,6 +104,8 @@ public class XPlanManipulator {
 
     private static final List<String> EXTERNAL_PLAN_PROPERTIES = initExternalPlanProperties();
 
+    private static final Map<ReferenceType, String> REF_TYPE_TO_CODE = initRefTypeToCode();
+
     /**
      * Modifies the {@link FeatureCollection} representing an XPlanGML, by the changes described in {@link XPlanToEdit}.
      *
@@ -355,13 +357,34 @@ public class XPlanManipulator {
 
     private void modifyReferences( GmlDocumentIdContext context, XPlanVersion version, Feature feature,
                                    XPlanToEdit changes, AppSchema schema, List<Feature> featuresToAdd ) {
-        modifyReferences( context, version, feature, schema, "refRechtsplan", changes.getReferences(), LEGISLATION_PLAN,
-                          featuresToAdd );
-        modifyReferences( context, version, feature, schema, "refBegruendung", changes.getReferences(), REASON,
-                          featuresToAdd );
-        if ( XPLAN_41.equals( version ) )
-            modifyReferences( context, version, feature, schema, "refGruenordnungsplan", changes.getReferences(),
-                              GREEN_STRUCTURES_PLAN, featuresToAdd );
+        if ( XPLAN_41.equals( version ) || XPLAN_3.equals( version ) ) {
+            modifyReferences( context, version, feature, schema, "refRechtsplan", changes.getReferences(),
+                              LEGISLATION_PLAN, featuresToAdd );
+            modifyReferences( context, version, feature, schema, "refBegruendung", changes.getReferences(), REASON,
+                              featuresToAdd );
+            if ( XPLAN_41.equals( version ) )
+                modifyReferences( context, version, feature, schema, "refGruenordnungsplan", changes.getReferences(),
+                                  GREEN_STRUCTURES_PLAN, featuresToAdd );
+        } else if ( XPLAN_50.equals( version ) ) {
+            modifyReferences_XPlan50( context, version, feature, changes, schema, featuresToAdd );
+        }
+    }
+
+    private void modifyReferences_XPlan50( GmlDocumentIdContext context, XPlanVersion version, Feature feature,
+                                           XPlanToEdit changes, AppSchema schema, List<Feature> featuresToAdd ) {
+        String namespaceUri = feature.getName().getNamespaceURI();
+        QName propName = new QName( namespaceUri, "externeReferenz" );
+        List<Property> properties = new ArrayList<>();
+        FeatureType featureType = feature.getType();
+        for ( Reference reference : changes.getReferences() ) {
+            String spezExterneReferenzTyp = REF_TYPE_TO_CODE.get( reference.getType() );
+            Feature refFeature = createAndAddExterneReferenz( context, version, schema, namespaceUri, reference,
+                                                              featureType, properties, propName,
+                                                              "XP_SpezExterneReferenz", spezExterneReferenzTyp );
+            if ( refFeature != null )
+                featuresToAdd.add( refFeature );
+        }
+        addOrReplaceProperties( version, feature, propName, properties );
     }
 
     private void modifyReferences( GmlDocumentIdContext context, XPlanVersion version, Feature feature,
@@ -369,12 +392,13 @@ public class XPlanManipulator {
                                    ReferenceType refType, List<Feature> featuresToAdd ) {
         String namespaceUri = feature.getName().getNamespaceURI();
         QName propName = new QName( namespaceUri, propertyName );
-        List<Property> properties = new ArrayList<Property>();
+        List<Property> properties = new ArrayList<>();
         FeatureType featureType = feature.getType();
         for ( Reference reference : references ) {
             if ( refType.equals( reference.getType() ) ) {
                 Feature refFeature = createAndAddExterneReferenz( context, version, schema, namespaceUri, reference,
-                                                                  featureType, properties, propName );
+                                                                  featureType, properties, propName,
+                                                                  "XP_ExterneReferenz", null );
                 if ( refFeature != null )
                     featuresToAdd.add( refFeature );
             }
@@ -437,7 +461,7 @@ public class XPlanManipulator {
 
         QName refPropName = new QName( namespaceUri, "refText" );
         Feature refFeature = createAndAddExterneReferenz( context, version, schema, namespaceUri, text, textFeatureType,
-                                                          props, refPropName );
+                                                          props, refPropName, "XP_ExterneReferenz", null );
 
         if ( XPLAN_50.equals( version ) ) {
             addProperty( props, createLegalNatureProperty( namespaceUri, text.getLegalNatureCode() ) );
@@ -451,10 +475,13 @@ public class XPlanManipulator {
 
     private Feature createAndAddExterneReferenz( GmlDocumentIdContext context, XPlanVersion version, AppSchema schema,
                                                  String namespaceUri, AbstractReference text, FeatureType featureType,
-                                                 List<Property> props, QName refPropName ) {
+                                                 List<Property> props, QName refPropName,
+                                                 String externeReferenzElementName, String spezExterneReferenzTyp ) {
         if ( XPLAN_41.equals( version ) || XPLAN_50.equals( version ) ) {
-            GenericProperty refProperty = createExterneReferenzProperty_XPlan41( schema, featureType, refPropName,
-                                                                                 text );
+            GenericProperty refProperty = createExterneReferenzProperty_XPlan41_XPlan50( schema, featureType,
+                                                                                         refPropName, text,
+                                                                                         externeReferenzElementName,
+                                                                                         spezExterneReferenzTyp );
             addProperty( props, refProperty );
         } else if ( XPLAN_3.equals( version ) ) {
             String refGmlid = generateGmlId( refPropName );
@@ -479,19 +506,25 @@ public class XPlanManipulator {
         return refFeatureType.newFeature( gmlid, props, null );
     }
 
-    private GenericProperty createExterneReferenzProperty_XPlan41( AppSchema schema, FeatureType textFeatureType,
-                                                                   QName propName, AbstractReference reference ) {
+    private GenericProperty createExterneReferenzProperty_XPlan41_XPlan50( AppSchema schema,
+                                                                           FeatureType textFeatureType, QName propName,
+                                                                           AbstractReference reference,
+                                                                           String externeReferenzElementName,
+                                                                           String spezExterneReferenzTyp ) {
         String namespaceUri = textFeatureType.getName().getNamespaceURI();
         PropertyType propType = textFeatureType.getPropertyDeclaration( propName );
         GenericProperty newProperty = new GenericProperty( propType, null );
 
-        List<TypedObjectNode> subElementChilds = new ArrayList<TypedObjectNode>();
+        List<TypedObjectNode> subElementChilds = new ArrayList<>();
         add( subElementChilds, createGeoReferenzProperty( namespaceUri, reference.getGeoReference() ) );
         add( subElementChilds, createReferenzProperty( namespaceUri, reference.getReference() ) );
         if ( subElementChilds.isEmpty() )
             return null;
+        if ( spezExterneReferenzTyp != null ) {
+            add( subElementChilds, createReferenzTypProperty( namespaceUri, spezExterneReferenzTyp ) );
+        }
 
-        QName subElementName = new QName( namespaceUri, "XP_ExterneReferenz" );
+        QName subElementName = new QName( namespaceUri, externeReferenzElementName );
         XSElementDeclaration subElementType = schema.getGMLSchema().getElementDecl( subElementName );
         GenericXMLElement gxe = new GenericXMLElement( subElementName, subElementType, null, subElementChilds );
 
@@ -557,6 +590,11 @@ public class XPlanManipulator {
 
     private GenericProperty createTextProperty( String namespaceUri, String value ) {
         QName propName = new QName( namespaceUri, "text" );
+        return createProperty( propName, value, 0, 1 );
+    }
+
+    private GenericProperty createReferenzTypProperty( String namespaceUri, String value ) {
+        QName propName = new QName( namespaceUri, "typ" );
         return createProperty( propName, value, 0, 1 );
     }
 
@@ -678,6 +716,12 @@ public class XPlanManipulator {
         return new QName( namespaceUri, "XP_TextAbschnitt" );
     }
 
+    private QName getExterneReferenzPropertyName( XPlanVersion version, String namespaceUri ) {
+        if ( XPLAN_50.equals( version ) )
+            return new QName( namespaceUri, "XP_SpezExterneReferenz" );
+        return new QName( namespaceUri, "XP_ExterneReferenz" );
+    }
+
     private String generateGmlId( QName propName ) {
         String prefix = "XPLAN_" + propName.getLocalPart() + "_";
         String uuid = UUID.randomUUID().toString();
@@ -764,6 +808,14 @@ public class XPlanManipulator {
             throw new IllegalArgumentException( "Unsupported Version: " + version );
         if ( !XPlanType.BP_Plan.equals( type ) )
             throw new IllegalArgumentException( "Unsupported Plan, only BP_Plan is supported yet." );
+    }
+
+    private static Map<ReferenceType, String> initRefTypeToCode() {
+        Map<ReferenceType, String> refTypeToCode = new HashMap<>();
+        refTypeToCode.put( GREEN_STRUCTURES_PLAN, "2300" );
+        refTypeToCode.put( LEGISLATION_PLAN, "1030" );
+        refTypeToCode.put( REASON, "1010" );
+        return refTypeToCode;
     }
 
     private static Map<String, RasterReferenceType> initRasterReferenceToPropName() {
