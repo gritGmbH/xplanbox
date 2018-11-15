@@ -294,7 +294,7 @@ public class XPlanManipulator {
         List<Property> properties = new ArrayList<Property>();
         for ( Change change : changes ) {
             if ( changedType.equals( change.getType() ) ) {
-                if ( XPLAN_41.equals( version ) ) {
+                if ( XPLAN_41.equals( version ) || XPLAN_50.equals( version ) ) {
                     addProperty( properties, createVerbundenerPlanProperty( feature, schema, change, propName ) );
                 } else if ( XPLAN_3.equals( version ) ) {
                     addProperty( properties, createSimpleProperty( feature, propName, change.getPlanName() ) );
