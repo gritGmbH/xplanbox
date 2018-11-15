@@ -37,6 +37,7 @@ package de.latlon.xplan.manager.edit;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
@@ -163,7 +164,7 @@ public class XPlanManipulator {
         modifyChanges( version, feature, schema, "aendert", changes.getChanges(), CHANGES );
         modifyTexts( context, version, planToEdit, feature, schema, changes.getTexts(), featuresToAdd, featuresToRemove,
                      referencesToRemove, previouslyReferencedTextFeatureIds );
-        if ( XPLAN_41.equals( version ) )
+        if ( XPLAN_41.equals( version ) || XPLAN_50.equals( version ) )
             modifyCode( version, feature, "verfahren", changes.getBaseData().getMethodCode() );
         modifyReferences( context, version, feature, changes, schema, featuresToAdd );
     }
@@ -751,7 +752,7 @@ public class XPlanManipulator {
     }
 
     private void checkVersionAndType( XPlanVersion version, XPlanType type ) {
-        if ( !XPLAN_3.equals( version ) && !XPLAN_41.equals( version ) )
+        if ( !XPLAN_3.equals( version ) && !XPLAN_41.equals( version ) && !XPLAN_50.equals( version ) )
             throw new IllegalArgumentException( "Unsupported Version: " + version );
         if ( !XPlanType.BP_Plan.equals( type ) )
             throw new IllegalArgumentException( "Unsupported Plan, only BP_Plan is supported yet." );

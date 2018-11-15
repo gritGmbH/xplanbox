@@ -38,6 +38,7 @@ package de.latlon.xplan.manager.edit;
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
@@ -103,6 +104,39 @@ public class XPlanManipulatorTest {
     private final XPlanToEditFactory factory = new XPlanToEditFactory();
 
     private final XPlanManipulator planManipulator = new XPlanManipulator();
+
+    @Test
+    public void testModifyXPlan_XPlan50()
+            throws Exception {
+        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( XPLAN_50, null );
+        FeatureCollection featureCollection = readXPlanGml( XPLAN_50, "xplan50/BP2070.gml", schema );
+
+        String planName = "newPlanName";
+        String description = "newDescription";
+        Date creationDate = asDate( "2010-01-01" );
+        Date lossDate = asDate( "2020-01-01" );
+        Date regulationDate = asDate( "2006-01-01" );
+        int legislationStatusCode = 3000;
+        int methodCode = 1000;
+        int planTypeCode = 10000;
+        XPlanToEdit editedXplan = createEditedXplan( planName, description, creationDate, lossDate, regulationDate,
+                legislationStatusCode, methodCode, -1, planTypeCode );
+
+        planManipulator.modifyXPlan( featureCollection, editedXplan, XPLAN_50, BP_Plan, schema );
+
+        assertThat( featureCollection, hasProperty( XPLAN_50, "BP_Plan", "name", planName ) );
+        assertThat( featureCollection, hasProperty( XPLAN_50, "BP_Plan", "beschreibung", description ) );
+        assertThat( featureCollection, hasProperty( XPLAN_50, "BP_Plan", "technHerstellDatum", creationDate ) );
+        assertThat( featureCollection, hasProperty( XPLAN_50, "BP_Plan", "untergangsDatum", lossDate ) );
+        assertThat( featureCollection, hasProperty( XPLAN_50, "BP_Plan", "rechtsverordnungsDatum", regulationDate ) );
+        assertThat( featureCollection, hasProperty( XPLAN_50, "BP_Plan", "rechtsverordnungsDatum", regulationDate ) );
+        assertThat( featureCollection, hasProperty( XPLAN_50, "BP_Plan", "rechtsstand", legislationStatusCode ) );
+        assertThat( featureCollection, hasProperty( XPLAN_50, "BP_Plan", "verfahren", methodCode ) );
+        assertThat( featureCollection, hasNoProperty( XPLAN_50, "BP_Plan", "sonstPlanArt" ) );
+        assertThat( featureCollection, hasProperty( XPLAN_50, "BP_Plan", "planArt", planTypeCode ) );
+
+        assertThatPlanIsSchemaValid( featureCollection, XPLAN_50 );
+    }
 
     @Test
     public void testModifyXPlan_XPlan41()
