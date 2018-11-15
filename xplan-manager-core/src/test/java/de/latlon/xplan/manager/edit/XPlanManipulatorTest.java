@@ -78,7 +78,9 @@ import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
@@ -161,14 +163,31 @@ public class XPlanManipulatorTest {
         assertThatPlanIsSchemaValid( featureCollection, version );
     }
 
-    // TODO: "xplan50/BP2070.gml, XPLAN_50",
     @Test
-    @Parameters({ "V4_1_ID_103.gml, XPLAN_41" })
-    public void testModifyXPlan_Texte( String planResource, String xplanVersion )
+    public void testModifyXPlan_XPlan50_Texte()
                     throws Exception {
-        XPlanVersion version = XPlanVersion.valueOf( xplanVersion );
+        XPlanVersion version = XPLAN_50;
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, null );
-        FeatureCollection featureCollection = readXPlanGml( version, planResource, schema );
+        FeatureCollection featureCollection = readXPlanGml( version, "xplan50/BP2070.gml", schema );
+
+        XPlanToEdit editedXplan = createSimpleXPlan();
+        editedXplan.getTexts().add( new Text( "id1", "key1", "basis1", "text1", 3000, "reference1", "geoReference1" ) );
+        editedXplan.getTexts().add( new Text( "id2", "key2", "basis2", "text2", 4000, "reference2", "geoReference2" ) );
+
+        planManipulator.modifyXPlan( featureCollection, editedXplan, version, BP_Plan, schema );
+
+        assertThat( featureCollection, hasPropertyCount( version, "BP_Plan", "texte", 2 ) );
+        assertThat( featureCollection, hasFeatureCount( version, "BP_TextAbschnitt", 2 ) );
+
+        assertThatPlanIsSchemaValid( featureCollection, version );
+    }
+
+    @Test
+    public void testModifyXPlan_XPlan41_Texte()
+                    throws Exception {
+        XPlanVersion version = XPLAN_41;
+        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, null );
+        FeatureCollection featureCollection = readXPlanGml( version, "V4_1_ID_103.gml", schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
         editedXplan.getTexts().add( new Text( "id1", "key1", "basis1", "text1", "reference1", "geoReference1" ) );
@@ -182,14 +201,38 @@ public class XPlanManipulatorTest {
         assertThatPlanIsSchemaValid( featureCollection, version );
     }
 
-    // TODO: "xplan50/BP2070.gml, XPLAN_50",
     @Test
-    @Parameters({ "V4_1_ID_103.gml, XPLAN_41" })
-    public void testModifyXPlan_XPlan41_TextWerte( String planResource, String xplanVersion )
+    public void testModifyXPlan_XPlan50_TextWerte()
                     throws Exception {
-        XPlanVersion version = XPlanVersion.valueOf( xplanVersion );
+        XPlanVersion version = XPLAN_50;
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, null );
-        FeatureCollection featureCollection = readXPlanGml( version, planResource, schema );
+        FeatureCollection featureCollection = readXPlanGml( version, "xplan50/BP2070.gml", schema );
+
+        XPlanToEdit editedXplan = createSimpleXPlan();
+        Text text = new Text( "id1", "key1", "basis1", "text1", 4000, "reference1", "geoReference1" );
+        editedXplan.getTexts().add( text );
+
+        planManipulator.modifyXPlan( featureCollection, editedXplan, version, BP_Plan, schema );
+
+        assertThat( featureCollection, hasPropertyCount( version, "BP_Plan", "texte", 1 ) );
+        assertThat( featureCollection, hasFeatureCount( version, "BP_TextAbschnitt", 1 ) );
+        assertThat( featureCollection, hasProperty( version, "BP_TextAbschnitt", "schluessel", text.getKey() ) );
+        assertThat( featureCollection,
+                    hasProperty( version, "BP_TextAbschnitt", "gesetzlicheGrundlage", text.getBasis() ) );
+        assertThat( featureCollection, hasProperty( version, "BP_TextAbschnitt", "text", text.getText() ) );
+        assertThat( featureCollection,
+                    hasProperty( version, "BP_TextAbschnitt", "rechtscharakter", text.getLegalNatureCode() ) );
+        assertThat( featureCollection, hasPropertyCount( version, "BP_TextAbschnitt", "refText", 1 ) );
+
+        assertThatPlanIsSchemaValid( featureCollection, version );
+    }
+
+    @Test
+    public void testModifyXPlan_XPlan41_TextWerte()
+                    throws Exception {
+        XPlanVersion version = XPLAN_41;
+        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, null );
+        FeatureCollection featureCollection = readXPlanGml( version, "V4_1_ID_103.gml", schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
         Text text = new Text( "id1", "key1", "basis1", "text1", "reference1", "geoReference1" );

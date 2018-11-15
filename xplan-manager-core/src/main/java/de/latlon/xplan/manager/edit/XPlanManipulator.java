@@ -35,27 +35,18 @@
 ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.edit;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
-import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
-import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
-import javax.xml.namespace.QName;
-
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
+import de.latlon.xplan.manager.web.shared.edit.Change;
+import de.latlon.xplan.manager.web.shared.edit.ChangeType;
+import de.latlon.xplan.manager.web.shared.edit.RasterReference;
+import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
+import de.latlon.xplan.manager.web.shared.edit.RasterWithReferences;
+import de.latlon.xplan.manager.web.shared.edit.Reference;
+import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
+import de.latlon.xplan.manager.web.shared.edit.Text;
+import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import org.apache.xerces.xs.XSElementDeclaration;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.genericxml.GenericXMLElement;
@@ -76,25 +67,31 @@ import org.deegree.gml.reference.GmlDocumentIdContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
-import de.latlon.xplan.manager.web.shared.edit.Change;
-import de.latlon.xplan.manager.web.shared.edit.ChangeType;
-import de.latlon.xplan.manager.web.shared.edit.RasterReference;
-import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
-import de.latlon.xplan.manager.web.shared.edit.RasterWithReferences;
-import de.latlon.xplan.manager.web.shared.edit.Reference;
-import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
-import de.latlon.xplan.manager.web.shared.edit.Text;
-import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import javax.xml.namespace.QName;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
+import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
+import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
 
 /**
  * Modifies the {@link FeatureCollection} representing an XPlanGML.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class XPlanManipulator {
@@ -109,17 +106,17 @@ public class XPlanManipulator {
 
     /**
      * Modifies the {@link FeatureCollection} representing an XPlanGML, by the changes described in {@link XPlanToEdit}.
-     * 
+     *
      * @param planToEdit
-     *            the {@link FeatureCollection} to edit, never <code>null</code>
+     *                 the {@link FeatureCollection} to edit, never <code>null</code>
      * @param planWithChanges
-     *            containing the changes, never <code>null</code>
+     *                 containing the changes, never <code>null</code>
      * @param version
-     *            of the plan, never <code>null</code>
+     *                 of the plan, never <code>null</code>
      * @param type
-     *            of the plan, never <code>null</code>
+     *                 of the plan, never <code>null</code>
      * @param schema
-     *            of the plan, never <code>null</code>
+     *                 of the plan, never <code>null</code>
      */
     public void modifyXPlan( FeatureCollection planToEdit, XPlanToEdit planWithChanges, XPlanVersion version,
                              XPlanType type, AppSchema schema ) {
@@ -193,7 +190,8 @@ public class XPlanManipulator {
         List<RasterReference> rasterReferences = rasterWithReference.getRasterReferences();
         int rasterReferenceIndex = 0;
         for ( Property property : properties ) {
-            RasterReferenceType rasterReferenceType = PROPNAME_TO_RASTERREFERENCE.get( property.getName().getLocalPart() );
+            RasterReferenceType rasterReferenceType = PROPNAME_TO_RASTERREFERENCE.get(
+                            property.getName().getLocalPart() );
             if ( rasterReferenceType != null ) {
                 boolean wasUpdated = modifyRasterReference( version, rasterReferences, rasterReferenceIndex, property,
                                                             rasterReferenceType );
@@ -314,7 +312,7 @@ public class XPlanManipulator {
         for ( Text text : texts ) {
             String gmlid = text.getFeatureId();
             if ( gmlid != null ) {
-                QName textFeatureTypeName = new QName( namespaceUri, "XP_TextAbschnitt" );
+                QName textFeatureTypeName = getTextAbschnittName( version, namespaceUri );
                 Feature oldTextFeature = detectFeatureById( planToEdit, textFeatureTypeName, gmlid );
                 if ( oldTextFeature != null )
                     featuresToRemove.add( oldTextFeature );
@@ -327,7 +325,7 @@ public class XPlanManipulator {
         }
         for ( String previouslyReferencedTextFeatureId : previouslyReferencedTextFeatureIds ) {
             if ( isNotLongerReferenced( texts, previouslyReferencedTextFeatureId ) ) {
-                QName textFeatureTypeName = new QName( namespaceUri, "XP_TextAbschnitt" );
+                QName textFeatureTypeName = getTextAbschnittName( version, namespaceUri );
                 Feature oldTextFeature = detectFeatureById( planToEdit, textFeatureTypeName,
                                                             previouslyReferencedTextFeatureId );
                 if ( oldTextFeature != null ) {
@@ -422,15 +420,15 @@ public class XPlanManipulator {
 
     private boolean isPropertySecured( Feature feature, Property property ) {
         QName featureName = feature.getName();
-        if ( isBPlan( featureName )
-             && new QName( featureName.getNamespaceURI(), "texte" ).equals( property.getName() ) )
+        if ( isBPlan( featureName ) && new QName( featureName.getNamespaceURI(), "texte" ).equals(
+                        property.getName() ) )
             return true;
         return false;
     }
 
     private void createAndAddTextFeature( GmlDocumentIdContext context, XPlanVersion version, AppSchema schema,
                                           String namespaceUri, Text text, String gmlid, List<Feature> featuresToAdd ) {
-        QName textFeatureTypeName = new QName( namespaceUri, "XP_TextAbschnitt" );
+        QName textFeatureTypeName = getTextAbschnittName( version, namespaceUri );
         FeatureType textFeatureType = schema.getFeatureType( textFeatureTypeName );
         List<Property> props = new ArrayList<Property>();
         addProperty( props, createKeyProperty( namespaceUri, text.getKey() ) );
@@ -440,6 +438,10 @@ public class XPlanManipulator {
         QName refPropName = new QName( namespaceUri, "refText" );
         Feature refFeature = createAndAddExterneReferenz( context, version, schema, namespaceUri, text, textFeatureType,
                                                           props, refPropName );
+
+        if ( XPLAN_50.equals( version ) ) {
+            addProperty( props, createLegalNatureProperty( namespaceUri, text.getLegalNatureCode() ) );
+        }
         if ( props.isEmpty() )
             return;
         featuresToAdd.add( textFeatureType.newFeature( gmlid, props, null ) );
@@ -450,7 +452,7 @@ public class XPlanManipulator {
     private Feature createAndAddExterneReferenz( GmlDocumentIdContext context, XPlanVersion version, AppSchema schema,
                                                  String namespaceUri, AbstractReference text, FeatureType featureType,
                                                  List<Property> props, QName refPropName ) {
-        if ( XPLAN_41.equals( version ) ) {
+        if ( XPLAN_41.equals( version ) || XPLAN_50.equals( version ) ) {
             GenericProperty refProperty = createExterneReferenzProperty_XPlan41( schema, featureType, refPropName,
                                                                                  text );
             addProperty( props, refProperty );
@@ -670,6 +672,12 @@ public class XPlanManipulator {
         return index;
     }
 
+    private QName getTextAbschnittName( XPlanVersion version, String namespaceUri ) {
+        if ( XPLAN_50.equals( version ) )
+            return new QName( namespaceUri, "BP_TextAbschnitt" );
+        return new QName( namespaceUri, "XP_TextAbschnitt" );
+    }
+
     private String generateGmlId( QName propName ) {
         String prefix = "XPLAN_" + propName.getLocalPart() + "_";
         String uuid = UUID.randomUUID().toString();
@@ -779,4 +787,5 @@ public class XPlanManipulator {
         externalPlanProperties.add( "datum" );
         return externalPlanProperties;
     }
+
 }
