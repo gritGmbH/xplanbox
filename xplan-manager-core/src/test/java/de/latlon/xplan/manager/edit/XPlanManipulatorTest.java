@@ -292,6 +292,41 @@ public class XPlanManipulatorTest {
     }
 
     @Test
+    public void testModifyXPlan_XPlan50_RasterReferences()
+                    throws Exception {
+        XPlanVersion xPlanVersion = XPLAN_50;
+        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( xPlanVersion, null );
+        FeatureCollection featureCollection = readXPlanGml( xPlanVersion, "xplan50/V4_1_ID_103.gml", schema );
+
+        XPlanToEdit editedXplan = createSimpleXPlan();
+        RasterReference rasterBasisReference = new RasterReference( "ref1", "georef1", SCAN );
+
+        RasterWithReferences rasterBasis = new RasterWithReferences( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6" );
+        rasterBasis.addRasterReference( rasterBasisReference );
+        editedXplan.setRasterBasis( rasterBasis );
+
+        RasterWithReferences rasterPlanChange = new RasterWithReferences(
+                        "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d7" );
+        editedXplan.addRasterPlanChange( rasterPlanChange );
+
+        planManipulator.modifyXPlan( featureCollection, editedXplan, xPlanVersion, BP_Plan, schema );
+
+        assertThat( featureCollection, hasPropertyCount( xPlanVersion, "BP_Bereich", "rasterBasis", 1 ) );
+        assertThat( featureCollection, hasPropertyCount( xPlanVersion, "XP_Rasterdarstellung", "refScan", 1 ) );
+
+        String exportedPlan = exportPlan( featureCollection, xPlanVersion );
+
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:referenzName",
+                              nsContext( xPlanVersion ), is( "B-Plan_Klingmuehl_Heideweg_Karte" ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:georefURL",
+                              nsContext( xPlanVersion ), is( rasterBasisReference.getGeoReference() ) ) );
+
+        assertThatPlanIsSchemaValid( exportedPlan, xPlanVersion );
+    }
+
+    @Test
     public void testModifyXPlan_XPlan41_RasterReferences()
                     throws Exception {
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( XPLAN_41, null );

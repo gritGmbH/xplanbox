@@ -138,9 +138,11 @@ public class XPlanManipulator {
                 modifyBPlan( context, version, planToEdit, feature, planWithChanges, schema, featuresToAdd,
                              featuresToRemove, referencesToRemove, previouslyReferencedTextFeatureIds );
             else if ( isXPRasterplanBasis( featureName ) )
-                modifyXPRasterBasis( context, version, feature, planWithChanges, schema );
+                modifyXPRaster( version, feature, planWithChanges );
             else if ( isBPRasterplanAenderung( featureName ) )
-                modifyBPRasterplanAenderung( context, version, feature, planWithChanges, schema );
+                modifyBPRasterplanAenderung( version, feature, planWithChanges );
+            else if ( isXPRasterdarstellung( featureName ) )
+                modifyXPRaster( version, feature, planWithChanges );
         }
         removeAllPropertiesWithReferences( planToEdit, referencesToRemove );
         planToEdit.removeAll( featuresToRemove );
@@ -168,15 +170,13 @@ public class XPlanManipulator {
         modifyReferences( context, version, feature, changes, schema, featuresToAdd );
     }
 
-    private void modifyXPRasterBasis( GmlDocumentIdContext context, XPlanVersion version, Feature feature,
-                                      XPlanToEdit planWithChanges, AppSchema schema ) {
+    private void modifyXPRaster( XPlanVersion version, Feature feature, XPlanToEdit planWithChanges ) {
         RasterWithReferences rasterBasis = planWithChanges.getRasterBasis();
         if ( rasterBasis != null )
             modifyRasterWithReference( version, feature, rasterBasis );
     }
 
-    private void modifyBPRasterplanAenderung( GmlDocumentIdContext context, XPlanVersion version, Feature feature,
-                                              XPlanToEdit planWithChanges, AppSchema schema ) {
+    private void modifyBPRasterplanAenderung( XPlanVersion version, Feature feature, XPlanToEdit planWithChanges ) {
         List<RasterWithReferences> rasterPlanChanges = planWithChanges.getRasterPlanChanges();
         RasterWithReferences rasterPlanChange = findRasterPlanChangeByFeatureId( feature, rasterPlanChanges );
         if ( rasterPlanChange != null )
@@ -801,6 +801,10 @@ public class XPlanManipulator {
 
     private boolean isBPRasterplanAenderung( QName featureName ) {
         return "BP_RasterplanAenderung".equals( featureName.getLocalPart() );
+    }
+
+    private boolean isXPRasterdarstellung( QName featureName ) {
+        return "XP_Rasterdarstellung".equals( featureName.getLocalPart() );
     }
 
     private void checkVersionAndType( XPlanVersion version, XPlanType type ) {
