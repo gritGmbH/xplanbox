@@ -66,7 +66,7 @@ import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 
 /**
  * Manager panel of the xplan manager web gui.
- * 
+ *
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @author last edited by: $Author: stenger $
@@ -102,7 +102,7 @@ public class PlanListPanel extends DecoratorPanel {
 
     /**
      * loads all imported plans from server and updates the plan list gui component.
-     * 
+     *
      * @param doReset
      *            true if all filters should be reset, false otherwise
      */
@@ -129,7 +129,7 @@ public class PlanListPanel extends DecoratorPanel {
 
     /**
      * Applies all given filters.
-     * 
+     *
      * @param planFilters
      *            must not be <code>null</code>
      */
@@ -454,7 +454,9 @@ public class PlanListPanel extends DecoratorPanel {
             @Override
             public String getValue( XPlan xPlan ) {
                 if ( "BP_Plan".equals( xPlan.getType() )
-                     && ( "XPLAN_3".equals( xPlan.getVersion() ) || "XPLAN_41".equals( xPlan.getVersion() ) )
+                     && ( "XPLAN_3".equals( xPlan.getVersion() )
+                        || "XPLAN_41".equals( xPlan.getVersion() )
+                        || "XPLAN_50".equals( xPlan.getVersion() ) )
                      && isEditingPermitted( xPlan ) )
                     editButtonCell.setEnabled();
                 else
@@ -477,7 +479,9 @@ public class PlanListPanel extends DecoratorPanel {
                     return messages.editButtonTooltipPermissionDenied();
                 else if ( !"BP_Plan".equals( xPlan.getType() ) )
                     return messages.editButtonTooltipIncorrectPlanType();
-                else if ( !( "XPLAN_3".equals( xPlan.getVersion() ) || "XPLAN_41".equals( xPlan.getVersion() ) ) )
+                else if ( !( "XPLAN_3".equals( xPlan.getVersion() )
+                             || "XPLAN_41".equals( xPlan.getVersion() )
+                             || "XPLAN_50".equals( xPlan.getVersion() ) ) )
                     return messages.editButtonTooltipIncorrectVersion();
                 return messages.editButtonTooltip();
             }

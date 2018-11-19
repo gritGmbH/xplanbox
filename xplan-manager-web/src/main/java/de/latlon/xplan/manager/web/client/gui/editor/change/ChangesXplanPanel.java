@@ -35,12 +35,6 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.client.gui.editor.change;
 
-import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
-import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.XP_RechtscharakterPlanaenderung;
-
-import java.util.List;
-
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -53,27 +47,31 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-
 import de.latlon.xplan.manager.web.client.gui.editor.AbstractEditorSubPanelWithTable;
+import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.SavedHandler;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.ChangeType;
 
+import java.util.List;
+
+import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
+import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.XP_RechtscharakterPlanaenderung;
+
 /**
  * Subpanel to edit changes of XPlan version 4.1
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
-public class ChangesXplan41Panel extends AbstractEditorSubPanelWithTable<Change> {
+public class ChangesXplanPanel extends AbstractEditorSubPanelWithTable<Change> {
 
     /**
      * Instantiates a panel to edit changes of XPlan version 4.1
      */
-    public ChangesXplan41Panel() {
-        super( XPLAN_41, MESSAGES.editCaptionChanges() );
+    public ChangesXplanPanel( EditVersion version ) {
+        super( version, MESSAGES.editCaptionChanges() );
         add( createGui() );
     }
 
@@ -101,7 +99,7 @@ public class ChangesXplan41Panel extends AbstractEditorSubPanelWithTable<Change>
     private Button createNewButton() {
         Button newButton = new Button( MESSAGES.editCaptionNewChange(), new ClickHandler() {
             public void onClick( ClickEvent event ) {
-                final ChangesXplan41Dialog changesDialog = new ChangesXplan41Dialog( version );
+                final ChangesXplanDialog changesDialog = new ChangesXplanDialog( version );
                 changesDialog.addSaveHandler( new SavedHandler() {
                     @Override
                     public void changesSaved() {
@@ -171,15 +169,16 @@ public class ChangesXplan41Panel extends AbstractEditorSubPanelWithTable<Change>
 
     private void addEditColumn( final CellTable<Change> table, TextHeader columnHeader ) {
         ButtonCell editButtonCell = new ButtonCell();
-        final Column<Change, String> editButtonColumn = new Column<Change, String>( editButtonCell) {
+        final Column<Change, String> editButtonColumn = new Column<Change, String>( editButtonCell ) {
             @Override
             public String getValue( Change object ) {
                 return "";
             }
         };
+        final EditVersion version = this.version;
         editButtonColumn.setFieldUpdater( new FieldUpdater<Change, String>() {
             public void update( final int index, Change change, String value ) {
-                final ChangesXplan41Dialog changesDialog = new ChangesXplan41Dialog( change );
+                final ChangesXplanDialog changesDialog = new ChangesXplanDialog( version, change );
                 changesDialog.addSaveHandler( new SavedHandler() {
                     @Override
                     public void changesSaved() {
@@ -204,7 +203,7 @@ public class ChangesXplan41Panel extends AbstractEditorSubPanelWithTable<Change>
 
     private void addRemoveColumn( final CellTable<Change> table, TextHeader columnHeader ) {
         ButtonCell downloadButtonCell = new ButtonCell();
-        final Column<Change, String> removeButtonColumn = new Column<Change, String>( downloadButtonCell) {
+        final Column<Change, String> removeButtonColumn = new Column<Change, String>( downloadButtonCell ) {
             @Override
             public String getValue( Change object ) {
                 return "";

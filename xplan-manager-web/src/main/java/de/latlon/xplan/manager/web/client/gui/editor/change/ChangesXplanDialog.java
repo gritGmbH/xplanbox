@@ -55,14 +55,14 @@ import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.ChangeType;
 
 /**
- * Dialog to edit an existing or create a new {@link Change} of XPlan version 41.
+ * Dialog to edit an existing or create a new {@link Change} of XPlan version 4.1 or 5.0.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
  * 
  * @version $Revision: $, $Date: $
  */
-public class ChangesXplan41Dialog extends EditDialogBox implements Validable {
+public class ChangesXplanDialog extends EditDialogBox implements Validable {
 
     private final MandatoryTextBox planName = createMandatoryTextInput();
 
@@ -73,20 +73,20 @@ public class ChangesXplan41Dialog extends EditDialogBox implements Validable {
     private final TypeCodeListBox<ChangeType> changeType = new TypeCodeListBox<ChangeType>( ChangeType.class );
 
     /**
-     * Instantiates a {@link ChangesXplan41Dialog} to edit an existing {@link Change} for XPlan version 4.1
+     * Instantiates a {@link ChangesXplanDialog} to edit an existing {@link Change} for XPlan version 4.1
      * 
      * @param changeToEdit
      *            the change to edit, should not <code>null</code> (a new change is created)
      */
-    public ChangesXplan41Dialog( Change changeToEdit ) {
-        this( XPLAN_41, MESSAGES.editCaptionChangesDialogEdit() );
+    public ChangesXplanDialog( EditVersion version, Change changeToEdit ) {
+        this( version, MESSAGES.editCaptionChangesDialogEdit() );
         setChange( changeToEdit );
     }
 
     /**
-     * Instantiates a {@link ChangesXplan41Dialog} to create a new {@link Change}
+     * Instantiates a {@link ChangesXplanDialog} to create a new {@link Change}
      */
-    public ChangesXplan41Dialog( EditVersion version ) {
+    public ChangesXplanDialog( EditVersion version ) {
         this( version, MESSAGES.editCaptionChangesDialogNew() );
     }
 
@@ -107,7 +107,7 @@ public class ChangesXplan41Dialog extends EditDialogBox implements Validable {
         return change;
     }
 
-    private ChangesXplan41Dialog( EditVersion version, String title ) {
+    private ChangesXplanDialog( EditVersion version, String title ) {
         super( title );
         this.legalNature = createMandatoryCodeListInput( version, XP_RechtscharakterPlanaenderung );
         initDialog( createGui() );

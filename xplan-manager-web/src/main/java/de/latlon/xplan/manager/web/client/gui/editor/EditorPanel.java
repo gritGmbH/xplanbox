@@ -35,16 +35,6 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.client.gui.editor;
 
-import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
-import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
-import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
-
-import java.util.List;
-
-import org.fusesource.restygwt.client.Method;
-import org.fusesource.restygwt.client.MethodCallback;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -57,12 +47,11 @@ import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormPanel.SubmitEvent;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
 import de.latlon.xplan.manager.web.client.gui.dialog.RasterDialog;
 import de.latlon.xplan.manager.web.client.gui.dialog.RasterHandler;
 import de.latlon.xplan.manager.web.client.gui.editor.basedata.BaseDataPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.change.ChangesXplan30Panel;
-import de.latlon.xplan.manager.web.client.gui.editor.change.ChangesXplan41Panel;
+import de.latlon.xplan.manager.web.client.gui.editor.change.ChangesXplanPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.raster.RasterBasisPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.raster.RasterPlanChangesPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.reference.ReferencesPanel;
@@ -74,13 +63,21 @@ import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import org.fusesource.restygwt.client.Method;
+import org.fusesource.restygwt.client.MethodCallback;
+
+import java.util.List;
+
+import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
+import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
+import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
 
 /**
  * Main Editor Panel with different fieldsets and buttons to submit and cancel.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class EditorPanel extends DecoratorPanel {
@@ -275,7 +272,7 @@ public class EditorPanel extends DecoratorPanel {
     private AbstractEditorSubPanelWithTable<Change> createChangePanel( EditVersion version ) {
         if ( XPLAN_3.equals( version ) )
             return new ChangesXplan30Panel();
-        return new ChangesXplan41Panel();
+        return new ChangesXplanPanel( version );
     }
 
 }
