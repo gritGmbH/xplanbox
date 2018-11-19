@@ -104,8 +104,6 @@ public class XPlanManipulator {
 
     private static final List<String> EXTERNAL_PLAN_PROPERTIES = initExternalPlanProperties();
 
-    private static final Map<ReferenceType, String> REF_TYPE_TO_CODE = initRefTypeToCode();
-
     /**
      * Modifies the {@link FeatureCollection} representing an XPlanGML, by the changes described in {@link XPlanToEdit}.
      *
@@ -377,7 +375,7 @@ public class XPlanManipulator {
         List<Property> properties = new ArrayList<>();
         FeatureType featureType = feature.getType();
         for ( Reference reference : changes.getReferences() ) {
-            String spezExterneReferenzTyp = REF_TYPE_TO_CODE.get( reference.getType() );
+            String spezExterneReferenzTyp = reference.getType().getXplan50Type();
             Feature refFeature = createAndAddExterneReferenz( context, version, schema, namespaceUri, reference,
                                                               featureType, properties, propName,
                                                               "XP_SpezExterneReferenz", spezExterneReferenzTyp );
@@ -812,14 +810,6 @@ public class XPlanManipulator {
             throw new IllegalArgumentException( "Unsupported Version: " + version );
         if ( !XPlanType.BP_Plan.equals( type ) )
             throw new IllegalArgumentException( "Unsupported Plan, only BP_Plan is supported yet." );
-    }
-
-    private static Map<ReferenceType, String> initRefTypeToCode() {
-        Map<ReferenceType, String> refTypeToCode = new HashMap<>();
-        refTypeToCode.put( GREEN_STRUCTURES_PLAN, "2300" );
-        refTypeToCode.put( LEGISLATION_PLAN, "1030" );
-        refTypeToCode.put( REASON, "1010" );
-        return refTypeToCode;
     }
 
     private static Map<String, RasterReferenceType> initRasterReferenceToPropName() {

@@ -35,37 +35,6 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.edit;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
-import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
-
-import java.io.InputStream;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamReader;
-
-import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
-import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.GeometryFactory;
-import org.deegree.gml.GMLInputFactory;
-import org.deegree.gml.GMLStreamReader;
-import org.junit.Test;
-
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.web.shared.XPlan;
@@ -78,16 +47,71 @@ import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.Text;
 import de.latlon.xplan.manager.web.shared.edit.ValidityPeriod;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
+import org.deegree.feature.FeatureCollection;
+import org.deegree.feature.types.AppSchema;
+import org.deegree.geometry.GeometryFactory;
+import org.deegree.gml.GMLInputFactory;
+import org.deegree.gml.GMLStreamReader;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
+import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
+import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
+import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.junit.Assert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
- * @version $Revision: $, $Date: $
  */
+@RunWith(JUnitParamsRunner.class)
 public class XPlanToEditFactoryTest {
 
     private XPlanToEditFactory factory = new XPlanToEditFactory();
+
+    @Test
+    public void testCreateXPlanToEdit_XPlan50_BaseData_Changes()
+                    throws Exception {
+        FeatureCollection featureCollection = readXPlanGml( XPLAN_50, "xplan50/BP2070.gml" );
+
+        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
+
+        BaseData baseData = xPlanToEdit.getBaseData();
+        assertThat( baseData.getPlanName(), is( "BP2070" ) );
+        assertThat( baseData.getDescription(), is( "Testdatensatz XPlabGML" ) );
+
+        assertThat( baseData.getLegislationStatusCode(), is( -1 ) );
+        assertThat( baseData.getPlanTypeCode(), is( 1000 ) );
+        assertThat( baseData.getMethodCode(), is( -1 ) );
+        assertThat( baseData.getOtherPlanTypeCode(), is( -1 ) );
+
+        assertThat( baseData.getCreationDate(), is( asDate( "2001-08-06" ) ) );
+        assertThat( baseData.getLossDate(), nullValue() );
+        assertThat( baseData.getRegulationDate(), nullValue() );
+
+        List<Change> changes = xPlanToEdit.getChanges();
+        assertThat( changes.size(), is( 0 ) );
+    }
 
     @Test
     public void testCreateXPlanToEdit_XPlan41_BaseData_Changes()
@@ -126,9 +150,11 @@ public class XPlanToEditFactoryTest {
     }
 
     @Test
-    public void testCreateXPlanToEdit_XPlan41_References_Texts()
+    @Parameters({ /*"V4_1_ID_103.gml, XPLAN_41",*/ "xplan50/V4_1_ID_103.gml, XPLAN_50" })
+    public void testCreateXPlanToEdit_References_Texts( String planResource, String xplanVersion )
                     throws Exception {
-        FeatureCollection featureCollection = readXPlanGml( XPLAN_41, "V4_1_ID_103.gml" );
+        XPlanVersion version = XPlanVersion.valueOf( xplanVersion );
+        FeatureCollection featureCollection = readXPlanGml( version, planResource );
 
         XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
 
@@ -181,6 +207,14 @@ public class XPlanToEditFactoryTest {
         assertThat( rasterBase.getGeoReference(), is( "B-Plan_Klingmuehl_Heideweg_Karte.tfw" ) );
         assertThat( rasterBase.getReference(), is( "B-Plan_Klingmuehl_Heideweg_Karte.tif" ) );
         assertThat( rasterBase.getType(), is( SCAN ) );
+    }
+
+    @Test
+    public void testCreateXPlanToEdit_Xplan41_RasterPlanChanges()
+                    throws Exception {
+        FeatureCollection featureCollection = readXPlanGml( XPLAN_41, "V4_1_ID_103.gml" );
+
+        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
 
         List<RasterWithReferences> rasterPlanChanges = xPlanToEdit.getRasterPlanChanges();
         assertThat( rasterPlanChanges.size(), is( 1 ) );

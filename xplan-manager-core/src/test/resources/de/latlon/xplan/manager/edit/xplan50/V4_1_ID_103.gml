@@ -5595,20 +5595,26 @@
       </xplan:raeumlicherGeltungsbereich>
       <xplan:externeReferenz>
         <xplan:XP_SpezExterneReferenz>
-          <xplan:referenzName>B-Plan_Klingmuehl_Heideweg_Leg
-					</xplan:referenzName>
-          <xplan:referenzURL>B-Plan_Klingmuehl_Heideweg_Leg.pdf
-					</xplan:referenzURL>
-          <xplan:typ>1020</xplan:typ>
+          <xplan:referenzName>B-Plan_Klingmuehl_Heideweg_Leg</xplan:referenzName>
+          <xplan:referenzURL>B-Plan_Klingmuehl_Heideweg_Leg.pdf</xplan:referenzURL>
+          <xplan:typ>1010</xplan:typ>
         </xplan:XP_SpezExterneReferenz>
       </xplan:externeReferenz>
       <xplan:externeReferenz>
         <xplan:XP_SpezExterneReferenz>
           <xplan:art>PlanMitGeoreferenz</xplan:art>
           <xplan:referenzName>B-Plan_Klingmuehl_Heideweg</xplan:referenzName>
-          <xplan:referenzURL>B-Plan_Klingmuehl_Heideweg.tif
-					</xplan:referenzURL>
+          <xplan:referenzURL>B-Plan_Klingmuehl_Heideweg.tif</xplan:referenzURL>
           <xplan:typ>1030</xplan:typ>
+        </xplan:XP_SpezExterneReferenz>
+      </xplan:externeReferenz>
+      <xplan:externeReferenz>
+        <xplan:XP_SpezExterneReferenz>
+          <xplan:art>Gruen</xplan:art>
+          <xplan:referenzName>B-Plan_Klingmuehl_Heideweg_Gruen</xplan:referenzName>
+          <xplan:georefURL>B-Plan_Klingmuehl_Heideweg_Gruen.pgw</xplan:georefURL>
+          <xplan:referenzURL>B-Plan_Klingmuehl_Heideweg_Gruen.png</xplan:referenzURL>
+          <xplan:typ>2300</xplan:typ>
         </xplan:XP_SpezExterneReferenz>
       </xplan:externeReferenz>
       <xplan:texte xlink:href="#FEATURE_0f870967-bd6f-4367-9150-8a255f0290ad" />
@@ -6021,19 +6027,6 @@
         </gml:LineString>
       </xplan:position>
     </xplan:BP_StrassenbegrenzungsLinie>
-  </gml:featureMember>
-  <gml:featureMember>
-    <xplan:BP_TextAbschnitt gml:id="FEATURE_0f870967-bd6f-4367-9150-8a255f0290ad">
-      <xplan:refText>
-        <xplan:XP_ExterneReferenz>
-          <xplan:referenzName>B-Plan_Klingmuehl_Heideweg_Text
-					</xplan:referenzName>
-          <xplan:referenzURL>B-Plan_Klingmuehl_Heideweg_Text.pdf
-					</xplan:referenzURL>
-        </xplan:XP_ExterneReferenz>
-      </xplan:refText>
-      <xplan:rechtscharakter>1000</xplan:rechtscharakter>
-    </xplan:BP_TextAbschnitt>
   </gml:featureMember>
   <gml:featureMember>
     <xplan:BP_UeberbaubareGrundstuecksFlaeche gml:id="FEATURE_1b9097ed-8dca-4499-a916-95f5ece2dd96">
@@ -10260,6 +10253,20 @@
       <xplan:text>Massnahmen zum Schutz, Pflege und Entwicklung von Natur
 				und Landschaft</xplan:text>
       <xplan:rechtscharakter>9998</xplan:rechtscharakter>
+    </xplan:BP_TextAbschnitt>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_TextAbschnitt gml:id="FEATURE_0f870967-bd6f-4367-9150-8a255f0290ad">
+      <xplan:schluessel>key</xplan:schluessel>
+      <xplan:gesetzlicheGrundlage>base</xplan:gesetzlicheGrundlage>
+      <xplan:text>Beschreibungstext</xplan:text>
+      <xplan:refText>
+        <xplan:XP_ExterneReferenz>
+          <xplan:referenzName>B-Plan_Klingmuehl_Heideweg_Text
+          </xplan:referenzName>
+          <xplan:referenzURL>B-Plan_Klingmuehl_Heideweg_Text.pdf</xplan:referenzURL>
+        </xplan:XP_ExterneReferenz>
+      </xplan:refText>
     </xplan:BP_TextAbschnitt>
   </gml:featureMember>
 </xplan:XPlanAuszug>
