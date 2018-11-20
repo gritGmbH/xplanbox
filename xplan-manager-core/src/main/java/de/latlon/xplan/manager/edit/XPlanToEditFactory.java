@@ -170,8 +170,6 @@ public class XPlanToEditFactory {
             String propertyName = property.getName().getLocalPart();
             if ( "rasterBasis".equals( propertyName ) ) {
                 parseRasterBasis( property, xPlanToEdit );
-            } else if ( "rasterAenderung".equals( propertyName ) ) {
-                parseRasterPlanChange( property, xPlanToEdit );
             }
         }
     }
@@ -181,14 +179,6 @@ public class XPlanToEditFactory {
         if ( propertyValue instanceof FeatureReference ) {
             RasterWithReferences rasterBasis = parseRasterWithReferences( propertyValue );
             xPlanToEdit.setRasterBasis( rasterBasis );
-        }
-    }
-
-    private void parseRasterPlanChange( Property property, XPlanToEdit xPlanToEdit ) {
-        TypedObjectNode propertyValue = property.getValue();
-        if ( propertyValue instanceof FeatureReference ) {
-            RasterWithReferences rasterPlanChange = parseRasterWithReferences( propertyValue );
-            xPlanToEdit.addRasterPlanChange( rasterPlanChange );
         }
     }
 

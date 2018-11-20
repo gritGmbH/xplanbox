@@ -210,33 +210,6 @@ public class XPlanToEditFactoryTest {
     }
 
     @Test
-    public void testCreateXPlanToEdit_Xplan41_RasterPlanChanges()
-                    throws Exception {
-        FeatureCollection featureCollection = readXPlanGml( XPLAN_41, "V4_1_ID_103.gml" );
-
-        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
-
-        List<RasterWithReferences> rasterPlanChanges = xPlanToEdit.getRasterPlanChanges();
-        assertThat( rasterPlanChanges.size(), is( 1 ) );
-        RasterWithReferences rasterPlanChange = rasterPlanChanges.get( 0 );
-        assertThat( rasterPlanChange.getFeatureId(), is( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d7" ) );
-
-        List<RasterReference> rasterPlanChangeReferences = rasterPlanChange.getRasterReferences();
-        assertThat( rasterPlanChangeReferences.size(), is( 2 ) );
-        RasterReference firstRasterPlanChange = rasterPlanChangeReferences.get( 0 );
-        assertThat( firstRasterPlanChange.getFeatureId(), nullValue() );
-        assertThat( firstRasterPlanChange.getGeoReference(), is( "B-Plan_Klingmuehl_Heideweg_KarteAenderung.pgw" ) );
-        assertThat( firstRasterPlanChange.getReference(), is( "B-Plan_Klingmuehl_Heideweg_KarteAenderung.png" ) );
-        assertThat( firstRasterPlanChange.getType(), is( SCAN ) );
-
-        RasterReference secondRasterPlanChange = rasterPlanChangeReferences.get( 1 );
-        assertThat( secondRasterPlanChange.getFeatureId(), nullValue() );
-        assertThat( secondRasterPlanChange.getGeoReference(), is( nullValue() ) );
-        assertThat( secondRasterPlanChange.getReference(), is( "B-Plan_Klingmuehl_Heideweg_Aenderung.pdf" ) );
-        assertThat( secondRasterPlanChange.getType(), is( TEXT ) );
-    }
-
-    @Test
     public void testCreateXPlanToEdit_XPlan3()
                     throws Exception {
         FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "Wuerdenhain.gml" );
@@ -306,36 +279,6 @@ public class XPlanToEditFactoryTest {
         assertThat( rasterBase.getGeoReference(), is( "Klarstellungssatzung_Wuerdenhain_cut_ergb.tfw" ) );
         assertThat( rasterBase.getReference(), is( "Klarstellungssatzung_Wuerdenhain_cut_ergb.tif" ) );
         assertThat( rasterBase.getType(), is( SCAN ) );
-
-        List<RasterWithReferences> rasterPlanChanges = xPlanToEdit.getRasterPlanChanges();
-        assertThat( rasterPlanChanges.size(), is( 1 ) );
-        RasterWithReferences rasterPlanChange = rasterPlanChanges.get( 0 );
-        assertThat( rasterPlanChange.getFeatureId(), is( "GML_F042504B-0875-4470-A25D-DAFD0595E8FE" ) );
-
-        List<RasterReference> rasterPlanChangeReferences = rasterPlanChange.getRasterReferences();
-        assertThat( rasterPlanChangeReferences.size(), is( 3 ) );
-
-        RasterReference firstRasterPlanChange = rasterPlanChangeReferences.get( 0 );
-        assertThat( firstRasterPlanChange.getFeatureId(), is( "GML_1D000019-0DE0-4667-A19C-6EC6ABDF000C" ) );
-        assertThat( firstRasterPlanChange.getGeoReference(),
-                    is( "Klarstellungssatzung_Wuerdenhain_cut_ergb_scan1.tfw" ) );
-        assertThat( firstRasterPlanChange.getReference(), is( "Klarstellungssatzung_Wuerdenhain_cut_ergb_scan1.tif" ) );
-        assertThat( firstRasterPlanChange.getType(), is( SCAN ) );
-
-        RasterReference secondRasterPlanChange = rasterPlanChangeReferences.get( 1 );
-        assertThat( secondRasterPlanChange.getFeatureId(), is( "GML_1D000019-0DE0-4667-A19C-6EC6ABDF000D" ) );
-        assertThat( secondRasterPlanChange.getGeoReference(), is( nullValue() ) );
-        assertThat( secondRasterPlanChange.getReference(),
-                    is( "Klarstellungssatzung_Wuerdenhain_cut_ergb_scan2.tif" ) );
-        assertThat( secondRasterPlanChange.getType(), is( SCAN ) );
-
-        RasterReference thirdRasterPlanChange = rasterPlanChangeReferences.get( 2 );
-        assertThat( thirdRasterPlanChange.getFeatureId(), is( "GML_1D000019-0DE0-4667-A19C-6EC6ABDF000E" ) );
-        assertThat( thirdRasterPlanChange.getGeoReference(),
-                    is( "Klarstellungssatzung_Wuerdenhain_cut_ergb_legende.tfw" ) );
-        assertThat( thirdRasterPlanChange.getReference(),
-                    is( "Klarstellungssatzung_Wuerdenhain_cut_ergb_legende.tif" ) );
-        assertThat( thirdRasterPlanChange.getType(), is( LEGEND ) );
     }
 
     @Test

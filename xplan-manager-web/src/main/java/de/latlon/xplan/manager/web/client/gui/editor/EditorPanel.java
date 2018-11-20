@@ -53,7 +53,6 @@ import de.latlon.xplan.manager.web.client.gui.editor.basedata.BaseDataPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.change.ChangesXplan30Panel;
 import de.latlon.xplan.manager.web.client.gui.editor.change.ChangesXplanPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.raster.RasterBasisPanel;
-import de.latlon.xplan.manager.web.client.gui.editor.raster.RasterPlanChangesPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.reference.ReferencesPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.text.TextsPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.validityPeriod.ValidityPeriodPanel;
@@ -98,8 +97,6 @@ public class EditorPanel extends DecoratorPanel {
 
     private final RasterBasisPanel rasterBasisPanel;
 
-    private final RasterPlanChangesPanel rasterPlanChangesPanel;
-
     private String planId;
 
     public EditorPanel( EditVersion version, HandlerManager eventBus ) {
@@ -109,7 +106,6 @@ public class EditorPanel extends DecoratorPanel {
         textsPanel = new TextsPanel( version );
         referencesPanel = new ReferencesPanel( version );
         rasterBasisPanel = new RasterBasisPanel( version );
-        rasterPlanChangesPanel = new RasterPlanChangesPanel( version );
         FormPanel form = createForm();
         this.getElement().setId( "editor-panel" );
         this.setWidget( form );
@@ -123,7 +119,6 @@ public class EditorPanel extends DecoratorPanel {
         textsPanel.setValues( xPlantoEdit.getTexts() );
         referencesPanel.setValues( xPlantoEdit.getReferences() );
         rasterBasisPanel.setRasterBasis( xPlantoEdit.getRasterBasis() );
-        rasterPlanChangesPanel.setRasterPlanChanges( xPlantoEdit.getRasterPlanChanges() );
     }
 
     private FormPanel createForm() {
@@ -152,7 +147,6 @@ public class EditorPanel extends DecoratorPanel {
         xPlanToEdit.setReferences( referencesPanel.getValues() );
         xPlanToEdit.setValidityPeriod( validityPeriodPanel.retrieveValidityPeriodToEdit() );
         xPlanToEdit.setRasterBasis( rasterBasisPanel.retrieveRasterBasis() );
-        xPlanToEdit.setRasterPlanChanges( rasterPlanChangesPanel.retrieveRasterPlanChanges() );
         return xPlanToEdit;
     }
 
@@ -187,8 +181,6 @@ public class EditorPanel extends DecoratorPanel {
         panel.add( textsPanel );
         panel.add( referencesPanel );
         panel.add( rasterBasisPanel );
-        // #3305 - "Aenderung von Rasterplaenen" was scope of the project lgvxplanisk4, but not longer needed.
-        // panel.add( rasterPlanChangesPanel );
         panel.add( createButtonBar( form ) );
         return panel;
     }
