@@ -537,7 +537,8 @@ public class PlanListPanel extends DecoratorPanel {
         final Column<XPlan, String> publishPluButtonColumn = new Column<XPlan, String>( publishPluButtonCell ) {
             @Override
             public String getValue( XPlan xPlan ) {
-                if ( "BP_Plan".equals( xPlan.getType() ) && "XPLAN_41".equals( xPlan.getVersion() )
+                if ( "BP_Plan".equals( xPlan.getType() ) && ( "XPLAN_41".equals( xPlan.getVersion() )
+                                                              || "XPLAN_50".equals( xPlan.getVersion() ) )
                      && isPublishingPluPermitted( xPlan ) && !xPlan.isInspirePublished() )
                     publishPluButtonCell.setEnabled();
                 else
@@ -562,7 +563,7 @@ public class PlanListPanel extends DecoratorPanel {
                     return messages.publishingPluButtonTooltipPermissionDenied();
                 else if ( !"BP_Plan".equals( xPlan.getType() ) )
                     return messages.publishingPluButtonTooltipIncorrectPlanType();
-                else if ( !"XPLAN_41".equals( xPlan.getVersion() ) )
+                else if ( !( "XPLAN_41".equals( xPlan.getVersion() ) || "XPLAN_50".equals( xPlan.getVersion() ) ) )
                     return messages.publishingPluButtonTooltipIncorrectVersion();
                 else if ( xPlan.isInspirePublished() )
                     return messages.publishingPluButtonTooltipAlreadyPublished();
