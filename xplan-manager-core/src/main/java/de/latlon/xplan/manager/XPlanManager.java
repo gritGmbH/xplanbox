@@ -1,57 +1,5 @@
 package de.latlon.xplan.manager;
 
-import static de.latlon.xplan.commons.XPlanType.BP_Plan;
-import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
-import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
-import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
-import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_WMS_WORKSPACE;
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLAN_MANAGER_WORKSPACE;
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.findWorkspaceDirectory;
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
-import static java.lang.Integer.parseInt;
-import static org.apache.commons.io.IOUtils.closeQuietly;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.EmptyStackException;
-import java.util.List;
-import java.util.Set;
-import java.util.TimeZone;
-import java.util.UUID;
-
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-
-import org.deegree.commons.config.DeegreeWorkspace;
-import org.deegree.commons.config.ResourceInitException;
-import org.deegree.commons.xml.XMLParsingException;
-import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
-import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.cs.exceptions.UnknownCRSException;
-import org.deegree.cs.persistence.CRSManager;
-import org.deegree.feature.Feature;
-import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.GeometryFactory;
-import org.deegree.gml.GMLInputFactory;
-import org.deegree.gml.GMLStreamReader;
-import org.deegree.gml.GMLVersion;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanType;
@@ -98,11 +46,61 @@ import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
+import org.deegree.commons.config.DeegreeWorkspace;
+import org.deegree.commons.config.ResourceInitException;
+import org.deegree.commons.xml.XMLParsingException;
+import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
+import org.deegree.cs.coordinatesystems.ICRS;
+import org.deegree.cs.exceptions.UnknownCRSException;
+import org.deegree.cs.persistence.CRSManager;
+import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
+import org.deegree.feature.types.AppSchema;
+import org.deegree.geometry.GeometryFactory;
+import org.deegree.gml.GMLInputFactory;
+import org.deegree.gml.GMLStreamReader;
+import org.deegree.gml.GMLVersion;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.access.prepost.PreAuthorize;
+
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.EmptyStackException;
+import java.util.List;
+import java.util.Set;
+import java.util.TimeZone;
+import java.util.UUID;
+
+import static de.latlon.xplan.commons.XPlanType.BP_Plan;
+import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
+import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
+import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
+import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
+import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_WMS_WORKSPACE;
+import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLAN_MANAGER_WORKSPACE;
+import static de.latlon.xplan.manager.workspace.WorkspaceUtils.findWorkspaceDirectory;
+import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
+import static java.lang.Integer.parseInt;
+import static org.apache.commons.io.IOUtils.closeQuietly;
 
 /**
  * An instance of XPlanManager provides the service methods to manage instances of XPlan. Supports XPLan version 2, 3,
  * 4.1, and 4.2.
- * 
+ *
  * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
  * @since 1.0
  */
@@ -133,13 +131,13 @@ public class XPlanManager {
     private final XPlanManipulator planModifier = new XPlanManipulator();
 
     private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
-    
+
     private final XPlanRasterManager xPlanRasterManager;
 
     private final SortPropertyReader sortPropertyReader;
 
     private final SortPropertyUpdater sortPropertyUpdater;
-    
+
     private final InspirePluPublisher inspirePluPublisher;
 
     public XPlanManager() throws Exception {
@@ -233,7 +231,7 @@ public class XPlanManager {
 
     /**
      * Import a plan into the managed database
-     * 
+     *
      * @param archiveFileName
      *            the file name of the archive, never <code>null</code>
      * @param defaultCRS
@@ -258,7 +256,7 @@ public class XPlanManager {
 
     /**
      * Import a plan into the managed database
-     * 
+     *
      * @param archiveFileName
      *            the file name of the archive, never <code>null</code>
      * @param defaultCRS
@@ -287,7 +285,7 @@ public class XPlanManager {
 
     /**
      * Import a plan into the managed database
-     * 
+     *
      * @param archive
      *            to import, never <code>null</code>
      * @param defaultCRS
@@ -314,7 +312,7 @@ public class XPlanManager {
     }
 
     /**
-     * 
+     *
      * @param archive
      *            to import, never <code>null</code>
      * @param defaultCRS
@@ -356,10 +354,10 @@ public class XPlanManager {
 
     /**
      * Retrieves plan name.
-     * 
+     *
      * @param archiveFileName
      *            the file name of the archive, never <code>null</code>
-     * 
+     *
      * @return plan name
      * @throws Exception
      */
@@ -379,7 +377,7 @@ public class XPlanManager {
 
     /**
      * Check if the crs is set in target file.
-     * 
+     *
      * @param archiveFileName
      *            path to the file
      * @return true if crs is set, false if crs is not set
@@ -393,7 +391,7 @@ public class XPlanManager {
 
     /**
      * Determines the legislation status of the plan referenced by the given path to the archive.
-     * 
+     *
      * @param pathToArchive
      *            path to the file, never <code>null</code>
      * @return the legislation status of a plan, code number is -1 if the status is not set
@@ -464,7 +462,7 @@ public class XPlanManager {
 
     /**
      * Export a plan to the given stream
-     * 
+     *
      * @param planId
      *            plan id to export, never <code>null</code>
      * @param outputStream
@@ -480,7 +478,7 @@ public class XPlanManager {
 
     /**
      * Retrieve a list of all XPlans.
-     * 
+     *
      * @return list of XPlans
      * @throws Exception
      */
@@ -491,7 +489,7 @@ public class XPlanManager {
 
     /**
      * Retrieve a single {@link XPlan} by id.
-     * 
+     *
      * @param planId
      *            id of a plan, must not be <code>null</code>
      * @return a single plan
@@ -504,7 +502,7 @@ public class XPlanManager {
 
     /**
      * Retrieve a {@link XPlanToEdit} by id.
-     * 
+     *
      * @param plan
      *            plan to be retrieved to edit, never <code>null</code>
      * @return the {@link XPlanToEdit}, <code>null</code> if not found
@@ -533,7 +531,7 @@ public class XPlanManager {
 
     /**
      * Modifies the plan with the passed ID.
-     * 
+     *
      * @param oldXplan
      *            the {@link XPlan} describing the plan before update, never <code>null</code>
      * @param xPlanToEdit
@@ -687,7 +685,7 @@ public class XPlanManager {
 
     /**
      * Update of wms sort columns in XPlan Syn datastores and reordering of the WMS layers.
-     * 
+     *
      * @throws Exception
      */
     public void updateWmsSortDate()
@@ -697,7 +695,7 @@ public class XPlanManager {
 
     /**
      * Transforms the plans with the passed ID to INSPIRE PLU and imports them in the INSPIRE Download Service for PLU.
-     * 
+     *
      * @param plan
      *            plan to transform and publish
      */
@@ -709,7 +707,7 @@ public class XPlanManager {
             throw new Exception( "Transformation and publishing INSPIRE PLU datasets is not supported" );
         } else {
             String planId = plan.getId();
-            inspirePluPublisher.transformAndPublish( planId );
+            inspirePluPublisher.transformAndPublish( planId, XPlanVersion.valueOf( plan.getVersion() ) );
             xplanDao.setPlanWasInspirePublished( planId );
         }
     }
