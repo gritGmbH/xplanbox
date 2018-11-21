@@ -895,3 +895,9 @@ and
   let $id := substring($h,2) return
     exists(//XP_BegruendungAbschnitt[@gml:id = $id])
 )
+and
+(
+  every $h in //BP_LandwirtschaftsFlaeche/@xlink:href satisfies
+  let $id := substring($h,2) return
+    exists(//XP_BegruendungAbschnitt[@gml:id = $id])
+)

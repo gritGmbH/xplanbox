@@ -331,3 +331,8 @@ and
 every $id in //BP_EinfahrtPunkt/wirdAusgeglichenDurchMassnahme/@xlink:href satisfies
 exists(//BP_AusgleichsMassnahme[@gml:id = substring($id,2)])
 )
+and
+(
+every $id in //BP_LandwirtschaftsFlaeche/wirdAusgeglichenDurchMassnahme/@xlink:href satisfies
+exists(//BP_AusgleichsMassnahme[@gml:id = substring($id,2)])
+)

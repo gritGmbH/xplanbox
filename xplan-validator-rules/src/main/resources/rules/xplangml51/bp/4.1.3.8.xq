@@ -331,3 +331,8 @@ and
 every $id in //BP_EinfahrtPunkt/refTextinhalt/@xlink:href satisfies
 exists(//BP_TextAbschnitt[@gml:id = substring($id,2)])
 )
+and
+(
+every $id in //BP_LandwirtschaftsFlaeche/refTextinhalt/@xlink:href satisfies
+exists(//BP_TextAbschnitt[@gml:id = substring($id,2)])
+)

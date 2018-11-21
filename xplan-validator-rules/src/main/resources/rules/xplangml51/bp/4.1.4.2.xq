@@ -315,3 +315,12 @@ every $h in //BP_WasserwirtschaftsFlaeche[position] satisfies
   exists($h/position/gml:PolygonPatch) or
   exists($h/position/gml:Ring)
 )
+and
+(
+  every $h in //BP_LandwirtschaftsFlaeche[position] satisfies
+  exists($h/position/gml:Polygon) or
+  exists($h/position/gml:MultiSurface) or
+  exists($h/position/gml:LinearRing) or
+  exists($h/position/gml:PolygonPatch) or
+  exists($h/position/gml:Ring)
+)
