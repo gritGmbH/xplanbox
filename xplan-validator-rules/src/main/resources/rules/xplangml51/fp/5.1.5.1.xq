@@ -176,3 +176,14 @@ and
   then $h/flaechenschluss = 'false'
   else true()
 )
+and
+(
+  every $h in //FP_Landwirtschaft satisfies
+  if($h/ebene != '0' and ($h/position/gml:Polygon or
+          $h/position/gml:MultiSurface or
+          $h/position/gml:LinearRing or
+          $h/position/gml:PolygonPatch or
+          $h/position/gml:Ring))
+  then $h/flaechenschluss = 'false'
+  else true()
+)

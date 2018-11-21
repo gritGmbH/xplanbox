@@ -126,3 +126,8 @@ and
 every $id in //FP_Wasserwirtschaft/refTextinhalt/@xlink:href satisfies
 exists(//FP_TextAbschnitt[@gml:id = substring($id,2)])
 )
+and
+(
+every $id in //FP_Landwirtschaft/refTextinhalt/@xlink:href satisfies
+exists(//FP_TextAbschnitt[@gml:id = substring($id,2)])
+)

@@ -176,3 +176,14 @@ exists($h/position/gml:Ring))
 then exists($h/flaechenschluss)
 else true()
 )
+and
+(
+every $h in //FP_Landwirtschaft satisfies
+if(exists($h/position/gml:Polygon) or
+        exists($h/position/gml:MultiSurface) or
+        exists($h/position/gml:LinearRing) or
+        exists($h/position/gml:PolygonPatch) or
+        exists($h/position/gml:Ring))
+then exists($h/flaechenschluss)
+else true()
+)
