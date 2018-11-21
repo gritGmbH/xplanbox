@@ -4,7 +4,7 @@
 Für die Rasterdaten empfiehlt es sich, einen Massstabsbereich anzugeben,
 in dem diese durch den XPlanWMS angezeigt werden.
 
-Der Massstabsbereich kann in der Datei _managerWebConfiguration.properties_
+Der Massstabsbereich kann in der Datei _managerConfiguration.properties_
 im Verzeichnis _~/.deegree/manager-configuration/_ konfiguriert werden.
 Sollen die Rasterdaten beispielsweise im Massstabsbereich 1 : 100 bis 1 : 50.000
 angezeigt werden, ist folgendes zu konfigurieren:

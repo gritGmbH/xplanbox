@@ -56,6 +56,13 @@ http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetFeature&Servic
 http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=DescribeFeatureType&Service=WFS&Version=1.1.0
 ----
 
+[[xplansynwfs-liststoredqueries]]
+===== ListStoredQueries
+
+----
+http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=ListStoredQueries&Service=WFS&Version=2.0.0
+----
+
 [[xplansynwfs-inhalte-des-datendienstes]]
 === Inhalte des Datendienstes
 
@@ -87,6 +94,44 @@ bzw. WFS 2.0.0 unterstützen.
 Die Operation DescribeFeatureType gibt Informationen zur Struktur der
 einzelnen Feature Types wieder.
 
+[[xplanwfs-liststoredqueries-1]]
+==== ListStoredQueries
+
+Die Operation ListStoredQueries gibt Informationen über die verfügbaren
+StoredQueries zurück. Diese Operation steht nur in der Protokollversion
+2.0.0 zur Verfügung.
+
+=== StoredQueries
+
+Neben den üblichen StoredQueries urn:ogc:def:query:OGC-WFS::GetFeatureById
+und urn:ogc:def:query:OGC-WFS::GetFeatureByType bietet der Endpoint __dls__
+drei weitere StoredQueries an:
+
+ * urn:ogc:def:query:OGC-WFS::InternalId
+ * urn:ogc:def:query:OGC-WFS::PlanId
+ * urn:ogc:def:query:OGC-WFS::PlanName
+
+Darüber lassen sich die Vektordaten eines einzelnen Plans über die vom
+XPlanManager vergebene interne Id, die im XPlanGML vergebene Nummer bzw.
+den im XPlanGML angegebenen Namen abrufen.
+
+Aufgrund der Eigenschaften des XPlanSynWFS lassen sich aktuell nur für die StoredQuery
+_PlanName_ zu einem Plan gehörigen Vektordaten abrufen.
+Die StoredQueries _InternalId_ und _PlanId_
+geben nur die Vektordaten des feature types BP_Plan (bzw. FP_Plan, LP_Plan und RP_Plan) zurück,
+nicht ggf. referenzierte Vektordaten.
+
+Um die Eindeutigkeit der StoredQueries _PlanId_ und _PlanName_ zu gewährleisten,
+muss sichergestellt werden, dass bei den importierten Plänen die Nummer und der Name
+des Plans eindeutig sind.
+
+Die Nutzung der StoredQueries erfolgt über GetFeature-Anfragen. Beispielanfrage für
+den Plan mit dem Namen _Musterdorf_:
+
+----
+http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetFeature&service=WFS&version=2.0.0&resolvedepth=*&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf
+----
+
 [[xplansynwfs-koordinatenreferenzsysteme]]
 === Koordinatenreferenzsysteme
 
@@ -94,13 +139,13 @@ Der XPlanSynWFS unterstützt die folgenden
 Koordinatenreferenzsysteme:
 
 * EPSG:25833
-* EPSG:25832,
-* EPSG:325833,
-* EPSG:31466,
-* EPSG:31467,
-* EPSG:31468,
-* EPSG:31469,
-* EPSG:4258,
-* EPSG:4326,
-* EPSG:4839,
-* CRS:84.
+* EPSG:25832
+* EPSG:325833
+* EPSG:31466
+* EPSG:31467
+* EPSG:31468
+* EPSG:31469
+* EPSG:4258
+* EPSG:4326
+* EPSG:4839
+* CRS:84

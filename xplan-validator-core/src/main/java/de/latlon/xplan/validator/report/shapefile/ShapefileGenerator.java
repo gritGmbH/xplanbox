@@ -97,13 +97,18 @@ public class ShapefileGenerator {
         for ( BadGeometry badGeometry : badGeometries ) {
             Geometry geom = badGeometry.getGeometry();
             if ( geom instanceof AbstractDefaultGeometry ) {
-                AbstractDefaultGeometry defaultGeometry = (AbstractDefaultGeometry) geom;
-                com.vividsolutions.jts.geom.Geometry jtsGeom = defaultGeometry.getJTSGeometry();
+                try {
+                    AbstractDefaultGeometry defaultGeometry = (AbstractDefaultGeometry) geom;
+                    com.vividsolutions.jts.geom.Geometry jtsGeom = defaultGeometry.getJTSGeometry();
 
-                Geometries geomType = Geometries.get( jtsGeom );
-                if ( geomType2Builders.containsKey( geomType ) ) {
-                    geomType2Builders.get( geomType ).addGeometry( jtsGeom, defaultGeometry.getId(),
-                                                                   badGeometry.getErrorsSingleString() );
+                    Geometries geomType = Geometries.get(jtsGeom);
+                    if (geomType2Builders.containsKey(geomType)) {
+                        geomType2Builders.get(geomType).addGeometry(jtsGeom, defaultGeometry.getId(),
+                                badGeometry.getErrorsSingleString());
+                    }
+                } catch ( Exception e ) {
+                    LOG.warn( "Geometry is broken (could not be written in shapefile): " +  e.getMessage() );
+                    LOG.trace( "Geometry is broken (could not be written in shapefile).", e );
                 }
             } else {
                 LOG.info( "Geometrie '" + geom.getId() + "' kann nicht in Shapefile geschrieben werden." );

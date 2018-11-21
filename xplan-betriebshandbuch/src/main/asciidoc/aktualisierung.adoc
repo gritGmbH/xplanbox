@@ -60,7 +60,9 @@ In der Tabelle sind nur Versionen aufgelistet, die auch Änderungen enthalten. I
 
 Anhand der Übersicht lässt sich ableiten, welche Schritte bei einer Aktualisierung ausgeführt werden müssen. Die Details zu den jeweiligen Aktualisierungsschritten werden in den nachfolgenden Kapiteln erläutert.
 
-Falls Sie mehr Details zu einem Aktualisierungsvorhaben vor Version 2.0 wünschen, wenden Sie sich bitte an die http://www.lat-lon.de[lat/lon GmbH].
+Alle Aktualisierungswerkzeuge und -skripte werden ohne Gewähr und nur für ausgewählte Versionen auf Anfrage zusammen mit der Liefereinheit
+bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Versionen älter als 2.0, wenden Sie sich bitte an die http://www.lat-lon.de[lat/lon GmbH].
+
 
 .Überblick über die Datenhaltung betreffenden Änderungen
 [cols="3*^", options="header,footer"]
@@ -71,6 +73,7 @@ Falls Sie mehr Details zu einem Aktualisierungsvorhaben vor Version 2.0 wünsche
 | 2.4              | ja                                               |
 | 2.7              | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>)
 | 2.8              |                                                  | ja
+| 2.9              | ja (<<aktualisierung-auf-die-version-2.9-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.9-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -119,7 +122,7 @@ Element `Title` einzutragen.
 <Themes xmlns="http://www.deegree.org/themes/standard"
         xmlns:ns2="http://www.deegree.org/metadata/description"
         xmlns:ns3="http://www.deegree.org/metadata/spatial"
-        configVersion="3.2.0">
+        configVersion="3.4.0">
   <Theme>
     <!-- Die folgende Zeile ist beim Update auf die Version 2.0 der xPlanBox hinzuzufügen -->
     <Identifier>BP_Planraster</Identifier>
@@ -209,12 +212,6 @@ _XPlanManagerCLI_ im XPlanBenutzerhandbuch. Die erforderliche
 Konfiguration ist im Abschnitt _Konfiguration_ -> _Sortierung der Daten
 in der Visualisierung_ in dieser Dokumentation beschrieben.
 
-Aktualisierungswerkzeuge und -skripte werden ohne Gewähr und nur für
-ausgewählte Versionen auf Anfrage zusammen mit der Liefereinheit
-bereitgestellt. Für professionelle Unterstützung bei ihrem
-Aktualisierungsvorhaben wenden Sie sich bitte an die
-http://www.lat-lon.de[lat/lon GmbH].
-
 [[aktualisierung-auf-die-version-2.7-der-xplanbox]]
 === Aktualisierung auf die Version 2.7 der xPlanBox
 
@@ -228,3 +225,22 @@ Mit der Version 2.7 bietet die xPlanBox die Möglichkeit die vom XPlanManager ve
  * Konfiguration der neuen Option, wie in <<konfiguration-inspire-plu>> beschrieben.
 
 Falls die neue Funktionalität nicht genutzt werden soll, müssen die Änderungen nicht durchgeführt werden.
+
+[[aktualisierung-auf-die-version-2.8-der-xplanbox]]
+=== Aktualisierung auf die Version 2.8 der xPlanBox
+
+* Aktualisierung der Datenbank:
+ ** Ausführen der Skripte im Verzeichnis _from_2.7_to_2.8_ im Modul xplan-update-database
+
+[[aktualisierung-auf-die-version-2.9-der-xplanbox]]
+=== Aktualisierung auf die Version 2.9 der xPlanBox
+
+Mit der Version 2.9 der xPlanBox können auch Pläne der der XPlanGML Version 5.0 verwaltet werden. Für die Aktualisierung auf diese Version sind folgende Schritte auszuführen:
+
+ * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+ * Aktualisierung der Datenbank:
+ ** Ausführen der Skripte im Verzeichnis _from_2.8_to_2.9_ im Modul xplan-update-database
+ ** Ausführen der Skripte für die Erstelllung der Datenhaltung für 5.0 aus dem Modul _xplan-manager-workspace_:
+ *** _fix/xplan50/create.sql_
+ *** _pre/xplan50/create.sql_
+ *** _archive/xplan50/create.sql_

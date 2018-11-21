@@ -83,7 +83,7 @@ Benutzer keine Rechte, so wird der Button grau dargestellt.
 
 Abhängig von den Benutzerrechten können Pläne editiert werden. Fehlen dem Benutzer
 die entsprechenden Rechte ist die Funktion deaktiviert und der Button __Editieren__ wird grau dargestellt. Die Editier-Funktion
-ist beschränkt auf BPläne in der XPlanGML Version 4.1. Die Editieransicht öffnet sich durch den Klick auf den
+ist beschränkt auf BPläne in der XPlanGML Version 3.0 und 4.1. Die Editieransicht öffnet sich durch den Klick auf den
 Button __Editieren__. Die Ansicht ist in verschiedene Bereiche
 aufgeteilt, die insgesamt die Bearbeitung folgender Elemente zulässt:
 

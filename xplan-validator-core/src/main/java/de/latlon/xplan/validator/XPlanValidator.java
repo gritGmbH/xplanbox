@@ -1,5 +1,7 @@
 package de.latlon.xplan.validator;
 
+import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.SYNTAX_ERRORS;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -144,7 +146,7 @@ public class XPlanValidator {
     }
 
     private ValidatorReport validate( ValidationSettings validationSettings, XPlanArchive archive )
-                    throws ValidatorException {
+                            throws ValidatorException {
         List<ValidationOption> voOptions = validationSettings.getExtendedOptions();
         List<SemanticValidationOptions> semanticValidationOptions = extractSemanticValidationOptions( validationSettings );
 
@@ -153,30 +155,37 @@ public class XPlanValidator {
         if ( validationType == null )
             validationType = ValidationType.NONE;
 
-        SyntacticValidatorResult syntacticallyResult = null;
-        GeometricValidatorResult geometricallyResult = null;
-        SemanticValidatorResult semanticallyResult = null;
+        SyntacticValidatorResult syntacticallyResult = validateSyntacticallyAndWriteResult( archive );
+        report.setSyntacticValidatorResult( syntacticallyResult );
 
         switch ( validationType ) {
         case SYNTACTIC:
-            syntacticallyResult = validateSyntacticallyAndWriteResult( archive );
             break;
-        case GEOMETRIC:
-            syntacticallyResult = validateSyntacticallyAndWriteResult( archive );
-            geometricallyResult = validateGeometricallyAndWriteResult( archive, voOptions );
+        case GEOMETRIC: {
+            GeometricValidatorResult geometricallyResult;
+            if ( syntacticallyResult.isValid() ) {
+                geometricallyResult = validateGeometricallyAndWriteResult( archive, voOptions );
+            } else {
+                geometricallyResult = new GeometricValidatorResult( SYNTAX_ERRORS );
+            }
+            report.setGeometricValidatorResult( geometricallyResult );
             break;
-        case SEMANTIC:
-            syntacticallyResult = validateSyntacticallyAndWriteResult( archive );
-            geometricallyResult = validateGeometricallyAndWriteResult( archive, voOptions );
-            semanticallyResult = validateSemanticallyAndWriteResult( archive, semanticValidationOptions );
-            break;
-        default:
-            syntacticallyResult = validateSyntacticallyAndWriteResult( archive );
-            geometricallyResult = validateGeometricallyAndWriteResult( archive, voOptions );
-            semanticallyResult = validateSemanticallyAndWriteResult( archive, semanticValidationOptions );
         }
-        report.setValidatorResults( syntacticallyResult, geometricallyResult, semanticallyResult );
-
+        case SEMANTIC:
+        default: {
+            GeometricValidatorResult geometricallyResult;
+            SemanticValidatorResult semanticallyResult;
+            if ( syntacticallyResult.isValid() ) {
+                geometricallyResult = validateGeometricallyAndWriteResult( archive, voOptions );
+                semanticallyResult = validateSemanticallyAndWriteResult( archive, semanticValidationOptions );
+            } else {
+                geometricallyResult = new GeometricValidatorResult( SYNTAX_ERRORS );
+                semanticallyResult = new SemanticValidatorResult( SYNTAX_ERRORS );
+            }
+            report.setGeometricValidatorResult( geometricallyResult );
+            report.setSemanticValidatorResult( semanticallyResult );
+        }
+        }
         return report;
     }
 

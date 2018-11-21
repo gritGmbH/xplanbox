@@ -1,10 +1,12 @@
 package de.latlon.xplan.validator.geometric.report;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.deegree.cs.coordinatesystems.ICRS;
 
 import de.latlon.xplan.validator.report.ValidatorResult;
+import de.latlon.xplan.validator.report.ReportUtils.SkipCode;
 
 /**
  * contains the validator result of the geometric validator
@@ -23,6 +25,14 @@ public class GeometricValidatorResult extends ValidatorResult {
     private final List<BadGeometry> badGeometries;
 
     private final ICRS crs;
+
+    public GeometricValidatorResult( SkipCode skipCode ) {
+        super( skipCode );
+        this.warnings = Collections.emptyList();
+        this.badGeometries = Collections.emptyList();
+        this.crs = null;
+        this.errors = Collections.emptyList();
+    }
 
     public GeometricValidatorResult( List<String> warnings, List<String> errors, List<BadGeometry> badGeometries,
                                      ICRS crs, boolean isValid ) {

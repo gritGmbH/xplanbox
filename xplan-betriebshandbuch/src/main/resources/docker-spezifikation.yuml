@@ -1,0 +1,14 @@
+## Zeile mit ## entfernen
+## Rendern mit https://yuml.me/diagram/class/draw
+## Ablage unter ../asciidoc/images/docker-spezifikation.png
+[XPlanDB]-rw>[dbdata{bg:orange}]
+[XPlanManager]->[XPlanDB]
+[XPlanDienste]->[XPlanDB]
+[XPlanManager]->[XPlanInspirePluDB]
+[XPlanInspirePluDienste]->[XPlanInspirePluDB]
+[XPlanInspirePluDienste]-r>[inspirepluworkspace{bg:orange}]
+[XPlanInspirePluDB]-rw>[inspirepludbdata{bg:orange}]
+[XPlanManager]-rw>[workspace{bg:orange}]
+[XPlanDienste]-r>[workspace{bg:orange}]
+[XPlanManager]-r>[managerconfig{bg:orange}]
+[XPlanValidator]

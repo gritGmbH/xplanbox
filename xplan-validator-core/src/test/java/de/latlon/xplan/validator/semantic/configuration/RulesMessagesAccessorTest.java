@@ -32,7 +32,7 @@
  http://www.geographie.uni-bonn.de/deegree/
 
  e-mail: info@deegree.org
-----------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------*/
 package de.latlon.xplan.validator.semantic.configuration;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
@@ -49,50 +49,43 @@ import org.junit.Test;
 public class RulesMessagesAccessorTest {
 
     @Test
-    public void testRetrieveMessageForRule_KnownRuleWithoutVersion()
-                    throws Exception {
+    public void testRetrieveMessageForRule_KnownRuleWithoutVersion() {
         String message = RulesMessagesAccessor.retrieveMessageForRule( "3.1.2.3", null );
         assertThat( message, is( "Regel 3.1.2.3 muss erf\u00FCllt sein" ) );
     }
 
     @Test
-    public void testRetrieveMessageForRule_UnknownRuleWithoutVersion()
-                    throws Exception {
+    public void testRetrieveMessageForRule_UnknownRuleWithoutVersion() {
         String message = RulesMessagesAccessor.retrieveMessageForRule( "unknownRule", null );
         assertThat( message, notNullValue() );
     }
 
     @Test
-    public void testRetrieveMessageForRule_KnownRuleWithVersion()
-                    throws Exception {
+    public void testRetrieveMessageForRule_KnownRuleWithVersion() {
         String message = RulesMessagesAccessor.retrieveMessageForRule( "3.1.2.3", XPLAN_2 );
         assertThat( message, is( "Regel 3.1.2.3 muss erf\u00FCllt sein" ) );
     }
 
     @Test
-    public void testRetrieveMessageForRule_UnknownRuleWithVersion()
-                    throws Exception {
+    public void testRetrieveMessageForRule_UnknownRuleWithVersion() {
         String message = RulesMessagesAccessor.retrieveMessageForRule( "unknownRule", XPLAN_2 );
         assertThat( message, notNullValue() );
     }
 
     @Test
-    public void testRetrieveMessageForRule_KnownRuleWithVersionInKey()
-                    throws Exception {
+    public void testRetrieveMessageForRule_KnownRuleWithVersionInKey() {
         String message = RulesMessagesAccessor.retrieveMessageForRule( "3.1.3.1", XPLAN_41 );
         assertThat( message, is( "Regel 3.1.3.1 (XPLAN_41) muss erf\u00FCllt sein" ) );
     }
 
     @Test
-    public void testRetrieveMessageForRule_EmptyRule()
-                    throws Exception {
+    public void testRetrieveMessageForRule_EmptyRule() {
         String message = RulesMessagesAccessor.retrieveMessageForRule( "", null );
         assertThat( message, notNullValue() );
     }
 
     @Test
-    public void testRetrieveMessageForRule_NullRule()
-                    throws Exception {
+    public void testRetrieveMessageForRule_NullRule() {
         String message = RulesMessagesAccessor.retrieveMessageForRule( null, null );
         assertThat( message, notNullValue() );
     }

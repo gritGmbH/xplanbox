@@ -75,40 +75,47 @@ public class JaxbConverter {
         ObjectFactory objectFactory = new ObjectFactory();
         GeomType geomType = objectFactory.createGeomType();
 
-        WarningsType warningsXml = objectFactory.createWarningsType();
-        warningsXml.getWarning().addAll( result.getWarnings() );
+        if ( result.isSkipped() ) {
+            geomType.setResult( result.getSkipCode().getMessage() );
+        } else {
+            WarningsType warningsXml = objectFactory.createWarningsType();
+            warningsXml.getWarning().addAll( result.getWarnings() );
 
-        ErrorsType errorsXml = objectFactory.createErrorsType();
-        errorsXml.getError().addAll( result.getErrors() );
+            ErrorsType errorsXml = objectFactory.createErrorsType();
+            errorsXml.getError().addAll( result.getErrors() );
 
-        geomType.setWarnings( warningsXml );
-        geomType.setErrors( errorsXml );
-        geomType.setResult( createValidLabel( result.isValid() ) );
-        if ( result.getValidatorDetail() != null )
-            geomType.setDetails( result.getValidatorDetail().toString() );
+            geomType.setWarnings( warningsXml );
+            geomType.setErrors( errorsXml );
+            geomType.setResult( createValidLabel( result.isValid() ) );
+            if ( result.getValidatorDetail() != null )
+                geomType.setDetails( result.getValidatorDetail().toString() );
+        }
 
         val.setGeom( geomType );
     }
 
     private void convertResultToJaxb( SemanticValidatorResult result, ValidationType val ) {
         ObjectFactory objectFactory = new ObjectFactory();
-
-        RulesType rulesXML = objectFactory.createRulesType();
-        List<RuleType> rulesListXML = rulesXML.getRule();
-        for ( RuleResult rule : result.getRules() ) {
-            RuleType ruleXML = objectFactory.createRuleType();
-            ruleXML.setName( rule.getName() );
-            ruleXML.setIsValid( rule.isValid() );
-            ruleXML.setMessage( rule.getMessage() );
-            rulesListXML.add( ruleXML );
-        }
-
         SemType semType = objectFactory.createSemType();
 
-        semType.setRules( rulesXML );
-        semType.setResult( createValidLabel( result.isValid() ) );
-        if ( result.getValidatorDetail() != null )
-            semType.setDetails( result.getValidatorDetail().toString() );
+        if ( result.isSkipped() ) {
+            semType.setResult( result.getSkipCode().getMessage() );
+        } else {
+            RulesType rulesXML = objectFactory.createRulesType();
+            List<RuleType> rulesListXML = rulesXML.getRule();
+            for ( RuleResult rule : result.getRules() ) {
+                RuleType ruleXML = objectFactory.createRuleType();
+                ruleXML.setName( rule.getName() );
+                ruleXML.setIsValid( rule.isValid() );
+                ruleXML.setMessage( rule.getMessage() );
+                rulesListXML.add( ruleXML );
+            }
+            semType.setRules( rulesXML );
+
+            semType.setResult( createValidLabel( result.isValid() ) );
+            if ( result.getValidatorDetail() != null )
+                semType.setDetails( result.getValidatorDetail().toString() );
+        }
 
         val.setSem( semType );
     }

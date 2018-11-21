@@ -4554,6 +4554,52 @@
         </SortProperty>
       </SortBy>
     </SortBy>
+    <l:Name>bp_techmassnfl</l:Name>
+    <d:Title>BP: TechnischeMassnahmenFlaeche</d:Title>
+    <d:Abstract>BP_TechnischeMassnahmenFlaeche</d:Abstract>
+    <s:CRS>${vectorCrs}</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/bp_techmassnfl_trans</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>bp_techmassnfl</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>invisible</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc">
+        <SortProperty>
+          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
     <l:Name>bp_textlfestsfl</l:Name>
     <d:Title>BP: Bereich textlicher Festsetzung</d:Title>
     <d:Abstract>BP_TextlicheFestsetzungsFlaeche</d:Abstract>

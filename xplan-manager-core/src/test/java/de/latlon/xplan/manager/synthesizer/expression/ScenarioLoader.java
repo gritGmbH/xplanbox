@@ -40,6 +40,8 @@ class ScenarioLoader {
       return load( version, "xplan40.xml" );
     case XPLAN_41:
       return load( version, "xplan41.xml" );
+    case XPLAN_50:
+      return load( version, "xplan50.xml" );
     }
     throw new IllegalArgumentException();
   }

@@ -74,7 +74,7 @@ http://<host>:<port>/xplan-wms/services/wms?request=GetLegendGraphic&Service=WMS
 === Inhalte des Kartendienstes
 
 Der XPlanWMS dient der Darstellung der Bauleitplanung. Die Datenbasis
-besteht aus XPlanGML (Versionen: 2, 3, 4.0 und 4.1) konformen Plandaten.
+besteht aus XPlanGML (in den unterstützten Versionen) konformen Plandaten.
 Für jede Objektarte des XPLanGML, der Geometrie-Attribute enthält, existiert ein entsprechende Ebene im WMS. Zusätzlich zu den aus den Objektarten abgeleiteten Ebenen
 enthält der XPlanWMS Ebenen zur Darstellung von gescanten
 Rasterplan-Dateien.

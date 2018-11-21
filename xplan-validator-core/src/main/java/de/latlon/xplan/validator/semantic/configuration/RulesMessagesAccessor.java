@@ -55,7 +55,7 @@ public final class RulesMessagesAccessor {
 
     private static final String RULES_MESSAGES_PROPERTIES = "/rules/rulesMessages.properties";
 
-    static final String DEFAULT_MESSAGE = "Regel '%s' muss erfu00FCllt sein!";
+    static final String DEFAULT_MESSAGE = "Regel '%s' muss erf\u00FCllt sein!";
 
     private static final Properties PROPERTIES = new Properties();
 
