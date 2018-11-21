@@ -36,11 +36,6 @@ and
 )
 and
 (
-  every $h in //BP_VerkehrsflaecheBesondererZweckbestimmung[not(ebene) or ebene = '0'] satisfies
-  $h/flaechenschluss = 'true'
-)
-and
-(
   every $h in //BP_WaldFlaeche[not(ebene) or ebene = '0'] satisfies
   $h/flaechenschluss = 'true'
 )

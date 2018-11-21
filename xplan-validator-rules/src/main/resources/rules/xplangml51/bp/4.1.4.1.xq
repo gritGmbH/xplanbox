@@ -66,11 +66,6 @@ $h/flaechenschluss/text() = 'false'
 )
 and
 (
-every $h in //BP_VerkehrsflaecheBesondererZweckbestimmung[ebene != '0'] satisfies
-$h/flaechenschluss/text() = 'false'
-)
-and
-(
 every $h in //BP_WaldFlaeche[ebene != '0'] satisfies
 $h/flaechenschluss/text() = 'false'
 )

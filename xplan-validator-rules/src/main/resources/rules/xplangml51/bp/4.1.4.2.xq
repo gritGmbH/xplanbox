@@ -119,15 +119,6 @@ every $h in //BP_StrassenVerkehrsFlaeche[position] satisfies
 )
 and
 (
-every $h in //BP_VerkehrsflaecheBesondererZweckbestimmung[position] satisfies
-  exists($h/position/gml:Polygon) or
-  exists($h/position/gml:MultiSurface) or
-  exists($h/position/gml:LinearRing) or
-  exists($h/position/gml:PolygonPatch) or
-  exists($h/position/gml:Ring)
-)
-and
-(
 every $h in //BP_WaldFlaeche[position] satisfies
   exists($h/position/gml:Polygon) or
   exists($h/position/gml:MultiSurface) or
