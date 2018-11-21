@@ -77,6 +77,10 @@ Zugesichert werden kann, dass das über den XPlanInspirePluWFS abgegebene GML ge
 Nicht zugesichert werden kann, dass das GML alle Vorgaben aus den Technical Guidelines für das INSPIRE Annex III Datenthema Land Use erfüllt sowie dass alle Daten aus dem XPlanGML in das
 Zielschema INSPIRE PLU transformiert werden.
 
+=== Darstellungsvorschriften für Raumordnungspläne
+
+Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständig. Durch den WMS werden die betroffenen Ebenen daher nur in der Standarddarstellung ausgegeben.
+
 [[fehler-melden]]
 == Fehler melden
 
