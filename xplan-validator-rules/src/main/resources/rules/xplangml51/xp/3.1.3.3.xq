@@ -159,7 +159,8 @@ every $planinhalt in //BP_Bereich/planinhalt satisfies
               count(//SO_Wasserrecht[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
               count(//SO_Grenze[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
               count(//FP_Landwirtschaft[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
-              count(//BP_LandwirtschaftsFlaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1
+              count(//BP_LandwirtschaftsFlaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
+              count(//BP_NichtUeberbaubareGrundstuecksflaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1
 )
 )
 and
@@ -320,7 +321,8 @@ and
                 count(//SO_Wasserrecht[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
                 count(//SO_Grenze[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
                 count(//FP_Landwirtschaft[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
-                count(//BP_LandwirtschaftsFlaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1
+                count(//BP_LandwirtschaftsFlaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
+                count(//BP_NichtUeberbaubareGrundstuecksflaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1
   )
 )
 and
@@ -481,7 +483,8 @@ and
                 count(//SO_Wasserrecht[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
                 count(//SO_Grenze[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
                 count(//FP_Landwirtschaft[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
-                count(//BP_LandwirtschaftsFlaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1
+                count(//BP_LandwirtschaftsFlaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
+                count(//BP_NichtUeberbaubareGrundstuecksflaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1
   )
 )
 and
@@ -642,7 +645,8 @@ and
                 count(//SO_Wasserrecht[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
                 count(//SO_Grenze[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
                 count(//FP_Landwirtschaft[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
-                count(//BP_LandwirtschaftsFlaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1
+                count(//BP_LandwirtschaftsFlaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
+                count(//BP_NichtUeberbaubareGrundstuecksflaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1
   )
 )
 and
@@ -803,6 +807,7 @@ and
                 count(//SO_Wasserrecht[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
                 count(//SO_Grenze[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
                 count(//FP_Landwirtschaft[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
-                count(//BP_LandwirtschaftsFlaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1
+                count(//BP_LandwirtschaftsFlaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1 or
+                count(//BP_NichtUeberbaubareGrundstuecksflaeche[@gml:id = substring($objectId,2)]/gehoertZuBereich[@xlink:href = concat('#',$bereichId)]) = 1
   )
 )

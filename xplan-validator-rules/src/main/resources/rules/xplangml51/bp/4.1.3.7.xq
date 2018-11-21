@@ -336,3 +336,8 @@ and
 every $id in //BP_LandwirtschaftsFlaeche/wirdAusgeglichenDurchABE/@xlink:href satisfies
 exists(//BP_AnpflanzungBindungErhaltung[@gml:id = substring($id,2)])
 )
+and
+(
+every $id in //BP_NichtUeberbaubareGrundstuecksflaeche/wirdAusgeglichenDurchABE/@xlink:href satisfies
+exists(//BP_AnpflanzungBindungErhaltung[@gml:id = substring($id,2)])
+)

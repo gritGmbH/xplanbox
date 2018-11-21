@@ -336,3 +336,8 @@ and
   every $id in //BP_LandwirtschaftsFlaeche/wirdAusgeglichenDurchFlaeche/@xlink:href satisfies
   exists(//BP_AusgleichsFlaeche[@gml:id = substring($id,2)])
 )
+and
+(
+  every $id in //BP_NichtUeberbaubareGrundstuecksflaeche/wirdAusgeglichenDurchFlaeche/@xlink:href satisfies
+  exists(//BP_AusgleichsFlaeche[@gml:id = substring($id,2)])
+)
