@@ -12,33 +12,7 @@
   </parent>
 
   <build>
-    <filters>
-      <filter>src/main/filters/defaults.properties</filter>
-    </filters>
-    <resources>
-      <resource>
-        <directory>src/main/asciidoc</directory>
-        <filtering>true</filtering>
-        <includes>
-          <include>**/*.adoc</include>
-        </includes>
-      </resource>
-    </resources>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>3.0.2</version>
-        <executions>
-          <execution>
-            <id>filter-resources</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>resources</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>

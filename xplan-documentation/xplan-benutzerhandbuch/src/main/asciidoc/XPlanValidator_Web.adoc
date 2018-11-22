@@ -12,7 +12,7 @@ Die Web-Anwendung XPlanValidatorWeb dient der Validierung von XPlanGML und
 ist unter:
 
 ----
-http://${xplanbox.host}:${xplanbox.port}/xplan-validator/
+http://<host>:<port>/xplan-validator/
 ----
 
 verfügbar kann mit einem gängigen Web-Browser aufgerufen werden.
