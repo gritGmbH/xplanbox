@@ -71,6 +71,10 @@
       <artifactId>xplan-inspireplu-transformation</artifactId>
     </dependency>
     <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-synthesizer</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
     </dependency>

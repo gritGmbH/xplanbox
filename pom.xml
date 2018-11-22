@@ -45,6 +45,7 @@
     <module>xplan-update-database</module>
     <module>xplan-root</module>
     <module>xplan-sql-scripts</module>
+    <module>xplan-synthesizer</module>
   </modules>
 
   <profiles>
@@ -369,6 +370,11 @@
         <artifactId>deegree-services-wms</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.deegree</groupId>
+        <artifactId>deegree-featurestore-commons</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
       <!-- geotools -->
       <dependency>
         <groupId>org.geotools</groupId>
@@ -468,6 +474,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>xplan-inspireplu-transformation</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>xplan-synthesizer</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
