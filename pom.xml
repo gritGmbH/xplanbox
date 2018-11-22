@@ -40,7 +40,6 @@
       <id>docker</id>
       <modules>
         <module>xplan-docker</module>
-        <module>xplan-docker-volumes</module>
       </modules>
     </profile>
   </profiles>
