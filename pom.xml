@@ -24,37 +24,18 @@
   </properties>
 
   <modules>
-    <module>xplan-benutzerhandbuch</module>
-    <module>xplan-betriebshandbuch</module>
-    <module>xplan-commons</module>
-    <module>xplan-commons-web</module>
+    <module>xplan-cli</module>
     <module>xplan-configuration</module>
-    <module>xplan-inspireplu-transformation</module>
-    <module>xplan-manager-cli</module>
-    <module>xplan-manager-core</module>
-    <module>xplan-manager-web</module>
-    <module>xplan-schemas</module>
-    <module>xplan-test-resources</module>
-    <module>xplan-validator-cli</module>
-    <module>xplan-validator-core</module>
-    <module>xplan-validator-rules</module>
-    <module>xplan-validator-web</module>
-    <module>xplan-validator-web-commons</module>
+    <module>xplan-core</module>
+    <module>xplan-documentation</module>
+    <module>xplan-resources</module>
+    <module>xplan-tests</module>
+    <module>xplan-webapps</module>
     <module>xplan-webservices</module>
     <module>xplan-workspaces</module>
-    <module>xplan-update-database</module>
-    <module>xplan-root</module>
-    <module>xplan-sql-scripts</module>
-    <module>xplan-synthesizer</module>
   </modules>
 
   <profiles>
-    <profile>
-      <id>integrationtest</id>
-      <modules>
-        <module>xplan-integrationtest</module>
-      </modules>
-    </profile>
     <profile>
       <id>docker</id>
       <modules>
