@@ -35,33 +35,6 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.edit;
 
-import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
-import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
-
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
-import org.deegree.commons.tom.TypedObjectNode;
-import org.deegree.commons.tom.datetime.Temporal;
-import org.deegree.commons.tom.genericxml.GenericXMLElement;
-import org.deegree.commons.tom.gml.property.Property;
-import org.deegree.commons.tom.primitive.BaseType;
-import org.deegree.commons.tom.primitive.PrimitiveValue;
-import org.deegree.feature.Feature;
-import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.property.GenericProperty;
-import org.deegree.feature.property.SimpleProperty;
-import org.deegree.gml.reference.FeatureReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.XPlanMetadata;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
@@ -76,13 +49,38 @@ import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.Text;
 import de.latlon.xplan.manager.web.shared.edit.ValidityPeriod;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import org.deegree.commons.tom.TypedObjectNode;
+import org.deegree.commons.tom.datetime.Temporal;
+import org.deegree.commons.tom.genericxml.GenericXMLElement;
+import org.deegree.commons.tom.gml.property.Property;
+import org.deegree.commons.tom.primitive.BaseType;
+import org.deegree.commons.tom.primitive.PrimitiveValue;
+import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
+import org.deegree.feature.property.GenericProperty;
+import org.deegree.feature.property.SimpleProperty;
+import org.deegree.gml.reference.FeatureReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
+import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
 
 /**
  * Factory to parse {@link XPlanToEdit}.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class XPlanToEditFactory {
@@ -91,11 +89,11 @@ public class XPlanToEditFactory {
 
     /**
      * Parses an {@link XPlanToEdit} from the passed {@link FeatureCollection}.
-     * 
+     *
      * @param xPlan
-     *            used to extract some metadata, may be <code>null</code>
+     *                 used to extract some metadata, may be <code>null</code>
      * @param featureCollection
-     *            to parse the editable values from, never <code>null</code>
+     *                 to parse the editable values from, never <code>null</code>
      * @return the xPlanToEdit, never <code>null</code>
      */
     public XPlanToEdit createXPlanToEdit( XPlan xPlan, FeatureCollection featureCollection ) {
@@ -158,6 +156,8 @@ public class XPlanToEditFactory {
                 parseReference( property, xPlanToEdit, LEGISLATION_PLAN );
             } else if ( "refGruenordnungsplan".equals( propertyName ) ) {
                 parseReference( property, xPlanToEdit, GREEN_STRUCTURES_PLAN );
+            } else if ( "externeReferenz".equals( propertyName ) ) {
+                parseExterneReference( property, xPlanToEdit );
             } else if ( "texte".equals( propertyName ) ) {
                 parseTextReference( property, xPlanToEdit );
             }
@@ -294,6 +294,37 @@ public class XPlanToEditFactory {
         }
     }
 
+    private void parseExterneReference( Property property, XPlanToEdit xPlanToEdit ) {
+        ReferenceType referenceType = detectType( property );
+        if ( referenceType != null )
+            parseReference( property, xPlanToEdit, referenceType );
+    }
+
+    private ReferenceType detectType( Property property ) {
+        List<TypedObjectNode> children = property.getChildren();
+        if ( children.size() == 1 && children.get( 0 ) instanceof GenericXMLElement ) {
+            GenericXMLElement genericXmlElement = (GenericXMLElement) children.get( 0 );
+            return detectType( genericXmlElement.getChildren() );
+        } else if ( children.size() == 1 && children.get( 0 ) instanceof FeatureReference ) {
+            Feature referencedObject = ( (FeatureReference) children.get( 0 ) ).getReferencedObject();
+            return detectType( referencedObject.getProperties() );
+        }
+        return null;
+    }
+
+    private ReferenceType detectType( List<? extends TypedObjectNode> children ) {
+        for ( TypedObjectNode child : children ) {
+            if ( child instanceof GenericXMLElement ) {
+                GenericXMLElement childProperty = (GenericXMLElement) child;
+                if ( "typ".equals( childProperty.getName().getLocalPart() ) ) {
+                    String type = asString( childProperty.getValue() );
+                    return ReferenceType.getByXPlan50Type( type );
+                }
+            }
+        }
+        return null;
+    }
+
     private String parseReference( List<TypedObjectNode> children, AbstractReference reference ) {
         if ( children.get( 0 ) instanceof GenericXMLElement ) {
             GenericXMLElement genericXmlElement = (GenericXMLElement) children.get( 0 );
@@ -350,8 +381,8 @@ public class XPlanToEditFactory {
     private Date asDate( TypedObjectNode value ) {
         if ( value instanceof PrimitiveValue ) {
             BaseType baseType = ( (PrimitiveValue) value ).getType().getBaseType();
-            if ( BaseType.TIME.equals( baseType ) || BaseType.DATE.equals( baseType )
-                 || BaseType.DATE_TIME.equals( baseType ) )
+            if ( BaseType.TIME.equals( baseType ) || BaseType.DATE.equals( baseType ) || BaseType.DATE_TIME.equals(
+                            baseType ) )
                 return ( (Temporal) ( (PrimitiveValue) value ).getValue() ).getDate();
         }
         return null;

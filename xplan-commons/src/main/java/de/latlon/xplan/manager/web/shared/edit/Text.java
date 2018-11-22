@@ -37,10 +37,9 @@ package de.latlon.xplan.manager.web.shared.edit;
 
 /**
  * Encapsulates the text of a plan.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class Text extends AbstractReference {
@@ -53,12 +52,14 @@ public class Text extends AbstractReference {
 
     private String text;
 
+    private int legalNatureCode = -1;
+
     public Text() {
     }
 
     /**
      * @param featureId
-     *            id of the feature member, never <code>null</code>
+     *                 id of the feature member, never <code>null</code>
      */
     public Text( String featureId ) {
         this.featureId = featureId;
@@ -66,17 +67,17 @@ public class Text extends AbstractReference {
 
     /**
      * @param featureId
-     *            id of the feature member, never <code>null</code>
+     *                 id of the feature member, never <code>null</code>
      * @param key
-     *            key, may be <code>null</code>
+     *                 key, may be <code>null</code>
      * @param basis
-     *            basis, may be <code>null</code>
+     *                 basis, may be <code>null</code>
      * @param text
-     *            text, may be <code>null</code>
+     *                 text, may be <code>null</code>
      * @param reference
-     *            reference, may be <code>null</code>
+     *                 reference, may be <code>null</code>
      * @param geoReference
-     *            geoReference, may be <code>null</code>
+     *                 geoReference, may be <code>null</code>
      */
     public Text( String featureId, String key, String basis, String text, String reference, String geoReference ) {
         super( reference, geoReference );
@@ -84,6 +85,32 @@ public class Text extends AbstractReference {
         this.key = key;
         this.basis = basis;
         this.text = text;
+    }
+
+    /**
+     * @param featureId
+     *                 id of the feature member, never <code>null</code>
+     * @param key
+     *                 key, may be <code>null</code>
+     * @param basis
+     *                 basis, may be <code>null</code>
+     * @param text
+     *                 text, may be <code>null</code>
+     * @param reference
+     *                 reference, may be <code>null</code>
+     * @param geoReference
+     *                 geoReference, may be <code>null</code>
+     * @param legalNatureCode
+     *                 legalNatureCode, may be <code>null</code>
+     */
+    public Text( String featureId, String key, String basis, String text, int legalNatureCode, String reference,
+                 String geoReference ) {
+        super( reference, geoReference );
+        this.featureId = featureId;
+        this.key = key;
+        this.basis = basis;
+        this.text = text;
+        this.legalNatureCode = legalNatureCode;
     }
 
     /**
@@ -95,7 +122,7 @@ public class Text extends AbstractReference {
 
     /**
      * @param key
-     *            the key to set, may be <code>null</code>
+     *                 the key to set, may be <code>null</code>
      */
     public void setKey( String key ) {
         this.key = key;
@@ -110,7 +137,7 @@ public class Text extends AbstractReference {
 
     /**
      * @param basis
-     *            the basis to set, may be <code>null</code>
+     *                 the basis to set, may be <code>null</code>
      */
     public void setBasis( String basis ) {
         this.basis = basis;
@@ -125,7 +152,7 @@ public class Text extends AbstractReference {
 
     /**
      * @param text
-     *            the text to set, may be <code>null</code>
+     *                 the text to set, may be <code>null</code>
      */
     public void setText( String text ) {
         this.text = text;
@@ -139,17 +166,32 @@ public class Text extends AbstractReference {
     }
 
     /**
-     * 
      * @param featureId
-     *            the id of the feature member describing this text, may be <code>null</code>
+     *                 the id of the feature member describing this text, may be <code>null</code>
      */
     public void setFeatureId( String featureId ) {
         this.featureId = featureId;
     }
 
+    /**
+     * @return the legalNature, may be <code>null</code>
+     */
+    public int getLegalNatureCode() {
+        return legalNatureCode;
+    }
+
+    /**
+     * @param legalNatureCode
+     *                 the legalNature to set, may be <code>null</code>
+     */
+    public void setLegalNatureCode( int legalNatureCode ) {
+        this.legalNatureCode = legalNatureCode;
+    }
+
     @Override
     public String toString() {
-        return "Text [featureId=" + featureId + ", key=" + key + ", basis=" + basis + ", text=" + text + "]";
+        return "Text [featureId=" + featureId + ", key=" + key + ", basis=" + basis + ", text=" + text
+               + ", legalNatureCode= " + legalNatureCode + "]";
     }
 
 }

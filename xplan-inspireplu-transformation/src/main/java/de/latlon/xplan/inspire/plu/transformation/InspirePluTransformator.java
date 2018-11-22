@@ -1,5 +1,7 @@
 package de.latlon.xplan.inspire.plu.transformation;
 
+import de.latlon.xplan.commons.XPlanVersion;
+
 import java.nio.file.Path;
 
 /**
@@ -14,12 +16,14 @@ public interface InspirePluTransformator {
      * 
      * @param xPlanGml
      *            the XPlan GML document to transform. never <code>null</code>
+     * @param xPlanVersion
+     *            the Version of the XPlan GML to transform. never <code>null</code>
      * @return the transformed document, never <code>null</code>
      *
      * @throws TransformationException
      *             if the transformation failed
      */
-    Path transformToPlu( Path xPlanGml )
+    Path transformToPlu( Path xPlanGml, XPlanVersion xPlanVersion )
                             throws TransformationException;
 
 }

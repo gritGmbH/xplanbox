@@ -1,16 +1,8 @@
 package de.latlon.xplan.manager.inspireplu;
 
-import static org.deegree.gml.GMLVersion.GML_32;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamReader;
-
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
+import de.latlon.xplan.manager.database.XPlanDao;
 import org.apache.commons.io.IOUtils;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.GMLInputFactory;
@@ -18,8 +10,15 @@ import org.deegree.gml.GMLStreamReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
-import de.latlon.xplan.manager.database.XPlanDao;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import static org.deegree.gml.GMLVersion.GML_32;
 
 /**
  * Retrieves the XPlan GML from the database, transforms the plan to INSPIRE PLU and inserts the transformed plan to the
@@ -55,13 +54,15 @@ public class InspirePluPublisher {
      *
      * @param planId
      *            id of the plan to transform and publish, never <code>null</code>
+     * @param xPlanVersion the
+     *            version of the xplan, never <code>null</code>
      * @throws Exception
      *             if an exception occurs
      */
-    public void transformAndPublish( String planId )
+    public void transformAndPublish( String planId, XPlanVersion xPlanVersion )
                             throws Exception {
         Path xPlanGml = retrieveXPlan( planId );
-        Path inspirePlu = transformator.transformToPlu( xPlanGml );
+        Path inspirePlu = transformator.transformToPlu( xPlanGml, xPlanVersion );
         FeatureCollection featureCollection = parseFeatureCollection( inspirePlu );
         xPlanDao.insertInspirePlu( featureCollection );
     }

@@ -1,21 +1,5 @@
 package de.latlon.xplan.manager.configuration;
 
-import static java.lang.Double.parseDouble;
-import static org.deegree.cs.CRSUtils.EPSG_4326;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-
-import org.deegree.geometry.Envelope;
-import org.deegree.geometry.SimpleGeometryFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
@@ -24,13 +8,28 @@ import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
+import org.deegree.geometry.Envelope;
+import org.deegree.geometry.SimpleGeometryFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
+import static java.lang.Double.parseDouble;
+import static org.deegree.cs.CRSUtils.EPSG_4326;
 
 /**
  * Provides access to the manager configuration.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ManagerConfiguration {
@@ -91,9 +90,10 @@ public class ManagerConfiguration {
 
     private String pathToHaleCli;
 
-    private String pathToHaleProject;
+    private Path pathToHaleProjectDirectory;
 
-    public ManagerConfiguration( PropertiesLoader propertiesLoader ) throws ConfigurationException {
+    public ManagerConfiguration( PropertiesLoader propertiesLoader )
+                    throws ConfigurationException {
         loadProperties( propertiesLoader );
         verifyConfiguration();
         logConfiguration();
@@ -124,7 +124,7 @@ public class ManagerConfiguration {
 
     /**
      * @return the max scale denominator the raster layer is visible (a value less then 0 means the visibility is not
-     *         limited)
+     * limited)
      */
     public double getRasterLayerMaxScaleDenominator() {
         return rasterLayerMaxScaleDenominator;
@@ -132,7 +132,7 @@ public class ManagerConfiguration {
 
     /**
      * @return the min scale denominator the raster layer is visible (a value less then 0 means the visibility is not
-     *         limited)
+     * limited)
      */
     public double getRasterLayerMinScaleDenominator() {
         return rasterLayerMinScaleDenominator;
@@ -140,7 +140,7 @@ public class ManagerConfiguration {
 
     /**
      * @return <code>true</code> if 'festgestellte' and 'in aufstellung befindliche' plans should be stored in two
-     *         separated database schemas, <code>false</code> otherwise
+     * separated database schemas, <code>false</code> otherwise
      */
     public boolean isSeperatedDataManagementActived() {
         return isSeperatedDataManagementActived;
@@ -203,14 +203,14 @@ public class ManagerConfiguration {
     }
 
     /**
-     * @return the path to the hale project
+     * @return the path to the hale project directory
      */
-    public String getPathToHaleProject() {
-        return pathToHaleProject;
+    public Path getPathToHaleProjectDirectory() {
+        return pathToHaleProjectDirectory;
     }
 
     private void loadProperties( PropertiesLoader propertiesLoader )
-                            throws ConfigurationException {
+                    throws ConfigurationException {
         if ( propertiesLoader != null ) {
             Properties loadProperties = propertiesLoader.loadProperties( MANAGER_CONFIGURATION );
             if ( loadProperties != null ) {
@@ -234,7 +234,7 @@ public class ManagerConfiguration {
                 parseSortConfiguration( loadProperties );
                 parseSemanticConformityLinkConfiguration( loadProperties );
                 pathToHaleCli = loadProperties.getProperty( PATH_TO_HALE_CLI );
-                pathToHaleProject = parsePathToHaleProject( propertiesLoader );
+                pathToHaleProjectDirectory = parsePathToHaleProjectDirectory( propertiesLoader );
             }
             configDirectory = getConfigDirectory( propertiesLoader, "synthesizer" );
         }
@@ -249,7 +249,7 @@ public class ManagerConfiguration {
             throw new IllegalArgumentException( "rasterLayerMaxScaleDenominator should not be a negative value" );
         if ( rasterLayerMinScaleDenominator >= rasterLayerMaxScaleDenominator )
             throw new IllegalArgumentException(
-                                                "rasterLayerMinScaleDenominator must be less than rasterLayerMaxScaleDenominator" );
+                            "rasterLayerMinScaleDenominator must be less than rasterLayerMaxScaleDenominator" );
     }
 
     private void logConfiguration() {
@@ -285,7 +285,7 @@ public class ManagerConfiguration {
         LOG.info( "   - SQL All: {}", internalIdRetrieverConfiguration.getSelectAllSql() );
         LOG.info( "-------------------------------------------" );
         LOG.info( "  path to HALE CLI: {}", pathToHaleCli );
-        LOG.info( "  path to HALE project: {}", pathToHaleProject );
+        LOG.info( "  path to HALE project: {}", pathToHaleProjectDirectory );
         LOG.info( "-------------------------------------------" );
         sortConfiguration.logConfiguration( LOG );
         LOG.info( "-------------------------------------------" );
@@ -294,7 +294,7 @@ public class ManagerConfiguration {
     }
 
     private void parseCategories( String[] categoriesWithParts )
-                            throws ConfigurationException {
+                    throws ConfigurationException {
         for ( String categoryWithParts : categoriesWithParts ) {
             String categoryName = parseCategoryName( categoryWithParts );
             List<String> partsAsList = parseParts( categoryWithParts );
@@ -303,7 +303,7 @@ public class ManagerConfiguration {
     }
 
     private String parseCategoryName( String categoryWithParts )
-                            throws ConfigurationException {
+                    throws ConfigurationException {
         if ( categoryWithParts.contains( "(" ) ) {
             int indexOfCategoryEnd = categoryWithParts.indexOf( "(" );
             return categoryWithParts.substring( 0, indexOfCategoryEnd );
@@ -412,10 +412,10 @@ public class ManagerConfiguration {
         }
     }
 
-    private String parsePathToHaleProject( PropertiesLoader propertiesLoader ) {
-        Path haleProject = getConfigDirectory( propertiesLoader, "hale/xplanGml-inspirePlu.halex" );
-        if ( haleProject != null )
-            return haleProject.toString();
+    private Path parsePathToHaleProjectDirectory( PropertiesLoader propertiesLoader ) {
+        Path haleProject = getConfigDirectory( propertiesLoader, "hale" );
+        if ( haleProject != null && Files.exists( haleProject ) && Files.isDirectory( haleProject ) )
+            return haleProject;
         return null;
     }
 
