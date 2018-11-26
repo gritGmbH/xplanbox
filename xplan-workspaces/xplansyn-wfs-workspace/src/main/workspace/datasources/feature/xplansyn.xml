@@ -1095,6 +1095,7 @@
     <Primitive path="xplan:GFAntGewerbeUOM" mapping="xplan_gfantGewerbeuom" />
     <Primitive path="xplan:GFGewerbe" mapping="xplan_gfgewerbe" />
     <Primitive path="xplan:GFGewerbeUOM" mapping="xplan_gfgewerbeuom" />
+    <Primitive path="xplan:dachgestaltung" mapping="xplan_dachgestaltung" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_Bauschutzbereich" table="xplansyn.xplan_bp_bauschutzbereich">
     <FIDMapping prefix="XPLAN_BP_BAUSCHUTZBEREICH_">
@@ -1388,6 +1389,7 @@
     <Primitive path="xplan:ZU" mapping="xplan_zu" />
     <Primitive path="xplan:ZU_Ausn" mapping="xplan_zu_ausn" />
     <Primitive path="xplan:Z_Staffel" mapping="xplan_z_staffel" />
+    <Primitive path="xplan:dachgestaltung" mapping="xplan_dachgestaltung" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_BodenschaetzeFlaeche" table="xplansyn.xplan_bp_bodenschaetzeflaeche">
     <FIDMapping prefix="XPLAN_BP_BODENSCHAETZEFLAECHE_">
@@ -5284,6 +5286,7 @@
     <Primitive path="xplan:bebauungSeitlicheGrenze" mapping="xplan_bebauungseitlichegrenze" />
     <Primitive path="xplan:bebauungSeitlicheGrenzeCode" mapping="xplan_bebauungseitlichegrenzecode" />
     <Primitive path="xplan:refGebaeudequerschnitt" mapping="xplan_refgebaeudequerschnitt" />
+    <Primitive path="xplan:dachgestaltung" mapping="xplan_dachgestaltung" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_UnverbindlicheVormerkung" table="xplansyn.xplan_bp_unverbindlichevormerkung">
     <FIDMapping prefix="XPLAN_BP_UNVERBINDLICHEVORMERKUNG_">

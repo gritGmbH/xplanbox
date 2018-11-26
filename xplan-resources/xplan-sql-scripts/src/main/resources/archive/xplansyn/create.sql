@@ -1085,6 +1085,7 @@ CREATE TABLE xplansynarchive.xplan_bp_baugebietsteilflaeche (
     xplan_gfantGewerbeuom text,
     xplan_gfgewerbe numeric,
     xplan_gfgewerbeuom text,
+    xplan_dachgestaltung text,
     CONSTRAINT xplan_bp_baugebietsteilflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_baugebietsteilflaeche','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -1377,6 +1378,7 @@ CREATE TABLE xplansynarchive.xplan_bp_besonderernutzungszweckflaeche (
     xplan_zu integer,
     xplan_zu_ausn integer,
     xplan_z_staffel integer,
+    xplan_dachgestaltung text,
     CONSTRAINT xplan_bp_besonderernutzungszweckflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_besonderernutzungszweckflaeche','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -5256,6 +5258,7 @@ CREATE TABLE xplansynarchive.xplan_bp_ueberbaubaregrundstuecksflaeche (
 	xplan_bebauungseitlichegrenze text,
 	xplan_bebauungseitlichegrenzecode text,
 	xplan_refgebaeudequerschnitt text,
+    xplan_dachgestaltung text,
     CONSTRAINT xplan_bp_ueberbaubaregrundstuecksflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_ueberbaubaregrundstuecksflaeche','xplan_symbolposition','-1','GEOMETRY', 2);

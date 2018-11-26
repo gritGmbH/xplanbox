@@ -1147,6 +1147,7 @@
             <element name="GFGewerbe" minOccurs="0" type="string" />
             <element name="GFGewerbeUOM" minOccurs="0" type="double" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="dachgestaltung" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -1456,6 +1457,7 @@
             <element name="ZU_Ausn" minOccurs="0" type="integer" />
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="dachgestaltung" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -5576,6 +5578,7 @@
             <element name="bebauungSeitlicheGrenzeCode" minOccurs="0" type="string" />
             <element name="refGebaeudequerschnitt" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="dachgestaltung" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
