@@ -4087,6 +4087,7 @@
     <Primitive path="xplan:refSatzung" mapping="xplan_refsatzung" />
     <Primitive path="xplan:refGruenordnungsplan" mapping="xplan_refgruenordnungsplan" />
     <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
+    <Primitive path="xplan:planaufstellendeGemeinde" mapping="xplan_planaufstellendegemeinde" />
 	<Primitive path="xplan:versionBauNVODatum" mapping="xplan_versionbaunvodatum" />
 	<Primitive path="xplan:versionBauNVOText" mapping="xplan_versionbaunvotext" />
 	<Primitive path="xplan:versionBauGBDatum" mapping="xplan_versionbaugbdatum" />
@@ -7756,6 +7757,7 @@
     <Primitive path="xplan:sachgebiet" mapping="xplan_sachgebiet" />
     <Primitive path="xplan:refErlaeuterung" mapping="xplan_referlaeuterung" />
     <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
+    <Primitive path="xplan:planaufstellendeGemeinde" mapping="xplan_planaufstellendegemeinde" />
 	<Primitive path="xplan:versionBauNVODatum" mapping="xplan_versionbaunvodatum" />
 	<Primitive path="xplan:versionBauNVOText" mapping="xplan_versionbaunvotext" />
 	<Primitive path="xplan:versionBauGBDatum" mapping="xplan_versionbaugbdatum" />
@@ -15956,6 +15958,8 @@
     <Primitive path="xplan:bereich" mapping="xplan_bereich" />
     <Primitive path="xplan:refTextAbschnitte" mapping="xplan_reftextabschnitte" />
     <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
+    <Primitive path="xplan:gemeinde" mapping="xplan_gemeinde" />
+    <Primitive path="xplan:planaufstellendeGemeinde" mapping="xplan_planaufstellendegemeinde" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:SO_RasterplanAenderung" table="xplansyn.xplan_so_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_SO_RASTERPLANAENDERUNG_">

@@ -4315,6 +4315,7 @@
             <element name="refSatzung" minOccurs="0" type="string" />
             <element name="refGruenordnungsplan" minOccurs="0" type="string" />
             <element name="technischerPlanersteller" minOccurs="0" type="string" />
+            <element name="planaufstellendeGemeinde" minOccurs="0" type="string" />
             <element name="versionBauNVODatum" minOccurs="0" type="date" />
             <element name="versionBauNVOText" minOccurs="0" type="string" />
             <element name="versionBauGBDatum" minOccurs="0" type="date" />
@@ -8200,6 +8201,7 @@
             <element name="sachgebiet" minOccurs="0" type="string" />
             <element name="refErlaeuterung" minOccurs="0" type="string" />
             <element name="technischerPlanersteller" minOccurs="0" type="string" />
+            <element name="planaufstellendeGemeinde" minOccurs="0" type="string" />
             <element name="versionBauNVODatum" minOccurs="0" type="date" />
             <element name="versionBauNVOText" minOccurs="0" type="string" />
             <element name="versionBauGBDatum" minOccurs="0" type="date" />
@@ -17124,6 +17126,8 @@
             <element name="bereich" minOccurs="0" type="string" />
             <element name="refTextAbschnitte" minOccurs="0" type="string" />
             <element name="technischerPlanersteller" minOccurs="0" type="string" />
+            <element name="gemeinde" minOccurs="0" type="string" />
+            <element name="planaufstellendeGemeinde" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

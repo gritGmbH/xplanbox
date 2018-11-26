@@ -4066,6 +4066,7 @@ CREATE TABLE xplansynarchive.xplan_bp_plan (
     xplan_refsatzung text,
     xplan_refgruenordnungsplan text,
     xplan_technischerplanersteller text,
+    xplan_planaufstellendegemeinde text,
 	xplan_versionbaunvodatum date,
 	xplan_versionbaunvotext text,
 	xplan_versionbaugbdatum date,
@@ -7723,6 +7724,7 @@ CREATE TABLE xplansynarchive.xplan_fp_plan (
     xplan_sachgebiet text,
     xplan_referlaeuterung text,
     xplan_technischerplanersteller text,
+    xplan_planaufstellendegemeinde text,
 	xplan_versionbaunvodatum date,
 	xplan_versionbaunvotext text,
 	xplan_versionbaugbdatum date,
@@ -15843,6 +15845,8 @@ CREATE TABLE xplansynarchive.xplan_so_plan (
     xplan_bereich text,
     xplan_reftextabschnitte text,
     xplan_technischerplanersteller text,
+    xplan_gemeinde text,
+    xplan_planaufstellendegemeinde text,
     CONSTRAINT xplan_so_plan_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_so_plan','xplan_raeumlichergeltungsbereich','-1','GEOMETRY', 2);
