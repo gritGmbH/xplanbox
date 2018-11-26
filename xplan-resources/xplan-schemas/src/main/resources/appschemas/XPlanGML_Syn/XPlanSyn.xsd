@@ -14954,6 +14954,7 @@
             <element name="bergbauplanungTypCode" minOccurs="0" type="string" />
             <element name="istAufschuettungAblagerung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="detaillierterRohstoffTyp" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

@@ -14238,6 +14238,7 @@ CREATE TABLE xplansynarchive.xplan_rp_rohstoff (
     xplan_bergbauplanungtyp text,
     xplan_bergbauplanungtypcode text,
     xplan_istaufschuettungablagerung text,
+    xplan_detaillierterrohstofftyp text,
     CONSTRAINT xplan_rp_rohstoff_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_rohstoff','xplan_position','-1','GEOMETRY', 2);

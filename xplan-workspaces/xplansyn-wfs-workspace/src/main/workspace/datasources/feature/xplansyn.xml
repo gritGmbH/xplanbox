@@ -14320,6 +14320,7 @@
     <Primitive path="xplan:bergbauplanungTyp" mapping="xplan_bergbauplanungtyp" />
     <Primitive path="xplan:bergbauplanungTypCode" mapping="xplan_bergbauplanungtypcode" />
     <Primitive path="xplan:istAufschuettungAblagerung" mapping="xplan_istaufschuettungablagerung" />
+    <Primitive path="xplan:detaillierterRohstoffTyp" mapping="xplan_detaillierterrohstofftyp" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Rohstoffsicherung" table="xplansyn.xplan_rp_rohstoffsicherung">
     <FIDMapping prefix="XPLAN_RP_ROHSTOFFSICHERUNG_">

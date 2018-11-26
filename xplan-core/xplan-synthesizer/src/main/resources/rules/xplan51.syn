@@ -5995,6 +5995,7 @@ RP_Rohstoff/bergbauplanungTyp=xplanCodeLookup(xpath('xplan:bergbauplanungTyp'), 
 RP_Rohstoff/bergbauplanungTypCode=xpath('xplan:bergbauplanungTyp')
 RP_Rohstoff/istAufschuettungAblagerung=xpath('xplan:istAufschuettungAblagerung')
 RP_Rohstoff/aufschrift=xpath('xplan:aufschrift')
+RP_Rohstoff/detaillierterRohstoffTyp=xpath('xplan:detaillierterRohstoffTyp')
 RP_Schienenverkehr/gmlId=xpath('@gml:id')
 RP_Schienenverkehr/gmlName=xplanGmlName()
 RP_Schienenverkehr/gmlDescription=xplanGmlDescription()
