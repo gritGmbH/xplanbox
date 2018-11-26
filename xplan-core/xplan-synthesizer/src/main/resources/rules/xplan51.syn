@@ -2799,6 +2799,7 @@ BP_Wegerecht/wirdAusgeglichenDurchSPEFlaeche=xplanFlatten(xpath('xplan:wirdAusge
 BP_Wegerecht/breite=xpath('xplan:breite/text()')
 BP_Wegerecht/breiteUOM=xpath('xplan:breite/@uom')
 BP_Wegerecht/aufschrift=xpath('xplan:aufschrift')
+BP_Wegerecht/istSchmal=xpath('xplan:istSchmal')
 FP_Abgrabung/gmlId=xpath('@gml:id')
 FP_Abgrabung/gmlName=xplanGmlName()
 FP_Abgrabung/gmlDescription=xplanGmlDescription()

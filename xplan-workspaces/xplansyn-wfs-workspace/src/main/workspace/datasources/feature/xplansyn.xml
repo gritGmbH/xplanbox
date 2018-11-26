@@ -6170,6 +6170,7 @@
     <Primitive path="xplan:gehoertZuBP_Bereich" mapping="xplan_gehoertzubp_bereich" />
     <Primitive path="xplan:breite" mapping="xplan_breite" />
     <Primitive path="xplan:breiteUOM" mapping="xplan_breiteuom" />
+    <Primitive path="xplan:istSchmal" mapping="xplan_istschmal" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Abgrabung" table="xplansyn.xplan_fp_abgrabung">
     <FIDMapping prefix="XPLAN_FP_ABGRABUNG_">

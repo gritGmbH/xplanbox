@@ -6506,6 +6506,7 @@
             <element name="breite" minOccurs="0" type="double" />
             <element name="breiteUOM" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="istSchmal" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

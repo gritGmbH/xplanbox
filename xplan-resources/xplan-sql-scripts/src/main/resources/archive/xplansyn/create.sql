@@ -6141,6 +6141,7 @@ CREATE TABLE xplansynarchive.xplan_bp_wegerecht (
     xplan_gehoertzubp_bereich text,
     xplan_breite numeric,
     xplan_breiteuom text,
+    xplan_istschmal text,
     CONSTRAINT xplan_bp_wegerecht_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_wegerecht','xplan_symbolposition','-1','GEOMETRY', 2);
