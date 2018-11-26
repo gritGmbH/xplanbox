@@ -6377,6 +6377,7 @@
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
+    <Primitive path="xplan:aufschuettungsmaterial" mapping="xplan_aufschuettungsmaterial" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_AufschuettungsFlaeche" table="xplansyn.xplan_fp_aufschuettungsflaeche">
     <FIDMapping prefix="XPLAN_FP_AUFSCHUETTUNGSFLAECHE_">

@@ -6729,6 +6729,7 @@
             <element name="nordwinkel" minOccurs="0" type="string" />
             <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="aufschuettungsmaterial" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

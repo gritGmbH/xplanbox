@@ -6347,6 +6347,7 @@ CREATE TABLE xplansynarchive.xplan_fp_aufschuettung (
     xplan_flussrichtung text,
     xplan_nordwinkel text,
     xplan_nordwinkelUOM text,
+    xplan_aufschuettungsmaterial text,
     CONSTRAINT xplan_fp_aufschuettung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_fp_aufschuettung','xplan_position','-1','GEOMETRY', 2);
