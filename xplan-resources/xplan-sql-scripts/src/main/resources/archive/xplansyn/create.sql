@@ -4061,6 +4061,12 @@ CREATE TABLE xplansynarchive.xplan_bp_plan (
     xplan_refsatzung text,
     xplan_refgruenordnungsplan text,
     xplan_technischerplanersteller text,
+	xplan_versionbaunvodatum date,
+	xplan_versionbaunvotext text,
+	xplan_versionbaugbdatum date,
+	xplan_versionbaugbtext text,
+	xplan_versionsonstrechtsgrundlagedatum date,
+	xplan_versionsonstrechtsgrundlagetext text,
     CONSTRAINT xplan_bp_plan_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_plan','xplan_raeumlichergeltungsbereich','-1','GEOMETRY', 2);

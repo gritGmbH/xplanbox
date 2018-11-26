@@ -4310,6 +4310,12 @@
             <element name="refSatzung" minOccurs="0" type="string" />
             <element name="refGruenordnungsplan" minOccurs="0" type="string" />
             <element name="technischerPlanersteller" minOccurs="0" type="string" />
+            <element name="versionBauNVODatum" minOccurs="0" type="date" />
+            <element name="versionBauNVOText" minOccurs="0" type="string" />
+            <element name="versionBauGBDatum" minOccurs="0" type="date" />
+            <element name="versionBauGBText" minOccurs="0" type="string" />
+            <element name="versionSonstRechtsgrundlageDatum" minOccurs="0" type="date" />
+            <element name="versionSonstRechtsgrundlageText" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

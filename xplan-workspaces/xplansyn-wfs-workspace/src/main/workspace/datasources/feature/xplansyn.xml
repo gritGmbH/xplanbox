@@ -4082,6 +4082,12 @@
     <Primitive path="xplan:refSatzung" mapping="xplan_refsatzung" />
     <Primitive path="xplan:refGruenordnungsplan" mapping="xplan_refgruenordnungsplan" />
     <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
+	<Primitive path="xplan:versionBauNVODatum" mapping="xplan_versionbaunvodatum" />
+	<Primitive path="xplan:versionBauNVOText" mapping="xplan_versionbaunvotext" />
+	<Primitive path="xplan:versionBauGBDatum" mapping="xplan_versionbaugbdatum" />
+	<Primitive path="xplan:versionBauGBText" mapping="xplan_versionbaugbtext" />
+	<Primitive path="xplan:versionSonstRechtsgrundlageDatum" mapping="xplan_versionsonstrechtsgrundlagedatum" />
+	<Primitive path="xplan:versionSonstRechtsgrundlageText" mapping="xplan_versionsonstrechtsgrundlagetext" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_RasterplanAenderung" table="xplansyn.xplan_bp_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_BP_RASTERPLANAENDERUNG_">
