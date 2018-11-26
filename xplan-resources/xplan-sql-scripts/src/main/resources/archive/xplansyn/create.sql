@@ -3841,6 +3841,49 @@ SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_nebenanlagenflaeche','xpla
 CREATE INDEX spatial_idx_94 ON xplan_bp_nebenanlagenflaeche USING GIST ( xplan_symbolposition  );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_nebenanlagenflaeche','xplan_position','-1','GEOMETRY', 2);
 CREATE INDEX spatial_idx_95 ON xplan_bp_nebenanlagenflaeche USING GIST ( xplan_position  );
+CREATE TABLE xplansynarchive.xplan_bp_nichtueberbaubaregrundstuecksflaeche (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+	xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_uuid text,
+    xplan_text text,
+    xplan_rechtsstand text,
+    xplan_rechtsstandcode text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
+    xplan_gliederung1 text,
+    xplan_gliederung2 text,
+    xplan_ebene integer,
+    xplan_hatgenerattribut text,
+    xplan_hoehenangabe text,
+    xplan_externereferenz text,
+    xplan_gehoertzubereich text,
+    xplan_wirddargestelltdurch text,
+    xplan_refbegruendunginhalt text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_aufschrift text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_reftextinhalt text,
+    xplan_wirdausgeglichendurchflaeche text,
+    xplan_wirdausgeglichendurchabe text,
+    xplan_wirdausgeglichendurchspemassnahme text,
+    xplan_wirdausgeglichendurchspeflaeche text,
+    xplan_wirdausgeglichendurchmassnahme text,
+    xplan_flaechenschluss text,
+    CONSTRAINT xplan_lp_schutzobjektlandesrecht_pkey PRIMARY KEY (attr_gml_id)
+);
+SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_nichtueberbaubaregrundstuecksflaeche','xplan_position','-1','GEOMETRY', 2);
+CREATE INDEX spatial_idx_491 ON xplan_bp_nichtueberbaubaregrundstuecksflaeche USING GIST ( xplan_position  );
 CREATE TABLE xplansynarchive.xplan_bp_nutzungsartengrenze (
     attr_gml_id text,
     xplan_gmlid text,
