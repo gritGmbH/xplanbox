@@ -7556,6 +7556,56 @@
     <Primitive path="xplan:schutzzone" mapping="xplan_schutzzone" />
     <Primitive path="xplan:schutzzoneCode" mapping="xplan_schutzzonecode" />
   </FeatureTypeMapping>
+  <FeatureTypeMapping name="xplan:FP_Landwirtschaft" table="xplansyn.xplan_fp_landwirtschaft">
+    <FIDMapping prefix="XPLAN_FP_LANDWIRTSCHAFT_">
+      <Column name="attr_gml_id" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
+    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
+    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
+    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
+    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
+    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
+    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
+    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
+    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
+    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
+    <Primitive path="xplan:text" mapping="xplan_text" />
+    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
+    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
+    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
+    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
+    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
+    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
+    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
+    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
+    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
+    <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
+    <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
+    <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
+    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
+    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
+    <Primitive path="xplan:spezifischePraegung" mapping="xplan_spezifischepraegung" />
+    <Primitive path="xplan:spezifischePraegungCode" mapping="xplan_spezifischepraegungcode" />
+    <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt" />
+    <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
+    <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung" />
+    <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
+    <Primitive path="xplan:detaillierteZweckbestimmung" mapping="xplan_detailliertezweckbestimmung" />
+    <Primitive path="xplan:detaillierteZweckbestimmungCode" mapping="xplan_detailliertezweckbestimmungcode" />
+  </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_LandwirtschaftsFlaeche" table="xplansyn.xplan_fp_landwirtschaftsflaeche">
     <FIDMapping prefix="XPLAN_FP_LANDWIRTSCHAFTSFLAECHE_">
       <Column name="attr_gml_id" type="string" />
