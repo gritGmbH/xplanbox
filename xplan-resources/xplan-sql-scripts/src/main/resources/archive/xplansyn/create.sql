@@ -8849,6 +8849,7 @@ CREATE TABLE xplansynarchive.xplan_lp_anpflanzungbindungerhaltung (
     xplan_flussrichtung text,
     xplan_nordwinkel text,
     xplan_nordwinkelUOM text,
+    xplan_anzahl integer,
     CONSTRAINT xplan_lp_anpflanzungbindungerhaltung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_anpflanzungbindungerhaltung','xplan_position','-1','GEOMETRY', 2);

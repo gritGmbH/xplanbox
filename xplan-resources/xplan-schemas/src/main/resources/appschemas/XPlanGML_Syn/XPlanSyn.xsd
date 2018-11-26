@@ -9412,6 +9412,7 @@
             <element name="pflanzartCode" minOccurs="0" type="string" />
             <element name="mindesthoehe" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="anzahl" minOccurs="0" type="integer" />
           </sequence>
         </extension>
       </complexContent>
