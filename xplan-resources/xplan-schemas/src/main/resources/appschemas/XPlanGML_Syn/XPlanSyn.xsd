@@ -3685,6 +3685,7 @@
             <element name="rechtsstand" minOccurs="0" type="string" />
             <element name="rechtsstandCode" minOccurs="0" type="string" />
             <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
             <element name="textAbschnitte" minOccurs="0" type="string" />
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
@@ -3735,6 +3736,19 @@
             <element name="hUeberBezugspunkt" minOccurs="0" type="string" />
             <element name="hUeberBezugspunktCode" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenVon" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="refBegruendungInhalt" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="refTextInhalt" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

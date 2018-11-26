@@ -3489,6 +3489,7 @@
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
     <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
     <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
+    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
@@ -3539,6 +3540,19 @@
     <Primitive path="xplan:hUeberBezugspunkt" mapping="xplan_hueberbezugspunkt" />
     <Primitive path="xplan:hUeberBezugspunktCode" mapping="xplan_hueberbezugspunktcode" />
     <Primitive path="xplan:wirdAusgeglichenVon" mapping="xplan_wirdausgeglichenvon" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
+    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
+    <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
+    <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
+    <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
+    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
+    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
+    <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt" />
+    <Primitive path="xplan:wirdAusgeglichenDurchABE" mapping="xplan_wirdausgeglichendurchabe" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEMassnahme" mapping="xplan_wirdausgeglichendurchspemassnahme" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_LandwirtschaftsLinie" table="xplansyn.xplan_bp_landwirtschaftslinie">
     <FIDMapping prefix="XPLAN_BP_LANDWIRTSCHAFTSLINIE_">

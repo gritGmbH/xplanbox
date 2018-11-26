@@ -3469,6 +3469,7 @@ CREATE TABLE xplansynarchive.xplan_bp_landwirtschaftsflaeche (
     xplan_rechtsstand text,
     xplan_rechtsstandcode text,
     xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
     xplan_textabschnitte text,
     xplan_begruendungabschnitte text,
     xplan_gliederung1 text,
@@ -3517,6 +3518,19 @@ CREATE TABLE xplansynarchive.xplan_bp_landwirtschaftsflaeche (
     xplan_hueberbezugspunkt text,
     xplan_hueberbezugspunktcode text,
     xplan_wirdausgeglichenvon text,
+    xplan_externereferenz text,
+    xplan_wirddargestelltdurch text,
+    xplan_refbegruendunginhalt text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_aufschrift text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_reftextinhalt text,
+    xplan_wirdausgeglichendurchabe text,
+    xplan_wirdausgeglichendurchspemassnahme text,
+    xplan_wirdausgeglichendurchspeflaeche text,
+    xplan_flussrichtung text,
     CONSTRAINT xplan_bp_landwirtschaftsflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_landwirtschaftsflaeche','xplan_symbolposition','-1','GEOMETRY', 2);
