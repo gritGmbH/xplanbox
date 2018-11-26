@@ -4309,6 +4309,7 @@
             <element name="ausfertigungsDatum" minOccurs="0" type="date" />
             <element name="refSatzung" minOccurs="0" type="string" />
             <element name="refGruenordnungsplan" minOccurs="0" type="string" />
+            <element name="technischerPlanersteller" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8183,6 +8184,7 @@
             <element name="traegerbeteiligungsEndDatum" minOccurs="0" type="date" />
             <element name="sachgebiet" minOccurs="0" type="string" />
             <element name="refErlaeuterung" minOccurs="0" type="string" />
+            <element name="technischerPlanersteller" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -10606,6 +10608,7 @@
             <element name="planArtCode" minOccurs="0" type="string" />
             <element name="sonstPlanArt" minOccurs="0" type="string" />
             <element name="sonstPlanArtCode" minOccurs="0" type="string" />
+            <element name="technischerPlanersteller" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14653,6 +14656,7 @@
             <element name="verfahren" minOccurs="0" type="string" />
             <element name="verfahrenCode" minOccurs="0" type="string" />
             <element name="amtlicherSchluessel" minOccurs="0" type="integer" />
+            <element name="technischerPlanersteller" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -17095,6 +17099,7 @@
             <element name="plangeber" minOccurs="0" type="string" />
             <element name="bereich" minOccurs="0" type="string" />
             <element name="refTextAbschnitte" minOccurs="0" type="string" />
+            <element name="technischerPlanersteller" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

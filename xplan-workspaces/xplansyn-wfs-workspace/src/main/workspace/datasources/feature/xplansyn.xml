@@ -4081,6 +4081,7 @@
     <Primitive path="xplan:ausfertigungsDatum" mapping="xplan_ausfertigungsdatum" />
     <Primitive path="xplan:refSatzung" mapping="xplan_refsatzung" />
     <Primitive path="xplan:refGruenordnungsplan" mapping="xplan_refgruenordnungsplan" />
+    <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_RasterplanAenderung" table="xplansyn.xplan_bp_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_BP_RASTERPLANAENDERUNG_">
@@ -7739,6 +7740,7 @@
     <Primitive path="xplan:traegerbeteiligungsEndDatum" mapping="xplan_traegerbeteiligungsenddatum" />
     <Primitive path="xplan:sachgebiet" mapping="xplan_sachgebiet" />
     <Primitive path="xplan:refErlaeuterung" mapping="xplan_referlaeuterung" />
+    <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_PrivilegiertesVorhaben" table="xplansyn.xplan_fp_privilegiertesvorhaben">
     <FIDMapping prefix="XPLAN_FP_PRIVILEGIERTESVORHABEN_">
@@ -9986,6 +9988,7 @@
     <Primitive path="xplan:planArtCode" mapping="xplan_planartcode" />
     <Primitive path="xplan:sonstPlanArt" mapping="xplan_sonstplanart" />
     <Primitive path="xplan:sonstPlanArtCode" mapping="xplan_sonstplanartcode" />
+    <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:LP_PlanerischeVertiefung" table="xplansyn.xplan_lp_planerischevertiefung">
     <FIDMapping prefix="XPLAN_LP_PLANERISCHEVERTIEFUNG_">
@@ -14039,6 +14042,7 @@
     <Primitive path="xplan:verfahren" mapping="xplan_verfahren" />
     <Primitive path="xplan:verfahrenCode" mapping="xplan_verfahrencode" />
     <Primitive path="xplan:amtlicherSchluessel" mapping="xplan_amtlicherschluessel" />
+    <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Planungsraum" table="xplansyn.xplan_rp_planungsraum">
     <FIDMapping prefix="XPLAN_RP_PLANUNGSRAUM_">
@@ -15927,6 +15931,7 @@
     <Primitive path="xplan:plangeber" mapping="xplan_plangeber" />
     <Primitive path="xplan:bereich" mapping="xplan_bereich" />
     <Primitive path="xplan:refTextAbschnitte" mapping="xplan_reftextabschnitte" />
+    <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:SO_RasterplanAenderung" table="xplansyn.xplan_so_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_SO_RASTERPLANAENDERUNG_">
