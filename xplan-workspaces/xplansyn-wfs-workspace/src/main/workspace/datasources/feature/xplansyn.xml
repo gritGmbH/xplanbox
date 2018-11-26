@@ -7755,6 +7755,12 @@
     <Primitive path="xplan:sachgebiet" mapping="xplan_sachgebiet" />
     <Primitive path="xplan:refErlaeuterung" mapping="xplan_referlaeuterung" />
     <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
+	<Primitive path="xplan:versionBauNVODatum" mapping="xplan_versionbaunvodatum" />
+	<Primitive path="xplan:versionBauNVOText" mapping="xplan_versionbaunvotext" />
+	<Primitive path="xplan:versionBauGBDatum" mapping="xplan_versionbaugbdatum" />
+	<Primitive path="xplan:versionBauGBText" mapping="xplan_versionbaugbtext" />
+	<Primitive path="xplan:versionSonstRechtsgrundlageDatum" mapping="xplan_versionsonstrechtsgrundlagedatum" />
+	<Primitive path="xplan:versionSonstRechtsgrundlageText" mapping="xplan_versionsonstrechtsgrundlagetext" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_PrivilegiertesVorhaben" table="xplansyn.xplan_fp_privilegiertesvorhaben">
     <FIDMapping prefix="XPLAN_FP_PRIVILEGIERTESVORHABEN_">

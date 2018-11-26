@@ -7722,6 +7722,12 @@ CREATE TABLE xplansynarchive.xplan_fp_plan (
     xplan_sachgebiet text,
     xplan_referlaeuterung text,
     xplan_technischerplanersteller text,
+	xplan_versionbaunvodatum date,
+	xplan_versionbaunvotext text,
+	xplan_versionbaugbdatum date,
+	xplan_versionbaugbtext text,
+	xplan_versionsonstrechtsgrundlagedatum date,
+	xplan_versionsonstrechtsgrundlagetext text,
     CONSTRAINT xplan_fp_plan_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_fp_plan','xplan_raeumlichergeltungsbereich','-1','GEOMETRY', 2);
