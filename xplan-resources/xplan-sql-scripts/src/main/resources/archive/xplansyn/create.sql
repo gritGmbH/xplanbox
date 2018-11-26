@@ -4547,6 +4547,7 @@ CREATE TABLE xplansynarchive.xplan_bp_speziellebauweise (
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
     xplan_gehoertzubp_bereich text,
+    xplan_wegerecht text,
     CONSTRAINT xplan_bp_speziellebauweise_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_speziellebauweise','xplan_symbolposition','-1','GEOMETRY', 2);

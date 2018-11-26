@@ -1976,6 +1976,7 @@ BP_SpezielleBauweise/wirdAusgeglichenDurchABE=xplanFlatten(xpath('xplan:wirdAusg
 BP_SpezielleBauweise/wirdAusgeglichenDurchSPEMassnahme=xplanFlatten(xpath('xplan:wirdAusgeglichenDurchSPEMassnahme'))
 BP_SpezielleBauweise/wirdAusgeglichenDurchSPEFlaeche=xplanFlatten(xpath('xplan:wirdAusgeglichenDurchSPEFlaeche'))
 BP_SpezielleBauweise/aufschrift=xpath('xplan:aufschrift')
+BP_SpezielleBauweise/wegerecht=xplanFlatten(xpath('xplan:wegerecht'))
 BP_SpielSportanlagenFlaeche/gmlId=xpath('@gml:id')
 BP_SpielSportanlagenFlaeche/gmlName=xplanGmlName()
 BP_SpielSportanlagenFlaeche/gmlDescription=xplanGmlDescription()
