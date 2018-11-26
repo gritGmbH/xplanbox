@@ -190,6 +190,9 @@ CREATE TABLE xplansynarchive.xplan_bp_abstandsmass (
     xplan_startwinkeluom text,
     xplan_endwinkel numeric,
     xplan_endwinkeluom text,
+    xplan_mindesthoehe numeric,
+    xplan_mindesthoeheUOM text,
+    xplan_anzahl integer,
     CONSTRAINT xplan_bp_abstandsmass_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_abstandsmass','xplan_position','-1','GEOMETRY', 2);

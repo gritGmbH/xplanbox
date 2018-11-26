@@ -296,6 +296,9 @@
             <element name="baumArt" minOccurs="0" type="string" />
             <element name="baumArtCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="mindesthoehe" minOccurs="0" type="double" />
+            <element name="mindesthoeheUOM" minOccurs="0" type="string" />
+            <element name="anzahl" minOccurs="0" type="integer" />
           </sequence>
         </extension>
       </complexContent>

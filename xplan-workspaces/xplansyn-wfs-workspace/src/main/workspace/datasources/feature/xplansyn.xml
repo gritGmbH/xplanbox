@@ -280,6 +280,9 @@
     <Primitive path="xplan:pflanztiefeUOM" mapping="xplan_pflanztiefeuom" />
     <Primitive path="xplan:baumArt" mapping="xplan_baumart" />
     <Primitive path="xplan:baumArtCode" mapping="xplan_baumartcode" />
+    <Primitive path="xplan:mindesthoehe" mapping="xplan_mindesthoehe" />
+    <Primitive path="xplan:mindesthoeheUOM" mapping="xplan_mindesthoeheUOM" />
+    <Primitive path="xplan:anzahl" mapping="xplan_anzahl" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_AufschuettungsFlaeche" table="xplansyn.xplan_bp_aufschuettungsflaeche">
     <FIDMapping prefix="XPLAN_BP_AUFSCHUETTUNGSFLAECHE_">
