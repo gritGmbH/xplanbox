@@ -14679,6 +14679,7 @@
             <element name="verfahrenCode" minOccurs="0" type="string" />
             <element name="amtlicherSchluessel" minOccurs="0" type="integer" />
             <element name="technischerPlanersteller" minOccurs="0" type="string" />
+            <element name="genehmigungsbehoerde" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

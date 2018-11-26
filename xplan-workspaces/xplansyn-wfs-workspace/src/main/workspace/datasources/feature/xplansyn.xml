@@ -14065,6 +14065,7 @@
     <Primitive path="xplan:verfahrenCode" mapping="xplan_verfahrencode" />
     <Primitive path="xplan:amtlicherSchluessel" mapping="xplan_amtlicherschluessel" />
     <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
+    <Primitive path="xplan:genehmigungsbehoerde" mapping="xplan_genehmigungsbehoerde" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Planungsraum" table="xplansyn.xplan_rp_planungsraum">
     <FIDMapping prefix="XPLAN_RP_PLANUNGSRAUM_">

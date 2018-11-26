@@ -13990,6 +13990,7 @@ CREATE TABLE xplansynarchive.xplan_rp_plan (
     xplan_verfahrencode text,
     xplan_amtlicherschluessel integer,
     xplan_technischerplanersteller text,
+    xplan_genehmigungsbehoerde text,
     CONSTRAINT xplan_rp_plan_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_plan','xplan_raeumlichergeltungsbereich','-1','GEOMETRY', 2);
