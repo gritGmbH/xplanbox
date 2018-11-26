@@ -6139,6 +6139,7 @@
             <element name="ZU_Ausn" minOccurs="0" type="integer" />
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="zugunstenVon" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

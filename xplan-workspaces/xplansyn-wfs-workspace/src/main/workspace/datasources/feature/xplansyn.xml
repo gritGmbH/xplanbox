@@ -5823,6 +5823,7 @@
     <Primitive path="xplan:ZU" mapping="xplan_zu" />
     <Primitive path="xplan:ZU_Ausn" mapping="xplan_zu_ausn" />
     <Primitive path="xplan:Z_Staffel" mapping="xplan_z_staffel" />
+    <Primitive path="xplan:zugunstenVon" mapping="xplan_zugunstenvon" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_VorbHochwSchutzFlaeche" table="xplansyn.xplan_bp_vorbhochwschutzflaeche">
     <FIDMapping prefix="XPLAN_BP_VORBHOCHWSCHUTZFLAECHE_">

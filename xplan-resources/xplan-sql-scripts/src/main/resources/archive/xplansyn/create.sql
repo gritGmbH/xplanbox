@@ -5794,6 +5794,7 @@ CREATE TABLE xplansynarchive.xplan_bp_verkehrsflaechebesondererzweckbestimmung (
     xplan_zu integer,
     xplan_zu_ausn integer,
     xplan_z_staffel integer,
+    xplan_zugunstenvon text,
     CONSTRAINT xplan_bp_verkehrsflaechebesondererzweckbestimmung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_verkehrsflaechebesondererzweckbestimmung','xplan_symbolposition','-1','GEOMETRY', 2);
