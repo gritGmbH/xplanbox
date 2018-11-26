@@ -1,13 +1,12 @@
 package de.latlon.xplan.manager.codelists;
 
+import de.latlon.xplan.commons.XPlanVersion;
+
+import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-
-import de.latlon.xplan.commons.XPlanVersion;
-
-import javax.xml.stream.XMLStreamException;
 
 /**
  * Instantiates {@link XPlanCodeLists} for different XPlan GML versions.
@@ -30,13 +29,13 @@ public class XPlanCodeListsFactory {
 
     private static final String XPLAN_50_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_5_0.xml";
 
+    private static final String XPLAN_51_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_5_1.xml";
+
     private static final String XPLAN_SYN_CODE_LISTS = "/appschemas/XPlanGML_Syn/XPlanSyn_CodeLists.xml";
 
-    private static final String XPLAN_SYN_EXT_CODE_LISTS_XP2 =
-                            "/appschemas/XPlanGML_Syn/XPlanSyn_ExternalCodeLists_XP2.xml";
+    private static final String XPLAN_SYN_EXT_CODE_LISTS_XP2 = "/appschemas/XPlanGML_Syn/XPlanSyn_ExternalCodeLists_XP2.xml";
 
-    private static final String XPLAN_SYN_EXT_CODE_LISTS_XP3 =
-                            "/appschemas/XPlanGML_Syn/XPlanSyn_ExternalCodeLists_XP3.xml";
+    private static final String XPLAN_SYN_EXT_CODE_LISTS_XP3 = "/appschemas/XPlanGML_Syn/XPlanSyn_ExternalCodeLists_XP3.xml";
 
     private static XPlanCodeLists xplan2CodeLists;
 
@@ -56,13 +55,13 @@ public class XPlanCodeListsFactory {
 
     private static XPlanCodeLists xplan50CodeLists;
 
-
+    private static XPlanCodeLists xplan51CodeLists;
     /**
      * @param version
-     *            the version of the XPlanGML, never <code>null</code>
+     *                 the version of the XPlanGML, never <code>null</code>
      * @return the {@link XPlanCodeLists} for the specified version, never <code>null</code>
      * @throws IllegalArgumentException
-     *             if the version is not supported
+     *                 if the version is not supported
      */
     public static XPlanCodeLists get( XPlanVersion version ) {
         switch ( version ) {
@@ -76,21 +75,22 @@ public class XPlanCodeListsFactory {
             return getXPlan41();
         case XPLAN_50:
             return getXPlan50();
+        case XPLAN_51:
+            return getXPlan51();
         default:
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException( "Could not find codelists for version " + version );
         }
     }
 
     /**
-     *
      * @param codeListUrl
-     *            the url to parse the code list from, never <code>null</code>
+     *                 the url to parse the code list from, never <code>null</code>
      * @return the {@link XPlanCodeLists} parsed from the codeListUrl, never <code>null</code>
      * @throws IOException
      * @throws XMLStreamException
      */
     public static XPlanCodeLists getXPlanCodeLists( URL codeListUrl )
-                            throws IOException, XMLStreamException {
+                    throws IOException, XMLStreamException {
         return new XPlanCodeLists( codeListUrl );
     }
 
@@ -134,8 +134,9 @@ public class XPlanCodeListsFactory {
         if ( xplanSynExtCodeLists == null ) {
             try {
                 xplanSynExtCodeLists = mergeCodeLists(
-                                        new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_SYN_EXT_CODE_LISTS_XP3 ) ),
-                                        new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_SYN_EXT_CODE_LISTS_XP2 ) ) );
+                                new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_SYN_EXT_CODE_LISTS_XP3 ) ),
+                                new XPlanCodeLists(
+                                                XPlanCodeLists.class.getResource( XPLAN_SYN_EXT_CODE_LISTS_XP2 ) ) );
             } catch ( Exception e ) {
                 String msg = "Fehler in Codelists Datei: " + e.getMessage();
                 throw new RuntimeException( msg );
@@ -195,13 +196,25 @@ public class XPlanCodeListsFactory {
     private static synchronized XPlanCodeLists getXPlan50() {
         if ( xplan50CodeLists == null ) {
             try {
-                xplan50CodeLists  = new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_50_CODE_LISTS ) );
+                xplan50CodeLists = new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_50_CODE_LISTS ) );
             } catch ( Exception e ) {
                 String msg = "Internal error reading code lists file: " + e.getMessage();
                 throw new RuntimeException( msg, e );
             }
         }
-        return xplan50CodeLists ;
+        return xplan50CodeLists;
+    }
+
+    private static synchronized XPlanCodeLists getXPlan51() {
+        if ( xplan51CodeLists == null ) {
+            try {
+                xplan51CodeLists = new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_51_CODE_LISTS ) );
+            } catch ( Exception e ) {
+                String msg = "Internal error reading code lists file: " + e.getMessage();
+                throw new RuntimeException( msg, e );
+            }
+        }
+        return xplan51CodeLists;
     }
 
     private static XPlanCodeLists mergeCodeLists( XPlanCodeLists xplanCodeLists1, XPlanCodeLists xplanCodeLists2 ) {
