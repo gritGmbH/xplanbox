@@ -305,11 +305,7 @@ public class XPlanManipulatorTest {
         rasterBasis.addRasterReference( rasterBasisReference );
         editedXplan.setRasterBasis( rasterBasis );
 
-        RasterWithReferences rasterPlanChange = new RasterWithReferences(
-                        "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d7" );
-        editedXplan.addRasterPlanChange( rasterPlanChange );
-
-        planManipulator.modifyXPlan( featureCollection, editedXplan, xPlanVersion, BP_Plan, schema );
+       planManipulator.modifyXPlan( featureCollection, editedXplan, xPlanVersion, BP_Plan, schema );
 
         assertThat( featureCollection, hasPropertyCount( xPlanVersion, "BP_Bereich", "rasterBasis", 1 ) );
         assertThat( featureCollection, hasPropertyCount( xPlanVersion, "XP_Rasterdarstellung", "refScan", 1 ) );
@@ -334,18 +330,10 @@ public class XPlanManipulatorTest {
 
         XPlanToEdit editedXplan = createSimpleXPlan();
         RasterReference rasterBasisReference = new RasterReference( "ref1", "georef1", SCAN );
-        RasterReference rasterPlanChangesReference1 = new RasterReference( "ref2", null, SCAN );
-        RasterReference rasterPlanChangesReference2 = new RasterReference( "ref3", "georef3", TEXT );
 
         RasterWithReferences rasterBasis = new RasterWithReferences( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6" );
         rasterBasis.addRasterReference( rasterBasisReference );
         editedXplan.setRasterBasis( rasterBasis );
-
-        RasterWithReferences rasterPlanChange = new RasterWithReferences(
-                        "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d7" );
-        rasterPlanChange.addRasterReference( rasterPlanChangesReference1 );
-        rasterPlanChange.addRasterReference( rasterPlanChangesReference2 );
-        editedXplan.addRasterPlanChange( rasterPlanChange );
 
         planManipulator.modifyXPlan( featureCollection, editedXplan, XPLAN_41, BP_Plan, schema );
 
@@ -368,14 +356,8 @@ public class XPlanManipulatorTest {
                     hasXPath( "//xp:BP_RasterplanAenderung/xp:refScan/xp:XP_ExterneReferenz/xp:art",
                               nsContext( XPLAN_41 ), is( "PlanMitGeoreferenz" ) ) );
         assertThat( the( exportedPlan ),
-                    hasXPath( "//xp:BP_RasterplanAenderung/xp:refScan/xp:XP_ExterneReferenz/xp:referenzURL",
-                              nsContext( XPLAN_41 ), is( rasterPlanChangesReference1.getReference() ) ) );
-        assertThat( the( exportedPlan ),
                     hasXPath( "//xp:BP_RasterplanAenderung/xp:refScan/xp:XP_ExterneReferenz/xp:georefURL",
-                              nsContext( XPLAN_41 ), is( "" ) ) );
-        assertThat( the( exportedPlan ),
-                    hasXPath( "//xp:BP_RasterplanAenderung/xp:refText/xp:XP_ExterneReferenz/xp:georefURL",
-                              nsContext( XPLAN_41 ), is( rasterPlanChangesReference2.getGeoReference() ) ) );
+                              nsContext( XPLAN_41 ), is( "B-Plan_Klingmuehl_Heideweg_KarteAenderung.pgw" ) ) );
         assertThatPlanIsSchemaValid( exportedPlan, XPLAN_41 );
     }
 
@@ -632,21 +614,9 @@ public class XPlanManipulatorTest {
         XPlanToEdit editedXplan = createSimpleXPlan();
         RasterReference rasterBasisReference = new RasterReference( "GML_F042504B-0875-4470-A25D-DAFD0595E8FE", "ref1",
                                                                     "georef1", SCAN );
-        RasterReference rasterPlanChangesReference1 = new RasterReference( "GML_1D000019-0DE0-4667-A19C-6EC6ABDF000C",
-                                                                           "ref2", "georef2", SCAN );
-        RasterReference rasterPlanChangesReference2 = new RasterReference( "GML_1D000019-0DE0-4667-A19C-6EC6ABDF000D",
-                                                                           "ref3", "georef3", SCAN );
-        RasterReference rasterPlanChangesReference3 = new RasterReference( "GML_1D000019-0DE0-4667-A19C-6EC6ABDF000E",
-                                                                           "ref4", null, LEGEND );
         RasterWithReferences rasterBasis = new RasterWithReferences( "GML_F042504B-0875-4470-A25D-DAFD0595E8FE" );
         rasterBasis.addRasterReference( rasterBasisReference );
         editedXplan.setRasterBasis( rasterBasis );
-
-        RasterWithReferences rasterPlanChange = new RasterWithReferences( "GML_F042504B-0875-4470-A25D-DAFD0595E8FE" );
-        rasterPlanChange.addRasterReference( rasterPlanChangesReference1 );
-        rasterPlanChange.addRasterReference( rasterPlanChangesReference2 );
-        rasterPlanChange.addRasterReference( rasterPlanChangesReference3 );
-        editedXplan.addRasterPlanChange( rasterPlanChange );
 
         planManipulator.modifyXPlan( featureCollection, editedXplan, XPLAN_3, BP_Plan, schema );
 
@@ -675,14 +645,8 @@ public class XPlanManipulatorTest {
                     hasXPath( "//xp:BP_RasterplanAenderung[@gml:id='GML_F042504B-0875-4470-A25D-DAFD0595E8FE']/xp:refScan[1]/@xlink:href",
                               nsContext( XPLAN_3 ), is( "#GML_1D000019-0DE0-4667-A19C-6EC6ABDF000C" ) ) );
         assertThat( the( exportedPlan ),
-                    hasXPath( "//xp:XP_ExterneReferenzPlan[@gml:id='GML_1D000019-0DE0-4667-A19C-6EC6ABDF000C']/xp:georefURL",
-                              nsContext( XPLAN_3 ), is( rasterPlanChangesReference1.getGeoReference() ) ) );
-        assertThat( the( exportedPlan ),
-                    hasXPath( "//xp:XP_ExterneReferenzPlan[@gml:id='GML_1D000019-0DE0-4667-A19C-6EC6ABDF000D']/xp:georefURL",
-                              nsContext( XPLAN_3 ), is( rasterPlanChangesReference2.getGeoReference() ) ) );
-        assertThat( the( exportedPlan ),
                     hasXPath( "//xp:XP_ExterneReferenzPlan[@gml:id='GML_1D000019-0DE0-4667-A19C-6EC6ABDF000E']/xp:georefURL",
-                              nsContext( XPLAN_3 ), is( "" ) ) );
+                              nsContext( XPLAN_3 ), is( "Klarstellungssatzung_Wuerdenhain_cut_ergb_legende.tfw" ) ) );
         assertThatPlanIsSchemaValid( exportedPlan, XPLAN_3 );
     }
 

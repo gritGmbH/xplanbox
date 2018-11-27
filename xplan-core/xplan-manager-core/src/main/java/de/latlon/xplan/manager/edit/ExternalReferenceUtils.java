@@ -143,16 +143,6 @@ public class ExternalReferenceUtils {
                 }
             }
         }
-        for ( RasterWithReferences rasterChange : planToEdit.getRasterPlanChanges() ) {
-            if ( rasterChange != null ) {
-                for ( RasterReference rasterReference : rasterChange.getRasterReferences() ) {
-                    String referenceUrl = rasterReference.getReference();
-                    if ( SCAN.equals( rasterReference.getType() ) && wasUploaded( referenceUrl, uploadedArtefacts ) ) {
-                        externalReferenceInfo.addRasterPlanUpdateScan( new ExternalReference( referenceUrl ) );
-                    }
-                }
-            }
-        }
         return externalReferenceInfo;
     }
 
