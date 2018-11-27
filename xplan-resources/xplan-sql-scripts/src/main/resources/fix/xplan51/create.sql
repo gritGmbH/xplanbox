@@ -17,7 +17,7 @@ INSERT INTO feature_types  (id,qname) VALUES (7,'{http://www.xplanung.de/xplangm
 INSERT INTO feature_types  (id,qname) VALUES (8,'{http://www.xplanung.de/xplangml/5/1}BP_AusgleichsFlaeche');
 INSERT INTO feature_types  (id,qname) VALUES (9,'{http://www.xplanung.de/xplangml/5/1}BP_AusgleichsMassnahme');
 INSERT INTO feature_types  (id,qname) VALUES (10,'{http://www.xplanung.de/xplangml/5/1}BP_BauGrenze');
-INSERT INTO feature_types  (id,qname) VALUES (11'{http://www.xplanung.de/xplangml/5/1}BP_BauLinie');
+INSERT INTO feature_types  (id,qname) VALUES (11,'{http://www.xplanung.de/xplangml/5/1}BP_BauLinie');
 INSERT INTO feature_types  (id,qname) VALUES (12,'{http://www.xplanung.de/xplangml/5/1}BP_BaugebietsTeilFlaeche');
 INSERT INTO feature_types  (id,qname) VALUES (13,'{http://www.xplanung.de/xplangml/5/1}BP_Bereich');
 INSERT INTO feature_types  (id,qname) VALUES (14,'{http://www.xplanung.de/xplangml/5/1}BP_BereichOhneEinAusfahrtLinie');

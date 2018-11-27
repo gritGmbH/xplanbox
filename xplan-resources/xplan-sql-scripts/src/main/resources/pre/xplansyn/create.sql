@@ -3894,7 +3894,7 @@ CREATE TABLE xplansynpre.xplan_bp_nichtueberbaubaregrundstuecksflaeche (
     xplan_wirdausgeglichendurchspeflaeche text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_flaechenschluss text,
-    CONSTRAINT xplan_lp_schutzobjektlandesrecht_pkey PRIMARY KEY (attr_gml_id)
+    CONSTRAINT xplan_bp_nichtueberbaubaregrundstuecksflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_nichtueberbaubaregrundstuecksflaeche','xplan_position','-1','GEOMETRY', 2);
 CREATE INDEX spatial_idx_491 ON xplan_bp_nichtueberbaubaregrundstuecksflaeche USING GIST ( xplan_position  );
@@ -7571,10 +7571,10 @@ CREATE TABLE xplansynpre.xplan_fp_landwirtschaft (
     xplan_zweckbestimmungcode text,
     xplan_detailliertezweckbestimmung text,
     xplan_detailliertezweckbestimmungcode text,
-    CONSTRAINT xplan_fp_landwirtschaftsflaeche_pkey PRIMARY KEY (attr_gml_id)
+    CONSTRAINT xplan_fp_landwirtschaft_pkey PRIMARY KEY (attr_gml_id)
 );
-SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_fp_landwirtschaft','xplan_symbolposition','-1','GEOMETRY', 2);
-CREATE INDEX spatial_idx_492 ON xplan_fp_landwirtschaft USING GIST ( xplan_symbolposition  );
+SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_fp_landwirtschaft','xplan_position','-1','GEOMETRY', 2);
+CREATE INDEX spatial_idx_492 ON xplan_fp_landwirtschaft USING GIST ( xplan_position  );
 CREATE TABLE xplansynpre.xplan_fp_landwirtschaftsflaeche (
     attr_gml_id text,
     xplan_gmlid text,
