@@ -92,18 +92,13 @@ public class ExternalReferenceUtilsTest {
         rasterBasis.addRasterReference( new RasterReference( "A.tif", null, SCAN ) );
         planToEdit.setRasterBasis( rasterBasis );
 
-        RasterWithReferences rasterPlanChange = new RasterWithReferences();
-        rasterPlanChange.addRasterReference( new RasterReference( "C.png", null, SCAN ) );
-        rasterPlanChange.addRasterReference( new RasterReference( "D.png", null, LEGEND ) );
-        planToEdit.addRasterPlanChange( rasterPlanChange );
         List<File> uploadedArtefacts = createUploadedFileList( "A.tif", "B.jpg", "C.png" );
 
         ExternalReferenceInfo externalReferenceInfo = createExternalRefAddedOrUpdated( planToEdit, uploadedArtefacts );
 
         List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferenceInfo.getRasterPlanBaseAndUpdateScans();
-        assertThat( rasterPlanBaseAndUpdateScans.size(), is( 2 ) );
+        assertThat( rasterPlanBaseAndUpdateScans.size(), is( 1 ) );
         assertThat( rasterPlanBaseAndUpdateScans, hasExternalReference( "A.tif" ) );
-        assertThat( rasterPlanBaseAndUpdateScans, hasExternalReference( "C.png" ) );
     }
 
     @Test

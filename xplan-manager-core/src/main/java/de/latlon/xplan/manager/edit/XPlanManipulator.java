@@ -137,8 +137,6 @@ public class XPlanManipulator {
                              featuresToRemove, referencesToRemove, previouslyReferencedTextFeatureIds );
             else if ( isXPRasterplanBasis( featureName ) )
                 modifyXPRaster( version, feature, planWithChanges );
-            else if ( isBPRasterplanAenderung( featureName ) )
-                modifyBPRasterplanAenderung( version, feature, planWithChanges );
             else if ( isXPRasterdarstellung( featureName ) )
                 modifyXPRaster( version, feature, planWithChanges );
         }
@@ -172,16 +170,6 @@ public class XPlanManipulator {
         RasterWithReferences rasterBasis = planWithChanges.getRasterBasis();
         if ( rasterBasis != null )
             modifyRasterWithReference( version, feature, rasterBasis );
-    }
-
-    private void modifyBPRasterplanAenderung( XPlanVersion version, Feature feature, XPlanToEdit planWithChanges ) {
-        List<RasterWithReferences> rasterPlanChanges = planWithChanges.getRasterPlanChanges();
-        RasterWithReferences rasterPlanChange = findRasterPlanChangeByFeatureId( feature, rasterPlanChanges );
-        if ( rasterPlanChange != null )
-            modifyRasterWithReference( version, feature, rasterPlanChange );
-        else
-            LOG.warn( "No raster plan change with the id of the current BP_RasterplanAenderung found ({}), "
-                      + "element be skipped.", feature.getId() );
     }
 
     private void modifyRasterWithReference( XPlanVersion version, Feature feature,
@@ -795,10 +783,6 @@ public class XPlanManipulator {
 
     private boolean isXPRasterplanBasis( QName featureName ) {
         return "XP_RasterplanBasis".equals( featureName.getLocalPart() );
-    }
-
-    private boolean isBPRasterplanAenderung( QName featureName ) {
-        return "BP_RasterplanAenderung".equals( featureName.getLocalPart() );
     }
 
     private boolean isXPRasterdarstellung( QName featureName ) {

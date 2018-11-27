@@ -60,8 +60,6 @@ public class XPlanToEdit {
 
     private RasterWithReferences rasterBasis;
 
-    private List<RasterWithReferences> rasterPlanChanges;
-
     public XPlanToEdit() {
     }
 
@@ -78,19 +76,15 @@ public class XPlanToEdit {
      *            may be <code>null</code>
      * @param rasterBasis
      *            may be <code>null</code>
-     * @param rasterPlanChanges
-     *            may be <code>null</code>
      */
     public XPlanToEdit( BaseData baseData, ValidityPeriod validityPeriod, List<Change> changes, List<Text> texts,
-                        List<Reference> references, RasterWithReferences rasterBasis,
-                        List<RasterWithReferences> rasterPlanChanges ) {
+                        List<Reference> references, RasterWithReferences rasterBasis ) {
         this.baseData = baseData;
         this.validityPeriod = validityPeriod;
         this.changes = changes;
         this.texts = texts;
         this.references = references;
         this.rasterBasis = rasterBasis;
-        this.rasterPlanChanges = rasterPlanChanges;
     }
 
     /**
@@ -220,37 +214,10 @@ public class XPlanToEdit {
         this.rasterBasis = rasterBasis;
     }
 
-    /**
-     * @return the rasterPlanChanges, never <code>null</code>
-     */
-    public List<RasterWithReferences> getRasterPlanChanges() {
-        if ( rasterPlanChanges == null )
-            rasterPlanChanges = new ArrayList<RasterWithReferences>();
-        return rasterPlanChanges;
-    }
-
-    /**
-     * @param rasterPlanChanges
-     *            the rasterPlanChange to set, may be <code>null</code>
-     */
-    public void setRasterPlanChanges( List<RasterWithReferences> rasterPlanChanges ) {
-        this.rasterPlanChanges = rasterPlanChanges;
-    }
-
-    /**
-     * @param rasterPlanChange
-     *            to add, may be <code>null</code>
-     */
-    public void addRasterPlanChange( RasterWithReferences rasterPlanChange ) {
-        if ( rasterPlanChange != null )
-            getRasterPlanChanges().add( rasterPlanChange );
-    }
-
     @Override
     public String toString() {
         return "XPlanToEdit [baseData=" + baseData + ", validityPeriod=" + validityPeriod + ", changes=" + changes
-               + ", texts=" + texts + ", references=" + references + ", rasterBasis=" + rasterBasis
-               + ", rasterPlanChanges=" + rasterPlanChanges + "]";
+               + ", texts=" + texts + ", references=" + references + ", rasterBasis=" + rasterBasis + "]";
     }
 
 }

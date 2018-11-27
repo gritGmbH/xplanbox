@@ -83,7 +83,6 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.XPlanEnvelope;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
-import de.latlon.xplan.manager.web.shared.edit.RasterWithReferences;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 
 /**
@@ -1363,10 +1362,6 @@ public class XPlanDao {
         addReferences( referenceFileNames, xPlanToEdit.getReferences() );
         if ( xPlanToEdit.getRasterBasis() != null )
             addReferences( referenceFileNames, xPlanToEdit.getRasterBasis().getRasterReferences() );
-        for ( RasterWithReferences rasterPlanChange : xPlanToEdit.getRasterPlanChanges() ) {
-            if ( rasterPlanChange != null )
-                addReferences( referenceFileNames, rasterPlanChange.getRasterReferences() );
-        }
         return referenceFileNames;
     }
 
