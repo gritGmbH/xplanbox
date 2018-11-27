@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>xplan-docker</artifactId>
-  <packaging>pom</packaging>
-  <name>XPlan - Docker</name>
-  <description>xPlanBox Dockerfiles</description>
+  <artifactId>xplan-test-resources</artifactId>
+  <packaging>jar</packaging>
+  <description>Ressourcen fuer JUnit- und Integrationstests</description>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
-    <artifactId>xplanbox</artifactId>
+    <artifactId>xplan-tests</artifactId>
     <version>2.10-SNAPSHOT</version>
   </parent>
-
-  <modules>
-    <module>xplan-docker-images</module>
-    <module>xplan-docker-volumes</module>
-  </modules>
 
 </project>
