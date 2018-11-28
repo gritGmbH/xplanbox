@@ -2,11 +2,11 @@
 <sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
   xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
   <sld:NamedLayer>
-    <sld:Name>RP_NSM_OberfleachennaheBodenschaetze</sld:Name>
+    <sld:Name>RP_NSM_OberflaechennaheBodenschaetze</sld:Name>
     <sld:UserStyle>
       <sld:Name>transparent</sld:Name>
       <sld:FeatureTypeStyle>
-        <sld:FeatureTypeName>xplan:RP_NSM_OberfleachennaheBodenschaetze</sld:FeatureTypeName>
+        <sld:FeatureTypeName>xplan:RP_NSM_OberflaechennaheBodenschaetze</sld:FeatureTypeName>
 
 
         <!--Rohstoffe-->
