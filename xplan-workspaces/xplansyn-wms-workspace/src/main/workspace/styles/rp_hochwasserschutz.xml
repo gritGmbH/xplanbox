@@ -2,16 +2,16 @@
 <sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
                            xmlns:xplan="http://www.deegree.org/xplanung/1/0">
   <sld:NamedLayer>
-    <sld:Name>RP_Einzelhandel</sld:Name>
+    <sld:Name>RP_Hochwasserschutz</sld:Name>
     <sld:UserStyle>
       <sld:Name>vollflaechig</sld:Name>
       <sld:FeatureTypeStyle>
-        <sld:FeatureTypeName>xplan:RP_Einzelhandel</sld:FeatureTypeName>
+        <sld:FeatureTypeName>xplan:RP_Hochwasserschutz</sld:FeatureTypeName>
 
-        <!--RP_Einzelhandel-->
+        <!--RP_Hochwasserschutz-->
         <sld:Rule>
-          <sld:Name>RP_Einzelhandel</sld:Name>
-          <sld:Title>Einzelhandel</sld:Title>
+          <sld:Name>RP_Hochwasserschutz</sld:Name>
+          <sld:Title>Hochwasserschutz</sld:Title>
           <sld:PolygonSymbolizer>
             <Geometry>
               <ogc:PropertyName>xplan:position</ogc:PropertyName>
