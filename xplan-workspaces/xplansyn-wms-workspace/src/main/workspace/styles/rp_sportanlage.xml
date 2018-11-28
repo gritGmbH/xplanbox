@@ -6,7 +6,7 @@
     <sld:UserStyle>
       <sld:Name>vollflaechig</sld:Name>
       <sld:FeatureTypeStyle>
-        <sld:FeatureTypeName>xplan:RP_portanlage</sld:FeatureTypeName>
+        <sld:FeatureTypeName>xplan:RP_Sportanlage</sld:FeatureTypeName>
 
         <!--Wassersport-->
 
