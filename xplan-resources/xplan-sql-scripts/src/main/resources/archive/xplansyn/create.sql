@@ -190,9 +190,6 @@ CREATE TABLE xplansynarchive.xplan_bp_abstandsmass (
     xplan_startwinkeluom text,
     xplan_endwinkel numeric,
     xplan_endwinkeluom text,
-    xplan_mindesthoehe numeric,
-    xplan_mindesthoeheUOM text,
-    xplan_anzahl integer,
     CONSTRAINT xplan_bp_abstandsmass_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_abstandsmass','xplan_position','-1','GEOMETRY', 2);
@@ -273,6 +270,9 @@ CREATE TABLE xplansynarchive.xplan_bp_anpflanzungbindungerhaltung (
     xplan_pflanztiefeuom text,
     xplan_baumart text,
     xplan_baumartcode text,
+    xplan_mindesthoehe numeric,
+    xplan_mindesthoeheUOM text,
+    xplan_anzahl integer,
     CONSTRAINT xplan_bp_anpflanzungbindungerhaltung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_anpflanzungbindungerhaltung','xplan_symbolposition','-1','GEOMETRY', 2);
@@ -8955,10 +8955,11 @@ CREATE TABLE xplansynarchive.xplan_lp_anpflanzungbindungerhaltung (
     xplan_pflanzart text,
     xplan_pflanzartcode text,
     xplan_mindesthoehe integer,
+    xplan_mindesthoeheuom text,
+    xplan_anzahl integer,
     xplan_flussrichtung text,
     xplan_nordwinkel text,
     xplan_nordwinkelUOM text,
-    xplan_anzahl integer,
     CONSTRAINT xplan_lp_anpflanzungbindungerhaltung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_lp_anpflanzungbindungerhaltung','xplan_position','-1','GEOMETRY', 2);

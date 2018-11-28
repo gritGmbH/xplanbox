@@ -8999,6 +8999,7 @@
     <Primitive path="xplan:pflanzart" mapping="xplan_pflanzart" />
     <Primitive path="xplan:pflanzartCode" mapping="xplan_pflanzartcode" />
     <Primitive path="xplan:mindesthoehe" mapping="xplan_mindesthoehe" />
+    <Primitive path="xplan:mindesthoeheUOM" mapping="xplan_mindesthoeheUOM" />
     <Primitive path="xplan:anzahl" mapping="xplan_anzahl" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:LP_Ausgleich" table="xplansyn.xplan_lp_ausgleich">
