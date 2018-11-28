@@ -2796,7 +2796,8 @@
       </SortBy>
     </SortBy>
     <l:Name>bp_foerderfl</l:Name>
-    <d:Title>BP_FoerderungsFlaeche</d:Title>
+    <d:Title>BP: Förderungsfläche</d:Title>
+    <d:Abstract>BP_FoerderungsFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>bp_foerderfl</l:StyleStoreId>
