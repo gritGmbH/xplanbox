@@ -614,7 +614,7 @@ Die Klasse wird als &lt;b&gt;veraltet &lt;/b&gt;gekennzeichnet und wird in XPlan
           <element name="DNmin" minOccurs="0" type="gml:AngleType" />
           <element name="DNmax" minOccurs="0" type="gml:AngleType" />
           <element name="DN" minOccurs="0" type="gml:AngleType" />
-          <element name="DNzwingend" minOccurs="0" type="gml:AngleType" />
+          <element name="DNZwingend" minOccurs="0" type="gml:AngleType" />
           <element name="FR" minOccurs="0" type="gml:AngleType" />
           <element name="dachform" minOccurs="0" maxOccurs="unbounded" type="xplan:BP_Dachform" />
           <element name="detaillierteDachform" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType" />
@@ -831,7 +831,7 @@ Durch die Digitalisierungsreihenfolge der Linienstützpunkte muss sichergestellt
           <element name="DNmin" minOccurs="0" type="gml:AngleType" />
           <element name="DNmax" minOccurs="0" type="gml:AngleType" />
           <element name="DN" minOccurs="0" type="gml:AngleType" />
-          <element name="DNzwingend" minOccurs="0" type="gml:AngleType" />
+          <element name="DNZwingend" minOccurs="0" type="gml:AngleType" />
           <element name="FR" minOccurs="0" type="gml:AngleType" />
           <element name="dachform" minOccurs="0" maxOccurs="unbounded" type="xplan:BP_Dachform" />
           <element name="detaillierteDachform" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType" />
@@ -994,7 +994,7 @@ Durch die Digitalisierungsreihenfolge der Linienstützpunkte muss sichergestellt
       <element name="DNmin" minOccurs="0" type="gml:AngleType" />
       <element name="DNmax" minOccurs="0" type="gml:AngleType" />
       <element name="DN" minOccurs="0" type="gml:AngleType" />
-      <element name="DNZwingend" minOccurs="0" type="gml:AngleType" />
+      <element name="DNzwingend" minOccurs="0" type="gml:AngleType" />
       <element name="dachform" minOccurs="0" type="xplan:BP_Dachform" />
       <element name="detaillierteDachform" minOccurs="0" type="gml:CodeType" />
       <element ref="xplan:_GenericApplicationPropertyOfBP_Dachgestaltung" minOccurs="0" maxOccurs="unbounded" />
@@ -1374,7 +1374,7 @@ Durch die Digitalisierungsreihenfolge der Linienstützpunkte muss sichergestellt
           <element name="DNmin" minOccurs="0" type="gml:AngleType" />
           <element name="DNmax" minOccurs="0" type="gml:AngleType" />
           <element name="DN" minOccurs="0" type="gml:AngleType" />
-          <element name="DNzwingend" minOccurs="0" type="gml:AngleType" />
+          <element name="DNZwingend" minOccurs="0" type="gml:AngleType" />
           <element name="FR" minOccurs="0" type="gml:AngleType" />
           <element name="dachform" minOccurs="0" maxOccurs="unbounded" type="xplan:BP_Dachform" />
           <element name="detaillierteDachform" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType" />
