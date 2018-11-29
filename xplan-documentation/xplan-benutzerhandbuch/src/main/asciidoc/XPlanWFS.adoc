@@ -37,6 +37,11 @@ Der XPlanWFS bietet verschiedene Dienste zur Abfrage von XPlanGML an:
 * Service Endpoint _wfs50_
 ** WFS 1.1.0 und 2.0.0
 
+. XPlanGML Version 5.1
++
+* Service Endpoint _wfs51_
+** WFS 1.1.0 und 2.0.0
+
 Die folgende Tabelle fasst die vom XPlanWFS unterstützten Operationen
 zusammen.
 
