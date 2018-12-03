@@ -338,7 +338,7 @@ public interface XPlanWebMessages extends Messages {
 
     String editCaptionRasterBasisType();
 
-    String editCaptionRasterBasisEmptyHint();
+    String editCaptionNewRasterBasis();
 
     String editCaptionChangesDialogEdit();
 
@@ -355,6 +355,8 @@ public interface XPlanWebMessages extends Messages {
     String editCaptionReferencesReasonReferenceAlreadyExists();
     
     String editCaptionRasterBasisDialogEdit();
+
+    String editCaptionRasterBasisDialogNew();
 
     String editCaptionReferencesCurrentFile();
 

@@ -35,30 +35,41 @@
 ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.client.gui.editor.raster;
 
-import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
-
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
-
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBoxWithRasterUpload;
+import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
+import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
+
+import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
 
 /**
  * Dialog to edit an existing or create a new {@link RasterReference}
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
+    private final TypeCodeListBox<RasterReferenceType> refType = new TypeCodeListBox<RasterReferenceType>(
+                    RasterReferenceType.class );
+
     private final RasterReference originalRasterReference;
 
-    public RasterReferenceDialog( EditVersion version, String title, RasterReference rasterReference ) {
+    public RasterReferenceDialog( EditVersion version ) {
+        this( version, null, MESSAGES.editCaptionRasterBasisDialogNew() );
+    }
+
+    public RasterReferenceDialog( EditVersion version, RasterReference rasterReference ) {
+        this( version, rasterReference, MESSAGES.editCaptionRasterBasisDialogEdit() );
+    }
+
+    public RasterReferenceDialog( EditVersion version, RasterReference rasterReference, String title ) {
         super( version, title );
         this.originalRasterReference = rasterReference;
         initDialog( createFormContent() );
@@ -71,9 +82,14 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
     }
 
     public RasterReference getEditedRasterReference() {
-        RasterReference rasterReference = new RasterReference( originalRasterReference );
+        RasterReference rasterReference;
+        if ( originalRasterReference != null )
+            rasterReference = new RasterReference( originalRasterReference );
+        else
+            rasterReference = new RasterReference();
         rasterReference.setReference( reference.getFilename() );
         rasterReference.setGeoReference( georeference.getFilename() );
+        rasterReference.setType( refType.getValueAsEnum() );
         return rasterReference;
     }
 
@@ -89,7 +105,8 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
             layout.setWidget( 2, 1, new Label( MESSAGES.editCaptionRasterBasisGeoReference() ) );
             layout.setWidget( 2, 2, georeference );
         }
-
+        layout.setWidget( 2, 1, new Label( MESSAGES.editCaptionRasterBasisType() ) );
+        layout.setWidget( 3, 2, refType );
         return layout;
     }
 
