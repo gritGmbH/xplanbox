@@ -40,9 +40,9 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.ChangeType;
+import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
-import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.Text;
@@ -74,6 +74,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
@@ -101,8 +102,6 @@ public class XPlanManipulator {
 
     private static final QName XLINK_HREF_ATTRIBUTE = new QName( "http://www.w3.org/1999/xlink", "href" );
 
-    private static final Map<String, RasterReferenceType> PROPNAME_TO_RASTERREFERENCE = initRasterReferenceToPropName();
-
     private static final List<String> EXTERNAL_PLAN_PROPERTIES = initExternalPlanProperties();
 
     /**
@@ -127,19 +126,19 @@ public class XPlanManipulator {
         context.setApplicationSchema( schema );
 
         List<String> previouslyReferencedTextFeatureIds = parseReferencedTextFeatureIds( planToEdit );
+        String previouslyReferencedRasterBasisFeatureId = parseReferencedRasterBasisFeatureId( planToEdit );
 
-        List<Feature> featuresToAdd = new ArrayList<Feature>();
-        List<Feature> featuresToRemove = new ArrayList<Feature>();
-        List<String> referencesToRemove = new ArrayList<String>();
+        List<Feature> featuresToAdd = new ArrayList<>();
+        List<Feature> featuresToRemove = new ArrayList<>();
+        List<String> referencesToRemove = new ArrayList<>();
         for ( Feature feature : planToEdit ) {
             QName featureName = feature.getName();
             if ( isBPlan( featureName ) )
                 modifyBPlan( context, version, planToEdit, feature, planWithChanges, schema, featuresToAdd,
                              featuresToRemove, referencesToRemove, previouslyReferencedTextFeatureIds );
-            else if ( isXPRasterplanBasis( featureName ) )
-                modifyXPRaster( version, feature, planWithChanges );
-            else if ( isXPRasterdarstellung( featureName ) )
-                modifyXPRaster( version, feature, planWithChanges );
+            if ( isBPBereich( featureName ) )
+                modifyBPBereich( context, version, planToEdit, feature, planWithChanges, schema, featuresToAdd,
+                                 featuresToRemove, referencesToRemove, previouslyReferencedRasterBasisFeatureId );
         }
         removeAllPropertiesWithReferences( planToEdit, referencesToRemove );
         planToEdit.removeAll( featuresToRemove );
@@ -167,96 +166,12 @@ public class XPlanManipulator {
         modifyReferences( context, version, feature, changes, schema, featuresToAdd );
     }
 
-    private void modifyXPRaster( XPlanVersion version, Feature feature, XPlanToEdit planWithChanges ) {
-        RasterBasis rasterBasis = planWithChanges.getRasterBasis();
-        if ( rasterBasis != null )
-            modifyRasterWithReference( version, feature, rasterBasis );
-    }
-
-    private void modifyRasterWithReference( XPlanVersion version, Feature feature,
-                                            RasterBasis rasterWithReference ) {
-        List<Property> properties = feature.getProperties();
-        List<RasterReference> rasterReferences = rasterWithReference.getRasterReferences();
-        int rasterReferenceIndex = 0;
-        for ( Property property : properties ) {
-            RasterReferenceType rasterReferenceType = PROPNAME_TO_RASTERREFERENCE.get(
-                            property.getName().getLocalPart() );
-            if ( rasterReferenceType != null ) {
-                boolean wasUpdated = modifyRasterReference( version, rasterReferences, rasterReferenceIndex, property,
-                                                            rasterReferenceType );
-                if ( wasUpdated )
-                    rasterReferenceIndex++;
-            }
-        }
-    }
-
-    private boolean modifyRasterReference( XPlanVersion version, List<RasterReference> rasterReferences,
-                                           int rasterReferenceIndex, Property property,
-                                           RasterReferenceType expectedRasterReferenceType ) {
-        if ( rasterReferenceIndex < rasterReferences.size() ) {
-            return updateReference( version, rasterReferences, rasterReferenceIndex, property,
-                                    expectedRasterReferenceType );
-        } else {
-            LOG.warn( "More properties in XPlan-GML than passed raster references, following will be skipped." );
-        }
-        return false;
-    }
-
-    private boolean updateReference( XPlanVersion version, List<RasterReference> rasterReferences,
-                                     int rasterReferenceIndex, Property property,
-                                     RasterReferenceType expectedRasterReferenceType ) {
-        RasterReference currentRasterReference = rasterReferences.get( rasterReferenceIndex );
-        if ( !expectedRasterReferenceType.equals( currentRasterReference.getType() ) ) {
-            LOG.warn( "Current raster reference type ({}) does not match the expected{}.",
-                      currentRasterReference.getType(), expectedRasterReferenceType );
-            return false;
-        }
-        List<TypedObjectNode> children = property.getChildren();
-        if ( children.size() == 1 ) {
-            TypedObjectNode firstChild = children.get( 0 );
-            if ( firstChild instanceof GenericXMLElement ) {
-                GenericXMLElement externalReference = (GenericXMLElement) firstChild;
-                String namespaceUri = externalReference.getName().getNamespaceURI();
-                GenericProperty georefProp = createGeoReferenzProperty( namespaceUri,
-                                                                        currentRasterReference.getGeoReference() );
-                updateRasterReferenceProperty( version, externalReference, "georefURL", georefProp );
-                GenericProperty refProp = createReferenzProperty( namespaceUri, currentRasterReference.getReference() );
-                updateRasterReferenceProperty( version, externalReference, "referenzURL", refProp );
-            } else if ( firstChild instanceof FeatureReference ) {
-                FeatureReference externalReference = (FeatureReference) firstChild;
-                Feature externalReferenceFeature = externalReference.getReferencedObject();
-                modify( version, externalReferenceFeature, "georefURL", currentRasterReference.getGeoReference() );
-                modify( version, externalReferenceFeature, "referenzURL", currentRasterReference.getReference() );
-            }
-        }
-        return true;
-    }
-
-    private void updateRasterReferenceProperty( XPlanVersion version, GenericXMLElement externalReference,
-                                                String propertyName, GenericProperty property ) {
-        QName propName = new QName( externalReference.getName().getNamespaceURI(), propertyName );
-        List<TypedObjectNode> externalReferenceChilds = externalReference.getChildren();
-        List<TypedObjectNode> childsToRemove = new ArrayList<TypedObjectNode>();
-        for ( TypedObjectNode externalReferenceChild : externalReferenceChilds ) {
-            if ( externalReferenceChild instanceof GenericXMLElement
-                 && ( (GenericXMLElement) externalReferenceChild ).getName().equals( propName ) )
-                childsToRemove.add( externalReferenceChild );
-        }
-        externalReferenceChilds.removeAll( childsToRemove );
-        if ( property != null ) {
-            int index = findIndex( version, externalReferenceChilds, propName, EXTERNAL_PLAN_PROPERTIES );
-            externalReferenceChilds.add( index, property );
-        }
-        externalReference.setChildren( externalReferenceChilds );
-    }
-
-    private RasterBasis findRasterPlanChangeByFeatureId( Feature feature,
-                                                         List<RasterBasis> rasterPlanChanges ) {
-        for ( RasterBasis rasterPlanChange : rasterPlanChanges ) {
-            if ( rasterPlanChange.getFeatureId() != null && rasterPlanChange.getFeatureId().equals( feature.getId() ) )
-                return rasterPlanChange;
-        }
-        return null;
+    private void modifyBPBereich( GmlDocumentIdContext context, XPlanVersion version, FeatureCollection planToEdit,
+                                  Feature feature, XPlanToEdit changes, AppSchema schema, List<Feature> featuresToAdd,
+                                  List<Feature> featuresToRemove, List<String> referencesToRemove,
+                                  String previouslyReferencedRasterBasisFeatureId ) {
+        modifyRasterBasis( context, version, planToEdit, feature, schema, changes.getRasterBasis(), featuresToAdd,
+                           featuresToRemove, referencesToRemove, previouslyReferencedRasterBasisFeatureId );
     }
 
     private void modifyCode( XPlanVersion version, Feature feature, String propertyName, int newCodeValue ) {
@@ -278,7 +193,7 @@ public class XPlanManipulator {
     private void modifyChanges( XPlanVersion version, Feature feature, AppSchema schema, String propertyName,
                                 List<Change> changes, ChangeType changedType ) {
         QName propName = new QName( feature.getName().getNamespaceURI(), propertyName );
-        List<Property> properties = new ArrayList<Property>();
+        List<Property> properties = new ArrayList<>();
         for ( Change change : changes ) {
             if ( changedType.equals( change.getType() ) ) {
                 if ( XPLAN_41.equals( version ) || XPLAN_50.equals( version ) || XPLAN_51.equals( version ) ) {
@@ -324,6 +239,40 @@ public class XPlanManipulator {
             }
         }
         addOrReplaceProperties( version, feature, propName, properties );
+    }
+
+    private void modifyRasterBasis( GmlDocumentIdContext context, XPlanVersion version, FeatureCollection planToEdit,
+                                    Feature feature, AppSchema schema, RasterBasis rasterBasis,
+                                    List<Feature> featuresToAdd, List<Feature> featuresToRemove,
+                                    List<String> referencesToRemove, String previouslyReferencedRasterBasisFeatureId ) {
+        String namespaceUri = feature.getName().getNamespaceURI();
+        QName propName = new QName( namespaceUri, "rasterBasis" );
+
+        List<Property> properties = new ArrayList<>();
+        if ( rasterBasis == null ) {
+            QName rasterBasisElementName = getRasterBasisElementName( version, namespaceUri );
+            Feature oldRasterBasisFeature = detectFeatureById( planToEdit, rasterBasisElementName,
+                                                               previouslyReferencedRasterBasisFeatureId );
+            if ( oldRasterBasisFeature != null ) {
+                featuresToRemove.add( oldRasterBasisFeature );
+                referencesToRemove.add( previouslyReferencedRasterBasisFeatureId );
+            }
+        } else {
+            String gmlid = rasterBasis.getFeatureId();
+            if ( gmlid != null ) {
+                QName rasterBasisElementName = getRasterBasisElementName( version, namespaceUri );
+                Feature oldRasterBasisFeature = detectFeatureById( planToEdit, rasterBasisElementName, gmlid );
+                if ( oldRasterBasisFeature != null )
+                    featuresToRemove.add( oldRasterBasisFeature );
+            } else {
+                gmlid = generateGmlId( propName );
+            }
+            Property linkProp = createPropertyWithHrefAttribute( context, feature.getType(), propName, gmlid );
+            addProperty( properties, linkProp );
+            createAndAddRasterBasisFeature( context, version, planToEdit, schema, namespaceUri, rasterBasis, gmlid,
+                                            featuresToAdd, featuresToRemove );
+            addOrReplaceProperties( version, feature, propName, properties );
+        }
     }
 
     private boolean isNotLongerReferenced( List<Text> texts, String previouslyReferencedTextFeatureId ) {
@@ -460,13 +409,80 @@ public class XPlanManipulator {
             featuresToAdd.add( refFeature );
     }
 
+    private void createAndAddRasterBasisFeature( GmlDocumentIdContext context, XPlanVersion version,
+                                                 FeatureCollection planToEdit, AppSchema schema, String namespaceUri,
+                                                 RasterBasis rasterBasis, String gmlid, List<Feature> featuresToAdd,
+                                                 List<Feature> featuresToRemove ) {
+        QName rasterBasisFeatureTypeName = getRasterBasisElementName( version, namespaceUri );
+        FeatureType rasterBasisFeatureType = schema.getFeatureType( rasterBasisFeatureTypeName );
+        List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
+        List<RasterReference> scans = collectRasterReferencesByType( rasterReferences, SCAN );
+        List<RasterReference> texts = collectRasterReferencesByType( rasterReferences, TEXT );
+        List<RasterReference> legends = collectRasterReferencesByType( rasterReferences, LEGEND );
+
+        List<Property> props = new ArrayList<>();
+
+        if ( !scans.isEmpty() ) {
+            for ( RasterReference scan : scans ) {
+                QName refPropName = new QName( namespaceUri, "refScan" );
+                String externeReferenzFeatureTypeName = XPLAN_3.equals( version ) ?
+                                                        "XP_ExterneReferenzPlan" :
+                                                        "XP_ExterneReferenz";
+                Feature refFeature = createAndAddExterneReferenz( context, version, schema, namespaceUri, scan,
+                                                                  rasterBasisFeatureType, props, refPropName,
+                                                                  externeReferenzFeatureTypeName, null );
+                if ( scan.getFeatureId() != null ) {
+                    QName externeReferenz = new QName( namespaceUri, externeReferenzFeatureTypeName );
+                    Feature oldReferenceFeature = detectFeatureById( planToEdit, externeReferenz, scan.getFeatureId() );
+                    featuresToRemove.add( oldReferenceFeature );
+                }
+                if ( refFeature != null ) {
+                    featuresToAdd.add( refFeature );
+                }
+            }
+        }
+        if ( !texts.isEmpty() ) {
+            QName refPropName = new QName( namespaceUri, "refText" );
+            RasterReference text = texts.get( 0 );
+            Feature refFeature = createAndAddExterneReferenz( context, version, schema, namespaceUri, text,
+                                                              rasterBasisFeatureType, props, refPropName,
+                                                              "XP_ExterneReferenz", null );
+            if ( text.getFeatureId() != null ) {
+                QName externeReferenz = new QName( namespaceUri, "XP_ExterneReferenz" );
+                Feature oldReferenceFeature = detectFeatureById( planToEdit, externeReferenz, text.getFeatureId() );
+                featuresToRemove.add( oldReferenceFeature );
+            }
+            if ( refFeature != null )
+                featuresToAdd.add( refFeature );
+        }
+
+        if ( !legends.isEmpty() ) {
+            for ( RasterReference legend : legends ) {
+                QName refPropName = new QName( namespaceUri, "refLegende" );
+                Feature refFeature = createAndAddExterneReferenz( context, version, schema, namespaceUri, legend,
+                                                                  rasterBasisFeatureType, props, refPropName,
+                                                                  "XP_ExterneReferenz", null );
+                if ( legend.getFeatureId() != null ) {
+                    QName externeReferenz = new QName( namespaceUri, "XP_ExterneReferenz" );
+                    Feature oldReferenceFeature = detectFeatureById( planToEdit, externeReferenz,
+                                                                     legend.getFeatureId() );
+                    featuresToRemove.add( oldReferenceFeature );
+                }
+                if ( refFeature != null )
+                    featuresToAdd.add( refFeature );
+            }
+        }
+        if ( !props.isEmpty() )
+            featuresToAdd.add( rasterBasisFeatureType.newFeature( gmlid, props, null ) );
+    }
+
     private Feature createAndAddExterneReferenz( GmlDocumentIdContext context, XPlanVersion version, AppSchema schema,
-                                                 String namespaceUri, AbstractReference text, FeatureType featureType,
-                                                 List<Property> props, QName refPropName,
+                                                 String namespaceUri, AbstractReference reference,
+                                                 FeatureType featureType, List<Property> props, QName refPropName,
                                                  String externeReferenzElementName, String spezExterneReferenzTyp ) {
         if ( XPLAN_41.equals( version ) || XPLAN_50.equals( version ) || XPLAN_51.equals( version ) ) {
             GenericProperty refProperty = createExterneReferenzProperty_XPlan41_XPlan50( schema, featureType,
-                                                                                         refPropName, text,
+                                                                                         refPropName, reference,
                                                                                          externeReferenzElementName,
                                                                                          spezExterneReferenzTyp );
             addProperty( props, refProperty );
@@ -475,19 +491,23 @@ public class XPlanManipulator {
             Property refLinkProperty = createPropertyWithHrefAttribute( context, featureType, refPropName, refGmlid );
             boolean added = addProperty( props, refLinkProperty );
             if ( added )
-                return createExterneReferenzFeature_XPlan3( version, schema, namespaceUri, text, refGmlid );
+                return createExterneReferenzFeature_XPlan3( version, schema, namespaceUri, reference,
+                                                            externeReferenzElementName, refGmlid );
         }
         return null;
     }
 
     private Feature createExterneReferenzFeature_XPlan3( XPlanVersion version, AppSchema schema, String namespaceUri,
-                                                         AbstractReference reference, String gmlid ) {
-        QName refFeatureTypeName = new QName( namespaceUri, "XP_ExterneReferenz" );
+                                                         AbstractReference reference, String externeReferenzElementName,
+                                                         String gmlid ) {
+        QName refFeatureTypeName = new QName( namespaceUri, externeReferenzElementName );
         FeatureType refFeatureType = schema.getFeatureType( refFeatureTypeName );
-        List<Property> props = new ArrayList<Property>();
+        List<Property> props = new ArrayList<>();
         if ( !XPLAN_3.equals( version ) )
             addProperty( props, createGeoReferenzProperty( namespaceUri, reference.getGeoReference() ) );
         addProperty( props, createReferenzProperty( namespaceUri, reference.getReference() ) );
+        if ( XPLAN_3.equals( version ) && "XP_ExterneReferenzPlan".equals( externeReferenzElementName ) )
+            addProperty( props, createGeoReferenzProperty( namespaceUri, reference.getGeoReference() ) );
         if ( props.isEmpty() )
             return null;
         return refFeatureType.newFeature( gmlid, props, null );
@@ -632,6 +652,22 @@ public class XPlanManipulator {
         return previouslyReferencedTextsFeatureIds;
     }
 
+    private String parseReferencedRasterBasisFeatureId( FeatureCollection planToEdit ) {
+        for ( Feature feature : planToEdit ) {
+            QName featureName = feature.getName();
+            if ( isBPBereich( featureName ) ) {
+                QName propName = new QName( featureName.getNamespaceURI(), "rasterBasis" );
+                List<Property> properties = feature.getProperties( propName );
+                for ( Property property : properties ) {
+                    PrimitiveValue hrefValue = property.getAttributes().get( XLINK_HREF_ATTRIBUTE );
+                    if ( hrefValue != null )
+                        return hrefValue.toString().substring( 1 );
+                }
+            }
+        }
+        return null;
+    }
+
     private void add( List<TypedObjectNode> subElementChilds, Property propertyToAdd ) {
         if ( propertyToAdd != null )
             subElementChilds.add( propertyToAdd );
@@ -703,6 +739,12 @@ public class XPlanManipulator {
         return new QName( namespaceUri, "XP_TextAbschnitt" );
     }
 
+    private QName getRasterBasisElementName( XPlanVersion version, String namespaceUri ) {
+        if ( XPLAN_50.equals( version ) || XPLAN_51.equals( version ) )
+            return new QName( namespaceUri, "XP_Rasterdarstellung" );
+        return new QName( namespaceUri, "XP_RasterplanBasis" );
+    }
+
     private String generateGmlId( QName propName ) {
         String prefix = "XPLAN_" + propName.getLocalPart() + "_";
         String uuid = UUID.randomUUID().toString();
@@ -710,7 +752,7 @@ public class XPlanManipulator {
     }
 
     private List<TypedObjectNode> asList( GenericXMLElement child ) {
-        List<TypedObjectNode> childs = new ArrayList<TypedObjectNode>();
+        List<TypedObjectNode> childs = new ArrayList<>();
         childs.add( child );
         return childs;
     }
@@ -776,12 +818,14 @@ public class XPlanManipulator {
         return "BP_Plan".equals( featureName.getLocalPart() );
     }
 
-    private boolean isXPRasterplanBasis( QName featureName ) {
-        return "XP_RasterplanBasis".equals( featureName.getLocalPart() );
+    private boolean isBPBereich( QName featureName ) {
+        return "BP_Bereich".equals( featureName.getLocalPart() );
     }
 
-    private boolean isXPRasterdarstellung( QName featureName ) {
-        return "XP_Rasterdarstellung".equals( featureName.getLocalPart() );
+    private List<RasterReference> collectRasterReferencesByType( List<RasterReference> rasterReferences,
+                                                                 RasterReferenceType type ) {
+        return rasterReferences.stream().filter( rasterReference -> type.equals( rasterReference.getType() ) ).collect(
+                        Collectors.toList() );
     }
 
     private void checkVersionAndType( XPlanVersion version, XPlanType type ) {
@@ -792,16 +836,8 @@ public class XPlanManipulator {
             throw new IllegalArgumentException( "Unsupported Plan, only BP_Plan is supported yet." );
     }
 
-    private static Map<String, RasterReferenceType> initRasterReferenceToPropName() {
-        Map<String, RasterReferenceType> rasterReferenceToPropName = new HashMap<>();
-        rasterReferenceToPropName.put( "refLegende", LEGEND );
-        rasterReferenceToPropName.put( "refScan", SCAN );
-        rasterReferenceToPropName.put( "refText", TEXT );
-        return rasterReferenceToPropName;
-    }
-
     private static List<String> initExternalPlanProperties() {
-        List<String> externalPlanProperties = new ArrayList<String>();
+        List<String> externalPlanProperties = new ArrayList<>();
         externalPlanProperties.add( "georefURL" );
         externalPlanProperties.add( "georefMimeType" );
         externalPlanProperties.add( "art" );
