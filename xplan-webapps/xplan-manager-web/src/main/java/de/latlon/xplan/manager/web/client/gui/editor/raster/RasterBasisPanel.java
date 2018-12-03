@@ -54,7 +54,7 @@ import de.latlon.xplan.manager.web.client.gui.editor.dialog.SavedHandler;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
-import de.latlon.xplan.manager.web.shared.edit.RasterWithReferences;
+import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 
 import java.util.Collections;
 import java.util.List;
@@ -75,7 +75,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 
     private static final TypeCodelistProvider CODELIST_PROVIDER = new TypeCodelistProvider();
 
-    private RasterWithReferences rasterBasis;
+    private RasterBasis rasterBasis;
 
     public RasterBasisPanel( EditVersion version ) {
         super( version, MESSAGES.editCaptionRasterBasis() );
@@ -94,18 +94,18 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
         addRemoveColumn( rasterBasisList, actionHeader );
     }
 
-    public void setRasterBasis( RasterWithReferences rasterBasis ) {
+    public void setRasterBasis( RasterBasis rasterBasis ) {
         this.rasterBasis = rasterBasis;
         List<RasterReference> rasterBasisReferences = collectRasterReferences( rasterBasis );
         setValues( rasterBasisReferences );
     }
 
-    public RasterWithReferences retrieveRasterBasis() {
+    public RasterBasis retrieveRasterBasis() {
         List<RasterReference> values = getValues();
         if ( values.isEmpty() )
             return null;
         if ( rasterBasis == null ) {
-            rasterBasis = new RasterWithReferences();
+            rasterBasis = new RasterBasis();
         }
         rasterBasis.setRasterReferences( values );
         return rasterBasis;
@@ -225,7 +225,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
         table.addColumn( removeButtonColumn, columnHeader );
     }
 
-    private List<RasterReference> collectRasterReferences( RasterWithReferences rasterBasis ) {
+    private List<RasterReference> collectRasterReferences( RasterBasis rasterBasis ) {
         if ( rasterBasis != null )
             return rasterBasis.getRasterReferences();
         return Collections.emptyList();

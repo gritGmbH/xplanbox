@@ -58,7 +58,7 @@ public class XPlanToEdit {
 
     private List<Reference> references;
 
-    private RasterWithReferences rasterBasis;
+    private RasterBasis rasterBasis;
 
     public XPlanToEdit() {
     }
@@ -78,7 +78,7 @@ public class XPlanToEdit {
      *            may be <code>null</code>
      */
     public XPlanToEdit( BaseData baseData, ValidityPeriod validityPeriod, List<Change> changes, List<Text> texts,
-                        List<Reference> references, RasterWithReferences rasterBasis ) {
+                        List<Reference> references, RasterBasis rasterBasis ) {
         this.baseData = baseData;
         this.validityPeriod = validityPeriod;
         this.changes = changes;
@@ -202,7 +202,7 @@ public class XPlanToEdit {
     /**
      * @return the rasterBasis, may be <code>null</code>
      */
-    public RasterWithReferences getRasterBasis() {
+    public RasterBasis getRasterBasis() {
         return rasterBasis;
     }
 
@@ -210,7 +210,7 @@ public class XPlanToEdit {
      * @param rasterBasis
      *            the rasterBasis to set, may be <code>null</code>
      */
-    public void setRasterBasis( RasterWithReferences rasterBasis ) {
+    public void setRasterBasis( RasterBasis rasterBasis ) {
         this.rasterBasis = rasterBasis;
     }
 

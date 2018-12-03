@@ -42,7 +42,7 @@ import de.latlon.xplan.manager.web.shared.XPlanMetadata;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
-import de.latlon.xplan.manager.web.shared.edit.RasterWithReferences;
+import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.Text;
 import de.latlon.xplan.manager.web.shared.edit.ValidityPeriod;
@@ -71,9 +71,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
@@ -196,7 +194,7 @@ public class XPlanToEditFactoryTest {
         assertThat( text.getGeoReference(), is( nullValue() ) );
         assertThat( text.getReference(), is( "B-Plan_Klingmuehl_Heideweg_Text.pdf" ) );
 
-        RasterWithReferences rasterBasis = xPlanToEdit.getRasterBasis();
+        RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
         assertThat( rasterBasis.getFeatureId(), is( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6" ) );
 
         List<RasterReference> rasterBasisReferences = rasterBasis.getRasterReferences();
@@ -268,7 +266,7 @@ public class XPlanToEditFactoryTest {
         assertThat( firstText.getGeoReference(), is( nullValue() ) );
         assertThat( firstText.getReference(), is( "Klarstellungssatzung_Haida_cut_v4.tif" ) );
 
-        RasterWithReferences rasterBasis = xPlanToEdit.getRasterBasis();
+        RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
         assertThat( rasterBasis.getFeatureId(), is( "GML_F042504B-0875-4470-A25D-DAFD0595E8FD" ) );
 
         List<RasterReference> rasterBasisReferences = rasterBasis.getRasterReferences();

@@ -43,7 +43,7 @@ import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.ChangeType;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
-import de.latlon.xplan.manager.web.shared.edit.RasterWithReferences;
+import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.Text;
@@ -177,15 +177,15 @@ public class XPlanToEditFactory {
     private void parseRasterBasis( Property property, XPlanToEdit xPlanToEdit ) {
         TypedObjectNode propertyValue = property.getValue();
         if ( propertyValue instanceof FeatureReference ) {
-            RasterWithReferences rasterBasis = parseRasterWithReferences( propertyValue );
+            RasterBasis rasterBasis = parseRasterWithReferences( propertyValue );
             xPlanToEdit.setRasterBasis( rasterBasis );
         }
     }
 
-    private RasterWithReferences parseRasterWithReferences( TypedObjectNode propertyValue ) {
+    private RasterBasis parseRasterWithReferences( TypedObjectNode propertyValue ) {
         Feature referencedObject = ( (FeatureReference) propertyValue ).getReferencedObject();
         String featureId = referencedObject.getId();
-        RasterWithReferences rasterPlanChange = new RasterWithReferences( featureId );
+        RasterBasis rasterPlanChange = new RasterBasis( featureId );
         for ( Property prop : referencedObject.getProperties() ) {
             String propName = prop.getName().getLocalPart();
             if ( "refLegende".equals( propName ) ) {

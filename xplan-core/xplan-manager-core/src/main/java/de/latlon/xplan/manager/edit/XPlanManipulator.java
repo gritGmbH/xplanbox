@@ -42,7 +42,7 @@ import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.ChangeType;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
-import de.latlon.xplan.manager.web.shared.edit.RasterWithReferences;
+import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.Text;
@@ -167,13 +167,13 @@ public class XPlanManipulator {
     }
 
     private void modifyXPRaster( XPlanVersion version, Feature feature, XPlanToEdit planWithChanges ) {
-        RasterWithReferences rasterBasis = planWithChanges.getRasterBasis();
+        RasterBasis rasterBasis = planWithChanges.getRasterBasis();
         if ( rasterBasis != null )
             modifyRasterWithReference( version, feature, rasterBasis );
     }
 
     private void modifyRasterWithReference( XPlanVersion version, Feature feature,
-                                            RasterWithReferences rasterWithReference ) {
+                                            RasterBasis rasterWithReference ) {
         List<Property> properties = feature.getProperties();
         List<RasterReference> rasterReferences = rasterWithReference.getRasterReferences();
         int rasterReferenceIndex = 0;
@@ -249,9 +249,9 @@ public class XPlanManipulator {
         externalReference.setChildren( externalReferenceChilds );
     }
 
-    private RasterWithReferences findRasterPlanChangeByFeatureId( Feature feature,
-                                                                  List<RasterWithReferences> rasterPlanChanges ) {
-        for ( RasterWithReferences rasterPlanChange : rasterPlanChanges ) {
+    private RasterBasis findRasterPlanChangeByFeatureId( Feature feature,
+                                                         List<RasterBasis> rasterPlanChanges ) {
+        for ( RasterBasis rasterPlanChange : rasterPlanChanges ) {
             if ( rasterPlanChange.getFeatureId() != null && rasterPlanChange.getFeatureId().equals( feature.getId() ) )
                 return rasterPlanChange;
         }

@@ -40,7 +40,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
-import de.latlon.xplan.manager.web.shared.edit.RasterWithReferences;
+import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.Text;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
@@ -82,9 +82,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
@@ -301,7 +299,7 @@ public class XPlanManipulatorTest {
         XPlanToEdit editedXplan = createSimpleXPlan();
         RasterReference rasterBasisReference = new RasterReference( "ref1", "georef1", SCAN );
 
-        RasterWithReferences rasterBasis = new RasterWithReferences( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6" );
+        RasterBasis rasterBasis = new RasterBasis( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6" );
         rasterBasis.addRasterReference( rasterBasisReference );
         editedXplan.setRasterBasis( rasterBasis );
 
@@ -331,7 +329,7 @@ public class XPlanManipulatorTest {
         XPlanToEdit editedXplan = createSimpleXPlan();
         RasterReference rasterBasisReference = new RasterReference( "ref1", "georef1", SCAN );
 
-        RasterWithReferences rasterBasis = new RasterWithReferences( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6" );
+        RasterBasis rasterBasis = new RasterBasis( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6" );
         rasterBasis.addRasterReference( rasterBasisReference );
         editedXplan.setRasterBasis( rasterBasis );
 
@@ -614,7 +612,7 @@ public class XPlanManipulatorTest {
         XPlanToEdit editedXplan = createSimpleXPlan();
         RasterReference rasterBasisReference = new RasterReference( "GML_F042504B-0875-4470-A25D-DAFD0595E8FE", "ref1",
                                                                     "georef1", SCAN );
-        RasterWithReferences rasterBasis = new RasterWithReferences( "GML_F042504B-0875-4470-A25D-DAFD0595E8FE" );
+        RasterBasis rasterBasis = new RasterBasis( "GML_F042504B-0875-4470-A25D-DAFD0595E8FE" );
         rasterBasis.addRasterReference( rasterBasisReference );
         editedXplan.setRasterBasis( rasterBasis );
 
