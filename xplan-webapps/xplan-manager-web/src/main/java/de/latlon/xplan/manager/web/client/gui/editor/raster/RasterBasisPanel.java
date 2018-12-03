@@ -51,16 +51,20 @@ import de.latlon.xplan.manager.web.client.gui.editor.AbstractEditorSubPanelWithT
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.codelist.TypeCodelistProvider;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.SavedHandler;
+import de.latlon.xplan.manager.web.client.gui.widget.Validable;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
-import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 
 import java.util.Collections;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
+import static de.latlon.xplan.manager.web.client.gui.StyleNames.EDITOR_VALIDATION_ERROR;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
 
 /**
  * Panel for raster basis.
@@ -69,7 +73,7 @@ import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
  * @author last edited by: $Author: stenger $
  * @version $Revision: $, $Date: $
  */
-public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterReference> {
+public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterReference> implements Validable {
 
     private static final XPlanWebMessages MESSAGES = GWT.create( XPlanWebMessages.class );
 
@@ -94,6 +98,11 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
         addRemoveColumn( rasterBasisList, actionHeader );
     }
 
+    @Override
+    public boolean isValid() {
+        return validate();
+    }
+
     public void setRasterBasis( RasterBasis rasterBasis ) {
         this.rasterBasis = rasterBasis;
         List<RasterReference> rasterBasisReferences = collectRasterReferences( rasterBasis );
@@ -109,6 +118,18 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
         }
         rasterBasis.setRasterReferences( values );
         return rasterBasis;
+    }
+
+    private boolean validate() {
+        RasterBasis rasterBasis = retrieveRasterBasis();
+        if ( rasterBasis == null || containsRasterReferenceOfType( SCAN ) ) {
+            removeStyleName( EDITOR_VALIDATION_ERROR );
+            setTitle( "" );
+            return true;
+        }
+        addStyleName( EDITOR_VALIDATION_ERROR );
+        setTitle( MESSAGES.editCaptionRasterBasisInvalid() );
+        return false;
     }
 
     private Widget createGui() {
@@ -158,7 +179,8 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
     private Button createNewButton() {
         Button newButton = new Button( MESSAGES.editCaptionNewRasterBasis(), new ClickHandler() {
             public void onClick( ClickEvent event ) {
-                final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog( version );
+                boolean containsText = containsRasterReferenceOfType( TEXT );
+                final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog( version, containsText );
                 rasterReferenceDialog.addSaveHandler( new SavedHandler() {
                     @Override
                     public void changesSaved() {
@@ -166,6 +188,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
                         List<RasterReference> rasterReferences = getValues();
                         rasterReferences.add( newRasterReference );
                         rasterReferenceDialog.hide();
+                        validate();
                     }
                 } );
                 rasterReferenceDialog.center();
@@ -185,7 +208,8 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
         };
         editButtonColumn.setFieldUpdater( new FieldUpdater<RasterReference, String>() {
             public void update( final int index, final RasterReference rasterReference, String value ) {
-                final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog( version,
+                boolean containsText = containsRasterReferenceOfType( TEXT );
+                final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog( version, containsText,
                                                                                                rasterReference );
                 rasterReferenceDialog.addSaveHandler( new SavedHandler() {
                     @Override
@@ -196,6 +220,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
                         rasterReference.setType( editedRasterReference.getType() );
                         rasterReferenceDialog.hide();
                         table.redrawRow( index );
+                        validate();
                     }
                 } );
                 rasterReferenceDialog.center();
@@ -219,6 +244,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
             public void update( int index, RasterReference object, String value ) {
                 List<RasterReference> rasterReferences = getValues();
                 rasterReferences.remove( index );
+                validate();
             }
         } );
         removeButtonColumn.setCellStyleNames( "editRasterBaseColumn removeButtonColumn" );
@@ -231,4 +257,15 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
         return Collections.emptyList();
     }
 
+    private boolean containsRasterReferenceOfType( RasterReferenceType referenceType ) {
+        RasterBasis rasterBasis = retrieveRasterBasis();
+        if ( rasterBasis != null ) {
+            List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
+            for ( RasterReference rasterReference : rasterReferences ) {
+                if ( referenceType.equals( rasterReference.getType() ) )
+                    return true;
+            }
+        }
+        return false;
+    }
 }

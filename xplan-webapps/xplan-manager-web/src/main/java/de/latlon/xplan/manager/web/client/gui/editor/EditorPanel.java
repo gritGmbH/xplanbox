@@ -250,7 +250,7 @@ public class EditorPanel extends DecoratorPanel {
     }
 
     private boolean isValid() {
-        return areComponentsValid( baseDataPanel, validityPeriodPanel );
+        return areComponentsValid( baseDataPanel, validityPeriodPanel, rasterBasisPanel );
     }
 
     private DialogBox createAndShowSaveDialogBox() {

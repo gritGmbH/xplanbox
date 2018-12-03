@@ -46,6 +46,8 @@ import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
+import static java.util.Collections.singletonList;
 
 /**
  * Dialog to edit an existing or create a new {@link RasterReference}
@@ -56,21 +58,23 @@ import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
  */
 public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
-    private final TypeCodeListBox<RasterReferenceType> refType = new TypeCodeListBox<RasterReferenceType>(
-                    RasterReferenceType.class );
+    private final TypeCodeListBox<RasterReferenceType> refType;
 
     private final RasterReference originalRasterReference;
 
-    public RasterReferenceDialog( EditVersion version ) {
-        this( version, null, MESSAGES.editCaptionRasterBasisDialogNew() );
+    public RasterReferenceDialog( EditVersion version, boolean enableSelectionOfText ) {
+        this( version, enableSelectionOfText, null, MESSAGES.editCaptionRasterBasisDialogNew() );
     }
 
-    public RasterReferenceDialog( EditVersion version, RasterReference rasterReference ) {
-        this( version, rasterReference, MESSAGES.editCaptionRasterBasisDialogEdit() );
+    public RasterReferenceDialog( EditVersion version, boolean enableSelectionOfText,
+                                  RasterReference rasterReference ) {
+        this( version, enableSelectionOfText, rasterReference, MESSAGES.editCaptionRasterBasisDialogEdit() );
     }
 
-    public RasterReferenceDialog( EditVersion version, RasterReference rasterReference, String title ) {
+    private RasterReferenceDialog( EditVersion version, boolean disableSelectionOfText, RasterReference rasterReference,
+                                   String title ) {
         super( version, title );
+        refType = createRefType( disableSelectionOfText );
         this.originalRasterReference = rasterReference;
         initDialog( createFormContent() );
         setRasterReferenceValues();
@@ -116,6 +120,12 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
             georeference.setNameOfExistingFile( originalRasterReference.getGeoReference() );
             refType.selectItem( originalRasterReference.getType() );
         }
+    }
+
+    private TypeCodeListBox<RasterReferenceType> createRefType( boolean disableSelectionOfText ) {
+        if ( disableSelectionOfText )
+            return new TypeCodeListBox<RasterReferenceType>( RasterReferenceType.class, singletonList( TEXT ) );
+        return new TypeCodeListBox<RasterReferenceType>( RasterReferenceType.class );
     }
 
 }

@@ -338,6 +338,8 @@ public interface XPlanWebMessages extends Messages {
 
     String editCaptionRasterBasisType();
 
+    String editCaptionRasterBasisInvalid();
+
     String editCaptionNewRasterBasis();
 
     String editCaptionChangesDialogEdit();
