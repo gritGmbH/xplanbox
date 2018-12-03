@@ -78,7 +78,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
     @Override
     protected boolean isGeoreferenceUrlMandatory() {
-        return true;
+        return false;
     }
 
     public RasterReference getEditedRasterReference() {
@@ -114,6 +114,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
         if ( originalRasterReference != null ) {
             reference.setNameOfExistingFile( originalRasterReference.getReference() );
             georeference.setNameOfExistingFile( originalRasterReference.getGeoReference() );
+            refType.selectItem( originalRasterReference.getType() );
         }
     }
 
