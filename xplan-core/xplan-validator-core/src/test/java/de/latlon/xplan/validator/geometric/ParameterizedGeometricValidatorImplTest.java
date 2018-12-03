@@ -65,20 +65,16 @@ public class ParameterizedGeometricValidatorImplTest {
                             throws Exception {
         XPlanArchive archive = getTestArchive( testResource );
         XPlanFeatureCollection fc = readFeaturesAndAssertGeometryValidity( archive );
-        // planName
         if ( !NULL.equals( expectedPlanName ) )
             assertThat( fc.getPlanName(), is( expectedPlanName ) );
-        // planGz
         if ( NULL.equals( expectedPlanGz ) )
             assertThat( fc.getPlanGkz(), is( nullValue() ) );
         else
             assertThat( fc.getPlanGkz(), is( expectedPlanGz ) );
-        // planNummer
         if ( NULL.equals( expectedPlanNumber ) )
             assertThat( fc.getPlanNummer(), is( nullValue() ) );
         else
             assertThat( fc.getPlanNummer(), is( expectedPlanNumber ) );
-        // Features size
         assertThat( fc.getFeatures().size(), is( expectedNumberOfFeatures ) );
     }
 

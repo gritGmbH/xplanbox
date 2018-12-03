@@ -18,6 +18,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.NONE;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
@@ -148,6 +149,8 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 
     private XPlanVersion parseXPlanVersion(Path path) {
         String dirName = extractDirectoryName(path);
+        if ("xplangml51".equals(dirName))
+            return XPLAN_51;
         if ("xplangml50".equals(dirName))
             return XPLAN_50;
         if ("xplangml41".equals(dirName))

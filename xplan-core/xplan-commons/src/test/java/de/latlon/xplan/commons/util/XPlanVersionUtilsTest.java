@@ -6,6 +6,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -56,6 +57,13 @@ public class XPlanVersionUtilsTest {
         QName element = new QName( XPLAN_50.getNamespace(), "element" );
         XPlanVersion version = XPlanVersionUtils.determineBaseVersion( element );
         assertThat( version, is( XPLAN_50 ) );
+    }
+
+    @Test
+    public void testDetermineBaseVersionFor51() {
+        QName element = new QName( XPLAN_51.getNamespace(), "element" );
+        XPlanVersion version = XPlanVersionUtils.determineBaseVersion( element );
+        assertThat( version, is( XPLAN_51 ) );
     }
 
     @Test

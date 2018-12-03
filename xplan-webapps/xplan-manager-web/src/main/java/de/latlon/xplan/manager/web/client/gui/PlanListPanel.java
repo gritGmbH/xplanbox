@@ -454,9 +454,7 @@ public class PlanListPanel extends DecoratorPanel {
             @Override
             public String getValue( XPlan xPlan ) {
                 if ( "BP_Plan".equals( xPlan.getType() )
-                     && ( "XPLAN_3".equals( xPlan.getVersion() )
-                        || "XPLAN_41".equals( xPlan.getVersion() )
-                        || "XPLAN_50".equals( xPlan.getVersion() ) )
+                     && isVersionSupportedByEditor( xPlan )
                      && isEditingPermitted( xPlan ) )
                     editButtonCell.setEnabled();
                 else
@@ -479,9 +477,7 @@ public class PlanListPanel extends DecoratorPanel {
                     return messages.editButtonTooltipPermissionDenied();
                 else if ( !"BP_Plan".equals( xPlan.getType() ) )
                     return messages.editButtonTooltipIncorrectPlanType();
-                else if ( !( "XPLAN_3".equals( xPlan.getVersion() )
-                             || "XPLAN_41".equals( xPlan.getVersion() )
-                             || "XPLAN_50".equals( xPlan.getVersion() ) ) )
+                else if ( !( isVersionSupportedByEditor( xPlan ) ) )
                     return messages.editButtonTooltipIncorrectVersion();
                 return messages.editButtonTooltip();
             }
@@ -537,8 +533,7 @@ public class PlanListPanel extends DecoratorPanel {
         final Column<XPlan, String> publishPluButtonColumn = new Column<XPlan, String>( publishPluButtonCell ) {
             @Override
             public String getValue( XPlan xPlan ) {
-                if ( "BP_Plan".equals( xPlan.getType() ) && ( "XPLAN_41".equals( xPlan.getVersion() )
-                                                              || "XPLAN_50".equals( xPlan.getVersion() ) )
+                if ( "BP_Plan".equals( xPlan.getType() ) && isVersionSupportedByInpirePlu( xPlan )
                      && isPublishingPluPermitted( xPlan ) && !xPlan.isInspirePublished() )
                     publishPluButtonCell.setEnabled();
                 else
@@ -563,7 +558,7 @@ public class PlanListPanel extends DecoratorPanel {
                     return messages.publishingPluButtonTooltipPermissionDenied();
                 else if ( !"BP_Plan".equals( xPlan.getType() ) )
                     return messages.publishingPluButtonTooltipIncorrectPlanType();
-                else if ( !( "XPLAN_41".equals( xPlan.getVersion() ) || "XPLAN_50".equals( xPlan.getVersion() ) ) )
+                else if ( !isVersionSupportedByInpirePlu( xPlan ) )
                     return messages.publishingPluButtonTooltipIncorrectVersion();
                 else if ( xPlan.isInspirePublished() )
                     return messages.publishingPluButtonTooltipAlreadyPublished();
@@ -683,6 +678,18 @@ public class PlanListPanel extends DecoratorPanel {
         dialog.center();
         dialog.show();
         return dialog;
+    }
+
+    private boolean isVersionSupportedByEditor( XPlan xPlan ) {
+        return "XPLAN_3".equals( xPlan.getVersion() )
+               || "XPLAN_41".equals( xPlan.getVersion() )
+               || "XPLAN_50".equals( xPlan.getVersion() )
+               || "XPLAN_51".equals( xPlan.getVersion() );
+    }
+
+    private boolean isVersionSupportedByInpirePlu( XPlan xPlan ) {
+        return "XPLAN_41".equals( xPlan.getVersion() ) || "XPLAN_50".equals( xPlan.getVersion() ) || "XPLAN_51".equals(
+                        xPlan.getVersion() );
     }
 
     private boolean isPublishingPluPermitted( XPlan xPlan ) {

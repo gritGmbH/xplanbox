@@ -21,6 +21,7 @@ linkSemanticConformity_XPLAN_3=
 linkSemanticConformity_XPLAN_40=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_4.pdf
 linkSemanticConformity_XPLAN_41=http://localhost:8080/external/documentation/Konformitaetsbedingungen-XPlanGML_4_1.pdf
 linkSemanticConformity_XPLAN_50=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_5.pdf
+linkSemanticConformity_XPLAN_51=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_5_1.pdf
 ----
 
 NOTE: Es müssen ggf. Zeilenumbrüche entfernt werden.

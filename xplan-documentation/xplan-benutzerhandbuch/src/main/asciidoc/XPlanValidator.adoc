@@ -33,6 +33,8 @@ Darüber hinaus kann der XPlanValidator eine XPlanGML-Datei auf folgende Konform
 
  * http://www.xplanungwiki.de/images/7/77/Konformit%C3%A4tsbedingungen_XPlanGML_4_0_2.pdf[Konformitätsbedingungen für XPlanGML 4.0]
  * http://www.xplanungwiki.de/images/e/ee/Konformit%C3%A4tsbedingungen-XPlanGML_4_1V2.pdf[Konformitätsbedingungen für XPlanGML 4.1]
+ * http://www.xplanungwiki.de/upload/XPlanGML/5.0/Konformit%c3%a4tsbedingungen.pdf[Konformitätsbedingungen für XPlanGML 5.0]
+ * http://www.xplanungwiki.de/upload/XPlanGML/5.1/Konformit%C3%A4tsbedingungen-XPlanGML_%205_1_1.pdf[Konformitätsbedingungen für XPlanGML 5.1]
 
 Eine XPlanGML-Datei ist dann zu der jeweiligen XPlanGML Version konform, wenn das XML-Dokument gegen das jeweilige XPlanGML Schema validiert und
 alle in den Konformitätsbedingungen spezifizierten Regeln erfüllt werden.
