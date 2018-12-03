@@ -29,6 +29,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -96,6 +97,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -165,6 +167,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
     <Primitive path="xplan:informell" mapping="xplan_informell" />
@@ -221,6 +224,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -276,6 +280,9 @@
     <Primitive path="xplan:pflanztiefeUOM" mapping="xplan_pflanztiefeuom" />
     <Primitive path="xplan:baumArt" mapping="xplan_baumart" />
     <Primitive path="xplan:baumArtCode" mapping="xplan_baumartcode" />
+    <Primitive path="xplan:mindesthoehe" mapping="xplan_mindesthoehe" />
+    <Primitive path="xplan:mindesthoeheUOM" mapping="xplan_mindesthoeheUOM" />
+    <Primitive path="xplan:anzahl" mapping="xplan_anzahl" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_AufschuettungsFlaeche" table="xplansyn.xplan_bp_aufschuettungsflaeche">
     <FIDMapping prefix="XPLAN_BP_AUFSCHUETTUNGSFLAECHE_">
@@ -302,6 +309,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -419,6 +427,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -484,6 +493,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -613,6 +623,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -683,6 +694,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -922,6 +934,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -1085,6 +1098,7 @@
     <Primitive path="xplan:GFAntGewerbeUOM" mapping="xplan_gfantGewerbeuom" />
     <Primitive path="xplan:GFGewerbe" mapping="xplan_gfgewerbe" />
     <Primitive path="xplan:GFGewerbeUOM" mapping="xplan_gfgewerbeuom" />
+    <Primitive path="xplan:dachgestaltung" mapping="xplan_dachgestaltung" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_Bauschutzbereich" table="xplansyn.xplan_bp_bauschutzbereich">
     <FIDMapping prefix="XPLAN_BP_BAUSCHUTZBEREICH_">
@@ -1192,6 +1206,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -1260,6 +1275,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -1376,6 +1392,7 @@
     <Primitive path="xplan:ZU" mapping="xplan_zu" />
     <Primitive path="xplan:ZU_Ausn" mapping="xplan_zu_ausn" />
     <Primitive path="xplan:Z_Staffel" mapping="xplan_z_staffel" />
+    <Primitive path="xplan:dachgestaltung" mapping="xplan_dachgestaltung" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_BodenschaetzeFlaeche" table="xplansyn.xplan_bp_bodenschaetzeflaeche">
     <FIDMapping prefix="XPLAN_BP_BODENSCHAETZEFLAECHE_">
@@ -1402,6 +1419,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -1638,6 +1656,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -1707,6 +1726,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -1773,6 +1793,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
     <Primitive path="xplan:informell" mapping="xplan_informell" />
@@ -1820,6 +1841,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -1999,6 +2021,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
     <Primitive path="xplan:informell" mapping="xplan_informell" />
@@ -2102,6 +2125,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -2168,6 +2192,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -2235,6 +2260,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -2303,6 +2329,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -2371,6 +2398,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -2529,6 +2557,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -2619,6 +2648,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
     <Primitive path="xplan:informell" mapping="xplan_informell" />
@@ -2670,6 +2700,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -2775,6 +2806,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -2888,6 +2920,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -3048,6 +3081,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
     <Primitive path="xplan:informell" mapping="xplan_informell" />
@@ -3153,6 +3187,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -3226,6 +3261,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -3299,6 +3335,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
     <Primitive path="xplan:informell" mapping="xplan_informell" />
@@ -3390,6 +3427,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
     <Primitive path="xplan:informell" mapping="xplan_informell" />
@@ -3451,6 +3489,7 @@
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
     <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
     <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
+    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
@@ -3501,6 +3540,19 @@
     <Primitive path="xplan:hUeberBezugspunkt" mapping="xplan_hueberbezugspunkt" />
     <Primitive path="xplan:hUeberBezugspunktCode" mapping="xplan_hueberbezugspunktcode" />
     <Primitive path="xplan:wirdAusgeglichenVon" mapping="xplan_wirdausgeglichenvon" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
+    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
+    <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
+    <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
+    <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
+    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
+    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
+    <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt" />
+    <Primitive path="xplan:wirdAusgeglichenDurchABE" mapping="xplan_wirdausgeglichendurchabe" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEMassnahme" mapping="xplan_wirdausgeglichendurchspemassnahme" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_LandwirtschaftsLinie" table="xplansyn.xplan_bp_landwirtschaftslinie">
     <FIDMapping prefix="XPLAN_BP_LANDWIRTSCHAFTSLINIE_">
@@ -3697,6 +3749,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -3754,6 +3807,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -3818,6 +3872,50 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
     <Primitive path="xplan:gehoertZuBP_Bereich" mapping="xplan_gehoertzubp_bereich" />
   </FeatureTypeMapping>
+  <FeatureTypeMapping name="xplan:BP_NichtUeberbaubareGrundstuecksflaeche" table="xplansyn.xplan_bp_nichtueberbaubaregrundstuecksflaeche">
+    <FIDMapping prefix="XPLAN_BP_NICHTUEBERBAUBAREGRUNDSTUECKSFLAECHE_">
+      <Column name="attr_gml_id" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
+    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
+    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
+    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
+    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
+    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
+    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
+    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
+    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
+    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
+    <Primitive path="xplan:text" mapping="xplan_text" />
+    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
+    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
+    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
+    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
+    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
+    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
+    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
+    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
+    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
+    <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
+    <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
+    <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
+    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
+    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
+    <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt" />
+    <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
+    <Primitive path="xplan:wirdAusgeglichenDurchABE" mapping="xplan_wirdausgeglichendurchabe" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEMassnahme" mapping="xplan_wirdausgeglichendurchspemassnahme" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
+    <Primitive path="xplan:wirdAusgeglichenDurchMassnahme" mapping="xplan_wirdausgeglichendurchmassnahme" />
+    <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+  </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_NutzungsartenGrenze" table="xplansyn.xplan_bp_nutzungsartengrenze">
     <FIDMapping prefix="XPLAN_BP_NUTZUNGSARTENGRENZE_">
       <Column name="attr_gml_id" type="string" />
@@ -3843,6 +3941,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -3913,6 +4012,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -4044,6 +4144,14 @@
     <Primitive path="xplan:ausfertigungsDatum" mapping="xplan_ausfertigungsdatum" />
     <Primitive path="xplan:refSatzung" mapping="xplan_refsatzung" />
     <Primitive path="xplan:refGruenordnungsplan" mapping="xplan_refgruenordnungsplan" />
+    <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
+    <Primitive path="xplan:planaufstellendeGemeinde" mapping="xplan_planaufstellendegemeinde" />
+	<Primitive path="xplan:versionBauNVODatum" mapping="xplan_versionbaunvodatum" />
+	<Primitive path="xplan:versionBauNVOText" mapping="xplan_versionbaunvotext" />
+	<Primitive path="xplan:versionBauGBDatum" mapping="xplan_versionbaugbdatum" />
+	<Primitive path="xplan:versionBauGBText" mapping="xplan_versionbaugbtext" />
+	<Primitive path="xplan:versionSonstRechtsgrundlageDatum" mapping="xplan_versionsonstrechtsgrundlagedatum" />
+	<Primitive path="xplan:versionSonstRechtsgrundlageText" mapping="xplan_versionsonstrechtsgrundlagetext" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_RasterplanAenderung" table="xplansyn.xplan_bp_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_BP_RASTERPLANAENDERUNG_">
@@ -4113,6 +4221,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
     <Primitive path="xplan:informell" mapping="xplan_informell" />
@@ -4162,6 +4271,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -4216,6 +4326,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -4295,6 +4406,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -4434,6 +4546,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -4474,6 +4587,7 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPEMassnahme" mapping="xplan_wirdausgeglichendurchspemassnahme" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
     <Primitive path="xplan:gehoertZuBP_Bereich" mapping="xplan_gehoertzubp_bereich" />
+    <Primitive path="xplan:wegerecht" mapping="xplan_wegerecht" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_SpielSportanlagenFlaeche" table="xplansyn.xplan_bp_spielsportanlagenflaeche">
     <FIDMapping prefix="XPLAN_BP_SPIELSPORTANLAGENFLAECHE_">
@@ -4500,6 +4614,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -4638,6 +4753,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -4768,6 +4884,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -4836,6 +4953,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -4961,6 +5079,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -5029,6 +5148,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -5083,6 +5203,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -5228,6 +5349,7 @@
     <Primitive path="xplan:bebauungSeitlicheGrenze" mapping="xplan_bebauungseitlichegrenze" />
     <Primitive path="xplan:bebauungSeitlicheGrenzeCode" mapping="xplan_bebauungseitlichegrenzecode" />
     <Primitive path="xplan:refGebaeudequerschnitt" mapping="xplan_refgebaeudequerschnitt" />
+    <Primitive path="xplan:dachgestaltung" mapping="xplan_dachgestaltung" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_UnverbindlicheVormerkung" table="xplansyn.xplan_bp_unverbindlichevormerkung">
     <FIDMapping prefix="XPLAN_BP_UNVERBINDLICHEVORMERKUNG_">
@@ -5254,6 +5376,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -5312,6 +5435,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -5598,6 +5722,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
     <Primitive path="xplan:informell" mapping="xplan_informell" />
@@ -5649,6 +5774,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -5757,6 +5883,7 @@
     <Primitive path="xplan:ZU" mapping="xplan_zu" />
     <Primitive path="xplan:ZU_Ausn" mapping="xplan_zu_ausn" />
     <Primitive path="xplan:Z_Staffel" mapping="xplan_z_staffel" />
+    <Primitive path="xplan:zugunstenVon" mapping="xplan_zugunstenvon" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_VorbHochwSchutzFlaeche" table="xplansyn.xplan_bp_vorbhochwschutzflaeche">
     <FIDMapping prefix="XPLAN_BP_VORBHOCHWSCHUTZFLAECHE_">
@@ -5842,6 +5969,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -5980,6 +6108,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -6051,6 +6180,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
@@ -6101,6 +6231,7 @@
     <Primitive path="xplan:gehoertZuBP_Bereich" mapping="xplan_gehoertzubp_bereich" />
     <Primitive path="xplan:breite" mapping="xplan_breite" />
     <Primitive path="xplan:breiteUOM" mapping="xplan_breiteuom" />
+    <Primitive path="xplan:istSchmal" mapping="xplan_istschmal" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Abgrabung" table="xplansyn.xplan_fp_abgrabung">
     <FIDMapping prefix="XPLAN_FP_ABGRABUNG_">
@@ -6127,6 +6258,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -6231,6 +6363,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -6280,6 +6413,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -6303,6 +6437,7 @@
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
+    <Primitive path="xplan:aufschuettungsmaterial" mapping="xplan_aufschuettungsmaterial" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_AufschuettungsFlaeche" table="xplansyn.xplan_fp_aufschuettungsflaeche">
     <FIDMapping prefix="XPLAN_FP_AUFSCHUETTUNGSFLAECHE_">
@@ -6329,6 +6464,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -6385,6 +6521,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -6548,6 +6685,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -6660,6 +6798,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -6915,6 +7054,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -7010,6 +7150,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -7077,6 +7218,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -7179,6 +7321,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -7276,6 +7419,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -7332,6 +7476,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -7411,6 +7556,56 @@
     <Primitive path="xplan:schutzzone" mapping="xplan_schutzzone" />
     <Primitive path="xplan:schutzzoneCode" mapping="xplan_schutzzonecode" />
   </FeatureTypeMapping>
+  <FeatureTypeMapping name="xplan:FP_Landwirtschaft" table="xplansyn.xplan_fp_landwirtschaft">
+    <FIDMapping prefix="XPLAN_FP_LANDWIRTSCHAFT_">
+      <Column name="attr_gml_id" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
+    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
+    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
+    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
+    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
+    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
+    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
+    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
+    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
+    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
+    <Primitive path="xplan:text" mapping="xplan_text" />
+    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
+    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
+    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
+    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
+    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
+    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
+    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
+    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
+    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
+    <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
+    <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
+    <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
+    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
+    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
+    <Primitive path="xplan:spezifischePraegung" mapping="xplan_spezifischepraegung" />
+    <Primitive path="xplan:spezifischePraegungCode" mapping="xplan_spezifischepraegungcode" />
+    <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt" />
+    <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
+    <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung" />
+    <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
+    <Primitive path="xplan:detaillierteZweckbestimmung" mapping="xplan_detailliertezweckbestimmung" />
+    <Primitive path="xplan:detaillierteZweckbestimmungCode" mapping="xplan_detailliertezweckbestimmungcode" />
+  </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_LandwirtschaftsFlaeche" table="xplansyn.xplan_fp_landwirtschaftsflaeche">
     <FIDMapping prefix="XPLAN_FP_LANDWIRTSCHAFTSFLAECHE_">
       <Column name="attr_gml_id" type="string" />
@@ -7436,6 +7631,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -7560,6 +7756,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -7668,6 +7865,14 @@
     <Primitive path="xplan:traegerbeteiligungsEndDatum" mapping="xplan_traegerbeteiligungsenddatum" />
     <Primitive path="xplan:sachgebiet" mapping="xplan_sachgebiet" />
     <Primitive path="xplan:refErlaeuterung" mapping="xplan_referlaeuterung" />
+    <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
+    <Primitive path="xplan:planaufstellendeGemeinde" mapping="xplan_planaufstellendegemeinde" />
+	<Primitive path="xplan:versionBauNVODatum" mapping="xplan_versionbaunvodatum" />
+	<Primitive path="xplan:versionBauNVOText" mapping="xplan_versionbaunvotext" />
+	<Primitive path="xplan:versionBauGBDatum" mapping="xplan_versionbaugbdatum" />
+	<Primitive path="xplan:versionBauGBText" mapping="xplan_versionbaugbtext" />
+	<Primitive path="xplan:versionSonstRechtsgrundlageDatum" mapping="xplan_versionsonstrechtsgrundlagedatum" />
+	<Primitive path="xplan:versionSonstRechtsgrundlageText" mapping="xplan_versionsonstrechtsgrundlagetext" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_PrivilegiertesVorhaben" table="xplansyn.xplan_fp_privilegiertesvorhaben">
     <FIDMapping prefix="XPLAN_FP_PRIVILEGIERTESVORHABEN_">
@@ -7694,6 +7899,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -7856,6 +8062,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -7978,6 +8185,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -8049,6 +8257,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -8139,6 +8348,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -8186,6 +8396,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -8237,6 +8448,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -8375,6 +8587,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -8432,6 +8645,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -8552,6 +8766,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -8615,6 +8830,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -8663,6 +8879,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -8706,6 +8923,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -8749,6 +8967,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -8780,6 +8999,8 @@
     <Primitive path="xplan:pflanzart" mapping="xplan_pflanzart" />
     <Primitive path="xplan:pflanzartCode" mapping="xplan_pflanzartcode" />
     <Primitive path="xplan:mindesthoehe" mapping="xplan_mindesthoehe" />
+    <Primitive path="xplan:mindesthoeheUOM" mapping="xplan_mindesthoeheUOM" />
+    <Primitive path="xplan:anzahl" mapping="xplan_anzahl" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:LP_Ausgleich" table="xplansyn.xplan_lp_ausgleich">
     <FIDMapping prefix="XPLAN_LP_AUSGLEICH_">
@@ -8806,6 +9027,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -8888,6 +9110,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -8934,6 +9157,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -9028,6 +9252,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -9086,6 +9311,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -9136,6 +9362,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -9184,6 +9411,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -9753,6 +9981,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -9803,6 +10032,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -9892,6 +10122,7 @@
     <Primitive path="xplan:planArtCode" mapping="xplan_planartcode" />
     <Primitive path="xplan:sonstPlanArt" mapping="xplan_sonstplanart" />
     <Primitive path="xplan:sonstPlanArtCode" mapping="xplan_sonstplanartcode" />
+    <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:LP_PlanerischeVertiefung" table="xplansyn.xplan_lp_planerischevertiefung">
     <FIDMapping prefix="XPLAN_LP_PLANERISCHEVERTIEFUNG_">
@@ -9918,6 +10149,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -9999,6 +10231,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -10097,6 +10330,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -10146,6 +10380,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -10207,6 +10442,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -10281,6 +10517,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -10323,6 +10560,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -10371,6 +10609,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -10422,6 +10661,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -10470,6 +10710,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -10520,6 +10761,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -10564,6 +10806,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -10614,6 +10857,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -10708,6 +10952,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -10763,6 +11008,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -10815,6 +11061,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -10876,6 +11123,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -10934,6 +11182,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -10988,6 +11237,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -11078,6 +11328,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -11133,6 +11384,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -11181,6 +11433,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -11325,6 +11578,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -11380,6 +11634,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -11433,6 +11688,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -11490,6 +11746,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -11543,6 +11800,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -11593,6 +11851,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -11645,6 +11904,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -11700,6 +11960,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -11750,6 +12011,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -11844,6 +12106,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -11941,6 +12204,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -12015,6 +12279,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -13741,6 +14006,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -13796,6 +14062,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -13909,6 +14176,8 @@
     <Primitive path="xplan:verfahren" mapping="xplan_verfahren" />
     <Primitive path="xplan:verfahrenCode" mapping="xplan_verfahrencode" />
     <Primitive path="xplan:amtlicherSchluessel" mapping="xplan_amtlicherschluessel" />
+    <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
+    <Primitive path="xplan:genehmigungsbehoerde" mapping="xplan_genehmigungsbehoerde" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Planungsraum" table="xplansyn.xplan_rp_planungsraum">
     <FIDMapping prefix="XPLAN_RP_PLANUNGSRAUM_">
@@ -13933,6 +14202,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -13980,6 +14250,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -14067,6 +14338,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -14122,6 +14394,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -14159,6 +14432,7 @@
     <Primitive path="xplan:bergbauplanungTyp" mapping="xplan_bergbauplanungtyp" />
     <Primitive path="xplan:bergbauplanungTypCode" mapping="xplan_bergbauplanungtypcode" />
     <Primitive path="xplan:istAufschuettungAblagerung" mapping="xplan_istaufschuettungablagerung" />
+    <Primitive path="xplan:detaillierterRohstoffTyp" mapping="xplan_detaillierterrohstofftyp" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Rohstoffsicherung" table="xplansyn.xplan_rp_rohstoffsicherung">
     <FIDMapping prefix="XPLAN_RP_ROHSTOFFSICHERUNG_">
@@ -14231,6 +14505,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -14286,6 +14561,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -14336,6 +14612,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -14385,6 +14662,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -14433,6 +14711,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -14572,6 +14851,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -14627,6 +14907,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -14680,6 +14961,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -14732,6 +15014,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -14782,6 +15065,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -14861,6 +15145,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -14969,6 +15254,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -15026,6 +15312,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -15081,6 +15368,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -15212,6 +15500,7 @@
     <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
@@ -15264,6 +15553,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Geometry path="xplan:symbolPosition" mapping="xplan_symbolposition" />
@@ -15350,6 +15640,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -15403,6 +15694,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -15456,6 +15748,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -15508,6 +15801,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -15564,6 +15858,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -15610,6 +15905,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -15652,6 +15948,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -15706,6 +16003,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -15769,6 +16067,9 @@
     <Primitive path="xplan:plangeber" mapping="xplan_plangeber" />
     <Primitive path="xplan:bereich" mapping="xplan_bereich" />
     <Primitive path="xplan:refTextAbschnitte" mapping="xplan_reftextabschnitte" />
+    <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
+    <Primitive path="xplan:gemeinde" mapping="xplan_gemeinde" />
+    <Primitive path="xplan:planaufstellendeGemeinde" mapping="xplan_planaufstellendegemeinde" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:SO_RasterplanAenderung" table="xplansyn.xplan_so_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_SO_RASTERPLANAENDERUNG_">
@@ -15819,6 +16120,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -15873,6 +16175,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -15927,6 +16230,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -15981,6 +16285,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -16035,6 +16340,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -16087,6 +16393,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />
@@ -16160,6 +16467,7 @@
     <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
     <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
     <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
     <Primitive path="xplan:ebene" mapping="xplan_ebene" />

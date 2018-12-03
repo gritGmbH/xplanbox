@@ -36,7 +36,6 @@
 package de.latlon.xplan.manager.web.client.gui.editor.change;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.XP_RechtscharakterPlanaenderung;
 import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
 

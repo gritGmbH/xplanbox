@@ -79,12 +79,9 @@ import java.util.List;
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
@@ -107,7 +104,8 @@ public class XPlanManipulatorTest {
     private final XPlanManipulator planManipulator = new XPlanManipulator();
 
     @Test
-    @Parameters({ "xplan50/BP2070.gml, XPLAN_50", "Eidelstedt_4_V4-Blankenese.gml, XPLAN_41" })
+    @Parameters({ "xplan51/BP2070.gml, XPLAN_51", "xplan50/BP2070.gml, XPLAN_50",
+                  "Eidelstedt_4_V4-Blankenese.gml, XPLAN_41" })
     public void testModifyXPlan( String planResource, String xplanVersion )
                     throws Exception {
         XPlanVersion version = XPlanVersion.valueOf( xplanVersion );
@@ -142,7 +140,8 @@ public class XPlanManipulatorTest {
     }
 
     @Test
-    @Parameters({ "xplan50/BP2070.gml, XPLAN_50", "Eidelstedt_4_V4-Blankenese.gml, XPLAN_41" })
+    @Parameters({ "xplan51/BP2070.gml, XPLAN_51", "xplan50/BP2070.gml, XPLAN_50",
+                  "Eidelstedt_4_V4-Blankenese.gml, XPLAN_41" })
     public void testModifyXPlan_Aenderungen( String planResource, String xplanVersion )
                     throws Exception {
         XPlanVersion version = XPlanVersion.valueOf( xplanVersion );
@@ -163,11 +162,12 @@ public class XPlanManipulatorTest {
     }
 
     @Test
-    public void testModifyXPlan_XPlan50_Texte()
+    @Parameters({ "xplan51/BP2070.gml, XPLAN_51", "xplan50/BP2070.gml, XPLAN_50" })
+    public void testModifyXPlan_XPlan5X_Texte( String planResource, String xplanVersion )
                     throws Exception {
-        XPlanVersion version = XPLAN_50;
+        XPlanVersion version = XPlanVersion.valueOf( xplanVersion );
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, null );
-        FeatureCollection featureCollection = readXPlanGml( version, "xplan50/BP2070.gml", schema );
+        FeatureCollection featureCollection = readXPlanGml( version, planResource, schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
         editedXplan.getTexts().add( new Text( "id1", "key1", "basis1", "text1", 3000, "reference1", "geoReference1" ) );
@@ -201,11 +201,12 @@ public class XPlanManipulatorTest {
     }
 
     @Test
-    public void testModifyXPlan_XPlan50_TextWerte()
+    @Parameters({ "xplan51/BP2070.gml, XPLAN_51", "xplan50/BP2070.gml, XPLAN_50" })
+    public void testModifyXPlan_XPlan50_TextWerte( String planResource, String xplanVersion )
                     throws Exception {
-        XPlanVersion version = XPLAN_50;
+        XPlanVersion version = XPlanVersion.valueOf( xplanVersion );
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, null );
-        FeatureCollection featureCollection = readXPlanGml( version, "xplan50/BP2070.gml", schema );
+        FeatureCollection featureCollection = readXPlanGml( version, planResource, schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
         Text text = new Text( "id1", "key1", "basis1", "text1", 4000, "reference1", "geoReference1" );
@@ -251,11 +252,12 @@ public class XPlanManipulatorTest {
     }
 
     @Test
-    public void testModifyXPlan_XPlan50_Referenzen()
+    @Parameters({ "xplan51/BP2070.gml, XPLAN_51", "xplan50/BP2070.gml, XPLAN_50" })
+    public void testModifyXPlan_XPlan50_Referenzen( String planResource, String xplanVersion )
                     throws Exception {
-        XPlanVersion version = XPLAN_50;
+        XPlanVersion version = XPlanVersion.valueOf( xplanVersion );
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, null );
-        FeatureCollection featureCollection = readXPlanGml( version, "xplan50/BP2070.gml", schema );
+        FeatureCollection featureCollection = readXPlanGml( version, planResource, schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
         editedXplan.getReferences().add( new Reference( "ref1", "georef1", GREEN_STRUCTURES_PLAN ) );
@@ -292,11 +294,12 @@ public class XPlanManipulatorTest {
     }
 
     @Test
-    public void testModifyXPlan_XPlan50_RasterReferences()
+    @Parameters({ "xplan51/V4_1_ID_103.gml, XPLAN_51", "xplan50/V4_1_ID_103.gml, XPLAN_50" })
+    public void testModifyXPlan_XPlan50_RasterReferences( String planResource, String xplanVersion )
                     throws Exception {
-        XPlanVersion xPlanVersion = XPLAN_50;
-        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( xPlanVersion, null );
-        FeatureCollection featureCollection = readXPlanGml( xPlanVersion, "xplan50/V4_1_ID_103.gml", schema );
+        XPlanVersion version = XPlanVersion.valueOf( xplanVersion );
+        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, null );
+        FeatureCollection featureCollection = readXPlanGml( version, planResource, schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
         RasterReference rasterBasisReference = new RasterReference( "ref1", "georef1", SCAN );
@@ -305,21 +308,21 @@ public class XPlanManipulatorTest {
         rasterBasis.addRasterReference( rasterBasisReference );
         editedXplan.setRasterBasis( rasterBasis );
 
-       planManipulator.modifyXPlan( featureCollection, editedXplan, xPlanVersion, BP_Plan, schema );
+        planManipulator.modifyXPlan( featureCollection, editedXplan, version, BP_Plan, schema );
 
-        assertThat( featureCollection, hasPropertyCount( xPlanVersion, "BP_Bereich", "rasterBasis", 1 ) );
-        assertThat( featureCollection, hasPropertyCount( xPlanVersion, "XP_Rasterdarstellung", "refScan", 1 ) );
+        assertThat( featureCollection, hasPropertyCount( version, "BP_Bereich", "rasterBasis", 1 ) );
+        assertThat( featureCollection, hasPropertyCount( version, "XP_Rasterdarstellung", "refScan", 1 ) );
 
-        String exportedPlan = exportPlan( featureCollection, xPlanVersion );
+        String exportedPlan = exportPlan( featureCollection, version );
 
         assertThat( the( exportedPlan ),
                     hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:referenzName",
-                              nsContext( xPlanVersion ), is( "B-Plan_Klingmuehl_Heideweg_Karte" ) ) );
+                              nsContext( version ), is( "B-Plan_Klingmuehl_Heideweg_Karte" ) ) );
         assertThat( the( exportedPlan ),
                     hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:georefURL",
-                              nsContext( xPlanVersion ), is( rasterBasisReference.getGeoReference() ) ) );
+                              nsContext( version ), is( rasterBasisReference.getGeoReference() ) ) );
 
-        assertThatPlanIsSchemaValid( exportedPlan, xPlanVersion );
+        assertThatPlanIsSchemaValid( exportedPlan, version );
     }
 
     @Test

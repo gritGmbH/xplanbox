@@ -22,7 +22,7 @@ Datenstruktur)
 * XPlanSynWFS: Standard-Daten-Dienst für die Auskunft (vereinfachte
 Datenstruktur)
 
-Aktuell werden die Versionen 2.0, 3.0, 4.0, 4.1 und 5.0 durch die xPlanBox unterstützt.
+Aktuell werden die Versionen 2.0, 3.0, 4.0, 4.1, 5.0 und 5.1 durch die xPlanBox unterstützt.
 
 Die Komponenten der xPlanBox werden in diesem Benutzerhandbuch im
 Einzelnen erläutert.

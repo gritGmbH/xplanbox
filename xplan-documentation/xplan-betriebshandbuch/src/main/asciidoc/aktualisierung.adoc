@@ -68,12 +68,13 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 [cols="3*^", options="header,footer"]
 |====================================
 | xPlanBox Version | Änderungen an den Workspaces/ der Konfiguration? | Änderungen am Datenbankschema?
-| 2.0              | ja                                               | ja
-| 2.2              |                                                  | ja
-| 2.4              | ja                                               |
-| 2.7              | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>)
-| 2.8              |                                                  | ja
-| 2.9              | ja (<<aktualisierung-auf-die-version-2.9-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.9-der-xplanbox, Details>>)
+| 2.0              | ja                                                                 | ja
+| 2.2              |                                                                    | ja
+| 2.4              | ja                                                                 |
+| 2.7              | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>)
+| 2.8              |                                                                    | ja
+| 2.9              | ja (<<aktualisierung-auf-die-version-2.9-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-2.9-der-xplanbox, Details>>)
+| 2.10             | ja (<<aktualisierung-auf-die-version-2.10-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.10-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -244,3 +245,16 @@ Mit der Version 2.9 der xPlanBox können auch Pläne der der XPlanGML Version 5.
  *** _fix/xplan50/create.sql_
  *** _pre/xplan50/create.sql_
  *** _archive/xplan50/create.sql_
+
+[[aktualisierung-auf-die-version-2.10-der-xplanbox]]
+=== Aktualisierung auf die Version 2.10 der xPlanBox
+
+Mit der Version 2.10 der xPlanBox können auch Pläne der der XPlanGML Version 5.1 verwaltet werden. Für die Aktualisierung auf diese Version sind folgende Schritte auszuführen:
+
+ * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+ * Aktualisierung der Datenbank:
+ ** Ausführen der Skripte im Verzeichnis _from_2.9_to_2.10_ im Modul xplan-update-database
+ ** Ausführen der Skripte für die Erstelllung der Datenhaltung für 5.1 aus dem Modul _xplan-manager-workspace_:
+ *** _fix/xplan51/create.sql_
+ *** _pre/xplan51/create.sql_
+ *** _archive/xplan51/create.sql_
