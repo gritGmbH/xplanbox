@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-1">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-1">
         <createTable tableName="xplan_bp_nichtueberbaubaregrundstuecksflaeche">
             <column name="attr_gml_id" type="TEXT">
                 <constraints primaryKey="true" primaryKeyName="xplan_bp_nichtueberbaubaregrundstuecksflaeche_pkey"/>
@@ -45,7 +45,7 @@
             <column name="xplan_position" type="&quot;PUBLIC&quot;.&quot;GEOMETRY&quot;"/>
         </createTable>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-2">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-2">
         <createTable tableName="xplan_fp_landwirtschaft">
             <column name="attr_gml_id" type="TEXT">
                 <constraints primaryKey="true" primaryKeyName="xplan_fp_landwirtschaft_pkey"/>
@@ -96,1097 +96,1097 @@
             <column name="xplan_position" type="&quot;PUBLIC&quot;.&quot;GEOMETRY&quot;"/>
         </createTable>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-3">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-3">
         <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
             <column name="xplan_gesetzlichegrundlagecode" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-4">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-4">
         <addColumn tableName="xplan_bp_technischemassnahmenflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-5">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-5">
         <addColumn tableName="xplan_lp_schutzobjektlandesrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-6">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-6">
         <addColumn tableName="xplan_rp_einzelhandel">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-7">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-7">
         <addColumn tableName="xplan_rp_erholung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-8">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-8">
         <addColumn tableName="xplan_rp_erneuerbareenergie">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-9">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-9">
         <addColumn tableName="xplan_rp_freiraum">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-10">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-10">
         <addColumn tableName="xplan_rp_funktionszuweisung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-11">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-11">
         <addColumn tableName="xplan_rp_industriegewerbe">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-12">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-12">
         <addColumn tableName="xplan_rp_kulturlandschaft">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-13">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-13">
         <addColumn tableName="xplan_rp_laermschutzbauschutz">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-14">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-14">
         <addColumn tableName="xplan_rp_luftverkehr">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-15">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-15">
         <addColumn tableName="xplan_rp_planungsraum">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-16">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-16">
         <addColumn tableName="xplan_rp_radwegwanderweg">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-17">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-17">
         <addColumn tableName="xplan_rp_rohstoff">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-18">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-18">
         <addColumn tableName="xplan_rp_schienenverkehr">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-19">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-19">
         <addColumn tableName="xplan_rp_siedlung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-20">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-20">
         <addColumn tableName="xplan_rp_sonstigersiedlungsbereich">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-21">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-21">
         <addColumn tableName="xplan_rp_sonstverkehr">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-22">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-22">
         <addColumn tableName="xplan_rp_sportanlage">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-23">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-23">
         <addColumn tableName="xplan_rp_strassenverkehr">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-24">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-24">
         <addColumn tableName="xplan_rp_wasserverkehr">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-25">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-25">
         <addColumn tableName="xplan_bp_abstandsmass">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-26">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-26">
         <addColumn tableName="xplan_bp_eingriffsbereich">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-27">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-27">
         <addColumn tableName="xplan_bp_festsetzungnachlandesrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-28">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-28">
         <addColumn tableName="xplan_bp_gemeinschaftsanlagenzuordnung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-29">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-29">
         <addColumn tableName="xplan_bp_hoehenmass">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-30">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-30">
         <addColumn tableName="xplan_bp_kleintierhaltungflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-31">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-31">
         <addColumn tableName="xplan_bp_landwirtschaft">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-32">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-32">
         <addColumn tableName="xplan_bp_regelungvergnuegungsstaetten">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-33">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-33">
         <addColumn tableName="xplan_bp_veraenderungssperre">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-34">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-34">
         <addColumn tableName="xplan_fp_wasserwirtschaft">
             <column name="xplan_startbedingung" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-35">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-35">
         <addColumn tableName="xplan_so_bodenschutzrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-36">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-36">
         <addColumn tableName="xplan_so_denkmalschutzrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-37">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-37">
         <addColumn tableName="xplan_so_forstrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-38">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-38">
         <addColumn tableName="xplan_so_gebiet">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-39">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-39">
         <addColumn tableName="xplan_so_grenze">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-40">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-40">
         <addColumn tableName="xplan_so_linienobjekt">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-41">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-41">
         <addColumn tableName="xplan_so_luftverkehrsrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-42">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-42">
         <addColumn tableName="xplan_so_objekt">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-43">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-43">
         <addColumn tableName="xplan_so_schienenverkehrsrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-44">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-44">
         <addColumn tableName="xplan_so_schutzgebietnaturschutzrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-45">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-45">
         <addColumn tableName="xplan_so_schutzgebietsonstigesrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-46">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-46">
         <addColumn tableName="xplan_so_schutzgebietwasserrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-47">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-47">
         <addColumn tableName="xplan_so_sonstigesrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-48">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-48">
         <addColumn tableName="xplan_so_strassenverkehrsrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-49">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-49">
         <addColumn tableName="xplan_so_wasserrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-50">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-50">
         <addColumn tableName="xplan_fp_wasserwirtschaft">
             <column name="xplan_endebedingung" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-51">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-51">
         <addColumn tableName="xplan_fp_abgrabung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-52">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-52">
         <addColumn tableName="xplan_fp_anpassungklimawandel">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-53">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-53">
         <addColumn tableName="xplan_fp_aufschuettung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-54">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-54">
         <addColumn tableName="xplan_fp_aufschuettungsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-55">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-55">
         <addColumn tableName="xplan_fp_ausgleichsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-56">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-56">
         <addColumn tableName="xplan_fp_bebauungsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-57">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-57">
         <addColumn tableName="xplan_fp_bodenschaetze">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-58">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-58">
         <addColumn tableName="xplan_fp_gemeinbedarf">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-59">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-59">
         <addColumn tableName="xplan_fp_generischesobjekt">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-60">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-60">
         <addColumn tableName="xplan_fp_gewaesser">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-61">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-61">
         <addColumn tableName="xplan_fp_gruen">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-62">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-62">
         <addColumn tableName="xplan_fp_keinezentrabwasserbeseitigungflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-63">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-63">
         <addColumn tableName="xplan_fp_kennzeichnung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-64">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-64">
         <addColumn tableName="xplan_fp_landwirtschaftsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-65">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-65">
         <addColumn tableName="xplan_fp_nutzungsbeschraenkungsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-66">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-66">
         <addColumn tableName="xplan_fp_privilegiertesvorhaben">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-67">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-67">
         <addColumn tableName="xplan_fp_schutzpflegeentwicklung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-68">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-68">
         <addColumn tableName="xplan_fp_spielsportanlage">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-69">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-69">
         <addColumn tableName="xplan_fp_strassenverkehr">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-70">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-70">
         <addColumn tableName="xplan_fp_textlichedarstellungsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-71">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-71">
         <addColumn tableName="xplan_fp_unverbindlichevormerkung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-72">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-72">
         <addColumn tableName="xplan_fp_verentsorgung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-73">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-73">
         <addColumn tableName="xplan_fp_vorbehalteflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-74">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-74">
         <addColumn tableName="xplan_fp_waldflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-75">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-75">
         <addColumn tableName="xplan_fp_wasserwirtschaft">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-76">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-76">
         <addColumn tableName="xplan_fp_zentralerversorgungsbereich">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-77">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-77">
         <addColumn tableName="xplan_lp_abgrenzung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-78">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-78">
         <addColumn tableName="xplan_lp_allggruenflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-79">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-79">
         <addColumn tableName="xplan_lp_anpflanzungbindungerhaltung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-80">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-80">
         <addColumn tableName="xplan_lp_ausgleich">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-81">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-81">
         <addColumn tableName="xplan_lp_biotopverbundflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-82">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-82">
         <addColumn tableName="xplan_lp_bodenschutzrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-83">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-83">
         <addColumn tableName="xplan_lp_erholungfreizeit">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-84">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-84">
         <addColumn tableName="xplan_lp_forstrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-85">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-85">
         <addColumn tableName="xplan_lp_generischesobjekt">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-86">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-86">
         <addColumn tableName="xplan_lp_landschaftsbild">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-87">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-87">
         <addColumn tableName="xplan_lp_nutzungsausschluss">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-88">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-88">
         <addColumn tableName="xplan_lp_nutzungserfordernisregelung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-89">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-89">
         <addColumn tableName="xplan_lp_planerischevertiefung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-90">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-90">
         <addColumn tableName="xplan_lp_schutzobjektinternatrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-91">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-91">
         <addColumn tableName="xplan_lp_schutzpflegeentwicklung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-92">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-92">
         <addColumn tableName="xplan_lp_sonstigesrecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-93">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-93">
         <addColumn tableName="xplan_lp_textlichefestsetzungsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-94">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-94">
         <addColumn tableName="xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-95">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-95">
         <addColumn tableName="xplan_lp_wasserrechtschutzgebiet">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-96">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-96">
         <addColumn tableName="xplan_lp_wasserrechtsonstige">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-97">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-97">
         <addColumn tableName="xplan_lp_wasserrechtwirtschaftabflusshochwschutz">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-98">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-98">
         <addColumn tableName="xplan_lp_zubegruenendegrundstueckflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-99">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-99">
         <addColumn tableName="xplan_lp_zwischennutzung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-100">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-100">
         <addColumn tableName="xplan_rp_achse">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-101">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-101">
         <addColumn tableName="xplan_rp_bodenschutz">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-102">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-102">
         <addColumn tableName="xplan_rp_energieversorgung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-103">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-103">
         <addColumn tableName="xplan_rp_entsorgung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-104">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-104">
         <addColumn tableName="xplan_rp_forstwirtschaft">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-105">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-105">
         <addColumn tableName="xplan_rp_generischesobjekt">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-106">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-106">
         <addColumn tableName="xplan_rp_gewaesser">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-107">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-107">
         <addColumn tableName="xplan_rp_grenze">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-108">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-108">
         <addColumn tableName="xplan_rp_gruenzuggruenzaesur">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-109">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-109">
         <addColumn tableName="xplan_rp_klimaschutz">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-110">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-110">
         <addColumn tableName="xplan_rp_kommunikation">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-111">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-111">
         <addColumn tableName="xplan_rp_landwirtschaft">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-112">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-112">
         <addColumn tableName="xplan_rp_naturlandschaft">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-113">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-113">
         <addColumn tableName="xplan_rp_naturschutzrechtlichesschutzgebiet">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-114">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-114">
         <addColumn tableName="xplan_rp_raumkategorie">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-115">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-115">
         <addColumn tableName="xplan_rp_sonstigeinfrastruktur">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-116">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-116">
         <addColumn tableName="xplan_rp_sozialeinfrastruktur">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-117">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-117">
         <addColumn tableName="xplan_rp_sperrgebiet">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-118">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-118">
         <addColumn tableName="xplan_rp_verkehr">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-119">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-119">
         <addColumn tableName="xplan_rp_wasserschutz">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-120">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-120">
         <addColumn tableName="xplan_rp_wasserwirtschaft">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-121">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-121">
         <addColumn tableName="xplan_rp_zentralerort">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-122">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-122">
         <addColumn tableName="xplan_rp_hochwasserschutz">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-123">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-123">
         <addColumn tableName="xplan_rp_sonstigerfreiraumschutz">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-124">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-124">
         <addColumn tableName="xplan_rp_wohnensiedlung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-125">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-125">
         <addColumn tableName="xplan_bp_gemeinschaftsanlagenzuordnung">
             <column name="xplan_gehoertzubereich" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-126">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-126">
         <addColumn tableName="xplan_bp_abgrabungsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-127">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-127">
         <addColumn tableName="xplan_bp_abstandsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-128">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-128">
         <addColumn tableName="xplan_bp_anpflanzungbindungerhaltung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-129">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-129">
         <addColumn tableName="xplan_bp_aufschuettungsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-130">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-130">
         <addColumn tableName="xplan_bp_ausgleichsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-131">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-131">
         <addColumn tableName="xplan_bp_ausgleichsmassnahme">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-132">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-132">
         <addColumn tableName="xplan_bp_baugebietsteilflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-133">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-133">
         <addColumn tableName="xplan_bp_baugrenze">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-134">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-134">
         <addColumn tableName="xplan_bp_baulinie">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-135">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-135">
         <addColumn tableName="xplan_bp_bereichohneeinausfahrtlinie">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-136">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-136">
         <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-137">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-137">
         <addColumn tableName="xplan_bp_bodenschaetzeflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-138">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-138">
         <addColumn tableName="xplan_bp_einfahrtpunkt">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-139">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-139">
         <addColumn tableName="xplan_bp_einfahrtsbereichlinie">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-140">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-140">
         <addColumn tableName="xplan_bp_erhaltungsbereichflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-141">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-141">
         <addColumn tableName="xplan_bp_firstrichtungslinie">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-142">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-142">
         <addColumn tableName="xplan_bp_foerderungsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-143">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-143">
         <addColumn tableName="xplan_bp_freiflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-144">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-144">
         <addColumn tableName="xplan_bp_gebaeudeflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-145">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-145">
         <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-146">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-146">
         <addColumn tableName="xplan_bp_gemeinschaftsanlagenflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-147">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-147">
         <addColumn tableName="xplan_bp_generischesobjekt">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-148">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-148">
         <addColumn tableName="xplan_bp_gewaesserflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-149">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-149">
         <addColumn tableName="xplan_bp_gruenflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-150">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-150">
         <addColumn tableName="xplan_bp_immissionsschutz">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-151">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-151">
         <addColumn tableName="xplan_bp_kennzeichnungsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-152">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-152">
         <addColumn tableName="xplan_bp_nebenanlagenausschlussflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-153">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-153">
         <addColumn tableName="xplan_bp_nebenanlagenflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-154">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-154">
         <addColumn tableName="xplan_bp_nutzungsartengrenze">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-155">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-155">
         <addColumn tableName="xplan_bp_persgruppenbestimmteflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-156">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-156">
         <addColumn tableName="xplan_bp_rekultivierungsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-157">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-157">
         <addColumn tableName="xplan_bp_schutzpflegeentwicklungsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-158">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-158">
         <addColumn tableName="xplan_bp_schutzpflegeentwicklungsmassnahme">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-159">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-159">
         <addColumn tableName="xplan_bp_speziellebauweise">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-160">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-160">
         <addColumn tableName="xplan_bp_spielsportanlagenflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-161">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-161">
         <addColumn tableName="xplan_bp_strassenbegrenzungslinie">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-162">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-162">
         <addColumn tableName="xplan_bp_strassenkoerper">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-163">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-163">
         <addColumn tableName="xplan_bp_strassenverkehrsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-164">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-164">
         <addColumn tableName="xplan_bp_textlichefestsetzungsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-165">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-165">
         <addColumn tableName="xplan_bp_ueberbaubaregrundstuecksflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-166">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-166">
         <addColumn tableName="xplan_bp_unverbindlichevormerkung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-167">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-167">
         <addColumn tableName="xplan_bp_verentsorgung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-168">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-168">
         <addColumn tableName="xplan_bp_verkehrsflaechebesondererzweckbestimmung">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-169">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-169">
         <addColumn tableName="xplan_bp_waldflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-170">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-170">
         <addColumn tableName="xplan_bp_wasserwirtschaftsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-171">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-171">
         <addColumn tableName="xplan_bp_wegerecht">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-172">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-172">
         <addColumn tableName="xplan_so_plan">
             <column name="xplan_technischerplanersteller" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-173">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-173">
         <addColumn tableName="xplan_so_plan">
             <column name="xplan_gemeinde" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-174">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-174">
         <addColumn tableName="xplan_so_plan">
             <column name="xplan_planaufstellendegemeinde" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-175">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-175">
         <addColumn tableName="xplan_fp_aufschuettung">
             <column name="xplan_aufschuettungsmaterial" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-176">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-176">
         <addColumn tableName="xplan_lp_anpflanzungbindungerhaltung">
             <column name="xplan_mindesthoeheuom" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-177">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-177">
         <addColumn tableName="xplan_lp_anpflanzungbindungerhaltung">
             <column name="xplan_anzahl" type="int4"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-178">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-178">
         <addColumn tableName="xplan_rp_rohstoff">
             <column name="xplan_detaillierterrohstofftyp" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-179">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-179">
         <addColumn tableName="xplan_lp_plan">
             <column name="xplan_technischerplanersteller" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-180">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-180">
         <addColumn tableName="xplan_bp_speziellebauweise">
             <column name="xplan_wegerecht" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-181">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-181">
         <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
             <column name="xplan_externereferenz" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-182">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-182">
         <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
             <column name="xplan_wirddargestelltdurch" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-183">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-183">
         <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
             <column name="xplan_refbegruendunginhalt" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-184">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-184">
         <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
             <column name="xplan_startbedingung" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-185">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-185">
         <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
             <column name="xplan_endebedingung" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-186">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-186">
         <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
             <column name="xplan_aufschrift" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-187">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-187">
         <addColumn tableName="xplan_bp_wegerecht">
             <column name="xplan_istschmal" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-188">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-188">
         <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
             <column name="xplan_rechtscharakter" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-189">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-189">
         <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
             <column name="xplan_rechtscharaktercode" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-190">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-190">
         <addColumn tableName="xplan_fp_plan">
             <column name="xplan_technischerplanersteller" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-191">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-191">
         <addColumn tableName="xplan_fp_plan">
             <column name="xplan_planaufstellendegemeinde" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-192">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-192">
         <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
             <column name="xplan_reftextinhalt" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-193">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-193">
         <addColumn tableName="xplan_rp_plan">
             <column name="xplan_technischerplanersteller" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-194">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-194">
         <addColumn tableName="xplan_rp_plan">
             <column name="xplan_genehmigungsbehoerde" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-195">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-195">
         <addColumn tableName="xplan_fp_plan">
             <column name="xplan_versionbaunvodatum" type="date"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-196">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-196">
         <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
             <column name="xplan_wirdausgeglichendurchabe" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-197">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-197">
         <addColumn tableName="xplan_bp_anpflanzungbindungerhaltung">
             <column name="xplan_mindesthoehe" type="numeric(131089)"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-198">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-198">
         <addColumn tableName="xplan_fp_plan">
             <column name="xplan_versionbaunvotext" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-199">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-199">
         <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
             <column name="xplan_wirdausgeglichendurchspemassnahme" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-200">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-200">
         <addColumn tableName="xplan_bp_anpflanzungbindungerhaltung">
             <column name="xplan_mindesthoeheuom" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-201">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-201">
         <addColumn tableName="xplan_fp_plan">
             <column name="xplan_versionbaugbdatum" type="date"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-202">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-202">
         <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
             <column name="xplan_wirdausgeglichendurchspeflaeche" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-203">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-203">
         <addColumn tableName="xplan_bp_anpflanzungbindungerhaltung">
             <column name="xplan_anzahl" type="int4"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-204">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-204">
         <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
             <column name="xplan_flussrichtung" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-205">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-205">
         <addColumn tableName="xplan_fp_plan">
             <column name="xplan_versionbaugbtext" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-206">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-206">
         <addColumn tableName="xplan_fp_plan">
             <column name="xplan_versionsonstrechtsgrundlagedatum" type="date"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-207">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-207">
         <addColumn tableName="xplan_fp_plan">
             <column name="xplan_versionsonstrechtsgrundlagetext" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-208">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-208">
         <addColumn tableName="xplan_bp_plan">
             <column name="xplan_technischerplanersteller" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-209">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-209">
         <addColumn tableName="xplan_bp_plan">
             <column name="xplan_planaufstellendegemeinde" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-210">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-210">
         <addColumn tableName="xplan_bp_plan">
             <column name="xplan_versionbaunvodatum" type="date"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-211">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-211">
         <addColumn tableName="xplan_bp_plan">
             <column name="xplan_versionbaunvotext" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-212">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-212">
         <addColumn tableName="xplan_bp_plan">
             <column name="xplan_versionbaugbdatum" type="date"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-213">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-213">
         <addColumn tableName="xplan_bp_plan">
             <column name="xplan_versionbaugbtext" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-214">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-214">
         <addColumn tableName="xplan_bp_plan">
             <column name="xplan_versionsonstrechtsgrundlagedatum" type="date"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-215">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-215">
         <addColumn tableName="xplan_bp_plan">
             <column name="xplan_versionsonstrechtsgrundlagetext" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-216">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-216">
         <addColumn tableName="xplan_bp_verkehrsflaechebesondererzweckbestimmung">
             <column name="xplan_zugunstenvon" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-217">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-217">
         <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
             <column name="xplan_dachgestaltung" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-218">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-218">
         <addColumn tableName="xplan_bp_ueberbaubaregrundstuecksflaeche">
             <column name="xplan_dachgestaltung" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-219">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-219">
         <addColumn tableName="xplan_bp_baugebietsteilflaeche">
             <column name="xplan_dachgestaltung" type="text"/>
         </addColumn>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-220">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-220">
         <createIndex indexName="spatial_idx_491" tableName="xplan_bp_nichtueberbaubaregrundstuecksflaeche">
             <column name="xplan_position"/>
         </createIndex>
     </changeSet>
-    <changeSet author="lgvxplanisk (generated)" id="1543832088203-221">
+    <changeSet author="lgvxplanisk (generated)" id="1543833329759-221">
         <createIndex indexName="spatial_idx_492" tableName="xplan_fp_landwirtschaft">
             <column name="xplan_position"/>
         </createIndex>
