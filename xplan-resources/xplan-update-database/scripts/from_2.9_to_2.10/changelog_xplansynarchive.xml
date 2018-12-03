@@ -42,7 +42,7 @@
             <column name="xplan_wirdausgeglichendurchspeflaeche" type="TEXT"/>
             <column name="xplan_wirdausgeglichendurchmassnahme" type="TEXT"/>
             <column name="xplan_flaechenschluss" type="TEXT"/>
-            <column name="xplan_position" type="&quot;PUBLIC&quot;.&quot;GEOMETRY&quot;"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1543833635148-2">
@@ -93,7 +93,7 @@
             <column name="xplan_zweckbestimmungcode" type="TEXT"/>
             <column name="xplan_detailliertezweckbestimmung" type="TEXT"/>
             <column name="xplan_detailliertezweckbestimmungcode" type="TEXT"/>
-            <column name="xplan_position" type="&quot;PUBLIC&quot;.&quot;GEOMETRY&quot;"/>
+            <column name="xplan_position" type="GEOMETRY"/>
         </createTable>
     </changeSet>
     <changeSet author="lgvxplanisk (generated)" id="1543833635148-3">
