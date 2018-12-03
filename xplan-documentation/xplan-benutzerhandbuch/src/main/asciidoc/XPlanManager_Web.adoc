@@ -82,9 +82,8 @@ Benutzer keine Rechte, so wird der Button grau dargestellt.
 ===== Editieren
 
 Abhängig von den Benutzerrechten können Pläne editiert werden. Fehlen dem Benutzer
-die entsprechenden Rechte ist die Funktion deaktiviert und der Button __Editieren__ wird grau dargestellt. Die Editier-Funktion
-ist beschränkt auf BPläne in den XPlanGML Versionen 3.0, 4.1, 5.0 und 5.1. Die Editieransicht öffnet sich durch den Klick auf den
-Button __Editieren__. Die Ansicht ist in verschiedene Bereiche
+die entsprechenden Rechte ist die Funktion deaktiviert und der Button __Editieren__ wird grau dargestellt. 
+Die Editieransicht öffnet sich durch den Klick auf den Button __Editieren__. Die Ansicht ist in verschiedene Bereiche
 aufgeteilt, die insgesamt die Bearbeitung folgender Elemente zulässt:
 
 *Basisdaten*
@@ -169,4 +168,4 @@ Abhängig von den Benutzerrechten können Pläne im Datenthema INSPIRE Planned L
 
 Durch Klick auf den Button __Bereitstellung als INSPIRE Datensatz__ wird der Plan in das INSPIRE PLU Datenschema überführt und in den INSPIRE konformen Download Service importiert. Anschließend kann der transformierte Plan über den INSPIRE Download Service (XPlanInspirePluWFS) und INSPIRE View Service (XPlanInspirePluWMS) abgerufen werden.
 
-NOTE: Die Bereitstellung als INSPIRE PLU Datensatz steht nur für BPläne in den XPlanGML Versionen 3.0, 4.1, 5.0 und 5.1 zur Verfügung.
+NOTE: Die Bereitstellung als INSPIRE PLU Datensatz steht nur für BPläne in den XPlanGML Versionen 4.1, 5.0 und 5.1 zur Verfügung.
