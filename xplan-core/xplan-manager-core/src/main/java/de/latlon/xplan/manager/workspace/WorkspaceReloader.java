@@ -75,6 +75,8 @@ public class WorkspaceReloader {
     }
 
     private String retrieveWorkspaceReloadUrl( String url ) {
+        if ( url.contains( "config/restart" ) )
+            return url;
         if ( !url.endsWith( "/" ) )
             url = url.concat( "/" );
         return url.concat( "config/restart" );
