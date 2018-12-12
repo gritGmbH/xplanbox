@@ -88,8 +88,12 @@ public class ExternalReferenceUtilsTest {
                     throws Exception {
         XPlanToEdit planToEdit = new XPlanToEdit();
         RasterBasis rasterBasis = new RasterBasis();
-        rasterBasis.addRasterReference( new RasterReference( "G.tif", null, LEGEND ) );
-        rasterBasis.addRasterReference( new RasterReference( "A.tif", null, SCAN ) );
+        RasterReference rasterReference1 = new RasterReference( "G.tif", null, LEGEND, null, null, null, null, null,
+                                                                null, null );
+        RasterReference rasterReference2 = new RasterReference( "A.tif", null, SCAN, null, null, null, null, null, null,
+                                                                null );
+        rasterBasis.addRasterReference( rasterReference1 );
+        rasterBasis.addRasterReference( rasterReference2 );
         planToEdit.setRasterBasis( rasterBasis );
 
         List<File> uploadedArtefacts = createUploadedFileList( "A.tif", "B.jpg", "C.png" );

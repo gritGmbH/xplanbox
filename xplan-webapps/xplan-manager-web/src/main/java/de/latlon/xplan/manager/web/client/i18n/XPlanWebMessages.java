@@ -338,6 +338,20 @@ public interface XPlanWebMessages extends Messages {
 
     String editCaptionRasterBasisType();
 
+    String editCaptionRasterBasisGeorefMimeType();
+
+    String editCaptionRasterBasisArt();
+
+    String  editCaptionRasterBasisInformationssystemURL();
+
+    String editCaptionRasterBasisReferenzName();
+
+    String editCaptionRasterBasisReferenzMimeType();
+
+    String editCaptionRasterBasisBeschreibung();
+
+    String editCaptionRasterBasisDatum();
+
     String editCaptionRasterBasisInvalid();
 
     String editCaptionNewRasterBasis();

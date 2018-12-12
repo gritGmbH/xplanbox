@@ -35,14 +35,13 @@
 ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.client.gui.editor.codelist;
 
-import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
-import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
+import com.google.gwt.core.client.GWT;
+import de.latlon.xplan.manager.web.client.i18n.CodelistMessages;
+import de.latlon.xplan.manager.web.shared.edit.ChangeType;
+import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
+import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
+import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
+import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,12 +49,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gwt.core.client.GWT;
-
-import de.latlon.xplan.manager.web.client.i18n.CodelistMessages;
-import de.latlon.xplan.manager.web.shared.edit.ChangeType;
-import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
-import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
+import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
+import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
+import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.DOKUMENT;
+import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.PLANMITGEOREFERENZ;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
 
 /**
  * Provides access to type code (mapping between code and value)
@@ -110,6 +113,8 @@ public class TypeCodelistProvider {
         addChangeType( typeCode );
         addReferenceType( typeCode );
         addRasterReferenceType( typeCode );
+        addExterneReferenzArtType( typeCode );
+        addMimeTypesType( typeCode );
         return typeCode;
     }
 
@@ -134,6 +139,21 @@ public class TypeCodelistProvider {
         codes.add( new Code( SCAN.name(), MESSAGES.RasterReferenceType_SCAN() ) );
         codes.add( new Code( TEXT.name(), MESSAGES.RasterReferenceType_TEXT() ) );
         typeCode.put( RasterReferenceType.class, codes );
+    }
+
+    private static void addMimeTypesType( HashMap<Class<?>, List<Code>> typeCode ) {
+        List<Code> codes = new ArrayList<Code>();
+        for ( MimeTypes mimeTypeType : MimeTypes.values() ) {
+            codes.add( new Code( mimeTypeType.name(), mimeTypeType.getCode() ) );
+        }
+        typeCode.put( MimeTypes.class, codes );
+    }
+
+    private static void addExterneReferenzArtType( HashMap<Class<?>, List<Code>> typeCode ) {
+        List<Code> codes = new ArrayList<Code>();
+        codes.add( new Code( DOKUMENT.name(), MESSAGES.XP_ExterneReferenzArt_Dokument() ) );
+        codes.add( new Code( PLANMITGEOREFERENZ.name(), MESSAGES.XP_ExterneReferenzArt_PlanMitGeoreferenz() ) );
+        typeCode.put( ExterneReferenzArt.class, codes );
     }
 
 }

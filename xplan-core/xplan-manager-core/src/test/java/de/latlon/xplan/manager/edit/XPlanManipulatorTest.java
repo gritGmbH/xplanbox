@@ -305,7 +305,8 @@ public class XPlanManipulatorTest {
         FeatureCollection featureCollection = readXPlanGml( version, planResource, schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
-        RasterReference rasterBasisReference = new RasterReference( "ref1", "georef1", SCAN );
+        RasterReference rasterBasisReference = new RasterReference( "ref1", "georef1", SCAN, null, null, null, null,
+                                                                    null, null, null );
 
         RasterBasis rasterBasis = new RasterBasis( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6" );
         rasterBasis.addRasterReference( rasterBasisReference );
@@ -362,8 +363,10 @@ public class XPlanManipulatorTest {
         FeatureCollection featureCollection = readXPlanGml( xPlanVersion, "xplan50/BP2070.gml", schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
-        RasterReference scan = new RasterReference( "scanRef", "scanGeoRef", SCAN );
-        RasterReference legend = new RasterReference( "legendRef", null, LEGEND );
+        RasterReference scan = new RasterReference( "scanRef", "scanGeoRef", SCAN, null, null, null, null, null, null,
+                                                    null );
+        RasterReference legend = new RasterReference( "legendRef", null, LEGEND, null, null, null, null, null, null,
+                                                      null );
 
         RasterBasis rasterBasis = new RasterBasis();
         rasterBasis.addRasterReference( scan );
@@ -399,7 +402,8 @@ public class XPlanManipulatorTest {
         FeatureCollection featureCollection = readXPlanGml( xPlanVersion, "V4_1_ID_103.gml", schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
-        RasterReference rasterBasisReference = new RasterReference( "ref1", "georef1", SCAN );
+        RasterReference rasterBasisReference = new RasterReference( "ref1", "georef1", SCAN, null, null, null, null,
+                                                                    null, null, null );
 
         RasterBasis rasterBasis = new RasterBasis( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6" );
         rasterBasis.addRasterReference( rasterBasisReference );
@@ -677,7 +681,8 @@ public class XPlanManipulatorTest {
 
         XPlanToEdit editedXplan = createSimpleXPlan();
         RasterReference rasterReference = new RasterReference( "GML_1D000019-0DE0-4667-A19C-6EC6ABDF000B", "ref1",
-                                                               "georef1", SCAN );
+                                                               "georef1", SCAN, null, null, null, null, null, null,
+                                                               null );
         RasterBasis rasterBasis = new RasterBasis( "GML_F042504B-0875-4470-A25D-DAFD0595E8FD" );
         rasterBasis.addRasterReference( rasterReference );
         editedXplan.setRasterBasis( rasterBasis );

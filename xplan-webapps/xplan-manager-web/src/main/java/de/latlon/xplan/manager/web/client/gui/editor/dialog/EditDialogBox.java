@@ -19,6 +19,8 @@ import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType;
 import de.latlon.xplan.manager.web.client.gui.widget.CodeListBox;
 import de.latlon.xplan.manager.web.client.gui.widget.MandatoryTextBox;
+import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBox;
+import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBoxFormat;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 
 /**
@@ -89,6 +91,12 @@ public abstract class EditDialogBox extends DialogBox {
         textArea.setWidth( DEFAULT_WIDTH );
         textArea.setHeight( "150px" );
         return textArea;
+    }
+
+    protected StrictDateBox createDateInput() {
+        StrictDateBox dateBox = new StrictDateBox( new StrictDateBoxFormat() );
+        dateBox.setWidth( DEFAULT_WIDTH );
+        return dateBox;
     }
 
     protected CodeListBox createMandatoryCodeListInput( EditVersion version, CodelistType codelistType ) {
