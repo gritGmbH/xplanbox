@@ -66,6 +66,8 @@ public class PreserveExistingFileUpload extends VerticalPanel implements Validab
 
     private final FileUpload selectedFile;
 
+    private final Button removeButton;
+
     private final boolean isMandatory;
 
     private final Label existingFile = new Label();
@@ -78,8 +80,9 @@ public class PreserveExistingFileUpload extends VerticalPanel implements Validab
      *            otherwise
      */
     public PreserveExistingFileUpload( String nameOfTheFileUploadField, boolean isMandatory ) {
-        this.selectedFile = createFileUpload( nameOfTheFileUploadField );
         this.isMandatory = isMandatory;
+        this.selectedFile = createFileUpload( nameOfTheFileUploadField );
+        removeButton = createRemoveButton();
         initPanel();
     }
 
@@ -108,18 +111,26 @@ public class PreserveExistingFileUpload extends VerticalPanel implements Validab
         return true;
     }
 
+    /**
+     * @param isEnabled true if enable, false otherwise
+     */
+    public void setEnabled( boolean isEnabled ) {
+        selectedFile.setEnabled( isEnabled );
+        removeButton.setEnabled( isEnabled );
+    }
+
     private void initPanel() {
         HorizontalPanel existingPanel = new HorizontalPanel();
         existingPanel.setSpacing( 10 );
         existingPanel.add( new Label( MESSAGES.editCaptionReferencesCurrentFile() ) );
         existingPanel.add( existingFile );
         if ( !isMandatory )
-            existingPanel.add( createRemoveButton() );
+            existingPanel.add( removeButton );
         add( existingPanel );
         add( selectedFile );
     }
 
-    private Widget createRemoveButton() {
+    private Button createRemoveButton() {
         Button button = new Button();
         button.setTitle( MESSAGES.editCaptionReferencesRemoveFileTooltip() );
         button.setStyleName( "removeButtonColumn" );

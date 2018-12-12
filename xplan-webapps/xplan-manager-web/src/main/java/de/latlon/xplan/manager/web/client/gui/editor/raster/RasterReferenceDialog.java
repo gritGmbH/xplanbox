@@ -35,6 +35,8 @@
 ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.client.gui.editor.raster;
 
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
@@ -109,6 +111,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
         this.georefMimeType = createMimeTypeType( version );
         this.artType = new TypeCodeListBox<ExterneReferenzArt>( ExterneReferenzArt.class, true );
         this.originalRasterReference = rasterReference;
+        addChangeHandler( version );
         initDialog( createFormContent() );
         setRasterReferenceValues();
     }
@@ -155,11 +158,11 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
         layout.setWidget( rowIndex++, 2, reference );
         layout.setWidget( rowIndex, 1, new Label( MESSAGES.editCaptionRasterBasisReferenzMimeType() ) );
         layout.setWidget( rowIndex++, 2, refMimeType );
+        layout.setWidget( rowIndex, 1, new Label( MESSAGES.editCaptionRasterBasisGeoReference() ) );
+        layout.setWidget( rowIndex++, 2, georeference );
+        layout.setWidget( rowIndex, 1, new Label( MESSAGES.editCaptionRasterBasisGeorefMimeType() ) );
+        layout.setWidget( rowIndex++, 2, georefMimeType );
         if ( !XPLAN_3.equals( version ) ) {
-            layout.setWidget( rowIndex, 1, new Label( MESSAGES.editCaptionRasterBasisGeoReference() ) );
-            layout.setWidget( rowIndex++, 2, georeference );
-            layout.setWidget( rowIndex, 1, new Label( MESSAGES.editCaptionRasterBasisGeorefMimeType() ) );
-            layout.setWidget( rowIndex++, 2, georefMimeType );
             layout.setWidget( rowIndex, 1, new Label( MESSAGES.editCaptionRasterBasisArt() ) );
             layout.setWidget( rowIndex++, 2, artType );
         }
@@ -174,6 +177,25 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
             layout.setWidget( rowIndex++, 2, datum );
         }
         return layout;
+    }
+
+    private void addChangeHandler( EditVersion version ) {
+        if ( XPLAN_3.equals( version ) ) {
+            refType.addChangeHandler( new ChangeHandler() {
+                @Override
+                public void onChange( ChangeEvent changeEvent ) {
+                    if ( RasterReferenceType.SCAN.equals( refType.getValueAsEnum() ) ) {
+                        georeference.setEnabled( true );
+                        georefMimeType.setEnabled( true );
+                    } else {
+                        georeference.setEnabled( false );
+                        georefMimeType.setEnabled( false );
+                        georeference.setTitle( MESSAGES.editUnsupportedPropertyRefType() );
+                        georefMimeType.setTitle( MESSAGES.editUnsupportedPropertyRefType() );
+                    }
+                }
+            } );
+        }
     }
 
     private void setRasterReferenceValues() {
@@ -192,9 +214,14 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
     }
 
     private TypeCodeListBox<RasterReferenceType> createRefType( boolean disableSelectionOfText ) {
-        if ( disableSelectionOfText )
-            return new TypeCodeListBox<RasterReferenceType>( RasterReferenceType.class, singletonList( TEXT ) );
-        return new TypeCodeListBox<RasterReferenceType>( RasterReferenceType.class );
+        TypeCodeListBox<RasterReferenceType> codeListBox;
+        if ( disableSelectionOfText ) {
+            codeListBox = new TypeCodeListBox<RasterReferenceType>( RasterReferenceType.class, singletonList( TEXT ) );
+            return codeListBox;
+        }
+        codeListBox = new TypeCodeListBox<RasterReferenceType>( RasterReferenceType.class );
+        codeListBox.selectItem( RasterReferenceType.SCAN );
+        return codeListBox;
     }
 
     private TypeCodeListBox createMimeTypeType( EditVersion version ) {
