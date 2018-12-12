@@ -39,6 +39,8 @@ import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.web.shared.edit.Change;
+import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
+import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
@@ -63,6 +65,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.xmlmatchers.namespace.SimpleNamespaceContext;
 import org.xmlmatchers.validation.SchemaFactory;
+import org.xmlmatchers.xpath.XpathReturnType;
 
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.namespace.QName;
@@ -82,16 +85,21 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
+import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.PLANMITGEOREFERENZ;
+import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.IMAGE_PNG;
+import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.TEXT_HTML;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.xmlmatchers.XmlMatchers.conformsTo;
 import static org.xmlmatchers.XmlMatchers.hasXPath;
 import static org.xmlmatchers.transform.XmlConverters.the;
+import static org.xmlmatchers.xpath.XpathReturnType.returningABoolean;
 import static org.xmlmatchers.xpath.XpathReturnType.returningANumber;
 
 /**
@@ -305,8 +313,10 @@ public class XPlanManipulatorTest {
         FeatureCollection featureCollection = readXPlanGml( version, planResource, schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
-        RasterReference rasterBasisReference = new RasterReference( "ref1", "georef1", SCAN, null, null, null, null,
-                                                                    null, null, null );
+        RasterReference rasterBasisReference = new RasterReference( "ref1", "georef1", SCAN, IMAGE_PNG,
+                                                                    PLANMITGEOREFERENZ, "informationssystemeURL",
+                                                                    "refName", TEXT_HTML, "beschreibung",
+                                                                    asDate( "2018-03-01" ) );
 
         RasterBasis rasterBasis = new RasterBasis( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6" );
         rasterBasis.addRasterReference( rasterBasisReference );
@@ -323,11 +333,32 @@ public class XPlanManipulatorTest {
                     hasXPath( "count(//xp:XP_Rasterdarstellung)", nsContext( version ), returningANumber(),
                               is( 1d ) ) );
         assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:georefURL",
+                              nsContext( version ), is( rasterBasisReference.getGeoReference() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:georefMimeType",
+                              nsContext( version ), is( rasterBasisReference.getGeorefMimeType().getCode() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:art", nsContext( version ),
+                              is( rasterBasisReference.getArt().getCode() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:informationssystemURL",
+                              nsContext( version ), is( rasterBasisReference.getInformationssystemURL() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:referenzName",
+                              nsContext( version ), is( rasterBasisReference.getReferenzName() ) ) );
+        assertThat( the( exportedPlan ),
                     hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:referenzURL",
                               nsContext( version ), is( rasterBasisReference.getReference() ) ) );
         assertThat( the( exportedPlan ),
-                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:georefURL",
-                              nsContext( version ), is( rasterBasisReference.getGeoReference() ) ) );
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:referenzMimeType",
+                              nsContext( version ), is( rasterBasisReference.getReferenzMimeType().getCode() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:beschreibung",
+                              nsContext( version ), is( rasterBasisReference.getBeschreibung() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:datum",
+                              nsContext( version ), is( "2018-03-01" ) ) );
 
         assertThatPlanIsSchemaValid( exportedPlan, version );
     }
@@ -365,8 +396,10 @@ public class XPlanManipulatorTest {
         XPlanToEdit editedXplan = createSimpleXPlan();
         RasterReference scan = new RasterReference( "scanRef", "scanGeoRef", SCAN, null, null, null, null, null, null,
                                                     null );
-        RasterReference legend = new RasterReference( "legendRef", null, LEGEND, null, null, null, null, null, null,
-                                                      null );
+        RasterReference legend = new RasterReference( "legendRef", null, LEGEND, null,
+                                                      PLANMITGEOREFERENZ, "informationssystemeURL",
+                                                      "refName", IMAGE_PNG, "beschreibung",
+                                                      asDate( "2018-03-01" )  );
 
         RasterBasis rasterBasis = new RasterBasis();
         rasterBasis.addRasterReference( scan );
@@ -376,6 +409,8 @@ public class XPlanManipulatorTest {
         planManipulator.modifyXPlan( featureCollection, editedXplan, xPlanVersion, BP_Plan, schema );
 
         String exportedPlan = exportPlan( featureCollection, xPlanVersion );
+        assertThatPlanIsSchemaValid( exportedPlan, xPlanVersion );
+
         assertThat( the( exportedPlan ),
                     hasXPath( "count(//xp:BP_Bereich/xp:rasterBasis)", nsContext( xPlanVersion ), returningANumber(),
                               is( 1d ) ) );
@@ -389,9 +424,29 @@ public class XPlanManipulatorTest {
                     hasXPath( "//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:georefURL",
                               nsContext( xPlanVersion ), is( scan.getGeoReference() ) ) );
         assertThat( the( exportedPlan ),
+                    hasXPath( "exists(//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:georefMimeType)",
+                              nsContext( xPlanVersion ), returningABoolean(), is( false ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:art",
+                              nsContext( xPlanVersion ), is( legend.getArt().getCode() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:informationssystemURL",
+                              nsContext( xPlanVersion ), is( legend.getInformationssystemURL() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:referenzName",
+                              nsContext( xPlanVersion ), is( legend.getReferenzName() ) ) );
+        assertThat( the( exportedPlan ),
                     hasXPath( "//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:referenzURL",
                               nsContext( xPlanVersion ), is( legend.getReference() ) ) );
-        assertThatPlanIsSchemaValid( exportedPlan, xPlanVersion );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:referenzMimeType",
+                              nsContext( xPlanVersion ), is( legend.getReferenzMimeType().getCode() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:beschreibung",
+                              nsContext( xPlanVersion ), is( legend.getBeschreibung() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:datum",
+                              nsContext( xPlanVersion ), is( "2018-03-01" ) ) );
     }
 
     @Test
@@ -681,8 +736,10 @@ public class XPlanManipulatorTest {
 
         XPlanToEdit editedXplan = createSimpleXPlan();
         RasterReference rasterReference = new RasterReference( "GML_1D000019-0DE0-4667-A19C-6EC6ABDF000B", "ref1",
-                                                               "georef1", SCAN, null, null, null, null, null, null,
-                                                               null );
+                                                               "georef1", SCAN, IMAGE_PNG,
+                                                               PLANMITGEOREFERENZ, "informationssystemeURL",
+                                                               "refName", TEXT_HTML, "beschreibung",
+                                                               asDate( "2018-03-01" ) );
         RasterBasis rasterBasis = new RasterBasis( "GML_F042504B-0875-4470-A25D-DAFD0595E8FD" );
         rasterBasis.addRasterReference( rasterReference );
         editedXplan.setRasterBasis( rasterBasis );
@@ -691,6 +748,7 @@ public class XPlanManipulatorTest {
 
         String exportedPlan = exportPlan( featureCollection, xPlanVersion );
 
+        assertThatPlanIsSchemaValid( exportedPlan, xPlanVersion );
         assertThat( the( exportedPlan ),
                     hasXPath( "count(//xp:BP_Bereich/xp:rasterBasis)", nsContext( xPlanVersion ), returningANumber(),
                               is( 1d ) ) );
@@ -710,8 +768,33 @@ public class XPlanManipulatorTest {
         assertThat( the( exportedPlan ),
                     hasXPath( "count(//xp:XP_ExterneReferenzPlan[@gml:id='GML_1D000019-0DE0-4667-A19C-6EC6ABDF000B'])",
                               nsContext( xPlanVersion ), returningANumber(), is( 0d ) ) );
-
-        assertThatPlanIsSchemaValid( exportedPlan, xPlanVersion );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_ExterneReferenzPlan[concat('#', @gml:id ) = //xp:XP_RasterplanBasis[concat('#', @gml:id ) = //xp:BP_Bereich/xp:rasterBasis/@xlink:href]/xp:refScan/@xlink:href]/xp:georefURL",
+                              nsContext( xPlanVersion ), is( rasterReference.getGeoReference() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_ExterneReferenzPlan[concat('#', @gml:id ) = //xp:XP_RasterplanBasis[concat('#', @gml:id ) = //xp:BP_Bereich/xp:rasterBasis/@xlink:href]/xp:refScan/@xlink:href]/xp:georefMimeType",
+                              nsContext( xPlanVersion ), is( rasterReference.getGeorefMimeType().getCode() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "exists(//xp:XP_ExterneReferenzPlan[concat('#', @gml:id ) = //xp:XP_RasterplanBasis[concat('#', @gml:id ) = //xp:BP_Bereich/xp:rasterBasis/@xlink:href]/xp:refScan/@xlink:href]/xp:art)",
+                              nsContext( xPlanVersion ), returningABoolean(), is( false ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_ExterneReferenzPlan[concat('#', @gml:id ) = //xp:XP_RasterplanBasis[concat('#', @gml:id ) = //xp:BP_Bereich/xp:rasterBasis/@xlink:href]/xp:refScan/@xlink:href]/xp:informationssystemURL",
+                              nsContext( xPlanVersion ), is( rasterReference.getInformationssystemURL() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_ExterneReferenzPlan[concat('#', @gml:id ) = //xp:XP_RasterplanBasis[concat('#', @gml:id ) = //xp:BP_Bereich/xp:rasterBasis/@xlink:href]/xp:refScan/@xlink:href]/xp:referenzName",
+                              nsContext( xPlanVersion ), is( rasterReference.getReferenzName() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_ExterneReferenzPlan[concat('#', @gml:id ) = //xp:XP_RasterplanBasis[concat('#', @gml:id ) = //xp:BP_Bereich/xp:rasterBasis/@xlink:href]/xp:refScan/@xlink:href]/xp:referenzURL",
+                              nsContext( xPlanVersion ), is( rasterReference.getReference() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_ExterneReferenzPlan[concat('#', @gml:id ) = //xp:XP_RasterplanBasis[concat('#', @gml:id ) = //xp:BP_Bereich/xp:rasterBasis/@xlink:href]/xp:refScan/@xlink:href]/xp:referenzMimeType",
+                              nsContext( xPlanVersion ), is( rasterReference.getReferenzMimeType().getCode() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "//xp:XP_ExterneReferenzPlan[concat('#', @gml:id ) = //xp:XP_RasterplanBasis[concat('#', @gml:id ) = //xp:BP_Bereich/xp:rasterBasis/@xlink:href]/xp:refScan/@xlink:href]/xp:beschreibung",
+                              nsContext( xPlanVersion ), is( rasterReference.getBeschreibung() ) ) );
+        assertThat( the( exportedPlan ),
+                    hasXPath( "exists(//xp:XP_ExterneReferenzPlan[concat('#', @gml:id ) = //xp:XP_RasterplanBasis[concat('#', @gml:id ) = //xp:BP_Bereich/xp:rasterBasis/@xlink:href]/xp:refScan/@xlink:href]/xp:datum)",
+                              nsContext( xPlanVersion ), returningABoolean(), is( false ) ) );
     }
 
     @Test

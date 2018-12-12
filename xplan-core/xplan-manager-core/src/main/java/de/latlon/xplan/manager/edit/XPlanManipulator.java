@@ -40,6 +40,8 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.ChangeType;
+import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
+import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
@@ -101,8 +103,6 @@ public class XPlanManipulator {
     private static final Logger LOG = LoggerFactory.getLogger( XPlanManipulator.class );
 
     private static final QName XLINK_HREF_ATTRIBUTE = new QName( "http://www.w3.org/1999/xlink", "href" );
-
-    private static final List<String> EXTERNAL_PLAN_PROPERTIES = initExternalPlanProperties();
 
     /**
      * Modifies the {@link FeatureCollection} representing an XPlanGML, by the changes described in {@link XPlanToEdit}.
@@ -490,24 +490,40 @@ public class XPlanManipulator {
             String refGmlid = generateGmlId( refPropName );
             Property refLinkProperty = createPropertyWithHrefAttribute( context, featureType, refPropName, refGmlid );
             boolean added = addProperty( props, refLinkProperty );
-            if ( added )
-                return createExterneReferenzFeature_XPlan3( version, schema, namespaceUri, reference,
-                                                            externeReferenzElementName, refGmlid );
+            if ( added ) {
+                return createExterneReferenzFeature_XPlan3( schema, namespaceUri, reference, externeReferenzElementName,
+                                                            refGmlid );
+            }
         }
         return null;
     }
 
-    private Feature createExterneReferenzFeature_XPlan3( XPlanVersion version, AppSchema schema, String namespaceUri,
+    private Feature createExterneReferenzFeature_XPlan3( AppSchema schema, String namespaceUri,
                                                          AbstractReference reference, String externeReferenzElementName,
                                                          String gmlid ) {
         QName refFeatureTypeName = new QName( namespaceUri, externeReferenzElementName );
         FeatureType refFeatureType = schema.getFeatureType( refFeatureTypeName );
         List<Property> props = new ArrayList<>();
-        if ( !XPLAN_3.equals( version ) )
-            addProperty( props, createGeoReferenzProperty( namespaceUri, reference.getGeoReference() ) );
-        addProperty( props, createReferenzProperty( namespaceUri, reference.getReference() ) );
-        if ( XPLAN_3.equals( version ) && "XP_ExterneReferenzPlan".equals( externeReferenzElementName ) )
-            addProperty( props, createGeoReferenzProperty( namespaceUri, reference.getGeoReference() ) );
+        if ( reference instanceof RasterReference ) {
+            RasterReference rasterReference = (RasterReference) reference;
+            addProperty( props, createInformationssystemURLProperty( namespaceUri,
+                                                                     rasterReference.getInformationssystemURL() ) );
+            addProperty( props, createReferenzNameProperty( namespaceUri, rasterReference.getReferenzName() ) );
+            addProperty( props, createReferenzProperty( namespaceUri, rasterReference.getReference() ) );
+            addProperty( props, createReferenzMimeTypeProperty( namespaceUri, rasterReference.getReferenzMimeType() ) );
+            if ( "XP_ExterneReferenzPlan".equals( externeReferenzElementName ) ) {
+                addProperty( props, createGeoReferenzProperty( namespaceUri, rasterReference.getGeoReference() ) );
+                addProperty( props,
+                             createGeorefMimeTypeProperty( namespaceUri, rasterReference.getGeorefMimeType() ) );
+            }
+            addProperty( props, createBeschreibungProperty( namespaceUri, rasterReference.getBeschreibung() ) );
+        } else {
+            //if ( !XPLAN_3.equals( version ) )
+            //    addProperty( props, createGeoReferenzProperty( namespaceUri, reference.getGeoReference() ) );
+            addProperty( props, createReferenzProperty( namespaceUri, reference.getReference() ) );
+            if ( "XP_ExterneReferenzPlan".equals( externeReferenzElementName ) )
+                addProperty( props, createGeoReferenzProperty( namespaceUri, reference.getGeoReference() ) );
+        }
         if ( props.isEmpty() )
             return null;
         return refFeatureType.newFeature( gmlid, props, null );
@@ -523,12 +539,28 @@ public class XPlanManipulator {
         GenericProperty newProperty = new GenericProperty( propType, null );
 
         List<TypedObjectNode> subElementChilds = new ArrayList<>();
-        add( subElementChilds, createGeoReferenzProperty( namespaceUri, reference.getGeoReference() ) );
-        add( subElementChilds, createReferenzProperty( namespaceUri, reference.getReference() ) );
-        if ( subElementChilds.isEmpty() )
-            return null;
-        if ( spezExterneReferenzTyp != null ) {
-            add( subElementChilds, createReferenzTypProperty( namespaceUri, spezExterneReferenzTyp ) );
+        if ( reference instanceof RasterReference ) {
+            RasterReference rasterReference = (RasterReference) reference;
+            add( subElementChilds, createGeoReferenzProperty( namespaceUri, rasterReference.getGeoReference() ) );
+            add( subElementChilds, createGeorefMimeTypeProperty( namespaceUri, rasterReference.getGeorefMimeType() ) );
+            add( subElementChilds, createArtProperty( namespaceUri, rasterReference.getArt() ) );
+            add( subElementChilds,
+                 createInformationssystemURLProperty( namespaceUri, rasterReference.getInformationssystemURL() ) );
+            add( subElementChilds, createReferenzNameProperty( namespaceUri, rasterReference.getReferenzName() ) );
+            add( subElementChilds, createReferenzProperty( namespaceUri, rasterReference.getReference() ) );
+            add( subElementChilds,
+                 createReferenzMimeTypeProperty( namespaceUri, rasterReference.getReferenzMimeType() ) );
+            add( subElementChilds, createBeschreibungProperty( namespaceUri, rasterReference.getBeschreibung() ) );
+            add( subElementChilds, createDatumProperty( namespaceUri, rasterReference.getDatum() ) );
+        } else {
+            add( subElementChilds, createGeoReferenzProperty( namespaceUri, reference.getGeoReference() ) );
+            add( subElementChilds, createReferenzProperty( namespaceUri, reference.getReference() ) );
+            if ( subElementChilds.isEmpty() )
+                return null;
+            if ( spezExterneReferenzTyp != null ) {
+                add( subElementChilds, createReferenzTypProperty( namespaceUri, spezExterneReferenzTyp ) );
+            }
+
         }
 
         QName subElementName = new QName( namespaceUri, externeReferenzElementName );
@@ -575,13 +607,57 @@ public class XPlanManipulator {
         return createProperty( propName, value, 1, 1 );
     }
 
+    private GenericProperty createArtProperty( String namespaceUri, ExterneReferenzArt value ) {
+        if ( value != null ) {
+            QName propName = new QName( namespaceUri, "art" );
+            return createProperty( propName, value.getCode(), 0, 1 );
+        }
+        return null;
+    }
+
+    private GenericProperty createInformationssystemURLProperty( String namespaceUri, String value ) {
+        QName propName = new QName( namespaceUri, "informationssystemURL" );
+        return createProperty( propName, value, 0, 1 );
+    }
+
+    private GenericProperty createReferenzNameProperty( String namespaceUri, String value ) {
+        QName propName = new QName( namespaceUri, "referenzName" );
+        return createProperty( propName, value, 0, 1 );
+    }
+
     private GenericProperty createReferenzProperty( String namespaceUri, String value ) {
         QName propName = new QName( namespaceUri, "referenzURL" );
         return createProperty( propName, value, 0, 1 );
     }
 
+    private GenericProperty createReferenzMimeTypeProperty( String namespaceUri, MimeTypes value ) {
+        if ( value != null ) {
+            QName propName = new QName( namespaceUri, "referenzMimeType" );
+            return createProperty( propName, value.getCode(), 0, 1 );
+        }
+        return null;
+    }
+
     private GenericProperty createGeoReferenzProperty( String namespaceUri, String value ) {
         QName propName = new QName( namespaceUri, "georefURL" );
+        return createProperty( propName, value, 0, 1 );
+    }
+
+    private GenericProperty createGeorefMimeTypeProperty( String namespaceUri, MimeTypes value ) {
+        if ( value != null ) {
+            QName propName = new QName( namespaceUri, "georefMimeType" );
+            return createProperty( propName, value.getCode(), 0, 1 );
+        }
+        return null;
+    }
+
+    private GenericProperty createBeschreibungProperty( String namespaceUri, String value ) {
+        QName propName = new QName( namespaceUri, "beschreibung" );
+        return createProperty( propName, value, 0, 1 );
+    }
+
+    private GenericProperty createDatumProperty( String namespaceUri, Date value ) {
+        QName propName = new QName( namespaceUri, "datum" );
         return createProperty( propName, value, 0, 1 );
     }
 
@@ -617,6 +693,14 @@ public class XPlanManipulator {
             return null;
         CustomPropertyType planNameType = new CustomPropertyType( propName, minOccurs, maxOccurs, null, null );
         return new GenericProperty( planNameType, new PrimitiveValue( Integer.toString( value ) ) );
+    }
+
+    private GenericProperty createProperty( QName propName, Date value, int minOccurs, int maxOccurs ) {
+        if ( value == null || "".equals( value ) )
+            return null;
+        org.deegree.commons.tom.datetime.Date date = new org.deegree.commons.tom.datetime.Date( value, null );
+        CustomPropertyType type = new CustomPropertyType( propName, minOccurs, maxOccurs, null, null );
+        return new GenericProperty( type, new PrimitiveValue( date ) );
     }
 
     private Property createSimpleProperty( Feature feature, QName propName, String newValue ) {
@@ -834,20 +918,6 @@ public class XPlanManipulator {
             throw new IllegalArgumentException( "Unsupported Version: " + version );
         if ( !XPlanType.BP_Plan.equals( type ) )
             throw new IllegalArgumentException( "Unsupported Plan, only BP_Plan is supported yet." );
-    }
-
-    private static List<String> initExternalPlanProperties() {
-        List<String> externalPlanProperties = new ArrayList<>();
-        externalPlanProperties.add( "georefURL" );
-        externalPlanProperties.add( "georefMimeType" );
-        externalPlanProperties.add( "art" );
-        externalPlanProperties.add( "informationssystemURL" );
-        externalPlanProperties.add( "referenzName" );
-        externalPlanProperties.add( "referenzURL" );
-        externalPlanProperties.add( "referenzMimeType" );
-        externalPlanProperties.add( "beschreibung" );
-        externalPlanProperties.add( "datum" );
-        return externalPlanProperties;
     }
 
 }
