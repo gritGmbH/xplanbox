@@ -420,8 +420,18 @@
     </xplan:XP_ExterneReferenzPlan>
   </gml:featureMember>
   <gml:featureMember>
+    <xplan:XP_ExterneReferenz gml:id="GML_1D000019-0DE0-4667-A19C-6EC6ABDF000F">
+      <xplan:informationssystemURL>informationssystemURL</xplan:informationssystemURL>
+      <xplan:referenzName>Klarstellungssatzung_Wuerdenhain_cut_ergb_legende</xplan:referenzName>
+      <xplan:referenzURL>Klarstellungssatzung_Wuerdenhain_cut_ergb_legende.tif</xplan:referenzURL>
+      <xplan:referenzMimeType>image/tiff</xplan:referenzMimeType>
+      <xplan:beschreibung>beschreibung</xplan:beschreibung>
+    </xplan:XP_ExterneReferenz>
+  </gml:featureMember>
+  <gml:featureMember>
     <xplan:XP_RasterplanBasis gml:id="GML_F042504B-0875-4470-A25D-DAFD0595E8FD">
       <xplan:refScan xlink:href="#GML_1D000019-0DE0-4667-A19C-6EC6ABDF000B" />
+      <xplan:refLegende xlink:href="#GML_1D000019-0DE0-4667-A19C-6EC6ABDF000F" />
     </xplan:XP_RasterplanBasis>
   </gml:featureMember>
   <gml:featureMember>

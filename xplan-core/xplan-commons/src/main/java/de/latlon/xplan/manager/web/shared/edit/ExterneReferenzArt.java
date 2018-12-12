@@ -21,4 +21,14 @@ public enum ExterneReferenzArt {
         return code;
     }
 
+    public static ExterneReferenzArt getByCode( String code ) {
+        if ( code == null )
+            return null;
+        for ( ExterneReferenzArt value : values() ) {
+            if ( value.code.equals( code.trim() ) )
+                return value;
+        }
+        return null;
+    }
+
 }

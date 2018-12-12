@@ -41,6 +41,8 @@ import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.ChangeType;
+import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
+import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
@@ -69,6 +71,7 @@ import java.util.List;
 
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
+import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.getByCode;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
@@ -205,9 +208,51 @@ public class XPlanToEditFactory {
     private RasterReference parseRasterReference( Property prop, RasterReferenceType rasterReferenceType ) {
         RasterReference rasterReference = new RasterReference();
         rasterReference.setType( rasterReferenceType );
-        String featureId = parseReference( prop.getChildren(), rasterReference );
+        List<TypedObjectNode> children = prop.getChildren();
+        String featureId = parseReference( children, rasterReference );
         rasterReference.setFeatureId( featureId );
+        if ( children.get( 0 ) instanceof GenericXMLElement ) {
+            GenericXMLElement genericXmlElement = (GenericXMLElement) children.get( 0 );
+            parseRasterReference( rasterReference, genericXmlElement.getChildren() );
+        } else if ( children.get( 0 ) instanceof FeatureReference ) {
+            Feature referencedObject = ( (FeatureReference) children.get( 0 ) ).getReferencedObject();
+            parseRasterReference( rasterReference, referencedObject.getProperties() );
+        }
         return rasterReference;
+    }
+
+    private void parseRasterReference( RasterReference rasterReference, List<? extends TypedObjectNode> children ) {
+        for ( TypedObjectNode child : children ) {
+            if ( child instanceof SimpleProperty ) {
+                SimpleProperty childProperty = (SimpleProperty) child;
+                String propName = childProperty.getName().getLocalPart();
+                PrimitiveValue value = childProperty.getValue();
+                parseRasterReference( rasterReference, propName, value );
+            } else if ( child instanceof GenericXMLElement ) {
+                GenericXMLElement childProperty = (GenericXMLElement) child;
+                String propName = childProperty.getName().getLocalPart();
+                PrimitiveValue value = childProperty.getValue();
+                parseRasterReference( rasterReference, propName, value );
+            }
+        }
+    }
+
+    private void parseRasterReference( RasterReference rasterReference, String propName, PrimitiveValue value ) {
+        if ( "art".equals( propName ) ) {
+            rasterReference.setArt( ExterneReferenzArt.getByCode( asString( value ) ) );
+        } else if ( "informationssystemURL".equals( propName ) ) {
+            rasterReference.setInformationssystemURL( asString( value ) );
+        } else if ( "referenzName".equals( propName ) ) {
+            rasterReference.setReferenzName( asString( value ) );
+        } else if ( "beschreibung".equals( propName ) ) {
+            rasterReference.setBeschreibung( asString( value ) );
+        } else if ( "datum".equals( propName ) ) {
+            rasterReference.setDatum( asDate( value ) );
+        } else if ( "referenzMimeType".equals( propName ) ) {
+            rasterReference.setReferenzMimeType( getByCode( asString( value ) ) );
+        } else if ( "georefMimeType".equals( propName ) ) {
+            rasterReference.setGeorefMimeType( getByCode( asString( value ) ) );
+        }
     }
 
     private void parseTextReference( Property property, XPlanToEdit xPlanToEdit ) {

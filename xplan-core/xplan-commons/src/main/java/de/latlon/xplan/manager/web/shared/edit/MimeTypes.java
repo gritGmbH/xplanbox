@@ -28,4 +28,14 @@ public enum MimeTypes {
         return code;
     }
 
+    public static MimeTypes getByCode( String code ) {
+        if ( code == null )
+            return null;
+        for ( MimeTypes value : values() ) {
+            if ( value.code.equals( code.trim() ) )
+                return value;
+        }
+        return null;
+    }
+
 }
