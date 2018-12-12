@@ -85,6 +85,7 @@ import java.util.TimeZone;
 import java.util.UUID;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
@@ -343,6 +344,10 @@ public class XPlanManager {
         PlanStatus planStatus = xPlanMetadata.getPlanStatus();
         XPlanFeatureCollection fc = readAndValidateMainDocument( archive, crs, force, internalId, planStatus );
         FeatureCollection synFc = createSynFeatures( fc, archive.getVersion() );
+        if ( internalId != null ) {
+            AppSchema synSchema = xplanDao.lookupStore( XPLAN_SYN, null, planStatus ).getSchema();
+            featureCollectionManipulator.addInternalId( synFc, synSchema, internalId );
+        }
         Date sortDate = sortPropertyReader.readSortDate( archive.getType(), archive.getVersion(), fc.getFeatures() );
         int planId = xplanDao.insert( archive, fc, synFc, xPlanMetadata, sortDate );
         createRasterConfigurations( archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus,
@@ -566,10 +571,6 @@ public class XPlanManager {
             FeatureCollection featuresToModify = originalPlanFC.getFeatures();
             ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan( featuresToModify );
             planModifier.modifyXPlan( featuresToModify, xPlanToEdit, version, type, appSchema );
-            String internalId = xplanDao.retrieveInternalId( planId, type );
-            if ( internalId != null ) {
-                featureCollectionManipulator.addInternalId( featuresToModify, appSchema, internalId );
-            }
             FeatureCollection modifiedFeatures = renewFeatureCollection( version, type, appSchema, featuresToModify );
             ExternalReferenceInfo externalReferencesModified = new ExternalReferenceScanner().scan( modifiedFeatures );
 
@@ -584,6 +585,11 @@ public class XPlanManager {
                             externalReferenceInfoToUpdate );
             reassignFids( modifiedPlanFc );
             FeatureCollection synFc = createSynFeatures( modifiedPlanFc, version );
+            String internalId = xplanDao.retrieveInternalId( planId, type );
+            if ( internalId != null ) {
+                AppSchema synSchema = xplanDao.lookupStore( XPLAN_SYN, null, oldPlanStatus ).getSchema();
+                featureCollectionManipulator.addInternalId( synFc, synSchema, internalId );
+            }
 
             // TODO: Validation required?
             PlanStatus newPlanStatus = detectNewPlanStatus( xPlanToEdit, oldLegislationStatus, oldPlanStatus );
