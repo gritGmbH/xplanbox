@@ -105,10 +105,17 @@ public class PreserveExistingFileUpload extends VerticalPanel implements Validab
     @Override
     public boolean isValid() {
         if ( isMandatory ) {
-            String filename = getFilename();
-            return filename != null && filename.length() > 0;
+            return isFileSelected();
         }
         return true;
+    }
+
+    /**
+     * @return true if a file is selected, false otherwise
+     */
+    public boolean isFileSelected() {
+        String filename = getFilename();
+        return filename != null && filename.length() > 0;
     }
 
     /**
@@ -117,6 +124,13 @@ public class PreserveExistingFileUpload extends VerticalPanel implements Validab
     public void setEnabled( boolean isEnabled ) {
         selectedFile.setEnabled( isEnabled );
         removeButton.setEnabled( isEnabled );
+    }
+
+    /**
+     * @param changeHandler the ChangeHandler to add
+     */
+    public void addChangeHandler( ChangeHandler changeHandler ) {
+        selectedFile.addChangeHandler( changeHandler );
     }
 
     private void initPanel() {

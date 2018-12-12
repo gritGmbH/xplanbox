@@ -356,6 +356,12 @@ public interface XPlanWebMessages extends Messages {
 
     String editCaptionNewRasterBasis();
 
+    String editCaptionRasterBasisReferenceNameOrUrl();
+
+    String editCaptionRasterBasisGeoReferenceNotAllowed();
+
+    String editCaptionRasterBasisGeoReferenceMimeTypeNotAllowed();
+
     String editCaptionChangesDialogEdit();
 
     String editCaptionChangesDialogNew();

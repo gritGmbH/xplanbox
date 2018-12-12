@@ -37,6 +37,9 @@ package de.latlon.xplan.manager.web.client.gui.editor.raster;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
@@ -56,6 +59,7 @@ import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
+import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.DOKUMENT;
 import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_MSEXCEL;
 import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_MSWORD;
 import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_ODT;
@@ -111,7 +115,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
         this.georefMimeType = createMimeTypeType( version );
         this.artType = new TypeCodeListBox<ExterneReferenzArt>( ExterneReferenzArt.class, true );
         this.originalRasterReference = rasterReference;
-        addChangeHandler( version );
+        addChangeHandlers( version );
         initDialog( createFormContent() );
         setRasterReferenceValues();
     }
@@ -124,6 +128,11 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
     @Override
     protected boolean isReferenceUrlMandatory() {
         return false;
+    }
+
+    @Override
+    public boolean isValid() {
+        return validate();
     }
 
     public RasterReference getEditedRasterReference() {
@@ -179,7 +188,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
         return layout;
     }
 
-    private void addChangeHandler( EditVersion version ) {
+    private void addChangeHandlers( EditVersion version ) {
         if ( XPLAN_3.equals( version ) ) {
             refType.addChangeHandler( new ChangeHandler() {
                 @Override
@@ -196,6 +205,11 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
                 }
             } );
         }
+        artType.addChangeHandler( new ClearValidationErrorsCH() );
+        georeference.addChangeHandler( new ClearValidationErrorsCH() );
+        georefMimeType.addChangeHandler( new ClearValidationErrorsCH() );
+        referenzName.addValueChangeHandler( new ClearValidationErrorsVCH<String>() );
+        reference.addChangeHandler( new ClearValidationErrorsCH() );
     }
 
     private void setRasterReferenceValues() {
@@ -238,6 +252,46 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
             return new TypeCodeListBox<MimeTypes>( MimeTypes.class, disabledItems, true );
         }
         return new TypeCodeListBox( MimeTypes.class, true );
+    }
+
+    private boolean validate() {
+        boolean valid = super.isValid();
+        List<String> validationFailures = new ArrayList<String>();
+
+        if ( ( referenzName.getValue() == null || !( referenzName.getValue().length() > 0 ) )
+             && !reference.isFileSelected() ) {
+            valid = false;
+            validationFailures.add( MESSAGES.editCaptionRasterBasisReferenceNameOrUrl() );
+        }
+        if ( artType.getValueAsEnum() != null && DOKUMENT.equals( artType.getValueAsEnum() ) ) {
+            if ( georefMimeType.getValueAsEnum() != null ) {
+                valid = false;
+                validationFailures.add( MESSAGES.editCaptionRasterBasisGeoReferenceNotAllowed() );
+            }
+            if ( georeference.isFileSelected() ) {
+                valid = false;
+                validationFailures.add( MESSAGES.editCaptionRasterBasisGeoReferenceMimeTypeNotAllowed() );
+            }
+        }
+        showValidationError( validationFailures );
+        return valid;
+    }
+
+    private class ClearValidationErrorsCH implements ChangeHandler {
+
+        @Override
+        public void onChange( ChangeEvent changeEvent ) {
+            validationErrors.setText( "" );
+            validate();
+        }
+    }
+
+    private class ClearValidationErrorsVCH<T> implements ValueChangeHandler<T> {
+        @Override
+        public void onValueChange( ValueChangeEvent<T> event ) {
+            validationErrors.setText( "" );
+            validate();
+        }
     }
 
 }
