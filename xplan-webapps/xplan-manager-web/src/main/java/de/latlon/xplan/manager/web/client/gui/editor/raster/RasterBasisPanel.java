@@ -88,11 +88,12 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 
     @Override
     protected void initColumns( CellTable<RasterReference> rasterBasisList ) {
-        addReferenceColumn( rasterBasisList );
-        if ( !XPLAN_3.equals( version ) )
-            addGeoReferenceColumn( rasterBasisList );
         addTypeColumn( rasterBasisList );
-
+        addReferenceColumn( rasterBasisList );
+        addReferenceNameColumn( rasterBasisList );
+        if ( !XPLAN_3.equals( version ) ) {
+            addGeoReferenceColumn( rasterBasisList );
+        }
         TextHeader actionHeader = new TextHeader( MESSAGES.actions() );
         addEditColumn( rasterBasisList, actionHeader );
         addRemoveColumn( rasterBasisList, actionHeader );
@@ -150,6 +151,17 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
         };
         referenceColumn.setCellStyleNames( "editRasterReferenceColumn referenceColumn" );
         table.addColumn( referenceColumn, MESSAGES.editCaptionRasterBasisReference() );
+    }
+
+    private void addReferenceNameColumn( CellTable<RasterReference> table ) {
+        TextColumn<RasterReference> referenceColumn = new TextColumn<RasterReference>() {
+            @Override
+            public String getValue( RasterReference rasterBasisData ) {
+                return rasterBasisData.getReferenzName();
+            }
+        };
+        referenceColumn.setCellStyleNames( "editRasterReferenceColumn referenceColumn" );
+        table.addColumn( referenceColumn, MESSAGES.editCaptionRasterBasisReferenzName() );
     }
 
     private void addGeoReferenceColumn( CellTable<RasterReference> table ) {
