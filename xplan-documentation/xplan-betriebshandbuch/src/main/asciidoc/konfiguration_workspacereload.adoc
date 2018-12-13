@@ -24,13 +24,13 @@ Achtung: Alle Dienste müssen über die gleiche Nutzer/Passwort-Kombination ange
 workspaceReloadUrls=http://server1/xplan-wms/,http://server2/xplan-wms/
 ----
 
-Anstelle eines Reloads für den kompletten Workspace kann auch ein Reload für einzelne Resourcen konfiguriert werden. Dafür muss die vollständige REST-URL zum Reload einer Resource eingetragen werden (Details dazu finden sich im Handbuch von deegree). Die URL muss dafür wie folgt aufgebaut sein:
+Anstelle eines Reloads für den kompletten Workspace kann auch ein Reload für einzelne Ressourcen konfiguriert werden. Dafür muss die vollständige REST-URL zum Reload einer Ressource eingetragen werden (Details dazu finden sich im Handbuch von deegree). Die URL muss dafür wie folgt aufgebaut sein:
 
 ----
 <XPLANWMS-URL>/config/restart/<RESOURCE>
 ----
 
-<RESOURCE> ist dabei der Pfad zu der Resource im Workspace, wobei die Endung der Datei weggelassen werden muss. Im folgenden ein Beispiel für den automatisierten Reload des XPlanWMS-Pre:
+<RESOURCE> ist dabei der Pfad zu der Ressource im Workspace, wobei die Endung der Datei weggelassen werden muss. Im folgenden ein Beispiel für den automatisierten Reload des XPlanWMS-Pre:
 
 ----
 workspaceReloadUrls=http://server/xplan-wms/config/restart/services/wmspre
