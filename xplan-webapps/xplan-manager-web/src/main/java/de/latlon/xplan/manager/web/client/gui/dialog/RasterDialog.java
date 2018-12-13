@@ -36,7 +36,10 @@ public class RasterDialog extends DialogBox {
 
     private List<RasterHandler> rasterHandlers = new ArrayList<RasterHandler>();
 
+    private Button cancelButton;
+
     public RasterDialog( List<RasterEvaluationResult> rasterResults ) {
+        cancelButton = createCancelButton();
         createLayout( rasterResults );
     }
 
@@ -48,6 +51,14 @@ public class RasterDialog extends DialogBox {
      */
     public void addRasterHandler( RasterHandler handler ) {
         rasterHandlers.add( handler );
+    }
+
+    /**
+     * @param clickHandler
+     *                 clickHandler to add to the cancel button, never <code>null</code>
+     */
+    public void addCancelClickedHandler( ClickHandler clickHandler ) {
+        cancelButton.addClickHandler( clickHandler );
     }
 
     private void createLayout( List<RasterEvaluationResult> rasterResults ) {
@@ -79,13 +90,13 @@ public class RasterDialog extends DialogBox {
                         MESSAGES.erroneousRasterDataQuestionForCrsNotSetErrors2( firstRasterConfigurationCrs ) ) );
         mainPanel.add( createButtonPanel( createForceImportButton() ) );
         mainPanel.add( new Label( MESSAGES.erroneousRasterDataQuestionForCrsNotSetErrors3() ) );
-        mainPanel.add( createButtonPanel( createCancelButton(), createImportWithoutRasterButton() ) );
+        mainPanel.add( createButtonPanel( cancelButton, createImportWithoutRasterButton() ) );
     }
 
     private void createCriticalErrorsDialog( VerticalPanel mainPanel ) {
         mainPanel.add( new Label( MESSAGES.erroneousRasterDataQuestionForCriticalErrors1() ) );
         mainPanel.add( new Label( MESSAGES.erroneousRasterDataQuestionForCriticalErrors2() ) );
-        mainPanel.add( createButtonPanel( createCancelButton(), createImportWithoutRasterButton() ) );
+        mainPanel.add( createButtonPanel( cancelButton, createImportWithoutRasterButton() ) );
     }
 
     private HorizontalPanel createButtonPanel( Button... buttonList ) {
