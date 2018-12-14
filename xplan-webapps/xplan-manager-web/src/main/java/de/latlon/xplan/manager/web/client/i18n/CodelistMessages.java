@@ -26,6 +26,10 @@ public interface CodelistMessages extends Messages {
 
     String RasterReferenceType_TEXT();
 
+    String XP_ExterneReferenzArt_Dokument();
+
+    String XP_ExterneReferenzArt_PlanMitGeoreferenz();
+
     String XPLAN_3_BP_PlanArt_1000_BPlan();
 
     String XPLAN_3_BP_PlanArt_2000_BPlanNachParag13();

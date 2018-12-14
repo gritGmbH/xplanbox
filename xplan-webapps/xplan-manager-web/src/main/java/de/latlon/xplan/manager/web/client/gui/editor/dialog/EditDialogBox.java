@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
@@ -19,6 +20,8 @@ import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType;
 import de.latlon.xplan.manager.web.client.gui.widget.CodeListBox;
 import de.latlon.xplan.manager.web.client.gui.widget.MandatoryTextBox;
+import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBox;
+import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBoxFormat;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 
 /**
@@ -36,6 +39,8 @@ public abstract class EditDialogBox extends DialogBox {
     private static final String DEFAULT_WIDTH = "200px";
 
     private final List<SavedHandler> savedHandlers = new ArrayList<SavedHandler>();
+
+    protected final HTML validationErrors = new HTML();
 
     private Button button;
 
@@ -58,6 +63,7 @@ public abstract class EditDialogBox extends DialogBox {
         VerticalPanel dialogBoxContent = new VerticalPanel();
         dialogBoxContent.setHorizontalAlignment( VerticalPanel.ALIGN_CENTER );
         dialogBoxContent.add( contentPanel );
+        dialogBoxContent.add( validationErrors );
         dialogBoxContent.add( createButtonBar() );
         setWidget( dialogBoxContent );
     }
@@ -91,18 +97,26 @@ public abstract class EditDialogBox extends DialogBox {
         return textArea;
     }
 
+    protected StrictDateBox createDateInput() {
+        StrictDateBox dateBox = new StrictDateBox( new StrictDateBoxFormat() );
+        dateBox.setWidth( DEFAULT_WIDTH );
+        return dateBox;
+    }
+
     protected CodeListBox createMandatoryCodeListInput( EditVersion version, CodelistType codelistType ) {
         return createCodeListInput( version, codelistType, true );
     }
 
-    protected CodeListBox createCodeListInput( EditVersion version, CodelistType codelistType ) {
-        return createCodeListInput( version, codelistType, false );
-    }
-
-    protected ListBox createListInput() {
-        ListBox listBox = new ListBox();
-        listBox.setWidth( DEFAULT_WIDTH );
-        return listBox;
+    protected void showValidationError( List<String> validationFailures ) {
+        StringBuilder htmlMsg = new StringBuilder();
+        htmlMsg.append( "<div>" );
+        htmlMsg.append( "<ul>" );
+        for ( String validationFailure : validationFailures ) {
+            htmlMsg.append( "<li class=\"validationError\">" ).append( validationFailure ).append( "</li>" );
+        }
+        htmlMsg.append( "</ul>" );
+        htmlMsg.append( "</div>" );
+        validationErrors.setHTML( htmlMsg.toString() );
     }
 
     private Widget createButtonBar() {

@@ -35,12 +35,13 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.shared.edit;
 
+import java.util.Date;
+
 /**
  * Encapsulate a raster reference (refScan, refLegend, refText).
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class RasterReference extends AbstractReference {
@@ -49,56 +50,74 @@ public class RasterReference extends AbstractReference {
 
     private String featureId;
 
+    private MimeTypes georefMimeType;
+
+    private ExterneReferenzArt art;
+
+    private String informationssystemURL;
+
+    private String referenzName;
+
+    private MimeTypes referenzMimeType;
+
+    private String beschreibung;
+
+    private Date datum;
+
     public RasterReference() {
     }
 
     /**
      * Instantiates a new {@link RasterReference} as copy of the passed.
-     * 
+     *
      * @param rasterReference
-     *            to copy, never <code>null</code>
+     *                 to copy, never <code>null</code>
      */
     public RasterReference( RasterReference rasterReference ) {
         this( rasterReference.getFeatureId(), rasterReference.getReference(), rasterReference.getGeoReference(),
-              rasterReference.getType() );
-    }
-
-    /**
-     * @param featureId
-     *            the id of the feature containing this reference, may be <code>null</code>
-     * @param type
-     *            type, may be <code>null</code>
-     */
-    public RasterReference( String featureId, RasterReferenceType type ) {
-        this( featureId, null, null, type );
+              rasterReference.getType(), rasterReference.getGeorefMimeType(), rasterReference.getArt(),
+              rasterReference.getInformationssystemURL(), rasterReference.getReferenzName(),
+              rasterReference.getReferenzMimeType(), rasterReference.getBeschreibung(), rasterReference.getDatum() );
     }
 
     /**
      * @param reference
-     *            reference, may be <code>null</code>
+     *                 reference, may be <code>null</code>
      * @param geoReference
-     *            geoReference, may be <code>null</code>
+     *                 geoReference, may be <code>null</code>
      * @param type
-     *            type, should not be <code>null</code>
+     *                 type, should not be <code>null</code>
      */
-    public RasterReference( String reference, String geoReference, RasterReferenceType type ) {
-        this( null, reference, geoReference, type );
+    public RasterReference( String reference, String geoReference, RasterReferenceType type, MimeTypes georefMimeType,
+                            ExterneReferenzArt art, String informationssystemURL, String referenzName,
+                            MimeTypes referenzMimeType, String beschreibung, Date datum ) {
+        this( null, reference, geoReference, type, georefMimeType, art, informationssystemURL, referenzName,
+              referenzMimeType, beschreibung, datum );
     }
 
     /**
      * @param featureId
-     *            the id of the feature containing this reference, may be <code>null</code>
+     *                 the id of the feature containing this reference, may be <code>null</code>
      * @param reference
-     *            reference, may be <code>null</code>
+     *                 reference, may be <code>null</code>
      * @param geoReference
-     *            geoReference, may be <code>null</code>
+     *                 geoReference, may be <code>null</code>
      * @param type
-     *            type, should not be <code>null</code>
+     *                 type, should not be <code>null</code>
      */
-    public RasterReference( String featureId, String reference, String geoReference, RasterReferenceType type ) {
+    public RasterReference( String featureId, String reference, String geoReference, RasterReferenceType type,
+                            MimeTypes georefMimeType, ExterneReferenzArt art, String informationssystemURL,
+                            String referenzName, MimeTypes referenzMimeType, String beschreibung, Date datum ) {
         super( reference, geoReference );
         this.featureId = featureId;
         this.type = type;
+        this.georefMimeType = georefMimeType;
+        this.art = art;
+        this.informationssystemURL = informationssystemURL;
+        this.referenzName = referenzName;
+        this.referenzMimeType = referenzMimeType;
+        this.beschreibung = beschreibung;
+        this.datum = datum;
     }
 
     /**
@@ -110,7 +129,7 @@ public class RasterReference extends AbstractReference {
 
     /**
      * @param type
-     *            the type to set, may be <code>null</code>
+     *                 the type to set, may be <code>null</code>
      */
     public void setType( RasterReferenceType type ) {
         this.type = type;
@@ -125,15 +144,123 @@ public class RasterReference extends AbstractReference {
 
     /**
      * @param featureId
-     *            the id of the feature containing this reference, may be <code>null</code>
+     *                 the id of the feature containing this reference, may be <code>null</code>
      */
     public void setFeatureId( String featureId ) {
         this.featureId = featureId;
     }
 
+    /**
+     * @return the mime type of the georeference, may be <code>null</code>
+     */
+    public MimeTypes getGeorefMimeType() {
+        return georefMimeType;
+    }
+
+    /**
+     * @param georefMimeType
+     *                 the mime type of the georeference, may be <code>null</code>
+     */
+    public void setGeorefMimeType( MimeTypes georefMimeType ) {
+        this.georefMimeType = georefMimeType;
+    }
+
+    /**
+     * @return the type of this reference, may be <code>null</code>
+     */
+    public ExterneReferenzArt getArt() {
+        return art;
+    }
+
+    /**
+     * @param art
+     *                 the type of this reference, may be <code>null</code>
+     */
+    public void setArt( ExterneReferenzArt art ) {
+        this.art = art;
+    }
+
+    /**
+     * @return the url, may be <code>null</code>
+     */
+    public String getInformationssystemURL() {
+        return informationssystemURL;
+    }
+
+    /**
+     * @param informationssystemURL
+     *                 the url, may be <code>null</code>
+     */
+    public void setInformationssystemURL( String informationssystemURL ) {
+        this.informationssystemURL = informationssystemURL;
+    }
+
+    /**
+     * @return the name of the reference, may be <code>null</code>
+     */
+    public String getReferenzName() {
+        return referenzName;
+    }
+
+    /**
+     * @param referenzName
+     *                 the name of the reference, may be <code>null</code>
+     */
+    public void setReferenzName( String referenzName ) {
+        this.referenzName = referenzName;
+    }
+
+    /**
+     * @return the mime type of the reference, may be <code>null</code>
+     */
+    public MimeTypes getReferenzMimeType() {
+        return referenzMimeType;
+    }
+
+    /**
+     * @param referenzMimeType
+     *                 the mime type of the reference, may be <code>null</code>
+     */
+    public void setReferenzMimeType( MimeTypes referenzMimeType ) {
+        this.referenzMimeType = referenzMimeType;
+    }
+
+    /**
+     * @return the description, may be <code>null</code>
+     */
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    /**
+     * @param beschreibung
+     *                 the description, may be <code>null</code>
+     */
+    public void setBeschreibung( String beschreibung ) {
+        this.beschreibung = beschreibung;
+    }
+
+    /**
+     * @return the date, may be <code>null</code>
+     */
+    public Date getDatum() {
+        return datum;
+    }
+
+    /**
+     * @param datum
+     *                 the date, may be <code>null</code>
+     */
+    public void setDatum( Date datum ) {
+        this.datum = datum;
+    }
+
     @Override
     public String toString() {
-        return "RasterReference [featureId=" + featureId + ", type=" + type + ", " + super.toString() + "]";
+        return "RasterReference{" + "type=" + type + ", featureId='" + featureId + '\'' + ", georefMimeType="
+               + georefMimeType + ", art=" + art + ", informationssystemURL='" + informationssystemURL + '\''
+               + ", referenzName='" + referenzName + '\'' + ", referenzMimeType=" + referenzMimeType
+               + ", beschreibung='" + beschreibung + '\'' + ", datum=" + datum + '}';
     }
 
 }

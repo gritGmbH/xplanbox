@@ -66,6 +66,8 @@ public class PreserveExistingFileUpload extends VerticalPanel implements Validab
 
     private final FileUpload selectedFile;
 
+    private final Button removeButton;
+
     private final boolean isMandatory;
 
     private final Label existingFile = new Label();
@@ -78,8 +80,9 @@ public class PreserveExistingFileUpload extends VerticalPanel implements Validab
      *            otherwise
      */
     public PreserveExistingFileUpload( String nameOfTheFileUploadField, boolean isMandatory ) {
-        this.selectedFile = createFileUpload( nameOfTheFileUploadField );
         this.isMandatory = isMandatory;
+        this.selectedFile = createFileUpload( nameOfTheFileUploadField );
+        removeButton = createRemoveButton();
         initPanel();
     }
 
@@ -102,10 +105,32 @@ public class PreserveExistingFileUpload extends VerticalPanel implements Validab
     @Override
     public boolean isValid() {
         if ( isMandatory ) {
-            String filename = getFilename();
-            return filename != null && filename.length() > 0;
+            return isFileSelected();
         }
         return true;
+    }
+
+    /**
+     * @return true if a file is selected, false otherwise
+     */
+    public boolean isFileSelected() {
+        String filename = getFilename();
+        return filename != null && filename.length() > 0;
+    }
+
+    /**
+     * @param isEnabled true if enable, false otherwise
+     */
+    public void setEnabled( boolean isEnabled ) {
+        selectedFile.setEnabled( isEnabled );
+        removeButton.setEnabled( isEnabled );
+    }
+
+    /**
+     * @param changeHandler the ChangeHandler to add
+     */
+    public void addChangeHandler( ChangeHandler changeHandler ) {
+        selectedFile.addChangeHandler( changeHandler );
     }
 
     private void initPanel() {
@@ -114,12 +139,12 @@ public class PreserveExistingFileUpload extends VerticalPanel implements Validab
         existingPanel.add( new Label( MESSAGES.editCaptionReferencesCurrentFile() ) );
         existingPanel.add( existingFile );
         if ( !isMandatory )
-            existingPanel.add( createRemoveButton() );
+            existingPanel.add( removeButton );
         add( existingPanel );
         add( selectedFile );
     }
 
-    private Widget createRemoveButton() {
+    private Button createRemoveButton() {
         Button button = new Button();
         button.setTitle( MESSAGES.editCaptionReferencesRemoveFileTooltip() );
         button.setStyleName( "removeButtonColumn" );

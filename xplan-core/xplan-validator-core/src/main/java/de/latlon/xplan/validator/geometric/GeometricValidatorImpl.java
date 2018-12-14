@@ -209,8 +209,6 @@ public class GeometricValidatorImpl implements GeometricValidator {
             gmlStream.setApplicationSchema( schema );
             try {
                 xplanFeatures = (FeatureCollection) gmlStream.readFeature( true );
-                if ( internalId != null )
-                    featureCollectionManipulator.addInternalId( xplanFeatures, schema, internalId );
                 elapsed = System.currentTimeMillis() - begin;
                 errors = inspector.getErrors();
                 List<String> brokenGeometryErrors = extendMessagesOfBrokenGeometryErrors();

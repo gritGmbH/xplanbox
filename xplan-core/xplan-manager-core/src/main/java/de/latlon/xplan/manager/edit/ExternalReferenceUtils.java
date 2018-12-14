@@ -45,7 +45,7 @@ import java.util.Set;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
-import de.latlon.xplan.manager.web.shared.edit.RasterWithReferences;
+import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import net.sf.saxon.functions.Empty;
 
@@ -134,7 +134,7 @@ public class ExternalReferenceUtils {
     public static ExternalReferenceInfo createExternalRefAddedOrUpdated( XPlanToEdit planToEdit,
                                                                          List<File> uploadedArtefacts ) {
         ExternalReferenceInfo externalReferenceInfo = new ExternalReferenceInfo();
-        RasterWithReferences rasterBasis = planToEdit.getRasterBasis();
+        RasterBasis rasterBasis = planToEdit.getRasterBasis();
         if ( rasterBasis != null ) {
             for ( RasterReference rasterReference : rasterBasis.getRasterReferences() ) {
                 String referenceUrl = rasterReference.getReference();

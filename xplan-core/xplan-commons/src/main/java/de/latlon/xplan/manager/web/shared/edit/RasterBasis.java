@@ -39,27 +39,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Encapsulate a raster reference (raster plan change or raster base).
+ * Encapsulate a raster basis.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
  * 
  * @version $Revision: $, $Date: $
  */
-public class RasterWithReferences {
+public class RasterBasis {
 
     private String featureId;
 
     private List<RasterReference> rasterReferences;
 
-    public RasterWithReferences() {
+    public RasterBasis() {
     }
 
-    public RasterWithReferences( String featureId ) {
+    public RasterBasis( String featureId ) {
         this( featureId, null );
     }
 
-    public RasterWithReferences( String featureId, List<RasterReference> rasterReferences ) {
+    public RasterBasis( String featureId, List<RasterReference> rasterReferences ) {
         this.featureId = featureId;
         this.rasterReferences = rasterReferences;
     }
