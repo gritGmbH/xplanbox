@@ -4,6 +4,7 @@ import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
@@ -169,6 +170,15 @@ public class FeatureCollectionUtilsTest {
         String district = retrieveDistrict( fc, BP_Plan, XPLAN_41 );
 
         assertThat( district, nullValue() );
+    }
+
+    @Test
+    public void testRetrieveDistrictWithXPlan51WithMultipleDistricts()
+                    throws Exception {
+        FeatureCollection fc = getMainFileAsFeatureCollection( "xplan51/BP2070_mehrererOrtsteile.zip" );
+        String district = retrieveDistrict( fc, BP_Plan, XPLAN_51 );
+
+        assertThat( district, is("309" ) );
     }
 
     private FeatureCollection getMainFileAsFeatureCollection( String name )

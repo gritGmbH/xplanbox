@@ -122,13 +122,17 @@ public class FeatureCollectionUtils {
     }
 
     private static String retrieveDistrictName( ElementNode municipalityElement ) {
-        String district = null;
         TypedObjectNode districtName = municipalityElement.getChildren().get( 0 );
         if ( districtName instanceof PrimitiveValue ) {
             PrimitiveValue value = (PrimitiveValue) districtName;
-            district = value.getAsText();
+            String district = value.getAsText();
+            if ( district.contains( "," ) ) {
+                String[] split = district.split( "," );
+                return split[0].trim();
+            }
+            return district;
         }
-        return district;
+        return null;
     }
 
     private static String retrievePlanProperty( FeatureCollection fc, XPlanType type, String propertyName ) {
