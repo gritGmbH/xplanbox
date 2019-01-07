@@ -91,7 +91,7 @@ public class ManagerController {
         LOG.info( "Retrieve all plans." );
         List<XPlan> xPlanList;
         try {
-            xPlanList = manager.list();
+            xPlanList = manager.list( false );
         } catch ( Exception e ) {
             String message = BUNDLE.getString( "getPlansFailed" ) + ": " + e.getMessage();
             LOG.info( message );

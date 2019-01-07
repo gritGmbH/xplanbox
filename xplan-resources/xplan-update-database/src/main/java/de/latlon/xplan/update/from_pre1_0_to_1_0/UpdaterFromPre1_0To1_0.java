@@ -93,10 +93,9 @@ public class UpdaterFromPre1_0To1_0 extends AbstractUpdater {
     @Override
     public void update( Connection conn )
                     throws Exception {
-        List<XPlan> plans = xplanDao.getXPlanList();
+        List<XPlan> plans = xplanDao.getXPlanList( false );
         updateXplan3GmlObjectsTable( conn );
         updateXplanMgrPlansTable( plans, conn );
-
     }
 
     private void updateXplan3GmlObjectsTable( Connection conn ) {
