@@ -30,6 +30,10 @@
               <mainClass>de.latlon.xplan.update.DatabaseUpdateTool</mainClass>
               <name>databaseUpdate</name>
             </program>
+            <program>
+              <mainClass>de.latlon.xplan.update.tool.DistrictUpdateTool</mainClass>
+              <name>districtUpdate</name>
+            </program>
           </programs>
         </configuration>
       </plugin>
@@ -43,6 +47,7 @@
                 <chmod perm="+x">
                   <fileset dir="target/appassembler/bin">
                     <include name="databaseUpdate" />
+                    <include name="districtUpdate" />
                   </fileset>
                 </chmod>
               </tasks>
