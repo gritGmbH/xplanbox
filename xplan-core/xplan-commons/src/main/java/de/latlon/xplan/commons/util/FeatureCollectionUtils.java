@@ -90,11 +90,8 @@ public class FeatureCollectionUtils {
     public static String retrieveDistrict( FeatureCollection fc, XPlanType type, XPlanVersion version ) {
         if ( version == XPLAN_3 ) {
             return retrieveXPlan3District( fc, type );
-        } else if ( version == XPLAN_40 || version == XPLAN_41 ) {
-            return retrieveXPlan4District( fc, type );
-        } else {
-            return null;
         }
+        return retrieveXPlan4District( fc, type );
     }
 
     private static String retrieveXPlan3District( FeatureCollection fc, XPlanType type ) {
@@ -102,14 +99,13 @@ public class FeatureCollectionUtils {
     }
 
     private static String retrieveXPlan4District( FeatureCollection fc, XPlanType type ) {
-        String district = null;
         Feature planFeature = findPlanFeature( fc, type );
         String ns = planFeature.getName().getNamespaceURI();
         TypedObjectNode municipality = getPropertyValue( planFeature, new QName( ns, "gemeinde" ) );
-        if ( municipality instanceof ElementNode ) {
-            district = scanMunicipalityChildren( ns, (ElementNode) municipality );
+        if ( municipality != null && municipality instanceof ElementNode ) {
+            return scanMunicipalityChildren( ns, (ElementNode) municipality );
         }
-        return district;
+        return null;
     }
 
     private static String scanMunicipalityChildren( String ns, ElementNode municipality ) {
