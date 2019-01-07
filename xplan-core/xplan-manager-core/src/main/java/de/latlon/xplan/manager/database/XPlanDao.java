@@ -602,6 +602,28 @@ public class XPlanDao {
     }
 
     /**
+     * Updates the district column of the table xplanmgr.plans.
+     *
+     * @param plan
+     *                 the plan to update, never <code>null</code>
+     * @param district
+     *                 the new district, may be <code>null</code>
+     * @throws Exception
+     */
+    public void updateDistrict( XPlan plan, String district )
+                    throws Exception {
+        Connection conn = null;
+        try {
+            conn = openConnection( ws, JDBC_POOL_ID );
+            updateDistrictInMgrSchema( conn, plan, district );
+        } catch ( Exception e ) {
+            conn.rollback();
+        } finally {
+            closeQuietly( conn );
+        }
+    }
+
+    /**
      * @param planId
      *            of the plan to set the status
      * @throws SQLException
@@ -660,6 +682,25 @@ public class XPlanDao {
             updateStmt.setDate( 1, convertToSqlDate( sortDate ) );
             updateStmt.setInt( 2, getXPlanIdAsInt( plan.getId() ) );
             LOG.trace( "SQL Update XPlan Manager sort date property: " + updateStmt );
+            updateStmt.executeUpdate();
+        } finally {
+            closeQuietly( updateStmt );
+        }
+    }
+
+    private void updateDistrictInMgrSchema( Connection conn, XPlan plan, String district )
+                    throws Exception {
+        StringBuilder updateSql = new StringBuilder();
+        updateSql.append( "UPDATE xplanmgr.plans" );
+        updateSql.append( " SET district = ? " );
+        updateSql.append( " WHERE id = ?" );
+
+        PreparedStatement updateStmt = null;
+        try {
+            updateStmt = conn.prepareStatement( updateSql.toString() );
+            updateStmt.setString( 1, district );
+            updateStmt.setInt( 2, getXPlanIdAsInt( plan.getId() ) );
+            LOG.trace( "SQL Update XPlan Manager district column: " + updateStmt );
             updateStmt.executeUpdate();
         } finally {
             closeQuietly( updateStmt );
