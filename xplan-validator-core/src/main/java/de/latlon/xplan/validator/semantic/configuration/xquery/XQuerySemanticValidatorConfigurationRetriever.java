@@ -28,7 +28,7 @@ import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
 
 /**
  * Retrieves XQuery configurations from file system
- * 
+ *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
@@ -49,7 +49,7 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 
     @Override
     public SemanticValidatorConfiguration retrieveConfiguration()
-                            throws IOException, XPathException {
+                            throws IOException {
         SemanticValidatorConfiguration config = new SemanticValidatorConfiguration();
 
         if ( isDirectory( rulesPath ) ) {
@@ -81,7 +81,7 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 
     private void collectAllRulesFromVersionDirectory( SemanticValidatorConfiguration config, Path versionDirectory,
                                                       XPlanVersion planVersion )
-                            throws IOException, XPathException {
+                            throws IOException {
         try (DirectoryStream<Path> directoryStream = retrieveDirectoriesAndRules( versionDirectory )) {
             for ( Path path : directoryStream ) {
                 if ( isDirectory( path ) ) {
@@ -100,7 +100,7 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 
     private void collectAllRulesFromDirectory( SemanticValidatorConfiguration config, Path validationDirectory,
                                                XPlanVersion planVersion, SemanticValidationOptions validationOption )
-                            throws IOException, XPathException {
+                            throws IOException {
         try (DirectoryStream<Path> directoryStream = retrieveDirectoriesAndRules( validationDirectory )) {
             for ( Path path : directoryStream ) {
                 if ( isDirectory( path ) ) {
@@ -113,14 +113,18 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
     }
 
     private void createAndAddRule( SemanticValidatorConfiguration config, Path path, XPlanVersion version,
-                                   SemanticValidationOptions option )
-                            throws IOException, XPathException {
+                                   SemanticValidationOptions option ) {
         String nameWithType = path.getFileName().toString();
         String name = nameWithType.substring( 0, nameWithType.lastIndexOf( '.' ) );
-        XQuerySemanticValidatorRule rule = new XQuerySemanticValidatorRule( newInputStream( path ), name, version,
-                                                                            option );
-        config.addRule( rule );
-        LOG.debug( format( "New rule: %s from file rulesPath %s", name, path.toAbsolutePath().toString() ) );
+        try {
+            XQuerySemanticValidatorRule rule = new XQuerySemanticValidatorRule( newInputStream( path ), name, version,
+                                                                                option );
+            config.addRule( rule );
+            LOG.debug( format( "New rule: %s from file rulesPath %s", name, path.toAbsolutePath().toString() ) );
+        } catch ( Exception e ) {
+            LOG.warn( format( "Rule '%s' could not be parsed and will be skipped, reason: %s",
+                               path.toAbsolutePath().toString(), e.getMessage() ), e );
+        }
     }
 
     private static DirectoryStream<Path> retrieveDirectoriesAndRules( Path filesPath )
