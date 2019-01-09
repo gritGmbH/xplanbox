@@ -1,10 +1,10 @@
 package de.latlon.xplan.validator.semantic;
 
-import java.util.List;
-
-import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
+
+import java.util.List;
 
 /**
  * Validates <link>XPlanArchives</link> semantically
@@ -27,5 +27,5 @@ public interface SemanticValidator {
      * @throws IllegalArgumentException
      *             if one of the parameter is <code>null</code>
      */
-    ValidatorResult validateSemantic( XPlanArchive archive, List<SemanticValidationOptions> semanticValidationOptions );
+    ValidatorResult validateSemantic( SemanticValidableXPlanArchive archive, List<SemanticValidationOptions> semanticValidationOptions );
 }

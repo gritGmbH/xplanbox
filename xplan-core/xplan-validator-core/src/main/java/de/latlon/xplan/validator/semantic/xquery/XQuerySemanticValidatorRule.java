@@ -16,6 +16,7 @@ import javax.xml.stream.XMLStreamReader;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.stream.StreamResult;
 
+import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.om.Item;
 import net.sf.saxon.om.NodeInfo;
@@ -31,7 +32,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.semantic.SemanticValidatorRule;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
@@ -66,7 +66,7 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
     }
 
     @Override
-    public boolean validate( XPlanArchive archive )
+    public boolean validate( SemanticValidableXPlanArchive archive )
                             throws ValidatorException {
         final Properties props = createProperties();
         boolean validationResult;
@@ -114,7 +114,7 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
         return props;
     }
 
-    private DynamicQueryContext createDynamicQueryContext( XPlanArchive archive )
+    private DynamicQueryContext createDynamicQueryContext( SemanticValidableXPlanArchive archive )
                             throws XPathException {
         final Item<NodeInfo> item = configuration.buildDocument( getSource( archive.getMainFileXmlReader() ) );
         final DynamicQueryContext dynamicContext = new DynamicQueryContext( configuration );
