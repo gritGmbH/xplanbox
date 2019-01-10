@@ -19,10 +19,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import static de.latlon.xplan.commons.XPlanType.valueOfDefaultNull;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
@@ -123,7 +126,7 @@ public class XPlanArchiveCreator {
                         }
                     }
                     // type
-                    XPlanType typeFromElement = determineType( xmlReader.getLocalName() );
+                    XPlanType typeFromElement = valueOfDefaultNull( xmlReader.getLocalName() );
                     if ( typeFromElement != null ) {
                         if ( type == null ) {
                             type = typeFromElement;
@@ -141,14 +144,6 @@ public class XPlanArchiveCreator {
             return new XPlanArchive( zipEntries, name, version, ade, type, crs, district );
         } finally {
             closeQuietly( xmlReader );
-        }
-    }
-
-    private XPlanType determineType( String elName ) {
-        try {
-            return XPlanType.valueOf( elName );
-        } catch ( IllegalArgumentException e ) {
-            return null;
         }
     }
 
@@ -209,8 +204,10 @@ public class XPlanArchiveCreator {
 
     private void checkType( XPlanType type ) {
         if ( type == null ) {
-            String msg = format( "Fehler: Datei '%s' ist ungültig. Datei enthält kein XP_Plan-Element "
-                                 + "(BP_Plan, FP_Plan, RP_Plan oder LP_Plan).", MAIN_FILE );
+            String msg = format(
+                            "Fehler: Datei '%s' ist ungültig. Datei enthält kein unterstützes XP_Plan-Element (%s).",
+                            MAIN_FILE, Arrays.asList( XPlanType.values() ).stream().map(
+                                            xPlanType -> xPlanType.toString() ).collect( Collectors.joining(",") ) );
             throw new IllegalArgumentException( msg );
         }
     }
