@@ -1,0 +1,14 @@
+<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:ns2="http://www.deegree.org/metadata/description"
+        xmlns:ns3="http://www.deegree.org/metadata/spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        configVersion="3.4.0"
+        xsi:schemaLocation="http://www.deegree.org/themes/standard http://schemas.deegree.org/themes/3.4.0/themes.xsd">
+  <Theme>
+    <Identifier>SO_Planraster</Identifier>
+    <ns2:Title>SOPlan Raster</ns2:Title>
+    <ns3:CRS>${rasterCrs}</ns3:CRS>
+    <Theme>
+      <Identifier>soplanraster_sortiert</Identifier>
+      <ns2:Title>SOPlan Raster Theme</ns2:Title>
+    </Theme>
+  </Theme>
+</Themes>

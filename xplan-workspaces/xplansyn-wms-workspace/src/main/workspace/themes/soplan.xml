@@ -1,0 +1,103 @@
+<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description"
+        xmlns:s="http://www.deegree.org/metadata/spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        configVersion="3.4.0"
+        xsi:schemaLocation="http://www.deegree.org/themes/standard http://schemas.deegree.org/themes/3.4.0/themes.xsd">
+  <LayerStoreId>soplan</LayerStoreId>
+  <Theme>
+    <Identifier>SO_Planvektor</Identifier>
+    <d:Title>SOPlan Vektor</d:Title>
+    <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84
+      EPSG:4839
+    </s:CRS>
+    <Theme>
+      <Identifier>so_bereich</Identifier>
+      <d:Title>SO: Bereich</d:Title>
+      <Layer>so_bereich</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_bodenschutzrecht</Identifier>
+      <d:Title>SO: Bodenschutzrecht</d:Title>
+      <Layer>so_bodenschutzrecht</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_denkmalschutzrecht</Identifier>
+      <d:Title>SO: Denkmalschutzrecht</d:Title>
+      <Layer>so_denkmalschutzrecht</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_forstrecht</Identifier>
+      <d:Title>SO: Forstrecht</d:Title>
+      <Layer>so_forstrecht</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_gebiet</Identifier>
+      <d:Title>SO: Gebiet</d:Title>
+      <Layer>so_gebiet</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_grenze</Identifier>
+      <d:Title>SO: Grenze</d:Title>
+      <Layer>so_grenze</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_linienobjekt</Identifier>
+      <d:Title>SO: Linienobjekt</d:Title>
+      <Layer>so_linienobjekt</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_luftverkehrsrecht</Identifier>
+      <d:Title>SO: Luftverkehrsrecht</d:Title>
+      <Layer>so_luftverkehrsrecht</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_objekt</Identifier>
+      <d:Title>SO: Objekt</d:Title>
+      <Layer>so_objekt</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_plan</Identifier>
+      <d:Title>SO: Plan</d:Title>
+      <Layer>so_plan</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_schienenverkehrsrecht</Identifier>
+      <d:Title>SO: Schienenverkehrsrecht</d:Title>
+      <Layer>so_schienenverkehrsrecht</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_schutzgebietNaturschutzrecht</Identifier>
+      <d:Title>SO: SchutzgebietNaturschutzrecht</d:Title>
+      <Layer>so_schutzgebietNaturschutzrecht</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_schutzgebietsonstigessecht</Identifier>
+      <d:Title>SO: SchutzgebietSonstigesRecht</d:Title>
+      <Layer>so_schutzgebietsonstigessecht</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_schutzgebietasserrecht</Identifier>
+      <d:Title>SO: SchutzgebietWasserrecht</d:Title>
+      <Layer>so_schutzgebietasserrecht</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_sonstigesrecht</Identifier>
+      <d:Title>SO: SonstigesRecht</d:Title>
+      <Layer>so_sonstigesrecht</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_strassenverkehrsrecht</Identifier>
+      <d:Title>SO: Strassenverkehrsrecht</d:Title>
+      <Layer>so_strassenverkehrsrecht</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_textabschnitt</Identifier>
+      <d:Title>SO: TextAbschnitt</d:Title>
+      <Layer>so_textabschnitt</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_wasserrecht</Identifier>
+      <d:Title>SO: Wasserrecht</d:Title>
+      <Layer>so_wasserrecht</Layer>
+    </Theme>
+  </Theme>
+</Themes>

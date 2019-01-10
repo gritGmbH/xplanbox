@@ -11,10 +11,12 @@
     <wms:ThemeId>fplanpre</wms:ThemeId>
     <wms:ThemeId>lplanpre</wms:ThemeId>
     <wms:ThemeId>rplanpre</wms:ThemeId>
+    <wms:ThemeId>soplanpre</wms:ThemeId>
     <wms:ThemeId>bplanpreraster</wms:ThemeId>
     <wms:ThemeId>fplanpreraster</wms:ThemeId>
     <wms:ThemeId>lplanpreraster</wms:ThemeId>
     <wms:ThemeId>rplanpreraster</wms:ThemeId>
+    <wms:ThemeId>soplanpreraster</wms:ThemeId>
     <wms:VisibilityInspector>
       <wms:JavaClass>de.latlon.xplanisk2.wms.visibility.PreValidityPeriodInspector</wms:JavaClass>
       <wms:CategoryLayerIdentifier>BP_Planraster</wms:CategoryLayerIdentifier>
@@ -25,6 +27,8 @@
       <wms:CategoryLayerIdentifier>lplanraster_sortiert</wms:CategoryLayerIdentifier>
       <wms:CategoryLayerIdentifier>RP_Planraster</wms:CategoryLayerIdentifier>
       <wms:CategoryLayerIdentifier>rplanraster_sortiert</wms:CategoryLayerIdentifier>
+      <wms:CategoryLayerIdentifier>SO_Planraster</wms:CategoryLayerIdentifier>
+      <wms:CategoryLayerIdentifier>soplanraster_sortiert</wms:CategoryLayerIdentifier>
     </wms:VisibilityInspector>
   </wms:ServiceConfiguration>
   <wms:FeatureInfoFormats>
