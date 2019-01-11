@@ -311,25 +311,31 @@ public class XPlanDao {
 
     /**
      * Retrieve a list of all XPlans.
-     * 
+     *
+     * @param includeNoOfFeature
+     *                 <code>true</code> if the number of features of each feature collection should be requested, <code>false</code> otherwise
      * @return list of XPlans
      * @throws Exception
+     * @param includeNoOfFeature
      */
-    public List<XPlan> getXPlanList()
+    public List<XPlan> getXPlanList( boolean includeNoOfFeature )
                     throws Exception {
         ensureWorkspaceInitialized();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try ( Connection mgrConn = openConnection( ws, JDBC_POOL_ID ) ) {
-            stmt = mgrConn.prepareStatement( "SELECT id, import_date, xp_version, xp_type, name, "
-                                             + "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
-                                             + "ade, sonst_plan_art, planstatus, rechtsstand, district, "
-                                             + "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished FROM xplanmgr.plans" );
+            StringBuffer sql = new StringBuffer();
+            sql.append( "SELECT " );
+            sql.append( "id, import_date, xp_version, xp_type, name, nummer, gkz, has_raster, release_date, ST_AsText(bbox), ade, sonst_plan_art, planstatus, rechtsstand, district, gueltigkeitBeginn, gueltigkeitEnde, inspirepublished " );
+            if ( includeNoOfFeature )
+                sql.append( ", (SELECT count(fid) FROM xplanmgr.features WHERE id = plan) AS numfeatures " );
+            sql.append( "FROM xplanmgr.plans" );
+            stmt = mgrConn.prepareStatement( sql.toString() );
             rs = stmt.executeQuery();
             List<XPlan> xplanList = new ArrayList<>();
             while ( rs.next() ) {
-                XPlan xPlan = retrieveXPlan( mgrConn, rs );
+                XPlan xPlan = retrieveXPlan( rs, includeNoOfFeature );
                 xplanList.add( xPlan );
             }
             return xplanList;
@@ -364,7 +370,7 @@ public class XPlanDao {
             stmt.setInt( 1, planId );
             rs = stmt.executeQuery();
             if ( rs.next() )
-                return retrieveXPlan( mgrConn, rs );
+                return retrieveXPlan( rs, false );
         } catch ( Exception e ) {
             throw new Exception(
                             "Interner-/Konfigurations-Fehler. Kann Plan nicht auflisten: " + e.getLocalizedMessage(),
@@ -693,7 +699,7 @@ public class XPlanDao {
         }
     }
 
-    private XPlan retrieveXPlan( Connection connection, ResultSet rs )
+    private XPlan retrieveXPlan( ResultSet rs, boolean includeNoOfFeature )
                     throws SQLException {
         int id = rs.getInt( 1 );
         Date importDate = rs.getTimestamp( 2 );
@@ -713,8 +719,9 @@ public class XPlanDao {
         Timestamp startDateTime = rs.getTimestamp( 16 );
         Timestamp endDateTime = rs.getTimestamp( 17 );
         Boolean isInspirePublished = rs.getBoolean( 18 );
-
-        int numFeatures = retrieveNumberOfFeatures( connection, id );
+        int numFeatures = -1;
+        if ( includeNoOfFeature )
+            numFeatures = rs.getInt( 19 );
 
         XPlan xPlan = new XPlan( ( name != null ? name : "-" ), ( new Integer( id ) ).toString(), xpType );
         xPlan.setVersion( xpVersion );
@@ -892,22 +899,6 @@ public class XPlanDao {
             throw new Exception( "Fehler beim Löschen des Plans: " + e.getMessage() + ".", e );
         } finally {
             closeQuietly( conn, stmt, rs );
-        }
-    }
-
-    private int retrieveNumberOfFeatures( Connection connection, int id )
-                    throws SQLException {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        try {
-            stmt = connection.prepareStatement( "SELECT COUNT(*) FROM xplanmgr.features WHERE plan=?" );
-            stmt.setInt( 1, id );
-            rs = stmt.executeQuery();
-            if ( rs.next() )
-                return rs.getInt( 1 );
-            return 0;
-        } finally {
-            closeQuietly( stmt, rs );
         }
     }
 

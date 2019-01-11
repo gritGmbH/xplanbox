@@ -30,7 +30,7 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
     private String gkz;
 
-    private int numFeatures;
+    private int numFeatures = -1;
 
     private boolean raster;
 
@@ -114,6 +114,9 @@ public class XPlan implements Serializable, Comparable<XPlan> {
         this.gkz = gkz;
     }
 
+    /**
+     * @return the number of features of the XPlan feature collection, -1 if not known
+     */
     public int getNumFeatures() {
         return numFeatures;
     }

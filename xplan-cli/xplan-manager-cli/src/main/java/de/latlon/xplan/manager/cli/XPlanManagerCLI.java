@@ -111,7 +111,7 @@ public class XPlanManagerCLI {
             printUsage();
         }
         try {
-            List<XPlan> xPlanList = manager.list();
+            List<XPlan> xPlanList = manager.list( true );
             printList( xPlanList );
         } catch ( Exception e ) {
             endWithFatalError( "Auflisten der Pläne fehlgeschlagen. Fehlermeldung: " + e.getLocalizedMessage() );
