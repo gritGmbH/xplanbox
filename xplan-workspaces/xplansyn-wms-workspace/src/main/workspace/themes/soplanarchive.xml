@@ -6,13 +6,21 @@
   <Theme>
     <Identifier>SO_Planvektor</Identifier>
     <d:Title>SOPlan Vektor</d:Title>
-    <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84
-      EPSG:4839
-    </s:CRS>
+    <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
     <Theme>
-      <Identifier>so_bereich</Identifier>
-      <d:Title>SO: Bereich</d:Title>
-      <Layer>so_bereich</Layer>
+      <Identifier>so_objekt</Identifier>
+      <d:Title>SO: Objekt</d:Title>
+      <Layer>so_objekt</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_linienobjekt</Identifier>
+      <d:Title>SO: Linienobjekt</d:Title>
+      <Layer>so_linienobjekt</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_sonstigesrecht</Identifier>
+      <d:Title>SO: SonstigesRecht</d:Title>
+      <Layer>so_sonstigesrecht</Layer>
     </Theme>
     <Theme>
       <Identifier>so_bodenschutzrecht</Identifier>
@@ -30,34 +38,9 @@
       <Layer>so_forstrecht</Layer>
     </Theme>
     <Theme>
-      <Identifier>so_gebiet</Identifier>
-      <d:Title>SO: Gebiet</d:Title>
-      <Layer>so_gebiet</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>so_grenze</Identifier>
-      <d:Title>SO: Grenze</d:Title>
-      <Layer>so_grenze</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>so_linienobjekt</Identifier>
-      <d:Title>SO: Linienobjekt</d:Title>
-      <Layer>so_linienobjekt</Layer>
-    </Theme>
-    <Theme>
       <Identifier>so_luftverkehrsrecht</Identifier>
       <d:Title>SO: Luftverkehrsrecht</d:Title>
       <Layer>so_luftverkehrsrecht</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>so_objekt</Identifier>
-      <d:Title>SO: Objekt</d:Title>
-      <Layer>so_objekt</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>so_plan</Identifier>
-      <d:Title>SO: Plan</d:Title>
-      <Layer>so_plan</Layer>
     </Theme>
     <Theme>
       <Identifier>so_schienenverkehrsrecht</Identifier>
@@ -80,24 +63,39 @@
       <Layer>so_schutzgebietasserrecht</Layer>
     </Theme>
     <Theme>
-      <Identifier>so_sonstigesrecht</Identifier>
-      <d:Title>SO: SonstigesRecht</d:Title>
-      <Layer>so_sonstigesrecht</Layer>
-    </Theme>
-    <Theme>
       <Identifier>so_strassenverkehrsrecht</Identifier>
       <d:Title>SO: Strassenverkehrsrecht</d:Title>
       <Layer>so_strassenverkehrsrecht</Layer>
     </Theme>
     <Theme>
-      <Identifier>so_textabschnitt</Identifier>
-      <d:Title>SO: TextAbschnitt</d:Title>
-      <Layer>so_textabschnitt</Layer>
-    </Theme>
-    <Theme>
       <Identifier>so_wasserrecht</Identifier>
       <d:Title>SO: Wasserrecht</d:Title>
       <Layer>so_wasserrecht</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_gebiet</Identifier>
+      <d:Title>SO: Gebiet</d:Title>
+      <Layer>so_gebiet</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_grenze</Identifier>
+      <d:Title>SO: Grenze</d:Title>
+      <Layer>so_grenze</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_bereich</Identifier>
+      <d:Title>SO: Bereich</d:Title>
+      <Layer>so_bereich</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_plan</Identifier>
+      <d:Title>SO: Plan</d:Title>
+      <Layer>so_plan</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_textabschnitt</Identifier>
+      <d:Title>SO: TextAbschnitt</d:Title>
+      <Layer>so_textabschnitt</Layer>
     </Theme>
   </Theme>
 </Themes>
