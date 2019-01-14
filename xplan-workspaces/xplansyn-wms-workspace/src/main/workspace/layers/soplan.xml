@@ -1,11 +1,13 @@
 <FeatureLayers xmlns="http://www.deegree.org/layers/feature" xmlns:l="http://www.deegree.org/layers/base"
                xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial"
+               xmlns:xplan="http://www.deegree.org/xplanung/1/0"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xsi:schemaLocation="http://www.deegree.org/layers/feature http://schemas.deegree.org/layers/feature/3.4.0/feature.xsd"
                configVersion="3.4.0">
   <FeatureStoreId>xplansyn</FeatureStoreId>
 
   <FeatureLayer>
+    <FeatureType>xplan:SO_Bereich</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -54,6 +56,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_Bodenschutzrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -102,6 +105,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_Denkmalschutzrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -150,6 +154,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_Forstrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -198,6 +203,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_Gebiet</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -246,6 +252,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_Grenze</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -294,6 +301,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_Linienobjekt</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -342,6 +350,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_Luftverkehrsrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -390,6 +399,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_Objekt</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -438,6 +448,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_Plan</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -486,6 +497,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_Schienenverkehrsrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -534,6 +546,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_SchutzgebietNaturschutzrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -582,6 +595,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_SchutzgebietSonstigesRecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -630,6 +644,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_SchutzgebietWasserrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -678,6 +693,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_SonstigesRecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -726,6 +742,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_Strassenverkehrsrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -774,6 +791,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_TextAbschnitt</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -822,6 +840,7 @@
     -->
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:SO_Wasserrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>

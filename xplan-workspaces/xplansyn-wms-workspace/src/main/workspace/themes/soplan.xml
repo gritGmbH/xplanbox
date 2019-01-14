@@ -6,9 +6,7 @@
   <Theme>
     <Identifier>SO_Planvektor</Identifier>
     <d:Title>SOPlan Vektor</d:Title>
-    <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84
-      EPSG:4839
-    </s:CRS>
+    <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
     <Theme>
       <Identifier>so_bereich</Identifier>
       <d:Title>SO: Bereich</d:Title>
