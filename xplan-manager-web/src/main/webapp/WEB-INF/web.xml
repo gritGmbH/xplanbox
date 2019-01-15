@@ -52,6 +52,7 @@
   <!-- Bootstrap the root application context as usual using ContextLoaderListener -->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    <listener-class>de.latlon.xplan.manager.web.server.log.SystemLogListener</listener-class>
   </listener>
 
   <!-- Default page to serve -->
