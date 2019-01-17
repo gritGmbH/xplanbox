@@ -55,6 +55,11 @@ public class SystemLog {
         LOG.info( "- xerces environment " );
         LOG.info( "    - version: " + org.apache.xerces.impl.Version.getVersion() );
         logTransformer();
+        LOG.info( "- saxon environment " );
+        LOG.info( "    - product name: " + net.sf.saxon.Version.getProductName() );
+        LOG.info( "    - product title: " + net.sf.saxon.Version.getProductTitle() );
+        LOG.info( "    - product vendor: " + net.sf.saxon.Version.getProductVendor() );
+        LOG.info( "    - product version: " + net.sf.saxon.Version.getProductVersion() );
 
         LOG.info( "--------------------------------------------------------------------------------" );
     }
