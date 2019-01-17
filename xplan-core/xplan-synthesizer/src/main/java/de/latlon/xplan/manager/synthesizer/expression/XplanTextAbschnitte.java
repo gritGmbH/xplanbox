@@ -1,6 +1,5 @@
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValue;
 import static de.latlon.xplan.manager.synthesizer.XplanAbschnittLookup.lookupXpTextAbschnitt;
 
 import java.util.LinkedHashSet;
@@ -50,20 +49,28 @@ public class XplanTextAbschnitte implements Expression {
         StringBuffer textAbschnittText = new StringBuffer();
         textAbschnittText.append( "[" );
         if ( schluessel != null ) {
+            schluessel = replaceDelimiter( schluessel );
             textAbschnittText.append( schluessel );
             textAbschnittText.append( " | " );
         }
         if ( text != null ) {
+            text = replaceDelimiter( text );
             textAbschnittText.append( text );
         }
 
         if ( gesetzlicheGrundlage == null ) {
             textAbschnittText.append( " (Keine gesetzliche Grundlage)" );
         } else {
+            gesetzlicheGrundlage = replaceDelimiter( gesetzlicheGrundlage );
             textAbschnittText.append( " (Gesetzliche Grundlage: " ).append( gesetzlicheGrundlage ).append( ")" );
         }
         textAbschnittText.append( "]" );
         return textAbschnittText.toString();
+    }
+
+    private static String replaceDelimiter( String text ) {
+        text = text.replace( "|", "_" );
+        return text;
     }
 
     private static String getPropertyValue( Feature f, String namespaceUrl, String localName ) {
