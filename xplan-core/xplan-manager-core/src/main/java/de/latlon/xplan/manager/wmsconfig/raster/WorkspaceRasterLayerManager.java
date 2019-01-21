@@ -166,10 +166,15 @@ public class WorkspaceRasterLayerManager {
         for ( String fileName : fileNames ) {
             File file = new File( dir, fileName );
             LOG.info( "- Entferne Workspace-Datei '" + file + "'..." );
-            if ( FileUtils.deleteQuietly( file ) ) {
-                LOG.info( "OK" );
-            } else {
-                LOG.info( "Fehler" );
+            try {
+                boolean deleteSuccessful = file.delete();
+                if ( deleteSuccessful )
+                    LOG.info( "OK" );
+                else
+                    LOG.warn( "Fehler: Die Datei konnte aus unbekannten Gruenden nicht entfernt werden. " );
+            } catch ( Exception e ) {
+                LOG.error( "Fehler: " + e.getMessage() );
+                LOG.debug( "Fehler: ", e );
             }
         }
     }

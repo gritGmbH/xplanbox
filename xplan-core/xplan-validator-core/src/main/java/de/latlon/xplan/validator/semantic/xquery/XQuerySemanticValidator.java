@@ -66,7 +66,7 @@ public class XQuerySemanticValidator implements SemanticValidator {
         this.semanticConformityLinkConfiguration = semanticConformityLinkConfiguration;
         try {
             semanticValidatorConfiguration = retriever.retrieveConfiguration();
-        } catch ( XPathException | IOException e ) {
+        } catch ( IOException e ) {
             LOG.error( format( "Could not instantiate semantic validator. Reason: %s", e.getMessage() ) );
             throw new ValidatorException( "Could not create validator.", e );
         }
@@ -109,8 +109,7 @@ public class XQuerySemanticValidator implements SemanticValidator {
             String message = RulesMessagesAccessor.retrieveMessageForRule( name, version );
             result.addRule( name, isThisRuleValid, message );
         } catch ( ValidatorException e ) {
-            LOG.error( "Error while semantically validating validation rule " + name + ", reason:" + e.getMessage() );
-            LOG.debug( "Exception: ", e );
+            LOG.error( "Error while semantically validating validation rule " + name, e );
         }
         return isThisRuleValid;
     }

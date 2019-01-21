@@ -93,8 +93,7 @@ public class ManagerController {
         try {
             xPlanList = manager.list( false );
         } catch ( Exception e ) {
-            String message = BUNDLE.getString( "getPlansFailed" ) + ": " + e.getMessage();
-            LOG.info( message );
+            LOG.error( BUNDLE.getString( "getPlansFailed" ) + ": " + e.getMessage() );
             throw e;
         }
         return xPlanList;
