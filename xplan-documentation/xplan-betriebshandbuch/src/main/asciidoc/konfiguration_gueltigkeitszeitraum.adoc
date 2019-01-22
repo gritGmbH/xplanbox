@@ -24,5 +24,7 @@ Dazu ist folgender Abschnitt in der Datei _.deegree/xplansyn-wms-workspace/wmspr
   <wms:CategoryLayerIdentifier>lplanraster_sortiert</wms:CategoryLayerIdentifier>
   <wms:CategoryLayerIdentifier>RP_Planraster</wms:CategoryLayerIdentifier>
   <wms:CategoryLayerIdentifier>rplanraster_sortiert</wms:CategoryLayerIdentifier>
+  <wms:CategoryLayerIdentifier>SO_Planraster</wms:CategoryLayerIdentifier>
+  <wms:CategoryLayerIdentifier>soplanraster_sortiert</wms:CategoryLayerIdentifier>
 </wms:VisibilityInspector>
 ----
