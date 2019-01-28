@@ -126,6 +126,20 @@
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="C1876acf4-5579-496e-9f32-a549e17dff71" priority="normal">
+        <source>
+            <class>
+                <type name="BP_BaugebietType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="BP_BaugebietsTeilFlaecheType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C607deeec-8707-415d-a207-de05c884e8b9" priority="normal">
         <source>
             <class>
