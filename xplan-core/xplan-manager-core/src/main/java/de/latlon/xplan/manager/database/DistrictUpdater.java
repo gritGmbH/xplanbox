@@ -35,7 +35,7 @@ public class DistrictUpdater {
      */
     public void updateDistricts()
                     throws Exception {
-        List<XPlan> plans = dao.getXPlanList();
+        List<XPlan> plans = dao.getXPlanList( false );
         for ( XPlan plan : plans ) {
             LOG.debug( "Update district of plan with id {}", plan.getId() );
             FeatureCollection featureCollection = dao.retrieveFeatureCollection( plan );
