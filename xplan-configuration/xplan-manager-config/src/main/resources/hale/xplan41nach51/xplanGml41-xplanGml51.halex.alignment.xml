@@ -1508,6 +1508,20 @@
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="C9513e574-3297-460d-b368-7902556a0e84" priority="normal">
+        <source>
+            <class>
+                <type name="BP_SchutzgebietType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="SO_SchutzgebietNaturschutzrechtType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C84b0d6df-052d-4771-8913-04198a5a5109" priority="normal">
         <source>
             <class>
@@ -1518,6 +1532,54 @@
             <class>
                 <type name="SO_SchutzgebietNaturschutzrechtType" ns="http://www.xplanung.de/xplangml/5/1"/>
             </class>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C90edc933-739f-4685-b860-52ba8597f740" priority="normal">
+        <source>
+            <property>
+                <type name="BP_SchutzgebietType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SO_SchutzgebietNaturschutzrechtType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="artDerFestlegung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cee97bcbb-8271-4bae-ad08-46d7b6db80d3" priority="normal">
+        <source>
+            <property>
+                <type name="BP_SchutzgebietType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="detaillierteZweckbestimmung" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SO_SchutzgebietNaturschutzrechtType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="detailArtDerFestlegung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C874eedc5-b3d7-429b-8b64-cee33396c6c3" priority="normal">
+        <source>
+            <property>
+                <type name="BP_SchutzgebietType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="gehoertZuBP_Bereich" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SO_SchutzgebietNaturschutzrechtType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="gehoertZuBereich" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
         </target>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>

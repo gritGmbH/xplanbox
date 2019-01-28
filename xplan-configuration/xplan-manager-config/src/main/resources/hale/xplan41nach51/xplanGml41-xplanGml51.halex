@@ -3,7 +3,7 @@
     <name>XPlanGML 4.1 nach 5.1</name>
     <author>lat/lon GmbH</author>
     <created>2019-01-24T08:14:24.857+01:00</created>
-    <modified>2019-01-28T09:59:31.268+01:00</modified>
+    <modified>2019-01-28T11:24:02.597+01:00</modified>
     <save-config action-id="project.save" provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
