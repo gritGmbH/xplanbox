@@ -1202,6 +1202,52 @@
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="C08e00a69-7d63-4d7c-8b1d-40cae51aeb65" priority="normal">
+        <source>
+            <class>
+                <type name="XP_BereichType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="XP_BereichType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf378d1b4-aaaf-4510-97af-d191c1c9be1e" priority="normal">
+        <source>
+            <property>
+                <type name="XP_BereichType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="erstellungsMasstab" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_BereichType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="erstellungsMassstab" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cfa01fb98-e70b-4cdc-aab9-0d23af604d2e" priority="normal">
+        <source>
+            <property>
+                <type name="XP_BereichType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="nachrichtlich" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_BereichType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="planinhalt" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Cdcdc0f44-f5e9-454d-b7b3-5605e51fa2c0" priority="normal">
         <source>
             <class>
