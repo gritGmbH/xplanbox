@@ -616,70 +616,6 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C7773a47e-381e-4f06-a4b8-22f16d2a6609" priority="normal">
-        <source>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="informell" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C31a081da-c20a-4c70-b361-c210bf25f74c" priority="normal">
-        <source>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="rechtsverbindlich" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C4488a83b-4723-4ed4-b873-6e08dfd70ec7" priority="normal">
-        <source>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refBegruendung" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8fc9cba5-7265-4da1-bdf2-b98b615dd71b" priority="normal">
-        <source>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refBeschreibung" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C25ffc634-d4b9-4573-8a88-af385d04d3fa" priority="normal">
         <source>
             <property>
@@ -728,59 +664,11 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C415ffa39-a0bd-4f32-97c9-a8513fcf3bb5" priority="normal">
-        <source>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C26a34b4c-edca-4c1b-97cc-3e1bf69b427a" priority="normal">
         <source>
             <property>
                 <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
                 <child name="refPflanzliste" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cb3d6ea70-2068-466c-9304-7484afe3b51f" priority="normal">
-        <source>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refPlangrundlage" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C2532155b-e918-4b8e-9547-a0177f5c0eb7" priority="normal">
-        <source>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refRechtsplan" ns="http://www.xplanung.de/xplangml/4/1"/>
             </property>
         </source>
         <target>
@@ -823,78 +711,6 @@
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cef5eafa8-1bb3-444d-9217-eb25c00a81fd" priority="normal">
-        <source>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="informell" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="true" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C38b53f13-0211-43c2-b8c9-fce00b1d950b" priority="normal">
-        <source>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="rechtsverbindlich" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="true" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C2f4d9566-9789-482b-991b-71099eae3535" priority="normal">
-        <source>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refBegruendung" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="true" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C1002e599-deb1-47d3-b2a8-31ea544305a8" priority="normal">
-        <source>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refBeschreibung" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="true" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2ac01202-abef-4193-a432-2c43c8d0568a" priority="normal">
         <source>
@@ -950,65 +766,11 @@
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C442d44d9-39c6-4cc1-a5db-af399e23196a" priority="normal">
-        <source>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="true" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C137759fd-9396-4d7f-8ec1-86c459a2a571" priority="normal">
         <source>
             <property>
                 <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
                 <child name="refPflanzliste" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="true" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C5f942bf9-9c79-46ca-bf1b-592b4079b3b6" priority="normal">
-        <source>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refPlangrundlage" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="true" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc1edb412-af92-4bef-a15b-983d938afa4c" priority="normal">
-        <source>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refRechtsplan" ns="http://www.xplanung.de/xplangml/4/1"/>
                 <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
             </property>
         </source>
@@ -1057,74 +819,6 @@
         </target>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C59104985-e196-4f67-9aaf-30ec05634637" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="informell" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="typ" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="9999" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C5a838f2b-0d16-48f5-ad5e-ef5894ee9079" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="rechtsverbindlich" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="typ" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="9998" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ccb915614-8704-4776-9622-20b66eb34806" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refBegruendung" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="typ" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="1010" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ceb6b26b7-cae0-4b7a-9c8d-77f75969fdbf" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refBeschreibung" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="typ" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="1000" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ce6407b44-d4b6-4647-857f-4c80b6456930" priority="normal">
         <source name="anchor">
@@ -1177,23 +871,6 @@
         </target>
         <parameter value="2000" name="value"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cc83a194b-865c-40a1-95bb-9b51a0e86f8a" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="typ" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="1020" name="value"/>
-    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C26e03879-9ca7-41be-b87f-21fbed62019d" priority="normal">
         <source name="anchor">
             <property>
@@ -1210,40 +887,6 @@
             </property>
         </target>
         <parameter value="2200" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cf45a832d-78c4-4bba-bab8-6c8921e9d340" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refPlangrundlage" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="typ" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="1040" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C01f75007-9a99-47e9-85cc-0d00157e0c16" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="refRechtsplan" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="typ" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="1030" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ca319ad69-56cf-4dc6-8d56-a5523bf4d876" priority="normal">
         <source name="anchor">
@@ -2368,6 +2011,363 @@
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8b880ad4-2c10-486c-8a20-010b3a25481a" priority="normal">
+        <source>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="informell" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd4d1231a-287c-4615-89c3-1077c027847a" priority="normal">
+        <source>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="rechtsverbindlich" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C9d8cf03b-1bc3-4178-8ba4-700475b0be52" priority="normal">
+        <source>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refBegruendung" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf5e7d6d2-a28c-4fe0-9808-809b7ee2bf4a" priority="normal">
+        <source>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refBeschreibung" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C09b0bfa6-32ca-42a1-ada9-0b5c6b8ba744" priority="normal">
+        <source>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce2bd267e-69a5-49d4-aeb2-57312b659ea5" priority="normal">
+        <source>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refPlangrundlage" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C6713d396-4ad2-4622-8d06-65ef6e74fb6d" priority="normal">
+        <source>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refRechtsplan" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8787b30e-a1de-473e-b9aa-bb53d9422872" priority="normal">
+        <source>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="informell" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cacc85692-b475-4bfd-af93-fa0c6b7c7012" priority="normal">
+        <source>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="rechtsverbindlich" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C09a2b0e2-88c7-4d8d-9428-25b048b8746d" priority="normal">
+        <source>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refBegruendung" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C6675a9d0-145e-4c0e-b85e-e822a0fdc479" priority="normal">
+        <source>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refBeschreibung" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C0cb5cc53-938b-4b2e-99f9-ff9c804525b1" priority="normal">
+        <source>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cda408b4b-66ea-412f-b4a7-7d3fa8ac04dc" priority="normal">
+        <source>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refPlangrundlage" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C498636bd-1d1e-4990-8aaf-aabb9812ea00" priority="normal">
+        <source>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refRechtsplan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C1f3fd30d-e753-410c-a0c8-67e6617c1c48" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="informell" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="9999" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C02d313b4-396f-4e2e-abc2-0261a548340f" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="rechtsverbindlich" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="9998" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C84e71cc2-a145-4d38-a523-c928dc767a8c" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refBegruendung" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="1010" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cc4839c2d-4503-428d-a5e1-31a77606e561" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refBeschreibung" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="1000" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C27cf0707-740b-46dd-9adf-11cf129951f1" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="1020" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C41237343-1667-4762-a970-c2827b23bece" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refPlangrundlage" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="1040" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ce29e1079-4429-46f7-9ef5-42e580c46240" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refRechtsplan" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="externeReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="XP_SpezExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="1030" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca39983ff-7f39-48f6-9b98-ad3e500b86a3" priority="normal">
         <source>
