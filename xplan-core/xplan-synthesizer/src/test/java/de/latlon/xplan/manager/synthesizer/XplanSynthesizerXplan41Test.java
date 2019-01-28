@@ -1,63 +1,31 @@
 package de.latlon.xplan.manager.synthesizer;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
-import static org.deegree.gml.GMLVersion.GML_31;
-import static org.deegree.gml.GMLVersion.GML_32;
-import static org.junit.Assert.assertThat;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Map;
-
-import javax.xml.namespace.QName;
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
-
-import org.deegree.commons.config.ResourceInitException;
+import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.commons.tom.gml.property.Property;
-import org.deegree.commons.xml.stax.IndentingXMLStreamWriter;
-import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.cs.exceptions.UnknownCRSException;
-import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
-import org.deegree.gml.GMLOutputFactory;
-import org.deegree.gml.GMLStreamWriter;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.junit.Before;
 import org.junit.Test;
 
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanFeatureCollection;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.validator.ValidatorException;
-import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
+import javax.xml.namespace.QName;
+import java.util.List;
 
-public class XplanSynthesizerXplan41Test {
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static org.junit.Assert.assertThat;
 
-    private final XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
+public class XplanSynthesizerXplan41Test extends AbstractXplanSynthesizerTest {
 
-    private AppSchema synSchema;
-
-    @Before
-    public void setup()
-                    throws ResourceInitException {
-        synSchema = XPlanSchemas.getInstance().getAppSchema( XPLAN_SYN, null );
+    @Override
+    XPlanVersion getXPlanVersion() {
+        return XPLAN_41;
     }
 
     @Test
     public void testBp2070()
                     throws Exception {
-        FeatureCollection actual = createSynFeatures( "xplan41/BP2070.zip" );
-        writeTemp( actual );
+        createSynFeatures( "xplan41/BP2070.zip" );
     }
 
     @Test
@@ -84,9 +52,8 @@ public class XplanSynthesizerXplan41Test {
         FeatureCollection features = createSynFeatures( "xplan41/Eidelstedt_4_V4.zip" );
 
         assertThat( features, hasFeature( "BP_BaugebietsTeilFlaeche" ) );
-        assertThat( features,
-                    hasHoehenangabeProperty( "BP_BaugebietsTeilFlaeche",
-                                             "[hoehenbezug=absolutNHN;bezugspunkt=HBA;h=23;]" ) );
+        assertThat( features, hasHoehenangabeProperty( "BP_BaugebietsTeilFlaeche",
+                                                       "[hoehenbezug=absolutNHN;bezugspunkt=HBA;h=23;]" ) );
     }
 
     @Test
@@ -117,59 +84,6 @@ public class XplanSynthesizerXplan41Test {
     public void testId103()
                     throws Exception {
         createSynFeatures( "xplan41/V4_1_ID_103.zip" );
-    }
-
-    private FeatureCollection createSynFeatures( String archiveName )
-                    throws URISyntaxException, IOException, XMLStreamException, UnknownCRSException, ValidatorException {
-        XPlanArchive archive = getTestArchive( archiveName );
-        XPlanFeatureCollection xplanFc = readFeatures( archive );
-        int id = 1;
-        for ( Feature feature : xplanFc.getFeatures() ) {
-            feature.setId( "FEATURE_" + id++ );
-        }
-        return xPlanSynthesizer.synthesize( archive.getVersion(), xplanFc );
-    }
-
-    private void writeTemp( FeatureCollection fc ) {
-        try {
-            FileOutputStream os = new FileOutputStream( "/tmp/debug.gml" );
-            XMLStreamWriter xmlWriter = XMLOutputFactory.newInstance().createXMLStreamWriter( os );
-            xmlWriter = new IndentingXMLStreamWriter( xmlWriter );
-            GMLStreamWriter gmlWriter = GMLOutputFactory.createGMLStreamWriter( GML_31, xmlWriter );
-            Map<String, String> nsBindings = synSchema.getNamespaceBindings();
-            nsBindings.put( "gml32", GML_32.getNamespace() );
-            gmlWriter.setNamespaceBindings( nsBindings );
-            gmlWriter.write( fc );
-            gmlWriter.close();
-            xmlWriter.close();
-            os.close();
-        } catch ( Exception e ) {
-            e.printStackTrace();
-        }
-    }
-
-    private XPlanArchive getTestArchive( String name )
-                    throws URISyntaxException, IOException {
-        XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        return archiveCreator.createXPlanArchive( name, ResourceAccessor.readResourceStream( name ) );
-    }
-
-    private XPlanFeatureCollection readFeatures( XPlanArchive archive )
-                    throws XMLStreamException, UnknownCRSException, ValidatorException {
-        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( archive.getVersion(), archive.getAde() );
-        ICRS crs = null;
-        try {
-            crs = CRSManager.lookup( "EPSG:31467" );
-            if ( archive.getCrs() != null ) {
-                crs = archive.getCrs();
-            }
-        } catch ( UnknownCRSException e ) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return ( new GeometricValidatorImpl() ).retrieveGeometricallyValidXPlanFeatures( archive, crs, schema, true,
-                                                                                         null );
-
     }
 
     private Matcher<? super FeatureCollection> hasFeature( final String featureName ) {

@@ -14,7 +14,7 @@ public class XplanTextAbschnitteTest {
         Feature feature = new ScenarioLoader().getTestFeature( XPLAN_41, "BP_Baugebiet_1" );
         XplanTextAbschnitte expr = new XplanTextAbschnitte();
         PrimitiveValue abschnitte = expr.evaluate( feature );
-        assertEquals( "[Das ist Textabschnitt No 1 (Keine gesetzliche Grundlage)]"
-                      + "[Das ist Textabschnitt No 2 (Gesetzliche Grundlage: BGB)]", abschnitte.toString() );
+        assertEquals( "[text1 | Das ist Textabschnitt No 1 (Keine gesetzliche Grundlage)]"
+                      + "[text2 | Das ist Textabschnitt No 2 (Gesetzliche Grundlage: BGB)]", abschnitte.toString() );
     }
 }
