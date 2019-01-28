@@ -1294,6 +1294,34 @@
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="Ccd0b086e-3f0f-407d-9dfc-98bdd73d94ce" priority="normal">
+        <source>
+            <class>
+                <type name="BP_DenkmalschutzEinzelanlageType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="SO_DenkmalschutzrechtType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="Ce1bcec7c-ee16-457d-899c-b47150ff3118" priority="normal">
+        <source>
+            <class>
+                <type name="BP_DenkmalschutzEnsembleFlaecheType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="SO_DenkmalschutzrechtType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Cc792beb8-5ab0-46ce-bd35-2ffebdd6171f" priority="normal">
         <source>
             <class>
@@ -1307,6 +1335,38 @@
         </target>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C15db6dc5-44e8-4a46-8902-306c87f3c678" priority="normal">
+        <source>
+            <property>
+                <type name="BP_DenkmalschutzEinzelanlageType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="denkmal" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SO_DenkmalschutzrechtType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="name" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C9e93cf16-7ed8-420c-9cf6-9f5672791a7c" priority="normal">
+        <source>
+            <property>
+                <type name="BP_DenkmalschutzEnsembleFlaecheType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="denkmal" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SO_DenkmalschutzrechtType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="name" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C94e80a30-eaf2-45a4-9a12-d51dc181f8be" priority="normal">
         <source>
