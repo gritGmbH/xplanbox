@@ -2514,6 +2514,64 @@
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="Cff89aec1-c7d7-4313-ae92-26a33316a0f9" priority="normal">
+        <source>
+            <class>
+                <type name="BP_ErneuerbareEnergieFlaecheType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="BP_TechnischeMassnahmenFlaecheType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="C9bb77e63-c2fe-4f04-9b81-36f5a7e08e08" priority="normal">
+        <source>
+            <class>
+                <type name="BP_LuftreinhalteFlaecheType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="BP_TechnischeMassnahmenFlaecheType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cafce1647-a294-408e-9ac8-17a980a2d9f3" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="BP_ErneuerbareEnergieFlaecheType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="BP_TechnischeMassnahmenFlaecheType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="2000" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cbe6cc24f-9701-4865-9f31-187c3f21ac8a" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="BP_LuftreinhalteFlaecheType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="BP_TechnischeMassnahmenFlaecheType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="1000" name="value"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C7ed28583-5115-4d00-9822-06e7bb0c7351" priority="normal">
         <source>
             <class>
