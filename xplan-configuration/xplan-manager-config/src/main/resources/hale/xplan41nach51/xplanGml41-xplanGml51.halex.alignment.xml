@@ -262,7 +262,42 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C6440c4ba-4510-4457-a6c3-d7eb69b76482" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.classification" id="Cee06afcd-be30-4835-b8c6-4420b0f789e0" priority="normal">
+        <source>
+            <property>
+                <type name="BP_BereichType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="versionBauNVO" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="BP_BereichType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="versionBauNVODatum" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <complexParameter name="lookupTable">
+            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+                <entry>
+                    <key value="1000"/>
+                    <value value="1962-06-26"/>
+                </entry>
+                <entry>
+                    <key value="2000"/>
+                    <value value="1968-11-26"/>
+                </entry>
+                <entry>
+                    <key value="3000"/>
+                    <value value="1977-09-15"/>
+                </entry>
+                <entry>
+                    <key value="4000"/>
+                    <value value="1990-01-23"/>
+                </entry>
+            </lookup-table>
+        </complexParameter>
+        <parameter value="null" name="notClassifiedAction"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Caed61849-7c60-4743-8c30-1489b56de14f" priority="normal">
         <source>
             <property>
                 <type name="BP_BereichType" ns="http://www.xplanung.de/xplangml/4/1"/>
