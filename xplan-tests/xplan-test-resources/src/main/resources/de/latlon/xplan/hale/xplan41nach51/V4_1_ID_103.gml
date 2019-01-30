@@ -21,6 +21,8 @@
 					<gml:upperCorner>418523.944 5716033.278</gml:upperCorner>
 				</gml:Envelope>
 			</gml:boundedBy>
+			<xplan:textSchluessel>Text textSchluessel</xplan:textSchluessel>
+			<xplan:textSchluesselBegruendung>Text textSchluesselBegruendung</xplan:textSchluesselBegruendung>
 			<xplan:informell>
 				<xplan:XP_ExterneReferenz>
 					<xplan:referenzName>Informell</xplan:referenzName>
