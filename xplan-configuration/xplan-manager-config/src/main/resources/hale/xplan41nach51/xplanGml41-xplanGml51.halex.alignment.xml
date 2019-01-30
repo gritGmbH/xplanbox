@@ -1923,8 +1923,17 @@
                 <type name="BP_ObjektType" ns="http://www.xplanung.de/xplangml/5/1"/>
             </class>
         </target>
-        <parameter value="true" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="Ce1706d9a-787d-440d-9f17-07504b9791e6" priority="lowest">
+        <target>
+            <property>
+                <type name="BP_ObjektType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="rechtscharakter" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="9998" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C340c86c1-c6cc-49ce-b1a5-715bc0c9228b" priority="normal">
         <source>

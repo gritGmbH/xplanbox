@@ -27,6 +27,7 @@
 					<xplan:referenzURL>Informell_Text.pdf</xplan:referenzURL>
 				</xplan:XP_ExterneReferenz>
 			</xplan:informell>
+			<xplan:rechtscharakter>1000</xplan:rechtscharakter>
 			<xplan:gehoertZuBP_Bereich
 				xlink:href="#FEATURE_02c85610-df24-47e6-b21e-b527cc30c0a6" />
 			<xplan:position>
