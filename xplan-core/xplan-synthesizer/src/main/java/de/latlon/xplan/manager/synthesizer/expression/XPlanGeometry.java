@@ -27,7 +27,7 @@ import static org.deegree.geometry.multi.MultiGeometry.MultiGeometryType.MULTI_G
 public class XPlanGeometry implements Expression {
 
     // i.e. meters, as the targeted CRS should always be in meters
-    private final double MAX_ERROR = 0.1;
+    private final double MAX_ERROR = 0.05;
 
     // yep, not configurable (yet)
     private final int MAX_NUM_POINTS = 500;
