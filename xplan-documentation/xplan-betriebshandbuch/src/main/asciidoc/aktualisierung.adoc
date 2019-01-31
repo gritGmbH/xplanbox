@@ -75,6 +75,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 2.8              |                                                                    | ja
 | 2.9              | ja (<<aktualisierung-auf-die-version-2.9-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-2.9-der-xplanbox, Details>>)
 | 2.10             | ja (<<aktualisierung-auf-die-version-2.10-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.10-der-xplanbox, Details>>)
+| 2.11             | ja (<<aktualisierung-auf-die-version-2.11-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.11-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -258,3 +259,9 @@ Mit der Version 2.10 der xPlanBox können auch Pläne der der XPlanGML Version 5
  *** _fix/xplan51/create.sql_
  *** _pre/xplan51/create.sql_
  *** _archive/xplan51/create.sql_
+
+
+[[aktualisierung-auf-die-version-2.11-der-xplanbox]]
+=== Aktualisierung auf die Version 2.11 der xPlanBox
+
+Mit der Version 2.11 der xPlanBox können mehrere Ortsteile im XPlanGML auch durch Kommata separiert angegeben werden. Damit diese wie erwartet einem Bezirk zugeordnet werden können (s. Hinweis unter <<ortsteile>>) muss eine Aktualisierung der in der Datenbank gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __districtUpdate__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.

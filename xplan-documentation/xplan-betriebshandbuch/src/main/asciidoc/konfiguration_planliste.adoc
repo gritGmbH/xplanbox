@@ -1,4 +1,4 @@
-[[kategorien]]
+[[planliste]]
 === Planliste
 
 Die angezeigten Spalten der Planliste auf der Hauptseite können in der Datei _managerWebConfiguration.properties_ im Verzeichnis _~/.deegree/manager-configuration/_ konfiguriert werden.

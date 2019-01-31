@@ -1,6 +1,7 @@
 package de.latlon.xplan.manager.synthesizer;
 
 import de.latlon.xplan.commons.XPlanFeatureCollection;
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -10,6 +11,7 @@ import org.junit.runner.RunWith;
 
 import java.nio.file.Path;
 
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.xmlmatchers.XmlMatchers.hasXPath;
@@ -39,6 +41,11 @@ public class XplanSynthesizerXplan50Test extends AbstractXplanSynthesizerTest {
         assertThat( the( synGml ),
                     hasXPath( "count(//xplansyn:rechtscharakter[text() = ''])", nsContext(), returningANumber(),
                               is( 0d ) ) );
+    }
+
+    @Override
+    XPlanVersion getXPlanVersion() {
+        return XPLAN_50;
     }
 
 }
