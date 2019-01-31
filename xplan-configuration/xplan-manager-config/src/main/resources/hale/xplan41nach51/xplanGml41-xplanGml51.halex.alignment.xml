@@ -2028,6 +2028,35 @@ if(rechtscharakter){
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C38330fa4-1e9b-4dc5-a113-bd6f032de08e" priority="high">
+        <source name="var">
+            <property>
+                <type name="BP_ObjektType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="textSchluesselBegruendung" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="BP_ObjektType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refBegruendungInhalt" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if(textSchluesselBegruendung){
+  def newGmlId = 'bp_textSchluesselBegruendung_' + UUID.randomUUID().toString()
+  withTransformationContext {
+    def c = _.context.collector(it)
+    c.bpTextSchluesselBegruendung &lt;&lt; [newGmlId, textSchluesselBegruendung]
+  }
+  _target {
+	href( '#' + newGmlId )
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C0b2b42ce-adce-472d-9209-33b4d72dc81f" priority="high">
         <source name="var">
             <property>
@@ -2044,10 +2073,10 @@ if(rechtscharakter){
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 if(textSchluessel){
-  def newGmlId = 'textSchluessel_' + UUID.randomUUID().toString()
+  def newGmlId = 'bp_textSchluessel_' + UUID.randomUUID().toString()
   withTransformationContext {
     def c = _.context.collector(it)
-    c.textSchluessel &lt;&lt; [newGmlId, textSchluessel]
+    c.bpTextSchluessel &lt;&lt; [newGmlId, textSchluessel]
   }
   _target {
 	href( '#' + newGmlId )
@@ -2703,7 +2732,7 @@ if(textSchluessel){
         </target>
         <parameter value="1000" name="value"/>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="C893a44a4-aed0-425a-9a6d-76507a64c2b9" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="C893a44a4-aed0-425a-9a6d-76507a64c2b9" priority="low">
         <target>
             <class>
                 <type name="BP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/1"/>
@@ -2712,12 +2741,11 @@ if(textSchluessel){
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 def c
-
 withTransformationContext {
   c = _.context.collector(it)
 }
 
-c.textSchluessel.each { value -&gt;
+c.bpTextSchluessel.each { value -&gt;
   _target {
     id( value[0] )
     schluessel( value[1] )
@@ -3383,6 +3411,66 @@ if(rechtscharakter) {
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C3afc6b3e-62c4-4c89-8054-73e7ba00972c" priority="high">
+        <source name="var">
+            <property>
+                <type name="SO_ObjektType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="textSchluesselBegruendung" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SO_ObjektType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refBegruendungInhalt" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if(textSchluesselBegruendung){
+  def newGmlId = 'so_textSchluesselBegruendung_' + UUID.randomUUID().toString()
+  withTransformationContext {
+    def c = _.context.collector(it)
+    c.soTextSchluesselBegruendung &lt;&lt; [newGmlId, textSchluesselBegruendung]
+  }
+  _target {
+	href( '#' + newGmlId )
+  }
+}
+
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cb88d0c2d-5d67-478a-a5ac-2ddd0adc34fd" priority="high">
+        <source name="var">
+            <property>
+                <type name="SO_ObjektType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="textSchluessel" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SO_ObjektType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refTextInhalt" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if(textSchluessel){
+  def newGmlId = 'so_textSchluessel_' + UUID.randomUUID().toString()
+  withTransformationContext {
+    def c = _.context.collector(it)
+    c.soTextSchluessel &lt;&lt; [newGmlId, textSchluessel]
+  }
+  _target {
+	href( '#' + newGmlId )
+  }
+}
+
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Ca0442269-8f7d-4919-a4fb-2b438a0358e3" priority="normal">
         <source>
             <class>
@@ -3543,6 +3631,30 @@ if(rechtscharakter) {
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="Cb6eb4b1d-a098-4ca4-b8c5-360a9e458f98" priority="low">
+        <target>
+            <class>
+                <type name="SO_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def c
+withTransformationContext {
+  c = _.context.collector(it)
+}
+
+c.soTextSchluessel.each { value -&gt;
+  _target {
+    id( value[0] )
+    schluessel( value[1] )
+    rechtscharakter( 9998 )
+  }
+}
+
+</core:text>
+        </complexParameter>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C4799a0b2-018b-4942-aee8-7d5ec82c0391" priority="normal">
         <source>
             <class>
@@ -3557,7 +3669,7 @@ if(rechtscharakter) {
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="C6dd7281c-cc7f-455b-95ef-d4dda8cedc32" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="C6dd7281c-cc7f-455b-95ef-d4dda8cedc32" priority="low">
         <target>
             <class>
                 <type name="XP_BegruendungAbschnittType" ns="http://www.xplanung.de/xplangml/5/1"/>
@@ -3566,12 +3678,16 @@ if(rechtscharakter) {
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 def c
-
 withTransformationContext {
   c = _.context.collector(it)
 }
-
-c.textSchluesselBegruendung.each { value -&gt;
+c.bpTextSchluesselBegruendung.each { value -&gt;
+  _target {
+    id( value[0] )
+    schluessel( value[1] )
+  }
+}
+c.soTextSchluesselBegruendung.each { value -&gt;
   _target {
     id( value[0] )
     schluessel( value[1] )
@@ -4101,36 +4217,6 @@ c.textSchluesselBegruendung.each { value -&gt;
             </property>
         </target>
         <parameter value="9998" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C38330fa4-1e9b-4dc5-a113-bd6f032de08e" priority="high">
-        <source name="var">
-            <property>
-                <type name="BP_ObjektType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="textSchluesselBegruendung" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target name="result">
-            <property>
-                <type name="XP_ObjektType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="refBegruendungInhalt" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <complexParameter name="script">
-            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if(textSchluesselBegruendung){
-  def newGmlId = 'textSchluesselBegruendung_' + UUID.randomUUID().toString()
-  withTransformationContext {
-    def c = _.context.collector(it)
-    c.textSchluesselBegruendung &lt;&lt; [newGmlId, textSchluesselBegruendung]
-    /*tsb[newGmlId] = textSchluesselBegruendung*/
-  }
-  _target {
-	href( '#' + newGmlId )
-  }
-}
-</core:text>
-        </complexParameter>
-        <parameter value="false" name="variablesAsInstances"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C11a00128-c34a-4280-971d-d5820f1b29cb" priority="normal">
         <source>
