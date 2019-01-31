@@ -34,6 +34,10 @@
               <mainClass>de.latlon.xplan.update.tool.DistrictUpdateTool</mainClass>
               <name>districtUpdate</name>
             </program>
+            <program>
+              <mainClass>de.latlon.xplan.update.tool.ReSynthesizerTool</mainClass>
+              <name>reSynthesizer</name>
+            </program>
           </programs>
         </configuration>
       </plugin>
@@ -48,6 +52,7 @@
                   <fileset dir="target/appassembler/bin">
                     <include name="databaseUpdate" />
                     <include name="districtUpdate" />
+                    <include name="reSynthesizer" />
                   </fileset>
                 </chmod>
               </tasks>

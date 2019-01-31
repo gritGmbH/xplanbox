@@ -71,6 +71,10 @@ public class XPlanFeatureCollection {
         this( fc, type, new ExternalReferenceScanner().scan( fc ) );
     }
 
+    public XPlanFeatureCollection( FeatureCollection fc, XPlanVersion version, XPlanType type ) {
+        this( fc, type, new ExternalReferenceScanner().scan( fc, version ) );
+    }
+
     public XPlanFeatureCollection( FeatureCollection fc, XPlanType type, ExternalReferenceInfo externalRefInfo ) {
         this.fc = fc;
         this.type = type;
