@@ -3275,6 +3275,40 @@ c.textSchluessel.each { value -&gt;
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C161a1aab-915c-4891-88c9-91a9e2bd9563" priority="normal">
+        <source name="var">
+            <property>
+                <type name="SO_ObjektType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="gehoertNachrichtlichZuBereich" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <source name="var">
+            <property>
+                <type name="SO_ObjektType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="gehoertZuSO_Bereich" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SO_ObjektType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="gehoertZuBereich" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if(gehoertZuSO_Bereich){
+  _target {
+    href(gehoertZuSO_Bereich.value().href);
+  }
+} else if (gehoertNachrichtlichZuBereich){
+  _target {
+    href(gehoertNachrichtlichZuBereich.value().href);
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Ca0442269-8f7d-4919-a4fb-2b438a0358e3" priority="normal">
         <source>
             <class>
@@ -3993,22 +4027,6 @@ c.textSchluesselBegruendung.each { value -&gt;
             </property>
         </target>
         <parameter value="9998" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbff32b9a-a2cd-4cb8-a747-0c08d44a43d5" priority="normal">
-        <source>
-            <property>
-                <type name="XP_ObjektType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="gehoertNachrichtlichZuBereich" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="XP_ObjektType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="gehoertZuBereich" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C38330fa4-1e9b-4dc5-a113-bd6f032de08e" priority="high">
         <source name="var">
