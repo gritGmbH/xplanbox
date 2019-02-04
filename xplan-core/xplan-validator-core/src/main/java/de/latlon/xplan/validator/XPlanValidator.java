@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
 import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -223,7 +224,7 @@ public class XPlanValidator {
      * @return the created report
      */
     SemanticValidatorResult
-                    validateSemanticallyAndWriteResult( XPlanArchive archive,
+                    validateSemanticallyAndWriteResult( SemanticValidableXPlanArchive archive,
                                                         List<SemanticValidationOptions> semanticValidationOptions )
                                                                         throws ValidatorException {
         ValidatorResult result = semanticValidator.validateSemantic( archive, semanticValidationOptions );

@@ -30,7 +30,7 @@ import de.latlon.xplan.commons.XPlanVersion;
  * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
  * @since 1.0
  */
-public class XPlanArchive implements XPlanArchiveContentAccess {
+public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidableXPlanArchive {
 
     private final List<ZipEntryWithContent> zipFileEntries;
 
@@ -71,6 +71,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess {
      * 
      * @return version, never <code>null</code>
      */
+    @Override
     public XPlanVersion getVersion() {
         return version;
     }
@@ -130,6 +131,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess {
      * 
      * @return reader, never <code>null</code>
      */
+    @Override
     public XMLStreamReader getMainFileXmlReader() {
         try {
             XMLStreamReader xmlReader = XMLInputFactory.newInstance().createXMLStreamReader( getMainFileInputStream() );

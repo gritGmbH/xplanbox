@@ -484,12 +484,14 @@ public class XPlanManager {
     /**
      * Retrieve a list of all XPlans.
      *
+     * @param includeNoOfFeature
+     *                 <code>true</code> if the number of features of each feature collection should be requested, <code>false</code> otherwise
      * @return list of XPlans
      * @throws Exception
      */
-    public List<XPlan> list()
+    public List<XPlan> list( boolean includeNoOfFeature )
                     throws Exception {
-        return xplanDao.getXPlanList();
+        return xplanDao.getXPlanList( includeNoOfFeature );
     }
 
     /**

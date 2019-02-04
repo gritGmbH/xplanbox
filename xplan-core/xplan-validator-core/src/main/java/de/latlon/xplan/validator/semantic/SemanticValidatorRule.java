@@ -1,6 +1,7 @@
 package de.latlon.xplan.validator.semantic;
 
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
@@ -21,7 +22,7 @@ public interface SemanticValidatorRule {
      *            the archive to validate, never <code>null</code>
      * @return true if valid, false if not
      */
-    boolean validate( XPlanArchive archive )
+    boolean validate( SemanticValidableXPlanArchive archive )
                             throws ValidatorException;
 
     /**

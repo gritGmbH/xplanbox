@@ -47,3 +47,5 @@ categoriesToParts=Bezirk1(Ortsteil1,Ortsteil2);Bezirk2(Ortsteil3,Ortsteil4)
 
 NOTE: Umlaute müssen codiert werden.
 
+NOTE: Mehrere Ortsteile können im XPlanGML durch Kommata separiert angegeben werden. In diesem Fall erfolgt die Zuordnung zu dem Bezirk anhand des ersten Ortsteils.
+

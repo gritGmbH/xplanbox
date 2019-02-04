@@ -5,11 +5,11 @@ import static java.lang.String.format;
 import java.io.IOException;
 import java.util.List;
 
+import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorDetail;
@@ -66,14 +66,14 @@ public class XQuerySemanticValidator implements SemanticValidator {
         this.semanticConformityLinkConfiguration = semanticConformityLinkConfiguration;
         try {
             semanticValidatorConfiguration = retriever.retrieveConfiguration();
-        } catch ( XPathException | IOException e ) {
+        } catch ( IOException e ) {
             LOG.error( format( "Could not instantiate semantic validator. Reason: %s", e.getMessage() ) );
             throw new ValidatorException( "Could not create validator.", e );
         }
     }
 
     @Override
-    public ValidatorResult validateSemantic( XPlanArchive archive,
+    public ValidatorResult validateSemantic( SemanticValidableXPlanArchive archive,
                                              List<SemanticValidationOptions> semanticValidationOptions ) {
         checkParameters( archive, semanticValidationOptions );
         ValidatorDetail detail = createDetail( archive );
@@ -92,14 +92,14 @@ public class XQuerySemanticValidator implements SemanticValidator {
     }
 
     private List<SemanticValidatorRule>
-                    retrieveRulesToApply( XPlanArchive archive,
+                    retrieveRulesToApply( SemanticValidableXPlanArchive archive,
                                           List<SemanticValidationOptions> semanticValidationOptions ) {
         XPlanVersion version = archive.getVersion();
         LOG.debug( "Find all rules for version {} and options {}.", version, semanticValidationOptions );
         return semanticValidatorConfiguration.getRules( version, semanticValidationOptions );
     }
 
-    private boolean validateRule( XPlanArchive archive, SemanticValidatorResult result,
+    private boolean validateRule( SemanticValidableXPlanArchive archive, SemanticValidatorResult result,
                                   SemanticValidatorRule semanticValidatorRule ) {
         boolean isThisRuleValid = false;
         String name = semanticValidatorRule.getName();
@@ -109,13 +109,12 @@ public class XQuerySemanticValidator implements SemanticValidator {
             String message = RulesMessagesAccessor.retrieveMessageForRule( name, version );
             result.addRule( name, isThisRuleValid, message );
         } catch ( ValidatorException e ) {
-            LOG.error( "Error while semantically validating validation rule " + name + ", reason:" + e.getMessage() );
-            LOG.debug( "Exception: ", e );
+            LOG.error( "Error while semantically validating validation rule " + name, e );
         }
         return isThisRuleValid;
     }
 
-    private ValidatorDetail createDetail( XPlanArchive archive ) {
+    private ValidatorDetail createDetail( SemanticValidableXPlanArchive archive ) {
         if ( semanticConformityLinkConfiguration != null ) {
             String link = semanticConformityLinkConfiguration.retrieveLink( archive.getVersion() );
             if ( link != null && !"".equals( link ) ) {
@@ -125,7 +124,7 @@ public class XQuerySemanticValidator implements SemanticValidator {
         return null;
     }
 
-    private void checkParameters( XPlanArchive archive, List<SemanticValidationOptions> semanticValidationOptions ) {
+    private void checkParameters( SemanticValidableXPlanArchive archive, List<SemanticValidationOptions> semanticValidationOptions ) {
         if ( archive == null )
             throw new IllegalArgumentException( "archive must not be null" );
         if ( semanticValidationOptions == null )
