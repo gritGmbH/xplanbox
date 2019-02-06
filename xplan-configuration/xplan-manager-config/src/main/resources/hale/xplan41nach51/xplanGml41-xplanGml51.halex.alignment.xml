@@ -7103,6 +7103,22 @@ if(textSchluesselBegruendung){
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C44a63803-1404-4148-a85e-424c67689adc" priority="normal">
+        <source>
+            <property>
+                <type name="BP_ObjektType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refTextInhalt" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="BP_ObjektType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refTextInhalt" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C0b2b42ce-adce-472d-9209-33b4d72dc81f" priority="high">
         <source name="var">
             <property>
@@ -13446,6 +13462,22 @@ if(textSchluesselBegruendung){
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C94da2abf-d49d-4a5d-b537-df96c1f4490d" priority="normal">
+        <source>
+            <property>
+                <type name="SO_ObjektType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refTextInhalt" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SO_ObjektType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refTextInhalt" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cb88d0c2d-5d67-478a-a5ac-2ddd0adc34fd" priority="high">
         <source name="var">
