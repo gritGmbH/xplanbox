@@ -1,8 +1,9 @@
 package de.latlon.xplan.inspire.plu.transformation.hale;
 
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.hale.HaleTransformator;
+import de.latlon.xplan.commons.hale.TransformationException;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
-import de.latlon.xplan.inspire.plu.transformation.TransformationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,47 +27,37 @@ public class HaleCliInspirePluTransformator implements InspirePluTransformator {
 
     private static final Logger LOG = LoggerFactory.getLogger( HaleCliInspirePluTransformator.class );
 
+    private final Path haleProjectDirectory;
+
+    private final HaleTransformator haleTransformator;
+
     private static final Map<XPlanVersion, String> VERSION_TO_HALEPROJECT = Collections.unmodifiableMap(
                     Stream.of( new SimpleEntry<>( XPLAN_41, "xplan41/xplanGml41-inspirePlu.halex" ),
                                new SimpleEntry<>( XPLAN_50, "xplan50/xplanGml50-inspirePlu.halex" ),
                                new SimpleEntry<>( XPLAN_51, "xplan51/xplanGml51-inspirePlu.halex" ) ).collect(
                                     Collectors.toMap( ( e ) -> e.getKey(), ( e ) -> e.getValue() ) ) );
 
-    private final String haleCli;
-
-    private final Path haleProjectDirectory;
-
     public HaleCliInspirePluTransformator( String haleCli, Path haleProjectDirectory ) {
-        this.haleCli = haleCli;
         this.haleProjectDirectory = haleProjectDirectory;
+        this.haleTransformator = new HaleTransformator( haleCli );
     }
 
     @Override
     public Path transformToPlu( Path xPlanGml, XPlanVersion xPlanVersion )
                     throws TransformationException {
-        try {
-            String haleProject = findHaleProject( xPlanVersion );
-            Path targetFile = Files.createTempFile( "inspirePlu", ".xml" );
-            String command = buildCommand( xPlanGml, targetFile, haleProject );
-            LOG.info( "Execute the following command to transform the plan to INSPIRE PLU: {}", command );
-            Process process = Runtime.getRuntime().exec( command );
-            process.waitFor();
-            return targetFile;
-        } catch ( IOException | InterruptedException e ) {
-            LOG.error( "Could not transform to INSPIRE PLU", e );
-            throw new TransformationException( "Could not transform to INSPIRE PLU", e );
-        }
+        String haleProject = findHaleProject( xPlanVersion );
+        Path targetFile = createTargetFile();
+        haleTransformator.transform( haleProject, xPlanGml.toString(), targetFile.toString() );
+        return targetFile;
     }
 
-    private String buildCommand( Path source, Path target, String haleProject ) {
-        StringBuilder sb = new StringBuilder();
-        sb.append( haleCli );
-        sb.append( " transform" );
-        sb.append( " -project " + haleProject );
-        sb.append( " -source " + source.toString() );
-        sb.append( " -target " + target.toString() );
-        sb.append( " -providerId eu.esdihumboldt.hale.io.gml.writer" );
-        return sb.toString();
+    private Path createTargetFile()
+                    throws TransformationException {
+        try {
+            return Files.createTempFile( "inspirePlu", ".xml" );
+        } catch ( IOException e ) {
+            throw new TransformationException( "Could not create target file", e );
+        }
     }
 
     private String findHaleProject( XPlanVersion xPlanVersion )

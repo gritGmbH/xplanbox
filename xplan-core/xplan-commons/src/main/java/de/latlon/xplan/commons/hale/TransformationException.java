@@ -1,4 +1,4 @@
-package de.latlon.xplan.inspire.plu.transformation;
+package de.latlon.xplan.commons.hale;
 
 /**
  * Indicates that the transformation failed.
