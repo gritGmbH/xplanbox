@@ -25,8 +25,6 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
  */
 public class HaleCliInspirePluTransformator implements InspirePluTransformator {
 
-    private static final Logger LOG = LoggerFactory.getLogger( HaleCliInspirePluTransformator.class );
-
     private final Path haleProjectDirectory;
 
     private final HaleTransformator haleTransformator;
