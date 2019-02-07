@@ -1,17 +1,8 @@
 package de.latlon.xplan.commons;
 
-import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
-import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValues;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
-import static org.deegree.cs.CRSUtils.EPSG_4326;
-
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
-import javax.xml.namespace.QName;
-
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
+import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -28,15 +19,21 @@ import org.deegree.geometry.GeometryTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
-import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
+import javax.xml.namespace.QName;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
+import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValues;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
+import static org.deegree.cs.CRSUtils.EPSG_4326;
 
 /**
  * Provides convenient access to the information contained in the main document of an {@link XPlanArchive}.
- * 
+ *
  * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
- * 
  * @since 1.0
  */
 public class XPlanFeatureCollection {
@@ -67,24 +64,39 @@ public class XPlanFeatureCollection {
 
     private final Envelope bboxIn4326;
 
-    public XPlanFeatureCollection( FeatureCollection fc, XPlanType type ) {
-        this( fc, type, new ExternalReferenceScanner().scan( fc ) );
+    private XPlanVersion version;
+
+    private XPlanAde ade;
+
+    public XPlanFeatureCollection( FeatureCollection fc, XPlanVersion version, XPlanType type, XPlanAde ade ) {
+        this( fc, version, type, ade, new ExternalReferenceScanner().scan( fc ) );
     }
 
-    public XPlanFeatureCollection( FeatureCollection fc, XPlanType type, ExternalReferenceInfo externalRefInfo ) {
+    public XPlanFeatureCollection( FeatureCollection fc, XPlanVersion version, XPlanType type, XPlanAde ade,
+                                   ExternalReferenceInfo externalRefInfo ) {
         this.fc = fc;
+        this.version = version;
         this.type = type;
-        Feature planFeature = findPlanFeature( fc, type );
-        name = getPlanName( planFeature );
-        nummer = getPlanNummer( planFeature );
-        gkz = getPlanGemeindeKennzahl( planFeature );
-        planReleaseDate = getPlanReleaseDate( type, planFeature );
+        this.ade = ade;
         this.externalRefInfo = externalRefInfo;
-        bboxIn4326 = createBboxIn4326( fc );
+        Feature planFeature = findPlanFeature( fc, type );
+        this.name = parsePlanName( planFeature );
+        this.nummer = parsePlanNummer( planFeature );
+        this.gkz = parsePlanGemeindeKennzahl( planFeature );
+        this.planReleaseDate = parsePlanReleaseDate( type, planFeature );
+        this.bboxIn4326 = createBboxIn4326( fc );
     }
 
     public XPlanType getType() {
         return type;
+    }
+
+    public XPlanVersion getVersion() {
+        return version;
+    }
+
+    public XPlanAde getAde() {
+        return ade;
     }
 
     public String getPlanName() {
@@ -117,15 +129,15 @@ public class XPlanFeatureCollection {
 
     /**
      * Returns BBOX of feature collection in EPSG:4326.
-     * 
+     *
      * @return BBOX in EPSG:4326, may be <code>null</code> if the feature collection does not contain any geometry
-     *         properties/envelope informations or the bounding box could not be transformed to EPSG:4326
+     * properties/envelope informations or the bounding box could not be transformed to EPSG:4326
      */
     public Envelope getBboxIn4326() {
         return bboxIn4326;
     }
 
-    private String getPlanName( Feature planFeature ) {
+    private String parsePlanName( Feature planFeature ) {
         String ns = planFeature.getName().getNamespaceURI();
         String name = getPropertyStringValue( planFeature, new QName( ns, "name" ) );
         if ( name == null || name.isEmpty() ) {
@@ -134,12 +146,12 @@ public class XPlanFeatureCollection {
         return name;
     }
 
-    private String getPlanNummer( Feature planFeature ) {
+    private String parsePlanNummer( Feature planFeature ) {
         String ns = planFeature.getName().getNamespaceURI();
         return getPropertyStringValue( planFeature, new QName( ns, "nummer" ) );
     }
 
-    private String getPlanGemeindeKennzahl( Feature planFeature ) {
+    private String parsePlanGemeindeKennzahl( Feature planFeature ) {
         String ns = planFeature.getName().getNamespaceURI();
         List<TypedObjectNode> gkzValues = getPropertyValues( planFeature, new QName( ns, "gkz" ) );
         if ( gkzValues.isEmpty() ) {
@@ -164,7 +176,7 @@ public class XPlanFeatureCollection {
         return gkz;
     }
 
-    private Date getPlanReleaseDate( XPlanType type, Feature planFeature ) {
+    private Date parsePlanReleaseDate( XPlanType type, Feature planFeature ) {
         String propName = detectReleaseDatePropertyName( type );
         if ( propName != null ) {
             QName releaseDatePropName = new QName( planFeature.getName().getNamespaceURI(), propName );

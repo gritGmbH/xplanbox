@@ -34,7 +34,7 @@ import de.latlon.xplan.manager.web.shared.LegislationStatus;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.XPlanMetadata;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceManager;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
@@ -281,7 +281,7 @@ public class XPlanManager {
                     throws Exception {
         XPlanArchive archive = analyzeArchive( archiveFileName );
         importPlan( archive, defaultCRS, force, makeWMSConfig, makeRasterConfig, workspaceFolder, internalId,
-                    new XPlanMetadata() );
+                    new AdditionalPlanData() );
     }
 
     /**
@@ -307,7 +307,7 @@ public class XPlanManager {
      */
     @PreAuthorize("hasPermission(#archive, 'hasDistrictPermission') or hasRole('ROLE_XPLAN_SUPERUSER')")
     public void importPlan( XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
-                            boolean makeRasterConfig, String internalId, XPlanMetadata xPlanMetadata )
+                            boolean makeRasterConfig, String internalId, AdditionalPlanData xPlanMetadata )
                     throws Exception {
         importPlan( archive, defaultCRS, force, makeWMSConfig, makeRasterConfig, null, internalId, xPlanMetadata );
     }
@@ -337,7 +337,7 @@ public class XPlanManager {
      */
     public void importPlan( XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
                             boolean makeRasterConfig, File workspaceFolder, String internalId,
-                            XPlanMetadata xPlanMetadata )
+                            AdditionalPlanData xPlanMetadata )
                     throws Exception {
         LOG.info( "- Importiere Plan " + archive );
         ICRS crs = determineActiveCrs( defaultCRS, archive );
@@ -568,7 +568,7 @@ public class XPlanManager {
             originalPlan = xplanDao.retrieveXPlanArtefact( planId );
             originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader( originalPlan );
             XPlanFeatureCollection originalPlanFC = parseXPlanFeatureCollection( originalPlanAsXmlReader, type,
-                                                                                 version, appSchema );
+                                                                                 version, ade, appSchema );
             String oldLegislationStatus = FeatureCollectionUtils.retrieveLegislationStatus( originalPlanFC.getFeatures(), type );
             FeatureCollection featuresToModify = originalPlanFC.getFeatures();
             ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan( featuresToModify );
@@ -583,8 +583,8 @@ public class XPlanManager {
                                                                                                      uploadedArtefacts,
                                                                                                      externalReferencesOriginal );
             Set<String> removedRefs = collectRemovedRefs( externalReferencesModified, externalReferencesOriginal );
-            XPlanFeatureCollection modifiedPlanFc = new XPlanFeatureCollection( modifiedFeatures, type,
-                            externalReferenceInfoToUpdate );
+            XPlanFeatureCollection modifiedPlanFc = new XPlanFeatureCollection( modifiedFeatures, version, type, ade,
+                                                                                externalReferenceInfoToUpdate );
             reassignFids( modifiedPlanFc );
             FeatureCollection synFc = createSynFeatures( modifiedPlanFc, version );
             String internalId = xplanDao.retrieveInternalId( planId, type );
@@ -595,8 +595,8 @@ public class XPlanManager {
 
             // TODO: Validation required?
             PlanStatus newPlanStatus = detectNewPlanStatus( xPlanToEdit, oldLegislationStatus, oldPlanStatus );
-            XPlanMetadata xPlanMetadata = new XPlanMetadata( newPlanStatus, xPlanToEdit.getValidityPeriod().getStart(),
-                            xPlanToEdit.getValidityPeriod().getEnd() );
+            AdditionalPlanData xPlanMetadata = new AdditionalPlanData( newPlanStatus, xPlanToEdit.getValidityPeriod().getStart(),
+                                                                       xPlanToEdit.getValidityPeriod().getEnd() );
             Date sortDate = sortPropertyReader.readSortDate( type, version, modifiedFeatures );
             xplanDao.update( oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, xPlanToEdit, sortDate,
                              uploadedArtefacts, removedRefs );
@@ -777,23 +777,23 @@ public class XPlanManager {
                                                                 String internalId, PlanStatus planStatus )
                     throws Exception {
         performSchemaValidation( archive );
-        XPlanFeatureCollection fc = null;
         try {
-            fc = ( new GeometricValidatorImpl() ).retrieveGeometricallyValidXPlanFeatures( archive,
-                                                                                           crs,
-                                                                                           getAppSchemaFromStore( archive,
-                                                                                                                  planStatus ),
-                                                                                           force, internalId );
+            GeometricValidatorImpl geometricValidator = new GeometricValidatorImpl();
+            AppSchema appSchema = getAppSchemaFromStore( archive, planStatus );
+            XPlanFeatureCollection fc = geometricValidator.retrieveGeometricallyValidXPlanFeatures( archive, crs,
+                                                                                                    appSchema, force,
+                                                                                                    internalId );
             reassignFids( fc );
             long begin = System.currentTimeMillis();
             new SyntacticValidatorImpl().validateReferences( archive, fc.getExternalReferenceInfo(), force );
             LOG.info( "- Überprüfung der externen Referenzen..." );
             long elapsed = System.currentTimeMillis() - begin;
             LOG.info( "OK [" + elapsed + " ms]" );
+            return fc;
         } catch ( XMLStreamException | UnknownCRSException e ) {
-            e.printStackTrace();
+            LOG.error( "Could not read and validate xplan gml", e );
+            return null;
         }
-        return fc;
     }
 
     private void reassignFids( XPlanFeatureCollection fc ) {
@@ -901,14 +901,14 @@ public class XPlanManager {
         XPlanType type = archive.getType();
         XPlanVersion version = archive.getVersion();
         AppSchema appSchema = getAppSchemaFromStore( archive, null );
-        return parseXPlanFeatureCollection( plan, type, version, appSchema );
+        return parseXPlanFeatureCollection( plan, type, version, archive.getAde(), appSchema );
     }
 
     private XPlanFeatureCollection parseXPlanFeatureCollection( XMLStreamReader plan, XPlanType type,
-                                                                XPlanVersion version, AppSchema appSchema )
+                                                                XPlanVersion version, XPlanAde ade, AppSchema appSchema )
                     throws XMLStreamException, UnknownCRSException {
         FeatureCollection xplanFeatures = parseFeatureCollection( plan, version, appSchema );
-        return new XPlanFeatureCollection( xplanFeatures, type );
+        return new XPlanFeatureCollection( xplanFeatures, version, type, ade );
     }
 
     private FeatureCollection parseFeatureCollection( XMLStreamReader plan, XPlanVersion version, AppSchema appSchema )

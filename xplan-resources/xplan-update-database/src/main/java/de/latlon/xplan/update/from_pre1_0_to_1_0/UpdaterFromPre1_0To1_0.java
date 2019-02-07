@@ -144,7 +144,7 @@ public class UpdaterFromPre1_0To1_0 extends AbstractUpdater {
 
             FeatureCollection featureCollection = createFeatureCollection( conn, planId, version, ade );
 
-            XPlanFeatureCollection fc = new XPlanFeatureCollection( featureCollection, type );
+            XPlanFeatureCollection fc = new XPlanFeatureCollection( featureCollection, version, type, ade );
             FeatureCollection synFc = xPlanSynthesizer.synthesize( version, fc );
 
             updatePlanInPlansTable( conn, type, version, fc, synFc, planId );

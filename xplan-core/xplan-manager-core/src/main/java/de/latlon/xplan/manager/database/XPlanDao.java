@@ -1,45 +1,25 @@
 package de.latlon.xplan.manager.database;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
-import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
-import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
-import static de.latlon.xplan.manager.database.DatabaseUtils.openConnection;
-import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
-import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
-import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
-import static org.apache.commons.io.IOUtils.closeQuietly;
-import static org.apache.commons.io.IOUtils.copyLarge;
-import static org.deegree.protocol.wfs.transaction.action.IDGenMode.USE_EXISTING;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
-
-import javax.activation.MimetypesFileTypeMap;
-
+import com.vividsolutions.jts.io.ParseException;
+import de.latlon.xplan.commons.XPlanAde;
+import de.latlon.xplan.commons.XPlanFeatureCollection;
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.ArchiveEntry;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
+import de.latlon.xplan.manager.CategoryMapper;
+import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.manager.export.DatabaseXPlanArtefactIterator;
+import de.latlon.xplan.manager.export.XPlanArchiveContent;
+import de.latlon.xplan.manager.export.XPlanArtefactIterator;
+import de.latlon.xplan.manager.export.XPlanExportException;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
+import de.latlon.xplan.manager.web.shared.PlanStatus;
+import de.latlon.xplan.manager.web.shared.XPlan;
+import de.latlon.xplan.manager.web.shared.XPlanEnvelope;
+import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
+import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import org.apache.commons.io.IOUtils;
 import org.deegree.commons.utils.Pair;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -64,26 +44,44 @@ import org.deegree.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.vividsolutions.jts.io.ParseException;
+import javax.activation.MimetypesFileTypeMap;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanFeatureCollection;
-import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.archive.ArchiveEntry;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
-import de.latlon.xplan.manager.CategoryMapper;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.manager.export.DatabaseXPlanArtefactIterator;
-import de.latlon.xplan.manager.export.XPlanArchiveContent;
-import de.latlon.xplan.manager.export.XPlanArtefactIterator;
-import de.latlon.xplan.manager.export.XPlanExportException;
-import de.latlon.xplan.manager.web.shared.PlanStatus;
-import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.XPlanEnvelope;
-import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
-import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
+import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
+import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
+import static de.latlon.xplan.manager.database.DatabaseUtils.openConnection;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
+import static org.apache.commons.io.IOUtils.closeQuietly;
+import static org.apache.commons.io.IOUtils.copyLarge;
+import static org.deegree.protocol.wfs.transaction.action.IDGenMode.USE_EXISTING;
 
 /**
  * DAO class for xplans.
@@ -186,30 +184,28 @@ public class XPlanDao {
      *            features of the main GML document from the archive, must not be <code>null</code>
      * @param synFc
      *            flattened features (of the main GML document from the archive), must not be <code>null</code>
-     * @param xPlanMetadata
+     * @param additionalPlanData
      *            containing some metadata about the xplan, never <code>null</code>
      * 
      * @return database id of the plan
      */
-    public int insert( de.latlon.xplan.commons.archive.XPlanArchive archive,
-                       de.latlon.xplan.commons.XPlanFeatureCollection fc, FeatureCollection synFc,
-                       de.latlon.xplan.manager.web.shared.XPlanMetadata xPlanMetadata, Date sortDate )
+    public int insert( XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc,
+                       AdditionalPlanData additionalPlanData, Date sortDate )
                                        throws Exception {
         Connection conn = null;
         try {
             LOG.info( "Insert XPlan" );
 
-            PlanStatus planStatus = xPlanMetadata.getPlanStatus();
+            PlanStatus planStatus = additionalPlanData.getPlanStatus();
             FeatureStore xplanFs = lookupStore( archive.getVersion(), archive.getAde(), planStatus );
             FeatureStore synFs = lookupStore( XPLAN_SYN, null, planStatus );
 
             conn = openConnection( ws, JDBC_POOL_ID );
             conn.setAutoCommit( false );
-            Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanTA = insertXPlan( archive.getVersion(), xplanFs,
-                                                                                         fc );
-            int planId = insertMetadata( conn, archive, fc, synFc, fidsAndXPlanTA.first, xPlanMetadata, sortDate );
+            Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanTA = insertXPlan( xplanFs, fc);
+            int planId = insertMetadata( conn, archive, fc, synFc, fidsAndXPlanTA.first, additionalPlanData, sortDate );
 
-            addAdditionalProperties( synFc, xPlanMetadata, synFs, planId, sortDate );
+            addAdditionalProperties( synFc, additionalPlanData, synFs, planId, sortDate );
 
             Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanSynTA = insertXPlanSyn( synFs, synFc );
 
@@ -218,7 +214,6 @@ public class XPlanDao {
             long begin = System.currentTimeMillis();
             LOG.info( "- Persistierung..." );
 
-            // commit transactions
             fidsAndXPlanTA.second.commit();
             fidsAndXPlanSynTA.second.commit();
             conn.commit();
@@ -250,9 +245,23 @@ public class XPlanDao {
     }
 
     /**
+     * Deletes the specified plan from the database (and feature stores).
+     *
+     * @param planId
+     *            database id of the plan
+     */
+    public void deletePlan( String planId )
+                    throws Exception {
+
+        ensureWorkspaceInitialized();
+        XPlanMetadata xPlanMetadata = selectXPlanMetadata( planId );
+        deletePlan( xPlanMetadata, planId );
+    }
+
+    /**
      * @param oldXplan
      *            the {@link XPlan} describing the plan before update, never <code>null</code>
-     * @param newXPlanMetadata
+     * @param newAdditionalPlanData
      *            of the {@link XPlan} with the updated values, never <code>null</code>
      * @param fc
      *            the edited feature collection, never <code>null</code>
@@ -265,10 +274,10 @@ public class XPlanDao {
      * @param removedRefs
      * @throws Exception
      */
-    public void update( XPlan oldXplan, de.latlon.xplan.manager.web.shared.XPlanMetadata newXPlanMetadata,
+    public void update( XPlan oldXplan, AdditionalPlanData newAdditionalPlanData,
                         XPlanFeatureCollection fc, FeatureCollection synFc, byte[] planArtefact,
                         XPlanToEdit xPlanToEdit, Date sortDate, List<File> uploadedArtefacts, Set<String> removedRefs )
-                                        throws Exception {
+                    throws Exception {
         Connection conn = null;
         try {
             LOG.info( "Update XPlan" );
@@ -276,10 +285,10 @@ public class XPlanDao {
             conn = openConnection( ws, JDBC_POOL_ID );
             conn.setAutoCommit( false );
 
-            updatePlanMetadata( conn, oldXplan, newXPlanMetadata, fc, synFc, sortDate );
+            updatePlanMetadata( conn, oldXplan, newAdditionalPlanData, fc, synFc, sortDate );
             updatePlanArtefact( conn, oldXplan, planArtefact );
             updateArtefacts( conn, oldXplan, xPlanToEdit, uploadedArtefacts, removedRefs );
-            updateXPlanAndXPlanSyn( conn, oldXplan, newXPlanMetadata, fc, synFc, xPlanToEdit, sortDate );
+            updateXPlanAndXPlanSyn( conn, oldXplan, newAdditionalPlanData, fc, synFc, sortDate );
 
             long begin = System.currentTimeMillis();
             LOG.info( "- Persistierung..." );
@@ -293,20 +302,6 @@ public class XPlanDao {
         } finally {
             closeQuietly( conn );
         }
-    }
-
-    /**
-     * Deletes the specified plan from the database (and feature stores).
-     * 
-     * @param planId
-     *            database id of the plan
-     */
-    public void deletePlan( String planId )
-                    throws Exception {
-
-        ensureWorkspaceInitialized();
-        XPlanMetadata xPlanMetadata = selectXPlanMetadata( planId );
-        deletePlan( xPlanMetadata, planId );
     }
 
     /**
@@ -441,6 +436,12 @@ public class XPlanDao {
         }
     }
 
+    /**
+     * @param xPlanById
+     *                 the id of the requested plan, never <code>null</code>
+     * @return the restored feature collection from xplan wfs datastore, never <code>null</code>
+     * @throws Exception
+     */
     public FeatureCollection retrieveFeatureCollection( XPlan xPlanById )
                     throws Exception {
         ensureWorkspaceInitialized();
@@ -486,6 +487,12 @@ public class XPlanDao {
         throw new IllegalArgumentException();
     }
 
+    /**
+     * @param planId
+     *                 the id of the requested plan, <code>null</code>
+     * @return the original plan artefact, never <code>null</code>
+     * @throws Exception
+     */
     public InputStream retrieveXPlanArtefact( String planId )
                     throws Exception {
         Connection conn = null;
@@ -673,7 +680,7 @@ public class XPlanDao {
     }
 
     private void addAdditionalProperties( FeatureCollection synFc,
-                                          de.latlon.xplan.manager.web.shared.XPlanMetadata xPlanMetadata,
+                                          AdditionalPlanData xPlanMetadata,
                                           FeatureStore synFs, int planId, Date sortDate ) {
         AppSchema schema = synFs.getSchema();
         featureCollectionManipulator.addAdditionalPropertiesToFeatures( synFc, schema, planId, sortDate,
@@ -741,12 +748,12 @@ public class XPlanDao {
         return xPlan;
     }
 
-    private de.latlon.xplan.manager.web.shared.XPlanMetadata
+    private AdditionalPlanData
                     createXPlanMetadata( String planStatus, Timestamp startDateTime, Timestamp endDateTime ) {
         PlanStatus planStatusAsEnum = null;
         if ( planStatus != null )
             planStatusAsEnum = PlanStatus.findByMessage( planStatus );
-        return new de.latlon.xplan.manager.web.shared.XPlanMetadata( planStatusAsEnum, startDateTime, endDateTime );
+        return new AdditionalPlanData( planStatusAsEnum, startDateTime, endDateTime );
     }
 
     private int getXPlanIdAsInt( String planId )
@@ -766,10 +773,6 @@ public class XPlanDao {
 
     private XPlanMetadata selectXPlanMetadata( int id )
                     throws Exception {
-        XPlanVersion version = null;
-        XPlanAde ade = null;
-        PlanStatus planStatus = null;
-
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try ( Connection mgrConn = openConnection( ws, JDBC_POOL_ID ) ) {
@@ -779,17 +782,16 @@ public class XPlanDao {
             if ( !rs.next() ) {
                 throw new Exception( "Kein XPlan mit Id " + id + " vorhanden." );
             }
-            version = XPlanVersion.valueOf( rs.getString( 1 ) );
-            ade = retrieveNsmAde( version, rs.getString( 2 ) );
-            planStatus = retrievePlanStatus( rs.getString( 3 ) );
+            XPlanVersion version = XPlanVersion.valueOf( rs.getString( 1 ) );
+            XPlanAde ade = retrieveNsmAde( version, rs.getString( 2 ) );
+            PlanStatus planStatus = retrievePlanStatus( rs.getString( 3 ) );
+            return new XPlanMetadata( version, ade, planStatus );
         } catch ( Exception e ) {
             throw new Exception( "Interner-/Konfigurations-Fehler. Kann XPlan-Informationen nicht aus DB lesen: "
-                                 + e.getLocalizedMessage(),
-                            e );
+                                 + e.getLocalizedMessage(), e );
         } finally {
             closeQuietly( stmt, rs );
         }
-        return new XPlanMetadata( version, ade, planStatus );
     }
 
     private List<String> selectArtefactFileNames( Connection conn, int id )
@@ -935,11 +937,10 @@ public class XPlanDao {
         return fs.query( query ).toCollection();
     }
 
-    private Pair<List<String>, SQLFeatureStoreTransaction> insertXPlan( XPlanVersion version, FeatureStore fs,
-                                                                        XPlanFeatureCollection fc )
-                                                                                        throws FeatureStoreException {
+    private Pair<List<String>, SQLFeatureStoreTransaction> insertXPlan( FeatureStore fs, XPlanFeatureCollection fc )
+                    throws FeatureStoreException {
         long begin = System.currentTimeMillis();
-        LOG.info( "- Einfügen von " + fc.getFeatures().size() + " Feature(s) in den FeatureStore (" + version
+        LOG.info( "- Einfügen von " + fc.getFeatures().size() + " Feature(s) in den FeatureStore (" + fc.getVersion()
                   + ")..." );
         SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
         List<String> fids = ta.performInsert( fc.getFeatures(), USE_EXISTING );
@@ -959,10 +960,8 @@ public class XPlanDao {
         return new Pair<>( fids, ta );
     }
 
-    private void updateXPlanAndXPlanSyn( Connection conn, XPlan oldXPlan,
-                                         de.latlon.xplan.manager.web.shared.XPlanMetadata newXPlanMetadata,
-                                         XPlanFeatureCollection fc, FeatureCollection synFc, XPlanToEdit xPlanToEdit,
-                                         Date sortDate )
+    private void updateXPlanAndXPlanSyn( Connection conn, XPlan oldXPlan, AdditionalPlanData newXPlanMetadata,
+                                         XPlanFeatureCollection fc, FeatureCollection synFc, Date sortDate )
                                                          throws Exception {
         PreparedStatement stmt = null;
         SQLFeatureStoreTransaction taSource = null;
@@ -993,7 +992,7 @@ public class XPlanDao {
             LOG.info( "- Aktualisiere XPlan " + planId + " im FeatureStore (" + version + ( ade == null ? "" : ade )
                       + ")..." );
             taSource.performDelete( idFilter, null );
-            Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanTa = insertXPlan( version, fsTarget, fc );
+            Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanTa = insertXPlan( fsTarget, fc );
             taTarget = fidsAndXPlanTa.second;
             LOG.info( "OK" );
 
@@ -1040,10 +1039,10 @@ public class XPlanDao {
 
     }
 
-    private int insertMetadata( Connection mgrConn, de.latlon.xplan.commons.archive.XPlanArchive archive,
-                                XPlanFeatureCollection fc, FeatureCollection synFc, List<String> fids,
-                                de.latlon.xplan.manager.web.shared.XPlanMetadata xPlanMetadata, Date sortDate )
-                                                throws SQLException {
+    private int insertMetadata( Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc,
+                                List<String> fids, AdditionalPlanData xPlanMetadata,
+                                Date sortDate )
+                    throws SQLException {
 
         long begin = System.currentTimeMillis();
         LOG.info( "- Einfügen der XPlan-Metadaten (XPLAN_MGR)..." );
@@ -1073,10 +1072,9 @@ public class XPlanDao {
         }
     }
 
-    private int insertPlanMetadata( Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc,
-                                    FeatureCollection synFc,
-                                    de.latlon.xplan.manager.web.shared.XPlanMetadata xPlanMetadata, Date sortDate )
-                                                    throws SQLException {
+    private int insertPlanMetadata( Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc,
+                                    AdditionalPlanData xPlanMetadata, Date sortDate )
+                    throws SQLException {
         String insertPlansSql = "INSERT INTO xplanmgr.plans "
                                 + "(import_date, xp_version, xp_type, ade, name, nummer, gkz, has_raster, rechtsstand, "
                                 + "release_date, sonst_plan_art, planstatus, district, "
@@ -1118,7 +1116,7 @@ public class XPlanDao {
     }
 
     private void updatePlanMetadata( Connection conn, XPlan xplan,
-                                     de.latlon.xplan.manager.web.shared.XPlanMetadata newXPlanMetadata,
+                                     AdditionalPlanData newXPlanMetadata,
                                      XPlanFeatureCollection fc, FeatureCollection synFc, Date sortDate )
                                                      throws SQLException {
         StringBuilder sql = new StringBuilder();
@@ -1493,7 +1491,7 @@ public class XPlanDao {
         return FESTGESTELLT;
     }
 
-    private String retrievePlanStatusMessage( de.latlon.xplan.manager.web.shared.XPlanMetadata xPlanMetadata ) {
+    private String retrievePlanStatusMessage( AdditionalPlanData xPlanMetadata ) {
         if ( xPlanMetadata.getPlanStatus() != null )
             return xPlanMetadata.getPlanStatus().getMessage();
         return FESTGESTELLT.getMessage();
@@ -1538,7 +1536,7 @@ public class XPlanDao {
         PlanStatus planStatus;
 
         /**
-         * 
+         *
          * @param version
          *            may be <code>null</code>
          * @param ade

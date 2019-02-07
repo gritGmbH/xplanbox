@@ -52,7 +52,7 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
     private String district;
 
-    private XPlanMetadata xplanMetadata;
+    private AdditionalPlanData xplanMetadata;
     
     public XPlan() {
         this.name = "N/A";
@@ -205,11 +205,11 @@ public class XPlan implements Serializable, Comparable<XPlan> {
         this.district = district;
     }
 
-    public XPlanMetadata getXplanMetadata() {
+    public AdditionalPlanData getXplanMetadata() {
         return xplanMetadata;
     }
 
-    public void setXplanMetadata( XPlanMetadata xplanMetadata ) {
+    public void setXplanMetadata( AdditionalPlanData xplanMetadata ) {
         this.xplanMetadata = xplanMetadata;
     }
 

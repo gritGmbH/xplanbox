@@ -46,7 +46,7 @@ import java.util.Date;
  * 
  * @version $Revision: $, $Date: $
  */
-public class XPlanMetadata implements Serializable {
+public class AdditionalPlanData implements Serializable {
 
     private static final long serialVersionUID = -5015118140629279806L;
 
@@ -57,9 +57,9 @@ public class XPlanMetadata implements Serializable {
     private Date endDateTime;
 
     /**
-     * Instantiates a {@link XPlanMetadata} with null values.
+     * Instantiates a {@link AdditionalPlanData} with null values.
      */
-    public XPlanMetadata() {
+    public AdditionalPlanData() {
     }
 
     /**
@@ -68,7 +68,7 @@ public class XPlanMetadata implements Serializable {
      * @param endDateTime
      *            end of the validity period, may be <code>null</code>
      */
-    public XPlanMetadata( Date startDateTime, Date endDateTime ) {
+    public AdditionalPlanData( Date startDateTime, Date endDateTime ) {
         this( null, startDateTime, endDateTime );
     }
 
@@ -81,7 +81,7 @@ public class XPlanMetadata implements Serializable {
      * @param endDateTime
      *            end of the validity period, may be <code>null</code>
      */
-    public XPlanMetadata( PlanStatus planStatus, Date startDateTime, Date endDateTime ) {
+    public AdditionalPlanData( PlanStatus planStatus, Date startDateTime, Date endDateTime ) {
         this.planStatus = planStatus;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
@@ -158,7 +158,7 @@ public class XPlanMetadata implements Serializable {
             return false;
         if ( getClass() != obj.getClass() )
             return false;
-        XPlanMetadata other = (XPlanMetadata) obj;
+        AdditionalPlanData other = (AdditionalPlanData) obj;
         if ( endDateTime == null ) {
             if ( other.endDateTime != null )
                 return false;

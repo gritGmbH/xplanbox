@@ -65,14 +65,11 @@ public class GeometricValidatorImpl implements GeometricValidator {
     public XPlanFeatureCollection retrieveGeometricallyValidXPlanFeatures( XPlanArchive archive, ICRS crs,
                                                                            AppSchema schema, boolean force,
                                                                            String internalId )
-                                                                                           throws XMLStreamException,
-                                                                                           UnknownCRSException,
-                                                                                           ValidatorException {
-
-        return new XPlanFeatureCollection( retrieveFeatureCollection( new ArrayList<String>(), new ArrayList<String>(),
-                                                                      new ArrayList<BadGeometry>(), archive, crs, force,
-                                                                      schema, null, internalId ),
-                        archive.getType() );
+                    throws XMLStreamException, UnknownCRSException {
+        FeatureCollection fc = retrieveFeatureCollection( new ArrayList<String>(), new ArrayList<String>(),
+                                                          new ArrayList<BadGeometry>(), archive, crs, force, schema,
+                                                          null, internalId );
+        return new XPlanFeatureCollection( fc, archive.getVersion(), archive.getType(), archive.getAde() );
     }
 
     private void resolveAndValidateXlinks( GMLStreamReader gmlStream, List<String> errors ) {

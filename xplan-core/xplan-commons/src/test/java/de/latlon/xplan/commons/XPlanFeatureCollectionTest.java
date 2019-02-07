@@ -362,7 +362,7 @@ public class XPlanFeatureCollectionTest {
         gmlReader.getIdContext().resolveLocalRefs();
         gmlReader.close();
         xmlReader.close();
-        return new XPlanFeatureCollection( fc, archive.getType() );
+        return new XPlanFeatureCollection( fc, version, archive.getType(), ade );
     }
 
     private Envelope createEnvelopeIn4326( double minx, double miny, double maxx, double maxy ) {

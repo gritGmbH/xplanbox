@@ -2,7 +2,7 @@ package de.latlon.xplan.manager.web.client.filter;
 
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.XPlanMetadata;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 
 /**
  * Checks if the plan is assigned to the plan status or not.
@@ -36,7 +36,7 @@ public class PlanStatusFilter implements PlanFilter {
     }
 
     private String retrievePlanStatusFromPlan( XPlan plan ) {
-        XPlanMetadata xplanMetadata = plan.getXplanMetadata();
+        AdditionalPlanData xplanMetadata = plan.getXplanMetadata();
         if ( xplanMetadata == null )
             return null;
         PlanStatus planStatusFromPlan = xplanMetadata.getPlanStatus();
