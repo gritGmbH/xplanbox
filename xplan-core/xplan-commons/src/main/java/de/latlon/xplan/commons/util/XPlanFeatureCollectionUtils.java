@@ -10,8 +10,10 @@ import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 
+import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+import java.io.InputStream;
 
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.parseFeatureCollection;
 
@@ -20,14 +22,19 @@ import static de.latlon.xplan.commons.util.FeatureCollectionUtils.parseFeatureCo
  */
 public class XPlanFeatureCollectionUtils {
 
+    private XPlanFeatureCollectionUtils() {
+    }
+
     /**
      * Reads the {@link XPlanFeatureCollection} from the passed {@link XPlanArchive}
      *
      * @param archive
-     *                 never <code>null</code>
+     *                 to parse, never <code>null</code>
      * @return never <code>null</code>
      * @throws XMLStreamException
+     *                 if the plan could not be read
      * @throws UnknownCRSException
+     *                 if the CRS of a geometry in the plan is not known
      */
     public static XPlanFeatureCollection parseXPlanFeatureCollection( XPlanArchive archive )
                     throws XMLStreamException, UnknownCRSException {
@@ -38,9 +45,43 @@ public class XPlanFeatureCollectionUtils {
         return parseXPlanFeatureCollection( plan, type, version, archive.getAde(), appSchema );
     }
 
-    public static XPlanFeatureCollection parseXPlanFeatureCollection( XMLStreamReader plan, XPlanType type,
+    /**
+     * Reads the {@link XPlanFeatureCollection} from the passed {@link InputStream}
+     *
+     * @param inputStream
+     *                 to parse, never <code>null</code>
+     * @param type
+     *                 of the plan, never <code>null</code>
+     * @param version
+     *                 of the plan, never <code>null</code>
+     * @param ade
+     *                 of the plan, may be <code>null</code>
+     * @param appSchema
+     *                 describing the plan, never <code>null</code>
+     * @return never <code>null</code>
+     * @throws XMLStreamException
+     *                 if the plan could not be read
+     * @throws UnknownCRSException
+     *                 if the CRS of a geometry in the plan is not known
+     */
+    public static XPlanFeatureCollection parseXPlanFeatureCollection( InputStream inputStream, XPlanType type,
                                                                       XPlanVersion version, XPlanAde ade,
                                                                       AppSchema appSchema )
+                    throws XMLStreamException, UnknownCRSException {
+        XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+        XMLStreamReader xmlStreamReader = null;
+        try {
+            xmlStreamReader = xmlInputFactory.createXMLStreamReader( inputStream );
+            return parseXPlanFeatureCollection( xmlStreamReader, type, version, ade, appSchema );
+        } finally {
+            if ( xmlStreamReader != null )
+                xmlStreamReader.close();
+        }
+    }
+
+    private static XPlanFeatureCollection parseXPlanFeatureCollection( XMLStreamReader plan, XPlanType type,
+                                                                       XPlanVersion version, XPlanAde ade,
+                                                                       AppSchema appSchema )
                     throws XMLStreamException, UnknownCRSException {
         FeatureCollection xplanFeatures = parseFeatureCollection( plan, version, appSchema );
         return new XPlanFeatureCollection( xplanFeatures, version, type, ade );

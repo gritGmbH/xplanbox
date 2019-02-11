@@ -41,12 +41,18 @@ public class FeatureCollectionUtils {
 
     /**
      * Parses a FeatureCollection from the passed stream
-     * @param plan as XMLStreamReader, never <code>null</code>
-     * @param version of the plan, never <code>null</code>
-     * @param appSchema of the plan, never <code>null</code>
-     * @return
+     *
+     * @param plan
+     *                 as XMLStreamReader, never <code>null</code>
+     * @param version
+     *                 of the plan, never <code>null</code>
+     * @param appSchema
+     *                 of the plan, never <code>null</code>
+     * @return never <code>null</code>
      * @throws XMLStreamException
+     *                 if the plan could not be read
      * @throws UnknownCRSException
+     *                 if the CRS of a geometry in the plan is not known
      */
     public static FeatureCollection parseFeatureCollection( XMLStreamReader plan, XPlanVersion version,
                                                             AppSchema appSchema )

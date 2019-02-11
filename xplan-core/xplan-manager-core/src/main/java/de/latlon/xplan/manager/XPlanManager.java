@@ -11,6 +11,7 @@ import de.latlon.xplan.commons.archive.XPlanPartArchive;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
+import de.latlon.xplan.commons.hale.TransformationException;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
@@ -30,11 +31,12 @@ import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
 import de.latlon.xplan.manager.jdbcconfig.JaxbJdbcConfigWriter;
 import de.latlon.xplan.manager.jdbcconfig.JdbcConfigWriter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.LegislationStatus;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceManager;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
@@ -122,6 +124,8 @@ public class XPlanManager {
 
     private final DeegreeWorkspace managerWorkspace;
 
+    private final XPlanGmlTransformer xPlanGmlTransformer;
+
     private final XPlanExporter xPlanExporter;
 
     private final XPlanToEditFactory planToEditFactory = new XPlanToEditFactory();
@@ -156,46 +160,58 @@ public class XPlanManager {
     public XPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
                          ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader )
                                                                                                          throws Exception {
-        this( categoryMapper, archiveCreator, managerConfiguration, workspaceReloader, null );
+        this( categoryMapper, archiveCreator, managerConfiguration, workspaceReloader, null, null );
     }
 
     /**
      * @param categoryMapper
-     *            category mapper
+     *                 category mapper
      * @param archiveCreator
-     *            archive creator
+     *                 archive creator
      * @param managerConfiguration
-     *            manager configuration, may be <code>null</code>
+     *                 manager configuration, may be <code>null</code>
      * @param workspaceReloader
-     *            reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
+     *                 reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
+     * @param inspirePluTransformator
+     *                 transforms XPlanGML to INSPIRE PLU, may be <code>null</code>
+     * @param xPlanGmlTransformer
+     *                 transforms between different versions of XPlanGML, may be <code>null</code>
      * @throws Exception
      */
     public XPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
-                         ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader, InspirePluTransformator inspirePluTransformator )
-                            throws Exception {
-        this( categoryMapper, archiveCreator, managerConfiguration, null, null, workspaceReloader, inspirePluTransformator );
+                         ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
+                         InspirePluTransformator inspirePluTransformator, XPlanGmlTransformer xPlanGmlTransformer )
+                    throws Exception {
+        this( categoryMapper, archiveCreator, managerConfiguration, null, null, workspaceReloader,
+              inspirePluTransformator, xPlanGmlTransformer );
     }
-
 
     /**
      * @param categoryMapper
-     *            category mapper
+     *                 category mapper
      * @param archiveCreator
-     *            archive creator
+     *                 archive creator
      * @param managerConfiguration
-     *            manager configuration, may be <code>null</code>
+     *                 manager configuration, may be <code>null</code>
      * @param workspaceDir
-     *            workspace directory
+     *                 workspace directory
      * @param workspaceReloader
-     *            reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
+     *                 reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
+     * @param inspirePluTransformator
+     *                 transforms XPlanGML to INSPIRE PLU, may be <code>null</code>
+     * @param xPlanGmlTransformer
+     *                 transforms between different versions of XPlanGML, may be <code>null</code>
      * @throws Exception
      */
     public XPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
                          ManagerConfiguration managerConfiguration, File workspaceDir, File wmsWorkspaceDir,
-                         WorkspaceReloader workspaceReloader, InspirePluTransformator inspirePluTransformator ) throws Exception {
+                         WorkspaceReloader workspaceReloader, InspirePluTransformator inspirePluTransformator,
+                         XPlanGmlTransformer xPlanGmlTransformer )
+                    throws Exception {
         this.archiveCreator = archiveCreator;
         this.managerConfiguration = managerConfiguration;
         this.managerWorkspace = instantiateManagerWorkspace( workspaceDir );
+        this.xPlanGmlTransformer = xPlanGmlTransformer;
         this.xplanDao = new XPlanDao( managerWorkspace.getNewWorkspace(), categoryMapper, managerConfiguration );
         this.workspaceReloader = workspaceReloader;
 
@@ -346,7 +362,7 @@ public class XPlanManager {
             featureCollectionManipulator.addInternalId( synFc, synSchema, internalId );
         }
         Date sortDate = sortPropertyReader.readSortDate( archive.getType(), archive.getVersion(), fc.getFeatures() );
-        int planId = xplanDao.insert( archive, fc, synFc, xPlanMetadata, sortDate );
+        int planId = insertPlan( archive, xPlanMetadata, fc, synFc, sortDate );
         createRasterConfigurations( archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus,
                                     sortDate );
         reloadWorkspace();
@@ -552,7 +568,6 @@ public class XPlanManager {
                                    List<File> uploadedArtefacts )
                                     throws Exception {
         InputStream originalPlan = null;
-        XMLStreamReader originalPlanAsXmlReader = null;
         try {
             String planId = oldXplan.getId();
             LOG.info( "- Editiere Plan mit ID {}", planId );
@@ -563,8 +578,7 @@ public class XPlanManager {
             PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
             AppSchema appSchema = xplanDao.lookupStore( version, ade, oldPlanStatus ).getSchema();
             originalPlan = xplanDao.retrieveXPlanArtefact( planId );
-            originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader( originalPlan );
-            XPlanFeatureCollection originalPlanFC = parseXPlanFeatureCollection( originalPlanAsXmlReader, type,
+            XPlanFeatureCollection originalPlanFC = parseXPlanFeatureCollection( originalPlan, type,
                                                                                  version, ade, appSchema );
             String oldLegislationStatus = FeatureCollectionUtils.retrieveLegislationStatus( originalPlanFC.getFeatures(), type );
             FeatureCollection featuresToModify = originalPlanFC.getFeatures();
@@ -611,8 +625,6 @@ public class XPlanManager {
             LOG.info( "Rasterkonfiguration für den Plan mit der ID {} wurde ausgetauscht (falls vorhanden).", planId );
         } finally {
             closeQuietly( originalPlan );
-            if ( originalPlanAsXmlReader != null )
-                originalPlanAsXmlReader.close();
         }
     }
 
@@ -715,6 +727,23 @@ public class XPlanManager {
             inspirePluPublisher.transformAndPublish( planId, XPlanVersion.valueOf( plan.getVersion() ) );
             xplanDao.setPlanWasInspirePublished( planId );
         }
+    }
+
+    private int insertPlan( XPlanArchive archive, AdditionalPlanData xPlanMetadata, XPlanFeatureCollection fc,
+                            FeatureCollection synFc, Date sortDate )
+                    throws Exception {
+        if ( xPlanGmlTransformer != null ) {
+            try {
+                XPlanFeatureCollection transformedFeatureCollection = xPlanGmlTransformer.transform( archive );
+                if ( transformedFeatureCollection != null ) {
+                    return xplanDao.insert( archive, transformedFeatureCollection, synFc, xPlanMetadata, sortDate );
+                }
+            } catch ( TransformationException e ) {
+                LOG.warn( "Transformation of the XPlanGML 4.1 failed. The XPlanGml is inserted in the 4.1 data store. Failure: "
+                          + e.getMessage() );
+            }
+        }
+        return xplanDao.insert( archive, fc, synFc, xPlanMetadata, sortDate );
     }
 
     private void createRasterConfigurations( XPlanArchive archive, boolean makeWMSConfig, boolean makeRasterConfig,

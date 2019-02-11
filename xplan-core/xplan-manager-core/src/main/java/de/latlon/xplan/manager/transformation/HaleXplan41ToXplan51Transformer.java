@@ -1,5 +1,6 @@
 package de.latlon.xplan.manager.transformation;
 
+import de.latlon.xplan.commons.hale.HaleIOProvider;
 import de.latlon.xplan.commons.hale.HaleTransformer;
 import de.latlon.xplan.commons.hale.TransformationException;
 
@@ -7,12 +8,16 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class HaleXplan41ToXplan51Transformer {
 
     private static final String RELATIVE_PATH_TO_PROJEKT = "xplan41nach51/xplanGml41-xplanGml51.halex";
+
+    public static final String XPLAN_ROOT_NAME = "XPlanAuszug";
 
     private final HaleTransformer haleTransformer;
 
@@ -34,7 +39,10 @@ public class HaleXplan41ToXplan51Transformer {
     public Path transformToXPlanGml51( Path xPlanGml41 )
                     throws TransformationException {
         Path targetFile = createTargetFile();
-        haleTransformer.transform( haleProject, xPlanGml41.toString(), targetFile.toString() );
+        HaleIOProvider haleIOProvider = new HaleIOProvider( "eu.esdihumboldt.hale.io.xml.writer" );
+        haleIOProvider.addSetting( "xml.rootElement.name", XPLAN_ROOT_NAME );
+        haleIOProvider.addSetting( "xml.rootElement.namespace", XPLAN_51.getNamespace() );
+        haleTransformer.transform( haleProject, xPlanGml41.toString(), targetFile.toString(), haleIOProvider );
         return targetFile;
     }
 
