@@ -49,17 +49,12 @@ import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.xml.XMLParsingException;
-import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.GeometryFactory;
-import org.deegree.gml.GMLInputFactory;
-import org.deegree.gml.GMLStreamReader;
-import org.deegree.gml.GMLVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -87,7 +82,9 @@ import java.util.UUID;
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.parseFeatureCollection;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
+import static de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils.parseXPlanFeatureCollection;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
@@ -893,32 +890,6 @@ public class XPlanManager {
         long elapsed = System.currentTimeMillis() - begin;
         LOG.info( "OK [" + elapsed + " ms]" );
         return synFc;
-    }
-
-    private XPlanFeatureCollection parseXPlanFeatureCollection( XPlanArchive archive )
-                    throws XMLStreamException, UnknownCRSException {
-        XMLStreamReader plan = archive.getMainFileXmlReader();
-        XPlanType type = archive.getType();
-        XPlanVersion version = archive.getVersion();
-        AppSchema appSchema = getAppSchemaFromStore( archive, null );
-        return parseXPlanFeatureCollection( plan, type, version, archive.getAde(), appSchema );
-    }
-
-    private XPlanFeatureCollection parseXPlanFeatureCollection( XMLStreamReader plan, XPlanType type,
-                                                                XPlanVersion version, XPlanAde ade, AppSchema appSchema )
-                    throws XMLStreamException, UnknownCRSException {
-        FeatureCollection xplanFeatures = parseFeatureCollection( plan, version, appSchema );
-        return new XPlanFeatureCollection( xplanFeatures, version, type, ade );
-    }
-
-    private FeatureCollection parseFeatureCollection( XMLStreamReader plan, XPlanVersion version, AppSchema appSchema )
-                    throws XMLStreamException, UnknownCRSException {
-        XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper( plan, null );
-        GMLVersion gmlVersion = version.getGmlVersion();
-        GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader( gmlVersion, xmlStream );
-        gmlStream.setGeometryFactory( new GeometryFactory() );
-        gmlStream.setApplicationSchema( appSchema );
-        return (FeatureCollection) gmlStream.readFeature( true );
     }
 
     private void reloadWorkspace() {

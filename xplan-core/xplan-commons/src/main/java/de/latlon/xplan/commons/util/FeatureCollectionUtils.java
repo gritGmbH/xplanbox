@@ -7,15 +7,24 @@ import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValu
 import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValue;
 
 import javax.xml.namespace.QName;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
+import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
+import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
+import org.deegree.feature.types.AppSchema;
+import org.deegree.geometry.GeometryFactory;
+import org.deegree.gml.GMLInputFactory;
+import org.deegree.gml.GMLStreamReader;
+import org.deegree.gml.GMLVersion;
 
 /**
  * Contains utilities for deegree {@link org.deegree.feature.FeatureCollection}s.
@@ -28,6 +37,26 @@ import de.latlon.xplan.commons.XPlanVersion;
 public class FeatureCollectionUtils {
 
     private FeatureCollectionUtils() {
+    }
+
+    /**
+     * Parses a FeatureCollection from the passed stream
+     * @param plan as XMLStreamReader, never <code>null</code>
+     * @param version of the plan, never <code>null</code>
+     * @param appSchema of the plan, never <code>null</code>
+     * @return
+     * @throws XMLStreamException
+     * @throws UnknownCRSException
+     */
+    public static FeatureCollection parseFeatureCollection( XMLStreamReader plan, XPlanVersion version,
+                                                            AppSchema appSchema )
+                    throws XMLStreamException, UnknownCRSException {
+        XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper( plan, null );
+        GMLVersion gmlVersion = version.getGmlVersion();
+        GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader( gmlVersion, xmlStream );
+        gmlStream.setGeometryFactory( new GeometryFactory() );
+        gmlStream.setApplicationSchema( appSchema );
+        return (FeatureCollection) gmlStream.readFeature( true );
     }
 
     /**
