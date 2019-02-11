@@ -296,6 +296,45 @@ public class XPlanDao {
     }
 
     /**
+     * @param xplan
+     * @param synFc
+     * @param sortDate
+     * @throws Exception
+     */
+    public void updateXPlanSynFeatureCollection( XPlan xplan, FeatureCollection synFc, Date sortDate )
+                    throws Exception {
+        PreparedStatement stmt = null;
+        SQLFeatureStoreTransaction taSyn = null;
+        try {
+            int planId = getXPlanIdAsInt( xplan.getId() );
+            PlanStatus planStatus = xplan.getXplanMetadata().getPlanStatus();
+
+            FeatureStore synFeatureStore = lookupStore( XPLAN_SYN, null, planStatus );
+            taSyn = (SQLFeatureStoreTransaction) synFeatureStore.acquireTransaction();
+
+            Set<String> ids = selectFids( planId );
+            IdFilter idFilter = new IdFilter( ids );
+
+            addAdditionalProperties( synFc, xplan.getXplanMetadata(), synFeatureStore, planId, sortDate );
+            LOG.info( "- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)..." );
+            taSyn.performDelete( idFilter, null );
+            insertXPlanSyn( synFeatureStore, synFc );
+            LOG.info( "OK" );
+
+            LOG.info( "- Persistierung..." );
+            taSyn.commit();
+            LOG.info( "OK" );
+        } catch ( Exception e ) {
+            LOG.error( "Fehler beim Aktualiseren der Features. Ein Rollback wird durchgeführt.", e );
+            if ( taSyn != null )
+                taSyn.rollback();
+            throw new Exception( "Fehler beim Aktualiseren des Plans: " + e.getMessage() + ".", e );
+        } finally {
+            closeQuietly( stmt );
+        }
+    }
+
+    /**
      * Deletes the specified plan from the database (and feature stores).
      * 
      * @param planId
@@ -1413,6 +1452,18 @@ public class XPlanDao {
             String georeference = ref.getGeoReference();
             if ( georeference != null && !"".equals( georeference ) )
                 referenceFileNames.add( georeference );
+        }
+    }
+
+    private Set<String> selectFids( int planId )
+                    throws SQLException {
+        Connection mgrConn = null;
+        try {
+            mgrConn = openConnection( ws, JDBC_POOL_ID );
+
+            return selectFids( mgrConn, planId );
+        } finally {
+            closeQuietly( mgrConn );
         }
     }
 
