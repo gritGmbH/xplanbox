@@ -1,11 +1,9 @@
 package de.latlon.xplan.inspire.plu.transformation.hale;
 
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.hale.HaleTransformator;
+import de.latlon.xplan.commons.hale.HaleTransformer;
 import de.latlon.xplan.commons.hale.TransformationException;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,7 +25,7 @@ public class HaleCliInspirePluTransformator implements InspirePluTransformator {
 
     private final Path haleProjectDirectory;
 
-    private final HaleTransformator haleTransformator;
+    private final HaleTransformer haleTransformator;
 
     private static final Map<XPlanVersion, String> VERSION_TO_HALEPROJECT = Collections.unmodifiableMap(
                     Stream.of( new SimpleEntry<>( XPLAN_41, "xplan41/xplanGml41-inspirePlu.halex" ),
@@ -37,7 +35,7 @@ public class HaleCliInspirePluTransformator implements InspirePluTransformator {
 
     public HaleCliInspirePluTransformator( String haleCli, Path haleProjectDirectory ) {
         this.haleProjectDirectory = haleProjectDirectory;
-        this.haleTransformator = new HaleTransformator( haleCli );
+        this.haleTransformator = new HaleTransformer( haleCli );
     }
 
     @Override

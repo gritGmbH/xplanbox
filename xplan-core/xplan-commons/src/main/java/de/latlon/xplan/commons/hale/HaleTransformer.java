@@ -8,9 +8,9 @@ import java.io.IOException;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class HaleTransformator {
+public class HaleTransformer {
 
-    private static final Logger LOG = LoggerFactory.getLogger( HaleTransformator.class );
+    private static final Logger LOG = LoggerFactory.getLogger( HaleTransformer.class );
 
     private final String haleCli;
 
@@ -18,7 +18,7 @@ public class HaleTransformator {
      * @param haleCli
      *                 the path to the the hale CLI, never <code>null</code>
      */
-    public HaleTransformator( String haleCli ) {
+    public HaleTransformer( String haleCli ) {
         this.haleCli = haleCli;
     }
 
