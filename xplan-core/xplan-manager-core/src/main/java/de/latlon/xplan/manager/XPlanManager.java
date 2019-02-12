@@ -75,8 +75,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -88,7 +86,6 @@ import java.util.TimeZone;
 import java.util.UUID;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.parseFeatureCollection;
@@ -745,31 +742,46 @@ public class XPlanManager {
                 if ( transformationResult != null ) {
                     byte[] resultAsBytes = transformationResult.getTransformationResult();
                     XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
-                    try ( InputStream is = new ByteArrayInputStream( resultAsBytes ) ) {
-                        ValidatorResult validatorResult = new SyntacticValidatorImpl().validateSyntax( is,
-                                                                                                       resultVersion,
-                                                                                                       archive.getAde() );
-                        if ( validatorResult.isValid() ) {
-                            try ( InputStream inputStream = new ByteArrayInputStream( resultAsBytes ) ) {
-                                AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema( resultVersion,
-                                                                                               archive.getAde() );
-                                XPlanFeatureCollection transformedFc = XPlanFeatureCollectionUtils.parseXPlanFeatureCollection(
-                                                inputStream, archive.getType(), resultVersion, archive.getAde(),
-                                                appSchema );
-                                return xplanDao.insert( archive, transformedFc, synFc, xPlanMetadata, sortDate );
-                            }
-                        } else {
-                            LOG.warn( "Transformed plan is not valid. The XPlanGml is inserted in the 4.1 data store. Validation details: "
-                                      + validatorResult );
-                        }
+
+                    ValidatorResult validatorResult = validateSyntactically( transformationResult, archive );
+                    if ( validatorResult.isValid() ) {
+                        return validateAndInsertTransformedPlan( archive, xPlanMetadata, synFc, sortDate, resultAsBytes,
+                                                                 resultVersion );
+                    } else {
+                        throw new Exception(
+                                        "Transformation of the XPlanGML 4.1 plan to XPlanGml 5.1 results in  syntactically invalid GML: "
+                                        + validatorResult );
                     }
                 }
             } catch ( TransformationException e ) {
-                LOG.warn( "Transformation of the XPlanGML 4.1 failed. The XPlanGml is inserted in the 4.1 data store. Failure: "
-                          + e.getMessage() );
+                throw e;
             }
         }
         return xplanDao.insert( archive, fc, synFc, xPlanMetadata, sortDate );
+    }
+
+    private int validateAndInsertTransformedPlan( XPlanArchive archive, AdditionalPlanData xPlanMetadata,
+                                                  FeatureCollection synFc, Date sortDate, byte[] resultAsBytes,
+                                                  XPlanVersion resultVersion )
+                    throws Exception {
+        try ( InputStream inputStream = new ByteArrayInputStream( resultAsBytes ) ) {
+            AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema( resultVersion, archive.getAde() );
+            XPlanFeatureCollection transformedFc = XPlanFeatureCollectionUtils.parseXPlanFeatureCollection( inputStream,
+                                                                                                            archive.getType(),
+                                                                                                            resultVersion,
+                                                                                                            archive.getAde(),
+                                                                                                            appSchema );
+            return xplanDao.insert( archive, transformedFc, synFc, xPlanMetadata, sortDate );
+        }
+    }
+
+    private ValidatorResult validateSyntactically( TransformationResult transformationResult, XPlanArchive archive )
+                    throws IOException {
+        byte[] transformedPlan = transformationResult.getTransformationResult();
+        try ( InputStream is = new ByteArrayInputStream( transformedPlan ) ) {
+            return new SyntacticValidatorImpl().validateSyntax( is, transformationResult.getVersionOfTheResult(),
+                                                                archive.getAde() );
+        }
     }
 
     private void createRasterConfigurations( XPlanArchive archive, boolean makeWMSConfig, boolean makeRasterConfig,
