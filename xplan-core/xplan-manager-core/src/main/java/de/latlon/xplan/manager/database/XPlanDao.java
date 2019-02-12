@@ -197,7 +197,7 @@ public class XPlanDao {
             LOG.info( "Insert XPlan" );
 
             PlanStatus planStatus = additionalPlanData.getPlanStatus();
-            FeatureStore xplanFs = lookupStore( archive.getVersion(), archive.getAde(), planStatus );
+            FeatureStore xplanFs = lookupStore( fc.getVersion(), fc.getAde(), planStatus );
             FeatureStore synFs = lookupStore( XPLAN_SYN, null, planStatus );
 
             conn = openConnection( ws, JDBC_POOL_ID );
