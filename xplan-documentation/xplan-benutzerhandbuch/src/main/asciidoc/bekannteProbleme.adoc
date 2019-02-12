@@ -1,0 +1,101 @@
+[[bekannte-probleme]]
+== Bekannte Probleme
+
+[[internet-explorer]]
+=== Internet Explorer
+
+Beim Importieren (Hochladen) von XPlanArchiven über den XPlanManagerWeb mit Microsoft Internet Explorer 9/10/11 kann
+es vorkommen, dass das XPlanArchiv für die Dauer der Sitzung im Windows Dateisystem
+blockiert wird.
+
+Der Fehler ist Microsoft bekannt und es wird folgender Workaround empfohlen:
+
+    - Neu-Laden der Seite mit "Refresh/F5" oder
+    - Schließen des Browser-Fenster/Tabs mit "Ctrl+W"
+
+Referenzen:
+
+    - https://connect.microsoft.com/IE/feedback/details/817183/ie10-and-ie11-keep-files-locked-after-uploading[IE10 and IE11 keep files locked after uploading]
+    - https://connect.microsoft.com/IE/feedback/details/794708/uploaded-file-is-locked-on-file-system-after-upload[Uploaded file is locked on file system after upload]
+
+[[kapazitaetsbezogene-einschraenkungen]]
+=== Kapazitätsbezogene Einschränkungen
+
+Sowohl für das XPlanManagerCLI, den XPlanManagerWeb als auch den XPlanValidator gelten
+Obergrenzen beim Import von XPlanArchiven. XPlanArchive (ZIP-Datei
+inklusive Anhänge) größer 500 MB können die Systemstabilität
+beeinträchtigen. Wenn XPlanArchive mit größeren Anhängen importiert
+werden sollen, so müssen Server-seitig entsprechende
+Systemvoraussetzungen erfüllt sein.
+
+Für die Bereitstellung von mehr als 500 XPlanArchiven über die Dienste
+XPlanWMS, XPlanWFS oder XPlanSynWFS müssen Server-seitig ebenfalls entsprechende
+Systemvoraussetzungen erfüllt sein. Das Antwortzeitverhalten der Dienste ist von den verfügbaren
+System-Ressourcen abhängig.
+
+Weitere Informationen zu den Systemanforderungen der xPlanBox finden Sie im
+Betriebshandbuch.
+
+[[xplanbox---durch-kartenvorschau-generierter-getmap-request]]
+=== xPlanBox - Durch Kartenvorschau generierter GetMap-Request
+
+Der durch den Button "Plan im neuen Fenster öffnen", welcher sich im
+unteren Teil der Kartenvorschau befindet, generierte GetMap-Request gibt
+im Fall, dass noch kein Rasterplan in das System importiert wurde,
+folgende Meldung aus:
+
+----
+Style default is not defined for layer *P_Planraster
+----
+
+Dieses Verhalten resultiert daraus, dass der Raster-Layer wegen
+fehlender Rasterpläne noch nicht von dem WMS angeboten wird.
+
+Wenn die URL dennoch genutzt werden soll, muss der Layer [*]P_Planraster
+manuell aus der Request URL entfernt werden (Wert des Parameters
+"LAYERS").
+
+Dies gilt für jeden Plan-Typ einzeln: Für die URL für BPläne muss z.B.
+mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens
+ein FPlan mit Rasterdaten.
+
+=== Alternativer Betriebsmodus (XPlanManagerCLI) - Nutzung falscher Bibliotheken kann beim Import eines Plans zu fehlerhaft erzeugter Konfiguration führen
+
+Für die Erzeugung der deegree Konfigurationsdateien im alternativen Betriebsmodus muss zwingend die Bibliothek Apache Xalan 2.7.1 verwendet werden.
+Zusätzlich muss sichergestellt sein, dass im Java Classpath des Prozesses, der den XPlanManagerCLI aufruft, keine anderen JAXP (SAX/DOM) Implementierungen vorhanden sind als Saxon-HE-9.4.jar und xalan-2.7.1.jar.
+
+Falls diese Voraussetzungen nicht erfüllt werden, können die erzeugten deegree Konfigurationsdateien für Layer und Themes leere XML Namespace Attribute in Form von xmlns="" aufweisen.
+Diese Konfigurationsdateien können nicht von deegree geparst werden.
+
+Wenn die die leeren XML Namespace Attribute manuell entfernt werden, ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
+
+=== Transformation in das INSPIRE Planned Land Use Datenschema
+
+Bei der Transformation von XPlanGML in das INSPIRE Planned Land Use Datenschema können in der vorliegenden Version der xPlanBox nicht alle Daten vollständig transformiert werden.
+So fehlen u.a. Transformationsregeln für Werte aus Codelisten als auch konfigurierbare Abbildungsregeln für Elemente wie z.B. der INSPIRE ID.
+Zugesichert werden kann, dass das über den XPlanInspirePluWFS abgegebene GML gegen das GML-Applikationsschema validiert.
+Nicht zugesichert werden kann, dass das GML alle Vorgaben aus den Technical Guidelines für das INSPIRE Annex III Datenthema Land Use erfüllt sowie dass alle Daten aus dem XPlanGML in das
+Zielschema INSPIRE PLU transformiert werden.
+
+=== Darstellungsvorschriften für Raumordnungspläne
+
+Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständig. Durch den WMS werden die betroffenen Ebenen daher nur in der Standarddarstellung ausgegeben.
+
+[[fehler-melden]]
+== Fehler melden
+
+Die xPlanBox basiert auf der Open Source Software http://www.deegree.org[deegree]
+der http://www.osgeo.org/[OSGeo Foundation].
+
+Für den Fall, dass Sie einen Fehler in einer der xPlanBox Komponenten
+XPlanWMS, XPlanWFS oder XPlanSynWFS entdecken, dann melden Sie den
+  Fehler in deegree unter:
+  https://github.com/deegree/deegree3/issues[https://github.com/deegree/deegree3/issues]
+
+[[support]]
+== Support
+
+Professionellen Support per Telefon oder eMail bieten Ihnen die
+Entwickler von http://www.lat-lon.de[lat/lon] an. Kontaktieren Sie uns
+unter info@lat-lon.de. Gern unterstützen Sie die Mitarbeiter der Firma
+lat/lon GmbH bei Ihrer Arbeit mit der xPlanBox.

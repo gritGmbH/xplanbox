@@ -25,8 +25,8 @@
   <QueryCRS>CRS:84</QueryCRS>
   
   <!-- StoredQuery -->
-  <StoredQuery>storedqueries/planName50.xml</StoredQuery>
-  <StoredQuery>storedqueries/planId50.xml</StoredQuery>
-  <StoredQuery>storedqueries/internalId50.xml</StoredQuery>
+  <StoredQuery>storedqueries/xplan50/planName50.xml</StoredQuery>
+  <StoredQuery>storedqueries/xplan50/planId50.xml</StoredQuery>
+  <StoredQuery>storedqueries/xplan50/internalId50.xml</StoredQuery>
 
 </deegreeWFS>

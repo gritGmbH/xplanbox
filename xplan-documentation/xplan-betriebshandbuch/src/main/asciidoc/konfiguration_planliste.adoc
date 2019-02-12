@@ -1,0 +1,50 @@
+[[planliste]]
+=== Planliste
+
+Die angezeigten Spalten der Planliste auf der Hauptseite können in der Datei _managerWebConfiguration.properties_ im Verzeichnis _~/.deegree/manager-configuration/_ konfiguriert werden.
+
+Im folgenden Beispiel werden die Spalten 'Nummer' und 'ADE' aus der Planliste entfernt:
+
+----
+hiddenColumns=NUMBER,ADE
+----
+
+Mehrere Spalten müssen komma-separiert angegeben werden. Der folgenden Tabelle kann die Zuordnung des Spaltentitels und der Angabe in der Konfiguration entnommen werden:
+
+
+|===
+|Titel der Spalte in der Oberfläche |Angabe in der Konfiguration
+
+|Name
+|NAME
+
+|ID
+|ID
+
+|Nummer
+|NUMBER
+
+|Planart
+|TYPE
+
+|sonstige Planart
+|ADDITIONALTYPE
+
+|Rechtsstand
+|LEGISLATIONSTATUS
+
+|Datum Veröffentlichung
+|RELEASEDATE
+
+|Datum Import
+|IMPORTDATE
+
+|Planstatus
+|PLANSTATUS
+
+|Gültigkeit
+|VALIDITIYPERIOD
+
+|ADE
+|ADE
+|===
