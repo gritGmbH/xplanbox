@@ -111,4 +111,11 @@ public abstract class ValidatorResult {
 
     public abstract String getType();
 
+    @Override
+    public String toString() {
+        if ( skipCode != null )
+            return "Skipped: " + skipCode;
+        return "ValidatorResult{" + "isValid=" + isValid + ", validatorDetails=" + validatorDetails + '}';
+    }
+
 }

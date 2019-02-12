@@ -5,8 +5,10 @@ import static java.lang.String.format;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import de.latlon.xplan.commons.XPlanAde;
 import org.apache.xerces.xni.parser.XMLParseException;
 import org.deegree.commons.xml.schema.SchemaValidationEvent;
 import org.deegree.commons.xml.schema.SchemaValidator;
@@ -33,16 +35,21 @@ public class SyntacticValidatorImpl implements SyntacticValidator {
 
     @Override
     public ValidatorResult validateSyntax( XPlanArchive archive ) {
-        List<String> resultMessages = new ArrayList<>();
         try ( InputStream is = archive.getMainFileInputStream() ) {
-            XPlanVersion version = archive.getVersion();
-            String schemaUrl = findSchemaUrl( archive, version );
-            List<SchemaValidationEvent> schemaValidationEvents = SchemaValidator.validate( is, schemaUrl );
-            appendResultMessages( resultMessages, schemaValidationEvents );
+            return validateSyntax( is, archive.getVersion(), archive.getAde() );
         } catch ( IOException e ) {
             LOG.error( "Syntaktische Valdierung wurde aufgrund eines Fehlers abgebrochen: {}", e.getMessage() );
             LOG.trace( "Syntactically validation failed!", e );
         }
+        return new SyntacticValidatorResult( Collections.emptyList(), true, createDetail( true ) );
+    }
+
+    @Override
+    public ValidatorResult validateSyntax( InputStream is, XPlanVersion version, XPlanAde ade ) {
+        List<String> resultMessages = new ArrayList<>();
+        String schemaUrl = findSchemaUrl( ade, version );
+        List<SchemaValidationEvent> schemaValidationEvents = SchemaValidator.validate( is, schemaUrl );
+        appendResultMessages( resultMessages, schemaValidationEvents );
         boolean isValid = resultMessages.isEmpty();
         ValidatorDetail detailsHint = createDetail( isValid );
         return new SyntacticValidatorResult( resultMessages, isValid, detailsHint );
@@ -87,10 +94,10 @@ public class SyntacticValidatorImpl implements SyntacticValidator {
         }
     }
 
-    private String findSchemaUrl( XPlanArchive archive, XPlanVersion version ) {
+    private String findSchemaUrl( XPlanAde ade, XPlanVersion version ) {
         String schemaUrl;
-        if ( archive.getAde() != null )
-            schemaUrl = archive.getAde().getSchemaUrl().toString();
+        if ( ade != null )
+            schemaUrl = ade.getSchemaUrl().toString();
         else
             schemaUrl = version.getSchemaUrl().toString();
         return schemaUrl;

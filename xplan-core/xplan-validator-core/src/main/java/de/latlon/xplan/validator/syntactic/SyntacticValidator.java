@@ -1,9 +1,13 @@
 package de.latlon.xplan.validator.syntactic;
 
+import de.latlon.xplan.commons.XPlanAde;
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorResult;
+
+import java.io.InputStream;
 
 /**
  * Validates <link>XPlanArchives</link> syntactically
@@ -22,6 +26,8 @@ public interface SyntacticValidator {
      * @return a <link>ValidatorReport</link> containing the validation result
      */
     ValidatorResult validateSyntax( XPlanArchive archive );
+
+    ValidatorResult validateSyntax( InputStream is, XPlanVersion version, XPlanAde ade );
 
     /**
      * Validate all XLink-References in the plan

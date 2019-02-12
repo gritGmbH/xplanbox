@@ -2,6 +2,7 @@ package de.latlon.xplan.manager;
 
 import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanFeatureCollection;
+import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -15,6 +16,7 @@ import de.latlon.xplan.commons.hale.TransformationException;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
+import de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
 import de.latlon.xplan.manager.codelists.XPlanCodeLists;
 import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
@@ -31,6 +33,7 @@ import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
 import de.latlon.xplan.manager.jdbcconfig.JaxbJdbcConfigWriter;
 import de.latlon.xplan.manager.jdbcconfig.JdbcConfigWriter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.transformation.TransformationResult;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.LegislationStatus;
@@ -46,6 +49,7 @@ import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
+import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.deegree.commons.config.DeegreeWorkspace;
@@ -71,6 +75,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -82,6 +88,7 @@ import java.util.TimeZone;
 import java.util.UUID;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.parseFeatureCollection;
@@ -734,9 +741,28 @@ public class XPlanManager {
                     throws Exception {
         if ( xPlanGmlTransformer != null ) {
             try {
-                XPlanFeatureCollection transformedFeatureCollection = xPlanGmlTransformer.transform( archive );
-                if ( transformedFeatureCollection != null ) {
-                    return xplanDao.insert( archive, transformedFeatureCollection, synFc, xPlanMetadata, sortDate );
+                TransformationResult transformationResult = xPlanGmlTransformer.transform( archive );
+                if ( transformationResult != null ) {
+                    byte[] resultAsBytes = transformationResult.getTransformationResult();
+                    XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
+                    try ( InputStream is = new ByteArrayInputStream( resultAsBytes ) ) {
+                        ValidatorResult validatorResult = new SyntacticValidatorImpl().validateSyntax( is,
+                                                                                                       resultVersion,
+                                                                                                       archive.getAde() );
+                        if ( validatorResult.isValid() ) {
+                            try ( InputStream inputStream = new ByteArrayInputStream( resultAsBytes ) ) {
+                                AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema( resultVersion,
+                                                                                               archive.getAde() );
+                                XPlanFeatureCollection transformedFc = XPlanFeatureCollectionUtils.parseXPlanFeatureCollection(
+                                                inputStream, archive.getType(), resultVersion, archive.getAde(),
+                                                appSchema );
+                                return xplanDao.insert( archive, transformedFc, synFc, xPlanMetadata, sortDate );
+                            }
+                        } else {
+                            LOG.warn( "Transformed plan is not valid. The XPlanGml is inserted in the 4.1 data store. Validation details: "
+                                      + validatorResult );
+                        }
+                    }
                 }
             } catch ( TransformationException e ) {
                 LOG.warn( "Transformation of the XPlanGML 4.1 failed. The XPlanGml is inserted in the 4.1 data store. Failure: "
