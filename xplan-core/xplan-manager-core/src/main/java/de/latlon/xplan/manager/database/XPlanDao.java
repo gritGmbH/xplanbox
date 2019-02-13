@@ -289,6 +289,61 @@ public class XPlanDao {
     }
 
     /**
+     * Updates the featureCollection described by the id by the passed featureCollection.
+     * The source datastore is specified by the passed version, ade and planStatus,
+     * the target datastore by the featureCollection.
+     *
+     * @param id
+     *                 of the plan, never <code>null</code>
+     * @param version
+     *                 of the plan, never <code>null</code>
+     * @param ade
+     *                 of the plan, may be <code>null</code>
+     * @param planStatus
+     *                 of the plan, never <code>null</code>
+     * @param xPlanFeatureCollection
+     *                 the featureCollection of the updated plan, never <code>null</code>
+     */
+    public void updateXPlanFeatureCollection( String id, XPlanVersion version, XPlanAde ade,
+                                              PlanStatus planStatus, XPlanFeatureCollection xPlanFeatureCollection )
+                    throws Exception {
+        PreparedStatement stmt = null;
+        SQLFeatureStoreTransaction taSource = null;
+        SQLFeatureStoreTransaction taTarget = null;
+        try {
+            int planId = getXPlanIdAsInt( id );
+
+            FeatureStore fsSource = managerWorkspaceWrapper.lookupStore( version, ade, planStatus );
+            taSource = (SQLFeatureStoreTransaction) fsSource.acquireTransaction();
+
+            FeatureStore fsTarget = managerWorkspaceWrapper.lookupStore( xPlanFeatureCollection.getVersion(),
+                                                                         xPlanFeatureCollection.getAde(), planStatus );
+
+            Set<String> ids = selectFids( planId );
+            IdFilter idFilter = new IdFilter( ids );
+
+            LOG.info( "- Aktualisiere XPlan " + planId + " im FeatureStore (" + version + ")..." );
+            taSource.performDelete( idFilter, null );
+            taTarget = insertXPlan( fsTarget, xPlanFeatureCollection ).second;
+            LOG.info( "OK" );
+
+            LOG.info( "- Persistierung..." );
+            taSource.commit();
+            taTarget.commit();
+            LOG.info( "OK" );
+        } catch ( Exception e ) {
+            LOG.error( "Fehler beim Aktualiseren der FeatureCollection. Ein Rollback wird durchgeführt.", e );
+            if ( taSource != null )
+                taSource.rollback();
+            if ( taTarget != null )
+                taTarget.rollback();
+            throw new Exception( "Fehler beim Aktualiseren der FeatureCollection: " + e.getMessage() + ".", e );
+        } finally {
+            closeQuietly( stmt );
+        }
+    }
+
+    /**
      * Retrieve a list of all XPlans.
      *
      * @param includeNoOfFeature
