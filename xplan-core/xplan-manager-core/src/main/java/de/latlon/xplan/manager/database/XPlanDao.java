@@ -247,6 +247,48 @@ public class XPlanDao {
     }
 
     /**
+     * @param xplan
+     *                 to update, never <code>null</code>
+     * @param synFc
+     *                 to update, never <code>null</code>
+     * @param sortDate
+     *                 may be <code>null</code>
+     * @throws Exception
+     */
+    public void updateXPlanSynFeatureCollection( XPlan xplan, FeatureCollection synFc, Date sortDate )
+                    throws Exception {
+        PreparedStatement stmt = null;
+        SQLFeatureStoreTransaction taSyn = null;
+        try {
+            int planId = getXPlanIdAsInt( xplan.getId() );
+            PlanStatus planStatus = xplan.getXplanMetadata().getPlanStatus();
+
+            FeatureStore synFeatureStore = managerWorkspaceWrapper.lookupStore( XPLAN_SYN, null, planStatus );
+            taSyn = (SQLFeatureStoreTransaction) synFeatureStore.acquireTransaction();
+
+            Set<String> ids = selectFids( planId );
+            IdFilter idFilter = new IdFilter( ids );
+
+            addAdditionalProperties( synFc, xplan.getXplanMetadata(), synFeatureStore, planId, sortDate );
+            LOG.info( "- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)..." );
+            taSyn.performDelete( idFilter, null );
+            insertXPlanSyn( synFeatureStore, synFc );
+            LOG.info( "OK" );
+
+            LOG.info( "- Persistierung..." );
+            taSyn.commit();
+            LOG.info( "OK" );
+        } catch ( Exception e ) {
+            LOG.error( "Fehler beim Aktualiseren der Features. Ein Rollback wird durchgeführt.", e );
+            if ( taSyn != null )
+                taSyn.rollback();
+            throw new Exception( "Fehler beim Aktualiseren des Plans: " + e.getMessage() + ".", e );
+        } finally {
+            closeQuietly( stmt );
+        }
+    }
+
+    /**
      * Retrieve a list of all XPlans.
      *
      * @param includeNoOfFeature
@@ -520,6 +562,28 @@ public class XPlanDao {
     }
 
     /**
+     * Updates the district column of the table xplanmgr.plans.
+     *
+     * @param plan
+     *                 the plan to update, never <code>null</code>
+     * @param district
+     *                 the new district, may be <code>null</code>
+     * @throws Exception
+     */
+    public void updateDistrict( XPlan plan, String district )
+                    throws Exception {
+        Connection conn = null;
+        try {
+            conn = managerWorkspaceWrapper.openConnection();
+            updateDistrictInMgrSchema( conn, plan, district );
+        } catch ( Exception e ) {
+            conn.rollback();
+        } finally {
+            closeQuietly( conn );
+        }
+    }
+
+    /**
      * @param planId
      *            of the plan to set the status
      * @throws SQLException
@@ -578,6 +642,25 @@ public class XPlanDao {
             updateStmt.setDate( 1, convertToSqlDate( sortDate ) );
             updateStmt.setInt( 2, getXPlanIdAsInt( plan.getId() ) );
             LOG.trace( "SQL Update XPlan Manager sort date property: " + updateStmt );
+            updateStmt.executeUpdate();
+        } finally {
+            closeQuietly( updateStmt );
+        }
+    }
+
+    private void updateDistrictInMgrSchema( Connection conn, XPlan plan, String district )
+                    throws Exception {
+        StringBuilder updateSql = new StringBuilder();
+        updateSql.append( "UPDATE xplanmgr.plans" );
+        updateSql.append( " SET district = ? " );
+        updateSql.append( " WHERE id = ?" );
+
+        PreparedStatement updateStmt = null;
+        try {
+            updateStmt = conn.prepareStatement( updateSql.toString() );
+            updateStmt.setString( 1, district );
+            updateStmt.setInt( 2, getXPlanIdAsInt( plan.getId() ) );
+            LOG.trace( "SQL Update XPlan Manager district column: " + updateStmt );
             updateStmt.executeUpdate();
         } finally {
             closeQuietly( updateStmt );
@@ -1272,6 +1355,17 @@ public class XPlanDao {
             String georeference = ref.getGeoReference();
             if ( georeference != null && !"".equals( georeference ) )
                 referenceFileNames.add( georeference );
+        }
+    }
+
+    private Set<String> selectFids( int planId )
+                    throws SQLException {
+        Connection mgrConn = null;
+        try {
+            mgrConn = managerWorkspaceWrapper.openConnection();
+            return selectFids( mgrConn, planId );
+        } finally {
+            closeQuietly( mgrConn );
         }
     }
 

@@ -1,657 +1,563 @@
-<gml:FeatureCollection xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
+<gml:FeatureCollection xmlns:gml="http://www.opengis.net/gml">
   <gml:boundedBy>
     <gml:Envelope srsName="EPSG:31467">
-      <gml:lowerCorner>3954633.369 5499860.173</gml:lowerCorner>
-      <gml:upperCorner>3954791.490 5499972.787</gml:upperCorner>
+      <gml:lowerCorner>3954633.369000 5499860.173000</gml:lowerCorner>
+      <gml:upperCorner>3954791.490000 5499972.787000</gml:upperCorner>
     </gml:Envelope>
   </gml:boundedBy>
   <gml:featureMember>
-    <xplansyn:BP_Plan xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_1">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954633.369 5499860.173</gml:lowerCorner>
-          <gml:upperCorner>3954791.490 5499972.787</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_1</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:name>BPlan Demo-Gemeinde</xplansyn:name>
-      <xplansyn:technHerstellDatum>2006-06-22</xplansyn:technHerstellDatum>
-      <xplansyn:raeumlicherGeltungsbereich>
+    <xplan:BP_Plan xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_1">
+      <gml:name>BPlan Demo-Gemeinde</gml:name>
+      <xplan:gmlId>FEATURE_1</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:name>BPlan Demo-Gemeinde</xplan:name>
+      <xplan:technHerstellDatum>2006-06-22</xplan:technHerstellDatum>
+      <xplan:raeumlicherGeltungsbereich>
         <gml:Polygon srsName="EPSG:31467">
           <gml:exterior>
             <gml:Ring srsName="EPSG:31467">
               <gml:curveMember>
                 <gml:LineString srsName="EPSG:31467">
-                  <gml:posList>3954678.828 5499967.417 3954691.042 5499913.525 3954675.148 5499911.792 3954659.071 5499908.004 3954639.089 5499903.299 3954633.369 5499901.130 3954637.888 5499886.140 3954639.179 5499881.862 3954672.269 5499887.850 3954675.333 5499897.894 3954702.538 5499893.471 3954725.947 5499884.456 3954735.247 5499880.877 3954748.060 5499870.089 3954752.164 5499865.665 3954754.756 5499862.867 3954757.256 5499860.173 3954761.394 5499869.122 3954764.285 5499878.571 3954767.624 5499897.422 3954767.609 5499918.603 3954767.608 5499923.714 3954791.490 5499929.160 3954791.478 5499946.050 3954791.458 5499967.086 3954775.589 5499967.563 3954755.146 5499970.567 3954746.875 5499971.710 3954738.584 5499972.437 3954728.477 5499972.787 3954718.396 5499972.698 3954708.436 5499972.107 3954698.489 5499971.102 3954688.621 5499969.503 3954678.828 5499967.417 3954678.828 5499967.417</gml:posList>
+                  <gml:posList>3954678.828000 5499967.417000 3954691.042000 5499913.525000 3954675.148000 5499911.792000 3954659.071000 5499908.004000 3954639.089000 5499903.299000 3954633.369000 5499901.130000 3954637.888000 5499886.140000 3954639.179000 5499881.862000 3954672.269000 5499887.850000 3954675.333000 5499897.894000 3954702.538000 5499893.471000 3954725.947000 5499884.456000 3954735.247000 5499880.877000 3954748.060000 5499870.089000 3954752.164000 5499865.665000 3954754.756000 5499862.867000 3954757.256000 5499860.173000 3954761.394000 5499869.122000 3954764.285000 5499878.571000 3954767.624000 5499897.422000 3954767.609000 5499918.603000 3954767.608000 5499923.714000 3954791.490000 5499929.160000 3954791.478000 5499946.050000 3954791.458000 5499967.086000 3954775.589000 5499967.563000 3954755.146000 5499970.567000 3954746.875000 5499971.710000 3954738.584000 5499972.437000 3954728.477000 5499972.787000 3954718.396000 5499972.698000 3954708.436000 5499972.107000 3954698.489000 5499971.102000 3954688.621000 5499969.503000 3954678.828000 5499967.417000 3954678.828000 5499967.417000</gml:posList>
                 </gml:LineString>
               </gml:curveMember>
             </gml:Ring>
           </gml:exterior>
         </gml:Polygon>
-      </xplansyn:raeumlicherGeltungsbereich>
-      <xplansyn:bereich>[FEATURE_2][FEATURE_24]</xplansyn:bereich>
-      <xplansyn:texte>[Dies ist ein schönes beispiel für eine textliche Festsetzung. (Keine gesetzliche Grundlage)]</xplansyn:texte>
-      <xplansyn:gkz>1234567</xplansyn:gkz>
-      <xplansyn:planArt>BPlanNachParag13</xplansyn:planArt>
-      <xplansyn:planArtCode>2000</xplansyn:planArtCode>
-      <xplansyn:stadt>Demo-Gemeinde</xplansyn:stadt>
-      <xplansyn:rechtsstand>Rechtskraft</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>4000</xplansyn:rechtsstandCode>
-      <xplansyn:veraenderungssperre>true</xplansyn:veraenderungssperre>
-      <xplansyn:staedtebaulicherVertrag>false</xplansyn:staedtebaulicherVertrag>
-      <xplansyn:erschliessungsVertrag>false</xplansyn:erschliessungsVertrag>
-      <xplansyn:refTextAbschnitte></xplansyn:refTextAbschnitte>
-    </xplansyn:BP_Plan>
+      </xplan:raeumlicherGeltungsbereich>
+      <xplan:bereich>[FEATURE_2][FEATURE_24]</xplan:bereich>
+      <xplan:texte>[1A | Dies ist ein schönes beispiel für eine textliche Festsetzung. (Keine gesetzliche Grundlage)]</xplan:texte>
+      <xplan:gkz>1234567</xplan:gkz>
+      <xplan:planArt>BPlanNachParag13</xplan:planArt>
+      <xplan:planArtCode>2000</xplan:planArtCode>
+      <xplan:stadt>Demo-Gemeinde</xplan:stadt>
+      <xplan:rechtsstand>Rechtskraft</xplan:rechtsstand>
+      <xplan:rechtsstandCode>4000</xplan:rechtsstandCode>
+      <xplan:veraenderungssperre>true</xplan:veraenderungssperre>
+      <xplan:staedtebaulicherVertrag>false</xplan:staedtebaulicherVertrag>
+      <xplan:erschliessungsVertrag>false</xplan:erschliessungsVertrag>
+      <xplan:refTextAbschnitte></xplan:refTextAbschnitte>
+    </xplan:BP_Plan>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_Bereich xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_2">
-      <xplansyn:gmlId>FEATURE_2</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:nummer>0</xplansyn:nummer>
-      <xplansyn:name>defaultBereich</xplansyn:name>
-      <xplansyn:bedeutung>Sonstiges</xplansyn:bedeutung>
-      <xplansyn:bedeutungCode>9999</xplansyn:bedeutungCode>
-      <xplansyn:gehoertZuPlan>[FEATURE_1]</xplansyn:gehoertZuPlan>
-      <xplansyn:fachobjekt>[FEATURE_3][FEATURE_5][FEATURE_6][FEATURE_8][FEATURE_10][FEATURE_11][FEATURE_12][FEATURE_14][FEATURE_16][FEATURE_17][FEATURE_18][FEATURE_19][FEATURE_20][FEATURE_21]</xplansyn:fachobjekt>
-      <xplansyn:praesentationsobjekt>[FEATURE_22][FEATURE_23]</xplansyn:praesentationsobjekt>
-    </xplansyn:BP_Bereich>
+    <xplan:BP_Bereich xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_2">
+      <gml:name>defaultBereich</gml:name>
+      <xplan:gmlId>FEATURE_2</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:nummer>0</xplan:nummer>
+      <xplan:name>defaultBereich</xplan:name>
+      <xplan:bedeutung>Sonstiges</xplan:bedeutung>
+      <xplan:bedeutungCode>9999</xplan:bedeutungCode>
+      <xplan:gehoertZuPlan>[FEATURE_1]</xplan:gehoertZuPlan>
+      <xplan:fachobjekt>[FEATURE_3][FEATURE_5][FEATURE_6][FEATURE_8][FEATURE_10][FEATURE_11][FEATURE_12][FEATURE_14][FEATURE_16][FEATURE_17][FEATURE_18][FEATURE_19][FEATURE_20][FEATURE_21]</xplan:fachobjekt>
+      <xplan:praesentationsobjekt>[FEATURE_22][FEATURE_23]</xplan:praesentationsobjekt>
+    </xplan:BP_Bereich>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_VerEntsorgung xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_3">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954697.404 5499903.941</gml:lowerCorner>
-          <gml:upperCorner>3954697.404 5499903.941</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_3</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:rechtsstand>Geplant</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>1000</xplansyn:rechtsstandCode>
-      <xplansyn:ebene>0</xplansyn:ebene>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:hoehenangabe>[h=0;]</xplansyn:hoehenangabe>
-      <xplansyn:position>
+    <xplan:BP_VerEntsorgung xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_3">
+      <xplan:gmlId>FEATURE_3</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:rechtsstand>Geplant</xplan:rechtsstand>
+      <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:hoehenangabe>[h=0;]</xplan:hoehenangabe>
+      <xplan:position>
         <gml:Point srsName="EPSG:31467">
-          <gml:pos>3954697.404 5499903.941</gml:pos>
+          <gml:pos>3954697.404000 5499903.941000</gml:pos>
         </gml:Point>
-      </xplansyn:position>
-      <xplansyn:flaechenschluss>false</xplansyn:flaechenschluss>
-      <xplansyn:besondereZweckbestimmungCode>10003</xplansyn:besondereZweckbestimmungCode>
-    </xplansyn:BP_VerEntsorgung>
+      </xplan:position>
+      <xplan:flaechenschluss>false</xplan:flaechenschluss>
+      <xplan:besondereZweckbestimmungCode>10003</xplan:besondereZweckbestimmungCode>
+    </xplan:BP_VerEntsorgung>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:XP_Hoehenangabe xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_4">
-      <xplansyn:gmlId>FEATURE_4</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:h>0</xplansyn:h>
-    </xplansyn:XP_Hoehenangabe>
+    <xplan:XP_Hoehenangabe xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_4">
+      <xplan:gmlId>FEATURE_4</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:h>0</xplan:h>
+    </xplan:XP_Hoehenangabe>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_NutzungsartenGrenze xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_5">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954718.396 5499916.710</gml:lowerCorner>
-          <gml:upperCorner>3954720.330 5499972.698</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_5</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:rechtsstand>Geplant</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>1000</xplansyn:rechtsstandCode>
-      <xplansyn:ebene>0</xplansyn:ebene>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:rechtlicheCharakterisierung>Festsetzung</xplansyn:rechtlicheCharakterisierung>
-      <xplansyn:rechtlicheCharakterisierungCode>1000</xplansyn:rechtlicheCharakterisierungCode>
-      <xplansyn:position>
+    <xplan:BP_NutzungsartenGrenze xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_5">
+      <xplan:gmlId>FEATURE_5</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:rechtsstand>Geplant</xplan:rechtsstand>
+      <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:rechtlicheCharakterisierung>Festsetzung</xplan:rechtlicheCharakterisierung>
+      <xplan:rechtlicheCharakterisierungCode>1000</xplan:rechtlicheCharakterisierungCode>
+      <xplan:position>
         <gml:LineString srsName="EPSG:31467">
-          <gml:posList>3954718.396 5499972.698 3954720.330 5499916.710</gml:posList>
+          <gml:posList>3954718.396000 5499972.698000 3954720.330000 5499916.710000</gml:posList>
         </gml:LineString>
-      </xplansyn:position>
-    </xplansyn:BP_NutzungsartenGrenze>
+      </xplan:position>
+    </xplan:BP_NutzungsartenGrenze>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_BaugebietsTeilFlaeche xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_6">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954678.828 5499913.525</gml:lowerCorner>
-          <gml:upperCorner>3954720.330 5499972.698</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_6</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:uuid>PZV_01.01.03</xplansyn:uuid>
-      <xplansyn:rechtsstand>Geplant</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>1000</xplansyn:rechtsstandCode>
-      <xplansyn:symbolPosition>
+    <xplan:BP_BaugebietsTeilFlaeche xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_6">
+      <xplan:gmlId>FEATURE_6</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:uuid>PZV_01.01.03</xplan:uuid>
+      <xplan:rechtsstand>Geplant</xplan:rechtsstand>
+      <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
+      <xplan:symbolPosition>
         <gml:MultiPoint srsName="EPSG:31467">
           <gml:pointMember>
             <gml:Point srsName="EPSG:31467">
-              <gml:pos>3954699.500 5499942.750</gml:pos>
+              <gml:pos>3954699.500000 5499942.750000</gml:pos>
             </gml:Point>
           </gml:pointMember>
         </gml:MultiPoint>
-      </xplansyn:symbolPosition>
-      <xplansyn:ebene>0</xplansyn:ebene>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:informell>[/getAttachment?featureID=FEATURE_6&amp;filename=Allgemeine Wohngebiete]</xplansyn:informell>
-      <xplansyn:rechtlicheCharakterisierung>Festsetzung</xplansyn:rechtlicheCharakterisierung>
-      <xplansyn:rechtlicheCharakterisierungCode>1000</xplansyn:rechtlicheCharakterisierungCode>
-      <xplansyn:position>
+      </xplan:symbolPosition>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:informell>[/getAttachment?featureID=FEATURE_6&amp;filename=Allgemeine Wohngebiete]</xplan:informell>
+      <xplan:rechtlicheCharakterisierung>Festsetzung</xplan:rechtlicheCharakterisierung>
+      <xplan:rechtlicheCharakterisierungCode>1000</xplan:rechtlicheCharakterisierungCode>
+      <xplan:position>
         <gml:Polygon srsName="EPSG:31467">
           <gml:exterior>
             <gml:Ring srsName="EPSG:31467">
               <gml:curveMember>
                 <gml:LineString srsName="EPSG:31467">
-                  <gml:posList>3954718.396 5499972.698 3954708.436 5499972.107 3954698.489 5499971.102 3954688.621 5499969.503 3954678.828 5499967.417 3954691.042 5499913.525 3954704.427 5499914.980 3954720.330 5499916.710 3954718.396 5499972.698</gml:posList>
+                  <gml:posList>3954718.396000 5499972.698000 3954708.436000 5499972.107000 3954698.489000 5499971.102000 3954688.621000 5499969.503000 3954678.828000 5499967.417000 3954691.042000 5499913.525000 3954704.427000 5499914.980000 3954720.330000 5499916.710000 3954718.396000 5499972.698000</gml:posList>
                 </gml:LineString>
               </gml:curveMember>
             </gml:Ring>
           </gml:exterior>
         </gml:Polygon>
-      </xplansyn:position>
-      <xplansyn:flaechenschluss>true</xplansyn:flaechenschluss>
-      <xplansyn:GFZ>0.4</xplansyn:GFZ>
-      <xplansyn:GRZ>0.4</xplansyn:GRZ>
-      <xplansyn:Z>3</xplansyn:Z>
-      <xplansyn:besondereArtDerBaulichenNutzung>AllgWohngebiet</xplansyn:besondereArtDerBaulichenNutzung>
-      <xplansyn:besondereArtDerBaulichenNutzungCode>1200</xplansyn:besondereArtDerBaulichenNutzungCode>
-      <xplansyn:bauweise>OffeneBauweise</xplansyn:bauweise>
-      <xplansyn:bauweiseCode>1000</xplansyn:bauweiseCode>
-      <xplansyn:vertikaleDifferenzierung>false</xplansyn:vertikaleDifferenzierung>
-    </xplansyn:BP_BaugebietsTeilFlaeche>
+      </xplan:position>
+      <xplan:flaechenschluss>true</xplan:flaechenschluss>
+      <xplan:GFZ>0.4</xplan:GFZ>
+      <xplan:GRZ>0.4</xplan:GRZ>
+      <xplan:Z>3</xplan:Z>
+      <xplan:besondereArtDerBaulichenNutzung>AllgWohngebiet</xplan:besondereArtDerBaulichenNutzung>
+      <xplan:besondereArtDerBaulichenNutzungCode>1200</xplan:besondereArtDerBaulichenNutzungCode>
+      <xplan:bauweise>OffeneBauweise</xplan:bauweise>
+      <xplan:bauweiseCode>1000</xplan:bauweiseCode>
+      <xplan:vertikaleDifferenzierung>false</xplan:vertikaleDifferenzierung>
+    </xplan:BP_BaugebietsTeilFlaeche>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:XP_ExterneReferenz xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_7">
-      <xplansyn:gmlId>FEATURE_7</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:referenzURL>Allgemeine Wohngebiete</xplansyn:referenzURL>
-    </xplansyn:XP_ExterneReferenz>
+    <xplan:XP_ExterneReferenz xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_7">
+      <xplan:gmlId>FEATURE_7</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:referenzURL>Allgemeine Wohngebiete</xplan:referenzURL>
+    </xplan:XP_ExterneReferenz>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_BaugebietsTeilFlaeche xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_8">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954718.396 5499916.710</gml:lowerCorner>
-          <gml:upperCorner>3954760.613 5499972.787</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_8</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:uuid>{45AD741C-A18A-4C16-900B-C806E981151E}</xplansyn:uuid>
-      <xplansyn:rechtsstand>Geplant</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>1000</xplansyn:rechtsstandCode>
-      <xplansyn:symbolPosition>
+    <xplan:BP_BaugebietsTeilFlaeche xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_8">
+      <xplan:gmlId>FEATURE_8</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:uuid>{45AD741C-A18A-4C16-900B-C806E981151E}</xplan:uuid>
+      <xplan:rechtsstand>Geplant</xplan:rechtsstand>
+      <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
+      <xplan:symbolPosition>
         <gml:MultiPoint srsName="EPSG:31467">
           <gml:pointMember>
             <gml:Point srsName="EPSG:31467">
-              <gml:pos>3954739.500 5499946.500</gml:pos>
+              <gml:pos>3954739.500000 5499946.500000</gml:pos>
             </gml:Point>
           </gml:pointMember>
           <gml:pointMember>
             <gml:Point srsName="EPSG:31467">
-              <gml:pos>3954740.210 5499933.850</gml:pos>
+              <gml:pos>3954740.210000 5499933.850000</gml:pos>
             </gml:Point>
           </gml:pointMember>
         </gml:MultiPoint>
-      </xplansyn:symbolPosition>
-      <xplansyn:ebene>0</xplansyn:ebene>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:informell>[/getAttachment?featureID=FEATURE_8&amp;filename=Allgemeine Wohngebiete]</xplansyn:informell>
-      <xplansyn:rechtlicheCharakterisierung>Festsetzung</xplansyn:rechtlicheCharakterisierung>
-      <xplansyn:rechtlicheCharakterisierungCode>1000</xplansyn:rechtlicheCharakterisierungCode>
-      <xplansyn:position>
+      </xplan:symbolPosition>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:informell>[/getAttachment?featureID=FEATURE_8&amp;filename=Allgemeine Wohngebiete]</xplan:informell>
+      <xplan:rechtlicheCharakterisierung>Festsetzung</xplan:rechtlicheCharakterisierung>
+      <xplan:rechtlicheCharakterisierungCode>1000</xplan:rechtlicheCharakterisierungCode>
+      <xplan:position>
         <gml:Polygon srsName="EPSG:31467">
           <gml:exterior>
             <gml:Ring srsName="EPSG:31467">
               <gml:curveMember>
                 <gml:LineString srsName="EPSG:31467">
-                  <gml:posList>3954755.146 5499970.567 3954746.875 5499971.710 3954738.584 5499972.437 3954728.477 5499972.787 3954718.396 5499972.698 3954720.330 5499916.710 3954738.608 5499920.445 3954760.613 5499924.935 3954760.581 5499964.154 3954759.869 5499967.046 3954757.919 5499969.393 3954755.146 5499970.567</gml:posList>
+                  <gml:posList>3954755.146000 5499970.567000 3954746.875000 5499971.710000 3954738.584000 5499972.437000 3954728.477000 5499972.787000 3954718.396000 5499972.698000 3954720.330000 5499916.710000 3954738.608000 5499920.445000 3954760.613000 5499924.935000 3954760.581000 5499964.154000 3954759.869000 5499967.046000 3954757.919000 5499969.393000 3954755.146000 5499970.567000</gml:posList>
                 </gml:LineString>
               </gml:curveMember>
             </gml:Ring>
           </gml:exterior>
         </gml:Polygon>
-      </xplansyn:position>
-      <xplansyn:flaechenschluss>true</xplansyn:flaechenschluss>
-      <xplansyn:GFZ>0.8</xplansyn:GFZ>
-      <xplansyn:besondereArtDerBaulichenNutzung>AllgWohngebiet</xplansyn:besondereArtDerBaulichenNutzung>
-      <xplansyn:besondereArtDerBaulichenNutzungCode>1200</xplansyn:besondereArtDerBaulichenNutzungCode>
-      <xplansyn:bauweise>GeschlosseneBauweise</xplansyn:bauweise>
-      <xplansyn:bauweiseCode>2000</xplansyn:bauweiseCode>
-      <xplansyn:vertikaleDifferenzierung>false</xplansyn:vertikaleDifferenzierung>
-    </xplansyn:BP_BaugebietsTeilFlaeche>
+      </xplan:position>
+      <xplan:flaechenschluss>true</xplan:flaechenschluss>
+      <xplan:GFZ>0.8</xplan:GFZ>
+      <xplan:besondereArtDerBaulichenNutzung>AllgWohngebiet</xplan:besondereArtDerBaulichenNutzung>
+      <xplan:besondereArtDerBaulichenNutzungCode>1200</xplan:besondereArtDerBaulichenNutzungCode>
+      <xplan:bauweise>GeschlosseneBauweise</xplan:bauweise>
+      <xplan:bauweiseCode>2000</xplan:bauweiseCode>
+      <xplan:vertikaleDifferenzierung>false</xplan:vertikaleDifferenzierung>
+    </xplan:BP_BaugebietsTeilFlaeche>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:XP_ExterneReferenz xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_9">
-      <xplansyn:gmlId>FEATURE_9</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:referenzURL>Allgemeine Wohngebiete</xplansyn:referenzURL>
-    </xplansyn:XP_ExterneReferenz>
+    <xplan:XP_ExterneReferenz xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_9">
+      <xplan:gmlId>FEATURE_9</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:referenzURL>Allgemeine Wohngebiete</xplan:referenzURL>
+    </xplan:XP_ExterneReferenz>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_BauGrenze xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_10">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954741.587 5499951.358</gml:lowerCorner>
-          <gml:upperCorner>3954754.591 5499966.151</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_10</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:rechtsstand>Geplant</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>1000</xplansyn:rechtsstandCode>
-      <xplansyn:ebene>0</xplansyn:ebene>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:rechtlicheCharakterisierung>Festsetzung</xplansyn:rechtlicheCharakterisierung>
-      <xplansyn:rechtlicheCharakterisierungCode>1000</xplansyn:rechtlicheCharakterisierungCode>
-      <xplansyn:position>
+    <xplan:BP_BauGrenze xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_10">
+      <xplan:gmlId>FEATURE_10</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:rechtsstand>Geplant</xplan:rechtsstand>
+      <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:rechtlicheCharakterisierung>Festsetzung</xplan:rechtlicheCharakterisierung>
+      <xplan:rechtlicheCharakterisierungCode>1000</xplan:rechtlicheCharakterisierungCode>
+      <xplan:position>
         <gml:LineString srsName="EPSG:31467">
-          <gml:posList>3954741.594 5499951.358 3954754.591 5499951.369 3954754.580 5499964.589 3954746.201 5499965.746 3954741.587 5499966.151 3954741.594 5499951.358</gml:posList>
+          <gml:posList>3954741.594000 5499951.358000 3954754.591000 5499951.369000 3954754.580000 5499964.589000 3954746.201000 5499965.746000 3954741.587000 5499966.151000 3954741.594000 5499951.358000</gml:posList>
         </gml:LineString>
-      </xplansyn:position>
-    </xplansyn:BP_BauGrenze>
+      </xplan:position>
+    </xplan:BP_BauGrenze>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_BauGrenze xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_11">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954683.088 5499947.560</gml:lowerCorner>
-          <gml:upperCorner>3954716.126 5499966.522</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_11</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:rechtsstand>Geplant</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>1000</xplansyn:rechtsstandCode>
-      <xplansyn:ebene>0</xplansyn:ebene>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:rechtlicheCharakterisierung>Festsetzung</xplansyn:rechtlicheCharakterisierung>
-      <xplansyn:rechtlicheCharakterisierungCode>1000</xplansyn:rechtlicheCharakterisierungCode>
-      <xplansyn:position>
+    <xplan:BP_BauGrenze xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_11">
+      <xplan:gmlId>FEATURE_11</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:rechtsstand>Geplant</xplan:rechtsstand>
+      <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:rechtlicheCharakterisierung>Festsetzung</xplan:rechtlicheCharakterisierung>
+      <xplan:rechtlicheCharakterisierungCode>1000</xplan:rechtlicheCharakterisierungCode>
+      <xplan:position>
         <gml:LineString srsName="EPSG:31467">
-          <gml:posList>3954715.608 5499966.522 3954708.916 5499966.125 3954699.271 5499965.150 3954689.727 5499963.604 3954683.088 5499962.190 3954686.404 5499947.560 3954692.491 5499948.856 3954701.227 5499950.272 3954710.115 5499951.170 3954716.126 5499951.526 3954715.608 5499966.522</gml:posList>
+          <gml:posList>3954715.608000 5499966.522000 3954708.916000 5499966.125000 3954699.271000 5499965.150000 3954689.727000 5499963.604000 3954683.088000 5499962.190000 3954686.404000 5499947.560000 3954692.491000 5499948.856000 3954701.227000 5499950.272000 3954710.115000 5499951.170000 3954716.126000 5499951.526000 3954715.608000 5499966.522000</gml:posList>
         </gml:LineString>
-      </xplansyn:position>
-    </xplansyn:BP_BauGrenze>
+      </xplan:position>
+    </xplan:BP_BauGrenze>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_GemeinbedarfsFlaeche xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_12">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954721.580 5499865.665</gml:lowerCorner>
-          <gml:upperCorner>3954760.628 5499917.469</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_12</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:text>Hier soll ein Kindergarten entstehen</xplansyn:text>
-      <xplansyn:rechtsstand>Geplant</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>1000</xplansyn:rechtsstandCode>
-      <xplansyn:textAbschnitte>[Dies ist ein schönes beispiel für eine textliche Festsetzung. (Keine gesetzliche Grundlage)]</xplansyn:textAbschnitte>
-      <xplansyn:ebene>0</xplansyn:ebene>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:rechtlicheCharakterisierung>Festsetzung</xplansyn:rechtlicheCharakterisierung>
-      <xplansyn:rechtlicheCharakterisierungCode>1000</xplansyn:rechtlicheCharakterisierungCode>
-      <xplansyn:position>
+    <xplan:BP_GemeinbedarfsFlaeche xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_12">
+      <xplan:gmlId>FEATURE_12</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:text>Hier soll ein Kindergarten entstehen</xplan:text>
+      <xplan:rechtsstand>Geplant</xplan:rechtsstand>
+      <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
+      <xplan:textAbschnitte>[1A | Dies ist ein schönes beispiel für eine textliche Festsetzung. (Keine gesetzliche Grundlage)]</xplan:textAbschnitte>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:rechtlicheCharakterisierung>Festsetzung</xplan:rechtlicheCharakterisierung>
+      <xplan:rechtlicheCharakterisierungCode>1000</xplan:rechtlicheCharakterisierungCode>
+      <xplan:position>
         <gml:Polygon srsName="EPSG:31467">
           <gml:exterior>
             <gml:Ring srsName="EPSG:31467">
               <gml:curveMember>
                 <gml:LineString srsName="EPSG:31467">
-                  <gml:posList>3954760.628 5499900.031 3954760.616 5499917.469 3954721.580 5499909.522 3954725.947 5499884.456 3954735.247 5499880.877 3954748.060 5499870.089 3954752.164 5499865.665 3954756.426 5499876.550 3954759.349 5499888.134 3954760.628 5499900.031</gml:posList>
+                  <gml:posList>3954760.628000 5499900.031000 3954760.616000 5499917.469000 3954721.580000 5499909.522000 3954725.947000 5499884.456000 3954735.247000 5499880.877000 3954748.060000 5499870.089000 3954752.164000 5499865.665000 3954756.426000 5499876.550000 3954759.349000 5499888.134000 3954760.628000 5499900.031000</gml:posList>
                 </gml:LineString>
               </gml:curveMember>
             </gml:Ring>
           </gml:exterior>
         </gml:Polygon>
-      </xplansyn:position>
-      <xplansyn:flaechenschluss>true</xplansyn:flaechenschluss>
-      <xplansyn:zweckbestimmung>Sozial</xplansyn:zweckbestimmung>
-      <xplansyn:zweckbestimmungCode>1600</xplansyn:zweckbestimmungCode>
-    </xplansyn:BP_GemeinbedarfsFlaeche>
+      </xplan:position>
+      <xplan:flaechenschluss>true</xplan:flaechenschluss>
+      <xplan:zweckbestimmung>Sozial</xplan:zweckbestimmung>
+      <xplan:zweckbestimmungCode>1600</xplan:zweckbestimmungCode>
+    </xplan:BP_GemeinbedarfsFlaeche>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:XP_TextAbschnitt xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_13">
-      <xplansyn:gmlId>FEATURE_13</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:schluessel>1A</xplansyn:schluessel>
-      <xplansyn:text>Dies ist ein schönes beispiel für eine textliche Festsetzung.</xplansyn:text>
-    </xplansyn:XP_TextAbschnitt>
+    <xplan:XP_TextAbschnitt xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_13">
+      <xplan:gmlId>FEATURE_13</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:schluessel>1A</xplan:schluessel>
+      <xplan:text>Dies ist ein schönes beispiel für eine textliche Festsetzung.</xplan:text>
+    </xplan:XP_TextAbschnitt>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_DenkmalschutzEnsembleFlaeche xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_14">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954773.194 5499928.438</gml:lowerCorner>
-          <gml:upperCorner>3954788.525 5499961.052</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_14</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:rechtsstand>Geplant</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>1000</xplansyn:rechtsstandCode>
-      <xplansyn:ebene>0</xplansyn:ebene>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:hatGenerAttribut>["Planzeichen"="14.2. Umgrenzung von Gesamtanlagen des Denkmalschutzes, kombinierte PLM-Randsignatur"]</xplansyn:hatGenerAttribut>
-      <xplansyn:rechtlicheCharakterisierung>NachrichtlicheUebernahme</xplansyn:rechtlicheCharakterisierung>
-      <xplansyn:rechtlicheCharakterisierungCode>2000</xplansyn:rechtlicheCharakterisierungCode>
-      <xplansyn:position>
+    <xplan:BP_DenkmalschutzEnsembleFlaeche xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_14">
+      <xplan:gmlId>FEATURE_14</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:rechtsstand>Geplant</xplan:rechtsstand>
+      <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:hatGenerAttribut>["Planzeichen"="14.2. Umgrenzung von Gesamtanlagen des Denkmalschutzes, kombinierte PLM-Randsignatur"]</xplan:hatGenerAttribut>
+      <xplan:rechtlicheCharakterisierung>NachrichtlicheUebernahme</xplan:rechtlicheCharakterisierung>
+      <xplan:rechtlicheCharakterisierungCode>2000</xplan:rechtlicheCharakterisierungCode>
+      <xplan:position>
         <gml:Polygon srsName="EPSG:31467">
           <gml:exterior>
             <gml:Ring srsName="EPSG:31467">
               <gml:curveMember>
                 <gml:LineString srsName="EPSG:31467">
-                  <gml:posList>3954773.194 5499960.939 3954773.220 5499957.945 3954774.786 5499952.441 3954778.010 5499946.021 3954778.017 5499928.438 3954788.525 5499928.483 3954788.446 5499946.037 3954786.552 5499950.953 3954786.469 5499961.052 3954773.194 5499960.939</gml:posList>
+                  <gml:posList>3954773.194000 5499960.939000 3954773.220000 5499957.945000 3954774.786000 5499952.441000 3954778.010000 5499946.021000 3954778.017000 5499928.438000 3954788.525000 5499928.483000 3954788.446000 5499946.037000 3954786.552000 5499950.953000 3954786.469000 5499961.052000 3954773.194000 5499960.939000</gml:posList>
                 </gml:LineString>
               </gml:curveMember>
             </gml:Ring>
           </gml:exterior>
         </gml:Polygon>
-      </xplansyn:position>
-      <xplansyn:flaechenschluss>false</xplansyn:flaechenschluss>
-      <xplansyn:weltkulturerbe>false</xplansyn:weltkulturerbe>
-    </xplansyn:BP_DenkmalschutzEnsembleFlaeche>
+      </xplan:position>
+      <xplan:flaechenschluss>false</xplan:flaechenschluss>
+      <xplan:weltkulturerbe>false</xplan:weltkulturerbe>
+    </xplan:BP_DenkmalschutzEnsembleFlaeche>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:XP_StringAttribut xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_15">
-      <xplansyn:gmlId>FEATURE_15</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:name>Planzeichen</xplansyn:name>
-      <xplansyn:wert>14.2. Umgrenzung von Gesamtanlagen des Denkmalschutzes, kombinierte PLM-Randsignatur</xplansyn:wert>
-    </xplansyn:XP_StringAttribut>
+    <xplan:XP_StringAttribut xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_15">
+      <gml:name>Planzeichen</gml:name>
+      <xplan:gmlId>FEATURE_15</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:name>Planzeichen</xplan:name>
+      <xplan:wert>14.2. Umgrenzung von Gesamtanlagen des Denkmalschutzes, kombinierte PLM-Randsignatur</xplan:wert>
+    </xplan:XP_StringAttribut>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_GruenFlaeche xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_16">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954633.369 5499881.862</gml:lowerCorner>
-          <gml:upperCorner>3954760.616 5499924.935</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_16</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:rechtsstand>Geplant</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>1000</xplansyn:rechtsstandCode>
-      <xplansyn:ebene>0</xplansyn:ebene>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:rechtlicheCharakterisierung>Festsetzung</xplansyn:rechtlicheCharakterisierung>
-      <xplansyn:rechtlicheCharakterisierungCode>1000</xplansyn:rechtlicheCharakterisierungCode>
-      <xplansyn:position>
+    <xplan:BP_GruenFlaeche xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_16">
+      <xplan:gmlId>FEATURE_16</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:rechtsstand>Geplant</xplan:rechtsstand>
+      <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:rechtlicheCharakterisierung>Festsetzung</xplan:rechtlicheCharakterisierung>
+      <xplan:rechtlicheCharakterisierungCode>1000</xplan:rechtlicheCharakterisierungCode>
+      <xplan:position>
         <gml:Polygon srsName="EPSG:31467">
           <gml:exterior>
             <gml:Ring srsName="EPSG:31467">
               <gml:curveMember>
                 <gml:LineString srsName="EPSG:31467">
-                  <gml:posList>3954725.947 5499884.456 3954721.580 5499909.522 3954760.616 5499917.469 3954760.613 5499924.935 3954738.608 5499920.445 3954720.330 5499916.710 3954704.427 5499914.980 3954691.042 5499913.525 3954675.148 5499911.792 3954659.071 5499908.004 3954639.089 5499903.299 3954633.369 5499901.130 3954637.888 5499886.140 3954639.179 5499881.862 3954672.269 5499887.850 3954675.333 5499897.894 3954702.538 5499893.471 3954725.947 5499884.456</gml:posList>
+                  <gml:posList>3954725.947000 5499884.456000 3954721.580000 5499909.522000 3954760.616000 5499917.469000 3954760.613000 5499924.935000 3954738.608000 5499920.445000 3954720.330000 5499916.710000 3954704.427000 5499914.980000 3954691.042000 5499913.525000 3954675.148000 5499911.792000 3954659.071000 5499908.004000 3954639.089000 5499903.299000 3954633.369000 5499901.130000 3954637.888000 5499886.140000 3954639.179000 5499881.862000 3954672.269000 5499887.850000 3954675.333000 5499897.894000 3954702.538000 5499893.471000 3954725.947000 5499884.456000</gml:posList>
                 </gml:LineString>
               </gml:curveMember>
             </gml:Ring>
           </gml:exterior>
           <gml:interior>
-            <gml:LinearRing srsName="EPSG:31467">
-              <gml:posList>3954646.931 5499891.120 3954646.163 5499891.263 3954645.408 5499891.465 3954645.315 5499891.499 3954645.225 5499891.540 3954645.139 5499891.588 3954645.058 5499891.644 3954644.982 5499891.706 3954644.911 5499891.775 3954644.846 5499891.849 3954644.788 5499891.929 3954644.737 5499892.013 3954644.693 5499892.102 3954644.657 5499892.194 3954644.629 5499892.288 3954644.609 5499892.385 3954644.538 5499892.991 3954644.518 5499893.602 3954644.551 5499894.212 3954644.635 5499894.816 3954644.771 5499895.412 3954645.034 5499896.249 3954645.359 5499897.064 3954645.744 5499897.853 3954645.894 5499898.106 3954646.064 5499898.347 3954646.252 5499898.574 3954646.459 5499898.784 3954646.681 5499898.976 3954647.569 5499899.639 3954648.498 5499900.243 3954649.356 5499900.723 3954650.247 5499901.141 3954653.206 5499902.319 3954653.950 5499902.575 3954654.705 5499902.796 3954655.748 5499903.045 3954658.907 5499903.687 3954660.043 5499903.879 3954661.186 5499904.015 3954665.657 5499904.323 3954666.288 5499904.325 3954666.917 5499904.274 3954667.540 5499904.170 3954668.152 5499904.016 3954668.749 5499903.810 3954669.327 5499903.556 3954669.918 5499903.237 3954670.482 5499902.873 3954671.016 5499902.466 3954671.517 5499902.019 3954671.982 5499901.533 3954672.407 5499901.013 3954672.648 5499900.663 3954672.858 5499900.294 3954673.035 5499899.908 3954673.178 5499899.508 3954673.287 5499899.097 3954673.359 5499898.679 3954673.395 5499898.255 3954673.395 5499897.830 3954673.358 5499897.407 3954673.285 5499896.989 3954673.175 5499896.578 3954673.002 5499896.095 3954672.787 5499895.629 3954672.534 5499895.183 3954672.244 5499894.760 3954671.919 5499894.363 3954671.561 5499893.996 3954671.174 5499893.660 3954670.759 5499893.358 3954670.320 5499893.093 3954669.860 5499892.866 3954668.308 5499892.238 3954666.721 5499891.708 3954666.079 5499891.539 3954665.425 5499891.416 3954664.765 5499891.338 3954663.356 5499891.271 3954661.945 5499891.300 3954661.313 5499891.313 3954660.682 5499891.284 3954660.053 5499891.211 3954659.517 5499891.108 3954658.991 5499890.965 3954658.477 5499890.780 3954657.979 5499890.556 3954657.744 5499890.450 3954657.501 5499890.362 3954657.253 5499890.291 3954657.001 5499890.240 3954656.745 5499890.206 3954656.488 5499890.192 3954656.138 5499890.194 3954655.789 5499890.213 3954651.521 5499890.574 3954646.931 5499891.120</gml:posList>
-            </gml:LinearRing>
+            <gml:Ring srsName="EPSG:31467">
+              <gml:curveMember>
+                <gml:LineString srsName="EPSG:31467">
+                  <gml:posList>3954646.931000 5499891.120000 3954646.163000 5499891.263000 3954645.408000 5499891.465000 3954645.315000 5499891.499000 3954645.225000 5499891.540000 3954645.139000 5499891.588000 3954645.058000 5499891.644000 3954644.982000 5499891.706000 3954644.911000 5499891.775000 3954644.846000 5499891.849000 3954644.788000 5499891.929000 3954644.737000 5499892.013000 3954644.693000 5499892.102000 3954644.657000 5499892.194000 3954644.629000 5499892.288000 3954644.609000 5499892.385000 3954644.538000 5499892.991000 3954644.518000 5499893.602000 3954644.551000 5499894.212000 3954644.635000 5499894.816000 3954644.771000 5499895.412000 3954645.034000 5499896.249000 3954645.359000 5499897.064000 3954645.744000 5499897.853000 3954645.894000 5499898.106000 3954646.064000 5499898.347000 3954646.252000 5499898.574000 3954646.459000 5499898.784000 3954646.681000 5499898.976000 3954647.569000 5499899.639000 3954648.498000 5499900.243000 3954649.356000 5499900.723000 3954650.247000 5499901.141000 3954653.206000 5499902.319000 3954653.950000 5499902.575000 3954654.705000 5499902.796000 3954655.748000 5499903.045000 3954658.907000 5499903.687000 3954660.043000 5499903.879000 3954661.186000 5499904.015000 3954665.657000 5499904.323000 3954666.288000 5499904.325000 3954666.917000 5499904.274000 3954667.540000 5499904.170000 3954668.152000 5499904.016000 3954668.749000 5499903.810000 3954669.327000 5499903.556000 3954669.918000 5499903.237000 3954670.482000 5499902.873000 3954671.016000 5499902.466000 3954671.517000 5499902.019000 3954671.982000 5499901.533000 3954672.407000 5499901.013000 3954672.648000 5499900.663000 3954672.858000 5499900.294000 3954673.035000 5499899.908000 3954673.178000 5499899.508000 3954673.287000 5499899.097000 3954673.359000 5499898.679000 3954673.395000 5499898.255000 3954673.395000 5499897.830000 3954673.358000 5499897.407000 3954673.285000 5499896.989000 3954673.175000 5499896.578000 3954673.002000 5499896.095000 3954672.787000 5499895.629000 3954672.534000 5499895.183000 3954672.244000 5499894.760000 3954671.919000 5499894.363000 3954671.561000 5499893.996000 3954671.174000 5499893.660000 3954670.759000 5499893.358000 3954670.320000 5499893.093000 3954669.860000 5499892.866000 3954668.308000 5499892.238000 3954666.721000 5499891.708000 3954666.079000 5499891.539000 3954665.425000 5499891.416000 3954664.765000 5499891.338000 3954663.356000 5499891.271000 3954661.945000 5499891.300000 3954661.313000 5499891.313000 3954660.682000 5499891.284000 3954660.053000 5499891.211000 3954659.517000 5499891.108000 3954658.991000 5499890.965000 3954658.477000 5499890.780000 3954657.979000 5499890.556000 3954657.744000 5499890.450000 3954657.501000 5499890.362000 3954657.253000 5499890.291000 3954657.001000 5499890.240000 3954656.745000 5499890.206000 3954656.488000 5499890.192000 3954656.138000 5499890.194000 3954655.789000 5499890.213000 3954651.521000 5499890.574000 3954646.931000 5499891.120000</gml:posList>
+                </gml:LineString>
+              </gml:curveMember>
+            </gml:Ring>
           </gml:interior>
         </gml:Polygon>
-      </xplansyn:position>
-      <xplansyn:flaechenschluss>true</xplansyn:flaechenschluss>
-      <xplansyn:zweckbestimmung>Parkanlage</xplansyn:zweckbestimmung>
-      <xplansyn:zweckbestimmungCode>1000</xplansyn:zweckbestimmungCode>
-    </xplansyn:BP_GruenFlaeche>
+      </xplan:position>
+      <xplan:flaechenschluss>true</xplan:flaechenschluss>
+      <xplan:zweckbestimmung>Parkanlage</xplan:zweckbestimmung>
+      <xplan:zweckbestimmungCode>1000</xplan:zweckbestimmungCode>
+    </xplan:BP_GruenFlaeche>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_BaugebietsTeilFlaeche xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_17">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954767.319 5499923.714</gml:lowerCorner>
-          <gml:upperCorner>3954791.490 5499967.563</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_17</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:rechtsstand>Geplant</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>1000</xplansyn:rechtsstandCode>
-      <xplansyn:ebene>0</xplansyn:ebene>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:rechtlicheCharakterisierung>Festsetzung</xplansyn:rechtlicheCharakterisierung>
-      <xplansyn:rechtlicheCharakterisierungCode>1000</xplansyn:rechtlicheCharakterisierungCode>
-      <xplansyn:position>
+    <xplan:BP_BaugebietsTeilFlaeche xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_17">
+      <xplan:gmlId>FEATURE_17</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:rechtsstand>Geplant</xplan:rechtsstand>
+      <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:rechtlicheCharakterisierung>Festsetzung</xplan:rechtlicheCharakterisierung>
+      <xplan:rechtlicheCharakterisierungCode>1000</xplan:rechtlicheCharakterisierungCode>
+      <xplan:position>
         <gml:Polygon srsName="EPSG:31467">
           <gml:exterior>
             <gml:Ring srsName="EPSG:31467">
               <gml:curveMember>
                 <gml:LineString srsName="EPSG:31467">
-                  <gml:posList>3954791.490 5499929.160 3954791.478 5499946.050 3954791.458 5499967.086 3954775.589 5499967.563 3954771.438 5499966.536 3954769.026 5499964.030 3954767.584 5499960.028 3954767.319 5499945.964 3954767.608 5499923.714 3954791.490 5499929.160</gml:posList>
+                  <gml:posList>3954791.490000 5499929.160000 3954791.478000 5499946.050000 3954791.458000 5499967.086000 3954775.589000 5499967.563000 3954771.438000 5499966.536000 3954769.026000 5499964.030000 3954767.584000 5499960.028000 3954767.319000 5499945.964000 3954767.608000 5499923.714000 3954791.490000 5499929.160000</gml:posList>
                 </gml:LineString>
               </gml:curveMember>
             </gml:Ring>
           </gml:exterior>
         </gml:Polygon>
-      </xplansyn:position>
-      <xplansyn:flaechenschluss>true</xplansyn:flaechenschluss>
-      <xplansyn:GFZ>0.6</xplansyn:GFZ>
-      <xplansyn:GRZ>0.6</xplansyn:GRZ>
-      <xplansyn:besondereArtDerBaulichenNutzung>Mischgebiet</xplansyn:besondereArtDerBaulichenNutzung>
-      <xplansyn:besondereArtDerBaulichenNutzungCode>1500</xplansyn:besondereArtDerBaulichenNutzungCode>
-      <xplansyn:vertikaleDifferenzierung>false</xplansyn:vertikaleDifferenzierung>
-    </xplansyn:BP_BaugebietsTeilFlaeche>
+      </xplan:position>
+      <xplan:flaechenschluss>true</xplan:flaechenschluss>
+      <xplan:GFZ>0.6</xplan:GFZ>
+      <xplan:GRZ>0.6</xplan:GRZ>
+      <xplan:besondereArtDerBaulichenNutzung>Mischgebiet</xplan:besondereArtDerBaulichenNutzung>
+      <xplan:besondereArtDerBaulichenNutzungCode>1500</xplan:besondereArtDerBaulichenNutzungCode>
+      <xplan:vertikaleDifferenzierung>false</xplan:vertikaleDifferenzierung>
+    </xplan:BP_BaugebietsTeilFlaeche>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_StrassenVerkehrsFlaeche xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_18">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954752.164 5499860.173</gml:lowerCorner>
-          <gml:upperCorner>3954775.589 5499970.567</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_18</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:rechtsstand>Geplant</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>1000</xplansyn:rechtsstandCode>
-      <xplansyn:ebene>0</xplansyn:ebene>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:position>
+    <xplan:BP_StrassenVerkehrsFlaeche xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_18">
+      <xplan:gmlId>FEATURE_18</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:rechtsstand>Geplant</xplan:rechtsstand>
+      <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:position>
         <gml:Polygon srsName="EPSG:31467">
           <gml:exterior>
             <gml:Ring srsName="EPSG:31467">
               <gml:curveMember>
                 <gml:LineString srsName="EPSG:31467">
-                  <gml:posList>3954767.609 5499918.603 3954767.608 5499923.714 3954767.319 5499945.964 3954767.584 5499960.028 3954769.026 5499964.030 3954771.438 5499966.536 3954775.589 5499967.563 3954766.808 5499968.854 3954760.469 5499969.785 3954755.146 5499970.567 3954757.919 5499969.393 3954759.869 5499967.046 3954760.581 5499964.154 3954760.613 5499924.935 3954760.616 5499917.469 3954760.628 5499900.031 3954759.349 5499888.134 3954756.426 5499876.550 3954752.164 5499865.665 3954754.756 5499862.867 3954757.256 5499860.173 3954761.394 5499869.122 3954764.285 5499878.571 3954767.624 5499897.422 3954767.609 5499918.603</gml:posList>
+                  <gml:posList>3954767.609000 5499918.603000 3954767.608000 5499923.714000 3954767.319000 5499945.964000 3954767.584000 5499960.028000 3954769.026000 5499964.030000 3954771.438000 5499966.536000 3954775.589000 5499967.563000 3954766.808000 5499968.854000 3954760.469000 5499969.785000 3954755.146000 5499970.567000 3954757.919000 5499969.393000 3954759.869000 5499967.046000 3954760.581000 5499964.154000 3954760.613000 5499924.935000 3954760.616000 5499917.469000 3954760.628000 5499900.031000 3954759.349000 5499888.134000 3954756.426000 5499876.550000 3954752.164000 5499865.665000 3954754.756000 5499862.867000 3954757.256000 5499860.173000 3954761.394000 5499869.122000 3954764.285000 5499878.571000 3954767.624000 5499897.422000 3954767.609000 5499918.603000</gml:posList>
                 </gml:LineString>
               </gml:curveMember>
             </gml:Ring>
           </gml:exterior>
         </gml:Polygon>
-      </xplansyn:position>
-      <xplansyn:flaechenschluss>true</xplansyn:flaechenschluss>
-    </xplansyn:BP_StrassenVerkehrsFlaeche>
+      </xplan:position>
+      <xplan:flaechenschluss>true</xplan:flaechenschluss>
+    </xplan:BP_StrassenVerkehrsFlaeche>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_UnverbindlicheVormerkung xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_19">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954739.160 5499930.837</gml:lowerCorner>
-          <gml:upperCorner>3954739.160 5499930.837</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_19</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:text>BAUM</xplansyn:text>
-      <xplansyn:rechtsstand>Geplant</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>1000</xplansyn:rechtsstandCode>
-      <xplansyn:ebene>0</xplansyn:ebene>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:position>
+    <xplan:BP_UnverbindlicheVormerkung xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_19">
+      <xplan:gmlId>FEATURE_19</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:text>BAUM</xplan:text>
+      <xplan:rechtsstand>Geplant</xplan:rechtsstand>
+      <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:position>
         <gml:Point srsName="EPSG:31467">
-          <gml:pos>3954739.160 5499930.837</gml:pos>
+          <gml:pos>3954739.160000 5499930.837000</gml:pos>
         </gml:Point>
-      </xplansyn:position>
-      <xplansyn:flaechenschluss>false</xplansyn:flaechenschluss>
-    </xplansyn:BP_UnverbindlicheVormerkung>
+      </xplan:position>
+      <xplan:flaechenschluss>false</xplan:flaechenschluss>
+    </xplan:BP_UnverbindlicheVormerkung>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_UnverbindlicheVormerkung xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_20">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954702.292 5499930.133</gml:lowerCorner>
-          <gml:upperCorner>3954702.292 5499930.133</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_20</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:text>STRAUCH</xplansyn:text>
-      <xplansyn:rechtsstand>Geplant</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>1000</xplansyn:rechtsstandCode>
-      <xplansyn:ebene>0</xplansyn:ebene>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:position>
+    <xplan:BP_UnverbindlicheVormerkung xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_20">
+      <xplan:gmlId>FEATURE_20</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:text>STRAUCH</xplan:text>
+      <xplan:rechtsstand>Geplant</xplan:rechtsstand>
+      <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:position>
         <gml:Point srsName="EPSG:31467">
-          <gml:pos>3954702.292 5499930.133</gml:pos>
+          <gml:pos>3954702.292000 5499930.133000</gml:pos>
         </gml:Point>
-      </xplansyn:position>
-      <xplansyn:flaechenschluss>false</xplansyn:flaechenschluss>
-    </xplansyn:BP_UnverbindlicheVormerkung>
+      </xplan:position>
+      <xplan:flaechenschluss>false</xplan:flaechenschluss>
+    </xplan:BP_UnverbindlicheVormerkung>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_GewaesserFlaeche xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_21">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954644.518 5499890.191</gml:lowerCorner>
-          <gml:upperCorner>3954673.400 5499904.331</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_21</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:rechtsstand>Geplant</xplansyn:rechtsstand>
-      <xplansyn:rechtsstandCode>1000</xplansyn:rechtsstandCode>
-      <xplansyn:ebene>0</xplansyn:ebene>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:position>
+    <xplan:BP_GewaesserFlaeche xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_21">
+      <xplan:gmlId>FEATURE_21</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:rechtsstand>Geplant</xplan:rechtsstand>
+      <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:position>
         <gml:Polygon srsName="EPSG:31467">
           <gml:exterior>
             <gml:Ring srsName="EPSG:31467">
               <gml:curveMember>
                 <gml:LineString srsName="EPSG:31467">
-                  <gml:posList>3954651.521 5499890.574 3954651.621 5499890.565 3954651.720 5499890.556 3954651.820 5499890.547 3954651.919 5499890.538 3954652.019 5499890.529 3954652.119 5499890.520 3954652.219 5499890.511 3954652.318 5499890.502 3954652.418 5499890.493 3954652.518 5499890.484 3954652.617 5499890.475 3954652.717 5499890.466 3954652.817 5499890.457 3954652.916 5499890.449 3954653.016 5499890.440 3954653.116 5499890.431 3954653.215 5499890.423 3954653.315 5499890.414 3954653.415 5499890.406 3954653.515 5499890.397 3954653.614 5499890.389 3954653.714 5499890.380 3954653.814 5499890.372 3954653.913 5499890.363 3954654.013 5499890.355 3954654.113 5499890.347 3954654.213 5499890.339 3954654.312 5499890.330 3954654.412 5499890.322 3954654.512 5499890.314 3954654.612 5499890.306 3954654.711 5499890.298 3954654.811 5499890.290 3954654.911 5499890.282 3954655.011 5499890.274 3954655.110 5499890.266 3954655.210 5499890.258 3954655.310 5499890.250 3954655.410 5499890.242 3954655.509 5499890.234 3954655.609 5499890.227 3954655.709 5499890.219 3954655.809 5499890.211 3954655.909 5499890.205 3954656.009 5499890.199 3954656.109 5499890.195 3954656.209 5499890.193 3954656.309 5499890.191 3954656.409 5499890.191 3954656.509 5499890.193 3954656.609 5499890.197 3954656.709 5499890.203 3954656.808 5499890.213 3954656.908 5499890.225 3954657.007 5499890.241 3954657.105 5499890.259 3954657.203 5499890.279 3954657.300 5499890.303 3954657.397 5499890.330 3954657.492 5499890.359 3954657.587 5499890.391 3954657.681 5499890.425 3954657.774 5499890.463 3954657.866 5499890.503 3954657.956 5499890.545 3954658.046 5499890.589 3954658.136 5499890.632 3954658.227 5499890.674 3954658.319 5499890.714 3954658.411 5499890.753 3954658.504 5499890.791 3954658.597 5499890.828 3954658.691 5499890.863 3954658.785 5499890.896 3954658.880 5499890.929 3954658.975 5499890.960 3954659.070 5499890.989 3954659.166 5499891.018 3954659.263 5499891.044 3954659.360 5499891.070 3954659.457 5499891.094 3954659.554 5499891.117 3954659.652 5499891.138 3954659.750 5499891.158 3954659.848 5499891.177 3954659.947 5499891.194 3954660.046 5499891.210 3954660.145 5499891.224 3954660.244 5499891.237 3954660.343 5499891.250 3954660.443 5499891.261 3954660.542 5499891.271 3954660.642 5499891.280 3954660.742 5499891.288 3954660.842 5499891.295 3954660.942 5499891.301 3954661.041 5499891.306 3954661.141 5499891.310 3954661.242 5499891.312 3954661.342 5499891.314 3954661.442 5499891.314 3954661.542 5499891.314 3954661.642 5499891.312 3954661.742 5499891.309 3954661.842 5499891.305 3954661.942 5499891.300 3954662.042 5499891.295 3954662.142 5499891.290 3954662.242 5499891.286 3954662.342 5499891.282 3954662.442 5499891.279 3954662.542 5499891.276 3954662.642 5499891.273 3954662.742 5499891.271 3954662.842 5499891.270 3954662.942 5499891.269 3954663.042 5499891.269 3954663.142 5499891.269 3954663.242 5499891.269 3954663.342 5499891.270 3954663.442 5499891.272 3954663.542 5499891.274 3954663.642 5499891.276 3954663.742 5499891.279 3954663.843 5499891.283 3954663.943 5499891.287 3954664.042 5499891.291 3954664.142 5499891.296 3954664.242 5499891.302 3954664.342 5499891.308 3954664.442 5499891.314 3954664.542 5499891.321 3954664.642 5499891.328 3954664.742 5499891.336 3954664.841 5499891.345 3954664.941 5499891.354 3954665.040 5499891.365 3954665.140 5499891.376 3954665.239 5499891.389 3954665.338 5499891.403 3954665.437 5499891.417 3954665.536 5499891.433 3954665.635 5499891.450 3954665.733 5499891.468 3954665.831 5499891.487 3954665.930 5499891.507 3954666.027 5499891.528 3954666.125 5499891.550 3954666.222 5499891.573 3954666.320 5499891.597 3954666.416 5499891.622 3954666.513 5499891.648 3954666.609 5499891.675 3954666.705 5499891.703 3954666.801 5499891.732 3954666.897 5499891.761 3954666.993 5499891.791 3954667.088 5499891.821 3954667.184 5499891.851 3954667.279 5499891.882 3954667.374 5499891.913 3954667.469 5499891.944 3954667.564 5499891.976 3954667.659 5499892.008 3954667.753 5499892.040 3954667.848 5499892.073 3954667.942 5499892.106 3954668.037 5499892.139 3954668.131 5499892.173 3954668.225 5499892.207 3954668.319 5499892.242 3954668.413 5499892.277 3954668.506 5499892.312 3954668.600 5499892.347 3954668.693 5499892.383 3954668.787 5499892.420 3954668.880 5499892.456 3954668.973 5499892.493 3954669.066 5499892.530 3954669.158 5499892.568 3954669.251 5499892.606 3954669.343 5499892.644 3954669.436 5499892.683 3954669.528 5499892.722 3954669.620 5499892.761 3954669.712 5499892.801 3954669.804 5499892.841 3954669.895 5499892.882 3954669.986 5499892.923 3954670.076 5499892.967 3954670.166 5499893.011 3954670.255 5499893.058 3954670.343 5499893.105 3954670.430 5499893.154 3954670.516 5499893.205 3954670.602 5499893.257 3954670.686 5499893.311 3954670.770 5499893.365 3954670.853 5499893.422 3954670.934 5499893.479 3954671.015 5499893.538 3954671.095 5499893.598 3954671.174 5499893.660 3954671.252 5499893.723 3954671.329 5499893.787 3954671.404 5499893.853 3954671.479 5499893.919 3954671.552 5499893.987 3954671.625 5499894.056 3954671.696 5499894.127 3954671.766 5499894.198 3954671.835 5499894.271 3954671.902 5499894.345 3954671.969 5499894.420 3954672.034 5499894.496 3954672.098 5499894.573 3954672.160 5499894.651 3954672.221 5499894.730 3954672.281 5499894.810 3954672.340 5499894.891 3954672.397 5499894.973 3954672.453 5499895.056 3954672.507 5499895.140 3954672.561 5499895.225 3954672.612 5499895.311 3954672.662 5499895.398 3954672.711 5499895.485 3954672.758 5499895.573 3954672.804 5499895.662 3954672.849 5499895.752 3954672.891 5499895.842 3954672.933 5499895.933 3954672.973 5499896.025 3954673.011 5499896.118 3954673.048 5499896.211 3954673.083 5499896.305 3954673.116 5499896.399 3954673.148 5499896.494 3954673.179 5499896.589 3954673.208 5499896.685 3954673.234 5499896.781 3954673.259 5499896.878 3954673.282 5499896.976 3954673.303 5499897.074 3954673.321 5499897.172 3954673.338 5499897.271 3954673.353 5499897.369 3954673.366 5499897.469 3954673.376 5499897.568 3954673.385 5499897.668 3954673.392 5499897.768 3954673.397 5499897.868 3954673.399 5499897.968 3954673.400 5499898.068 3954673.398 5499898.168 3954673.395 5499898.268 3954673.389 5499898.368 3954673.382 5499898.468 3954673.372 5499898.567 3954673.361 5499898.667 3954673.347 5499898.766 3954673.332 5499898.865 3954673.314 5499898.963 3954673.294 5499899.061 3954673.273 5499899.159 3954673.249 5499899.256 3954673.224 5499899.353 3954673.196 5499899.449 3954673.167 5499899.545 3954673.135 5499899.640 3954673.102 5499899.734 3954673.067 5499899.828 3954673.030 5499899.921 3954672.991 5499900.013 3954672.950 5499900.104 3954672.907 5499900.195 3954672.862 5499900.285 3954672.816 5499900.373 3954672.768 5499900.461 3954672.718 5499900.548 3954672.666 5499900.633 3954672.613 5499900.718 3954672.558 5499900.802 3954672.501 5499900.884 3954672.442 5499900.965 3954672.382 5499901.045 3954672.321 5499901.125 3954672.259 5499901.203 3954672.196 5499901.281 3954672.133 5499901.358 3954672.068 5499901.434 3954672.002 5499901.510 3954671.936 5499901.585 3954671.868 5499901.659 3954671.800 5499901.732 3954671.731 5499901.804 3954671.661 5499901.876 3954671.591 5499901.947 3954671.519 5499902.017 3954671.447 5499902.086 3954671.374 5499902.154 3954671.300 5499902.222 3954671.225 5499902.288 3954671.149 5499902.354 3954671.073 5499902.419 3954670.996 5499902.483 3954670.918 5499902.546 3954670.840 5499902.608 3954670.761 5499902.669 3954670.681 5499902.729 3954670.600 5499902.789 3954670.519 5499902.847 3954670.437 5499902.905 3954670.355 5499902.961 3954670.271 5499903.017 3954670.187 5499903.071 3954670.103 5499903.125 3954670.018 5499903.177 3954669.932 5499903.229 3954669.846 5499903.280 3954669.759 5499903.329 3954669.671 5499903.378 3954669.583 5499903.425 3954669.495 5499903.472 3954669.405 5499903.517 3954669.316 5499903.562 3954669.226 5499903.605 3954669.135 5499903.647 3954669.043 5499903.688 3954668.952 5499903.728 3954668.859 5499903.766 3954668.766 5499903.804 3954668.673 5499903.840 3954668.579 5499903.875 3954668.485 5499903.908 3954668.390 5499903.940 3954668.295 5499903.971 3954668.199 5499904.001 3954668.104 5499904.030 3954668.007 5499904.057 3954667.911 5499904.083 3954667.814 5499904.108 3954667.716 5499904.131 3954667.619 5499904.153 3954667.521 5499904.174 3954667.423 5499904.194 3954667.324 5499904.212 3954667.226 5499904.229 3954667.127 5499904.245 3954667.028 5499904.259 3954666.929 5499904.272 3954666.829 5499904.284 3954666.730 5499904.294 3954666.630 5499904.304 3954666.530 5499904.311 3954666.430 5499904.318 3954666.330 5499904.323 3954666.230 5499904.327 3954666.130 5499904.329 3954666.030 5499904.331 3954665.930 5499904.330 3954665.830 5499904.329 3954665.730 5499904.326 3954665.630 5499904.322 3954665.530 5499904.318 3954665.430 5499904.313 3954665.330 5499904.308 3954665.230 5499904.304 3954665.130 5499904.299 3954665.030 5499904.294 3954664.930 5499904.289 3954664.830 5499904.283 3954664.731 5499904.278 3954664.631 5499904.272 3954664.531 5499904.267 3954664.431 5499904.261 3954664.331 5499904.255 3954664.231 5499904.249 3954664.131 5499904.243 3954664.031 5499904.237 3954663.931 5499904.231 3954663.831 5499904.225 3954663.732 5499904.218 3954663.632 5499904.211 3954663.532 5499904.205 3954663.432 5499904.198 3954663.332 5499904.191 3954663.232 5499904.184 3954663.133 5499904.177 3954663.033 5499904.169 3954662.933 5499904.162 3954662.833 5499904.155 3954662.733 5499904.147 3954662.634 5499904.139 3954662.534 5499904.131 3954662.434 5499904.123 3954662.334 5499904.115 3954662.235 5499904.107 3954662.135 5499904.099 3954662.035 5499904.091 3954661.935 5499904.082 3954661.836 5499904.073 3954661.736 5499904.065 3954661.636 5499904.056 3954661.537 5499904.047 3954661.437 5499904.038 3954661.337 5499904.029 3954661.238 5499904.019 3954661.138 5499904.010 3954661.038 5499904.000 3954660.939 5499903.990 3954660.839 5499903.979 3954660.740 5499903.968 3954660.640 5499903.957 3954660.541 5499903.945 3954660.442 5499903.932 3954660.342 5499903.920 3954660.243 5499903.907 3954660.144 5499903.893 3954660.045 5499903.879 3954659.946 5499903.864 3954659.847 5499903.850 3954659.748 5499903.834 3954659.649 5499903.819 3954659.551 5499903.802 3954659.452 5499903.786 3954659.353 5499903.769 3954659.255 5499903.752 3954659.156 5499903.734 3954659.058 5499903.716 3954658.959 5499903.697 3954658.861 5499903.678 3954658.763 5499903.659 3954658.665 5499903.640 3954658.567 5499903.620 3954658.468 5499903.601 3954658.370 5499903.582 3954658.272 5499903.562 3954658.174 5499903.543 3954658.076 5499903.523 3954657.977 5499903.504 3954657.879 5499903.484 3954657.781 5499903.465 3954657.683 5499903.445 3954657.585 5499903.425 3954657.487 5499903.405 3954657.389 5499903.386 3954657.291 5499903.366 3954657.193 5499903.346 3954657.095 5499903.326 3954656.997 5499903.306 3954656.898 5499903.286 3954656.800 5499903.265 3954656.702 5499903.245 3954656.604 5499903.225 3954656.506 5499903.205 3954656.408 5499903.184 3954656.310 5499903.164 3954656.213 5499903.143 3954656.115 5499903.123 3954656.017 5499903.102 3954655.919 5499903.081 3954655.821 5499903.061 3954655.723 5499903.040 3954655.625 5499903.019 3954655.527 5499902.997 3954655.430 5499902.975 3954655.332 5499902.953 3954655.235 5499902.930 3954655.138 5499902.906 3954655.040 5499902.882 3954654.943 5499902.858 3954654.846 5499902.833 3954654.750 5499902.808 3954654.653 5499902.782 3954654.556 5499902.755 3954654.460 5499902.728 3954654.364 5499902.701 3954654.268 5499902.673 3954654.172 5499902.644 3954654.076 5499902.615 3954653.981 5499902.585 3954653.885 5499902.554 3954653.790 5499902.523 3954653.695 5499902.492 3954653.600 5499902.459 3954653.506 5499902.427 3954653.412 5499902.393 3954653.317 5499902.360 3954653.223 5499902.325 3954653.130 5499902.290 3954653.036 5499902.255 3954652.942 5499902.220 3954652.849 5499902.185 3954652.755 5499902.149 3954652.661 5499902.114 3954652.568 5499902.078 3954652.474 5499902.042 3954652.381 5499902.006 3954652.288 5499901.970 3954652.194 5499901.934 3954652.101 5499901.897 3954652.008 5499901.861 3954651.915 5499901.824 3954651.822 5499901.787 3954651.729 5499901.751 3954651.636 5499901.713 3954651.543 5499901.676 3954651.450 5499901.639 3954651.357 5499901.601 3954651.265 5499901.564 3954651.172 5499901.526 3954651.079 5499901.488 3954650.987 5499901.450 3954650.894 5499901.412 3954650.802 5499901.374 3954650.709 5499901.335 3954650.617 5499901.297 3954650.525 5499901.258 3954650.432 5499901.219 3954650.340 5499901.180 3954650.248 5499901.141 3954650.156 5499901.102 3954650.065 5499901.061 3954649.973 5499901.021 3954649.882 5499900.979 3954649.791 5499900.937 3954649.701 5499900.894 3954649.611 5499900.851 3954649.521 5499900.806 3954649.431 5499900.762 3954649.342 5499900.716 3954649.253 5499900.670 3954649.165 5499900.623 3954649.077 5499900.576 3954648.989 5499900.528 3954648.902 5499900.479 3954648.815 5499900.430 3954648.728 5499900.380 3954648.641 5499900.329 3954648.555 5499900.278 3954648.470 5499900.226 3954648.384 5499900.174 3954648.299 5499900.121 3954648.215 5499900.068 3954648.130 5499900.014 3954648.046 5499899.960 3954647.963 5499899.905 3954647.879 5499899.850 3954647.796 5499899.794 3954647.713 5499899.738 3954647.631 5499899.681 3954647.548 5499899.624 3954647.467 5499899.567 3954647.385 5499899.508 3954647.304 5499899.450 3954647.223 5499899.391 3954647.143 5499899.331 3954647.063 5499899.272 3954646.983 5499899.211 3954646.903 5499899.150 3954646.824 5499899.089 3954646.745 5499899.027 3954646.667 5499898.965 3954646.590 5499898.901 3954646.515 5499898.835 3954646.441 5499898.767 3954646.370 5499898.697 3954646.300 5499898.625 3954646.233 5499898.552 3954646.167 5499898.476 3954646.104 5499898.398 3954646.042 5499898.319 3954645.983 5499898.238 3954645.927 5499898.156 3954645.872 5499898.072 3954645.820 5499897.987 3954645.770 5499897.900 3954645.723 5499897.812 3954645.676 5499897.723 3954645.630 5499897.634 3954645.585 5499897.545 3954645.541 5499897.455 3954645.498 5499897.365 3954645.455 5499897.274 3954645.413 5499897.184 3954645.372 5499897.092 3954645.331 5499897.001 3954645.292 5499896.909 3954645.253 5499896.817 3954645.215 5499896.724 3954645.178 5499896.631 3954645.141 5499896.538 3954645.106 5499896.444 3954645.071 5499896.351 3954645.037 5499896.257 3954645.004 5499896.162 3954644.971 5499896.067 3954644.940 5499895.972 3954644.909 5499895.877 3954644.879 5499895.782 3954644.850 5499895.686 3954644.821 5499895.590 3954644.794 5499895.494 3954644.767 5499895.397 3954644.742 5499895.301 3954644.718 5499895.203 3954644.695 5499895.106 3954644.673 5499895.008 3954644.653 5499894.910 3954644.635 5499894.812 3954644.617 5499894.713 3954644.601 5499894.615 3954644.587 5499894.516 3954644.574 5499894.416 3954644.562 5499894.317 3954644.551 5499894.217 3954644.543 5499894.118 3954644.535 5499894.018 3954644.529 5499893.918 3954644.524 5499893.818 3954644.521 5499893.718 3954644.519 5499893.618 3954644.518 5499893.518 3954644.519 5499893.418 3954644.521 5499893.318 3954644.524 5499893.218 3954644.529 5499893.118 3954644.536 5499893.018 3954644.544 5499892.918 3954644.553 5499892.819 3954644.563 5499892.719 3954644.575 5499892.620 3954644.589 5499892.520 3954644.603 5499892.421 3954644.621 5499892.323 3954644.647 5499892.226 3954644.680 5499892.132 3954644.722 5499892.041 3954644.772 5499891.954 3954644.828 5499891.872 3954644.892 5499891.795 3954644.962 5499891.724 3954645.039 5499891.659 3954645.120 5499891.600 3954645.206 5499891.550 3954645.296 5499891.506 3954645.390 5499891.471 3954645.486 5499891.442 3954645.582 5499891.413 3954645.678 5499891.386 3954645.774 5499891.359 3954645.871 5499891.334 3954645.968 5499891.309 3954646.065 5499891.286 3954646.163 5499891.263 3954646.261 5499891.242 3954646.359 5499891.221 3954646.457 5499891.201 3954646.555 5499891.183 3954646.654 5499891.165 3954646.752 5499891.148 3954646.851 5499891.133 3954646.950 5499891.118 3954647.049 5499891.103 3954647.148 5499891.089 3954647.247 5499891.075 3954647.346 5499891.061 3954647.445 5499891.047 3954647.545 5499891.033 3954647.644 5499891.020 3954647.743 5499891.006 3954647.842 5499890.993 3954647.941 5499890.979 3954648.040 5499890.966 3954648.140 5499890.953 3954648.239 5499890.940 3954648.338 5499890.927 3954648.437 5499890.914 3954648.537 5499890.902 3954648.636 5499890.889 3954648.735 5499890.877 3954648.834 5499890.864 3954648.934 5499890.852 3954649.033 5499890.840 3954649.133 5499890.828 3954649.232 5499890.816 3954649.331 5499890.804 3954649.431 5499890.793 3954649.530 5499890.781 3954649.629 5499890.770 3954649.729 5499890.758 3954649.828 5499890.747 3954649.928 5499890.736 3954650.027 5499890.725 3954650.127 5499890.714 3954650.226 5499890.704 3954650.326 5499890.693 3954650.425 5499890.682 3954650.525 5499890.672 3954650.624 5499890.662 3954650.724 5499890.652 3954650.824 5499890.641 3954650.923 5499890.632 3954651.023 5499890.622 3954651.122 5499890.612 3954651.222 5499890.602 3954651.322 5499890.593 3954651.421 5499890.583 3954651.521 5499890.574</gml:posList>
+                  <gml:posList>3954651.521000 5499890.574000 3954651.621000 5499890.565000 3954651.720000 5499890.556000 3954651.820000 5499890.547000 3954651.919000 5499890.538000 3954652.019000 5499890.529000 3954652.119000 5499890.520000 3954652.219000 5499890.511000 3954652.318000 5499890.502000 3954652.418000 5499890.493000 3954652.518000 5499890.484000 3954652.617000 5499890.475000 3954652.717000 5499890.466000 3954652.817000 5499890.457000 3954652.916000 5499890.449000 3954653.016000 5499890.440000 3954653.116000 5499890.431000 3954653.215000 5499890.423000 3954653.315000 5499890.414000 3954653.415000 5499890.406000 3954653.515000 5499890.397000 3954653.614000 5499890.389000 3954653.714000 5499890.380000 3954653.814000 5499890.372000 3954653.913000 5499890.363000 3954654.013000 5499890.355000 3954654.113000 5499890.347000 3954654.213000 5499890.339000 3954654.312000 5499890.330000 3954654.412000 5499890.322000 3954654.512000 5499890.314000 3954654.612000 5499890.306000 3954654.711000 5499890.298000 3954654.811000 5499890.290000 3954654.911000 5499890.282000 3954655.011000 5499890.274000 3954655.110000 5499890.266000 3954655.210000 5499890.258000 3954655.310000 5499890.250000 3954655.410000 5499890.242000 3954655.509000 5499890.234000 3954655.609000 5499890.227000 3954655.709000 5499890.219000 3954655.809000 5499890.211000 3954655.909000 5499890.205000 3954656.009000 5499890.199000 3954656.109000 5499890.195000 3954656.209000 5499890.193000 3954656.309000 5499890.191000 3954656.409000 5499890.191000 3954656.509000 5499890.193000 3954656.609000 5499890.197000 3954656.709000 5499890.203000 3954656.808000 5499890.213000 3954656.908000 5499890.225000 3954657.007000 5499890.241000 3954657.105000 5499890.259000 3954657.203000 5499890.279000 3954657.300000 5499890.303000 3954657.397000 5499890.330000 3954657.492000 5499890.359000 3954657.587000 5499890.391000 3954657.681000 5499890.425000 3954657.774000 5499890.463000 3954657.866000 5499890.503000 3954657.956000 5499890.545000 3954658.046000 5499890.589000 3954658.136000 5499890.632000 3954658.227000 5499890.674000 3954658.319000 5499890.714000 3954658.411000 5499890.753000 3954658.504000 5499890.791000 3954658.597000 5499890.828000 3954658.691000 5499890.863000 3954658.785000 5499890.896000 3954658.880000 5499890.929000 3954658.975000 5499890.960000 3954659.070000 5499890.989000 3954659.166000 5499891.018000 3954659.263000 5499891.044000 3954659.360000 5499891.070000 3954659.457000 5499891.094000 3954659.554000 5499891.117000 3954659.652000 5499891.138000 3954659.750000 5499891.158000 3954659.848000 5499891.177000 3954659.947000 5499891.194000 3954660.046000 5499891.210000 3954660.145000 5499891.224000 3954660.244000 5499891.237000 3954660.343000 5499891.250000 3954660.443000 5499891.261000 3954660.542000 5499891.271000 3954660.642000 5499891.280000 3954660.742000 5499891.288000 3954660.842000 5499891.295000 3954660.942000 5499891.301000 3954661.041000 5499891.306000 3954661.141000 5499891.310000 3954661.242000 5499891.312000 3954661.342000 5499891.314000 3954661.442000 5499891.314000 3954661.542000 5499891.314000 3954661.642000 5499891.312000 3954661.742000 5499891.309000 3954661.842000 5499891.305000 3954661.942000 5499891.300000 3954662.042000 5499891.295000 3954662.142000 5499891.290000 3954662.242000 5499891.286000 3954662.342000 5499891.282000 3954662.442000 5499891.279000 3954662.542000 5499891.276000 3954662.642000 5499891.273000 3954662.742000 5499891.271000 3954662.842000 5499891.270000 3954662.942000 5499891.269000 3954663.042000 5499891.269000 3954663.142000 5499891.269000 3954663.242000 5499891.269000 3954663.342000 5499891.270000 3954663.442000 5499891.272000 3954663.542000 5499891.274000 3954663.642000 5499891.276000 3954663.742000 5499891.279000 3954663.843000 5499891.283000 3954663.943000 5499891.287000 3954664.042000 5499891.291000 3954664.142000 5499891.296000 3954664.242000 5499891.302000 3954664.342000 5499891.308000 3954664.442000 5499891.314000 3954664.542000 5499891.321000 3954664.642000 5499891.328000 3954664.742000 5499891.336000 3954664.841000 5499891.345000 3954664.941000 5499891.354000 3954665.040000 5499891.365000 3954665.140000 5499891.376000 3954665.239000 5499891.389000 3954665.338000 5499891.403000 3954665.437000 5499891.417000 3954665.536000 5499891.433000 3954665.635000 5499891.450000 3954665.733000 5499891.468000 3954665.831000 5499891.487000 3954665.930000 5499891.507000 3954666.027000 5499891.528000 3954666.125000 5499891.550000 3954666.222000 5499891.573000 3954666.320000 5499891.597000 3954666.416000 5499891.622000 3954666.513000 5499891.648000 3954666.609000 5499891.675000 3954666.705000 5499891.703000 3954666.801000 5499891.732000 3954666.897000 5499891.761000 3954666.993000 5499891.791000 3954667.088000 5499891.821000 3954667.184000 5499891.851000 3954667.279000 5499891.882000 3954667.374000 5499891.913000 3954667.469000 5499891.944000 3954667.564000 5499891.976000 3954667.659000 5499892.008000 3954667.753000 5499892.040000 3954667.848000 5499892.073000 3954667.942000 5499892.106000 3954668.037000 5499892.139000 3954668.131000 5499892.173000 3954668.225000 5499892.207000 3954668.319000 5499892.242000 3954668.413000 5499892.277000 3954668.506000 5499892.312000 3954668.600000 5499892.347000 3954668.693000 5499892.383000 3954668.787000 5499892.420000 3954668.880000 5499892.456000 3954668.973000 5499892.493000 3954669.066000 5499892.530000 3954669.158000 5499892.568000 3954669.251000 5499892.606000 3954669.343000 5499892.644000 3954669.436000 5499892.683000 3954669.528000 5499892.722000 3954669.620000 5499892.761000 3954669.712000 5499892.801000 3954669.804000 5499892.841000 3954669.895000 5499892.882000 3954669.986000 5499892.923000 3954670.076000 5499892.967000 3954670.166000 5499893.011000 3954670.255000 5499893.058000 3954670.343000 5499893.105000 3954670.430000 5499893.154000 3954670.516000 5499893.205000 3954670.602000 5499893.257000 3954670.686000 5499893.311000 3954670.770000 5499893.365000 3954670.853000 5499893.422000 3954670.934000 5499893.479000 3954671.015000 5499893.538000 3954671.095000 5499893.598000 3954671.174000 5499893.660000 3954671.252000 5499893.723000 3954671.329000 5499893.787000 3954671.404000 5499893.853000 3954671.479000 5499893.919000 3954671.552000 5499893.987000 3954671.625000 5499894.056000 3954671.696000 5499894.127000 3954671.766000 5499894.198000 3954671.835000 5499894.271000 3954671.902000 5499894.345000 3954671.969000 5499894.420000 3954672.034000 5499894.496000 3954672.098000 5499894.573000 3954672.160000 5499894.651000 3954672.221000 5499894.730000 3954672.281000 5499894.810000 3954672.340000 5499894.891000 3954672.397000 5499894.973000 3954672.453000 5499895.056000 3954672.507000 5499895.140000 3954672.561000 5499895.225000 3954672.612000 5499895.311000 3954672.662000 5499895.398000 3954672.711000 5499895.485000 3954672.758000 5499895.573000 3954672.804000 5499895.662000 3954672.849000 5499895.752000 3954672.891000 5499895.842000 3954672.933000 5499895.933000 3954672.973000 5499896.025000 3954673.011000 5499896.118000 3954673.048000 5499896.211000 3954673.083000 5499896.305000 3954673.116000 5499896.399000 3954673.148000 5499896.494000 3954673.179000 5499896.589000 3954673.208000 5499896.685000 3954673.234000 5499896.781000 3954673.259000 5499896.878000 3954673.282000 5499896.976000 3954673.303000 5499897.074000 3954673.321000 5499897.172000 3954673.338000 5499897.271000 3954673.353000 5499897.369000 3954673.366000 5499897.469000 3954673.376000 5499897.568000 3954673.385000 5499897.668000 3954673.392000 5499897.768000 3954673.397000 5499897.868000 3954673.399000 5499897.968000 3954673.400000 5499898.068000 3954673.398000 5499898.168000 3954673.395000 5499898.268000 3954673.389000 5499898.368000 3954673.382000 5499898.468000 3954673.372000 5499898.567000 3954673.361000 5499898.667000 3954673.347000 5499898.766000 3954673.332000 5499898.865000 3954673.314000 5499898.963000 3954673.294000 5499899.061000 3954673.273000 5499899.159000 3954673.249000 5499899.256000 3954673.224000 5499899.353000 3954673.196000 5499899.449000 3954673.167000 5499899.545000 3954673.135000 5499899.640000 3954673.102000 5499899.734000 3954673.067000 5499899.828000 3954673.030000 5499899.921000 3954672.991000 5499900.013000 3954672.950000 5499900.104000 3954672.907000 5499900.195000 3954672.862000 5499900.285000 3954672.816000 5499900.373000 3954672.768000 5499900.461000 3954672.718000 5499900.548000 3954672.666000 5499900.633000 3954672.613000 5499900.718000 3954672.558000 5499900.802000 3954672.501000 5499900.884000 3954672.442000 5499900.965000 3954672.382000 5499901.045000 3954672.321000 5499901.125000 3954672.259000 5499901.203000 3954672.196000 5499901.281000 3954672.133000 5499901.358000 3954672.068000 5499901.434000 3954672.002000 5499901.510000 3954671.936000 5499901.585000 3954671.868000 5499901.659000 3954671.800000 5499901.732000 3954671.731000 5499901.804000 3954671.661000 5499901.876000 3954671.591000 5499901.947000 3954671.519000 5499902.017000 3954671.447000 5499902.086000 3954671.374000 5499902.154000 3954671.300000 5499902.222000 3954671.225000 5499902.288000 3954671.149000 5499902.354000 3954671.073000 5499902.419000 3954670.996000 5499902.483000 3954670.918000 5499902.546000 3954670.840000 5499902.608000 3954670.761000 5499902.669000 3954670.681000 5499902.729000 3954670.600000 5499902.789000 3954670.519000 5499902.847000 3954670.437000 5499902.905000 3954670.355000 5499902.961000 3954670.271000 5499903.017000 3954670.187000 5499903.071000 3954670.103000 5499903.125000 3954670.018000 5499903.177000 3954669.932000 5499903.229000 3954669.846000 5499903.280000 3954669.759000 5499903.329000 3954669.671000 5499903.378000 3954669.583000 5499903.425000 3954669.495000 5499903.472000 3954669.405000 5499903.517000 3954669.316000 5499903.562000 3954669.226000 5499903.605000 3954669.135000 5499903.647000 3954669.043000 5499903.688000 3954668.952000 5499903.728000 3954668.859000 5499903.766000 3954668.766000 5499903.804000 3954668.673000 5499903.840000 3954668.579000 5499903.875000 3954668.485000 5499903.908000 3954668.390000 5499903.940000 3954668.295000 5499903.971000 3954668.199000 5499904.001000 3954668.104000 5499904.030000 3954668.007000 5499904.057000 3954667.911000 5499904.083000 3954667.814000 5499904.108000 3954667.716000 5499904.131000 3954667.619000 5499904.153000 3954667.521000 5499904.174000 3954667.423000 5499904.194000 3954667.324000 5499904.212000 3954667.226000 5499904.229000 3954667.127000 5499904.245000 3954667.028000 5499904.259000 3954666.929000 5499904.272000 3954666.829000 5499904.284000 3954666.730000 5499904.294000 3954666.630000 5499904.304000 3954666.530000 5499904.311000 3954666.430000 5499904.318000 3954666.330000 5499904.323000 3954666.230000 5499904.327000 3954666.130000 5499904.329000 3954666.030000 5499904.331000 3954665.930000 5499904.330000 3954665.830000 5499904.329000 3954665.730000 5499904.326000 3954665.630000 5499904.322000 3954665.530000 5499904.318000 3954665.430000 5499904.313000 3954665.330000 5499904.308000 3954665.230000 5499904.304000 3954665.130000 5499904.299000 3954665.030000 5499904.294000 3954664.930000 5499904.289000 3954664.830000 5499904.283000 3954664.731000 5499904.278000 3954664.631000 5499904.272000 3954664.531000 5499904.267000 3954664.431000 5499904.261000 3954664.331000 5499904.255000 3954664.231000 5499904.249000 3954664.131000 5499904.243000 3954664.031000 5499904.237000 3954663.931000 5499904.231000 3954663.831000 5499904.225000 3954663.732000 5499904.218000 3954663.632000 5499904.211000 3954663.532000 5499904.205000 3954663.432000 5499904.198000 3954663.332000 5499904.191000 3954663.232000 5499904.184000 3954663.133000 5499904.177000 3954663.033000 5499904.169000 3954662.933000 5499904.162000 3954662.833000 5499904.155000 3954662.733000 5499904.147000 3954662.634000 5499904.139000 3954662.534000 5499904.131000 3954662.434000 5499904.123000 3954662.334000 5499904.115000 3954662.235000 5499904.107000 3954662.135000 5499904.099000 3954662.035000 5499904.091000 3954661.935000 5499904.082000 3954661.836000 5499904.073000 3954661.736000 5499904.065000 3954661.636000 5499904.056000 3954661.537000 5499904.047000 3954661.437000 5499904.038000 3954661.337000 5499904.029000 3954661.238000 5499904.019000 3954661.138000 5499904.010000 3954661.038000 5499904.000000 3954660.939000 5499903.990000 3954660.839000 5499903.979000 3954660.740000 5499903.968000 3954660.640000 5499903.957000 3954660.541000 5499903.945000 3954660.442000 5499903.932000 3954660.342000 5499903.920000 3954660.243000 5499903.907000 3954660.144000 5499903.893000 3954660.045000 5499903.879000 3954659.946000 5499903.864000 3954659.847000 5499903.850000 3954659.748000 5499903.834000 3954659.649000 5499903.819000 3954659.551000 5499903.802000 3954659.452000 5499903.786000 3954659.353000 5499903.769000 3954659.255000 5499903.752000 3954659.156000 5499903.734000 3954659.058000 5499903.716000 3954658.959000 5499903.697000 3954658.861000 5499903.678000 3954658.763000 5499903.659000 3954658.665000 5499903.640000 3954658.567000 5499903.620000 3954658.468000 5499903.601000 3954658.370000 5499903.582000 3954658.272000 5499903.562000 3954658.174000 5499903.543000 3954658.076000 5499903.523000 3954657.977000 5499903.504000 3954657.879000 5499903.484000 3954657.781000 5499903.465000 3954657.683000 5499903.445000 3954657.585000 5499903.425000 3954657.487000 5499903.405000 3954657.389000 5499903.386000 3954657.291000 5499903.366000 3954657.193000 5499903.346000 3954657.095000 5499903.326000 3954656.997000 5499903.306000 3954656.898000 5499903.286000 3954656.800000 5499903.265000 3954656.702000 5499903.245000 3954656.604000 5499903.225000 3954656.506000 5499903.205000 3954656.408000 5499903.184000 3954656.310000 5499903.164000 3954656.213000 5499903.143000 3954656.115000 5499903.123000 3954656.017000 5499903.102000 3954655.919000 5499903.081000 3954655.821000 5499903.061000 3954655.723000 5499903.040000 3954655.625000 5499903.019000 3954655.527000 5499902.997000 3954655.430000 5499902.975000 3954655.332000 5499902.953000 3954655.235000 5499902.930000 3954655.138000 5499902.906000 3954655.040000 5499902.882000 3954654.943000 5499902.858000 3954654.846000 5499902.833000 3954654.750000 5499902.808000 3954654.653000 5499902.782000 3954654.556000 5499902.755000 3954654.460000 5499902.728000 3954654.364000 5499902.701000 3954654.268000 5499902.673000 3954654.172000 5499902.644000 3954654.076000 5499902.615000 3954653.981000 5499902.585000 3954653.885000 5499902.554000 3954653.790000 5499902.523000 3954653.695000 5499902.492000 3954653.600000 5499902.459000 3954653.506000 5499902.427000 3954653.412000 5499902.393000 3954653.317000 5499902.360000 3954653.223000 5499902.325000 3954653.130000 5499902.290000 3954653.036000 5499902.255000 3954652.942000 5499902.220000 3954652.849000 5499902.185000 3954652.755000 5499902.149000 3954652.661000 5499902.114000 3954652.568000 5499902.078000 3954652.474000 5499902.042000 3954652.381000 5499902.006000 3954652.288000 5499901.970000 3954652.194000 5499901.934000 3954652.101000 5499901.897000 3954652.008000 5499901.861000 3954651.915000 5499901.824000 3954651.822000 5499901.787000 3954651.729000 5499901.751000 3954651.636000 5499901.713000 3954651.543000 5499901.676000 3954651.450000 5499901.639000 3954651.357000 5499901.601000 3954651.265000 5499901.564000 3954651.172000 5499901.526000 3954651.079000 5499901.488000 3954650.987000 5499901.450000 3954650.894000 5499901.412000 3954650.802000 5499901.374000 3954650.709000 5499901.335000 3954650.617000 5499901.297000 3954650.525000 5499901.258000 3954650.432000 5499901.219000 3954650.340000 5499901.180000 3954650.248000 5499901.141000 3954650.156000 5499901.102000 3954650.065000 5499901.061000 3954649.973000 5499901.021000 3954649.882000 5499900.979000 3954649.791000 5499900.937000 3954649.701000 5499900.894000 3954649.611000 5499900.851000 3954649.521000 5499900.806000 3954649.431000 5499900.762000 3954649.342000 5499900.716000 3954649.253000 5499900.670000 3954649.165000 5499900.623000 3954649.077000 5499900.576000 3954648.989000 5499900.528000 3954648.902000 5499900.479000 3954648.815000 5499900.430000 3954648.728000 5499900.380000 3954648.641000 5499900.329000 3954648.555000 5499900.278000 3954648.470000 5499900.226000 3954648.384000 5499900.174000 3954648.299000 5499900.121000 3954648.215000 5499900.068000 3954648.130000 5499900.014000 3954648.046000 5499899.960000 3954647.963000 5499899.905000 3954647.879000 5499899.850000 3954647.796000 5499899.794000 3954647.713000 5499899.738000 3954647.631000 5499899.681000 3954647.548000 5499899.624000 3954647.467000 5499899.567000 3954647.385000 5499899.508000 3954647.304000 5499899.450000 3954647.223000 5499899.391000 3954647.143000 5499899.331000 3954647.063000 5499899.272000 3954646.983000 5499899.211000 3954646.903000 5499899.150000 3954646.824000 5499899.089000 3954646.745000 5499899.027000 3954646.667000 5499898.965000 3954646.590000 5499898.901000 3954646.515000 5499898.835000 3954646.441000 5499898.767000 3954646.370000 5499898.697000 3954646.300000 5499898.625000 3954646.233000 5499898.552000 3954646.167000 5499898.476000 3954646.104000 5499898.398000 3954646.042000 5499898.319000 3954645.983000 5499898.238000 3954645.927000 5499898.156000 3954645.872000 5499898.072000 3954645.820000 5499897.987000 3954645.770000 5499897.900000 3954645.723000 5499897.812000 3954645.676000 5499897.723000 3954645.630000 5499897.634000 3954645.585000 5499897.545000 3954645.541000 5499897.455000 3954645.498000 5499897.365000 3954645.455000 5499897.274000 3954645.413000 5499897.184000 3954645.372000 5499897.092000 3954645.331000 5499897.001000 3954645.292000 5499896.909000 3954645.253000 5499896.817000 3954645.215000 5499896.724000 3954645.178000 5499896.631000 3954645.141000 5499896.538000 3954645.106000 5499896.444000 3954645.071000 5499896.351000 3954645.037000 5499896.257000 3954645.004000 5499896.162000 3954644.971000 5499896.067000 3954644.940000 5499895.972000 3954644.909000 5499895.877000 3954644.879000 5499895.782000 3954644.850000 5499895.686000 3954644.821000 5499895.590000 3954644.794000 5499895.494000 3954644.767000 5499895.397000 3954644.742000 5499895.301000 3954644.718000 5499895.203000 3954644.695000 5499895.106000 3954644.673000 5499895.008000 3954644.653000 5499894.910000 3954644.635000 5499894.812000 3954644.617000 5499894.713000 3954644.601000 5499894.615000 3954644.587000 5499894.516000 3954644.574000 5499894.416000 3954644.562000 5499894.317000 3954644.551000 5499894.217000 3954644.543000 5499894.118000 3954644.535000 5499894.018000 3954644.529000 5499893.918000 3954644.524000 5499893.818000 3954644.521000 5499893.718000 3954644.519000 5499893.618000 3954644.518000 5499893.518000 3954644.519000 5499893.418000 3954644.521000 5499893.318000 3954644.524000 5499893.218000 3954644.529000 5499893.118000 3954644.536000 5499893.018000 3954644.544000 5499892.918000 3954644.553000 5499892.819000 3954644.563000 5499892.719000 3954644.575000 5499892.620000 3954644.589000 5499892.520000 3954644.603000 5499892.421000 3954644.621000 5499892.323000 3954644.647000 5499892.226000 3954644.680000 5499892.132000 3954644.722000 5499892.041000 3954644.772000 5499891.954000 3954644.828000 5499891.872000 3954644.892000 5499891.795000 3954644.962000 5499891.724000 3954645.039000 5499891.659000 3954645.120000 5499891.600000 3954645.206000 5499891.550000 3954645.296000 5499891.506000 3954645.390000 5499891.471000 3954645.486000 5499891.442000 3954645.582000 5499891.413000 3954645.678000 5499891.386000 3954645.774000 5499891.359000 3954645.871000 5499891.334000 3954645.968000 5499891.309000 3954646.065000 5499891.286000 3954646.163000 5499891.263000 3954646.261000 5499891.242000 3954646.359000 5499891.221000 3954646.457000 5499891.201000 3954646.555000 5499891.183000 3954646.654000 5499891.165000 3954646.752000 5499891.148000 3954646.851000 5499891.133000 3954646.950000 5499891.118000 3954647.049000 5499891.103000 3954647.148000 5499891.089000 3954647.247000 5499891.075000 3954647.346000 5499891.061000 3954647.445000 5499891.047000 3954647.545000 5499891.033000 3954647.644000 5499891.020000 3954647.743000 5499891.006000 3954647.842000 5499890.993000 3954647.941000 5499890.979000 3954648.040000 5499890.966000 3954648.140000 5499890.953000 3954648.239000 5499890.940000 3954648.338000 5499890.927000 3954648.437000 5499890.914000 3954648.537000 5499890.902000 3954648.636000 5499890.889000 3954648.735000 5499890.877000 3954648.834000 5499890.864000 3954648.934000 5499890.852000 3954649.033000 5499890.840000 3954649.133000 5499890.828000 3954649.232000 5499890.816000 3954649.331000 5499890.804000 3954649.431000 5499890.793000 3954649.530000 5499890.781000 3954649.629000 5499890.770000 3954649.729000 5499890.758000 3954649.828000 5499890.747000 3954649.928000 5499890.736000 3954650.027000 5499890.725000 3954650.127000 5499890.714000 3954650.226000 5499890.704000 3954650.326000 5499890.693000 3954650.425000 5499890.682000 3954650.525000 5499890.672000 3954650.624000 5499890.662000 3954650.724000 5499890.652000 3954650.824000 5499890.641000 3954650.923000 5499890.632000 3954651.023000 5499890.622000 3954651.122000 5499890.612000 3954651.222000 5499890.602000 3954651.322000 5499890.593000 3954651.421000 5499890.583000 3954651.521000 5499890.574000</gml:posList>
                 </gml:LineString>
               </gml:curveMember>
             </gml:Ring>
           </gml:exterior>
         </gml:Polygon>
-      </xplansyn:position>
-      <xplansyn:flaechenschluss>true</xplansyn:flaechenschluss>
-    </xplansyn:BP_GewaesserFlaeche>
+      </xplan:position>
+      <xplan:flaechenschluss>true</xplan:flaechenschluss>
+    </xplan:BP_GewaesserFlaeche>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:XP_PPO xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_22">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954699.500 5499942.750</gml:lowerCorner>
-          <gml:upperCorner>3954699.500 5499942.750</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_22</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:stylesheetId>Default</xplansyn:stylesheetId>
-      <xplansyn:stylesheetIdCode>Default</xplansyn:stylesheetIdCode>
-      <xplansyn:art>besondereArtDerBaulichenNutzung</xplansyn:art>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:dientZurDarstellungVon>[FEATURE_6]</xplansyn:dientZurDarstellungVon>
-      <xplansyn:position>
+    <xplan:XP_PPO xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_22">
+      <xplan:gmlId>FEATURE_22</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:stylesheetId>Default</xplan:stylesheetId>
+      <xplan:stylesheetIdCode>Default</xplan:stylesheetIdCode>
+      <xplan:art>besondereArtDerBaulichenNutzung</xplan:art>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:dientZurDarstellungVon>[FEATURE_6]</xplan:dientZurDarstellungVon>
+      <xplan:position>
         <gml:Point srsName="EPSG:31467">
-          <gml:pos>3954699.500 5499942.750</gml:pos>
+          <gml:pos>3954699.500000 5499942.750000</gml:pos>
         </gml:Point>
-      </xplansyn:position>
-      <xplansyn:drehwinkel>0</xplansyn:drehwinkel>
-      <xplansyn:drehwinkelUOM>grad</xplansyn:drehwinkelUOM>
-      <xplansyn:skalierung>1</xplansyn:skalierung>
-    </xplansyn:XP_PPO>
+      </xplan:position>
+      <xplan:drehwinkel>0</xplan:drehwinkel>
+      <xplan:drehwinkelUOM>grad</xplan:drehwinkelUOM>
+      <xplan:skalierung>1</xplan:skalierung>
+    </xplan:XP_PPO>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:XP_PPO xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_23">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:31467">
-          <gml:lowerCorner>3954739.500 5499946.500</gml:lowerCorner>
-          <gml:upperCorner>3954739.500 5499946.500</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplansyn:gmlId>FEATURE_23</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:stylesheetId>Default</xplansyn:stylesheetId>
-      <xplansyn:stylesheetIdCode>Default</xplansyn:stylesheetIdCode>
-      <xplansyn:art>besondereArtDerBaulichenNutzung</xplansyn:art>
-      <xplansyn:gehoertZuBereich>[FEATURE_2]</xplansyn:gehoertZuBereich>
-      <xplansyn:dientZurDarstellungVon>[FEATURE_8]</xplansyn:dientZurDarstellungVon>
-      <xplansyn:position>
+    <xplan:XP_PPO xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_23">
+      <xplan:gmlId>FEATURE_23</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:stylesheetId>Default</xplan:stylesheetId>
+      <xplan:stylesheetIdCode>Default</xplan:stylesheetIdCode>
+      <xplan:art>besondereArtDerBaulichenNutzung</xplan:art>
+      <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
+      <xplan:dientZurDarstellungVon>[FEATURE_8]</xplan:dientZurDarstellungVon>
+      <xplan:position>
         <gml:Point srsName="EPSG:31467">
-          <gml:pos>3954739.500 5499946.500</gml:pos>
+          <gml:pos>3954739.500000 5499946.500000</gml:pos>
         </gml:Point>
-      </xplansyn:position>
-      <xplansyn:drehwinkel>0</xplansyn:drehwinkel>
-      <xplansyn:drehwinkelUOM>grad</xplansyn:drehwinkelUOM>
-      <xplansyn:skalierung>1</xplansyn:skalierung>
-    </xplansyn:XP_PPO>
+      </xplan:position>
+      <xplan:drehwinkel>0</xplan:drehwinkel>
+      <xplan:drehwinkelUOM>grad</xplan:drehwinkelUOM>
+      <xplan:skalierung>1</xplan:skalierung>
+    </xplan:XP_PPO>
   </gml:featureMember>
   <gml:featureMember>
-    <xplansyn:BP_Bereich xmlns:xplansyn="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_24">
-      <xplansyn:gmlId>FEATURE_24</xplansyn:gmlId>
-      <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
-      <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BPlan Demo-Gemeinde</xplansyn:xpPlanName>
-      <xplansyn:nummer>1</xplansyn:nummer>
-      <xplansyn:name>weitererBereich</xplansyn:name>
-      <xplansyn:bedeutung>Sonstiges</xplansyn:bedeutung>
-      <xplansyn:bedeutungCode>9999</xplansyn:bedeutungCode>
-      <xplansyn:sonstigeBedeutung>Bla Bla</xplansyn:sonstigeBedeutung>
-      <xplansyn:gehoertZuPlan>[FEATURE_1]</xplansyn:gehoertZuPlan>
-    </xplansyn:BP_Bereich>
+    <xplan:BP_Bereich xmlns:xplan="http://www.deegree.org/xplanung/1/0" gml:id="FEATURE_24">
+      <gml:name>weitererBereich</gml:name>
+      <xplan:gmlId>FEATURE_24</xplan:gmlId>
+      <xplan:xpVersion>3.0</xplan:xpVersion>
+      <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
+      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
+      <xplan:nummer>1</xplan:nummer>
+      <xplan:name>weitererBereich</xplan:name>
+      <xplan:bedeutung>Sonstiges</xplan:bedeutung>
+      <xplan:bedeutungCode>9999</xplan:bedeutungCode>
+      <xplan:sonstigeBedeutung>Bla Bla</xplan:sonstigeBedeutung>
+      <xplan:gehoertZuPlan>[FEATURE_1]</xplan:gehoertZuPlan>
+    </xplan:BP_Bereich>
   </gml:featureMember>
 </gml:FeatureCollection>
