@@ -1,10 +1,10 @@
 package de.latlon.xplan.manager.database;
 
 import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils;
 import de.latlon.xplan.manager.transformation.TransformationResult;
@@ -15,6 +15,8 @@ import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -27,6 +29,8 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class XPlan41ToXPlan51Converter {
+
+    private static final Logger LOG = LoggerFactory.getLogger( XPlan41ToXPlan51Converter.class );
 
     private final XPlanDao xPlanDao;
 
@@ -48,27 +52,30 @@ public class XPlan41ToXPlan51Converter {
         }
     }
 
-    private void convert( XPlan plan, XPlanVersion version )
-                    throws Exception {
+    private void convert( XPlan plan, XPlanVersion version ) {
         String id = plan.getId();
+        LOG.info( "Convert plan with id {}", id );
         PlanStatus planStatus = plan.getXplanMetadata().getPlanStatus();
         XPlanType type = XPlanType.valueOf( plan.getType() );
         XPlanAde ade = plan.getAde() != null ? XPlanAde.valueOf( plan.getAde() ) : null;
-        FeatureCollection features = xPlanDao.retrieveFeatureCollection( plan );
-        XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder( features, type ).build();
+        try {
+            FeatureCollection features = xPlanDao.retrieveFeatureCollection( plan );
+            XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder( features, type ).build();
 
-        TransformationResult transformationResult = xPlanGmlTransformer.transform( xPlanFeatureCollection );
-        if ( transformationResult != null ) {
-            ValidatorResult validatorResult = validateSyntactically( transformationResult, ade );
-            if ( validatorResult.isValid() ) {
-                XPlanFeatureCollection transformedXPlanFc = createXPlanFeatureCollection( transformationResult, type,
-                                                                                          ade );
-                xPlanDao.updateXPlanFeatureCollection( id, version, ade, planStatus, transformedXPlanFc );
-            } else {
-                throw new Exception(
-                                "Transformation of the XPlanGML 4.1 plan to XPlanGml 5.1 results in syntactically invalid GML: "
-                                + validatorResult );
+            TransformationResult transformationResult = xPlanGmlTransformer.transform( xPlanFeatureCollection );
+            if ( transformationResult != null ) {
+                ValidatorResult validatorResult = validateSyntactically( transformationResult, ade );
+                if ( validatorResult.isValid() ) {
+                    XPlanFeatureCollection transformedXPlanFc = createXPlanFeatureCollection( transformationResult,
+                                                                                              type, ade );
+                    xPlanDao.updateXPlanFeatureCollection( id, version, ade, planStatus, transformedXPlanFc );
+                } else {
+                    LOG.warn( "Transformation of the XPlanGML 4.1 plan with id {} to XPlanGml 5.1 results in syntactically invalid GML: {}",
+                              id, validatorResult );
+                }
             }
+        } catch ( Exception e ) {
+            LOG.warn( "Plan with id {} could not be converted: {}", e.getMessage() );
         }
     }
 
