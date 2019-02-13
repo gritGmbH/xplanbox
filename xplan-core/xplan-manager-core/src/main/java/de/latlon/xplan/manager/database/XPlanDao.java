@@ -66,6 +66,8 @@ import java.util.Set;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
@@ -738,11 +740,14 @@ public class XPlanDao {
         ResultSet rs = null;
         try {
             XPlanVersion version = xPlanMetadata.version;
+            if ( XPLAN_41.equals( version ) && managerConfiguration.isProvidingXPlan41As51Active() ) {
+                version = XPLAN_51;
+            }
             XPlanAde ade = xPlanMetadata.ade;
             PlanStatus planStatus = xPlanMetadata.planStatus;
             int id = getXPlanIdAsInt( planId );
 
-            FeatureStore fs = managerWorkspaceWrapper.lookupStore( version, ade, planStatus );
+            FeatureStore fs = managerWorkspaceWrapper.lookupStore( version, ade, planStatus );;
             FeatureStore fsSyn = managerWorkspaceWrapper.lookupStore( XPLAN_SYN, null, planStatus );
 
             conn = managerWorkspaceWrapper.openConnection();
