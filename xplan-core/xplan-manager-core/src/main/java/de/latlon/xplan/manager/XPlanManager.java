@@ -12,6 +12,7 @@ import de.latlon.xplan.commons.archive.XPlanPartArchive;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
@@ -587,7 +588,7 @@ public class XPlanManager {
             AppSchema appSchema = managerWorkspaceWrapper.lookupStore( version, ade, oldPlanStatus ).getSchema();
             originalPlan = xplanDao.retrieveXPlanArtefact( planId );
             XPlanFeatureCollection originalPlanFC = parseXPlanFeatureCollection( originalPlan, type,
-                                                                                 version, ade, appSchema );
+                                                                                 version, appSchema );
             String oldLegislationStatus = FeatureCollectionUtils.retrieveLegislationStatus( originalPlanFC.getFeatures(), type );
             FeatureCollection featuresToModify = originalPlanFC.getFeatures();
             ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan( featuresToModify );
@@ -602,8 +603,10 @@ public class XPlanManager {
                                                                                                      uploadedArtefacts,
                                                                                                      externalReferencesOriginal );
             Set<String> removedRefs = collectRemovedRefs( externalReferencesModified, externalReferencesOriginal );
-            XPlanFeatureCollection modifiedPlanFc = new XPlanFeatureCollection( modifiedFeatures, version, type, ade,
-                                                                                externalReferenceInfoToUpdate );
+
+            XPlanFeatureCollection modifiedPlanFc = new XPlanFeatureCollectionBuilder( modifiedFeatures,
+                                                                                       type ).withExternalReferenceInfo(
+                            externalReferenceInfoToUpdate ).build();
             reassignFids( modifiedPlanFc );
             FeatureCollection synFc = createSynFeatures( modifiedPlanFc, version );
             String internalId = xplanDao.retrieveInternalId( planId, type );
@@ -792,8 +795,7 @@ public class XPlanManager {
         XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
         try ( InputStream inputStream = new ByteArrayInputStream( resultAsBytes ) ) {
             AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema( resultVersion, ade );
-            return XPlanFeatureCollectionUtils.parseXPlanFeatureCollection( inputStream, type, resultVersion, ade,
-                                                                            appSchema );
+            return XPlanFeatureCollectionUtils.parseXPlanFeatureCollection( inputStream, type, resultVersion, appSchema );
         }
     }
 

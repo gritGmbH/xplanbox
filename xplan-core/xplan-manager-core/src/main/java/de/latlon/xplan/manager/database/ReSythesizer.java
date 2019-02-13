@@ -5,6 +5,7 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import org.deegree.feature.FeatureCollection;
@@ -75,11 +76,10 @@ public class ReSythesizer {
         LOG.debug( "Synthesize plan with id {}", plan.getId() );
         XPlanType planType = XPlanType.valueOf( plan.getType() );
         XPlanVersion version = XPlanVersion.valueOf( plan.getVersion() );
-        XPlanAde ade = plan.getAde() != null ? XPlanAde.valueOf( plan.getAde() ) : null;
 
         FeatureCollection featureCollection = xPlanDao.retrieveFeatureCollection( plan );
-        XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollection( featureCollection, version,
-                                                                                    planType, ade );
+        XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder( featureCollection,
+                                                                                           planType ).build();
         Date sortDate = sortPropertyReader.readSortDate( planType, version, xPlanFeatureCollection.getFeatures() );
 
         FeatureCollection synthesizedFeatureCollection = xPlanSynthesizer.synthesize( version, xPlanFeatureCollection );

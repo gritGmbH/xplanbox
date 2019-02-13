@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.xml.stream.XMLStreamException;
 
+import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import org.deegree.commons.tom.ReferenceResolvingException;
 import org.deegree.commons.tom.gml.GMLReference;
 import org.deegree.commons.xml.XMLParsingException;
@@ -69,7 +70,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
         FeatureCollection fc = retrieveFeatureCollection( new ArrayList<String>(), new ArrayList<String>(),
                                                           new ArrayList<BadGeometry>(), archive, crs, force, schema,
                                                           null, internalId );
-        return new XPlanFeatureCollection( fc, archive.getVersion(), archive.getType(), archive.getAde() );
+        return new XPlanFeatureCollectionBuilder( fc, archive.getType() ).build();
     }
 
     private void resolveAndValidateXlinks( GMLStreamReader gmlStream, List<String> errors ) {

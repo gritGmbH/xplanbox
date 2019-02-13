@@ -35,15 +35,11 @@
 ----------------------------------------------------------------------------*/
 package de.latlon.xplan.update.from_1_0_to_1_3_1;
 
-import static de.latlon.xplan.commons.feature.XPlanFeatureCollection.BP_RELEASE_DATE_PROP_NAME;
-import static de.latlon.xplan.commons.feature.XPlanFeatureCollection.FP_RELEASE_DATE_PROP_NAME;
-import static de.latlon.xplan.commons.feature.XPlanFeatureCollection.LP_RELEASE_DATE_PROP_NAME;
-import static de.latlon.xplan.commons.feature.XPlanFeatureCollection.RP_RELEASE_DATE_PROP_NAME;
-import static de.latlon.xplan.commons.XPlanType.BP_Plan;
-import static de.latlon.xplan.commons.XPlanType.FP_Plan;
-import static de.latlon.xplan.commons.XPlanType.LP_Plan;
-import static de.latlon.xplan.commons.XPlanType.RP_Plan;
-import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.update.AbstractUpdater;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -56,12 +52,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.update.AbstractUpdater;
+import static de.latlon.xplan.commons.XPlanType.BP_Plan;
+import static de.latlon.xplan.commons.XPlanType.FP_Plan;
+import static de.latlon.xplan.commons.XPlanType.LP_Plan;
+import static de.latlon.xplan.commons.XPlanType.RP_Plan;
+import static de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder.BP_RELEASE_DATE_PROP_NAME;
+import static de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder.FP_RELEASE_DATE_PROP_NAME;
+import static de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder.LP_RELEASE_DATE_PROP_NAME;
+import static de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder.RP_RELEASE_DATE_PROP_NAME;
+import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
 
 /**
  * Updates the data from version 1.0 to 1.3.1.

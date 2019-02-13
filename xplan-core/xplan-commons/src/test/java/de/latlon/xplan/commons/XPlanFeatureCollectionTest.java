@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import javax.xml.stream.XMLStreamReader;
 
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.geometry.Envelope;
 import org.deegree.geometry.SimpleGeometryFactory;
@@ -363,7 +364,7 @@ public class XPlanFeatureCollectionTest {
         gmlReader.getIdContext().resolveLocalRefs();
         gmlReader.close();
         xmlReader.close();
-        return new XPlanFeatureCollection( fc, version, archive.getType(), ade );
+        return new XPlanFeatureCollectionBuilder( fc, archive.getType() ).build();
     }
 
     private Envelope createEnvelopeIn4326( double minx, double miny, double maxx, double maxy ) {

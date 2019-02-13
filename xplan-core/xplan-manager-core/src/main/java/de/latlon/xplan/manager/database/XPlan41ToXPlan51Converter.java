@@ -5,6 +5,7 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils;
 import de.latlon.xplan.manager.transformation.TransformationResult;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
@@ -54,7 +55,7 @@ public class XPlan41ToXPlan51Converter {
         XPlanType type = XPlanType.valueOf( plan.getType() );
         XPlanAde ade = plan.getAde() != null ? XPlanAde.valueOf( plan.getAde() ) : null;
         FeatureCollection features = xPlanDao.retrieveFeatureCollection( plan );
-        XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollection( features, version, type, ade );
+        XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder( features, type ).build();
 
         TransformationResult transformationResult = xPlanGmlTransformer.transform( xPlanFeatureCollection );
         if ( transformationResult != null ) {
@@ -78,7 +79,7 @@ public class XPlan41ToXPlan51Converter {
         XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
         try ( InputStream inputStream = new ByteArrayInputStream( resultAsBytes ) ) {
             AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema( resultVersion, ade );
-            return XPlanFeatureCollectionUtils.parseXPlanFeatureCollection( inputStream, type, resultVersion, ade,
+            return XPlanFeatureCollectionUtils.parseXPlanFeatureCollection( inputStream, type, resultVersion,
                                                                             appSchema );
         }
     }

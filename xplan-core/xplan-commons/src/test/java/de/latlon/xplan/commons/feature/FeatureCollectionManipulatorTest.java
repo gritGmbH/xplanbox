@@ -211,7 +211,7 @@ public class FeatureCollectionManipulatorTest {
         gmlReader.getIdContext().resolveLocalRefs();
         gmlReader.close();
         xmlReader.close();
-        return new XPlanFeatureCollection( fc, version, archive.getType(), ade );
+        return new XPlanFeatureCollectionBuilder( fc, archive.getType() ).build();
     }
 
     private BaseMatcher<FeatureCollection> hasNumberOfProperties( final String featureName, final int noOfProperties ) {
