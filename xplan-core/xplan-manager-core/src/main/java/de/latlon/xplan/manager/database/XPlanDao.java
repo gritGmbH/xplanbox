@@ -747,7 +747,7 @@ public class XPlanDao {
             PlanStatus planStatus = xPlanMetadata.planStatus;
             int id = getXPlanIdAsInt( planId );
 
-            FeatureStore fs = managerWorkspaceWrapper.lookupStore( version, ade, planStatus );;
+            FeatureStore fs = managerWorkspaceWrapper.lookupStore( version, ade, planStatus );
             FeatureStore fsSyn = managerWorkspaceWrapper.lookupStore( XPLAN_SYN, null, planStatus );
 
             conn = managerWorkspaceWrapper.openConnection();
