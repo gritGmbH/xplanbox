@@ -735,7 +735,7 @@ public class XPlanManager {
     private int insertPlan( XPlanArchive archive, AdditionalPlanData xPlanMetadata, XPlanFeatureCollection fc,
                             FeatureCollection synFc, Date sortDate )
                     throws Exception {
-        if ( xPlanGmlTransformer != null ) {
+        if ( managerConfiguration.isProvidingXPlan41As51Active() && xPlanGmlTransformer != null ) {
             TransformationResult transformationResult = xPlanGmlTransformer.transform( fc );
             if ( transformationResult != null ) {
                 ValidatorResult validatorResult = validateSyntactically( transformationResult, archive.getAde() );
@@ -758,7 +758,7 @@ public class XPlanManager {
                              Set<String> removedRefs, XPlanFeatureCollection modifiedPlanFc, FeatureCollection synFc,
                              AdditionalPlanData xPlanMetadata, Date sortDate )
                     throws Exception {
-        if ( xPlanGmlTransformer != null ) {
+        if ( managerConfiguration.isProvidingXPlan41As51Active() && xPlanGmlTransformer != null ) {
             TransformationResult transformationResult = xPlanGmlTransformer.transform( modifiedPlanFc );
             if ( transformationResult != null ) {
                 ValidatorResult validatorResult = validateSyntactically( transformationResult,
