@@ -35,10 +35,10 @@
 ----------------------------------------------------------------------------*/
 package de.latlon.xplan.update.from_1_0_to_1_3_1;
 
-import static de.latlon.xplan.commons.XPlanFeatureCollection.BP_RELEASE_DATE_PROP_NAME;
-import static de.latlon.xplan.commons.XPlanFeatureCollection.FP_RELEASE_DATE_PROP_NAME;
-import static de.latlon.xplan.commons.XPlanFeatureCollection.LP_RELEASE_DATE_PROP_NAME;
-import static de.latlon.xplan.commons.XPlanFeatureCollection.RP_RELEASE_DATE_PROP_NAME;
+import static de.latlon.xplan.commons.feature.XPlanFeatureCollection.BP_RELEASE_DATE_PROP_NAME;
+import static de.latlon.xplan.commons.feature.XPlanFeatureCollection.FP_RELEASE_DATE_PROP_NAME;
+import static de.latlon.xplan.commons.feature.XPlanFeatureCollection.LP_RELEASE_DATE_PROP_NAME;
+import static de.latlon.xplan.commons.feature.XPlanFeatureCollection.RP_RELEASE_DATE_PROP_NAME;
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.FP_Plan;
 import static de.latlon.xplan.commons.XPlanType.LP_Plan;

@@ -1,6 +1,6 @@
 package de.latlon.xplan.manager.transformation;
 
-import de.latlon.xplan.commons.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.hale.TransformationException;
 import org.apache.commons.io.IOUtils;

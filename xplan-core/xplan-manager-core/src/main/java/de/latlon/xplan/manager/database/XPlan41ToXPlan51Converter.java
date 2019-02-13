@@ -1,7 +1,7 @@
 package de.latlon.xplan.manager.database;
 
 import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
@@ -54,7 +54,7 @@ public class XPlan41ToXPlan51Converter {
         XPlanType type = XPlanType.valueOf( plan.getType() );
         XPlanAde ade = plan.getAde() != null ? XPlanAde.valueOf( plan.getAde() ) : null;
         FeatureCollection features = xPlanDao.retrieveFeatureCollection( plan );
-        XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollection( features, version, type, ade, true );
+        XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollection( features, version, type, ade );
 
         TransformationResult transformationResult = xPlanGmlTransformer.transform( xPlanFeatureCollection );
         if ( transformationResult != null ) {

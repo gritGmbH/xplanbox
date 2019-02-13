@@ -52,7 +52,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import de.latlon.xplan.commons.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.reference.ExternalReference;

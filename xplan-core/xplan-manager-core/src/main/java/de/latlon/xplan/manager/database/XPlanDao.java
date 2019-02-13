@@ -2,7 +2,7 @@ package de.latlon.xplan.manager.database;
 
 import com.vividsolutions.jts.io.ParseException;
 import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.ArchiveEntry;

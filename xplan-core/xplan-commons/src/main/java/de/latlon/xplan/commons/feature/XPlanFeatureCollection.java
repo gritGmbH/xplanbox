@@ -1,5 +1,8 @@
-package de.latlon.xplan.commons;
+package de.latlon.xplan.commons.feature;
 
+import de.latlon.xplan.commons.XPlanAde;
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;

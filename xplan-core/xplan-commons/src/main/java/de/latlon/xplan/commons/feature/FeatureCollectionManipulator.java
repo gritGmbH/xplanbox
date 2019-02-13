@@ -20,7 +20,6 @@ import org.deegree.feature.types.AppSchema;
 import org.deegree.feature.types.FeatureType;
 import org.deegree.feature.types.property.SimplePropertyType;
 
-import de.latlon.xplan.commons.XPlanFeatureCollection;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 
 /**

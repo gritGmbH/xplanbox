@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 
 import javax.xml.stream.XMLStreamReader;
 
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.geometry.Envelope;
 import org.deegree.geometry.SimpleGeometryFactory;

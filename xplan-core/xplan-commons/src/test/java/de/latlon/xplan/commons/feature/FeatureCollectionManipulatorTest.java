@@ -30,7 +30,6 @@ import org.junit.Test;
 
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
