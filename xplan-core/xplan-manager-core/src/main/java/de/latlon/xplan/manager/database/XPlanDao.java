@@ -24,11 +24,9 @@ import org.apache.commons.io.IOUtils;
 import org.deegree.commons.utils.Pair;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
-import org.deegree.db.ConnectionProviderProvider;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.persistence.FeatureStore;
 import org.deegree.feature.persistence.FeatureStoreException;
-import org.deegree.feature.persistence.FeatureStoreProvider;
 import org.deegree.feature.persistence.FeatureStoreTransaction;
 import org.deegree.feature.persistence.query.Query;
 import org.deegree.feature.persistence.sql.SQLFeatureStoreTransaction;
@@ -40,7 +38,6 @@ import org.deegree.geometry.io.WKTReader;
 import org.deegree.geometry.io.WKTWriter;
 import org.deegree.protocol.wfs.getfeature.TypeName;
 import org.deegree.protocol.wfs.transaction.action.IDGenMode;
-import org.deegree.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -75,10 +72,7 @@ import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditi
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
 import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
-import static de.latlon.xplan.manager.database.DatabaseUtils.openConnection;
-import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
-import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 import static org.apache.commons.io.IOUtils.closeQuietly;
 import static org.apache.commons.io.IOUtils.copyLarge;
 import static org.deegree.protocol.wfs.transaction.action.IDGenMode.USE_EXISTING;
@@ -97,80 +91,27 @@ public class XPlanDao {
 
     private static final Logger LOG = LoggerFactory.getLogger( XPlanDao.class );
 
-    public static final String JDBC_POOL_ID = "xplan";
-
-    private static final String XPLAN2_FS_ID = "xplan2";
-
-    private static final String XPLAN3_FS_ID = "xplan3";
-
-    private static final String XPLAN40_FS_ID = "xplan40";
-    
-    private static final String XPLAN41_FS_ID = "xplan41";
-
-    private static final String XPLAN41_NSM_FS_ID = "xplan41nsm";
-
-    private static final String XPLAN50_FS_ID = "xplan50";
-
-    private static final String XPLAN51_FS_ID = "xplan51";
-    
-    private static final String XPLANSYN_FS_ID = "xplansyn";
-
-    private static final String XPLAN2PRE_FS_ID = "xplan2pre";
-
-    private static final String XPLAN3PRE_FS_ID = "xplan3pre";
-
-    private static final String XPLAN40PRE_FS_ID = "xplan40pre";
-
-    private static final String XPLAN41PRE_FS_ID = "xplan41pre";
-
-    private static final String XPLAN41PRE_NSM_FS_ID = "xplan41nsmpre";
-
-    private static final String XPLAN50PRE_FS_ID = "xplan50pre";
-
-    private static final String XPLAN51PRE_FS_ID = "xplan51pre";
-
-    private static final String XPLANSYNPRE_FS_ID = "xplansynpre";
-
-    private static final String XPLAN2ARCHIVE_FS_ID = "xplan2archive";
-
-    private static final String XPLAN3ARCHIVE_FS_ID = "xplan3archive";
-
-    private static final String XPLAN40ARCHIVE_FS_ID = "xplan40archive";
-
-    private static final String XPLAN41ARCHIVE_FS_ID = "xplan41archive";
-
-    private static final String XPLAN41ARCHIVE_NSM_FS_ID = "xplan41nsmarchive";
-
-    private static final String XPLAN50ARCHIVE_FS_ID = "xplan50archive";
-
-    private static final String XPLAN51ARCHIVE_FS_ID = "xplan51archive";
-
-    private static final String XPLANSYNARCHIVE_FS_ID = "xplansynarchive";
-
-    private static final String INSPIREPLU_FS_ID = "inspireplu";
-
-    private final Workspace ws;
-
     private final CategoryMapper categoryMapper;
 
     private final ManagerConfiguration managerConfiguration;
 
     private FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
 
+    private ManagerWorkspaceWrapper managerWorkspaceWrapper;
+
     /**
      * Creates a new {@link XPlanDao} instance.
      * <p>
      * The DAO performs the initialization of the JDBC connection and feature stores on demand.
      * </p>
-     * 
-     * @param ws
+     *  @param managerWorkspaceWrapper
      *            workspace, never <code>null</code>
      * @param categoryMapper
      *            mapping configuration, never <code>null</code>
      * @param managerConfiguration
      */
-    public XPlanDao( Workspace ws, CategoryMapper categoryMapper, ManagerConfiguration managerConfiguration ) {
-        this.ws = ws;
+    public XPlanDao( ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper, ManagerConfiguration managerConfiguration ) {
+        this.managerWorkspaceWrapper = managerWorkspaceWrapper;
         this.categoryMapper = categoryMapper;
         this.managerConfiguration = managerConfiguration;
     }
@@ -197,10 +138,10 @@ public class XPlanDao {
             LOG.info( "Insert XPlan" );
 
             PlanStatus planStatus = additionalPlanData.getPlanStatus();
-            FeatureStore xplanFs = lookupStore( fc.getVersion(), fc.getAde(), planStatus );
-            FeatureStore synFs = lookupStore( XPLAN_SYN, null, planStatus );
+            FeatureStore xplanFs = managerWorkspaceWrapper.lookupStore( fc.getVersion(), fc.getAde(), planStatus );
+            FeatureStore synFs = managerWorkspaceWrapper.lookupStore( XPLAN_SYN, null, planStatus );
 
-            conn = openConnection( ws, JDBC_POOL_ID );
+            conn = managerWorkspaceWrapper.openConnection();
             conn.setAutoCommit( false );
             Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanTA = insertXPlan( xplanFs, fc);
             int planId = insertMetadata( conn, archive, fc, synFc, fidsAndXPlanTA.first, additionalPlanData, sortDate );
@@ -233,7 +174,7 @@ public class XPlanDao {
         FeatureStoreTransaction transaction = null;
         try {
             LOG.info( "Insert INSPIRE PLU dataset" );
-            FeatureStore inspirePluStore = lookupStore( INSPIREPLU_FS_ID );
+            FeatureStore inspirePluStore = managerWorkspaceWrapper.lookupInspirePluStore();
             transaction = inspirePluStore.acquireTransaction();
 
             transaction.performInsert( featureCollection, IDGenMode.GENERATE_NEW );
@@ -252,8 +193,7 @@ public class XPlanDao {
      */
     public void deletePlan( String planId )
                     throws Exception {
-
-        ensureWorkspaceInitialized();
+        managerWorkspaceWrapper.ensureWorkspaceInitialized();
         XPlanMetadata xPlanMetadata = selectXPlanMetadata( planId );
         deletePlan( xPlanMetadata, planId );
     }
@@ -282,7 +222,7 @@ public class XPlanDao {
         try {
             LOG.info( "Update XPlan" );
 
-            conn = openConnection( ws, JDBC_POOL_ID );
+            conn = managerWorkspaceWrapper.openConnection();
             conn.setAutoCommit( false );
 
             updatePlanMetadata( conn, oldXplan, newAdditionalPlanData, fc, synFc, sortDate );
@@ -315,11 +255,11 @@ public class XPlanDao {
      */
     public List<XPlan> getXPlanList( boolean includeNoOfFeature )
                     throws Exception {
-        ensureWorkspaceInitialized();
+        managerWorkspaceWrapper.ensureWorkspaceInitialized();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        try ( Connection mgrConn = openConnection( ws, JDBC_POOL_ID ) ) {
+        try ( Connection mgrConn = managerWorkspaceWrapper.openConnection() ) {
             StringBuffer sql = new StringBuffer();
             sql.append( "SELECT " );
             sql.append( "id, import_date, xp_version, xp_type, name, nummer, gkz, has_raster, release_date, ST_AsText(bbox), ade, sonst_plan_art, planstatus, rechtsstand, district, gueltigkeitBeginn, gueltigkeitEnde, inspirepublished " );
@@ -353,11 +293,11 @@ public class XPlanDao {
      */
     public XPlan getXPlanById( int planId )
                     throws Exception {
-        ensureWorkspaceInitialized();
+        managerWorkspaceWrapper.ensureWorkspaceInitialized();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        try ( Connection mgrConn = openConnection( ws, JDBC_POOL_ID ) ) {
+        try ( Connection mgrConn = managerWorkspaceWrapper.openConnection() ) {
             stmt = mgrConn.prepareStatement( "SELECT id, import_date, xp_version, xp_type, name, "
                                              + "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
                                              + "ade, sonst_plan_art, planstatus, rechtsstand, district, "
@@ -392,7 +332,7 @@ public class XPlanDao {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
-            mgrConn = openConnection( ws, JDBC_POOL_ID );
+            mgrConn = managerWorkspaceWrapper.openConnection();
             stmt = mgrConn.prepareStatement( "SELECT id FROM xplanmgr.plans WHERE has_raster = true AND wmsSortDate=("
                                              + "SELECT min(wmsSortDate) FROM xplanmgr.plans "
                                              + "WHERE wmsSortDate IS NOT NULL AND wmsSortDate > ?)" );
@@ -418,10 +358,10 @@ public class XPlanDao {
      */
     public XPlanArchiveContent retrieveAllXPlanArtefacts( String planId )
                     throws Exception {
-        ensureWorkspaceInitialized();
+        managerWorkspaceWrapper.ensureWorkspaceInitialized();
         int id = getXPlanIdAsInt( planId );
         try {
-            Connection conn = openConnection( ws, JDBC_POOL_ID );
+            Connection conn = managerWorkspaceWrapper.openConnection();
             PreparedStatement stmt = conn.prepareStatement( "SELECT filename,data FROM xplanmgr.artefacts WHERE plan=? ORDER BY num" );
             stmt.setInt( 1, id );
             ResultSet rs = stmt.executeQuery();
@@ -444,47 +384,10 @@ public class XPlanDao {
      */
     public FeatureCollection retrieveFeatureCollection( XPlan xPlanById )
                     throws Exception {
-        ensureWorkspaceInitialized();
+        managerWorkspaceWrapper.ensureWorkspaceInitialized();
         int xPlanIdAsInt = getXPlanIdAsInt( xPlanById.getId() );
         XPlanMetadata xPlanMetadata = selectXPlanMetadata( xPlanIdAsInt );
         return restoreFeatureCollection( xPlanIdAsInt, xPlanMetadata );
-    }
-
-    /**
-     * looks up feature store
-     * 
-     * @param version
-     *            XPlan version
-     * @param ade
-     *            XPlan ADE extension, may be <code>null</code>
-     * @param planStatus
-     *            xplan status, if <code>null</code>, default store is chosen (non pre)
-     * 
-     * @return FeatureStore fitting to version and ade
-     */
-    public FeatureStore lookupStore( XPlanVersion version, XPlanAde ade, PlanStatus planStatus ) {
-        switch ( version ) {
-        case XPLAN_2:
-            return decideIfPreStore( planStatus, XPLAN2_FS_ID, XPLAN2PRE_FS_ID, XPLAN2ARCHIVE_FS_ID );
-        case XPLAN_3:
-            return decideIfPreStore( planStatus, XPLAN3_FS_ID, XPLAN3PRE_FS_ID, XPLAN3ARCHIVE_FS_ID );
-        case XPLAN_40:
-            return decideIfPreStore( planStatus, XPLAN40_FS_ID, XPLAN40PRE_FS_ID, XPLAN40ARCHIVE_FS_ID );
-        case XPLAN_41:
-            if ( XPlanAde.NSM.equals( ade ) ) {
-                return decideIfPreStore( planStatus, XPLAN41_NSM_FS_ID, XPLAN41PRE_NSM_FS_ID,
-                                         XPLAN41ARCHIVE_NSM_FS_ID );
-            } else {
-                return decideIfPreStore( planStatus, XPLAN41_FS_ID, XPLAN41PRE_FS_ID, XPLAN41ARCHIVE_FS_ID );
-            }
-        case XPLAN_50:
-            return decideIfPreStore( planStatus, XPLAN50_FS_ID, XPLAN50PRE_FS_ID, XPLAN50ARCHIVE_FS_ID );
-        case XPLAN_51:
-            return decideIfPreStore( planStatus, XPLAN51_FS_ID, XPLAN51PRE_FS_ID, XPLAN51ARCHIVE_FS_ID );
-        case XPLAN_SYN:
-            return decideIfPreStore( planStatus, XPLANSYN_FS_ID, XPLANSYNPRE_FS_ID, XPLANSYNARCHIVE_FS_ID );
-        }
-        throw new IllegalArgumentException();
     }
 
     /**
@@ -497,7 +400,7 @@ public class XPlanDao {
                     throws Exception {
         Connection conn = null;
         try {
-            conn = openConnection( ws, JDBC_POOL_ID );
+            conn = managerWorkspaceWrapper.openConnection();
             return retrieveXPlanArtefact( conn, getXPlanIdAsInt( planId ) );
         } finally {
             closeQuietly( conn );
@@ -530,7 +433,7 @@ public class XPlanDao {
                     throws Exception {
         Connection conn = null;
         try {
-            conn = openConnection( ws, JDBC_POOL_ID );
+            conn = managerWorkspaceWrapper.openConnection();
             return selectArtefactFileNames( conn, getXPlanIdAsInt( planId ) );
         } finally {
             closeQuietly( conn );
@@ -547,11 +450,11 @@ public class XPlanDao {
      *            the type of the plan, never <code>null</code>
      */
     public String retrieveInternalId( String planId, XPlanType type ) {
-        ensureWorkspaceInitialized();
+        managerWorkspaceWrapper.ensureWorkspaceInitialized();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        try (Connection mgrConn = openConnection( ws, JDBC_POOL_ID )) {
+        try (Connection mgrConn = managerWorkspaceWrapper.openConnection() ) {
             StringBuilder sqlBuilder = new StringBuilder();
             sqlBuilder.append( "SELECT xplan_internalid FROM " );
             switch ( type ) {
@@ -604,7 +507,7 @@ public class XPlanDao {
                     throws Exception {
         Connection conn = null;
         try {
-            conn = openConnection( ws, JDBC_POOL_ID );
+            conn = managerWorkspaceWrapper.openConnection();
             updateSortPropertyInSynSchema( sortDate, plan, conn );
             updateSortPropertyInMgrSchema( sortDate, plan, conn );
         } catch ( Exception e ) {
@@ -624,7 +527,7 @@ public class XPlanDao {
                             throws SQLException {
         Connection conn = null;
         try {
-            conn = openConnection( ws, JDBC_POOL_ID );
+            conn = managerWorkspaceWrapper.openConnection();
             updateInspirePublishedStatus( conn, planId, true );
         } finally {
             closeQuietly( conn );
@@ -685,16 +588,6 @@ public class XPlanDao {
         AppSchema schema = synFs.getSchema();
         featureCollectionManipulator.addAdditionalPropertiesToFeatures( synFc, schema, planId, sortDate,
                                                                         xPlanMetadata );
-    }
-
-    private FeatureStore decideIfPreStore( PlanStatus planStatus, String store, String preStore, String archiveStore ) {
-        if ( managerConfiguration.isSeperatedDataManagementActived() ) {
-            if ( IN_AUFSTELLUNG.equals( planStatus ) )
-                return lookupStore( preStore );
-            else if ( ARCHIVIERT.equals( planStatus ) )
-                return lookupStore( archiveStore );
-        }
-        return lookupStore( store );
     }
 
     private InputStream unzipArtefact( InputStream zippedStream )
@@ -775,7 +668,7 @@ public class XPlanDao {
                     throws Exception {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        try ( Connection mgrConn = openConnection( ws, JDBC_POOL_ID ) ) {
+        try ( Connection mgrConn = managerWorkspaceWrapper.openConnection() ) {
             stmt = mgrConn.prepareStatement( "SELECT xp_version, ade, planstatus FROM xplanmgr.plans WHERE id=?" );
             stmt.setInt( 1, id );
             rs = stmt.executeQuery();
@@ -849,10 +742,10 @@ public class XPlanDao {
             PlanStatus planStatus = xPlanMetadata.planStatus;
             int id = getXPlanIdAsInt( planId );
 
-            FeatureStore fs = lookupStore( version, ade, planStatus );
-            FeatureStore fsSyn = lookupStore( XPLAN_SYN, null, planStatus );
+            FeatureStore fs = managerWorkspaceWrapper.lookupStore( version, ade, planStatus );
+            FeatureStore fsSyn = managerWorkspaceWrapper.lookupStore( XPLAN_SYN, null, planStatus );
 
-            conn = openConnection( ws, JDBC_POOL_ID );
+            conn = managerWorkspaceWrapper.openConnection();
             conn.setAutoCommit( false );
 
             SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
@@ -912,7 +805,7 @@ public class XPlanDao {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
-            mgrConn = openConnection( ws, JDBC_POOL_ID );
+            mgrConn = managerWorkspaceWrapper.openConnection();
             stmt = mgrConn.prepareStatement( "SELECT fid FROM xplanmgr.features WHERE plan=? ORDER BY num" );
             stmt.setInt( 1, planId );
             rs = stmt.executeQuery();
@@ -929,7 +822,7 @@ public class XPlanDao {
     private FeatureCollection restoreFeatureCollection( int id, XPlanMetadata xPlanMetadata )
                     throws Exception {
         XPlanVersion version = xPlanMetadata.version;
-        FeatureStore fs = lookupStore( version, xPlanMetadata.ade, xPlanMetadata.planStatus );
+        FeatureStore fs = managerWorkspaceWrapper.lookupStore( version, xPlanMetadata.ade, xPlanMetadata.planStatus );
         Set<String> ids = determineFeatureIds( id );
 
         IdFilter filter = new IdFilter( ids );
@@ -976,12 +869,16 @@ public class XPlanDao {
             PlanStatus oldPlanStatus = oldXPlan.getXplanMetadata().getPlanStatus();
             PlanStatus newPlanStatus = newXPlanMetadata.getPlanStatus();
 
-            FeatureStore fsSource = lookupStore( version, ade, oldPlanStatus );
-            FeatureStore synFsSource = lookupStore( XPLAN_SYN, null, oldPlanStatus );
-            sameSourceAndTarget = oldPlanStatus == newPlanStatus || !managerConfiguration.isSeperatedDataManagementActived();
-            FeatureStore fsTarget = sameSourceAndTarget ? fsSource : lookupStore( version, ade, newPlanStatus );
-            FeatureStore synFsTarget = sameSourceAndTarget ? synFsSource
-                                                           : lookupStore( XPLAN_SYN, null, newPlanStatus );
+            FeatureStore fsSource = managerWorkspaceWrapper.lookupStore( version, ade, oldPlanStatus );
+            FeatureStore synFsSource = managerWorkspaceWrapper.lookupStore( XPLAN_SYN, null, oldPlanStatus );
+            sameSourceAndTarget =
+                            oldPlanStatus == newPlanStatus || !managerConfiguration.isSeperatedDataManagementActived();
+            FeatureStore fsTarget = sameSourceAndTarget ?
+                                    fsSource :
+                                    managerWorkspaceWrapper.lookupStore( version, ade, newPlanStatus );
+            FeatureStore synFsTarget = sameSourceAndTarget ?
+                                       synFsSource :
+                                       managerWorkspaceWrapper.lookupStore( XPLAN_SYN, null, newPlanStatus );
 
             taSource = (SQLFeatureStoreTransaction) fsSource.acquireTransaction();
             taSynSource = (SQLFeatureStoreTransaction) synFsSource.acquireTransaction();
@@ -1413,28 +1310,6 @@ public class XPlanDao {
         mimeMap.addMimeTypes( "text/html html" );
         mimeMap.addMimeTypes( "text/plain txt text" );
         return mimeMap.getContentType( fileName );
-    }
-
-    private FeatureStore lookupStore( String id ) {
-        ensureWorkspaceInitialized();
-        FeatureStore sfs = ws.getResource( FeatureStoreProvider.class, id );
-        if ( sfs == null ) {
-            LOG.debug( "Can't get Feature Store '" + id + "', available Feature Stores:" );
-            throw new IllegalArgumentException( "Wrong FeatureStore Id " + id );
-        }
-        return sfs;
-    }
-
-    private void ensureWorkspaceInitialized() {
-        try {
-            ws.getResource( ConnectionProviderProvider.class, JDBC_POOL_ID );
-        } catch ( Exception e ) {
-            long begin = System.currentTimeMillis();
-            LOG.info( "- Initialisiere Feature Stores..." );
-            ws.initAll();
-            long elapsed = System.currentTimeMillis() - begin;
-            LOG.info( "OK [" + elapsed + " ms]" );
-        }
     }
 
     private String createWktFromBboxIn4326( XPlanFeatureCollection fc ) {

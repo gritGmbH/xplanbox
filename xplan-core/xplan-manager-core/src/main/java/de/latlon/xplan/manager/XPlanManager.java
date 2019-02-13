@@ -22,6 +22,7 @@ import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfigurationAnalyser;
 import de.latlon.xplan.manager.database.DatabaseCreator;
+import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.SortPropertyUpdater;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.edit.XPlanManipulator;
@@ -145,6 +146,8 @@ public class XPlanManager {
 
     private final InspirePluPublisher inspirePluPublisher;
 
+    private final ManagerWorkspaceWrapper managerWorkspaceWrapper;
+
     public XPlanManager() throws Exception {
         this( null, new XPlanArchiveCreator(), null, null );
     }
@@ -215,7 +218,9 @@ public class XPlanManager {
         this.managerConfiguration = managerConfiguration;
         this.managerWorkspace = instantiateManagerWorkspace( workspaceDir );
         this.xPlanGmlTransformer = xPlanGmlTransformer;
-        this.xplanDao = new XPlanDao( managerWorkspace.getNewWorkspace(), categoryMapper, managerConfiguration );
+        this.managerWorkspaceWrapper = new ManagerWorkspaceWrapper( this.managerWorkspace.getNewWorkspace(),
+                                                                    managerConfiguration );
+        this.xplanDao = new XPlanDao( this.managerWorkspaceWrapper, categoryMapper, managerConfiguration );
         this.workspaceReloader = workspaceReloader;
 
         DeegreeWorkspaceWrapper wmsWorkspace = createWmsWorkspaceWrapper( wmsWorkspaceDir );
@@ -361,7 +366,7 @@ public class XPlanManager {
         XPlanFeatureCollection fc = readAndValidateMainDocument( archive, crs, force, internalId, planStatus );
         FeatureCollection synFc = createSynFeatures( fc, archive.getVersion() );
         if ( internalId != null ) {
-            AppSchema synSchema = xplanDao.lookupStore( XPLAN_SYN, null, planStatus ).getSchema();
+            AppSchema synSchema = managerWorkspaceWrapper.lookupStore( XPLAN_SYN, null, planStatus ).getSchema();
             featureCollectionManipulator.addInternalId( synFc, synSchema, internalId );
         }
         Date sortDate = sortPropertyReader.readSortDate( archive.getType(), archive.getVersion(), fc.getFeatures() );
@@ -540,7 +545,7 @@ public class XPlanManager {
         try {
             XPlanVersion version = XPlanVersion.valueOf( plan.getVersion() );
             XPlanAde ade = plan.getAde() != null ? XPlanAde.valueOf( plan.getAde() ) : null;
-            AppSchema appSchema = xplanDao.lookupStore( version, ade, plan.getXplanMetadata().getPlanStatus() ).getSchema();
+            AppSchema appSchema = managerWorkspaceWrapper.lookupStore( version, ade, plan.getXplanMetadata().getPlanStatus() ).getSchema();
             originalPlan = xplanDao.retrieveXPlanArtefact( plan.getId() );
             originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader( originalPlan );
             FeatureCollection originalPlanFC = parseFeatureCollection( originalPlanAsXmlReader, version, appSchema );
@@ -579,7 +584,7 @@ public class XPlanManager {
             XPlanType type = XPlanType.valueOf( oldXplan.getType() );
             XPlanAde ade = oldXplan.getAde() != null ? XPlanAde.valueOf( oldXplan.getAde() ) : null;
             PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
-            AppSchema appSchema = xplanDao.lookupStore( version, ade, oldPlanStatus ).getSchema();
+            AppSchema appSchema = managerWorkspaceWrapper.lookupStore( version, ade, oldPlanStatus ).getSchema();
             originalPlan = xplanDao.retrieveXPlanArtefact( planId );
             XPlanFeatureCollection originalPlanFC = parseXPlanFeatureCollection( originalPlan, type,
                                                                                  version, ade, appSchema );
@@ -603,7 +608,7 @@ public class XPlanManager {
             FeatureCollection synFc = createSynFeatures( modifiedPlanFc, version );
             String internalId = xplanDao.retrieveInternalId( planId, type );
             if ( internalId != null ) {
-                AppSchema synSchema = xplanDao.lookupStore( XPLAN_SYN, null, oldPlanStatus ).getSchema();
+                AppSchema synSchema = managerWorkspaceWrapper.lookupStore( XPLAN_SYN, null, oldPlanStatus ).getSchema();
                 featureCollectionManipulator.addInternalId( synFc, synSchema, internalId );
             }
 
@@ -900,7 +905,7 @@ public class XPlanManager {
     }
 
     private AppSchema getAppSchemaFromStore( XPlanArchive archive, PlanStatus planStatus ) {
-        return xplanDao.lookupStore( archive.getVersion(), archive.getAde(), planStatus ).getSchema();
+        return managerWorkspaceWrapper.lookupStore( archive.getVersion(), archive.getAde(), planStatus ).getSchema();
     }
 
     private void performSchemaValidation( XPlanArchive archive )

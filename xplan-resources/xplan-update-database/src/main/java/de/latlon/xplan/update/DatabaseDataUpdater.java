@@ -1,19 +1,16 @@
 package de.latlon.xplan.update;
 
-import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
-import static de.latlon.xplan.manager.database.DatabaseUtils.openConnection;
-import static de.latlon.xplan.manager.database.XPlanDao.JDBC_POOL_ID;
-import static de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION.FROM_1_0_to_1_3_1;
-import static de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION.FROM_PRE1_0_to_1_0;
+import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
+import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.update.from_1_0_to_1_3_1.UpdaterFrom1_0To1_3_1;
+import de.latlon.xplan.update.from_pre1_0_to_1_0.UpdaterFromPre1_0To1_0;
 
 import java.sql.Connection;
 import java.util.List;
 
-import org.deegree.workspace.Workspace;
-
-import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.update.from_1_0_to_1_3_1.UpdaterFrom1_0To1_3_1;
-import de.latlon.xplan.update.from_pre1_0_to_1_0.UpdaterFromPre1_0To1_0;
+import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
+import static de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION.FROM_1_0_to_1_3_1;
+import static de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION.FROM_PRE1_0_to_1_0;
 
 /**
  * Updates the data in the tables xplanmgr.plans and xplan3.gml_object. Schema must be up to date already.
@@ -31,17 +28,17 @@ public class DatabaseDataUpdater {
 
     private final XPlanDao xplanDao;
 
-    private final Workspace workspace;
+    private ManagerWorkspaceWrapper managerWorkspaceWrapper;
 
     /**
      * @param xplanDao
-     *            allows access to the database, never <code>null</code>
-     * @param workspace
-     *            xplan-manager-workspace encapsulating access to the database, never <code>null</code>
+     *                 allows access to the database, never <code>null</code>
+     * @param managerWorkspaceWrapper
+     *                 never <code>null</code>
      */
-    public DatabaseDataUpdater( XPlanDao xplanDao, Workspace workspace ) {
+    public DatabaseDataUpdater( XPlanDao xplanDao, ManagerWorkspaceWrapper managerWorkspaceWrapper ) {
         this.xplanDao = xplanDao;
-        this.workspace = workspace;
+        this.managerWorkspaceWrapper = managerWorkspaceWrapper;
     }
 
     /**
@@ -55,7 +52,7 @@ public class DatabaseDataUpdater {
      */
     public void updateData( List<UPDATE_VERSION> versions )
                     throws Exception {
-        Connection conn = openConnection( workspace, JDBC_POOL_ID );
+        Connection conn = managerWorkspaceWrapper.openConnection();
         conn.setAutoCommit( false );
         try {
             if ( versions.contains( FROM_PRE1_0_to_1_0 ) ) {
