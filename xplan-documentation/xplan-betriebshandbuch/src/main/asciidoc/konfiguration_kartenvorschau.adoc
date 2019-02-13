@@ -99,7 +99,7 @@ der Schlüssel _basemapLayer_ benötigt:
 basemapLayer=Basemap
 ----
 
-Des Weiteren können die Layer für die Bebauungspläne, Flächennutzungspläne, Landschaftspläne, Raumordnungspläne und sonstige raumbezogene Planwerke und Nachrichtliche Übernahmen (Vektor- und Rasterlayer) einzeln in einer kommaseparierten Liste konfiguriert werden.
+Des Weiteren können die Layer für die Bebauungspläne, Flächennutzungspläne, Landschaftspläne, Raumordnungspläne und sonstige raumbezogene Planwerke (Vektor- und Rasterlayer) einzeln in einer kommaseparierten Liste konfiguriert werden.
 
 Vektorlayer:
 
