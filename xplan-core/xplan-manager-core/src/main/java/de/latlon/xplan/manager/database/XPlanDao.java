@@ -971,7 +971,7 @@ public class XPlanDao {
         boolean sameSourceAndTarget = false;
         try {
             int planId = getXPlanIdAsInt( oldXPlan.getId() );
-            XPlanVersion version = XPlanVersion.valueOf( oldXPlan.getVersion() );
+            XPlanVersion version = fc.getVersion();
             XPlanAde ade = retrieveNsmAde( version, oldXPlan.getAde() );
             PlanStatus oldPlanStatus = oldXPlan.getXplanMetadata().getPlanStatus();
             PlanStatus newPlanStatus = newXPlanMetadata.getPlanStatus();

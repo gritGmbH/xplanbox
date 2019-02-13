@@ -4,9 +4,17 @@ import de.latlon.xplan.commons.XPlanFeatureCollection;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.hale.TransformationException;
 import org.apache.commons.io.IOUtils;
+import org.deegree.cs.exceptions.UnknownCRSException;
+import org.deegree.gml.GMLStreamWriter;
+import org.deegree.gml.XPlanGmlWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,28 +44,49 @@ public class XPlanGmlTransformer {
     /**
      * Transforms the XPLanGML in the passed {@link XPlanArchive} to an XPlanGML 5.1 {@link XPlanFeatureCollection} if the archive is XPlanVersion 4.1.
      *
-     * @param archive
+     * @param xPlanFeatureCollection
      *                 to transform, never <code>null</code>
      * @return the {@link TransformationResult} or <code>null</code> if the version of the source is not 4.1
      * @throws TransformationException
-     *                 if the transformation failed
+     *                 }             if the transformation failed
      */
-    public TransformationResult transform( XPlanArchive archive )
+    public TransformationResult transform( XPlanFeatureCollection xPlanFeatureCollection )
                     throws TransformationException {
-        if ( XPLAN_41.equals( archive.getVersion() ) ) {
+        if ( XPLAN_41.equals( xPlanFeatureCollection.getVersion() ) ) {
             LOG.info( "Transform XPlanGML 4.1 to XPlanGml 5.1" );
-            try ( InputStream xplanGml = archive.getMainFileInputStream() ) {
+            try ( InputStream xplanGml = new ByteArrayInputStream( asBytes( xPlanFeatureCollection ) ) ) {
                 Path source = storeAsTmpFile( xplanGml );
                 LOG.debug( "Source file (XPlanGML 4.1) of the transformation: " + source );
                 Path target = xplan41ToXplan51Transformer.transformToXPlanGml51( source );
                 LOG.debug( "Transformed XPlanGML 5.1 : " + target );
                 return new TransformationResult( Files.readAllBytes( target ), XPLAN_51 );
-            } catch ( IOException e ) {
+            } catch ( IOException | XMLStreamException | UnknownCRSException | org.deegree.cs.exceptions.TransformationException e ) {
                 LOG.error( "Could not transform plan to XPlanGML 5.1", e );
                 throw new TransformationException( "Could not transform plan to XPlanGML 5.1", e );
             }
         }
         return null;
+    }
+
+    private byte[] asBytes( XPlanFeatureCollection xPlanFeatureCollection )
+                    throws XMLStreamException, UnknownCRSException, org.deegree.cs.exceptions.TransformationException,
+                    IOException {
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        XMLStreamWriter xmlStream = null;
+        GMLStreamWriter gmlStreamWriter = null;
+        try {
+            xmlStream = XMLOutputFactory.newFactory().createXMLStreamWriter( os );
+            gmlStreamWriter = new XPlanGmlWriter( XPLAN_41, xmlStream );
+            gmlStreamWriter.write( xPlanFeatureCollection.getFeatures() );
+        } finally {
+            if ( gmlStreamWriter != null )
+                gmlStreamWriter.close();
+            if ( xmlStream != null )
+                xmlStream.close();
+            os.close();
+        }
+        return os.toByteArray();
+
     }
 
     private Path storeAsTmpFile( InputStream sourceStream )

@@ -12,7 +12,6 @@ import de.latlon.xplan.commons.archive.XPlanPartArchive;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
-import de.latlon.xplan.commons.hale.TransformationException;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
@@ -613,8 +612,8 @@ public class XPlanManager {
             AdditionalPlanData xPlanMetadata = new AdditionalPlanData( newPlanStatus, xPlanToEdit.getValidityPeriod().getStart(),
                                                                        xPlanToEdit.getValidityPeriod().getEnd() );
             Date sortDate = sortPropertyReader.readSortDate( type, version, modifiedFeatures );
-            xplanDao.update( oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, xPlanToEdit, sortDate,
-                             uploadedArtefacts, removedRefs );
+            updatePlan( oldXplan, xPlanToEdit, uploadedArtefacts, xPlanGml, removedRefs, modifiedPlanFc, synFc,
+                        xPlanMetadata, sortDate );
             LOG.info( "XPlan-GML wurde erfolgreich editiert. ID: {}", planId );
 
             xPlanRasterManager.removeRasterLayers( planId, externalReferenceInfoToRemove );
@@ -737,50 +736,68 @@ public class XPlanManager {
                             FeatureCollection synFc, Date sortDate )
                     throws Exception {
         if ( xPlanGmlTransformer != null ) {
-            try {
-                TransformationResult transformationResult = xPlanGmlTransformer.transform( archive );
-                if ( transformationResult != null ) {
-                    byte[] resultAsBytes = transformationResult.getTransformationResult();
-                    XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
-
-                    ValidatorResult validatorResult = validateSyntactically( transformationResult, archive );
-                    if ( validatorResult.isValid() ) {
-                        return validateAndInsertTransformedPlan( archive, xPlanMetadata, synFc, sortDate, resultAsBytes,
-                                                                 resultVersion );
-                    } else {
-                        throw new Exception(
-                                        "Transformation of the XPlanGML 4.1 plan to XPlanGml 5.1 results in  syntactically invalid GML: "
-                                        + validatorResult );
-                    }
+            TransformationResult transformationResult = xPlanGmlTransformer.transform( fc );
+            if ( transformationResult != null ) {
+                ValidatorResult validatorResult = validateSyntactically( transformationResult, archive.getAde() );
+                if ( validatorResult.isValid() ) {
+                    XPlanFeatureCollection transformedXPlanFc = createXPlanFeatureCollection( transformationResult,
+                                                                                              archive.getType(),
+                                                                                              archive.getAde() );
+                    return xplanDao.insert( archive, transformedXPlanFc, synFc, xPlanMetadata, sortDate );
+                } else {
+                    throw new Exception(
+                                    "Transformation of the XPlanGML 4.1 plan to XPlanGml 5.1 results in syntactically invalid GML: "
+                                    + validatorResult );
                 }
-            } catch ( TransformationException e ) {
-                throw e;
             }
         }
         return xplanDao.insert( archive, fc, synFc, xPlanMetadata, sortDate );
     }
 
-    private int validateAndInsertTransformedPlan( XPlanArchive archive, AdditionalPlanData xPlanMetadata,
-                                                  FeatureCollection synFc, Date sortDate, byte[] resultAsBytes,
-                                                  XPlanVersion resultVersion )
+    private void updatePlan( XPlan oldXplan, XPlanToEdit xPlanToEdit, List<File> uploadedArtefacts, byte[] xPlanGml,
+                             Set<String> removedRefs, XPlanFeatureCollection modifiedPlanFc, FeatureCollection synFc,
+                             AdditionalPlanData xPlanMetadata, Date sortDate )
                     throws Exception {
+        if ( xPlanGmlTransformer != null ) {
+            TransformationResult transformationResult = xPlanGmlTransformer.transform( modifiedPlanFc );
+            if ( transformationResult != null ) {
+                ValidatorResult validatorResult = validateSyntactically( transformationResult,
+                                                                         modifiedPlanFc.getAde() );
+                if ( validatorResult.isValid() ) {
+                    XPlanFeatureCollection transformedXPlanFc = createXPlanFeatureCollection( transformationResult,
+                                                                                              modifiedPlanFc.getType(),
+                                                                                              modifiedPlanFc.getAde() );
+                    xplanDao.update( oldXplan, xPlanMetadata, transformedXPlanFc, synFc, xPlanGml, xPlanToEdit,
+                                     sortDate, uploadedArtefacts, removedRefs );
+                } else {
+                    throw new Exception(
+                                    "Transformation of the XPlanGML 4.1 plan to XPlanGml 5.1 results in syntactically invalid GML: "
+                                    + validatorResult );
+                }
+            }
+        }
+        xplanDao.update( oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, xPlanToEdit, sortDate,
+                         uploadedArtefacts, removedRefs );
+    }
+
+    private XPlanFeatureCollection createXPlanFeatureCollection( TransformationResult transformationResult,
+                                                                 XPlanType type, XPlanAde ade )
+                    throws Exception {
+        byte[] resultAsBytes = transformationResult.getTransformationResult();
+        XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
         try ( InputStream inputStream = new ByteArrayInputStream( resultAsBytes ) ) {
-            AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema( resultVersion, archive.getAde() );
-            XPlanFeatureCollection transformedFc = XPlanFeatureCollectionUtils.parseXPlanFeatureCollection( inputStream,
-                                                                                                            archive.getType(),
-                                                                                                            resultVersion,
-                                                                                                            archive.getAde(),
-                                                                                                            appSchema );
-            return xplanDao.insert( archive, transformedFc, synFc, xPlanMetadata, sortDate );
+            AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema( resultVersion, ade );
+            return XPlanFeatureCollectionUtils.parseXPlanFeatureCollection( inputStream, type, resultVersion, ade,
+                                                                            appSchema );
         }
     }
 
-    private ValidatorResult validateSyntactically( TransformationResult transformationResult, XPlanArchive archive )
+    private ValidatorResult validateSyntactically( TransformationResult transformationResult, XPlanAde ade )
                     throws IOException {
         byte[] transformedPlan = transformationResult.getTransformationResult();
         try ( InputStream is = new ByteArrayInputStream( transformedPlan ) ) {
-            return new SyntacticValidatorImpl().validateSyntax( is, transformationResult.getVersionOfTheResult(),
-                                                                archive.getAde() );
+            XPlanVersion version = transformationResult.getVersionOfTheResult();
+            return new SyntacticValidatorImpl().validateSyntax( is, version, ade );
         }
     }
 
