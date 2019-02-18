@@ -3,7 +3,7 @@
     <name>XPlanGML 4.1 nach 5.1</name>
     <author>lat/lon GmbH</author>
     <created>2019-01-24T08:14:24.857+01:00</created>
-    <modified>2019-02-11T19:58:01.356+01:00</modified>
+    <modified>2019-02-18T08:27:15.817+01:00</modified>
     <save-config action-id="project.save" provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -26,22 +26,8 @@
     </resource>
     <resource action-id="eu.esdihumboldt.hale.io.instance.read.source" provider-id="eu.esdihumboldt.hale.io.gml.reader">
         <setting name="charset">UTF-8</setting>
-        <setting name="resourceId">602a0453-7470-4905-a7a8-8010d2f4321a</setting>
-        <setting name="interpolation.grid.moveAllToGrid">false</setting>
-        <setting name="source">file:/home/lyn/checkouts/xplanbox/xplanbox/xplan-tests/xplan-test-resources/src/main/resources/de/latlon/xplan/hale/xplan41nach51/V4_1_ID_103.gml</setting>
-        <setting name="interpolation.maxError">0.1</setting>
-        <setting name="strict">false</setting>
-        <setting name="interpolation.algorithm">segment</setting>
-        <setting name="contentType">eu.esdihumboldt.hale.io.gml</setting>
-        <setting name="ignoreNamespaces">false</setting>
-        <setting name="paginateRequest">true</setting>
-        <setting name="featuresPerWfsRequest">1000</setting>
-        <setting name="ignoreRoot">true</setting>
-    </resource>
-    <resource action-id="eu.esdihumboldt.hale.io.instance.read.source" provider-id="eu.esdihumboldt.hale.io.gml.reader">
-        <setting name="charset">UTF-8</setting>
-        <setting name="resourceId">13d4e101-9ec5-4561-ae38-50e238e7b37b</setting>
-        <setting name="source">file:/home/lyn/checkouts/xplanbox/xplanbox/xplan-configuration/xplan-manager-config/src/test/resources/testdata/BP2070/xplan.gml</setting>
+        <setting name="resourceId">b924f7bc-7893-403d-a475-45fa8bf29cdb</setting>
+        <setting name="source">file:/home/lyn/checkouts/xplanbox/xplanbox/xplan-configuration/xplan-manager-config/src/test/resources/testdata/V4_1_ID_103-25832/xplan.gml</setting>
         <setting name="interpolation.maxError">0.1</setting>
         <setting name="interpolation.algorithm">segment</setting>
         <setting name="ignoreNamespaces">false</setting>
@@ -52,6 +38,14 @@
         <setting name="interpolation.grid.moveAllToGrid">false</setting>
         <setting name="strict">false</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.gml</setting>
+    </resource>
+    <resource action-id="eu.esdihumboldt.hale.io.groovy.snippets.load" provider-id="eu.esdihumboldt.hale.io.groovy.snippets">
+        <setting name="identifier">trim</setting>
+        <setting name="charset">UTF-8</setting>
+        <setting name="resourceId">025fe466-625b-4982-81e0-b0464f910fff</setting>
+        <setting name="source">trim.groovy</setting>
+        <setting name="contentType">eu.esdihumboldt.hale.io.groovy</setting>
+        <setting name="autoReload">true</setting>
     </resource>
     <file name="alignment.xml" location="xplanGml41-xplanGml51.halex.alignment.xml"/>
     <file name="styles.sld" location="xplanGml41-xplanGml51.halex.styles.sld"/>
@@ -1497,4 +1491,9 @@
     <property name="resource-602a0453-7470-4905-a7a8-8010d2f4321a:defaultCRS:{http://www.xplanung.de/xplangml/4/1}BP_WaldFlaecheType/{http://www.xplanung.de/xplangml/4/1}position/{http://www.opengis.net/gml/3.2}MultiSurface/{http://www.opengis.net/gml/3.2}surfaceMember/{http://www.opengis.net/gml/3.2}Polygon/{http://www.opengis.net/gml/3.2}exterior/{http://www.opengis.net/gml/3.2}LinearRing">code:EPSG:25832</property>
     <property name="resource-602a0453-7470-4905-a7a8-8010d2f4321a:defaultCRS:{http://www.xplanung.de/xplangml/4/1}BP_WegerechtType/{http://www.xplanung.de/xplangml/4/1}position/{http://www.opengis.net/gml/3.2}MultiSurface/{http://www.opengis.net/gml/3.2}surfaceMember/{http://www.opengis.net/gml/3.2}Polygon/{http://www.opengis.net/gml/3.2}exterior/{http://www.opengis.net/gml/3.2}LinearRing">code:EPSG:25832</property>
     <property name="resource-602a0453-7470-4905-a7a8-8010d2f4321a:defaultCRS:{http://www.xplanung.de/xplangml/4/1}SO_SchutzgebietNaturschutzrechtType/{http://www.xplanung.de/xplangml/4/1}position/{http://www.opengis.net/gml/3.2}MultiSurface/{http://www.opengis.net/gml/3.2}surfaceMember/{http://www.opengis.net/gml/3.2}Polygon/{http://www.opengis.net/gml/3.2}exterior/{http://www.opengis.net/gml/3.2}LinearRing">code:EPSG:25832</property>
+    <property name="resource-b924f7bc-7893-403d-a475-45fa8bf29cdb:defaultCRS:{http://www.xplanung.de/xplangml/4/1}BP_BauGrenzeType/{http://www.xplanung.de/xplangml/4/1}position/{http://www.opengis.net/gml/3.2}LineString">code:EPSG:25832</property>
+    <property name="resource-b924f7bc-7893-403d-a475-45fa8bf29cdb:defaultCRS:{http://www.xplanung.de/xplangml/4/1}BP_FirstRichtungsLinieType/{http://www.xplanung.de/xplangml/4/1}position/{http://www.opengis.net/gml/3.2}LineString">code:EPSG:25832</property>
+    <property name="resource-b924f7bc-7893-403d-a475-45fa8bf29cdb:defaultCRS:{http://www.xplanung.de/xplangml/4/1}BP_NutzungsartenGrenzeType/{http://www.xplanung.de/xplangml/4/1}position/{http://www.opengis.net/gml/3.2}LineString">code:EPSG:25832</property>
+    <property name="resource-b924f7bc-7893-403d-a475-45fa8bf29cdb:defaultCRS:{http://www.xplanung.de/xplangml/4/1}BP_StrassenbegrenzungsLinieType/{http://www.xplanung.de/xplangml/4/1}position/{http://www.opengis.net/gml/3.2}LineString">code:EPSG:25832</property>
+    <property name="resource-b924f7bc-7893-403d-a475-45fa8bf29cdb:defaultCRS:{http://www.xplanung.de/xplangml/4/1}BP_VerEntsorgungType/{http://www.xplanung.de/xplangml/4/1}position/{http://www.opengis.net/gml/3.2}LineString">code:EPSG:25832</property>
 </hale-project>

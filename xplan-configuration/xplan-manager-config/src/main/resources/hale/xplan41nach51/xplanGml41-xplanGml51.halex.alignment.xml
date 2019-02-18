@@ -7384,6 +7384,26 @@ if(textSchluessel){
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cc2050799-d18e-4e27-840e-4e7d2b480e95" priority="high">
+        <source>
+            <class>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+withTransformationContext {
+  it.xplantype = "bplan"
+  _log.info("type is " + it.xplantype)
+}
+</core:text>
+        </complexParameter>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Ca68c4a84-b8a9-446c-8885-7095bbbc97f0" priority="normal">
         <source>
             <class>
@@ -10100,6 +10120,134 @@ c.bpTextSchluessel.each { value -&gt;
     id( value[0] )
     schluessel( value[1] )
     rechtscharakter( 9998 )
+  }
+}
+</core:text>
+        </complexParameter>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C91cd524b-ffd2-46cd-8b0c-3c60e322929f" priority="low">
+        <source>
+            <class>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="BP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+withTransformationContext {
+  if ( "bplan".equals( it.xplantype ) ) {
+    _target {
+      id( _source.p.id.value() )
+      if ( _source.p.boundedBy.first() ) {
+        boundedBy {
+          if ( _source.p.boundedBy.Envelope.first() ) {
+            Envelope {
+              if ( _source.p.boundedBy.Envelope.srsName.value() ) {
+                srsName( _source.p.boundedBy.Envelope.srsName.value() )
+              }
+              upperCorner( _source.p.boundedBy.Envelope.upperCorner.value() ) {
+                if ( _source.p.boundedBy.Envelope.upperCorner.srsName.value() ) {
+                  srsName( _source.p.boundedBy.Envelope.upperCorner.srsName.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.upperCorner.srsDimension.value() ) {
+                  srsDimension( _source.p.boundedBy.Envelope.upperCorner.srsDimension.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.upperCorner.axisLabels.value() ) {
+                  axisLabels( _source.p.boundedBy.Envelope.upperCorner.axisLabels.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.upperCorner.uomLabels.value() ) {
+                  uomLabels( _source.p.boundedBy.Envelope.upperCorner.uomLabels.value() )
+                }
+              }
+              if ( _source.p.boundedBy.Envelope.srsDimension.value() ) {
+                srsDimension( _source.p.boundedBy.Envelope.srsDimension.value() )
+              }
+              if ( _source.p.boundedBy.Envelope.axisLabels.value() ) {
+                axisLabels( _source.p.boundedBy.Envelope.axisLabels.value() )
+              }
+              if ( _source.p.boundedBy.Envelope.uomLabels.value() ) {
+                uomLabels( _source.p.boundedBy.Envelope.uomLabels.value() )
+              }
+              lowerCorner( _source.p.boundedBy.Envelope.lowerCorner.value() ) {
+                if ( _source.p.boundedBy.Envelope.lowerCorner.srsName.value() ) {
+                  srsName( _source.p.boundedBy.Envelope.lowerCorner.srsName.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.lowerCorner.srsDimension.value() ) {
+                  srsDimension( _source.p.boundedBy.Envelope.lowerCorner.srsDimension.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.lowerCorner.axisLabels.value() ) {
+                  axisLabels( _source.p.boundedBy.Envelope.axisLabels.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.lowerCorner.uomLabels.value() ) {
+                  uomLabels( _source.p.boundedBy.Envelope.lowerCorner.uomLabels.value() )
+                }
+              }
+            }
+          }
+          if ( _source.p.boundedBy.nilReason.value() ) {
+            nilReason( _source.p.boundedBy.nilReason.value() )
+          }
+        }
+      }
+      if (_source.p.schluessel.value() ) {
+        schluessel( _source.p.schluessel.value() )
+      }
+      if (_source.p.gesetzlicheGrundlage.value() ) {
+        gesetzlicheGrundlage( _source.p.gesetzlicheGrundlage.value() )
+      }
+      if (_source.p.text.value() ) {
+        text( _source.p.text.value() )
+      }
+      if ( _source.p.refText.first() ){
+        refText {
+          XP_ExterneReferenz {
+            def grUrl = _source.p.refText.XP_ExterneReferenz.georefURL.value()
+            if ( grUrl ) {
+              georefURL ( _snippets.trim { trimUrl( grUrl ) } )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.georefMimeType.value() ) {
+              georefMimeType ( _source.p.refText.XP_ExterneReferenz.georefMimeType.value() ) {
+                if ( _source.p.refText.XP_ExterneReferenz.georefMimeType.codeSpace.value() ) {
+                  codeSpace( _source.p.refText.XP_ExterneReferenz.georefMimeType.codeSpace.value() )
+                }
+              }
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.art.value() ) {
+              art ( _source.p.refText.XP_ExterneReferenz.art.value() )
+            }
+            def iUrl = _source.p.refText.XP_ExterneReferenz.informationssystemURL.value()
+            if ( iUrl ) {
+              informationssystemURL ( _snippets.trim { trimUrl( iUrl ) } )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.referenzName.value() ) {
+              referenzName ( _source.p.refText.XP_ExterneReferenz.referenzName.value() )
+            }
+            def rUrl = _source.p.refText.XP_ExterneReferenz.referenzURL.value()
+            if ( rUrl ) {
+              referenzURL ( _snippets.trim { trimUrl( rUrl ) } )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.referenzMimeType.value() ) {
+              referenzMimeType ( _source.p.refText.XP_ExterneReferenz.referenzMimeType.value() ) {
+                if ( _source.p.refText.XP_ExterneReferenz.referenzMimeType.codeSpace.value() ) {
+                  codeSpace( _source.p.refText.XP_ExterneReferenz.referenzMimeType.codeSpace.value() )
+                }
+              }
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.beschreibung.value() ) {
+              beschreibung ( _source.p.refText.XP_ExterneReferenz.beschreibung.value() )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.datum.value() ) {
+              datum ( _source.p.refText.XP_ExterneReferenz.datum.value() )
+            }
+          }
+        }
+      }
+      rechtscharakter( '9998' )
+    }
   }
 }
 </core:text>
@@ -14629,6 +14777,26 @@ if(textSchluessel){
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C36f10a2f-f32c-446d-af18-3d6fdb5111ab" priority="normal">
+        <source>
+            <class>
+                <type name="FP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="FP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+withTransformationContext {
+  it.xplantype = "fplan"
+  _log.info("type is " + it.xplantype)
+}
+</core:text>
+        </complexParameter>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Ce633b53e-c31d-4d69-8513-62f2d381ac77" priority="normal">
         <source>
             <class>
@@ -15439,7 +15607,7 @@ if(textSchluessel){
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="Cd16d8ace-431c-4107-8b6e-74113fbc2024" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="Cd16d8ace-431c-4107-8b6e-74113fbc2024" priority="low">
         <target>
             <class>
                 <type name="FP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/1"/>
@@ -15457,6 +15625,134 @@ c.fpTextSchluessel.each { value -&gt;
     id( value[0] )
     schluessel( value[1] )
     rechtscharakter( 9998 )
+  }
+}
+</core:text>
+        </complexParameter>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cd91e2ee7-fd4e-4527-b5bb-a015efd695b7" priority="low">
+        <source>
+            <class>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="FP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+withTransformationContext {
+  if ( "fplan".equals( it.xplantype ) ) {
+    _target {
+      id( _source.p.id.value() )
+      if ( _source.p.boundedBy.first() ) {
+        boundedBy {
+          if ( _source.p.boundedBy.Envelope.first() ) {
+            Envelope {
+              if ( _source.p.boundedBy.Envelope.srsName.value() ) {
+                srsName( _source.p.boundedBy.Envelope.srsName.value() )
+              }
+              upperCorner( _source.p.boundedBy.Envelope.upperCorner.value() ) {
+                if ( _source.p.boundedBy.Envelope.upperCorner.srsName.value() ) {
+                  srsName( _source.p.boundedBy.Envelope.upperCorner.srsName.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.upperCorner.srsDimension.value() ) {
+                  srsDimension( _source.p.boundedBy.Envelope.upperCorner.srsDimension.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.upperCorner.axisLabels.value() ) {
+                  axisLabels( _source.p.boundedBy.Envelope.upperCorner.axisLabels.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.upperCorner.uomLabels.value() ) {
+                  uomLabels( _source.p.boundedBy.Envelope.upperCorner.uomLabels.value() )
+                }
+              }
+              if ( _source.p.boundedBy.Envelope.srsDimension.value() ) {
+                srsDimension( _source.p.boundedBy.Envelope.srsDimension.value() )
+              }
+              if ( _source.p.boundedBy.Envelope.axisLabels.value() ) {
+                axisLabels( _source.p.boundedBy.Envelope.axisLabels.value() )
+              }
+              if ( _source.p.boundedBy.Envelope.uomLabels.value() ) {
+                uomLabels( _source.p.boundedBy.Envelope.uomLabels.value() )
+              }
+              lowerCorner( _source.p.boundedBy.Envelope.lowerCorner.value() ) {
+                if ( _source.p.boundedBy.Envelope.lowerCorner.srsName.value() ) {
+                  srsName( _source.p.boundedBy.Envelope.lowerCorner.srsName.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.lowerCorner.srsDimension.value() ) {
+                  srsDimension( _source.p.boundedBy.Envelope.lowerCorner.srsDimension.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.lowerCorner.axisLabels.value() ) {
+                  axisLabels( _source.p.boundedBy.Envelope.axisLabels.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.lowerCorner.uomLabels.value() ) {
+                  uomLabels( _source.p.boundedBy.Envelope.lowerCorner.uomLabels.value() )
+                }
+              }
+            }
+          }
+          if ( _source.p.boundedBy.nilReason.value() ) {
+            nilReason( _source.p.boundedBy.nilReason.value() )
+          }
+        }
+      }
+      if (_source.p.schluessel.value() ) {
+        schluessel( _source.p.schluessel.value() )
+      }
+      if (_source.p.gesetzlicheGrundlage.value() ) {
+        gesetzlicheGrundlage( _source.p.gesetzlicheGrundlage.value() )
+      }
+      if (_source.p.text.value() ) {
+        text( _source.p.text.value() )
+      }
+      if ( _source.p.refText.first() ){
+        refText {
+          XP_ExterneReferenz {
+            def grUrl = _source.p.refText.XP_ExterneReferenz.georefURL.value()
+            if ( grUrl ) {
+              georefURL ( _snippets.trim { trimUrl( grUrl ) } )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.georefMimeType.value() ) {
+              georefMimeType ( _source.p.refText.XP_ExterneReferenz.georefMimeType.value() ) {
+                if ( _source.p.refText.XP_ExterneReferenz.georefMimeType.codeSpace.value() ) {
+                  codeSpace( _source.p.refText.XP_ExterneReferenz.georefMimeType.codeSpace.value() )
+                }
+              }
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.art.value() ) {
+              art ( _source.p.refText.XP_ExterneReferenz.art.value() )
+            }
+            def iUrl = _source.p.refText.XP_ExterneReferenz.informationssystemURL.value()
+            if ( iUrl ) {
+              informationssystemURL ( _snippets.trim { trimUrl( iUrl ) } )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.referenzName.value() ) {
+              referenzName ( _source.p.refText.XP_ExterneReferenz.referenzName.value() )
+            }
+            def rUrl = _source.p.refText.XP_ExterneReferenz.referenzURL.value()
+            if ( rUrl ) {
+              referenzURL ( _snippets.trim { trimUrl( rUrl ) } )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.referenzMimeType.value() ) {
+              referenzMimeType ( _source.p.refText.XP_ExterneReferenz.referenzMimeType.value() ) {
+                if ( _source.p.refText.XP_ExterneReferenz.referenzMimeType.codeSpace.value() ) {
+                  codeSpace( _source.p.refText.XP_ExterneReferenz.referenzMimeType.codeSpace.value() )
+                }
+              }
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.beschreibung.value() ) {
+              beschreibung ( _source.p.refText.XP_ExterneReferenz.beschreibung.value() )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.datum.value() ) {
+              datum ( _source.p.refText.XP_ExterneReferenz.datum.value() )
+            }
+          }
+        }
+      }
+      rechtscharakter( '9998' )
+    }
   }
 }
 </core:text>
@@ -16930,6 +17226,26 @@ if(textSchluessel){
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Ce9c9aef7-e818-47ae-9352-7e1bdd260f28" priority="normal">
+        <source>
+            <class>
+                <type name="LP_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="LP_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+withTransformationContext {
+  it.xplantype = "lplan"
+  _log.info("type is " + it.xplantype)
+}
+</core:text>
+        </complexParameter>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Cc73aa93f-8464-435b-8b78-84039643bcfd" priority="normal">
         <source>
             <class>
@@ -17526,6 +17842,134 @@ c.lpTextSchluessel.each { value -&gt;
     id( value[0] )
     schluessel( value[1] )
     rechtscharakter( 9998 )
+  }
+}
+</core:text>
+        </complexParameter>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cb2889035-98d2-4567-aa7e-d810028edf0b" priority="low">
+        <source>
+            <class>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="LP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+withTransformationContext {
+  if ( "lplan".equals( it.xplantype ) ) {
+    _target {
+      id( _source.p.id.value() )
+      if ( _source.p.boundedBy.first() ) {
+        boundedBy {
+          if ( _source.p.boundedBy.Envelope.first() ) {
+            Envelope {
+              if ( _source.p.boundedBy.Envelope.srsName.value() ) {
+                srsName( _source.p.boundedBy.Envelope.srsName.value() )
+              }
+              upperCorner( _source.p.boundedBy.Envelope.upperCorner.value() ) {
+                if ( _source.p.boundedBy.Envelope.upperCorner.srsName.value() ) {
+                  srsName( _source.p.boundedBy.Envelope.upperCorner.srsName.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.upperCorner.srsDimension.value() ) {
+                  srsDimension( _source.p.boundedBy.Envelope.upperCorner.srsDimension.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.upperCorner.axisLabels.value() ) {
+                  axisLabels( _source.p.boundedBy.Envelope.upperCorner.axisLabels.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.upperCorner.uomLabels.value() ) {
+                  uomLabels( _source.p.boundedBy.Envelope.upperCorner.uomLabels.value() )
+                }
+              }
+              if ( _source.p.boundedBy.Envelope.srsDimension.value() ) {
+                srsDimension( _source.p.boundedBy.Envelope.srsDimension.value() )
+              }
+              if ( _source.p.boundedBy.Envelope.axisLabels.value() ) {
+                axisLabels( _source.p.boundedBy.Envelope.axisLabels.value() )
+              }
+              if ( _source.p.boundedBy.Envelope.uomLabels.value() ) {
+                uomLabels( _source.p.boundedBy.Envelope.uomLabels.value() )
+              }
+              lowerCorner( _source.p.boundedBy.Envelope.lowerCorner.value() ) {
+                if ( _source.p.boundedBy.Envelope.lowerCorner.srsName.value() ) {
+                  srsName( _source.p.boundedBy.Envelope.lowerCorner.srsName.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.lowerCorner.srsDimension.value() ) {
+                  srsDimension( _source.p.boundedBy.Envelope.lowerCorner.srsDimension.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.lowerCorner.axisLabels.value() ) {
+                  axisLabels( _source.p.boundedBy.Envelope.axisLabels.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.lowerCorner.uomLabels.value() ) {
+                  uomLabels( _source.p.boundedBy.Envelope.lowerCorner.uomLabels.value() )
+                }
+              }
+            }
+          }
+          if ( _source.p.boundedBy.nilReason.value() ) {
+            nilReason( _source.p.boundedBy.nilReason.value() )
+          }
+        }
+      }
+      if (_source.p.schluessel.value() ) {
+        schluessel( _source.p.schluessel.value() )
+      }
+      if (_source.p.gesetzlicheGrundlage.value() ) {
+        gesetzlicheGrundlage( _source.p.gesetzlicheGrundlage.value() )
+      }
+      if (_source.p.text.value() ) {
+        text( _source.p.text.value() )
+      }
+      if ( _source.p.refText.first() ){
+        refText {
+          XP_ExterneReferenz {
+            def grUrl = _source.p.refText.XP_ExterneReferenz.georefURL.value()
+            if ( grUrl ) {
+              georefURL ( _snippets.trim { trimUrl( grUrl ) } )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.georefMimeType.value() ) {
+              georefMimeType ( _source.p.refText.XP_ExterneReferenz.georefMimeType.value() ) {
+                if ( _source.p.refText.XP_ExterneReferenz.georefMimeType.codeSpace.value() ) {
+                  codeSpace( _source.p.refText.XP_ExterneReferenz.georefMimeType.codeSpace.value() )
+                }
+              }
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.art.value() ) {
+              art ( _source.p.refText.XP_ExterneReferenz.art.value() )
+            }
+            def iUrl = _source.p.refText.XP_ExterneReferenz.informationssystemURL.value()
+            if ( iUrl ) {
+              informationssystemURL ( _snippets.trim { trimUrl( iUrl ) } )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.referenzName.value() ) {
+              referenzName ( _source.p.refText.XP_ExterneReferenz.referenzName.value() )
+            }
+            def rUrl = _source.p.refText.XP_ExterneReferenz.referenzURL.value()
+            if ( rUrl ) {
+              referenzURL ( _snippets.trim { trimUrl( rUrl ) } )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.referenzMimeType.value() ) {
+              referenzMimeType ( _source.p.refText.XP_ExterneReferenz.referenzMimeType.value() ) {
+                if ( _source.p.refText.XP_ExterneReferenz.referenzMimeType.codeSpace.value() ) {
+                  codeSpace( _source.p.refText.XP_ExterneReferenz.referenzMimeType.codeSpace.value() )
+                }
+              }
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.beschreibung.value() ) {
+              beschreibung ( _source.p.refText.XP_ExterneReferenz.beschreibung.value() )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.datum.value() ) {
+              datum ( _source.p.refText.XP_ExterneReferenz.datum.value() )
+            }
+          }
+        }
+      }
+      rechtscharakter( '9998' )
+    }
   }
 }
 </core:text>
@@ -18799,6 +19243,26 @@ if(textSchluessel){
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C962b3187-2ac1-4bf9-9ee6-f3b7d8b927d9" priority="normal">
+        <source>
+            <class>
+                <type name="SO_PlanType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="SO_PlanType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+withTransformationContext {
+  it.xplantype = "soplan"
+  _log.info("type is " + it.xplantype)
+}
+</core:text>
+        </complexParameter>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C19b7c691-c295-43a0-a464-fddd1cef6b4b" priority="normal">
         <source>
             <class>
@@ -19488,6 +19952,134 @@ c.soTextSchluessel.each { value -&gt;
   }
 }
 
+</core:text>
+        </complexParameter>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C4f00c3fc-2f9d-4aa2-b7e4-c8ab18150377" priority="low">
+        <source>
+            <class>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="SO_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </class>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+withTransformationContext {
+  if ( "soplan".equals( it.xplantype ) ) {
+    _target {
+      id( _source.p.id.value() )
+      if ( _source.p.boundedBy.first() ) {
+        boundedBy {
+          if ( _source.p.boundedBy.Envelope.first() ) {
+            Envelope {
+              if ( _source.p.boundedBy.Envelope.srsName.value() ) {
+                srsName( _source.p.boundedBy.Envelope.srsName.value() )
+              }
+              upperCorner( _source.p.boundedBy.Envelope.upperCorner.value() ) {
+                if ( _source.p.boundedBy.Envelope.upperCorner.srsName.value() ) {
+                  srsName( _source.p.boundedBy.Envelope.upperCorner.srsName.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.upperCorner.srsDimension.value() ) {
+                  srsDimension( _source.p.boundedBy.Envelope.upperCorner.srsDimension.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.upperCorner.axisLabels.value() ) {
+                  axisLabels( _source.p.boundedBy.Envelope.upperCorner.axisLabels.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.upperCorner.uomLabels.value() ) {
+                  uomLabels( _source.p.boundedBy.Envelope.upperCorner.uomLabels.value() )
+                }
+              }
+              if ( _source.p.boundedBy.Envelope.srsDimension.value() ) {
+                srsDimension( _source.p.boundedBy.Envelope.srsDimension.value() )
+              }
+              if ( _source.p.boundedBy.Envelope.axisLabels.value() ) {
+                axisLabels( _source.p.boundedBy.Envelope.axisLabels.value() )
+              }
+              if ( _source.p.boundedBy.Envelope.uomLabels.value() ) {
+                uomLabels( _source.p.boundedBy.Envelope.uomLabels.value() )
+              }
+              lowerCorner( _source.p.boundedBy.Envelope.lowerCorner.value() ) {
+                if ( _source.p.boundedBy.Envelope.lowerCorner.srsName.value() ) {
+                  srsName( _source.p.boundedBy.Envelope.lowerCorner.srsName.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.lowerCorner.srsDimension.value() ) {
+                  srsDimension( _source.p.boundedBy.Envelope.lowerCorner.srsDimension.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.lowerCorner.axisLabels.value() ) {
+                  axisLabels( _source.p.boundedBy.Envelope.axisLabels.value() )
+                }
+                if ( _source.p.boundedBy.Envelope.lowerCorner.uomLabels.value() ) {
+                  uomLabels( _source.p.boundedBy.Envelope.lowerCorner.uomLabels.value() )
+                }
+              }
+            }
+          }
+          if ( _source.p.boundedBy.nilReason.value() ) {
+            nilReason( _source.p.boundedBy.nilReason.value() )
+          }
+        }
+      }
+      if (_source.p.schluessel.value() ) {
+        schluessel( _source.p.schluessel.value() )
+      }
+      if (_source.p.gesetzlicheGrundlage.value() ) {
+        gesetzlicheGrundlage( _source.p.gesetzlicheGrundlage.value() )
+      }
+      if (_source.p.text.value() ) {
+        text( _source.p.text.value() )
+      }
+      if ( _source.p.refText.first() ){
+        refText {
+          XP_ExterneReferenz {
+            def grUrl = _source.p.refText.XP_ExterneReferenz.georefURL.value()
+            if ( grUrl ) {
+              georefURL ( _snippets.trim { trimUrl( grUrl ) } )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.georefMimeType.value() ) {
+              georefMimeType ( _source.p.refText.XP_ExterneReferenz.georefMimeType.value() ) {
+                if ( _source.p.refText.XP_ExterneReferenz.georefMimeType.codeSpace.value() ) {
+                  codeSpace( _source.p.refText.XP_ExterneReferenz.georefMimeType.codeSpace.value() )
+                }
+              }
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.art.value() ) {
+              art ( _source.p.refText.XP_ExterneReferenz.art.value() )
+            }
+            def iUrl = _source.p.refText.XP_ExterneReferenz.informationssystemURL.value()
+            if ( iUrl ) {
+              informationssystemURL ( _snippets.trim { trimUrl( iUrl ) } )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.referenzName.value() ) {
+              referenzName ( _source.p.refText.XP_ExterneReferenz.referenzName.value() )
+            }
+            def rUrl = _source.p.refText.XP_ExterneReferenz.referenzURL.value()
+            if ( rUrl ) {
+              referenzURL ( _snippets.trim { trimUrl( rUrl ) } )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.referenzMimeType.value() ) {
+              referenzMimeType ( _source.p.refText.XP_ExterneReferenz.referenzMimeType.value() ) {
+                if ( _source.p.refText.XP_ExterneReferenz.referenzMimeType.codeSpace.value() ) {
+                  codeSpace( _source.p.refText.XP_ExterneReferenz.referenzMimeType.codeSpace.value() )
+                }
+              }
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.beschreibung.value() ) {
+              beschreibung ( _source.p.refText.XP_ExterneReferenz.beschreibung.value() )
+            }
+            if ( _source.p.refText.XP_ExterneReferenz.datum.value() ) {
+              datum ( _source.p.refText.XP_ExterneReferenz.datum.value() )
+            }
+          }
+        }
+      }
+      rechtscharakter( '9998' )
+    }
+  }
+}
 </core:text>
         </complexParameter>
     </cell>

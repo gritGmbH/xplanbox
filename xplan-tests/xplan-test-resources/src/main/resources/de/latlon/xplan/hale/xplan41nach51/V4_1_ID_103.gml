@@ -4,7 +4,7 @@
 	xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:xplan="http://www.xplanung.de/xplangml/4/1" xmlns:xplanNSM="http://www.xplanung.de/4/1/ADE_NSM"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.xplanung.de/xplangml/4/1 ../../../../21_systemspezifikation/schemas/xplangml411/XPlanung-Operationen.xsd"
+	xsi:schemaLocation="http://www.xplanung.de/xplangml/4/1 ../../../../../../../../../../xplan-resources/xplan-schemas/src/main/resources/appschemas/XPlanGML_4_1/XPlanung-Operationen.xsd"
 	xmlns:wfs="http://www.opengis.net/wfs" gml:id="GML_597bdedb-0d50-41f9-9cd3-e021ee53e2e9">
 	<gml:boundedBy>
 		<gml:Envelope srsName="EPSG:25833">
@@ -11708,6 +11708,8 @@
 	</gml:featureMember>
 	<gml:featureMember>
 		<xplan:XP_TextAbschnitt gml:id="FEATURE_0453f54f-620f-40d7-8c1b-d842c6291a6b">
+			<xplan:schluessel>42</xplan:schluessel>
+			<xplan:gesetzlicheGrundlage>ABC</xplan:gesetzlicheGrundlage>
 			<xplan:text>Wiese</xplan:text>
 		</xplan:XP_TextAbschnitt>
 	</gml:featureMember>
@@ -11724,12 +11726,25 @@
 	</gml:featureMember>
 	<gml:featureMember>
 		<xplan:XP_TextAbschnitt gml:id="FEATURE_0f870967-bd6f-4367-9150-8a255f0290ad">
+			<gml:boundedBy>
+				<gml:Envelope srsName="EPSG:25833">
+					<gml:lowerCorner>417921.386 5715677.826</gml:lowerCorner>
+					<gml:upperCorner>418523.944 5716033.278</gml:upperCorner>
+				</gml:Envelope>
+			</gml:boundedBy>
+			<xplan:gesetzlicheGrundlage>ABC</xplan:gesetzlicheGrundlage>
 			<xplan:refText>
 				<xplan:XP_ExterneReferenz>
+					<xplan:georefURL>B-Georef.pdf</xplan:georefURL>
+					<xplan:georefMimeType>application/pdf</xplan:georefMimeType>
+					<xplan:art>Dokument</xplan:art>
+					<xplan:informationssystemURL>http://InfoSys.de</xplan:informationssystemURL>
 					<xplan:referenzName>B-Plan_Klingmuehl_Heideweg_Text
 					</xplan:referenzName>
 					<xplan:referenzURL>B-Plan_Klingmuehl_Heideweg_Text.pdf
 					</xplan:referenzURL>
+					<xplan:referenzMimeType>application/pdf</xplan:referenzMimeType>
+					<xplan:beschreibung>test</xplan:beschreibung>
 				</xplan:XP_ExterneReferenz>
 			</xplan:refText>
 		</xplan:XP_TextAbschnitt>
