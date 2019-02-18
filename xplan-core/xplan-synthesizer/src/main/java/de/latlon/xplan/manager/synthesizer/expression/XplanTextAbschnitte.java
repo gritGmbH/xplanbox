@@ -1,6 +1,5 @@
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValue;
 import static de.latlon.xplan.manager.synthesizer.XplanAbschnittLookup.lookupXpTextAbschnitt;
 
 import java.util.LinkedHashSet;
@@ -9,6 +8,7 @@ import java.util.Set;
 
 import javax.xml.namespace.QName;
 
+import de.latlon.xplan.commons.synthesizer.Features;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -41,20 +41,48 @@ public class XplanTextAbschnitte implements Expression {
     }
 
     public static String toString( Feature f ) {
-        QName textPropName = new QName( f.getName().getNamespaceURI(), "text" );
-        String text = getPropertyValue( f, textPropName ) + "";
-        QName gGrundlagePropName = new QName( f.getName().getNamespaceURI(), "gesetzlicheGrundlage" );
-        String gesetzlicheGrundlage = null;
-        if ( getPropertyValue( f, gGrundlagePropName ) != null ) {
-            gesetzlicheGrundlage = getPropertyValue( f, gGrundlagePropName ) + "";
+        String namespaceURI = f.getName().getNamespaceURI();
+        String text = getPropertyValue( f, namespaceURI, "text", "" );
+        String gesetzlicheGrundlage = getPropertyValue( f, namespaceURI, "gesetzlicheGrundlage" );
+        String schluessel = getPropertyValue( f, namespaceURI, "schluessel" );
+
+        StringBuffer textAbschnittText = new StringBuffer();
+        textAbschnittText.append( "[" );
+        if ( schluessel != null ) {
+            schluessel = replaceDelimiter( schluessel );
+            textAbschnittText.append( schluessel );
+            textAbschnittText.append( " | " );
         }
-        String abschnittText;
+        if ( text != null ) {
+            text = replaceDelimiter( text );
+            textAbschnittText.append( text );
+        }
+
         if ( gesetzlicheGrundlage == null ) {
-            abschnittText = "[" + text + " (Keine gesetzliche Grundlage)]";
+            textAbschnittText.append( " (Keine gesetzliche Grundlage)" );
         } else {
-            abschnittText = "[" + text + " (Gesetzliche Grundlage: " + gesetzlicheGrundlage + ")]";
+            gesetzlicheGrundlage = replaceDelimiter( gesetzlicheGrundlage );
+            textAbschnittText.append( " (Gesetzliche Grundlage: " ).append( gesetzlicheGrundlage ).append( ")" );
         }
-        return abschnittText;
+        textAbschnittText.append( "]" );
+        return textAbschnittText.toString();
+    }
+
+    private static String replaceDelimiter( String text ) {
+        text = text.replace( "|", "_" );
+        return text;
+    }
+
+    private static String getPropertyValue( Feature f, String namespaceUrl, String localName ) {
+        return getPropertyValue( f, namespaceUrl, localName, null );
+    }
+
+    private static String getPropertyValue( Feature f, String namespaceUrl, String localName, String defaultValue ) {
+        QName propName = new QName( namespaceUrl, localName );
+        TypedObjectNode propertyValue = Features.getPropertyValue( f, propName );
+        if ( propertyValue != null )
+            return propertyValue.toString();
+        return defaultValue;
     }
 
     private Set<Feature> getTextAbschnitteReferencedBySchluessel( Feature feature ) {

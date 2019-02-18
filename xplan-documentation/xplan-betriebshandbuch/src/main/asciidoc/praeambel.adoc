@@ -38,13 +38,13 @@ Lesser General Public License (LGPL), version 2.1] veröffentlicht.
 
 Überlassung der in Binärcode übersetzten Programme (Binärprogramme) der
 xPlanBox sowie Überlassung von Skripten, Konfigurationsdateien und
-Dokumentation. Die xPlanBox basiert auf dem OSGeo deegree Projekt, welches
+Dokumentation. Die xPlanBox basiert auf dem OSGeo Projekt deegree, welches
 Bestandteil der Liefereinheit ist.
 
 [[gewährleistung]]
 ==== Gewährleistung
 
-Es gelten daher grundsätzlich die Haftungs- und Gewährleistungsausschlüsse wie in der der LGPL benannt.
+Es gelten grundsätzlich die Haftungs- und Gewährleistungsausschlüsse wie in der der LGPL benannt.
 Die Firma lat/lon GmbH übernimmt keine Gewähr zur Freiheit der Software
 bezüglich von Funktions- oder Sachmängeln. Die Gewährleistung der Firma
 lat/lon GmbH bei Überlassung der Binärprogramme erstreckt sich auf die
@@ -56,7 +56,7 @@ sofern diese verfügbar sind.
 [[nutzungsbedingungen]]
 ==== Nutzungsbedingungen
 
-Die xPlanBox basiert auf dem OSGeo deegree Projekt und steht
+Die xPlanBox basiert auf dem OSGeo Projekt deegree und steht
 insoweit unter denselben Lizenzbedingungen. Die Binärprogramme der
 xPlanBox werden von lat/lon hergestellt und stehen unter einem
 besonderen Nutzungsvorbehalt. Der Quellcode der Standardsoftware deegree ist

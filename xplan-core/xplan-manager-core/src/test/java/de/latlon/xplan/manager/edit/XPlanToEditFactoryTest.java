@@ -41,8 +41,11 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.XPlanMetadata;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
 import de.latlon.xplan.manager.web.shared.edit.Change;
+import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
+import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
-import de.latlon.xplan.manager.web.shared.edit.RasterWithReferences;
+import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
+import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.Text;
 import de.latlon.xplan.manager.web.shared.edit.ValidityPeriod;
@@ -71,13 +74,17 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
+import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.DOKUMENT;
+import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.PLANMITGEOREFERENZ;
+import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.IMAGE_PNG;
+import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.IMAGE_TIFF;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
@@ -116,7 +123,7 @@ public class XPlanToEditFactoryTest {
     @Test
     public void testCreateXPlanToEdit_XPlan41_BaseData_Changes()
                     throws Exception {
-        FeatureCollection featureCollection = readXPlanGml( XPLAN_41, "Eidelstedt_4_V4-Blankenese.gml" );
+        FeatureCollection featureCollection = readXPlanGml( XPLAN_41, "xplan41/Eidelstedt_4_V4-Blankenese.gml" );
 
         XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
 
@@ -150,7 +157,7 @@ public class XPlanToEditFactoryTest {
     }
 
     @Test
-    @Parameters({ /*"V4_1_ID_103.gml, XPLAN_41",*/ "xplan50/V4_1_ID_103.gml, XPLAN_50" })
+    @Parameters({ "xplan41/V4_1_ID_103.gml, XPLAN_41", "xplan50/V4_1_ID_103.gml, XPLAN_50" })
     public void testCreateXPlanToEdit_References_Texts( String planResource, String xplanVersion )
                     throws Exception {
         XPlanVersion version = XPlanVersion.valueOf( xplanVersion );
@@ -196,23 +203,38 @@ public class XPlanToEditFactoryTest {
         assertThat( text.getGeoReference(), is( nullValue() ) );
         assertThat( text.getReference(), is( "B-Plan_Klingmuehl_Heideweg_Text.pdf" ) );
 
-        RasterWithReferences rasterBasis = xPlanToEdit.getRasterBasis();
+        RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
         assertThat( rasterBasis.getFeatureId(), is( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6" ) );
 
         List<RasterReference> rasterBasisReferences = rasterBasis.getRasterReferences();
-        assertThat( rasterBasisReferences.size(), is( 1 ) );
+        assertThat( rasterBasisReferences.size(), is( 2 ) );
 
-        RasterReference rasterBase = rasterBasisReferences.get( 0 );
-        assertThat( rasterBase.getFeatureId(), nullValue() );
-        assertThat( rasterBase.getGeoReference(), is( "B-Plan_Klingmuehl_Heideweg_Karte.tfw" ) );
-        assertThat( rasterBase.getReference(), is( "B-Plan_Klingmuehl_Heideweg_Karte.tif" ) );
-        assertThat( rasterBase.getType(), is( SCAN ) );
+        RasterReference scan = getByType( rasterBasisReferences, SCAN );
+        assertThat( scan, is( notNullValue() ) );
+        assertThat( scan.getFeatureId(), nullValue() );
+        assertThat( scan.getGeoReference(), is( "B-Plan_Klingmuehl_Heideweg_Karte.tfw" ) );
+        assertThat( scan.getReference(), is( "B-Plan_Klingmuehl_Heideweg_Karte.tif" ) );
+        assertThat( scan.getReferenzName(), is( "B-Plan_Klingmuehl_Heideweg_Karte" ) );
+        assertThat( scan.getArt(), is( PLANMITGEOREFERENZ ) );
+
+        RasterReference legend = getByType( rasterBasisReferences, LEGEND );
+        assertThat( legend, is( notNullValue() ) );
+        assertThat( scan.getFeatureId(), nullValue() );
+        assertThat( legend.getReference(), is( "B-Plan_Klingmuehl_Heideweg_Legende.png" ) );
+        assertThat( legend.getReferenzMimeType(), is( IMAGE_PNG ) );
+        assertThat( legend.getGeoReference(), is( nullValue() ) );
+        assertThat( legend.getGeorefMimeType(), is( nullValue() ) );
+        assertThat( legend.getInformationssystemURL(), is( "informationssystemURL" ) );
+        assertThat( legend.getReferenzName(), is( "B-Plan_Klingmuehl_Heideweg_Legende" ) );
+        assertThat( legend.getBeschreibung(), is( "beschreibung" ) );
+        assertThat( legend.getDatum(), is( asDate( "2018-03-01" ) ) );
+        assertThat( legend.getArt(), is( DOKUMENT ) );
     }
 
     @Test
     public void testCreateXPlanToEdit_XPlan3()
                     throws Exception {
-        FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "Wuerdenhain.gml" );
+        FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "xplan30/Wuerdenhain.gml" );
 
         XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
 
@@ -268,23 +290,36 @@ public class XPlanToEditFactoryTest {
         assertThat( firstText.getGeoReference(), is( nullValue() ) );
         assertThat( firstText.getReference(), is( "Klarstellungssatzung_Haida_cut_v4.tif" ) );
 
-        RasterWithReferences rasterBasis = xPlanToEdit.getRasterBasis();
+        RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
         assertThat( rasterBasis.getFeatureId(), is( "GML_F042504B-0875-4470-A25D-DAFD0595E8FD" ) );
 
         List<RasterReference> rasterBasisReferences = rasterBasis.getRasterReferences();
-        assertThat( rasterBasisReferences.size(), is( 1 ) );
+        assertThat( rasterBasisReferences.size(), is( 2 ) );
 
-        RasterReference rasterBase = rasterBasisReferences.get( 0 );
-        assertThat( rasterBase.getFeatureId(), is( "GML_1D000019-0DE0-4667-A19C-6EC6ABDF000B" ) );
-        assertThat( rasterBase.getGeoReference(), is( "Klarstellungssatzung_Wuerdenhain_cut_ergb.tfw" ) );
-        assertThat( rasterBase.getReference(), is( "Klarstellungssatzung_Wuerdenhain_cut_ergb.tif" ) );
-        assertThat( rasterBase.getType(), is( SCAN ) );
+        RasterReference scan = getByType( rasterBasisReferences, SCAN );
+        assertThat( scan, is( notNullValue() ) );
+        assertThat( scan.getFeatureId(), is( "GML_1D000019-0DE0-4667-A19C-6EC6ABDF000B" ) );
+        assertThat( scan.getReference(), is( "Klarstellungssatzung_Wuerdenhain_cut_ergb.tif" ) );
+        assertThat( scan.getGeoReference(), is( "Klarstellungssatzung_Wuerdenhain_cut_ergb.tfw" ) );
+
+        RasterReference legend = getByType( rasterBasisReferences, LEGEND );
+        assertThat( legend, is( notNullValue() ) );
+        assertThat( legend.getFeatureId(), is( "GML_1D000019-0DE0-4667-A19C-6EC6ABDF000F" ) );
+        assertThat( legend.getReference(), is( "Klarstellungssatzung_Wuerdenhain_cut_ergb_legende.tif" ) );
+        assertThat( legend.getReferenzMimeType(), is( IMAGE_TIFF ) );
+        assertThat( legend.getGeoReference(), is( nullValue() ) );
+        assertThat( legend.getGeorefMimeType(), is( nullValue() ) );
+        assertThat( legend.getInformationssystemURL(), is( "informationssystemURL" ) );
+        assertThat( legend.getReferenzName(), is( "Klarstellungssatzung_Wuerdenhain_cut_ergb_legende" ) );
+        assertThat( legend.getBeschreibung(), is( "beschreibung" ) );
+        assertThat( legend.getDatum(), is( nullValue() ) );
+        assertThat( legend.getArt(), is( nullValue() ) );
     }
 
     @Test
     public void testCreateXPlanToEdit_ValidityPeriod()
                     throws Exception {
-        FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "Wuerdenhain.gml" );
+        FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "xplan30/Wuerdenhain.gml" );
 
         Date startDateTime = asDate( "2002-01-01" );
         Date endDateTime = asDate( "2010-01-01" );
@@ -299,7 +334,7 @@ public class XPlanToEditFactoryTest {
     @Test
     public void testCreateXPlanToEdit_ValidityPeriod_Missing()
                     throws Exception {
-        FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "Wuerdenhain.gml" );
+        FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "xplan30/Wuerdenhain.gml" );
 
         XPlan xPlan = new XPlan();
         XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( xPlan, featureCollection );
@@ -307,6 +342,14 @@ public class XPlanToEditFactoryTest {
 
         assertThat( validityPeriod.getStart(), is( nullValue() ) );
         assertThat( validityPeriod.getEnd(), is( nullValue() ) );
+    }
+
+    private RasterReference getByType( List<RasterReference> rasterBasisReferences, RasterReferenceType type ) {
+        for ( RasterReference rasterReference : rasterBasisReferences ) {
+            if ( type.equals( rasterReference.getType() ) )
+                return rasterReference;
+        }
+        return null;
     }
 
     private XPlan createXPlan( Date startDateTime, Date endDateTime ) {

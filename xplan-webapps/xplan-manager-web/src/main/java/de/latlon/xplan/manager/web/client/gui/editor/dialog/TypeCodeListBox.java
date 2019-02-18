@@ -56,14 +56,28 @@ public class TypeCodeListBox<T extends Enum<T>> extends ListBox {
 
     private static final TypeCodelistProvider CODELIST_PROVIDER = new TypeCodelistProvider();
 
+    public static final String NOSELECTION = "NOSELECTION";
+
     private final Class<T> enumClass;
+
+    private final boolean isOptional;
 
     /**
      * @param enumClass
      *            the enumeration class encapsulated, never <code>null</code>
      */
     public TypeCodeListBox( Class<T> enumClass ) {
-        this( enumClass, Collections.<T>emptyList() );
+        this( enumClass, false );
+    }
+
+    /**
+     * @param enumClass
+     *            the enumeration class encapsulated, never <code>null</code>
+     * @param isOptional
+     *            true if the selection is optional (default), false if mandatory
+     */
+    public TypeCodeListBox( Class<T> enumClass, boolean isOptional ) {
+        this( enumClass, Collections.<T>emptyList(), isOptional );
     }
 
     /**
@@ -73,7 +87,20 @@ public class TypeCodeListBox<T extends Enum<T>> extends ListBox {
      *            list of enums to exclude from {@link ListBox}, may be empty but never <code>null</code>
      */
     public TypeCodeListBox( Class<T> enumClass, List<T> disabledEnumEntries ) {
+        this( enumClass, Collections.<T>emptyList(), true );
+    }
+
+    /**
+     * @param enumClass
+     *            the enumeration class encapsulated, never <code>null</code>
+     * @param disabledEnumEntries
+     *            list of enums to exclude from {@link ListBox}, may be empty but never <code>null</code>
+     * @param isOptional
+     *            true if the selection is optional (default), false if mandatory
+     */
+    public TypeCodeListBox( Class<T> enumClass, List<T> disabledEnumEntries, boolean isOptional ) {
         this.enumClass = enumClass;
+        this.isOptional = isOptional;
         initListBoxItems( enumClass, disabledEnumEntries );
     }
 
@@ -84,6 +111,9 @@ public class TypeCodeListBox<T extends Enum<T>> extends ListBox {
      */
     public T getValueAsEnum() {
         int selectedIndex = getSelectedIndex();
+        if ( isOptional && selectedIndex == 0 ) {
+            return null;
+        }
         if ( selectedIndex > -1 ) {
             String value = getValue( selectedIndex );
             for ( T en : EnumSet.allOf( enumClass ) ) {
@@ -100,24 +130,43 @@ public class TypeCodeListBox<T extends Enum<T>> extends ListBox {
      *            the enumeration to select, may be <code>null</code> (first item is selected).
      */
     public void selectItem( T enumToSelect ) {
-        int indexToSelect = findIndexToSelect( enumToSelect );
+        if ( enumToSelect == null && !isOptional )
+            return;
+
+        int indexToSelect;
+        if ( enumToSelect == null && isOptional )
+            indexToSelect = findIndexToSelect( NOSELECTION );
+        else
+            indexToSelect = findIndexToSelect( enumToSelect );
         setSelectedIndex( indexToSelect );
     }
 
     private void initListBoxItems( Class<T> enumClass, List<T> disabledEnumEntries ) {
         clear();
         List<Code> items = CODELIST_PROVIDER.retrieveItems( enumClass );
+        if ( isOptional ) {
+            addItem( "Keine Auswahl", NOSELECTION );
+        }
         for ( Code item : items ) {
             if ( isEnabled( item, disabledEnumEntries ) )
                 addItem( item.getItem(), item.getCode() );
         }
+        if ( isOptional ) {
+            int indexOfNoSelection = findIndexToSelect( NOSELECTION );
+            setSelectedIndex( indexOfNoSelection );
+        }
     }
 
     private int findIndexToSelect( T enumToSelect ) {
+        String name = enumToSelect.name();
+        return findIndexToSelect( name );
+    }
+
+    private int findIndexToSelect( String name ) {
         int numberOfItems = getItemCount();
         for ( int itemIndex = 0; itemIndex < numberOfItems; itemIndex++ ) {
             String itemValue = getValue( itemIndex );
-            if ( itemValue.equals( enumToSelect.name() ) )
+            if ( itemValue.equals( name ) )
                 return itemIndex;
         }
         return 0;

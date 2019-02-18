@@ -1943,18 +1943,22 @@ Festsetzung von Bindungen für Bepflanzungen und für die Erhaltung von Bäumen,
           <element name="massnahme" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_SPEMassnahmenDatenPropertyType" />
           <element name="istAusgleich" minOccurs="0" default="false" type="boolean" />
           <element name="refMassnahmenText" minOccurs="0" type="xplan:XP_ExterneReferenzPropertyType">
+            <!--
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_ExterneReferenz</gml:targetElement>
               </appinfo>
             </annotation>
+            -->
           </element>
           <element name="refLandschaftsplan" minOccurs="0" type="xplan:XP_ExterneReferenzPropertyType">
+            <!--
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_ExterneReferenz</gml:targetElement>
               </appinfo>
             </annotation>
+            -->
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfBP_SchutzPflegeEntwicklungsFlaeche" minOccurs="0" maxOccurs="unbounded" />
         </sequence>

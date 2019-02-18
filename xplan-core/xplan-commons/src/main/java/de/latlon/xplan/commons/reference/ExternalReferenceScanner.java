@@ -48,6 +48,11 @@ public class ExternalReferenceScanner {
         return new ExternalReferenceInfo( externalRefs, rasterPlanBaseScans, rasterPlanUpdateScans );
     }
 
+    public ExternalReferenceInfo scan( FeatureCollection fc, XPlanVersion version  ) {
+        scanFc( fc, version );
+        return new ExternalReferenceInfo( externalRefs, rasterPlanBaseScans, rasterPlanUpdateScans );
+    }
+
     private void scanFc( FeatureCollection fc, XPlanVersion version ) {
         switch ( version ) {
         case XPLAN_2:

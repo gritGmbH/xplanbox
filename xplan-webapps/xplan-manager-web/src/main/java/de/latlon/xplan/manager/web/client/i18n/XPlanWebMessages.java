@@ -338,7 +338,29 @@ public interface XPlanWebMessages extends Messages {
 
     String editCaptionRasterBasisType();
 
-    String editCaptionRasterBasisEmptyHint();
+    String editCaptionRasterBasisGeorefMimeType();
+
+    String editCaptionRasterBasisArt();
+
+    String  editCaptionRasterBasisInformationssystemURL();
+
+    String editCaptionRasterBasisReferenzName();
+
+    String editCaptionRasterBasisReferenzMimeType();
+
+    String editCaptionRasterBasisBeschreibung();
+
+    String editCaptionRasterBasisDatum();
+
+    String editCaptionRasterBasisInvalid();
+
+    String editCaptionNewRasterBasis();
+
+    String editCaptionRasterBasisReferenceNameOrUrl();
+
+    String editCaptionRasterBasisGeoReferenceNotAllowed();
+
+    String editCaptionRasterBasisGeoReferenceMimeTypeNotAllowed();
 
     String editCaptionChangesDialogEdit();
 
@@ -356,9 +378,13 @@ public interface XPlanWebMessages extends Messages {
     
     String editCaptionRasterBasisDialogEdit();
 
+    String editCaptionRasterBasisDialogNew();
+
     String editCaptionReferencesCurrentFile();
 
     String editCaptionReferencesRemoveFileTooltip();
+
+    String editUnsupportedPropertyRefType();
 
     String publishPlu();
 

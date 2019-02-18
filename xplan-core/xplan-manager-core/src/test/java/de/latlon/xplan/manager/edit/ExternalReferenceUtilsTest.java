@@ -57,7 +57,7 @@ import org.junit.Test;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
-import de.latlon.xplan.manager.web.shared.edit.RasterWithReferences;
+import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 
 /**
@@ -87,9 +87,13 @@ public class ExternalReferenceUtilsTest {
     public void testCreateExternalRefAddedOrUpdated_XPlanToEdit()
                     throws Exception {
         XPlanToEdit planToEdit = new XPlanToEdit();
-        RasterWithReferences rasterBasis = new RasterWithReferences();
-        rasterBasis.addRasterReference( new RasterReference( "G.tif", null, LEGEND ) );
-        rasterBasis.addRasterReference( new RasterReference( "A.tif", null, SCAN ) );
+        RasterBasis rasterBasis = new RasterBasis();
+        RasterReference rasterReference1 = new RasterReference( "G.tif", null, LEGEND, null, null, null, null, null,
+                                                                null, null );
+        RasterReference rasterReference2 = new RasterReference( "A.tif", null, SCAN, null, null, null, null, null, null,
+                                                                null );
+        rasterBasis.addRasterReference( rasterReference1 );
+        rasterBasis.addRasterReference( rasterReference2 );
         planToEdit.setRasterBasis( rasterBasis );
 
         List<File> uploadedArtefacts = createUploadedFileList( "A.tif", "B.jpg", "C.png" );

@@ -220,6 +220,12 @@ public class EditorPanel extends DecoratorPanel {
                 } else {
                     RasterDialog rasterDialog = new RasterDialog( response );
                     rasterDialog.addRasterHandler( createRasterHandler() );
+                    rasterDialog.addCancelClickedHandler( new ClickHandler() {
+                        @Override
+                        public void onClick( ClickEvent clickEvent ) {
+                            saveDialogBox.hide();
+                        }
+                    } );
                 }
             }
 
@@ -250,7 +256,7 @@ public class EditorPanel extends DecoratorPanel {
     }
 
     private boolean isValid() {
-        return areComponentsValid( baseDataPanel, validityPeriodPanel );
+        return areComponentsValid( baseDataPanel, validityPeriodPanel, rasterBasisPanel );
     }
 
     private DialogBox createAndShowSaveDialogBox() {
