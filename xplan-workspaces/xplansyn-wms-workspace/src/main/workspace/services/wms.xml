@@ -11,10 +11,12 @@
     <wms:ThemeId>fplan</wms:ThemeId>
     <wms:ThemeId>lplan</wms:ThemeId>
     <wms:ThemeId>rplan</wms:ThemeId>
+    <wms:ThemeId>soplan</wms:ThemeId>
     <wms:ThemeId>bplanraster</wms:ThemeId>
     <wms:ThemeId>fplanraster</wms:ThemeId>
     <wms:ThemeId>lplanraster</wms:ThemeId>
     <wms:ThemeId>rplanraster</wms:ThemeId>
+    <wms:ThemeId>soplanraster</wms:ThemeId>
   </wms:ServiceConfiguration>
   <wms:FeatureInfoFormats>
     <wms:GetFeatureInfoFormat>

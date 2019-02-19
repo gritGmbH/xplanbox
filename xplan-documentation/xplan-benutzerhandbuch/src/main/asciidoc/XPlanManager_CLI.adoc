@@ -71,11 +71,11 @@ Alternativer Betriebsmodus:
 
 Raster-Operationen:
 
- -addlayer <bplan|lplan|rplan|fplan> <rasterplanid> <tiffid> <layername> <layertitle> [<categoryname>]
- -removelayer <bplan|lplan|rplan|fplan> <layername>
- -addcategory <bplan|lplan|rplan|fplan> [<uppercategory>] <categoryname> <categorytitle>
- -removecategory <bplan|lplan|rplan|fplan> <categoryname>
- -movelayer <bplan|lplan|rplan|fplan> <layername> <categoryname>
+ -addlayer <bplan|lplan|rplan|fplan|soplan> <rasterplanid> <tiffid> <layername> <layertitle> [<categoryname>]
+ -removelayer <bplan|lplan|rplan|fplan|soplan> <layername>
+ -addcategory <bplan|lplan|rplan|fplan|soplan> [<uppercategory>] <categoryname> <categorytitle>
+ -removecategory <bplan|lplan|rplan|fplan|soplan> <categoryname>
+ -movelayer <bplan|lplan|rplan|fplan|soplan> <layername> <categoryname>
 ----
 
 [[xplanmanager-cli-auflistung]]

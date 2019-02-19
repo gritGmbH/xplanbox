@@ -23,6 +23,8 @@ public class VectorLayerConfiguration implements Serializable {
 
     private String rpVectorLayer;
 
+    private String soVectorLayer;
+
     public VectorLayerConfiguration() {
     }
 
@@ -37,14 +39,17 @@ public class VectorLayerConfiguration implements Serializable {
      *            the lp_* Layer to display in map preview, never <code>null</code>
      * @param rpLayer
      *            the rp_* Layer to display in map preview, never <code>null</code>
+     * @param soLayer
+     *            the so_* Layer to display in map preview, never <code>null</code>
      */
     public VectorLayerConfiguration( String vectorWmsName, String bpLayer, String fpLayer, String lpLayer,
-                                     String rpLayer ) {
+                                     String rpLayer, String soLayer  ) {
         this.vectorWmsName = vectorWmsName;
         this.bpVectorLayer = bpLayer;
         this.fpVectorLayer = fpLayer;
         this.lpVectorLayer = lpLayer;
         this.rpVectorLayer = rpLayer;
+        this.soVectorLayer = soLayer;
     }
 
     public String getVectorWmsName() {
@@ -67,6 +72,10 @@ public class VectorLayerConfiguration implements Serializable {
         return rpVectorLayer;
     }
 
+    public String getSoVectorLayer() {
+        return soVectorLayer;
+    }
+
     @Override
     public int hashCode() {
         int result = vectorWmsName.hashCode();
@@ -74,6 +83,7 @@ public class VectorLayerConfiguration implements Serializable {
         result = 31 * result + fpVectorLayer.hashCode();
         result = 31 * result + lpVectorLayer.hashCode();
         result = 31 * result + rpVectorLayer.hashCode();
+        result = 31 * result + soVectorLayer.hashCode();
         return result;
     }
 
@@ -95,6 +105,8 @@ public class VectorLayerConfiguration implements Serializable {
         if ( lpVectorLayer != null ? !lpVectorLayer.equals( that.lpVectorLayer ) : that.lpVectorLayer != null )
             return false;
         if ( rpVectorLayer != null ? !rpVectorLayer.equals( that.rpVectorLayer ) : that.rpVectorLayer != null )
+            return false;
+        if ( soVectorLayer != null ? !soVectorLayer.equals( that.soVectorLayer ) : that.soVectorLayer != null )
             return false;
 
         return true;

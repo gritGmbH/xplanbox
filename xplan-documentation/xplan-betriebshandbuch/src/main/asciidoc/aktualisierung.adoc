@@ -151,6 +151,7 @@ fplanraster.xml)
 lplanraster.xml)
 * RP_Planraster (Dateien: rplanpreraster.xml, rplanarchiveraster.xml,
 rplanraster.xml)
+* SO_Planraster (Dateien: soplanpreraster.xml, soplanarchiveraster.xml, soplanraster.xml)
 ______________________________________________________________________________________
 
 Die Themes-Konfigurationen der Vektordaten sollten komplett ausgetauscht
@@ -161,6 +162,7 @@ ___________________________________________
 * fplan.xml, fplanpre.xml, fplanarchive.xml
 * lplan.xml, lplanpre.xml, lplanarchive.xml
 * rplan.xml, rplanpre.xml, rplanarchive.xml
+* soplan.xml, soplanpre.xml, soplanarchive.xml
 ___________________________________________
 
 [[aktualisierung-des-wms-workspaces-auf-die-version-2.4-der-xplanbox]]
