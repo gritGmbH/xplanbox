@@ -1,7 +1,8 @@
-static def trimUrl( stringToTrim ) {
-  if ( stringToTrim ==~ /.*\s.*/ ) {
-   // if ( stringToTrim.contains(" ") ) {
-    return stringToTrim.trim()
-  }
-  return stringToTrim
+static def trimUrl(stringToTrim) {
+    try {
+        return stringToTrim.trim()
+    } catch (Exception e1) {
+        // ignore
+    }
+    return stringToTrim
 }
