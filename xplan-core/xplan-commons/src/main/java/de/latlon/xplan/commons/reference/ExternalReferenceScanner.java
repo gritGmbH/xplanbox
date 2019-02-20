@@ -1,15 +1,6 @@
 package de.latlon.xplan.commons.reference;
 
-import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
-import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersion;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.xml.namespace.QName;
-
+import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.GMLReference;
@@ -18,7 +9,14 @@ import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 
-import de.latlon.xplan.commons.XPlanVersion;
+import javax.xml.namespace.QName;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
+import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersion;
 
 /**
  * Scans an XPlan {@link FeatureCollection} for <code>XP_ExterneReferenz</code>/<code>XP_ExterneReferenzPlan</code>
@@ -161,7 +159,7 @@ public class ExternalReferenceScanner {
     private void scanXplan5( FeatureCollection fc ) {
         for ( Feature feature : fc ) {
             String name = feature.getName().getLocalPart();
-            if ( "XP_Rasterdarstellung".equals( name ) ) {
+            if ( "XP_Rasterdarstellung".equals( name ) || name.matches( "(BP|LP|RP|FP|SO)_Bereich" ) ) {
                 for ( Property prop : feature.getProperties() ) {
                     if ( "refScan".equals( prop.getName().getLocalPart() ) ) {
                         List<ExternalReference> scanRefs = new ArrayList<ExternalReference>();
