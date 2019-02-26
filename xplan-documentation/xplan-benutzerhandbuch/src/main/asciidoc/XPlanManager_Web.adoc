@@ -142,20 +142,15 @@ erfolgt ist, wird überschrieben.
 
 * rasterbasis
 
-*Änderungen von Rasterplänen*
-
-* rasterAenderung
-
 Werden Referenzen entfernt oder verändert, so werden die nicht mehr
-referenzierten Dateien aus der Datenhaltung entfernt. In den Bereichen
-'Rasterbasis' und 'Änderungen von Rasterplänen' kann lediglich ein
-Austausch bereits referenzierter Dateien erfolgen. Änderungen führen zu
+referenzierten Dateien aus der Datenhaltung entfernt. Änderungen führen zu
 einer Aktualisierung der XPlanWMS-Konfiguration. Klickt der Nutzer auf
 __Speichern__, wird zunächst eine Validierung der Rasterdaten
 vorgenommen. Bei invaliden Dateien bekommt der Nutzer eine
 Entscheidungsoption wie mit diesen Daten umgegangen werden soll.
 Anschließend erfolgt die Aktualisierung der Daten.
 
+Im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> wurde bereits darauf hingewiesen, dass in der Version 5.1 zwei Varianten zur Referenzierung von Rasterdaten möglich sind. Beim Editieren von Plänen wird nur die alte Version unterstützt. Unabhängig ob im importierten Plan die neue oder alte Variante verwendet wurde, wird in dem editierten Plan immer die Referenzierung über den Feature Type XP_Rasterdarstellung erfolgen.
 
 NOTE: Die Editierfunktion steht nur für BPläne in den XPlanGML Versionen
 3.0, 4.1, 5.0 und 5.1 zur Verfügung.
