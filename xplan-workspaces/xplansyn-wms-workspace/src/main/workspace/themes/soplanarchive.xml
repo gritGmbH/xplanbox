@@ -53,14 +53,14 @@
       <Layer>so_schutzgebietNaturschutzrecht</Layer>
     </Theme>
     <Theme>
-      <Identifier>so_schutzgebietsonstigessecht</Identifier>
+      <Identifier>so_schutzgebietsonstigesrecht</Identifier>
       <d:Title>SO: SchutzgebietSonstigesRecht</d:Title>
-      <Layer>so_schutzgebietsonstigessecht</Layer>
+      <Layer>so_schutzgebietsonstigesrecht</Layer>
     </Theme>
     <Theme>
-      <Identifier>so_schutzgebietasserrecht</Identifier>
+      <Identifier>so_schutzgebietwasserrecht</Identifier>
       <d:Title>SO: SchutzgebietWasserrecht</d:Title>
-      <Layer>so_schutzgebietasserrecht</Layer>
+      <Layer>so_schutzgebietwasserrecht</Layer>
     </Theme>
     <Theme>
       <Identifier>so_strassenverkehrsrecht</Identifier>

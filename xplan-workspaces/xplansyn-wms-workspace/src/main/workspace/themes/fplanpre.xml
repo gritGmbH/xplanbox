@@ -50,6 +50,12 @@
       <Layer>fp_aufschuettsfl</Layer>
     </Theme>
     <Theme>
+      <Identifier>fp_abgrabung</Identifier>
+      <d:Title>FP: Abgrabung</d:Title>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>fp_abgrabung</Layer>
+    </Theme>
+    <Theme>
       <Identifier>fp_abgrabungsfl</Identifier>
       <d:Title>FP: Abgrabungsfläche</d:Title>
       <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>

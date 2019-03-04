@@ -212,12 +212,6 @@
       <Layer>bp_luftverkfl</Layer>
     </Theme>
     <Theme>
-      <Identifier>so_schienenverkehrsrecht</Identifier>
-      <d:Title>SO: Schienenverkehrsrecht</d:Title>
-      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>so_schienenverkehrsrecht</Layer>
-    </Theme>
-    <Theme>
       <Identifier>bp_nebenanlfl</Identifier>
       <d:Title>BP: Nebenanlagen</d:Title>
       <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
