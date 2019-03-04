@@ -49,9 +49,7 @@
         <GraphicStroke>
           <Graphic>
             <Mark>
-              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../symbols/laermschutz.svg" />
-              <Format>svg</Format>
+              <WellKnownName>X</WellKnownName>
               <Fill>
                 <SvgParameter name="fill">#000000</SvgParameter>
               </Fill>
@@ -61,7 +59,7 @@
                 <SvgParameter name="stroke-width">0.3</SvgParameter>
               </Stroke>
             </Mark>
-            <Size>4</Size>
+            <Size>4.25</Size>
           </Graphic>
         </GraphicStroke>
       </Stroke>
