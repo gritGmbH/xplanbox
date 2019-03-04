@@ -92,10 +92,5 @@
       <d:Title>SO: Plan</d:Title>
       <Layer>so_plan</Layer>
     </Theme>
-    <Theme>
-      <Identifier>so_textabschnitt</Identifier>
-      <d:Title>SO: TextAbschnitt</d:Title>
-      <Layer>so_textabschnitt</Layer>
-    </Theme>
   </Theme>
 </Themes>
