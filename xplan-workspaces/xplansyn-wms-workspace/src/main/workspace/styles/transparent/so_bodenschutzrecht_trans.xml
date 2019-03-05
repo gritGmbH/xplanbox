@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
-  <FeatureTypeName>xplan:FP_UnverbindlicheVormerkung</FeatureTypeName>
-  <!-- surface -->
+  <FeatureTypeName>xplan:SO_Bodenschutzrecht</FeatureTypeName>
+  <!-- Flaeche -->
   <Rule>
-    <Name>fp_unverbindlvormerk</Name>
+    <Name>so_bodenschutzrecht Flaeche</Name>
     <Description>
-      <Title>FP: Unverbindliche Vormerkung</Title>
+      <Title>SO: Bodenschutzrecht Flaeche</Title>
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
@@ -19,26 +19,24 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
+      <Fill>
+        <SvgParameter name="fill-opacity">0.0</SvgParameter>
+      </Fill>
       <Stroke>
-        <SvgParameter name="stroke">#000000</SvgParameter>
-        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">1.0</SvgParameter>
-        <SvgParameter name="stroke-linecap">round</SvgParameter>
-        <SvgParameter name="stroke-linejoin">round</SvgParameter>
-        <SvgParameter name="stroke-dasharray">5 2</SvgParameter>
+        <SvgParameter name="stroke-opacity">0.0</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
   </Rule>
-  <!-- line -->
+
+  <!-- Linie -->
   <Rule>
-    <Name>fp_unverbindlvormerk</Name>
+    <Name>so_bodenschutzrecht Linie</Name>
     <Description>
-      <Title>FP: Unverbindliche Vormerkung</Title>
+      <Title>BP: Bodenschutzrecht Linie</Title>
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
@@ -48,26 +46,21 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#000000</SvgParameter>
-        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">1.0</SvgParameter>
-        <SvgParameter name="stroke-linecap">round</SvgParameter>
-        <SvgParameter name="stroke-linejoin">round</SvgParameter>
-        <SvgParameter name="stroke-dasharray">5 2</SvgParameter>
+        <SvgParameter name="stroke-opacity">0.0</SvgParameter>
       </Stroke>
     </LineSymbolizer>
   </Rule>
-  <!-- point -->
+
+  <!-- Punkt -->
   <Rule>
-    <Name>fp_unverbindlvormerk</Name>
+    <Name>so_bodenschutzrecht Punkt</Name>
     <Description>
-      <Title>FP: Unverbindliche Vormerkung</Title>
+      <Title>BP: Bodenschutzrecht Punkt</Title>
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
@@ -77,25 +70,20 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
       <Graphic>
         <Mark>
           <WellKnownName>circle</WellKnownName>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
+            <SvgParameter name="fill-opacity">0.0</SvgParameter>
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-            <SvgParameter name="stroke-width">0.3</SvgParameter>
+            <SvgParameter name="stroke-width">0.0</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>70</Size>
+        <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
   </Rule>
