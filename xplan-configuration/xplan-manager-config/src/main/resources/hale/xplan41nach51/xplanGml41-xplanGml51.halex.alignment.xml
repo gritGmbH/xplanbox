@@ -4273,22 +4273,6 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C63b5c525-6d2f-4d63-8cb6-619eb4feff20" priority="normal">
-        <source>
-            <property>
-                <type name="BP_GemeinbedarfsFlaecheType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="zugunstenVon" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="BP_GemeinbedarfsFlaecheType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="ZU_Ausn" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C08dc4d36-c445-4751-b83a-20a20c94c4b0" priority="normal">
         <source>
             <property>
@@ -4614,6 +4598,22 @@
                 <type name="BP_GemeinbedarfsFlaecheType" ns="http://www.xplanung.de/xplangml/5/1"/>
                 <child name="detaillierteZweckbestimmung" ns="http://www.xplanung.de/xplangml/5/1"/>
                 <child name="codeSpace"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C63b5c525-6d2f-4d63-8cb6-619eb4feff20" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GemeinbedarfsFlaecheType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="zugunstenVon" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="BP_GemeinbedarfsFlaecheType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="zugunstenVon" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
