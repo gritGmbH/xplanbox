@@ -7,7 +7,7 @@ import java.util.Date;
 
 import de.latlon.xplan.manager.web.client.gui.PlanListColumnType;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.XPlanMetadata;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 
 /**
  * Compares different columns (name, id, type, additional type, legislation status, release date, import date and ade).
@@ -89,7 +89,7 @@ public class ColumnComparator implements Comparator<XPlan> {
     }
 
     private String retrievePlanStatus( XPlan plan ) {
-        XPlanMetadata xPlanMetadata = plan.getXplanMetadata();
+        AdditionalPlanData xPlanMetadata = plan.getXplanMetadata();
         if ( xPlanMetadata != null && xPlanMetadata.getPlanStatus() != null )
             return xPlanMetadata.getPlanStatus().getMessage();
         return null;

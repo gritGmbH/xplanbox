@@ -30,7 +30,6 @@ import org.junit.Test;
 
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -212,7 +211,7 @@ public class FeatureCollectionManipulatorTest {
         gmlReader.getIdContext().resolveLocalRefs();
         gmlReader.close();
         xmlReader.close();
-        return new XPlanFeatureCollection( fc, archive.getType() );
+        return new XPlanFeatureCollectionBuilder( fc, archive.getType() ).build();
     }
 
     private BaseMatcher<FeatureCollection> hasNumberOfProperties( final String featureName, final int noOfProperties ) {

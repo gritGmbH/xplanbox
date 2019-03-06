@@ -38,11 +38,9 @@ package de.latlon.xplan.manager.edit;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.XPlanMetadata;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
 import de.latlon.xplan.manager.web.shared.edit.Change;
-import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
-import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
@@ -354,7 +352,7 @@ public class XPlanToEditFactoryTest {
 
     private XPlan createXPlan( Date startDateTime, Date endDateTime ) {
         XPlan xPlan = new XPlan();
-        XPlanMetadata xplanMetadata = new XPlanMetadata( startDateTime, endDateTime );
+        AdditionalPlanData xplanMetadata = new AdditionalPlanData( startDateTime, endDateTime );
         xPlan.setXplanMetadata( xplanMetadata );
         return xPlan;
     }

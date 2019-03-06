@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
@@ -102,18 +103,21 @@ public class DatabaseUpdateTool {
     private void run( String workspaceName, String configurationFilePathVariable, List<UPDATE_VERSION> version )
                     throws Exception {
         Workspace workspace = initWorkspace( workspaceName );
-        XPlanDao xplanDao = createXplanDao( configurationFilePathVariable, workspace );
-        DatabaseDataUpdater dataUpdater = new DatabaseDataUpdater( xplanDao, workspace );
+        ManagerConfiguration managerConfiguration = new ManagerConfiguration( null );
+        ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper( workspace,
+                                                                                       managerConfiguration );
+        XPlanDao xplanDao = createXplanDao( configurationFilePathVariable, managerWorkspaceWrapper );
+        DatabaseDataUpdater dataUpdater = new DatabaseDataUpdater( xplanDao, managerWorkspaceWrapper );
         dataUpdater.updateData( version );
     }
 
-    private static XPlanDao createXplanDao( String configurationFilePathVariable, Workspace workspace )
+    private static XPlanDao createXplanDao( String configurationFilePathVariable, ManagerWorkspaceWrapper managerWorkspaceWrapper )
                     throws ConfigurationException {
         Path file = configurationFilePathVariable != null ? Paths.get( configurationFilePathVariable ) : null;
         ConfigurationDirectoryPropertiesLoader loader = new ConfigurationDirectoryPropertiesLoader( file );
         ManagerConfiguration managerConfiguration = new ManagerConfiguration( loader );
         CategoryMapper categoryMapper = new CategoryMapper( managerConfiguration );
-        return new XPlanDao( workspace, categoryMapper, managerConfiguration );
+        return new XPlanDao( managerWorkspaceWrapper, categoryMapper, managerConfiguration );
     }
 
     private static Workspace initWorkspace( String workspaceName )

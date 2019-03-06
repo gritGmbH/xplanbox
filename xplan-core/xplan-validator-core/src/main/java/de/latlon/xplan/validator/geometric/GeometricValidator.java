@@ -8,7 +8,7 @@ import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.types.AppSchema;
 
-import de.latlon.xplan.commons.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorResult;

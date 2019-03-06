@@ -53,7 +53,7 @@ import de.latlon.xplan.manager.web.shared.LegislationStatus;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.XPlanMetadata;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 
 /**
@@ -309,7 +309,7 @@ public class ManagerController {
                 ICRS crs = null;
                 if ( defaultCrs != null )
                     crs = CRSManager.getCRSRef( defaultCrs );
-                XPlanMetadata xPlanMetadata = new XPlanMetadata( planStatus, startDateTime, endDateTime );
+                AdditionalPlanData xPlanMetadata = new AdditionalPlanData( planStatus, startDateTime, endDateTime );
                 manager.importPlan( archive, crs, false, false, makeRasterConfig, internalId, xPlanMetadata );
             } catch ( Exception e ) {
                 String message = BUNDLE.getString( "loadFailed" ) + ": " + e.getMessage();

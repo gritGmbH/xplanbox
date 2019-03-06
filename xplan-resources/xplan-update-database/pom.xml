@@ -38,6 +38,10 @@
               <mainClass>de.latlon.xplan.update.tool.ReSynthesizerTool</mainClass>
               <name>reSynthesizer</name>
             </program>
+            <program>
+              <mainClass>de.latlon.xplan.update.tool.ProvideXPlan41AsXPlan51Tool</mainClass>
+              <name>xplan41To51converter</name>
+            </program>
           </programs>
         </configuration>
       </plugin>
@@ -53,6 +57,7 @@
                     <include name="databaseUpdate" />
                     <include name="districtUpdate" />
                     <include name="reSynthesizer" />
+                    <include name="xplan41To51converter" />
                   </fileset>
                 </chmod>
               </tasks>

@@ -1,17 +1,10 @@
-package de.latlon.xplan.commons;
+package de.latlon.xplan.commons.feature;
 
-import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
-import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValues;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
-import static org.deegree.cs.CRSUtils.EPSG_4326;
-
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
-import javax.xml.namespace.QName;
-
+import de.latlon.xplan.commons.XPlanAde;
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
+import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -28,18 +21,23 @@ import org.deegree.geometry.GeometryTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
-import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
+import javax.xml.namespace.QName;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
+import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValues;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
+import static org.deegree.cs.CRSUtils.EPSG_4326;
 
 /**
- * Provides convenient access to the information contained in the main document of an {@link XPlanArchive}.
- * 
- * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
- * 
- * @since 1.0
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XPlanFeatureCollection {
+public class XPlanFeatureCollectionBuilder {
+
+    private final Logger log = LoggerFactory.getLogger( XPlanFeatureCollectionBuilder.class );
 
     public static final String BP_RELEASE_DATE_PROP_NAME = "inkrafttretensDatum";
 
@@ -49,87 +47,65 @@ public class XPlanFeatureCollection {
 
     public static final String RP_RELEASE_DATE_PROP_NAME = "datumDesInkrafttretens";
 
-    private final Logger log = LoggerFactory.getLogger( XPlanFeatureCollection.class );
+    private final FeatureCollection features;
 
-    private final FeatureCollection fc;
+    private final XPlanType xPlanType;
 
-    private final XPlanType type;
+    private ExternalReferenceInfo externalReferenceInfo;
 
-    private final String name;
-
-    private final String nummer;
-
-    private final String gkz;
-
-    private final Date planReleaseDate;
-
-    private final ExternalReferenceInfo externalRefInfo;
-
-    private final Envelope bboxIn4326;
-
-    public XPlanFeatureCollection( FeatureCollection fc, XPlanType type ) {
-        this( fc, type, new ExternalReferenceScanner().scan( fc ) );
-    }
-
-    public XPlanFeatureCollection( FeatureCollection fc, XPlanVersion version, XPlanType type ) {
-        this( fc, type, new ExternalReferenceScanner().scan( fc, version ) );
-    }
-
-    public XPlanFeatureCollection( FeatureCollection fc, XPlanType type, ExternalReferenceInfo externalRefInfo ) {
-        this.fc = fc;
-        this.type = type;
-        Feature planFeature = findPlanFeature( fc, type );
-        name = getPlanName( planFeature );
-        nummer = getPlanNummer( planFeature );
-        gkz = getPlanGemeindeKennzahl( planFeature );
-        planReleaseDate = getPlanReleaseDate( type, planFeature );
-        this.externalRefInfo = externalRefInfo;
-        bboxIn4326 = createBboxIn4326( fc );
-    }
-
-    public XPlanType getType() {
-        return type;
-    }
-
-    public String getPlanName() {
-        return name;
-    }
-
-    public String getPlanNummer() {
-        return nummer;
-    }
-
-    public String getPlanGkz() {
-        return gkz;
-    }
-
-    public boolean getHasRaster() {
-        return !externalRefInfo.getRasterPlanBaseScans().isEmpty();
-    }
-
-    public Date getPlanReleaseDate() {
-        return planReleaseDate;
-    }
-
-    public FeatureCollection getFeatures() {
-        return fc;
-    }
-
-    public ExternalReferenceInfo getExternalReferenceInfo() {
-        return externalRefInfo;
+    /**
+     * @param features
+     *                 to be encapsulated, never <code>null</code>
+     * @param xPlanType
+     *                 type of the plan, never <code>null</code>
+     */
+    public XPlanFeatureCollectionBuilder( FeatureCollection features, XPlanType xPlanType ) {
+        this.features = features;
+        this.xPlanType = xPlanType;
     }
 
     /**
-     * Returns BBOX of feature collection in EPSG:4326.
-     * 
-     * @return BBOX in EPSG:4326, may be <code>null</code> if the feature collection does not contain any geometry
-     *         properties/envelope informations or the bounding box could not be transformed to EPSG:4326
+     * Sets the passed {@link ExternalReferenceInfo} instead of scanning from the {@link FeatureCollection}.
+     *
+     * @param externalReferenceInfo
+     *                 if <code>null</code> the {@link ExternalReferenceInfo} will be scanned from the {@link FeatureCollection}
+     * @return the builder instance
      */
-    public Envelope getBboxIn4326() {
-        return bboxIn4326;
+    public XPlanFeatureCollectionBuilder withExternalReferenceInfo( ExternalReferenceInfo externalReferenceInfo ) {
+        this.externalReferenceInfo = externalReferenceInfo;
+        return this;
     }
 
-    private String getPlanName( Feature planFeature ) {
+    /**
+     * Build the {@link XPlanFeatureCollection}.
+     *
+     * @return never <code>null</code>
+     */
+    public XPlanFeatureCollection build() {
+        Feature planFeature = findPlanFeature( features, xPlanType );
+        String planFeatureNamespaceUri = planFeature.getName().getNamespaceURI();
+        XPlanVersion version = XPlanVersion.valueOfNamespace( planFeatureNamespaceUri );
+        XPlanAde ade = determineAde( planFeatureNamespaceUri );
+        String name = parsePlanName( planFeature );
+        String nummer = parsePlanNummer( planFeature );
+        String gkz = parsePlanGemeindeKennzahl( planFeature );
+        Date planReleaseDate = parsePlanReleaseDate( xPlanType, planFeature );
+        Envelope bboxIn4326 = createBboxIn4326( features );
+        if ( externalReferenceInfo == null )
+            externalReferenceInfo = new ExternalReferenceScanner().scan( features, version );
+        return new XPlanFeatureCollection( features, xPlanType, name, nummer, gkz, planReleaseDate,
+                                           externalReferenceInfo, bboxIn4326, version, ade );
+    }
+
+    private XPlanAde determineAde( String namespaceUri ) {
+        try {
+            return XPlanAde.valueOfNamespace( namespaceUri );
+        } catch ( IllegalArgumentException e ) {
+        }
+        return null;
+    }
+
+    private String parsePlanName( Feature planFeature ) {
         String ns = planFeature.getName().getNamespaceURI();
         String name = getPropertyStringValue( planFeature, new QName( ns, "name" ) );
         if ( name == null || name.isEmpty() ) {
@@ -138,12 +114,12 @@ public class XPlanFeatureCollection {
         return name;
     }
 
-    private String getPlanNummer( Feature planFeature ) {
+    private String parsePlanNummer( Feature planFeature ) {
         String ns = planFeature.getName().getNamespaceURI();
         return getPropertyStringValue( planFeature, new QName( ns, "nummer" ) );
     }
 
-    private String getPlanGemeindeKennzahl( Feature planFeature ) {
+    private String parsePlanGemeindeKennzahl( Feature planFeature ) {
         String ns = planFeature.getName().getNamespaceURI();
         List<TypedObjectNode> gkzValues = getPropertyValues( planFeature, new QName( ns, "gkz" ) );
         if ( gkzValues.isEmpty() ) {
@@ -168,7 +144,7 @@ public class XPlanFeatureCollection {
         return gkz;
     }
 
-    private Date getPlanReleaseDate( XPlanType type, Feature planFeature ) {
+    private Date parsePlanReleaseDate( XPlanType type, Feature planFeature ) {
         String propName = detectReleaseDatePropertyName( type );
         if ( propName != null ) {
             QName releaseDatePropName = new QName( planFeature.getName().getNamespaceURI(), propName );

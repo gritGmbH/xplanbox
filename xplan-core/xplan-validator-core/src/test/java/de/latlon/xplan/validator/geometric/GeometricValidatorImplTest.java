@@ -8,15 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.stream.XMLStreamException;
-
-import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.types.AppSchema;
 import org.junit.Test;
 
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;

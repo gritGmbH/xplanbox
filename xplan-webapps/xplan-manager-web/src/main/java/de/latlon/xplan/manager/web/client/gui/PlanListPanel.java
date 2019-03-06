@@ -61,7 +61,7 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.XPlanEnvelope;
-import de.latlon.xplan.manager.web.shared.XPlanMetadata;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 
 /**
@@ -351,7 +351,7 @@ public class PlanListPanel extends DecoratorPanel {
         TextColumn<XPlan> planStatusColumn = new TextColumn<XPlan>() {
             @Override
             public String getValue( XPlan object ) {
-                XPlanMetadata xPlanMetadata = object.getXplanMetadata();
+                AdditionalPlanData xPlanMetadata = object.getXplanMetadata();
                 if ( xPlanMetadata != null && xPlanMetadata.getPlanStatus() != null )
                     return xPlanMetadata.getPlanStatus().getMessage();
                 return null;
@@ -374,7 +374,7 @@ public class PlanListPanel extends DecoratorPanel {
 
             @Override
             public String getCellStyleNames( Cell.Context context, XPlan object ) {
-                XPlanMetadata xplanMetadata = object.getXplanMetadata();
+                AdditionalPlanData xplanMetadata = object.getXplanMetadata();
                 if ( xplanMetadata != null ) {
                     if ( isValid( xplanMetadata ) )
                         return "cellButton buttonValid";
@@ -384,7 +384,7 @@ public class PlanListPanel extends DecoratorPanel {
                 return "cellButton buttonNotValidated";
             }
 
-            private Boolean isValid( XPlanMetadata xplanMetadata ) {
+            private Boolean isValid( AdditionalPlanData xplanMetadata ) {
                 Date startDateTime = xplanMetadata.getStartDateTime();
                 Date endDateTime = xplanMetadata.getEndDateTime();
                 return DateTimeUtils.isCurrentDateTimeBetween( startDateTime, endDateTime );
@@ -394,7 +394,7 @@ public class PlanListPanel extends DecoratorPanel {
         addToolTip( xPlanTable, validityStatusColumn, new TooltipCreator() {
             @Override
             public String createTooltip( CellPreviewEvent<XPlan> event ) {
-                XPlanMetadata xplanMetadata = event.getValue().getXplanMetadata();
+                AdditionalPlanData xplanMetadata = event.getValue().getXplanMetadata();
                 Date startDateTime = xplanMetadata.getStartDateTime();
                 Date endDateTime = xplanMetadata.getEndDateTime();
                 DateTimeFormat dateFormat = DateTimeUtils.getValidityDateFormat();
