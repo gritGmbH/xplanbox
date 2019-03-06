@@ -51,6 +51,7 @@ import java.util.List;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 
+import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import org.deegree.cs.exceptions.TransformationException;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
@@ -62,7 +63,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
@@ -144,7 +145,7 @@ public class UpdaterFromPre1_0To1_0 extends AbstractUpdater {
 
             FeatureCollection featureCollection = createFeatureCollection( conn, planId, version, ade );
 
-            XPlanFeatureCollection fc = new XPlanFeatureCollection( featureCollection, type );
+            XPlanFeatureCollection fc = new XPlanFeatureCollectionBuilder( featureCollection, type ).build();
             FeatureCollection synFc = xPlanSynthesizer.synthesize( version, fc );
 
             updatePlanInPlansTable( conn, type, version, fc, synFc, planId );

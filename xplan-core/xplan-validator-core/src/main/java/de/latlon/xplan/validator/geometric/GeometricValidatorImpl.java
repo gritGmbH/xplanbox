@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.xml.stream.XMLStreamException;
 
+import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import org.deegree.commons.tom.ReferenceResolvingException;
 import org.deegree.commons.tom.gml.GMLReference;
 import org.deegree.commons.xml.XMLParsingException;
@@ -23,7 +24,7 @@ import org.deegree.gml.reference.FeatureReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.commons.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.validator.ValidatorException;
@@ -65,14 +66,11 @@ public class GeometricValidatorImpl implements GeometricValidator {
     public XPlanFeatureCollection retrieveGeometricallyValidXPlanFeatures( XPlanArchive archive, ICRS crs,
                                                                            AppSchema schema, boolean force,
                                                                            String internalId )
-                                                                                           throws XMLStreamException,
-                                                                                           UnknownCRSException,
-                                                                                           ValidatorException {
-
-        return new XPlanFeatureCollection( retrieveFeatureCollection( new ArrayList<String>(), new ArrayList<String>(),
-                                                                      new ArrayList<BadGeometry>(), archive, crs, force,
-                                                                      schema, null, internalId ),
-                        archive.getType() );
+                    throws XMLStreamException, UnknownCRSException {
+        FeatureCollection fc = retrieveFeatureCollection( new ArrayList<String>(), new ArrayList<String>(),
+                                                          new ArrayList<BadGeometry>(), archive, crs, force, schema,
+                                                          null, internalId );
+        return new XPlanFeatureCollectionBuilder( fc, archive.getType() ).build();
     }
 
     private void resolveAndValidateXlinks( GMLStreamReader gmlStream, List<String> errors ) {

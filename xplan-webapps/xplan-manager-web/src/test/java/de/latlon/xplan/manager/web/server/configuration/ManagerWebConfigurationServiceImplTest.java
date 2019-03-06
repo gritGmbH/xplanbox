@@ -86,12 +86,12 @@ public class ManagerWebConfigurationServiceImplTest {
 
     private static VectorLayerConfiguration createVectorLayerConfig() {
         return new VectorLayerConfiguration( "Vector WMS", "bpVectorlayer", "fpVectorLayer", "lpVectorLayer",
-                        "rpVectorlayer" );
+                        "rpVectorlayer", "soVectorlayer" );
     }
 
     private static RasterLayerConfiguration createRasterLayerConfig() {
         return new RasterLayerConfiguration( "Raster WMS", "bpRasterlayer", "fpRasterLayer", "lpRasterLayer",
-                        "rpRasterlayer" );
+                        "rpRasterlayer", "soRasterlayer" );
     }
 
     private static ManagerWebConfiguration createManagerWbConfig() {

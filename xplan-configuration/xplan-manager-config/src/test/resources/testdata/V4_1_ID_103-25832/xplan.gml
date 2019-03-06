@@ -21,6 +21,15 @@
 					<gml:upperCorner>418523.944 5716033.278</gml:upperCorner>
 				</gml:Envelope>
 			</gml:boundedBy>
+			<xplan:textSchluessel>Text textSchluessel</xplan:textSchluessel>
+			<xplan:textSchluesselBegruendung>Text textSchluesselBegruendung</xplan:textSchluesselBegruendung>
+			<xplan:informell>
+				<xplan:XP_ExterneReferenz>
+					<xplan:referenzName>Informell</xplan:referenzName>
+					<xplan:referenzURL>Informell_Text.pdf</xplan:referenzURL>
+				</xplan:XP_ExterneReferenz>
+			</xplan:informell>
+			<xplan:rechtscharakter>1000</xplan:rechtscharakter>
 			<xplan:gehoertZuBP_Bereich
 				xlink:href="#FEATURE_02c85610-df24-47e6-b21e-b527cc30c0a6" />
 			<xplan:position>
@@ -11699,6 +11708,8 @@
 	</gml:featureMember>
 	<gml:featureMember>
 		<xplan:XP_TextAbschnitt gml:id="FEATURE_0453f54f-620f-40d7-8c1b-d842c6291a6b">
+			<xplan:schluessel>42</xplan:schluessel>
+			<xplan:gesetzlicheGrundlage>ABC</xplan:gesetzlicheGrundlage>
 			<xplan:text>Wiese</xplan:text>
 		</xplan:XP_TextAbschnitt>
 	</gml:featureMember>
@@ -11715,12 +11726,25 @@
 	</gml:featureMember>
 	<gml:featureMember>
 		<xplan:XP_TextAbschnitt gml:id="FEATURE_0f870967-bd6f-4367-9150-8a255f0290ad">
+			<gml:boundedBy>
+				<gml:Envelope srsName="EPSG:25833">
+					<gml:lowerCorner>417921.386 5715677.826</gml:lowerCorner>
+					<gml:upperCorner>418523.944 5716033.278</gml:upperCorner>
+				</gml:Envelope>
+			</gml:boundedBy>
+			<xplan:gesetzlicheGrundlage>ABC</xplan:gesetzlicheGrundlage>
 			<xplan:refText>
 				<xplan:XP_ExterneReferenz>
+          <xplan:georefURL>B-Georef.pdf      </xplan:georefURL>
+          <xplan:georefMimeType>application/pdf</xplan:georefMimeType>
+          <xplan:art>Dokument</xplan:art>
+          <xplan:informationssystemURL>http://InfoSys.de</xplan:informationssystemURL>
 					<xplan:referenzName>B-Plan_Klingmuehl_Heideweg_Text
 					</xplan:referenzName>
 					<xplan:referenzURL>B-Plan_Klingmuehl_Heideweg_Text.pdf
 					</xplan:referenzURL>
+					<xplan:referenzMimeType>application/pdf</xplan:referenzMimeType>
+					<xplan:beschreibung>test</xplan:beschreibung>
 				</xplan:XP_ExterneReferenz>
 			</xplan:refText>
 		</xplan:XP_TextAbschnitt>

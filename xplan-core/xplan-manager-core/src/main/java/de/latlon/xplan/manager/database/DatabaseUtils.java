@@ -24,18 +24,6 @@ public final class DatabaseUtils {
     }
 
     /**
-     * opens a connection to workspace's resource
-     *
-     * @param ws worspace providing resource
-     * @param jdbcPoolId jdbc pool id
-     * @return opened connection
-     */
-    public static Connection openConnection( Workspace ws, String jdbcPoolId ) {
-        ConnectionProvider resource = ws.getResource( ConnectionProviderProvider.class, jdbcPoolId );
-        return resource.getConnection();
-    }
-
-    /**
      * quietly closes a connection and logs if closing failed
      *
      * @param conn connection to close

@@ -20,8 +20,7 @@ import org.deegree.feature.types.AppSchema;
 import org.deegree.feature.types.FeatureType;
 import org.deegree.feature.types.property.SimplePropertyType;
 
-import de.latlon.xplan.commons.XPlanFeatureCollection;
-import de.latlon.xplan.manager.web.shared.XPlanMetadata;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 
 /**
  * Manipulates a deegree feature collection.
@@ -85,7 +84,7 @@ public class FeatureCollectionManipulator {
      */
     public void addAdditionalPropertiesToFeatures( FeatureCollection featureCollectionToModify,
                                                    AppSchema applicationSchema, int planId, Date wmsSortDate,
-                                                   XPlanMetadata xPlanMetadata ) {
+                                                   AdditionalPlanData xPlanMetadata ) {
         Iterator<Feature> featureCollectionIterator = featureCollectionToModify.iterator();
         while ( featureCollectionIterator.hasNext() ) {
             Feature feature = featureCollectionIterator.next();
@@ -127,7 +126,7 @@ public class FeatureCollectionManipulator {
             addDateProperty( feature, featureType, WMS_SORT_DATE_PROP_NAME, releaseDate );
     }
 
-    private void addStartAndEndDateTimeProperty( XPlanMetadata xPlanMetadata, Feature feature,
+    private void addStartAndEndDateTimeProperty( AdditionalPlanData xPlanMetadata, Feature feature,
                                                  FeatureType featureType ) {
         Date startDateTime = xPlanMetadata.getStartDateTime();
         if ( startDateTime != null )
@@ -185,7 +184,7 @@ public class FeatureCollectionManipulator {
         if ( ftName == null )
             return false;
         return ftName.startsWith( "BP_" ) || ftName.startsWith( "FP_" ) || ftName.startsWith( "LP_" )
-               || ftName.startsWith( "RP_" );
+               || ftName.startsWith( "RP_" ) || ftName.startsWith( "SO_" );
     }
 
 }

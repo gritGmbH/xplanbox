@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+  <Name>vollflaechig</Name>
+  <FeatureTypeName>xplan:SO_SchutzgebietSonstigesRecht</FeatureTypeName>
+  <Rule>
+    <Name>so_schutzgebietsonstrecht</Name>
+    <Description>
+      <Title>SO: SchutzgebietSonstigesRecht</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:Not>
+    </ogc:Filter>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">1.0</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+  <!-- Laermschutzbereich -->
+  <Rule>
+    <Name>so_schutzgebietsonstrecht Laermschutzbereich</Name>
+    <Description>
+      <Title>SO: SchutzgebietSonstigesRecht Laermschutzbereich</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+        <ogc:Literal>1000</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <GraphicStroke>
+          <Graphic>
+            <Mark>
+              <WellKnownName>X</WellKnownName>
+              <Fill>
+                <SvgParameter name="fill">#000000</SvgParameter>
+              </Fill>
+              <Stroke>
+                <SvgParameter name="stroke">#000000</SvgParameter>
+                <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+                <SvgParameter name="stroke-width">0.3</SvgParameter>
+              </Stroke>
+            </Mark>
+            <Size>4.25</Size>
+          </Graphic>
+        </GraphicStroke>
+      </Stroke>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.75</SvgParameter>
+        <SvgParameter name="stroke-linecap">round</SvgParameter>
+        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+      </Stroke>
+      <PerpendicularOffset>2.25</PerpendicularOffset>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.75</SvgParameter>
+        <SvgParameter name="stroke-linecap">round</SvgParameter>
+        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+      </Stroke>
+      <PerpendicularOffset>-2.25</PerpendicularOffset>
+    </PolygonSymbolizer>
+  </Rule>
+</FeatureTypeStyle>

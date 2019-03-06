@@ -4,6 +4,7 @@ import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoa
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.ReSythesizer;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
@@ -94,7 +95,9 @@ public class ReSynthesizerTool {
 
     private static XPlanDao createXplanDao( Workspace workspace, ManagerConfiguration managerConfiguration ) {
         CategoryMapper categoryMapper = new CategoryMapper( managerConfiguration );
-        return new XPlanDao( workspace, categoryMapper, managerConfiguration );
+        ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper( workspace,
+                                                                                       managerConfiguration );
+        return new XPlanDao( managerWorkspaceWrapper, categoryMapper, managerConfiguration );
     }
 
     private static ManagerConfiguration createManagerConfiguration( String configurationFilePathVariable )

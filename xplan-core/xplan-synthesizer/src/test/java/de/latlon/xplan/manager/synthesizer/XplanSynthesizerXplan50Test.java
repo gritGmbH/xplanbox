@@ -1,6 +1,6 @@
 package de.latlon.xplan.manager.synthesizer;
 
-import de.latlon.xplan.commons.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import junitparams.JUnitParamsRunner;

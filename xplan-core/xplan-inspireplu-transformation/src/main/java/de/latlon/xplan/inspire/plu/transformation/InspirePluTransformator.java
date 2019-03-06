@@ -1,6 +1,7 @@
 package de.latlon.xplan.inspire.plu.transformation;
 
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.hale.TransformationException;
 
 import java.nio.file.Path;
 

@@ -6,7 +6,6 @@
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:FP_UnverbindlicheVormerkung</FeatureTypeName>
   <!-- surface -->
-  <!-- TODO platzhalter -->
   <Rule>
     <Name>fp_unverbindlvormerk</Name>
     <Description>
@@ -31,11 +30,11 @@
         <SvgParameter name="stroke-width">1.0</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
         <SvgParameter name="stroke-linejoin">round</SvgParameter>
+        <SvgParameter name="stroke-dasharray">5 2</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
   </Rule>
   <!-- line -->
-  <!-- TODO platzhalter -->
   <Rule>
     <Name>fp_unverbindlvormerk</Name>
     <Description>
@@ -60,11 +59,11 @@
         <SvgParameter name="stroke-width">1.0</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
         <SvgParameter name="stroke-linejoin">round</SvgParameter>
+        <SvgParameter name="stroke-dasharray">5 2</SvgParameter>
       </Stroke>
     </LineSymbolizer>
   </Rule>
   <!-- point -->
-  <!-- TODO platzhalter -->
   <Rule>
     <Name>fp_unverbindlvormerk</Name>
     <Description>

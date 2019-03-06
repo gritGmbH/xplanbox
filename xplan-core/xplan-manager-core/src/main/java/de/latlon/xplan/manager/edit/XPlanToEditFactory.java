@@ -36,13 +36,12 @@
 package de.latlon.xplan.manager.edit;
 
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.XPlanMetadata;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.ChangeType;
 import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
-import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
@@ -117,7 +116,7 @@ public class XPlanToEditFactory {
 
     private void setValidityPeriod( XPlan xPlan, XPlanToEdit xPlanToEdit ) {
         if ( xPlan != null && xPlan.getXplanMetadata() != null ) {
-            XPlanMetadata xplanMetadata = xPlan.getXplanMetadata();
+            AdditionalPlanData xplanMetadata = xPlan.getXplanMetadata();
             xplanMetadata.getStartDateTime();
             ValidityPeriod validityPeriod = xPlanToEdit.getValidityPeriod();
             validityPeriod.setStart( xplanMetadata.getStartDateTime() );

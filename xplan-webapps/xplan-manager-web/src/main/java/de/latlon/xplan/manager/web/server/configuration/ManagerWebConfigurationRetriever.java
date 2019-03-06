@@ -127,8 +127,9 @@ public class ManagerWebConfigurationRetriever {
         String fpVectorLayer = retrieveMandatoryPropertyValue( props, "fpVectorLayer" );
         String lpVectorLayer = retrieveMandatoryPropertyValue( props, "lpVectorLayer" );
         String rpVectorLayer = retrieveMandatoryPropertyValue( props, "rpVectorLayer" );
+        String soVectorLayer = retrieveMandatoryPropertyValue( props, "soVectorLayer" );
         return new VectorLayerConfiguration( vectorWmsName, bpVectorLayer, fpVectorLayer, lpVectorLayer,
-                        rpVectorLayer );
+                        rpVectorLayer, soVectorLayer );
     }
 
     private RasterLayerConfiguration createRasterLayerConfigurationFromProperties( Properties props )
@@ -138,8 +139,9 @@ public class ManagerWebConfigurationRetriever {
         String fpRasterLayer = retrieveMandatoryPropertyValue( props, "fpRasterLayer" );
         String lpRasterLayer = retrieveMandatoryPropertyValue( props, "lpRasterLayer" );
         String rpRasterLayer = retrieveMandatoryPropertyValue( props, "rpRasterLayer" );
+        String soRasterLayer = retrieveMandatoryPropertyValue( props, "soRasterLayer" );
         return new RasterLayerConfiguration( rasterWmsName, bpRasterLayer, fpRasterLayer, lpRasterLayer,
-                        rpRasterLayer );
+                        rpRasterLayer, soRasterLayer );
     }
 
     private boolean parseActivateInternalIdDialog( Properties props )

@@ -44,7 +44,7 @@ import org.junit.Test;
 
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.XPlanMetadata;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -100,7 +100,7 @@ public class PlanStatusFilterTest {
 
     private XPlan createPlan( PlanStatus planStatus ) {
         XPlan xPlan = new XPlan( "name", "id", "type" );
-        XPlanMetadata xplanMetadata = new XPlanMetadata();
+        AdditionalPlanData xplanMetadata = new AdditionalPlanData();
         xplanMetadata.setPlanStatus( planStatus );
         xPlan.setXplanMetadata( xplanMetadata );
         return xPlan;

@@ -1,7 +1,8 @@
 package de.latlon.xplan.manager;
 
 import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -11,15 +12,18 @@ import de.latlon.xplan.commons.archive.XPlanPartArchive;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
+import de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
 import de.latlon.xplan.manager.codelists.XPlanCodeLists;
 import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfigurationAnalyser;
 import de.latlon.xplan.manager.database.DatabaseCreator;
+import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.SortPropertyUpdater;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.edit.XPlanManipulator;
@@ -30,11 +34,13 @@ import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
 import de.latlon.xplan.manager.jdbcconfig.JaxbJdbcConfigWriter;
 import de.latlon.xplan.manager.jdbcconfig.JdbcConfigWriter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.transformation.TransformationResult;
+import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.LegislationStatus;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.XPlanMetadata;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceManager;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
@@ -44,22 +50,18 @@ import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
+import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.xml.XMLParsingException;
-import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.GeometryFactory;
-import org.deegree.gml.GMLInputFactory;
-import org.deegree.gml.GMLStreamReader;
-import org.deegree.gml.GMLVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -87,7 +89,9 @@ import java.util.UUID;
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.parseFeatureCollection;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
+import static de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils.parseXPlanFeatureCollection;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
@@ -125,6 +129,8 @@ public class XPlanManager {
 
     private final DeegreeWorkspace managerWorkspace;
 
+    private final XPlanGmlTransformer xPlanGmlTransformer;
+
     private final XPlanExporter xPlanExporter;
 
     private final XPlanToEditFactory planToEditFactory = new XPlanToEditFactory();
@@ -140,6 +146,8 @@ public class XPlanManager {
     private final SortPropertyUpdater sortPropertyUpdater;
 
     private final InspirePluPublisher inspirePluPublisher;
+
+    private final ManagerWorkspaceWrapper managerWorkspaceWrapper;
 
     public XPlanManager() throws Exception {
         this( null, new XPlanArchiveCreator(), null, null );
@@ -159,47 +167,61 @@ public class XPlanManager {
     public XPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
                          ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader )
                                                                                                          throws Exception {
-        this( categoryMapper, archiveCreator, managerConfiguration, workspaceReloader, null );
+        this( categoryMapper, archiveCreator, managerConfiguration, workspaceReloader, null, null );
     }
 
     /**
      * @param categoryMapper
-     *            category mapper
+     *                 category mapper
      * @param archiveCreator
-     *            archive creator
+     *                 archive creator
      * @param managerConfiguration
-     *            manager configuration, may be <code>null</code>
+     *                 manager configuration, may be <code>null</code>
      * @param workspaceReloader
-     *            reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
+     *                 reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
+     * @param inspirePluTransformator
+     *                 transforms XPlanGML to INSPIRE PLU, may be <code>null</code>
+     * @param xPlanGmlTransformer
+     *                 transforms between different versions of XPlanGML, may be <code>null</code>
      * @throws Exception
      */
     public XPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
-                         ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader, InspirePluTransformator inspirePluTransformator )
-                            throws Exception {
-        this( categoryMapper, archiveCreator, managerConfiguration, null, null, workspaceReloader, inspirePluTransformator );
+                         ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
+                         InspirePluTransformator inspirePluTransformator, XPlanGmlTransformer xPlanGmlTransformer )
+                    throws Exception {
+        this( categoryMapper, archiveCreator, managerConfiguration, null, null, workspaceReloader,
+              inspirePluTransformator, xPlanGmlTransformer );
     }
-
 
     /**
      * @param categoryMapper
-     *            category mapper
+     *                 category mapper
      * @param archiveCreator
-     *            archive creator
+     *                 archive creator
      * @param managerConfiguration
-     *            manager configuration, may be <code>null</code>
+     *                 manager configuration, may be <code>null</code>
      * @param workspaceDir
-     *            workspace directory
+     *                 workspace directory
      * @param workspaceReloader
-     *            reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
+     *                 reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
+     * @param inspirePluTransformator
+     *                 transforms XPlanGML to INSPIRE PLU, may be <code>null</code>
+     * @param xPlanGmlTransformer
+     *                 transforms between different versions of XPlanGML, may be <code>null</code>
      * @throws Exception
      */
     public XPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
                          ManagerConfiguration managerConfiguration, File workspaceDir, File wmsWorkspaceDir,
-                         WorkspaceReloader workspaceReloader, InspirePluTransformator inspirePluTransformator ) throws Exception {
+                         WorkspaceReloader workspaceReloader, InspirePluTransformator inspirePluTransformator,
+                         XPlanGmlTransformer xPlanGmlTransformer )
+                    throws Exception {
         this.archiveCreator = archiveCreator;
         this.managerConfiguration = managerConfiguration;
         this.managerWorkspace = instantiateManagerWorkspace( workspaceDir );
-        this.xplanDao = new XPlanDao( managerWorkspace.getNewWorkspace(), categoryMapper, managerConfiguration );
+        this.xPlanGmlTransformer = xPlanGmlTransformer;
+        this.managerWorkspaceWrapper = new ManagerWorkspaceWrapper( this.managerWorkspace.getNewWorkspace(),
+                                                                    managerConfiguration );
+        this.xplanDao = new XPlanDao( this.managerWorkspaceWrapper, categoryMapper, managerConfiguration );
         this.workspaceReloader = workspaceReloader;
 
         DeegreeWorkspaceWrapper wmsWorkspace = createWmsWorkspaceWrapper( wmsWorkspaceDir );
@@ -281,7 +303,7 @@ public class XPlanManager {
                     throws Exception {
         XPlanArchive archive = analyzeArchive( archiveFileName );
         importPlan( archive, defaultCRS, force, makeWMSConfig, makeRasterConfig, workspaceFolder, internalId,
-                    new XPlanMetadata() );
+                    new AdditionalPlanData() );
     }
 
     /**
@@ -307,7 +329,7 @@ public class XPlanManager {
      */
     @PreAuthorize("hasPermission(#archive, 'hasDistrictPermission') or hasRole('ROLE_XPLAN_SUPERUSER')")
     public void importPlan( XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
-                            boolean makeRasterConfig, String internalId, XPlanMetadata xPlanMetadata )
+                            boolean makeRasterConfig, String internalId, AdditionalPlanData xPlanMetadata )
                     throws Exception {
         importPlan( archive, defaultCRS, force, makeWMSConfig, makeRasterConfig, null, internalId, xPlanMetadata );
     }
@@ -337,7 +359,7 @@ public class XPlanManager {
      */
     public void importPlan( XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
                             boolean makeRasterConfig, File workspaceFolder, String internalId,
-                            XPlanMetadata xPlanMetadata )
+                            AdditionalPlanData xPlanMetadata )
                     throws Exception {
         LOG.info( "- Importiere Plan " + archive );
         ICRS crs = determineActiveCrs( defaultCRS, archive );
@@ -345,11 +367,11 @@ public class XPlanManager {
         XPlanFeatureCollection fc = readAndValidateMainDocument( archive, crs, force, internalId, planStatus );
         FeatureCollection synFc = createSynFeatures( fc, archive.getVersion() );
         if ( internalId != null ) {
-            AppSchema synSchema = xplanDao.lookupStore( XPLAN_SYN, null, planStatus ).getSchema();
+            AppSchema synSchema = managerWorkspaceWrapper.lookupStore( XPLAN_SYN, null, planStatus ).getSchema();
             featureCollectionManipulator.addInternalId( synFc, synSchema, internalId );
         }
         Date sortDate = sortPropertyReader.readSortDate( archive.getType(), archive.getVersion(), fc.getFeatures() );
-        int planId = xplanDao.insert( archive, fc, synFc, xPlanMetadata, sortDate );
+        int planId = insertPlan( archive, xPlanMetadata, fc, synFc, sortDate );
         createRasterConfigurations( archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus,
                                     sortDate );
         reloadWorkspace();
@@ -524,7 +546,7 @@ public class XPlanManager {
         try {
             XPlanVersion version = XPlanVersion.valueOf( plan.getVersion() );
             XPlanAde ade = plan.getAde() != null ? XPlanAde.valueOf( plan.getAde() ) : null;
-            AppSchema appSchema = xplanDao.lookupStore( version, ade, plan.getXplanMetadata().getPlanStatus() ).getSchema();
+            AppSchema appSchema = managerWorkspaceWrapper.lookupStore( version, ade, plan.getXplanMetadata().getPlanStatus() ).getSchema();
             originalPlan = xplanDao.retrieveXPlanArtefact( plan.getId() );
             originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader( originalPlan );
             FeatureCollection originalPlanFC = parseFeatureCollection( originalPlanAsXmlReader, version, appSchema );
@@ -555,7 +577,6 @@ public class XPlanManager {
                                    List<File> uploadedArtefacts )
                                     throws Exception {
         InputStream originalPlan = null;
-        XMLStreamReader originalPlanAsXmlReader = null;
         try {
             String planId = oldXplan.getId();
             LOG.info( "- Editiere Plan mit ID {}", planId );
@@ -564,10 +585,9 @@ public class XPlanManager {
             XPlanType type = XPlanType.valueOf( oldXplan.getType() );
             XPlanAde ade = oldXplan.getAde() != null ? XPlanAde.valueOf( oldXplan.getAde() ) : null;
             PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
-            AppSchema appSchema = xplanDao.lookupStore( version, ade, oldPlanStatus ).getSchema();
+            AppSchema appSchema = managerWorkspaceWrapper.lookupStore( version, ade, oldPlanStatus ).getSchema();
             originalPlan = xplanDao.retrieveXPlanArtefact( planId );
-            originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader( originalPlan );
-            XPlanFeatureCollection originalPlanFC = parseXPlanFeatureCollection( originalPlanAsXmlReader, type,
+            XPlanFeatureCollection originalPlanFC = parseXPlanFeatureCollection( originalPlan, type,
                                                                                  version, appSchema );
             String oldLegislationStatus = FeatureCollectionUtils.retrieveLegislationStatus( originalPlanFC.getFeatures(), type );
             FeatureCollection featuresToModify = originalPlanFC.getFeatures();
@@ -583,23 +603,25 @@ public class XPlanManager {
                                                                                                      uploadedArtefacts,
                                                                                                      externalReferencesOriginal );
             Set<String> removedRefs = collectRemovedRefs( externalReferencesModified, externalReferencesOriginal );
-            XPlanFeatureCollection modifiedPlanFc = new XPlanFeatureCollection( modifiedFeatures, type,
-                            externalReferenceInfoToUpdate );
+
+            XPlanFeatureCollection modifiedPlanFc = new XPlanFeatureCollectionBuilder( modifiedFeatures,
+                                                                                       type ).withExternalReferenceInfo(
+                            externalReferenceInfoToUpdate ).build();
             reassignFids( modifiedPlanFc );
             FeatureCollection synFc = createSynFeatures( modifiedPlanFc, version );
             String internalId = xplanDao.retrieveInternalId( planId, type );
             if ( internalId != null ) {
-                AppSchema synSchema = xplanDao.lookupStore( XPLAN_SYN, null, oldPlanStatus ).getSchema();
+                AppSchema synSchema = managerWorkspaceWrapper.lookupStore( XPLAN_SYN, null, oldPlanStatus ).getSchema();
                 featureCollectionManipulator.addInternalId( synFc, synSchema, internalId );
             }
 
             // TODO: Validation required?
             PlanStatus newPlanStatus = detectNewPlanStatus( xPlanToEdit, oldLegislationStatus, oldPlanStatus );
-            XPlanMetadata xPlanMetadata = new XPlanMetadata( newPlanStatus, xPlanToEdit.getValidityPeriod().getStart(),
-                            xPlanToEdit.getValidityPeriod().getEnd() );
+            AdditionalPlanData xPlanMetadata = new AdditionalPlanData( newPlanStatus, xPlanToEdit.getValidityPeriod().getStart(),
+                                                                       xPlanToEdit.getValidityPeriod().getEnd() );
             Date sortDate = sortPropertyReader.readSortDate( type, version, modifiedFeatures );
-            xplanDao.update( oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, xPlanToEdit, sortDate,
-                             uploadedArtefacts, removedRefs );
+            updatePlan( oldXplan, xPlanToEdit, uploadedArtefacts, xPlanGml, removedRefs, modifiedPlanFc, synFc,
+                        xPlanMetadata, sortDate );
             LOG.info( "XPlan-GML wurde erfolgreich editiert. ID: {}", planId );
 
             xPlanRasterManager.removeRasterLayers( planId, externalReferenceInfoToRemove );
@@ -614,8 +636,6 @@ public class XPlanManager {
             LOG.info( "Rasterkonfiguration für den Plan mit der ID {} wurde ausgetauscht (falls vorhanden).", planId );
         } finally {
             closeQuietly( originalPlan );
-            if ( originalPlanAsXmlReader != null )
-                originalPlanAsXmlReader.close();
         }
     }
 
@@ -720,6 +740,75 @@ public class XPlanManager {
         }
     }
 
+    private int insertPlan( XPlanArchive archive, AdditionalPlanData xPlanMetadata, XPlanFeatureCollection fc,
+                            FeatureCollection synFc, Date sortDate )
+                    throws Exception {
+        if ( managerConfiguration.isProvidingXPlan41As51Active() && xPlanGmlTransformer != null ) {
+            TransformationResult transformationResult = xPlanGmlTransformer.transform( fc );
+            if ( transformationResult != null ) {
+                ValidatorResult validatorResult = validateSyntactically( transformationResult, archive.getAde() );
+                if ( validatorResult.isValid() ) {
+                    XPlanFeatureCollection transformedXPlanFc = createXPlanFeatureCollection( transformationResult,
+                                                                                              archive.getType(),
+                                                                                              archive.getAde() );
+                    return xplanDao.insert( archive, transformedXPlanFc, synFc, xPlanMetadata, sortDate );
+                } else {
+                    throw new Exception(
+                                    "Transformation of the XPlanGML 4.1 plan to XPlanGml 5.1 results in syntactically invalid GML: "
+                                    + validatorResult );
+                }
+            }
+        }
+        return xplanDao.insert( archive, fc, synFc, xPlanMetadata, sortDate );
+    }
+
+    private void updatePlan( XPlan oldXplan, XPlanToEdit xPlanToEdit, List<File> uploadedArtefacts, byte[] xPlanGml,
+                             Set<String> removedRefs, XPlanFeatureCollection modifiedPlanFc, FeatureCollection synFc,
+                             AdditionalPlanData xPlanMetadata, Date sortDate )
+                    throws Exception {
+        if ( managerConfiguration.isProvidingXPlan41As51Active() && xPlanGmlTransformer != null ) {
+            TransformationResult transformationResult = xPlanGmlTransformer.transform( modifiedPlanFc );
+            if ( transformationResult != null ) {
+                ValidatorResult validatorResult = validateSyntactically( transformationResult,
+                                                                         modifiedPlanFc.getAde() );
+                if ( validatorResult.isValid() ) {
+                    XPlanFeatureCollection transformedXPlanFc = createXPlanFeatureCollection( transformationResult,
+                                                                                              modifiedPlanFc.getType(),
+                                                                                              modifiedPlanFc.getAde() );
+                    xplanDao.update( oldXplan, xPlanMetadata, transformedXPlanFc, synFc, xPlanGml, xPlanToEdit,
+                                     sortDate, uploadedArtefacts, removedRefs );
+                    return;
+                } else {
+                    throw new Exception(
+                                    "Transformation of the XPlanGML 4.1 plan to XPlanGml 5.1 results in syntactically invalid GML: "
+                                    + validatorResult );
+                }
+            }
+        }
+        xplanDao.update( oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, xPlanToEdit, sortDate,
+                         uploadedArtefacts, removedRefs );
+    }
+
+    private XPlanFeatureCollection createXPlanFeatureCollection( TransformationResult transformationResult,
+                                                                 XPlanType type, XPlanAde ade )
+                    throws Exception {
+        byte[] resultAsBytes = transformationResult.getTransformationResult();
+        XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
+        try ( InputStream inputStream = new ByteArrayInputStream( resultAsBytes ) ) {
+            AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema( resultVersion, ade );
+            return XPlanFeatureCollectionUtils.parseXPlanFeatureCollection( inputStream, type, resultVersion, appSchema );
+        }
+    }
+
+    private ValidatorResult validateSyntactically( TransformationResult transformationResult, XPlanAde ade )
+                    throws IOException {
+        byte[] transformedPlan = transformationResult.getTransformationResult();
+        try ( InputStream is = new ByteArrayInputStream( transformedPlan ) ) {
+            XPlanVersion version = transformationResult.getVersionOfTheResult();
+            return new SyntacticValidatorImpl().validateSyntax( is, version, ade );
+        }
+    }
+
     private void createRasterConfigurations( XPlanArchive archive, boolean makeWMSConfig, boolean makeRasterConfig,
                                              File workspaceFolder, XPlanFeatureCollection fc, int planId,
                                              PlanStatus planStatus, Date sortDate )
@@ -777,23 +866,23 @@ public class XPlanManager {
                                                                 String internalId, PlanStatus planStatus )
                     throws Exception {
         performSchemaValidation( archive );
-        XPlanFeatureCollection fc = null;
         try {
-            fc = ( new GeometricValidatorImpl() ).retrieveGeometricallyValidXPlanFeatures( archive,
-                                                                                           crs,
-                                                                                           getAppSchemaFromStore( archive,
-                                                                                                                  planStatus ),
-                                                                                           force, internalId );
+            GeometricValidatorImpl geometricValidator = new GeometricValidatorImpl();
+            AppSchema appSchema = getAppSchemaFromStore( archive, planStatus );
+            XPlanFeatureCollection fc = geometricValidator.retrieveGeometricallyValidXPlanFeatures( archive, crs,
+                                                                                                    appSchema, force,
+                                                                                                    internalId );
             reassignFids( fc );
             long begin = System.currentTimeMillis();
             new SyntacticValidatorImpl().validateReferences( archive, fc.getExternalReferenceInfo(), force );
             LOG.info( "- Überprüfung der externen Referenzen..." );
             long elapsed = System.currentTimeMillis() - begin;
             LOG.info( "OK [" + elapsed + " ms]" );
+            return fc;
         } catch ( XMLStreamException | UnknownCRSException e ) {
-            e.printStackTrace();
+            LOG.error( "Could not read and validate xplan gml", e );
+            return null;
         }
-        return fc;
     }
 
     private void reassignFids( XPlanFeatureCollection fc ) {
@@ -819,7 +908,7 @@ public class XPlanManager {
     }
 
     private AppSchema getAppSchemaFromStore( XPlanArchive archive, PlanStatus planStatus ) {
-        return xplanDao.lookupStore( archive.getVersion(), archive.getAde(), planStatus ).getSchema();
+        return managerWorkspaceWrapper.lookupStore( archive.getVersion(), archive.getAde(), planStatus ).getSchema();
     }
 
     private void performSchemaValidation( XPlanArchive archive )
@@ -893,32 +982,6 @@ public class XPlanManager {
         long elapsed = System.currentTimeMillis() - begin;
         LOG.info( "OK [" + elapsed + " ms]" );
         return synFc;
-    }
-
-    private XPlanFeatureCollection parseXPlanFeatureCollection( XPlanArchive archive )
-                    throws XMLStreamException, UnknownCRSException {
-        XMLStreamReader plan = archive.getMainFileXmlReader();
-        XPlanType type = archive.getType();
-        XPlanVersion version = archive.getVersion();
-        AppSchema appSchema = getAppSchemaFromStore( archive, null );
-        return parseXPlanFeatureCollection( plan, type, version, appSchema );
-    }
-
-    private XPlanFeatureCollection parseXPlanFeatureCollection( XMLStreamReader plan, XPlanType type,
-                                                                XPlanVersion version, AppSchema appSchema )
-                    throws XMLStreamException, UnknownCRSException {
-        FeatureCollection xplanFeatures = parseFeatureCollection( plan, version, appSchema );
-        return new XPlanFeatureCollection( xplanFeatures, type );
-    }
-
-    private FeatureCollection parseFeatureCollection( XMLStreamReader plan, XPlanVersion version, AppSchema appSchema )
-                    throws XMLStreamException, UnknownCRSException {
-        XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper( plan, null );
-        GMLVersion gmlVersion = version.getGmlVersion();
-        GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader( gmlVersion, xmlStream );
-        gmlStream.setGeometryFactory( new GeometryFactory() );
-        gmlStream.setApplicationSchema( appSchema );
-        return (FeatureCollection) gmlStream.readFeature( true );
     }
 
     private void reloadWorkspace() {

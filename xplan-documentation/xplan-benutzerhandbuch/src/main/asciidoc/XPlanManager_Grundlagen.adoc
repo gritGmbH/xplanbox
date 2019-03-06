@@ -127,6 +127,78 @@ Beispiel:
 </gml:featureMember>
 ----
 
+*XPlanGML 5.x:*
+
+Rasterdateien werden im Feature Type XP_Rasterdarstellung referenziert:
+
+----
+gml:featureMember
+  xplan:XP_Rasterdarstellung
+    xplan:refScan (kann auch mehrfach vorkommen)
+      xplan:XP_ExterneReferenz (jeweils mit id Attribut)
+        xplan:georefURL
+        xplan:art
+        xplan:referenzName
+        xplan:referenzURL
+----
+
+Das Element refScan kann beliebig häufig vorkommen. Das Element
+referenzURL beinhaltet die relative Referenz auf die Rasterdatei.
+Beispiel:
+
+[source,xml]
+----
+<gml:featureMember>
+    <xplan:XP_Rasterdarstellung gml:id="FEATURE_1234567890">
+        <xplan:refScan>
+            <xplan:XP_ExterneReferenz>
+                <xplan:georefURL>rasterdatei.tfw</xplan:georefURL>
+                <xplan:art>PlanMitGeoreferenz</xplan:art>
+                <xplan:referenzName>rasterdatei</xplan:referenzName>
+                <xplan:referenzURL>rasterdatei.tif</xplan:referenzURL>
+            </xplan:XP_ExterneReferenz>
+        </xplan:refScan>
+    </xplan:XP_RasterplanBasis>
+</gml:featureMember>
+----
+
+In XPlanGML 5.1 ist diese Referenzierung als veraltet notiert. Stattdessen werden Rasterdateien über die von XP_Bereich abgeleiteten Feature Types referenziert (im folgendem Beispiel BP_Bereich):
+
+----
+gml:featureMember
+  xplan:BP_Bereich
+    xplan:refScan (kann auch mehrfach vorkommen)
+      xplan:XP_ExterneReferenz (jeweils mit id Attribut)
+        xplan:georefURL
+        xplan:art
+        xplan:referenzName
+        xplan:referenzURL
+----
+
+Das Element refScan kann beliebig häufig vorkommen. Das Element
+referenzURL beinhaltet die relative Referenz auf die Rasterdatei.
+Beispiel:
+
+[source,xml]
+----
+<gml:featureMember>
+    <xplan:BP_Bereich gml:id="FEATURE_1234567890">
+        ...
+        <xplan:refScan>
+            <xplan:XP_ExterneReferenz>
+                <xplan:georefURL>rasterdatei.tfw</xplan:georefURL>
+                <xplan:art>PlanMitGeoreferenz</xplan:art>
+                <xplan:referenzName>rasterdatei</xplan:referenzName>
+                <xplan:referenzURL>rasterdatei.tif</xplan:referenzURL>
+            </xplan:XP_ExterneReferenz>
+        </xplan:refScan>
+        ...
+    </xplan:XP_RasterplanBasis>
+</gml:featureMember>
+----
+
+Ab Version 6.0 wird nur noch die zweite Variante unterstützt.
+
 [[voraussetzungen-fuer-die-rasterdaten]]
 ===== Voraussetzungen für die Rasterdaten
 

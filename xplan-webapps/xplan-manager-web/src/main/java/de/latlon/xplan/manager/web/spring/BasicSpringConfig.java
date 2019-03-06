@@ -9,6 +9,8 @@ import java.nio.file.Path;
 
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
 import de.latlon.xplan.inspire.plu.transformation.hale.HaleCliInspirePluTransformator;
+import de.latlon.xplan.manager.transformation.HaleXplan41ToXplan51Transformer;
+import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -96,9 +98,12 @@ public class BasicSpringConfig {
 
     @Bean
     public XPlanManager xPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
-                                      ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader, InspirePluTransformator inspirePluTransformator )
-                                                      throws Exception {
-        return new XPlanManager( categoryMapper, archiveCreator, managerConfiguration, workspaceReloader, inspirePluTransformator );
+                                      ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
+                                      InspirePluTransformator inspirePluTransformator,
+                                      XPlanGmlTransformer xPlanGmlTransformer )
+                    throws Exception {
+        return new XPlanManager( categoryMapper, archiveCreator, managerConfiguration, workspaceReloader,
+                                 inspirePluTransformator, xPlanGmlTransformer );
     }
 
     @Bean
@@ -159,7 +164,20 @@ public class BasicSpringConfig {
             return new HaleCliInspirePluTransformator( pathToHaleCli , pathToHaleProjectDirectory );
         return null;
     }
-    
+
+    @Bean
+    public XPlanGmlTransformer xPlanGmlTransformer( ManagerConfiguration managerConfiguration ) {
+        String pathToHaleCli = managerConfiguration.getPathToHaleCli();
+        Path pathToHaleProjectDirectory = managerConfiguration.getPathToHaleProjectDirectory();
+        if ( pathToHaleCli != null && pathToHaleProjectDirectory != null ) {
+            HaleXplan41ToXplan51Transformer haleXplan41ToXplan51Transformer = new HaleXplan41ToXplan51Transformer(
+                            pathToHaleCli, pathToHaleProjectDirectory );
+            return new XPlanGmlTransformer( haleXplan41ToXplan51Transformer );
+        }
+        return null;
+    }
+
+
     private ValidatorConfiguration validatorConfiguration()
                     throws IOException, ConfigurationException {
         ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();

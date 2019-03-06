@@ -23,6 +23,8 @@ public class RasterLayerConfiguration implements Serializable {
 
     private String rpRasterLayer;
 
+    private String soRasterLayer;
+
     public RasterLayerConfiguration() {
     }
 
@@ -30,21 +32,24 @@ public class RasterLayerConfiguration implements Serializable {
      * @param rasterWmsName
      *            displayed name of the raster maps of the wms, may be <code>null</code>
      * @param bpRasterLayer
-     *            the fp_* Layer to display in map preview, never <code>null</code>
+     *            the bp_* Layer to display in map preview, never <code>null</code>
      * @param fpRasterLayer
      *            the fp_* Layer to display in map preview, never <code>null</code>
      * @param lpRasterLayer
-     *            the fp_* Layer to display in map preview, never <code>null</code>
+     *            the lp_* Layer to display in map preview, never <code>null</code>
      * @param rpRasterLayer
-     *            the fp_* Layer to display in map preview, never <code>null</code>
+     *            the rp_* Layer to display in map preview, never <code>null</code>
+     * @param soRasterLayer
+     *            the so_* Layer to display in map preview, never <code>null</code>
      */
     public RasterLayerConfiguration( String rasterWmsName, String bpRasterLayer, String fpRasterLayer,
-                                     String lpRasterLayer, String rpRasterLayer ) {
+                                     String lpRasterLayer, String rpRasterLayer, String soRasterLayer ) {
         this.rasterWmsName = rasterWmsName;
         this.bpRasterLayer = bpRasterLayer;
         this.fpRasterLayer = fpRasterLayer;
         this.lpRasterLayer = lpRasterLayer;
         this.rpRasterLayer = rpRasterLayer;
+        this.soRasterLayer = soRasterLayer;
     }
 
     public String getRasterWmsName() {
@@ -67,6 +72,10 @@ public class RasterLayerConfiguration implements Serializable {
         return rpRasterLayer;
     }
 
+    public String getSoRasterLayer() {
+        return soRasterLayer;
+    }
+
     @Override
     public int hashCode() {
         int result = rasterWmsName.hashCode();
@@ -74,6 +83,7 @@ public class RasterLayerConfiguration implements Serializable {
         result = 31 * result + fpRasterLayer.hashCode();
         result = 31 * result + lpRasterLayer.hashCode();
         result = 31 * result + rpRasterLayer.hashCode();
+        result = 31 * result + soRasterLayer.hashCode();
         return result;
     }
 
@@ -95,6 +105,8 @@ public class RasterLayerConfiguration implements Serializable {
         if ( lpRasterLayer != null ? !lpRasterLayer.equals( that.lpRasterLayer ) : that.lpRasterLayer != null )
             return false;
         if ( rpRasterLayer != null ? !rpRasterLayer.equals( that.rpRasterLayer ) : that.rpRasterLayer != null )
+            return false;
+        if ( soRasterLayer != null ? !soRasterLayer.equals( that.soRasterLayer ) : that.soRasterLayer != null )
             return false;
 
         return true;
