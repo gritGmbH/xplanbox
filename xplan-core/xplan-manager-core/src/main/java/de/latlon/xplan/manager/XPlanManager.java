@@ -777,6 +777,7 @@ public class XPlanManager {
                                                                                               modifiedPlanFc.getAde() );
                     xplanDao.update( oldXplan, xPlanMetadata, transformedXPlanFc, synFc, xPlanGml, xPlanToEdit,
                                      sortDate, uploadedArtefacts, removedRefs );
+                    return;
                 } else {
                     throw new Exception(
                                     "Transformation of the XPlanGML 4.1 plan to XPlanGml 5.1 results in syntactically invalid GML: "
