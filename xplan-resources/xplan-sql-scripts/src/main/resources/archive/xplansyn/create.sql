@@ -10980,6 +10980,7 @@ CREATE TABLE xplansynarchive.xplan_rp_einzelhandel (
     xplan_istsiedlungsbeschraenkung text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_einzelhandel_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_einzelhandel','xplan_position','-1','GEOMETRY', 2);
@@ -11156,6 +11157,7 @@ CREATE TABLE xplansynarchive.xplan_rp_erholung (
     xplan_typtourismuscode text,
     xplan_besonderertyp text,
     xplan_besonderertypcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_erholung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_erholung','xplan_position','-1','GEOMETRY', 2);
@@ -11205,6 +11207,7 @@ CREATE TABLE xplansynarchive.xplan_rp_erneuerbareenergie (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_erneuerbareenergie_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_erneuerbareenergie','xplan_position','-1','GEOMETRY', 2);
@@ -11348,6 +11351,7 @@ CREATE TABLE xplansynarchive.xplan_rp_freiraum (
     xplan_flussrichtung text,
     xplan_istausgleichsgebiet text,
     xplan_imverbund text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_freiraum_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_freiraum','xplan_position','-1','GEOMETRY', 2);
@@ -11396,6 +11400,7 @@ CREATE TABLE xplansynarchive.xplan_rp_funktionszuweisung (
     xplan_typ text,
     xplan_typcode text,
     xplan_bezeichnung text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_funktionszuweisung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_funktionszuweisung','xplan_position','-1','GEOMETRY', 2);
@@ -11761,6 +11766,7 @@ CREATE TABLE xplansynarchive.xplan_rp_hochwasserschutz (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_hochwasserschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_hochwasserschutz','xplan_position','-1','GEOMETRY', 2);
@@ -11810,6 +11816,7 @@ CREATE TABLE xplansynarchive.xplan_rp_industriegewerbe (
     xplan_istsiedlungsbeschraenkung text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_industriegewerbe_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_industriegewerbe','xplan_position','-1','GEOMETRY', 2);
@@ -11969,6 +11976,7 @@ CREATE TABLE xplansynarchive.xplan_rp_kulturlandschaft (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_kulturlandschaft_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_kulturlandschaft','xplan_position','-1','GEOMETRY', 2);
@@ -12059,6 +12067,7 @@ CREATE TABLE xplansynarchive.xplan_rp_laermschutzbauschutz (
     xplan_flussrichtung text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_laermschutzbauschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_laermschutzbauschutz','xplan_position','-1','GEOMETRY', 2);
@@ -12233,6 +12242,7 @@ CREATE TABLE xplansynarchive.xplan_rp_luftverkehr (
     xplan_bezeichnung text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_luftverkehr_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_luftverkehr','xplan_position','-1','GEOMETRY', 2);
@@ -14147,6 +14157,7 @@ CREATE TABLE xplansynarchive.xplan_rp_planungsraum (
     xplan_flaechenschluss text,
     xplan_flussrichtung text,
     xplan_planungsraumbeschreibung text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_planungsraum_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_planungsraum','xplan_position','-1','GEOMETRY', 2);
@@ -14196,6 +14207,7 @@ CREATE TABLE xplansynarchive.xplan_rp_radwegwanderweg (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_radwegwanderweg_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_radwegwanderweg','xplan_position','-1','GEOMETRY', 2);
@@ -14349,6 +14361,7 @@ CREATE TABLE xplansynarchive.xplan_rp_rohstoff (
     xplan_bergbauplanungtypcode text,
     xplan_istaufschuettungablagerung text,
     xplan_detaillierterrohstofftyp text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_rohstoff_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_rohstoff','xplan_position','-1','GEOMETRY', 2);
@@ -14451,6 +14464,7 @@ CREATE TABLE xplansynarchive.xplan_rp_schienenverkehr (
     xplan_typcode text,
     xplan_besonderertyp text,
     xplan_besonderertypcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_schienenverkehr_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_schienenverkehr','xplan_position','-1','GEOMETRY', 2);
@@ -14498,6 +14512,7 @@ CREATE TABLE xplansynarchive.xplan_rp_siedlung (
     xplan_flussrichtung text,
     xplan_bauhoehenbeschraenkung integer,
     xplan_istsiedlungsbeschraenkung text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_siedlung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_siedlung','xplan_position','-1','GEOMETRY', 2);
@@ -14597,6 +14612,7 @@ CREATE TABLE xplansynarchive.xplan_rp_sonstigerfreiraumschutz (
     xplan_flussrichtung text,
     xplan_istausgleichsgebiet text,
     xplan_imverbund text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_sonstigerfreiraumschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_sonstigerfreiraumschutz','xplan_position','-1','GEOMETRY', 2);
@@ -14644,6 +14660,7 @@ CREATE TABLE xplansynarchive.xplan_rp_sonstigersiedlungsbereich (
     xplan_flussrichtung text,
     xplan_bauhoehenbeschraenkung integer,
     xplan_istsiedlungsbeschraenkung text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_sonstigersiedlungsbereich_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_sonstigersiedlungsbereich','xplan_position','-1','GEOMETRY', 2);
@@ -14787,6 +14804,7 @@ CREATE TABLE xplansynarchive.xplan_rp_sonstverkehr (
     xplan_bezeichnung text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_sonstverkehr_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_sonstverkehr','xplan_position','-1','GEOMETRY', 2);
@@ -14944,6 +14962,7 @@ CREATE TABLE xplansynarchive.xplan_rp_sportanlage (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_sportanlage_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_sportanlage','xplan_position','-1','GEOMETRY', 2);
@@ -14998,6 +15017,7 @@ CREATE TABLE xplansynarchive.xplan_rp_strassenverkehr (
     xplan_typcode text,
     xplan_besonderertyp text,
     xplan_besonderertypcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_strassenverkehr_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_strassenverkehr','xplan_position','-1','GEOMETRY', 2);
@@ -15239,6 +15259,7 @@ CREATE TABLE xplansynarchive.xplan_rp_wasserverkehr (
     xplan_bezeichnung text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_wasserverkehr_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_wasserverkehr','xplan_position','-1','GEOMETRY', 2);
@@ -15422,6 +15443,7 @@ CREATE TABLE xplansynarchive.xplan_rp_wohnensiedlung (
     xplan_istsiedlungsbeschraenkung text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_gehoertZuBereich text,
     CONSTRAINT xplan_rp_wohnensiedlung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_rp_wohnensiedlung','xplan_position','-1','GEOMETRY', 2);
