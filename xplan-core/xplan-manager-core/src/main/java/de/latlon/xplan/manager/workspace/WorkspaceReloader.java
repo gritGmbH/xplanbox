@@ -75,13 +75,9 @@ public class WorkspaceReloader {
     }
 
     private String retrieveWorkspaceReloadUrl( String url ) {
-        if ( url.contains( "config/update" ) )
-            return url;
-        if ( url.contains( "config/restart" ) )
-            return url;
         if ( !url.endsWith( "/" ) )
             url = url.concat( "/" );
-        return url.concat( "config/restart" );
+        return url.concat( "config/update" );
     }
 
     private HttpGet retrieveConfiguredHttpGet( String reloadUrl, String user, String password ) {
