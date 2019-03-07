@@ -11986,7 +11986,7 @@
             <element name="flussrichtung" minOccurs="0" type="string" />
             <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
             <element name="imVerbund" minOccurs="0" type="string" />
-            <element name="string" minOccurs="0" type="integer" />
+            <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
           </sequence>
