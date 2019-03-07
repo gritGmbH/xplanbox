@@ -10,6 +10,7 @@
     <Description>
       <Title>SO: SonstigesRecht</Title>
     </Description>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
