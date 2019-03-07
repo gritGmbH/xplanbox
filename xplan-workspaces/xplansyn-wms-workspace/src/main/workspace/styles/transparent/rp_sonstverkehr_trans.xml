@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
-<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-  <sld:NamedLayer>
-    <sld:Name>RP_SonstVerkehr</sld:Name>
-    <sld:UserStyle>
-      <sld:Name>transparent</sld:Name>
-      <sld:FeatureTypeStyle>
-        <sld:FeatureTypeName>xplan:RP_SonstVerkehr</sld:FeatureTypeName>
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+        <Name>transparent</Name>
+        <FeatureTypeName>xplan:RP_SonstVerkehr</FeatureTypeName>
 
         <!--Gueterverkehrszentrum-->
 
-        <sld:Rule>
-          <sld:Name>VR_GVZ</sld:Name>
-          <sld:Title>VR_GVZ</sld:Title>
+        <Rule>
+          <Name>VR_GVZ</Name>
+          <Description>
+            <Title>VR_GVZ</Title>
+          </Description>
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsEqualTo>
@@ -31,27 +31,29 @@
               </ogc:PropertyIsEqualTo>
             </ogc:And>
           </ogc:Filter>
-          <sld:PolygonSymbolizer>
+          <PolygonSymbolizer>
             <Geometry>
               <ogc:PropertyName>xplan:position</ogc:PropertyName>
             </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#000000</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">2.</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+            <Fill>
+              <SvgParameter name="fill-opacity">0</SvgParameter>
+            </Fill>
+            <Stroke>
+              <SvgParameter name="stroke">#000000</SvgParameter>
+              <SvgParameter name="stroke-width">2.</SvgParameter>
+              <SvgParameter name="stroke-opacity">0</SvgParameter>
+            </Stroke>
+          </PolygonSymbolizer>
+        </Rule>
 
 
         <!--regionalesGueterverkehrszentrum-->
 
-        <sld:Rule>
-          <sld:Name>VR_GVZ_reg</sld:Name>
-          <sld:Title>VR_GVZ_reg</sld:Title>
+        <Rule>
+          <Name>VR_GVZ_reg</Name>
+          <Description>
+            <Title>VR_GVZ_reg</Title>
+          </Description>
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsEqualTo>
@@ -70,27 +72,29 @@
               </ogc:PropertyIsEqualTo>
             </ogc:And>
           </ogc:Filter>
-          <sld:PolygonSymbolizer>
+          <PolygonSymbolizer>
             <Geometry>
               <ogc:PropertyName>xplan:position</ogc:PropertyName>
             </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#000000</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">2.</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+            <Fill>
+              <SvgParameter name="fill-opacity">0</SvgParameter>
+            </Fill>
+            <Stroke>
+              <SvgParameter name="stroke">#000000</SvgParameter>
+              <SvgParameter name="stroke-width">2.</SvgParameter>
+              <SvgParameter name="stroke-opacity">0</SvgParameter>
+            </Stroke>
+          </PolygonSymbolizer>
+        </Rule>
 
 
         <!--NeueVerkehrstechniken-->
 
-        <sld:Rule>
-          <sld:Name>VR_NeueVerkehrstechnik</sld:Name>
-          <sld:Title>VR_NeueVerkehrstechnik</sld:Title>
+        <Rule>
+          <Name>VR_NeueVerkehrstechnik</Name>
+          <Description>
+            <Title>VR_NeueVerkehrstechnik</Title>
+          </Description>
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsEqualTo>
@@ -109,25 +113,27 @@
               </ogc:PropertyIsEqualTo>
             </ogc:And>
           </ogc:Filter>
-          <sld:PolygonSymbolizer>
+          <PolygonSymbolizer>
             <Geometry>
               <ogc:PropertyName>xplan:position</ogc:PropertyName>
             </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#FF0000</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">1</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+            <Fill>
+              <SvgParameter name="fill-opacity">0</SvgParameter>
+            </Fill>
+            <Stroke>
+              <SvgParameter name="stroke">#FF0000</SvgParameter>
+              <SvgParameter name="stroke-width">1</SvgParameter>
+              <SvgParameter name="stroke-opacity">0</SvgParameter>
+            </Stroke>
+          </PolygonSymbolizer>
+        </Rule>
         <!--Gueterverkehrszentrum-->
 
-        <sld:Rule>
-          <sld:Name>VR GVZ</sld:Name>
-          <sld:Title>VR GVZ</sld:Title>
+        <Rule>
+          <Name>VR GVZ</Name>
+          <Description>
+            <Title>VR GVZ</Title>
+          </Description>
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsEqualTo>
@@ -140,24 +146,26 @@
               </ogc:PropertyIsEqualTo>
             </ogc:And>
           </ogc:Filter>
-          <sld:MinScaleDenominator>450000</sld:MinScaleDenominator>
-          <sld:MaxScaleDenominator>2000000</sld:MaxScaleDenominator>
-          <sld:PolygonSymbolizer>
+          <MinScaleDenominator>450000</MinScaleDenominator>
+          <MaxScaleDenominator>2000000</MaxScaleDenominator>
+          <PolygonSymbolizer>
             <Geometry>
               <ogc:PropertyName>xplan:position</ogc:PropertyName>
             </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+            <Fill>
+              <SvgParameter name="fill-opacity">0</SvgParameter>
+            </Fill>
+            <Stroke>
+              <SvgParameter name="stroke-opacity">0</SvgParameter>
+            </Stroke>
+          </PolygonSymbolizer>
+        </Rule>
 
-        <sld:Rule>
-          <sld:Name>VR GVZ</sld:Name>
-          <sld:Title>VR GVZ</sld:Title>
+        <Rule>
+          <Name>VR GVZ</Name>
+          <Description>
+            <Title>VR GVZ</Title>
+          </Description>
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsEqualTo>
@@ -170,24 +178,26 @@
               </ogc:PropertyIsEqualTo>
             </ogc:And>
           </ogc:Filter>
-          <sld:MinScaleDenominator>150000</sld:MinScaleDenominator>
-          <sld:MaxScaleDenominator>450000</sld:MaxScaleDenominator>
-          <sld:PolygonSymbolizer>
+          <MinScaleDenominator>150000</MinScaleDenominator>
+          <MaxScaleDenominator>450000</MaxScaleDenominator>
+          <PolygonSymbolizer>
             <Geometry>
               <ogc:PropertyName>xplan:position</ogc:PropertyName>
             </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+            <Fill>
+              <SvgParameter name="fill-opacity">0</SvgParameter>
+            </Fill>
+            <Stroke>
+              <SvgParameter name="stroke-opacity">0</SvgParameter>
+            </Stroke>
+          </PolygonSymbolizer>
+        </Rule>
 
-        <sld:Rule>
-          <sld:Name>VR GVZ</sld:Name>
-          <sld:Title>VR GVZ</sld:Title>
+        <Rule>
+          <Name>VR GVZ</Name>
+          <Description>
+            <Title>VR GVZ</Title>
+          </Description>
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsEqualTo>
@@ -200,24 +210,26 @@
               </ogc:PropertyIsEqualTo>
             </ogc:And>
           </ogc:Filter>
-          <sld:MinScaleDenominator>80000</sld:MinScaleDenominator>
-          <sld:MaxScaleDenominator>150000</sld:MaxScaleDenominator>
-          <sld:PolygonSymbolizer>
+          <MinScaleDenominator>80000</MinScaleDenominator>
+          <MaxScaleDenominator>150000</MaxScaleDenominator>
+          <PolygonSymbolizer>
             <Geometry>
               <ogc:PropertyName>xplan:position</ogc:PropertyName>
             </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+            <Fill>
+              <SvgParameter name="fill-opacity">0</SvgParameter>
+            </Fill>
+            <Stroke>
+              <SvgParameter name="stroke-opacity">0</SvgParameter>
+            </Stroke>
+          </PolygonSymbolizer>
+        </Rule>
 
-        <sld:Rule>
-          <sld:Name>VR GVZ</sld:Name>
-          <sld:Title>VR GVZ</sld:Title>
+        <Rule>
+          <Name>VR GVZ</Name>
+          <Description>
+            <Title>VR GVZ</Title>
+          </Description>
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsEqualTo>
@@ -230,24 +242,26 @@
               </ogc:PropertyIsEqualTo>
             </ogc:And>
           </ogc:Filter>
-          <sld:MinScaleDenominator>40000</sld:MinScaleDenominator>
-          <sld:MaxScaleDenominator>80000</sld:MaxScaleDenominator>
-          <sld:PolygonSymbolizer>
+          <MinScaleDenominator>40000</MinScaleDenominator>
+          <MaxScaleDenominator>80000</MaxScaleDenominator>
+          <PolygonSymbolizer>
             <Geometry>
               <ogc:PropertyName>xplan:position</ogc:PropertyName>
             </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+            <Fill>
+              <SvgParameter name="fill-opacity">0</SvgParameter>
+            </Fill>
+            <Stroke>
+              <SvgParameter name="stroke-opacity">0</SvgParameter>
+            </Stroke>
+          </PolygonSymbolizer>
+        </Rule>
 
-        <sld:Rule>
-          <sld:Name>VR_Güterverkehrszentrum</sld:Name>
-          <sld:Title>Vorranggebiet Güterverkehrszentrum</sld:Title>
+        <Rule>
+          <Name>VR_GÃ¼terverkehrszentrum</Name>
+          <Description>
+            <Title>VR GVZ</Title>
+          </Description>
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsEqualTo>
@@ -260,22 +274,24 @@
               </ogc:PropertyIsEqualTo>
             </ogc:And>
           </ogc:Filter>
-          <sld:PolygonSymbolizer>
+          <PolygonSymbolizer>
             <Geometry>
               <ogc:PropertyName>xplan:position</ogc:PropertyName>
             </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+            <Fill>
+              <SvgParameter name="fill-opacity">0</SvgParameter>
+            </Fill>
+            <Stroke>
+              <SvgParameter name="stroke-opacity">0</SvgParameter>
+            </Stroke>
+          </PolygonSymbolizer>
+        </Rule>
 
-        <sld:Rule>
-          <sld:Name>vb_Güterverkehrszentrum</sld:Name>
-          <sld:Title>Vorbehaltsgebiet Güterverkehrszentrum</sld:Title>
+        <Rule>
+          <Name>vb_GÃ¼terverkehrszentrum</Name>
+          <Description>
+            <Title>VR GVZ</Title>
+          </Description>
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsEqualTo>
@@ -288,25 +304,27 @@
               </ogc:PropertyIsEqualTo>
             </ogc:And>
           </ogc:Filter>
-          <sld:PolygonSymbolizer>
+          <PolygonSymbolizer>
             <Geometry>
               <ogc:PropertyName>xplan:position</ogc:PropertyName>
             </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+            <Fill>
+              <SvgParameter name="fill-opacity">0</SvgParameter>
+            </Fill>
+            <Stroke>
+              <SvgParameter name="stroke-opacity">0</SvgParameter>
+            </Stroke>
+          </PolygonSymbolizer>
+        </Rule>
 
 
         <!--regionalesGueterverkehrszentrum-->
 
-        <sld:Rule>
-          <sld:Name>VR_regGüterverkehrszentrum</sld:Name>
-          <sld:Title>Vorranggebiet Güterverkehrszentrum regional</sld:Title>
+        <Rule>
+          <Name>VR_regGÃ¼terverkehrszentrum</Name>
+          <Description>
+            <Title>VR GVZ regional</Title>
+          </Description>
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsEqualTo>
@@ -323,22 +341,24 @@
               </ogc:PropertyIsEqualTo>
             </ogc:And>
           </ogc:Filter>
-          <sld:PolygonSymbolizer>
+          <PolygonSymbolizer>
             <Geometry>
               <ogc:PropertyName>xplan:position</ogc:PropertyName>
             </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+            <Fill>
+              <SvgParameter name="fill-opacity">0</SvgParameter>
+            </Fill>
+            <Stroke>
+              <SvgParameter name="stroke-opacity">0</SvgParameter>
+            </Stroke>
+          </PolygonSymbolizer>
+        </Rule>
 
-        <sld:Rule>
-          <sld:Name>vb_regGüterverkehrszentrum</sld:Name>
-          <sld:Title>Vorbehaltsgebiet Güterverkehrszentrum regional</sld:Title>
+        <Rule>
+          <Name>vb_regGÃ¼terverkehrszentrum</Name>
+          <Description>
+            <Title>VR GVZ regional</Title>
+          </Description>
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsEqualTo>
@@ -355,25 +375,27 @@
               </ogc:PropertyIsEqualTo>
             </ogc:And>
           </ogc:Filter>
-          <sld:PolygonSymbolizer>
+          <PolygonSymbolizer>
             <Geometry>
               <ogc:PropertyName>xplan:position</ogc:PropertyName>
             </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+            <Fill>
+              <SvgParameter name="fill-opacity">0</SvgParameter>
+            </Fill>
+            <Stroke>
+              <SvgParameter name="stroke-opacity">0</SvgParameter>
+            </Stroke>
+          </PolygonSymbolizer>
+        </Rule>
 
 
         <!--NeueVerkehrstechniken-->
 
-        <sld:Rule>
-          <sld:Name>VR_neueVerkehrstechnik</sld:Name>
-          <sld:Title>Vorranggebiet neue Verkehrstechniken</sld:Title>
+        <Rule>
+          <Name>VR_neueVerkehrstechnik</Name>
+          <Description>
+            <Title>Vorranggebiet neue Verkehrstechniken</Title>
+          </Description>
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsEqualTo>
@@ -386,20 +408,17 @@
               </ogc:PropertyIsEqualTo>
             </ogc:And>
           </ogc:Filter>
-          <sld:PolygonSymbolizer>
+          <PolygonSymbolizer>
             <Geometry>
               <ogc:PropertyName>xplan:position</ogc:PropertyName>
             </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+            <Fill>
+              <SvgParameter name="fill-opacity">0</SvgParameter>
+            </Fill>
+            <Stroke>
+              <SvgParameter name="stroke-opacity">0</SvgParameter>
+            </Stroke>
+          </PolygonSymbolizer>
+        </Rule>
 
-      </sld:FeatureTypeStyle>
-    </sld:UserStyle>
-  </sld:NamedLayer>
-</sld:StyledLayerDescriptor>
+      </FeatureTypeStyle>

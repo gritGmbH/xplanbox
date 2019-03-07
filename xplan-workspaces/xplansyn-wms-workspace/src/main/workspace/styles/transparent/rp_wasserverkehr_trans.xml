@@ -1,535 +1,564 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
-<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-  <sld:NamedLayer>
-    <sld:Name>RP_Wasserverkehr</sld:Name>
-    <sld:UserStyle>
-      <sld:Name>transparent</sld:Name>
-      <sld:FeatureTypeStyle>
-        <sld:FeatureTypeName>xplan:RP_Wasserverkehr</sld:FeatureTypeName>
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureTypeStyle xmlns="http://www.opengis.net/se"
+                  xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+  <Name>transparent</Name>
+  <FeatureTypeName>xplan:RP_Wasserverkehr</FeatureTypeName>
 
 
-        <!--Seehafen_Binnenhafen-->
+  <!--Seehafen_Binnenhafen-->
 
-        <sld:Rule>
-          <sld:Name>VR_SeeBinnenhafen</sld:Name>
-          <sld:Title>VR_SeeBinnenhafen</sld:Title>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:Or>
-                <ogc:PropertyIsEqualTo>
-                  <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                  <ogc:Literal>1001</ogc:Literal>
-                </ogc:PropertyIsEqualTo>
-                <ogc:PropertyIsEqualTo>
-                  <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                  <ogc:Literal>1002</ogc:Literal>
-                </ogc:PropertyIsEqualTo>
-              </ogc:Or>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:PolygonSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#000000</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">2.</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
-
-
-        <!--HafenVonRegionalerBedeutung-->
-
-        <sld:Rule>
-          <sld:Name>VR_Hafen_reg</sld:Name>
-          <sld:Title>VR_Hafen_reg</sld:Title>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:bedeutsamkeitCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:PolygonSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#000000</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">2.</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+  <Rule>
+    <Name>VR_SeeBinnenhafen</Name>
+    <Description>
+      <Title>VR_SeeBinnenhafen</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+            <ogc:Literal>1001</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+            <ogc:Literal>1002</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Or>
+      </ogc:And>
+    </ogc:Filter>
+    <PolygonSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-width">2.</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
 
 
-        <!--Umschlagplatz-->
+  <!--HafenVonRegionalerBedeutung-->
 
-        <sld:Rule>
-          <sld:Name>VR_Umschlagplatz</sld:Name>
-          <sld:Title>VR_Umschlagplatz</sld:Title>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>2000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:PolygonSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#000000</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">2.</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
-
-
-        <!--Schleuse_Hebewerk-->
-
-        <sld:Rule>
-          <sld:Name>VR_Schleuse</sld:Name>
-          <sld:Title>VR_Schleuse</sld:Title>
-          <MinScaleDenominator>35000</MinScaleDenominator>
-          <MaxScaleDenominator>75000</MaxScaleDenominator>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>3000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:LineSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Stroke>
-              <sld:CSSParameter name="stroke-opacity">0</sld:CSSParameter>
-            </sld:Stroke>
-          </sld:LineSymbolizer>
-        </sld:Rule>
-
-        <sld:Rule>
-          <sld:Name>VR_Schleuse</sld:Name>
-          <sld:Title>VR_Schleuse</sld:Title>
-          <MinScaleDenominator>15000</MinScaleDenominator>
-          <MaxScaleDenominator>35000</MaxScaleDenominator>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>3000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:LineSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Stroke>
-              <sld:CSSParameter name="stroke-opacity">0</sld:CSSParameter>
-            </sld:Stroke>
-          </sld:LineSymbolizer>
-        </sld:Rule>
-
-        <sld:Rule>
-          <sld:Name>VR_Schleuse</sld:Name>
-          <sld:Title>VR_Schleuse</sld:Title>
-          <MinScaleDenominator>75000</MinScaleDenominator>
-          <MaxScaleDenominator>125000</MaxScaleDenominator>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>3000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:LineSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Stroke>
-              <sld:CSSParameter name="stroke-opacity">0</sld:CSSParameter>
-            </sld:Stroke>
-          </sld:LineSymbolizer>
-        </sld:Rule>
+  <Rule>
+    <Name>VR_Hafen_reg</Name>
+    <Description>
+      <Title>VR_Hafen_reg</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:bedeutsamkeitCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <PolygonSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-width">2.</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
 
 
-        <!--Schifffahrt-->
+  <!--Umschlagplatz-->
 
-        <sld:Rule>
-          <sld:Name>VR_Schifffahrt</sld:Name>
-          <sld:Title>VR_Schifffahrt</sld:Title>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>4000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:MinScaleDenominator>40000</sld:MinScaleDenominator>
-          <sld:MaxScaleDenominator>2000000</sld:MaxScaleDenominator>
-          <sld:PolygonSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Fill>
-              <sld:CssParameter name="fill">#5F96E6</sld:CssParameter>
-              <sld:CssParameter name="fill-opacity">0</sld:CssParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CSSParameter name="stroke-opacity">0</sld:CSSParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
-
-        <sld:Rule>
-          <sld:Name>VR_Schifffahrt</sld:Name>
-          <sld:Title>Vorranggebiet Schifffahrt</sld:Title>
-          <MinScaleDenominator>35000</MinScaleDenominator>
-          <MaxScaleDenominator>75000</MaxScaleDenominator>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>4000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:LineSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#00A0FF</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">6</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:LineSymbolizer>
-        </sld:Rule>
-
-        <sld:Rule>
-          <sld:Name>vb_Schifffahrt</sld:Name>
-          <sld:Title>Vorbehaltsgebiet Schifffahrt</sld:Title>
-          <MinScaleDenominator>35000</MinScaleDenominator>
-          <MaxScaleDenominator>75000</MaxScaleDenominator>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1100</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>4000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:LineSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#00A0FF</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">6</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
-            </sld:Stroke>
-          </sld:LineSymbolizer>
-        </sld:Rule>
-
-        <sld:Rule>
-          <sld:Name>VR_Schifffahrt</sld:Name>
-          <sld:Title>Vorranggebiet Schifffahrt</sld:Title>
-          <MinScaleDenominator>15000</MinScaleDenominator>
-          <MaxScaleDenominator>35000</MaxScaleDenominator>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>4000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:LineSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#00A0FF</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">12</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:LineSymbolizer>
-        </sld:Rule>
-
-        <sld:Rule>
-          <sld:Name>vb_Schifffahrt</sld:Name>
-          <sld:Title>Vorbehaltsgebiet Schifffahrt</sld:Title>
-          <MinScaleDenominator>15000</MinScaleDenominator>
-          <MaxScaleDenominator>35000</MaxScaleDenominator>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1100</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>4000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:LineSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#00A0FF</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">12</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
-            </sld:Stroke>
-          </sld:LineSymbolizer>
-        </sld:Rule>
-
-        <sld:Rule>
-          <sld:Name>VR_Schifffahrt</sld:Name>
-          <sld:Title>Vorranggebiet Schifffahrt</sld:Title>
-          <MinScaleDenominator>75000</MinScaleDenominator>
-          <MaxScaleDenominator>125000</MaxScaleDenominator>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>4000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:LineSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#00A0FF</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">3</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:LineSymbolizer>
-        </sld:Rule>
-
-        <sld:Rule>
-          <sld:Name>vb_Schifffahrt</sld:Name>
-          <sld:Title>Vorbehaltsgebiet Schifffahrt</sld:Title>
-          <MinScaleDenominator>75000</MinScaleDenominator>
-          <MaxScaleDenominator>125000</MaxScaleDenominator>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1100</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>4000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:LineSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#00A0FF</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">3</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-              <sld:CssParameter name="stroke-dasharray">50 8</sld:CssParameter>
-            </sld:Stroke>
-          </sld:LineSymbolizer>
-        </sld:Rule>
-
-        <sld:Rule>
-          <sld:Name>VR_Schifffahrt</sld:Name>
-          <sld:Title>Vorranggebiet Schifffahrt</sld:Title>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>4000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:MinScaleDenominator>450000</sld:MinScaleDenominator>
-          <sld:MaxScaleDenominator>2000000</sld:MaxScaleDenominator>
-          <sld:LineSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#5F96E6</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">4</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:LineSymbolizer>
-        </sld:Rule>
-
-        <sld:Rule>
-          <sld:Name>VR_Schifffahrt</sld:Name>
-          <sld:Title>Vorranggebiet Schifffahrt</sld:Title>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>4000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:MinScaleDenominator>150000</sld:MinScaleDenominator>
-          <sld:MaxScaleDenominator>450000</sld:MaxScaleDenominator>
-          <sld:LineSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#5F96E6</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">8</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:LineSymbolizer>
-        </sld:Rule>
-
-        <sld:Rule>
-          <sld:Name>VR_Schifffahrt</sld:Name>
-          <sld:Title>Vorranggebiet Schifffahrt</sld:Title>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>4000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:MinScaleDenominator>80000</sld:MinScaleDenominator>
-          <sld:MaxScaleDenominator>150000</sld:MaxScaleDenominator>
-          <sld:LineSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#5F96E6</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">19</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:LineSymbolizer>
-        </sld:Rule>
-
-        <sld:Rule>
-          <sld:Name>VR_Schifffahrt</sld:Name>
-          <sld:Title>Vorranggebiet Schifffahrt</sld:Title>
-          <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-                <ogc:Literal>1000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-                <ogc:Literal>4000</ogc:Literal>
-              </ogc:PropertyIsEqualTo>
-            </ogc:And>
-          </ogc:Filter>
-          <sld:MinScaleDenominator>40000</sld:MinScaleDenominator>
-          <sld:MaxScaleDenominator>80000</sld:MaxScaleDenominator>
-          <sld:LineSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#5F96E6</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">38</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:LineSymbolizer>
-        </sld:Rule>
+  <Rule>
+    <Name>VR_Umschlagplatz</Name>
+    <Description>
+      <Title>VR_Umschlagplatz</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>2000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <PolygonSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-width">2.</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
 
 
-      </sld:FeatureTypeStyle>
-    </sld:UserStyle>
-  </sld:NamedLayer>
-</sld:StyledLayerDescriptor>
+  <!--Schleuse_Hebewerk-->
+
+  <Rule>
+    <Name>VR_Schleuse</Name>
+    <Description>
+      <Title>VR_Schleuse</Title>
+    </Description>
+    <MinScaleDenominator>35000</MinScaleDenominator>
+    <MaxScaleDenominator>75000</MaxScaleDenominator>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>3000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <LineSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>VR_Schleuse</Name>
+    <Description>
+      <Title>VR_Schleuse</Title>
+    </Description>
+    <MinScaleDenominator>15000</MinScaleDenominator>
+    <MaxScaleDenominator>35000</MaxScaleDenominator>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>3000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <LineSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>VR_Schleuse</Name>
+    <Description>
+      <Title>VR_Schleuse</Title>
+    </Description>
+    <MinScaleDenominator>75000</MinScaleDenominator>
+    <MaxScaleDenominator>125000</MaxScaleDenominator>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>3000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <LineSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+
+
+  <!--Schifffahrt-->
+
+  <Rule>
+    <Name>VR_Schifffahrt</Name>
+    <Description>
+      <Title>VR_Schifffahrt</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>4000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MinScaleDenominator>40000</MinScaleDenominator>
+    <MaxScaleDenominator>2000000</MaxScaleDenominator>
+    <PolygonSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill">#5F96E6</SvgParameter>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>VR_Schifffahrt</Name>
+    <Description>
+      <Title>Vorranggebiet Schifffahrt</Title>
+    </Description>
+    <MinScaleDenominator>35000</MinScaleDenominator>
+    <MaxScaleDenominator>75000</MaxScaleDenominator>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>4000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <LineSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#00A0FF</SvgParameter>
+        <SvgParameter name="stroke-width">6</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>vb_Schifffahrt</Name>
+    <Description>
+      <Title>Vorbehaltsgebiet Schifffahrt</Title>
+    </Description>
+    <MinScaleDenominator>35000</MinScaleDenominator>
+    <MaxScaleDenominator>75000</MaxScaleDenominator>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1100</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>4000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <LineSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#00A0FF</SvgParameter>
+        <SvgParameter name="stroke-width">6</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">50 8</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>VR_Schifffahrt</Name>
+    <Description>
+      <Title>Vorranggebiet Schifffahrt</Title>
+    </Description>
+    <MinScaleDenominator>15000</MinScaleDenominator>
+    <MaxScaleDenominator>35000</MaxScaleDenominator>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>4000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <LineSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#00A0FF</SvgParameter>
+        <SvgParameter name="stroke-width">12</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>vb_Schifffahrt</Name>
+    <Description>
+      <Title>Vorbehaltsgebiet Schifffahrt</Title>
+    </Description>
+    <MinScaleDenominator>15000</MinScaleDenominator>
+    <MaxScaleDenominator>35000</MaxScaleDenominator>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1100</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>4000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <LineSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#00A0FF</SvgParameter>
+        <SvgParameter name="stroke-width">12</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">50 8</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>VR_Schifffahrt</Name>
+    <Description>
+      <Title>Vorranggebiet Schifffahrt</Title>
+    </Description>
+    <MinScaleDenominator>75000</MinScaleDenominator>
+    <MaxScaleDenominator>125000</MaxScaleDenominator>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>4000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <LineSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#00A0FF</SvgParameter>
+        <SvgParameter name="stroke-width">3</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>vb_Schifffahrt</Name>
+    <Description>
+      <Title>Vorbehaltsgebiet Schifffahrt</Title>
+    </Description>
+    <MinScaleDenominator>75000</MinScaleDenominator>
+    <MaxScaleDenominator>125000</MaxScaleDenominator>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1100</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>4000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <LineSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#00A0FF</SvgParameter>
+        <SvgParameter name="stroke-width">3</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">50 8</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>VR_Schifffahrt</Name>
+    <Description>
+      <Title>Vorranggebiet Schifffahrt</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>4000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MinScaleDenominator>450000</MinScaleDenominator>
+    <MaxScaleDenominator>2000000</MaxScaleDenominator>
+    <LineSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#5F96E6</SvgParameter>
+        <SvgParameter name="stroke-width">4</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>VR_Schifffahrt</Name>
+    <Description>
+      <Title>Vorranggebiet Schifffahrt</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>4000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MinScaleDenominator>150000</MinScaleDenominator>
+    <MaxScaleDenominator>450000</MaxScaleDenominator>
+    <LineSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#5F96E6</SvgParameter>
+        <SvgParameter name="stroke-width">8</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>VR_Schifffahrt</Name>
+    <Description>
+      <Title>Vorranggebiet Schifffahrt</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>4000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MinScaleDenominator>80000</MinScaleDenominator>
+    <MaxScaleDenominator>150000</MaxScaleDenominator>
+    <LineSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#5F96E6</SvgParameter>
+        <SvgParameter name="stroke-width">19</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>VR_Schifffahrt</Name>
+    <Description>
+      <Title>Vorranggebiet Schifffahrt</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>4000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MinScaleDenominator>40000</MinScaleDenominator>
+    <MaxScaleDenominator>80000</MaxScaleDenominator>
+    <LineSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#5F96E6</SvgParameter>
+        <SvgParameter name="stroke-width">38</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+
+</FeatureTypeStyle>
