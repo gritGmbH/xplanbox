@@ -1,7 +1,7 @@
 [[konfiguration-hale]]
 === Konfiguration von HALE
 
-Voraussetzung für die Bereitstellung von Pläne im INSPIRE Datenthema Planned Land Use (PLU) bereitzustellen (s. <<konfiguration-inspire-plu>>) oder Transformation von Plänen im XPlanGML 4.1 nach XPlanGML 5.1 (s. <<konfiguration-xplan41_als_xplan51>>) ist die erfolgreiche Installation des HALE CLI wie im Abschnitt Installation <<installation-hale-cli>> beschrieben.
+Voraussetzung für die Bereitstellung von Pläne im INSPIRE Datenthema Planned Land Use (PLU) bereitzustellen (s. <<konfiguration-inspire-plu>>) oder Transformation von Plänen im XPlanGML 4.1 nach XPlanGML 5.1 (s. <<konfiguration-xplan41_als_xplan51>>) ist die erfolgreiche Installation des HALE CLI wie im Abschnitt <<installation-hale-cli>> beschrieben.
 
 Um dem XPlanManager die Nutzung des HALE CLI zu ermöglichen, muss in der Datei _managerConfiguration.properties_ im Verzeichnis
 _manager-configuration_ der Pfad zu diesem angegeben werden:
