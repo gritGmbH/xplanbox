@@ -4,7 +4,7 @@
   <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplanbox</artifactId>
   <packaging>pom</packaging>
-  <version>2.11-SNAPSHOT</version>
+  <version>2.12-SNAPSHOT</version>
 
   <properties>
     <java.version>1.8</java.version>
@@ -13,7 +13,7 @@
     <sonar.host.url>http://vento:9000</sonar.host.url>
     <sonar.jdbc.url>jdbc:postgresql://habub/sonar</sonar.jdbc.url>
     <!-- version properties -->
-    <deegree3.version>3.4.3-xplanbox-1.7</deegree3.version>
+    <deegree3.version>3.4.3-xplanbox-1.8</deegree3.version>
     <gwt.version>2.5.0</gwt.version>
     <geotools.version>10.0</geotools.version>
     <slf4j.version>1.7.5</slf4j.version>
@@ -100,6 +100,7 @@
             <excludes>
               <exclude>**/*IT*</exclude>
             </excludes>
+            <skipTests>true</skipTests>
           </configuration>
         </plugin>
         <plugin>

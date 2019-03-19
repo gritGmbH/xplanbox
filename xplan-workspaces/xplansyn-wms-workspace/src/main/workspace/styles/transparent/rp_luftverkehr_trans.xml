@@ -1,68 +1,67 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
-<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-  <sld:NamedLayer>
-    <sld:Name>RP_Luftverkehr</sld:Name>
-    <sld:UserStyle>
-      <sld:Name>transparent</sld:Name>
-      <sld:FeatureTypeStyle>
-        <sld:FeatureTypeName>xplan:RP_Luftverkehr</sld:FeatureTypeName>
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
 
-        <!--Verkehrsflughafen-->
+  <Name>transparent</Name>
+  <FeatureTypeName>xplan:RP_Luftverkehr</FeatureTypeName>
 
-        <sld:Rule>
-          <sld:Name>VR_Verkehrsflughafen</sld:Name>
-          <sld:Title>VR_Verkehrsflughafen</sld:Title>
-          <ogc:Filter>
-            <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-              <ogc:Literal>1001</ogc:Literal>
-            </ogc:PropertyIsEqualTo>
-          </ogc:Filter>
-          <sld:PolygonSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#000000</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">2.</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+  <!--Verkehrsflughafen-->
 
-
-        <!--Verkehrslandeplatz-->
-
-        <sld:Rule>
-          <sld:Name>VR_Verkehrslandeplatz</sld:Name>
-          <sld:Title>VR_Verkehrslandeplatz</sld:Title>
-          <ogc:Filter>
-            <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
-              <ogc:Literal>5001</ogc:Literal>
-            </ogc:PropertyIsEqualTo>
-          </ogc:Filter>
-          <sld:PolygonSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Fill>
-              <sld:CSSParameter name="fill-opacity">0</sld:CSSParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#000000</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">2.</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+  <Rule>
+    <Name>VR_Verkehrsflughafen</Name>
+    <Description>
+      <Title>VR_Verkehrsflughafen</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+        <ogc:Literal>1001</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PolygonSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-width">2.</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
 
 
-      </sld:FeatureTypeStyle>
-    </sld:UserStyle>
-  </sld:NamedLayer>
-</sld:StyledLayerDescriptor>
+  <!--Verkehrslandeplatz-->
+
+  <Rule>
+    <Name>VR_Verkehrslandeplatz</Name>
+    <Description>
+      <Title>VR_Verkehrslandeplatz</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+        <ogc:Literal>5001</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PolygonSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-width">2.</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+</FeatureTypeStyle>

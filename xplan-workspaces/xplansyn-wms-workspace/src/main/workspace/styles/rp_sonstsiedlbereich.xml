@@ -1,26 +1,24 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
-<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
-                           xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-  <sld:NamedLayer>
-    <sld:Name>RP_SonstigerSiedlungsbereich</sld:Name>
-    <sld:UserStyle>
-      <sld:Name>vollflaechig</sld:Name>
-      <sld:FeatureTypeStyle>
-        <sld:FeatureTypeName>xplan:RP_SonstigerSiedlungsbereich</sld:FeatureTypeName>
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureTypeStyle xmlns="http://www.opengis.net/se"
+                  xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+  <Name>vollflaechig</Name>
+  <FeatureTypeName>xplan:RP_SonstigerSiedlungsbereich</FeatureTypeName>
 
-        <!--RP_SonstigerSiedlungsbereich-->
-        <sld:Rule>
-          <sld:Name>RP_SonstigerSiedlungsbereich</sld:Name>
-          <sld:Title>SonstigerSiedlungsbereich</sld:Title>
-          <sld:PolygonSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+  <!--RP_SonstigerSiedlungsbereich-->
+  <Rule>
+    <Name>RP_SonstigerSiedlungsbereich</Name>
+    <Description>
+      <Title>SonstigerSiedlungsbereich</Title>
+    </Description>
+    <PolygonSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+    </PolygonSymbolizer>
+  </Rule>
 
-      </sld:FeatureTypeStyle>
-    </sld:UserStyle>
-  </sld:NamedLayer>
-</sld:StyledLayerDescriptor>
+</FeatureTypeStyle>
 

@@ -212,12 +212,6 @@
       <Layer>bp_luftverkfl</Layer>
     </Theme>
     <Theme>
-      <Identifier>so_schienenverkehrsrecht</Identifier>
-      <d:Title>SO: Schienenverkehrsrecht</d:Title>
-      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>so_schienenverkehrsrecht</Layer>
-    </Theme>
-    <Theme>
       <Identifier>bp_nebenanlfl</Identifier>
       <d:Title>BP: Nebenanlagen</d:Title>
       <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
@@ -509,7 +503,7 @@
       <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>bp_baulin</Layer>
     </Theme>
-   <Theme>
+    <Theme>
       <Identifier>bp_symbole</Identifier>
       <d:Title>bp_symbole</d:Title>
       <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
@@ -669,46 +663,46 @@
         <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
         <Layer>bp_wwssflsym</Layer>
       </Theme>
-   </Theme>
+    </Theme>
     <Theme>
       <Identifier>bp_beschriftung</Identifier>
       <d:Title>BP: Beschriftung</d:Title>
       <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-    <Theme>
-      <Identifier>bp_xp_fpo</Identifier>
-      <d:Title>BP: XP: FPO</d:Title>
-      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_xp_fpo</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>bp_xp_lpo</Identifier>
-      <d:Title>BP: XP: LPO</d:Title>
-      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_xp_lpo</Layer>
-    </Theme>
+      <Theme>
+        <Identifier>bp_xp_fpo</Identifier>
+        <d:Title>BP: XP: FPO</d:Title>
+        <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>bp_xp_fpo</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>bp_xp_lpo</Identifier>
+        <d:Title>BP: XP: LPO</d:Title>
+        <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>bp_xp_lpo</Layer>
+      </Theme>
       <Theme>
         <Identifier>bp_xp_lto</Identifier>
         <d:Title>BP: XP: LTO</d:Title>
         <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
         <Layer>bp_xp_lto</Layer>
       </Theme>
-    <Theme>
-      <Identifier>bp_xp_ppo</Identifier>
-      <d:Title>BP: XP: PPO</d:Title>
-      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_xp_ppo</Layer>
-    </Theme>
+      <Theme>
+        <Identifier>bp_xp_ppo</Identifier>
+        <d:Title>BP: XP: PPO</d:Title>
+        <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>bp_xp_ppo</Layer>
+      </Theme>
       <Theme>
         <Identifier>bp_xp_pto</Identifier>
         <d:Title>BP: XP: PTO</d:Title>
         <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
         <Layer>bp_xp_pto</Layer>
       </Theme>
-    <Theme>
-      <Identifier>bp_plan</Identifier>
-      <d:Title>BP: Plan</d:Title>
-      <Layer>bp_plan</Layer>
-    </Theme>
+      <Theme>
+        <Identifier>bp_plan</Identifier>
+        <d:Title>BP: Plan</d:Title>
+        <Layer>bp_plan</Layer>
+      </Theme>
     </Theme>
   </Theme>
 </Themes>

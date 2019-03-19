@@ -11013,7 +11013,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -11187,7 +11187,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -11242,7 +11242,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -11389,7 +11389,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -11438,7 +11438,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -11805,7 +11805,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -11856,7 +11856,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -12016,7 +12016,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -12111,7 +12111,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -12284,7 +12284,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14207,7 +14207,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14255,7 +14255,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14399,7 +14399,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14510,7 +14510,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14566,7 +14566,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14667,7 +14667,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14716,7 +14716,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -14856,7 +14856,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -15019,7 +15019,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -15070,7 +15070,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -15317,7 +15317,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -15505,7 +15505,7 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
     <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="gehoertZuBereich" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertZuBereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt" />
     <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
@@ -15602,6 +15602,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:nummer" mapping="xplan_nummer" />
     <Primitive path="xplan:name" mapping="xplan_name" />
     <Primitive path="xplan:bedeutung" mapping="xplan_bedeutung" />
@@ -15630,6 +15631,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
@@ -15684,6 +15686,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
@@ -15738,6 +15741,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
@@ -15791,6 +15795,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
@@ -15848,6 +15853,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
@@ -15895,6 +15901,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
@@ -15938,6 +15945,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
@@ -15993,6 +16001,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
@@ -16035,6 +16044,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:name" mapping="xplan_name" />
     <Primitive path="xplan:nummer" mapping="xplan_nummer" />
     <Primitive path="xplan:internalId" mapping="xplan_internalid" />
@@ -16085,6 +16095,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:nameAenderung" mapping="xplan_nameaenderung" />
     <Primitive path="xplan:beschreibung" mapping="xplan_beschreibung" />
     <Primitive path="xplan:refBeschreibung" mapping="xplan_refbeschreibung" />
@@ -16110,6 +16121,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
@@ -16165,6 +16177,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
@@ -16220,6 +16233,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
@@ -16275,6 +16289,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
@@ -16330,6 +16345,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
@@ -16383,6 +16399,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
@@ -16436,6 +16453,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:schluessel" mapping="xplan_schluessel" />
     <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
     <Primitive path="xplan:text" mapping="xplan_text" />
@@ -16457,6 +16475,7 @@
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
     <Primitive path="xplan:uuid" mapping="xplan_uuid" />
     <Primitive path="xplan:text" mapping="xplan_text" />
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />

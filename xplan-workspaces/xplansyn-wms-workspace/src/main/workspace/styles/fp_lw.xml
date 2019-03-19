@@ -10,10 +10,22 @@
     <Description>
       <Title>FP: Landwirtschaft</Title>
     </Description>
-    <PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
+      <Fill>
+        <SvgParameter name="fill">#d1de85</SvgParameter>
+        <SvgParameter name="fill-opacity">1.0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">2.5</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2.5</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+      </Stroke>
     </PolygonSymbolizer>
   </Rule>
 </FeatureTypeStyle>

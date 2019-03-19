@@ -4,6 +4,7 @@ import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.FP_Plan;
 import static de.latlon.xplan.commons.XPlanType.LP_Plan;
 import static de.latlon.xplan.commons.XPlanType.RP_Plan;
+import static de.latlon.xplan.commons.XPlanType.SO_Plan;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 
@@ -31,6 +32,7 @@ public class ConfigWriterUtils {
         typeToExtension.put( FP_Plan, "fplan" );
         typeToExtension.put( LP_Plan, "lplan" );
         typeToExtension.put( RP_Plan, "rplan" );
+        typeToExtension.put( SO_Plan, "soplan" );
     }
 
     private ConfigWriterUtils() {

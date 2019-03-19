@@ -1,32 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
-<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
-                           xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-  <sld:NamedLayer>
-    <sld:Name>RP_Kulturlandschaft</sld:Name>
-    <sld:UserStyle>
-      <sld:Name>transparent</sld:Name>
-      <sld:FeatureTypeStyle>
-        <sld:FeatureTypeName>xplan:RP_Kulturlandschaft</sld:FeatureTypeName>
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureTypeStyle xmlns="http://www.opengis.net/se"
+                  xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+  <Name>transparent</Name>
+  <FeatureTypeName>xplan:RP_Kulturlandschaft</FeatureTypeName>
 
-        <!--RP_Kulturlandschaft-->
-        <sld:Rule>
-          <sld:Name>RP_Kulturlandschaft</sld:Name>
-          <sld:Title>Kulturlandschaft</sld:Title>
-          <sld:PolygonSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Fill>
-              <sld:CssParameter name="fill-opacity">0</sld:CssParameter>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke-opacity">0</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+  <!--RP_Kulturlandschaft-->
+  <Rule>
+    <Name>RP_Kulturlandschaft</Name>
+    <Description>
+      <Title>Kulturlandschaft</Title>
+    </Description>
+    <PolygonSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
 
-      </sld:FeatureTypeStyle>
-    </sld:UserStyle>
-  </sld:NamedLayer>
-</sld:StyledLayerDescriptor>
+</FeatureTypeStyle>
 

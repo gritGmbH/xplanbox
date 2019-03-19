@@ -430,7 +430,7 @@ public class WorkspaceRasterThemeManager {
 
     private void checkIfTypeIsSupported( String type ) {
         if ( !supportedTypes.contains( type ) ) {
-            throw new IllegalArgumentException( "First parameter must be bplan, fplan, rplan or lplan." );
+            throw new IllegalArgumentException( "First parameter must be bplan, fplan, rplan, lplan or soplan." );
         }
     }
 

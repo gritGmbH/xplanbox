@@ -1,86 +1,85 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
-<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-  <sld:NamedLayer>
-    <sld:Name>RP_Erholung</sld:Name>
-    <sld:UserStyle>
-      <sld:Name>vollflaechig</sld:Name>
-      <sld:FeatureTypeStyle>
-        <sld:FeatureTypeName>xplan:RP_Erholung</sld:FeatureTypeName>
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureTypeStyle xmlns="http://www.opengis.net/se"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+  <Name>vollflaechig</Name>
+  <FeatureTypeName>xplan:RP_Erholung</FeatureTypeName>
 
+  <!--Erholung-->
+  <Rule>
+    <Name>vb_Erholung</Name>
+    <Description>
+      <Title>Vorbehaltsgebiet Erholung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+        <ogc:Literal>1100</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PolygonSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <GraphicFill>
+          <Graphic>
+            <ExternalGraphic>
+              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                              xlink:href="../symbols/RROP/RROP_Erholung_vb.svg"/>
+              <Format>image/svg</Format>
+            </ExternalGraphic>
+            <Size>22</Size>
+            <Rotation>0</Rotation>
+          </Graphic>
+        </GraphicFill>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#64C800</SvgParameter>
+        <SvgParameter name="stroke-width">1.</SvgParameter>
+        <SvgParameter name="stroke-opacity">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
 
-        <!--Erholung-->
-        <sld:Rule>
-          <sld:Name>vb_Erholung</sld:Name>
-          <sld:Title>Vorbehaltsgebiet Erholung</sld:Title>
-          <ogc:Filter>
-            <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-              <ogc:Literal>1100</ogc:Literal>
-            </ogc:PropertyIsEqualTo>
-          </ogc:Filter>
-          <sld:PolygonSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Fill>
-              <sld:GraphicFill>
-                <sld:Graphic>
-                  <sld:ExternalGraphic>
-                    <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="../symbols/RROP/RROP_Erholung_vb.svg" />
-                    <sld:Format>image/svg</sld:Format>
-                  </sld:ExternalGraphic>
-                  <sld:Size>22</sld:Size>
-                  <sld:Rotation>0</sld:Rotation>
-                </sld:Graphic>
-              </sld:GraphicFill>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#64C800</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">1.</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
+  <Rule>
+    <Name>VR_Erholung</Name>
+    <Description>
+      <Title>Vorranggebiet Erholung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+        <ogc:Literal>1000</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PolygonSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <GraphicFill>
+          <Graphic>
+            <ExternalGraphic>
+              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                              xlink:href="../symbols/RROP/RROP_Erholung_VR.svg"/>
+              <Format>image/svg</Format>
+            </ExternalGraphic>
+            <Size>22</Size>
+            <Rotation>0</Rotation>
+          </Graphic>
+        </GraphicFill>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#64C800</SvgParameter>
+        <SvgParameter name="stroke-width">1.5</SvgParameter>
+        <SvgParameter name="stroke-opacity">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
 
-        <sld:Rule>
-          <sld:Name>VR_Erholung</sld:Name>
-          <sld:Title>Vorranggebiet Erholung</sld:Title>
-          <ogc:Filter>
-            <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
-              <ogc:Literal>1000</ogc:Literal>
-            </ogc:PropertyIsEqualTo>
-          </ogc:Filter>
-          <sld:PolygonSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:position</ogc:PropertyName>
-            </Geometry>
-            <sld:Fill>
-              <sld:GraphicFill>
-                <sld:Graphic>
-                  <sld:ExternalGraphic>
-                    <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="../symbols/RROP/RROP_Erholung_VR.svg" />
-                    <sld:Format>image/svg</sld:Format>
-                  </sld:ExternalGraphic>
-                  <sld:Size>22</sld:Size>
-                  <sld:Rotation>0</sld:Rotation>
-                </sld:Graphic>
-              </sld:GraphicFill>
-            </sld:Fill>
-            <sld:Stroke>
-              <sld:CssParameter name="stroke">#64C800</sld:CssParameter>
-              <sld:CssParameter name="stroke-width">1.5</sld:CssParameter>
-              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
-            </sld:Stroke>
-          </sld:PolygonSymbolizer>
-        </sld:Rule>
-
-
-      </sld:FeatureTypeStyle>
-    </sld:UserStyle>
-  </sld:NamedLayer>
-</sld:StyledLayerDescriptor>
+</FeatureTypeStyle>
 

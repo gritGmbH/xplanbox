@@ -356,12 +356,12 @@ public class XPlanManagerCLI {
         System.out.println();
         System.out.println( "Raster-Operationen:" );
         System.out.println();
-        System.out.println( " -addlayer <bplan|lplan|rplan|fplan> <rasterplanid> "
+        System.out.println( " -addlayer <bplan|lplan|rplan|fplan|soplan> <rasterplanid> "
                             + "<tiffid> <layername> <layertitle> [<categoryname>]" );
-        System.out.println( " -removelayer <bplan|lplan|rplan|fplan> <layername>" );
-        System.out.println( " -addcategory <bplan|lplan|rplan|fplan> [<uppercategory>] <categoryname> <categorytitle>" );
-        System.out.println( " -removecategory <bplan|lplan|rplan|fplan> <categoryname>" );
-        System.out.println( " -movelayer <bplan|lplan|rplan|fplan> <layername> <categoryname>" );
+        System.out.println( " -removelayer <bplan|lplan|rplan|fplan|soplan> <layername>" );
+        System.out.println( " -addcategory <bplan|lplan|rplan|fplan|soplan> [<uppercategory>] <categoryname> <categorytitle>" );
+        System.out.println( " -removecategory <bplan|lplan|rplan|fplan|soplan> <categoryname>" );
+        System.out.println( " -movelayer <bplan|lplan|rplan|fplan|soplan> <layername> <categoryname>" );
         System.exit( 0 );
     }
 

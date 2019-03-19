@@ -184,7 +184,7 @@ public class FeatureCollectionManipulator {
         if ( ftName == null )
             return false;
         return ftName.startsWith( "BP_" ) || ftName.startsWith( "FP_" ) || ftName.startsWith( "LP_" )
-               || ftName.startsWith( "RP_" );
+               || ftName.startsWith( "RP_" ) || ftName.startsWith( "SO_" );
     }
 
 }

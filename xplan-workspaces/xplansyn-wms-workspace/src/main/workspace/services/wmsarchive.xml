@@ -11,10 +11,12 @@
     <wms:ThemeId>fplanarchive</wms:ThemeId>
     <wms:ThemeId>lplanarchive</wms:ThemeId>
     <wms:ThemeId>rplanarchive</wms:ThemeId>
+    <wms:ThemeId>soplanarchive</wms:ThemeId>
     <wms:ThemeId>bplanarchiveraster</wms:ThemeId>
     <wms:ThemeId>fplanarchiveraster</wms:ThemeId>
     <wms:ThemeId>lplanarchiveraster</wms:ThemeId>
     <wms:ThemeId>rplanarchiveraster</wms:ThemeId>
+    <wms:ThemeId>soplanarchiveraster</wms:ThemeId>
   </wms:ServiceConfiguration>
   <wms:FeatureInfoFormats>
     <wms:GetFeatureInfoFormat>

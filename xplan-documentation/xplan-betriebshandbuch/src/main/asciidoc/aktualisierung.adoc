@@ -151,6 +151,7 @@ fplanraster.xml)
 lplanraster.xml)
 * RP_Planraster (Dateien: rplanpreraster.xml, rplanarchiveraster.xml,
 rplanraster.xml)
+* SO_Planraster (Dateien: soplanpreraster.xml, soplanarchiveraster.xml, soplanraster.xml)
 ______________________________________________________________________________________
 
 Die Themes-Konfigurationen der Vektordaten sollten komplett ausgetauscht
@@ -161,6 +162,7 @@ ___________________________________________
 * fplan.xml, fplanpre.xml, fplanarchive.xml
 * lplan.xml, lplanpre.xml, lplanarchive.xml
 * rplan.xml, rplanpre.xml, rplanarchive.xml
+* soplan.xml, soplanpre.xml, soplanarchive.xml
 ___________________________________________
 
 [[aktualisierung-des-wms-workspaces-auf-die-version-2.4-der-xplanbox]]
@@ -264,8 +266,16 @@ Mit der Version 2.10 der xPlanBox können auch Pläne der der XPlanGML Version 5
 [[aktualisierung-auf-die-version-2.11-der-xplanbox]]
 === Aktualisierung auf die Version 2.11 der xPlanBox
 
+Mit der Version 2.11 der xPlanBox sind verschiedene Erweiterungen umgesetzt worden. Für die Aktualisierung auf diese Version sind folgende Schritte auszuführen:
+
+ * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+ * Aktualisierung der Datenbank:
+ ** Ausführen der Skripte im Verzeichnis _from_2.10_to_2.11_ im Modul xplan-update-database
+
 Mit der Version 2.11 der xPlanBox können mehrere Ortsteile im XPlanGML auch durch Kommata separiert angegeben werden. Damit diese wie erwartet einem Bezirk zugeordnet werden können (s. Hinweis unter <<ortsteile>>) muss eine Aktualisierung der in der Datenbank gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __districtUpdate__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
 
 Weiterhin ist mit der Version 2.11 der xPlanBox die Abbildung von Kreisbögen im XPlanSynWFS und XPlanWMS verbessert worden. Um bereits importierte Pläne mit Kreisbögen in der verbesserten Abbildung abgeben zu können, muss eine Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __reSynthesizer__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
 
-Um bereits in der Version 4.1 vorliegend Pläne in die Version 5.1 zu transformieren und über die entsprechende Datenhaltung auszugeben, kann das Programm __xplan41To51converter__ verwendet werden.  Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
+Um bereits in der Version 4.1 vorliegend Pläne in die Version 5.1 zu transformieren und über die entsprechende Datenhaltung auszugeben, kann das Programm __xplan41To51converter__ verwendet werden. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
+
+Des Weiteren muss die HALE CLI auf Version 3.4.0 aktualisiert werden (siehe <<installation-hale-cli>>).

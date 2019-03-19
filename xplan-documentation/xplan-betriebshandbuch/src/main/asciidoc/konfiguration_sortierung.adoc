@@ -31,6 +31,8 @@ wmsSortDate_LP_Plan_XPLAN_40=LP_Plan,inkrafttretenDatum
 wmsSortDate_LP_Plan_XPLAN_41=LP_Plan,inkrafttretenDatum
 wmsSortDate_LP_Plan_XPLAN_50=LP_Plan,inkrafttretenDatum
 wmsSortDate_LP_Plan_XPLAN_51=LP_Plan,inkrafttretenDatum
+wmsSortDate_SO_Plan_XPLAN_50=SO_Plan,inkrafttretenDatum
+wmsSortDate_SO_Plan_XPLAN_51=SO_Plan,inkrafttretenDatum
 ----
 
 NOTE: Es müssen ggf. Zeilenumbrüche entfernt werden.

@@ -64,9 +64,9 @@ import de.latlon.xplan.manager.configuration.ConfigurationException;
  */
 public class WmsWorkspaceWrapper {
 
-    public static final List<String> supportedTypes = asList( "bplan", "fplan", "rplan", "lplan", "bplanpre",
-                                                              "fplanpre", "rplanpre", "lplanpre", "bplanarchive",
-                                                              "fplanarchive", "rplanarchive", "lplanarchive" );
+    public static final List<String> supportedTypes = asList( "bplan", "fplan", "rplan", "lplan", "soplan", "bplanpre",
+                                                              "fplanpre", "rplanpre", "lplanpre", "soplanpre", "bplanarchive",
+                                                              "fplanarchive", "rplanarchive", "lplanarchive", "soplanarchive" );
 
     private final DeegreeWorkspace workspace;
 

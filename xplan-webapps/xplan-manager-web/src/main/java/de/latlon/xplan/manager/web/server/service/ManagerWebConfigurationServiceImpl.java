@@ -131,6 +131,7 @@ public class ManagerWebConfigurationServiceImpl extends RemoteServiceServlet imp
         LOG.info( "fpVectorLayers: {}", configuration.getFpVectorLayer() );
         LOG.info( "lpVectorLayers: {}", configuration.getLpVectorLayer() );
         LOG.info( "rpVectorLayers: {}", configuration.getRpVectorLayer() );
+        LOG.info( "soVectorLayers: {}", configuration.getSoVectorLayer() );
         LOG.info( "-------------------------------------------" );
     }
 
@@ -143,6 +144,7 @@ public class ManagerWebConfigurationServiceImpl extends RemoteServiceServlet imp
         LOG.info( "fpRasterLayers: {}", configuration.getFpRasterLayer() );
         LOG.info( "lpRasterLayers: {}", configuration.getLpRasterLayer() );
         LOG.info( "rpRasterLayers: {}", configuration.getRpRasterLayer() );
+        LOG.info( "soRasterLayers: {}", configuration.getSoRasterLayer() );
         LOG.info( "-------------------------------------------" );
     }
 

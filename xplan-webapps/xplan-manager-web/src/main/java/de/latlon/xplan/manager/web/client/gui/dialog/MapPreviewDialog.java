@@ -208,6 +208,8 @@ public class MapPreviewDialog extends DialogBox {
             return vectorLayerConfiguration.getLpVectorLayer();
         else if ( "rp_plan".equals( planType.toLowerCase() ) )
             return vectorLayerConfiguration.getRpVectorLayer();
+        else if ( "so_plan".equals( planType.toLowerCase() ) )
+            return vectorLayerConfiguration.getSoVectorLayer();
         else
             return "wrong planType: " + planType;
     }
@@ -222,6 +224,8 @@ public class MapPreviewDialog extends DialogBox {
             return rasterLayerConfiguration.getLpRasterLayer();
         else if ( "rp_plan".equals( planType.toLowerCase() ) )
             return rasterLayerConfiguration.getRpRasterLayer();
+        else if ( "so_plan".equals( planType.toLowerCase() ) )
+            return rasterLayerConfiguration.getSoRasterLayer();
         else
             return "wrong planType: " + planType;
     }

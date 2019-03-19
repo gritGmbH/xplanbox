@@ -126,6 +126,8 @@ public class WmsUrlUtils {
             return "LP_Planvektor,LP_Planraster";
         if ( "rp_plan".equals( planType.toLowerCase() ) )
             return "RP_Planvektor,RP_Planraster";
+        if ( "so_plan".equals( planType.toLowerCase() ) )
+            return "SO_Planvektor,SO_Planraster";
         return null;
     }
 
