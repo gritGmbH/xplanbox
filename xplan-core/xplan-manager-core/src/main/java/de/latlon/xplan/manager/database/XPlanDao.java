@@ -878,9 +878,6 @@ public class XPlanDao {
         ResultSet rs = null;
         try {
             XPlanVersion version = xPlanMetadata.version;
-            if ( XPLAN_41.equals( version ) && managerConfiguration.isProvidingXPlan41As51Active() ) {
-                version = XPLAN_51;
-            }
             XPlanAde ade = xPlanMetadata.ade;
             PlanStatus planStatus = xPlanMetadata.planStatus;
             int id = getXPlanIdAsInt( planId );
