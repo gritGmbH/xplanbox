@@ -1,14 +1,20 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>xplan-update-database</artifactId>
-  <description>update of database</description>
+  <artifactId>xplan-transform-cli</artifactId>
+  <description>Kommandozeilentool fuer die Transformation zwischen XPlanGML Versionen</description>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
-    <artifactId>xplan-resources</artifactId>
+    <artifactId>xplan-cli</artifactId>
     <version>2.12-SNAPSHOT</version>
   </parent>
+
+  <properties>
+    <mainclass>de.latlon.xplan.transform.cli.TransformTool</mainclass>
+    <application-name>TransformTool</application-name>
+  </properties>
 
   <build>
     <plugins>
@@ -27,19 +33,33 @@
           <repositoryLayout>flat</repositoryLayout>
           <programs>
             <program>
-              <mainClass>de.latlon.xplan.update.DatabaseUpdateTool</mainClass>
-              <name>databaseUpdate</name>
-            </program>
-            <program>
-              <mainClass>de.latlon.xplan.update.tool.DistrictUpdateTool</mainClass>
-              <name>districtUpdate</name>
-            </program>
-            <program>
-              <mainClass>de.latlon.xplan.update.tool.ReSynthesizerTool</mainClass>
-              <name>reSynthesizer</name>
+              <mainClass>${mainclass}</mainClass>
+              <id>${application-name}</id>
             </program>
           </programs>
+          <copyConfigurationDirectory>true</copyConfigurationDirectory>
+          <useWildcardClassPath>true</useWildcardClassPath>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>bundle</id>
+            <configuration>
+              <appendAssemblyId>false</appendAssemblyId>
+              <filters/>
+              <descriptors>
+                <descriptor>${project.basedir}/src/main/assembly/assembly.xml</descriptor>
+              </descriptors>
+            </configuration>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
@@ -50,9 +70,7 @@
               <tasks>
                 <chmod perm="+x">
                   <fileset dir="target/appassembler/bin">
-                    <include name="databaseUpdate" />
-                    <include name="districtUpdate" />
-                    <include name="reSynthesizer" />
+                    <include name="${application-name}"/>
                   </fileset>
                 </chmod>
               </tasks>
@@ -60,26 +78,6 @@
             <goals>
               <goal>run</goal>
             </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <configuration>
-          <descriptors>
-            <descriptor>src/main/assembly/assembly.xml</descriptor>
-          </descriptors>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <appendAssemblyId>false</appendAssemblyId>
-            </configuration>
           </execution>
         </executions>
       </plugin>

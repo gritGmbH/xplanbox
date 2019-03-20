@@ -1,4 +1,4 @@
-package de.latlon.xplan.update.tool;
+package de.latlon.xplan.transform.cli;
 
 import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
 import de.latlon.xplan.manager.CategoryMapper;
@@ -31,7 +31,7 @@ import static java.nio.file.Files.isDirectory;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class ProvideXPlan41AsXPlan51Tool {
+public class TransformTool {
 
     private enum TYPE {VALIDATE, CONVERT}
 
@@ -58,7 +58,7 @@ public class ProvideXPlan41AsXPlan51Tool {
                 TYPE type = determineType( cmdline );
                 Path outDirectory = createOutDirectory( cmdline );
 
-                ProvideXPlan41AsXPlan51Tool tool = new ProvideXPlan41AsXPlan51Tool();
+                TransformTool tool = new TransformTool();
                 tool.run( workspaceName, configurationDirectory, type, outDirectory );
             } catch ( Exception e ) {
                 e.printStackTrace();
