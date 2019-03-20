@@ -19,20 +19,32 @@ import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.tools.CommandUtils;
 import org.deegree.workspace.Workspace;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import static java.nio.file.Files.createDirectory;
+import static java.nio.file.Files.createTempDirectory;
+import static java.nio.file.Files.exists;
+import static java.nio.file.Files.isDirectory;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class ProvideXPlan41AsXPlan51Tool {
 
+    private enum TYPE {VALIDATE, CONVERT}
+
     private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
     private static final String OPT_CONFIG_DIR = "configurationDirectory";
 
+    private static final String OPT_TYPE = "type";
+
+    private static final String OPT_OUT_DIR = "output";
+
     public static void main( String[] args ) {
-        if ( ( args.length > 0 && ( args[0].contains( "help" ) || args[0].contains( "?" ) ) ) ) {
+        if ( args.length == 0 || ( args.length > 0 && ( args[0].contains( "help" ) || args[0].contains( "?" ) ) ) ) {
             printHelp( initOptions() );
         }
 
@@ -43,23 +55,58 @@ public class ProvideXPlan41AsXPlan51Tool {
                 if ( workspaceName == null || workspaceName.isEmpty() )
                     workspaceName = "xplan-manager-workspace";
                 String configurationDirectory = cmdline.getOptionValue( OPT_CONFIG_DIR );
+                TYPE type = determineType( cmdline );
+                Path outDirectory = createOutDirectory( cmdline );
 
                 ProvideXPlan41AsXPlan51Tool tool = new ProvideXPlan41AsXPlan51Tool();
-                tool.run( workspaceName, configurationDirectory );
+                tool.run( workspaceName, configurationDirectory, type, outDirectory );
             } catch ( Exception e ) {
                 e.printStackTrace();
             }
         } catch ( ParseException exp ) {
-            System.err.println( "Could nor parse command line" );
+            System.err.println( "Could not parse command line" );
             exp.printStackTrace();
+            printHelp( initOptions() );
         }
-
     }
 
-    private void run( String workspaceName, String configurationDirectory )
+    private void run( String workspaceName, String configurationDirectory, TYPE type, Path outDirectory )
                     throws Exception {
         XPlan41ToXPlan51Converter converter = createConverter( workspaceName, configurationDirectory );
-        converter.convertXPlan41ToXPlan51();
+        switch ( type ) {
+        case CONVERT:
+            converter.convertXPlan41ToXPlan51( outDirectory );
+            break;
+        case VALIDATE:
+        default:
+            converter.validate( outDirectory );
+        }
+        System.out.println( "Results was written to " + outDirectory );
+    }
+
+    private static Path createOutDirectory( CommandLine cmdline )
+                    throws IOException {
+        String outDirectory = cmdline.getOptionValue( OPT_OUT_DIR );
+        if ( outDirectory != null ) {
+            Path path = Paths.get( outDirectory );
+            if ( !exists( path ) ) {
+                return createDirectory( path );
+            }
+            if ( isDirectory( path ) ) {
+                return path;
+            } else {
+                throw new IllegalArgumentException( "Passed output directory exists but is not a directory" );
+            }
+        }
+
+        return createTempDirectory( "validationresults" );
+    }
+
+    private static TYPE determineType( CommandLine cmdline ) {
+        String type = cmdline.getOptionValue( OPT_TYPE );
+        if ( type == null )
+            return TYPE.VALIDATE;
+        return TYPE.valueOf( type.toUpperCase() );
     }
 
     private XPlan41ToXPlan51Converter createConverter( String workspaceName, String configurationDirectory )
@@ -107,13 +154,23 @@ public class ProvideXPlan41AsXPlan51Tool {
         opt.setRequired( true );
         opts.addOption( opt );
 
+        opt = new Option( "t", OPT_TYPE, true,
+                          "one of 'VALIDATE' or 'CONVERT'; 'VALIDATE' validates all available XPlanGML 4.1 plans and writes the results (default if missing), 'CONVERT' transforms the available XPlanGML 4.1 plans, inserts the valid plans in the XPlan 5.1 datastore and removes the from XPlan 4.1 datastore" );
+        opt.setRequired( false );
+        opts.addOption( opt );
+
+        opt = new Option( "f", OPT_OUT_DIR, true,
+                          "directory to write the validation results into, directory will be created if it not exists (if missing a new tmp directory is created)" );
+        opt.setRequired( false );
+        opts.addOption( opt );
+
         CommandUtils.addDefaultOptions( opts );
         return opts;
     }
 
     private static void printHelp( Options options ) {
         String help = "Reads all Plans from XPlan 4.1 feature store, transforms them to XPlanGML 5.1 and inserts them in the XPlan 5.1 feature store.";
-        CommandUtils.printHelp( options, ReSynthesizerTool.class.getSimpleName(), help, null );
+        CommandUtils.printHelp( options, "xplan41To51converter", help, null );
     }
 
 }

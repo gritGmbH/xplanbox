@@ -86,6 +86,10 @@
       <groupId>it.geosolutions.imageio-ext</groupId>
       <artifactId>imageio-ext-gdal-bindings</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-csv</artifactId>
+    </dependency>
     <!-- Spring Security -->
     <dependency>
       <groupId>org.springframework.security</groupId>
