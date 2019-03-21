@@ -101,6 +101,10 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-commons</artifactId>
     </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-commons-cli</artifactId>
+    </dependency>
   </dependencies>
 
 </project>

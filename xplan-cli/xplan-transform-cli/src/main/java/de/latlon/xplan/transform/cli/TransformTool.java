@@ -1,10 +1,11 @@
 package de.latlon.xplan.transform.cli;
 
+import de.latlon.xplan.commons.cli.SynchronizeAllExecutor;
+import de.latlon.xplan.commons.cli.SynchronizeExecutor;
 import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
-import de.latlon.xplan.manager.database.XPlan41ToXPlan51Converter;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.transformation.HaleXplan41ToXplan51Transformer;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
@@ -18,10 +19,15 @@ import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.tools.CommandUtils;
 import org.deegree.workspace.Workspace;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.function.Consumer;
 
 import static java.nio.file.Files.createDirectory;
 import static java.nio.file.Files.createTempDirectory;
@@ -33,7 +39,11 @@ import static java.nio.file.Files.isDirectory;
  */
 public class TransformTool {
 
-    private enum TYPE {VALIDATE, CONVERT}
+    private static final Logger LOG = LoggerFactory.getLogger( TransformTool.class );
+
+    private static final String LOG_TABLE_NAME = "xplanmgr.transformToolPlanTableLog";
+
+    private enum TYPE {VALIDATE, SYNC, ALL}
 
     private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
@@ -72,16 +82,46 @@ public class TransformTool {
 
     private void run( String workspaceName, String configurationDirectory, TYPE type, Path outDirectory )
                     throws Exception {
-        XPlan41ToXPlan51Converter converter = createConverter( workspaceName, configurationDirectory );
+        ManagerConfiguration managerConfiguration = createManagerConfiguration( configurationDirectory );
+        XPlanDao xPlanDao = createXplanDao( workspaceName, managerConfiguration );
+        HaleXplan41ToXplan51Transformer transformer = new HaleXplan41ToXplan51Transformer(
+                        managerConfiguration.getPathToHaleCli(), managerConfiguration.getPathToHaleProjectDirectory() );
+        XPlanGmlTransformer xPlanGmlTransformer = new XPlanGmlTransformer( transformer );
+        TransformingValidator validator = new TransformingValidator( xPlanDao, xPlanGmlTransformer );
+        ManagerWorkspaceWrapper managerWorkspaceWrapper = createManagerWorkspaceWrapper( workspaceName,
+                                                                                         configurationDirectory );
         switch ( type ) {
-        case CONVERT:
-            converter.convertXPlan41ToXPlan51( outDirectory );
+        case ALL:
+            sync( managerWorkspaceWrapper, ( conn ) -> {
+                TransformationSynchronizer synchronizer = new TransformationSynchronizer( xPlanDao, validator,
+                                                                                          outDirectory );
+                SynchronizeAllExecutor allExecuter = new SynchronizeAllExecutor( LOG_TABLE_NAME, synchronizer );
+                allExecuter.synchronizeAll( conn );
+            } );
+            break;
+        case SYNC:
+            sync( managerWorkspaceWrapper, ( conn ) -> {
+                TransformationSynchronizer synchronizer = new TransformationSynchronizer( xPlanDao, validator,
+                                                                                          outDirectory );
+                SynchronizeExecutor executer = new SynchronizeExecutor( LOG_TABLE_NAME, synchronizer );
+                executer.synchronize( conn );
+            } );
             break;
         case VALIDATE:
         default:
-            converter.validate( outDirectory );
+            ValidateExecutor validateExecutor = new ValidateExecutor( xPlanDao, validator );
+            validateExecutor.validateAll( outDirectory );
         }
         System.out.println( "Results was written to " + outDirectory );
+    }
+
+    private void sync( ManagerWorkspaceWrapper managerWorkspaceWrapper, Consumer<Connection> connectionConsumer ) {
+        try ( Connection conn = managerWorkspaceWrapper.openConnection() ) {
+            conn.setAutoCommit( false );
+            connectionConsumer.accept( conn );
+        } catch ( SQLException e ) {
+            LOG.error( "Could not open connection: {}", e.getMessage(), e );
+        }
     }
 
     private static Path createOutDirectory( CommandLine cmdline )
@@ -109,17 +149,6 @@ public class TransformTool {
         return TYPE.valueOf( type.toUpperCase() );
     }
 
-    private XPlan41ToXPlan51Converter createConverter( String workspaceName, String configurationDirectory )
-                    throws ResourceInitException, ConfigurationException {
-        Workspace workspace = initWorkspace( workspaceName );
-        ManagerConfiguration managerConfiguration = createManagerConfiguration( configurationDirectory );
-        XPlanDao xplanDao = createXplanDao( workspace, managerConfiguration );
-        HaleXplan41ToXplan51Transformer transformer = new HaleXplan41ToXplan51Transformer(
-                        managerConfiguration.getPathToHaleCli(), managerConfiguration.getPathToHaleProjectDirectory() );
-        XPlanGmlTransformer xPlanGmlTransformer = new XPlanGmlTransformer( transformer );
-        return new XPlan41ToXPlan51Converter( xplanDao, xPlanGmlTransformer );
-    }
-
     private static Workspace initWorkspace( String workspaceName )
                     throws ResourceInitException {
         DeegreeWorkspace workspace = DeegreeWorkspace.getInstance( workspaceName );
@@ -127,11 +156,27 @@ public class TransformTool {
         return workspace.getNewWorkspace();
     }
 
-    private static XPlanDao createXplanDao( Workspace workspace, ManagerConfiguration managerConfiguration ) {
+    private static XPlanDao createXplanDao( String workspaceName, ManagerConfiguration managerConfiguration )
+                    throws ResourceInitException {
         CategoryMapper categoryMapper = new CategoryMapper( managerConfiguration );
-        ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper( workspace,
-                                                                                       managerConfiguration );
+        ManagerWorkspaceWrapper managerWorkspaceWrapper = createManagerWorkspaceWrapper( workspaceName,
+                                                                                         managerConfiguration );
         return new XPlanDao( managerWorkspaceWrapper, categoryMapper, managerConfiguration );
+    }
+
+    private static ManagerWorkspaceWrapper createManagerWorkspaceWrapper( String workspaceName,
+                                                                          String configurationDirectory )
+                    throws ResourceInitException, ConfigurationException {
+        ManagerConfiguration managerConfiguration = createManagerConfiguration( configurationDirectory );
+        Workspace workspace = initWorkspace( workspaceName );
+        return new ManagerWorkspaceWrapper( workspace, managerConfiguration );
+    }
+
+    private static ManagerWorkspaceWrapper createManagerWorkspaceWrapper( String workspaceName,
+                                                                          ManagerConfiguration managerConfiguration )
+                    throws ResourceInitException {
+        Workspace workspace = initWorkspace( workspaceName );
+        return new ManagerWorkspaceWrapper( workspace, managerConfiguration );
     }
 
     private static ManagerConfiguration createManagerConfiguration( String configurationFilePathVariable )
@@ -155,7 +200,7 @@ public class TransformTool {
         opts.addOption( opt );
 
         opt = new Option( "t", OPT_TYPE, true,
-                          "one of 'VALIDATE' or 'CONVERT'; 'VALIDATE' validates all available XPlanGML 4.1 plans and writes the results (default if missing), 'CONVERT' transforms the available XPlanGML 4.1 plans, inserts the valid plans in the XPlan 5.1 datastore and removes the from XPlan 4.1 datastore" );
+                          "one of 'VALIDATE', 'SYNC' OR 'ALL'; 'VALIDATE' validates all available XPlanGML 4.1 plans and writes the results (default if missing), 'CONVERT' transforms the available XPlanGML 4.1 plans, inserts the valid plans in the XPlan 5.1 datastore and removes the from XPlan 4.1 datastore" );
         opt.setRequired( false );
         opts.addOption( opt );
 

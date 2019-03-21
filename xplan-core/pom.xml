@@ -17,6 +17,7 @@
     <module>xplan-manager-core</module>
     <module>xplan-synthesizer</module>
     <module>xplan-validator-core</module>
+    <module>xplan-commons-cli</module>
   </modules>
 
 </project>

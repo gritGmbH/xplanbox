@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Map;
-import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
 /**
@@ -66,11 +65,10 @@ public class HaleTransformer {
             String command = buildCommand( haleProject, sourceFile, targetFile, writer );
             LOG.info( "Execute the following command to transform the plan: {}", command );
             Process process = Runtime.getRuntime().exec( command );
-            StreamGobbler streamGobbler = new StreamGobbler( process.getInputStream(),
-                                                             LOG.isDebugEnabled() ? System.out::println : ( c ) -> {
-                                                             } );
-            Executors.newSingleThreadExecutor().submit( streamGobbler );
+            Thread gobblerThread = startGobblerThread( process );
+
             int exitCode = process.waitFor();
+            gobblerThread.join();
             LOG.info( "Transformation command finished with exit code {}. ", exitCode );
         } catch ( IOException | InterruptedException e ) {
             LOG.error( "Could not transform", e );
@@ -90,6 +88,16 @@ public class HaleTransformer {
             sb.append( " -S" ).append( setting.getKey() ).append( " " ).append( setting.getValue() ).append( " " );
         }
         return sb.toString();
+    }
+
+    private Thread startGobblerThread( Process process ) {
+        Thread gobblerThread;
+        StreamGobbler streamGobbler = new StreamGobbler( process.getInputStream(),
+                                                         LOG.isDebugEnabled() ? System.out::println : s -> {
+                                                         } );
+        gobblerThread = new Thread( streamGobbler );
+        gobblerThread.start();
+        return gobblerThread;
     }
 
     private static class StreamGobbler implements Runnable {

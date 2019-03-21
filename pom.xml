@@ -430,6 +430,11 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
+        <artifactId>xplan-commons-cli</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
         <artifactId>xplan-commons-web</artifactId>
         <version>${project.version}</version>
       </dependency>
