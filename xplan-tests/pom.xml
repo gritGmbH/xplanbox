@@ -17,9 +17,9 @@
 
   <profiles>
     <profile>
-      <id>integrationtest</id>
+      <id>integration-tests</id>
       <modules>
-        <module>xplan-integrationtest</module>
+        <module>xplan-integration-tests</module>
       </modules>
     </profile>
   </profiles>
