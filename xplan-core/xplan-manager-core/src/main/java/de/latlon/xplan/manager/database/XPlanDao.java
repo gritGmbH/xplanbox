@@ -327,9 +327,10 @@ System.out.println( "FS: " +  xPlanFeatureCollection.getVersion()+","+
      * @param planId
      *                 the featureCollection of the updated plan, never <code>null</code>
      * @param planStatus
-     *                 of the plan, never <code>null</code>
+     * @param fids to remove
      */
-    public void deleteXPlanFeatureCollection( int planId, XPlanVersion version, XPlanAde ade, PlanStatus planStatus )
+    public void deleteXPlanFeatureCollection( int planId, XPlanVersion version, XPlanAde ade, PlanStatus planStatus,
+                                              List<String> fids )
                     throws Exception {
         PreparedStatement stmt = null;
         SQLFeatureStoreTransaction ta = null;
@@ -337,8 +338,7 @@ System.out.println( "FS: " +  xPlanFeatureCollection.getVersion()+","+
             FeatureStore fs = managerWorkspaceWrapper.lookupStore( version, ade, planStatus );
             ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
 
-            Set<String> ids = selectFids( planId );
-            IdFilter idFilter = new IdFilter( ids );
+            IdFilter idFilter = new IdFilter( fids );
             LOG.info( "- Entferne XPlan " + planId + " aus dem FeatureStore (" + version + ", " + planStatus + (
                             ade == null ? "" : ade ) + ")..." );
             ta.performDelete( idFilter, null );
@@ -924,7 +924,7 @@ System.out.println( "FS: " +  xPlanFeatureCollection.getVersion()+","+
             LOG.info( "OK" );
 
             LOG.info( "- Entferne XPlan " + planId + " aus der Manager-DB..." );
-            stmt = conn.prepareStatement( "DELETE FROM xplanmgr.features WHERE plan=?" );
+            stmt = conn.prepareStatement( "DELETE FROM xplanmgr.plans WHERE id=?" );
             stmt.setInt( 1, id );
             stmt.executeUpdate();
 
@@ -932,7 +932,7 @@ System.out.println( "FS: " +  xPlanFeatureCollection.getVersion()+","+
             stmt.setInt( 1, id );
             stmt.executeUpdate();
 
-            stmt = conn.prepareStatement( "DELETE FROM xplanmgr.plans WHERE id=?" );
+            stmt = conn.prepareStatement( "DELETE FROM xplanmgr.features WHERE plan=?" );
             stmt.setInt( 1, id );
             stmt.executeUpdate();
             LOG.info( "OK" );

@@ -10,6 +10,10 @@ public interface Synchronizer {
     /**
      * Synchronizes the plan with the passed id.
      *
+     * @param oldid
+     *                 of the entry in the log table, never <code>null</code>
+     * @param newid
+     *                 of the entry in the log table, never <code>null</code>
      * @param conn
      *                 the database connection, never <code>null</code>
      * @param xPlanManagerId
@@ -24,7 +28,7 @@ public interface Synchronizer {
      *                 the operation, never <code>null</code>
      * @throws SynchronizationException
      */
-    void synchronize( Connection conn, int xPlanManagerId, String planVersion, String oldPlanStatus, String lastnew,
-                      Operation operation )
+    void synchronize( Connection conn, int oldid, int newid, int xPlanManagerId, String planVersion,
+                      String oldPlanStatus, String lastnew, Operation operation )
                     throws SynchronizationException;
 }

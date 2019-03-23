@@ -44,10 +44,14 @@ public class SynchronizeExecutor {
             sb.append( "SELECT xplanmgrid, " );
             sb.append( "(SELECT xp_version FROM " ).append( logTableName ).append(
                             " log0 WHERE log0.xplanmgrid = log.xplanmgrid LIMIT 1), " );
+            sb.append( "(SELECT id oldid FROM " ).append( logTableName ).append(
+                            " log4 WHERE log4.xplanmgrid = log.xplanmgrid ORDER BY datum ASC LIMIT 1), " );
             sb.append( "(SELECT oldplanstatus FROM " ).append( logTableName ).append(
                             " log1 WHERE log1.xplanmgrid = log.xplanmgrid ORDER BY datum ASC LIMIT 1), " );
             sb.append( "(SELECT operation oldoperation FROM " ).append( logTableName ).append(
                             " log2 WHERE log2.xplanmgrid = log.xplanmgrid ORDER BY datum ASC LIMIT 1), " );
+            sb.append( "(SELECT id newid FROM " ).append( logTableName ).append(
+                            " log4 WHERE log4.xplanmgrid = log.xplanmgrid ORDER BY datum DESC LIMIT 1), " );
             sb.append( "(SELECT newplanstatus FROM " ).append( logTableName ).append(
                             " log3 WHERE log3.xplanmgrid = log.xplanmgrid ORDER BY datum DESC LIMIT 1), " );
             sb.append( "(SELECT operation newoperation FROM " ).append( logTableName ).append(
@@ -72,16 +76,19 @@ public class SynchronizeExecutor {
         try {
             xplanmgrid = rs.getInt( 1 );
             String version = rs.getString( 2 );
-            String oldplanstatus = rs.getString( 3 );
-            String oldoperation = rs.getString( 4 );
-            String newplanstatus = rs.getString( 5 );
-            String newoperation = rs.getString( 6 );
+            int oldid = rs.getInt( 3 );
+            String oldplanstatus = rs.getString( 4 );
+            String oldoperation = rs.getString( 5 );
+            int newid = rs.getInt( 6 );
+            String newplanstatus = rs.getString( 7 );
+            String newoperation = rs.getString( 8 );
 
             Operation operation = determineOperationForSynchronization( oldoperation, newoperation );
             if ( operation != null ) {
-                LOG.info( "Synchronize tables in lgv syn schema for plan with id {}, operation is {}, oldplanstatus {}, newplanststus {}",
+                LOG.info( "Synchronize tables in lgv syn schema for plan with id {}, operation is {}, oldplanstatus {}, newplanstatus {}",
                           xplanmgrid, operation, oldplanstatus, newplanstatus );
-                synchronizer.synchronize( conn, xplanmgrid, version, oldplanstatus, newplanstatus, operation );
+                synchronizer.synchronize( conn, oldid, newid, xplanmgrid, version, oldplanstatus, newplanstatus,
+                                          operation );
             } else {
                 LOG.info( "Plan with id {} is already removed from xPlanBox. Will be removed from {}.", xplanmgrid,
                           operation, logTableName );

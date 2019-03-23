@@ -41,7 +41,7 @@ public class TransformTool {
 
     private static final Logger LOG = LoggerFactory.getLogger( TransformTool.class );
 
-    private static final String LOG_TABLE_NAME = "xplanmgr.transformToolPlanTableLog";
+    static final String LOG_TABLE_NAME = "xplanmgr.transformToolPlanTableLog";
 
     private enum TYPE {VALIDATE, SYNC, ALL}
 
