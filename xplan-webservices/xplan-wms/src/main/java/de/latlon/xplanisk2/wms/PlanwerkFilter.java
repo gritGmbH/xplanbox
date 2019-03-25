@@ -29,6 +29,8 @@ import java.util.Map;
 import static java.util.stream.Collectors.joining;
 
 /**
+ * Implements XPlanwerkWMS: Converts the incoming request to a WMS request with vendor specific parameter.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class PlanwerkFilter implements Filter {
@@ -37,7 +39,7 @@ public class PlanwerkFilter implements Filter {
 
     private static final Map<String, String> PLANWERK_TO_WMS_MAPPING = new HashMap<>();
 
-    public static final String JDBC_RESOURCE_ID = "xplan";
+    private static final String JDBC_RESOURCE_ID = "xplan";
 
     static {
         PLANWERK_TO_WMS_MAPPING.put( "planwerkwms", "/wms" );
@@ -78,7 +80,6 @@ public class PlanwerkFilter implements Filter {
                 String sql = "SELECT ARRAY( SELECT id from xplanmgr.plans WHERE name = ?)";
                 ps = conn.prepareStatement( sql );
                 ps.setString( 1, requestedPlanName );
-
                 rs = ps.executeQuery();
                 if ( rs.next() ) {
                     Array managerIdArray = rs.getArray( 1 );
@@ -90,8 +91,9 @@ public class PlanwerkFilter implements Filter {
             } finally {
                 JDBCUtils.close( rs, ps, conn, LOG );
             }
+            throw new IllegalArgumentException( "Plan with name " + requestedPlanName + " is not available" );
         }
-        throw new IllegalArgumentException( "Plan with name XXX is not available" );
+        throw new IllegalArgumentException( "Request is not supported" );
     }
 
     private String parseRequestedPlanName( HttpServletRequest servletRequest ) {
@@ -112,7 +114,7 @@ public class PlanwerkFilter implements Filter {
             String[] paths = pathInfo.split( "/" );
             return PLANWERK_TO_WMS_MAPPING.get( paths[1] );
         }
-        throw new IllegalArgumentException( "Plan with name XXX is not available" );
+        throw new IllegalArgumentException( "Request is not supported" );
     }
 
 }
