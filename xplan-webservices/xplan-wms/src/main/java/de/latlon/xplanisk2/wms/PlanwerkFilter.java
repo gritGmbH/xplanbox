@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Array;
 import java.sql.Connection;
@@ -56,25 +57,31 @@ public class PlanwerkFilter implements Filter {
     public void doFilter( ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain )
                     throws IOException, ServletException {
         LOG.debug( "Retrieved planwerk request..." );
+
         if ( servletRequest instanceof HttpServletRequest ) {
             HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
-            String managerId = retrieveRequestedManagerId( httpServletRequest );
-            RequestParameterWrapper wrappedRequest = new RequestParameterWrapper( httpServletRequest );
+            String requestedPlanName = parseRequestedPlanName( httpServletRequest );
+            String managerId = retrieveRequestedManagerId( requestedPlanName );
+            if ( managerId != null ) {
+                RequestParameterWrapper wrappedRequest = new RequestParameterWrapper( httpServletRequest );
+                wrappedRequest.setPathInfo( parsePathInfoWithoutRequestedPlanwerk( httpServletRequest ) );
+                wrappedRequest.addParameter( "PLANWERK_MANAGERID", managerId );
+                filterChain.doFilter( wrappedRequest, servletResponse );
+            } else {
+                ServletResponseWrapper servletResponseWrapper = new ServletResponseWrapper(
+                                (HttpServletResponse) servletResponse );
 
-            wrappedRequest.setPathInfo( parsePathInfoWithoutRequestedPlanwerk( httpServletRequest ) );
-            wrappedRequest.addParameter( "PLANWERK_MANAGERID", managerId );
-            filterChain.doFilter( wrappedRequest, servletResponse );
+                servletResponseWrapper.setStatus( 404 );
+                servletResponseWrapper.getWriter().write( "Planwerk with name " + requestedPlanName + " is not known" );
+            }
         }
-        throw new IllegalArgumentException( "Request is not supported" );
     }
 
     @Override
     public void destroy() {
-
     }
 
-    private String retrieveRequestedManagerId( HttpServletRequest servletRequest ) {
-        String requestedPlanName = parseRequestedPlanName( servletRequest );
+    private String retrieveRequestedManagerId( String requestedPlanName ) {
         Connection conn = getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -96,7 +103,8 @@ public class PlanwerkFilter implements Filter {
         } finally {
             JDBCUtils.close( rs, ps, conn, LOG );
         }
-        throw new IllegalArgumentException( "Planwerk with name " + requestedPlanName + " is not available" );
+        LOG.error( "Planwerk with name " + requestedPlanName + " is not known" );
+        return null;
     }
 
     private String parseRequestedPlanName( HttpServletRequest servletRequest ) {
