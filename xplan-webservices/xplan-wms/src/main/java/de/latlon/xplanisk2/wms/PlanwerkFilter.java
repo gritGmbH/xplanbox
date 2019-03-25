@@ -56,12 +56,16 @@ public class PlanwerkFilter implements Filter {
     public void doFilter( ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain )
                     throws IOException, ServletException {
         LOG.debug( "Retrieved planwerk request..." );
-        String managerId = retrieveRequestedManagerId( servletRequest );
-        RequestParameterWrapper wrappedRequest = new RequestParameterWrapper( (HttpServletRequest) servletRequest );
+        if ( servletRequest instanceof HttpServletRequest ) {
+            HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+            String managerId = retrieveRequestedManagerId( httpServletRequest );
+            RequestParameterWrapper wrappedRequest = new RequestParameterWrapper( httpServletRequest );
 
-        wrappedRequest.setPathInfo( parsePathInfoWithoutRequestedPlanwerk( servletRequest ) );
-        wrappedRequest.addParameter( "PLANWERK_MANAGERID", managerId );
-        filterChain.doFilter( wrappedRequest, servletResponse );
+            wrappedRequest.setPathInfo( parsePathInfoWithoutRequestedPlanwerk( httpServletRequest ) );
+            wrappedRequest.addParameter( "PLANWERK_MANAGERID", managerId );
+            filterChain.doFilter( wrappedRequest, servletResponse );
+        }
+        throw new IllegalArgumentException( "Request is not supported" );
     }
 
     @Override
@@ -69,31 +73,30 @@ public class PlanwerkFilter implements Filter {
 
     }
 
-    private String retrieveRequestedManagerId( ServletRequest servletRequest ) {
-        if ( servletRequest instanceof HttpServletRequest ) {
-            String requestedPlanName = parseRequestedPlanName( (HttpServletRequest) servletRequest );
-
-            Connection conn = getConnection();
-            PreparedStatement ps = null;
-            ResultSet rs = null;
-            try {
-                String sql = "SELECT ARRAY( SELECT id from xplanmgr.plans WHERE name = ?)";
-                ps = conn.prepareStatement( sql );
-                ps.setString( 1, requestedPlanName );
-                rs = ps.executeQuery();
-                if ( rs.next() ) {
-                    Array managerIdArray = rs.getArray( 1 );
-                    List<Integer> managerIds = Arrays.asList( (Integer[]) managerIdArray.getArray() );
+    private String retrieveRequestedManagerId( HttpServletRequest servletRequest ) {
+        String requestedPlanName = parseRequestedPlanName( servletRequest );
+        Connection conn = getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT ARRAY( SELECT id from xplanmgr.plans WHERE name = ?)";
+            ps = conn.prepareStatement( sql );
+            ps.setString( 1, requestedPlanName );
+            rs = ps.executeQuery();
+            if ( rs.next() ) {
+                Array managerIdArray = rs.getArray( 1 );
+                List<Integer> managerIds = Arrays.asList( (Integer[]) managerIdArray.getArray() );
+                if ( !managerIds.isEmpty() ) {
                     return managerIds.stream().map( managerId -> managerId.toString() ).collect( joining( "," ) );
                 }
-            } catch ( SQLException e ) {
-                throw new IllegalArgumentException( "Planwerk could not be requested", e );
-            } finally {
-                JDBCUtils.close( rs, ps, conn, LOG );
             }
-            throw new IllegalArgumentException( "Plan with name " + requestedPlanName + " is not available" );
+        } catch ( SQLException e ) {
+            throw new IllegalArgumentException( "Planwerk with name " + requestedPlanName + " could not be requested",
+                                                e );
+        } finally {
+            JDBCUtils.close( rs, ps, conn, LOG );
         }
-        throw new IllegalArgumentException( "Request is not supported" );
+        throw new IllegalArgumentException( "Planwerk with name " + requestedPlanName + " is not available" );
     }
 
     private String parseRequestedPlanName( HttpServletRequest servletRequest ) {
@@ -108,13 +111,10 @@ public class PlanwerkFilter implements Filter {
         return connectionProvider.getConnection();
     }
 
-    private String parsePathInfoWithoutRequestedPlanwerk( ServletRequest servletRequest ) {
-        if ( servletRequest instanceof HttpServletRequest ) {
-            String pathInfo = ( (HttpServletRequest) servletRequest ).getPathInfo();
-            String[] paths = pathInfo.split( "/" );
-            return PLANWERK_TO_WMS_MAPPING.get( paths[1] );
-        }
-        throw new IllegalArgumentException( "Request is not supported" );
+    private String parsePathInfoWithoutRequestedPlanwerk( HttpServletRequest servletRequest ) {
+        String pathInfo = servletRequest.getPathInfo();
+        String[] paths = pathInfo.split( "/" );
+        return PLANWERK_TO_WMS_MAPPING.get( paths[1] );
     }
 
 }
