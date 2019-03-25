@@ -1,5 +1,10 @@
 package de.latlon.xplanisk2.wms;
 
+import org.deegree.commons.utils.JDBCUtils;
+import org.deegree.db.ConnectionProvider;
+import org.deegree.db.ConnectionProviderProvider;
+import org.deegree.services.controller.OGCFrontController;
+import org.deegree.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,8 +16,17 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.sql.Array;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import static java.util.stream.Collectors.joining;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -22,6 +36,8 @@ public class PlanwerkFilter implements Filter {
     private static final Logger LOG = LoggerFactory.getLogger( PlanwerkFilter.class );
 
     private static final Map<String, String> PLANWERK_TO_WMS_MAPPING = new HashMap<>();
+
+    public static final String JDBC_RESOURCE_ID = "xplan";
 
     static {
         PLANWERK_TO_WMS_MAPPING.put( "planwerkwms", "/wms" );
@@ -52,15 +68,42 @@ public class PlanwerkFilter implements Filter {
     }
 
     private String retrieveRequestedManagerId( ServletRequest servletRequest ) {
-        // TODO
         if ( servletRequest instanceof HttpServletRequest ) {
-            String pathInfo = ( (HttpServletRequest) servletRequest ).getPathInfo();
-            if ( pathInfo.endsWith( "Billstedt28" ) )
-                return "1";
-            if ( pathInfo.endsWith( "Billstedt73" ) )
-                return "2";
+            String requestedPlanName = parseRequestedPlanName( (HttpServletRequest) servletRequest );
+
+            Connection conn = getConnection();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            try {
+                String sql = "SELECT ARRAY( SELECT id from xplanmgr.plans WHERE name = ?)";
+                ps = conn.prepareStatement( sql );
+                ps.setString( 1, requestedPlanName );
+
+                rs = ps.executeQuery();
+                if ( rs.next() ) {
+                    Array managerIdArray = rs.getArray( 1 );
+                    List<Integer> managerIds = Arrays.asList( (Integer[]) managerIdArray.getArray() );
+                    return managerIds.stream().map( managerId -> managerId.toString() ).collect( joining( "," ) );
+                }
+            } catch ( SQLException e ) {
+                throw new IllegalArgumentException( "Planwerk could not be requested", e );
+            } finally {
+                JDBCUtils.close( rs, ps, conn, LOG );
+            }
         }
         throw new IllegalArgumentException( "Plan with name XXX is not available" );
+    }
+
+    private String parseRequestedPlanName( HttpServletRequest servletRequest ) {
+        String pathInfo = servletRequest.getPathInfo();
+        return pathInfo.substring( pathInfo.lastIndexOf( "/" ) + 1, pathInfo.length() );
+    }
+
+    private Connection getConnection() {
+        Workspace workspace = OGCFrontController.getServiceWorkspace().getNewWorkspace();
+        ConnectionProvider connectionProvider = workspace.getResource( ConnectionProviderProvider.class,
+                                                                       JDBC_RESOURCE_ID );
+        return connectionProvider.getConnection();
     }
 
     private String parsePathInfoWithoutRequestedPlanwerk( ServletRequest servletRequest ) {
