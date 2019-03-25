@@ -927,14 +927,6 @@ System.out.println( "FS: " +  xPlanFeatureCollection.getVersion()+","+
             stmt = conn.prepareStatement( "DELETE FROM xplanmgr.plans WHERE id=?" );
             stmt.setInt( 1, id );
             stmt.executeUpdate();
-
-            stmt = conn.prepareStatement( "DELETE FROM xplanmgr.artefacts WHERE plan=?" );
-            stmt.setInt( 1, id );
-            stmt.executeUpdate();
-
-            stmt = conn.prepareStatement( "DELETE FROM xplanmgr.features WHERE plan=?" );
-            stmt.setInt( 1, id );
-            stmt.executeUpdate();
             LOG.info( "OK" );
 
             LOG.info( "- Persistierung..." );

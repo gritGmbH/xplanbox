@@ -117,11 +117,8 @@ public class TransformationSynchronizer implements Synchronizer {
                     throws SynchronizationException {
         try {
             List<String> fids = selectIds( conn, logTableId );
-
-            XPlan xPlan = xPlanDao.getXPlanById( xPlanManagerId );
-            XPlanAde ade = xPlan.getAde() != null ? XPlanAde.valueOf( xPlan.getAde() ) : null;
             PlanStatus planStatus = PlanStatus.findByMessage( oldPlanStatus );
-            xPlanDao.deleteXPlanFeatureCollection( xPlanManagerId, XPlanVersion.XPLAN_51, ade, planStatus, fids );
+            xPlanDao.deleteXPlanFeatureCollection( xPlanManagerId, XPlanVersion.XPLAN_51, null, planStatus, fids );
         } catch ( Exception e ) {
             throw new SynchronizationException( e );
         }
