@@ -29,13 +29,29 @@
     </init-param>
   </filter>
   <filter>
+    <filter-name>PlanwerkFilter</filter-name>
+    <filter-class>de.latlon.xplanisk2.wms.PlanwerkFilter</filter-class>
+  </filter>
+  <filter>
     <filter-name>Upload Filter</filter-name>
     <filter-class>org.deegree.client.core.filter.InputFileFilter</filter-class>
   </filter>
-  
+
   <filter-mapping>
     <filter-name>PlanFilter</filter-name>
     <url-pattern>/services/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>PlanwerkFilter</filter-name>
+    <url-pattern>/services/planwerkwms/planname/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>PlanwerkFilter</filter-name>
+    <url-pattern>/services/planwerkwmspre/planname/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>PlanwerkFilter</filter-name>
+    <url-pattern>/services/planwerkwmsarchive/planname/*</url-pattern>
   </filter-mapping>
   <filter-mapping>
     <filter-name>Upload Filter</filter-name>
