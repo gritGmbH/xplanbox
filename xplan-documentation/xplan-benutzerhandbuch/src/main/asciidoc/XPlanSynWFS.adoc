@@ -94,7 +94,7 @@ bzw. WFS 2.0.0 unterstützen.
 Die Operation DescribeFeatureType gibt Informationen zur Struktur der
 einzelnen Feature Types wieder.
 
-[[xplanwfs-liststoredqueries-1]]
+[[xplansynwfs-liststoredqueries-1]]
 ==== ListStoredQueries
 
 Die Operation ListStoredQueries gibt Informationen über die verfügbaren
