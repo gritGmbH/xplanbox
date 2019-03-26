@@ -43,8 +43,9 @@ public class SynchronizeAllExecutor {
         LOG.info( "Copy required metadata into {}", logTableName );
         PreparedStatement ps = null;
         try {
-            ps = conn.prepareStatement( "insert into " + logTableName
-                                        + " SELECT id, xp_version, planstatus, null, 'INSERT', now() from xplanmgr.plans;" );
+            ps = conn.prepareStatement(
+                            "insert into " + logTableName + " (xplanmgrid, xp_version, newplanstatus, operation, datum)"
+                            + " SELECT id, xp_version, planstatus, 'INSERT', now() from xplanmgr.plans;" );
 
             LOG.debug( "Execute insert in {}: {}", logTableName, ps );
             ps.execute();
