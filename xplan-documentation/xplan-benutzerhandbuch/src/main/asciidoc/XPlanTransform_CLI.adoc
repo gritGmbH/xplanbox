@@ -1,0 +1,28 @@
+[[xplantransform-cli]]
+== XPlanTransformCLI
+
+Die Komponente XPlanTransformCLI ist ein Kommandozeilenwerkzeug,
+welches dem Fachadministrator des XPlanung Infrastrukturknotens
+ermöglicht, bereits über den XPlanManagerWeb oder das XPlanManagerCLI
+importierte Pläne in eine aktuellere XPlanGML Version zu transformieren.
+
+Die transformierten Pläne können entweder syntaktisch validiert und das Validierungsergebnis in eine CSV-Datei geschrieben werden
+oder die transformierten Pläne werden in die entsprechende Datenhaltung überführt.
+
+[NOTE]
+====
+
+Unterstützt wird derzeit die Transformation von XPlanGML 4.1 nach XPlanGml 5.1
+
+====
+
+
+[[xplantransform-cli-installation]]
+=== Installation von HALE
+
+Für die Nutzung des Tools muss die Installation von HALE erfolgreich abgeschlossen sein (s. Betriebshandbuch).
+
+[[xplantransform-cli-benutzungsanleitung]]
+=== Benutzungsanleitung
+
+Beim XPlanTransformCLI handelt es ich um ein Kommandozeilenwerkzeug, das parametrisiert aufgerufen wird. Weitere Informationen über die verschiedenen Parameter gibt das Kommandozeilenwerkzeug aus, wenn der Parameter _--help_ angehängt wird.

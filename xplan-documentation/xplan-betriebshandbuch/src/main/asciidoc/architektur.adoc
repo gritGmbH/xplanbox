@@ -46,6 +46,14 @@ Die Komponente XPlanValidatorCLI ist ein Kommandozeilenwerkzeug,
 welches dem Fachadministrator des XPlanung Infrastrukturknotens
 ermöglicht, XPlanGML Instanzdokumente vor dem Import zu validieren.
 
+[[xplantransform-cli]]
+=== XPlanTransformCLI
+
+Die Komponente XPlanTransformCLI ist ein Kommandozeilenwerkzeug,
+welches dem Fachadministrator des XPlanung Infrastrukturknotens
+ermöglicht, bereits über den XPlanManagerWeb oder das XPlanManagerCLI
+importierte Pläne in eine aktuellere XPlanGML Version zu transformieren.
+
 [[xplanvalidator-web]]
 === XPlanValidatorWeb
 
