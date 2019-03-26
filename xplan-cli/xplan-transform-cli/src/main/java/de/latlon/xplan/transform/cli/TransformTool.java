@@ -43,7 +43,7 @@ public class TransformTool {
 
     static final String LOG_TABLE_NAME = "xplanmgr.transformToolPlanTableLog";
 
-    private enum TYPE {VALIDATE, SYNC, ALL}
+    private enum TYPE {VALIDATE, SYNC, INIT, REINIT}
 
     private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
@@ -91,12 +91,21 @@ public class TransformTool {
         ManagerWorkspaceWrapper managerWorkspaceWrapper = createManagerWorkspaceWrapper( workspaceName,
                                                                                          configurationDirectory );
         switch ( type ) {
-        case ALL:
+        case INIT:
             sync( managerWorkspaceWrapper, ( conn ) -> {
                 TransformationSynchronizer synchronizer = new TransformationSynchronizer( xPlanDao, validator,
                                                                                           outDirectory );
                 SynchronizeAllExecutor allExecuter = new SynchronizeAllExecutor( LOG_TABLE_NAME, synchronizer );
                 allExecuter.synchronizeAll( conn );
+            } );
+            break;
+        case REINIT:
+            sync( managerWorkspaceWrapper, ( conn ) -> {
+                TransformationSynchronizer synchronizer = new TransformationSynchronizer( xPlanDao, validator,
+                                                                                          outDirectory );
+                SynchronizeReinitExecutor reinitExecuter = new SynchronizeReinitExecutor( LOG_TABLE_NAME,
+                                                                                          synchronizer );
+                reinitExecuter.synchronizeReinit( conn );
             } );
             break;
         case SYNC:
@@ -199,8 +208,13 @@ public class TransformTool {
         opt.setRequired( true );
         opts.addOption( opt );
 
-        opt = new Option( "t", OPT_TYPE, true,
-                          "one of 'VALIDATE', 'SYNC' OR 'ALL'; 'VALIDATE' validates all available XPlanGML 4.1 plans and writes the results (default if missing), 'CONVERT' transforms the available XPlanGML 4.1 plans, inserts the valid plans in the XPlan 5.1 datastore and removes the from XPlan 4.1 datastore" );
+        opt = new Option( "t", OPT_TYPE, true, "one of 'VALIDATE' (default if missing), 'SYNC', 'INIT', 'REINIT': \n"
+                                               + "   * 'VALIDATE': validates all available XPlanGML 4.1 plans and writes the results\n"
+                                               + "   * 'INIT' transforms all XPlanGML 4.1 plans and inserts the valid plans in the XPlan 5.1 datastore\n"
+                                               + "   * 'REINIT' transforms all available XPlanGML 4.1 plans and inserts the valid plans in the XPlan 5.1 datastore, plans already available in 5.1 will be removed first\n"
+                                               + "   * 'SYNC' transforms the XPlanGML 4.1 plans logged in the table "
+                                               + LOG_TABLE_NAME
+                                               + "and inserts the valid plans in the XPlan 5.1 datastore" );
         opt.setRequired( false );
         opts.addOption( opt );
 
