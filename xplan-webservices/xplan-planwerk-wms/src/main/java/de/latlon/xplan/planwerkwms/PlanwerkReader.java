@@ -19,7 +19,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,43 +44,43 @@ public class PlanwerkReader {
     }
 
     public List<ResourceMetadata<OWS>> readAvailablePlanwerke( Workspace workspace ) {
-        Map<String, List<Integer>> stringListMap = retrieveAvailabelPlanwerke( workspace );
-        System.out.println( stringListMap );
+        Map<String, List<Integer>> availablePlanwerke = retrieveAvailablePlanwerke( workspace );
 
         String id = location.getIdentifier().getId();
         List<ResourceMetadata<OWS>> availablePlanwerkResources = new ArrayList<>();
-        availablePlanwerkResources.add(
-                        new PlanwerkMetadata( workspace, createLocation( id + "/planname/Billstedt28" ), provider,
-                                              planwerkWmsMetadata, Collections.singletonList( 1 ) ) );
-        availablePlanwerkResources.add(
-                        new PlanwerkMetadata( workspace, createLocation( id + "/planname/Billstedt73" ), provider,
-                                              planwerkWmsMetadata, Collections.singletonList( 2 ) ) );
+        for ( Map.Entry<String, List<Integer>> planwerk : availablePlanwerke.entrySet() ) {
+            String planname = planwerk.getKey();
+            List<Integer> managerIds = planwerk.getValue();
+            String newId = id + "/planname/" + planname;
+            ResourceLocation<OWS> resourceLocation = new PlanwerkResourceLocation( location, newId );
+            PlanwerkMetadata planwerkMetadata = new PlanwerkMetadata( workspace, resourceLocation, provider,
+                                                                      planwerkWmsMetadata, managerIds );
+            availablePlanwerkResources.add( planwerkMetadata );
+        }
         return availablePlanwerkResources;
     }
 
-    private ResourceLocation<OWS> createLocation( String identifier ) {
-        return new PlanwerkResourceLocation( location, identifier );
-    }
-
-    private Map<String, List<Integer>> retrieveAvailabelPlanwerke( Workspace workspace ) {
+    private Map<String, List<Integer>> retrieveAvailablePlanwerke( Workspace workspace ) {
         Map<String, List<Integer>> availablePlanwerke = new HashMap<>();
         Connection conn = getConnection( workspace );
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-            String sql = "SELECT name, array_agg(id) from xplanmgr.plans GROUP BY name";
-            ps = conn.prepareStatement( sql );
-            rs = ps.executeQuery();
-            if ( rs.next() ) {
-                String name = rs.getString( 1 );
-                Array managerIdArray = rs.getArray( 2 );
-                List<Integer> managerIds = Arrays.asList( (Integer[]) managerIdArray.getArray() );
-                availablePlanwerke.put( name, managerIds );
+        if ( conn != null ) {
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            try {
+                String sql = "SELECT name, array_agg(id) from xplanmgr.plans GROUP BY name";
+                ps = conn.prepareStatement( sql );
+                rs = ps.executeQuery();
+                while ( rs.next() ) {
+                    String name = rs.getString( 1 );
+                    Array managerIdArray = rs.getArray( 2 );
+                    List<Integer> managerIds = Arrays.asList( (Integer[]) managerIdArray.getArray() );
+                    availablePlanwerke.put( name, managerIds );
+                }
+            } catch ( SQLException e ) {
+                throw new IllegalArgumentException( "Planwerke could not be requested", e );
+            } finally {
+                JDBCUtils.close( rs, ps, conn, LOG );
             }
-        } catch ( SQLException e ) {
-            throw new IllegalArgumentException( "Planwerke could not be requested", e );
-        } finally {
-            JDBCUtils.close( rs, ps, conn, LOG );
         }
         return availablePlanwerke;
     }
