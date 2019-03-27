@@ -19,6 +19,7 @@ import org.deegree.workspace.standard.AbstractResourceProvider;
 import org.deegree.workspace.standard.DefaultResourceIdentifier;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -81,10 +82,10 @@ public class PlanwerkWmsMetadata extends AbstractResourceMetadata<OWS> {
         String oldId = location.getIdentifier().getId();
         this.additionalResources.add(
                         new PlanwerkMetadata( workspace, createLocation( oldId + "/planname/Billstedt28" ), provider,
-                                              this ) );
+                                              this, Collections.singletonList( 1 ) ) );
         this.additionalResources.add(
                         new PlanwerkMetadata( workspace, createLocation( oldId + "/planname/Billstedt73" ), provider,
-                                              this ) );
+                                              this, Collections.singletonList( 2 ) ) );
         return this.additionalResources;
     }
 
