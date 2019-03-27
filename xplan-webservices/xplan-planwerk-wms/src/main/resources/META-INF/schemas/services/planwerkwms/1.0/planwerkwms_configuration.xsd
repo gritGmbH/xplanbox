@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:wms="http://www.deegree.org/services/wms" xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.lat-lon.de/services/planwerkwms" elementFormDefault="qualified"
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        jaxb:version="2.1">
+
+  <import namespace="http://www.deegree.org/services/wms"
+          schemaLocation="http://schemas.deegree.org/services/wms/3.4.0/wms_configuration.xsd"/>
+
+  <annotation>
+    <appinfo>
+      <jaxb:schemaBindings>
+        <jaxb:package name="org.deegree.services.planwerkwms.jaxb"/>
+      </jaxb:schemaBindings>
+    </appinfo>
+  </annotation>
+
+  <element name="PlanwerkWMS">
+    <complexType>
+      <sequence>
+        <element ref="wms:deegreeWMS"/>
+      </sequence>
+    </complexType>
+  </element>
+
+</schema>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pwms:PlanwerkWMS xmlns:wms="http://www.deegree.org/services/wms"
+                  xmlns:pwms="http://www.lat-lon.de/services/planwerkwms"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.lat-lon.de/services/planwerkwms planwerkwms_configuration.xsd">
+
+  <wms:deegreeWMS configVersion="3.4.0">
+    <wms:ServiceConfiguration>
+      <wms:ThemeId>theme</wms:ThemeId>
+    </wms:ServiceConfiguration>
+  </wms:deegreeWMS>
+
+</pwms:PlanwerkWMS>
