@@ -18,8 +18,6 @@ import org.deegree.workspace.standard.AbstractResourceMetadata;
 import org.deegree.workspace.standard.AbstractResourceProvider;
 import org.deegree.workspace.standard.DefaultResourceIdentifier;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,13 +29,14 @@ public class PlanwerkWmsMetadata extends AbstractResourceMetadata<OWS> {
 
     private static final String CONFIG_JAXB_PACKAGE = "org.deegree.services.planwerkwms.jaxb";
 
-    private List<ResourceMetadata<OWS>> additionalResources = new ArrayList<>();
+    private final PlanwerkReader planwerkReader;
 
     private DeegreeWMS cfg;
 
     public PlanwerkWmsMetadata( Workspace workspace, ResourceLocation<OWS> location,
                                 AbstractResourceProvider<OWS> provider ) {
         super( workspace, location, provider );
+        planwerkReader = new PlanwerkReader( location, provider, this );
     }
 
     @Override
@@ -78,19 +77,7 @@ public class PlanwerkWmsMetadata extends AbstractResourceMetadata<OWS> {
     }
 
     public List<ResourceMetadata<OWS>> getAdditionalResources( Workspace workspace ) {
-        // TODO: aus Konfig/DB auslesen:
-        String oldId = location.getIdentifier().getId();
-        this.additionalResources.add(
-                        new PlanwerkMetadata( workspace, createLocation( oldId + "/planname/Billstedt28" ), provider,
-                                              this, Collections.singletonList( 1 ) ) );
-        this.additionalResources.add(
-                        new PlanwerkMetadata( workspace, createLocation( oldId + "/planname/Billstedt73" ), provider,
-                                              this, Collections.singletonList( 2 ) ) );
-        return this.additionalResources;
-    }
-
-    private ResourceLocation<OWS> createLocation( String identifier ) {
-        return new PlanwerkResourceLocation( location, identifier );
+        return planwerkReader.readAvailablePlanwerke( workspace );
     }
 
 }
