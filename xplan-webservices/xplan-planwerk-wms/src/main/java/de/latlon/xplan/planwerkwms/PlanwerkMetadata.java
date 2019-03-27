@@ -8,8 +8,6 @@ import org.deegree.workspace.Workspace;
 import org.deegree.workspace.standard.AbstractResourceMetadata;
 import org.deegree.workspace.standard.AbstractResourceProvider;
 
-import java.util.List;
-
 /**
  * {@link org.deegree.workspace.ResourceMetadata} for a Planwerk
  *
@@ -19,20 +17,20 @@ public class PlanwerkMetadata extends AbstractResourceMetadata<OWS> {
 
     private PlanwerkWmsMetadata planwerkWmsMetadata;
 
-    private final List<Integer> managerIds;
+    private final Planwerk planwerk;
 
     public PlanwerkMetadata( Workspace workspace, ResourceLocation<OWS> location,
                              AbstractResourceProvider<OWS> provider, PlanwerkWmsMetadata planwerkWmsMetadata,
-                             List<Integer> managerIds ) {
+                             Planwerk planwerk ) {
         super( workspace, location, provider );
         this.planwerkWmsMetadata = planwerkWmsMetadata;
-        this.managerIds = managerIds;
+        this.planwerk = planwerk;
     }
 
     @Override
     public ResourceBuilder<OWS> prepare() {
         dependencies.add( planwerkWmsMetadata.getIdentifier() );
-        return new PlanwerkBuilder( workspace, this, managerIds );
+        return new PlanwerkBuilder( workspace, this, planwerk );
     }
 
     public DeegreeWMS getDeegreeWmsConfig() {

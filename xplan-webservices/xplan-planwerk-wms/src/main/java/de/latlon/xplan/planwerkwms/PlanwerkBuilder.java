@@ -5,8 +5,6 @@ import org.deegree.services.wms.controller.WMSController;
 import org.deegree.workspace.ResourceBuilder;
 import org.deegree.workspace.Workspace;
 
-import java.util.List;
-
 /**
  * Instantiates a {@link WMSController} for the Planwerk
  *
@@ -18,17 +16,17 @@ public class PlanwerkBuilder implements ResourceBuilder<OWS> {
 
     private final PlanwerkMetadata planwerkMetadata;
 
-    private List<Integer> managerIds;
+    private final Planwerk planwerk;
 
-    public PlanwerkBuilder( Workspace workspace, PlanwerkMetadata planwerkMetadata, List<Integer> managerIds ) {
+    public PlanwerkBuilder( Workspace workspace, PlanwerkMetadata planwerkMetadata, Planwerk planwerk ) {
         this.workspace = workspace;
         this.planwerkMetadata = planwerkMetadata;
-        this.managerIds = managerIds;
+        this.planwerk = planwerk;
     }
 
     @Override
     public OWS build() {
-        return new PlanwerkController( planwerkMetadata, workspace, managerIds );
+        return new PlanwerkController( planwerkMetadata, workspace, planwerk );
     }
 
 }
