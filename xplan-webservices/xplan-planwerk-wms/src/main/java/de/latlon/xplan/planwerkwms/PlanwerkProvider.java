@@ -10,7 +10,6 @@ import org.deegree.workspace.ResourceMetadata;
 import org.deegree.workspace.Workspace;
 
 import java.net.URL;
-import java.util.List;
 
 import static org.deegree.protocol.wms.WMSConstants.VERSION_111;
 import static org.deegree.protocol.wms.WMSConstants.VERSION_130;
@@ -20,9 +19,9 @@ import static org.deegree.protocol.wms.WMSConstants.VERSION_130;
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class PlanwerkWmsProvider extends OWSProvider {
+public class PlanwerkProvider extends OWSProvider {
 
-    private PlanwerkWmsMetadata planwerkWmsMetadata;
+    public static final String NAMESPACE = "http://www.lat-lon.de/services/planwerk";
 
     protected static final ImplementationMetadata<WMSConstants.WMSRequestType> IMPLEMENTATION_METADATA = new ImplementationMetadata<WMSConstants.WMSRequestType>() {
         {
@@ -38,13 +37,13 @@ public class PlanwerkWmsProvider extends OWSProvider {
 
     @Override
     public String getNamespace() {
-        return "http://www.lat-lon.de/services/planwerkwms";
+        return NAMESPACE;
     }
 
     @Override
     public URL getSchema() {
-        return PlanwerkWmsProvider.class.getResource(
-                        "/META-INF/schemas/services/planwerkwms/1.0/planwerkwms_configuration.xsd" );
+        return PlanwerkProvider.class.getResource(
+                        "/META-INF/schemas/services/planwerkwms/1.0/planwerk_configuration.xsd" );
     }
 
     @Override
@@ -54,14 +53,7 @@ public class PlanwerkWmsProvider extends OWSProvider {
 
     @Override
     public ResourceMetadata<OWS> createFromLocation( Workspace workspace, ResourceLocation<OWS> location ) {
-        if ( planwerkWmsMetadata == null )
-            planwerkWmsMetadata = new PlanwerkWmsMetadata( workspace, location, this );
-        return planwerkWmsMetadata;
-    }
-
-    @Override
-    public List<ResourceMetadata<OWS>> getAdditionalResources( Workspace workspace ) {
-        return planwerkWmsMetadata.getAdditionalResources( workspace );
+        return new PlanwerkMetadata( workspace, location, this );
     }
 
 }

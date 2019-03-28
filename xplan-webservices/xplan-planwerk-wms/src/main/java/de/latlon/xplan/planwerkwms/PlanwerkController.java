@@ -1,15 +1,25 @@
 package de.latlon.xplan.planwerkwms;
 
+import com.vividsolutions.jts.io.ParseException;
 import org.apache.commons.fileupload.FileItem;
 import org.deegree.cs.coordinatesystems.ICRS;
+import org.deegree.cs.exceptions.UnknownCRSException;
+import org.deegree.cs.persistence.CRSManager;
+import org.deegree.geometry.Envelope;
+import org.deegree.geometry.Geometry;
+import org.deegree.geometry.io.WKTReader;
 import org.deegree.geometry.metadata.SpatialMetadata;
 import org.deegree.layer.metadata.LayerMetadata;
 import org.deegree.services.controller.utils.HttpResponseBuffer;
+import org.deegree.services.jaxb.wms.DeegreeWMS;
+import org.deegree.services.planwerk.jaxb.Planwerk;
 import org.deegree.services.wms.controller.WMSController;
 import org.deegree.services.wms.controller.capabilities.theme.DefaultMetadataMerger;
 import org.deegree.services.wms.controller.capabilities.theme.MetadataMerger;
 import org.deegree.theme.Theme;
 import org.deegree.workspace.Workspace;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,12 +35,15 @@ import static java.util.stream.Collectors.joining;
  */
 public class PlanwerkController extends WMSController {
 
+    private static final Logger LOG = LoggerFactory.getLogger( PlanwerkController.class );
+
     private static final String PARAM_NAME_MANAGERID = "PLANWERK_MANAGERID";
 
     private final Planwerk planwerk;
 
-    public PlanwerkController( PlanwerkMetadata metadata, Workspace workspace, Planwerk planwerk ) {
-        super( metadata, workspace, metadata.getDeegreeWmsConfig() );
+    public PlanwerkController( PlanwerkMetadata metadata, Workspace workspace, DeegreeWMS deegreeWMSConfig,
+                               Planwerk planwerk ) {
+        super( metadata, workspace, deegreeWMSConfig );
         this.planwerk = planwerk;
     }
 
@@ -60,12 +73,12 @@ public class PlanwerkController extends WMSController {
 
             private SpatialMetadata createPlanwerkSpatialMetadata( Theme theme ) {
                 List<ICRS> coordinateSystems = theme.getLayerMetadata().getSpatialMetadata().getCoordinateSystems();
-                return new SpatialMetadata( planwerk.getBbox(), coordinateSystems );
+                return new SpatialMetadata( parseBboxFromWkt( planwerk.getEnvelope() ), coordinateSystems );
             }
 
             private SpatialMetadata createPlanwerkSpatialMetadata( List<Theme> themes ) {
                 List<ICRS> coordinateSystems = getCrs( themes );
-                return new SpatialMetadata( planwerk.getBbox(), coordinateSystems );
+                return new SpatialMetadata( parseBboxFromWkt( planwerk.getEnvelope() ), coordinateSystems );
             }
 
             private List<ICRS> getCrs( List<Theme> themes ) {
@@ -78,9 +91,23 @@ public class PlanwerkController extends WMSController {
     }
 
     private void addManagerIdParameter( Map<String, String> map ) {
-        List<Integer> managerIds = planwerk.getManagerIds();
+        List<Integer> managerIds = planwerk.getManagerId();
         String ids = managerIds.stream().map( managerId -> managerId.toString() ).collect( joining( "," ) );
         map.put( PARAM_NAME_MANAGERID, ids );
+    }
+
+    private Envelope parseBboxFromWkt( String bboxAsWkt ) {
+        if ( bboxAsWkt != null && !bboxAsWkt.isEmpty() ) {
+            try {
+                String crs = "epsg:4326";
+                WKTReader reader = new WKTReader( CRSManager.lookup( crs ) );
+                Geometry geometry = reader.read( bboxAsWkt );
+                return geometry.getEnvelope();
+            } catch ( UnknownCRSException | ParseException e ) {
+                LOG.error( "Could not create envelope from " + bboxAsWkt, e );
+            }
+        }
+        return null;
     }
 
 }

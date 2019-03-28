@@ -1,12 +1,16 @@
 package de.latlon.xplan.planwerkwms;
 
+import org.apache.commons.io.IOUtils;
 import org.deegree.services.OWS;
-import org.deegree.services.OWSProvider;
-import org.deegree.workspace.ResourceIdentifier;
+import org.deegree.services.wms.controller.WmsMetadata;
+import org.deegree.workspace.ResourceException;
 import org.deegree.workspace.ResourceLocation;
 import org.deegree.workspace.standard.DefaultResourceIdentifier;
+import org.deegree.workspace.standard.DefaultResourceLocation;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
@@ -15,60 +19,56 @@ import java.net.URL;
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class PlanwerkResourceLocation implements ResourceLocation<OWS> {
+public class PlanwerkResourceLocation extends DefaultResourceLocation {
 
-    private final ResourceLocation<OWS> encapsulatedResourceLocation;
+    private byte[] bytes;
 
-    private final String identifier;
+    private final WmsMetadata wmsMetadata;
 
-    public PlanwerkResourceLocation( ResourceLocation<OWS> encapsulatedResourceLocation, String identifier ) {
-        this.encapsulatedResourceLocation = encapsulatedResourceLocation;
-        this.identifier = identifier;
-    }
-
-    @Override
-    public String getNamespace() {
-        return encapsulatedResourceLocation.getNamespace();
-    }
-
-    @Override
-    public ResourceIdentifier getIdentifier() {
-        return new DefaultResourceIdentifier( OWSProvider.class, identifier );
+    public PlanwerkResourceLocation( byte[] bytes, DefaultResourceIdentifier<OWS> identifier,
+                                     WmsMetadata wmsMetadata ) {
+        super( null, identifier );
+        this.bytes = bytes;
+        this.wmsMetadata = wmsMetadata;
     }
 
     @Override
     public InputStream getAsStream() {
-        return encapsulatedResourceLocation.getAsStream();
+        return new ByteArrayInputStream( bytes );
     }
 
     @Override
     public InputStream resolve( String path ) {
-        return encapsulatedResourceLocation.resolve( path );
+        return wmsMetadata.getLocation().resolve( path );
     }
 
     @Override
     public File resolveToFile( String path ) {
-        return encapsulatedResourceLocation.resolveToFile( path );
+        return wmsMetadata.getLocation().resolveToFile( path );
     }
 
     @Override
     public URL resolveToUrl( String path ) {
-        return encapsulatedResourceLocation.resolveToUrl( path );
+        return wmsMetadata.getLocation().resolveToUrl( path );
     }
 
     @Override
     public void deactivate() {
-        encapsulatedResourceLocation.deactivate();
+        wmsMetadata.getLocation().deactivate();
     }
 
     @Override
     public void activate() {
-        encapsulatedResourceLocation.activate();
+        wmsMetadata.getLocation().activate();
     }
 
     @Override
     public void setContent( InputStream in ) {
-        encapsulatedResourceLocation.setContent( in );
-
+        try {
+            bytes = IOUtils.toByteArray( in );
+        } catch ( IOException e ) {
+            throw new ResourceException( e.getLocalizedMessage(), e );
+        }
     }
+
 }

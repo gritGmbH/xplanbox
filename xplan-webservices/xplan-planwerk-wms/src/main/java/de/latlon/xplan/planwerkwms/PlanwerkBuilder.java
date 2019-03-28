@@ -1,7 +1,10 @@
 package de.latlon.xplan.planwerkwms;
 
 import org.deegree.services.OWS;
+import org.deegree.services.OWSProvider;
+import org.deegree.services.planwerk.jaxb.Planwerk;
 import org.deegree.services.wms.controller.WMSController;
+import org.deegree.services.wms.controller.WmsMetadata;
 import org.deegree.workspace.ResourceBuilder;
 import org.deegree.workspace.Workspace;
 
@@ -26,7 +29,9 @@ public class PlanwerkBuilder implements ResourceBuilder<OWS> {
 
     @Override
     public OWS build() {
-        return new PlanwerkController( planwerkMetadata, workspace, planwerk );
+        String planwerkId = planwerk.getPlanwerkWms();
+        WmsMetadata wmsController = (WmsMetadata) workspace.getResourceMetadata( OWSProvider.class, planwerkId );
+        return new PlanwerkController( planwerkMetadata, workspace, wmsController.getCfg(), planwerk );
     }
 
 }

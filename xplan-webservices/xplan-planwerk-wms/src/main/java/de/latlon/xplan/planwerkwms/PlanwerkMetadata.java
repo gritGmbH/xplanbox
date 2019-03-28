@@ -1,12 +1,17 @@
 package de.latlon.xplan.planwerkwms;
 
+import org.deegree.commons.xml.jaxb.JAXBUtils;
 import org.deegree.services.OWS;
-import org.deegree.services.jaxb.wms.DeegreeWMS;
+import org.deegree.services.OWSProvider;
+import org.deegree.services.planwerk.jaxb.Planwerk;
+import org.deegree.services.wms.controller.WmsMetadata;
 import org.deegree.workspace.ResourceBuilder;
+import org.deegree.workspace.ResourceInitException;
 import org.deegree.workspace.ResourceLocation;
 import org.deegree.workspace.Workspace;
 import org.deegree.workspace.standard.AbstractResourceMetadata;
 import org.deegree.workspace.standard.AbstractResourceProvider;
+import org.deegree.workspace.standard.DefaultResourceIdentifier;
 
 /**
  * {@link org.deegree.workspace.ResourceMetadata} for a Planwerk
@@ -15,26 +20,30 @@ import org.deegree.workspace.standard.AbstractResourceProvider;
  */
 public class PlanwerkMetadata extends AbstractResourceMetadata<OWS> {
 
-    private PlanwerkWmsMetadata planwerkWmsMetadata;
-
-    private final Planwerk planwerk;
+    private static final String CONFIG_JAXB_PACKAGE = "org.deegree.services.planwerk.jaxb";
 
     public PlanwerkMetadata( Workspace workspace, ResourceLocation<OWS> location,
-                             AbstractResourceProvider<OWS> provider, PlanwerkWmsMetadata planwerkWmsMetadata,
-                             Planwerk planwerk ) {
+                             AbstractResourceProvider<OWS> provider ) {
         super( workspace, location, provider );
-        this.planwerkWmsMetadata = planwerkWmsMetadata;
-        this.planwerk = planwerk;
     }
 
     @Override
     public ResourceBuilder<OWS> prepare() {
-        dependencies.add( planwerkWmsMetadata.getIdentifier() );
-        return new PlanwerkBuilder( workspace, this, planwerk );
-    }
+        try {
+            Planwerk planwerkConfig = (Planwerk) JAXBUtils.unmarshall( CONFIG_JAXB_PACKAGE, provider.getSchema(),
+                                                                       location.getAsStream(), workspace );
 
-    public DeegreeWMS getDeegreeWmsConfig() {
-        return planwerkWmsMetadata.getDeegreeWmsConfig();
+            String planwerkId = planwerkConfig.getPlanwerkWms();
+            dependencies.add( new DefaultResourceIdentifier<>( OWSProvider.class, planwerkId ) );
+
+            WmsMetadata planwerkWms = (WmsMetadata) workspace.getResourceMetadata( OWSProvider.class, planwerkId );
+
+            planwerkWms.getDependencies().add( location.getIdentifier() );
+
+            return new PlanwerkBuilder( workspace, this, planwerkConfig );
+        } catch ( Exception e ) {
+            throw new ResourceInitException( e.getLocalizedMessage(), e );
+        }
     }
 
 }

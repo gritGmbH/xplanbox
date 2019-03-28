@@ -1,20 +1,11 @@
 package de.latlon.xplan.planwerkwms;
 
-import com.vividsolutions.jts.io.ParseException;
 import org.deegree.commons.utils.JDBCUtils;
-import org.deegree.cs.exceptions.UnknownCRSException;
-import org.deegree.cs.persistence.CRSManager;
 import org.deegree.db.ConnectionProvider;
 import org.deegree.db.ConnectionProviderProvider;
-import org.deegree.geometry.Envelope;
-import org.deegree.geometry.Geometry;
-import org.deegree.geometry.io.WKTReader;
-import org.deegree.services.OWS;
 import org.deegree.workspace.ResourceBuilder;
-import org.deegree.workspace.ResourceLocation;
 import org.deegree.workspace.ResourceMetadata;
 import org.deegree.workspace.Workspace;
-import org.deegree.workspace.standard.AbstractResourceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,58 +14,51 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
+ * Reads the metadata of the requested Planwerk from the database.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class PlanwerkReader {
 
     private static final Logger LOG = LoggerFactory.getLogger( PlanwerkReader.class );
 
-    private final ResourceLocation<OWS> location;
+    private String jdbcResourceId;
 
-    private final AbstractResourceProvider<OWS> provider;
-
-    private final PlanwerkWmsMetadata planwerkWmsMetadata;
-
-    public PlanwerkReader( ResourceLocation<OWS> location, AbstractResourceProvider<OWS> provider,
-                           PlanwerkWmsMetadata planwerkWmsMetadata ) {
-        this.location = location;
-        this.provider = provider;
-        this.planwerkWmsMetadata = planwerkWmsMetadata;
+    /**
+     * @param jdbcResourceId
+     *                 ID of the JDBC resource in the workspace, never <code>null</code>
+     */
+    public PlanwerkReader( String jdbcResourceId ) {
+        this.jdbcResourceId = jdbcResourceId;
     }
 
-    public List<ResourceMetadata<OWS>> readAvailablePlanwerke( Workspace workspace ) {
-        List<Planwerk> availablePlanwerke = retrieveAvailablePlanwerke( workspace );
-
-        String id = location.getIdentifier().getId();
-        List<ResourceMetadata<OWS>> availablePlanwerkResources = new ArrayList<>();
-        for ( Planwerk planwerk : availablePlanwerke ) {
-            String newId = id + "/planname/" + planwerk.getName();
-            ResourceLocation<OWS> resourceLocation = new PlanwerkResourceLocation( location, newId );
-            PlanwerkMetadata planwerkMetadata = new PlanwerkMetadata( workspace, resourceLocation, provider,
-                                                                      planwerkWmsMetadata, planwerk );
-            availablePlanwerkResources.add( planwerkMetadata );
-        }
-        return availablePlanwerkResources;
-    }
-
-    private List<Planwerk> retrieveAvailablePlanwerke( Workspace workspace ) {
-        List<Planwerk> availablePlanwerke = new ArrayList<>();
+    /**
+     * Reads the metadata of the requested Planwerk from the database.
+     *
+     * @param workspace
+     *                 the current workspace, never <code>null</code>
+     * @param name
+     *                 the name of the requested Planwerk
+     * @param planStatus
+     * @return
+     */
+    public Plan retrieveAvailablePlanwerke( Workspace workspace, String name, String planStatus ) {
         Connection conn = getConnection( workspace );
         if ( conn != null ) {
             PreparedStatement ps = null;
             ResultSet rs = null;
             try {
-                String sql = "SELECT name, array_agg(id), ST_AsText(ST_Envelope(ST_UNION(bbox))) from xplanmgr.plans GROUP BY name";
+                String sql = "SELECT name, array_agg(id), ST_AsText(ST_Envelope(ST_UNION(bbox))) from xplanmgr.plans WHERE name = ? AND planstatus = ? GROUP BY name";
                 ps = conn.prepareStatement( sql );
+                ps.setString( 1, name );
+                ps.setString( 2, planStatus );
                 rs = ps.executeQuery();
-                while ( rs.next() ) {
-                    Planwerk planwerk = createPlanwerk( rs );
-                    availablePlanwerke.add( planwerk );
+                if ( rs.next() ) {
+                    return createPlanwerk( rs );
                 }
             } catch ( SQLException e ) {
                 throw new IllegalArgumentException( "Planwerke could not be requested", e );
@@ -82,40 +66,26 @@ public class PlanwerkReader {
                 JDBCUtils.close( rs, ps, conn, LOG );
             }
         }
-        return availablePlanwerke;
+        return null;
     }
 
-    private Planwerk createPlanwerk( ResultSet rs )
+    private Plan createPlanwerk( ResultSet rs )
                     throws SQLException {
         String name = rs.getString( 1 );
         List<Integer> managerIds = parseManagerIds( rs.getArray( 2 ) );
-        Envelope bbox = parseBboxFromWkt( rs.getString( 3 ) );
-        return new Planwerk( name, managerIds, bbox );
+        String bbox = rs.getString( 3 );
+        return new Plan( name, managerIds, bbox );
     }
 
     private List<Integer> parseManagerIds( Array managerIdArray )
                     throws SQLException {
-        Object ids = managerIdArray.getArray();
-        return Arrays.asList( (Integer[]) ids );
-    }
-
-    private Envelope parseBboxFromWkt( String bboxAsWkt ) {
-        if ( bboxAsWkt != null && !bboxAsWkt.isEmpty() ) {
-            try {
-                String crs = "epsg:4326";
-                WKTReader reader = new WKTReader( CRSManager.lookup( crs ) );
-                Geometry geometry = reader.read( bboxAsWkt );
-                return geometry.getEnvelope();
-            } catch ( UnknownCRSException | ParseException e ) {
-                LOG.error( "Could not create envelope from " + bboxAsWkt, e );
-            }
-        }
-        return null;
+        Integer[] ids = (Integer[]) managerIdArray.getArray();
+        return Arrays.asList( ids );
     }
 
     private Connection getConnection( Workspace workspace ) {
         ResourceMetadata<ConnectionProvider> connectionMetadata = workspace.getResourceMetadata(
-                        ConnectionProviderProvider.class, "xplan" );
+                        ConnectionProviderProvider.class, jdbcResourceId );
         ResourceBuilder<ConnectionProvider> builder = workspace.prepare( connectionMetadata.getIdentifier() );
         ConnectionProvider connectionProvider = builder.build();
         return connectionProvider.getConnection();
