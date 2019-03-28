@@ -57,6 +57,8 @@ public class FeatureCollectionManipulatorTest {
 
     private FeatureCollection fcWithoutNameProperty;
 
+    private FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
+
     @Before
     public void initialize() {
         fcWithAllProperties = new GenericFeatureCollection( "fc_id1", createFeaturesWithAllProperties() );
@@ -64,40 +66,52 @@ public class FeatureCollectionManipulatorTest {
     }
 
     @Test
-    public void testProcessAdditionOfInternalIdWithBpPlanFeatureShouldContainInternalId()
-                    throws Exception {
+    public void testNormalizeName() {
+        featureCollectionManipulator.normalizeName( fcWithAllProperties, createSchema() );
+
+        assertThat( fcWithAllProperties, hasNumberOfProperties( FEATURE_NAME_BP_PLAN, 6 ) );
+        assertThat( fcWithAllProperties, hasProperty( FEATURE_NAME_BP_PLAN, "name", "test_name27" ) );
+    }
+
+    @Test
+    public void testNormalizeName_NoName() {
+        featureCollectionManipulator.normalizeName( fcWithoutNameProperty, createSchema() );
+
+        assertThat( fcWithoutNameProperty, hasNumberOfProperties( FEATURE_NAME_BP_PLAN, 6 ) );
+        assertThat( fcWithoutNameProperty, hasProperty( FEATURE_NAME_BP_PLAN, "name", "feature2" ) );
+    }
+
+    @Test
+    public void testProcessAdditionOfInternalIdWithBpPlanFeatureShouldContainInternalId() {
         String internalId = "test_internal_id";
-        new FeatureCollectionManipulator().addInternalId( fcWithAllProperties, createSchema(), internalId );
+        featureCollectionManipulator.addInternalId( fcWithAllProperties, createSchema(), internalId );
 
         assertThat( fcWithAllProperties, hasNumberOfProperties( FEATURE_NAME_BP_PLAN, 7 ) );
         assertThat( fcWithAllProperties, hasProperty( FEATURE_NAME_BP_PLAN, "internalId", internalId ) );
     }
 
     @Test
-    public void testProcessAdditionOfInternalIdWithTestBpFeaturesShouldNotContainInternalId()
-                    throws Exception {
+    public void testProcessAdditionOfInternalIdWithTestBpFeaturesShouldNotContainInternalId() {
         String internalId = "test_internal_id";
-        new FeatureCollectionManipulator().addInternalId( fcWithAllProperties, createSchema(), internalId );
+        featureCollectionManipulator.addInternalId( fcWithAllProperties, createSchema(), internalId );
 
         assertThat( fcWithAllProperties, hasNumberOfProperties( FEATURE_NAME_BP_TEST, 6 ) );
         assertThat( fcWithAllProperties, hasNoProperty( FEATURE_NAME_BP_TEST, "internalId" ) );
     }
 
     @Test
-    public void testProcessAdditionOfInternalIdWithBpTestShouldNotContainInternalId()
-                    throws Exception {
+    public void testProcessAdditionOfInternalIdWithBpTestShouldNotContainInternalId() {
         String internalId = "test_internal_id";
-        new FeatureCollectionManipulator().addInternalId( fcWithAllProperties, createSchema(), internalId );
+        featureCollectionManipulator.addInternalId( fcWithAllProperties, createSchema(), internalId );
 
         assertThat( fcWithAllProperties, hasNumberOfProperties( FEATURE_NAME_TEST_PLAN, 6 ) );
         assertThat( fcWithAllProperties, hasNoProperty( FEATURE_NAME_TEST_PLAN, "internalId" ) );
     }
 
     @Test
-    public void testProcessAdditionOfInternalIdWithBpPlanFeatureShouldContainInternalIdOnCorrectPosition()
-                    throws Exception {
+    public void testProcessAdditionOfInternalIdWithBpPlanFeatureShouldContainInternalIdOnCorrectPosition() {
         String propValue = "test_internal_id";
-        new FeatureCollectionManipulator().addInternalId( fcWithAllProperties, createSchema(), propValue );
+        featureCollectionManipulator.addInternalId( fcWithAllProperties, createSchema(), propValue );
 
         assertThat( fcWithAllProperties, hasProperty( FEATURE_NAME_BP_PLAN, "internalId", propValue, 2 ) );
     }
@@ -105,10 +119,9 @@ public class FeatureCollectionManipulatorTest {
     @Test
     public
                     void
-                    testProcessAdditionOfInternalIdWithBpPlanFeatureAndReducedPropertiesShouldContainInternalIdOnCorrectPosition()
-                                    throws Exception {
+                    testProcessAdditionOfInternalIdWithBpPlanFeatureAndReducedPropertiesShouldContainInternalIdOnCorrectPosition() {
         String propValue = "test_internal_id";
-        new FeatureCollectionManipulator().addInternalId( fcWithoutNameProperty, createSchema(), propValue );
+        featureCollectionManipulator.addInternalId( fcWithoutNameProperty, createSchema(), propValue );
 
         assertThat( fcWithoutNameProperty, hasProperty( FEATURE_NAME_BP_PLAN, "internalId", propValue, 1 ) );
     }
@@ -162,7 +175,7 @@ public class FeatureCollectionManipulatorTest {
 
     private ArrayList<Property> createProperties() {
         ArrayList<Property> properties = new ArrayList<Property>();
-        createAndAddProperty( properties, "name", "test_name" );
+        createAndAddProperty( properties, "name", "test_name \"27\"" );
         createAndAddProperty( properties, "nummer", "test_nummer" );
         createAndAddProperty( properties, "beschreibung", "test_beschreibung" );
         createAndAddProperty( properties, "wurdeGeaendertVon", "test_wurdeGeaendertVon_1" );
