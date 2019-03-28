@@ -214,7 +214,7 @@ public class TransformTool {
                                                + "   * 'REINIT' transforms all available XPlanGML 4.1 plans and inserts the valid plans in the XPlan 5.1 datastore, plans already available in 5.1 will be removed first\n"
                                                + "   * 'SYNC' transforms the XPlanGML 4.1 plans logged in the table "
                                                + LOG_TABLE_NAME
-                                               + "and inserts the valid plans in the XPlan 5.1 datastore" );
+                                               + " and inserts the valid plans in the XPlan 5.1 datastore" );
         opt.setRequired( false );
         opts.addOption( opt );
 
