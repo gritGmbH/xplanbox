@@ -35,6 +35,12 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-planwerk-wms</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>xplan-wfs</artifactId>
       <version>${project.version}</version>
       <type>war</type>
