@@ -66,22 +66,6 @@ public class FeatureCollectionManipulatorTest {
     }
 
     @Test
-    public void testNormalizeName() {
-        featureCollectionManipulator.normalizeName( fcWithAllProperties, createSchema() );
-
-        assertThat( fcWithAllProperties, hasNumberOfProperties( FEATURE_NAME_BP_PLAN, 6 ) );
-        assertThat( fcWithAllProperties, hasProperty( FEATURE_NAME_BP_PLAN, "name", "test_name27" ) );
-    }
-
-    @Test
-    public void testNormalizeName_NoName() {
-        featureCollectionManipulator.normalizeName( fcWithoutNameProperty, createSchema() );
-
-        assertThat( fcWithoutNameProperty, hasNumberOfProperties( FEATURE_NAME_BP_PLAN, 6 ) );
-        assertThat( fcWithoutNameProperty, hasProperty( FEATURE_NAME_BP_PLAN, "name", "feature2" ) );
-    }
-
-    @Test
     public void testProcessAdditionOfInternalIdWithBpPlanFeatureShouldContainInternalId() {
         String internalId = "test_internal_id";
         featureCollectionManipulator.addInternalId( fcWithAllProperties, createSchema(), internalId );

@@ -1,15 +1,6 @@
 package de.latlon.xplan.commons.feature;
 
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
-import static org.deegree.commons.tom.primitive.BaseType.STRING;
-
-import java.text.Normalizer;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.xml.namespace.QName;
-
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.gml.property.PropertyType;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -21,7 +12,13 @@ import org.deegree.feature.types.AppSchema;
 import org.deegree.feature.types.FeatureType;
 import org.deegree.feature.types.property.SimplePropertyType;
 
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
+import javax.xml.namespace.QName;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
+import static org.deegree.commons.tom.primitive.BaseType.STRING;
 
 /**
  * Manipulates a deegree feature collection.
@@ -42,28 +39,6 @@ public class FeatureCollectionManipulator {
     private static final String START_DATE_TIME_PROP_NAME = "gueltigkeitBeginn";
 
     private static final String END_DATE_TIME_PROP_NAME = "gueltigkeitEnde";
-
-    private static final String PLAN_NAME_PROP_NAME = "name";
-
-    /**
-     * Normalizes the name property of following feature types: BP_Plan, FP_Plan, LP_Plan, RP_Plan, SO_Plan.
-     * Name is added if missing.
-     *
-     * @param featureCollection
-     *                 feature collection that is manipulated, not <code>null</code>
-     * @param schema
-     *                 schema to determine the correct position of the name property, not <code>null</code>
-     */
-    public void normalizeName( FeatureCollection featureCollection, AppSchema schema ) {
-        Iterator<Feature> iterator = featureCollection.iterator();
-        while ( iterator.hasNext() ) {
-            Feature feature = iterator.next();
-            String nameOfFeature = feature.getName().getLocalPart();
-            if ( isPlanFeature( nameOfFeature ) ) {
-                addOrNormalizeName( schema, feature );
-            }
-        }
-    }
 
     /**
      * Adds the internalId property to following feature types: BP_Plan, FP_Plan, LP_Plan, RP_Plan, SO_Plan.
@@ -131,26 +106,6 @@ public class FeatureCollectionManipulator {
         features.add( planFeature );
     }
 
-    private void addOrNormalizeName( AppSchema schema, Feature feature ) {
-        String namespaceUri = feature.getName().getNamespaceURI();
-        QName qName = new QName( namespaceUri, PLAN_NAME_PROP_NAME );
-        List<Property> properties = feature.getProperties( qName );
-        if ( properties.isEmpty() ) {
-            String newValue = feature.getId();
-            Property newNameProperty = createNewNameProperty( qName, newValue, feature );
-            int nameIndex = calculateIndex( schema, feature, PLAN_NAME_PROP_NAME );
-            feature.getProperties().add( nameIndex, newNameProperty );
-        } else {
-            for ( Property property : properties ) {
-                if ( property != null ) {
-                    String oldValue = property.getValue().toString();
-                    String newValue = oldValue.replaceAll( "[^a-zA-Z0-9/-_]", "" );
-                    property.setValue( new PrimitiveValue( newValue ) );
-                }
-            }
-        }
-    }
-
     private void addInternalIdProperty( AppSchema schema, String internalId, Feature feature ) {
         Property property = createNewInternalIdProperty( internalId, feature );
         int internalIdIndex = calculateIndex( schema, feature, INTERNAL_ID_PROP_NAME );
@@ -196,11 +151,6 @@ public class FeatureCollectionManipulator {
         QName qName = new QName( namespaceUri, INTERNAL_ID_PROP_NAME );
         SimplePropertyType propertyType = new SimplePropertyType( qName, 0, 1, STRING, null, null );
         return new SimpleProperty( propertyType, internalId );
-    }
-
-    private Property createNewNameProperty( QName qName, String name, Feature feature ) {
-        SimplePropertyType propertyType = new SimplePropertyType( qName, 0, 1, STRING, null, null );
-        return new SimpleProperty( propertyType, name );
     }
 
     private int calculateIndex( AppSchema schema, Feature feature, String propertyName ) {

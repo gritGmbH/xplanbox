@@ -370,7 +370,7 @@ public class XPlanManager {
             AppSchema synSchema = managerWorkspaceWrapper.lookupStore( XPLAN_SYN, null, planStatus ).getSchema();
             featureCollectionManipulator.addInternalId( synFc, synSchema, internalId );
         }
-        featureCollectionManipulator.normalizeName( fc.getFeatures(), getAppSchemaFromStore( archive, planStatus ) );
+
         Date sortDate = sortPropertyReader.readSortDate( archive.getType(), archive.getVersion(), fc.getFeatures() );
         int planId = insertPlan( archive, xPlanMetadata, fc, synFc, sortDate );
         createRasterConfigurations( archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus,

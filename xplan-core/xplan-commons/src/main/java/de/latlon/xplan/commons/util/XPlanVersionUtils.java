@@ -1,25 +1,23 @@
 package de.latlon.xplan.commons.util;
 
+import de.latlon.xplan.commons.XPlanAde;
+import de.latlon.xplan.commons.XPlanVersion;
+import org.deegree.commons.xml.NamespaceBindings;
+
+import javax.xml.namespace.QName;
+import java.util.HashMap;
+import java.util.Map;
+
 import static de.latlon.xplan.commons.XPlanAde.NSM;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static java.lang.String.format;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.xml.namespace.QName;
-
-import org.deegree.commons.xml.NamespaceBindings;
-
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanVersion;
-
 /**
  * Utility class containing convenience methods regarding {@link XPlanVersion} and {@link XPlanAde}.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
+ *
  * @version $Revision: $, $Date: $
  */
 public final class XPlanVersionUtils {
@@ -45,7 +43,7 @@ public final class XPlanVersionUtils {
     /**
      * Determines the {@link XPlanVersion} of the passed element. If the passed element is in an ADE namespace the
      * corresponding base version is returned.
-     * 
+     *
      * @param element
      *            of the feature to determine the {@link XPlanVersion}, never <code>null</code>
      * @return the {@link XPlanVersion} of the element, never <code>null</code>
@@ -53,21 +51,37 @@ public final class XPlanVersionUtils {
      *             if an exception occurred
      */
     public static XPlanVersion determineBaseVersion( QName element ) {
-        String namespaceURI = element.getNamespaceURI();
+        String namespaceURI;
+        try {
+            namespaceURI = element.getNamespaceURI();
+        } catch ( Exception e ) {
+            String msg = "Kann kein XML-Wurzelelement in Datei XPlan-GML-Datei bestimmen. Keine XML Datei!?";
+            throw new IllegalArgumentException( msg );
+        }
+        return determineBaseVersion( namespaceURI );
+    }
+
+    /**
+     * Determines the {@link XPlanVersion} by the passed namespaceUri. If the passed namespaceUri is an ADE namespace the
+     * corresponding base version is returned.
+     *
+     * @param namespaceURI
+     *                 of the feature to determine the {@link XPlanVersion}, never <code>null</code>
+     * @return the {@link XPlanVersion} of the element, never <code>null</code>
+     * @throws IllegalArgumentException
+     */
+    public static XPlanVersion determineBaseVersion( String namespaceURI ) {
         try {
             return XPlanVersion.valueOfNamespace( namespaceURI );
         } catch ( IllegalArgumentException e ) {
             return determineVersionByAde( namespaceURI );
-        } catch ( Exception e ) {
-            String msg = "Kann kein XML-Wurzelelement in Datei XPlan-GML-Datei bestimmen. Keine XML Datei!?";
-            throw new IllegalArgumentException( msg );
         }
     }
 
     /**
      * Collects all {@link NamespaceBindings} for the given element. If the passed element is in an ADE namespace the
      * {@link NamespaceBindings} for the corresponding base version is returned.
-     * 
+     *
      * @param element
      *            of the feature to retrieve the {@link NamespaceBindings}, never <code>null</code>
      * @return the corresponding {@link NamespaceBindings}, never <code>null</code>

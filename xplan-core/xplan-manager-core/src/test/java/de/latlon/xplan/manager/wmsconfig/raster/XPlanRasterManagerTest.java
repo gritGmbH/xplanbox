@@ -50,6 +50,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import de.latlon.xplan.commons.archive.ZipEntryWithContent;
 import org.junit.Test;
 
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
@@ -237,7 +238,7 @@ public class XPlanRasterManagerTest {
 
     private XPlanArchive mockArchive( String entryName, String resourceName ) {
         XPlanArchive mockedArchive = mock( XPlanArchive.class );
-        ArchiveEntry mockedEntry = mockZipEntry( mockedArchive, entryName, resourceName );
+        ZipEntryWithContent mockedEntry = mockZipEntry( mockedArchive, entryName, resourceName );
         when( mockedArchive.getEntry( REF ) ).thenReturn( mockedEntry );
 
         List<ArchiveEntry> zipFileEntries = Collections.singletonList( mockedEntry );
@@ -248,8 +249,8 @@ public class XPlanRasterManagerTest {
     private XPlanArchive mockArchiveWithPngEpsg25833() {
         XPlanArchive mockedArchive = mock( XPlanArchive.class );
 
-        ArchiveEntry mockedPngEntry = mockZipEntry( mockedArchive, PNG_EPSG25833_NAME, "png_25833.png" );
-        ArchiveEntry mockedAuxEntry = mockZipEntry( mockedArchive, PNG_EPSG25833_AUX_NAME, "png_25833.png.aux.xml" );
+        ZipEntryWithContent mockedPngEntry = mockZipEntry( mockedArchive, PNG_EPSG25833_NAME, "png_25833.png" );
+        ZipEntryWithContent mockedAuxEntry = mockZipEntry( mockedArchive, PNG_EPSG25833_AUX_NAME, "png_25833.png.aux.xml" );
 
         when( mockedArchive.getEntry( REF ) ).thenReturn( mockedPngEntry );
 
@@ -258,8 +259,8 @@ public class XPlanRasterManagerTest {
         return mockedArchive;
     }
 
-    private ArchiveEntry mockZipEntry( XPlanArchive mockedArchive, String name, String resource ) {
-        ArchiveEntry mockedEntry = mock( ArchiveEntry.class );
+    private ZipEntryWithContent mockZipEntry( XPlanArchive mockedArchive, String name, String resource ) {
+        ZipEntryWithContent mockedEntry = mock( ZipEntryWithContent.class );
         when( mockedEntry.getName() ).thenReturn( name );
         InputStream resourceStream = XPlanRasterManagerTest.class.getResourceAsStream( resource );
         when( mockedArchive.retrieveInputStreamFor( name ) ).thenReturn( resourceStream );
