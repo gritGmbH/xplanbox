@@ -35,6 +35,22 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.client.gui.editor.basedata;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.ui.CaptionPanel;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextArea;
+import com.google.gwt.user.client.ui.TextBox;
+import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
+import de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType;
+import de.latlon.xplan.manager.web.client.gui.widget.CodeListBox;
+import de.latlon.xplan.manager.web.client.gui.widget.MandatoryTextBox;
+import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBox;
+import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBoxFormat;
+import de.latlon.xplan.manager.web.client.gui.widget.Validable;
+import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+import de.latlon.xplan.manager.web.shared.edit.BaseData;
+
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static com.google.gwt.user.client.ui.HasVerticalAlignment.ALIGN_TOP;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
@@ -43,22 +59,6 @@ import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistTyp
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_SonstPlanArt;
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_Verfahren;
 import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
-
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.ui.CaptionPanel;
-import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
-
-import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
-import de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType;
-import de.latlon.xplan.manager.web.client.gui.widget.CodeListBox;
-import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBox;
-import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBoxFormat;
-import de.latlon.xplan.manager.web.client.gui.widget.Validable;
-import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
-import de.latlon.xplan.manager.web.shared.edit.BaseData;
 
 /**
  * CaptionPanel with editor for the base data section.
@@ -76,7 +76,7 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
     private static final String TEXTAREA_HEIGHT = "125px";
 
-    private final TextBox name = createTextInput();
+    private final MandatoryTextBox name = createTextInput();
 
     private final TextArea description = createTextAreaInput();
 
@@ -139,7 +139,7 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
     @Override
     public boolean isValid() {
-        return areComponentsValid( planType, creationDate, lossDate, regulationDate );
+        return areComponentsValid( name, planType, creationDate, lossDate, regulationDate );
     }
 
     private FlexTable createBaseDataLayout() {
@@ -214,8 +214,10 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
         return textArea;
     }
 
-    private TextBox createTextInput() {
-        TextBox textBox = new TextBox();
+    private MandatoryTextBox createTextInput() {
+        MandatoryTextBox textBox = new MandatoryTextBox();
+        textBox.setPattern( "^[a-zA-Z0-9\\-_]*$" );
+        textBox.setPatternMismatchValidationError( MASSAGE.planNameMismatch() );
         textBox.setWidth( DEFAULT_WIDTH );
         return textBox;
     }

@@ -35,14 +35,13 @@
 ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.client.gui.widget;
 
-import static de.latlon.xplan.manager.web.client.gui.StyleNames.EDITOR_VALIDATION_ERROR;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.TextBox;
-
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+
+import static de.latlon.xplan.manager.web.client.gui.StyleNames.EDITOR_VALIDATION_ERROR;
 
 /**
  * {@link TextBox} with required input.
@@ -52,6 +51,10 @@ import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 public class MandatoryTextBox extends TextBox implements Validable {
 
     private static final XPlanWebMessages MESSAGES = GWT.create( XPlanWebMessages.class );
+
+    private String pattern;
+
+    private String patternMismatchValidationError;
 
     public MandatoryTextBox() {
         addValueChangeHandler( new ValueChangeHandler<String>() {
@@ -81,13 +84,32 @@ public class MandatoryTextBox extends TextBox implements Validable {
         return value != null;
     }
 
+    public void setPattern( String pattern ) {
+        this.pattern = pattern;
+    }
+
+    public void setPatternMismatchValidationError( String patternMismatchValidationError ) {
+        this.patternMismatchValidationError = patternMismatchValidationError;
+    }
+
     private String validateAndParse() {
         reset();
         String value = super.getText();
-        if ( value != null && value.length() > 0 )
-            return value;
-        addStyleName( EDITOR_VALIDATION_ERROR );
-        setTitle( MESSAGES.editInputRequired() );
+        if ( value != null && value.length() > 0 ) {
+            if ( pattern == null )
+                return value;
+            if ( value.matches( pattern ) ) {
+                return value;
+            } else {
+                addStyleName( EDITOR_VALIDATION_ERROR );
+                setTitle( patternMismatchValidationError != null ?
+                          patternMismatchValidationError :
+                          MESSAGES.patternMissmatch( pattern ) );
+            }
+        } else {
+            addStyleName( EDITOR_VALIDATION_ERROR );
+            setTitle( MESSAGES.editInputRequired() );
+        }
         return null;
     }
 
