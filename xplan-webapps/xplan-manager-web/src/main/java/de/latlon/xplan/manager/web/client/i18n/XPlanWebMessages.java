@@ -410,4 +410,8 @@ public interface XPlanWebMessages extends Messages {
 
     String planNameMismatch();
 
+    String planNameAndStatusDialogHeader();
+
+    String duplicatePlanName( String planName, String planStatus );
+
 }

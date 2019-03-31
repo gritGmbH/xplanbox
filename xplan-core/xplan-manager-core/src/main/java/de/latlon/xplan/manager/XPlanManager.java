@@ -38,6 +38,7 @@ import de.latlon.xplan.manager.transformation.TransformationResult;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.LegislationStatus;
+import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.XPlan;
@@ -452,7 +453,7 @@ public class XPlanManager {
      * @param pathToArchive
      *            the absolute path to the XPlanArchive to evaluate.
      * @return a list of {@link RasterEvaluationResult}, one for each referenced raster plan, may be
-     *         {@link EmptyStackException} but never <code>null</code>
+     *         empty but never <code>null</code>
      * @throws IOException
      * @throws XMLStreamException
      * @throws UnknownCRSException
@@ -465,6 +466,28 @@ public class XPlanManager {
         XPlanArchive archive = analyzeArchive( pathToArchive );
         XPlanFeatureCollection fc = parseXPlanFeatureCollection( archive );
         return xPlanRasterManager.evaluateRasterdata( archive, fc );
+    }
+
+    /**
+     * @param pathToArchive
+     *                 the absolute path to the XPlanArchive to evaluate.
+     * @param status
+     *                 the selected status, never <code>null</code>
+     * @return the result of the evaluation, never <code>null</code>
+     * @throws IOException
+     * @throws XMLStreamException
+     * @throws UnknownCRSException
+     */
+    public PlanNameWithStatusResult evaluatePlanNameAndStatus( String pathToArchive, String status )
+                    throws IOException, XMLStreamException, UnknownCRSException {
+        LOG.info( "- Analyse des Vorkommens eines Plans mit gleichem Namen und Planstatus..." );
+        XPlanArchive archive = analyzeArchive( pathToArchive );
+        XPlanFeatureCollection fc = parseXPlanFeatureCollection( archive );
+        String planName = fc.getPlanName().replaceAll( "[^a-zA-Z0-9\\-_]", "" );
+        boolean planWithSameNameAndStatusExists = xplanDao.checkIfPlanWithSameNameAndStatusExists( planName, status );
+        LOG.info( "OK, Plan mit Namen {} und Status {} existiert: {}", planName, status,
+                  planWithSameNameAndStatusExists );
+        return new PlanNameWithStatusResult( planName, status, planWithSameNameAndStatusExists );
     }
 
     /**
@@ -1060,4 +1083,5 @@ public class XPlanManager {
             return PlanStatus.findByLegislationStatusCode( newLegislationStatusCode );
         return oldPlanStatus;
     }
+
 }

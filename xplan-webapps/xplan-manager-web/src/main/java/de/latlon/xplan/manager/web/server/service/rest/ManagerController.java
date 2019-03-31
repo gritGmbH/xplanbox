@@ -25,8 +25,10 @@ import java.util.ResourceBundle;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 
+import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;
 import org.slf4j.Logger;
@@ -377,6 +379,28 @@ public class ManagerController {
             return manager.evaluateRasterdata( fileToBeImported );
         } catch ( Exception e ) {
             String message = BUNDLE.getString( "evaluationRasterFailed" ) + ": " + e.getMessage();
+            LOG.error( message, e );
+            throw e;
+        }
+    }
+
+    @RequestMapping(value = "/plannamestatus/{id}/{status}", method = GET)
+    @ResponseBody
+    public PlanNameWithStatusResult evaluatePlanNameAndStatus(
+                    @PathVariable
+                                    String id,
+                    @PathVariable
+                                    String status,
+                    @Context
+                                    HttpServletResponse response )
+                    throws Exception {
+        response.addHeader( "Expires", "-1" );
+        LOG.info( "Evaluate name of plan with id {}.", id );
+        try {
+            String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
+            return manager.evaluatePlanNameAndStatus( fileToBeImported, status );
+        } catch ( Exception e ) {
+            String message = BUNDLE.getString( "evaluatePlanNameAndStatus" ) + ": " + e.getMessage();
             LOG.error( message, e );
             throw e;
         }
