@@ -257,7 +257,7 @@ public class ManagerConfiguration {
                 pathToHaleCli = loadProperties.getProperty( PATH_TO_HALE_CLI );
                 pathToHaleProjectDirectory = parsePathToHaleProjectDirectory( propertiesLoader );
                 isProvidingXPlan41As51Active = parseBoolean( loadProperties, ACTIVATE_PROVIDING_XPLAN41_AS_XPLAN51, false );
-                coupledResourceConfiguration = parseCoupledResourceConfiguration( loadProperties );
+                coupledResourceConfiguration = parseCoupledResourceConfiguration( propertiesLoader, loadProperties );
             }
             configDirectory = getConfigDirectory( propertiesLoader, "synthesizer" );
         }
@@ -317,6 +317,7 @@ public class ManagerConfiguration {
             LOG.info( "   - CSW Url: {}", coupledResourceConfiguration.getCswUrlProvidingDatasetMetadata() );
             LOG.info( "   - Metadata Resource Template: {}",
                       coupledResourceConfiguration.getMetadataResourceTemplate() );
+            LOG.info( "   - config directory: {}", coupledResourceConfiguration.getMetadataConfigDirectory() );
         }
         LOG.info( "-------------------------------------------" );
         sortConfiguration.logConfiguration( LOG );
@@ -451,12 +452,15 @@ public class ManagerConfiguration {
         return null;
     }
 
-    private CoupledResourceConfiguration parseCoupledResourceConfiguration( Properties loadProperties ) {
+    private CoupledResourceConfiguration parseCoupledResourceConfiguration( PropertiesLoader propertiesLoader,
+                                                                            Properties loadProperties ) {
         String cswUrlProvidingDatasetMetadata = loadProperties.getProperty( "cswUrlProvidingDatasetMetadata" );
         String metadataResourceTemplate = loadProperties.getProperty( "metadataResourceTemplate" );
-
-        if ( cswUrlProvidingDatasetMetadata != null && metadataResourceTemplate != null )
-            return new CoupledResourceConfiguration( cswUrlProvidingDatasetMetadata, metadataResourceTemplate );
+        Path metadataConfigDirectory = getConfigDirectory( propertiesLoader, "metadata" );
+        if ( cswUrlProvidingDatasetMetadata != null && metadataResourceTemplate != null
+             && metadataConfigDirectory != null && Files.exists( metadataConfigDirectory ) && Files.isDirectory(
+                        metadataConfigDirectory ) )
+            return new CoupledResourceConfiguration( cswUrlProvidingDatasetMetadata, metadataResourceTemplate, metadataConfigDirectory );
         return null;
     }
 
