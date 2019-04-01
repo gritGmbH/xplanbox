@@ -96,6 +96,8 @@ public class ManagerConfiguration {
 
     private boolean isProvidingXPlan41As51Active = false;
 
+    private CoupledResourceConfiguration coupledResourceConfiguration;
+
     public ManagerConfiguration( PropertiesLoader propertiesLoader )
                     throws ConfigurationException {
         loadProperties( propertiesLoader );
@@ -221,6 +223,13 @@ public class ManagerConfiguration {
         return isProvidingXPlan41As51Active;
     }
 
+    /**
+     * @return the configuration to process coupled resources, may be <code>null</code>
+     */
+    public CoupledResourceConfiguration getCoupledResourceConfiguration() {
+        return coupledResourceConfiguration;
+    }
+
     private void loadProperties( PropertiesLoader propertiesLoader )
                     throws ConfigurationException {
         if ( propertiesLoader != null ) {
@@ -248,6 +257,7 @@ public class ManagerConfiguration {
                 pathToHaleCli = loadProperties.getProperty( PATH_TO_HALE_CLI );
                 pathToHaleProjectDirectory = parsePathToHaleProjectDirectory( propertiesLoader );
                 isProvidingXPlan41As51Active = parseBoolean( loadProperties, ACTIVATE_PROVIDING_XPLAN41_AS_XPLAN51, false );
+                coupledResourceConfiguration = parseCoupledResourceConfiguration( loadProperties );
             }
             configDirectory = getConfigDirectory( propertiesLoader, "synthesizer" );
         }
@@ -299,6 +309,15 @@ public class ManagerConfiguration {
         LOG.info( "-------------------------------------------" );
         LOG.info( "  path to HALE CLI: {}", pathToHaleCli );
         LOG.info( "  path to HALE project: {}", pathToHaleProjectDirectory );
+        LOG.info( "-------------------------------------------" );
+        LOG.info( "  CoupledResource" );
+        if ( coupledResourceConfiguration == null ) {
+            LOG.info( "   - not configured" );
+        } else {
+            LOG.info( "   - CSW Url: {}", coupledResourceConfiguration.getCswUrlProvidingDatasetMetadata() );
+            LOG.info( "   - Metadata Resource Template: {}",
+                      coupledResourceConfiguration.getMetadataResourceTemplate() );
+        }
         LOG.info( "-------------------------------------------" );
         sortConfiguration.logConfiguration( LOG );
         LOG.info( "-------------------------------------------" );
@@ -429,6 +448,15 @@ public class ManagerConfiguration {
         Path haleProject = getConfigDirectory( propertiesLoader, "hale" );
         if ( haleProject != null && Files.exists( haleProject ) && Files.isDirectory( haleProject ) )
             return haleProject;
+        return null;
+    }
+
+    private CoupledResourceConfiguration parseCoupledResourceConfiguration( Properties loadProperties ) {
+        String cswUrlProvidingDatasetMetadata = loadProperties.getProperty( "cswUrlProvidingDatasetMetadata" );
+        String metadataResourceTemplate = loadProperties.getProperty( "metadataResourceTemplate" );
+
+        if ( cswUrlProvidingDatasetMetadata != null && metadataResourceTemplate != null )
+            return new CoupledResourceConfiguration( cswUrlProvidingDatasetMetadata, metadataResourceTemplate );
         return null;
     }
 
