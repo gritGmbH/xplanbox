@@ -4,10 +4,13 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.CrsUtils;
+import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanExporter;
+import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
+import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transformation.TransformationResult;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
@@ -91,6 +94,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
         createRasterConfigurations( archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus,
                                     sortDate );
         reloadWorkspace();
+        startCreationOfDataServicesCoupling( fc );
         LOG.info( "XPlan-Archiv wurde erfolgreich importiert. Zugewiesene Id: " + planId );
         LOG.info( "OK." );
     }
@@ -179,6 +183,42 @@ public class XPlanInsertManager extends XPlanTransactionManager {
             }
             throw new Exception( "Das Hauptdokument ist nicht schema-valide." );
         }
+    }
+
+    private void startCreationOfDataServicesCoupling( XPlanFeatureCollection featureCollection ) {
+        CoupledResourceConfiguration coupledResourceConfiguration = this.managerConfiguration.getCoupledResourceConfiguration();
+        if ( coupledResourceConfiguration != null ) {
+            DataServicesCouplingRunnable runnable = new DataServicesCouplingRunnable( coupledResourceConfiguration,
+                                                                                      featureCollection );
+            Thread thread = new Thread( runnable );
+            thread.start();
+        }
+    }
+
+    class DataServicesCouplingRunnable implements Runnable {
+
+        private final Logger LOG = LoggerFactory.getLogger( DataServicesCouplingRunnable.class );
+
+        private final CoupledResourceConfiguration configuration;
+
+        private final XPlanFeatureCollection featureCollection;
+
+        public DataServicesCouplingRunnable( CoupledResourceConfiguration configuration,
+                                             XPlanFeatureCollection featureCollection ) {
+            this.configuration = configuration;
+            this.featureCollection = featureCollection;
+        }
+
+        @Override
+        public void run() {
+            try {
+                MetadataCouplingHandler handler = new MetadataCouplingHandler( configuration );
+                handler.processMetadataCoupling( featureCollection );
+            } catch ( DataServiceCouplingException e ) {
+                LOG.error( "Could not create data services coupling", e );
+            }
+        }
+
     }
 
 }

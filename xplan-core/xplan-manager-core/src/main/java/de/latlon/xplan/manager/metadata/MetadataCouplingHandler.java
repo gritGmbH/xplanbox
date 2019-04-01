@@ -34,28 +34,30 @@ public class MetadataCouplingHandler {
 
     private static final DecimalFormat COORD_FORMAT = new DecimalFormat( "0.000000" );
 
+    public static final String TEMPLATE_NAME = "service-iso-metadata-template.xml";
+
     private final CswClient cswClient;
 
     private final ServiceMetadataDocumentWriter serviceMetadataDocumentWriter;
 
     private final Path directoryToStoreDatasetMetadata;
 
+    /**
+     * @param config
+     *                 never <code>null</code>
+     * @throws DataServiceCouplingException
+     */
     public MetadataCouplingHandler( CoupledResourceConfiguration config )
-                    throws IOException {
+                    throws DataServiceCouplingException {
         this( config,
               new CswClient( config.getCswUrlProvidingDatasetMetadata(), config.getMetadataResourceTemplate() ) );
     }
 
     MetadataCouplingHandler( CoupledResourceConfiguration config, CswClient cswClient )
-                    throws IOException {
+                    throws DataServiceCouplingException {
         this.cswClient = cswClient;
         Path configurationDirectory = config.getMetadataConfigDirectory();
-        Path serviceTemplateDocument = configurationDirectory.resolve( "service-iso-metadata-template.xml" );
-        if ( !Files.exists( serviceTemplateDocument ) )
-            throw new IOException(
-                            "Template for service metadata does not exist. Expected: " + serviceTemplateDocument );
-
-        byte[] template = readAllBytes( serviceTemplateDocument );
+        byte[] template = readTemplate( configurationDirectory );
         this.serviceMetadataDocumentWriter = new ServiceMetadataDocumentWriter( template );
         this.directoryToStoreDatasetMetadata = config.getDirectoryToStoreDatasetMetadata();
     }
@@ -76,10 +78,13 @@ public class MetadataCouplingHandler {
         LocalDateTime now = LocalDateTime.now();
         CoupledResource coupledResource = this.cswClient.requestMetadataRecord();
         Properties properties = createProperties( xPlanFeatureCollection, coupledResource, now );
-        createServiceMetadataDocument( xPlanFeatureCollection.getPlanName(), now, properties );
+        Path serviceMetadataDocument = createServiceMetadataDocument( xPlanFeatureCollection.getPlanName(), now,
+                                                                      properties );
+
+        LOG.info( "Service metadata document was filed to {}", serviceMetadataDocument );
     }
 
-    private void createServiceMetadataDocument( String planName, LocalDateTime now, Properties properties )
+    private Path createServiceMetadataDocument( String planName, LocalDateTime now, Properties properties )
                     throws DataServiceCouplingException {
         OutputStream outputStream = null;
         try {
@@ -88,6 +93,7 @@ public class MetadataCouplingHandler {
             LOG.info( "Write Planwerk WMS service document to {}", target );
             outputStream = Files.newOutputStream( target );
             serviceMetadataDocumentWriter.writeServiceMetadataDocument( properties, outputStream );
+            return target;
         } catch ( IOException e ) {
             LOG.error( "Could not create output dule", e );
             throw new DataServiceCouplingException( e );
@@ -125,6 +131,19 @@ public class MetadataCouplingHandler {
         //properties.setProperty( "PLANWERKWMS_CAPABILITIES", planwerkServiceMetadata.getPlanwerkWmsGetCapabilitiesUrl() );
         //properties.setProperty( "PLANWERKWMS_NAME", planwerkServiceMetadata.getPlanwerkWmsName() );
         return properties;
+    }
+
+    private byte[] readTemplate( Path configurationDirectory )
+                    throws DataServiceCouplingException {
+        Path serviceTemplateDocument = configurationDirectory.resolve( TEMPLATE_NAME );
+        if ( !Files.exists( serviceTemplateDocument ) )
+            throw new DataServiceCouplingException(
+                            "Template for service metadata does not exist. Expected: " + serviceTemplateDocument );
+        try {
+            return readAllBytes( serviceTemplateDocument );
+        } catch ( IOException e ) {
+            throw new DataServiceCouplingException( "Template for service metadata could not be read.", e );
+        }
     }
 
 }
