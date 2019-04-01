@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -447,21 +448,35 @@ public class ManagerConfiguration {
 
     private Path parsePathToHaleProjectDirectory( PropertiesLoader propertiesLoader ) {
         Path haleProject = getConfigDirectory( propertiesLoader, "hale" );
-        if ( haleProject != null && Files.exists( haleProject ) && Files.isDirectory( haleProject ) )
+        if ( directoryExistsAndIsDirectory( haleProject ) )
             return haleProject;
         return null;
     }
 
     private CoupledResourceConfiguration parseCoupledResourceConfiguration( PropertiesLoader propertiesLoader,
-                                                                            Properties loadProperties ) {
-        String cswUrlProvidingDatasetMetadata = loadProperties.getProperty( "cswUrlProvidingDatasetMetadata" );
-        String metadataResourceTemplate = loadProperties.getProperty( "metadataResourceTemplate" );
+                                                                            Properties properties ) {
+        String cswUrlProvidingDatasetMetadata = properties.getProperty( "cswUrlProvidingDatasetMetadata" );
+        String metadataResourceTemplate = properties.getProperty( "metadataResourceTemplate" );
+        Path directoryToStoreDatasetMetadata = getDirectoryToStoreDatasetMetadata( properties );
         Path metadataConfigDirectory = getConfigDirectory( propertiesLoader, "metadata" );
         if ( cswUrlProvidingDatasetMetadata != null && metadataResourceTemplate != null
-             && metadataConfigDirectory != null && Files.exists( metadataConfigDirectory ) && Files.isDirectory(
-                        metadataConfigDirectory ) )
-            return new CoupledResourceConfiguration( cswUrlProvidingDatasetMetadata, metadataResourceTemplate, metadataConfigDirectory );
+             && directoryExistsAndIsDirectory( metadataConfigDirectory ) && directoryExistsAndIsDirectory(
+                        directoryToStoreDatasetMetadata ) ) {
+            return new CoupledResourceConfiguration( cswUrlProvidingDatasetMetadata, metadataResourceTemplate,
+                                                     metadataConfigDirectory, directoryToStoreDatasetMetadata );
+        }
         return null;
+    }
+
+    private Path getDirectoryToStoreDatasetMetadata( Properties properties ) {
+        String directoryToStoreDatasetMetadata = properties.getProperty( "directoryToStoreDatasetMetadata" );
+        if ( directoryToStoreDatasetMetadata != null )
+            return Paths.get( directoryToStoreDatasetMetadata );
+        return null;
+    }
+
+    private boolean directoryExistsAndIsDirectory( Path directory ) {
+        return directory != null && Files.exists( directory ) && Files.isDirectory( directory );
     }
 
     private Path getConfigDirectory( PropertiesLoader propertiesLoader, String subdirectory ) {

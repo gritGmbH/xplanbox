@@ -13,11 +13,14 @@ public class CoupledResourceConfiguration {
 
     private final Path metadataConfigDirectory;
 
+    private final Path directoryToStoreDatasetMetadata;
+
     public CoupledResourceConfiguration( String cswUrlProvidingDatasetMetadata, String metadataResourceTemplate,
-                                         Path metadataConfigDirectory ) {
+                                         Path metadataConfigDirectory, Path directoryToStoreDatasetMetadata ) {
         this.cswUrlProvidingDatasetMetadata = cswUrlProvidingDatasetMetadata;
         this.metadataResourceTemplate = metadataResourceTemplate;
         this.metadataConfigDirectory = metadataConfigDirectory;
+        this.directoryToStoreDatasetMetadata = directoryToStoreDatasetMetadata;
     }
 
     public String getCswUrlProvidingDatasetMetadata() {
@@ -32,4 +35,7 @@ public class CoupledResourceConfiguration {
         return metadataConfigDirectory;
     }
 
+    public Path getDirectoryToStoreDatasetMetadata() {
+        return directoryToStoreDatasetMetadata;
+    }
 }

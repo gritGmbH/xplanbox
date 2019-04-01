@@ -18,8 +18,9 @@ public class CswClient {
 
     private String metadataResourceUrlTemplate;
 
-    public CswClient( String cswUrl ) {
+    public CswClient( String cswUrl, String metadataResourceUrlTemplate ) {
         this.cswUrl = cswUrl;
+        this.metadataResourceUrlTemplate = metadataResourceUrlTemplate;
     }
 
     public CoupledResource requestMetadataRecord()

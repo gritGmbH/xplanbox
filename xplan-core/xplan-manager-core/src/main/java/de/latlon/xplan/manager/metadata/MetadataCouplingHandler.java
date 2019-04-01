@@ -30,16 +30,21 @@ public class MetadataCouplingHandler {
 
     private static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss" );
 
+    private static final SimpleDateFormat DATE_TIME_FILE_FORMAT = new SimpleDateFormat( "yyyy-MM-dd_HH-mm" );
+
     private static final DecimalFormat COORD_FORMAT = new DecimalFormat( "0.000000" );
 
     private final CswClient cswClient;
 
     private final ServiceMetadataDocumentWriter serviceMetadataDocumentWriter;
 
-    public MetadataCouplingHandler( CoupledResourceConfiguration coupledResourceConfiguration )
+    private final Path directoryToStoreDatasetMetadata;
+
+    public MetadataCouplingHandler( CoupledResourceConfiguration config )
                     throws IOException {
-        this.cswClient = new CswClient( coupledResourceConfiguration.getCswUrlProvidingDatasetMetadata() );
-        Path configurationDirectory = coupledResourceConfiguration.getMetadataConfigDirectory();
+        this.cswClient = new CswClient( config.getCswUrlProvidingDatasetMetadata(),
+                                        config.getMetadataResourceTemplate() );
+        Path configurationDirectory = config.getMetadataConfigDirectory();
         Path serviceTemplateDocument = configurationDirectory.resolve( "service-iso-metadata-template.xml" );
         if ( !Files.exists( serviceTemplateDocument ) )
             throw new IOException(
@@ -47,6 +52,7 @@ public class MetadataCouplingHandler {
 
         byte[] template = readAllBytes( serviceTemplateDocument );
         this.serviceMetadataDocumentWriter = new ServiceMetadataDocumentWriter( template );
+        this.directoryToStoreDatasetMetadata = config.getDirectoryToStoreDatasetMetadata();
     }
 
     /**
@@ -62,16 +68,19 @@ public class MetadataCouplingHandler {
      */
     public void processMetadataCoupling( XPlanFeatureCollection xPlanFeatureCollection )
                     throws DataServiceCouplingException {
+        LocalDateTime now = LocalDateTime.now();
         CoupledResource coupledResource = this.cswClient.requestMetadataRecord();
-        Properties properties = createProperties( xPlanFeatureCollection, coupledResource );
-        createServiceMetadataDocument( properties );
+        Properties properties = createProperties( xPlanFeatureCollection, coupledResource, now );
+        createServiceMetadataDocument( xPlanFeatureCollection.getPlanName(), now, properties );
     }
 
-    private void createServiceMetadataDocument( Properties properties )
+    private void createServiceMetadataDocument( String planName, LocalDateTime now, Properties properties )
                     throws DataServiceCouplingException {
         OutputStream outputStream = null;
         try {
-            Path target = Files.createTempFile( "isoMd_", ".xml" );
+            String fileName = planName + "_" + DATE_TIME_FILE_FORMAT.format( now ) + ".xml";
+            Path target = directoryToStoreDatasetMetadata.resolve( fileName );
+            LOG.info( "Write Planwerk WMS service document to {}", target );
             outputStream = Files.newOutputStream( target );
             serviceMetadataDocumentWriter.writeServiceMetadataDocument( properties, outputStream );
         } catch ( IOException e ) {
@@ -90,9 +99,8 @@ public class MetadataCouplingHandler {
         }
     }
 
-    private Properties createProperties( XPlanFeatureCollection xPlanFeatureCollection,
-                                         CoupledResource coupledResource ) {
-        LocalDateTime now = LocalDateTime.now();
+    private Properties createProperties( XPlanFeatureCollection xPlanFeatureCollection, CoupledResource coupledResource,
+                                         LocalDateTime now ) {
         Properties properties = new Properties();
         properties.setProperty( "METADATA_ID", UUID.randomUUID().toString() );
         properties.setProperty( "CURRENT_DATE", DATE_FORMAT.format( now ) );
