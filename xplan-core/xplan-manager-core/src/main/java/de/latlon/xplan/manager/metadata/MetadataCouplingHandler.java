@@ -12,8 +12,8 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -26,11 +26,11 @@ public class MetadataCouplingHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger( MetadataCouplingHandler.class );
 
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat( "yyyy-MM-dd" );
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern( "yyyy-MM-dd" );
 
-    private static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss" );
+    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern( "yyyy-MM-dd'T'HH:mm:ss" );
 
-    private static final SimpleDateFormat DATE_TIME_FILE_FORMAT = new SimpleDateFormat( "yyyy-MM-dd_HH-mm" );
+    private static final DateTimeFormatter DATE_TIME_FILE_FORMAT = DateTimeFormatter.ofPattern( "yyyy-MM-dd_HH-mm" );
 
     private static final DecimalFormat COORD_FORMAT = new DecimalFormat( "0.000000" );
 
@@ -42,8 +42,13 @@ public class MetadataCouplingHandler {
 
     public MetadataCouplingHandler( CoupledResourceConfiguration config )
                     throws IOException {
-        this.cswClient = new CswClient( config.getCswUrlProvidingDatasetMetadata(),
-                                        config.getMetadataResourceTemplate() );
+        this( config,
+              new CswClient( config.getCswUrlProvidingDatasetMetadata(), config.getMetadataResourceTemplate() ) );
+    }
+
+    MetadataCouplingHandler( CoupledResourceConfiguration config, CswClient cswClient )
+                    throws IOException {
+        this.cswClient = cswClient;
         Path configurationDirectory = config.getMetadataConfigDirectory();
         Path serviceTemplateDocument = configurationDirectory.resolve( "service-iso-metadata-template.xml" );
         if ( !Files.exists( serviceTemplateDocument ) )
@@ -78,7 +83,7 @@ public class MetadataCouplingHandler {
                     throws DataServiceCouplingException {
         OutputStream outputStream = null;
         try {
-            String fileName = planName + "_" + DATE_TIME_FILE_FORMAT.format( now ) + ".xml";
+            String fileName = planName + "_" + now.format( DATE_TIME_FILE_FORMAT ) + ".xml";
             Path target = directoryToStoreDatasetMetadata.resolve( fileName );
             LOG.info( "Write Planwerk WMS service document to {}", target );
             outputStream = Files.newOutputStream( target );
@@ -103,18 +108,20 @@ public class MetadataCouplingHandler {
                                          LocalDateTime now ) {
         Properties properties = new Properties();
         properties.setProperty( "METADATA_ID", UUID.randomUUID().toString() );
-        properties.setProperty( "CURRENT_DATE", DATE_FORMAT.format( now ) );
+        properties.setProperty( "CURRENT_DATE", now.format( DATE_FORMAT ) );
         //properties.setProperty( "TITLE", xPlanFeatureCollection.getName() );
-        properties.setProperty( "CURRENT_DATE_TIME", DATE_TIME_FORMAT.format( now ) );
+        properties.setProperty( "CURRENT_DATE_TIME", now.format( DATE_TIME_FORMAT ) );
         //properties.setProperty( "ABSTRACT", planwerkServiceMetadata.getDescription() );
         //properties.setProperty( "PLANWERKWMS_OVERVIEW", planwerkServiceMetadata.getPlanwerkWmsGetMapUrl() );
         Envelope envelope = xPlanFeatureCollection.getBboxIn4326();
-        properties.setProperty( "WEST_BOUND_LONG", COORD_FORMAT.format( envelope.getMin().get0() ) );
-        properties.setProperty( "EAST_BOUND_LONG", COORD_FORMAT.format( envelope.getMax().get0() ) );
-        properties.setProperty( "SOUTH_BOUND_LAT", COORD_FORMAT.format( envelope.getMin().get1() ) );
-        properties.setProperty( "NORTH_BOUND_LAT", COORD_FORMAT.format( envelope.getMax().get1() ) );
-        properties.setProperty( "COUPLED_METADATA_RESOURCE_URL", coupledResource.getUrl() );
-        properties.setProperty( "COUPLED_METADATA_RESOURCE_IDENTIFIER", coupledResource.getId() );
+        if ( envelope != null ) {
+            properties.setProperty( "WEST_BOUND_LONG", COORD_FORMAT.format( envelope.getMin().get0() ) );
+            properties.setProperty( "EAST_BOUND_LONG", COORD_FORMAT.format( envelope.getMax().get0() ) );
+            properties.setProperty( "SOUTH_BOUND_LAT", COORD_FORMAT.format( envelope.getMin().get1() ) );
+            properties.setProperty( "NORTH_BOUND_LAT", COORD_FORMAT.format( envelope.getMax().get1() ) );
+            properties.setProperty( "COUPLED_METADATA_RESOURCE_URL", coupledResource.getUrl() );
+            properties.setProperty( "COUPLED_METADATA_RESOURCE_IDENTIFIER", coupledResource.getId() );
+        }
         //properties.setProperty( "PLANWERKWMS_CAPABILITIES", planwerkServiceMetadata.getPlanwerkWmsGetCapabilitiesUrl() );
         //properties.setProperty( "PLANWERKWMS_NAME", planwerkServiceMetadata.getPlanwerkWmsName() );
         return properties;
