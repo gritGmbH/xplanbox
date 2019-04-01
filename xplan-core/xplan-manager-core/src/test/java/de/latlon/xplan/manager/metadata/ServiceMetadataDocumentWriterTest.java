@@ -1,6 +1,5 @@
 package de.latlon.xplan.manager.metadata;
 
-import com.sun.xml.internal.bind.v2.util.ByteArrayOutputStreamEx;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import org.xmlmatchers.namespace.SimpleNamespaceContext;
@@ -29,7 +28,7 @@ public class ServiceMetadataDocumentWriterTest {
         byte[] template = IOUtils.toByteArray( ServiceMetadataDocumentWriterTest.class.getResourceAsStream(
                         "iso-service-metadata-example-template.xml" ) );
 
-        ByteArrayOutputStream serviceMetadataInstance = new ByteArrayOutputStreamEx();
+        ByteArrayOutputStream serviceMetadataInstance = new ByteArrayOutputStream();
 
         ServiceMetadataDocumentWriter serviceMetadataDocumentWriter = new ServiceMetadataDocumentWriter( template );
         serviceMetadataDocumentWriter.writeServiceMetadataDocument( properties(), serviceMetadataInstance );
