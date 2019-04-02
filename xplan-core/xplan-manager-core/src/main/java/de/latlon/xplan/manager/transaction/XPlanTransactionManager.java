@@ -9,11 +9,16 @@ import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils;
+import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.edit.XPlanManipulator;
 import de.latlon.xplan.manager.export.XPlanExporter;
+import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
+import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
+import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
+import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadataBuilder;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transformation.TransformationResult;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
@@ -23,9 +28,11 @@ import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
+import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
+import org.deegree.geometry.Envelope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,6 +51,7 @@ import java.util.TimeZone;
 import java.util.UUID;
 
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.parseFeatureCollection;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -173,6 +181,58 @@ public abstract class XPlanTransactionManager {
         }
     }
 
+    protected void startCreationOfDataServicesCoupling( XPlanFeatureCollection featureCollection, ICRS crs ) {
+        CoupledResourceConfiguration coupledResourceConfiguration = this.managerConfiguration.getCoupledResourceConfiguration();
+        if ( coupledResourceConfiguration != null ) {
+            LOG.info( "Start creation of the data services coupling." );
+            PlanwerkServiceMetadata planwerkServiceMetadata = createPlanwerkServiceMetadata( featureCollection, crs,
+                                                                                             coupledResourceConfiguration );
+            DataServicesCouplingRunnable runnable = new DataServicesCouplingRunnable( coupledResourceConfiguration,
+                                                                                      planwerkServiceMetadata );
+            Thread thread = new Thread( runnable );
+            thread.start();
+        } else {
+            LOG.info( "Creation of data services coupling is disabled." );
+        }
+    }
+
+    private PlanwerkServiceMetadata createPlanwerkServiceMetadata( XPlanFeatureCollection featureCollection, ICRS crs,
+                                                                   CoupledResourceConfiguration coupledResourceConfiguration ) {
+        String title = featureCollection.getPlanName();
+        String description = retrieveDescription( featureCollection.getFeatures(), featureCollection.getType() );
+        Envelope envelope = featureCollection.getBboxIn4326();
+
+        PlanwerkServiceMetadataBuilder builder = new PlanwerkServiceMetadataBuilder( XPlanType.BP_Plan, title,
+                                                                                     description, envelope,
+                                                                                     coupledResourceConfiguration );
+        return builder.build( crs );
+    }
+
+    class DataServicesCouplingRunnable implements Runnable {
+
+        private final Logger LOG = LoggerFactory.getLogger( DataServicesCouplingRunnable.class );
+
+        private final CoupledResourceConfiguration configuration;
+
+        private final PlanwerkServiceMetadata planwerkServiceMetadata;
+
+        public DataServicesCouplingRunnable( CoupledResourceConfiguration configuration,
+                                             PlanwerkServiceMetadata planwerkServiceMetadata ) {
+            this.configuration = configuration;
+            this.planwerkServiceMetadata = planwerkServiceMetadata;
+        }
+
+        @Override
+        public void run() {
+            try {
+                MetadataCouplingHandler handler = new MetadataCouplingHandler( configuration );
+                handler.processMetadataCoupling( planwerkServiceMetadata );
+            } catch ( DataServiceCouplingException e ) {
+                LOG.error( "Could not create data services coupling", e );
+            }
+        }
+
+    }
     private static DateFormat createDateFormat() {
         DateFormat simpleDateFormat = new SimpleDateFormat( "dd MMM yyyy HH:mm:ss z" );
         simpleDateFormat.setTimeZone( TimeZone.getTimeZone( "CET" ) );

@@ -98,8 +98,8 @@ public class XPlanInsertManager extends XPlanTransactionManager {
         int planId = insertPlan( archive, xPlanMetadata, fc, synFc, sortDate );
         createRasterConfigurations( archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus,
                                     sortDate );
-        reloadWorkspace();
         startCreationOfDataServicesCoupling( fc, crs );
+        reloadWorkspace();
         LOG.info( "XPlan-Archiv wurde erfolgreich importiert. Zugewiesene Id: " + planId );
         LOG.info( "OK." );
     }
@@ -188,59 +188,6 @@ public class XPlanInsertManager extends XPlanTransactionManager {
             }
             throw new Exception( "Das Hauptdokument ist nicht schema-valide." );
         }
-    }
-
-    private void startCreationOfDataServicesCoupling( XPlanFeatureCollection featureCollection, ICRS crs ) {
-        CoupledResourceConfiguration coupledResourceConfiguration = this.managerConfiguration.getCoupledResourceConfiguration();
-        if ( coupledResourceConfiguration != null ) {
-            LOG.info( "Start creation of the data services coupling." );
-            PlanwerkServiceMetadata planwerkServiceMetadata = createPlanwerkServiceMetadata( featureCollection, crs,
-                                                                                             coupledResourceConfiguration );
-            DataServicesCouplingRunnable runnable = new DataServicesCouplingRunnable( coupledResourceConfiguration,
-                                                                                      planwerkServiceMetadata );
-            Thread thread = new Thread( runnable );
-            thread.start();
-        } else {
-            LOG.info( "Creation of data services coupling is disabled." );
-        }
-    }
-
-    private PlanwerkServiceMetadata createPlanwerkServiceMetadata( XPlanFeatureCollection featureCollection, ICRS crs,
-                                                                   CoupledResourceConfiguration coupledResourceConfiguration ) {
-        String title = featureCollection.getPlanName();
-        String description = retrieveDescription( featureCollection.getFeatures(), featureCollection.getType() );
-        Envelope envelope = featureCollection.getBboxIn4326();
-
-        PlanwerkServiceMetadataBuilder builder = new PlanwerkServiceMetadataBuilder( XPlanType.BP_Plan, title,
-                                                                                     description, envelope,
-                                                                                     coupledResourceConfiguration );
-        return builder.build( crs );
-    }
-
-    class DataServicesCouplingRunnable implements Runnable {
-
-        private final Logger LOG = LoggerFactory.getLogger( DataServicesCouplingRunnable.class );
-
-        private final CoupledResourceConfiguration configuration;
-
-        private final PlanwerkServiceMetadata planwerkServiceMetadata;
-
-        public DataServicesCouplingRunnable( CoupledResourceConfiguration configuration,
-                                             PlanwerkServiceMetadata planwerkServiceMetadata ) {
-            this.configuration = configuration;
-            this.planwerkServiceMetadata = planwerkServiceMetadata;
-        }
-
-        @Override
-        public void run() {
-            try {
-                MetadataCouplingHandler handler = new MetadataCouplingHandler( configuration );
-                handler.processMetadataCoupling( planwerkServiceMetadata );
-            } catch ( DataServiceCouplingException e ) {
-                LOG.error( "Could not create data services coupling", e );
-            }
-        }
-
     }
 
 }

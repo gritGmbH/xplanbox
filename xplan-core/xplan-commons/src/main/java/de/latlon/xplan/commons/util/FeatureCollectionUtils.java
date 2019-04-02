@@ -26,6 +26,8 @@ import org.deegree.gml.GMLInputFactory;
 import org.deegree.gml.GMLStreamReader;
 import org.deegree.gml.GMLVersion;
 
+import java.util.UUID;
+
 /**
  * Contains utilities for deegree {@link org.deegree.feature.FeatureCollection}s.
  * 
@@ -142,6 +144,35 @@ public class FeatureCollectionUtils {
         return retrievePlanProperty( fc, type, "beschreibung" );
     }
 
+    /**
+     * Retrieves the value of XX_Plan/name of the {@link FeatureCollection}.
+     *
+     * @param fc
+     *                 XPlan-FeatureCollection, never <code>null</code>
+     * @param type
+     *                 XPlan-Type, never <code>null</code>
+     * @return name of the plan, never <code>null</code> (a new name is created)
+     */
+    public static String retrievePlanName( FeatureCollection fc, XPlanType type ) {
+        Feature planFeature = findPlanFeature( fc, type );
+        return retrievePlanName( planFeature );
+    }
+
+    /**
+     * Retrieves the value of the attribute name of the passed {@link Feature}.
+     *
+     * @param planFeature
+     *                 never <code>null</code>
+     * @return name of the plan, never <code>null</code> (a new name is created)
+     */
+    public static String retrievePlanName( Feature planFeature ) {
+        String ns = planFeature.getName().getNamespaceURI();
+        String name = getPropertyStringValue( planFeature, new QName( ns, "name" ) );
+        if ( name == null || name.isEmpty() ) {
+            name = "Unbenannter XPlan (" + UUID.randomUUID().toString() + ")";
+        }
+        return name;
+    }
 
     private static String retrieveXPlan3District( FeatureCollection fc, XPlanType type ) {
         return retrievePlanProperty( fc, type, "ortsteil" );

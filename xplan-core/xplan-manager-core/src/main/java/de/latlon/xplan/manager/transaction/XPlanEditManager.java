@@ -25,6 +25,7 @@ import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.validator.report.ValidatorResult;
+import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
@@ -38,12 +39,14 @@ import java.util.Set;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanName;
 import static de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils.parseXPlanFeatureCollection;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
 import static java.lang.Integer.parseInt;
 import static org.apache.commons.io.IOUtils.closeQuietly;
+import static org.deegree.cs.persistence.CRSManager.lookup;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -66,6 +69,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
         InputStream originalPlan = null;
         try {
             String planId = oldXplan.getId();
+            String oldPlanName = oldXplan.getName();
             LOG.info( "- Editiere Plan mit ID {}", planId );
             LOG.debug( "zu editierender Plan: {}", xPlanToEdit );
             XPlanVersion version = XPlanVersion.valueOf( oldXplan.getVersion() );
@@ -111,6 +115,8 @@ public class XPlanEditManager extends XPlanTransactionManager {
             updatePlan( oldXplan, xPlanToEdit, uploadedArtefacts, xPlanGml, removedRefs, modifiedPlanFc, synFc,
                         xPlanMetadata, sortDate );
             LOG.info( "XPlan-GML wurde erfolgreich editiert. ID: {}", planId );
+
+            startCreationIfPlanNameHasChanged( oldPlanName, type, modifiedPlanFc );
 
             xPlanRasterManager.removeRasterLayers( planId, externalReferenceInfoToRemove );
             if ( makeRasterConfig ) {
@@ -167,6 +173,18 @@ public class XPlanEditManager extends XPlanTransactionManager {
         if ( newLegislationStatusCode != oldLegislationStatusCode )
             return PlanStatus.findByLegislationStatusCode( newLegislationStatusCode );
         return oldPlanStatus;
+    }
+
+    private void startCreationIfPlanNameHasChanged( String oldPlanName, XPlanType type,
+                                                    XPlanFeatureCollection modifiedPlanFc )
+                    throws UnknownCRSException {
+        String newPlanName = retrievePlanName( modifiedPlanFc.getFeatures(), type );
+        if ( !newPlanName.equals( oldPlanName ) ) {
+            startCreationOfDataServicesCoupling( modifiedPlanFc,
+                                                 lookup( managerConfiguration.getRasterConfigurationCrs() ) );
+        } else {
+            LOG.info( "Plan name does not change, creation of the service record is not required." );
+        }
     }
 
 }
