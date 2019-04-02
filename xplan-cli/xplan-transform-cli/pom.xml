@@ -13,7 +13,7 @@
 
   <properties>
     <mainclass>de.latlon.xplan.transform.cli.TransformTool</mainclass>
-    <application-name>TransformTool</application-name>
+    <application-name>XPlanTransformCLI</application-name>
   </properties>
 
   <build>
