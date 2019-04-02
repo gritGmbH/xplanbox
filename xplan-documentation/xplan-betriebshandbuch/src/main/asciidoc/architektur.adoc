@@ -28,38 +28,38 @@ Abbildung 2: Separate Datenhaltung
 === XPlanManagerCLI
 
 Die Komponente XPlanManagerCLI ist ein Kommandozeilenwerkzeug, welches
-dem Fachadministrator des XPlanung Infrastrukturknotens ermöglicht, die
-Datenhaltung zu kontrollieren.
+dem Fachadministrator der xPlanBox ermöglicht,
+die Datenhaltung zu kontrollieren.
 
 [[xplanmanager-web]]
 === XPlanManagerWeb
 
 Die Komponente XPlanManagerWeb ist eine Web-Oberfläche, die dem
-Fachadministrator des XPlanung Infrastrukturknotens ermöglicht, die
-Datenhaltung zu kontrollieren. Die Web-Oberfläche ist auf dem
+Fachadministrator der xPlanBox ermöglicht,
+die Datenhaltung zu kontrollieren. Die Web-Oberfläche ist auf dem
 Kommandozeilenwerkzeug aufgebaut.
 
 [[xplanvalidator-cli]]
 === XPlanValidatorCLI
 
 Die Komponente XPlanValidatorCLI ist ein Kommandozeilenwerkzeug,
-welches dem Fachadministrator des XPlanung Infrastrukturknotens
-ermöglicht, XPlanGML Instanzdokumente vor dem Import zu validieren.
+welches dem Fachadministrator der xPlanBox ermöglicht,
+XPlanGML Instanzdokumente vor dem Import zu validieren.
 
 [[xplantransform-cli]]
 === XPlanTransformCLI
 
 Die Komponente XPlanTransformCLI ist ein Kommandozeilenwerkzeug,
-welches dem Fachadministrator des XPlanung Infrastrukturknotens
-ermöglicht, bereits über den XPlanManagerWeb oder das XPlanManagerCLI
+welches dem Fachadministrator der xPlanBox ermöglicht,
+bereits über den XPlanManagerWeb oder das XPlanManagerCLI
 importierte Pläne in eine aktuellere XPlanGML Version zu transformieren.
 
 [[xplanvalidator-web]]
 === XPlanValidatorWeb
 
 Die Komponente XPlanValidatorWeb ist eine Web-Oberfläche, welche dem
-Fachadministrator des XPlanung Infrastrukturknotens ermöglicht, XPlanGML
-Instanzdokumente zu validieren. Der XPlanValidatorWeb ist auf dem
+Fachadministrator der xPlanBox ermöglicht,
+XPlanGML Instanzdokumente zu validieren. Der XPlanValidatorWeb ist auf dem
 Kommandozeilenwerkzeug aufgebaut.
 
 [[xplanwms]]

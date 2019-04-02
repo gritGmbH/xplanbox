@@ -29,14 +29,14 @@ CREATE TABLE plans (
 COMMENT ON TABLE plans IS 'Imported plans';
 
 CREATE TABLE features (
-    plan integer references plans, -- ON DELETE CASCADE,
+    plan integer references plans ON DELETE CASCADE,
     fid text NOT NULL,
     num integer NOT NULL
 );
 COMMENT ON TABLE features IS 'Feature ids for plans';
 
 CREATE TABLE artefacts (
-    plan integer references plans, -- ON DELETE CASCADE,
+    plan integer references plans ON DELETE CASCADE,
     filename text NOT NULL,
     data bytea NOT NULL,
     num integer NOT NULL,
