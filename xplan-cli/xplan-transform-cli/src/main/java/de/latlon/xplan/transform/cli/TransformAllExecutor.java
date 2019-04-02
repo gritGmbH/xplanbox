@@ -14,9 +14,9 @@ import static de.latlon.xplan.commons.cli.DatabaseUtils.closeQuietly;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class SynchronizeReinitExecutor {
+public class TransformAllExecutor {
 
-    private static final Logger LOG = LoggerFactory.getLogger( SynchronizeReinitExecutor.class );
+    private static final Logger LOG = LoggerFactory.getLogger( TransformAllExecutor.class );
 
     private final String logTableName;
 
@@ -28,7 +28,7 @@ public class SynchronizeReinitExecutor {
      * @param synchronizer
      *                 the {@link Synchronizer} used for the synchronization, never <code>null</code>
      */
-    public SynchronizeReinitExecutor( String logTableName, Synchronizer synchronizer ) {
+    public TransformAllExecutor( String logTableName, Synchronizer synchronizer ) {
         this.logTableName = logTableName;
         this.executor = new SynchronizeExecutor( logTableName, synchronizer );
     }
@@ -36,7 +36,7 @@ public class SynchronizeReinitExecutor {
     /**
      * Synchronizes all plan available from the log table.
      */
-    public void synchronizeReinit( Connection conn ) {
+    public void transformAll( Connection conn ) {
         insertInLogTable( conn );
         executor.synchronize( conn );
     }

@@ -1,6 +1,5 @@
 package de.latlon.xplan.transform.cli;
 
-import de.latlon.xplan.commons.cli.SynchronizeAllExecutor;
 import de.latlon.xplan.commons.cli.SynchronizeExecutor;
 import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
 import de.latlon.xplan.manager.CategoryMapper;
@@ -43,7 +42,7 @@ public class TransformTool {
 
     static final String LOG_TABLE_NAME = "xplanmgr.transformToolPlanTableLog";
 
-    private enum TYPE {VALIDATE, SYNC, INIT, REINIT}
+    private enum TYPE {VALIDATE, SYNC, ALL}
 
     private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
@@ -91,21 +90,12 @@ public class TransformTool {
         ManagerWorkspaceWrapper managerWorkspaceWrapper = createManagerWorkspaceWrapper( workspaceName,
                                                                                          configurationDirectory );
         switch ( type ) {
-        case INIT:
+        case ALL:
             sync( managerWorkspaceWrapper, ( conn ) -> {
                 TransformationSynchronizer synchronizer = new TransformationSynchronizer( xPlanDao, validator,
                                                                                           outDirectory );
-                SynchronizeAllExecutor allExecuter = new SynchronizeAllExecutor( LOG_TABLE_NAME, synchronizer );
-                allExecuter.synchronizeAll( conn );
-            } );
-            break;
-        case REINIT:
-            sync( managerWorkspaceWrapper, ( conn ) -> {
-                TransformationSynchronizer synchronizer = new TransformationSynchronizer( xPlanDao, validator,
-                                                                                          outDirectory );
-                SynchronizeReinitExecutor reinitExecuter = new SynchronizeReinitExecutor( LOG_TABLE_NAME,
-                                                                                          synchronizer );
-                reinitExecuter.synchronizeReinit( conn );
+                TransformAllExecutor allExecuter = new TransformAllExecutor( LOG_TABLE_NAME, synchronizer );
+                allExecuter.transformAll( conn );
             } );
             break;
         case SYNC:
@@ -121,7 +111,7 @@ public class TransformTool {
             ValidateExecutor validateExecutor = new ValidateExecutor( xPlanDao, validator );
             validateExecutor.validateAll( outDirectory );
         }
-        System.out.println( "Results was written to " + outDirectory );
+        LOG.info( "Results was written to {}", outDirectory );
     }
 
     private void sync( ManagerWorkspaceWrapper managerWorkspaceWrapper, Consumer<Connection> connectionConsumer ) {
@@ -208,10 +198,9 @@ public class TransformTool {
         opt.setRequired( true );
         opts.addOption( opt );
 
-        opt = new Option( "t", OPT_TYPE, true, "one of 'VALIDATE' (default if missing), 'SYNC', 'INIT', 'REINIT': \n"
+        opt = new Option( "t", OPT_TYPE, true, "one of 'VALIDATE' (default if missing), 'SYNC', 'ALL': \n"
                                                + "   * 'VALIDATE': validates all available XPlanGML 4.1 plans and writes the results\n"
-                                               + "   * 'INIT' transforms all XPlanGML 4.1 plans and inserts the valid plans in the XPlan 5.1 datastore\n"
-                                               + "   * 'REINIT' transforms all available XPlanGML 4.1 plans and inserts the valid plans in the XPlan 5.1 datastore, plans already available in 5.1 will be removed first\n"
+                                               + "   * 'ALL' transforms all available XPlanGML 4.1 plans and inserts the valid plans in the XPlan 5.1 datastore, plans already available in 5.1 will be removed first"
                                                + "   * 'SYNC' transforms the XPlanGML 4.1 plans logged in the table "
                                                + LOG_TABLE_NAME
                                                + "and inserts the valid plans in the XPlan 5.1 datastore" );
