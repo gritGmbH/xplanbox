@@ -11,7 +11,11 @@ import org.deegree.geometry.io.WKTReader;
 import org.deegree.geometry.metadata.SpatialMetadata;
 import org.deegree.layer.metadata.LayerMetadata;
 import org.deegree.services.controller.utils.HttpResponseBuffer;
+import org.deegree.services.jaxb.controller.DeegreeServiceControllerType;
+import org.deegree.services.jaxb.metadata.DeegreeServicesMetadataType;
 import org.deegree.services.jaxb.wms.DeegreeWMS;
+import org.deegree.services.metadata.OWSMetadataProvider;
+import org.deegree.services.metadata.provider.OWSMetadataProviderProvider;
 import org.deegree.services.planwerk.jaxb.Planwerk;
 import org.deegree.services.wms.controller.WMSController;
 import org.deegree.services.wms.controller.capabilities.theme.DefaultMetadataMerger;
@@ -45,6 +49,16 @@ public class PlanwerkController extends WMSController {
                                Planwerk planwerk ) {
         super( metadata, workspace, deegreeWMSConfig );
         this.planwerk = planwerk;
+    }
+
+    @Override
+    public void init( DeegreeServicesMetadataType serviceMetadata, DeegreeServiceControllerType mainConfig,
+                      Object controllerConf ) {
+        super.init( serviceMetadata, mainConfig, controllerConf );
+        OWSMetadataProvider wmsMetadataProvider = workspace.getResource( OWSMetadataProviderProvider.class,
+                                                                         planwerk.getPlanwerkWms() + "_metadata" );
+        MetadataProviderWrapper metadataProvider = new MetadataProviderWrapper( wmsMetadataProvider, planwerk );
+        setMetadataProvider( metadataProvider );
     }
 
     @Override

@@ -52,7 +52,7 @@ public class PlanwerkReader {
             PreparedStatement ps = null;
             ResultSet rs = null;
             try {
-                String sql = "SELECT name, array_agg(id), ST_AsText(ST_Envelope(ST_UNION(bbox))) from xplanmgr.plans WHERE name = ? AND planstatus = ? GROUP BY name";
+                String sql = "SELECT name, array_agg(id), ST_AsText(ST_Envelope(ST_Union(bbox))), array_remove(array_agg(DISTINCT title), NULL), array_remove(array_agg(DISTINCT resourceidentifier), NULL), array_remove(array_agg(DISTINCT datametadataurl), NULL), array_remove(array_agg(DISTINCT servicemetadataurl), NULL) from xplanmgr.plans LEFT JOIN xplanmgr.planwerkwmsmetadata ON id = plan WHERE name = ? AND planstatus = ? GROUP BY name";
                 ps = conn.prepareStatement( sql );
                 ps.setString( 1, name );
                 ps.setString( 2, planStatus );
@@ -74,13 +74,23 @@ public class PlanwerkReader {
         String name = rs.getString( 1 );
         List<Integer> managerIds = parseManagerIds( rs.getArray( 2 ) );
         String bbox = rs.getString( 3 );
-        return new Plan( name, managerIds, bbox );
+        List<String> titles = parseStringArray( rs.getArray( 4 ) );
+        List<String> resourceidentifiers = parseStringArray( rs.getArray( 5 ) );
+        List<String> datametadataurls = parseStringArray( rs.getArray( 6 ) );
+        List<String> servicemetadataurl = parseStringArray( rs.getArray( 7 ) );
+        return new Plan( name, managerIds, bbox, titles, resourceidentifiers, datametadataurls, servicemetadataurl );
     }
 
     private List<Integer> parseManagerIds( Array managerIdArray )
                     throws SQLException {
         Integer[] ids = (Integer[]) managerIdArray.getArray();
         return Arrays.asList( ids );
+    }
+
+    private List<String> parseStringArray( Array stringArray )
+                    throws SQLException {
+        String[] text = (String[]) stringArray.getArray();
+        return Arrays.asList( text );
     }
 
     private Connection getConnection( Workspace workspace ) {

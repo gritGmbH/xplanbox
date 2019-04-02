@@ -3,6 +3,7 @@ package de.latlon.xplan.planwerkwms;
 import org.deegree.services.OWS;
 import org.deegree.services.OWSProvider;
 import org.deegree.services.controller.OGCFrontController;
+import org.deegree.services.planwerk.jaxb.Planwerk;
 import org.deegree.services.wms.controller.WmsMetadata;
 import org.deegree.workspace.Workspace;
 import org.deegree.workspace.standard.DefaultResourceIdentifier;
@@ -16,14 +17,11 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
-import static de.latlon.xplan.planwerkwms.PlanwerkProvider.NAMESPACE;
-import static org.deegree.commons.xml.XMLAdapter.writeElement;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -78,7 +76,7 @@ public class PlanwerkFilter implements Filter {
     }
 
     private void tryToAdd( Workspace workspace, String serviceId )
-                    throws XMLStreamException, IOException {
+                    throws IOException, JAXBException {
         String planName = serviceId.substring( serviceId.lastIndexOf( "/" ) + 1, serviceId.length() );
         Plan plan = planwerkReader.retrieveAvailablePlanwerke( workspace, planName, planStatus );
         if ( plan == null ) {
@@ -96,21 +94,34 @@ public class PlanwerkFilter implements Filter {
     }
 
     private byte[] writePlanwerkConfig( String planname, Plan plan, String wmsId )
-                    throws XMLStreamException, IOException {
+                    throws IOException, JAXBException {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        XMLStreamWriter writer = XMLOutputFactory.newInstance().createXMLStreamWriter( bos );
-        writer.writeStartDocument();
-        writer.setDefaultNamespace( NAMESPACE );
-        writer.writeStartElement( NAMESPACE, "Planwerk" );
-        writer.writeDefaultNamespace( NAMESPACE );
-        writeElement( writer, NAMESPACE, "PlanwerkWms", wmsId );
-        writeElement( writer, NAMESPACE, "Name", planname );
-        writeElement( writer, NAMESPACE, "Envelope", plan.getBbox() );
-        for ( Integer managerId : plan.getManagerIds() ) {
-            writeElement( writer, NAMESPACE, "ManagerId", managerId.toString() );
+
+        Planwerk planwerk = new Planwerk();
+        planwerk.setName( planname );
+        planwerk.setEnvelope( plan.getBbox() );
+        planwerk.setPlanwerkWms( wmsId );
+        for ( int managerId : plan.getManagerIds() ) {
+            planwerk.getManagerId().add( managerId );
         }
-        writer.writeEndElement();
-        writer.close();
+        for ( String resourceidentifiers : plan.getResourceidentifiers() ) {
+            planwerk.getResourceIdentifier().add( resourceidentifiers );
+        }
+        for ( String datametadataurls : plan.getDataMetadataUrls() ) {
+            planwerk.getDataMetadataUrl().add( datametadataurls );
+        }
+        for ( String servicemetadataurls : plan.getServiceMetadataUrls() ) {
+            planwerk.getServiceMetadataUrl().add( servicemetadataurls );
+        }
+        for ( String wmstitle : plan.getWmsTitles() ) {
+            planwerk.getWmsTitle().add( wmstitle );
+        }
+
+        JAXBContext jaxbContext = JAXBContext.newInstance( Planwerk.class );
+        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+        jaxbMarshaller.setProperty( Marshaller.JAXB_FORMATTED_OUTPUT, true );
+        jaxbMarshaller.marshal( planwerk, bos );
+
         bos.close();
         return bos.toByteArray();
     }
