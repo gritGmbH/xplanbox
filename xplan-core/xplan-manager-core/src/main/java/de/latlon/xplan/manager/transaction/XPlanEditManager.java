@@ -39,6 +39,7 @@ import java.util.Set;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanName;
 import static de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils.parseXPlanFeatureCollection;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
@@ -69,9 +70,9 @@ public class XPlanEditManager extends XPlanTransactionManager {
         InputStream originalPlan = null;
         try {
             String planId = oldXplan.getId();
-            String oldPlanName = oldXplan.getName();
             LOG.info( "- Editiere Plan mit ID {}", planId );
             LOG.debug( "zu editierender Plan: {}", xPlanToEdit );
+            String oldPlanName = oldXplan.getName();
             XPlanVersion version = XPlanVersion.valueOf( oldXplan.getVersion() );
             XPlanType type = XPlanType.valueOf( oldXplan.getType() );
             XPlanAde ade = oldXplan.getAde() != null ? XPlanAde.valueOf( oldXplan.getAde() ) : null;
@@ -80,6 +81,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
             originalPlan = xplanDao.retrieveXPlanArtefact( planId );
             XPlanFeatureCollection originalPlanFC = parseXPlanFeatureCollection( originalPlan, type, version,
                                                                                  appSchema );
+            String oldDescription = retrieveDescription( originalPlanFC.getFeatures(), type );
             String oldLegislationStatus = FeatureCollectionUtils.retrieveLegislationStatus(
                             originalPlanFC.getFeatures(), type );
             FeatureCollection featuresToModify = originalPlanFC.getFeatures();
@@ -116,7 +118,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
                         xPlanMetadata, sortDate );
             LOG.info( "XPlan-GML wurde erfolgreich editiert. ID: {}", planId );
 
-            startCreationIfPlanNameHasChanged( oldPlanName, type, modifiedPlanFc );
+            startCreationIfPlanNameHasChanged( type, modifiedPlanFc, oldPlanName, oldDescription );
 
             xPlanRasterManager.removeRasterLayers( planId, externalReferenceInfoToRemove );
             if ( makeRasterConfig ) {
@@ -175,16 +177,26 @@ public class XPlanEditManager extends XPlanTransactionManager {
         return oldPlanStatus;
     }
 
-    private void startCreationIfPlanNameHasChanged( String oldPlanName, XPlanType type,
-                                                    XPlanFeatureCollection modifiedPlanFc )
+    private void startCreationIfPlanNameHasChanged( XPlanType type, XPlanFeatureCollection modifiedPlanFc,
+                                                    String oldPlanName, String oldDescription )
                     throws UnknownCRSException {
         String newPlanName = retrievePlanName( modifiedPlanFc.getFeatures(), type );
-        if ( !newPlanName.equals( oldPlanName ) ) {
+        String newDescription = retrieveDescription( modifiedPlanFc.getFeatures(), type );
+        if ( hasChanged( oldPlanName, newPlanName ) || hasChanged( oldDescription, newDescription ) ) {
             startCreationOfDataServicesCoupling( modifiedPlanFc,
                                                  lookup( managerConfiguration.getRasterConfigurationCrs() ) );
         } else {
             LOG.info( "Plan name does not change, creation of the service record is not required." );
         }
+    }
+
+    private boolean hasChanged( String oldValue, String newValue ) {
+        if ( newValue == null )
+            if ( oldValue == null )
+                return false;
+            else
+                return true;
+        return !newValue.equals( oldValue );
     }
 
 }
