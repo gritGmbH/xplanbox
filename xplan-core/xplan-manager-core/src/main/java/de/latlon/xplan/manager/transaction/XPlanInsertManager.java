@@ -1,5 +1,6 @@
 package de.latlon.xplan.manager.transaction;
 
+import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
@@ -11,6 +12,8 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
+import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
+import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadataBuilder;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transformation.TransformationResult;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
@@ -27,6 +30,7 @@ import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
+import org.deegree.geometry.Envelope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,6 +40,7 @@ import java.util.Date;
 import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.findWorkspaceDirectory;
 
 /**
@@ -94,7 +99,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
         createRasterConfigurations( archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus,
                                     sortDate );
         reloadWorkspace();
-        startCreationOfDataServicesCoupling( fc );
+        startCreationOfDataServicesCoupling( fc, crs );
         LOG.info( "XPlan-Archiv wurde erfolgreich importiert. Zugewiesene Id: " + planId );
         LOG.info( "OK." );
     }
@@ -185,14 +190,31 @@ public class XPlanInsertManager extends XPlanTransactionManager {
         }
     }
 
-    private void startCreationOfDataServicesCoupling( XPlanFeatureCollection featureCollection ) {
+    private void startCreationOfDataServicesCoupling( XPlanFeatureCollection featureCollection, ICRS crs ) {
         CoupledResourceConfiguration coupledResourceConfiguration = this.managerConfiguration.getCoupledResourceConfiguration();
         if ( coupledResourceConfiguration != null ) {
+            LOG.info( "Start creation of the data services coupling." );
+            PlanwerkServiceMetadata planwerkServiceMetadata = createPlanwerkServiceMetadata( featureCollection, crs,
+                                                                                             coupledResourceConfiguration );
             DataServicesCouplingRunnable runnable = new DataServicesCouplingRunnable( coupledResourceConfiguration,
-                                                                                      featureCollection );
+                                                                                      planwerkServiceMetadata );
             Thread thread = new Thread( runnable );
             thread.start();
+        } else {
+            LOG.info( "Creation of data services coupling is disabled." );
         }
+    }
+
+    private PlanwerkServiceMetadata createPlanwerkServiceMetadata( XPlanFeatureCollection featureCollection, ICRS crs,
+                                                                   CoupledResourceConfiguration coupledResourceConfiguration ) {
+        String title = featureCollection.getPlanName();
+        String description = retrieveDescription( featureCollection.getFeatures(), featureCollection.getType() );
+        Envelope envelope = featureCollection.getBboxIn4326();
+
+        PlanwerkServiceMetadataBuilder builder = new PlanwerkServiceMetadataBuilder( XPlanType.BP_Plan, title,
+                                                                                     description, envelope,
+                                                                                     coupledResourceConfiguration );
+        return builder.build( crs );
     }
 
     class DataServicesCouplingRunnable implements Runnable {
@@ -201,19 +223,19 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 
         private final CoupledResourceConfiguration configuration;
 
-        private final XPlanFeatureCollection featureCollection;
+        private final PlanwerkServiceMetadata planwerkServiceMetadata;
 
         public DataServicesCouplingRunnable( CoupledResourceConfiguration configuration,
-                                             XPlanFeatureCollection featureCollection ) {
+                                             PlanwerkServiceMetadata planwerkServiceMetadata ) {
             this.configuration = configuration;
-            this.featureCollection = featureCollection;
+            this.planwerkServiceMetadata = planwerkServiceMetadata;
         }
 
         @Override
         public void run() {
             try {
                 MetadataCouplingHandler handler = new MetadataCouplingHandler( configuration );
-                handler.processMetadataCoupling( featureCollection );
+                handler.processMetadataCoupling( planwerkServiceMetadata );
             } catch ( DataServiceCouplingException e ) {
                 LOG.error( "Could not create data services coupling", e );
             }

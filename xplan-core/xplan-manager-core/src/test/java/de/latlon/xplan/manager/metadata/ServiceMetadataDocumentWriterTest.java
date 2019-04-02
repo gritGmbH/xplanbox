@@ -22,6 +22,8 @@ public class ServiceMetadataDocumentWriterTest {
 
     private static final String TYPE = "service";
 
+    private static final String TITLE = "Alsterdorf20";
+
     @Test
     public void testWriteServiceMetadataDocument()
                     throws Exception {
@@ -51,12 +53,16 @@ public class ServiceMetadataDocumentWriterTest {
                     hasXPath( "//gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString", nsContext(),
                               is( "NOVALUE" ) ) );
 
+        assertThat( the( serviceMetadataInstance.toString() ),
+                    hasXPath( "//gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString",
+                              nsContext(), is( "WMS Bebauungsplan " + TITLE ) ) );
     }
 
     private Properties properties() {
         Properties properties = new Properties();
         properties.setProperty( "CURRENT_DATE", DATE );
         properties.setProperty( "MD_SCOPE_CODE", TYPE );
+        properties.setProperty( "TITLE", TITLE );
         return properties;
     }
 
@@ -64,6 +70,7 @@ public class ServiceMetadataDocumentWriterTest {
         SimpleNamespaceContext nsContext = new SimpleNamespaceContext();
         nsContext.bind( "gmd", "http://www.isotc211.org/2005/gmd" );
         nsContext.bind( "gco", "http://www.isotc211.org/2005/gco" );
+        nsContext.bind( "srv", "http://www.isotc211.org/2005/srv" );
         return nsContext;
     }
 

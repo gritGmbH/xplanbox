@@ -129,6 +129,20 @@ public class FeatureCollectionUtils {
         return retrieveXPlan4District( fc, type );
     }
 
+    /**
+     * Retrieves the value of XX_Plan/beschreibung of the {@link FeatureCollection}.
+     *
+     * @param fc
+     *                 XPlan-FeatureCollection, never <code>null</code>
+     * @param type
+     *                 XPlan-Type, never <code>null</code>
+     * @return additional type value or <code>null</code> if no value was found
+     */
+    public static String retrieveDescription( FeatureCollection fc, XPlanType type ) {
+        return retrievePlanProperty( fc, type, "beschreibung" );
+    }
+
+
     private static String retrieveXPlan3District( FeatureCollection fc, XPlanType type ) {
         return retrievePlanProperty( fc, type, "ortsteil" );
     }

@@ -1,7 +1,7 @@
 package de.latlon.xplan.manager.metadata;
 
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
+import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
 import org.apache.commons.io.IOUtils;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
@@ -39,7 +39,7 @@ public class MetadataCouplingHandlerTest {
         MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler( config,
                                                                                        mockCswClient( coupledResource ) );
 
-        metadataCouplingHandler.processMetadataCoupling( mockXplanFeatureCollection( planName ) );
+        metadataCouplingHandler.processMetadataCoupling( mockPlanwerkServiceMetadata( planName ) );
 
         Path directoryToStoreDatasetMetadata = config.getDirectoryToStoreDatasetMetadata();
         long numberOfCreatedRecords = Files.list( directoryToStoreDatasetMetadata ).count();
@@ -56,13 +56,13 @@ public class MetadataCouplingHandlerTest {
         return XmlConverters.the( new String( bytes ) );
     }
 
-    private XPlanFeatureCollection mockXplanFeatureCollection( String planName )
+    private PlanwerkServiceMetadata mockPlanwerkServiceMetadata( String planName )
                     throws UnknownCRSException {
-        XPlanFeatureCollection fc = mock( XPlanFeatureCollection.class );
-        when( fc.getPlanName() ).thenReturn( planName );
+        PlanwerkServiceMetadata metadata = mock( PlanwerkServiceMetadata.class );
+        when( metadata.getTitle() ).thenReturn( planName );
         Envelope bbox = new SimpleGeometryFactory().createEnvelope( 5, 45, 8, 46, CRSManager.lookup( "EPSG:4326" ) );
-        when( fc.getBboxIn4326() ).thenReturn( bbox );
-        return fc;
+        when( metadata.getEnvelope() ).thenReturn( bbox );
+        return metadata;
     }
 
     private CswClient mockCswClient( CoupledResource coupledResource )
@@ -81,13 +81,15 @@ public class MetadataCouplingHandlerTest {
 
         Path directoryToStoreDatasetMetadata = Files.createTempDirectory( "directoryToStoreDatasetMetadataTest" );
 
+        String planWerkBaseUrl = "http://localhost:8080/xplan-planwerk-wms";
         return new CoupledResourceConfiguration( cswUrlProvidingDatasetMetadata, metadataResourceTemplate,
-                                                 metadataConfigDirectory, directoryToStoreDatasetMetadata );
+                                                 metadataConfigDirectory, directoryToStoreDatasetMetadata,
+                                                 planWerkBaseUrl, 750, 750 );
     }
 
     private Path createDirectoryWithTemplate()
                     throws IOException {
-        InputStream resourceAsStream = ServiceMetadataDocumentWriterTest.class.getResourceAsStream(
+        InputStream resourceAsStream = MetadataCouplingHandlerTest.class.getResourceAsStream(
                         "iso-service-metadata-example-template.xml" );
         Path metadataConfigDirectory = Files.createTempDirectory( "metadataConfigDirectoryTest" );
         Path target = Files.createFile( metadataConfigDirectory.resolve( "service-iso-metadata-template.xml" ) );

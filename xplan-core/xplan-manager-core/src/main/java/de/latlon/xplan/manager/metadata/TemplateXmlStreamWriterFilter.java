@@ -19,15 +19,16 @@ public class TemplateXmlStreamWriterFilter extends XMLStreamWriterFilterBase {
 
     @Override
     protected String xmlData( String s ) {
-        if ( isProperty( s ) ) {
-            String key = s.substring( 2, s.length() - 1 );
-            return properties.getProperty( key, key );
+        if ( containsProperty( s ) ) {
+            String key = s.substring( s.indexOf( "${" ) + 2, s.indexOf( "}" ) );
+            String propertyValue = properties.getProperty( key, key );
+            return s.replace( "${" + key + "}", propertyValue );
         }
         return s;
     }
 
-    private boolean isProperty( String s ) {
-        return s.matches( "^\\$\\{.*\\}" );
+    private boolean containsProperty( String s ) {
+        return s.matches( ".*\\$\\{.*\\}.*" );
     }
 
 }

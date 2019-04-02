@@ -257,7 +257,8 @@ public class ManagerConfiguration {
                 parseSemanticConformityLinkConfiguration( loadProperties );
                 pathToHaleCli = loadProperties.getProperty( PATH_TO_HALE_CLI );
                 pathToHaleProjectDirectory = parsePathToHaleProjectDirectory( propertiesLoader );
-                isProvidingXPlan41As51Active = parseBoolean( loadProperties, ACTIVATE_PROVIDING_XPLAN41_AS_XPLAN51, false );
+                isProvidingXPlan41As51Active = parseBoolean( loadProperties, ACTIVATE_PROVIDING_XPLAN41_AS_XPLAN51,
+                                                             false );
                 coupledResourceConfiguration = parseCoupledResourceConfiguration( propertiesLoader, loadProperties );
             }
             configDirectory = getConfigDirectory( propertiesLoader, "synthesizer" );
@@ -315,10 +316,7 @@ public class ManagerConfiguration {
         if ( coupledResourceConfiguration == null ) {
             LOG.info( "   - not configured" );
         } else {
-            LOG.info( "   - CSW Url: {}", coupledResourceConfiguration.getCswUrlProvidingDatasetMetadata() );
-            LOG.info( "   - Metadata Resource Template: {}",
-                      coupledResourceConfiguration.getMetadataResourceTemplate() );
-            LOG.info( "   - config directory: {}", coupledResourceConfiguration.getMetadataConfigDirectory() );
+            coupledResourceConfiguration.logConfiguration( LOG );
         }
         LOG.info( "-------------------------------------------" );
         sortConfiguration.logConfiguration( LOG );
@@ -459,13 +457,45 @@ public class ManagerConfiguration {
         String metadataResourceTemplate = properties.getProperty( "metadataResourceTemplate" );
         Path directoryToStoreDatasetMetadata = getDirectoryToStoreDatasetMetadata( properties );
         Path metadataConfigDirectory = getConfigDirectory( propertiesLoader, "metadata" );
-        if ( cswUrlProvidingDatasetMetadata != null && metadataResourceTemplate != null
+        String planWerkWmsBaseUrl = properties.getProperty( "planWerkWmsBaseUrl" );
+        if ( cswUrlProvidingDatasetMetadata != null && metadataResourceTemplate != null && planWerkWmsBaseUrl != null
              && directoryExistsAndIsDirectory( metadataConfigDirectory ) && directoryExistsAndIsDirectory(
                         directoryToStoreDatasetMetadata ) ) {
-            return new CoupledResourceConfiguration( cswUrlProvidingDatasetMetadata, metadataResourceTemplate,
-                                                     metadataConfigDirectory, directoryToStoreDatasetMetadata );
+            int planWerkWmsGetMapWidth = parseInteger( properties, "planWerkWmsGetMapWidth", 750 );
+            int planWerkWmsGetMapHeight = parseInteger( properties, "planWerkWmsGetMapHeight", 750 );
+
+            CoupledResourceConfiguration configuration = new CoupledResourceConfiguration(
+                            cswUrlProvidingDatasetMetadata, metadataResourceTemplate, metadataConfigDirectory,
+                            directoryToStoreDatasetMetadata, planWerkWmsBaseUrl, planWerkWmsGetMapWidth,
+                            planWerkWmsGetMapHeight );
+
+            for ( XPlanType type : XPlanType.values() ) {
+                String layerKey = "planWerkWmsGetMapLayers_" + type;
+                String layer = properties.getProperty( layerKey, getDefaultValue( type ) );
+                configuration.addPlanWerkWmsGetMapLayer( type, layer );
+                String styleKey = "planWerkWmsGetMapStyles_" + type;
+                String style = properties.getProperty( styleKey, "" );
+                configuration.addPlanWerkWmsGetMapStyle( type, style );
+            }
+            return configuration;
         }
         return null;
+    }
+
+    private String getDefaultValue( XPlanType type ) {
+        switch ( type ) {
+        case RP_Plan:
+            return "RP_Planvektor,RP_Planraster";
+        case LP_Plan:
+            return "LP_Planvektor,LP_Planraster";
+        case FP_Plan:
+            return "FP_Planvektor,FP_Planraster";
+        case SO_Plan:
+            return "SO_Planvektor,SO_Planraster";
+        case BP_Plan:
+        default:
+            return "BP_Planvektor,BP_Planraster";
+        }
     }
 
     private Path getDirectoryToStoreDatasetMetadata( Properties properties ) {
@@ -500,4 +530,10 @@ public class ManagerConfiguration {
         return Boolean.parseBoolean( property );
     }
 
+    private int parseInteger( Properties loadProperties, String propName, int defaultValue ) {
+        String property = loadProperties.getProperty( propName );
+        if ( property == null || "".equals( property ) )
+            return defaultValue;
+        return Integer.parseInt( property );
+    }
 }

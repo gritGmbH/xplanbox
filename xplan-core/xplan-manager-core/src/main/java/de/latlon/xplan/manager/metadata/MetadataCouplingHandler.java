@@ -1,7 +1,7 @@
 package de.latlon.xplan.manager.metadata;
 
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
+import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
 import org.deegree.geometry.Envelope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,16 +69,16 @@ public class MetadataCouplingHandler {
      * <li>Creates a new service metadata record describing the Planwerk WMS of the passed plan</li>
      * </ol>
      *
-     * @param xPlanFeatureCollection
+     * @param planwerkServiceMetadata
      *                 describing the plan, never <code>null</code>
      * @throws DataServiceCouplingException
      */
-    public void processMetadataCoupling( XPlanFeatureCollection xPlanFeatureCollection )
+    public void processMetadataCoupling( PlanwerkServiceMetadata planwerkServiceMetadata )
                     throws DataServiceCouplingException {
         LocalDateTime now = LocalDateTime.now();
         CoupledResource coupledResource = this.cswClient.requestMetadataRecord();
-        Properties properties = createProperties( xPlanFeatureCollection, coupledResource, now );
-        Path serviceMetadataDocument = createServiceMetadataDocument( xPlanFeatureCollection.getPlanName(), now,
+        Properties properties = createProperties( planwerkServiceMetadata, coupledResource, now );
+        Path serviceMetadataDocument = createServiceMetadataDocument( planwerkServiceMetadata.getTitle(), now,
                                                                       properties );
 
         LOG.info( "Service metadata document was filed to {}", serviceMetadataDocument );
@@ -110,16 +110,16 @@ public class MetadataCouplingHandler {
         }
     }
 
-    private Properties createProperties( XPlanFeatureCollection xPlanFeatureCollection, CoupledResource coupledResource,
-                                         LocalDateTime now ) {
+    private Properties createProperties( PlanwerkServiceMetadata planwerkServiceMetadata,
+                                         CoupledResource coupledResource, LocalDateTime now ) {
         Properties properties = new Properties();
         properties.setProperty( "METADATA_ID", UUID.randomUUID().toString() );
         properties.setProperty( "CURRENT_DATE", now.format( DATE_FORMAT ) );
-        //properties.setProperty( "TITLE", xPlanFeatureCollection.getName() );
+        properties.setProperty( "TITLE", planwerkServiceMetadata.getTitle() );
         properties.setProperty( "CURRENT_DATE_TIME", now.format( DATE_TIME_FORMAT ) );
-        //properties.setProperty( "ABSTRACT", planwerkServiceMetadata.getDescription() );
-        //properties.setProperty( "PLANWERKWMS_OVERVIEW", planwerkServiceMetadata.getPlanwerkWmsGetMapUrl() );
-        Envelope envelope = xPlanFeatureCollection.getBboxIn4326();
+        setProperty( properties, "ABSTRACT", planwerkServiceMetadata.getDescription() );
+        setProperty( properties, "PLANWERKWMS_OVERVIEW", planwerkServiceMetadata.getPlanwerkWmsGetMapUrl() );
+        Envelope envelope = planwerkServiceMetadata.getEnvelope();
         if ( envelope != null ) {
             properties.setProperty( "WEST_BOUND_LONG", COORD_FORMAT.format( envelope.getMin().get0() ) );
             properties.setProperty( "EAST_BOUND_LONG", COORD_FORMAT.format( envelope.getMax().get0() ) );
@@ -128,9 +128,13 @@ public class MetadataCouplingHandler {
             properties.setProperty( "COUPLED_METADATA_RESOURCE_URL", coupledResource.getUrl() );
             properties.setProperty( "COUPLED_METADATA_RESOURCE_IDENTIFIER", coupledResource.getId() );
         }
-        //properties.setProperty( "PLANWERKWMS_CAPABILITIES", planwerkServiceMetadata.getPlanwerkWmsGetCapabilitiesUrl() );
-        //properties.setProperty( "PLANWERKWMS_NAME", planwerkServiceMetadata.getPlanwerkWmsName() );
+        setProperty( properties, "PLANWERKWMS_CAPABILITIES",
+                     planwerkServiceMetadata.getPlanwerkWmsGetCapabilitiesUrl() );
         return properties;
+    }
+
+    private void setProperty( Properties properties, String key, String value ) {
+        properties.setProperty( key, value != null ? value : "" );
     }
 
     private byte[] readTemplate( Path configurationDirectory )
