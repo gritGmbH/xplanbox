@@ -19,10 +19,10 @@
         <element name="Name" type="string"/>
         <element name="Envelope" type="string"/>
         <element name="ManagerId" type="int" maxOccurs="unbounded"/>
-        <element name="WmsTitle" type="string" maxOccurs="unbounded"/>
-        <element name="ResourceIdentifier" type="string" maxOccurs="unbounded"/>
-        <element name="DataMetadataUrl" type="string" maxOccurs="unbounded"/>
-        <element name="ServiceMetadataUrl" type="string" maxOccurs="unbounded"/>
+        <element name="WmsTitle" type="string" minOccurs="0" maxOccurs="unbounded"/>
+        <element name="ResourceIdentifier" type="string" minOccurs="0" maxOccurs="unbounded"/>
+        <element name="DataMetadataUrl" type="string" minOccurs="0" maxOccurs="unbounded"/>
+        <element name="ServiceMetadataUrl" type="string" minOccurs="0" maxOccurs="unbounded"/>
       </sequence>
     </complexType>
   </element>
