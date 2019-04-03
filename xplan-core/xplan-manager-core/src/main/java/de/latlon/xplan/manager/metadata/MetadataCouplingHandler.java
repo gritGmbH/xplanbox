@@ -45,8 +45,6 @@ public class MetadataCouplingHandler {
 
     private final Path directoryToStoreDatasetMetadata;
 
-    private final int planId;
-
     private final XPlanDao xPlanDao;
 
     /**
@@ -54,14 +52,13 @@ public class MetadataCouplingHandler {
      *                 never <code>null</code>
      * @throws DataServiceCouplingException
      */
-    public MetadataCouplingHandler( int planId, XPlanDao xPlanDao, CoupledResourceConfiguration config )
+    public MetadataCouplingHandler( XPlanDao xPlanDao, CoupledResourceConfiguration config )
                     throws DataServiceCouplingException {
-        this( planId, xPlanDao, config, new CswClient( config.getCswUrlProvidingDatasetMetadata() ) );
+        this( xPlanDao, config, new CswClient( config.getCswUrlProvidingDatasetMetadata() ) );
     }
 
-    MetadataCouplingHandler( int planId, XPlanDao xPlanDao, CoupledResourceConfiguration config, CswClient cswClient )
+    MetadataCouplingHandler( XPlanDao xPlanDao, CoupledResourceConfiguration config, CswClient cswClient )
                     throws DataServiceCouplingException {
-        this.planId = planId;
         this.xPlanDao = xPlanDao;
         this.cswClient = cswClient;
         Path configurationDirectory = config.getMetadataConfigDirectory();
@@ -81,7 +78,7 @@ public class MetadataCouplingHandler {
      *                 describing the plan, never <code>null</code>
      * @throws DataServiceCouplingException
      */
-    public void processMetadataCoupling( PlanwerkServiceMetadata planwerkServiceMetadata )
+    public void processMetadataCoupling( int planId, PlanwerkServiceMetadata planwerkServiceMetadata )
                     throws DataServiceCouplingException {
         String serviceRecordId = UUID.randomUUID().toString();
         LocalDateTime now = LocalDateTime.now();
@@ -89,12 +86,13 @@ public class MetadataCouplingHandler {
         Properties properties = createProperties( planwerkServiceMetadata, planRecordMetadata, now, serviceRecordId );
         Path serviceMetadataDocument = createServiceMetadataDocument( planwerkServiceMetadata.getTitle(), now,
                                                                       properties );
-        writePlanwerkCapabilitiesInfo( serviceRecordId, planwerkServiceMetadata, planRecordMetadata );
+        writePlanwerkCapabilitiesInfo( planId, serviceRecordId, planwerkServiceMetadata, planRecordMetadata );
 
         LOG.info( "Service metadata document was filed to {}", serviceMetadataDocument );
     }
 
-    private void writePlanwerkCapabilitiesInfo( String serviceRecordId, PlanwerkServiceMetadata planwerkServiceMetadata,
+    private void writePlanwerkCapabilitiesInfo( int planId, String serviceRecordId,
+                                                PlanwerkServiceMetadata planwerkServiceMetadata,
                                                 PlanRecordMetadata planRecordMetadata )
                     throws DataServiceCouplingException {
         String title = planwerkServiceMetadata.getTitle();

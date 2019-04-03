@@ -1,21 +1,15 @@
 package de.latlon.xplan.manager.transaction;
 
-import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.CrsUtils;
-import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
-import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
-import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
-import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadataBuilder;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
-import de.latlon.xplan.manager.transformation.TransformationResult;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -23,14 +17,12 @@ import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceManager;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
-import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.Envelope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +32,6 @@ import java.util.Date;
 import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.findWorkspaceDirectory;
 
 /**
@@ -53,8 +44,8 @@ public class XPlanInsertManager extends XPlanTransactionManager {
     public XPlanInsertManager( XPlanSynthesizer xPlanSynthesizer, XPlanGmlTransformer xPlanGmlTransformer,
                                XPlanDao xplanDao, XPlanExporter xPlanExporter, XPlanRasterManager xPlanRasterManager,
                                WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
-                               ManagerWorkspaceWrapper managerWorkspaceWrapper,
-                               SortPropertyReader sortPropertyReader ) {
+                               ManagerWorkspaceWrapper managerWorkspaceWrapper, SortPropertyReader sortPropertyReader )
+                    throws DataServiceCouplingException {
         super( xPlanSynthesizer, xPlanGmlTransformer, xplanDao, xPlanExporter, xPlanRasterManager, workspaceReloader,
                managerConfiguration, managerWorkspaceWrapper, sortPropertyReader );
     }

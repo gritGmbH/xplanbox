@@ -84,12 +84,15 @@ public abstract class XPlanTransactionManager {
 
     protected final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
 
+    private final MetadataCouplingHandler metadataCouplingHandler;
+
     public XPlanTransactionManager( XPlanSynthesizer xPlanSynthesizer, XPlanGmlTransformer xPlanGmlTransformer,
                                     XPlanDao xplanDao, XPlanExporter xPlanExporter,
                                     XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
                                     ManagerConfiguration managerConfiguration,
                                     ManagerWorkspaceWrapper managerWorkspaceWrapper,
-                                    SortPropertyReader sortPropertyReader ) {
+                                    SortPropertyReader sortPropertyReader )
+                    throws DataServiceCouplingException {
         this.xPlanSynthesizer = xPlanSynthesizer;
         this.xPlanGmlTransformer = xPlanGmlTransformer;
         this.xplanDao = xplanDao;
@@ -99,6 +102,11 @@ public abstract class XPlanTransactionManager {
         this.managerConfiguration = managerConfiguration;
         this.managerWorkspaceWrapper = managerWorkspaceWrapper;
         this.sortPropertyReader = sortPropertyReader;
+        if ( managerConfiguration.getCoupledResourceConfiguration() != null )
+            this.metadataCouplingHandler = new MetadataCouplingHandler( xplanDao,
+                                                                        managerConfiguration.getCoupledResourceConfiguration() );
+        else
+            this.metadataCouplingHandler = null;
     }
 
     protected void reloadWorkspace() {
@@ -188,9 +196,7 @@ public abstract class XPlanTransactionManager {
             LOG.info( "Start creation of the data services coupling." );
             PlanwerkServiceMetadata planwerkServiceMetadata = createPlanwerkServiceMetadata( featureCollection, crs,
                                                                                              coupledResourceConfiguration );
-            DataServicesCouplingRunnable runnable = new DataServicesCouplingRunnable( planId,
-                                                                                      coupledResourceConfiguration,
-                                                                                      planwerkServiceMetadata );
+            DataServicesCouplingRunnable runnable = new DataServicesCouplingRunnable( planId, planwerkServiceMetadata );
             Thread thread = new Thread( runnable );
             thread.start();
         } else {
@@ -216,22 +222,17 @@ public abstract class XPlanTransactionManager {
 
         private final int planId;
 
-        private final CoupledResourceConfiguration configuration;
-
         private final PlanwerkServiceMetadata planwerkServiceMetadata;
 
-        public DataServicesCouplingRunnable( int planId, CoupledResourceConfiguration configuration,
-                                             PlanwerkServiceMetadata planwerkServiceMetadata ) {
+        public DataServicesCouplingRunnable( int planId, PlanwerkServiceMetadata planwerkServiceMetadata ) {
             this.planId = planId;
-            this.configuration = configuration;
             this.planwerkServiceMetadata = planwerkServiceMetadata;
         }
 
         @Override
         public void run() {
             try {
-                MetadataCouplingHandler handler = new MetadataCouplingHandler( planId, xplanDao, configuration );
-                handler.processMetadataCoupling( planwerkServiceMetadata );
+                metadataCouplingHandler.processMetadataCoupling( planId, planwerkServiceMetadata );
             } catch ( DataServiceCouplingException e ) {
                 LOG.error( "Could not create data services coupling", e );
             }

@@ -93,8 +93,6 @@ public class ManagerConfiguration {
 
     private Path pathToHaleProjectDirectory;
 
-    private boolean isProvidingXPlan41As51Active = false;
-
     private CoupledResourceConfiguration coupledResourceConfiguration;
 
     public ManagerConfiguration( PropertiesLoader propertiesLoader )
@@ -247,9 +245,9 @@ public class ManagerConfiguration {
                 parseSemanticConformityLinkConfiguration( loadProperties );
                 pathToHaleCli = loadProperties.getProperty( PATH_TO_HALE_CLI );
                 pathToHaleProjectDirectory = parsePathToHaleProjectDirectory( propertiesLoader );
-                coupledResourceConfiguration = parseCoupledResourceConfiguration( propertiesLoader, loadProperties );
+                coupledResourceConfiguration = CoupledResourceConfiguration.parseCoupledResourceConfiguration( propertiesLoader, loadProperties );
             }
-            configDirectory = getConfigDirectory( propertiesLoader, "synthesizer" );
+            configDirectory = propertiesLoader.resolveDirectory( "synthesizer" );
         }
     }
 
@@ -433,74 +431,14 @@ public class ManagerConfiguration {
     }
 
     private Path parsePathToHaleProjectDirectory( PropertiesLoader propertiesLoader ) {
-        Path haleProject = getConfigDirectory( propertiesLoader, "hale" );
+        Path haleProject = propertiesLoader.resolveDirectory( "hale" );
         if ( directoryExistsAndIsDirectory( haleProject ) )
             return haleProject;
         return null;
     }
 
-    private CoupledResourceConfiguration parseCoupledResourceConfiguration( PropertiesLoader propertiesLoader,
-                                                                            Properties properties ) {
-        String cswUrlProvidingDatasetMetadata = properties.getProperty( "cswUrlProvidingDatasetMetadata" );
-        Path directoryToStoreDatasetMetadata = getDirectoryToStoreDatasetMetadata( properties );
-        Path metadataConfigDirectory = getConfigDirectory( propertiesLoader, "metadata" );
-        String planWerkWmsBaseUrl = properties.getProperty( "planWerkWmsBaseUrl" );
-        if ( cswUrlProvidingDatasetMetadata != null && planWerkWmsBaseUrl != null
-             && directoryExistsAndIsDirectory( metadataConfigDirectory ) && directoryExistsAndIsDirectory(
-                        directoryToStoreDatasetMetadata ) ) {
-            int planWerkWmsGetMapWidth = parseInteger( properties, "planWerkWmsGetMapWidth", 750 );
-            int planWerkWmsGetMapHeight = parseInteger( properties, "planWerkWmsGetMapHeight", 750 );
-
-            CoupledResourceConfiguration configuration = new CoupledResourceConfiguration(
-                            cswUrlProvidingDatasetMetadata, metadataConfigDirectory,
-                            directoryToStoreDatasetMetadata, planWerkWmsBaseUrl, planWerkWmsGetMapWidth,
-                            planWerkWmsGetMapHeight );
-
-            for ( XPlanType type : XPlanType.values() ) {
-                String layerKey = "planWerkWmsGetMapLayers_" + type;
-                String layer = properties.getProperty( layerKey, getDefaultValue( type ) );
-                configuration.addPlanWerkWmsGetMapLayer( type, layer );
-                String styleKey = "planWerkWmsGetMapStyles_" + type;
-                String style = properties.getProperty( styleKey, "" );
-                configuration.addPlanWerkWmsGetMapStyle( type, style );
-            }
-            return configuration;
-        }
-        return null;
-    }
-
-    private String getDefaultValue( XPlanType type ) {
-        switch ( type ) {
-        case RP_Plan:
-            return "RP_Planvektor,RP_Planraster";
-        case LP_Plan:
-            return "LP_Planvektor,LP_Planraster";
-        case FP_Plan:
-            return "FP_Planvektor,FP_Planraster";
-        case SO_Plan:
-            return "SO_Planvektor,SO_Planraster";
-        case BP_Plan:
-        default:
-            return "BP_Planvektor,BP_Planraster";
-        }
-    }
-
-    private Path getDirectoryToStoreDatasetMetadata( Properties properties ) {
-        String directoryToStoreDatasetMetadata = properties.getProperty( "directoryToStoreDatasetMetadata" );
-        if ( directoryToStoreDatasetMetadata != null )
-            return Paths.get( directoryToStoreDatasetMetadata );
-        return null;
-    }
-
     private boolean directoryExistsAndIsDirectory( Path directory ) {
         return directory != null && Files.exists( directory ) && Files.isDirectory( directory );
-    }
-
-    private Path getConfigDirectory( PropertiesLoader propertiesLoader, String subdirectory ) {
-        Path configDirectory = propertiesLoader.getConfigDirectory();
-        if ( configDirectory != null )
-            return configDirectory.resolve( subdirectory );
-        return null;
     }
 
     private Double parseScaleDenominator( Properties properties, String propName ) {
@@ -517,10 +455,4 @@ public class ManagerConfiguration {
         return Boolean.parseBoolean( property );
     }
 
-    private int parseInteger( Properties loadProperties, String propName, int defaultValue ) {
-        String property = loadProperties.getProperty( propName );
-        if ( property == null || "".equals( property ) )
-            return defaultValue;
-        return Integer.parseInt( property );
-    }
 }

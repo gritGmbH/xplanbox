@@ -44,10 +44,10 @@ public class MetadataCouplingHandlerTest {
         String planName = "TestPlan";
         CoupledResourceConfiguration config = createConfig();
         XPlanDao xPlanDao = mock( XPlanDao.class );
-        MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler( 1, xPlanDao, config,
+        MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler( xPlanDao, config,
                                                                                        mockCswClient( planRecordMetadata ) );
 
-        metadataCouplingHandler.processMetadataCoupling( mockPlanwerkServiceMetadata( planName ) );
+        metadataCouplingHandler.processMetadataCoupling( 1, mockPlanwerkServiceMetadata( planName ) );
 
         Path directoryToStoreDatasetMetadata = config.getDirectoryToStoreDatasetMetadata();
         long numberOfCreatedRecords = Files.list( directoryToStoreDatasetMetadata ).count();

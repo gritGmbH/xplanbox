@@ -35,4 +35,13 @@ public interface PropertiesLoader {
      */
     Path getConfigDirectory();
 
+    /**
+     * Resolves the passed subdirectory relative to the config directory
+     *
+     * @param subdirectory
+     *                 necer <code>null</code>
+     * @return the resolved directory or <code>null</code> if the config directory is <code>null</code>
+     */
+    Path resolveDirectory( String subdirectory );
+
 }
