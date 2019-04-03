@@ -139,11 +139,9 @@ public class PlanwerkServiceMetadataBuilderTest {
 
     private CoupledResourceConfiguration createConfig() {
         String cswUrlProvidingDatasetMetadata = "http://test.de";
-        String metadataResourceTemplate = "http://test.de/${METADATA_RECORD_IDENTIFIER}";
         Path metadataConfigDirectory = Paths.get( "/tmp/metadataConfigDirectory" );
         Path directoryToStoreDatasetMetadata = Paths.get( "/tmp/directoryToStoreDatasetMetadata" );
         CoupledResourceConfiguration configuration = new CoupledResourceConfiguration( cswUrlProvidingDatasetMetadata,
-                                                                                       metadataResourceTemplate,
                                                                                        metadataConfigDirectory,
                                                                                        directoryToStoreDatasetMetadata,
                                                                                        planWerkBaseUrl, 750, 750 );

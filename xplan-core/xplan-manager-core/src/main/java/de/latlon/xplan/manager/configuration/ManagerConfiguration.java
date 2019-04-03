@@ -454,18 +454,17 @@ public class ManagerConfiguration {
     private CoupledResourceConfiguration parseCoupledResourceConfiguration( PropertiesLoader propertiesLoader,
                                                                             Properties properties ) {
         String cswUrlProvidingDatasetMetadata = properties.getProperty( "cswUrlProvidingDatasetMetadata" );
-        String metadataResourceTemplate = properties.getProperty( "metadataResourceTemplate" );
         Path directoryToStoreDatasetMetadata = getDirectoryToStoreDatasetMetadata( properties );
         Path metadataConfigDirectory = getConfigDirectory( propertiesLoader, "metadata" );
         String planWerkWmsBaseUrl = properties.getProperty( "planWerkWmsBaseUrl" );
-        if ( cswUrlProvidingDatasetMetadata != null && metadataResourceTemplate != null && planWerkWmsBaseUrl != null
+        if ( cswUrlProvidingDatasetMetadata != null && planWerkWmsBaseUrl != null
              && directoryExistsAndIsDirectory( metadataConfigDirectory ) && directoryExistsAndIsDirectory(
                         directoryToStoreDatasetMetadata ) ) {
             int planWerkWmsGetMapWidth = parseInteger( properties, "planWerkWmsGetMapWidth", 750 );
             int planWerkWmsGetMapHeight = parseInteger( properties, "planWerkWmsGetMapHeight", 750 );
 
             CoupledResourceConfiguration configuration = new CoupledResourceConfiguration(
-                            cswUrlProvidingDatasetMetadata, metadataResourceTemplate, metadataConfigDirectory,
+                            cswUrlProvidingDatasetMetadata, metadataConfigDirectory,
                             directoryToStoreDatasetMetadata, planWerkWmsBaseUrl, planWerkWmsGetMapWidth,
                             planWerkWmsGetMapHeight );
 

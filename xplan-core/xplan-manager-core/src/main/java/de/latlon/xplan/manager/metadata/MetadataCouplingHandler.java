@@ -1,6 +1,8 @@
 package de.latlon.xplan.manager.metadata;
 
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
+import de.latlon.xplan.manager.metadata.csw.CswClient;
+import de.latlon.xplan.manager.metadata.csw.PlanRecordMetadata;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
 import org.deegree.geometry.Envelope;
 import org.slf4j.Logger;
@@ -49,8 +51,7 @@ public class MetadataCouplingHandler {
      */
     public MetadataCouplingHandler( CoupledResourceConfiguration config )
                     throws DataServiceCouplingException {
-        this( config,
-              new CswClient( config.getCswUrlProvidingDatasetMetadata(), config.getMetadataResourceTemplate() ) );
+        this( config, new CswClient( config.getCswUrlProvidingDatasetMetadata() ) );
     }
 
     MetadataCouplingHandler( CoupledResourceConfiguration config, CswClient cswClient )
@@ -76,7 +77,7 @@ public class MetadataCouplingHandler {
     public void processMetadataCoupling( PlanwerkServiceMetadata planwerkServiceMetadata )
                     throws DataServiceCouplingException {
         LocalDateTime now = LocalDateTime.now();
-        CoupledResource coupledResource = this.cswClient.requestMetadataRecord();
+        PlanRecordMetadata coupledResource = this.cswClient.requestMetadataRecord();
         Properties properties = createProperties( planwerkServiceMetadata, coupledResource, now );
         Path serviceMetadataDocument = createServiceMetadataDocument( planwerkServiceMetadata.getTitle(), now,
                                                                       properties );
@@ -111,7 +112,7 @@ public class MetadataCouplingHandler {
     }
 
     private Properties createProperties( PlanwerkServiceMetadata planwerkServiceMetadata,
-                                         CoupledResource coupledResource, LocalDateTime now ) {
+                                         PlanRecordMetadata planRecordMetadata, LocalDateTime now ) {
         Properties properties = new Properties();
         properties.setProperty( "METADATA_ID", UUID.randomUUID().toString() );
         properties.setProperty( "CURRENT_DATE", now.format( DATE_FORMAT ) );
@@ -125,8 +126,8 @@ public class MetadataCouplingHandler {
             properties.setProperty( "EAST_BOUND_LONG", COORD_FORMAT.format( envelope.getMax().get0() ) );
             properties.setProperty( "SOUTH_BOUND_LAT", COORD_FORMAT.format( envelope.getMin().get1() ) );
             properties.setProperty( "NORTH_BOUND_LAT", COORD_FORMAT.format( envelope.getMax().get1() ) );
-            properties.setProperty( "COUPLED_METADATA_RESOURCE_URL", coupledResource.getUrl() );
-            properties.setProperty( "COUPLED_METADATA_RESOURCE_IDENTIFIER", coupledResource.getId() );
+            properties.setProperty( "COUPLED_METADATA_RESOURCE_URL", planRecordMetadata.getResourceIdentifier() );
+            properties.setProperty( "COUPLED_METADATA_RESOURCE_IDENTIFIER", planRecordMetadata.getRecordId() );
         }
         setProperty( properties, "PLANWERKWMS_CAPABILITIES",
                      planwerkServiceMetadata.getPlanwerkWmsGetCapabilitiesUrl() );

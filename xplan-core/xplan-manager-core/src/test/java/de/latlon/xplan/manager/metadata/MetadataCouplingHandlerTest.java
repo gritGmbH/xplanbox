@@ -1,6 +1,8 @@
 package de.latlon.xplan.manager.metadata;
 
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
+import de.latlon.xplan.manager.metadata.csw.CswClient;
+import de.latlon.xplan.manager.metadata.csw.PlanRecordMetadata;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
 import org.apache.commons.io.IOUtils;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -33,11 +35,11 @@ public class MetadataCouplingHandlerTest {
     @Test
     public void testProcessMetadataCoupling()
                     throws Exception {
-        CoupledResource coupledResource = new CoupledResource( "id", "http://test.de/id" );
+        PlanRecordMetadata planRecordMetadata = new PlanRecordMetadata( "id", "http://test.de/id" );
         String planName = "TestPlan";
         CoupledResourceConfiguration config = createConfig();
         MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler( config,
-                                                                                       mockCswClient( coupledResource ) );
+                                                                                       mockCswClient( planRecordMetadata ) );
 
         metadataCouplingHandler.processMetadataCoupling( mockPlanwerkServiceMetadata( planName ) );
 
@@ -65,7 +67,7 @@ public class MetadataCouplingHandlerTest {
         return metadata;
     }
 
-    private CswClient mockCswClient( CoupledResource coupledResource )
+    private CswClient mockCswClient( PlanRecordMetadata coupledResource )
                     throws DataServiceCouplingException {
         CswClient cswClient = mock( CswClient.class );
         when( cswClient.requestMetadataRecord() ).thenReturn( coupledResource );
@@ -75,16 +77,14 @@ public class MetadataCouplingHandlerTest {
     private CoupledResourceConfiguration createConfig()
                     throws IOException {
         String cswUrlProvidingDatasetMetadata = "http://test.de";
-        String metadataResourceTemplate = "http://test.de/${METADATA_RECORD_IDENTIFIER}";
 
         Path metadataConfigDirectory = createDirectoryWithTemplate();
 
         Path directoryToStoreDatasetMetadata = Files.createTempDirectory( "directoryToStoreDatasetMetadataTest" );
 
         String planWerkBaseUrl = "http://localhost:8080/xplan-planwerk-wms";
-        return new CoupledResourceConfiguration( cswUrlProvidingDatasetMetadata, metadataResourceTemplate,
-                                                 metadataConfigDirectory, directoryToStoreDatasetMetadata,
-                                                 planWerkBaseUrl, 750, 750 );
+        return new CoupledResourceConfiguration( cswUrlProvidingDatasetMetadata, metadataConfigDirectory,
+                                                 directoryToStoreDatasetMetadata, planWerkBaseUrl, 750, 750 );
     }
 
     private Path createDirectoryWithTemplate()

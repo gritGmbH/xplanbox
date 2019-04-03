@@ -24,18 +24,14 @@ public class CoupledResourceConfiguration {
 
     private String cswUrlProvidingDatasetMetadata;
 
-    private final String metadataResourceTemplate;
-
     private final Path metadataConfigDirectory;
 
     private final Path directoryToStoreDatasetMetadata;
 
-    public CoupledResourceConfiguration( String cswUrlProvidingDatasetMetadata, String metadataResourceTemplate,
-                                         Path metadataConfigDirectory, Path directoryToStoreDatasetMetadata,
-                                         String planWerkWmsBaseUrl, int planWerkWmsGetMapWidth,
-                                         int planWerkWmsGetMapHeight ) {
+    public CoupledResourceConfiguration( String cswUrlProvidingDatasetMetadata, Path metadataConfigDirectory,
+                                         Path directoryToStoreDatasetMetadata, String planWerkWmsBaseUrl,
+                                         int planWerkWmsGetMapWidth, int planWerkWmsGetMapHeight ) {
         this.cswUrlProvidingDatasetMetadata = cswUrlProvidingDatasetMetadata;
-        this.metadataResourceTemplate = metadataResourceTemplate;
         this.metadataConfigDirectory = metadataConfigDirectory;
         this.directoryToStoreDatasetMetadata = directoryToStoreDatasetMetadata;
         this.planWerkWmsBaseUrl = planWerkWmsBaseUrl;
@@ -45,10 +41,6 @@ public class CoupledResourceConfiguration {
 
     public String getCswUrlProvidingDatasetMetadata() {
         return cswUrlProvidingDatasetMetadata;
-    }
-
-    public String getMetadataResourceTemplate() {
-        return metadataResourceTemplate;
     }
 
     public Path getMetadataConfigDirectory() {
@@ -107,7 +99,6 @@ public class CoupledResourceConfiguration {
             log.info( "   - Style of type {}: {}", style.getKey(), style.getValue() );
         }
         log.info( "   - CSW Url: {}", cswUrlProvidingDatasetMetadata );
-        log.info( "   - Metadata Resource Template: {}", metadataResourceTemplate );
         log.info( "   - Metadata config directory: {}", metadataConfigDirectory );
         log.info( "   - Directory to store dataset metadata: {}", directoryToStoreDatasetMetadata );
     }
