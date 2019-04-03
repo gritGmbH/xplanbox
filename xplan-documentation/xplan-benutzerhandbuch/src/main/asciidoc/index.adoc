@@ -17,6 +17,8 @@ include::XPlanManager.adoc[]
 
 include::XPlanValidator.adoc[]
 
+include::XPlanTransform_CLI.adoc[]
+
 include::XPlanWMS.adoc[]
 
 include::XPlanWFS.adoc[]

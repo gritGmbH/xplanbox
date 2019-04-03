@@ -371,7 +371,7 @@ public class XPlanManager {
             featureCollectionManipulator.addInternalId( synFc, synSchema, internalId );
         }
         Date sortDate = sortPropertyReader.readSortDate( archive.getType(), archive.getVersion(), fc.getFeatures() );
-        int planId = insertPlan( archive, xPlanMetadata, fc, synFc, sortDate );
+        int planId = xplanDao.insert( archive, fc, synFc, xPlanMetadata, sortDate );
         createRasterConfigurations( archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus,
                                     sortDate );
         reloadWorkspace();
@@ -620,8 +620,8 @@ public class XPlanManager {
             AdditionalPlanData xPlanMetadata = new AdditionalPlanData( newPlanStatus, xPlanToEdit.getValidityPeriod().getStart(),
                                                                        xPlanToEdit.getValidityPeriod().getEnd() );
             Date sortDate = sortPropertyReader.readSortDate( type, version, modifiedFeatures );
-            updatePlan( oldXplan, xPlanToEdit, uploadedArtefacts, xPlanGml, removedRefs, modifiedPlanFc, synFc,
-                        xPlanMetadata, sortDate );
+            xplanDao.update( oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, xPlanToEdit, sortDate,
+                             uploadedArtefacts, removedRefs );
             LOG.info( "XPlan-GML wurde erfolgreich editiert. ID: {}", planId );
 
             xPlanRasterManager.removeRasterLayers( planId, externalReferenceInfoToRemove );
@@ -738,55 +738,6 @@ public class XPlanManager {
             inspirePluPublisher.transformAndPublish( planId, XPlanVersion.valueOf( plan.getVersion() ) );
             xplanDao.setPlanWasInspirePublished( planId );
         }
-    }
-
-    private int insertPlan( XPlanArchive archive, AdditionalPlanData xPlanMetadata, XPlanFeatureCollection fc,
-                            FeatureCollection synFc, Date sortDate )
-                    throws Exception {
-        if ( managerConfiguration.isProvidingXPlan41As51Active() && xPlanGmlTransformer != null ) {
-            TransformationResult transformationResult = xPlanGmlTransformer.transform( fc );
-            if ( transformationResult != null ) {
-                ValidatorResult validatorResult = validateSyntactically( transformationResult, archive.getAde() );
-                if ( validatorResult.isValid() ) {
-                    XPlanFeatureCollection transformedXPlanFc = createXPlanFeatureCollection( transformationResult,
-                                                                                              archive.getType(),
-                                                                                              archive.getAde() );
-                    return xplanDao.insert( archive, transformedXPlanFc, synFc, xPlanMetadata, sortDate );
-                } else {
-                    throw new Exception(
-                                    "Transformation of the XPlanGML 4.1 plan to XPlanGml 5.1 results in syntactically invalid GML: "
-                                    + validatorResult );
-                }
-            }
-        }
-        return xplanDao.insert( archive, fc, synFc, xPlanMetadata, sortDate );
-    }
-
-    private void updatePlan( XPlan oldXplan, XPlanToEdit xPlanToEdit, List<File> uploadedArtefacts, byte[] xPlanGml,
-                             Set<String> removedRefs, XPlanFeatureCollection modifiedPlanFc, FeatureCollection synFc,
-                             AdditionalPlanData xPlanMetadata, Date sortDate )
-                    throws Exception {
-        if ( managerConfiguration.isProvidingXPlan41As51Active() && xPlanGmlTransformer != null ) {
-            TransformationResult transformationResult = xPlanGmlTransformer.transform( modifiedPlanFc );
-            if ( transformationResult != null ) {
-                ValidatorResult validatorResult = validateSyntactically( transformationResult,
-                                                                         modifiedPlanFc.getAde() );
-                if ( validatorResult.isValid() ) {
-                    XPlanFeatureCollection transformedXPlanFc = createXPlanFeatureCollection( transformationResult,
-                                                                                              modifiedPlanFc.getType(),
-                                                                                              modifiedPlanFc.getAde() );
-                    xplanDao.update( oldXplan, xPlanMetadata, transformedXPlanFc, synFc, xPlanGml, xPlanToEdit,
-                                     sortDate, uploadedArtefacts, removedRefs );
-                    return;
-                } else {
-                    throw new Exception(
-                                    "Transformation of the XPlanGML 4.1 plan to XPlanGml 5.1 results in syntactically invalid GML: "
-                                    + validatorResult );
-                }
-            }
-        }
-        xplanDao.update( oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, xPlanToEdit, sortDate,
-                         uploadedArtefacts, removedRefs );
     }
 
     private XPlanFeatureCollection createXPlanFeatureCollection( TransformationResult transformationResult,
