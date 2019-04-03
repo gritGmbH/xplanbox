@@ -30,14 +30,14 @@
     <gmd:contact>
       <gmd:CI_ResponsibleParty>
         <gmd:organisationName>
-          <gco:CharacterString>Landesbetrieb Geoinformation und Vermessung (LGV) Hamburg</gco:CharacterString>
+          <gco:CharacterString>Name der Organisations</gco:CharacterString>
         </gmd:organisationName>
         <gmd:contactInfo>
           <gmd:CI_Contact>
             <gmd:address>
               <gmd:CI_Address>
                 <gmd:electronicMailAddress>
-                  <gco:CharacterString>Info@gv.hamburg.de</gco:CharacterString>
+                  <gco:CharacterString>info@organisation.de</gco:CharacterString>
                 </gmd:electronicMailAddress>
               </gmd:CI_Address>
             </gmd:address>
@@ -164,29 +164,29 @@
         <gmd:pointOfContact>
           <gmd:CI_ResponsibleParty>
             <gmd:organisationName>
-              <gco:CharacterString>Landesbetrieb Geoinformation und Vermessung (LGV) Hamburg, Geschäftsbereich Liegenschaftskataster, LGV Support</gco:CharacterString>
+              <gco:CharacterString>Name der Organisation</gco:CharacterString>
             </gmd:organisationName>
             <gmd:contactInfo>
               <gmd:CI_Contact>
                 <gmd:address>
                   <gmd:CI_Address>
                     <gmd:deliveryPoint>
-                      <gco:CharacterString>Neuenfelder Straße 19</gco:CharacterString>
+                      <gco:CharacterString>Musterstr. 42</gco:CharacterString>
                     </gmd:deliveryPoint>
                     <gmd:city>
-                      <gco:CharacterString>Hamburg</gco:CharacterString>
+                      <gco:CharacterString>Musterdorf</gco:CharacterString>
                     </gmd:city>
                     <gmd:administrativeArea>
-                      <gco:CharacterString>Hamburg</gco:CharacterString>
+                      <gco:CharacterString>Musterdorf</gco:CharacterString>
                     </gmd:administrativeArea>
                     <gmd:postalCode>
-                      <gco:CharacterString>D-21109</gco:CharacterString>
+                      <gco:CharacterString>99999</gco:CharacterString>
                     </gmd:postalCode>
                     <gmd:country>
-                      <gco:CharacterString>DEU</gco:CharacterString>
+                      <gco:CharacterString>DE</gco:CharacterString>
                     </gmd:country>
                     <gmd:electronicMailAddress>
-                      <gco:CharacterString>LGVGeoportal-Hilfe@gv.hamburg.de</gco:CharacterString>
+                      <gco:CharacterString>info@organisation.de</gco:CharacterString>
                     </gmd:electronicMailAddress>
                   </gmd:CI_Address>
                 </gmd:address>
@@ -202,37 +202,37 @@
         <gmd:pointOfContact>
           <gmd:CI_ResponsibleParty>
             <gmd:organisationName>
-              <gco:CharacterString>Behörde für Stadtentwicklung und Wohnen (BSW)</gco:CharacterString>
+              <gco:CharacterString>Behörde für Planung</gco:CharacterString>
             </gmd:organisationName>
             <gmd:contactInfo>
               <gmd:CI_Contact>
                 <gmd:phone>
                   <gmd:CI_Telephone>
                     <gmd:voice>
-                      <gco:CharacterString>+49 40 4 28 - 0</gco:CharacterString>
+                      <gco:CharacterString>0123-45678</gco:CharacterString>
                     </gmd:voice>
                   </gmd:CI_Telephone>
                 </gmd:phone>
                 <gmd:address>
                   <gmd:CI_Address>
                     <gmd:deliveryPoint>
-                      <gco:CharacterString>Neuenfelder Straße 19</gco:CharacterString>
+                      <gco:CharacterString>Musterstr. 42</gco:CharacterString>
                     </gmd:deliveryPoint>
                     <gmd:city>
-                      <gco:CharacterString>Hamburg</gco:CharacterString>
+                      <gco:CharacterString>Musterdorf</gco:CharacterString>
                     </gmd:city>
                     <gmd:postalCode>
-                      <gco:CharacterString>D-21109</gco:CharacterString>
+                      <gco:CharacterString>99999</gco:CharacterString>
                     </gmd:postalCode>
                     <gmd:electronicMailAddress>
-                      <gco:CharacterString>info@bsw.hamburg.de</gco:CharacterString>
+                      <gco:CharacterString>info@organisation.de</gco:CharacterString>
                     </gmd:electronicMailAddress>
                   </gmd:CI_Address>
                 </gmd:address>
                 <gmd:onlineResource>
                   <gmd:CI_OnlineResource>
                     <gmd:linkage>
-                      <gmd:URL>www.hamburg.de/bsw</gmd:URL>
+                      <gmd:URL>http://www.organisation.de</gmd:URL>
                     </gmd:linkage>
                   </gmd:CI_OnlineResource>
                 </gmd:onlineResource>
@@ -258,7 +258,7 @@
                       codeListValue="service"/>
             </gmd:updateScope>
             <gmd:maintenanceNote>
-              <gco:CharacterString>Zu den Aktualitäten nutzen Sie bitte die Verweise zu den Datensatzbeschreibungen.</gco:CharacterString>
+              <gco:CharacterString>Beschreibung...</gco:CharacterString>
             </gmd:maintenanceNote>
           </gmd:MD_MaintenanceInformation>
         </gmd:resourceMaintenance>
@@ -288,40 +288,6 @@
                   <gmd:CI_Date>
                     <gmd:date>
                       <gco:Date>2008-06-01</gco:Date>
-                    </gmd:date>
-                    <gmd:dateType>
-                      <gmd:CI_DateTypeCode
-                              codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_DateTypeCode"
-                              codeListValue="publication"/>
-                    </gmd:dateType>
-                  </gmd:CI_Date>
-                </gmd:date>
-              </gmd:CI_Citation>
-            </gmd:thesaurusName>
-          </gmd:MD_Keywords>
-        </gmd:descriptiveKeywords>
-        <gmd:descriptiveKeywords>
-          <gmd:MD_Keywords>
-            <gmd:keyword>
-              <gco:CharacterString>Geoinformation</gco:CharacterString>
-            </gmd:keyword>
-            <gmd:keyword>
-              <gco:CharacterString>Raumbezogene Information</gco:CharacterString>
-            </gmd:keyword>
-            <gmd:type>
-              <gmd:MD_KeywordTypeCode
-                      codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_KeywordTypeCode"
-                      codeListValue="theme"/>
-            </gmd:type>
-            <gmd:thesaurusName>
-              <gmd:CI_Citation>
-                <gmd:title>
-                  <gco:CharacterString>UMTHES Thesaurus</gco:CharacterString>
-                </gmd:title>
-                <gmd:date>
-                  <gmd:CI_Date>
-                    <gmd:date>
-                      <gco:Date>2009-01-15</gco:Date>
                     </gmd:date>
                     <gmd:dateType>
                       <gmd:CI_DateTypeCode
@@ -396,17 +362,10 @@
             </gmd:thesaurusName>
           </gmd:MD_Keywords>
         </gmd:descriptiveKeywords>
-        <gmd:descriptiveKeywords>
-          <gmd:MD_Keywords>
-            <gmd:keyword>
-              <gco:CharacterString>inspireidentifiziert</gco:CharacterString>
-            </gmd:keyword>
-          </gmd:MD_Keywords>
-        </gmd:descriptiveKeywords>
         <gmd:resourceConstraints>
           <gmd:MD_LegalConstraints>
             <gmd:useLimitation>
-              <gco:CharacterString>Nutzungsbedingungen: Datenlizenz Deutschland - Namensnennung - Version 2.0; &lt;a href="https://www.govdata.de/dl-de/by-2-0"&gt;https://www.govdata.de/dl-de/by-2-0&lt;/a&gt;; dl-de-by-2.0; Namensnennung: "Freie und Hansestadt Hamburg, Behörde für Stadtentwicklung und Wohnen"</gco:CharacterString>
+              <gco:CharacterString>Nutzungsbedingungen...</gco:CharacterString>
             </gmd:useLimitation>
           </gmd:MD_LegalConstraints>
         </gmd:resourceConstraints>
@@ -423,7 +382,7 @@
                       codeListValue="otherRestrictions"/>
             </gmd:useConstraints>
             <gmd:otherConstraints>
-              <gco:CharacterString>Nutzungsbedingungen: Datenlizenz Deutschland - Namensnennung - Version 2.0; &lt;a href="https://www.govdata.de/dl-de/by-2-0"&gt;https://www.govdata.de/dl-de/by-2-0&lt;/a&gt;; dl-de-by-2.0; Namensnennung: "Freie und Hansestadt Hamburg, Behörde für Stadtentwicklung und Wohnen"</gco:CharacterString>
+              <gco:CharacterString>Nutzungsbedingungen...</gco:CharacterString>
             </gmd:otherConstraints>
           </gmd:MD_LegalConstraints>
         </gmd:resourceConstraints>
@@ -436,20 +395,7 @@
               </gmd:MD_RestrictionCode>
             </gmd:accessConstraints>
             <gmd:otherConstraints>
-              <gco:CharacterString>Es gelten keine Zugriffsbeschränkungen</gco:CharacterString>
-            </gmd:otherConstraints>
-          </gmd:MD_LegalConstraints>
-        </gmd:resourceConstraints>
-        <gmd:resourceConstraints>
-          <gmd:MD_LegalConstraints>
-            <gmd:accessConstraints>
-              <gmd:MD_RestrictionCode
-                      codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode"
-                      codeListValue="otherRestrictions">otherRestrictions
-              </gmd:MD_RestrictionCode>
-            </gmd:accessConstraints>
-            <gmd:otherConstraints>
-              <gco:CharacterString>Hamburgisches Geodateninfrastrukturgesetz (HmbGDIG)</gco:CharacterString>
+              <gco:CharacterString>Es gelten...</gco:CharacterString>
             </gmd:otherConstraints>
           </gmd:MD_LegalConstraints>
         </gmd:resourceConstraints>
@@ -560,33 +506,7 @@
               <srv:SV_Parameter>
                 <srv:name>
                   <gco:aName>
-                    <gco:CharacterString>UPDATESEQUENCE=number</gco:CharacterString>
-                  </gco:aName>
-                  <gco:attributeType/>
-                </srv:name>
-                <srv:description>
-                  <gco:CharacterString>Sequence number for cache control</gco:CharacterString>
-                </srv:description>
-                <srv:optionality>
-                  <gco:CharacterString>1</gco:CharacterString>
-                </srv:optionality>
-                <srv:repeatability>
-                  <gco:Boolean>false</gco:Boolean>
-                </srv:repeatability>
-                <srv:valueType>
-                  <gco:TypeName>
-                    <gco:aName>
-                      <gco:CharacterString/>
-                    </gco:aName>
-                  </gco:TypeName>
-                </srv:valueType>
-              </srv:SV_Parameter>
-            </srv:parameters>
-            <srv:parameters>
-              <srv:SV_Parameter>
-                <srv:name>
-                  <gco:aName>
-                    <gco:CharacterString>VERSION=1.1.1</gco:CharacterString>
+                    <gco:CharacterString>VERSION=1.3.0</gco:CharacterString>
                   </gco:aName>
                   <gco:attributeType/>
                 </srv:name>
@@ -637,7 +557,7 @@
             <srv:connectPoint>
               <gmd:CI_OnlineResource>
                 <gmd:linkage>
-                  <gmd:URL>https://geodienste.hamburg.de/HH_WMS_Bebauungsplaene?</gmd:URL>
+                  <gmd:URL>https://localhost/services?</gmd:URL>
                 </gmd:linkage>
               </gmd:CI_OnlineResource>
             </srv:connectPoint>
@@ -721,32 +641,6 @@
                 </srv:description>
                 <srv:optionality>
                   <gco:CharacterString>0</gco:CharacterString>
-                </srv:optionality>
-                <srv:repeatability>
-                  <gco:Boolean>false</gco:Boolean>
-                </srv:repeatability>
-                <srv:valueType>
-                  <gco:TypeName>
-                    <gco:aName>
-                      <gco:CharacterString/>
-                    </gco:aName>
-                  </gco:TypeName>
-                </srv:valueType>
-              </srv:SV_Parameter>
-            </srv:parameters>
-            <srv:parameters>
-              <srv:SV_Parameter>
-                <srv:name>
-                  <gco:aName>
-                    <gco:CharacterString>TIME=time</gco:CharacterString>
-                  </gco:aName>
-                  <gco:attributeType/>
-                </srv:name>
-                <srv:description>
-                  <gco:CharacterString>Time value of layer desired</gco:CharacterString>
-                </srv:description>
-                <srv:optionality>
-                  <gco:CharacterString>1</gco:CharacterString>
                 </srv:optionality>
                 <srv:repeatability>
                   <gco:Boolean>false</gco:Boolean>
@@ -920,7 +814,7 @@
               <srv:SV_Parameter>
                 <srv:name>
                   <gco:aName>
-                    <gco:CharacterString>VERSION=1.1.1</gco:CharacterString>
+                    <gco:CharacterString>VERSION=1.3.0</gco:CharacterString>
                   </gco:aName>
                   <gco:attributeType/>
                 </srv:name>
@@ -1127,7 +1021,7 @@
             <srv:connectPoint>
               <gmd:CI_OnlineResource>
                 <gmd:linkage>
-                  <gmd:URL>https://geodienste.hamburg.de/HH_WMS_Bebauungsplaene?</gmd:URL>
+                  <gmd:URL>https://localhost/services?</gmd:URL>
                 </gmd:linkage>
               </gmd:CI_OnlineResource>
             </srv:connectPoint>
@@ -1150,7 +1044,7 @@
               <srv:SV_Parameter>
                 <srv:name>
                   <gco:aName>
-                    <gco:CharacterString>VERSION=1.1.1</gco:CharacterString>
+                    <gco:CharacterString>VERSION=1.3.0</gco:CharacterString>
                   </gco:aName>
                   <gco:attributeType/>
                 </srv:name>
@@ -1409,7 +1303,7 @@
             <srv:connectPoint>
               <gmd:CI_OnlineResource>
                 <gmd:linkage>
-                  <gmd:URL>https://geodienste.hamburg.de/HH_WMS_Bebauungsplaene?</gmd:URL>
+                  <gmd:URL>https://localhost/services?</gmd:URL>
                 </gmd:linkage>
               </gmd:CI_OnlineResource>
             </srv:connectPoint>
@@ -1468,7 +1362,7 @@
                 <gmd:specification>
                   <gmd:CI_Citation>
                     <gmd:title>
-                      <gco:CharacterString>VERORDNUNG (EG) Nr. 976/2009 DER KOMMISSION vom 19. Oktober 2009 zur Durchführung der Richtlinie 2007/2/EG des Europäischen Parlaments und des Rates hinsichtlich der Netzdienste</gco:CharacterString>
+                      <gco:CharacterString>VERORDNUNG...</gco:CharacterString>
                     </gmd:title>
                     <gmd:date>
                       <gmd:CI_Date>
