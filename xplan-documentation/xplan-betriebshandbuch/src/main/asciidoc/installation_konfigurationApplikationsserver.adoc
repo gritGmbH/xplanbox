@@ -69,7 +69,7 @@ dies kann durch setzen der Umgebungsvariable: _exportJAVA_OPTS=’-Xmx4096m’_ 
 ==== Dienste-Tomcat
 
 Falls der XPlanManager nach jedem Einfügen und Löschen eines Plan den
-XPlanWMS aktualisieren soll, muss ein Tomcat-Nutzer angelegt werden.
+XPlanWMS und XPlanWerkWMS aktualisieren soll, muss ein Tomcat-Nutzer angelegt werden.
 Ansonsten ist ein manueller Workspace-Reload nötig, um die neu
 importieren bzw. gelöschten Rasterpläne im XPlanWMS darzustellen bzw. zu
 entfernen.

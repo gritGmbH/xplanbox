@@ -2,7 +2,7 @@
 === Massstabsbereich
 
 Für die Rasterdaten empfiehlt es sich, einen Massstabsbereich anzugeben,
-in dem diese durch den XPlanWMS angezeigt werden.
+in dem diese durch den XPlanWMS und XPlanWerkWMS angezeigt werden.
 
 Der Massstabsbereich kann in der Datei _managerConfiguration.properties_
 im Verzeichnis _~/.deegree/manager-configuration/_ konfiguriert werden.
