@@ -145,7 +145,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
     }
 
     @Override
-    public ArchiveEntry getEntry( String name ) {
+    public ZipEntryWithContent getEntry( String name ) {
         checkNameParameter( name );
         for ( ZipEntryWithContent zipEntry : zipFileEntries ) {
             if ( name.equals( zipEntry.getName() ) )
@@ -156,9 +156,9 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
     @Override
     public InputStream retrieveInputStreamFor( String name ) {
-        ArchiveEntry entry = getEntry( name );
+        ZipEntryWithContent entry = getEntry( name );
         if ( entry != null )
-            return ( (ZipEntryWithContent) entry ).retrieveContentAsStream();
+            return entry.retrieveContentAsStream();
         String message = format( "Zip entry with the name%scould not be found in archive%s", name, this.name );
         throw new IllegalArgumentException( message );
     }

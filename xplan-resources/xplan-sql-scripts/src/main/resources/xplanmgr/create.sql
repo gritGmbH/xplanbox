@@ -42,4 +42,13 @@ CREATE TABLE artefacts (
     num integer NOT NULL,
     mimetype text NOT NULL
 );
-COMMENT ON TABLE plans IS 'Plan artefacts';
+COMMENT ON TABLE artefacts IS 'Plan artefacts';
+
+CREATE TABLE planwerkwmsmetadata (
+    plan integer references plans ON DELETE CASCADE,
+    title text,
+    resourceidentifier text,
+    datametadataurl text,
+    servicemetadataurl text
+);
+COMMENT ON TABLE planwerkwmscapabilities IS 'Metadata of plans provided in the capabilities of the PlanwerkWMS';

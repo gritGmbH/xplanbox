@@ -16,8 +16,8 @@
       <xplansyn:gmlId>FEATURE_1</xplansyn:gmlId>
       <xplansyn:xpVersion>2.0</xplansyn:xpVersion>
       <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>Langenhorn 22</xplansyn:xpPlanName>
-      <xplansyn:name>Langenhorn 22</xplansyn:name>
+      <xplansyn:xpPlanName>Langenhorn22</xplansyn:xpPlanName>
+      <xplansyn:name>Langenhorn22</xplansyn:name>
       <xplansyn:nummer>LA 22</xplansyn:nummer>
       <xplansyn:beschreibung>Der Geltungsbereich des Bebauungsplans Langenhorn 22 umfasst die  Langenhorner Chaussee – Fibigerstraße – Südostgrenzen der Flurstücke 10716, 10843 und 8815, über das Flurstück 5595, Ostgrenze des Flurstücks 5595 der Gemarkung Langenhorn - Neubergerweg (Bezirk Hamburg-Nord, Ortsteil 432).</xplansyn:beschreibung>
       <xplansyn:erstellungsMassstab>1000</xplansyn:erstellungsMassstab>

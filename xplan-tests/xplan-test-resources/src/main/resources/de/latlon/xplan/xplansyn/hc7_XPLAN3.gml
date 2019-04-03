@@ -11,8 +11,8 @@
       <xplan:gmlId>FEATURE_1</xplan:gmlId>
       <xplan:xpVersion>3.0</xplan:xpVersion>
       <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
-      <xplan:xpPlanName>Hamburg-Altstadt 41 / HafenCity 7</xplan:xpPlanName>
-      <xplan:name>Hamburg-Altstadt 41 / HafenCity 7</xplan:name>
+      <xplan:xpPlanName>Hamburg-Altstadt41HafenCity7</xplan:xpPlanName>
+      <xplan:name>Hamburg-Altstadt41HafenCity7</xplan:name>
       <xplan:beschreibung>Das Plangebiet wird wie folgt begrenzt: West- und Nordgrenze des Flurstücks 1963 (Hübenerkai) über das Flurstück 2021 (Grasbrookhafen), Ostgrenzen der Flurstücke 2021 und 1963, Nord- und Westgrenze des Flurstücks 1963, über das Flurstück 1963, Süd- und Ostgrenze des Flurstücks 1963, über die Flurstück 1963 und 2022 (Norderelbe) der Gemarkung Altstadt-Süd.</xplan:beschreibung>
       <xplan:technHerstellDatum>2010-03-08</xplan:technHerstellDatum>
       <xplan:erstellungsMassstab>1000</xplan:erstellungsMassstab>

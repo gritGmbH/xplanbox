@@ -15,6 +15,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.Resource;
 import org.fusesource.restygwt.client.RestService;
@@ -120,6 +121,15 @@ public interface ManagerService extends RestService {
     @Path("/raster/{id}")
     void evaluateRaster( @PathParam("id")
     String id, MethodCallback<List<RasterEvaluationResult>> callback );
+
+    @GET
+    @Produces(APPLICATION_JSON)
+    @Path("/plannamestatus/{id}/{status}")
+    void evaluatePlanNameAndStatus(
+                    @PathParam("id")
+                                    String id,
+                    @PathParam("status")
+                                    String status, MethodCallback<PlanNameWithStatusResult> callback );
 
     @GET
     @Produces(APPLICATION_JSON)

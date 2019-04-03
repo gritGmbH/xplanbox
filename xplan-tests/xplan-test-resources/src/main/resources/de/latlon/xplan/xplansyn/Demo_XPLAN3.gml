@@ -11,8 +11,8 @@
       <xplan:gmlId>FEATURE_1</xplan:gmlId>
       <xplan:xpVersion>3.0</xplan:xpVersion>
       <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
-      <xplan:xpPlanName>BPlan Demo-Gemeinde</xplan:xpPlanName>
-      <xplan:name>BPlan Demo-Gemeinde</xplan:name>
+      <xplan:xpPlanName>BPlanDemo-Gemeinde</xplan:xpPlanName>
+      <xplan:name>BPlanDemo-Gemeinde</xplan:name>
       <xplan:technHerstellDatum>2006-06-22</xplan:technHerstellDatum>
       <xplan:raeumlicherGeltungsbereich>
         <gml:Polygon srsName="EPSG:31467">

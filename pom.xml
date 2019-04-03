@@ -13,7 +13,7 @@
     <sonar.host.url>http://vento:9000</sonar.host.url>
     <sonar.jdbc.url>jdbc:postgresql://habub/sonar</sonar.jdbc.url>
     <!-- version properties -->
-    <deegree3.version>3.4.3-xplanbox-1.8</deegree3.version>
+    <deegree3.version>3.4.3-xplanbox-1.9-SNAPSHOT</deegree3.version>
     <gwt.version>2.5.0</gwt.version>
     <geotools.version>10.0</geotools.version>
     <slf4j.version>1.7.5</slf4j.version>
@@ -398,12 +398,12 @@
       <dependency>
         <groupId>org.apache.ws.commons.axiom</groupId>
         <artifactId>axiom-api</artifactId>
-        <version>1.2.13</version>
+        <version>1.2.15</version>
       </dependency>
       <dependency>
         <groupId>org.apache.ws.commons.axiom</groupId>
         <artifactId>axiom-impl</artifactId>
-        <version>1.2.13</version>
+        <version>1.2.15</version>
       </dependency>
       <dependency>
         <groupId>net.sf.saxon</groupId>

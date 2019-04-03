@@ -28,11 +28,12 @@
       <param-value>rplanraster_sortiert,rp_plan,rp_ber,rp_achse,rp_bodenschutz,rp_energieversorgung,rp_entsorgung,rp_entwschwerpte,rp_forstwirtsch,rp_freizeiterholung,rp_gemfunktsiedlentw,rp_genobj,rp_gr,rp_gruenzuggruenzaesur,rp_klimaschutz,rp_kommunikation,rp_laermschutzber,rp_lw,rp_naturlandsch,rp_natsrechtlschutzgeb,rp_raumkategorie,rp_rohstoffsicherung,rp_sonstinfrastrukt,rp_sonstrfreiraumstrukt,rp_sonstsiedlstrukt,rp_sozinfrastrukt,rp_verk,rp_vorbhwschutz,rp_wasserschutz,rp_wws,rp_windenergie,rp_windenergienutz,rp_zentralerort,nsm_rp_achse,nsm_rp_bodenschutz,nsm_rp_energieversorgung,nsm_rp_forstwirtsch,nsm_rp_freizeiterholung,nsm_rp_laermschutzber,nsm_rp_lw,nsm_rp_natsrechtlschutzgeb,nsm_rp_raumkategorie,nsm_rp_sperrgebiet,nsm_rp_vorbhwschutz,nsm_rp_wasserschutz,nsm_rp_zentralerort,rp_nsm_abfallentsorgung,rp_nsm_abwasser,rp_nsm_asb,rp_nsm_erholung,rp_nsm_gib,rp_nsm_landschaftsschutz,rp_nsm_naturschutz,rp_nsm_luftverkehr,rp_nsm_oberflaechennahebodenschaetze,rp_nsm_regionalbedeutsamerwanderweg,rp_nsm_regionalbedeutsamesportanlage,rp_nsm_schienenverkehr,rp_nsm_sonstverkehr,rp_nsm_strassenverkehr,rp_nsm_tiefliegenderohstoffe,rp_nsm_tourismus,rp_nsm_wasserverkehr,rp_beschriftung,rp_xp_pto,rp_xp_lto,rp_xp_fpo,rp_xp_lpo,rp_xp_ppo</param-value>
     </init-param>
   </filter>
+
   <filter>
     <filter-name>Upload Filter</filter-name>
     <filter-class>org.deegree.client.core.filter.InputFileFilter</filter-class>
   </filter>
-  
+
   <filter-mapping>
     <filter-name>PlanFilter</filter-name>
     <url-pattern>/services/*</url-pattern>

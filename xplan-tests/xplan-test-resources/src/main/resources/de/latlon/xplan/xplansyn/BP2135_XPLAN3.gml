@@ -12,7 +12,7 @@
       <xplan:xpVersion>3.0</xplan:xpVersion>
       <xplan:xpPlanType>BP_Plan</xplan:xpPlanType>
       <xplan:xpPlanName>Bebauungsplan 2135</xplan:xpPlanName>
-      <xplan:name>Bebauungsplan 2135</xplan:name>
+      <xplan:name>Bebauungsplan2135</xplan:name>
       <xplan:nummer>2135</xplan:nummer>
       <xplan:beschreibung>Testdaten XPlanGML</xplan:beschreibung>
       <xplan:raeumlicherGeltungsbereich>

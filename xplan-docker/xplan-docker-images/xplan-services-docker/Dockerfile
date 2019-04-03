@@ -22,6 +22,10 @@ ADD web.xml /usr/local/tomcat/conf/web.xml
 ADD target/xplan-wms-*.war /root/
 RUN cd /root/ && unzip -q xplan-wms-*.war -d /usr/local/tomcat/webapps/xplan-wms
 
+# add xplan-planwerk-wms
+ADD target/xplan-planwerk-wms-*.war /root/
+RUN cd /root/ && unzip -q xplan-planwerk-wms-*.war -d /usr/local/tomcat/webapps/xplan-planwerk-wms
+
 # add xplansyn-wfs
 ADD target/xplansyn-wfs-*.war /root/
 RUN cd /root/ && unzip -q xplansyn-wfs-*.war -d /usr/local/tomcat/webapps/xplansyn-wfs

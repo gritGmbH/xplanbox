@@ -26,7 +26,7 @@ public class XPlanFeatureCollection {
 
     private final XPlanAde ade;
 
-    private final String name;
+    private String name;
 
     private final String nummer;
 
@@ -51,6 +51,10 @@ public class XPlanFeatureCollection {
         this.bboxIn4326 = bboxIn4326;
         this.version = version;
         this.ade = ade;
+    }
+
+    public void setName( String name ) {
+        this.name = name;
     }
 
     public XPlanType getType() {
