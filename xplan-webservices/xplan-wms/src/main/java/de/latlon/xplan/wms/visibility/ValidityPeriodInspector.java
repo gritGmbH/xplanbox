@@ -1,4 +1,4 @@
-package de.latlon.xplanisk2.wms.visibility;
+package de.latlon.xplan.wms.visibility;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

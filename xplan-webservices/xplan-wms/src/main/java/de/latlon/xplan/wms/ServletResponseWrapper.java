@@ -1,4 +1,4 @@
-package de.latlon.xplanisk2.wms;
+package de.latlon.xplan.wms;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;

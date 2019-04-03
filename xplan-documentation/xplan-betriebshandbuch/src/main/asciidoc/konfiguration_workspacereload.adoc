@@ -2,7 +2,7 @@
 === Automatischer Workspace-Reload
 
 Der XPlanManager kann nach jedem Import, jeder Aktualisierung und jedem
-Löschvorgang automatisch einen Workspace-Reload des XPlanWMS
+Löschvorgang automatisch einen Workspace-Reload des XPlanWMS/XPlanWerkWMS
 anstoßen. Dadurch werden neu importierte, editierte und gelöschte
 Rasterpläne sofort im WMS aktualisiert.
 
@@ -16,7 +16,7 @@ workspaceReloadUser=<TOMCAT-NUTZERNAME>
 workspaceReloadPassword=<TOMCAT-PASSWORT>
 ----
 
-Es können mehrere URLs kommasepariert eingetragen werden, für den Fall das der XPlanWMS dupliziert wurde. In dem Fall
+Es können mehrere URLs kommasepariert eingetragen werden, für den Fall das der XPlanWMS/XPlanWerkWMS dupliziert wurde. In dem Fall
 wird für alle eingetragenen Dienste ein Reload durchgeführt.
 Achtung: Alle Dienste müssen über die gleiche Nutzer/Passwort-Kombination angesprochen werden können.
 

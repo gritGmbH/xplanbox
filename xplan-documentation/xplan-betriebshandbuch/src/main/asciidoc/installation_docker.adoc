@@ -24,7 +24,7 @@ Die xPlanBox besteht aus verschiedenen Komponenten, die z.T. auf verschiedene Do
  ** Imagename: xplanbox/xplan-manager-web-docker
  * *XPlanDienste*
  ** zur Bereitstellung der Planwerke über OGC-konforme Schnittstellen
- ** mit dem XPlanWMS, XPlanWFS und XPlanSynWFS
+ ** mit dem XPlanWMS, XPlanPlanWMS, XPlanWFS und XPlanSynWFS
  ** Imagename: xplanbox/xplan-services-docker
  * *XPlanDB*
  ** ein PostgreSQL DBMS als Datenhaltungskomponente
@@ -43,7 +43,7 @@ Daneben sind zur Speicherung der Daten und Konfigurationen folgende Volumes zu n
  * *inspirepludbdata* 
  ** Daten der *XPlanInspirePluDB*
  * *workspace* 
- ** Konfiguration der Workspaces der *XPlanDienste*. Der Workspace des XPlanWMS beinhaltet außerdem Rasterdaten von teilvektoriellen Planwerken und deren Konfigurationsdateien zur Einbindung in den XPlanWMS.
+ ** Konfiguration der Workspaces der *XPlanDienste*. Der Workspace des XPlanWMS und XPlanWerkWMS beinhaltet außerdem Rasterdaten von teilvektoriellen Planwerken und deren Konfigurationsdateien zur Einbindung in den XPlanWMS und XPlanWerkWMS.
  * *managerconfig*
  ** Konfiguration für den *XPlanManager*
  * *inspirepluworkspace*
