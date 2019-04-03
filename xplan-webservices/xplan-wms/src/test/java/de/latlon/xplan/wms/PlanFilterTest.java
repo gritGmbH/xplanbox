@@ -33,9 +33,8 @@
 
  e-mail: info@deegree.org
  ----------------------------------------------------------------------------*/
-package de.latlon.xplanisk2.wms;
+package de.latlon.xplan.wms;
 
-import static de.latlon.xplanisk2.wms.PlanFilter.TYPE_PARAM;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.eq;
@@ -184,12 +183,12 @@ public class PlanFilterTest {
     private HttpServletRequest mockRequest( String type ) {
         HttpServletRequest mockedRequest = mock( HttpServletRequest.class );
         Map<String, String[]> map = new HashMap<String, String[]>();
-        addParameter( mockedRequest, map, TYPE_PARAM, type );
+        addParameter( mockedRequest, map, PlanFilter.TYPE_PARAM, type );
         addParameter( mockedRequest, map, BBOX, "18,53,19,54" );
         addParameter( mockedRequest, map, SRS, "epsg:4326" );
         addParameter( mockedRequest, map, WIDTH, "27" );
         addParameter( mockedRequest, map, HEIGHT, "72" );
-        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( TYPE_PARAM, SRS, BBOX, WIDTH, HEIGHT ) );
+        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( PlanFilter.TYPE_PARAM, SRS, BBOX, WIDTH, HEIGHT ) );
         when( mockedRequest.getParameterMap() ).thenReturn( map );
         return mockedRequest;
     }
@@ -207,11 +206,11 @@ public class PlanFilterTest {
     private HttpServletRequest mockRequestMissingSrs() {
         HttpServletRequest mockedRequest = mock( HttpServletRequest.class );
         Map<String, String[]> map = new HashMap<String, String[]>();
-        addParameter( mockedRequest, map, TYPE_PARAM, "bplan" );
+        addParameter( mockedRequest, map, PlanFilter.TYPE_PARAM, "bplan" );
         addParameter( mockedRequest, map, BBOX, "18,53,19,54" );
         addParameter( mockedRequest, map, WIDTH, "27" );
         addParameter( mockedRequest, map, HEIGHT, "72" );
-        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( TYPE_PARAM, BBOX, WIDTH, HEIGHT ) );
+        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( PlanFilter.TYPE_PARAM, BBOX, WIDTH, HEIGHT ) );
         when( mockedRequest.getParameterMap() ).thenReturn( map );
         return mockedRequest;
     }
@@ -219,11 +218,11 @@ public class PlanFilterTest {
     private HttpServletRequest mockRequestMissingBbox() {
         HttpServletRequest mockedRequest = mock( HttpServletRequest.class );
         Map<String, String[]> map = new HashMap<String, String[]>();
-        addParameter( mockedRequest, map, TYPE_PARAM, "bplan" );
+        addParameter( mockedRequest, map, PlanFilter.TYPE_PARAM, "bplan" );
         addParameter( mockedRequest, map, SRS, "epsg:4326" );
         addParameter( mockedRequest, map, WIDTH, "27" );
         addParameter( mockedRequest, map, HEIGHT, "72" );
-        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( TYPE_PARAM, SRS, WIDTH, HEIGHT ) );
+        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( PlanFilter.TYPE_PARAM, SRS, WIDTH, HEIGHT ) );
         when( mockedRequest.getParameterMap() ).thenReturn( map );
         return mockedRequest;
     }
@@ -231,11 +230,11 @@ public class PlanFilterTest {
     private HttpServletRequest mockRequestMissingWidth() {
         HttpServletRequest mockedRequest = mock( HttpServletRequest.class );
         Map<String, String[]> map = new HashMap<String, String[]>();
-        addParameter( mockedRequest, map, TYPE_PARAM, "bplan" );
+        addParameter( mockedRequest, map, PlanFilter.TYPE_PARAM, "bplan" );
         addParameter( mockedRequest, map, BBOX, "18,53,19,54" );
         addParameter( mockedRequest, map, SRS, "epsg:4326" );
         addParameter( mockedRequest, map, HEIGHT, "72" );
-        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( TYPE_PARAM, SRS, BBOX, HEIGHT ) );
+        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( PlanFilter.TYPE_PARAM, SRS, BBOX, HEIGHT ) );
         when( mockedRequest.getParameterMap() ).thenReturn( map );
         return mockedRequest;
     }
@@ -243,11 +242,11 @@ public class PlanFilterTest {
     private HttpServletRequest mockRequestMissingHeight() {
         HttpServletRequest mockedRequest = mock( HttpServletRequest.class );
         Map<String, String[]> map = new HashMap<String, String[]>();
-        addParameter( mockedRequest, map, TYPE_PARAM, "bplan" );
+        addParameter( mockedRequest, map, PlanFilter.TYPE_PARAM, "bplan" );
         addParameter( mockedRequest, map, BBOX, "18,53,19,54" );
         addParameter( mockedRequest, map, SRS, "epsg:4326" );
         addParameter( mockedRequest, map, WIDTH, "27" );
-        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( TYPE_PARAM, SRS, BBOX, WIDTH ) );
+        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( PlanFilter.TYPE_PARAM, SRS, BBOX, WIDTH ) );
         when( mockedRequest.getParameterMap() ).thenReturn( map );
         return mockedRequest;
     }
