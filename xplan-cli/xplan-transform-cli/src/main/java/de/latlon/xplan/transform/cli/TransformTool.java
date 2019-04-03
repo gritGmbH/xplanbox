@@ -218,7 +218,7 @@ public class TransformTool {
 
     private static void printHelp( Options options ) {
         String help = "Reads all Plans from XPlan 4.1 feature store, transforms them to XPlanGML 5.1 and inserts them in the XPlan 5.1 feature store.";
-        CommandUtils.printHelp( options, "xplan41To51converter", help, null );
+        CommandUtils.printHelp( options, "XPlanTransformCLI", help, null );
     }
 
 }

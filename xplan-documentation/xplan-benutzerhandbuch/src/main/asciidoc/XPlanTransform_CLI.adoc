@@ -35,9 +35,8 @@ XPlanTransformCLI -?
 Das XPlanTransformCLI unterscheidet drei Modi:
 
  * Option *VALIDATE* zur Transformation und Validierung der transformierten Pläne. Das Ergebnis wird in einer CSV-Datei zusammengefasst und die transformierten Pläne können eingesehen werden. Es erfolgt keine Übertragung der transformierten Pläne in die Datenhaltung.
- * Option *ALL* zur Transformation aller Pläne. Die Option kann ebenfalls genutzt werden, wenn bereits Pläne über das Werkzeug eingespielt wurden. In diesem Fall werden die bereits eingespielten Pläne zunächst aus der Ziel-Datenhaltung entfernt.
+ * Option *ALL* zur Transformation aller Pläne und Übertragung in die Datenhaltung. Die Option kann ebenfalls genutzt werden, wenn bereits Pläne über das Werkzeug eingespielt wurden. In diesem Fall werden die bereits eingespielten Pläne zunächst aus der Ziel-Datenhaltung entfernt.
   * Option *SYNC* um die Synchronisation der seit der letzten Ausführung des Werkzeuges geänderten Pläne zu transformieren und in die Ziel-Datenhaltung des XPlanWFS einzuspielen.
-
 
 Durch die Ausführung von *ALL* oder *SYNC* werden die transformierten Pläne, wenn sie syntaktisch valide sind, in die Ziel-Datenhaltung des XPlanWFS eingespielt. Es erfolgt keinerlei Anpassung an anderen Datenhaltungen (z.B. XPlanSyn-Datenhaltung). Die transformierten Pläne sind weiterhin in der alten Version über den XPlanWFS für XPlanGML 4.1 anfragbar und zusätzlich in der neuen Version über den XPlanWFS für 5.1.
 Syntaktisch invalide Pläne werden nicht eingespielt.
