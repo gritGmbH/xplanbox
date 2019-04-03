@@ -61,7 +61,6 @@
     <module>xplan-services-docker</module>
     <module>xplan-services-inspireplu-docker</module>
     <module>xplan-validator-web-docker</module>
-    <module>xplan-planwerk-service-docker</module>
   </modules>
 
 </project>
