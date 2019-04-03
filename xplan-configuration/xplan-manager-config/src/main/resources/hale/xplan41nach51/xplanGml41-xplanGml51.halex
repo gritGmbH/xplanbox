@@ -3,7 +3,7 @@
     <name>XPlanGML 4.1 nach 5.1</name>
     <author>lat/lon GmbH</author>
     <created>2019-01-24T08:14:24.857+01:00</created>
-    <modified>2019-02-18T08:27:15.817+01:00</modified>
+    <modified>2019-03-20T11:10:18.599+01:00</modified>
     <save-config action-id="project.save" provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -78,6 +78,8 @@
     <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}FileType/1">{http://www.opengis.net/gml/3.2}rangeParameters</property>
     <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}FileType/2">{http://www.opengis.net/gml/3.2/AbstractObject}choice</property>
     <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}FileType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}GeometryPropertyType/1">{http://www.opengis.net/gml/3.2/AbstractGeometry}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}GeometryPropertyType/count">1</property>
     <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}MultiCurveType/1">{http://www.opengis.net/gml/3.2}curveMember</property>
     <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}MultiCurveType/2">{http://www.opengis.net/gml/3.2/AbstractCurve}choice</property>
     <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}MultiCurveType/count">2</property>

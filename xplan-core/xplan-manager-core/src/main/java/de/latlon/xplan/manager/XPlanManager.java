@@ -219,12 +219,6 @@ public class XPlanManager {
                                                       managerWorkspaceWrapper, sortPropertyReader );
     }
 
-    private XPlanSynthesizer createXPlanSynthesizer( ManagerConfiguration managerConfiguration ) {
-        if ( managerConfiguration != null )
-            return new XPlanSynthesizer( managerConfiguration.getConfigurationDirectory() );
-        return new XPlanSynthesizer();
-    }
-
     public XPlanArchive analyzeArchive( String fileName )
                     throws IOException {
         LOG.info( "- Analyse des XPlan-Archivs ('" + fileName + "')..." );
@@ -511,8 +505,6 @@ public class XPlanManager {
         xPlanEditManager.editPlan( oldXplan, xPlanToEdit, makeRasterConfig, uploadedArtefacts );
     }
 
-
-
     /**
      * @param plan
      *            plan to delete
@@ -687,6 +679,12 @@ public class XPlanManager {
         if ( managerConfiguration != null )
             return managerConfiguration.getSortConfiguration();
         return new SortConfiguration();
+    }
+
+    private XPlanSynthesizer createXPlanSynthesizer( ManagerConfiguration managerConfiguration ) {
+        if ( managerConfiguration != null )
+            return new XPlanSynthesizer( managerConfiguration.getConfigurationDirectory() );
+        return new XPlanSynthesizer();
     }
 
 }
