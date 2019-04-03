@@ -1,6 +1,7 @@
 package de.latlon.xplan.planwerkwms;
 
 import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.axiom.om.util.XMLStreamWriterFilterBase;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.deegree.commons.ows.metadata.DatasetMetadata;
@@ -28,7 +29,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static java.util.Collections.singletonList;
-import static org.apache.axiom.om.util.AXIOMUtil.stringToOM;
 import static org.deegree.commons.xml.stax.XMLStreamUtils.closeQuietly;
 import static org.deegree.commons.xml.stax.XMLStreamUtils.copy;
 
@@ -167,7 +167,7 @@ public class MetadataProviderWrapper implements OWSMetadataProvider {
             writer.close();
 
             String xmlFragment = new String( bos.toByteArray() );
-            return stringToOM( xmlFragment );
+            return AXIOMUtil.stringToOM( xmlFragment );
         } catch ( XMLStreamException e ) {
             LOG.warn( "Could not pass service metadata url to extended capabilities" );
             return xml;
