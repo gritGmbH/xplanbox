@@ -76,13 +76,25 @@ public class MetadataCouplingHandler {
      */
     public void processMetadataCoupling( PlanwerkServiceMetadata planwerkServiceMetadata )
                     throws DataServiceCouplingException {
+        String serviceRecordId = UUID.randomUUID().toString();
         LocalDateTime now = LocalDateTime.now();
-        PlanRecordMetadata coupledResource = this.cswClient.requestMetadataRecord();
-        Properties properties = createProperties( planwerkServiceMetadata, coupledResource, now );
+        PlanRecordMetadata planRecordMetadata = this.cswClient.requestMetadataRecord();
+        Properties properties = createProperties( planwerkServiceMetadata, planRecordMetadata, now, serviceRecordId );
         Path serviceMetadataDocument = createServiceMetadataDocument( planwerkServiceMetadata.getTitle(), now,
                                                                       properties );
+        writePlanwerkCapabilitiesInfo( serviceRecordId, planwerkServiceMetadata, planRecordMetadata );
 
         LOG.info( "Service metadata document was filed to {}", serviceMetadataDocument );
+    }
+
+    private void writePlanwerkCapabilitiesInfo( String serviceRecordId, PlanwerkServiceMetadata planwerkServiceMetadata,
+                                                PlanRecordMetadata planRecordMetadata )
+                    throws DataServiceCouplingException {
+        String title = planwerkServiceMetadata.getTitle();
+        String resourceIdentifier = planRecordMetadata.getResourceIdentifier();
+        String datasetMetadataUrl = cswClient.createGetRecordByIdRequest( planRecordMetadata.getRecordId() );
+        String serviceMetadataUrl = cswClient.createGetRecordByIdRequest( serviceRecordId );
+
     }
 
     private Path createServiceMetadataDocument( String planName, LocalDateTime now, Properties properties )
@@ -96,7 +108,7 @@ public class MetadataCouplingHandler {
             serviceMetadataDocumentWriter.writeServiceMetadataDocument( properties, outputStream );
             return target;
         } catch ( IOException e ) {
-            LOG.error( "Could not create output dule", e );
+            LOG.error( "Could not create output file", e );
             throw new DataServiceCouplingException( e );
         } catch ( XMLStreamException e ) {
             LOG.error( "Could not create service metadata document", e );
@@ -112,9 +124,9 @@ public class MetadataCouplingHandler {
     }
 
     private Properties createProperties( PlanwerkServiceMetadata planwerkServiceMetadata,
-                                         PlanRecordMetadata planRecordMetadata, LocalDateTime now ) {
+                                         PlanRecordMetadata planRecordMetadata, LocalDateTime now, String recordId ) {
         Properties properties = new Properties();
-        properties.setProperty( "METADATA_ID", UUID.randomUUID().toString() );
+        properties.setProperty( "METADATA_ID", recordId );
         properties.setProperty( "CURRENT_DATE", now.format( DATE_FORMAT ) );
         properties.setProperty( "TITLE", planwerkServiceMetadata.getTitle() );
         properties.setProperty( "CURRENT_DATE_TIME", now.format( DATE_TIME_FORMAT ) );

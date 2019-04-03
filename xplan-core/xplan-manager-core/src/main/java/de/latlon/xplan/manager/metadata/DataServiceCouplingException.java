@@ -1,7 +1,5 @@
 package de.latlon.xplan.manager.metadata;
 
-import java.io.IOException;
-
 /**
  * Indicates an exception during creation of the data services coupling.
  *
@@ -17,7 +15,7 @@ public class DataServiceCouplingException extends Exception {
         super( e );
     }
 
-    public DataServiceCouplingException( String message, IOException e ) {
+    public DataServiceCouplingException( String message, Exception e ) {
         super( message, e );
     }
 }

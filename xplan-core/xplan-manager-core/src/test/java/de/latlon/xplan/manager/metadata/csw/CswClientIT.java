@@ -1,10 +1,9 @@
 package de.latlon.xplan.manager.metadata.csw;
 
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
-import de.latlon.xplan.manager.metadata.csw.CswClient;
-import de.latlon.xplan.manager.metadata.csw.PlanRecordMetadata;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -24,6 +23,16 @@ public class CswClientIT {
         assertThat( planRecordMetadata.getRecordId(), is( "CC9E9E0D-07AD-4C77-ADAB-AFDA37585633" ) );
         assertThat( planRecordMetadata.getResourceIdentifier(),
                     is( "https://registry.gdi-de.org/id/de.hh/1ad52a0e-9e8b-4a91-b4b3-cf60703cb91b" ) );
+    }
+
+    @Test
+    public void testCreateGetRecordByIdRequest()
+                    throws DataServiceCouplingException {
+        CswClient cswClient = new CswClient( CSW_GET_CAPABILITIESURL );
+        String recordId = "CC9E9E0D-07AD-4C77-ADAB-AFDA37585633";
+        String getRecordByIdRequest = cswClient.createGetRecordByIdRequest( recordId );
+
+        assertThat( getRecordByIdRequest, containsString( "ID=" + recordId ) );
     }
 
 }

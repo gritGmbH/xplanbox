@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.URL;
+import java.util.List;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -22,10 +23,15 @@ public class CswClient {
 
     private final NamespaceBindings nsContext = new NamespaceBindings();
 
-    private final String cswUrl;
+    private final CSWClient cswClient;
 
-    public CswClient( String cswUrl ) {
-        this.cswUrl = cswUrl;
+    public CswClient( String cswUrl )
+                    throws DataServiceCouplingException {
+        try {
+            cswClient = new CSWClient( new URL( cswUrl ) );
+        } catch ( Exception e ) {
+            throw new DataServiceCouplingException( "CswClient is not available", e );
+        }
         nsContext.addNamespace( "srv", "http://www.isotc211.org/2005/srv" );
         nsContext.addNamespace( "gmd", "http://www.isotc211.org/2005/gmd" );
         nsContext.addNamespace( "gco", "http://www.isotc211.org/2005/gco" );
@@ -34,7 +40,6 @@ public class CswClient {
     public PlanRecordMetadata requestMetadataRecord()
                     throws DataServiceCouplingException {
         try {
-            CSWClient cswClient = new CSWClient( new URL( cswUrl ) );
             MetadataRecord metadataRecord = cswClient.getIsoRecordById( "CC9E9E0D-07AD-4C77-ADAB-AFDA37585633" );
             String recordId = metadataRecord.getIdentifier();
             String resourceIdentifier = parseResourceIdentifier( metadataRecord );
@@ -44,6 +49,41 @@ public class CswClient {
             LOG.error( "Could not request metadata record", e );
             throw new DataServiceCouplingException( e );
         }
+    }
+
+    /**
+     * Creates a GetRecordById request, with filter to the passed recordId.
+     *
+     * @param recordId
+     *                 may be <code>null</code>
+     * @return the created GetRecordById or <code>null</code> if the recordId is <code>null</code> or empty
+     */
+    public String createGetRecordByIdRequest( String recordId )
+                    throws DataServiceCouplingException {
+        if ( recordId == null || recordId.isEmpty() )
+            return null;
+        StringBuilder sb = new StringBuilder();
+        String recordByIdUrl = getRecordByIdUrl();
+        sb.append( recordByIdUrl );
+        if ( !recordByIdUrl.endsWith( "?" ) )
+            sb.append( "?" );
+        sb.append( "REQUEST=GetRecordById&" );
+        sb.append( "VERSION=2.0.2&" );
+        sb.append( "SERVICE=CSW&" );
+        sb.append( "OUTPUTSCHEMA=http://www.isotc211.org/2005/gmd&" );
+        sb.append( "ID=" ).append( recordId );
+        return sb.toString();
+    }
+
+    private String getRecordByIdUrl()
+                    throws DataServiceCouplingException {
+        if ( cswClient.getOperations() != null ) {
+            List<URL> getRecordByIdUrls = cswClient.getOperations().getGetUrls( "GetRecordById" );
+            if ( !getRecordByIdUrls.isEmpty() ) {
+                return getRecordByIdUrls.get( 0 ).toExternalForm();
+            }
+        }
+        throw new DataServiceCouplingException( "Could not find GetRecordById URL for KVP" );
     }
 
     private String parseResourceIdentifier( MetadataRecord metadataRecord ) {
