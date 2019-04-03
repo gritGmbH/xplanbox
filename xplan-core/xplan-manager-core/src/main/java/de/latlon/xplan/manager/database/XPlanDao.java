@@ -212,6 +212,7 @@ public class XPlanDao {
 
             insertPlanWerkWmsMetadata( conn, planId, title, resourceIdentifier, datasetMetadataUrl,
                                        serviceMetadataUrl );
+            conn.commit();
         } catch ( Exception e ) {
             throw new Exception( "Fehler beim Einfügen: " + e.getMessage(), e );
         } finally {
