@@ -198,12 +198,12 @@ public class TransformTool {
         opt.setRequired( true );
         opts.addOption( opt );
 
-        opt = new Option( "t", OPT_TYPE, true, "one of 'VALIDATE' (default if missing), 'SYNC', 'ALL': \n"
+        opt = new Option( "t", OPT_TYPE, true, "one of 'VALIDATE' (default if missing), 'ALL', 'SYNC':\n"
                                                + "   * 'VALIDATE': validates all available XPlanGML 4.1 plans and writes the results\n"
-                                               + "   * 'ALL' transforms all available XPlanGML 4.1 plans and inserts the valid plans in the XPlan 5.1 datastore, plans already available in 5.1 will be removed first"
+                                               + "   * 'ALL' transforms all available XPlanGML 4.1 plans and inserts the valid plans in XPlanWFS 5.1 datastore, plans already available in 5.1 will be removed first\n"
                                                + "   * 'SYNC' transforms the XPlanGML 4.1 plans logged in the table "
                                                + LOG_TABLE_NAME
-                                               + " and inserts the valid plans in the XPlan 5.1 datastore" );
+                                               + " and inserts the valid plans in XPlanWFS 5.1 datastore" );
         opt.setRequired( false );
         opts.addOption( opt );
 
@@ -217,7 +217,7 @@ public class TransformTool {
     }
 
     private static void printHelp( Options options ) {
-        String help = "Reads all Plans from XPlan 4.1 feature store, transforms them to XPlanGML 5.1 and inserts them in the XPlan 5.1 feature store.";
+        String help = "Reads all Plans from XPlanWFS 4.1 datastore, transforms them to XPlanGML 5.1 and inserts them in XPlanWFS 5.1 datastore.";
         CommandUtils.printHelp( options, "XPlanTransformCLI", help, null );
     }
 
