@@ -1,6 +1,7 @@
 package de.latlon.xplan.manager.metadata;
 
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
+import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.metadata.csw.CswClient;
 import de.latlon.xplan.manager.metadata.csw.PlanRecordMetadata;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
@@ -44,18 +45,24 @@ public class MetadataCouplingHandler {
 
     private final Path directoryToStoreDatasetMetadata;
 
+    private final int planId;
+
+    private final XPlanDao xPlanDao;
+
     /**
      * @param config
      *                 never <code>null</code>
      * @throws DataServiceCouplingException
      */
-    public MetadataCouplingHandler( CoupledResourceConfiguration config )
+    public MetadataCouplingHandler( int planId, XPlanDao xPlanDao, CoupledResourceConfiguration config )
                     throws DataServiceCouplingException {
-        this( config, new CswClient( config.getCswUrlProvidingDatasetMetadata() ) );
+        this( planId, xPlanDao, config, new CswClient( config.getCswUrlProvidingDatasetMetadata() ) );
     }
 
-    MetadataCouplingHandler( CoupledResourceConfiguration config, CswClient cswClient )
+    MetadataCouplingHandler( int planId, XPlanDao xPlanDao, CoupledResourceConfiguration config, CswClient cswClient )
                     throws DataServiceCouplingException {
+        this.planId = planId;
+        this.xPlanDao = xPlanDao;
         this.cswClient = cswClient;
         Path configurationDirectory = config.getMetadataConfigDirectory();
         byte[] template = readTemplate( configurationDirectory );
@@ -95,6 +102,12 @@ public class MetadataCouplingHandler {
         String datasetMetadataUrl = cswClient.createGetRecordByIdRequest( planRecordMetadata.getRecordId() );
         String serviceMetadataUrl = cswClient.createGetRecordByIdRequest( serviceRecordId );
 
+        try {
+            xPlanDao.insertPlanWerkWmsMetadata( planId, title, resourceIdentifier, datasetMetadataUrl,
+                                                serviceMetadataUrl );
+        } catch ( Exception e ) {
+            new DataServiceCouplingException( "Could not insert in table planwerkwmsmetadata ", e );
+        }
     }
 
     private Path createServiceMetadataDocument( String planName, LocalDateTime now, Properties properties )

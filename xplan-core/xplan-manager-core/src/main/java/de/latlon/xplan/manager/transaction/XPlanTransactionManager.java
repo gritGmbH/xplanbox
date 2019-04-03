@@ -181,13 +181,15 @@ public abstract class XPlanTransactionManager {
         }
     }
 
-    protected void startCreationOfDataServicesCoupling( XPlanFeatureCollection featureCollection, ICRS crs ) {
+    protected void startCreationOfDataServicesCoupling( int planId, XPlanFeatureCollection featureCollection,
+                                                        ICRS crs ) {
         CoupledResourceConfiguration coupledResourceConfiguration = this.managerConfiguration.getCoupledResourceConfiguration();
         if ( coupledResourceConfiguration != null ) {
             LOG.info( "Start creation of the data services coupling." );
             PlanwerkServiceMetadata planwerkServiceMetadata = createPlanwerkServiceMetadata( featureCollection, crs,
                                                                                              coupledResourceConfiguration );
-            DataServicesCouplingRunnable runnable = new DataServicesCouplingRunnable( coupledResourceConfiguration,
+            DataServicesCouplingRunnable runnable = new DataServicesCouplingRunnable( planId,
+                                                                                      coupledResourceConfiguration,
                                                                                       planwerkServiceMetadata );
             Thread thread = new Thread( runnable );
             thread.start();
@@ -212,12 +214,15 @@ public abstract class XPlanTransactionManager {
 
         private final Logger LOG = LoggerFactory.getLogger( DataServicesCouplingRunnable.class );
 
+        private final int planId;
+
         private final CoupledResourceConfiguration configuration;
 
         private final PlanwerkServiceMetadata planwerkServiceMetadata;
 
-        public DataServicesCouplingRunnable( CoupledResourceConfiguration configuration,
+        public DataServicesCouplingRunnable( int planId, CoupledResourceConfiguration configuration,
                                              PlanwerkServiceMetadata planwerkServiceMetadata ) {
+            this.planId = planId;
             this.configuration = configuration;
             this.planwerkServiceMetadata = planwerkServiceMetadata;
         }
@@ -225,7 +230,7 @@ public abstract class XPlanTransactionManager {
         @Override
         public void run() {
             try {
-                MetadataCouplingHandler handler = new MetadataCouplingHandler( configuration );
+                MetadataCouplingHandler handler = new MetadataCouplingHandler( planId, xplanDao, configuration );
                 handler.processMetadataCoupling( planwerkServiceMetadata );
             } catch ( DataServiceCouplingException e ) {
                 LOG.error( "Could not create data services coupling", e );
@@ -233,6 +238,7 @@ public abstract class XPlanTransactionManager {
         }
 
     }
+
     private static DateFormat createDateFormat() {
         DateFormat simpleDateFormat = new SimpleDateFormat( "dd MMM yyyy HH:mm:ss z" );
         simpleDateFormat.setTimeZone( TimeZone.getTimeZone( "CET" ) );

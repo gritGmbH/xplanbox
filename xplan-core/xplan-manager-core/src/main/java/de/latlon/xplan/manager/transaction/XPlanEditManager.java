@@ -16,7 +16,6 @@ import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
-import de.latlon.xplan.manager.transformation.TransformationResult;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -24,7 +23,6 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
-import de.latlon.xplan.validator.report.ValidatorResult;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
@@ -118,7 +116,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
                              uploadedArtefacts, removedRefs );
             LOG.info( "XPlan-GML wurde erfolgreich editiert. ID: {}", planId );
 
-            startCreationIfPlanNameHasChanged( type, modifiedPlanFc, oldPlanName, oldDescription );
+            startCreationIfPlanNameHasChanged( planId, type, modifiedPlanFc, oldPlanName, oldDescription );
 
             xPlanRasterManager.removeRasterLayers( planId, externalReferenceInfoToRemove );
             if ( makeRasterConfig ) {
@@ -150,13 +148,14 @@ public class XPlanEditManager extends XPlanTransactionManager {
         return oldPlanStatus;
     }
 
-    private void startCreationIfPlanNameHasChanged( XPlanType type, XPlanFeatureCollection modifiedPlanFc,
-                                                    String oldPlanName, String oldDescription )
+    private void startCreationIfPlanNameHasChanged( String planId, XPlanType type,
+                                                    XPlanFeatureCollection modifiedPlanFc, String oldPlanName,
+                                                    String oldDescription )
                     throws UnknownCRSException {
         String newPlanName = retrievePlanName( modifiedPlanFc.getFeatures(), type );
         String newDescription = retrieveDescription( modifiedPlanFc.getFeatures(), type );
         if ( hasChanged( oldPlanName, newPlanName ) || hasChanged( oldDescription, newDescription ) ) {
-            startCreationOfDataServicesCoupling( modifiedPlanFc,
+            startCreationOfDataServicesCoupling( Integer.parseInt( planId ), modifiedPlanFc,
                                                  lookup( managerConfiguration.getRasterConfigurationCrs() ) );
         } else {
             LOG.info( "Plan name does not change, creation of the service record is not required." );

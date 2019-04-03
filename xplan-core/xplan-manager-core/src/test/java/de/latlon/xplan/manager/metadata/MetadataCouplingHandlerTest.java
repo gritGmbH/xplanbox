@@ -1,6 +1,7 @@
 package de.latlon.xplan.manager.metadata;
 
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
+import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.metadata.csw.CswClient;
 import de.latlon.xplan.manager.metadata.csw.PlanRecordMetadata;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
@@ -23,7 +24,11 @@ import java.nio.file.Path;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.xmlmatchers.XmlMatchers.hasXPath;
 
@@ -38,7 +43,8 @@ public class MetadataCouplingHandlerTest {
         PlanRecordMetadata planRecordMetadata = new PlanRecordMetadata( "id", "http://test.de/id" );
         String planName = "TestPlan";
         CoupledResourceConfiguration config = createConfig();
-        MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler( config,
+        XPlanDao xPlanDao = mock( XPlanDao.class );
+        MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler( 1, xPlanDao, config,
                                                                                        mockCswClient( planRecordMetadata ) );
 
         metadataCouplingHandler.processMetadataCoupling( mockPlanwerkServiceMetadata( planName ) );
@@ -49,6 +55,9 @@ public class MetadataCouplingHandlerTest {
 
         assertThat( the( directoryToStoreDatasetMetadata ),
                     hasXPath( "//gmd:MD_Metadata/gmd:dateStamp/gco:Date", nsContext() ) );
+
+        verify( xPlanDao, times( 1 ) ).insertPlanWerkWmsMetadata( eq( 1 ), eq( planName ), anyString(), anyString(),
+                                                                  anyString() );
     }
 
     private Source the( Path createdMetadataRecords )

@@ -98,7 +98,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
         int planId = xplanDao.insert( archive, fc, synFc, xPlanMetadata, sortDate );
         createRasterConfigurations( archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus,
                                     sortDate );
-        startCreationOfDataServicesCoupling( fc, crs );
+        startCreationOfDataServicesCoupling( planId, fc, crs );
         reloadWorkspace();
         LOG.info( "XPlan-Archiv wurde erfolgreich importiert. Zugewiesene Id: " + planId );
         LOG.info( "OK." );

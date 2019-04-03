@@ -187,6 +187,39 @@ public class XPlanDao {
     }
 
     /**
+     * Inserts in planwerkwmsmetadata
+     *
+     * @param planId
+     *                 the id of the plan to insert an
+     * @param title
+     *                 to insert, may be <code>null</code>
+     * @param resourceIdentifier
+     *                 to insert, may be <code>null</code>
+     * @param datasetMetadataUrl
+     *                 to insert, may be <code>null</code>
+     * @param serviceMetadataUrl
+     *                 to insert, may be <code>null</code>
+     * @throws Exception
+     */
+    public void insertPlanWerkWmsMetadata( int planId, String title, String resourceIdentifier,
+                                           String datasetMetadataUrl, String serviceMetadataUrl )
+                    throws Exception {
+        Connection conn = null;
+        try {
+            LOG.info( "Insert PlanWerkWmsMetadata" );
+            conn = managerWorkspaceWrapper.openConnection();
+            conn.setAutoCommit( false );
+
+            insertPlanWerkWmsMetadata( conn, planId, title, resourceIdentifier, datasetMetadataUrl,
+                                       serviceMetadataUrl );
+        } catch ( Exception e ) {
+            throw new Exception( "Fehler beim Einfügen: " + e.getMessage(), e );
+        } finally {
+            closeQuietly( conn );
+        }
+    }
+
+    /**
      * Deletes the specified plan from the database (and feature stores).
      *
      * @param planId
@@ -302,9 +335,6 @@ public class XPlanDao {
         try {
             FeatureStore fsTarget = managerWorkspaceWrapper.lookupStore( xPlanFeatureCollection.getVersion(),
                                                                          xPlanFeatureCollection.getAde(), planStatus );
-
-System.out.println( "FS: " +  xPlanFeatureCollection.getVersion()+","+
-                     xPlanFeatureCollection.getAde()+","+ planStatus);
 
             taTarget = insertXPlan( fsTarget, xPlanFeatureCollection ).second;
 
@@ -1168,6 +1198,26 @@ System.out.println( "FS: " +  xPlanFeatureCollection.getVersion()+","+
             closeQuietly( stmt );
         }
         return planId;
+    }
+
+    private void insertPlanWerkWmsMetadata( Connection conn, int planId, String title, String resourceIdentifier,
+                                            String datasetMetadataUrl, String serviceMetadataUrl )
+                    throws SQLException {
+        String insertPlanWerkWmsMetadataSql = "INSERT INTO xplanmgr.planwerkwmsmetadata (plan, title, resourceidentifier, datametadataurl, servicemetadataurl) VALUES (?,?,?,?,?)";
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement( insertPlanWerkWmsMetadataSql );
+
+            stmt.setInt( 1, planId );
+            stmt.setString( 2, title );
+            stmt.setString( 3, resourceIdentifier );
+            stmt.setString( 4, datasetMetadataUrl );
+            stmt.setString( 5, serviceMetadataUrl );
+
+            stmt.execute();
+        } finally {
+            closeQuietly( stmt );
+        }
     }
 
     private void updatePlanMetadata( Connection conn, XPlan xplan, AdditionalPlanData newXPlanMetadata,
