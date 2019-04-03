@@ -16,6 +16,13 @@
       <outputDirectory>etc</outputDirectory>
     </fileSet>
     <fileSet>
+      <directory>src/main/resources</directory>
+      <includes>
+        <include>log4j.properties</include>
+      </includes>
+      <outputDirectory>etc</outputDirectory>
+    </fileSet>
+    <fileSet>
       <directory>scripts</directory>
       <outputDirectory>scripts</outputDirectory>
     </fileSet>

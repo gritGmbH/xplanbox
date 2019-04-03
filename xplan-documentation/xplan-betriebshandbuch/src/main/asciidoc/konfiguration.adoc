@@ -43,8 +43,6 @@ include::konfiguration_hale.adoc[]
 
 include::konfiguration_inspireplu.adoc[]
 
-include::konfiguration_xplan41_als_xplan51.adoc[]
-
 include::konfiguration_logging.adoc[]
 
 include::konfiguration_migration.adoc[]
