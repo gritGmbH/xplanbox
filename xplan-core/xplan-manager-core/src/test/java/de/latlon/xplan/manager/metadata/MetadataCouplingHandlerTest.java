@@ -24,6 +24,7 @@ import java.nio.file.Path;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
@@ -41,26 +42,49 @@ public class MetadataCouplingHandlerTest {
     public void testProcessMetadataCoupling()
                     throws Exception {
         PlanRecordMetadata planRecordMetadata = new PlanRecordMetadata( "id", "http://test.de/id" );
-        String planName = "TestPlan";
+        String planName = "TestPlan1";
         CoupledResourceConfiguration config = createConfig();
         XPlanDao xPlanDao = mock( XPlanDao.class );
-        MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler( xPlanDao, config,
-                                                                                       mockCswClient( planRecordMetadata ) );
+        CswClient cswClient = mockCswClient( planRecordMetadata, planName );
+        MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler( xPlanDao, config, cswClient );
 
-        metadataCouplingHandler.processMetadataCoupling( 1, mockPlanwerkServiceMetadata( planName ) );
+        int planId = 1;
+        metadataCouplingHandler.processMetadataCoupling( planId, planName, mockPlanwerkServiceMetadata( planName ) );
 
         Path directoryToStoreDatasetMetadata = config.getDirectoryToStoreDatasetMetadata();
-        long numberOfCreatedRecords = Files.list( directoryToStoreDatasetMetadata ).count();
-        assertThat( numberOfCreatedRecords, is( 1l ) );
+        assertThat( numberOfCreatedRecords( directoryToStoreDatasetMetadata ), is( 1l ) );
 
-        assertThat( the( directoryToStoreDatasetMetadata ),
+        assertThat( theRecordIn( directoryToStoreDatasetMetadata ),
                     hasXPath( "//gmd:MD_Metadata/gmd:dateStamp/gco:Date", nsContext() ) );
 
-        verify( xPlanDao, times( 1 ) ).insertPlanWerkWmsMetadata( eq( 1 ), eq( planName ), anyString(), anyString(),
+        verify( xPlanDao, times( 1 ) ).insertPlanWerkWmsMetadata( eq( planId ), eq( planName ), anyString(),
+                                                                  anyString(), anyString() );
+    }
+
+    @Test
+    public void testProcessMetadataCoupling_UnavailableRecord()
+                    throws Exception {
+        String planName = "TestPlan2";
+        CoupledResourceConfiguration config = createConfig();
+        XPlanDao xPlanDao = mock( XPlanDao.class );
+        CswClient cswClient = mockCswClient( null, planName );
+        MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler( xPlanDao, config, cswClient );
+
+        int planId = 1;
+        metadataCouplingHandler.processMetadataCoupling( planId, planName, mockPlanwerkServiceMetadata( planName ) );
+
+        Path directoryToStoreDatasetMetadata = config.getDirectoryToStoreDatasetMetadata();
+        assertThat( numberOfCreatedRecords( directoryToStoreDatasetMetadata ), is( 0l ) );
+        verify( xPlanDao, times( 1 ) ).insertPlanWerkWmsMetadata( anyInt(), anyString(), anyString(), anyString(),
                                                                   anyString() );
     }
 
-    private Source the( Path createdMetadataRecords )
+    private Object numberOfCreatedRecords( Path directoryToStoreDatasetMetadata )
+                    throws IOException {
+        return Files.list( directoryToStoreDatasetMetadata ).count();
+    }
+
+    private Source theRecordIn( Path createdMetadataRecords )
                     throws IOException {
         Path metadataRecord = Files.list( createdMetadataRecords ).findFirst().get();
         byte[] bytes = Files.readAllBytes( metadataRecord );
@@ -76,10 +100,10 @@ public class MetadataCouplingHandlerTest {
         return metadata;
     }
 
-    private CswClient mockCswClient( PlanRecordMetadata coupledResource )
+    private CswClient mockCswClient( PlanRecordMetadata coupledResource, String planName )
                     throws DataServiceCouplingException {
         CswClient cswClient = mock( CswClient.class );
-        when( cswClient.requestMetadataRecord() ).thenReturn( coupledResource );
+        when( cswClient.requestMetadataRecord( planName ) ).thenReturn( coupledResource );
         return cswClient;
     }
 

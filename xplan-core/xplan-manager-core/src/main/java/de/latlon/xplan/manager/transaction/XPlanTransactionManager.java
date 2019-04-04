@@ -196,7 +196,9 @@ public abstract class XPlanTransactionManager {
             LOG.info( "Start creation of the data services coupling." );
             PlanwerkServiceMetadata planwerkServiceMetadata = createPlanwerkServiceMetadata( featureCollection, crs,
                                                                                              coupledResourceConfiguration );
-            DataServicesCouplingRunnable runnable = new DataServicesCouplingRunnable( planId, planwerkServiceMetadata );
+            String planName = featureCollection.getPlanName();
+            DataServicesCouplingRunnable runnable = new DataServicesCouplingRunnable( planId, planName,
+                                                                                      planwerkServiceMetadata );
             Thread thread = new Thread( runnable );
             thread.start();
         } else {
@@ -222,17 +224,21 @@ public abstract class XPlanTransactionManager {
 
         private final int planId;
 
+        private final String planName;
+
         private final PlanwerkServiceMetadata planwerkServiceMetadata;
 
-        public DataServicesCouplingRunnable( int planId, PlanwerkServiceMetadata planwerkServiceMetadata ) {
+        public DataServicesCouplingRunnable( int planId, String planName,
+                                             PlanwerkServiceMetadata planwerkServiceMetadata ) {
             this.planId = planId;
+            this.planName = planName;
             this.planwerkServiceMetadata = planwerkServiceMetadata;
         }
 
         @Override
         public void run() {
             try {
-                metadataCouplingHandler.processMetadataCoupling( planId, planwerkServiceMetadata );
+                metadataCouplingHandler.processMetadataCoupling( planId, planName, planwerkServiceMetadata );
             } catch ( DataServiceCouplingException e ) {
                 LOG.error( "Could not create data services coupling", e );
             }

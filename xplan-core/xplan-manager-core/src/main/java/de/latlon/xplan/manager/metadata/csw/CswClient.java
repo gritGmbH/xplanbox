@@ -1,15 +1,28 @@
 package de.latlon.xplan.manager.metadata.csw;
 
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
+import org.deegree.commons.tom.ows.Version;
 import org.deegree.commons.xml.NamespaceBindings;
 import org.deegree.commons.xml.XMLAdapter;
 import org.deegree.commons.xml.XPath;
+import org.deegree.filter.Expression;
+import org.deegree.filter.Filter;
+import org.deegree.filter.MatchAction;
+import org.deegree.filter.OperatorFilter;
+import org.deegree.filter.comparison.PropertyIsLike;
+import org.deegree.filter.expression.Literal;
+import org.deegree.filter.expression.ValueReference;
 import org.deegree.metadata.MetadataRecord;
+import org.deegree.protocol.csw.CSWConstants;
 import org.deegree.protocol.csw.client.CSWClient;
+import org.deegree.protocol.csw.client.getrecords.GetRecords;
+import org.deegree.protocol.csw.client.getrecords.GetRecordsResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.namespace.QName;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,6 +33,14 @@ public class CswClient {
     private static final Logger LOG = LoggerFactory.getLogger( CswClient.class );
 
     public static final String RESOURCE_IDENTIFIER_XPATH = "//gmd:MD_Metadata/gmd:identificationInfo[1]/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString";
+
+    public static final QName TYPE_NAME = new QName( "http://www.isotc211.org/2005/gmd", "MD_Metadata", "gmd" );
+
+    public static final String OUTPUT_FORMAT = "gmd:MD_Metadata";
+
+    public static final String OUTPUT_SCHEMA = "http://www.isotc211.org/2005/gmd";
+
+    public static final QName TITLE = new QName( "http://www.opengis.net/cat/csw/apiso/1.0", "title", "apiso" );
 
     private final NamespaceBindings nsContext = new NamespaceBindings();
 
@@ -37,10 +58,18 @@ public class CswClient {
         nsContext.addNamespace( "gco", "http://www.isotc211.org/2005/gco" );
     }
 
-    public PlanRecordMetadata requestMetadataRecord()
+    public PlanRecordMetadata requestMetadataRecord( String planName )
                     throws DataServiceCouplingException {
         try {
-            MetadataRecord metadataRecord = cswClient.getIsoRecordById( "CC9E9E0D-07AD-4C77-ADAB-AFDA37585633" );
+            GetRecords getRecords = createGetRecordsRecordsRequest( planName );
+            GetRecordsResponse records = cswClient.getRecords( getRecords );
+            int numberOfRecordsMatched = records.getNumberOfRecordsMatched();
+            if ( numberOfRecordsMatched == 0 )
+                return null;
+            if ( numberOfRecordsMatched > 1 )
+                LOG.warn( "Found more than one matching record for plan with name {}. The first returned is used.",
+                          planName );
+            MetadataRecord metadataRecord = records.getRecords().next();
             String recordId = metadataRecord.getIdentifier();
             String resourceIdentifier = parseResourceIdentifier( metadataRecord );
 
@@ -70,9 +99,35 @@ public class CswClient {
         sb.append( "REQUEST=GetRecordById&" );
         sb.append( "VERSION=2.0.2&" );
         sb.append( "SERVICE=CSW&" );
-        sb.append( "OUTPUTSCHEMA=http://www.isotc211.org/2005/gmd&" );
+        sb.append( "OUTPUTSCHEMA=" ).append( OUTPUT_SCHEMA ).append( "&" );
         sb.append( "ID=" ).append( recordId );
         return sb.toString();
+    }
+
+    private GetRecords createGetRecordsRecordsRequest( String planName ) {
+        Version version = new Version( 2, 0, 2 );
+        int startPosition = 1;
+        int maxRecords = 1;
+        List<QName> typeNames = Collections.singletonList( TYPE_NAME );
+        CSWConstants.ResultType resultType = CSWConstants.ResultType.results;
+        CSWConstants.ReturnableElement elementSetName = CSWConstants.ReturnableElement.full;
+        Filter constraint = createFilterForPlanName( planName );
+
+        return new GetRecords( version, startPosition, maxRecords, OUTPUT_FORMAT, OUTPUT_SCHEMA, typeNames, resultType,
+                               elementSetName, constraint );
+    }
+
+    private Filter createFilterForPlanName( String planName ) {
+        ValueReference valueReference = new ValueReference( TITLE );
+        Expression pattern = new Literal<>( "%" + planName + "%" );
+        String wildCard = "%";
+        String singleChar = "_";
+        String escapeChar = "\\";
+        Boolean matchCase = false;
+        MatchAction matchAction = MatchAction.ANY;
+        PropertyIsLike propertyIsLike = new PropertyIsLike( valueReference, pattern, wildCard, singleChar, escapeChar,
+                                                            matchCase, matchAction );
+        return new OperatorFilter( propertyIsLike );
     }
 
     private String getRecordByIdUrl()

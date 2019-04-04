@@ -74,21 +74,27 @@ public class MetadataCouplingHandler {
      * <li>Creates a new service metadata record describing the Planwerk WMS of the passed plan</li>
      * </ol>
      *
+     * @param planName
      * @param planwerkServiceMetadata
      *                 describing the plan, never <code>null</code>
      * @throws DataServiceCouplingException
      */
-    public void processMetadataCoupling( int planId, PlanwerkServiceMetadata planwerkServiceMetadata )
+    public void processMetadataCoupling( int planId, String planName, PlanwerkServiceMetadata planwerkServiceMetadata )
                     throws DataServiceCouplingException {
         String serviceRecordId = UUID.randomUUID().toString();
         LocalDateTime now = LocalDateTime.now();
-        PlanRecordMetadata planRecordMetadata = this.cswClient.requestMetadataRecord();
-        Properties properties = createProperties( planwerkServiceMetadata, planRecordMetadata, now, serviceRecordId );
-        Path serviceMetadataDocument = createServiceMetadataDocument( planwerkServiceMetadata.getTitle(), now,
-                                                                      properties );
+        PlanRecordMetadata planRecordMetadata = this.cswClient.requestMetadataRecord( planName );
+        if ( planRecordMetadata != null ) {
+            Properties properties = createProperties( planwerkServiceMetadata, planRecordMetadata, now,
+                                                      serviceRecordId );
+            Path serviceMetadataDocument = createServiceMetadataDocument( planwerkServiceMetadata.getTitle(), now,
+                                                                          properties );
+            LOG.info( "Service metadata document was filed to {}", serviceMetadataDocument );
+        } else {
+            LOG.info( "Dataset metadata document for plan with id {} and name {} is not available", planId, planName );
+        }
         writePlanwerkCapabilitiesInfo( planId, serviceRecordId, planwerkServiceMetadata, planRecordMetadata );
 
-        LOG.info( "Service metadata document was filed to {}", serviceMetadataDocument );
     }
 
     private void writePlanwerkCapabilitiesInfo( int planId, String serviceRecordId,
@@ -96,8 +102,12 @@ public class MetadataCouplingHandler {
                                                 PlanRecordMetadata planRecordMetadata )
                     throws DataServiceCouplingException {
         String title = planwerkServiceMetadata.getTitle();
-        String resourceIdentifier = planRecordMetadata.getResourceIdentifier();
-        String datasetMetadataUrl = cswClient.createGetRecordByIdRequest( planRecordMetadata.getRecordId() );
+        String resourceIdentifier = null;
+        String datasetMetadataUrl = null;
+        if ( planRecordMetadata != null ) {
+            resourceIdentifier = getResourceIdentifier( planRecordMetadata );
+            datasetMetadataUrl = cswClient.createGetRecordByIdRequest( planRecordMetadata.getRecordId() );
+        }
         String serviceMetadataUrl = cswClient.createGetRecordByIdRequest( serviceRecordId );
 
         try {
@@ -106,6 +116,10 @@ public class MetadataCouplingHandler {
         } catch ( Exception e ) {
             new DataServiceCouplingException( "Could not insert in table planwerkwmsmetadata ", e );
         }
+    }
+
+    private String getResourceIdentifier( PlanRecordMetadata planRecordMetadata ) {
+        return planRecordMetadata.getResourceIdentifier();
     }
 
     private Path createServiceMetadataDocument( String planName, LocalDateTime now, Properties properties )
@@ -149,9 +163,9 @@ public class MetadataCouplingHandler {
             properties.setProperty( "EAST_BOUND_LONG", COORD_FORMAT.format( envelope.getMax().get0() ) );
             properties.setProperty( "SOUTH_BOUND_LAT", COORD_FORMAT.format( envelope.getMin().get1() ) );
             properties.setProperty( "NORTH_BOUND_LAT", COORD_FORMAT.format( envelope.getMax().get1() ) );
-            properties.setProperty( "COUPLED_METADATA_RESOURCE_URL", planRecordMetadata.getResourceIdentifier() );
-            properties.setProperty( "COUPLED_METADATA_RESOURCE_IDENTIFIER", planRecordMetadata.getRecordId() );
         }
+        properties.setProperty( "COUPLED_METADATA_RESOURCE_URL", getResourceIdentifier( planRecordMetadata ) );
+        properties.setProperty( "COUPLED_METADATA_RESOURCE_IDENTIFIER", planRecordMetadata.getRecordId() );
         setProperty( properties, "PLANWERKWMS_CAPABILITIES",
                      planwerkServiceMetadata.getPlanwerkWmsGetCapabilitiesUrl() );
         return properties;
