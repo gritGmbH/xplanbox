@@ -2,12 +2,12 @@ package de.latlon.xplan.manager.database;
 
 import com.vividsolutions.jts.io.ParseException;
 import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.export.DatabaseXPlanArtefactIterator;
@@ -66,8 +66,6 @@ import java.util.Set;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
@@ -81,7 +79,7 @@ import static org.deegree.protocol.wfs.transaction.action.IDGenMode.USE_EXISTING
 
 /**
  * DAO class for xplans.
- * 
+ *
  * @author Florian Bingel
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
@@ -106,13 +104,15 @@ public class XPlanDao {
      * <p>
      * The DAO performs the initialization of the JDBC connection and feature stores on demand.
      * </p>
-     *  @param managerWorkspaceWrapper
-     *            workspace, never <code>null</code>
+     *
+     * @param managerWorkspaceWrapper
+     *                 workspace, never <code>null</code>
      * @param categoryMapper
-     *            mapping configuration, never <code>null</code>
+     *                 mapping configuration, never <code>null</code>
      * @param managerConfiguration
      */
-    public XPlanDao( ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper, ManagerConfiguration managerConfiguration ) {
+    public XPlanDao( ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper,
+                     ManagerConfiguration managerConfiguration ) {
         this.managerWorkspaceWrapper = managerWorkspaceWrapper;
         this.categoryMapper = categoryMapper;
         this.managerConfiguration = managerConfiguration;
@@ -120,21 +120,20 @@ public class XPlanDao {
 
     /**
      * Stores the given XPlan in the database (and feature stores).
-     * 
+     *
      * @param archive
-     *            plan archive, must not be <code>null</code>
+     *                 plan archive, must not be <code>null</code>
      * @param fc
-     *            features of the main GML document from the archive, must not be <code>null</code>
+     *                 features of the main GML document from the archive, must not be <code>null</code>
      * @param synFc
-     *            flattened features (of the main GML document from the archive), must not be <code>null</code>
+     *                 flattened features (of the main GML document from the archive), must not be <code>null</code>
      * @param additionalPlanData
-     *            containing some metadata about the xplan, never <code>null</code>
-     * 
+     *                 containing some metadata about the xplan, never <code>null</code>
      * @return database id of the plan
      */
     public int insert( XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc,
                        AdditionalPlanData additionalPlanData, Date sortDate )
-                                       throws Exception {
+                    throws Exception {
         Connection conn = null;
         try {
             LOG.info( "Insert XPlan" );
@@ -145,7 +144,7 @@ public class XPlanDao {
 
             conn = managerWorkspaceWrapper.openConnection();
             conn.setAutoCommit( false );
-            Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanTA = insertXPlan( xplanFs, fc);
+            Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanTA = insertXPlan( xplanFs, fc );
             int planId = insertMetadata( conn, archive, fc, synFc, fidsAndXPlanTA.first, additionalPlanData, sortDate );
 
             addAdditionalProperties( synFc, additionalPlanData, synFs, planId, sortDate );
@@ -172,7 +171,7 @@ public class XPlanDao {
     }
 
     public void insertInspirePlu( FeatureCollection featureCollection )
-                            throws Exception {
+                    throws Exception {
         FeatureStoreTransaction transaction = null;
         try {
             LOG.info( "Insert INSPIRE PLU dataset" );
@@ -191,7 +190,7 @@ public class XPlanDao {
      * Deletes the specified plan from the database (and feature stores).
      *
      * @param planId
-     *            database id of the plan
+     *                 database id of the plan
      */
     public void deletePlan( String planId )
                     throws Exception {
@@ -202,23 +201,23 @@ public class XPlanDao {
 
     /**
      * @param oldXplan
-     *            the {@link XPlan} describing the plan before update, never <code>null</code>
+     *                 the {@link XPlan} describing the plan before update, never <code>null</code>
      * @param newAdditionalPlanData
-     *            of the {@link XPlan} with the updated values, never <code>null</code>
+     *                 of the {@link XPlan} with the updated values, never <code>null</code>
      * @param fc
-     *            the edited feature collection, never <code>null</code>
+     *                 the edited feature collection, never <code>null</code>
      * @param synFc
-     *            the edited feature collection with synthesized features, never <code>null</code>
+     *                 the edited feature collection with synthesized features, never <code>null</code>
      * @param planArtefact
-     *            the edited xplan gml, never <code>null</code>
+     *                 the edited xplan gml, never <code>null</code>
      * @param sortDate
-     *            the date added to syn feature collection, may be <code>null</code>
+     *                 the date added to syn feature collection, may be <code>null</code>
      * @param removedRefs
      * @throws Exception
      */
-    public void update( XPlan oldXplan, AdditionalPlanData newAdditionalPlanData,
-                        XPlanFeatureCollection fc, FeatureCollection synFc, byte[] planArtefact,
-                        XPlanToEdit xPlanToEdit, Date sortDate, List<File> uploadedArtefacts, Set<String> removedRefs )
+    public void update( XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
+                        FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
+                        List<File> uploadedArtefacts, Set<String> removedRefs )
                     throws Exception {
         Connection conn = null;
         try {
@@ -289,55 +288,71 @@ public class XPlanDao {
     }
 
     /**
-     * Updates the featureCollection described by the id by the passed featureCollection.
-     * The source datastore is specified by the passed version, ade and planStatus,
-     * the target datastore by the featureCollection.
+     * Inserts the passed featureCollection in the datastore specified by the version of the featureCollection and passed planStatus.
      *
-     * @param id
-     *                 of the plan, never <code>null</code>
-     * @param version
-     *                 of the plan, never <code>null</code>
-     * @param ade
-     *                 of the plan, may be <code>null</code>
-     * @param planStatus
-     *                 of the plan, never <code>null</code>
      * @param xPlanFeatureCollection
      *                 the featureCollection of the updated plan, never <code>null</code>
+     * @param planStatus
+     *                 of the plan, never <code>null</code>
      */
-    public void updateXPlanFeatureCollection( String id, XPlanVersion version, XPlanAde ade,
-                                              PlanStatus planStatus, XPlanFeatureCollection xPlanFeatureCollection )
+    public void insertXPlanFeatureCollection( XPlanFeatureCollection xPlanFeatureCollection, PlanStatus planStatus )
                     throws Exception {
         PreparedStatement stmt = null;
-        SQLFeatureStoreTransaction taSource = null;
         SQLFeatureStoreTransaction taTarget = null;
         try {
-            int planId = getXPlanIdAsInt( id );
-
-            FeatureStore fsSource = managerWorkspaceWrapper.lookupStore( version, ade, planStatus );
-            taSource = (SQLFeatureStoreTransaction) fsSource.acquireTransaction();
-
             FeatureStore fsTarget = managerWorkspaceWrapper.lookupStore( xPlanFeatureCollection.getVersion(),
                                                                          xPlanFeatureCollection.getAde(), planStatus );
 
-            Set<String> ids = selectFids( planId );
-            IdFilter idFilter = new IdFilter( ids );
+System.out.println( "FS: " +  xPlanFeatureCollection.getVersion()+","+
+                     xPlanFeatureCollection.getAde()+","+ planStatus);
 
-            LOG.info( "- Aktualisiere XPlan " + planId + " im FeatureStore (" + version + ")..." );
-            taSource.performDelete( idFilter, null );
             taTarget = insertXPlan( fsTarget, xPlanFeatureCollection ).second;
-            LOG.info( "OK" );
 
             LOG.info( "- Persistierung..." );
-            taSource.commit();
             taTarget.commit();
             LOG.info( "OK" );
         } catch ( Exception e ) {
             LOG.error( "Fehler beim Aktualiseren der FeatureCollection. Ein Rollback wird durchgeführt.", e );
-            if ( taSource != null )
-                taSource.rollback();
             if ( taTarget != null )
                 taTarget.rollback();
             throw new Exception( "Fehler beim Aktualiseren der FeatureCollection: " + e.getMessage() + ".", e );
+        } finally {
+            closeQuietly( stmt );
+        }
+    }
+
+    /**
+     * Inserts the passed featureCollection in the datastore specified by the version of the featureCollection and passed planStatus.
+     *
+     * @param planId
+     *                 the featureCollection of the updated plan, never <code>null</code>
+     * @param planStatus
+     * @param fids to remove
+     */
+    public void deleteXPlanFeatureCollection( int planId, XPlanVersion version, XPlanAde ade, PlanStatus planStatus,
+                                              List<String> fids )
+                    throws Exception {
+        PreparedStatement stmt = null;
+        SQLFeatureStoreTransaction ta = null;
+        try {
+            FeatureStore fs = managerWorkspaceWrapper.lookupStore( version, ade, planStatus );
+            ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
+
+            IdFilter idFilter = new IdFilter( fids );
+            LOG.info( "- Entferne XPlan " + planId + " aus dem FeatureStore (" + version + ", " + planStatus + (
+                            ade == null ? "" : ade ) + ")..." );
+            ta.performDelete( idFilter, null );
+            LOG.info( "OK" );
+
+            LOG.info( "- Persistierung..." );
+            ta.commit();
+            LOG.info( "OK" );
+
+        } catch ( Exception e ) {
+            LOG.error( "Fehler beim Entfernen der FeatureCollection. Ein Rollback wird durchgeführt.", e );
+            if ( ta != null )
+                ta.rollback();
+            throw new Exception( "Fehler beim Entfernen der FeatureCollection: " + e.getMessage() + ".", e );
         } finally {
             closeQuietly( stmt );
         }
@@ -348,9 +363,9 @@ public class XPlanDao {
      *
      * @param includeNoOfFeature
      *                 <code>true</code> if the number of features of each feature collection should be requested, <code>false</code> otherwise
+     * @param includeNoOfFeature
      * @return list of XPlans
      * @throws Exception
-     * @param includeNoOfFeature
      */
     public List<XPlan> getXPlanList( boolean includeNoOfFeature )
                     throws Exception {
@@ -375,8 +390,7 @@ public class XPlanDao {
             return xplanList;
         } catch ( Exception e ) {
             throw new Exception( "Interner-/Konfigurations-Fehler. Kann importierte Pläne nicht auflisten: "
-                                 + e.getLocalizedMessage(),
-                            e );
+                                 + e.getLocalizedMessage(), e );
         } finally {
             closeQuietly( stmt, rs );
         }
@@ -384,9 +398,9 @@ public class XPlanDao {
 
     /**
      * Retrieve a single {@link XPlan} by id.
-     * 
+     *
      * @param planId
-     *            id of a plan, must not be <code>null</code>
+     *                 id of a plan, must not be <code>null</code>
      * @return a single plan
      * @throws Exception
      */
@@ -417,9 +431,9 @@ public class XPlanDao {
 
     /**
      * retrieves the id of the plan closest in future to the date passed
-     * 
+     *
      * @param releaseDate
-     *            minimal release date
+     *                 minimal release date
      * @return id of plan with minimal release date
      * @throws SQLException
      */
@@ -449,9 +463,9 @@ public class XPlanDao {
 
     /**
      * exports a plan
-     * 
+     *
      * @param planId
-     *            of plan to export
+     *                 of plan to export
      * @return
      * @throws Exception
      */
@@ -461,7 +475,8 @@ public class XPlanDao {
         int id = getXPlanIdAsInt( planId );
         try {
             Connection conn = managerWorkspaceWrapper.openConnection();
-            PreparedStatement stmt = conn.prepareStatement( "SELECT filename,data FROM xplanmgr.artefacts WHERE plan=? ORDER BY num" );
+            PreparedStatement stmt = conn.prepareStatement(
+                            "SELECT filename,data FROM xplanmgr.artefacts WHERE plan=? ORDER BY num" );
             stmt.setInt( 1, id );
             ResultSet rs = stmt.executeQuery();
             XPlanArtefactIterator artefacts = new DatabaseXPlanArtefactIterator( conn, stmt, rs );
@@ -520,8 +535,7 @@ public class XPlanDao {
             }
         } catch ( Exception e ) {
             throw new Exception( "Fehler beim Rekonstruieren des XPlan-Artefakts '" + MAIN_FILE + "': "
-                                 + e.getLocalizedMessage(),
-                            e );
+                                 + e.getLocalizedMessage(), e );
         } finally {
             closeQuietly( stmt, rs );
         }
@@ -541,19 +555,19 @@ public class XPlanDao {
 
     /**
      * Retrieve internalId by the manager id from xplansyn schema.
-     * 
-     * @return the internal id of a plan (if available), <code>null</code> if an error occurred
+     *
      * @param planId
-     *            the planId of the plan, never <code>null</code>
+     *                 the planId of the plan, never <code>null</code>
      * @param type
-     *            the type of the plan, never <code>null</code>
+     *                 the type of the plan, never <code>null</code>
+     * @return the internal id of a plan (if available), <code>null</code> if an error occurred
      */
     public String retrieveInternalId( String planId, XPlanType type ) {
         managerWorkspaceWrapper.ensureWorkspaceInitialized();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        try (Connection mgrConn = managerWorkspaceWrapper.openConnection() ) {
+        try ( Connection mgrConn = managerWorkspaceWrapper.openConnection() ) {
             StringBuilder sqlBuilder = new StringBuilder();
             sqlBuilder.append( "SELECT xplan_internalid FROM " );
             switch ( type ) {
@@ -595,11 +609,11 @@ public class XPlanDao {
 
     /**
      * Updates the wmsSortDate column of all tables in the syn schema and in xplanmgr.plans table.
-     * 
+     *
      * @param sortDate
-     *            the new sort date, may be <code>null</code>
+     *                 the new sort date, may be <code>null</code>
      * @param plan
-     *            the plan to update, never <code>null</code>
+     *                 the plan to update, never <code>null</code>
      * @throws Exception
      */
     public void updateSortProperty( Date sortDate, XPlan plan )
@@ -640,12 +654,12 @@ public class XPlanDao {
 
     /**
      * @param planId
-     *            of the plan to set the status
+     *                 of the plan to set the status
      * @throws SQLException
-     *             if the sql could not be executed
+     *                 if the sql could not be executed
      */
     public void setPlanWasInspirePublished( String planId )
-                            throws SQLException {
+                    throws SQLException {
         Connection conn = null;
         try {
             conn = managerWorkspaceWrapper.openConnection();
@@ -654,14 +668,13 @@ public class XPlanDao {
             closeQuietly( conn );
         }
     }
-    
+
     private void updateSortPropertyInSynSchema( Date sortDate, XPlan plan, Connection conn )
                     throws Exception {
-        String selectSchemaAndColumnsToModify = "SELECT column_name, table_schema, table_name "
-                                                + "FROM information_schema.columns "
-                                                + "WHERE table_schema like 'xplansyn%' "
-                                                + "AND table_name like 'xplan_%' "
-                                                + "AND column_name = 'xplan_wmssortdate';";
+        String selectSchemaAndColumnsToModify =
+                        "SELECT column_name, table_schema, table_name " + "FROM information_schema.columns "
+                        + "WHERE table_schema like 'xplansyn%' " + "AND table_name like 'xplan_%' "
+                        + "AND column_name = 'xplan_wmssortdate';";
         PreparedStatement stmt = conn.prepareStatement( selectSchemaAndColumnsToModify );
         ResultSet schemaAndTablesToModify = stmt.executeQuery();
 
@@ -722,9 +735,8 @@ public class XPlanDao {
         }
     }
 
-    private void addAdditionalProperties( FeatureCollection synFc,
-                                          AdditionalPlanData xPlanMetadata,
-                                          FeatureStore synFs, int planId, Date sortDate ) {
+    private void addAdditionalProperties( FeatureCollection synFc, AdditionalPlanData xPlanMetadata, FeatureStore synFs,
+                                          int planId, Date sortDate ) {
         AppSchema schema = synFs.getSchema();
         featureCollectionManipulator.addAdditionalPropertiesToFeatures( synFc, schema, planId, sortDate,
                                                                         xPlanMetadata );
@@ -732,8 +744,9 @@ public class XPlanDao {
 
     private InputStream unzipArtefact( InputStream zippedStream )
                     throws IOException, SQLException {
-        try ( GZIPInputStream is = new GZIPInputStream( zippedStream );
-              ByteArrayOutputStream bos = new ByteArrayOutputStream() ) {
+        try (
+                        GZIPInputStream is = new GZIPInputStream( zippedStream );
+                        ByteArrayOutputStream bos = new ByteArrayOutputStream() ) {
             IOUtils.copy( is, bos );
             return new ByteArrayInputStream( bos.toByteArray() );
         }
@@ -781,8 +794,8 @@ public class XPlanDao {
         return xPlan;
     }
 
-    private AdditionalPlanData
-                    createXPlanMetadata( String planStatus, Timestamp startDateTime, Timestamp endDateTime ) {
+    private AdditionalPlanData createXPlanMetadata( String planStatus, Timestamp startDateTime,
+                                                    Timestamp endDateTime ) {
         PlanStatus planStatusAsEnum = null;
         if ( planStatus != null )
             planStatusAsEnum = PlanStatus.findByMessage( planStatus );
@@ -844,8 +857,7 @@ public class XPlanDao {
             }
         } catch ( Exception e ) {
             throw new Exception( "Interner-/Konfigurations-Fehler. Kann XPlan-Artefakte nicht aus DB lesen: "
-                                 + e.getLocalizedMessage(),
-                            e );
+                                 + e.getLocalizedMessage(), e );
         } finally {
             closeQuietly( stmt, rs );
         }
@@ -878,9 +890,6 @@ public class XPlanDao {
         ResultSet rs = null;
         try {
             XPlanVersion version = xPlanMetadata.version;
-            if ( XPLAN_41.equals( version ) && managerConfiguration.isProvidingXPlan41As51Active() ) {
-                version = XPLAN_51;
-            }
             XPlanAde ade = xPlanMetadata.ade;
             PlanStatus planStatus = xPlanMetadata.planStatus;
             int id = getXPlanIdAsInt( planId );
@@ -915,14 +924,6 @@ public class XPlanDao {
             LOG.info( "OK" );
 
             LOG.info( "- Entferne XPlan " + planId + " aus der Manager-DB..." );
-            stmt = conn.prepareStatement( "DELETE FROM xplanmgr.features WHERE plan=?" );
-            stmt.setInt( 1, id );
-            stmt.executeUpdate();
-
-            stmt = conn.prepareStatement( "DELETE FROM xplanmgr.artefacts WHERE plan=?" );
-            stmt.setInt( 1, id );
-            stmt.executeUpdate();
-
             stmt = conn.prepareStatement( "DELETE FROM xplanmgr.plans WHERE id=?" );
             stmt.setInt( 1, id );
             stmt.executeUpdate();
@@ -998,7 +999,7 @@ public class XPlanDao {
 
     private void updateXPlanAndXPlanSyn( Connection conn, XPlan oldXPlan, AdditionalPlanData newXPlanMetadata,
                                          XPlanFeatureCollection fc, FeatureCollection synFc, Date sortDate )
-                                                         throws Exception {
+                    throws Exception {
         PreparedStatement stmt = null;
         SQLFeatureStoreTransaction taSource = null;
         SQLFeatureStoreTransaction taSynSource = null;
@@ -1079,8 +1080,8 @@ public class XPlanDao {
 
     }
 
-    private int insertMetadata( Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc,
-                                List<String> fids, AdditionalPlanData xPlanMetadata,
+    private int insertMetadata( Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc,
+                                FeatureCollection synFc, List<String> fids, AdditionalPlanData xPlanMetadata,
                                 Date sortDate )
                     throws SQLException {
 
@@ -1112,8 +1113,8 @@ public class XPlanDao {
         }
     }
 
-    private int insertPlanMetadata( Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc,
-                                    AdditionalPlanData xPlanMetadata, Date sortDate )
+    private int insertPlanMetadata( Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc,
+                                    FeatureCollection synFc, AdditionalPlanData xPlanMetadata, Date sortDate )
                     throws SQLException {
         String insertPlansSql = "INSERT INTO xplanmgr.plans "
                                 + "(import_date, xp_version, xp_type, ade, name, nummer, gkz, has_raster, rechtsstand, "
@@ -1155,10 +1156,9 @@ public class XPlanDao {
         return planId;
     }
 
-    private void updatePlanMetadata( Connection conn, XPlan xplan,
-                                     AdditionalPlanData newXPlanMetadata,
+    private void updatePlanMetadata( Connection conn, XPlan xplan, AdditionalPlanData newXPlanMetadata,
                                      XPlanFeatureCollection fc, FeatureCollection synFc, Date sortDate )
-                                                     throws SQLException {
+                    throws SQLException {
         StringBuilder sql = new StringBuilder();
         sql.append( "UPDATE xplanmgr.plans SET " );
         sql.append( "name = ?, " );
@@ -1190,7 +1190,7 @@ public class XPlanDao {
     }
 
     private void updateInspirePublishedStatus( Connection conn, String xplanId, boolean isPiublished )
-                            throws SQLException {
+                    throws SQLException {
         StringBuilder sql = new StringBuilder();
         sql.append( "UPDATE xplanmgr.plans SET " );
         sql.append( "inspirepublished = ? " );
@@ -1272,7 +1272,7 @@ public class XPlanDao {
 
     private void updateArtefacts( Connection conn, XPlan xPlan, XPlanToEdit xPlanToEdit, List<File> uploadedArtefacts,
                                   Set<String> removedRefs )
-                                                  throws Exception {
+                    throws Exception {
         LOG.info( "- Aktualisierung der XPlan-Artefakte von Plan mit ID '{}'", xPlan.getId() );
         int id = getXPlanIdAsInt( xPlan.getId() );
         long begin = System.currentTimeMillis();
@@ -1481,7 +1481,7 @@ public class XPlanDao {
                 Geometry geometry = reader.read( bboxAsWkt );
                 Envelope envelope = geometry.getEnvelope();
                 return new XPlanEnvelope( envelope.getMin().get0(), envelope.getMin().get1(), envelope.getMax().get0(),
-                                envelope.getMax().get1(), crs );
+                                          envelope.getMax().get1(), crs );
             } catch ( UnknownCRSException | ParseException e ) {
                 LOG.error( "Could not create envelope from " + bboxAsWkt, e );
             }
@@ -1565,13 +1565,12 @@ public class XPlanDao {
         PlanStatus planStatus;
 
         /**
-         *
          * @param version
-         *            may be <code>null</code>
+         *                 may be <code>null</code>
          * @param ade
-         *            may be <code>null</code>
+         *                 may be <code>null</code>
          * @param planStatus
-         *            may be <code>null</code>
+         *                 may be <code>null</code>
          */
         XPlanMetadata( XPlanVersion version, XPlanAde ade, PlanStatus planStatus ) {
             this.version = version;

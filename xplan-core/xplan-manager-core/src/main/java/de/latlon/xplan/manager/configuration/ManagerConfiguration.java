@@ -58,8 +58,6 @@ public class ManagerConfiguration {
 
     static final String PATH_TO_HALE_CLI = "pathToHaleCli";
 
-    static final String ACTIVATE_PROVIDING_XPLAN41_AS_XPLAN51 = "activateProvidingXPlan41AsXPlan51";
-
     private static final Logger LOG = LoggerFactory.getLogger( ManagerConfiguration.class );
 
     private static final String MANAGER_CONFIGURATION = "managerConfiguration.properties";
@@ -93,8 +91,6 @@ public class ManagerConfiguration {
     private String pathToHaleCli;
 
     private Path pathToHaleProjectDirectory;
-
-    private boolean isProvidingXPlan41As51Active = false;
 
     public ManagerConfiguration( PropertiesLoader propertiesLoader )
                     throws ConfigurationException {
@@ -213,14 +209,6 @@ public class ManagerConfiguration {
         return pathToHaleProjectDirectory;
     }
 
-    /**
-     * @return <code>true</code> if XPlanGML 4.1 plans should be transformed to XPlanGML 5.1 and provided by the
-     * XPlan WFS for 5.1 plans, <code>false</code> otherwise
-     */
-    public boolean isProvidingXPlan41As51Active() {
-        return isProvidingXPlan41As51Active;
-    }
-
     private void loadProperties( PropertiesLoader propertiesLoader )
                     throws ConfigurationException {
         if ( propertiesLoader != null ) {
@@ -247,7 +235,6 @@ public class ManagerConfiguration {
                 parseSemanticConformityLinkConfiguration( loadProperties );
                 pathToHaleCli = loadProperties.getProperty( PATH_TO_HALE_CLI );
                 pathToHaleProjectDirectory = parsePathToHaleProjectDirectory( propertiesLoader );
-                isProvidingXPlan41As51Active = parseBoolean( loadProperties, ACTIVATE_PROVIDING_XPLAN41_AS_XPLAN51, false );
             }
             configDirectory = getConfigDirectory( propertiesLoader, "synthesizer" );
         }

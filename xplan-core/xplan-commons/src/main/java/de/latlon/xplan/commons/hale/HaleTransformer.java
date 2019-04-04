@@ -3,8 +3,12 @@ package de.latlon.xplan.commons.hale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Map;
+import java.util.function.Consumer;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -61,7 +65,11 @@ public class HaleTransformer {
             String command = buildCommand( haleProject, sourceFile, targetFile, writer );
             LOG.info( "Execute the following command to transform the plan: {}", command );
             Process process = Runtime.getRuntime().exec( command );
-            process.waitFor();
+            Thread gobblerThread = startGobblerThread( process );
+
+            int exitCode = process.waitFor();
+            gobblerThread.join();
+            LOG.info( "Transformation command finished with exit code {}. ", exitCode );
         } catch ( IOException | InterruptedException e ) {
             LOG.error( "Could not transform", e );
             throw new TransformationException( "Could not transform", e );
@@ -77,9 +85,35 @@ public class HaleTransformer {
         sb.append( " -target " + target );
         sb.append( " -providerId " ).append( writer.getName() );
         for ( Map.Entry<String, String> setting : writer.getSettings().entrySet() ) {
-            sb.append( " -S" ).append( setting.getKey() ).append( " " ).append( setting.getValue() ).append(  " " );
+            sb.append( " -S" ).append( setting.getKey() ).append( " " ).append( setting.getValue() ).append( " " );
         }
         return sb.toString();
+    }
+
+    private Thread startGobblerThread( Process process ) {
+        Thread gobblerThread;
+        StreamGobbler streamGobbler = new StreamGobbler( process.getInputStream(),
+                                                         LOG.isDebugEnabled() ? System.out::println : s -> {
+                                                         } );
+        gobblerThread = new Thread( streamGobbler );
+        gobblerThread.start();
+        return gobblerThread;
+    }
+
+    private static class StreamGobbler implements Runnable {
+        private InputStream inputStream;
+
+        private Consumer<String> consumer;
+
+        public StreamGobbler( InputStream inputStream, Consumer<String> consumer ) {
+            this.inputStream = inputStream;
+            this.consumer = consumer;
+        }
+
+        @Override
+        public void run() {
+            new BufferedReader( new InputStreamReader( inputStream ) ).lines().forEach( consumer );
+        }
     }
 
 }
