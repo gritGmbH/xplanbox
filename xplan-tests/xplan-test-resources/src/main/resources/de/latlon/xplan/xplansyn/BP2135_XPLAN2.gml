@@ -16,7 +16,7 @@
       <xplansyn:gmlId>FEATURE_1</xplansyn:gmlId>
       <xplansyn:xpVersion>2.0</xplansyn:xpVersion>
       <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>Bebauungsplan2135</xplansyn:xpPlanName>
+      <xplansyn:xpPlanName>Bebauungsplan 2135</xplansyn:xpPlanName>
       <xplansyn:name>Bebauungsplan 2135</xplansyn:name>
       <xplansyn:nummer>2135</xplansyn:nummer>
       <xplansyn:beschreibung>Testdaten XPlanGML</xplansyn:beschreibung>

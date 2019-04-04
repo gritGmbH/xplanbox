@@ -48,7 +48,7 @@ public class XPlanFeatureCollectionTest {
         XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection( "xplan2/BP2135.zip" );
 
         assertEquals( "4011000", fc.getPlanGkz() );
-        assertEquals( "Bebauungsplan2135", fc.getPlanName() );
+        assertEquals( "Bebauungsplan 2135", fc.getPlanName() );
         assertEquals( "2135", fc.getPlanNummer() );
         assertEquals( 386, fc.getFeatures().size() );
         assertThat( fc.getBboxIn4326(), nullValue() );
@@ -59,7 +59,7 @@ public class XPlanFeatureCollectionTest {
                     throws Exception {
         XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection( "xplan2/FPlan.zip" );
 
-        assertEquals( "FPlan1", fc.getPlanName() );
+        assertEquals( "FPlan 1", fc.getPlanName() );
         assertNull( fc.getPlanNummer() );
         assertEquals( "1234567", fc.getPlanGkz() );
         assertEquals( 3850, fc.getFeatures().size() );
@@ -74,7 +74,7 @@ public class XPlanFeatureCollectionTest {
                                                       53.677413993384334 );
 
         assertEquals( "20000000", fc.getPlanGkz() );
-        assertEquals( "Langenhorn22", fc.getPlanName() );
+        assertEquals( "Langenhorn 22", fc.getPlanName() );
         assertEquals( "LA 22", fc.getPlanNummer() );
         assertEquals( 1978, fc.getFeatures().size() );
         assertThat( fc.getBboxIn4326().getMin().get0(), is( expectedBbox.getMin().get0() ) );
@@ -89,7 +89,7 @@ public class XPlanFeatureCollectionTest {
         XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection( "xplan2/LA67.zip" );
 
         assertEquals( "2000000", fc.getPlanGkz() );
-        assertEquals( "BebauungsplanLA67", fc.getPlanName() );
+        assertEquals( "Bebauungsplan LA 67", fc.getPlanName() );
         assertEquals( "LA 67", fc.getPlanNummer() );
         assertEquals( 165, fc.getFeatures().size() );
         assertThat( fc.getBboxIn4326(), nullValue() );
@@ -119,7 +119,7 @@ public class XPlanFeatureCollectionTest {
                                                       53.03851016123366 );
 
         assertEquals( "4011000", fc.getPlanGkz() );
-        assertEquals( "Bebauungsplan2135", fc.getPlanName() );
+        assertEquals( "Bebauungsplan 2135", fc.getPlanName() );
         assertEquals( "2135", fc.getPlanNummer() );
         assertEquals( 241, fc.getFeatures().size() );
         assertThat( fc.getBboxIn4326().getMin().get0(), is( expectedBbox.getMin().get0() ) );
@@ -133,7 +133,7 @@ public class XPlanFeatureCollectionTest {
                     throws Exception {
         XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection( "xplan3/FPlan.zip" );
 
-        assertEquals( "FPlanBadLiebenwerda", fc.getPlanName() );
+        assertEquals( "FPlan Bad Liebenwerda", fc.getPlanName() );
         assertNull( fc.getPlanNummer() );
         assertEquals( "12062024", fc.getPlanGkz() );
         assertEquals( 3828, fc.getFeatures().size() );
@@ -147,7 +147,7 @@ public class XPlanFeatureCollectionTest {
         Envelope expectedBbox = createEnvelopeIn4326( 13.601305277766333, 51.466146727282, 13.603502206068638,
                                                       51.46709229148047 );
 
-        assertEquals( "BPPlessaGewerbegebietersteAenderung", fc.getPlanName() );
+        assertEquals( "BP Plessa Gewerbegebiet, erste Aenderung", fc.getPlanName() );
         assertNull( fc.getPlanNummer() );
         assertEquals( "12062372", fc.getPlanGkz() );
         assertEquals( 17, fc.getFeatures().size() );
@@ -164,7 +164,7 @@ public class XPlanFeatureCollectionTest {
         Envelope expectedBbox = createEnvelopeIn4326( 13.452766605622251, 51.47355832342167, 13.462083366729448,
                                                       51.476197930428064 );
 
-        assertEquals( "Klarstellungs-uErgnzungssatzungderGemeindeHaidamitdemOTWrdenhain", fc.getPlanName() );
+        assertEquals( "Klarstellungs-u. Ergänzungssatzung der Gemeinde Haida mit dem OT Würdenhain", fc.getPlanName() );
         assertEquals( "KES - O4", fc.getPlanNummer() );
         assertEquals( "12062410", fc.getPlanGkz() );
         assertEquals( 28, fc.getFeatures().size() );
@@ -182,7 +182,7 @@ public class XPlanFeatureCollectionTest {
                                                       51.587255713842126 );
 
         assertEquals( "12062425", fc.getPlanGkz() );
-        assertEquals( "Weinbergstrasse", fc.getPlanName() );
+        assertEquals( "\"Weinbergstrasse\"", fc.getPlanName() );
         assertEquals( "Nr. 2", fc.getPlanNummer() );
         assertEquals( 545, fc.getFeatures().size() );
         assertThat( fc.getBboxIn4326().getMin().get0(), is( expectedBbox.getMin().get0() ) );
@@ -214,7 +214,7 @@ public class XPlanFeatureCollectionTest {
                                                       53.03851016123366 );
 
         assertEquals( "4011000", fc.getPlanGkz() );
-        assertEquals( "Bebauungsplan2135", fc.getPlanName() );
+        assertEquals( "Bebauungsplan 2135", fc.getPlanName() );
         assertEquals( "2135", fc.getPlanNummer() );
         assertEquals( 241, fc.getFeatures().size() );
         assertThat( fc.getBboxIn4326().getMin().get0(), is( expectedBbox.getMin().get0() ) );
@@ -231,7 +231,7 @@ public class XPlanFeatureCollectionTest {
                                                       49.466076083919255 );
 
         assertEquals( "1234567", fc.getPlanGkz() );
-        assertEquals( "BPlanDemo-Gemeinde", fc.getPlanName() );
+        assertEquals( "BPlan Demo-Gemeinde", fc.getPlanName() );
         assertNull( fc.getPlanNummer() );
         assertEquals( 20, fc.getFeatures().size() );
         assertThat( fc.getBboxIn4326().getMin().get0(), is( expectedBbox.getMin().get0() ) );
@@ -248,7 +248,7 @@ public class XPlanFeatureCollectionTest {
                                                       53.5981347454368 );
 
         assertEquals( "02000000", fc.getPlanGkz() );
-        assertEquals( "Eidelstedt4", fc.getPlanName() );
+        assertEquals( "Eidelstedt 4", fc.getPlanName() );
         assertNull( fc.getPlanNummer() );
         assertEquals( 56, fc.getFeatures().size() );
         assertThat( fc.getBboxIn4326().getMin().get0(), is( expectedBbox.getMin().get0() ) );
@@ -263,7 +263,7 @@ public class XPlanFeatureCollectionTest {
         XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection( "xplan41/FPlan.zip" );
 
         assertEquals( "12062024", fc.getPlanGkz() );
-        assertEquals( "FPlanBadLiebenwerda", fc.getPlanName() );
+        assertEquals( "FPlan Bad Liebenwerda", fc.getPlanName() );
         assertNull( fc.getPlanNummer() );
         assertEquals( 3602, fc.getFeatures().size() );
         assertThat( fc.getBboxIn4326(), nullValue() );
@@ -277,7 +277,7 @@ public class XPlanFeatureCollectionTest {
                                                       53.677413993384334 );
 
         assertEquals( "02000000", fc.getPlanGkz() );
-        assertEquals( "BebauungsplanLA22", fc.getPlanName() );
+        assertEquals( "Bebauungsplan LA 22", fc.getPlanName() );
         assertEquals( "LA 22", fc.getPlanNummer() );
         assertEquals( 1349, fc.getFeatures().size() );
         assertThat( fc.getBboxIn4326().getMin().get0(), is( expectedBbox.getMin().get0() ) );
@@ -294,7 +294,7 @@ public class XPlanFeatureCollectionTest {
                                                       53.68050184599885 );
 
         assertEquals( "1234567", fc.getPlanGkz() );
-        assertEquals( "BebauungsplanLA22", fc.getPlanName() );
+        assertEquals( "Bebauungsplan LA 22", fc.getPlanName() );
         assertEquals( "LA 22", fc.getPlanNummer() );
         assertEquals( 146, fc.getFeatures().size() );
         assertThat( fc.getBboxIn4326().getMin().get0(), is( expectedBbox.getMin().get0() ) );
@@ -311,7 +311,7 @@ public class XPlanFeatureCollectionTest {
                                                       51.58945636520396 );
 
         assertEquals( "12062425", fc.getPlanGkz() );
-        assertEquals( "Heideweg", fc.getPlanName() );
+        assertEquals( "\"Heideweg\"", fc.getPlanName() );
         assertEquals( "Nr.1", fc.getPlanNummer() );
         assertEquals( 500, fc.getFeatures().size() );
         assertThat( fc.getPlanReleaseDate(), is( new SimpleDateFormat( "yyyy-MM-dd" ).parse( "2002-02-01" ) ) );
@@ -327,7 +327,7 @@ public class XPlanFeatureCollectionTest {
         XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection( "xplan41/FPlan-with-wirksamkeitsDatum.zip" );
 
         assertEquals( "12062024", fc.getPlanGkz() );
-        assertEquals( "FPlanBadLiebenwerda", fc.getPlanName() );
+        assertEquals( "FPlan Bad Liebenwerda", fc.getPlanName() );
         assertNull( fc.getPlanNummer() );
         assertEquals( 3602, fc.getFeatures().size() );
         assertThat( fc.getPlanReleaseDate(), is( new SimpleDateFormat( "yyyy-MM-dd" ).parse( "2015-02-03" ) ) );
