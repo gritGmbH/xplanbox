@@ -19,9 +19,9 @@ Für die Nutzung des Tools muss die Installation von HALE erfolgreich abgeschlos
 
 Weiterhin sind zusätzliche SQL-Skripte auszuführen, die sich im entpackten Werkzeug im Verzeichnis scripts befinden. Die Ausführung muss in der festgelegten Reihenfolge erfolgen:
 
-1. 01_create_tables.sql
-1. 02_create_trigger-functions.sql
-1. 03_create_trigger.sql
+ 1. 01_create_tables.sql
+ 2. 02_create_trigger-functions.sql
+ 3. 03_create_trigger.sql
 
 [[xplantransform-cli-benutzungsanleitung]]
 === Benutzungshinweise
