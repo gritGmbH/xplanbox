@@ -43,9 +43,6 @@ public class XPlanGmlWriterFilter extends XMLStreamWriterFilterBase {
 
     @Override
     protected String xmlData( String s ) {
-        if ( this.currentPath.endsWith( "_Plan/name" ) ) {
-            return s.replaceAll( "[^a-zA-Z0-9\\-_]", "" );
-        }
         if ( this.currentPath.endsWith( "/gemeinde/XP_Gemeinde/ortsteilName" ) ) {
             this.district = s;
         }
