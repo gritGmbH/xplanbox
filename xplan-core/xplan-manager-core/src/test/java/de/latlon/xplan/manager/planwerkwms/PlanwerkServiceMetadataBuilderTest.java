@@ -10,8 +10,9 @@ import org.deegree.geometry.SimpleGeometryFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -48,7 +49,8 @@ public class PlanwerkServiceMetadataBuilderTest {
     }
 
     @Test
-    public void testBuild() {
+    public void testBuild()
+                    throws Exception {
         Envelope envelope = GEOMETRY_FACTORY.createEnvelope( 10.0, 53.5, 10.5, 54.0, EPSG4326 );
 
         CoupledResourceConfiguration configuration = createConfig();
@@ -75,6 +77,7 @@ public class PlanwerkServiceMetadataBuilderTest {
     }
 
     @Test
+
     public void testBuild_GetMap_FittingBbox()
                     throws Exception {
         Envelope envelope = GEOMETRY_FACTORY.createEnvelope( 10.0, 53.5, 10.5, 54.0, EPSG4326 );
@@ -93,6 +96,7 @@ public class PlanwerkServiceMetadataBuilderTest {
     }
 
     @Test
+
     public void testBuild_GetMap_BboxToHeight()
                     throws Exception {
         Envelope envelope = GEOMETRY_FACTORY.createEnvelope( 10.0, 53.0, 10.5, 54.0, EPSG4326 );
@@ -113,6 +117,7 @@ public class PlanwerkServiceMetadataBuilderTest {
     }
 
     @Test
+
     public void testBuild_GetMap_BboxToWidth()
                     throws Exception {
         Envelope envelope = GEOMETRY_FACTORY.createEnvelope( 10.0, 53.5, 11, 54.0, EPSG4326 );
@@ -137,10 +142,11 @@ public class PlanwerkServiceMetadataBuilderTest {
                + envelope.getMax().get1();
     }
 
-    private CoupledResourceConfiguration createConfig() {
+    private CoupledResourceConfiguration createConfig()
+                    throws IOException {
         String cswUrlProvidingDatasetMetadata = "http://test.de";
-        Path metadataConfigDirectory = Paths.get( "/tmp/metadataConfigDirectory" );
-        Path directoryToStoreDatasetMetadata = Paths.get( "/tmp/directoryToStoreDatasetMetadata" );
+        Path metadataConfigDirectory = Files.createTempDirectory( "metadataConfigDirectory" );
+        Path directoryToStoreDatasetMetadata = Files.createTempDirectory( "directoryToStoreDatasetMetadata" );
         CoupledResourceConfiguration configuration = new CoupledResourceConfiguration( cswUrlProvidingDatasetMetadata,
                                                                                        metadataConfigDirectory,
                                                                                        directoryToStoreDatasetMetadata,
