@@ -99,13 +99,13 @@ public class MetadataProviderWrapper implements OWSMetadataProvider {
 
     @Override
     public List<DatasetMetadata> getAllDatasetMetadata( QName name ) {
-        List<MetadataUrl> metadataUrls = new ArrayList<>();
-        for ( String resourceIdentifier : planwerk.getResourceIdentifier() ) {
-            metadataUrls.add( new MetadataUrl( resourceIdentifier, null, null ) );
-        }
         List<ExternalIdentifier> externalIds = new ArrayList<>();
-        for ( String externalId : planwerk.getDataMetadataUrl() ) {
-            externalIds.add( new ExternalIdentifier( externalId, null ) );
+        for ( String resourceIdentifier : planwerk.getResourceIdentifier() ) {
+            externalIds.add( new ExternalIdentifier( resourceIdentifier, null ) );
+        }
+        List<MetadataUrl> metadataUrls = new ArrayList<>();
+        for ( String dataMetadatUrl : planwerk.getDataMetadataUrl() ) {
+            metadataUrls.add( new MetadataUrl( dataMetadatUrl, null, null ) );
         }
         List<DatasetMetadata> datasetMetadatas = new ArrayList<>();
         DatasetMetadata datasetMetadata = new DatasetMetadata( name, null, null, null, metadataUrls, externalIds, null,
