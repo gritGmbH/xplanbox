@@ -3,8 +3,6 @@ package de.latlon.xplan.planwerkwms;
 import org.deegree.commons.utils.JDBCUtils;
 import org.deegree.db.ConnectionProvider;
 import org.deegree.db.ConnectionProviderProvider;
-import org.deegree.workspace.ResourceBuilder;
-import org.deegree.workspace.ResourceMetadata;
 import org.deegree.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -94,10 +92,8 @@ public class PlanwerkReader {
     }
 
     private Connection getConnection( Workspace workspace ) {
-        ResourceMetadata<ConnectionProvider> connectionMetadata = workspace.getResourceMetadata(
-                        ConnectionProviderProvider.class, jdbcResourceId );
-        ResourceBuilder<ConnectionProvider> builder = workspace.prepare( connectionMetadata.getIdentifier() );
-        ConnectionProvider connectionProvider = builder.build();
+        ConnectionProvider connectionProvider = workspace.getResource( ConnectionProviderProvider.class,
+                                                                       jdbcResourceId );
         return connectionProvider.getConnection();
     }
 
