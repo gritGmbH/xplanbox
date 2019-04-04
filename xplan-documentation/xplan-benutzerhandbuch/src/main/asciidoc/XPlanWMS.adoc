@@ -40,7 +40,9 @@ http://<host>:<port>/xplan-wms/services/wms?
 [[xplanwms-beispielanfragen]]
 ==== Beispielanfragen
 
-Die Adresse des XPlanWerkWMS ist abhängig von dem Planwerk das angefragt werden soll. Der Name des Plans wird im XPlanManager (s. <<xplanmanager-web>>) in der Ausflistung der Pläne angezeigt und wird in der URL für den Platzhalter <PLANNAME> angegeben.
+Die Adresse des XPlanWerkWMS ist abhängig von dem Planwerk das angefragt werden soll. Der Name des Plans wird im XPlanManager (s. <<xplanmanager-web>>) in der Ausflistung der Pläne angezeigt und wird in der URL für den Platzhalter <PLANNAME> angegeben. Der Platzhalter <PLANNAME> darf jedoch nur bestimmte Zeichen beinhalten: a-z, A-Z, 0-9, _ , - Nicht erlaubte Zeichen sind somit u.a.: &,( ).:; <LEERZEICHEN>, <CR> uvm. Der Planname wie er in der Ausflistung angegeben ist, muss um die nicht erlaubten Zeichen bereinigt werden. So wird aus dem Plannamen 'BPlan "Muster" (8)' der Platzhalter 'BPlanMuster8'.
+
+
 
 [[xplanwms-getcapabilities]]
 ===== GetCapabilities
