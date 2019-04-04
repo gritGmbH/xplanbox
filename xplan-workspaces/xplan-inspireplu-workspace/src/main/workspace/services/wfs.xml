@@ -12,8 +12,20 @@
 
   <EnableTransactions>true</EnableTransactions>
 
+  <!--
+  [0...1] Disable response buffering (allows rollback for generating clean exception reports, but hinders streaming),
+  default: true
+  -->
+  <DisableResponseBuffering>true</DisableResponseBuffering>
+
+  <!-- Constraints in den Capabilities-->
+  <EnableResponsePaging>true</EnableResponsePaging>
+
   <QueryCRS>EPSG:4326</QueryCRS>
   <QueryCRS>EPSG:4258</QueryCRS>
+
+  <!-- Konfiguration von MaxFeatures-->
+  <QueryMaxFeatures>100</QueryMaxFeatures>
 
   <GMLFormat gmlVersion="GML_32">
     <MimeType>application/gml+xml; version=3.2</MimeType>
