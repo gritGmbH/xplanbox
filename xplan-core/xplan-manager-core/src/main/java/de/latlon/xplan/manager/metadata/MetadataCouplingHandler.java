@@ -104,15 +104,16 @@ public class MetadataCouplingHandler {
         String title = planwerkServiceMetadata.getTitle();
         String resourceIdentifier = null;
         String datasetMetadataUrl = null;
+        String serviceMetadataUrl = null;
         if ( planRecordMetadata != null ) {
             resourceIdentifier = getResourceIdentifier( planRecordMetadata );
             datasetMetadataUrl = cswClient.createGetRecordByIdRequest( planRecordMetadata.getRecordId() );
+            serviceMetadataUrl = cswClient.createGetRecordByIdRequest( serviceRecordId );
         }
-        String serviceMetadataUrl = cswClient.createGetRecordByIdRequest( serviceRecordId );
 
         try {
-            xPlanDao.insertPlanWerkWmsMetadata( planId, title, resourceIdentifier, datasetMetadataUrl,
-                                                serviceMetadataUrl );
+            xPlanDao.insertOrReplacePlanWerkWmsMetadata( planId, title, resourceIdentifier, datasetMetadataUrl,
+                                                         serviceMetadataUrl );
         } catch ( Exception e ) {
             new DataServiceCouplingException( "Could not insert in table planwerkwmsmetadata ", e );
         }

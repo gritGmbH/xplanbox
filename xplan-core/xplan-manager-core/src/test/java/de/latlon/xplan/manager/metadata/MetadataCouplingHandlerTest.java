@@ -57,8 +57,8 @@ public class MetadataCouplingHandlerTest {
         assertThat( theRecordIn( directoryToStoreDatasetMetadata ),
                     hasXPath( "//gmd:MD_Metadata/gmd:dateStamp/gco:Date", nsContext() ) );
 
-        verify( xPlanDao, times( 1 ) ).insertPlanWerkWmsMetadata( eq( planId ), eq( planName ), anyString(),
-                                                                  anyString(), anyString() );
+        verify( xPlanDao, times( 1 ) ).insertOrReplacePlanWerkWmsMetadata( eq( planId ), eq( planName ), anyString(),
+                                                                           anyString(), anyString() );
     }
 
     @Test
@@ -75,8 +75,8 @@ public class MetadataCouplingHandlerTest {
 
         Path directoryToStoreDatasetMetadata = config.getDirectoryToStoreDatasetMetadata();
         assertThat( numberOfCreatedRecords( directoryToStoreDatasetMetadata ), is( 0l ) );
-        verify( xPlanDao, times( 1 ) ).insertPlanWerkWmsMetadata( anyInt(), anyString(), anyString(), anyString(),
-                                                                  anyString() );
+        verify( xPlanDao, times( 1 ) ).insertOrReplacePlanWerkWmsMetadata( anyInt(), anyString(), anyString(), anyString(),
+                                                                           anyString() );
     }
 
     private Object numberOfCreatedRecords( Path directoryToStoreDatasetMetadata )

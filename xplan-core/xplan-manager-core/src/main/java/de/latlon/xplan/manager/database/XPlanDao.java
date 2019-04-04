@@ -201,8 +201,8 @@ public class XPlanDao {
      *                 to insert, may be <code>null</code>
      * @throws Exception
      */
-    public void insertPlanWerkWmsMetadata( int planId, String title, String resourceIdentifier,
-                                           String datasetMetadataUrl, String serviceMetadataUrl )
+    public void insertOrReplacePlanWerkWmsMetadata( int planId, String title, String resourceIdentifier,
+                                                    String datasetMetadataUrl, String serviceMetadataUrl )
                     throws Exception {
         Connection conn = null;
         try {
@@ -210,8 +210,8 @@ public class XPlanDao {
             conn = managerWorkspaceWrapper.openConnection();
             conn.setAutoCommit( false );
 
-            insertPlanWerkWmsMetadata( conn, planId, title, resourceIdentifier, datasetMetadataUrl,
-                                       serviceMetadataUrl );
+            insertOrReplacePlanWerkWmsMetadata( conn, planId, title, resourceIdentifier, datasetMetadataUrl,
+                                                serviceMetadataUrl );
             conn.commit();
         } catch ( Exception e ) {
             throw new Exception( "Fehler beim Einfügen: " + e.getMessage(), e );
@@ -1201,20 +1201,21 @@ public class XPlanDao {
         return planId;
     }
 
-    private void insertPlanWerkWmsMetadata( Connection conn, int planId, String title, String resourceIdentifier,
-                                            String datasetMetadataUrl, String serviceMetadataUrl )
+    private void insertOrReplacePlanWerkWmsMetadata( Connection conn, int planId, String title, String resourceIdentifier,
+                                                     String datasetMetadataUrl, String serviceMetadataUrl )
                     throws SQLException {
-        String insertPlanWerkWmsMetadataSql = "INSERT INTO xplanmgr.planwerkwmsmetadata (plan, title, resourceidentifier, datametadataurl, servicemetadataurl) VALUES (?,?,?,?,?)";
         PreparedStatement stmt = null;
         try {
-            stmt = conn.prepareStatement( insertPlanWerkWmsMetadataSql );
+            stmt = conn.prepareStatement( "DELETE FROM xplanmgr.planwerkwmsmetadata WHERE plan = ?" );
+            stmt.setInt( 1, planId );
+            stmt.execute();
 
+            stmt = conn.prepareStatement( "INSERT INTO xplanmgr.planwerkwmsmetadata (plan, title, resourceidentifier, datametadataurl, servicemetadataurl) VALUES (?,?,?,?,?)" );
             stmt.setInt( 1, planId );
             stmt.setString( 2, title );
             stmt.setString( 3, resourceIdentifier );
             stmt.setString( 4, datasetMetadataUrl );
             stmt.setString( 5, serviceMetadataUrl );
-
             stmt.execute();
         } finally {
             closeQuietly( stmt );
