@@ -483,7 +483,7 @@ public class XPlanManager {
         LOG.info( "- Analyse des Vorkommens eines Plans mit gleichem Namen und Planstatus..." );
         XPlanArchive archive = analyzeArchive( pathToArchive );
         XPlanFeatureCollection fc = parseXPlanFeatureCollection( archive );
-        String planName = fc.getPlanName().replaceAll( "[^a-zA-Z0-9\\-_]", "" );
+        String planName = fc.getPlanName();
         boolean planWithSameNameAndStatusExists = xplanDao.checkIfPlanWithSameNameAndStatusExists( planName, status );
         LOG.info( "OK, Plan mit Namen {} und Status {} existiert: {}", planName, status,
                   planWithSameNameAndStatusExists );
