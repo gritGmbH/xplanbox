@@ -16,7 +16,7 @@
       <xplansyn:gmlId>FEATURE_1</xplansyn:gmlId>
       <xplansyn:xpVersion>2.0</xplansyn:xpVersion>
       <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BebauungsplanLA67</xplansyn:xpPlanName>
+      <xplansyn:xpPlanName>Bebauungsplan LA 67</xplansyn:xpPlanName>
       <xplansyn:name>BebauungsplanLA67</xplansyn:name>
       <xplansyn:nummer>LA 67</xplansyn:nummer>
       <xplansyn:beschreibung>Testdaten XPlanGML</xplansyn:beschreibung>

@@ -16,8 +16,8 @@
       <xplansyn:gmlId>FEATURE_1</xplansyn:gmlId>
       <xplansyn:xpVersion>3.0</xplansyn:xpVersion>
       <xplansyn:xpPlanType>BP_Plan</xplansyn:xpPlanType>
-      <xplansyn:xpPlanName>BebauungsplanLA22</xplansyn:xpPlanName>
-      <xplansyn:name>BebauungsplanLA22</xplansyn:name>
+      <xplansyn:xpPlanName>Bebauungsplan LA 22</xplansyn:xpPlanName>
+      <xplansyn:name>Bebauungsplan LA 22</xplansyn:name>
       <xplansyn:nummer>LA 22</xplansyn:nummer>
       <xplansyn:beschreibung>Testdaten XPlanGML</xplansyn:beschreibung>
       <xplansyn:raeumlicherGeltungsbereich>
