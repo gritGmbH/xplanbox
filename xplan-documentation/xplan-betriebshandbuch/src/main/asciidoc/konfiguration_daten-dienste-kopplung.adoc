@@ -1,5 +1,5 @@
 [[konfiguration-daten-dienste-kopplung]]
-=== Konfiguration der Daten
+=== Konfiguration der automatisierten Erstellung von Service-Metadatensätzen
 
 Die XPlanBox bietet die Möglichkeit einen Service-Metadatensatz für einen Plan bzw. dessen XPlanWerkWMS automatisiert zu erstellen. Dafür muss die Konfiguration in der Datei _managerConfiguration.properties_ im Verzeichnis _~/.deegree/manager-configuration/_ angepasst werden. Im folgenden der relevante Abschnitt:
 

@@ -287,3 +287,6 @@ Mit der Version 2.12 der xPlanBox sind verschiedene Erweiterungen umgesetzt word
  * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
  * Aktualisierung der Datenbank:
  ** Ausführen der Skripte im Verzeichnis _from_2.11_to_2.12_ im Modul xplan-update-database
+
+Mit der Version 2.12 wird bei entprechender Konfiguration (s. <<konfiguration-daten-dienste-kopplung>>) beim Import eines Plans geprüft ob für diesen Plan bereits ein Daten-Metadatensatz existiert. Ist dies der Fall wird automatisiert ein Service-Metadatensatz für den Plan bzw. dessen XPlanWerkWMS erstellt.
+Sollen für alle oder einzelne bereits importierten Pläne die Service-Metadatensätze generiert und die dazugehörigen Informationen zur Daten-Dienste-Kopplung, die in den Capabilities des XPlanWerkWMS ausgegeben werden, erstellt werden, steht im Modul xplan-update-database das Werkzeug __serviceMetadatRecordCreator__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt dem Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert.
