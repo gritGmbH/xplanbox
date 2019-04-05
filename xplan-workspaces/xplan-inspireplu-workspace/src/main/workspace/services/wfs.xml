@@ -12,10 +12,7 @@
 
   <EnableTransactions>true</EnableTransactions>
 
-  <!--
-  [0...1] Disable response buffering (allows rollback for generating clean exception reports, but hinders streaming),
-  default: true
-  -->
+  <!-- Streaming muss deaktiviert sein, andernfalls können die @next und @previous URLs im Response nicht angezeigt werden -->
   <DisableResponseBuffering>true</DisableResponseBuffering>
 
   <!-- Constraints in den Capabilities-->
