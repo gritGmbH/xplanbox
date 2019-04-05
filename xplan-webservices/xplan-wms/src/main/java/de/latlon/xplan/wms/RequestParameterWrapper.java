@@ -33,28 +33,28 @@
 
  e-mail: info@deegree.org
  ----------------------------------------------------------------------------*/
-package de.latlon.xplanisk2.wms;
+package de.latlon.xplan.wms;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-
 /**
  * Custom request wrapper that allows to add additional key-value-pairs.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
+ *
  * @version $Revision: $, $Date: $
  */
 public class RequestParameterWrapper extends HttpServletRequestWrapper {
 
     private final Map<String, String[]> additionalParameters = new TreeMap<String, String[]>();
 
+    private String pathInfo;
     /**
      * @param request
      *            to wrap, never <code>null</code>
@@ -107,10 +107,17 @@ public class RequestParameterWrapper extends HttpServletRequestWrapper {
         return Collections.enumeration( getParameterMap().keySet() );
     }
 
+    @Override
+    public String getPathInfo() {
+        if ( pathInfo != null )
+            return pathInfo;
+        return super.getPathInfo();
+    }
+
     /**
      * Appends a new additional key value pair. If an entry with the same key already exists the existing key is
      * overwritten.
-     * 
+     *
      * @param key
      *            of the entry, if <code>null</code> the entry is not added
      * @param value
@@ -158,4 +165,7 @@ public class RequestParameterWrapper extends HttpServletRequestWrapper {
         return valuesAsString.toString();
     }
 
+    public void setPathInfo( String pathInfo ) {
+        this.pathInfo = pathInfo;
+    }
 }

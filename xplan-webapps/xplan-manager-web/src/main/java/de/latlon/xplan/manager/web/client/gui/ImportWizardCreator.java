@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import de.latlon.xplan.manager.web.client.gui.dialog.PlanNameAndStatusDialogBox;
+import de.latlon.xplan.manager.web.client.gui.dialog.WizardDialogBox;
+import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
@@ -220,7 +223,7 @@ public class ImportWizardCreator {
             public void onSuccess( Method method, List<RasterEvaluationResult> response ) {
                 boolean allRastersAreValid = checkIfAllRastersAreValid( response );
                 if ( allRastersAreValid ) {
-                    importPlan( id, internalId, defaultCrs, true, planStatus, startDateTime, endDateTime );
+                    evaluatePlanNameAndStatusAndImportPlan( id, internalId, defaultCrs, true, planStatus, startDateTime, endDateTime );
                 } else {
                     RasterDialog rasterDialog = new RasterDialog( response );
                     rasterDialog.addRasterHandler( createRasterHandler() );
@@ -231,12 +234,12 @@ public class ImportWizardCreator {
                 return new RasterHandler() {
                     @Override
                     public void onConfirmImport() {
-                        importPlan( id, internalId, defaultCrs, false, planStatus, startDateTime, endDateTime );
+                        evaluatePlanNameAndStatusAndImportPlan( id, internalId, defaultCrs, false, planStatus, startDateTime, endDateTime );
                     }
 
                     @Override
                     public void onConfirmForceImport() {
-                        importPlan( id, internalId, defaultCrs, true, planStatus, startDateTime, endDateTime );
+                        evaluatePlanNameAndStatusAndImportPlan( id, internalId, defaultCrs, true, planStatus, startDateTime, endDateTime );
                     }
                 };
             }
@@ -250,6 +253,44 @@ public class ImportWizardCreator {
                 return true;
             }
 
+        } );
+    }
+
+    private void evaluatePlanNameAndStatusAndImportPlan( final String id, final String internalId, final String defaultCrs,
+                                                         final boolean makeRasterConfig, final PlanStatus planStatus,
+                                                         final Date startDateTime, final Date endDateTime ) {
+        getService().evaluatePlanNameAndStatus( id, planStatus.getMessage(), new MethodCallback<PlanNameWithStatusResult>() {
+            @Override
+            public void onFailure( Method method, Throwable caught ) {
+                Window.alert( method.getResponse().getText() );
+            }
+
+            @Override
+            public void onSuccess( Method method, PlanNameWithStatusResult planNameWithStatusResult ) {
+                if ( planNameWithStatusResult.isPlanWithSameNameAndStatusExists() ) {
+                    PlanNameAndStatusDialogBox planNameAndStatusDialogBox = new PlanNameAndStatusDialogBox(
+                                    planNameWithStatusResult.getName(), planStatus );
+                    NextSubmittedHandler nextSubmittedHandler = createNextSubmittedHandler(
+                                    planNameAndStatusDialogBox );
+                    planNameAndStatusDialogBox.addNextSubmittedHandler( nextSubmittedHandler );
+                    planNameAndStatusDialogBox.center();
+                    planNameAndStatusDialogBox.show();
+                } else {
+                    importPlan( id, internalId, defaultCrs, makeRasterConfig, planStatus, startDateTime, endDateTime );
+                }
+            }
+
+            private NextSubmittedHandler createNextSubmittedHandler(
+                            final PlanNameAndStatusDialogBox planNameAndStatusDialogBox ) {
+                return new NextSubmittedHandler() {
+                    @Override
+                    public void onNextSubmitted() {
+                        planNameAndStatusDialogBox.hide();
+                        importPlan( id, internalId, defaultCrs, makeRasterConfig, planStatus, startDateTime,
+                                    endDateTime );
+                    }
+                };
+            }
         } );
     }
 

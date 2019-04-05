@@ -1,11 +1,11 @@
 === XPlanDienste
 
-Die folgenden Informationen gelten für alle von der xPlanBox bereitgestellten XPlanDienste: XPlanWMS, XPlanWFS undXPlanSynWFS.
+Die folgenden Informationen gelten für alle von der xPlanBox bereitgestellten XPlanDienste: XPlanWMS/XPlanWerkWMS, XPlanWFS undXPlanSynWFS.
 
 [[manuelle-anpassung-der-bbox_cache.properties]]
 ==== Manuelle Anpassung der bbox_cache.properties
 
-Aktuell kann es dazu kommen, dass die in den Capabilities-Dokumenten angegebene BoundingBox nicht alle in der xPlanBox importierten Daten umfasst. Dies kann unter anderem zur Folge haben, dass die Daten durch Clients nicht oder nur unvollständig angezeigt werden. Betroffen sind sowohl der XPlanWMS, XPlanWFS sowie XPlanSynWFS.
+Aktuell kann es dazu kommen, dass die in den Capabilities-Dokumenten angegebene BoundingBox nicht alle in der xPlanBox importierten Daten umfasst. Dies kann unter anderem zur Folge haben, dass die Daten durch Clients nicht oder nur unvollständig angezeigt werden. Betroffen sind sowohl der XPlanWMS/XPlanWerkWMS, XPlanWFS sowie XPlanSynWFS.
 
 Es wird daher empfohlen, die BoundingBox manuell auf den Bereich zu konfigurieren, der den gesamten zu beplanenden Bereich umfasst. Dieser kann sowohl bereits importierte als auch zukünftig noch einzupflegende Planwerke beinhalten.
 

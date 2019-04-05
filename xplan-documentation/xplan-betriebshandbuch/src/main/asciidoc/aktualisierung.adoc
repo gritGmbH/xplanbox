@@ -76,6 +76,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 2.9              | ja (<<aktualisierung-auf-die-version-2.9-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-2.9-der-xplanbox, Details>>)
 | 2.10             | ja (<<aktualisierung-auf-die-version-2.10-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.10-der-xplanbox, Details>>)
 | 2.11             | ja (<<aktualisierung-auf-die-version-2.11-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.11-der-xplanbox, Details>>)
+| 2.12             | ja (<<aktualisierung-auf-die-version-2.12-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.12-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -277,3 +278,12 @@ Mit der Version 2.11 der xPlanBox können mehrere Ortsteile im XPlanGML auch dur
 Weiterhin ist mit der Version 2.11 der xPlanBox die Abbildung von Kreisbögen im XPlanSynWFS und XPlanWMS verbessert worden. Um bereits importierte Pläne mit Kreisbögen in der verbesserten Abbildung abgeben zu können, muss eine Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __reSynthesizer__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
 
 Des Weiteren muss die HALE CLI auf Version 3.4.0 aktualisiert werden (siehe <<installation-hale-cli>>).
+
+[[aktualisierung-auf-die-version-2.12-der-xplanbox]]
+=== Aktualisierung auf die Version 2.12 der xPlanBox
+
+Mit der Version 2.12 der xPlanBox sind verschiedene Erweiterungen umgesetzt worden. Für die Aktualisierung auf diese Version sind folgende Schritte auszuführen:
+
+ * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+ * Aktualisierung der Datenbank:
+ ** Ausführen der Skripte im Verzeichnis _from_2.11_to_2.12_ im Modul xplan-update-database

@@ -1,14 +1,6 @@
 package de.latlon.xplan.commons.feature;
 
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
-import static org.deegree.commons.tom.primitive.BaseType.STRING;
-
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.xml.namespace.QName;
-
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.gml.property.PropertyType;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -20,7 +12,13 @@ import org.deegree.feature.types.AppSchema;
 import org.deegree.feature.types.FeatureType;
 import org.deegree.feature.types.property.SimplePropertyType;
 
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
+import javax.xml.namespace.QName;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
+import static org.deegree.commons.tom.primitive.BaseType.STRING;
 
 /**
  * Manipulates a deegree feature collection.
@@ -109,8 +107,8 @@ public class FeatureCollectionManipulator {
     }
 
     private void addInternalIdProperty( AppSchema schema, String internalId, Feature feature ) {
-        Property property = createNewProperty( internalId, feature );
-        int internalIdIndex = calculateInternalIdIndex( schema, feature );
+        Property property = createNewInternalIdProperty( internalId, feature );
+        int internalIdIndex = calculateIndex( schema, feature, INTERNAL_ID_PROP_NAME );
         feature.getProperties().add( internalIdIndex, property );
     }
 
@@ -148,21 +146,21 @@ public class FeatureCollectionManipulator {
         feature.getProperties().add( dateProp );
     }
 
-    private Property createNewProperty( String internalId, Feature feature ) {
+    private Property createNewInternalIdProperty( String internalId, Feature feature ) {
         String namespaceUri = feature.getName().getNamespaceURI();
         QName qName = new QName( namespaceUri, INTERNAL_ID_PROP_NAME );
         SimplePropertyType propertyType = new SimplePropertyType( qName, 0, 1, STRING, null, null );
         return new SimpleProperty( propertyType, internalId );
     }
 
-    private int calculateInternalIdIndex( AppSchema schema, Feature feature ) {
+    private int calculateIndex( AppSchema schema, Feature feature, String propertyName ) {
         int internalIdIndex = 0;
         List<PropertyType> props = retrievePropertiesFromSchema( schema, feature );
         for ( PropertyType prop : props ) {
             QName propName = prop.getName();
             int numberOfPropsInFeature = feature.getProperties( propName ).size();
             internalIdIndex += numberOfPropsInFeature;
-            if ( INTERNAL_ID_PROP_NAME.equals( propName.getLocalPart() ) )
+            if ( propertyName.equals( propName.getLocalPart() ) )
                 break;
         }
         return internalIdIndex;

@@ -8,7 +8,7 @@ ____________________
 * XPlanManagerWeb
 * XPlanValidatorCLI
 * XPlanValidatorWeb
-* XPlanWMS
+* XPlanWMS und XPlanWerkWMS
 * XPlanWFS
 * XPlanSynWFS
 * XPlanInspirePluWMS
@@ -63,11 +63,11 @@ XPlanGML Instanzdokumente zu validieren. Der XPlanValidatorWeb ist auf dem
 Kommandozeilenwerkzeug aufgebaut.
 
 [[xplanwms]]
-=== XPlanWMS
+=== XPlanWMS und XPlanWerkWMS
 
-Der XPlanWMS ist ein auf dem Standard Web Map Service
+Der XPlanWMS und XPlanWerkWMS sind dauf dem Standard Web Map Service
 (Version 1.1.1 und 1.3.0) des Open Geospatial Consortium (OGC)
-basierender Kartendienst. Dieser bietet die Möglichkeit,
+basierende Kartendienste. Diese bieten die Möglichkeit,
 Visualisierungen von Plandaten sowie Sachinformationsabfragen zu
 einzelnen Planinhalten abzufragen. Um diese Plandaten zu visualisieren
 bzw. Sachinformationen abzufragen ist es möglich, sowohl eine einfache
@@ -77,13 +77,16 @@ einer separaten Datenhaltung (In Aufstellung, Festgestellt, Archiviert)
 durch die Auswahl des Planstatus, die dazugehörige Datenhaltung und
 somit der entsprechende XPlanWMS-Endpoint angesprochen.
 
+Während der XPlanWMS planübergreifend arbeitet, beschränkt sich der
+XPlanWerkWMS auf einzelne Planwerke.
+
 ________________________________
-* XPlanWMSInAufstellung ==> In Aufstellung
-* XPlanWMSFestgestellt ==> Festgestellt
-* XPlanWMSArchiviert ==> Archiviert
+* XPlanWMSInAufstellung => In Aufstellung
+* XPlanWMSFestgestellt => Festgestellt
+* XPlanWMSArchiviert => Archiviert
 ________________________________
 
-NOTE: Gleiches gilt für den XPlanWFS bzw. XPlanSynWFS
+NOTE: Gleiches gilt für den XPlanWerkWMS, XPlanWFS und XPlanSynWFS
 
 [[xplanwfs]]
 === XPlanWFS

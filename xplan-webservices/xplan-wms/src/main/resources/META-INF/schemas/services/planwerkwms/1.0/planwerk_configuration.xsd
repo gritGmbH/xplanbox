@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.lat-lon.de/services/planwerk" elementFormDefault="qualified"
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        jaxb:version="2.1">
+
+  <annotation>
+    <appinfo>
+      <jaxb:schemaBindings>
+        <jaxb:package name="org.deegree.services.planwerk.jaxb"/>
+      </jaxb:schemaBindings>
+    </appinfo>
+  </annotation>
+
+  <element name="Planwerk">
+    <complexType>
+      <sequence>
+        <element name="PlanwerkWms" type="string"/>
+        <element name="Name" type="string"/>
+        <element name="Envelope" type="string"/>
+        <element name="ManagerId" type="int" maxOccurs="unbounded"/>
+        <element name="WmsTitle" type="string" minOccurs="0" maxOccurs="unbounded"/>
+        <element name="ResourceIdentifier" type="string" minOccurs="0" maxOccurs="unbounded"/>
+        <element name="DataMetadataUrl" type="string" minOccurs="0" maxOccurs="unbounded"/>
+        <element name="ServiceMetadataUrl" type="string" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+
+</schema>

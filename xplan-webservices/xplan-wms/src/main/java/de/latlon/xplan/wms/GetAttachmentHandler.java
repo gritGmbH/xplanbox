@@ -1,4 +1,4 @@
-package de.latlon.xplanisk2.wms;
+package de.latlon.xplan.wms;
 
 import static org.apache.commons.io.IOUtils.closeQuietly;
 
