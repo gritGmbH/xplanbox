@@ -146,7 +146,7 @@ public class MetadataCouplingHandler {
     }
 
     private String createFileName( String planName, LocalDateTime now ) {
-        String normalizedPlanName = planName.replace( "[^a-zA-Z0-9\\-_]", "" );
+        String normalizedPlanName = planName.replaceAll( "[^a-zA-Z0-9\\-_]", "" );
         return normalizedPlanName + "_" + now.format( DATE_TIME_FILE_FORMAT ) + ".xml";
     }
 
@@ -166,8 +166,8 @@ public class MetadataCouplingHandler {
             properties.setProperty( "SOUTH_BOUND_LAT", COORD_FORMAT.format( envelope.getMin().get1() ) );
             properties.setProperty( "NORTH_BOUND_LAT", COORD_FORMAT.format( envelope.getMax().get1() ) );
         }
-        properties.setProperty( "OPERATESON_RESOURCE_URL", planRecordMetadata.getResourceIdentifier() );
-        properties.setProperty( "OPERATESON_RESOURCE_IDENTIFIER", planRecordMetadata.getRecordId() );
+        properties.setProperty( "DATA_METADATA_RESOURCEIDENTIFIER", planRecordMetadata.getResourceIdentifier() );
+        properties.setProperty( "DATA_METADATA_FILEIDENTIFIER", planRecordMetadata.getRecordId() );
         setProperty( properties, "PLANWERKWMS_CAPABILITIES",
                      planwerkServiceMetadata.getPlanwerkWmsGetCapabilitiesUrl() );
         return properties;

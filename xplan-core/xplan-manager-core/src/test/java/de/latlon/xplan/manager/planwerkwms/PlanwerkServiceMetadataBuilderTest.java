@@ -31,7 +31,7 @@ public class PlanwerkServiceMetadataBuilderTest {
 
     private static ICRS EPSG4326;
 
-    private final String title = "test";
+    private final String planName = "test mit leer";
 
     private final String description = "test descr";
 
@@ -55,21 +55,20 @@ public class PlanwerkServiceMetadataBuilderTest {
 
         CoupledResourceConfiguration configuration = createConfig();
         PlanwerkServiceMetadataBuilder planwerkServiceMetadataBuilder = new PlanwerkServiceMetadataBuilder( BP_Plan,
-                                                                                                            title,
+                                                                                                            planName,
                                                                                                             description,
                                                                                                             envelope,
                                                                                                             configuration );
         PlanwerkServiceMetadata planwerkServiceMetadata = planwerkServiceMetadataBuilder.build( EPSG25832 );
 
-        assertThat( planwerkServiceMetadata.getTitle(), is( title ) );
+        assertThat( planwerkServiceMetadata.getTitle(), is( planName ) );
         assertThat( planwerkServiceMetadata.getDescription(), is( description ) );
         assertThat( planwerkServiceMetadata.getEnvelope(), is( envelope ) );
         assertThat( planwerkServiceMetadata.getPlanwerkWmsGetCapabilitiesUrl(),
-                    is( planWerkBaseUrl + "/services/planwerkwms/planname/" + title
-                        + "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities" ) );
+                    is( planWerkBaseUrl + "/services/planwerkwms/planname/testmitleer?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities" ) );
 
         String getMapUrl = planwerkServiceMetadata.getPlanwerkWmsGetMapUrl();
-        assertThat( getMapUrl, startsWith( planWerkBaseUrl + "/services/planwerkwms/planname/" + title + "?" ) );
+        assertThat( getMapUrl, startsWith( planWerkBaseUrl + "/services/planwerkwms/planname/testmitleer?" ) );
         assertThat( getMapUrl, containsString( "LAYERS=" + layer ) );
         assertThat( getMapUrl, containsString( "STYLES=" + style ) );
         assertThat( getMapUrl, containsString( "WIDTH=" + configuration.getPlanWerkWmsGetMapWidth() ) );
@@ -84,7 +83,7 @@ public class PlanwerkServiceMetadataBuilderTest {
 
         CoupledResourceConfiguration configuration = createConfig();
         PlanwerkServiceMetadataBuilder planwerkServiceMetadataBuilder = new PlanwerkServiceMetadataBuilder( BP_Plan,
-                                                                                                            title,
+                                                                                                            planName,
                                                                                                             description,
                                                                                                             envelope,
                                                                                                             configuration );
@@ -103,7 +102,7 @@ public class PlanwerkServiceMetadataBuilderTest {
 
         CoupledResourceConfiguration configuration = createConfig();
         PlanwerkServiceMetadataBuilder planwerkServiceMetadataBuilder = new PlanwerkServiceMetadataBuilder( BP_Plan,
-                                                                                                            title,
+                                                                                                            planName,
                                                                                                             description,
                                                                                                             envelope,
                                                                                                             configuration );
@@ -124,7 +123,7 @@ public class PlanwerkServiceMetadataBuilderTest {
 
         CoupledResourceConfiguration configuration = createConfig();
         PlanwerkServiceMetadataBuilder planwerkServiceMetadataBuilder = new PlanwerkServiceMetadataBuilder( BP_Plan,
-                                                                                                            title,
+                                                                                                            planName,
                                                                                                             description,
                                                                                                             envelope,
                                                                                                             configuration );

@@ -128,7 +128,7 @@ public class PlanwerkServiceMetadataBuilder {
     private String normalizedPlanName( String planName ) {
         if ( !planName.matches( "^[a-zA-Z0-9\\-_]*$" ) ) {
             LOG.info( "Remove other characters than a-z, A-Z, -, _ from the plan name" );
-            return planName.replace( "[^a-zA-Z0-9\\-_]", "" );
+            return planName.replaceAll( "[^a-zA-Z0-9\\-_]", "" );
         }
         return planName;
     }
