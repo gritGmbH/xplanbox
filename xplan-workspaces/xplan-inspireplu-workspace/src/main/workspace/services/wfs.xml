@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<deegreeWFS configVersion="3.4.0" xmlns="http://www.deegree.org/services/wfs"
+<deegreeWFS configVersion="3.4.0"
+            xmlns="http://www.deegree.org/services/wfs"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://www.deegree.org/services/wfs http://schemas.deegree.org/services/wfs/3.4.0/wfs_configuration.xsd">
 
@@ -11,8 +12,20 @@
 
   <EnableTransactions>true</EnableTransactions>
 
+  <!--
+  [0...1] Disable response buffering (allows rollback for generating clean exception reports, but hinders streaming),
+  default: true
+  -->
+  <DisableResponseBuffering>true</DisableResponseBuffering>
+
+  <!-- Constraints in den Capabilities-->
+  <EnableResponsePaging>true</EnableResponsePaging>
+
   <QueryCRS>EPSG:4326</QueryCRS>
   <QueryCRS>EPSG:4258</QueryCRS>
+
+  <!-- Konfiguration von MaxFeatures-->
+  <QueryMaxFeatures>100</QueryMaxFeatures>
 
   <GMLFormat gmlVersion="GML_32">
     <MimeType>application/gml+xml; version=3.2</MimeType>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
                   xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:sed="http://www.deegree.org/se"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
@@ -27,33 +28,11 @@
       <Stroke>
         <SvgParameter name="stroke">#d2884b</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">5</SvgParameter>
+        <SvgParameter name="stroke-width">3.0</SvgParameter>
+        <SvgParameter name="stroke-linecap">square</SvgParameter>
+        <SvgParameter name="stroke-linejoin">round</SvgParameter>
       </Stroke>
-    </PolygonSymbolizer>
-    <PolygonSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Stroke>
-        <GraphicStroke>
-          <Graphic>
-            <Mark>
-              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../symbols/FreeSans.ttf"/>
-              <Format>ttf</Format>
-              <MarkIndex>44</MarkIndex>
-              <Fill>
-                <SvgParameter name="fill">#000000</SvgParameter>
-              </Fill>
-              <Stroke>
-                <SvgParameter name="stroke">#000000</SvgParameter>
-                <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-                <SvgParameter name="stroke-width">0.1</SvgParameter>
-              </Stroke>
-            </Mark>
-            <Size>4.5</Size>
-          </Graphic>
-        </GraphicStroke>
-      </Stroke>
+      <sed:PerpendicularOffset type="Standard">1.5</sed:PerpendicularOffset>
     </PolygonSymbolizer>
     <PolygonSymbolizer uom="meter">
       <Geometry>
@@ -62,11 +41,11 @@
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
-        <SvgParameter name="stroke-linecap">round</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">round</SvgParameter>
       </Stroke>
-      <PerpendicularOffset>2.5</PerpendicularOffset>
+      <sed:PerpendicularOffset type="Standard">2.75</sed:PerpendicularOffset>
     </PolygonSymbolizer>
     <PolygonSymbolizer uom="meter">
       <Geometry>
@@ -75,11 +54,25 @@
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
-        <SvgParameter name="stroke-linecap">round</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">round</SvgParameter>
       </Stroke>
-      <PerpendicularOffset>-2.5</PerpendicularOffset>
+      <sed:PerpendicularOffset type="Standard">-0</sed:PerpendicularOffset>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">3</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+        <SvgParameter name="stroke-dasharray">0.50 3</SvgParameter>
+      </Stroke>
+      <sed:PerpendicularOffset type="Standard">1.5</sed:PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 
@@ -182,7 +175,7 @@
       </Geometry>
       <Graphic>
         <Mark>
-          <WellKnownName>square</WellKnownName>
+          <WellKnownName>circle</WellKnownName>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
             <SvgParameter name="fill-opacity">0.0</SvgParameter>
@@ -215,9 +208,9 @@
             <SvgParameter name="stroke-width">0.1</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>5</Size>
+        <Size>4</Size>
         <Displacement>
-          <DisplacementX>0.2</DisplacementX>
+          <DisplacementX>0.25</DisplacementX>
           <DisplacementY>0</DisplacementY>
         </Displacement>
       </Graphic>
