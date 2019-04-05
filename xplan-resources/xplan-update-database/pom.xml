@@ -38,6 +38,10 @@
               <mainClass>de.latlon.xplan.update.tool.ReSynthesizerTool</mainClass>
               <name>reSynthesizer</name>
             </program>
+            <program>
+              <mainClass>de.latlon.xplan.update.tool.ServiceMetadataRecordCreationTool</mainClass>
+              <name>serviceMetadatRecordCreator</name>
+            </program>
           </programs>
         </configuration>
       </plugin>
@@ -53,6 +57,7 @@
                     <include name="databaseUpdate" />
                     <include name="districtUpdate" />
                     <include name="reSynthesizer" />
+                    <include name="serviceMetadatRecordCreator" />
                   </fileset>
                 </chmod>
               </tasks>

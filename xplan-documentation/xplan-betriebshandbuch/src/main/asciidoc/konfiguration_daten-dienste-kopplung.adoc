@@ -1,0 +1,68 @@
+[[konfiguration-daten-dienste-kopplung]]
+=== Konfiguration der automatisierten Erstellung von Service-Metadatensätzen
+
+Die XPlanBox bietet die Möglichkeit einen Service-Metadatensatz für einen Plan bzw. dessen XPlanWerkWMS automatisiert zu erstellen. Dafür muss die Konfiguration in der Datei _managerConfiguration.properties_ im Verzeichnis _~/.deegree/manager-configuration/_ angepasst werden. Im folgenden der relevante Abschnitt:
+
+---------
+#Daten-Dienste-Kopplung
+planWerkWmsBaseUrl=http://localhost:8083/xplan-planwerk-wms/
+planWerkWmsGetMapLayers_BP_Plan=BP_Planvektor
+planWerkWmsGetMapStyles_BP_Plan=
+planWerkWmsGetMapLayers_FP_Plan=FP_Planvektor
+planWerkWmsGetMapStyles_FP_Plan=
+planWerkWmsGetMapLayers_RP_Plan=RP_Planvektor
+planWerkWmsGetMapStyles_RP_Plan=
+planWerkWmsGetMapLayers_LP_Plan=LP_Planvektor
+planWerkWmsGetMapStyles_LP_Plan=
+planWerkWmsGetMapLayers_SO_Plan=SO_Planvektor
+planWerkWmsGetMapStyles_SO_Plan=
+planWerkWmsGetMapWidth=750
+planWerkWmsGetMapHeight=750
+cswUrlProvidingDatasetMetadata=https://metaver.de/csw?SERVICE=CSW&REQUEST=GetCapabilities
+#the directory must be existing and writeable
+directoryToStoreDatasetMetadata=/tmp/
+---------
+
+Erläuterung der einzelnen Properties:
+
+ * *planWerkWmsBaseUrl*: Basis-URL des XPlanWerkWMS, z.B. http://localhost:8083/xplan-wms/
+ * *planWerkWmsGetMapLayers_BP_Plan* und *planWerkWmsGetMapStyles_BP_Plan*: Angabe der zu verwendenen Layer und Styles, die in der GetMap Anfrage (GraphicOverview) angegeben werden sollen
+ * *planWerkWmsGetMapWidth* und *planWerkWmsGetMapHeight*: Angabe der zu verwendenen Höhe und Breite des Kartenbildes in Pixeln, die in der GetMap Anfrage (GraphicOverview) angegeben werden sollen
+ * *cswUrlProvidingDatasetMetadata*: GetCapabilities URL des CSW, der Daten-Metadatensätze zu einem Plan bereitstellt
+ * *directoryToStoreDatasetMetadata*: Verzeichnis in dem die erstellen Service-Metadatensätze abgelegt werden (das Verzeichnis muss beim Start des Tomcats in dem sich die xplanwebapp -manager-web befindet existieren) 
+
+Weiterhin muss im Verzeichnis <MANAGER_WEB>/metadata die Datei _service-iso-metadata-template.xml_ liegen (zum Zeitpunkt des Start des Tomcats in dem dem sich die xplanwebapp -manager-web befindet). Diese Datei dient als Template für den erstellten Service-Metadatensatz. Folgende Platzhalter werden bei der Erstellung des Service-Metadatensatz durch entsprechende Werte ausgetauscht und können im Template verwendet werden:
+
+ * *METADATA_ID*: generierte UUID als FileIdentifier für den generierten Metadatensatz
+ * *CURRENT_DATE*: Aktuelles Datum
+ * *CURRENT_DATE_TIME*: Aktuelles Datum und Uhrzeit
+ * *TITLE*: Titel des WMS
+ * *ABSTRACT*: Beschreibung des Plans
+ * *PLANWERKWMS_OVERVIEW*: generierte GetMap-URL des XPlanWerkWMS mit dem Geltungsbereich des Planwerks
+ * *WEST_BOUND_LONG*, *EAST_BOUND_LONG*, *SOUTH_BOUND_LAT*, *NORTH_BOUND_LAT*: räumlicher Geltungsbereich des Plans
+ * *DATA_METADATA_RESOURCEIDENTIFIER*: GetRecordById-URL zur Abfrage des Daten-Metadatensatz (generiert aus dem FileIdentifier des Daten-Metadatensatz)
+ * *DATA_METADATA_FILEIDENTIFIER*: ResourceIdentifier aus dem Daten-Metadatensatz
+ * *PLANWERKWMS_CAPABILITIES*: generierte GetCapabilities-URL des XPlanWerkWMS
+
+*Hinweise*
+
+Die Anfrage des Daten-Metadatensatzes erfolgt mit Hilfe des Plannamens aus dem XPlanGML:
+
+---------
+<csw:GetRecords xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:apiso="http://www.opengis.net/cat/csw/apiso/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="CSW" version="2.0.2" maxRecords="1" startPosition="1" resultType="results" outputFormat="application/xml" outputSchema="http://www.isotc211.org/2005/gmd" xsi:schemaLocation="http://www.opengis.net/cat/csw/2.0.2 http://schemas.opengis.net/csw/2.0.2/CSW-discovery.xsd">
+  <csw:Query typeNames="gmd:MD_Metadata">
+    <csw:ElementSetName typeNames="gmd:MD_Metadata">full</csw:ElementSetName>
+    <csw:Constraint version="1.1.0">
+      <ogc:Filter>
+        <ogc:PropertyIsLike wildCard="%" singleChar="_" escapeChar="\">
+          <ogc:PropertyName>apiso:title</ogc:PropertyName>
+          <ogc:Literal>%PLANNAME%</ogc:Literal>
+        </ogc:PropertyIsLike>
+      </ogc:Filter>
+    </csw:Constraint>
+  </csw:Query>
+</csw:GetRecords>
+---------
+
+Werden mehrere Datensätze gefunden, wird nur einer verwendet (maxRecords="1" ). Es wird eine Warnung im Log ausgegeben. Beim Editieren wird ebenfalls ein neuere Daten-Metadatensatz erstellt, sofern beim Editieren der Planname oder die Beschreibung verändert wurde.
+

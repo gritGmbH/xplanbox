@@ -361,6 +361,11 @@
         <artifactId>deegree-featurestore-commons</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.deegree</groupId>
+        <artifactId>deegree-protocol-csw</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
       <!-- geotools -->
       <dependency>
         <groupId>org.geotools</groupId>

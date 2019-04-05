@@ -5,6 +5,7 @@ import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
+import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -25,7 +26,6 @@ import javax.xml.namespace.QName;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
 import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValues;
@@ -86,7 +86,7 @@ public class XPlanFeatureCollectionBuilder {
         String planFeatureNamespaceUri = planFeature.getName().getNamespaceURI();
         XPlanVersion version = XPlanVersion.valueOfNamespace( planFeatureNamespaceUri );
         XPlanAde ade = determineAde( planFeatureNamespaceUri );
-        String name = parsePlanName( planFeature );
+        String name = FeatureCollectionUtils.retrievePlanName( planFeature );
         String nummer = parsePlanNummer( planFeature );
         String gkz = parsePlanGemeindeKennzahl( planFeature );
         Date planReleaseDate = parsePlanReleaseDate( xPlanType, planFeature );
@@ -103,15 +103,6 @@ public class XPlanFeatureCollectionBuilder {
         } catch ( IllegalArgumentException e ) {
         }
         return null;
-    }
-
-    private String parsePlanName( Feature planFeature ) {
-        String ns = planFeature.getName().getNamespaceURI();
-        String name = getPropertyStringValue( planFeature, new QName( ns, "name" ) );
-        if ( name == null || name.isEmpty() ) {
-            name = "Unbenannter XPlan (" + UUID.randomUUID().toString() + ")";
-        }
-        return name;
     }
 
     private String parsePlanNummer( Feature planFeature ) {

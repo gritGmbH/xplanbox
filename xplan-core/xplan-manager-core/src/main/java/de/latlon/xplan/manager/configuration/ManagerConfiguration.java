@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -91,6 +92,8 @@ public class ManagerConfiguration {
     private String pathToHaleCli;
 
     private Path pathToHaleProjectDirectory;
+
+    private CoupledResourceConfiguration coupledResourceConfiguration;
 
     public ManagerConfiguration( PropertiesLoader propertiesLoader )
                     throws ConfigurationException {
@@ -209,6 +212,13 @@ public class ManagerConfiguration {
         return pathToHaleProjectDirectory;
     }
 
+    /**
+     * @return the configuration to process coupled resources, may be <code>null</code>
+     */
+    public CoupledResourceConfiguration getCoupledResourceConfiguration() {
+        return coupledResourceConfiguration;
+    }
+
     private void loadProperties( PropertiesLoader propertiesLoader )
                     throws ConfigurationException {
         if ( propertiesLoader != null ) {
@@ -235,8 +245,9 @@ public class ManagerConfiguration {
                 parseSemanticConformityLinkConfiguration( loadProperties );
                 pathToHaleCli = loadProperties.getProperty( PATH_TO_HALE_CLI );
                 pathToHaleProjectDirectory = parsePathToHaleProjectDirectory( propertiesLoader );
+                coupledResourceConfiguration = CoupledResourceConfiguration.parseCoupledResourceConfiguration( propertiesLoader, loadProperties );
             }
-            configDirectory = getConfigDirectory( propertiesLoader, "synthesizer" );
+            configDirectory = propertiesLoader.resolveDirectory( "synthesizer" );
         }
     }
 
@@ -286,6 +297,13 @@ public class ManagerConfiguration {
         LOG.info( "-------------------------------------------" );
         LOG.info( "  path to HALE CLI: {}", pathToHaleCli );
         LOG.info( "  path to HALE project: {}", pathToHaleProjectDirectory );
+        LOG.info( "-------------------------------------------" );
+        LOG.info( "  CoupledResource" );
+        if ( coupledResourceConfiguration == null ) {
+            LOG.info( "   - not configured" );
+        } else {
+            coupledResourceConfiguration.logConfiguration( LOG );
+        }
         LOG.info( "-------------------------------------------" );
         sortConfiguration.logConfiguration( LOG );
         LOG.info( "-------------------------------------------" );
@@ -413,17 +431,14 @@ public class ManagerConfiguration {
     }
 
     private Path parsePathToHaleProjectDirectory( PropertiesLoader propertiesLoader ) {
-        Path haleProject = getConfigDirectory( propertiesLoader, "hale" );
-        if ( haleProject != null && Files.exists( haleProject ) && Files.isDirectory( haleProject ) )
+        Path haleProject = propertiesLoader.resolveDirectory( "hale" );
+        if ( directoryExistsAndIsDirectory( haleProject ) )
             return haleProject;
         return null;
     }
 
-    private Path getConfigDirectory( PropertiesLoader propertiesLoader, String subdirectory ) {
-        Path configDirectory = propertiesLoader.getConfigDirectory();
-        if ( configDirectory != null )
-            return configDirectory.resolve( subdirectory );
-        return null;
+    private boolean directoryExistsAndIsDirectory( Path directory ) {
+        return directory != null && Files.exists( directory ) && Files.isDirectory( directory );
     }
 
     private Double parseScaleDenominator( Properties properties, String propName ) {

@@ -4,6 +4,7 @@ import static org.apache.commons.io.IOUtils.closeQuietly;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.Properties;
 
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
@@ -22,6 +23,14 @@ public abstract class AbstractPropertiesLoader implements PropertiesLoader {
         if ( filePath != null ) {
             return loadProperties( filePath );
         }
+        return null;
+    }
+
+    @Override
+    public Path resolveDirectory( String subdirectory ) {
+        Path configDirectory = getConfigDirectory();
+        if ( configDirectory != null )
+            return configDirectory.resolve( subdirectory );
         return null;
     }
 
