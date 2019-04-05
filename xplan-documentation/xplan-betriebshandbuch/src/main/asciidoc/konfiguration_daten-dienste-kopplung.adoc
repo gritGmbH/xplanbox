@@ -19,8 +19,6 @@ planWerkWmsGetMapStyles_SO_Plan=
 planWerkWmsGetMapWidth=750
 planWerkWmsGetMapHeight=750
 cswUrlProvidingDatasetMetadata=https://metaver.de/csw?SERVICE=CSW&REQUEST=GetCapabilities
-#URl providing a metadata resource, ${METADATA_RECORD_IDENTIFIER} is a placeholder for the id of the metadata record
-metadataResourceTemplate=https://registry.gdi-de.org/id/de.hh/${METADATA_RECORD_IDENTIFIER}
 #the directory must be existing and writeable
 directoryToStoreDatasetMetadata=/tmp/
 ---------
@@ -31,9 +29,9 @@ Erläuterung der einzelnen Properties:
  * *planWerkWmsGetMapLayers_BP_Plan* und *planWerkWmsGetMapStyles_BP_Plan*: Angabe der zu verwendenen Layer und Styles, die in der GetMap Anfrage (GraphicOverview) angegeben werden sollen
  * *planWerkWmsGetMapWidth* und *planWerkWmsGetMapHeight*: Angabe der zu verwendenen Höhe und Breite des Kartenbildes in Pixeln, die in der GetMap Anfrage (GraphicOverview) angegeben werden sollen
  * *cswUrlProvidingDatasetMetadata*: GetCapabilities URL des CSW, der Daten-Metadatensätze zu einem Plan bereitstellt
- * *metadataResourceTemplate*: Verzeichnis in dem die erstellen Service-Metadatensätze abgelegt werden (das Verzeichnis muss existieren) 
+ * *directoryToStoreDatasetMetadata*: Verzeichnis in dem die erstellen Service-Metadatensätze abgelegt werden (das Verzeichnis muss beim Start des Tomcats in dem sich die xplanwebapp -manager-web befindet existieren) 
 
-Weiterhin muss im Verzeichnis <MANAGER_WEB>/metadata die Datei _service-iso-metadata-template.xml_ liegen. Diese Datei dient als Template für den erstellten Service-Metadatensatz. Folgende Platzhalter werden bei der Erstellung des Service-Metadatensatz durch entsprechende Werte ausgetauscht und können im Template verwendet werden:
+Weiterhin muss im Verzeichnis <MANAGER_WEB>/metadata die Datei _service-iso-metadata-template.xml_ liegen (zum Zeitpunkt des Start des Tomcats in dem dem sich die xplanwebapp -manager-web befindet). Diese Datei dient als Template für den erstellten Service-Metadatensatz. Folgende Platzhalter werden bei der Erstellung des Service-Metadatensatz durch entsprechende Werte ausgetauscht und können im Template verwendet werden:
 
  * *METADATA_ID*: generierte UUID als FileIdentifier für den generierten Metadatensatz
  * *CURRENT_DATE*: Aktuelles Datum
