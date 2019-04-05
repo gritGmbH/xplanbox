@@ -434,7 +434,7 @@
               <gco:CharacterString>GetCapabilities</gco:CharacterString>
             </srv:operationName>
             <srv:identifier>
-              <gco:CharacterString>${COUPLED_METADATA_RESOURCE_URL}</gco:CharacterString>
+              <gco:CharacterString>${DATA_METADATA_RESOURCEIDENTIFIER}</gco:CharacterString>
             </srv:identifier>
           </srv:SV_CoupledResource>
         </srv:coupledResource>
@@ -444,7 +444,7 @@
               <gco:CharacterString>GetMap</gco:CharacterString>
             </srv:operationName>
             <srv:identifier>
-              <gco:CharacterString>${COUPLED_METADATA_RESOURCE_URL}</gco:CharacterString>
+              <gco:CharacterString>${DATA_METADATA_RESOURCEIDENTIFIER}</gco:CharacterString>
             </srv:identifier>
           </srv:SV_CoupledResource>
         </srv:coupledResource>
@@ -454,7 +454,7 @@
               <gco:CharacterString>GetFeatureInfo</gco:CharacterString>
             </srv:operationName>
             <srv:identifier>
-              <gco:CharacterString>${COUPLED_METADATA_RESOURCE_URL}</gco:CharacterString>
+              <gco:CharacterString>${DATA_METADATA_RESOURCEIDENTIFIER}</gco:CharacterString>
             </srv:identifier>
           </srv:SV_CoupledResource>
         </srv:coupledResource>
@@ -1309,8 +1309,8 @@
             </srv:connectPoint>
           </srv:SV_OperationMetadata>
         </srv:containsOperations>
-        <srv:operatesOn xmlns:xlink="http://www.w3.org/1999/xlink" uuidref="${COUPLED_METADATA_RESOURCE_IDENTIFIER}"
-                        xlink:href="${COUPLED_METADATA_RESOURCE_URL}"/>
+        <srv:operatesOn xmlns:xlink="http://www.w3.org/1999/xlink" uuidref="${DATA_METADATA_FILEIDENTIFIER}"
+                        xlink:href="${DATA_METADATA_RESOURCEIDENTIFIER}"/>
       </srv:SV_ServiceIdentification>
     </gmd:identificationInfo>
     <gmd:distributionInfo>

@@ -25,16 +25,19 @@ public class PlanwerkServiceMetadataBuilder {
 
     private final String title;
 
+    private final String normalizedPlanName;
+
     private final String description;
 
     private final Envelope envelope;
 
     private final CoupledResourceConfiguration coupledResourceConfiguration;
 
-    public PlanwerkServiceMetadataBuilder( XPlanType planType, String title, String description, Envelope envelope,
+    public PlanwerkServiceMetadataBuilder( XPlanType planType, String planName, String description, Envelope envelope,
                                            CoupledResourceConfiguration coupledResourceConfiguration ) {
         this.planType = planType;
-        this.title = title;
+        this.title = planName;
+        this.normalizedPlanName = normalizedPlanName( planName );
         this.description = description;
         this.envelope = envelope;
         this.coupledResourceConfiguration = coupledResourceConfiguration;
@@ -42,31 +45,30 @@ public class PlanwerkServiceMetadataBuilder {
 
     public PlanwerkServiceMetadata build( ICRS crs ) {
         String planWerkWmsBaseUrl = coupledResourceConfiguration.getPlanWerkWmsBaseUrl();
-        String planwerkWmsGetCapabilitiesUrl = createPlanWerkWmsGetCapabilitiesUrl( planWerkWmsBaseUrl, title );
-        String planwerkWmsGetMapUrl = createPlanWerkWmsGetMapUrl( planWerkWmsBaseUrl, title, envelope, crs );
+        String planwerkWmsGetCapabilitiesUrl = createPlanWerkWmsGetCapabilitiesUrl( planWerkWmsBaseUrl );
+        String planwerkWmsGetMapUrl = createPlanWerkWmsGetMapUrl( planWerkWmsBaseUrl, crs );
         return new PlanwerkServiceMetadata( title, description, envelope, planwerkWmsGetCapabilitiesUrl,
                                             planwerkWmsGetMapUrl );
     }
 
-    private String createPlanWerkWmsGetCapabilitiesUrl( String planWerkWmsBaseUrl, String planName ) {
+    private String createPlanWerkWmsGetCapabilitiesUrl( String planWerkWmsBaseUrl ) {
         StringBuilder url = new StringBuilder();
         url.append( planWerkWmsBaseUrl );
         if ( !planWerkWmsBaseUrl.endsWith( "/" ) )
             url.append( "/" );
         url.append( "services/planwerkwms/planname/" );
-        url.append( planName );
+        url.append( normalizedPlanName );
         url.append( "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities" );
         return url.toString();
     }
 
-    private String createPlanWerkWmsGetMapUrl( String planWerkWmsBaseUrl, String planName, Envelope envelope,
-                                               ICRS crs ) {
+    private String createPlanWerkWmsGetMapUrl( String planWerkWmsBaseUrl, ICRS crs ) {
         StringBuilder url = new StringBuilder();
         url.append( planWerkWmsBaseUrl );
         if ( !planWerkWmsBaseUrl.endsWith( "/" ) )
             url.append( "/" );
         url.append( "services/planwerkwms/planname/" );
-        url.append( planName );
+        url.append( normalizedPlanName );
         url.append( "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap" );
         url.append( "&LAYERS=" ).append( coupledResourceConfiguration.getLayerByType( planType ) );
         url.append( "&STYLES=" ).append( coupledResourceConfiguration.getStyleByType( planType ) );
@@ -121,6 +123,14 @@ public class PlanwerkServiceMetadataBuilder {
             LOG.warn( "Could not transform bbox to " + crs, e );
             return envelope;
         }
+    }
+
+    private String normalizedPlanName( String planName ) {
+        if ( !planName.matches( "^[a-zA-Z0-9\\-_]*$" ) ) {
+            LOG.info( "Remove other characters than a-z, A-Z, -, _ from the plan name" );
+            return planName.replace( "[^a-zA-Z0-9\\-_]", "" );
+        }
+        return planName;
     }
 
 }

@@ -88,12 +88,12 @@ public class ServiceMetadataRecordCreator {
         FeatureCollection features = xPlanDao.retrieveFeatureCollection( plan );
         XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder( features, type ).build();
 
-        String title = retrievePlanName( features, type );
+        String planName = retrievePlanName( features, type );
         String description = retrieveDescription( features, type );
         Envelope envelope = xPlanFeatureCollection.getBboxIn4326();
 
         CoupledResourceConfiguration coupledResourceConfiguration = managerConfiguration.getCoupledResourceConfiguration();
-        PlanwerkServiceMetadataBuilder builder = new PlanwerkServiceMetadataBuilder( type, title, description, envelope,
+        PlanwerkServiceMetadataBuilder builder = new PlanwerkServiceMetadataBuilder( type, planName, description, envelope,
                                                                                      coupledResourceConfiguration );
         PlanwerkServiceMetadata planwerkServiceMetadata = builder.build(
                         lookup( managerConfiguration.getRasterConfigurationCrs() ) );

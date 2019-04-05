@@ -106,7 +106,7 @@ public class MetadataCouplingHandler {
         String datasetMetadataUrl = null;
         String serviceMetadataUrl = null;
         if ( planRecordMetadata != null ) {
-            resourceIdentifier = getResourceIdentifier( planRecordMetadata );
+            resourceIdentifier = planRecordMetadata.getResourceIdentifier();
             datasetMetadataUrl = cswClient.createGetRecordByIdRequest( planRecordMetadata.getRecordId() );
             serviceMetadataUrl = cswClient.createGetRecordByIdRequest( serviceRecordId );
         }
@@ -119,15 +119,11 @@ public class MetadataCouplingHandler {
         }
     }
 
-    private String getResourceIdentifier( PlanRecordMetadata planRecordMetadata ) {
-        return planRecordMetadata.getResourceIdentifier();
-    }
-
     private Path createServiceMetadataDocument( String planName, LocalDateTime now, Properties properties )
                     throws DataServiceCouplingException {
         OutputStream outputStream = null;
         try {
-            String fileName = planName + "_" + now.format( DATE_TIME_FILE_FORMAT ) + ".xml";
+            String fileName = createFileName( planName, now );
             Path target = directoryToStoreDatasetMetadata.resolve( fileName );
             LOG.info( "Write Planwerk WMS service document to {}", target );
             outputStream = Files.newOutputStream( target );
@@ -149,6 +145,11 @@ public class MetadataCouplingHandler {
         }
     }
 
+    private String createFileName( String planName, LocalDateTime now ) {
+        String normalizedPlanName = planName.replace( "[^a-zA-Z0-9\\-_]", "" );
+        return normalizedPlanName + "_" + now.format( DATE_TIME_FILE_FORMAT ) + ".xml";
+    }
+
     private Properties createProperties( PlanwerkServiceMetadata planwerkServiceMetadata,
                                          PlanRecordMetadata planRecordMetadata, LocalDateTime now, String recordId ) {
         Properties properties = new Properties();
@@ -165,8 +166,8 @@ public class MetadataCouplingHandler {
             properties.setProperty( "SOUTH_BOUND_LAT", COORD_FORMAT.format( envelope.getMin().get1() ) );
             properties.setProperty( "NORTH_BOUND_LAT", COORD_FORMAT.format( envelope.getMax().get1() ) );
         }
-        properties.setProperty( "COUPLED_METADATA_RESOURCE_URL", getResourceIdentifier( planRecordMetadata ) );
-        properties.setProperty( "COUPLED_METADATA_RESOURCE_IDENTIFIER", planRecordMetadata.getRecordId() );
+        properties.setProperty( "OPERATESON_RESOURCE_URL", planRecordMetadata.getResourceIdentifier() );
+        properties.setProperty( "OPERATESON_RESOURCE_IDENTIFIER", planRecordMetadata.getRecordId() );
         setProperty( properties, "PLANWERKWMS_CAPABILITIES",
                      planwerkServiceMetadata.getPlanwerkWmsGetCapabilitiesUrl() );
         return properties;

@@ -40,8 +40,8 @@ Weiterhin muss im Verzeichnis <MANAGER_WEB>/metadata die Datei _service-iso-meta
  * *ABSTRACT*: Beschreibung des Plans
  * *PLANWERKWMS_OVERVIEW*: generierte GetMap-URL des XPlanWerkWMS mit dem Geltungsbereich des Planwerks
  * *WEST_BOUND_LONG*, *EAST_BOUND_LONG*, *SOUTH_BOUND_LAT*, *NORTH_BOUND_LAT*: räumlicher Geltungsbereich des Plans
- * *COUPLED_METADATA_RESOURCE_URL*: GetRecordById-URL zur Abfrage des Daten-Metadatensatz (generiert aus dem FileIdentifier des Daten-Metadatensatz)
- * *COUPLED_METADATA_RESOURCE_IDENTIFIER*: ResourceIdentifier aus dem Daten-Metadatensatz
+ * *DATA_METADATA_RESOURCEIDENTIFIER*: GetRecordById-URL zur Abfrage des Daten-Metadatensatz (generiert aus dem FileIdentifier des Daten-Metadatensatz)
+ * *DATA_METADATA_FILEIDENTIFIER*: ResourceIdentifier aus dem Daten-Metadatensatz
  * *PLANWERKWMS_CAPABILITIES*: generierte GetCapabilities-URL des XPlanWerkWMS
 
 *Hinweise*
