@@ -1309,7 +1309,7 @@
             </srv:connectPoint>
           </srv:SV_OperationMetadata>
         </srv:containsOperations>
-        <srv:operatesOn xmlns:xlink="http://www.w3.org/1999/xlink" uuidref="${COUPLED_METADATA_RESOURCE_IDENTIFIER﻿}"
+        <srv:operatesOn xmlns:xlink="http://www.w3.org/1999/xlink" uuidref="${COUPLED_METADATA_RESOURCE_IDENTIFIER}"
                         xlink:href="${COUPLED_METADATA_RESOURCE_URL}"/>
       </srv:SV_ServiceIdentification>
     </gmd:identificationInfo>
