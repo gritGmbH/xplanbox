@@ -31,13 +31,6 @@
             </configuration>
           </execution>
         </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.deegree</groupId>
-            <artifactId>deegree-services-wms</artifactId>
-            <version>${deegree3.version}</version>
-          </dependency>
-        </dependencies>
       </plugin>
     </plugins>
   </build>
