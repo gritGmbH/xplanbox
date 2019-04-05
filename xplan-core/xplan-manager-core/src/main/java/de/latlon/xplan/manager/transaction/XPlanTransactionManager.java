@@ -102,7 +102,7 @@ public abstract class XPlanTransactionManager {
         this.managerConfiguration = managerConfiguration;
         this.managerWorkspaceWrapper = managerWorkspaceWrapper;
         this.sortPropertyReader = sortPropertyReader;
-        if ( managerConfiguration.getCoupledResourceConfiguration() != null )
+        if ( managerConfiguration != null && managerConfiguration.getCoupledResourceConfiguration() != null )
             this.metadataCouplingHandler = new MetadataCouplingHandler( xplanDao,
                                                                         managerConfiguration.getCoupledResourceConfiguration() );
         else
