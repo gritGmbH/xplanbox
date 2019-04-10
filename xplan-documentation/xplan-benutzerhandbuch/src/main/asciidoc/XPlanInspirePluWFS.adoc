@@ -48,9 +48,6 @@ http://<host>:<port>/xplan-inspireplu/services/wfs?request=GetFeature&Service=WF
 http://<host>:<port>/xplan-inspireplu/services/wfs?request=DescribeFeatureType&Service=WFS&Version=2.0.0
 ----
 
-[[xplaninspirepluwfs-inhalte-des-datendienstes]]
-=== Inhalte des Datendienstes
-
 [[xplaninspirepluwfs-operationen]]
 === Operationen
 
@@ -70,3 +67,20 @@ Die Operation GetFeature stellt die Kernfunktionalität des XPlanInspirePluWFS d
 ==== DescribeFeatureType
 
 Die Operation DescribeFeatureType gibt Informationen zur Struktur der einzelnen Feature Types wieder.
+
+=== Response Paging
+
+Der XPlanInspirePluWFs ist so konfiguriert, dass maximal 100 Instanzen des angefragten FeatureTypes zurückgegeben werden. Um alle Instanzen abzufragen muss daher das vom WFS unterstützte Response Paging verwendet werden: die Parameter COUNT und STARTINDEX ermögichen das "blättern" im Gesamtdatenbestand. Mit COUNT wird die Anzahl der maximal zurückgegeben Instanzen vorgegeben, mit STARTINDEX der Index der ersten Instanz (beginnend bei 1) die zurückgegeben werden soll. Beispiele (Beschreibung von <GET_FEATURE_REQUEST> s. oben):
+
+"Seite 1":
+
+----
+<GET_FEATURE_REQUEST>&COUNT=10
+----
+
+"Seite 2":
+----
+<GET_FEATURE_REQUEST>&COUNT=10&STARTINDEX=11
+----
+
+Über die Attribute @next und @previous im GetFeatureReponse werden die URLs der nächsten bzw. vorherigen "Seite" bereits ausgegeben.
