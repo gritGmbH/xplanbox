@@ -221,6 +221,7 @@ __GDAL__:
   * Es werden ausschließlich Rasterdaten im GeoTiff Format unterstützt.
 
 *GDAL* - Konfigurationstyp:
+
   * Grundsätzlich können alle durch GDAL unterstützten
   Rasterdatenformate auch durch deegree und somit dem XPlanManager
   verarbeitet werden.
