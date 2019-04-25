@@ -145,10 +145,10 @@ public class PlanwerkServiceMetadataBuilderTest {
                     throws IOException {
         String cswUrlProvidingDatasetMetadata = "http://test.de";
         Path metadataConfigDirectory = Files.createTempDirectory( "metadataConfigDirectory" );
-        Path directoryToStoreDatasetMetadata = Files.createTempDirectory( "directoryToStoreDatasetMetadata" );
+        Path directoryToStoreMetadata = Files.createTempDirectory( "directoryToStoreMetadata" );
         CoupledResourceConfiguration configuration = new CoupledResourceConfiguration( cswUrlProvidingDatasetMetadata,
                                                                                        metadataConfigDirectory,
-                                                                                       directoryToStoreDatasetMetadata,
+                                                                                       directoryToStoreMetadata,
                                                                                        planWerkBaseUrl, 750, 750 );
         configuration.addPlanWerkWmsGetMapLayer( BP_Plan, layer );
         configuration.addPlanWerkWmsGetMapStyle( BP_Plan, style );

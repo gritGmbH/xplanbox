@@ -43,7 +43,7 @@ public class MetadataCouplingHandler {
 
     private final ServiceMetadataDocumentWriter serviceMetadataDocumentWriter;
 
-    private final Path directoryToStoreDatasetMetadata;
+    private final Path directoryToStoreMetadata;
 
     private final XPlanDao xPlanDao;
 
@@ -64,7 +64,7 @@ public class MetadataCouplingHandler {
         Path configurationDirectory = config.getMetadataConfigDirectory();
         byte[] template = readTemplate( configurationDirectory );
         this.serviceMetadataDocumentWriter = new ServiceMetadataDocumentWriter( template );
-        this.directoryToStoreDatasetMetadata = config.getDirectoryToStoreDatasetMetadata();
+        this.directoryToStoreMetadata = config.getDirectoryToStoreMetadata();
     }
 
     /**
@@ -124,7 +124,7 @@ public class MetadataCouplingHandler {
         OutputStream outputStream = null;
         try {
             String fileName = createFileName( planName, now );
-            Path target = directoryToStoreDatasetMetadata.resolve( fileName );
+            Path target = directoryToStoreMetadata.resolve( fileName );
             LOG.info( "Write Planwerk WMS service document to {}", target );
             outputStream = Files.newOutputStream( target );
             serviceMetadataDocumentWriter.writeServiceMetadataDocument( properties, outputStream );
