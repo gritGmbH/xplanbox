@@ -1,4 +1,4 @@
-package de.latlon.xplan.manager.web.spring;
+package de.latlon.xplan.manager.web.spring.config;
 
 import static java.nio.file.Paths.get;
 
@@ -15,11 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.DefaultPropertiesLoader;
@@ -30,7 +28,6 @@ import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.web.server.service.ManagerReportProvider;
-import de.latlon.xplan.manager.web.server.service.rest.SecurityController;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.validator.ValidatorException;
@@ -57,13 +54,6 @@ import de.latlon.xplan.validator.web.server.service.ReportProvider;
  * @version $Revision: $, $Date: $
  */
 @Configuration
-@ComponentScan(basePackages = { "de.latlon.xplan.validator.web.server.service",
-                                "de.latlon.xplan.validator.web.server.rest", "de.latlon.xplan.manager",
-                                "de.latlon.xplan.manager.web.server.service" }, excludeFilters = { @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = SecurityController.class),
-                                                                                                   @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = ManagerWebSpringConfigWithAdLdapSecurity.class),
-                                                                                                   @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = ManagerWebSpringConfigWithSimpleSecurity.class),
-                                                                                                   @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = ManagerWebSpringConfig.class) })
-@EnableWebMvc
 @PropertySource("classpath:manager.properties")
 public class BasicSpringConfig {
 
@@ -125,7 +115,7 @@ public class BasicSpringConfig {
 
     @Bean
     public ReportProvider reportProvider( ReportWriter reportWriter ) {
-        return new ManagerReportProvider( reportWriter );
+        return new ManagerReportProvider();
     }
 
     @Bean

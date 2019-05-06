@@ -10,7 +10,7 @@
   </context-param>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>de.latlon.xplan.manager.web.spring.ManagerWebSpringConfig</param-value>
+    <param-value>de.latlon.xplan.manager.web.spring.config.ManagerWebSpringConfig</param-value>
   </context-param>
 
   <!-- Servlets -->
@@ -32,6 +32,10 @@
     <init-param>
       <param-name>contextClass</param-name>
       <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </init-param>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>de.latlon.xplan.validator.web.spring.config.XPlanValidatorWebContextConfig</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>

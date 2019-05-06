@@ -10,7 +10,7 @@
   </context-param>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>de.latlon.xplan.manager.web.spring.ManagerWebSpringConfigWithAdLdapSecurity</param-value>
+    <param-value>de.latlon.xplan.manager.web.spring.config.ManagerWebSpringConfigWithAdLdapSecurity</param-value>
   </context-param>
 
   <!-- Servlets -->

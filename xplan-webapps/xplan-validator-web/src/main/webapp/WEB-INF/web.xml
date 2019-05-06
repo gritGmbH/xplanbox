@@ -22,7 +22,7 @@
     </init-param>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>de.latlon.xplan.validator.web.XPlanValidatorWebSpringConfig</param-value>
+      <param-value>de.latlon.xplan.validator.web.spring.config.XPlanValidatorWebContextConfig</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -46,7 +46,7 @@
   </context-param>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>de.latlon.xplan.validator.web.XPlanValidatorWebSpringConfig</param-value>
+    <param-value>de.latlon.xplan.validator.web.spring.config.XPlanValidatorWebSpringConfig</param-value>
   </context-param>
 
   <!-- Bootstrap the root application context as usual using ContextLoaderListener -->

@@ -1,4 +1,4 @@
-package de.latlon.xplan.manager.web.spring;
+package de.latlon.xplan.manager.web.spring.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

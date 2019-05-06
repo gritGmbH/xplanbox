@@ -26,14 +26,14 @@ Folgende Zeilen:
 
 <context-param>
   <param-name>contextConfigLocation</param-name>
-  <param-value>de.latlon.xplan.manager.web.spring.ManagerWebSpringConfig</param-value>
+  <param-value>de.latlon.xplan.manager.web.spring.config.ManagerWebSpringConfig</param-value>
 </context-param>
 
 zu folgenden Zeilen abändern:
 
 <context-param>
   <param-name>contextConfigLocation</param-name>
-  <param-value>de.latlon.xplan.manager.web.spring.ManagerWebSpringConfigWithAdLdapSecurity</param-value>
+  <param-value>de.latlon.xplan.manager.web.spring.config.ManagerWebSpringConfigWithAdLdapSecurity</param-value>
 </context-param>
 ----
 

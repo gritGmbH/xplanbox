@@ -15,12 +15,9 @@ import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.web.shared.ArtifactType;
 
 /**
- * Provides reports after validation
- * 
+ * Provides reports after validation.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
- * @version $Revision: $, $Date: $
  */
 public class ValidatorReportProvider implements ReportProvider {
 

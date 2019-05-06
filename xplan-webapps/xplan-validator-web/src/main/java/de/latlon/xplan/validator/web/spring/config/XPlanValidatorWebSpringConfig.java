@@ -1,4 +1,4 @@
-package de.latlon.xplan.validator.web;
+package de.latlon.xplan.validator.web.spring.config;
 
 import static java.nio.file.Paths.get;
 
@@ -37,7 +37,6 @@ import de.latlon.xplan.validator.web.server.service.ValidatorReportProvider;
  * @version $Revision: $, $Date: $
  */
 @Configuration
-@ComponentScan(basePackages = { "de.latlon.xplan.validator.web.server.service" })
 public class XPlanValidatorWebSpringConfig {
 
     private static final String RULES_DIRECTORY = "/rules";
