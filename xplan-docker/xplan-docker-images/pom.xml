@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-docker-images</artifactId>
   <packaging>pom</packaging>
-  <name>XPlan - Docker</name>
-  <description>xPlanBox Dockerfiles</description>
+  <name>XPlan - Docker Images</name>
+  <description>xPlanBox Images Dockerfiles</description>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
