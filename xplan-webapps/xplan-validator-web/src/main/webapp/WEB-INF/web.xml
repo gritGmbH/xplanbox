@@ -4,6 +4,21 @@
               http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
   version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
 
+  <!-- Spring WebApplication Context -->
+  <context-param>
+    <param-name>contextClass</param-name>
+    <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+  </context-param>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>de.latlon.xplan.validator.web.spring.config.XPlanValidatorWebSpringConfig</param-value>
+  </context-param>
+
+  <!-- Bootstrap the root application context as usual using ContextLoaderListener -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
   <!-- Servlets -->
   <servlet>
     <servlet-name>xplanvalidatorwebServlet</servlet-name>
@@ -39,20 +54,6 @@
     <servlet-name>xplanvalidatorrest</servlet-name>
     <url-pattern>/xplanvalidatorweb/rest/*</url-pattern>
   </servlet-mapping>
-
-  <context-param>
-    <param-name>contextClass</param-name>
-    <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
-  </context-param>
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>de.latlon.xplan.validator.web.spring.config.XPlanValidatorWebSpringConfig</param-value>
-  </context-param>
-
-  <!-- Bootstrap the root application context as usual using ContextLoaderListener -->
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
 
   <!-- Default page to serve -->
   <welcome-file-list>

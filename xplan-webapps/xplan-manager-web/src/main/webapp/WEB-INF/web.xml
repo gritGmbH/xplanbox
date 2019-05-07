@@ -4,6 +4,7 @@
               http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
   version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
 
+  <!-- Spring WebApplication Context -->
   <context-param>
     <param-name>contextClass</param-name>
     <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
@@ -12,6 +13,12 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>de.latlon.xplan.manager.web.spring.config.ManagerWebSpringConfig</param-value>
   </context-param>
+
+  <!-- Bootstrap the root application context as usual using ContextLoaderListener -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    <listener-class>de.latlon.xplan.manager.web.server.log.SystemLogListener</listener-class>
+  </listener>
 
   <!-- Servlets -->
   <servlet>
@@ -35,7 +42,7 @@
     </init-param>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>de.latlon.xplan.validator.web.spring.config.XPlanValidatorWebContextConfig</param-value>
+      <param-value>de.latlon.xplan.manager.web.spring.config.XPlanManagerWebContextConfig</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -52,12 +59,6 @@
     <servlet-name>xplanmgrwebrest</servlet-name>
     <url-pattern>/xplanmgrweb/rest/*</url-pattern>
   </servlet-mapping>
-
-  <!-- Bootstrap the root application context as usual using ContextLoaderListener -->
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    <listener-class>de.latlon.xplan.manager.web.server.log.SystemLogListener</listener-class>
-  </listener>
 
   <!-- Default page to serve -->
   <welcome-file-list>
