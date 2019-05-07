@@ -167,7 +167,6 @@ public class BasicSpringConfig {
         return null;
     }
 
-
     private ValidatorConfiguration validatorConfiguration()
                     throws IOException, ConfigurationException {
         ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();

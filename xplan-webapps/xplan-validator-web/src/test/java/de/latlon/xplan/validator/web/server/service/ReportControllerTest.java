@@ -26,8 +26,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes={TestConfig.class, XPlanValidatorWebContextConfig.class, XPlanValidatorWebSpringConfig.class})
-@ActiveProfiles(profiles="test")
+@ContextConfiguration(classes = {XPlanValidatorWebContextConfig.class, XPlanValidatorWebSpringConfig.class, TestConfig.class})
+@ActiveProfiles(profiles = "test")
 @WebAppConfiguration
 public class ReportControllerTest {
 
@@ -48,7 +48,7 @@ public class ReportControllerTest {
     }
 
     @Test
-    public void verifyThatControllerResponseIsOk_WhenValidRequestIsSend()throws Exception {
+    public void verifyThatControllerResponseIsOk_WhenValidRequestIsSend() throws Exception {
         doNothing().when(mockReportProvider).writeHtmlReport(isA(HttpServletResponse.class), isA(String.class), isA(String.class));
         assertThat(this.reportController, is(notNullValue()));
         mockMvc.perform(get("/report/html/42?validationName=foo")).andExpect(status().isOk());
