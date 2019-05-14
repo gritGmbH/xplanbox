@@ -25,9 +25,10 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {XPlanValidatorWebContextConfig.class, XPlanValidatorWebSpringConfig.class, TestConfig.class})
-@ActiveProfiles(profiles = "test")
+@RunWith( SpringJUnit4ClassRunner.class )
+@ContextConfiguration( classes = { XPlanValidatorWebContextConfig.class, XPlanValidatorWebSpringConfig.class,
+        TestConfig.class } )
+@ActiveProfiles( profiles = "test" )
 @WebAppConfiguration
 public class ReportControllerTest {
 
@@ -52,6 +53,7 @@ public class ReportControllerTest {
         doNothing().when(mockReportProvider).writeHtmlReport(isA(HttpServletResponse.class), isA(String.class), isA(String.class));
         assertThat(this.reportController, is(notNullValue()));
         mockMvc.perform(get("/report/html/42?validationName=foo")).andExpect(status().isOk());
-        verify(mockReportProvider, times(1)).writeHtmlReport(any(HttpServletResponse.class), eq("42"), eq(("foo")));
+        verify(mockReportProvider, times(1)).writeHtmlReport(
+                any(HttpServletResponse.class), eq("42"), eq(("foo")));
     }
 }

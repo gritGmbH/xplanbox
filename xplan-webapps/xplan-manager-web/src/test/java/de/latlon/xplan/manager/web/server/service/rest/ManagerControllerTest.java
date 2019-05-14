@@ -32,9 +32,9 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {XPlanManagerWebContextConfig.class, TestConfig.class})
-@ActiveProfiles(profiles = {"test"})
+@RunWith( SpringJUnit4ClassRunner.class )
+@ContextConfiguration( classes = { XPlanManagerWebContextConfig.class, TestConfig.class } )
+@ActiveProfiles( profiles = {"test"} )
 @WebAppConfiguration
 public class ManagerControllerTest {
 

@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "de.latlon.xplan.validator.web.server.service" ,
-                                "de.latlon.xplan.manager.web.server.service.rest"})
+@ComponentScan( basePackages = { "de.latlon.xplan.validator.web.server.service" ,
+                                 "de.latlon.xplan.manager.web.server.service.rest"} )
 public class XPlanManagerWebContextConfig {
 }
