@@ -5,7 +5,6 @@ import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOption
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
-import net.sf.saxon.trans.XPathException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
