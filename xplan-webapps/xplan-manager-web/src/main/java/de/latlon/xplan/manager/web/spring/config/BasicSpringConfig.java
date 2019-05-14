@@ -46,7 +46,7 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.web.server.service.ReportProvider;
 
 /**
- * Basic Application Configuration.
+ * Basic XPlanManagerWeb Application Configuration.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
@@ -73,9 +73,9 @@ public class BasicSpringConfig {
     }
 
     @Bean
-    public SemanticValidator semanticValidator( ManagerConfiguration managerConfiguration )
+    public SemanticValidator semanticValidator( ManagerConfiguration managerConfiguration, Path rulesPath )
                     throws URISyntaxException, ValidatorException {
-        return new XQuerySemanticValidator( new XQuerySemanticValidatorConfigurationRetriever( retrieveRulesPath() ),
+        return new XQuerySemanticValidator( new XQuerySemanticValidatorConfigurationRetriever( rulesPath ),
                         managerConfiguration.getSemanticConformityLinkConfiguration() );
     }
 
@@ -114,7 +114,7 @@ public class BasicSpringConfig {
     }
 
     @Bean
-    public ReportProvider reportProvider( ReportWriter reportWriter ) {
+    public ReportProvider reportProvider() {
         return new ManagerReportProvider();
     }
 
@@ -136,9 +136,9 @@ public class BasicSpringConfig {
     }
 
     @Bean
-    public ManagerConfiguration managerConfiguration()
+    public ManagerConfiguration managerConfiguration(PropertiesLoader managerPropertiesLoader)
                     throws ConfigurationException {
-        return new ManagerConfiguration( managerPropertiesLoader() );
+        return new ManagerConfiguration( managerPropertiesLoader );
     }
 
     @Bean
@@ -151,7 +151,7 @@ public class BasicSpringConfig {
         String pathToHaleCli = managerConfiguration.getPathToHaleCli();
         Path pathToHaleProjectDirectory = managerConfiguration.getPathToHaleProjectDirectory();
         if ( pathToHaleCli != null && pathToHaleProjectDirectory != null )
-            return new HaleCliInspirePluTransformator( pathToHaleCli , pathToHaleProjectDirectory );
+            return new HaleCliInspirePluTransformator( pathToHaleCli, pathToHaleProjectDirectory );
         return null;
     }
 
@@ -167,20 +167,23 @@ public class BasicSpringConfig {
         return null;
     }
 
-    private ValidatorConfiguration validatorConfiguration()
+    @Bean
+    public ValidatorConfiguration validatorConfiguration()
                     throws IOException, ConfigurationException {
         ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
         return validatorConfigurationParser.parse( new DefaultPropertiesLoader( ValidatorConfiguration.class ) );
     }
 
-    private PropertiesLoader managerPropertiesLoader() {
+    @Bean
+    public PropertiesLoader managerPropertiesLoader() {
         String configurationFilePathVariable = env.getProperty( "configurationFilePathVariable" );
         return new SystemPropertyPropertiesLoader( configurationFilePathVariable, ManagerConfiguration.class );
     }
 
-    private Path retrieveRulesPath()
+    @Bean
+    public Path rulesPath()
                     throws URISyntaxException {
-        URI rulesPath = getClass().getResource( RULES_DIRECTORY ).toURI();
+        URI rulesPath = BasicSpringConfig.class.getResource( RULES_DIRECTORY ).toURI();
         return get( rulesPath );
     }
 

@@ -32,6 +32,10 @@ public class SecurityController {
 
     private final AuthorizationManager securityManager;
 
+    /**
+     * Used to create a SecurityController.
+     * @param securityManager the authorization manager to use.
+     */
     @Autowired
     public SecurityController( AuthorizationManager securityManager ) {
         this.securityManager = securityManager;

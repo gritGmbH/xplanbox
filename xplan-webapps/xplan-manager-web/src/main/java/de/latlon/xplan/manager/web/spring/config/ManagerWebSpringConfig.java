@@ -19,11 +19,6 @@ import de.latlon.xplan.manager.web.server.service.security.AuthorizationManager;
 public class ManagerWebSpringConfig {
 
     @Bean
-    public SecurityController securityController( AuthorizationManager securityManager ) {
-        return new SecurityController( securityManager );
-    }
-
-    @Bean
     public AuthorizationManager securityManager() {
         return new AuthorizationManager( false );
     }
