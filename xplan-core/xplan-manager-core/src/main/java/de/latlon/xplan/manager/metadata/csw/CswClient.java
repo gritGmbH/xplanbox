@@ -5,13 +5,17 @@ import org.deegree.commons.tom.ows.Version;
 import org.deegree.commons.xml.NamespaceBindings;
 import org.deegree.commons.xml.XMLAdapter;
 import org.deegree.commons.xml.XPath;
+import org.deegree.cs.exceptions.TransformationException;
+import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.filter.Expression;
 import org.deegree.filter.Filter;
 import org.deegree.filter.MatchAction;
 import org.deegree.filter.OperatorFilter;
+import org.deegree.filter.comparison.PropertyIsEqualTo;
 import org.deegree.filter.comparison.PropertyIsLike;
 import org.deegree.filter.expression.Literal;
 import org.deegree.filter.expression.ValueReference;
+import org.deegree.filter.xml.Filter110XMLEncoder;
 import org.deegree.metadata.MetadataRecord;
 import org.deegree.protocol.csw.CSWConstants;
 import org.deegree.protocol.csw.client.CSWClient;
@@ -21,6 +25,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.xml.namespace.QName;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+import java.io.ByteArrayOutputStream;
 import java.net.URL;
 import java.util.Collections;
 import java.util.List;
@@ -40,7 +48,7 @@ public class CswClient {
 
     public static final String OUTPUT_SCHEMA = "http://www.isotc211.org/2005/gmd";
 
-    public static final QName TITLE = new QName( "http://www.opengis.net/cat/csw/apiso/1.0", "title", "apiso" );
+    public static final QName ALTERNATE_TITLE = new QName( "http://www.opengis.net/cat/csw/apiso/1.0", "AlternateTitle", "apiso" );
 
     private final NamespaceBindings nsContext = new NamespaceBindings();
 
@@ -111,23 +119,19 @@ public class CswClient {
         List<QName> typeNames = Collections.singletonList( TYPE_NAME );
         CSWConstants.ResultType resultType = CSWConstants.ResultType.results;
         CSWConstants.ReturnableElement elementSetName = CSWConstants.ReturnableElement.full;
-        Filter constraint = createFilterForPlanName( planName );
+        Filter constraint = createFilterForAlternateTitle( planName );
 
         return new GetRecords( version, startPosition, maxRecords, OUTPUT_FORMAT, OUTPUT_SCHEMA, typeNames, resultType,
                                elementSetName, constraint );
     }
 
-    private Filter createFilterForPlanName( String planName ) {
-        ValueReference valueReference = new ValueReference( TITLE );
-        Expression pattern = new Literal<>( "%" + planName + "%" );
-        String wildCard = "%";
-        String singleChar = "_";
-        String escapeChar = "\\";
+    private Filter createFilterForAlternateTitle( String planName ) {
+        ValueReference valueReference = new ValueReference( ALTERNATE_TITLE );
+        Expression pattern = new Literal<>( planName );
         Boolean matchCase = false;
         MatchAction matchAction = MatchAction.ANY;
-        PropertyIsLike propertyIsLike = new PropertyIsLike( valueReference, pattern, wildCard, singleChar, escapeChar,
-                                                            matchCase, matchAction );
-        return new OperatorFilter( propertyIsLike );
+        PropertyIsEqualTo propertyIsEqualTo = new PropertyIsEqualTo( valueReference, pattern, matchCase, matchAction );
+        return new OperatorFilter( propertyIsEqualTo );
     }
 
     private String getRecordByIdUrl()
