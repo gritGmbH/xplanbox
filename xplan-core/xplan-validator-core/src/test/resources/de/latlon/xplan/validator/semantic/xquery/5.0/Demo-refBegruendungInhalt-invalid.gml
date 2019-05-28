@@ -31,13 +31,8 @@
       3954715.608 5499966.522 </gml:posList>
     </gml:LineString>
    </xplan:position>
-   <xplan:refBegruendungInhalt xlink:href="#GML_REFBEGRUENDUNGINHALT" />
+   <xplan:refBegruendungInhalt xlink:href="#GML_55fd715c-da0f-49b7-8a0c-5acf02c4f4b8" />
   </xplan:BP_BauGrenze>
- </gml:featureMember>
- <gml:featureMember>
-  <xplan:XP_BegruendungAbschnitt gml:id="GML_REFBEGRUENDUNGINHALT">
-   <xplan:schluessel>key</xplan:schluessel>
-  </xplan:XP_BegruendungAbschnitt>
  </gml:featureMember>
  <gml:featureMember>
   <xplan:BP_BauGrenze gml:id="GML_55fd715c-da0f-49b7-8a0c-5acf02c4f4b8">
