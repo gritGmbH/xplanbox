@@ -22524,8 +22524,714 @@ c.soTextSchluesselBegruendung.each { value -&gt;
                 <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
             </class>
         </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C496fd555-7ac2-4327-a46d-57d90639a49c" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="boundedBy" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="boundedBy" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C3b16e7b9-3a41-47d0-8339-14e63c8bdf9b" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8393b1ed-d351-4d7e-abe9-65697c2d9403" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc5ecc865-522a-4bd4-bce7-a515ab4a637a" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C2f81d506-91eb-4c97-baa1-47efb26f6ee8" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="art" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="art" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C593f19d2-c451-4af4-83e0-21c1efc8fae3" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="beschreibung" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="beschreibung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd4c56249-0dd5-4466-9b32-bdaaf2ba6c0e" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="datum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="datum" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8c0002c1-02d0-4c69-8a00-d55477d6a195" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="georefMimeType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="georefMimeType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc58cb5c2-aee6-4bd2-94f7-e187d5b709ba" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="georefURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="georefURL" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc738da44-20dc-4ab0-afaa-f59077f5e7d8" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="informationssystemURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="informationssystemURL" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca1934746-7148-4a61-b1ff-c650eb8f8b96" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzMimeType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="referenzMimeType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C89ebadf7-8447-4916-a813-d8407689cd1d" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzName" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="referenzName" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C211988bb-0def-46da-82b3-f70b886a543a" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refLegende" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="referenzURL" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C445e17da-5782-4c93-8f82-6da12e4dadd9" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc140bc79-604a-471d-ae2a-ee8dea49bc91" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd2b7d919-a0f9-467a-9eb2-13c1d332a9d6" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="art" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="art" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C648bcafb-814c-4a32-8ffb-be18f65d2fcb" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="beschreibung" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="beschreibung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C6c81d521-9321-49a5-9dce-20fca171a749" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="datum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="datum" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca2a12efc-60df-463d-88ee-9f8c41cb6288" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="georefMimeType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="georefMimeType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf0b61c38-d38e-44e7-9ed3-065aa0feacf5" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="georefURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="georefURL" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C23b7f898-4348-44a6-ad66-60d0594ec44f" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="informationssystemURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="informationssystemURL" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca29d514a-1cf3-4708-95df-6f8df980120a" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzMimeType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="referenzMimeType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbff9f863-a5bb-4132-b00f-08efcb8bfc7a" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzName" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="referenzName" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C023916cc-af13-49ba-9b77-1d4be12c86ea" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refScan" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="referenzURL" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C325b75ab-023a-468b-8208-17c93b38c4b2" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C0fc2f5ef-d24c-457e-a77f-abe87d17cc40" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C530e3030-3f68-48bc-b9af-6ee4bd5e0264" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="art" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="art" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C4b06e495-11f3-4dde-8833-45b7760d6520" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="beschreibung" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="beschreibung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cae87838a-6c8a-47a2-acdd-5932a9c24485" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="datum" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="datum" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C5765b1ed-86a1-4d64-b018-17eacb1e691f" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="georefMimeType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="georefMimeType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C33b17b24-6ed8-4f8b-bac4-4c3d1001b321" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="georefURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="georefURL" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C9d2454ad-5a77-42ec-a3f4-8c25e14161b7" priority="normal">
+        <source name="var">
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="informationssystemURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="informationssystemURL" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve"/>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce607ce98-e514-411b-93fa-e4f4ad9533f2" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzMimeType" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="referenzMimeType" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C2f878034-9508-444a-9230-477e45f2c6a2" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzName" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="referenzName" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C060bb356-13b8-4256-8449-3b90fb608de3" priority="normal">
+        <source>
+            <property>
+                <type name="XP_RasterplanBasisType" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/4/1"/>
+                <child name="referenzURL" ns="http://www.xplanung.de/xplangml/4/1"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="XP_RasterdarstellungType" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/1/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/1"/>
+                <child name="referenzURL" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cfb568e80-4d95-4e60-85f8-9cbc34d94610" priority="normal">
         <source>
