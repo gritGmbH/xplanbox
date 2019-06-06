@@ -15,8 +15,10 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -35,7 +37,7 @@ public class MetadataCouplingHandler {
 
     private static final DateTimeFormatter DATE_TIME_FILE_FORMAT = DateTimeFormatter.ofPattern( "yyyy-MM-dd_HH-mm" );
 
-    private static final DecimalFormat COORD_FORMAT = new DecimalFormat( "0.000000" );
+    private static final DecimalFormat COORD_FORMAT;
 
     public static final String TEMPLATE_NAME = "service-iso-metadata-template.xml";
 
@@ -46,6 +48,11 @@ public class MetadataCouplingHandler {
     private final Path directoryToStoreDatasetMetadata;
 
     private final XPlanDao xPlanDao;
+
+    static {
+        COORD_FORMAT = (DecimalFormat) NumberFormat.getNumberInstance( Locale.ENGLISH );
+        COORD_FORMAT.applyPattern( "0.000000" );
+    }
 
     /**
      * @param config
