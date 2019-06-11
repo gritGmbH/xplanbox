@@ -143,7 +143,6 @@ public class WmsWorkspaceManagerIT {
                               equalTo( "bplan_999_raster" ) ) );
     }
 
-    @Ignore("Re-check tests when Saxon is updated to version 9.8")
     @Test
     public void testUpdateWmsWorkspaceForBPlanWithOneRasterShouldHaveCorrectThemesConfig()
                     throws Exception {
@@ -160,7 +159,6 @@ public class WmsWorkspaceManagerIT {
                     hasXPath( "//th:Themes/th:Theme/th:Theme/th:Layer", nsBindings(), equalTo( SINGLE_RASTER_ID ) ) );
     }
 
-    @Ignore("Re-check tests when Saxon is updated to version 9.8")
     @Test
     public void testUpdateWmsWorkspaceForBPlanWithTwoRastersShouldHaveCorrectThemesConfig()
                     throws Exception {
@@ -180,7 +178,6 @@ public class WmsWorkspaceManagerIT {
                                                                      nsBindings(), equalTo( SECOND_RASTER_ID ) ) );
     }
 
-    @Ignore("Re-check tests when Saxon is updated to version 9.8")
     @Test
     public void testUpdateWmsWorkspaceForBPlanShouldBeLoadable()
                     throws Exception {
@@ -214,7 +211,6 @@ public class WmsWorkspaceManagerIT {
         assertThat( filesInDirectory( SERVICES ).isEmpty(), is( true ) );
     }
 
-    @Ignore("Re-check tests when Saxon is updated to version 9.8")
     @Test
     public void testUpdateWmsWorkspaceForBPlanShouldHaveCorrectConfiguredBboxInLayerConfig()
                     throws Exception {
@@ -238,7 +234,6 @@ public class WmsWorkspaceManagerIT {
                     hasXPath( "//f:FeatureLayer/s:Envelope/s:UpperCorner", nsBindings(), equalTo( "3.0 4.0" ) ) );
     }
 
-    @Ignore("Re-check tests when Saxon is updated to version 9.8")
     @Test
     public void testUpdateWmsWorkspaceForBPlanShouldHaveCorrectConfiguredDefaultBboxInLayerConfig()
                     throws Exception {
@@ -263,7 +258,6 @@ public class WmsWorkspaceManagerIT {
                     hasXPath( "//f:FeatureLayer/s:Envelope/s:UpperCorner", nsBindings(), equalTo( "3.0 4.0" ) ) );
     }
 
-    @Ignore("Re-check tests when Saxon is updated to version 9.8")
     @Test
     public void testUpdateWmsWorkspaceForBPlanShouldHaveCorrectDefaultBboxInLayerConfig()
                     throws Exception {
