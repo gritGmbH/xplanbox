@@ -114,6 +114,7 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 
     private void createAndAddRule( SemanticValidatorConfiguration config, Path path, XPlanVersion version,
                                    SemanticValidationOptions option ) {
+        LOG.debug( "Parse rule {}", path );
         String nameWithType = path.getFileName().toString();
         String name = nameWithType.substring( 0, nameWithType.lastIndexOf( '.' ) );
         try {
@@ -121,7 +122,7 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
                                                                                 option );
             config.addRule( rule );
             LOG.debug( format( "New rule: %s from file rulesPath %s", name, path.toAbsolutePath().toString() ) );
-        } catch ( Exception e ) {
+        } catch ( Throwable e ) {
             LOG.warn( format( "Rule '%s' could not be parsed and will be skipped, reason: %s",
                                path.toAbsolutePath().toString(), e.getMessage() ), e );
         }

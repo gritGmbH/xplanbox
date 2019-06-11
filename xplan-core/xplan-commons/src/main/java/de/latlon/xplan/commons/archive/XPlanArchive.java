@@ -122,6 +122,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
      * 
      * @return the main file as <link>InputStream</link>
      */
+    @Override
     public InputStream getMainFileInputStream() {
         return new ByteArrayInputStream( getMainFile().getContent() );
     }

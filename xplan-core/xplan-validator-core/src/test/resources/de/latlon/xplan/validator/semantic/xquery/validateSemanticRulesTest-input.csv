@@ -25,6 +25,8 @@ BP_Wegerecht-Polygon-flaechenschlussFehlt.xml, 2.2.1.1.xq, false
 5.0/Demo.gml, xplangml50/xp/3.1.3.3.xq, true
 5.0/Demo-gehoertZuBereich-invalid.gml, xplangml50/xp/3.1.3.3.xq, false
 5.0/Demo-planinhalt-invalid.gml, xplangml50/xp/3.1.3.3.xq, false
+5.0/Demo.gml, xplangml50/xp/3.1.3.2.xq, true
+5.0/Demo-refBegruendungInhalt-invalid.gml, xplangml50/xp/3.1.3.2.xq, false
 5.0/V4_1_ID_103.gml, xplangml50/xp/3.1.2.2.xq, true
 5.0/V4_1_ID_103.gml, xplangml50/bp/4.3.1.xq, true
 5.0/V4_1_ID_103.gml, xplangml50/bp/4.2.6.xq, true
