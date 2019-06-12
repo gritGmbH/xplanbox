@@ -88,7 +88,7 @@ public class PlanwerkServiceMetadataBuilder {
 
     private Envelope transformAndResizeEnvelop( CoupledResourceConfiguration configuration, Envelope envelope,
                                                 ICRS crs ) {
-        LOG.info( "Transform envelope {} to CRS {} and fit to map width/height", envelope, crs );
+        LOG.debug( "Transform envelope {} to CRS {} and fit to map width/height", envelope, crs );
         int width = configuration.getPlanWerkWmsGetMapWidth();
         int height = configuration.getPlanWerkWmsGetMapHeight();
 
