@@ -5,7 +5,6 @@ import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
 import org.deegree.geometry.Envelope;
-import org.deegree.geometry.GeometryTransformer;
 import org.deegree.geometry.SimpleGeometryFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -64,8 +63,8 @@ public class PlanwerkServiceMetadataBuilderTest {
         assertThat( planwerkServiceMetadata.getTitle(), is( planName ) );
         assertThat( planwerkServiceMetadata.getDescription(), is( description ) );
         assertThat( planwerkServiceMetadata.getEnvelope(), is( envelope ) );
-        assertThat( planwerkServiceMetadata.getPlanwerkWmsGetCapabilitiesUrl(),
-                    is( planWerkBaseUrl + "/services/planwerkwms/planname/testmitleer?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities" ) );
+        assertThat( planwerkServiceMetadata.getPlanwerkWmsGetCapabilitiesUrl(), is( planWerkBaseUrl
+                                                                                    + "/services/planwerkwms/planname/testmitleer?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities" ) );
 
         String getMapUrl = planwerkServiceMetadata.getPlanwerkWmsGetMapUrl();
         assertThat( getMapUrl, startsWith( planWerkBaseUrl + "/services/planwerkwms/planname/testmitleer?" ) );
@@ -76,7 +75,6 @@ public class PlanwerkServiceMetadataBuilderTest {
     }
 
     @Test
-
     public void testBuild_GetMap_FittingBbox()
                     throws Exception {
         Envelope envelope = GEOMETRY_FACTORY.createEnvelope( 10.0, 53.5, 10.5, 54.0, EPSG4326 );
@@ -88,14 +86,12 @@ public class PlanwerkServiceMetadataBuilderTest {
                                                                                                             envelope,
                                                                                                             configuration );
 
-        PlanwerkServiceMetadata planwerkServiceMetadata = planwerkServiceMetadataBuilder.build( EPSG25832 );
-        Envelope transform = new GeometryTransformer( EPSG25832 ).transform( envelope );
+        PlanwerkServiceMetadata planwerkServiceMetadata = planwerkServiceMetadataBuilder.build( EPSG4326 );
         String getMapUrl = planwerkServiceMetadata.getPlanwerkWmsGetMapUrl();
-        assertThat( getMapUrl, containsString( "BBOX=" + asString( transform ) ) );
+        assertThat( getMapUrl, containsString( "BBOX=" + asString( envelope ) ) );
     }
 
     @Test
-
     public void testBuild_GetMap_BboxToHeight()
                     throws Exception {
         Envelope envelope = GEOMETRY_FACTORY.createEnvelope( 10.0, 53.0, 10.5, 54.0, EPSG4326 );
@@ -106,17 +102,15 @@ public class PlanwerkServiceMetadataBuilderTest {
                                                                                                             description,
                                                                                                             envelope,
                                                                                                             configuration );
-        PlanwerkServiceMetadata planwerkServiceMetadata = planwerkServiceMetadataBuilder.build( EPSG25832 );
+        PlanwerkServiceMetadata planwerkServiceMetadata = planwerkServiceMetadataBuilder.build( EPSG4326 );
 
-        Envelope expectedBBox = new GeometryTransformer( EPSG25832 ).transform(
-                        GEOMETRY_FACTORY.createEnvelope( 9.75, 53.0, 10.75, 54.0, EPSG4326 ) );
+        Envelope expectedBBox = GEOMETRY_FACTORY.createEnvelope( 9.75, 53.0, 10.75, 54.0, EPSG4326 );
         String getMapUrl = planwerkServiceMetadata.getPlanwerkWmsGetMapUrl();
 
         assertThat( getMapUrl, containsString( "BBOX=" + asString( expectedBBox ) ) );
     }
 
     @Test
-
     public void testBuild_GetMap_BboxToWidth()
                     throws Exception {
         Envelope envelope = GEOMETRY_FACTORY.createEnvelope( 10.0, 53.5, 11, 54.0, EPSG4326 );
@@ -127,10 +121,9 @@ public class PlanwerkServiceMetadataBuilderTest {
                                                                                                             description,
                                                                                                             envelope,
                                                                                                             configuration );
-        PlanwerkServiceMetadata planwerkServiceMetadata = planwerkServiceMetadataBuilder.build( EPSG25832 );
+        PlanwerkServiceMetadata planwerkServiceMetadata = planwerkServiceMetadataBuilder.build( EPSG4326 );
 
-        Envelope expectedBBox = new GeometryTransformer( EPSG25832 ).transform(
-                        GEOMETRY_FACTORY.createEnvelope( 10, 53.25, 11, 54.25, EPSG4326 ) );
+        Envelope expectedBBox = GEOMETRY_FACTORY.createEnvelope( 10, 53.25, 11, 54.25, EPSG4326 );
         String getMapUrl = planwerkServiceMetadata.getPlanwerkWmsGetMapUrl();
 
         assertThat( getMapUrl, containsString( "BBOX=" + asString( expectedBBox ) ) );
