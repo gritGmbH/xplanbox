@@ -94,8 +94,8 @@ public class MetadataCouplingHandler {
         if ( planRecordMetadata != null ) {
             Properties properties = createProperties( planwerkServiceMetadata, planRecordMetadata, now,
                                                       serviceRecordId );
-            Path serviceMetadataDocument = createServiceMetadataDocument( planwerkServiceMetadata.getTitle(), now,
-                                                                          properties );
+            Path serviceMetadataDocument = createServiceMetadataDocument( planId, planwerkServiceMetadata.getTitle(),
+                                                                          now, properties );
             LOG.info( "Service metadata document was filed to {}", serviceMetadataDocument );
         } else {
             LOG.info( "Dataset metadata document for plan with id {} and name {} is not available", planId, planName );
@@ -126,11 +126,11 @@ public class MetadataCouplingHandler {
         }
     }
 
-    private Path createServiceMetadataDocument( String planName, LocalDateTime now, Properties properties )
+    private Path createServiceMetadataDocument( int planId, String planName, LocalDateTime now, Properties properties )
                     throws DataServiceCouplingException {
         OutputStream outputStream = null;
         try {
-            String fileName = createFileName( planName, now );
+            String fileName = createFileName( planId, planName, now );
             Path target = directoryToStoreDatasetMetadata.resolve( fileName );
             LOG.info( "Write Planwerk WMS service document to {}", target );
             outputStream = Files.newOutputStream( target );
@@ -152,9 +152,9 @@ public class MetadataCouplingHandler {
         }
     }
 
-    private String createFileName( String planName, LocalDateTime now ) {
+    private String createFileName( int planId, String planName, LocalDateTime now ) {
         String normalizedPlanName = planName.replaceAll( "[^a-zA-Z0-9\\-_]", "" );
-        return normalizedPlanName + "_" + now.format( DATE_TIME_FILE_FORMAT ) + ".xml";
+        return planId + "_" + normalizedPlanName + "_" + now.format( DATE_TIME_FILE_FORMAT ) + ".xml";
     }
 
     private Properties createProperties( PlanwerkServiceMetadata planwerkServiceMetadata,
