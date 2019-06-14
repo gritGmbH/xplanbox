@@ -34,6 +34,7 @@ import org.deegree.workspace.ResourceStates;
 import org.deegree.workspace.ResourceStates.ResourceState;
 import org.deegree.workspace.standard.DefaultResourceIdentifier;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.xmlmatchers.namespace.SimpleNamespaceContext;
 import org.xmlmatchers.transform.XmlConverters;

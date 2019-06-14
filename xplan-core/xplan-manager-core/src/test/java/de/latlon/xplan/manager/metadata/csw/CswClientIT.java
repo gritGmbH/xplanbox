@@ -19,7 +19,7 @@ public class CswClientIT {
     public void testRequestMetadataRecord()
                     throws DataServiceCouplingException {
         CswClient cswClient = new CswClient( CSW_GET_CAPABILITIESURL );
-        PlanRecordMetadata planRecordMetadata = cswClient.requestMetadataRecord( "Alsterdorf 20" );
+        PlanRecordMetadata planRecordMetadata = cswClient.requestMetadataRecord( "Alsterdorf20" );
 
         assertThat( planRecordMetadata.getRecordId(), is( "CC9E9E0D-07AD-4C77-ADAB-AFDA37585633" ) );
         assertThat( planRecordMetadata.getResourceIdentifier(),

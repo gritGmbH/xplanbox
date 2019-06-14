@@ -1,9 +1,25 @@
 package de.latlon.xplan.validator.semantic.xquery;
 
-import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.NONE;
-import static java.lang.Boolean.parseBoolean;
-import static java.lang.String.format;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
+import de.latlon.xplan.validator.ValidatorException;
+import de.latlon.xplan.validator.semantic.SemanticValidatorRule;
+import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
+import net.sf.saxon.Configuration;
+import net.sf.saxon.om.Item;
+import net.sf.saxon.om.SequenceIterator;
+import net.sf.saxon.om.TreeInfo;
+import net.sf.saxon.query.DynamicQueryContext;
+import net.sf.saxon.query.StaticQueryContext;
+import net.sf.saxon.query.XQueryExpression;
+import net.sf.saxon.trans.XPathException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
@@ -12,29 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.stream.StreamResult;
-
-import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
-import net.sf.saxon.Configuration;
-import net.sf.saxon.om.Item;
-import net.sf.saxon.om.NodeInfo;
-import net.sf.saxon.om.SequenceIterator;
-import net.sf.saxon.pull.PullSource;
-import net.sf.saxon.pull.StaxBridge;
-import net.sf.saxon.query.DynamicQueryContext;
-import net.sf.saxon.query.StaticQueryContext;
-import net.sf.saxon.query.XQueryExpression;
-import net.sf.saxon.trans.XPathException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.validator.ValidatorException;
-import de.latlon.xplan.validator.semantic.SemanticValidatorRule;
-import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
+import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.NONE;
+import static java.lang.Boolean.parseBoolean;
+import static java.lang.String.format;
 
 /**
  * Semantically validation rule, based on XQuery.
@@ -73,7 +69,7 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
         try (Writer writer = new StringWriter()) {
             final DynamicQueryContext dynamicContext = createDynamicQueryContext( archive );
             expression.run( dynamicContext, new StreamResult( writer ), props );
-            final SequenceIterator<?> iterator = expression.iterator( dynamicContext );
+            final SequenceIterator iterator = expression.iterator( dynamicContext );
             List<String> resultList = getResultFromIterator( iterator );
             validationResult = evaluateXQueryResult( resultList );
         } catch ( XPathException | IOException e ) {
@@ -116,21 +112,22 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
 
     private DynamicQueryContext createDynamicQueryContext( SemanticValidableXPlanArchive archive )
                             throws XPathException {
-        final Item<NodeInfo> item = configuration.buildDocument( getSource( archive.getMainFileXmlReader() ) );
-        final DynamicQueryContext dynamicContext = new DynamicQueryContext( configuration );
+        Source source = getSource( archive );
+        TreeInfo treeInfo = configuration.buildDocumentTree( source );
+        Item item = treeInfo.getRootNode();
+        DynamicQueryContext dynamicContext = new DynamicQueryContext( configuration );
         dynamicContext.setContextItem( item );
         return dynamicContext;
     }
 
-    private PullSource getSource( XMLStreamReader resourceToValidate ) {
-        StaxBridge bridge = new StaxBridge();
-        bridge.setXMLStreamReader( resourceToValidate );
-        return new PullSource( bridge );
+    private Source getSource( SemanticValidableXPlanArchive archive ) {
+        InputStream mainFileInputStream = archive.getMainFileInputStream();
+        return new StreamSource( mainFileInputStream  );
     }
 
-    private List<String> getResultFromIterator( SequenceIterator<?> iterator )
+    private List<String> getResultFromIterator( SequenceIterator iterator )
                             throws XPathException {
-        Item<?> next;
+        Item next;
         List<String> res = new ArrayList<>();
         while ( ( next = iterator.next() ) != null )
             res.add( next.getStringValue() );

@@ -58,7 +58,13 @@ public class ServiceMetadataRecordCreator {
                     throws Exception {
         List<XPlan> plans = xPlanDao.getXPlanList( false );
         for ( XPlan plan : plans ) {
-            createServiceMetadataRecords( plan );
+            try {
+                createServiceMetadataRecords( plan );
+            } catch ( Exception e ) {
+                LOG.warn( "Plan with id {} and name {} could not be processed: {}", plan.getId(), plan.getName(),
+                          e.getMessage() );
+                LOG.trace( "Plan could not be processed", e );
+            }
         }
     }
 
@@ -93,7 +99,8 @@ public class ServiceMetadataRecordCreator {
         Envelope envelope = xPlanFeatureCollection.getBboxIn4326();
 
         CoupledResourceConfiguration coupledResourceConfiguration = managerConfiguration.getCoupledResourceConfiguration();
-        PlanwerkServiceMetadataBuilder builder = new PlanwerkServiceMetadataBuilder( type, planName, description, envelope,
+        PlanwerkServiceMetadataBuilder builder = new PlanwerkServiceMetadataBuilder( type, planName, description,
+                                                                                     envelope,
                                                                                      coupledResourceConfiguration );
         PlanwerkServiceMetadata planwerkServiceMetadata = builder.build(
                         lookup( managerConfiguration.getRasterConfigurationCrs() ) );
