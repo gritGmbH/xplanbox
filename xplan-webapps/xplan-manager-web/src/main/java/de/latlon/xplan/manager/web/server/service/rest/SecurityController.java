@@ -7,6 +7,7 @@ import javax.ws.rs.core.Context;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,6 +32,11 @@ public class SecurityController {
 
     private final AuthorizationManager securityManager;
 
+    /**
+     * Used to create a SecurityController.
+     * @param securityManager the authorization manager to use.
+     */
+    @Autowired
     public SecurityController( AuthorizationManager securityManager ) {
         this.securityManager = securityManager;
     }

@@ -21,7 +21,6 @@ import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOption
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
-import net.sf.saxon.trans.XPathException;
 
 /**
  * Validates <link>XPlanArchives</link> semantically using XQuery The file path must be set and the validator be built

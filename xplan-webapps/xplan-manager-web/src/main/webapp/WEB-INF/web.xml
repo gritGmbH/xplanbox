@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-  version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
 
+  <!-- Spring WebApplication Context -->
   <context-param>
     <param-name>contextClass</param-name>
     <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
   </context-param>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>de.latlon.xplan.manager.web.spring.ManagerWebSpringConfig</param-value>
+    <param-value>de.latlon.xplan.manager.web.spring.config.ManagerWebSpringConfig</param-value>
   </context-param>
+
+  <!-- Bootstrap the root application context as usual using ContextLoaderListener -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    <listener-class>de.latlon.xplan.manager.web.server.log.SystemLogListener</listener-class>
+  </listener>
 
   <!-- Servlets -->
   <servlet>
@@ -33,6 +41,10 @@
       <param-name>contextClass</param-name>
       <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
     </init-param>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>de.latlon.xplan.manager.web.spring.config.XPlanManagerWebContextConfig</param-value>
+    </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
 
@@ -48,12 +60,6 @@
     <servlet-name>xplanmgrwebrest</servlet-name>
     <url-pattern>/xplanmgrweb/rest/*</url-pattern>
   </servlet-mapping>
-
-  <!-- Bootstrap the root application context as usual using ContextLoaderListener -->
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    <listener-class>de.latlon.xplan.manager.web.server.log.SystemLogListener</listener-class>
-  </listener>
 
   <!-- Default page to serve -->
   <welcome-file-list>

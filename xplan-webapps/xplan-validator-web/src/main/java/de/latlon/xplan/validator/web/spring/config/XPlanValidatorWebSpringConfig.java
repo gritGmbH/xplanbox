@@ -1,4 +1,4 @@
-package de.latlon.xplan.validator.web;
+package de.latlon.xplan.validator.web.spring.config;
 
 import static java.nio.file.Paths.get;
 
@@ -30,14 +30,13 @@ import de.latlon.xplan.validator.web.server.service.ReportProvider;
 import de.latlon.xplan.validator.web.server.service.ValidatorReportProvider;
 
 /**
- * XPlanValidatorWeb Application Configuration
+ * XPlanValidatorWeb Application Configuration.
  * 
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
  */
 @Configuration
-@ComponentScan(basePackages = { "de.latlon.xplan.validator.web.server.service" })
 public class XPlanValidatorWebSpringConfig {
 
     private static final String RULES_DIRECTORY = "/rules";
@@ -53,9 +52,14 @@ public class XPlanValidatorWebSpringConfig {
     }
 
     @Bean
-    public SemanticValidator semanticValidator()
-                    throws URISyntaxException, ValidatorException {
-        return new XQuerySemanticValidator( new XQuerySemanticValidatorConfigurationRetriever( retrieveRulesPath() ) );
+    public SemanticValidator semanticValidator( XQuerySemanticValidatorConfigurationRetriever configurationRetriever )
+                    throws ValidatorException {
+        return new XQuerySemanticValidator( configurationRetriever );
+    }
+
+    @Bean
+    public XQuerySemanticValidatorConfigurationRetriever configurationRetriever( Path rulesPath ) {
+        return new XQuerySemanticValidatorConfigurationRetriever(rulesPath);
     }
 
     @Bean
@@ -66,9 +70,8 @@ public class XPlanValidatorWebSpringConfig {
     }
 
     @Bean
-    public ReportArchiveGenerator reportArchiveGenerator()
-                    throws IOException, ConfigurationException {
-        return new ReportArchiveGenerator( validatorConfiguration() );
+    public ReportArchiveGenerator reportArchiveGenerator(ValidatorConfiguration validatorConfiguration) {
+        return new ReportArchiveGenerator( validatorConfiguration );
     }
 
     @Bean
@@ -81,15 +84,17 @@ public class XPlanValidatorWebSpringConfig {
         return new ValidatorReportProvider();
     }
 
-    private ValidatorConfiguration validatorConfiguration()
+    @Bean
+    public ValidatorConfiguration validatorConfiguration()
                     throws IOException, ConfigurationException {
         ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
         return validatorConfigurationParser.parse( new DefaultPropertiesLoader( ValidatorConfiguration.class ) );
     }
 
-    private Path retrieveRulesPath()
-                    throws URISyntaxException {
-        URI rulesPath = getClass().getResource( RULES_DIRECTORY ).toURI();
+    @Bean
+    public Path rulesPath()
+            throws URISyntaxException {
+        URI rulesPath = XPlanValidatorWebSpringConfig.class.getResource( RULES_DIRECTORY ).toURI();
         return get( rulesPath );
     }
 
