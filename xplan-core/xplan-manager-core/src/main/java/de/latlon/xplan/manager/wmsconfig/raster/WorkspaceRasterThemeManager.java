@@ -39,15 +39,15 @@ import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
  */
 public class WorkspaceRasterThemeManager {
 
-    private static final Logger LOG = LoggerFactory.getLogger( XPlanManager.class );
+    private static final Logger LOG = LoggerFactory.getLogger( WorkspaceRasterThemeManager.class );
 
     private final RasterConfigurationSorter rasterConfigurationSorter = new RasterConfigurationSorter(); 
     
     private final WmsWorkspaceWrapper wmsWorkspaceWrapper;
 
     /**
-     * @param wmsWorkspace
-     *            the workspace containing the wms configuration to manipulate, never <code>null</code>
+     * @param wmsWorkspaceWrapper
+     *            the wrapper of the workspace containing the wms configuration to manipulate, never <code>null</code>
      * @throws IllegalArgumentException
      *             - if the wmsWorkspace is <code>null</code>
      */
