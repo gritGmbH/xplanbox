@@ -263,7 +263,7 @@
       </Geometry>
       <Graphic>
         <Mark>
-          <WellKnownName>circle</WellKnownName>
+          <WellKnownName>square</WellKnownName>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
             <SvgParameter name="fill-opacity">0.0</SvgParameter>
@@ -296,9 +296,9 @@
             <SvgParameter name="stroke-width">0.1</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>4</Size>
+        <Size>5</Size>
         <Displacement>
-          <DisplacementX>0.25</DisplacementX>
+          <DisplacementX>0.2</DisplacementX>
           <DisplacementY>0</DisplacementY>
         </Displacement>
       </Graphic>
