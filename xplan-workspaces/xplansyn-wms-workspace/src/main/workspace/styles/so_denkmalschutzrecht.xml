@@ -68,12 +68,100 @@
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
         <SvgParameter name="stroke-width">3</SvgParameter>
+
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">round</SvgParameter>
         <SvgParameter name="stroke-dasharray">0.50 3</SvgParameter>
       </Stroke>
       <sed:PerpendicularOffset type="Standard">1.5</sed:PerpendicularOffset>
     </PolygonSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>so_denkmalschutzrecht Flaeche-Text1</Name>
+    <Description>
+      <Title>SO: Denkmalschutzrecht Flaeche Text1</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:Function name="IsSurface">
+          <ogc:PropertyName>xplan:position</ogc:PropertyName>
+        </ogc:Function>
+        <ogc:Literal>true</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>500</MaxScaleDenominator>
+    <TextSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <Concatenate fallbackValue="">
+        <StringValue>D</StringValue>
+        </Concatenate>
+      </Label>
+      <Font>
+        <CssParameter name="font-family">Arial Narrow</CssParameter>
+        <CssParameter name="font-size">15</CssParameter>
+      </Font>
+    </TextSymbolizer>
+    <TextSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <Concatenate fallbackValue="">
+        <StringValue>O</StringValue>
+        </Concatenate>
+      </Label>
+      <Font>
+        <CssParameter name="font-family">Arial Narrow</CssParameter>
+        <CssParameter name="font-size">40</CssParameter>
+      </Font>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>so_denkmalschutzrecht Flaeche-Text2</Name>
+    <Description>
+      <Title>SO: Denkmalschutzrecht Flaeche Text2</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:Function name="IsSurface">
+          <ogc:PropertyName>xplan:position</ogc:PropertyName>
+        </ogc:Function>
+        <ogc:Literal>true</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <TextSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <Concatenate fallbackValue="">
+        <StringValue>D</StringValue>
+        </Concatenate>
+      </Label>
+      <Font>
+        <CssParameter name="font-family">Arial Narrow</CssParameter>
+        <CssParameter name="font-size">10</CssParameter>
+      </Font>
+    </TextSymbolizer>
+    <TextSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <Concatenate fallbackValue="">
+        <StringValue>O</StringValue>
+        </Concatenate>
+      </Label>
+      <Font>
+        <CssParameter name="font-family">Arial Narrow</CssParameter>
+        <CssParameter name="font-size">30</CssParameter>
+      </Font>
+    </TextSymbolizer>
   </Rule>
 
   <!-- Linie -->
@@ -175,7 +263,7 @@
       </Geometry>
       <Graphic>
         <Mark>
-          <WellKnownName>circle</WellKnownName>
+          <WellKnownName>square</WellKnownName>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
             <SvgParameter name="fill-opacity">0.0</SvgParameter>
@@ -208,9 +296,9 @@
             <SvgParameter name="stroke-width">0.1</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>4</Size>
+        <Size>5</Size>
         <Displacement>
-          <DisplacementX>0.25</DisplacementX>
+          <DisplacementX>0.2</DisplacementX>
           <DisplacementY>0</DisplacementY>
         </Displacement>
       </Graphic>

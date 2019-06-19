@@ -20,7 +20,6 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
-import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.client.service.ValidationService;

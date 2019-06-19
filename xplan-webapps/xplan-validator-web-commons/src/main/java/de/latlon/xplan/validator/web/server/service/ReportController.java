@@ -40,7 +40,7 @@ public class ReportController {
                                @PathVariable String uuid, 
                                @RequestParam(value = "validationName", required = true) String validationName )
                             throws IOException {
-        LOG.debug( "HTML-Report for '{}' and valdationName '{}' requested.", uuid, validationName );
+        LOG.debug( "HTML-Report for '{}' and validationName '{}' requested.", uuid, validationName );
         reportProvider.writeHtmlReport( response, uuid, validationName );
         response.setContentType( "text/html" );
     }

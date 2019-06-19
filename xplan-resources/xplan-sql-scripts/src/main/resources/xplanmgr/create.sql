@@ -51,4 +51,4 @@ CREATE TABLE planwerkwmsmetadata (
     datametadataurl text,
     servicemetadataurl text
 );
-COMMENT ON TABLE planwerkwmscapabilities IS 'Metadata of plans provided in the capabilities of the PlanwerkWMS';
+COMMENT ON TABLE planwerkwmsmetadata IS 'Metadata of plans provided in the capabilities of the PlanwerkWMS';

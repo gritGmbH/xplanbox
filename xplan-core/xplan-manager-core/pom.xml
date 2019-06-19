@@ -133,6 +133,12 @@
       <scope>test</scope>
       <type>zip</type>
     </dependency>
+    <dependency>
+      <groupId>org.deegree</groupId>
+      <artifactId>deegree-layers-feature</artifactId>
+      <version>${deegree3.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
 </project>

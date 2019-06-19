@@ -54,10 +54,10 @@ Die Anfrage des Daten-Metadatensatzes erfolgt mit Hilfe des Plannamens aus dem X
     <csw:ElementSetName typeNames="gmd:MD_Metadata">full</csw:ElementSetName>
     <csw:Constraint version="1.1.0">
       <ogc:Filter>
-        <ogc:PropertyIsLike wildCard="%" singleChar="_" escapeChar="\">
-          <ogc:PropertyName>apiso:title</ogc:PropertyName>
-          <ogc:Literal>%PLANNAME%</ogc:Literal>
-        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>apiso:AlternateTitle</ogc:PropertyName>
+          <ogc:Literal>PLANNAME</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </csw:Constraint>
   </csw:Query>

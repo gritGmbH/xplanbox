@@ -3,6 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-docker-volumes</artifactId>
   <packaging>pom</packaging>
+  <description>XPlan Docker Volumes</description>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
