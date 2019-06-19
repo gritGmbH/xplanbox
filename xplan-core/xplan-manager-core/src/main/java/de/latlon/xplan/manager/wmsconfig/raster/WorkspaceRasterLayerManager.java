@@ -284,7 +284,7 @@ public class WorkspaceRasterLayerManager {
     private void createDirectory( Path directoryToCreate )
                     throws IOException {
         if ( !Files.exists( directoryToCreate ) )
-            Files.createDirectory( directoryToCreate );
+            Files.createDirectories( directoryToCreate );
     }
 
     private void marshallConfig( Object cfg, String contextPath, Path toWriteIn )
