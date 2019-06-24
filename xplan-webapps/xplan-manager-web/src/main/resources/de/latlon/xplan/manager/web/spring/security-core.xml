@@ -9,9 +9,10 @@
 
   <security:http pattern="/favicon.ico" security="none" />
 
-  <security:http use-expressions="true">
-    <security:http-basic />
+  <security:http auto-config="true" use-expressions="true">
     <security:intercept-url pattern="/**" access="hasAnyRole('ROLE_XPLAN_USER','ROLE_XPLAN_SUPERUSER')" />
+    <security:http-basic />
+    <security:csrf disabled="true"/>
   </security:http>
 
   <security:global-method-security pre-post-annotations="enabled">
