@@ -3704,6 +3704,7 @@
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -5316,6 +5317,7 @@
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -6710,6 +6712,7 @@
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -8151,6 +8154,7 @@ withTransformationContext {
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -12660,6 +12664,7 @@ withTransformationContext {
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -13253,6 +13258,7 @@ if(gehoertZuFP_Bereich){
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -14032,6 +14038,7 @@ if(textSchluessel){
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -14472,6 +14479,7 @@ if(textSchluessel){
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -15068,6 +15076,7 @@ if(textSchluessel){
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -15881,6 +15890,7 @@ withTransformationContext {
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -17240,6 +17250,7 @@ withTransformationContext {
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -17346,6 +17357,7 @@ withTransformationContext {
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -17406,6 +17418,7 @@ withTransformationContext {
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -18116,6 +18129,7 @@ withTransformationContext {
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -19651,6 +19665,7 @@ if(rechtscharakter) {
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -19933,6 +19948,7 @@ if(rechtscharakter) {
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -20009,6 +20025,7 @@ if(rechtscharakter) {
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -20387,6 +20404,7 @@ withTransformationContext {
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -20719,6 +20737,7 @@ if(gehoertZuLP_Bereich){
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -20735,6 +20754,7 @@ if(gehoertZuLP_Bereich){
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -22100,6 +22120,7 @@ c.soTextSchluesselBegruendung.each { value -&gt;
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -22130,6 +22151,7 @@ c.soTextSchluesselBegruendung.each { value -&gt;
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -22160,6 +22182,7 @@ c.soTextSchluesselBegruendung.each { value -&gt;
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -22560,6 +22583,7 @@ c.soTextSchluesselBegruendung.each { value -&gt;
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -22622,6 +22646,7 @@ c.soTextSchluesselBegruendung.each { value -&gt;
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
@@ -23226,6 +23251,7 @@ c.soTextSchluesselBegruendung.each { value -&gt;
                 <child name="raeumlicherGeltungsbereich" ns="http://www.xplanung.de/xplangml/5/1"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
