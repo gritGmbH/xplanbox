@@ -77,6 +77,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 2.10             | ja (<<aktualisierung-auf-die-version-2.10-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.10-der-xplanbox, Details>>)
 | 2.11             | ja (<<aktualisierung-auf-die-version-2.11-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.11-der-xplanbox, Details>>)
 | 2.12             | ja (<<aktualisierung-auf-die-version-2.12-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.12-der-xplanbox, Details>>)
+| 2.13             | ja (<<aktualisierung-auf-die-version-2.13-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.13-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -290,3 +291,13 @@ Mit der Version 2.12 der xPlanBox sind verschiedene Erweiterungen umgesetzt word
 
 Mit der Version 2.12 wird bei entprechender Konfiguration (s. <<konfiguration-daten-dienste-kopplung>>) beim Import eines Plans geprüft ob für diesen Plan bereits ein Daten-Metadatensatz existiert. Ist dies der Fall wird automatisiert ein Service-Metadatensatz für den Plan bzw. dessen XPlanWerkWMS erstellt.
 Sollen für alle oder einzelne bereits importierten Pläne die Service-Metadatensätze generiert und die dazugehörigen Informationen zur Daten-Dienste-Kopplung, die in den Capabilities des XPlanWerkWMS ausgegeben werden, erstellt werden, steht im Modul xplan-update-database das Werkzeug __serviceMetadatRecordCreator__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt dem Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert.
+
+[[aktualisierung-auf-die-version-2.13-der-xplanbox]]
+=== Aktualisierung auf die Version 2.13 der xPlanBox
+
+In der Version 2.13 der xPlanBox wurden kleinere Anpassungen und Fehlerbehebungen vorgenommen. Für die Aktualisierung auf diese Version sind folgende Schritte auszuführen:
+
+ * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+ ** Umbenennung des Property mit dem Namen _directoryToStoreDatasetMetadata_ nach _directoryToStoreMetadata_ in der Datei _managerConfiguration.properties_ im Verzeichnis _~/.deegree/manager-configuration/_.
+ * Aktualisierung der Datenbank:
+ ** Ausführen der Skripte im Verzeichnis _from_2.12_to_2.13_ im Modul xplan-update-database
