@@ -51,10 +51,10 @@ public class MetadataCouplingHandlerTest {
         int planId = 1;
         metadataCouplingHandler.processMetadataCoupling( planId, planName, mockPlanwerkServiceMetadata( planName ) );
 
-        Path directoryToStoreDatasetMetadata = config.getDirectoryToStoreDatasetMetadata();
-        assertThat( numberOfCreatedRecords( directoryToStoreDatasetMetadata ), is( 1l ) );
+        Path directoryToStoreMetadata = config.getDirectoryToStoreMetadata();
+        assertThat( numberOfCreatedRecords( directoryToStoreMetadata ), is( 1l ) );
 
-        assertThat( theRecordIn( directoryToStoreDatasetMetadata ),
+        assertThat( theRecordIn( directoryToStoreMetadata ),
                     hasXPath( "//gmd:MD_Metadata/gmd:dateStamp/gco:Date", nsContext() ) );
 
         verify( xPlanDao, times( 1 ) ).insertOrReplacePlanWerkWmsMetadata( eq( planId ), eq( planName ), anyString(),
@@ -73,15 +73,15 @@ public class MetadataCouplingHandlerTest {
         int planId = 1;
         metadataCouplingHandler.processMetadataCoupling( planId, planName, mockPlanwerkServiceMetadata( planName ) );
 
-        Path directoryToStoreDatasetMetadata = config.getDirectoryToStoreDatasetMetadata();
-        assertThat( numberOfCreatedRecords( directoryToStoreDatasetMetadata ), is( 0l ) );
+        Path directoryToStoreMetadata = config.getDirectoryToStoreMetadata();
+        assertThat( numberOfCreatedRecords( directoryToStoreMetadata ), is( 0l ) );
         verify( xPlanDao, times( 1 ) ).insertOrReplacePlanWerkWmsMetadata( anyInt(), anyString(), anyString(), anyString(),
                                                                            anyString() );
     }
 
-    private Object numberOfCreatedRecords( Path directoryToStoreDatasetMetadata )
+    private Object numberOfCreatedRecords( Path directoryToStoreMetadata )
                     throws IOException {
-        return Files.list( directoryToStoreDatasetMetadata ).count();
+        return Files.list( directoryToStoreMetadata ).count();
     }
 
     private Source theRecordIn( Path createdMetadataRecords )
@@ -113,11 +113,11 @@ public class MetadataCouplingHandlerTest {
 
         Path metadataConfigDirectory = createDirectoryWithTemplate();
 
-        Path directoryToStoreDatasetMetadata = Files.createTempDirectory( "directoryToStoreDatasetMetadataTest" );
+        Path directoryToStoreMetadata = Files.createTempDirectory( "directoryToStoreMetadataTest" );
 
         String planWerkBaseUrl = "http://localhost:8080/xplan-planwerk-wms";
         return new CoupledResourceConfiguration( cswUrlProvidingDatasetMetadata, metadataConfigDirectory,
-                                                 directoryToStoreDatasetMetadata, planWerkBaseUrl, 750, 750 );
+                                                 directoryToStoreMetadata, planWerkBaseUrl, 750, 750 );
     }
 
     private Path createDirectoryWithTemplate()

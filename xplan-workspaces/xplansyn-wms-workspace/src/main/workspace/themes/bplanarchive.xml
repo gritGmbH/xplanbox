@@ -698,11 +698,11 @@
         <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
         <Layer>bp_xp_pto</Layer>
       </Theme>
-      <Theme>
-        <Identifier>bp_plan</Identifier>
-        <d:Title>BP: Plan</d:Title>
-        <Layer>bp_plan</Layer>
-      </Theme>
+    </Theme>
+    <Theme>
+      <Identifier>bp_plan</Identifier>
+      <d:Title>BP: Plan</d:Title>
+      <Layer>bp_plan</Layer>
     </Theme>
   </Theme>
 </Themes>

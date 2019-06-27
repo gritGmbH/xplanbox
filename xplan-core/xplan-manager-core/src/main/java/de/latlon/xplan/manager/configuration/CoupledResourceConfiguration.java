@@ -33,7 +33,7 @@ public class CoupledResourceConfiguration {
 
     private final Path metadataConfigDirectory;
 
-    private final Path directoryToStoreDatasetMetadata;
+    private final Path directoryToStoreMetadata;
 
     /**
      * Instantiates the configuration and checks mandatory parameters.
@@ -42,7 +42,7 @@ public class CoupledResourceConfiguration {
      *                 never <code>null</code>
      * @param metadataConfigDirectory
      *                 never <code>null</code> and must exist
-     * @param directoryToStoreDatasetMetadata
+     * @param directoryToStoreMetadata
      *                 never <code>null</code> and must exist
      * @param planWerkWmsBaseUrl
      *                 never <code>null</code>
@@ -54,13 +54,13 @@ public class CoupledResourceConfiguration {
      *                 if at least one of the mandatory parameters is null or one of the directories does not exist
      */
     public CoupledResourceConfiguration( String cswUrlProvidingDatasetMetadata, Path metadataConfigDirectory,
-                                         Path directoryToStoreDatasetMetadata, String planWerkWmsBaseUrl,
+                                         Path directoryToStoreMetadata, String planWerkWmsBaseUrl,
                                          int planWerkWmsGetMapWidth, int planWerkWmsGetMapHeight ) {
         checkParameter( cswUrlProvidingDatasetMetadata, planWerkWmsBaseUrl, metadataConfigDirectory,
-                        directoryToStoreDatasetMetadata );
+                        directoryToStoreMetadata );
         this.cswUrlProvidingDatasetMetadata = cswUrlProvidingDatasetMetadata;
         this.metadataConfigDirectory = metadataConfigDirectory;
-        this.directoryToStoreDatasetMetadata = directoryToStoreDatasetMetadata;
+        this.directoryToStoreMetadata = directoryToStoreMetadata;
         this.planWerkWmsBaseUrl = planWerkWmsBaseUrl;
         this.planWerkWmsGetMapWidth = planWerkWmsGetMapWidth >= 0 ? planWerkWmsGetMapWidth : 750;
         this.planWerkWmsGetMapHeight = planWerkWmsGetMapHeight >= 0 ? planWerkWmsGetMapHeight : 750;
@@ -74,8 +74,8 @@ public class CoupledResourceConfiguration {
         return metadataConfigDirectory;
     }
 
-    public Path getDirectoryToStoreDatasetMetadata() {
-        return directoryToStoreDatasetMetadata;
+    public Path getDirectoryToStoreMetadata() {
+        return directoryToStoreMetadata;
     }
 
     public String getPlanWerkWmsBaseUrl() {
@@ -127,13 +127,13 @@ public class CoupledResourceConfiguration {
         }
         log.info( "   - CSW Url: {}", cswUrlProvidingDatasetMetadata );
         log.info( "   - Metadata config directory: {}", metadataConfigDirectory );
-        log.info( "   - Directory to store dataset metadata: {}", directoryToStoreDatasetMetadata );
+        log.info( "   - Directory to store dataset metadata: {}", directoryToStoreMetadata );
     }
 
     public static CoupledResourceConfiguration parseCoupledResourceConfiguration( PropertiesLoader propertiesLoader,
                                                                                   Properties properties ) {
         String cswUrlProvidingDatasetMetadata = properties.getProperty( "cswUrlProvidingDatasetMetadata" );
-        Path directoryToStoreDatasetMetadata = getDirectoryToStoreDatasetMetadata( properties );
+        Path directoryToStoreMetadata = getDirectoryToStoreMetadata( properties );
         Path metadataConfigDirectory = propertiesLoader.resolveDirectory( "metadata" );
         String planWerkWmsBaseUrl = properties.getProperty( "planWerkWmsBaseUrl" );
         int planWerkWmsGetMapWidth = parseInteger( properties, "planWerkWmsGetMapWidth", 750 );
@@ -141,7 +141,7 @@ public class CoupledResourceConfiguration {
 
         try {
             CoupledResourceConfiguration configuration = new CoupledResourceConfiguration(
-                            cswUrlProvidingDatasetMetadata, metadataConfigDirectory, directoryToStoreDatasetMetadata,
+                            cswUrlProvidingDatasetMetadata, metadataConfigDirectory, directoryToStoreMetadata,
                             planWerkWmsBaseUrl, planWerkWmsGetMapWidth, planWerkWmsGetMapHeight );
 
             for ( XPlanType type : XPlanType.values() ) {
@@ -161,7 +161,7 @@ public class CoupledResourceConfiguration {
     }
 
     private void checkParameter( String cswUrlProvidingDatasetMetadata, String planWerkWmsBaseUrl,
-                                 Path metadataConfigDirectory, Path directoryToStoreDatasetMetadata ) {
+                                 Path metadataConfigDirectory, Path directoryToStoreMetadata ) {
         if ( cswUrlProvidingDatasetMetadata == null || cswUrlProvidingDatasetMetadata.isEmpty() )
             throw new IllegalArgumentException( "Property cswUrlProvidingDatasetMetadata is null or empty" );
         if ( planWerkWmsBaseUrl == null || planWerkWmsBaseUrl.isEmpty() )
@@ -171,10 +171,10 @@ public class CoupledResourceConfiguration {
         if ( !Files.exists( metadataConfigDirectory ) )
             throw new IllegalArgumentException(
                             "metadataConfigDirectory (" + metadataConfigDirectory + ") does not exist" );
-        if ( directoryToStoreDatasetMetadata == null )
-            throw new IllegalArgumentException( "Property directoryToStoreDatasetMetadata is missing" );
-        if ( !Files.exists( directoryToStoreDatasetMetadata ) )
-            throw new IllegalArgumentException( "directoryToStoreDatasetMetadata (" + directoryToStoreDatasetMetadata
+        if ( directoryToStoreMetadata == null )
+            throw new IllegalArgumentException( "Property directoryToStoreMetadata is missing" );
+        if ( !Files.exists( directoryToStoreMetadata ) )
+            throw new IllegalArgumentException( "directoryToStoreMetadata (" + directoryToStoreMetadata
                                                 + ") does not exist" );
     }
 
@@ -195,10 +195,10 @@ public class CoupledResourceConfiguration {
 
     }
 
-    private static Path getDirectoryToStoreDatasetMetadata( Properties properties ) {
-        String directoryToStoreDatasetMetadata = properties.getProperty( "directoryToStoreDatasetMetadata" );
-        if ( directoryToStoreDatasetMetadata != null )
-            return Paths.get( directoryToStoreDatasetMetadata );
+    private static Path getDirectoryToStoreMetadata( Properties properties ) {
+        String directoryToStoreMetadata = properties.getProperty( "directoryToStoreMetadata" );
+        if ( directoryToStoreMetadata != null )
+            return Paths.get( directoryToStoreMetadata );
         return null;
     }
 
