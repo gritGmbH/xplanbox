@@ -197,13 +197,7 @@ public class WorkspaceRasterThemeManager {
     public void removeLayersForPlan( String type, String planId )
                     throws JAXBException, IOException, ConfigurationException {
         final String prefix = planId + "_";
-        IdMatcher idMatcher = new IdMatcher() {
-            @Override
-            public boolean matches( String toMatch ) {
-                return toMatch.startsWith( prefix );
-            }
-        };
-        removeLayers( type, idMatcher );
+        removeLayers( type, toMatch -> toMatch.startsWith( prefix ) );
     }
 
     /**
@@ -222,13 +216,7 @@ public class WorkspaceRasterThemeManager {
     public void removeLayersForPlan( String type, String planId, String rasterId )
                     throws JAXBException, IOException, ConfigurationException {
         final String layerId = planId + "_" + rasterId;
-        IdMatcher idMatcher = new IdMatcher() {
-            @Override
-            public boolean matches( String toMatch ) {
-                return toMatch.equals( layerId );
-            }
-        };
-        removeLayers( type, idMatcher );
+        removeLayers( type, toMatch -> toMatch.equals( layerId ) );
     }
 
     /**
