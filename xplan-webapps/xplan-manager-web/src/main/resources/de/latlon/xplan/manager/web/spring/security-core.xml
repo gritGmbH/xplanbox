@@ -17,7 +17,7 @@
     <security:intercept-url pattern="/**" access="hasAnyRole('XPLAN_USER','XPLAN_SUPERUSER')" />
     <security:http-basic />
     <security:headers>
-      <frame-security:options policy="SAMEORIGIN"/>
+	    <security:frame-options policy="SAMEORIGIN"/>
     </security:headers>
     <security:csrf disabled="true" />
   </security:http>
