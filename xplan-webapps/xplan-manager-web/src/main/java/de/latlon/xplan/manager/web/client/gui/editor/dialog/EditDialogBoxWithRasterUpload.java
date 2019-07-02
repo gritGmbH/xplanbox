@@ -46,6 +46,8 @@ import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.widget.Validable;
 
+import java.util.List;
+
 /**
  * Extends the {@link EditDialogBox} with a two {@link PreserveExistingFileUpload} gui elements to allow the user to
  * select a reference and geo reference.
@@ -130,6 +132,44 @@ public abstract class EditDialogBoxWithRasterUpload extends EditDialogBox implem
      */
     protected boolean isGeoreferenceUrlMandatory() {
         return false;
+    }
+
+    protected boolean validateReferenceAndGeoreference( List<String> validationFailures ) {
+        boolean newReference = reference.isNewFileUploaded();
+        boolean newGeoreference = georeference.isNewFileUploaded();
+        String referenceName = reference.getFilename();
+        String georeferenceName = georeference.getFilename();
+        boolean isValid = true;
+        if ( newReference ) {
+            if ( newGeoreference ) {
+                if ( notTheSameName( referenceName, georeferenceName ) ) {
+                    validationFailures.add( MESSAGES.rasterNameAndGeoreferencNameNotSame() );
+                    isValid = false;
+                }
+            } else {
+                if ( georeferenceName == null || georeferenceName.isEmpty() ) {
+                    return true;
+                } else {
+                    validationFailures.add( MESSAGES.rasterAndGeoreferencNotChanged() );
+                    isValid = false;
+                }
+            }
+        } else {
+            if ( !newGeoreference ) {
+                return true;
+            } else {
+                validationFailures.add( MESSAGES.rasterAndGeoreferencNotChanged() );
+                isValid = false;
+            }
+        }
+        return isValid;
+    }
+
+    private boolean notTheSameName( String referenceName, String georeferenceFilename ) {
+        String referenceNameWithoutSuffix = referenceName.substring( 0, referenceName.lastIndexOf( "." ) );
+        String georeferenceNameWithoutSuffix = georeferenceFilename.substring( 0, georeferenceFilename.lastIndexOf(
+                        "." ) );
+        return !referenceNameWithoutSuffix.equals( georeferenceNameWithoutSuffix );
     }
 
     private DialogBox createUploadingDialogBox() {
