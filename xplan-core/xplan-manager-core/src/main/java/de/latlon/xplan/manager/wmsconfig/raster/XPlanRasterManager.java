@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -62,6 +63,10 @@ public class XPlanRasterManager {
     // TODO: must never null!
     private final ManagerConfiguration managerConfiguration;
 
+    private final WorkspaceRasterThemeManager rasterThemeManager;
+
+    private final WorkspaceRasterLayerManager rasterLayerManager;
+
     static {
         try {
             gdal.AllRegister();
@@ -95,6 +100,10 @@ public class XPlanRasterManager {
                                ManagerConfiguration managerConfiguration ) throws WorkspaceException {
         this.wmsWorkspaceWrapper = wmsWorkspaceWrapper;
         this.managerConfiguration = managerConfiguration;
+        this.rasterThemeManager = new WorkspaceRasterThemeManager(
+                        wmsWorkspaceWrapper );
+        this.rasterLayerManager = new WorkspaceRasterLayerManager(
+                        wmsWorkspaceWrapper.getLocation() );
     }
 
     /**
@@ -122,8 +131,7 @@ public class XPlanRasterManager {
     public void addLayer( String type, String layerId, String tiffid, String layerName, String layerTitle,
                           String categoryName ) {
         try {
-            WorkspaceRasterThemeManager mgr = new WorkspaceRasterThemeManager( wmsWorkspaceWrapper );
-            mgr.addUserLayer( type, layerId, layerName, layerTitle, categoryName );
+            rasterThemeManager.addUserLayer( type, layerId, layerName, layerTitle, categoryName );
         } catch ( Exception e ) {
             LOG.trace( "Layer could not be created!", e );
             LOG.error( "Benutzerdefinierte Ebene kann nicht angelegt werden: {}", e.getLocalizedMessage() );
@@ -140,8 +148,7 @@ public class XPlanRasterManager {
      */
     public void removeLayer( String type, String layerName ) {
         try {
-            WorkspaceRasterThemeManager mgr = new WorkspaceRasterThemeManager( wmsWorkspaceWrapper );
-            mgr.removeUserLayer( type, layerName );
+            rasterThemeManager.removeUserLayer( type, layerName );
         } catch ( Exception e ) {
             LOG.trace( "Layer " + layerName + " could not be removed!", e );
             LOG.error( "Benutzerdefinierte Ebene kann nicht gelöscht werden: {}", e.getLocalizedMessage() );
@@ -163,8 +170,7 @@ public class XPlanRasterManager {
      */
     public void addCategory( String type, String name, String title, String uppercategory ) {
         try {
-            WorkspaceRasterThemeManager mgr = new WorkspaceRasterThemeManager( wmsWorkspaceWrapper );
-            mgr.addCategory( type, name, title, uppercategory );
+            rasterThemeManager.addCategory( type, name, title, uppercategory );
         } catch ( Exception e ) {
             LOG.trace( "Category " + name + " could not be added!", e );
             LOG.error( "Kategorie kann nicht angelegt werden: {} ", e.getLocalizedMessage() );
@@ -181,8 +187,7 @@ public class XPlanRasterManager {
      */
     public void removeCategory( String type, String categoryName ) {
         try {
-            WorkspaceRasterThemeManager mgr = new WorkspaceRasterThemeManager( wmsWorkspaceWrapper );
-            mgr.removeCategory( type, categoryName );
+            rasterThemeManager.removeCategory( type, categoryName );
         } catch ( Exception e ) {
             LOG.trace( "Category " + categoryName + " could not be removed!", e );
             LOG.error( "Kategorie kann nicht gelöscht werden: {}", e.getLocalizedMessage() );
@@ -201,8 +206,7 @@ public class XPlanRasterManager {
      */
     public void moveLayer( String type, String layer, String category ) {
         try {
-            WorkspaceRasterThemeManager mgr = new WorkspaceRasterThemeManager( wmsWorkspaceWrapper );
-            mgr.moveLayer( type, layer, category );
+            rasterThemeManager.moveLayer( type, layer, category );
         } catch ( Exception e ) {
             LOG.trace( "Layer " + layer + " could not be moved to " + category + "!", e );
             LOG.error( "Ebene kann nicht verschoben werden: {}", e.getLocalizedMessage() );
@@ -217,12 +221,13 @@ public class XPlanRasterManager {
      */
     public void removeRasterLayers( String planId ) {
         try {
-            new WorkspaceRasterThemeManager( wmsWorkspaceWrapper ).removeLayersForPlan( "bplan", planId );
-            new WorkspaceRasterThemeManager( wmsWorkspaceWrapper ).removeLayersForPlan( "lplan", planId );
-            new WorkspaceRasterThemeManager( wmsWorkspaceWrapper ).removeLayersForPlan( "rplan", planId );
-            new WorkspaceRasterThemeManager( wmsWorkspaceWrapper ).removeLayersForPlan( "fplan", planId );
-            new WorkspaceRasterLayerManager(
-                            wmsWorkspaceWrapper.getLocation() ).deleteDataFilesAndRasterConfigurations( planId );
+            WorkspaceRasterLayerManager rasterLayerManager = new WorkspaceRasterLayerManager(
+                            wmsWorkspaceWrapper.getLocation() );
+            rasterThemeManager.removeLayersForPlan( "bplan", planId );
+            rasterThemeManager.removeLayersForPlan( "lplan", planId );
+            rasterThemeManager.removeLayersForPlan( "rplan", planId );
+            rasterThemeManager.removeLayersForPlan( "fplan", planId );
+            rasterLayerManager.deleteDataFilesAndRasterConfigurations( planId );
         } catch ( Exception e ) {
             LOG.trace( "Configuration of the plan with id " + planId + " failed.!", e );
             LOG.error( "Modifizierung der Themes-Datei fehlgeschlagen: {}", e.getMessage() );
@@ -242,8 +247,6 @@ public class XPlanRasterManager {
                 String referenzUrl = externalReferenceToRemove.getReferenzUrl();
                 if ( referenzUrl != null ) {
                     String rasterId = createRasterId( referenzUrl );
-                    WorkspaceRasterThemeManager rasterThemeManager = new WorkspaceRasterThemeManager(
-                                    wmsWorkspaceWrapper );
                     WorkspaceRasterLayerManager rasterLayerManager = new WorkspaceRasterLayerManager(
                                     wmsWorkspaceWrapper.getLocation() );
                     rasterThemeManager.removeLayersForPlan( "bplan", planId, rasterId );
@@ -329,11 +332,10 @@ public class XPlanRasterManager {
      */
     public void updateRasterLayers( int planId, XPlanType type, PlanStatus planStatus, PlanStatus newPlanStatus )
                     throws JAXBException, IOException, ConfigurationException {
-        WorkspaceRasterThemeManager mgr = new WorkspaceRasterThemeManager( wmsWorkspaceWrapper );
         String statusType = detectType( type, planStatus );
         if ( newPlanStatus != null ) {
             String newStatusType = detectType( type, newPlanStatus );
-            mgr.moveLayers( statusType, newStatusType, Integer.toString( planId ) );
+            rasterThemeManager.moveLayers( statusType, newStatusType, Integer.toString( planId ) );
             statusType = newStatusType;
         }
     }
@@ -390,9 +392,8 @@ public class XPlanRasterManager {
      */
     public void reorderWmsLayers( Map<String, Date> planId2sortDate )
                     throws Exception {
-        WorkspaceRasterThemeManager mgr = new WorkspaceRasterThemeManager( wmsWorkspaceWrapper );
         String rasterConfigurationCrs = getRasterConfigurationCrsFromManagerConfig();
-        mgr.reorderWmsLayers( planId2sortDate, rasterConfigurationCrs );
+        rasterThemeManager.reorderWmsLayers( planId2sortDate, rasterConfigurationCrs );
     }
 
     private static WmsWorkspaceWrapper instantiateDefaultWorkspaceWrapper()
@@ -405,18 +406,17 @@ public class XPlanRasterManager {
                                      XPlanType type, PlanStatus planStatus, PlanStatus newPlanStatus,
                                      List<String> rasterIds, Date sortDate )
                                                      throws JAXBException, IOException, ConfigurationException {
-        WorkspaceRasterThemeManager mgr = new WorkspaceRasterThemeManager( wmsWorkspaceWrapper );
         String statusType = detectType( type, planStatus );
         if ( newPlanStatus != null ) {
             String newStatusType = detectType( type, newPlanStatus );
-            mgr.moveLayers( statusType, newStatusType, Integer.toString( planId ) );
+            rasterThemeManager.moveLayers( statusType, newStatusType, Integer.toString( planId ) );
             statusType = newStatusType;
         }
         String rasterConfigurationCrs = getRasterConfigurationCrsFromManagerConfig();
         if ( sortDate != null ) {
-            mgr.insertLayersRightBefore( statusType, rasterConfigurationCrs, rasterIds, moreRecentPlanId );
+            rasterThemeManager.insertLayersRightBefore( statusType, rasterConfigurationCrs, rasterIds, moreRecentPlanId );
         } else {
-            mgr.insertLayersAtBeginning( statusType, rasterConfigurationCrs, rasterIds );
+            rasterThemeManager.insertLayersAtBeginning( statusType, rasterConfigurationCrs, rasterIds );
         }
     }
 
