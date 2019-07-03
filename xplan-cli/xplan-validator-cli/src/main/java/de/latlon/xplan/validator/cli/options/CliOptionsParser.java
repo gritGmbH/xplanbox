@@ -4,7 +4,7 @@ import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationType;
 import org.apache.commons.cli.*;
 
-import java.io.IOException;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,17 +30,28 @@ public class CliOptionsParser {
    *     archive to validate vo: validation options vtype[semantic, geometric, syntactic]: type of validation, defaults
    *     to semantic
    * @return CliOptions parsed from the arguments
-   * @throws IOException
    * @throws ParseException
    */
-  public CliOptions parse( String[] args ) throws IOException, ParseException {
+  public CliOptions parse( String[] args ) throws ParseException {
     CommandLine commandLine = ( new BasicParser() ).parse( createOptions(), args );
-    String archiveName = commandLine.getOptionValue( is( VALIDATE ) );
-    String validationName = commandLine.getOptionValue( is( NAME ) );
+    File archive = parseArchive( commandLine );
+    String validationName = parseValidationName( commandLine, archive );
     List<ValidationOption> voOptions = parseValidationOptions( commandLine.getOptionValues( is( VO ) ) );
     ValidationType validationType = parseValidationTypeSemanticIfNone(
         commandLine.getOptionValue( is( CLIParams.VALIDATE_TYPE ) ) );
-    return new CliOptions( validationName, voOptions, archiveName, validationType );
+    return new CliOptions( validationName, voOptions, archive, validationType );
+  }
+
+  private File parseArchive( CommandLine commandLine ) {
+    return new File( commandLine.getOptionValue( is( VALIDATE ) ) );
+  }
+
+  private String parseValidationName( CommandLine commandLine, File defaultValue ) {
+    String name = commandLine.getOptionValue( is( NAME ) );
+    if ( name != null )
+      return name;
+    String fileName = defaultValue.getName();
+    return fileName.substring( 0, fileName.indexOf( "." ) );
   }
 
   private Options createOptions() {
@@ -50,7 +61,7 @@ public class CliOptionsParser {
     Option voOption = new Option( is( VO ), HAS_ARG, "validation options" );
     Option xqOption = new Option( is( XQUERY ), HAS_ARG, "xquery file path" );
     Option vTypeOption = new Option( is( VALIDATE_TYPE ), HAS_ARG, "" );
-    nameOption.setRequired( true );
+    nameOption.setRequired( false );
     zipFileNameOption.setRequired( true );
     voOption.setRequired( false );
     xqOption.setRequired( false );
