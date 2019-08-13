@@ -697,47 +697,32 @@
 
   <repositories>
     <repository>
-      <id>latlon-repo</id>
-      <url>http://repo/nexus/content/groups/public/</url>
+      <id>latlon</id>
+      <url>https://repo.lat-lon.de/repository/maven-public/</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
-    </repository>
-    <repository>
-      <id>xplanbox-release</id>
-      <url>http://repo/nexus/content/repositories/xplanbox-release/</url>
-    </repository>
-    <repository>
-      <id>xplanbox-snapshot</id>
-      <url>http://repo/nexus/content/repositories/xplanbox-snapshot/</url>
     </repository>
   </repositories>
 
   <pluginRepositories>
     <pluginRepository>
-      <id>latlon-plugin-repo</id>
-      <url>http://repo/nexus/content/groups/public/</url>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
+      <id>latlon</id>
+      <url>https://repo.lat-lon.de/repository/maven-public/</url>
     </pluginRepository>
   </pluginRepositories>
 
   <distributionManagement>
     <repository>
-      <id>xplanbox-release</id>
-      <url>http://repo/nexus/content/repositories/xplanbox-release/</url>
+      <id>xplanbox-deploy</id>
+      <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
     </repository>
     <snapshotRepository>
-      <id>xplanbox-snapshot</id>
-      <url>http://repo/nexus/content/repositories/xplanbox-snapshot/</url>
+      <id>xplanbox-deploy</id>
+      <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
     </snapshotRepository>
   </distributionManagement>
 
