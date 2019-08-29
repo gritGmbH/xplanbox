@@ -717,11 +717,11 @@
 
   <distributionManagement>
     <repository>
-      <id>xplanbox-deploy</id>
+      <id>latlon-deploy</id>
       <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
     </repository>
     <snapshotRepository>
-      <id>xplanbox-deploy</id>
+      <id>latlon-deploy</id>
       <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
     </snapshotRepository>
   </distributionManagement>
