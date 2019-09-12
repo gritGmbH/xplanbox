@@ -205,8 +205,12 @@ public class GeometricValidatorImpl implements GeometricValidator {
             gmlStream.setDefaultCRS( crs );
             gmlStream.setGeometryFactory( geomFac );
             gmlStream.setApplicationSchema( schema );
+            gmlStream.setSkipBrokenGeometries( true );
+            FlaechenschlussInspector flaechenschlussInspector = new FlaechenschlussInspector();
+            gmlStream.addInspector( flaechenschlussInspector );
             try {
-                xplanFeatures = (FeatureCollection) gmlStream.readFeature( true );
+                xplanFeatures = (FeatureCollection) gmlStream.readFeature();
+                flaechenschlussInspector.checkFlaechenschluss();
                 elapsed = System.currentTimeMillis() - begin;
                 errors = inspector.getErrors();
                 List<String> brokenGeometryErrors = extendMessagesOfBrokenGeometryErrors();
