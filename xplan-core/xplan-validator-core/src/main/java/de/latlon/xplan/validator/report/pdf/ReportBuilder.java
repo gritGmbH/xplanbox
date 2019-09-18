@@ -164,8 +164,9 @@ class ReportBuilder {
         for ( RuleResult ruleResult : ruleResults ) {
             String label = ruleResult.isValid() ? LABEL_OK : LABEL_ERROR;
             TextFieldBuilder<String> labelField = cmp.text( label ).setFixedWidth( 100 ).setStyle( root20LeftIndentStyle );
+            TextFieldBuilder<String> nameField = cmp.text( ruleResult.getName() ).setFixedWidth( 60 ).setStyle( simpleStyle );
             TextFieldBuilder<String> messageField = cmp.text( ruleResult.getMessage() ).setStyle( simpleStyle );
-            rules.add( cmp.horizontalList().add( labelField ).add( messageField ) );
+            rules.add( cmp.horizontalList().add( labelField ).add( nameField ).add( messageField ) );
         }
     }
 
