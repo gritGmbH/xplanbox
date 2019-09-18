@@ -13,7 +13,7 @@
     <sonar.host.url>http://vento:9000</sonar.host.url>
     <sonar.jdbc.url>jdbc:postgresql://habub/sonar</sonar.jdbc.url>
     <!-- version properties -->
-    <deegree3.version>3.4.3-xplanbox-1.10-SNAPSHOT</deegree3.version>
+    <deegree3.version>3.4.3-xplanbox-1.11-SNAPSHOT</deegree3.version>
     <gwt.version>2.5.1</gwt.version>
     <geotools.version>10.0</geotools.version>
     <slf4j.version>1.7.5</slf4j.version>
@@ -621,17 +621,17 @@
       <dependency>
         <groupId>net.sourceforge.dynamicreports</groupId>
         <artifactId>dynamicreports-core</artifactId>
-        <version>6.0.0</version>
+        <version>6.1.0</version>
       </dependency>
       <dependency>
         <groupId>net.sourceforge.dynamicreports</groupId>
         <artifactId>dynamicreports-adhoc</artifactId>
-        <version>6.0.0</version>
+        <version>6.1.0</version>
       </dependency>
       <dependency>
         <groupId>net.sourceforge.dynamicreports</groupId>
         <artifactId>dynamicreports-googlecharts</artifactId>
-        <version>6.0.0</version>
+        <version>6.1.0</version>
       </dependency>
       <dependency>
         <groupId>org.mybatis</groupId>

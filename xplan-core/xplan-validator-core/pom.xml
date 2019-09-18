@@ -110,6 +110,17 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>net.sf.jasperreports</groupId>
+      <artifactId>jasperreports</artifactId>
+      <version>5.2.0</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>jdtcore</artifactId>
+          <groupId>eclipse</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
     </dependency>
