@@ -64,8 +64,8 @@ public class ValidatorOptionsDialog extends FormPanel {
      * @param reportDownloadFinishedListener
      *                         informed when the validation report dialog is closed or next is clicked, never <code>null</code>
      */
-    public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener ) {
-        this( reportDownloadFinishedListener, messages.reportButtonCloseTitle(), messages.reportButtonNextTitle() );
+    public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener, String fileName ) {
+        this( reportDownloadFinishedListener, messages.reportButtonCloseTitle(), messages.reportButtonNextTitle(), fileName );
     }
 
     /**
@@ -77,11 +77,11 @@ public class ValidatorOptionsDialog extends FormPanel {
      *                         title of the next button in the report dialog
      */
     public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener,
-                                   String reportCloseButtonTitle, String reportNextButtonTitle ) {
+                                   String reportCloseButtonTitle, String reportNextButtonTitle, String fileName ) {
         this.reportDownloadFinishedListener = reportDownloadFinishedListener;
         this.reportCloseButtonTitle = reportCloseButtonTitle;
         this.reportNextButtonTitle = reportNextButtonTitle;
-        initFormFiels();
+        initFormFields( fileName );
         initSettingsForm();
         this.setStyleName( "valOptionsForm" );
     }
@@ -103,8 +103,8 @@ public class ValidatorOptionsDialog extends FormPanel {
         add( mainPanel );
     }
 
-    private void initFormFiels() {
-        validationName.setText( messages.defaultRunName() );
+    private void initFormFields( String fileName ) {
+        validationName.setText( fileName != null && !fileName.isEmpty() ? fileName : messages.defaultRunName() );
         validationTypeSyn.setTitle( messages.tooltipValidationTypeSyn() );
         validationTypeGeom.setTitle( messages.tooltipValidationTypeGeom() );
         validationTypeSem.setTitle( messages.tooltipValidationTypeSem() );

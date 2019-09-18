@@ -24,7 +24,7 @@ import de.latlon.xplan.commons.web.CloseableDialogBox;
 
 /**
  * Entry point of the validation, containing the file upload and a button to navigate to the options view (
- * {@link XPlanValidatorOptions})
+ * {@link ValidatorOptionsDialog})
  * 
  * @author <a href="mailto:wilden@lat-lon.de">Johannes Wilden</a>
  * @author last edited by: $Author: lyn $
@@ -71,7 +71,7 @@ public class XPlanValidatorWeb implements EntryPoint {
         Panel openButtonPanel = createOpenButtonPanel( form, uploadItem );
 
         addFormSubmitHandler( form, uploadItem );
-        addFormSubmitCompleteHandler( form );
+        addFormSubmitCompleteHandler( form, uploadItem );
 
         VerticalPanel mainPanel = createMainPanel( uploadPanel, openButtonPanel );
         form.add( mainPanel );
@@ -157,7 +157,7 @@ public class XPlanValidatorWeb implements EntryPoint {
         } );
     }
 
-    private void addFormSubmitCompleteHandler( FormPanel form ) {
+    private void addFormSubmitCompleteHandler( FormPanel form, final FileUpload uploadItem ) {
         form.addSubmitCompleteHandler( new FormPanel.SubmitCompleteHandler() {
             @Override
             public void onSubmitComplete( SubmitCompleteEvent event ) {
@@ -166,11 +166,27 @@ public class XPlanValidatorWeb implements EntryPoint {
             }
 
             private void showSucessfulUploadedDialog( SubmitCompleteEvent event ) {
+                String filename = getFilename();
                 UploadFinishedDialogBox dialogBox = new UploadFinishedDialogBox( XPlanValidatorWeb.this,
-                                                                                 event.getResults() );
+                                                                                 event.getResults(),
+                                                                                 filename );
                 dialogBox.center();
                 dialogBox.show();
             }
+
+            private String getFilename() {
+                try {
+                    String filename = uploadItem.getFilename();
+                    int indexOfSep = filename.lastIndexOf( "\\" ) + 1;
+                    filename = filename.substring( indexOfSep );
+                    int indexOfPref = filename.lastIndexOf( "." );
+                    filename = filename.substring( 0, indexOfPref );
+                    return filename;
+                } catch ( Exception e ) {
+                    return null;
+                }
+            }
+
         } );
     }
 
