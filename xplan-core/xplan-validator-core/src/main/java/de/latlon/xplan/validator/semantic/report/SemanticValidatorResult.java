@@ -2,6 +2,7 @@ package de.latlon.xplan.validator.semantic.report;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorResult;
@@ -60,7 +61,7 @@ public class SemanticValidatorResult extends ValidatorResult {
      * @return all {@link RuleResult}s.
      */
     public List<RuleResult> getRules() {
-        return rules;
+        return rules.stream().sorted().collect( Collectors.toList() );
     }
 
     @Override

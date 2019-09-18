@@ -5,7 +5,7 @@ package de.latlon.xplan.validator.semantic.report;
  *
  * @author bingel
  */
-public class RuleResult {
+public class RuleResult implements Comparable {
 
   private final String name;
 
@@ -39,4 +39,10 @@ public class RuleResult {
            ", message='" + message + '\'' +
            '}';
   }
+
+  @Override
+  public int compareTo( Object o ) {
+    return this.getName().compareTo( ( (RuleResult) o ).getName() );
+  }
+
 }
