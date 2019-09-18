@@ -81,7 +81,6 @@ public class XPlanValidatorWeb implements EntryPoint {
     private VerticalPanel createMainPanel( Panel uploadPanel, Panel openButtonPanel ) {
         VerticalPanel mainPanel = new VerticalPanel();
         mainPanel.setWidth( "100%" );
-        mainPanel.setHorizontalAlignment( HasHorizontalAlignment.ALIGN_CENTER );
         mainPanel.add( uploadPanel );
         mainPanel.add( openButtonPanel );
         return mainPanel;
