@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output
-            method="xml" omit-xml-declaration="yes" indent="yes"/>
+            method="html" omit-xml-declaration="yes" indent="yes"/>
     <xsl:template match="/">
         <html>
             <head>
@@ -12,16 +12,31 @@
                         }
                 </style>
                 <script>
+                  <![CDATA[
                   function hideOrShow(hideOrShowElementId, clickElement) {
                       var elementToHideShow = document.getElementById(hideOrShowElementId);
                       if (elementToHideShow.style.display=="block") {
                         elementToHideShow.style.display="none"
                         clickElement.innerHTML = "anzeigen";
-                      } else { 
+                      } else {
                         elementToHideShow.style.display="block"
                         clickElement.innerHTML = "ausblenden";
                       }
                   }
+                  function hideOrShowByClass(hideOrShowClass, clickElement) {
+                    var elementsToHideShow = document.getElementsByClassName(hideOrShowClass);
+                    for(var i = 0; i < elementsToHideShow.length; ++i) {
+                      var elementToHideShow = elementsToHideShow[i];
+                      if (elementToHideShow.style.display=="none") {
+                        elementToHideShow.style.display="";
+                        clickElement.innerHTML = "ausblenden";
+                      } else {
+                        elementToHideShow.style.display="none"
+                        clickElement.innerHTML = "anzeigen";
+                      }
+                    }
+                  }
+                  ]]>
                 </script>
             </head>
             <body>
@@ -74,6 +89,12 @@
     <xsl:template match="Rules">
         <xsl:if test="*">
             <p>
+                Zusammenfassung
+                <ul>
+                    <li><xsl:value-of select="count(./Rule)" /> Validierungsregeln überprüft</li>
+                    <li><xsl:value-of select="count(./Rule[isValid='false'])" /> Validierungsregeln nicht erfüllt</li>
+                    <li><xsl:value-of select="count(./Rule[isValid='true'])" /> Validierungsregeln erfüllt <span style="color:red; cursor:pointer" onclick="javascript:hideOrShowByClass('validSemanticRule', this); return false;">anzeigen</span></li>
+                </ul>
                 <table border="1">
                     <tr>
                         <th>Regel</th>
@@ -81,7 +102,11 @@
                         <th>Beschreibung</th>
                     </tr>
                     <xsl:for-each select="*">
-                        <tr>
+                        <xsl:element name="tr">
+                            <xsl:if test="current()/isValid='true'" >
+                                <xsl:attribute name="class">validSemanticRule</xsl:attribute>
+                                <xsl:attribute name="style">display:none</xsl:attribute>
+                            </xsl:if>
                             <td>
                                 <xsl:value-of select="current()/name"/>
                             </td>
@@ -103,7 +128,7 @@
                             <td>
                                 <xsl:value-of select="current()/message"/>
                             </td>
-                        </tr>
+                        </xsl:element>
                     </xsl:for-each>
                 </table>
             </p>
