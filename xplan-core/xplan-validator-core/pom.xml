@@ -87,6 +87,54 @@
           <artifactId>ecj</artifactId>
           <groupId>org.eclipse.jdt.core.compiler</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>batik-xml</artifactId>
+          <groupId>org.apache.xmlgraphics</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>batik-util</artifactId>
+          <groupId>org.apache.xmlgraphics</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>batik-svg-dom</artifactId>
+          <groupId>org.apache.xmlgraphics</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>batik-script</artifactId>
+          <groupId>org.apache.xmlgraphics</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>batik-parser</artifactId>
+          <groupId>org.apache.xmlgraphics</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>batik-gvt</artifactId>
+          <groupId>org.apache.xmlgraphics</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>batik-ext</artifactId>
+          <groupId>org.apache.xmlgraphics</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>batik-dom</artifactId>
+          <groupId>org.apache.xmlgraphics</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>batik-css</artifactId>
+          <groupId>org.apache.xmlgraphics</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>batik-bridge</artifactId>
+          <groupId>org.apache.xmlgraphics</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>batik-awt-util</artifactId>
+          <groupId>org.apache.xmlgraphics</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>batik-anim</artifactId>
+          <groupId>org.apache.xmlgraphics</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
