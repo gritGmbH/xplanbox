@@ -84,8 +84,8 @@
       <artifactId>dynamicreports-core</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>jdtcore</artifactId>
-          <groupId>eclipse</groupId>
+          <artifactId>ecj</artifactId>
+          <groupId>org.eclipse.jdt.core.compiler</groupId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -94,8 +94,8 @@
       <artifactId>dynamicreports-adhoc</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>jdtcore</artifactId>
-          <groupId>eclipse</groupId>
+          <artifactId>ecj</artifactId>
+          <groupId>org.eclipse.jdt.core.compiler</groupId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -104,21 +104,16 @@
       <artifactId>dynamicreports-googlecharts</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>jdtcore</artifactId>
-          <groupId>eclipse</groupId>
+          <artifactId>ecj</artifactId>
+          <groupId>org.eclipse.jdt.core.compiler</groupId>
         </exclusion>
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>net.sf.jasperreports</groupId>
-      <artifactId>jasperreports</artifactId>
-      <version>6.9.0</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>jdtcore</artifactId>
-          <groupId>eclipse</groupId>
-        </exclusion>
-      </exclusions>
+      <groupId>org.eclipse.jdt.core.compiler</groupId>
+      <artifactId>ecj</artifactId>
+      <version>4.4.2</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
