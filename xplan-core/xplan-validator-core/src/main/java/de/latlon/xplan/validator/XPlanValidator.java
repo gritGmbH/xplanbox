@@ -8,8 +8,11 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
+import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
+import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
 import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -253,7 +256,7 @@ public class XPlanValidator {
     }
 
     private void log( GeometricValidatorResult validatorResult ) {
-        LOG.info( "Ergebnisse der geometrischen Validerung:" );
+        LOG.info( "Ergebnisse der geometrischen Validierung:" );
 
         List<String> warnings = validatorResult.getWarnings();
         LOG.info( "  Warnungen: {}", warnings.size() );
@@ -268,16 +271,21 @@ public class XPlanValidator {
 
     private void log( SemanticValidatorResult validatorResult ) {
         List<RuleResult> ruleResults = validatorResult.getRules();
-        LOG.info( "Ergebnisse der semantischen Validerung: {}", ruleResults.size() );
+        LOG.info( "Ergebnisse der semantischen Validierung: {}", ruleResults.size() );
         for ( RuleResult ruleResult : ruleResults ) {
-            String label = ruleResult.isValid() ? "Erfolgreich" : "Fehler";
-            LOG.info( "  - {}: {}", label, ruleResult.getMessage() );
+            if ( ruleResult.isValid() ) {
+                LOG.info( "  - Erfolgreich: {}", ruleResult.getMessage() );
+            } else {
+                List<String> invalidFeatures = ruleResult.getInvalidFeatures();
+                LOG.info( "  - Fehler: {}, fehlerhafte Features: {}", ruleResult.getMessage(),
+                          invalidFeatures.stream().collect( Collectors.joining( ", " ) ) );
+            }
         }
     }
 
     private void log( SyntacticValidatorResult validatorResult ) {
         List<String> messages = validatorResult.getMessages();
-        LOG.info( "Ergebnisse der syntaktischen Validerung: {}", messages.size() );
+        LOG.info( "Ergebnisse der syntaktischen Validierung: {}", messages.size() );
         for ( String mess : messages )
             LOG.info( "  - {}", mess );
     }

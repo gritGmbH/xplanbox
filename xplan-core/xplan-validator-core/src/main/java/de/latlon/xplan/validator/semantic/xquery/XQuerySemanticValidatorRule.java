@@ -44,7 +44,7 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
 
     private static final Logger LOG = LoggerFactory.getLogger( XQuerySemanticValidatorRule.class );
 
-    static final String UNKNOWN_GML_ID = "UNKNOWN_GML_ID";
+    public static final String UNKNOWN_GML_ID = "UNKNOWN_GML_ID";
 
     private final Configuration configuration = new Configuration();
 
@@ -100,6 +100,8 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
 
     private List<String> evaluateXQueryResult( List<String> resultList )
                             throws ValidatorException {
+        if ( resultList.size() == 0 )
+            throw new ValidatorException( "Empty result sets are not supported as xquery result!" );
         if ( resultList.size() == 1 ) {
             String result = resultList.get( 0 );
             if ( result.equalsIgnoreCase( "true" ) )
