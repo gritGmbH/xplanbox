@@ -2,6 +2,7 @@ package de.latlon.xplan.validator.report.xml;
 
 import static de.latlon.xplan.validator.report.ReportUtils.createValidLabel;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ErrorsType;
 import de.latlon.xplan.validator.report.GeomType;
+import de.latlon.xplan.validator.report.InvalidFeaturesType;
 import de.latlon.xplan.validator.report.MessagesType;
 import de.latlon.xplan.validator.report.ObjectFactory;
 import de.latlon.xplan.validator.report.PlanType;
@@ -107,6 +109,7 @@ public class JaxbConverter {
                 ruleXML.setName( rule.getName() );
                 ruleXML.setIsValid( rule.isValid() );
                 ruleXML.setMessage( rule.getMessage() );
+                addInvalidFeatures( ruleXML, rule.getInvalidFeatures() );
                 rulesListXML.add( ruleXML );
             }
             semType.setRules( rulesXML );
@@ -117,6 +120,15 @@ public class JaxbConverter {
         }
 
         val.setSem( semType );
+    }
+
+    private void addInvalidFeatures( RuleType ruleXML, List<String> invalidFeatures ) {
+        ObjectFactory objectFactory = new ObjectFactory();
+        for ( String invalidFeature : invalidFeatures ) {
+            InvalidFeaturesType invalidFeaturesType = objectFactory.createInvalidFeaturesType();
+            invalidFeaturesType.setGmlid( invalidFeature );
+            ruleXML.getInvalidFeatures().add( invalidFeaturesType );
+        }
     }
 
     private void convertResultToJaxb( SyntacticValidatorResult result, ValidationType val ) {

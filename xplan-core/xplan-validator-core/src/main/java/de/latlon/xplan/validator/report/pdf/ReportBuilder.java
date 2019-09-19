@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ReportGenerationException;
@@ -22,6 +23,7 @@ import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
+import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
 import net.sf.dynamicreports.report.builder.component.ComponentBuilder;
@@ -160,7 +162,13 @@ class ReportBuilder {
             String label = ruleResult.isValid() ? LABEL_OK : LABEL_ERROR;
             TextFieldBuilder<String> labelField = cmp.text( label ).setFixedWidth( 100 ).setStyle( root20LeftIndentStyle );
             TextFieldBuilder<String> nameField = cmp.text( ruleResult.getName() ).setFixedWidth( 60 ).setStyle( simpleStyle );
-            TextFieldBuilder<String> messageField = cmp.text( ruleResult.getMessage() ).setStyle( simpleStyle );
+            StringBuilder message = new StringBuilder( ruleResult.getMessage() );
+            List<String> invalidFeatures = ruleResult.getInvalidFeatures();
+            if ( !invalidFeatures.isEmpty() ) {
+                message.append( "\nGML Ids der fehlerhaften Features: " );
+                message.append( invalidFeatures.stream().collect( Collectors.joining( ", " ) ) );
+            }
+            TextFieldBuilder<String> messageField = cmp.text( message.toString() ).setStyle( simpleStyle );
             rules.add( cmp.horizontalList().add( labelField ).add( nameField ).add( messageField ) );
         }
     }

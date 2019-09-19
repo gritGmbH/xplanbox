@@ -44,7 +44,7 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
 
     private static final Logger LOG = LoggerFactory.getLogger( XQuerySemanticValidatorRule.class );
 
-    public static final String UNKNOWN_GML_ID = "UNKNOWN_GML_ID";
+    private static final String UNKNOWN_GML_ID = "unbekannt";
 
     private final Configuration configuration = new Configuration();
 

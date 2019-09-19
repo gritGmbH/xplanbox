@@ -121,6 +121,7 @@
                         <th>Regel</th>
                         <th>Status</th>
                         <th>Beschreibung</th>
+                        <th>GML Ids</th>
                     </tr>
                     <xsl:for-each select="*">
                         <xsl:element name="tr">
@@ -148,6 +149,21 @@
                             </xsl:choose>
                             <td>
                                 <xsl:value-of select="current()/message"/>
+                            </td>
+                            <td>
+                                <xsl:choose>
+                                    <xsl:when test="current()/isValid='true'">
+                                            -
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:for-each select="current()/InvalidFeatures/gmlid">
+                                            <xsl:if test="position() != 1">
+                                                <xsl:text>, </xsl:text>
+                                            </xsl:if>
+                                            <xsl:value-of select="."/>
+                                        </xsl:for-each>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </td>
                         </xsl:element>
                     </xsl:for-each>
