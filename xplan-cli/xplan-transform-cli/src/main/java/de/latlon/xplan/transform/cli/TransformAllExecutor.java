@@ -51,7 +51,7 @@ public class TransformAllExecutor {
 
             ps = conn.prepareStatement( "INSERT INTO " + logTableName
                                         + " (xplanmgrid, xp_version, newplanstatus, oldplanstatus, operation, datum, fids)"
-                                        + " SELECT id, xp_version, planstatus, planstatus, (SELECT CASE WHEN EXISTS (SELECT fid FROM xplanmgr.features WHERE plan=id AND fid LIKE '%\\_PLAN\\_%' AND NOT EXISTS(SELECT gml_id from xplan51.gml_objects  WHERE fid = gml_id)) THEN 'INSERT' ELSE 'UPDATE' END), now(), (SELECT ARRAY(SELECT fid FROM xplanmgr.features WHERE plan= id)) from xplanmgr.plans" );
+                                        + " SELECT id, xp_version, planstatus, planstatus, (SELECT CASE WHEN EXISTS (SELECT fid FROM xplanmgr.features WHERE plan=id AND fid LIKE '%\\_PLAN\\_%' AND NOT EXISTS(SELECT gml_id from xplan51.gml_objects WHERE fid = gml_id) AND NOT EXISTS(SELECT gml_id from xplan51pre.gml_objects WHERE fid = gml_id) AND NOT EXISTS(SELECT gml_id from xplan51archive.gml_objects WHERE fid = gml_id)) THEN 'INSERT' ELSE 'UPDATE' END), now(), (SELECT ARRAY(SELECT fid FROM xplanmgr.features WHERE plan= id)) from xplanmgr.plans" );
             LOG.debug( "Execute insert in {}: {}", logTableName, ps );
             ps.execute();
             conn.commit();

@@ -74,7 +74,7 @@ public class PlanwerkServiceMetadataBuilder {
         url.append( "&STYLES=" ).append( coupledResourceConfiguration.getStyleByType( planType ) );
         url.append( "&FORMAT=image/png&TRANSPARENT=true&EXCEPTIONS=application/vnd.ogc.se_inimage" );
 
-        Envelope transformedEnvelope = transformEnvelop( coupledResourceConfiguration, envelope, crs );
+        Envelope transformedEnvelope = transformAndResizeEnvelop( coupledResourceConfiguration, envelope, crs );
         url.append( "&CRS=" ).append( transformedEnvelope.getCoordinateSystem().getAlias() );
         url.append( "&BBOX=" ).append( transformedEnvelope.getMin().get0() ).append( "," ).append(
                         transformedEnvelope.getMin().get1() ).append( "," ).append(
@@ -86,11 +86,20 @@ public class PlanwerkServiceMetadataBuilder {
         return url.toString();
     }
 
-    private Envelope transformEnvelop( CoupledResourceConfiguration configuration, Envelope envelope, ICRS crs ) {
+    private Envelope transformAndResizeEnvelop( CoupledResourceConfiguration configuration, Envelope envelope,
+                                                ICRS crs ) {
+        LOG.debug( "Transform envelope {} to CRS {} and fit to map width/height", envelope, crs );
         int width = configuration.getPlanWerkWmsGetMapWidth();
         int height = configuration.getPlanWerkWmsGetMapHeight();
 
         double mapRatio = width / height;
+
+        GeometryTransformer transformer = new GeometryTransformer( crs );
+        try {
+            envelope = transformer.transform( envelope );
+        } catch ( UnknownCRSException | TransformationException e ) {
+            LOG.warn( "Could not transform bbox to " + crs, e );
+        }
 
         double envelopeWidth = envelope.getSpan0();
         double envelopeHeight = envelope.getSpan1();
@@ -115,14 +124,7 @@ public class PlanwerkServiceMetadataBuilder {
             double maxY = centroid.get1() + ( newEnvelopeHeight / 2 );
             envelope = GEOMETRY_FACTORY.createEnvelope( minX, minY, maxX, maxY, envelope.getCoordinateSystem() );
         }
-
-        GeometryTransformer transformer = new GeometryTransformer( crs );
-        try {
-            return transformer.transform( envelope );
-        } catch ( UnknownCRSException | TransformationException e ) {
-            LOG.warn( "Could not transform bbox to " + crs, e );
-            return envelope;
-        }
+        return envelope;
     }
 
     private String normalizedPlanName( String planName ) {
