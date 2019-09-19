@@ -11,7 +11,6 @@ import static net.sf.dynamicreports.report.builder.DynamicReports.report;
 import static net.sf.dynamicreports.report.builder.DynamicReports.stl;
 
 import java.io.InputStream;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,23 +59,19 @@ class ReportBuilder {
      *
      * @param report
      *            the validation report to serialize, never <code>null</code>
-     * @param validationName
-     *            the Name of the Validation, may be <code>null</code> or empty
-     * @param planName
-     *            the Name of the validated plan, may be <code>null</code> or empty
      * @throws ReportGenerationException
      *             if an exception occurred during writing the report
      * @throws IllegalArgumentException
      *             if the passed report is <code>null</code>
      */
-    JasperReportBuilder createReport( ValidatorReport report, String validationName, String planName )
+    JasperReportBuilder createReport( ValidatorReport report )
                     throws ReportGenerationException {
         checkReportParam( report );
         try {
             return report().setTemplate( createTemplate() ).
 
             title( Templates.createTitleComponent( LABEL_TITLE ),
-                   createMetadataSection( validationName, planName, report ) )
+                   createMetadataSection( report ) )
 
             .summary( createValidationResults( report ) )
 
@@ -170,12 +165,11 @@ class ReportBuilder {
         }
     }
 
-    private ComponentBuilder<?, ?> createMetadataSection( String validationName, String planName,
-                                                          ValidatorReport report )
+    private ComponentBuilder<?, ?> createMetadataSection( ValidatorReport report )
                                                                           throws JRException {
         InputStream is = PdfReportGenerator.class.getResourceAsStream( "/jrxml/metadata.jrxml" );
         JasperReport jasperTitleSubreport = JasperCompileManager.compileReport( is );
-        Map<String, Object> parameters = createParams( validationName, planName, report );
+        Map<String, Object> parameters = createParams( report );
         return cmp.verticalList().add( cmp.subreport( jasperTitleSubreport ).setParameters( parameters ) ).add( cmp.verticalGap( VERTICAL_GAP ) );
     }
 
@@ -186,13 +180,13 @@ class ReportBuilder {
         return createValidLabel( result.isValid() );
     }
 
-    private Map<String, Object> createParams( String validationName, String planName, ValidatorReport report ) {
+    private Map<String, Object> createParams( ValidatorReport report ) {
         String isValid = createValidLabel( report.isReportValid() );
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put( "valName", validationName );
-        params.put( "planName", planName );
+        params.put( "valName", report.getValidationName() );
+        params.put( "planName", report.getPlanName() );
         params.put( "valResult", isValid );
-        params.put( "date", new Date() );
+        params.put( "date", report.getDate() );
         return params;
     }
 

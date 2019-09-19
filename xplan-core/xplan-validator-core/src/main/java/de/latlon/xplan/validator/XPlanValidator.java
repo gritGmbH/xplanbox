@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
@@ -85,10 +86,10 @@ public class XPlanValidator {
      * @throws IOException
      * @throws ReportGenerationException
      */
-    public ValidatorReport validate( ValidationSettings validationSettings, File planArchive )
+    public ValidatorReport validate( ValidationSettings validationSettings, File planArchive, String planName )
                     throws ValidatorException, ParseException, IOException, ReportGenerationException {
         XPlanArchive archive = retrieveXPlanArchive( planArchive );
-        ValidatorReport report = validate( validationSettings, archive );
+        ValidatorReport report = validate( validationSettings, archive, planName );
         writeReport( report );
         File validationReportDirectory = createZipArchive( validationSettings, archive, report );
         LOG.info( "Archiv mit Validierungsergebnissen wurde unter {} abgelegt.", validationReportDirectory );
@@ -106,10 +107,11 @@ public class XPlanValidator {
      * @throws ValidatorException
      * @throws IOException
      */
-    public ValidatorReport validateNotWriteReport( ValidationSettings validationSettings, File planArchive )
+    public ValidatorReport validateNotWriteReport( ValidationSettings validationSettings, File planArchive,
+                                                   String planName )
                     throws ValidatorException, IOException {
         XPlanArchive archive = retrieveXPlanArchive( planArchive );
-        ValidatorReport report = validate( validationSettings, archive );
+        ValidatorReport report = validate( validationSettings, archive, planName );
         return report;
     }
 
@@ -146,12 +148,15 @@ public class XPlanValidator {
         }
     }
 
-    private ValidatorReport validate( ValidationSettings validationSettings, XPlanArchive archive )
+    private ValidatorReport validate( ValidationSettings validationSettings, XPlanArchive archive, String planName )
                             throws ValidatorException {
         List<ValidationOption> voOptions = validationSettings.getExtendedOptions();
         List<SemanticValidationOptions> semanticValidationOptions = extractSemanticValidationOptions( validationSettings );
 
         ValidatorReport report = new ValidatorReport();
+        report.setValidationName( validationSettings.getValidationName() );
+        report.setPlanName( planName );
+        report.setDate( new Date() );
         ValidationType validationType = validationSettings.getValidationType();
         if ( validationType == null )
             validationType = ValidationType.NONE;

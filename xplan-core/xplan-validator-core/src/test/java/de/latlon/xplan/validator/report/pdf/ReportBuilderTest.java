@@ -31,7 +31,7 @@ public class ReportBuilderTest {
 
         File pdf = File.createTempFile( "report", ".pdf" );
         OutputStream os = new FileOutputStream( pdf );
-        reportBuilder.createPdfReport( createReport(), "ValName", "PlanName", os );
+        reportBuilder.createPdfReport( createReport(), os );
         os.close();
     }
 
@@ -39,14 +39,14 @@ public class ReportBuilderTest {
     public void testCreateReportAsPdfWithNullReport()
                     throws Exception {
         PdfReportGenerator reportBuilder = new PdfReportGenerator();
-        reportBuilder.createPdfReport( null, "ValName", "PlanName", createSimpleOutputStream() );
+        reportBuilder.createPdfReport( null, createSimpleOutputStream() );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCreateReportAsPdfWithNullStream()
                     throws Exception {
         PdfReportGenerator reportBuilder = new PdfReportGenerator();
-        reportBuilder.createPdfReport( createReport(), "ValName", "PlanName", null );
+        reportBuilder.createPdfReport( createReport(), null );
     }
 
     private ValidatorReport createReport() {

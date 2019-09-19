@@ -51,6 +51,27 @@
                         <xsl:value-of select="ValidationReport/Plan/name"/>
                     </b>
                 </p>
+                <p>Datum:
+                    <b>
+                        <xsl:call-template name="format-date">
+                            <xsl:with-param name="date">
+                                <xsl:value-of select="ValidationReport/date"/>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </b>
+                </p>
+                <p>Ergebnis:
+                    <b>
+                        <xsl:choose>
+                            <xsl:when test="ValidationReport/isValid='true'">
+                                <font color="#00C000">valide</font>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <font color="#FF0000">nicht valide</font>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </b>
+                </p>
                 <hr/>
                 <xsl:apply-templates select="ValidationReport/Validation/*"/>
             </body>
@@ -193,5 +214,35 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+    <xsl:template name="format-date">
+        <xsl:param name="date" />
+        <!-- input format yyyy-MM-DDThh:mm:s -->
+        <!-- Example: 2019-09-19T06:56:29.650Z -->
+        <!-- output format DD.MM.yyyy hh:mm -->
+        <!-- Example: 19.09.2019 06:56 -->
+
+        <xsl:variable name="year">
+            <xsl:value-of select="substring($date,1,4)" />
+        </xsl:variable>
+
+        <xsl:variable name="month">
+            <xsl:value-of select="substring($date,6,2)" />
+        </xsl:variable>
+
+        <xsl:variable name="day">
+            <xsl:value-of select="substring($date,9,2)" />
+        </xsl:variable>
+
+        <xsl:variable name="hour">
+            <xsl:value-of select="substring($date,12,2)" />
+        </xsl:variable>
+
+        <xsl:variable name="minute">
+            <xsl:value-of select="substring($date,15,2)" />
+        </xsl:variable>
+
+        <xsl:value-of select="concat($day, '.', $month, '.', $year, ' ', $hour, ':', $minute)" />
+    </xsl:template>
 
 </xsl:stylesheet>

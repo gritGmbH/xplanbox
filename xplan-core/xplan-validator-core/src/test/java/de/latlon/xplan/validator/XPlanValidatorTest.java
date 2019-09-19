@@ -249,7 +249,7 @@ public class XPlanValidatorTest {
         XPlanValidator validator = spyValidator( geomVal, semVal, synVal );
         XPlanSchemas schemas = mockSchemas();
         validator.setSchemas( schemas );
-        return validator.validate( settings, new File( "" ) );
+        return validator.validate( settings, new File( "" ), "planname" );
     }
 
     private SemanticValidator mockSemanticValidator() {

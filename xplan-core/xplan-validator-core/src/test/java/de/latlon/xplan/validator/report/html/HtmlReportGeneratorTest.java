@@ -3,6 +3,7 @@ package de.latlon.xplan.validator.report.html;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import static org.xmlmatchers.XmlMatchers.hasXPath;
 
 import java.io.ByteArrayInputStream;
@@ -28,7 +29,7 @@ public class HtmlReportGeneratorTest {
         ByteArrayOutputStream html = new ByteArrayOutputStream();
         HtmlReportGenerator htmlReportGenerator = new HtmlReportGenerator();
 
-        htmlReportGenerator.generateHtmlReport( mockReport(), "validationName", "planName", html );
+        htmlReportGenerator.generateHtmlReport( mockReport("validationName", "planName") , html );
 
         assertThat( document( html ), hasXPath( "/html/body/h1", containsString( "Validierungsbericht" ) ) );
     }
@@ -39,8 +40,7 @@ public class HtmlReportGeneratorTest {
         ByteArrayOutputStream html = new ByteArrayOutputStream();
         HtmlReportGenerator htmlReportGenerator = new HtmlReportGenerator();
 
-        htmlReportGenerator.generateHtmlReport( mockValidatorReportWithSyntacticDetailHint(), "validationName",
-                                                "planName", html );
+        htmlReportGenerator.generateHtmlReport( mockValidatorReportWithSyntacticDetailHint(), html );
         assertThat( document( html ), hasXPath( "/html/body/p/div", containsString( "detailsHint" ) ) );
     }
 
@@ -50,8 +50,7 @@ public class HtmlReportGeneratorTest {
         ByteArrayOutputStream html = new ByteArrayOutputStream();
         HtmlReportGenerator htmlReportGenerator = new HtmlReportGenerator();
 
-        htmlReportGenerator.generateHtmlReport( mockValidatorReportWithGeometricWarnings(), "validationName",
-                                                "planName", html );
+        htmlReportGenerator.generateHtmlReport( mockValidatorReportWithGeometricWarnings(), html );
         assertThat( document( html ), hasXPath( "/html/body/p[3]/p[2]", containsString( "1 Warnungen" ) ) );
     }
 
@@ -59,28 +58,28 @@ public class HtmlReportGeneratorTest {
     public void testGenerateXmlReportWithNullReport()
                     throws Exception {
         HtmlReportGenerator htmlReportGenerator = new HtmlReportGenerator();
-        htmlReportGenerator.generateHtmlReport( null, "validationName", "archiveName", createSimpleStream() );
+        htmlReportGenerator.generateHtmlReport( null, createSimpleStream() );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testGenerateXmlReportWithNullValidationName()
                     throws Exception {
         HtmlReportGenerator htmlReportGenerator = new HtmlReportGenerator();
-        htmlReportGenerator.generateHtmlReport( mockReport(), null, "archiveName", createSimpleStream() );
+        htmlReportGenerator.generateHtmlReport( mockReport( null, "archiveName" ),  createSimpleStream() );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testGenerateXmlReportWithNullArchiveName()
                     throws Exception {
         HtmlReportGenerator htmlReportGenerator = new HtmlReportGenerator();
-        htmlReportGenerator.generateHtmlReport( mockReport(), "validationName", null, createSimpleStream() );
+        htmlReportGenerator.generateHtmlReport( mockReport( "validationName", null), createSimpleStream() );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testGenerateXmlReportWithNullOutputStream()
                     throws Exception {
         HtmlReportGenerator htmlReportGenerator = new HtmlReportGenerator();
-        htmlReportGenerator.generateHtmlReport( mockReport(), "validationName", "archiveName", null );
+        htmlReportGenerator.generateHtmlReport( mockReport( "validationName", "archiveName" ), null );
     }
 
     private static StreamSource document( ByteArrayOutputStream html ) {
@@ -88,12 +87,17 @@ public class HtmlReportGeneratorTest {
         return new StreamSource( inputStream );
     }
 
-    private ValidatorReport mockReport() {
-        return mock( ValidatorReport.class );
+    private ValidatorReport mockReport( String validationName, String planName ) {
+        ValidatorReport report = mock( ValidatorReport.class );
+        when( report.getPlanName() ).thenReturn( validationName );
+        when( report.getValidationName() ).thenReturn( planName );
+        return report;
     }
 
     private ValidatorReport mockValidatorReportWithSyntacticDetailHint() {
         ValidatorReport validatorReport = new ValidatorReport();
+        validatorReport.setPlanName( "PLAN_NAME" );
+        validatorReport.setValidationName( "VALIDATION_NAME" );
         List<String> messages = Collections.singletonList( "Error in xml..." );
         ValidatorDetail detail = new ValidatorDetail( "detailsHint" );
         SyntacticValidatorResult syntacticValidatorResult = new SyntacticValidatorResult( messages, false, detail );
@@ -103,6 +107,8 @@ public class HtmlReportGeneratorTest {
 
     private ValidatorReport mockValidatorReportWithGeometricWarnings() {
         ValidatorReport validatorReport = new ValidatorReport();
+        validatorReport.setPlanName( "PLAN_NAME" );
+        validatorReport.setValidationName( "VALIDATION_NAME" );
         List<String> warnings = Collections.singletonList( "Warning..." );
         List<String> errors = Collections.singletonList( "Error..." );
         List<BadGeometry> badGeometries = Collections.emptyList();

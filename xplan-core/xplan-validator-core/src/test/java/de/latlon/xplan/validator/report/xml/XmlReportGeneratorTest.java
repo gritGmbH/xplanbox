@@ -40,7 +40,7 @@ public class XmlReportGeneratorTest {
         String archiveName = "ArchiveName";
 
         OutputStream os = new FileOutputStream( xmlFile );
-        xmlReportGenerator.generateXmlReport( mockValidatorReport(), validationName, archiveName, os );
+        xmlReportGenerator.generateXmlReport( mockValidatorReport( validationName, archiveName ), os );
 
         Path xml = xmlFile.toPath();
 
@@ -56,8 +56,8 @@ public class XmlReportGeneratorTest {
         File xmlFile = createTempFile( null, null ).toFile();
 
         OutputStream os = new FileOutputStream( xmlFile );
-        xmlReportGenerator.generateXmlReport( mockValidatorReportWithSyntacticDetailHint(), "ValidationName",
-                                              "ArchiveName", os );
+        xmlReportGenerator.generateXmlReport(
+                                mockValidatorReportWithSyntacticDetailHint( "ValidationName", "ArchiveName" ), os );
 
         Path xml = xmlFile.toPath();
 
@@ -68,36 +68,45 @@ public class XmlReportGeneratorTest {
     public void testGenerateXmlReportWithNullReport()
                     throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        xmlReportGenerator.generateXmlReport( null, "validationName", "archiveName", createSimpleStream() );
+        xmlReportGenerator.generateXmlReport( null, createSimpleStream() );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testGenerateXmlReportWithNullValidationName()
                     throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        xmlReportGenerator.generateXmlReport( mockValidatorReport(), null, "archiveName", createSimpleStream() );
+        xmlReportGenerator.generateXmlReport( mockValidatorReport( null, "archiveName" ), createSimpleStream() );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testGenerateXmlReportWithNullArchiveName()
                     throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        xmlReportGenerator.generateXmlReport( mockValidatorReport(), "validatioNName", null, createSimpleStream() );
+        xmlReportGenerator.generateXmlReport( mockValidatorReport( "validatioNName", null) , createSimpleStream() );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testGenerateXmlReportWithNullOutputStream()
                     throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        xmlReportGenerator.generateXmlReport( mockValidatorReport(), "validatioNName", "archiveName", null );
+        xmlReportGenerator.generateXmlReport( mockValidatorReport( "validatioNName", "archiveName" ), null );
     }
 
-    private ValidatorReport mockValidatorReport() {
+    private ValidatorReport mockValidatorReport( ) {
         return mock( ValidatorReport.class );
     }
 
-    private ValidatorReport mockValidatorReportWithSyntacticDetailHint() {
+    private ValidatorReport mockValidatorReport( String validationName, String archiveName ) {
+        ValidatorReport validatorReport = mockValidatorReport();
+        validatorReport.setPlanName( archiveName );
+        validatorReport.setValidationName( validationName );
+        return validatorReport;
+    }
+
+    private ValidatorReport mockValidatorReportWithSyntacticDetailHint( String validationName, String archiveName ) {
         ValidatorReport validatorReport = new ValidatorReport();
+        validatorReport.setPlanName( archiveName );
+        validatorReport.setValidationName( validationName );
         List<String> messages = Collections.singletonList( "Error in xml..." );
         ValidatorDetail detail = new ValidatorDetail( "detailsHint" );
         SyntacticValidatorResult syntacticValidatorResult = new SyntacticValidatorResult( messages, false, detail );
