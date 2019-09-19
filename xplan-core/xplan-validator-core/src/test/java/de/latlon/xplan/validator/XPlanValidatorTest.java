@@ -255,7 +255,7 @@ public class XPlanValidatorTest {
     private SemanticValidator mockSemanticValidator() {
         SemanticValidator mock = mock( SemanticValidator.class );
         SemanticValidatorResult toBeReturned = new SemanticValidatorResult();
-        toBeReturned.addRule( "name", true, "message" );
+        toBeReturned.addRule( "name", "message", Collections.emptyList() );
         doReturn( toBeReturned ).when( mock ).validateSemantic( archive(), list() );
         return mock;
     }

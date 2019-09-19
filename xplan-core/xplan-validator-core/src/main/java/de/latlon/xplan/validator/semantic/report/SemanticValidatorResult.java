@@ -45,16 +45,17 @@ public class SemanticValidatorResult extends ValidatorResult {
 
     /**
      * Creates a new {@link RuleResult} from the passed values and added them to the list of rules.
-     * 
-     * @param name
+     *  @param name
      *            the name of the rule, should not be <code>null</code>
-     * @param isValid
-     *            <code>true</code> if the rule passed, <code>false</code>otherwise
      * @param message
      *            a description of the rule
+     * @param invalidFeatures
+     * @return
      */
-    public void addRule( String name, boolean isValid, String message ) {
-        rules.add( new RuleResult( name, isValid, message ) );
+    public boolean addRule( String name, String message, List<String> invalidFeatures ) {
+        boolean isValid = invalidFeatures.isEmpty();
+        rules.add( new RuleResult( name, isValid, message, invalidFeatures ) );
+        return isValid;
     }
 
     /**

@@ -100,17 +100,16 @@ public class XQuerySemanticValidator implements SemanticValidator {
 
     private boolean validateRule( SemanticValidableXPlanArchive archive, SemanticValidatorResult result,
                                   SemanticValidatorRule semanticValidatorRule ) {
-        boolean isThisRuleValid = false;
         String name = semanticValidatorRule.getName();
         try {
-            isThisRuleValid = semanticValidatorRule.validate( archive );
+            List<String> invalidFeatures = semanticValidatorRule.validate( archive );
             XPlanVersion version = semanticValidatorRule.getXPlanVersion();
             String message = RulesMessagesAccessor.retrieveMessageForRule( name, version );
-            result.addRule( name, isThisRuleValid, message );
+            return result.addRule( name, message, invalidFeatures );
         } catch ( ValidatorException e ) {
             LOG.error( "Error while semantically validating validation rule " + name, e );
         }
-        return isThisRuleValid;
+        return false;
     }
 
     private ValidatorDetail createDetail( SemanticValidableXPlanArchive archive ) {

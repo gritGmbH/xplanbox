@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -63,11 +64,11 @@ public class ReportBuilderTest {
         semanticResult.setValid( true );
         for ( int i = 0; i < 20; i++ ) {
             if ( i == 8 || i == 2 )
-                semanticResult.addRule( "Name" + i, true,
+                semanticResult.addRule( "Name" + i,
                                         "HinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweisHinweis"
-                                                          + i );
+                                        + i, Collections.emptyList() );
             else
-                semanticResult.addRule( "Name" + i, true, "Hinweis" + i );
+                semanticResult.addRule( "Name" + i, "Hinweis" + i, Collections.emptyList() );
         }
         return semanticResult;
     }

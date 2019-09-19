@@ -1,5 +1,7 @@
 package de.latlon.xplan.validator.semantic.report;
 
+import java.util.List;
+
 /**
  * contains the validator result of the rules of the semantic validation
  *
@@ -13,10 +15,13 @@ public class RuleResult implements Comparable {
 
   private final String message;
 
-  protected RuleResult( String name, boolean isValid, String message ) {
+  private final List<String> invalidFeatures;
+
+  protected RuleResult( String name, boolean isValid, String message, List<String> invalidFeatures ) {
     this.name = name;
     this.isValid = isValid;
     this.message = message;
+    this.invalidFeatures = invalidFeatures;
   }
 
   public String getName() {
@@ -29,6 +34,10 @@ public class RuleResult implements Comparable {
 
   public String getMessage() {
     return message;
+  }
+
+  public List<String> getInvalidFeatures() {
+    return invalidFeatures;
   }
 
   @Override
@@ -44,5 +53,4 @@ public class RuleResult implements Comparable {
   public int compareTo( Object o ) {
     return this.getName().compareTo( ( (RuleResult) o ).getName() );
   }
-
 }
