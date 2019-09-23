@@ -96,8 +96,6 @@ public class HtmlReportGeneratorTest {
         ValidatorReport validatorReport = new ValidatorReport();
         validatorReport.setPlanName( "PLAN_NAME" );
         validatorReport.setValidationName( "VALIDATION_NAME" );
-        List<String> messages = Collections.singletonList( "Error in xml..." );
-        ValidatorDetail detail = new ValidatorDetail( "detailsHint" );
         SemanticValidatorResult semanticValidatorResult = new SemanticValidatorResult();
         semanticValidatorResult.addRule( "1.1", true, "Test valid" );
         semanticValidatorResult.addRule( "1.2", false, "Test valid" );
