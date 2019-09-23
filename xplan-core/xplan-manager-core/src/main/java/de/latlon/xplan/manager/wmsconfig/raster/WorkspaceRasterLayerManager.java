@@ -124,15 +124,15 @@ public class WorkspaceRasterLayerManager {
      */
     public void deleteDataFilesAndRasterConfigurations( String planId, String rasterId )
                     throws IOException {
-        final String rasterLayerFileNameWithoutEnding = planId + "_" + rasterId;
+        final String rasterLayerFileName = planId + "_" + rasterId;
         deleteDataFilesAndRasterConfigurations( ( path, basicFileAttributes ) -> {
             String fileName = path.getFileName().toString();
             String nameWithoutPrefix = fileName;
             int lastIndexOfDot = fileName.lastIndexOf( "." );
             if ( lastIndexOfDot > 0 )
                 nameWithoutPrefix = fileName.substring( 0, lastIndexOfDot );
-            return nameWithoutPrefix.equals( rasterLayerFileNameWithoutEnding );
-        }, ( path, basicFileAttributes ) -> path.getFileName().equals( rasterLayerFileNameWithoutEnding + ".xml" ) );
+            return rasterLayerFileName.startsWith( nameWithoutPrefix );
+        }, ( path, basicFileAttributes ) -> path.getFileName().toString().startsWith( rasterLayerFileName ) );
     }
 
     private void deleteDataFilesAndRasterConfigurations( BiPredicate<Path, BasicFileAttributes> filenameFilter )
