@@ -1,19 +1,5 @@
 package de.latlon.xplan.manager.wmsconfig.raster;
 
-import static java.lang.Boolean.TRUE;
-import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
-
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.math.BigInteger;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.PropertyException;
-
-import org.apache.commons.io.FileUtils;
 import org.deegree.commons.gdal.jaxb.GDALSettings;
 import org.deegree.commons.gdal.jaxb.GDALSettings.GDALOption;
 import org.deegree.commons.metadata.description.jaxb.LanguageStringType;
@@ -27,9 +13,25 @@ import org.deegree.tile.tilematrixset.geotiff.jaxb.GeoTIFFTileMatrixSetConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.PropertyException;
+import java.io.File;
+import java.io.IOException;
+import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.function.BiPredicate;
+import java.util.stream.Stream;
+
+import static java.lang.Boolean.TRUE;
+import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
+
 /**
  * Creates/deletes configuration and data files for raster layers in the WMS workspace.
- * 
+ *
  * @author <a href="mailto:schmitz@occamlabs.de">Andreas Schmitz</a>
  * @since 1.0
  */
@@ -39,7 +41,7 @@ public class WorkspaceRasterLayerManager {
 
     private static final Logger LOG = LoggerFactory.getLogger( WorkspaceRasterLayerManager.class );
 
-    private final File wmsWorkspace;
+    private final Path wmsWorkspace;
 
     private final RasterConfigurationType tileStoreType;
 
@@ -51,9 +53,9 @@ public class WorkspaceRasterLayerManager {
 
     /**
      * Instantiates a {@link WorkspaceRasterLayerManager} with type RasterConfigurationType.gdal and crs EPSG:25833.
-     * 
+     *
      * @param wmsWorkspace
-     *            the location of the workspace the configuration should be stored, never <code>null</code>
+     *                 the location of the workspace the configuration should be stored, never <code>null</code>
      */
     public WorkspaceRasterLayerManager( File wmsWorkspace ) {
         this( wmsWorkspace, RasterConfigurationType.gdal, DEFAULT_RASTER_CRS );
@@ -61,22 +63,22 @@ public class WorkspaceRasterLayerManager {
 
     /**
      * @param wmsWorkspace
-     *            the location of the workspace the configuration should be stored, never <code>null</code>
+     *                 the location of the workspace the configuration should be stored, never <code>null</code>
      * @param tileStoreType
-     *            the type of the tile store to create, never <code>null</code>
+     *                 the type of the tile store to create, never <code>null</code>
      * @param rasterConfigurationCrs
-     *            the crs of the configuration, never <code>null</code>
+     *                 the crs of the configuration, never <code>null</code>
      */
     public WorkspaceRasterLayerManager( File wmsWorkspace, RasterConfigurationType tileStoreType,
                                         String rasterConfigurationCrs ) {
-        this.wmsWorkspace = wmsWorkspace;
+        this.wmsWorkspace = wmsWorkspace.toPath();
         this.tileStoreType = tileStoreType;
         this.rasterConfigurationCrs = rasterConfigurationCrs;
     }
 
     public void createRasterConfigurations( String rasterId, String rasterFileName, double minScaleDenominator,
                                             double maxScaleDenominator )
-                            throws JAXBException, IOException {
+                    throws JAXBException, IOException {
         switch ( tileStoreType ) {
         case geotiff:
             createGeotiffConfiguration( rasterId, rasterFileName, minScaleDenominator, maxScaleDenominator );
@@ -95,20 +97,15 @@ public class WorkspaceRasterLayerManager {
      * <li>datasources/tile/tilematrixset/&lt;planId&gt;_&lt;XXX&gt;</li>
      * <li>layers/&lt;planId&gt;_&lt;XXX&gt;</li>
      * </ul>
-     * 
+     *
      * @param planId
-     *            the id of the plan to remove configuration for, never <code>null</code>
+     *                 the id of the plan to remove configuration for, never <code>null</code>
      */
-    public void deleteDataFilesAndRasterConfigurations( String planId ) {
+    public void deleteDataFilesAndRasterConfigurations( String planId )
+                    throws IOException {
         final String prefix = planId + "_";
-        FilenameFilter filenameFilter = new FilenameFilter() {
-            @Override
-            public boolean accept( File dir, String name ) {
-                return name.startsWith( prefix );
-            }
-        };
-
-        deleteDataFilesAndRasterConfigurations( filenameFilter );
+        deleteDataFilesAndRasterConfigurations(
+                        ( path, basicFileAttributes ) -> path.getFileName().toString().startsWith( prefix ) );
     }
 
     /**
@@ -119,69 +116,60 @@ public class WorkspaceRasterLayerManager {
      * <li>datasources/tile/tilematrixset/&lt;planId&gt;_&lt;rasterId&gt;.xml</li>
      * <li>layers/&lt;planId&gt;_&lt;rasterId&gt;.xml</li>
      * </ul>
-     * 
+     *
      * @param planId
-     *            the id of the plan to remove configuration for, never <code>null</code>
+     *                 the id of the plan to remove configuration for, never <code>null</code>
      * @param rasterId
-     *            id of the raster to remove, never <code>null</code>
+     *                 id of the raster to remove, never <code>null</code>
      */
-    public void deleteDataFilesAndRasterConfigurations( String planId, String rasterId ) {
+    public void deleteDataFilesAndRasterConfigurations( String planId, String rasterId )
+                    throws IOException {
         final String rasterLayerFileNameWithoutEnding = planId + "_" + rasterId;
-        FilenameFilter dataFilenameFilter = new FilenameFilter() {
-            @Override
-            public boolean accept( File dir, String name ) {
-                String nameWithoutPrefix = name;
-                int lastIndexOfDot = name.lastIndexOf( "." );
-                if ( lastIndexOfDot > 0 )
-                    nameWithoutPrefix = name.substring( 0, lastIndexOfDot );
-                return nameWithoutPrefix.equals( rasterLayerFileNameWithoutEnding );
-            }
-        };
-        FilenameFilter xmlFilenameFilter = new FilenameFilter() {
-            @Override
-            public boolean accept( File dir, String name ) {
-                return name.equals( rasterLayerFileNameWithoutEnding + ".xml" );
-            }
-        };
-        deleteDataFilesAndRasterConfigurations( dataFilenameFilter, xmlFilenameFilter );
+        deleteDataFilesAndRasterConfigurations( ( path, basicFileAttributes ) -> {
+            String fileName = path.getFileName().toString();
+            String nameWithoutPrefix = fileName;
+            int lastIndexOfDot = fileName.lastIndexOf( "." );
+            if ( lastIndexOfDot > 0 )
+                nameWithoutPrefix = fileName.substring( 0, lastIndexOfDot );
+            return nameWithoutPrefix.equals( rasterLayerFileNameWithoutEnding );
+        }, ( path, basicFileAttributes ) -> path.getFileName().equals( rasterLayerFileNameWithoutEnding + ".xml" ) );
     }
 
-    private void deleteDataFilesAndRasterConfigurations( FilenameFilter filenameFilter ) {
+    private void deleteDataFilesAndRasterConfigurations( BiPredicate<Path, BasicFileAttributes> filenameFilter )
+                    throws IOException {
         deleteDataFilesAndRasterConfigurations( filenameFilter, filenameFilter );
     }
 
-    private void deleteDataFilesAndRasterConfigurations( FilenameFilter dataFilenameFilter,
-                                                         FilenameFilter xmlFilenameFilter ) {
-        deleteFilesWithPrefix( new File( wmsWorkspace, "data" ), dataFilenameFilter );
-        deleteFilesWithPrefix( new File( wmsWorkspace, "datasources/tile" ), xmlFilenameFilter );
-        deleteFilesWithPrefix( new File( wmsWorkspace, "datasources/tile/tilematrixset" ), xmlFilenameFilter );
-        deleteFilesWithPrefix( new File( wmsWorkspace, "layers" ), xmlFilenameFilter );
+    private void deleteDataFilesAndRasterConfigurations( BiPredicate<Path, BasicFileAttributes> dataFilenameFilter,
+                                                         BiPredicate<Path, BasicFileAttributes> xmlFilenameFilter )
+                    throws IOException {
+        deleteFilesWithPrefix( wmsWorkspace.resolve( "data" ), dataFilenameFilter );
+        deleteFilesWithPrefix( wmsWorkspace.resolve( "datasources/tile" ), xmlFilenameFilter );
+        deleteFilesWithPrefix( wmsWorkspace.resolve( "datasources/tile/tilematrixset" ), xmlFilenameFilter );
+        deleteFilesWithPrefix( wmsWorkspace.resolve( "layers" ), xmlFilenameFilter );
     }
 
-    private void deleteFilesWithPrefix( File dir, FilenameFilter filenameFilter ) {
-        if ( !dir.exists() || !dir.isDirectory() ) {
+    private void deleteFilesWithPrefix( Path dir, BiPredicate<Path, BasicFileAttributes> filenameFilter )
+                    throws IOException {
+        if ( !Files.exists( dir ) || !Files.isDirectory( dir ) ) {
             return;
         }
-        String[] fileNames = dir.list( filenameFilter );
-        for ( String fileName : fileNames ) {
-            File file = new File( dir, fileName );
+        Stream<Path> filesToDelete = Files.find( dir, Integer.MAX_VALUE, filenameFilter );
+        filesToDelete.forEach( file -> {
             LOG.info( "- Entferne Workspace-Datei '" + file + "'..." );
             try {
-                boolean deleteSuccessful = file.delete();
-                if ( deleteSuccessful )
-                    LOG.info( "OK" );
-                else
-                    LOG.warn( "Fehler: Die Datei konnte aus unbekannten Gruenden nicht entfernt werden. " );
+                Files.delete( file );
+                LOG.info( "OK" );
             } catch ( Exception e ) {
                 LOG.error( "Fehler: " + e.getMessage() );
                 LOG.debug( "Fehler: ", e );
             }
-        }
+        } );
     }
 
     private void createGdalConfiguration( String rasterId, String rasterFileName, double minScaleDenominator,
                                           double maxScaleDenominator )
-                            throws JAXBException, IOException {
+                    throws JAXBException, IOException {
         createGdalConfiguration();
         createGdalTileMatrixSetConfig( rasterId, rasterFileName );
         createGdalTileStoreConfig( rasterId, rasterFileName );
@@ -190,14 +178,14 @@ public class WorkspaceRasterLayerManager {
 
     private void createGeotiffConfiguration( String rasterId, String rasterFileName, double minScaleDenominator,
                                              double maxScaleDenominator )
-                            throws JAXBException, PropertyException {
+                    throws JAXBException, IOException {
         createGeotiffTileMatrixSetConfig( rasterId, rasterFileName );
         createGeotiffTileStoreConfig( rasterId, rasterFileName );
         createTileLayerConfig( rasterId, minScaleDenominator, maxScaleDenominator );
     }
 
     private void createTileLayerConfig( String rasterId, double minScaleDenominator, double maxScaleDenominator )
-                            throws JAXBException {
+                    throws JAXBException, IOException {
         TileLayers cfg = new TileLayers();
         cfg.setConfigVersion( "3.2.0" );
         TileLayerType lay = new TileLayerType();
@@ -213,9 +201,10 @@ public class WorkspaceRasterLayerManager {
         lay.getTileDataSet().add( tds );
         tds.setTileStoreId( rasterId );
         tds.setValue( rasterId );
-        File file = new File( wmsWorkspace, "layers/" + rasterId + ".xml" );
-        file.getParentFile().mkdirs();
-        marshallConfig( cfg, "org.deegree.layer.persistence.tile.jaxb", file );
+        Path layerDir = wmsWorkspace.resolve( "layers" );
+        createDirectory( layerDir );
+        Path layerFile = layerDir.resolve( rasterId + ".xml" );
+        marshallConfig( cfg, "org.deegree.layer.persistence.tile.jaxb", layerFile );
     }
 
     private void setScaleDenominator( TileLayerType lay, double minScaleDenominator, double maxScaleDenominator ) {
@@ -230,31 +219,31 @@ public class WorkspaceRasterLayerManager {
     }
 
     private void createGeotiffTileMatrixSetConfig( String rasterId, String rasterFileName )
-                            throws JAXBException {
+                    throws JAXBException, IOException {
         GeoTIFFTileMatrixSetConfig cfg = new GeoTIFFTileMatrixSetConfig();
         cfg.setConfigVersion( "3.2.0" );
         cfg.setStorageCRS( rasterConfigurationCrs );
         cfg.setFile( "../../../data/" + rasterFileName );
-        File file = new File( wmsWorkspace, "datasources/tile/tilematrixset/" );
-        file.mkdirs();
-        file = new File( file, rasterId + ".xml" );
-        marshallConfig( cfg, "org.deegree.tile.tilematrixset.geotiff.jaxb", file );
+        Path tilematrixsetDir = wmsWorkspace.resolve( "datasources/tile/tilematrixset/" );
+        createDirectory( tilematrixsetDir );
+        Path tilematrixsetFile = tilematrixsetDir.resolve( rasterId + ".xml" );
+        marshallConfig( cfg, "org.deegree.tile.tilematrixset.geotiff.jaxb", tilematrixsetFile );
     }
 
     private void createGdalTileMatrixSetConfig( String rasterId, String rasterFileName )
-                            throws JAXBException {
+                    throws JAXBException, IOException {
         GdalTileMatrixSetConfig cfg = new GdalTileMatrixSetConfig();
         cfg.setConfigVersion( "3.4.0" );
         cfg.setStorageCRS( rasterConfigurationCrs );
         cfg.setFile( "../../../data/" + rasterFileName );
-        File file = new File( wmsWorkspace, "datasources/tile/tilematrixset/" );
-        file.mkdirs();
-        file = new File( file, rasterId + ".xml" );
-        marshallConfig( cfg, "org.deegree.tile.tilematrixset.gdal.jaxb", file );
+        Path tilematrixsetDir = wmsWorkspace.resolve( "datasources/tile/tilematrixset/" );
+        createDirectory( tilematrixsetDir );
+        Path tilematrixsetFile = tilematrixsetDir.resolve( rasterId + ".xml" );
+        marshallConfig( cfg, "org.deegree.tile.tilematrixset.gdal.jaxb", tilematrixsetFile );
     }
 
     private void createGeotiffTileStoreConfig( String rasterId, String rasterFileName )
-                            throws JAXBException, PropertyException {
+                    throws JAXBException {
         GeoTIFFTileStoreJAXB cfg = new GeoTIFFTileStoreJAXB();
         cfg.setConfigVersion( "3.2.0" );
         GeoTIFFTileStoreJAXB.TileDataSet tds = new GeoTIFFTileStoreJAXB.TileDataSet();
@@ -262,12 +251,12 @@ public class WorkspaceRasterLayerManager {
         tds.setFile( "../../data/" + rasterFileName );
         tds.setTileMatrixSetId( rasterId );
         cfg.getTileDataSet().add( tds );
-        File file = new File( wmsWorkspace, "datasources/tile/" + rasterId + ".xml" );
+        Path file = wmsWorkspace.resolve( "datasources/tile/" + rasterId + ".xml" );
         marshallConfig( cfg, "org.deegree.tile.persistence.geotiff.jaxb", file );
     }
 
     private void createGdalTileStoreConfig( String rasterId, String rasterFileName )
-                            throws JAXBException, PropertyException {
+                    throws JAXBException, PropertyException {
         GdalTileStoreJaxb cfg = new GdalTileStoreJaxb();
         cfg.setConfigVersion( "3.4.0" );
         GdalTileStoreJaxb.TileDataSet tds = new GdalTileStoreJaxb.TileDataSet();
@@ -275,12 +264,12 @@ public class WorkspaceRasterLayerManager {
         tds.setFile( "../../data/" + rasterFileName );
         tds.setTileMatrixSetId( rasterId );
         cfg.getTileDataSet().add( tds );
-        File file = new File( wmsWorkspace, "datasources/tile/" + rasterId + ".xml" );
+        Path file = wmsWorkspace.resolve( "datasources/tile/" + rasterId + ".xml" );
         marshallConfig( cfg, "org.deegree.tile.persistence.gdal.jaxb", file );
     }
 
     private void createGdalConfiguration()
-                            throws JAXBException, IOException {
+                    throws JAXBException {
         GDALSettings gdalSettings = new GDALSettings();
         gdalSettings.setConfigVersion( "3.4.0" );
         gdalSettings.setOpenDatasets( BigInteger.valueOf( 10 ) );
@@ -288,16 +277,22 @@ public class WorkspaceRasterLayerManager {
         gdalOption.setName( "gdalSettings.getGDALOption()" );
         gdalOption.setValue( "1000" );
         gdalSettings.getGDALOption().add( gdalOption );
-        File file = new File( wmsWorkspace, "gdal.xml" );
+        Path file = wmsWorkspace.resolve( "gdal.xml" );
         marshallConfig( gdalSettings, "org.deegree.commons.gdal.jaxb", file );
     }
 
-    private void marshallConfig( Object cfg, String contextPath, File toWriteIn )
-                            throws JAXBException {
+    private void createDirectory( Path directoryToCreate )
+                    throws IOException {
+        if ( !Files.exists( directoryToCreate ) )
+            Files.createDirectories( directoryToCreate );
+    }
+
+    private void marshallConfig( Object cfg, String contextPath, Path toWriteIn )
+                    throws JAXBException {
         JAXBContext ctx = JAXBContext.newInstance( contextPath );
         Marshaller marshaller = ctx.createMarshaller();
         marshaller.setProperty( JAXB_FORMATTED_OUTPUT, TRUE );
-        marshaller.marshal( cfg, toWriteIn );
+        marshaller.marshal( cfg, toWriteIn.toFile() );
     }
 
 }

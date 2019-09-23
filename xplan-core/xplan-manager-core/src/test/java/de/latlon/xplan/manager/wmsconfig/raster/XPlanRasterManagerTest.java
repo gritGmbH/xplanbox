@@ -45,7 +45,9 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -66,7 +68,7 @@ import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.Rast
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
+ *
  * @version $Revision: $, $Date: $
  */
 public class XPlanRasterManagerTest {
@@ -95,7 +97,7 @@ public class XPlanRasterManagerTest {
         assumeTrue( isGdalSuccessfullInitialized() );
 
         XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( mockWmsWorkspaceWrapper(),
-                        mockGdalManagerConfig() );
+                                                                        mockGdalManagerConfig() );
         List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata( mockArchiveWithTiffEpsg4269(),
                                                                                       mockFeatureCollection() );
         RasterEvaluationResult result = results.get( 0 );
@@ -105,14 +107,13 @@ public class XPlanRasterManagerTest {
         assertThat( result.isConfiguredCrs(), is( false ) );
         assertThat( result.isSupportedImageFormat(), is( true ) );
     }
-
     @Test
     public void testEvaluateRasterdataGdalWithTiffEpsg4326()
                     throws Exception {
         assumeTrue( isGdalSuccessfullInitialized() );
 
         XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( mockWmsWorkspaceWrapper(),
-                        mockGdalManagerConfig() );
+                                                                        mockGdalManagerConfig() );
         List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata( mockArchiveWithTiffEpsg4326(),
                                                                                       mockFeatureCollection() );
         RasterEvaluationResult result = results.get( 0 );
@@ -129,7 +130,7 @@ public class XPlanRasterManagerTest {
         assumeTrue( isGdalSuccessfullInitialized() );
 
         XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( mockWmsWorkspaceWrapper(),
-                        mockGdalManagerConfig() );
+                                                                        mockGdalManagerConfig() );
         List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata( mockArchiveWithTiffNoCrs(),
                                                                                       mockFeatureCollection() );
         RasterEvaluationResult result = results.get( 0 );
@@ -146,7 +147,7 @@ public class XPlanRasterManagerTest {
         assumeTrue( isGdalSuccessfullInitialized() );
 
         XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( mockWmsWorkspaceWrapper(),
-                        mockGdalManagerConfig() );
+                                                                        mockGdalManagerConfig() );
         List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata( mockArchiveWithTxt(),
                                                                                       mockFeatureCollection() );
         RasterEvaluationResult result = results.get( 0 );
@@ -163,7 +164,7 @@ public class XPlanRasterManagerTest {
         assumeTrue( isGdalSuccessfullInitialized() );
 
         XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( mockWmsWorkspaceWrapper(),
-                        mockGeotiffManagerConfig() );
+                                                                        mockGeotiffManagerConfig() );
 
         List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata( mockArchiveWithTiffNoCrs(),
                                                                                       mockFeatureCollection() );
@@ -182,7 +183,7 @@ public class XPlanRasterManagerTest {
         assumeTrue( isGdalSuccessfullInitialized() );
 
         XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( mockWmsWorkspaceWrapper(),
-                        mockGeotiffManagerConfig() );
+                                                                        mockGeotiffManagerConfig() );
 
         List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata( mockArchiveWithPngNoCrs(),
                                                                                       mockFeatureCollection() );
@@ -201,7 +202,7 @@ public class XPlanRasterManagerTest {
         assumeTrue( isGdalSuccessfullInitialized() );
 
         XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( mockWmsWorkspaceWrapper(),
-                        mockGdalManagerConfig() );
+                                                                        mockGdalManagerConfig() );
         List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata( mockArchiveWithPngEpsg25833(),
                                                                                       mockFeatureCollection() );
         RasterEvaluationResult result = results.get( 0 );
@@ -212,8 +213,11 @@ public class XPlanRasterManagerTest {
         assertThat( result.isSupportedImageFormat(), is( true ) );
     }
 
-    private WmsWorkspaceWrapper mockWmsWorkspaceWrapper() {
-        return mock( WmsWorkspaceWrapper.class );
+    private WmsWorkspaceWrapper mockWmsWorkspaceWrapper()
+                    throws IOException {
+        WmsWorkspaceWrapper wmsWorkspaceWrapper = mock( WmsWorkspaceWrapper.class );
+        when( wmsWorkspaceWrapper.getLocation() ).thenReturn( Files.createTempDirectory( "workspace" ).toFile() );
+        return wmsWorkspaceWrapper;
     }
 
     private XPlanArchive mockArchiveWithTiffEpsg4269() {
@@ -250,7 +254,8 @@ public class XPlanRasterManagerTest {
         XPlanArchive mockedArchive = mock( XPlanArchive.class );
 
         ZipEntryWithContent mockedPngEntry = mockZipEntry( mockedArchive, PNG_EPSG25833_NAME, "png_25833.png" );
-        ZipEntryWithContent mockedAuxEntry = mockZipEntry( mockedArchive, PNG_EPSG25833_AUX_NAME, "png_25833.png.aux.xml" );
+        ZipEntryWithContent mockedAuxEntry = mockZipEntry( mockedArchive, PNG_EPSG25833_AUX_NAME,
+                                                           "png_25833.png.aux.xml" );
 
         when( mockedArchive.getEntry( REF ) ).thenReturn( mockedPngEntry );
 

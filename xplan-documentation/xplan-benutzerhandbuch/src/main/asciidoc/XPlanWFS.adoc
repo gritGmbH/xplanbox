@@ -134,25 +134,29 @@ einzelnen Feature Types wieder.
 
 Die Operation ListStoredQueries gibt Informationen über die verfügbaren
 StoredQueries zurück. Diese Operation steht nur in der Protokollversion
-2.0.0 über den Endpoint __dls__ zur Verfügung.
+2.0.0 über die Endpunkte __dls__, __wfs50__ und __wfs51__ zur Verfügung.
 
 === StoredQueries
 
 Neben den üblichen StoredQueries urn:ogc:def:query:OGC-WFS::GetFeatureById
-und urn:ogc:def:query:OGC-WFS::GetFeatureByType bietet der Endpoint __dls__
-drei weitere StoredQueries an:
+und urn:ogc:def:query:OGC-WFS::GetFeatureByType bieten die Endpunkte __dls__, __wfs50__ und __wfs51__
+drei weitere StoredQueries an. Darüber lassen sich die Vektordaten eines einzelnen Plans anhand im XPlanGML gesetzten Eigenschaften anfragen:
+
+
+ * urn:ogc:def:query:OGC-WFS::PlanName
+   - Filter auf XP_Plan/name
+
+ * urn:ogc:def:query:OGC-WFS::PlanId
+   - Filter auf XP_Plan/nummer
 
  * urn:ogc:def:query:OGC-WFS::InternalId
- * urn:ogc:def:query:OGC-WFS::PlanId
- * urn:ogc:def:query:OGC-WFS::PlanName
+   - Filter auf XP_Plan/internalId
+   - Die internalId kann, bei entsprechender Aktivierung durch den Adminstrator, beim Import eines Plans aus einer Verfahrensdatenbank ausgelesen werden
 
-Darüber lassen sich die Vektordaten eines einzelnen Plans über die vom
-XPlanManager vergebene interne Id, die im XPlanGML vergebene Nummer bzw.
-den im XPlanGML angegebenen Namen abrufen.
 
-Um die Eindeutigkeit der StoredQueries _PlanId_ und _PlanName_ zu gewährleisten,
-muss sichergestellt werden, dass bei den importierten Plänen die Nummer und der Name
-des Plans eindeutig sind.
+Um die Eindeutigkeit der StoredQueries zu erreichen, muss sichergestellt werden, dass diese Eigenschaften bei den importierten Plänen eindeutig sind.
+Sind mehrere Pläne mit der gleichen Eigenschaft importiert, wird der Plan mit dem aktuellsten Verfahrensstatus zurückgegeben.
+So wird z.B. nur der Plan im Rechtsstand __inkraft getreten__ zurückgegeben, wenn daneben der Plan im Rechtstand __Entwurf__ existiert (dieses Beispiel gilt nur, wenn die getrennte Datenhaltung nicht aktiviert ist). Pläne ohne Rechtsstand werden generell nicht über die StoredQueries ausgegeben.
 
 Die Nutzung der StoredQueries erfolgt über GetFeature-Anfragen. Beispielanfrage für
 den Plan mit dem Namen _Musterdorf_:
