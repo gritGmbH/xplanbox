@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output
-            method="html" omit-xml-declaration="yes" indent="yes"/>
+            method="xhtml" omit-xml-declaration="yes" indent="yes" />
     <xsl:template match="/">
         <html>
             <head>
@@ -11,8 +11,11 @@
                         font-family:Arial;
                         }
                 </style>
-                <script>
-                  <![CDATA[
+                <xsl:text disable-output-escaping="yes">
+
+      &lt;script type="text/javascript"&gt;
+                    /* &lt;![CDATA[ */
+
                   function hideOrShow(hideOrShowElementId, clickElement) {
                       var elementToHideShow = document.getElementById(hideOrShowElementId);
                       if (elementToHideShow.style.display=="block") {
@@ -25,7 +28,7 @@
                   }
                   function hideOrShowByClass(hideOrShowClass, clickElement) {
                     var elementsToHideShow = document.getElementsByClassName(hideOrShowClass);
-                    for(var i = 0; i < elementsToHideShow.length; ++i) {
+                    for(var i = 0; i &lt; elementsToHideShow.length; ++i) {
                       var elementToHideShow = elementsToHideShow[i];
                       if (elementToHideShow.style.display=="none") {
                         elementToHideShow.style.display="";
@@ -36,8 +39,9 @@
                       }
                     }
                   }
-                  ]]>
-                </script>
+                  /* ]]&gt; */
+      &lt;/script&gt;
+                </xsl:text>
             </head>
             <body>
                 <h1>Validierungsbericht</h1>

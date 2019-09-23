@@ -4,7 +4,6 @@ import static java.nio.file.Files.createTempFile;
 import static java.nio.file.Files.newInputStream;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
 import static org.xmlmatchers.XmlMatchers.hasXPath;
 
 import java.io.ByteArrayOutputStream;
@@ -35,12 +34,12 @@ public class XmlReportGeneratorTest {
     public void testGenerateXmlReport()
                     throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        File xmlFile = createTempFile( null, null ).toFile();
+        File xmlFile = createTmpFile();
         String validationName = "ValidationName";
         String archiveName = "ArchiveName";
 
         OutputStream os = new FileOutputStream( xmlFile );
-        xmlReportGenerator.generateXmlReport( mockValidatorReport( validationName, archiveName ), os );
+        xmlReportGenerator.generateXmlReport( createValidatorReport( validationName, archiveName ), os );
 
         Path xml = xmlFile.toPath();
 
@@ -53,7 +52,7 @@ public class XmlReportGeneratorTest {
     public void testGenerateXmlReport_CheckSyntacticDetailsHint()
                     throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        File xmlFile = createTempFile( null, null ).toFile();
+        File xmlFile = createTmpFile();
 
         OutputStream os = new FileOutputStream( xmlFile );
         xmlReportGenerator.generateXmlReport(
@@ -72,32 +71,14 @@ public class XmlReportGeneratorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testGenerateXmlReportWithNullValidationName()
-                    throws Exception {
-        XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        xmlReportGenerator.generateXmlReport( mockValidatorReport( null, "archiveName" ), createSimpleStream() );
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testGenerateXmlReportWithNullArchiveName()
-                    throws Exception {
-        XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        xmlReportGenerator.generateXmlReport( mockValidatorReport( "validatioNName", null) , createSimpleStream() );
-    }
-
-    @Test(expected = IllegalArgumentException.class)
     public void testGenerateXmlReportWithNullOutputStream()
                     throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        xmlReportGenerator.generateXmlReport( mockValidatorReport( "validatioNName", "archiveName" ), null );
+        xmlReportGenerator.generateXmlReport( createValidatorReport( "validatioNName", "archiveName" ), null );
     }
 
-    private ValidatorReport mockValidatorReport( ) {
-        return mock( ValidatorReport.class );
-    }
-
-    private ValidatorReport mockValidatorReport( String validationName, String archiveName ) {
-        ValidatorReport validatorReport = mockValidatorReport();
+    private ValidatorReport createValidatorReport( String validationName, String archiveName ) {
+        ValidatorReport validatorReport = new ValidatorReport();
         validatorReport.setPlanName( archiveName );
         validatorReport.setValidationName( validationName );
         return validatorReport;
@@ -121,6 +102,11 @@ public class XmlReportGeneratorTest {
     private static StreamSource document( Path path )
                     throws IOException {
         return new StreamSource( newInputStream( path ) );
+    }
+
+    private File createTmpFile()
+                            throws IOException {
+        return createTempFile( "XmlReportGeneratorTest", ".xml" ).toFile();
     }
 
 }
