@@ -42,7 +42,6 @@
       <xplansyn:veraenderungssperre>false</xplansyn:veraenderungssperre>
       <xplansyn:staedtebaulicherVertrag>false</xplansyn:staedtebaulicherVertrag>
       <xplansyn:erschliessungsVertrag>false</xplansyn:erschliessungsVertrag>
-      <xplansyn:refTextAbschnitte></xplansyn:refTextAbschnitte>
     </xplansyn:BP_Plan>
   </gml:featureMember>
   <gml:featureMember>
