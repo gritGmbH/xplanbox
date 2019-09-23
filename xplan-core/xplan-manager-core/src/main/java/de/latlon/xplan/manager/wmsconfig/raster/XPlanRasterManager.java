@@ -223,10 +223,9 @@ public class XPlanRasterManager {
         try {
             WorkspaceRasterLayerManager rasterLayerManager = new WorkspaceRasterLayerManager(
                             wmsWorkspaceWrapper.getLocation() );
-            rasterThemeManager.removeLayersForPlan( "bplan", planId );
-            rasterThemeManager.removeLayersForPlan( "lplan", planId );
-            rasterThemeManager.removeLayersForPlan( "rplan", planId );
-            rasterThemeManager.removeLayersForPlan( "fplan", planId );
+            for ( String type : WmsWorkspaceWrapper.supportedTypes ) {
+                rasterThemeManager.removeLayersForPlan( type, planId );
+            }
             rasterLayerManager.deleteDataFilesAndRasterConfigurations( planId );
         } catch ( Exception e ) {
             LOG.trace( "Configuration of the plan with id " + planId + " failed.!", e );
@@ -249,10 +248,9 @@ public class XPlanRasterManager {
                     String rasterId = createRasterId( referenzUrl );
                     WorkspaceRasterLayerManager rasterLayerManager = new WorkspaceRasterLayerManager(
                                     wmsWorkspaceWrapper.getLocation() );
-                    rasterThemeManager.removeLayersForPlan( "bplan", planId, rasterId );
-                    rasterThemeManager.removeLayersForPlan( "lplan", planId, rasterId );
-                    rasterThemeManager.removeLayersForPlan( "rplan", planId, rasterId );
-                    rasterThemeManager.removeLayersForPlan( "fplan", planId, rasterId );
+                    for ( String type : WmsWorkspaceWrapper.supportedTypes ) {
+                        rasterThemeManager.removeLayersForPlan( type, planId, rasterId );
+                    }
                     rasterLayerManager.deleteDataFilesAndRasterConfigurations( planId, rasterId );
                 }
             }
