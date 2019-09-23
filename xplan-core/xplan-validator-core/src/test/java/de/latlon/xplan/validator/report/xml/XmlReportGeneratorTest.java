@@ -1,12 +1,13 @@
 package de.latlon.xplan.validator.report.xml;
 
-import static java.nio.file.Files.createTempFile;
-import static java.nio.file.Files.newInputStream;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.xmlmatchers.XmlMatchers.hasXPath;
+import de.latlon.xplan.validator.report.ValidatorDetail;
+import de.latlon.xplan.validator.report.ValidatorReport;
+import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
+import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
+import org.junit.Test;
+import org.xmlmatchers.xpath.XpathReturnType;
 
+import javax.xml.transform.stream.StreamSource;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,13 +17,12 @@ import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
 
-import javax.xml.transform.stream.StreamSource;
-
-import org.junit.Test;
-
-import de.latlon.xplan.validator.report.ValidatorDetail;
-import de.latlon.xplan.validator.report.ValidatorReport;
-import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
+import static java.nio.file.Files.createTempFile;
+import static java.nio.file.Files.newInputStream;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
+import static org.xmlmatchers.XmlMatchers.hasXPath;
+import static org.xmlmatchers.xpath.XpathReturnType.returningANumber;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -31,16 +31,20 @@ import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
  */
 public class XmlReportGeneratorTest {
 
+    public static final String PLAN_NAME = "PLAN_NAME";
+
+    public static final String VALIDATION_NAME = "VALIDATION_NAME";
+
     @Test
     public void testGenerateXmlReport()
-                    throws Exception {
+                            throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        File xmlFile = createTempFile( null, null ).toFile();
+        File xmlFile = createTmpFile();
         String validationName = "ValidationName";
         String archiveName = "ArchiveName";
 
         OutputStream os = new FileOutputStream( xmlFile );
-        xmlReportGenerator.generateXmlReport( mockValidatorReport( validationName, archiveName ), os );
+        xmlReportGenerator.generateXmlReport( createValidatorReport(), os );
 
         Path xml = xmlFile.toPath();
 
@@ -51,66 +55,74 @@ public class XmlReportGeneratorTest {
 
     @Test
     public void testGenerateXmlReport_CheckSyntacticDetailsHint()
-                    throws Exception {
+                            throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        File xmlFile = createTempFile( null, null ).toFile();
+        File xmlFile = createTmpFile();
 
         OutputStream os = new FileOutputStream( xmlFile );
-        xmlReportGenerator.generateXmlReport(
-                                mockValidatorReportWithSyntacticDetailHint( "ValidationName", "ArchiveName" ), os );
+        xmlReportGenerator.generateXmlReport( createValidatorReportWithSyntacticDetailHint(), os );
 
         Path xml = xmlFile.toPath();
 
         assertThat( document( xml ), hasXPath( "/ValidationReport/Validation/Syn/details", equalTo( "detailsHint" ) ) );
     }
 
+    @Test
+    public void testGenerateXmlReport_CheckSemanticsResults()
+                            throws Exception {
+        XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
+        File xmlFile = createTmpFile();
+
+        OutputStream os = new FileOutputStream( xmlFile );
+        xmlReportGenerator.generateXmlReport( createValidatorReportWithSemanticFailures(), os );
+
+        Path xml = xmlFile.toPath();
+
+        assertThat( document( xml ), hasXPath( "/ValidationReport/Validation/Sem/result", equalTo( "nicht valide" ) ) );
+        assertThat( document( xml ), hasXPath( "count(/ValidationReport/Validation/Sem/Rules/Rule)", returningANumber(),
+                                               equalTo( 2d ) ) );
+        assertThat( document( xml ),
+                    hasXPath( "/ValidationReport/Validation/Sem/Rules/Rule[1]/name", equalTo( "1.1" ) ) );
+        assertThat( document( xml ),
+                    hasXPath( "/ValidationReport/Validation/Sem/Rules/Rule[2]/name", equalTo( "1.2" ) ) );
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testGenerateXmlReportWithNullReport()
-                    throws Exception {
+                            throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
         xmlReportGenerator.generateXmlReport( null, createSimpleStream() );
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testGenerateXmlReportWithNullValidationName()
-                    throws Exception {
-        XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        xmlReportGenerator.generateXmlReport( mockValidatorReport( null, "archiveName" ), createSimpleStream() );
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testGenerateXmlReportWithNullArchiveName()
-                    throws Exception {
-        XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        xmlReportGenerator.generateXmlReport( mockValidatorReport( "validatioNName", null) , createSimpleStream() );
-    }
-
-    @Test(expected = IllegalArgumentException.class)
     public void testGenerateXmlReportWithNullOutputStream()
-                    throws Exception {
+                            throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        xmlReportGenerator.generateXmlReport( mockValidatorReport( "validatioNName", "archiveName" ), null );
+        xmlReportGenerator.generateXmlReport( createValidatorReport(), null );
     }
 
-    private ValidatorReport mockValidatorReport( ) {
-        return mock( ValidatorReport.class );
-    }
-
-    private ValidatorReport mockValidatorReport( String validationName, String archiveName ) {
-        ValidatorReport validatorReport = mockValidatorReport();
-        validatorReport.setPlanName( archiveName );
-        validatorReport.setValidationName( validationName );
+    private ValidatorReport createValidatorReport() {
+        ValidatorReport validatorReport = new ValidatorReport();
+        validatorReport.setPlanName( PLAN_NAME );
+        validatorReport.setValidationName( VALIDATION_NAME );
         return validatorReport;
     }
 
-    private ValidatorReport mockValidatorReportWithSyntacticDetailHint( String validationName, String archiveName ) {
-        ValidatorReport validatorReport = new ValidatorReport();
-        validatorReport.setPlanName( archiveName );
-        validatorReport.setValidationName( validationName );
+    private ValidatorReport createValidatorReportWithSyntacticDetailHint() {
+        ValidatorReport validatorReport = createValidatorReport();
         List<String> messages = Collections.singletonList( "Error in xml..." );
         ValidatorDetail detail = new ValidatorDetail( "detailsHint" );
         SyntacticValidatorResult syntacticValidatorResult = new SyntacticValidatorResult( messages, false, detail );
         validatorReport.setSyntacticValidatorResult( syntacticValidatorResult );
+        return validatorReport;
+    }
+
+    private ValidatorReport createValidatorReportWithSemanticFailures() {
+        ValidatorReport validatorReport = createValidatorReport();
+        SemanticValidatorResult semanticValidatorResult = new SemanticValidatorResult();
+        semanticValidatorResult.addRule( "1.1", true, "Test valid" );
+        semanticValidatorResult.addRule( "1.2", false, "Test valid" );
+        validatorReport.setSemanticValidatorResult( semanticValidatorResult );
         return validatorReport;
     }
 
@@ -119,8 +131,13 @@ public class XmlReportGeneratorTest {
     }
 
     private static StreamSource document( Path path )
-                    throws IOException {
+                            throws IOException {
         return new StreamSource( newInputStream( path ) );
+    }
+
+    private File createTmpFile()
+                            throws IOException {
+        return createTempFile( "XmlReportGeneratorTest", ".xml" ).toFile();
     }
 
 }
