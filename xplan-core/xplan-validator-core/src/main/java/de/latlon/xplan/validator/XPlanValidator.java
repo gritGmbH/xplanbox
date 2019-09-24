@@ -1,19 +1,7 @@
 package de.latlon.xplan.validator;
 
-import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.SYNTAX_ERRORS;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-
-import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
-import org.deegree.feature.types.AppSchema;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
@@ -31,13 +19,21 @@ import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationType;
+import org.deegree.feature.types.AppSchema;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.SYNTAX_ERRORS;
 
 /**
  * Performs semantic, geometric and syntactic validation for the CLI
  * 
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: erben $
- * @version $Revision: $, $Date: $
  */
 public class XPlanValidator {
 
@@ -81,15 +77,15 @@ public class XPlanValidator {
      *            to validate, never <code>null</code> and must point to a zip file with a gml plan
      * @return <link>ValidatorReport</link>
      * @throws ValidatorException
-     * @throws ParseException
      * @throws IOException
      * @throws ReportGenerationException
      */
     public ValidatorReport validate( ValidationSettings validationSettings, File planArchive )
-                    throws ValidatorException, ParseException, IOException, ReportGenerationException {
+                    throws ValidatorException, IOException, ReportGenerationException {
         XPlanArchive archive = retrieveXPlanArchive( planArchive );
         ValidatorReport report = validate( validationSettings, archive );
         writeReport( report );
+        LOG.info( "Archiv mit Validierungsergebnissen wird erstellt." );
         File validationReportDirectory = createZipArchive( validationSettings, archive, report );
         LOG.info( "Archiv mit Validierungsergebnissen wurde unter {} abgelegt.", validationReportDirectory );
         return report;
@@ -109,8 +105,7 @@ public class XPlanValidator {
     public ValidatorReport validateNotWriteReport( ValidationSettings validationSettings, File planArchive )
                     throws ValidatorException, IOException {
         XPlanArchive archive = retrieveXPlanArchive( planArchive );
-        ValidatorReport report = validate( validationSettings, archive );
-        return report;
+        return validate( validationSettings, archive );
     }
 
     /**
@@ -223,10 +218,8 @@ public class XPlanValidator {
      *            never <code>null</code>
      * @return the created report
      */
-    SemanticValidatorResult
-                    validateSemanticallyAndWriteResult( SemanticValidableXPlanArchive archive,
-                                                        List<SemanticValidationOptions> semanticValidationOptions )
-                                                                        throws ValidatorException {
+    SemanticValidatorResult validateSemanticallyAndWriteResult( SemanticValidableXPlanArchive archive,
+                                                                List<SemanticValidationOptions> semanticValidationOptions ) {
         ValidatorResult result = semanticValidator.validateSemantic( archive, semanticValidationOptions );
         SemanticValidatorResult validatorResult = (SemanticValidatorResult) result;
         log( validatorResult );
