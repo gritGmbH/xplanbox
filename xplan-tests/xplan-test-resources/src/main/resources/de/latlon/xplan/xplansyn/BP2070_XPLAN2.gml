@@ -35,7 +35,6 @@
       <xplansyn:bereich>[FEATURE_2]</xplansyn:bereich>
       <xplansyn:gkz>4011000</xplansyn:gkz>
       <xplansyn:stadt>Bremen</xplansyn:stadt>
-      <xplansyn:refTextAbschnitte></xplansyn:refTextAbschnitte>
     </xplansyn:BP_Plan>
   </gml:featureMember>
   <gml:featureMember>
