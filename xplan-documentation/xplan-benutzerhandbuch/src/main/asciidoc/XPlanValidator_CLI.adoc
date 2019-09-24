@@ -47,8 +47,8 @@ XPlanValidator -validate Plan.zip
 ===== Bezeichnung der Validierung
 
 Über den Parameter _-name <bezeichnung>_ kann dem Validierungsdurchlauf
-ein Name vergeben werden. Die Angabe des Parameters ist optional,
-fehlt dieser Parameter wird der Name des XPlanArchiv verwendet.
+ein Name vergeben werden. Die Angabe des Parameters ist optional.
+Fehlt dieser Parameter wird der Name des XPlanArchivs verwendet.
 
 Aufruf:
 
