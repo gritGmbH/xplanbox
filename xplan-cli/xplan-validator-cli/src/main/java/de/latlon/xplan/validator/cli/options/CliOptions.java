@@ -3,6 +3,7 @@ package de.latlon.xplan.validator.cli.options;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationType;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -20,10 +21,10 @@ public class CliOptions {
 
     private final ValidationType validationType;
 
-    private final String archive;
+    private final File archive;
 
     public CliOptions( String validationName, List<ValidationOption> voOptions,
-                       String archive, ValidationType validationType ) {
+                       File archive, ValidationType validationType ) {
         this.validationName = validationName;
         this.voOptions = voOptions;
         this.archive = archive;
@@ -38,7 +39,7 @@ public class CliOptions {
         return voOptions;
     }
 
-    public String getArchive() {
+    public File getArchive() {
         return archive;
     }
 

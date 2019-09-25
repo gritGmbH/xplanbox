@@ -1,11 +1,5 @@
 package de.latlon.xplan.validator.report;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
-
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
 import de.latlon.xplan.validator.report.badgeometryimg.BadGeometryImgGenerator;
@@ -14,12 +8,16 @@ import de.latlon.xplan.validator.report.pdf.PdfReportGenerator;
 import de.latlon.xplan.validator.report.shapefile.ShapefileGenerator;
 import de.latlon.xplan.validator.report.xml.XmlReportGenerator;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
 /**
  * Generates an archive the {@link ValidatorReport} as XMl, HTML and PDF
  * 
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: lyn $
- * @version $Revision: $, $Date: $
  */
 public class ReportArchiveGenerator {
 
@@ -67,7 +65,7 @@ public class ReportArchiveGenerator {
             addHtmlEntry( archive, report, validationName, zipOutStream );
             addPdfEntry( archive, report, validationName, zipOutStream );
             addPNGEntry( report, validationName, zipOutStream );
-            addShapeDirectoryEntry( archive, report, validationName, validationReportDirectory, zipOutStream );
+            addShapeDirectoryEntry( report, validationName, validationReportDirectory, zipOutStream );
             return validationReportDirectory;
         } catch ( IOException e ) {
             throw new ReportGenerationException( e );
@@ -111,7 +109,7 @@ public class ReportArchiveGenerator {
         }
     }
 
-    private void addShapeDirectoryEntry( XPlanArchive archive, ValidatorReport report, String validationName,
+    private void addShapeDirectoryEntry( ValidatorReport report, String validationName,
                                          File directoryToCreateShapes, ZipOutputStream zipOutStream )
                     throws IOException, ReportGenerationException {
         if ( shapefileGenerator.hasBadGeometry( report ) ) {

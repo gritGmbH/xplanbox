@@ -46,7 +46,6 @@ public class XPlanValidatorCli {
      *            expects the options, never <code>null</code> -validate (file path for file to validate), -option
      *            (option of the validation) and -vo (validation options) with String arguments. Optional parameter: -xq
      *            (xquery file path)
-     * @param writer
      *            never <code>null</code>
      * @throws ReportGenerationException
      */
@@ -56,7 +55,7 @@ public class XPlanValidatorCli {
         ValidationSettings settings = new ValidationSettings( options.getValidationName(), options.getValidationType(),
                         options.getVoOptions() );
         XPlanValidator validator = createValidator();
-        validator.validate( settings, new File( options.getArchive() ) );
+        validator.validate( settings, options.getArchive() );
     }
 
     private static XPlanValidator createValidator() {

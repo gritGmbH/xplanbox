@@ -25,7 +25,7 @@ import static org.junit.Assert.assertThat;
 public class CliOptionsParserTest {
 
   @Test
-  public void testParseValidationOptions() throws IOException, ParseException {
+  public void testParseValidationOptions() throws ParseException {
     CliOptionsParser parser = new CliOptionsParser();
     String[] optionsToParse = new String[] { "-validate", ".",
                                              "-name", "validation",
@@ -59,7 +59,7 @@ public class CliOptionsParserTest {
   @Test(expected = ParseException.class)
   public void testInvalidInputWrongArgumentNumber()
       throws Exception {
-    String[] invalidArgs = new String[] { "-validate", "name" };
+    String[] invalidArgs = new String[] {};
     new CliOptionsParser().parse( invalidArgs );
   }
 

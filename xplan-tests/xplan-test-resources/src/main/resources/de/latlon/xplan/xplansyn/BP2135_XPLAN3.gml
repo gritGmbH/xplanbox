@@ -38,7 +38,6 @@
       <xplan:veraenderungssperre>false</xplan:veraenderungssperre>
       <xplan:staedtebaulicherVertrag>false</xplan:staedtebaulicherVertrag>
       <xplan:erschliessungsVertrag>false</xplan:erschliessungsVertrag>
-      <xplan:refTextAbschnitte></xplan:refTextAbschnitte>
     </xplan:BP_Plan>
   </gml:featureMember>
   <gml:featureMember>

@@ -38,7 +38,6 @@
       <xplan:ortsteil>Bezirk Hamburg-Mitte / Ortsteil 103</xplan:ortsteil>
       <xplan:rechtsstand>Rechtskraft</xplan:rechtsstand>
       <xplan:rechtsstandCode>4000</xplan:rechtsstandCode>
-      <xplan:refTextAbschnitte></xplan:refTextAbschnitte>
     </xplan:BP_Plan>
   </gml:featureMember>
   <gml:featureMember>
