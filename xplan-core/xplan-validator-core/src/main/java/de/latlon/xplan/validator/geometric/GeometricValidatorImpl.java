@@ -210,11 +210,12 @@ public class GeometricValidatorImpl implements GeometricValidator {
             gmlStream.addInspector( flaechenschlussInspector );
             try {
                 xplanFeatures = (FeatureCollection) gmlStream.readFeature();
-                flaechenschlussInspector.checkFlaechenschluss();
+                List<String> flaechenschlussErrors = flaechenschlussInspector.checkFlaechenschluss();
                 elapsed = System.currentTimeMillis() - begin;
                 errors = inspector.getErrors();
                 List<String> brokenGeometryErrors = extendMessagesOfBrokenGeometryErrors();
                 errors.addAll( brokenGeometryErrors );
+                errors.addAll( flaechenschlussErrors );
                 warnings = inspector.getWarnings();
                 badList = inspector.getBadGeometries();
             } catch ( XMLParsingException e ) {
