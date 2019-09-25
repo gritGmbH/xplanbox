@@ -20,6 +20,10 @@ public class SemanticValidatorResultTest {
 
     private static final String NAME_3 = "1.2.1";
 
+    private static final String NAME_4 = "2";
+
+    private static final String NAME_5 = "1.2.1.3";
+
     private static final String NAME_INVALID = "INVALID";
 
     @Test
@@ -30,7 +34,9 @@ public class SemanticValidatorResultTest {
 
         assertThat( rules.get( 0 ).getName(), is( NAME_1 ) );
         assertThat( rules.get( 1 ).getName(), is( NAME_3 ) );
-        assertThat( rules.get( 2 ).getName(), is( NAME_2 ) );
+        assertThat( rules.get( 2 ).getName(), is( NAME_5 ) );
+        assertThat( rules.get( 3 ).getName(), is( NAME_2 ) );
+        assertThat( rules.get( 4 ).getName(), is( NAME_4 ) );
     }
 
     @Test
@@ -40,7 +46,7 @@ public class SemanticValidatorResultTest {
 
         List<RuleResult> rules = result.getRules();
 
-        assertThat( rules.get( 3 ).getName(), is( NAME_INVALID ) );
+        assertThat( rules.get( 5 ).getName(), is( NAME_INVALID ) );
     }
 
     private SemanticValidatorResult retrieveResultWithRules() {
@@ -48,6 +54,8 @@ public class SemanticValidatorResultTest {
         result.addRule( NAME_1, true, "message1" );
         result.addRule( NAME_2, false, "message2" );
         result.addRule( NAME_3, true, "message3" );
+        result.addRule( NAME_4, true, "message4" );
+        result.addRule( NAME_5, true, "message5" );
         return result;
     }
 
