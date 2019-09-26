@@ -44,7 +44,6 @@ public class FlaechenschlussInspectorTest {
         FlaechenschlussInspector flaechenschlussInspector = readFeatures( archive );
 
         List<String> flaechenschlussErrors = flaechenschlussInspector.checkFlaechenschluss();
-        System.out.println( flaechenschlussErrors );
         assertThat( flaechenschlussErrors.size(), is( 1 ) );
     }
 
