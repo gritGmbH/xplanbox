@@ -1,14 +1,18 @@
 package de.latlon.xplan.validator.geometric;
 
+import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
+import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS_OPTION;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotEquals;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.deegree.feature.types.AppSchema;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.latlon.xplan.ResourceAccessor;
@@ -45,10 +49,11 @@ public class GeometricValidatorImplTest {
         assertNotEquals( null, report );
     }
 
+    @Ignore("TODO: test plan is required (with only few features)")
     @Test
     public void testValidateGeometryWithNullVoOptions()
                             throws Exception {
-        XPlanArchive archive = getTestArchive( "xplan2/FPlan.zip" );
+        XPlanArchive archive = getTestArchive( "xplan51/BP2070.zip" );
         ValidatorResult report = validateGeometryAndReturnReport( archive, null );
         assertNotEquals( null, report );
     }
@@ -81,7 +86,8 @@ public class GeometricValidatorImplTest {
     public void testValidateGeometryWithBrokenGeometry()
                             throws Exception {
         XPlanArchive archive = getTestArchive( "xplan41/Eidelstedt_4_V4-broken-geometry.zip" );
-        ValidatorResult report = validateGeometryAndReturnReport( archive, new ArrayList<>() );
+        List<ValidationOption> voOptions = Collections.singletonList( SKIP_FLAECHENSCHLUSS );
+        ValidatorResult report = validateGeometryAndReturnReport( archive, voOptions );
         GeometricValidatorResult geometricReport = (GeometricValidatorResult) report;
         int numberOfErrors = geometricReport.getErrors().size();
         int numberOfWarnings = geometricReport.getWarnings().size();
@@ -93,12 +99,39 @@ public class GeometricValidatorImplTest {
         assertThat( numberOfBadGeometries, is( 0 ) );
     }
 
+    @Test
+    public void testValidateGeometryWithInvalidFlaechenschluss_skipped()
+                            throws Exception {
+        XPlanArchive archive = getTestArchive( "xplan51/BP2070.zip" );
+        List<ValidationOption> voOptions = Collections.singletonList( SKIP_FLAECHENSCHLUSS );
+        ValidatorResult report = validateGeometryAndReturnReport( archive, voOptions );
+        GeometricValidatorResult geometricReport = (GeometricValidatorResult) report;
+        int numberOfErrors = geometricReport.getErrors().size();
+
+        assertThat( report.isValid(), is( true ) );
+        assertThat( numberOfErrors, is( 0 ) );
+    }
+
+    @Ignore("TODO: test plan is required (with only few features)")
+    @Test
+    public void testValidateGeometryWithInvalidFlaechenschluss_notskipped()
+                            throws Exception {
+        XPlanArchive archive = getTestArchive( "xplan51/BP2070.zip" );
+        List<ValidationOption> voOptions = Collections.singletonList(
+                                new ValidationOption( SKIP_FLAECHENSCHLUSS_OPTION , Boolean.toString( false ) ) );
+        ValidatorResult report = validateGeometryAndReturnReport( archive, voOptions );
+        GeometricValidatorResult geometricReport = (GeometricValidatorResult) report;
+        int numberOfErrors = geometricReport.getErrors().size();
+
+        assertThat( report.isValid(), is( false ) );
+        assertThat( numberOfErrors, is( 12 ) );
+    }
+
     private XPlanArchive getTestArchive( String name )
                             throws IOException {
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
         return archiveCreator.createXPlanArchive( name, ResourceAccessor.readResourceStream( name ) );
     }
-
 
     private ValidatorResult validateGeometryAndReturnReport( XPlanArchive archive, List<ValidationOption> voOptions )
                             throws ValidatorException {
@@ -113,6 +146,7 @@ public class GeometricValidatorImplTest {
         voOptions.add( new ValidationOption( "ignore-orientation" ) );
         voOptions.add( new ValidationOption( "ignore-self-intersection " ) );
         voOptions.add( new ValidationOption( "min-node-distance", "1" ) );
+        voOptions.add( SKIP_FLAECHENSCHLUSS );
         return voOptions;
     }
 
@@ -120,6 +154,7 @@ public class GeometricValidatorImplTest {
         List<ValidationOption> voOptions = new ArrayList<ValidationOption>();
         voOptions.add( new ValidationOption( "invalid" ) );
         voOptions.add( new ValidationOption( "min-node-distance", "invalid" ) );
+        voOptions.add( SKIP_FLAECHENSCHLUSS );
         return voOptions;
     }
 

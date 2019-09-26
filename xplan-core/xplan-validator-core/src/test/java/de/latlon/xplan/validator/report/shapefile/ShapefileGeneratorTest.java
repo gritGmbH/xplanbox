@@ -1,11 +1,13 @@
 package de.latlon.xplan.validator.report.shapefile;
 
+import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
 import static java.lang.String.format;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import org.deegree.feature.types.AppSchema;
@@ -89,7 +91,8 @@ public class ShapefileGeneratorTest {
     private ValidatorReport createArchive()
                     throws Exception {
         XPlanArchive archive = getTestArchive( "xplan41/FPlan.zip" );
-        GeometricValidatorResult result = (GeometricValidatorResult) validateGeometryAndReturnReport( archive, null );
+        List<ValidationOption> voOptions = Collections.singletonList( SKIP_FLAECHENSCHLUSS );
+        GeometricValidatorResult result = (GeometricValidatorResult) validateGeometryAndReturnReport( archive, voOptions );
         ValidatorReport validatorReport = new ValidatorReport();
         validatorReport.setGeometricValidatorResult( result );
         return validatorReport;

@@ -25,6 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.xml.stream.XMLStreamException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static java.lang.String.format;
@@ -41,6 +42,11 @@ public class GeometricValidatorImpl implements GeometricValidator {
 
     // Maximum distance for gaps that are to be closed
     private static final double EPSILON = 0.10;
+
+    public static final String SKIP_FLAECHENSCHLUSS_OPTION = "SKIPFLAECHENSCHLUSS";
+
+    public static final ValidationOption SKIP_FLAECHENSCHLUSS = new ValidationOption( SKIP_FLAECHENSCHLUSS_OPTION,
+                                                                                      Boolean.toString( true ) );
 
     @Override
     public ValidatorResult validateGeometry( XPlanArchive archive, ICRS crs, AppSchema schema, boolean force,
@@ -63,7 +69,8 @@ public class GeometricValidatorImpl implements GeometricValidator {
                                                                            AppSchema schema, boolean force,
                                                                            String internalId )
                             throws XMLStreamException, UnknownCRSException {
-        ParserAndValidatorResult result = retrieveFeatureCollection( archive, crs, force, schema, null );
+        List<ValidationOption> validationOptions = Collections.singletonList( SKIP_FLAECHENSCHLUSS );
+        ParserAndValidatorResult result = retrieveFeatureCollection( archive, crs, force, schema, validationOptions );
         return new XPlanFeatureCollectionBuilder( result.xPlanFeatures, archive.getType() ).build();
     }
 
@@ -85,7 +92,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
         XPlanGeometryInspector geometryInspector = new XPlanGeometryInspector( xmlStream, EPSILON, voOptions );
         FlaechenschlussInspector flaechenschlussInspector = new FlaechenschlussInspector();
         GMLStreamReader gmlStream = createGmlStreamReader( archive, crs, schema, xmlStream, geometryInspector,
-                                                           flaechenschlussInspector );
+                                                           flaechenschlussInspector, voOptions );
         try {
             FeatureCollection xPlanFeatures = (FeatureCollection) gmlStream.readFeature();
             result.setXplanFeatures( xPlanFeatures );
@@ -110,7 +117,8 @@ public class GeometricValidatorImpl implements GeometricValidator {
 
     private GMLStreamReader createGmlStreamReader( XPlanArchive archive, ICRS crs, AppSchema schema,
                                                    XMLStreamReaderWrapper xmlStream, XPlanGeometryInspector inspector,
-                                                   FlaechenschlussInspector flaechenschlussInspector )
+                                                   FlaechenschlussInspector flaechenschlussInspector,
+                                                   List<ValidationOption> voOptions )
                             throws XMLStreamException {
         GMLVersion gmlVersion = archive.getVersion().getGmlVersion();
         GeometryFactory geomFac = new GeometryFactory();
@@ -120,7 +128,8 @@ public class GeometricValidatorImpl implements GeometricValidator {
         gmlStream.setGeometryFactory( geomFac );
         gmlStream.setApplicationSchema( schema );
         gmlStream.setSkipBrokenGeometries( true );
-        gmlStream.addInspector( flaechenschlussInspector );
+        if ( !isFlaechenschlussSkipped( voOptions ) )
+            gmlStream.addInspector( flaechenschlussInspector );
         return gmlStream;
     }
 
@@ -147,7 +156,19 @@ public class GeometricValidatorImpl implements GeometricValidator {
             LOG.info( errorMessage );
             result.addError( errorMessage );
         }
-        long elapsed = System.currentTimeMillis() - begin;
+        result.elapsed = System.currentTimeMillis() - begin;
+    }
+
+    private boolean isFlaechenschlussSkipped( List<ValidationOption> voOptions ) {
+        if ( voOptions == null )
+            return false;
+        for ( ValidationOption voOption : voOptions ) {
+            if ( SKIP_FLAECHENSCHLUSS_OPTION.equals( voOption.getName() ) ) {
+                if ( voOption.getArgument() != null )
+                    return Boolean.valueOf( voOption.getArgument() );
+            }
+        }
+        return false;
     }
 
     private void logResult( boolean force, ParserAndValidatorResult result ) {
