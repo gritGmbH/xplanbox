@@ -5,10 +5,31 @@ import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.geometry.Geometry;
+import org.deegree.geometry.i18n.Messages;
 import org.deegree.geometry.multi.MultiSurface;
 import org.deegree.geometry.points.Points;
 import org.deegree.geometry.primitive.Point;
+import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.Surface;
+import org.deegree.geometry.primitive.patches.PolygonPatch;
+import org.deegree.geometry.primitive.patches.SurfacePatch;
+import org.deegree.geometry.primitive.segments.Arc;
+import org.deegree.geometry.primitive.segments.ArcByBulge;
+import org.deegree.geometry.primitive.segments.ArcByCenterPoint;
+import org.deegree.geometry.primitive.segments.ArcString;
+import org.deegree.geometry.primitive.segments.ArcStringByBulge;
+import org.deegree.geometry.primitive.segments.BSpline;
+import org.deegree.geometry.primitive.segments.Bezier;
+import org.deegree.geometry.primitive.segments.Circle;
+import org.deegree.geometry.primitive.segments.CircleByCenterPoint;
+import org.deegree.geometry.primitive.segments.Clothoid;
+import org.deegree.geometry.primitive.segments.CubicSpline;
+import org.deegree.geometry.primitive.segments.CurveSegment;
+import org.deegree.geometry.primitive.segments.Geodesic;
+import org.deegree.geometry.primitive.segments.GeodesicString;
+import org.deegree.geometry.primitive.segments.LineStringSegment;
+import org.deegree.geometry.primitive.segments.OffsetCurve;
+import org.deegree.geometry.standard.points.PointsPoints;
 import org.deegree.gml.feature.FeatureInspectionException;
 import org.deegree.gml.feature.FeatureInspector;
 import org.slf4j.Logger;
@@ -95,11 +116,8 @@ public class FlaechenschlussInspector implements FeatureInspector {
     }
 
     private void checkAndAddSurface( Feature feature, Surface surface ) {
-        Points exteriorRingCoordinates = surface.getExteriorRingCoordinates();
-        exteriorRingCoordinates.forEach( p -> checkAndAdd( feature.getId(), p ) );
-
-        List<Points> interiorRingsCoordinates = surface.getInteriorRingsCoordinates();
-        interiorRingsCoordinates.forEach( ir -> ir.forEach( p -> checkAndAdd( feature.getId(), p ) ) );
+        Points controlPoints = getControlPoints( surface );
+        controlPoints.forEach( p -> checkAndAdd( feature.getId(), p ) );
     }
 
     private void checkAndAdd( String id, Point point ) {
@@ -201,6 +219,76 @@ public class FlaechenschlussInspector implements FeatureInspector {
             return value != null && ( value instanceof MultiSurface || value instanceof Surface );
         }
         return false;
+    }
+
+    private Points getControlPoints( Surface surface ) {
+        final List<CurveSegment> segments = getSegments( surface );
+
+        List<Points> pointsList = new ArrayList<>( segments.size() );
+        for ( CurveSegment segment : segments ) {
+            CurveSegment.CurveSegmentType segmentType = segment.getSegmentType();
+            switch ( segmentType ) {
+            case ARC:
+                pointsList.add( ( (Arc) segment ).getControlPoints() );
+                break;
+            case ARC_BY_BULGE:
+                pointsList.add( ( (ArcByBulge) segment ).getControlPoints() );
+                break;
+            case ARC_STRING:
+                pointsList.add( ( (ArcString) segment ).getControlPoints() );
+                break;
+            case ARC_STRING_BY_BULGE:
+                pointsList.add( ( (ArcStringByBulge) segment ).getControlPoints() );
+                break;
+            case BEZIER:
+                pointsList.add( ( (Bezier) segment ).getControlPoints() );
+                break;
+            case BSPLINE:
+                pointsList.add( ( (BSpline) segment ).getControlPoints() );
+                break;
+            case CIRCLE:
+                pointsList.add( ( (Circle) segment ).getControlPoints() );
+                break;
+            case CUBIC_SPLINE:
+                pointsList.add( ( (CubicSpline) segment ).getControlPoints() );
+                break;
+            case GEODESIC:
+                pointsList.add( ( (Geodesic) segment ).getControlPoints() );
+                break;
+            case GEODESIC_STRING:
+                pointsList.add( ( (GeodesicString) segment ).getControlPoints() );
+                break;
+            case LINE_STRING_SEGMENT:
+                pointsList.add( ( (LineStringSegment) segment ).getControlPoints() );
+                break;
+            case OFFSET_CURVE:
+                break;
+            case ARC_BY_CENTER_POINT:
+            case CIRCLE_BY_CENTER_POINT:
+            case CLOTHOID:
+            default:
+                throw new IllegalArgumentException( "Surfaces with segments of type " + segmentType
+                                                    + " are currently not supported." );
+            }
+        }
+        return new PointsPoints( pointsList );
+    }
+
+    private List<CurveSegment> getSegments( Surface surface ) {
+        List<? extends SurfacePatch> patches = surface.getPatches();
+        if ( patches.size() == 1 ) {
+            if ( patches.get( 0 ) instanceof PolygonPatch ) {
+                PolygonPatch patch = (PolygonPatch) patches.get( 0 );
+                List<CurveSegment> curveSegments = new ArrayList<>();
+                curveSegments.addAll( patch.getExteriorRing().getCurveSegments() );
+                for ( Ring ir : patch.getInteriorRings() ) {
+                    curveSegments.addAll( ir.getCurveSegments() );
+                }
+                return curveSegments;
+            }
+            throw new IllegalArgumentException( Messages.getMessage( "SURFACE_IS_NON_PLANAR" ) );
+        }
+        throw new IllegalArgumentException( Messages.getMessage( "SURFACE_MORE_THAN_ONE_PATCH" ) );
     }
 
 }
