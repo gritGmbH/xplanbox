@@ -1,11 +1,12 @@
-declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
+declare default element namespace 'http://www.xplanung.de/xplangml/5/0';
 declare namespace gml='http://www.opengis.net/gml/3.2';
 
-every $h in //BP_AbstandsMass/position satisfies
-(
-  not(exists($h/gml:Polygon)) and
-  not(exists($h/gml:MultiSurface)) and
-  not(exists($h/gml:LinearRing)) and
-  not(exists($h/gml:PolygonPatch)) and
-  not(exists($h/gml:Ring))
+for $h in //BP_AbstandsMass/position
+where (
+	$h/gml:Polygon or
+	$h/gml:MultiSurface or
+	$h/gml:LinearRing or
+	$h/gml:PolygonPatch or
+	$h/gml:Ring
 )
+return $h/@gml:id/string()

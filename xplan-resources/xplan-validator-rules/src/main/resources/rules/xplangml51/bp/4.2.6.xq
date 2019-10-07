@@ -1,46 +1,9 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-(
-  every $h in //BP_BaugebietsTeilFlaeche satisfies
-  not($h/BMZ and $h/BM)
+for $h in //*[starts-with(local-name(), 'BM')]
+where (
+  $h/../BM and $h/../BMZ
 )
-and
-(
-  every $h in //BP_BesondererNutzungszweckFlaeche satisfies
-  not($h/BMZ and $h/BM)
-)
-and
-(
-  every $h in //BP_UeberbaubareGrundstuecksFlaeche satisfies
-  not($h/BMZ and $h/BM)
-)
-and
-(
-  every $h in //BP_GemeinbedarfsFlaeche satisfies
-  not($h/BMZ and $h/BM)
-)
-and
-(
-  every $h in //BP_BMuenFlaeche satisfies
-  not($h/BMZ and $h/BM)
-)
-and
-(
-  every $h in //BP_SpielSportanlagenFlaeche satisfies
-  not($h/BMZ and $h/BM)
-)
-and
-(
-  every $h in //BP_StrassenVerkehrsFlaeche satisfies
-  not($h/BMZ and $h/BM)
-)
-and
-(
-  every $h in //BP_VerEntsorgung satisfies
-  not($h/BMZ and $h/BM)
-)
-and
-(
-  every $h in //BP_VerkehrsflaecheBesondererZweckbestimmung satisfies
-  not($h/BMZ and $h/BM)
-)
+group by $oId := $h/../@gml:id/string()
+return $oId

@@ -1,4 +1,11 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-every $h in //LP_ErholungFreizeit[detaillierteFunktion] satisfies
-count($h/funktion) >= count ($h/detaillierteFunktion)
+for $h in //LP_ErholungFreizeit
+where (
+	count($h/detaillierteFunktion) >= 1
+	and not ( 
+		count($h/funktion) >= count($h/detaillierteFunktion)
+	)
+)
+return $h/@gml:id/string()

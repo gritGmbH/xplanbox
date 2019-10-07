@@ -6,5 +6,10 @@ for $h in //BP_VerEntsorgung
             $h/position/gml:MultiSurface or
             $h/position/gml:LinearRing or
             $h/position/gml:PolygonPatch or
-            $h/position/gml:Ring) and $h/ebene = '0' and $h/flaechenschluss != 'true'
-  return $h/@gml:id/string()
+            $h/position/gml:Ring)
+          and $h/ebene = '0'
+          and ($h/flaechenschluss != 'true'
+               or
+               not($h/flaechenschluss)
+               )
+return $h/@gml:id/string()

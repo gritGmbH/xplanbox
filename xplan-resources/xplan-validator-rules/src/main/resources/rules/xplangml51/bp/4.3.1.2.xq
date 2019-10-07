@@ -1,10 +1,10 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
 declare namespace gml='http://www.opengis.net/gml/3.2';
 
-for $h in //*[matches(name(), 'XP_Praesentationsobjekt|XP_.{1}[PT]O|XP_Nutzungsschablone')]
+for $h in //detaillierteDachform
 where (
-	count($h/art) > 1
+	count($h/../detaillierteDachform) > 1
 	and
-	count($h/art) != count($h/index)
+	count($h/../detaillierteDachform) != count($h/../dachform)
 )
 return $h/@gml:id/string()
