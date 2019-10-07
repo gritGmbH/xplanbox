@@ -97,8 +97,8 @@ public class HtmlReportGeneratorTest {
         validatorReport.setPlanName( "PLAN_NAME" );
         validatorReport.setValidationName( "VALIDATION_NAME" );
         SemanticValidatorResult semanticValidatorResult = new SemanticValidatorResult();
-        semanticValidatorResult.addRule( "1.1", true, "Test valid" );
-        semanticValidatorResult.addRule( "1.2", false, "Test valid" );
+        semanticValidatorResult.addRule( "1.1", "Test valid", Collections.emptyList() );
+        semanticValidatorResult.addRule( "1.2", "Test in valid", Collections.singletonList( "id_12" ) );
         validatorReport.setSemanticValidatorResult( semanticValidatorResult );
         return validatorReport;
     }

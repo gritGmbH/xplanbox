@@ -2,6 +2,7 @@ package de.latlon.xplan.validator.semantic.report;
 
 import org.junit.Test;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -42,7 +43,7 @@ public class SemanticValidatorResultTest {
     @Test
     public void getRulesWithInvalid() {
         SemanticValidatorResult result = retrieveResultWithRules();
-        result.addRule( NAME_INVALID, false, "invalid" );
+        result.addRule( NAME_INVALID, "invalid", Collections.singletonList( "id_i" )  );
 
         List<RuleResult> rules = result.getRules();
 
@@ -51,11 +52,11 @@ public class SemanticValidatorResultTest {
 
     private SemanticValidatorResult retrieveResultWithRules() {
         SemanticValidatorResult result = new SemanticValidatorResult();
-        result.addRule( NAME_1, true, "message1" );
-        result.addRule( NAME_2, false, "message2" );
-        result.addRule( NAME_3, true, "message3" );
-        result.addRule( NAME_4, true, "message4" );
-        result.addRule( NAME_5, true, "message5" );
+        result.addRule( NAME_1, "message1", Collections.emptyList() );
+        result.addRule( NAME_2, "message2", Collections.singletonList( "id_2" ) );
+        result.addRule( NAME_3, "message3", Collections.emptyList() );
+        result.addRule( NAME_4, "message4", Collections.emptyList() );
+        result.addRule( NAME_5, "message5", Collections.emptyList() );
         return result;
     }
 

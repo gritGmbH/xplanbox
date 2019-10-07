@@ -98,10 +98,7 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
         return ignoredOption != null && ignoredOption.equals( option );
     }
 
-    private List<String> evaluateXQueryResult( List<String> resultList )
-                            throws ValidatorException {
-        if ( resultList.size() == 0 )
-            throw new ValidatorException( "Empty result sets are not supported as xquery result!" );
+    private List<String> evaluateXQueryResult( List<String> resultList ) {
         if ( resultList.size() == 1 ) {
             String result = resultList.get( 0 );
             if ( result.equalsIgnoreCase( "true" ) )
