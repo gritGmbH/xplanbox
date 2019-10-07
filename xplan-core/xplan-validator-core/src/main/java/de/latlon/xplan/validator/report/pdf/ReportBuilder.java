@@ -27,6 +27,7 @@ import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
 import net.sf.dynamicreports.report.builder.component.ComponentBuilder;
+import net.sf.dynamicreports.report.builder.component.HorizontalListBuilder;
 import net.sf.dynamicreports.report.builder.component.MultiPageListBuilder;
 import net.sf.dynamicreports.report.builder.component.TextFieldBuilder;
 import net.sf.dynamicreports.report.builder.component.VerticalListBuilder;
@@ -102,6 +103,10 @@ class ReportBuilder {
         if ( semanticValidatorResult != null ) {
             verticalList = verticalList.add( appendHeaderAndResult( semanticValidatorResult ) );
             verticalList = appendDetailsHint( verticalList, semanticValidatorResult );
+            verticalList = verticalList.add( appendNumberOfRules( semanticValidatorResult ) );
+            verticalList = verticalList.add( appendNumberOfFailedRules( semanticValidatorResult ) );
+            verticalList = verticalList.add( appendNumberOfValidRules( semanticValidatorResult ) );
+            verticalList = verticalList.add( appendDetailsSection( semanticValidatorResult ) );
             verticalList = verticalList.add( createSemanticRules( semanticValidatorResult ) ).add( cmp.verticalGap( 10 ) );
         }
 
@@ -112,6 +117,32 @@ class ReportBuilder {
             verticalList = verticalList.add( createGeometricRules( geometricValidatorResult ) );
         }
         return verticalList;
+    }
+
+    private ComponentBuilder<?, ?> appendNumberOfRules( SemanticValidatorResult semanticValidatorResult ) {
+        int noOfRules  = semanticValidatorResult.getRules().size();
+        String text = String.format( " %s Validierungsregeln überprüft", noOfRules );
+        return addTextString( text );
+    }
+
+    private ComponentBuilder<?, ?> appendNumberOfFailedRules( SemanticValidatorResult semanticValidatorResult ) {
+        long noOfRules = semanticValidatorResult.getRules().stream().filter(  r -> !r.isValid() ).count();
+        String text = String.format( " %s Validierungsregeln nicht erfüllt", noOfRules );
+        return addTextString( text );
+    }
+    private ComponentBuilder<?, ?> appendNumberOfValidRules( SemanticValidatorResult semanticValidatorResult ) {
+        long noOfRules = semanticValidatorResult.getRules().stream().filter(  r -> r.isValid() ).count();
+        String text = String.format( " %s Validierungsregeln erfüllt", noOfRules );
+        return addTextString( text );
+    }
+    private ComponentBuilder<?, ?> appendDetailsSection( SemanticValidatorResult semanticValidatorResult ) {
+        String text = String.format( "Details: " );
+        return addTextString( "Details:" );
+    }
+    private ComponentBuilder<?, ?> addTextString( String text ) {
+        StyleBuilder detailsHintStyle = stl.style( simpleStyle ).setLeftIndent( 10 ).setTopPadding( 5 ).setBottomPadding( 5 );
+        TextFieldBuilder<String> textString = cmp.text( text).setStyle( detailsHintStyle );
+        return cmp.horizontalList().add( textString );
     }
 
     private MultiPageListBuilder createSemanticRules( SemanticValidatorResult result ) {

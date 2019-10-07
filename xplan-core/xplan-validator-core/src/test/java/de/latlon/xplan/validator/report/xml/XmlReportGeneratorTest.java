@@ -40,16 +40,14 @@ public class XmlReportGeneratorTest {
                             throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
         File xmlFile = createTmpFile();
-        String validationName = "ValidationName";
-        String archiveName = "ArchiveName";
 
         OutputStream os = new FileOutputStream( xmlFile );
         xmlReportGenerator.generateXmlReport( createValidatorReport(), os );
 
         Path xml = xmlFile.toPath();
 
-        assertThat( document( xml ), hasXPath( "/ValidationReport/name", equalTo( validationName ) ) );
-        assertThat( document( xml ), hasXPath( "/ValidationReport/Plan/name", equalTo( archiveName ) ) );
+        assertThat( document( xml ), hasXPath( "/ValidationReport/name", equalTo( VALIDATION_NAME ) ) );
+        assertThat( document( xml ), hasXPath( "/ValidationReport/Plan/name", equalTo( PLAN_NAME ) ) );
         assertThat( document( xml ), hasXPath( "/ValidationReport/Validation" ) );
     }
 
