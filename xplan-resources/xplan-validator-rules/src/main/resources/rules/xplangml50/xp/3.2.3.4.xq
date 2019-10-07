@@ -12,4 +12,4 @@ where
   (
     $h/bezugspunkt and $h/abweichenderBezugspunkt
   )
-return $h/../../@gml:id/string()
+return $h/@gml:id/string()
