@@ -2,7 +2,7 @@ declare default element namespace 'http://www.xplanung.de/xplangml/5/0';
 declare namespace gml='http://www.opengis.net/gml/3.2';
 
 for $h in //BP_GemeinschaftsanlagenZuordnung
-where not (
+where (
 	(
 		$h/position/gml:Polygon or
 		$h/position/gml:MultiSurface or
@@ -10,6 +10,6 @@ where not (
 		$h/position/gml:PolygonPatch or
 		$h/position/gml:Ring
 	)
-	and $h/flaechenschluss = 'false'
+	and not($h/flaechenschluss = 'false')
 )
 return $h/@gml:id/string()
