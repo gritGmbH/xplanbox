@@ -1,24 +1,5 @@
 package de.latlon.xplan.validator.report.badgeometryimg;
 
-import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collections;
-import java.util.List;
-
-import org.deegree.feature.types.AppSchema;
-import org.junit.Test;
-import org.mockito.Mockito;
-
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
@@ -32,6 +13,24 @@ import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
+import org.deegree.feature.types.AppSchema;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.List;
+
+import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_OPTIONS;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 /**
  * @author bingel
@@ -92,8 +91,7 @@ public class BadGeometryImgGeneratorTest {
     private ValidatorReport createReportFromSampleArchive()
                     throws Exception {
         XPlanArchive archive = getTestArchive( "xplan41/FPlan.zip" );
-        List<ValidationOption> voOptions = Collections.singletonList( SKIP_FLAECHENSCHLUSS );
-        GeometricValidatorResult result = (GeometricValidatorResult) validateGeometryAndReturnReport( archive, voOptions );
+        GeometricValidatorResult result = (GeometricValidatorResult) validateGeometryAndReturnReport( archive, SKIP_OPTIONS );
         ValidatorReport validatorReport = new ValidatorReport();
         validatorReport.setGeometricValidatorResult( result );
         return validatorReport;

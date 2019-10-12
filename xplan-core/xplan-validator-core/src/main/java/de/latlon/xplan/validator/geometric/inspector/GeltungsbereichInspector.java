@@ -1,4 +1,4 @@
-package de.latlon.xplan.validator.geometric;
+package de.latlon.xplan.validator.geometric.inspector;
 
 import com.vividsolutions.jts.geom.Geometry;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -6,7 +6,6 @@ import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
 import org.deegree.geometry.standard.AbstractDefaultGeometry;
 import org.deegree.gml.feature.FeatureInspectionException;
-import org.deegree.gml.feature.FeatureInspector;
 import org.deegree.gml.reference.FeatureReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +27,7 @@ import java.util.stream.Collectors;
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class GeltungsbereichInspector implements FeatureInspector {
+public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private static final Logger LOG = LoggerFactory.getLogger( GeltungsbereichInspector.class );
 
@@ -60,7 +59,8 @@ public class GeltungsbereichInspector implements FeatureInspector {
         return feature;
     }
 
-    public List<String> check() {
+    @Override
+    public List<String> checkGeometricRule() {
         List<String> allInvalidFeatureIds = new ArrayList<>();
         for ( Map.Entry<String, List<Feature>> bereichIdToGeoms : bereichIdToFeatureGeoms.entrySet() ) {
             Geometry geltungsbereich = retrieveGeltungsbereichGeom( bereichIdToGeoms.getKey() );

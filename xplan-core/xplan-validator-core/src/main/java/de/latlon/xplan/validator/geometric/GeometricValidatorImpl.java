@@ -4,6 +4,9 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.validator.ValidatorException;
+import de.latlon.xplan.validator.geometric.inspector.FlaechenschlussInspector;
+import de.latlon.xplan.validator.geometric.inspector.GeltungsbereichInspector;
+import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorResult;
@@ -25,7 +28,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.xml.stream.XMLStreamException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static java.lang.String.format;
@@ -45,8 +47,20 @@ public class GeometricValidatorImpl implements GeometricValidator {
 
     public static final String SKIP_FLAECHENSCHLUSS_OPTION = "SKIPFLAECHENSCHLUSS";
 
+    public static final String SKIP_GELTUNGSBEREICH_OPTION = "SKIPGELTUNGSBEREICH";
+
     public static final ValidationOption SKIP_FLAECHENSCHLUSS = new ValidationOption( SKIP_FLAECHENSCHLUSS_OPTION,
                                                                                       Boolean.toString( true ) );
+
+    public static final ValidationOption SKIP_GELTUNGSBEREICH = new ValidationOption( SKIP_GELTUNGSBEREICH_OPTION,
+                                                                                      Boolean.toString( true ) );
+
+    public static final ArrayList<ValidationOption> SKIP_OPTIONS = new ArrayList<>();
+
+    static  {
+        SKIP_OPTIONS.add( SKIP_FLAECHENSCHLUSS );
+        SKIP_OPTIONS.add( SKIP_GELTUNGSBEREICH );
+    }
 
     @Override
     public ValidatorResult validateGeometry( XPlanArchive archive, ICRS crs, AppSchema schema, boolean force,
@@ -69,8 +83,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
                                                                            AppSchema schema, boolean force,
                                                                            String internalId )
                             throws XMLStreamException, UnknownCRSException {
-        List<ValidationOption> validationOptions = Collections.singletonList( SKIP_FLAECHENSCHLUSS );
-        ParserAndValidatorResult result = retrieveFeatureCollection( archive, crs, force, schema, validationOptions );
+        ParserAndValidatorResult result = retrieveFeatureCollection( archive, crs, force, schema, SKIP_OPTIONS );
         return new XPlanFeatureCollectionBuilder( result.xPlanFeatures, archive.getType() ).build();
     }
 
@@ -90,18 +103,17 @@ public class GeometricValidatorImpl implements GeometricValidator {
         long begin = System.currentTimeMillis();
         LOG.info( "- Einlesen der Features (+ Geometrievalidierung)..." );
         XPlanGeometryInspector geometryInspector = new XPlanGeometryInspector( xmlStream, EPSILON, voOptions );
-        FlaechenschlussInspector flaechenschlussInspector = new FlaechenschlussInspector();
+        List<GeometricFeatureInspector> featureInspectors = createInspectors( voOptions );
         GMLStreamReader gmlStream = createGmlStreamReader( archive, crs, schema, xmlStream, geometryInspector,
-                                                           flaechenschlussInspector, voOptions );
+                                                           featureInspectors );
         try {
             FeatureCollection xPlanFeatures = (FeatureCollection) gmlStream.readFeature();
             result.setXplanFeatures( xPlanFeatures );
-            List<String> flaechenschlussErrors = flaechenschlussInspector.checkFlaechenschluss();
             result.elapsed = System.currentTimeMillis() - begin;
             result.addErrors( geometryInspector.getErrors() );
             List<String> brokenGeometryErrors = extendMessagesOfBrokenGeometryErrors( gmlStream );
             result.addErrors( brokenGeometryErrors );
-            result.addErrors( flaechenschlussErrors );
+            featureInspectors.stream().forEach( fi -> checkAndAddRules( fi, result ) );
             result.addWarnings( geometryInspector.getWarnings() );
             result.addBadGeometries( geometryInspector.getBadGeometries() );
 
@@ -115,10 +127,23 @@ public class GeometricValidatorImpl implements GeometricValidator {
         }
     }
 
+    private void checkAndAddRules( GeometricFeatureInspector fi, ParserAndValidatorResult result ) {
+        List<String> errors = fi.checkGeometricRule();
+        result.addErrors( errors );
+    }
+
+    private List<GeometricFeatureInspector> createInspectors( List<ValidationOption> voOptions ) {
+        List<GeometricFeatureInspector> inspectors = new ArrayList<>();
+        if ( !isSkipped( voOptions, SKIP_FLAECHENSCHLUSS_OPTION ) )
+            inspectors.add( new FlaechenschlussInspector() );
+        if ( !isSkipped( voOptions, SKIP_GELTUNGSBEREICH_OPTION ) )
+            inspectors.add( new GeltungsbereichInspector() );
+        return inspectors;
+    }
+
     private GMLStreamReader createGmlStreamReader( XPlanArchive archive, ICRS crs, AppSchema schema,
                                                    XMLStreamReaderWrapper xmlStream, XPlanGeometryInspector inspector,
-                                                   FlaechenschlussInspector flaechenschlussInspector,
-                                                   List<ValidationOption> voOptions )
+                                                   List<GeometricFeatureInspector> featureInspectors )
                             throws XMLStreamException {
         GMLVersion gmlVersion = archive.getVersion().getGmlVersion();
         GeometryFactory geomFac = new GeometryFactory();
@@ -127,9 +152,8 @@ public class GeometricValidatorImpl implements GeometricValidator {
         gmlStream.setDefaultCRS( crs );
         gmlStream.setGeometryFactory( geomFac );
         gmlStream.setApplicationSchema( schema );
-        gmlStream.setSkipBrokenGeometries( true );
-        if ( !isFlaechenschlussSkipped( voOptions ) )
-            gmlStream.addInspector( flaechenschlussInspector );
+        for ( GeometricFeatureInspector featureInspector : featureInspectors )
+            gmlStream.addInspector( featureInspector );
         return gmlStream;
     }
 
@@ -159,11 +183,11 @@ public class GeometricValidatorImpl implements GeometricValidator {
         result.elapsed = System.currentTimeMillis() - begin;
     }
 
-    private boolean isFlaechenschlussSkipped( List<ValidationOption> voOptions ) {
+    private boolean isSkipped( List<ValidationOption> voOptions, String optionName ) {
         if ( voOptions == null )
             return false;
         for ( ValidationOption voOption : voOptions ) {
-            if ( SKIP_FLAECHENSCHLUSS_OPTION.equals( voOption.getName() ) ) {
+            if ( optionName.equals( voOption.getName() ) ) {
                 if ( voOption.getArgument() != null )
                     return Boolean.valueOf( voOption.getArgument() );
             }

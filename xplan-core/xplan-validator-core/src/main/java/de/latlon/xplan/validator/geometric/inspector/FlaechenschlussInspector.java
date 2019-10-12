@@ -1,5 +1,6 @@
-package de.latlon.xplan.validator.geometric;
+package de.latlon.xplan.validator.geometric.inspector;
 
+import de.latlon.xplan.validator.geometric.ControlPoint;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -15,23 +16,18 @@ import org.deegree.geometry.primitive.patches.PolygonPatch;
 import org.deegree.geometry.primitive.patches.SurfacePatch;
 import org.deegree.geometry.primitive.segments.Arc;
 import org.deegree.geometry.primitive.segments.ArcByBulge;
-import org.deegree.geometry.primitive.segments.ArcByCenterPoint;
 import org.deegree.geometry.primitive.segments.ArcString;
 import org.deegree.geometry.primitive.segments.ArcStringByBulge;
 import org.deegree.geometry.primitive.segments.BSpline;
 import org.deegree.geometry.primitive.segments.Bezier;
 import org.deegree.geometry.primitive.segments.Circle;
-import org.deegree.geometry.primitive.segments.CircleByCenterPoint;
-import org.deegree.geometry.primitive.segments.Clothoid;
 import org.deegree.geometry.primitive.segments.CubicSpline;
 import org.deegree.geometry.primitive.segments.CurveSegment;
 import org.deegree.geometry.primitive.segments.Geodesic;
 import org.deegree.geometry.primitive.segments.GeodesicString;
 import org.deegree.geometry.primitive.segments.LineStringSegment;
-import org.deegree.geometry.primitive.segments.OffsetCurve;
 import org.deegree.geometry.standard.points.PointsPoints;
 import org.deegree.gml.feature.FeatureInspectionException;
-import org.deegree.gml.feature.FeatureInspector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,7 +47,7 @@ import java.util.stream.Collectors;
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class FlaechenschlussInspector implements FeatureInspector {
+public class FlaechenschlussInspector implements GeometricFeatureInspector {
 
     private static final Logger LOG = LoggerFactory.getLogger( FlaechenschlussInspector.class );
 
@@ -82,7 +78,7 @@ public class FlaechenschlussInspector implements FeatureInspector {
      *
      * @return <code>true</code> if the Flaechenschlussbedingung is satisfied, <code>false</code> otherwise
      */
-    public List<String> checkFlaechenschluss() {
+    public List<String> checkGeometricRule() {
         controlPoints.stream().forEach( cp -> checkForIdenticalControlPoint( cp ) );
         List<ControlPoint> controlPointsWithInvalidFlaechenschluss = controlPoints.stream().filter(
                                 cp -> !isPartOfGeltungsbereich( cp.getPoint() )
