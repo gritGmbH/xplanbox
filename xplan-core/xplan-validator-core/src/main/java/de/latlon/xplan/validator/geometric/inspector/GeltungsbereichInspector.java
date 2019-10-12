@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.xml.namespace.QName;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,9 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private static final String ERROR_MSG = "Das Objekt mit der gml id %s liegt nicht im Geltungsbereich des Bereichs/Plans.";
 
+    private static final List<String> PRAESENTATIONSOBJEKTE = Arrays.asList( "XP_FPO", "XP_LPO", "XP_LTO", "XP_PPO",
+                                                                             "XP_PTO", "XP_TPO" );
+
     private Geometry planGeom;
 
     private Map<String, Geometry> bereichGeoms = new HashMap<>();
@@ -50,7 +54,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
         } else if ( isBereichFeature( feature ) ) {
             Geometry bereichGeom = getGeometry( feature );
             bereichGeoms.put( feature.getId(), bereichGeom );
-        } else if ( hasGehoertZuBereichProperty( feature ) ) {
+        } else if ( hasGehoertZuBereichProperty( feature ) && !isPraesentationsobjekt( feature ) ) {
             String gehortZuBereich = getGehortZuBereichId( feature );
             if ( !bereichIdToFeatureGeoms.containsKey( gehortZuBereich ) )
                 bereichIdToFeatureGeoms.put( gehortZuBereich, new ArrayList<>() );
@@ -101,6 +105,11 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private boolean hasGehoertZuBereichProperty( Feature feature ) {
         return !feature.getProperties( new QName( feature.getName().getNamespaceURI(), GEHOERT_ZU_BEREICH ) ).isEmpty();
+    }
+
+    private boolean isPraesentationsobjekt( Feature feature ) {
+        String featureLocalName = feature.getName().getLocalPart();
+        return PRAESENTATIONSOBJEKTE.contains( featureLocalName );
     }
 
     private String getGehortZuBereichId( Feature feature ) {
