@@ -152,6 +152,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
         gmlStream.setDefaultCRS( crs );
         gmlStream.setGeometryFactory( geomFac );
         gmlStream.setApplicationSchema( schema );
+        gmlStream.setSkipBrokenGeometries( true );
         for ( GeometricFeatureInspector featureInspector : featureInspectors )
             gmlStream.addInspector( featureInspector );
         return gmlStream;
