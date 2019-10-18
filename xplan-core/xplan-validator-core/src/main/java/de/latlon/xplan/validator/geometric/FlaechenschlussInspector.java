@@ -1,6 +1,9 @@
 package de.latlon.xplan.validator.geometric;
 
 import org.deegree.commons.tom.TypedObjectNode;
+import org.deegree.commons.tom.datetime.Date;
+import org.deegree.commons.tom.datetime.ISO8601Converter;
+import org.deegree.commons.tom.genericxml.GenericXMLElement;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
@@ -15,20 +18,16 @@ import org.deegree.geometry.primitive.patches.PolygonPatch;
 import org.deegree.geometry.primitive.patches.SurfacePatch;
 import org.deegree.geometry.primitive.segments.Arc;
 import org.deegree.geometry.primitive.segments.ArcByBulge;
-import org.deegree.geometry.primitive.segments.ArcByCenterPoint;
 import org.deegree.geometry.primitive.segments.ArcString;
 import org.deegree.geometry.primitive.segments.ArcStringByBulge;
 import org.deegree.geometry.primitive.segments.BSpline;
 import org.deegree.geometry.primitive.segments.Bezier;
 import org.deegree.geometry.primitive.segments.Circle;
-import org.deegree.geometry.primitive.segments.CircleByCenterPoint;
-import org.deegree.geometry.primitive.segments.Clothoid;
 import org.deegree.geometry.primitive.segments.CubicSpline;
 import org.deegree.geometry.primitive.segments.CurveSegment;
 import org.deegree.geometry.primitive.segments.Geodesic;
 import org.deegree.geometry.primitive.segments.GeodesicString;
 import org.deegree.geometry.primitive.segments.LineStringSegment;
-import org.deegree.geometry.primitive.segments.OffsetCurve;
 import org.deegree.geometry.standard.points.PointsPoints;
 import org.deegree.gml.feature.FeatureInspectionException;
 import org.deegree.gml.feature.FeatureInspector;
@@ -59,7 +58,9 @@ public class FlaechenschlussInspector implements FeatureInspector {
 
     private Geometry geltungsbereich;
 
-    private List<ControlPoint> controlPoints = new ArrayList<>();
+    private final List<ControlPoint> controlPoints = new ArrayList<>();
+
+    private final Date now = new Date( new java.util.Date(), null );
 
     @Override
     public Feature inspect( Feature feature )
@@ -178,7 +179,7 @@ public class FlaechenschlussInspector implements FeatureInspector {
      * gehoeren und bei denen das Attribut flaechenschluss den Wert true hat
      * (Flaechenschlussobjekte).
      * <p>
-     * TODO: Von der Erfuellung der Flaechenschlussbedingung ausgenommen sind die
+     * Von der Erfuellung der Flaechenschlussbedingung ausgenommen sind die
      * raumbezogenen Objekte des BPlan-Schemas (s. Kap. 0), deren Wirksamkeit
      * durch sachliche oder zeitliche Bedingungen (Attribute startBedingung und
      * endeBedingung in BP_Objekt) so eingeschraenkt sind, dass sie nicht
@@ -187,38 +188,94 @@ public class FlaechenschlussInspector implements FeatureInspector {
     private boolean isFlaechenschlussobjekt( Feature feature ) {
         String namespaceURI = feature.getType().getName().getNamespaceURI();
         return isFlaechenschluss( feature, namespaceURI ) && isEbene0( feature, namespaceURI ) && isFlaechenhaft(
-                                feature, namespaceURI );
+                                feature, namespaceURI ) && isWirksam( feature, namespaceURI );
     }
 
-    private boolean isFlaechenschluss( Feature feature, String namespaceURI ) {
-        QName flaechenschlussPropName = new QName( namespaceURI, "flaechenschluss" );
-        List<Property> flaechenschlussProperties = feature.getProperties( flaechenschlussPropName );
-        if ( !flaechenschlussProperties.isEmpty() ) {
-            PrimitiveValue value = (PrimitiveValue) flaechenschlussProperties.get( 0 ).getValue();
-            return value != null && Boolean.valueOf( value.getAsText() );
+    /* Alle Objekte mit flaechenhaftem Raumbezug, */
+    private boolean isFlaechenhaft( Feature feature, String namespaceURI ) {
+        QName positionPropName = new QName( namespaceURI, "position" );
+        Property property = getProperty( positionPropName, feature );
+        if ( property != null ) {
+            TypedObjectNode value = property.getValue();
+            return value != null && ( value instanceof MultiSurface || value instanceof Surface );
         }
         return false;
     }
 
+    /* die zur Ebene 0 (ebene == 0) gehoeren */
     private boolean isEbene0( Feature feature, String namespaceURI ) {
         QName ebenePropName = new QName( namespaceURI, "ebene" );
-        List<Property> ebeneProperties = feature.getProperties( ebenePropName );
-        if ( !ebeneProperties.isEmpty() ) {
-            PrimitiveValue value = (PrimitiveValue) ebeneProperties.get( 0 ).getValue();
+        Property property = getProperty( ebenePropName, feature );
+        if ( property != null ) {
+            PrimitiveValue value = (PrimitiveValue) property.getValue();
             return value == null || Integer.valueOf( value.getAsText() ) == 0;
         }
         return true;
     }
 
-    private boolean isFlaechenhaft( Feature feature, String namespaceURI ) {
-        QName positionPropName = new QName( namespaceURI, "position" );
-        List<Property> positionProperties = feature.getProperties( positionPropName );
-        if ( !positionProperties.isEmpty() ) {
-            Property property = positionProperties.get( 0 );
-            TypedObjectNode value = property.getValue();
-            return value != null && ( value instanceof MultiSurface || value instanceof Surface );
+    /* und bei denen das Attribut flaechenschluss den Wert true hat */
+    private boolean isFlaechenschluss( Feature feature, String namespaceURI ) {
+        QName flaechenschlussPropName = new QName( namespaceURI, "flaechenschluss" );
+        Property property = getProperty( flaechenschlussPropName, feature );
+        if ( property != null ) {
+            PrimitiveValue value = (PrimitiveValue) property.getValue();
+            return value != null && Boolean.valueOf( value.getAsText() );
         }
         return false;
+    }
+
+    /* ... raumbezogenen Objekte des BPlan-Schemas [...], deren Wirksamkeit durch [...] zeitliche Bedingungen (Attribute startBedingung und endeBedingung in BP_Objekt) so eingeschraenkt sind, dass sie nicht gleichzeitig rechtswirksam sind. */
+    private boolean isWirksam( Feature feature, String namespaceURI ) {
+        if ( !feature.getName().getLocalPart().startsWith( "BP_" ) )
+            return true;
+        QName startBedingungPropName = new QName( namespaceURI, "startBedingung" );
+        Date startBedingung = getWirsamkeitDatum( feature, startBedingungPropName );
+        boolean isAfterStart = true;
+        if ( startBedingung != null ) {
+            int i = now.compareTo( startBedingung );
+            isAfterStart = i >= 0;
+        }
+        QName endeBedingungPropName = new QName( namespaceURI, "endeBedingung" );
+        Date endeBedingung = getWirsamkeitDatum( feature, endeBedingungPropName );
+        boolean isBeforeEnd = true;
+        if ( endeBedingung != null ) {
+            int i = now.compareTo( endeBedingung );
+            isBeforeEnd = i <= 0;
+        }
+        return isAfterStart && isBeforeEnd;
+    }
+
+    private Date getWirsamkeitDatum( Feature feature, QName propName ) {
+        Property property = getProperty( propName, feature );
+        if ( property != null && !property.getChildren().isEmpty() ) {
+            String namespaceURI = feature.getName().getNamespaceURI();
+            QName xpWirksamkeitBedingungName = new QName( namespaceURI, "XP_WirksamkeitBedingung" );
+            GenericXMLElement xpWirksamkeitBedingung = getChildWithName( property.getChildren(),
+                                                                         xpWirksamkeitBedingungName );
+            if ( xpWirksamkeitBedingung != null ) {
+                QName datumAbsolutName = new QName( namespaceURI, "datumAbsolut" );
+                GenericXMLElement datumAbsolut = getChildWithName( xpWirksamkeitBedingung.getChildren(),
+                                                                   datumAbsolutName );
+                if ( datumAbsolut != null ) {
+                    String dateAsText = datumAbsolut.getValue().getAsText();
+                    return ISO8601Converter.parseDate( dateAsText );
+                }
+            }
+        }
+        return null;
+    }
+
+    private GenericXMLElement getChildWithName( List<TypedObjectNode> childs, QName name ) {
+        if ( childs.isEmpty() )
+            return null;
+        for ( TypedObjectNode child : childs ) {
+            GenericXMLElement genericXMLElement = (GenericXMLElement) child;
+            if ( genericXMLElement instanceof GenericXMLElement )
+                if ( name.equals( genericXMLElement.getName() ) ) {
+                    return genericXMLElement;
+                }
+        }
+        return null;
     }
 
     private Points getControlPoints( Surface surface ) {
@@ -289,6 +346,13 @@ public class FlaechenschlussInspector implements FeatureInspector {
             throw new IllegalArgumentException( Messages.getMessage( "SURFACE_IS_NON_PLANAR" ) );
         }
         throw new IllegalArgumentException( Messages.getMessage( "SURFACE_MORE_THAN_ONE_PATCH" ) );
+    }
+
+    private Property getProperty( QName propName, Feature feature ) {
+        List<Property> positionProperties = feature.getProperties( propName );
+        if ( !positionProperties.isEmpty() )
+            return positionProperties.get( 0 );
+        return null;
     }
 
 }

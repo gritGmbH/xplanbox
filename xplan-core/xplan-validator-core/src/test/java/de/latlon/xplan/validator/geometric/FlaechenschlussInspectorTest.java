@@ -38,6 +38,16 @@ public class FlaechenschlussInspectorTest {
     }
 
     @Test
+    public void testCheckFlaechenschluss_wirksamkeit()
+                            throws Exception {
+        XPlanArchive archive = getTestArchive( "xplan51/V4_1_ID_103_wirksamkeit.zip" );
+        FlaechenschlussInspector flaechenschlussInspector = readFeatures( archive );
+
+        List<String> flaechenschlussErrors = flaechenschlussInspector.checkFlaechenschluss();
+        assertThat( flaechenschlussErrors.size(), is( 0 ) );
+    }
+
+    @Test
     public void testCheckFlaechenschluss_invalid()
                             throws Exception {
         XPlanArchive archive = getTestArchive( "xplan51/V4_1_ID_103_kein-flaechenschluss.zip" );
