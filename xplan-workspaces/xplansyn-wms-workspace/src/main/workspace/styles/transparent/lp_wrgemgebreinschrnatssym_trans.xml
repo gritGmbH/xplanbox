@@ -36,4 +36,5 @@
       </Graphic>
     </PointSymbolizer>
     <!-- PointSymbolizer wg. symbolPosition entfernt (2x)-->
+  </Rule>
 </FeatureTypeStyle>
