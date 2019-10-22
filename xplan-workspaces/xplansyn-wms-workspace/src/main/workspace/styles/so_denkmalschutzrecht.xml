@@ -76,93 +76,6 @@
       <sed:PerpendicularOffset type="Standard">1.5</sed:PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
-  <Rule>
-    <Name>so_denkmalschutzrecht Flaeche-Text1</Name>
-    <Description>
-      <Title>SO: Denkmalschutzrecht Flaeche Text1</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:PropertyIsEqualTo>
-        <ogc:Function name="IsSurface">
-          <ogc:PropertyName>xplan:position</ogc:PropertyName>
-        </ogc:Function>
-        <ogc:Literal>true</ogc:Literal>
-      </ogc:PropertyIsEqualTo>
-    </ogc:Filter>
-    <MaxScaleDenominator>500</MaxScaleDenominator>
-    <TextSymbolizer>
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Label>
-        <Concatenate fallbackValue="">
-        <StringValue>D</StringValue>
-        </Concatenate>
-      </Label>
-      <Font>
-        <CssParameter name="font-family">Arial Narrow</CssParameter>
-        <CssParameter name="font-size">15</CssParameter>
-      </Font>
-    </TextSymbolizer>
-    <TextSymbolizer>
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Label>
-        <Concatenate fallbackValue="">
-        <StringValue>O</StringValue>
-        </Concatenate>
-      </Label>
-      <Font>
-        <CssParameter name="font-family">Arial Narrow</CssParameter>
-        <CssParameter name="font-size">40</CssParameter>
-      </Font>
-    </TextSymbolizer>
-  </Rule>
-  <Rule>
-    <Name>so_denkmalschutzrecht Flaeche-Text2</Name>
-    <Description>
-      <Title>SO: Denkmalschutzrecht Flaeche Text2</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:PropertyIsEqualTo>
-        <ogc:Function name="IsSurface">
-          <ogc:PropertyName>xplan:position</ogc:PropertyName>
-        </ogc:Function>
-        <ogc:Literal>true</ogc:Literal>
-      </ogc:PropertyIsEqualTo>
-    </ogc:Filter>
-    <MinScaleDenominator>500</MinScaleDenominator>
-    <MaxScaleDenominator>1500</MaxScaleDenominator>
-    <TextSymbolizer>
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Label>
-        <Concatenate fallbackValue="">
-        <StringValue>D</StringValue>
-        </Concatenate>
-      </Label>
-      <Font>
-        <CssParameter name="font-family">Arial Narrow</CssParameter>
-        <CssParameter name="font-size">10</CssParameter>
-      </Font>
-    </TextSymbolizer>
-    <TextSymbolizer>
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Label>
-        <Concatenate fallbackValue="">
-        <StringValue>O</StringValue>
-        </Concatenate>
-      </Label>
-      <Font>
-        <CssParameter name="font-family">Arial Narrow</CssParameter>
-        <CssParameter name="font-size">30</CssParameter>
-      </Font>
-    </TextSymbolizer>
-  </Rule>
 
   <!-- Linie -->
   <Rule>
@@ -242,19 +155,94 @@
     </LineSymbolizer>
   </Rule>
 
-  <!-- Punkt -->
+  <!-- Punkt - Ensemble -->
   <Rule>
-    <Name>so_denkmalschutzrecht Punkt</Name>
+    <Name>so_denkmalschutzrecht Punkt Ensemble</Name>
     <Description>
-      <Title>BP: Denkmalschutzrecht Punkt</Title>
+      <Title>BP: Denkmalschutzrecht Punkt Ensemble</Title>
     </Description>
     <ogc:Filter>
-      <ogc:PropertyIsEqualTo>
-        <ogc:Function name="IsPoint">
-          <ogc:PropertyName>xplan:position</ogc:PropertyName>
-        </ogc:Function>
-        <ogc:Literal>true</ogc:Literal>
-      </ogc:PropertyIsEqualTo>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsPoint">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">0.0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">0.3</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>7</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../symbols/d_sym.svg" />
+          <Format>svg</Format>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">1.0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#FFFFFF</SvgParameter>
+            <SvgParameter name="stroke-opacity">0.0</SvgParameter>
+            <SvgParameter name="stroke-width">0.1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>5</Size>
+        <Displacement>
+          <DisplacementX>0.2</DisplacementX>
+          <DisplacementY>0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+
+  <!-- Punkt - Einzelanlage -->
+  <Rule>
+    <Name>so_denkmalschutzrecht Punkt Einzelanlage</Name>
+    <Description>
+      <Title>BP: Denkmalschutzrecht Punkt Einzelanlage</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsPoint">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:Literal>1100</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
@@ -304,4 +292,5 @@
       </Graphic>
     </PointSymbolizer>
   </Rule>
+
 </FeatureTypeStyle>
