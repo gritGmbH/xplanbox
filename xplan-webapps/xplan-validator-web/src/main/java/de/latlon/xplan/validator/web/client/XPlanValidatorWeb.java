@@ -23,8 +23,7 @@ import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.commons.web.CloseableDialogBox;
 
 /**
- * Entry point of the validation, containing the file upload and a button to navigate to the options view (
- * {@link XPlanValidatorOptions})
+ * Entry point of the validation, containing the file upload and a button to navigate to the options view.
  * 
  * @author <a href="mailto:wilden@lat-lon.de">Johannes Wilden</a>
  * @author last edited by: $Author: lyn $
@@ -39,7 +38,8 @@ public class XPlanValidatorWeb implements EntryPoint {
     @Override
     public void onModuleLoad() {
         FormPanel mainPanel = createFormPanel();
-        RootPanel.get().add( mainPanel );
+        RootPanel rootPanel = detectContentPanel();
+        rootPanel.add( mainPanel );
     }
 
     /**
@@ -49,9 +49,19 @@ public class XPlanValidatorWeb implements EntryPoint {
      *            never <code>null</code>
      */
     public void setPanel( Widget panel ) {
-        RootPanel.get().clear();
-        RootPanel.get().add( panel );
+        RootPanel rootPanel = detectContentPanel();
+        rootPanel.clear();
+        rootPanel.add( panel );
     }
+
+
+    private RootPanel detectContentPanel(  ) {
+        RootPanel contentPanel = RootPanel.get( "content" );
+        if ( contentPanel != null )
+            return contentPanel;
+        return RootPanel.get();
+    }
+
 
     /**
      * Shows the upload panel
