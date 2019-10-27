@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import de.latlon.xplan.manager.web.client.i18n.DynamicXPlanWebMessages;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
@@ -77,6 +78,8 @@ import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 public class PlanListPanel extends DecoratorPanel {
 
     private final XPlanWebMessages messages = GWT.create( XPlanWebMessages.class );
+
+    private final DynamicXPlanWebMessages dynamicMessages = GWT.create( DynamicXPlanWebMessages.class );
 
     private final CellTable<XPlan> planList = new CellTable<XPlan>();
 
@@ -293,7 +296,7 @@ public class PlanListPanel extends DecoratorPanel {
         communityColumn.setSortable( true );
         communityColumn.setCellStyleNames( "planListColumn communityColumn" );
         columnSortHandler.setComparator( communityColumn, new ColumnComparator( COMMUNITY ) );
-        xPlanTable.addColumn( communityColumn, messages.communityColumn() );
+        xPlanTable.addColumn( communityColumn, dynamicMessages.communityColumn() );
     }
 
     private void addVersionColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
@@ -659,7 +662,7 @@ public class PlanListPanel extends DecoratorPanel {
                 if ( deleting != null )
                     deleting.hide();
                 if ( 403 == method.getResponse().getStatusCode() ) {
-                    Window.alert( messages.unauthorizedDelete() );
+                    Window.alert( dynamicMessages.unauthorizedCommunity_Delete() );
                 } else {
                     Window.alert( exception.getMessage() + " " + method.getResponse().getStatusCode() );
                 }
@@ -685,7 +688,7 @@ public class PlanListPanel extends DecoratorPanel {
                 if ( publishingPlu != null )
                     publishingPlu.hide();
                 if ( 403 == method.getResponse().getStatusCode() ) {
-                    Window.alert( messages.unauthorizedPublishingPlu() );
+                    Window.alert( dynamicMessages.unauthorizedCommunity_PublishingPlu() );
                 } else {
                     Window.alert( exception.getMessage() + " " + method.getResponse().getStatusCode() );
                 }

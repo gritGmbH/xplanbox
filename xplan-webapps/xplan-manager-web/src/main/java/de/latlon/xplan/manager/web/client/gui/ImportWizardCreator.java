@@ -8,6 +8,7 @@ import java.util.Map;
 
 import de.latlon.xplan.manager.web.client.gui.dialog.PlanNameAndStatusDialogBox;
 import de.latlon.xplan.manager.web.client.gui.dialog.WizardDialogBox;
+import de.latlon.xplan.manager.web.client.i18n.DynamicXPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
@@ -40,6 +41,8 @@ import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 public class ImportWizardCreator {
 
     private static final XPlanWebMessages MESSAGES = GWT.create( XPlanWebMessages.class );
+
+    private static final DynamicXPlanWebMessages DYNAMIC_MESSAGES = GWT.create( DynamicXPlanWebMessages.class );
 
     private final ManagerWebConfiguration configuration;
 
@@ -304,7 +307,7 @@ public class ImportWizardCreator {
                                          if ( loading != null )
                                              loading.hide();
                                          if ( 403 == method.getResponse().getStatusCode() ) {
-                                             Window.alert( MESSAGES.unauthorizedImport() );
+                                             Window.alert( DYNAMIC_MESSAGES.unauthorizedCommunity_Import() );
                                          } else {
                                              Window.alert( method.getResponse().getText() );
                                          }

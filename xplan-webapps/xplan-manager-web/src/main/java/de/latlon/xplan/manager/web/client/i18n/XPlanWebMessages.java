@@ -26,8 +26,6 @@ public interface XPlanWebMessages extends Messages {
 
     String numberColumn();
 
-    String communityColumn();
-
     String versionColumn();
 
     String planArt();
@@ -192,14 +190,6 @@ public interface XPlanWebMessages extends Messages {
 
     String validityTooltipUnlimited();
 
-    String filterCategoryLabel();
-
-    String filterCategoryTooltip();
-
-    String filterCategorySelectionAll();
-
-    String filterCategorySelectionOther();
-
     String filterPlanStatusLabel();
 
     String filterPlanStatusTooltip();
@@ -219,10 +209,6 @@ public interface XPlanWebMessages extends Messages {
     String searchOnAllColumns();
 
     SafeHtml filterReset();
-
-    String unauthorizedImport();
-
-    String unauthorizedDelete();
 
     String erroneousRasterDataHeader();
 
@@ -393,8 +379,6 @@ public interface XPlanWebMessages extends Messages {
     String publishPlu();
 
     String publishingPlu();
-
-    String unauthorizedPublishingPlu();
 
     String publishingPluSuccessful();
 
