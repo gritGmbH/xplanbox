@@ -26,6 +26,8 @@ public interface XPlanWebMessages extends Messages {
 
     String numberColumn();
 
+    String communityColumn();
+
     String planArt();
 
     String sonstPlanArt();

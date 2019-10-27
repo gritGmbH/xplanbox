@@ -4,6 +4,7 @@ import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADDITIONALTYPE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.COMMUNITY;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ID;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.IMPORTDATE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.LEGISLATIONSTATUS;
@@ -203,6 +204,8 @@ public class PlanListPanel extends DecoratorPanel {
             addIdColumn( columnSortHandler, planList );
         if ( configuration.isColumnVisible( NUMBER ) )
             addNumberColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( COMMUNITY ) )
+            addCommunityColumn( columnSortHandler, planList );
         if ( configuration.isColumnVisible( TYPE ) )
             addTypeColumn( columnSortHandler, planList );
         if ( configuration.isColumnVisible( ADDITIONALTYPE ) )
@@ -275,6 +278,19 @@ public class PlanListPanel extends DecoratorPanel {
         numberColumn.setCellStyleNames( "planListColumn numberColumn" );
         columnSortHandler.setComparator( numberColumn, new ColumnComparator( NUMBER ) );
         xPlanTable.addColumn( numberColumn, messages.numberColumn() );
+    }
+
+    private void addCommunityColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
+        TextColumn<XPlan> communityColumn = new TextColumn<XPlan>() {
+            @Override
+            public String getValue( XPlan object ) {
+                return object.getDistrict();
+            }
+        };
+        communityColumn.setSortable( true );
+        communityColumn.setCellStyleNames( "planListColumn communityColumn" );
+        columnSortHandler.setComparator( communityColumn, new ColumnComparator( COMMUNITY ) );
+        xPlanTable.addColumn( communityColumn, messages.communityColumn() );
     }
 
     private void addTypeColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
