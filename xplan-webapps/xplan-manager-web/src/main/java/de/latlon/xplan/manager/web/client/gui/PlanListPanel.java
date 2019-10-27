@@ -14,6 +14,7 @@ import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.PLANSTAT
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.RELEASEDATE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.TYPE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.VALIDITIYPERIOD;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.VERSION;
 import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getImportDateFormat;
 import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getReleaseDateFormat;
 
@@ -206,6 +207,8 @@ public class PlanListPanel extends DecoratorPanel {
             addNumberColumn( columnSortHandler, planList );
         if ( configuration.isColumnVisible( COMMUNITY ) )
             addCommunityColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( VERSION ) )
+            addVersionColumn( columnSortHandler, planList );
         if ( configuration.isColumnVisible( TYPE ) )
             addTypeColumn( columnSortHandler, planList );
         if ( configuration.isColumnVisible( ADDITIONALTYPE ) )
@@ -291,6 +294,19 @@ public class PlanListPanel extends DecoratorPanel {
         communityColumn.setCellStyleNames( "planListColumn communityColumn" );
         columnSortHandler.setComparator( communityColumn, new ColumnComparator( COMMUNITY ) );
         xPlanTable.addColumn( communityColumn, messages.communityColumn() );
+    }
+
+    private void addVersionColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
+        TextColumn<XPlan> versionColumn = new TextColumn<XPlan>() {
+            @Override
+            public String getValue( XPlan object ) {
+                return object.getVersion();
+            }
+        };
+        versionColumn.setSortable( true );
+        versionColumn.setCellStyleNames( "planListColumn versionColumn" );
+        columnSortHandler.setComparator( versionColumn, new ColumnComparator( VERSION ) );
+        xPlanTable.addColumn( versionColumn, messages.versionColumn() );
     }
 
     private void addTypeColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
