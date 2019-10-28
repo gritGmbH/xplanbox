@@ -86,6 +86,8 @@ public interface XPlanWebMessages extends Messages {
 
     String urlButton();
 
+    String capabilitiesButton();
+
     String closeButton();
 
     String cancelButton();
