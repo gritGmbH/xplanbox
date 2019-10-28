@@ -7,578 +7,30 @@
   <FeatureTypeName>xplan:FP_Gruen</FeatureTypeName>
   <!-- XP_ZweckbestimmungGruen -->
   <!-- Parkanlage -->
-  <Rule>
-    <Name>Parkanlage</Name>
-    <Description>
-      <Title>FP: Parkanlage</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>1000</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-        </ogc:PropertyIsNull>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflpark_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">2.5</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Dauerkleingarten -->
-  <Rule>
-    <Name>Dauerkleingarten</Name>
-    <Description>
-      <Title>FP: Dauerkleingarten</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>1200</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-        </ogc:PropertyIsNull>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfldakleingar_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">2.5</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Sportplatz -->
-  <Rule>
-    <Name>Sportplatz</Name>
-    <Description>
-      <Title>FP: Sportplatz</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>1400</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-        </ogc:PropertyIsNull>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflsportpl_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Spielplatz -->
-  <Rule>
-    <Name>Spielplatz</Name>
-    <Description>
-      <Title>FP: Spielplatz</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>1600</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-        </ogc:PropertyIsNull>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflspielpl_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">2.5</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Zeltplatz -->
-  <Rule>
-    <Name>Zeltplatz</Name>
-    <Description>
-      <Title>FP: Zeltplatz</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>1800</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-        </ogc:PropertyIsNull>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflzeltpl_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">2.5</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Badeplatz -->
-  <Rule>
-    <Name>Badeplatz</Name>
-    <Description>
-      <Title>FP: Badeplatz</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>2000</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-        </ogc:PropertyIsNull>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflbadpl_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">2</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- FreizeitErholung -->
-  <Rule>
-    <Name>FreizeitErholung</Name>
-    <Description>
-      <Title>FP: Freizeit und Erholung</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>2200</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-        </ogc:PropertyIsNull>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflfreizherh_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">1.5</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- SpezGruenflaeche -->
-  <Rule>
-    <Name>SpezGruenflaeche</Name>
-    <Description>
-      <Title>FP: Spezielle Grünfläche</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>2400</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-        </ogc:PropertyIsNull>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflspezgru_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Friedhof -->
-  <Rule>
-    <Name>Friedhof</Name>
-    <Description>
-      <Title>FP: Friedhof</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>2600</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-        </ogc:PropertyIsNull>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflfriedh_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">2.5</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Sonstiges -->
-  <Rule>
-    <Name>Sonstiges</Name>
-    <Description>
-      <Title>FP: Sonstiges</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>9999</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-        </ogc:PropertyIsNull>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflsons_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Skateanlage -->
-  <Rule>
-    <Name>Skateanlage</Name>
-    <Description>
-      <Title>FP: Skateanlage</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>XP2_2400</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-        </ogc:PropertyIsNull>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflskate_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">2.5</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
 
   <!-- XP_BesondereZweckbestimmungGruen -->
   <!-- ParkanlageHistorisch -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>ParkanlageHistorisch</Name> <Description> <Title>FP: Historische Parkanlage</Title> </Description>
       <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -591,7 +43,6 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- ParkanlageNaturnah -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>ParkanlageNaturnah</Name> <Description> <Title>FP: Naturnahe Parkanlage</Title> </Description>
       <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -604,7 +55,6 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- ParkanlageWaldcharakter -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>ParkanlageWaldcharakter</Name> <Description> <Title>FP: Parkanlage mit Waldcharakter</Title> </Description>
       <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -617,7 +67,6 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- NaturnaheUferParkanlage -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>NaturnaheUferParkanlage</Name> <Description> <Title>FP: Naturnahe Uferparkanlage</Title> </Description>
       <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -630,71 +79,8 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- ErholungsGaerten -->
-  <Rule>
-    <Name>ErholungsGaerten</Name>
-    <Description>
-      <Title>FP: Erholungsgärten</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>12000</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflerholgaerten_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Reitsportanlage -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>Reitsportanlage</Name> <Description> <Title>FP: Reitsportanlage</Title> </Description> <ogc:Filter>
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -707,7 +93,6 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- Hundesportanlage -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>Hundesportanlage</Name> <Description> <Title>FP: Hundesportanlage</Title> </Description> <ogc:Filter>
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -720,7 +105,6 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- Wassersportanlage -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>Wassersportanlage</Name> <Description> <Title>FP: Wassersportanlage</Title> </Description> <ogc:Filter>
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -733,7 +117,6 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- Schiessstand -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>Schiessstand</Name> <Description> <Title>FP: Schiessstand</Title> </Description> <ogc:Filter>
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -746,71 +129,8 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- Golfplatz 14004-->
-  <Rule>
-    <Name>Golfplatz</Name>
-    <Description>
-      <Title>FP: Golfplatz</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>14004</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflgolfpl_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Skisport -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>Skisport</Name> <Description> <Title>FP: Skisport</Title> </Description> <ogc:Filter>
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -823,7 +143,6 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- Tennisanlage -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>Tennisanlage</Name> <Description> <Title>FP: Tennisanlage</Title> </Description> <ogc:Filter>
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -836,7 +155,6 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- SonstigerSoprtplatz -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>SonstigerSoprtplatz</Name> <Description> <Title>FP: Sonstiger Sportplatz</Title> </Description>
       <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -849,50 +167,8 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- Bolzplatz -->
-  <Rule>
-    <Name>Bolzplatz</Name>
-    <Description>
-      <Title>FP: Bolzplatz</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>16000</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflbolzpl_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">2.5</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Abenteuerspielplatz -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>Abenteuerspielplatz</Name> <Description> <Title>FP: Abenteuerspielplatz</Title> </Description>
       <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -905,7 +181,6 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- Campingplatz -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>Campingplatz</Name> <Description> <Title>FP: Campingplatz</Title> </Description> <ogc:Filter>
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -918,71 +193,8 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- Kleintierhaltung -->
-  <Rule>
-    <Name>Kleintierhaltung</Name>
-    <Description>
-      <Title>FP: Kleintierhaltung</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>22000</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflkleintier_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Festplatz -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>Festplatz</Name> <Description> <Title>FP: Festplatz</Title> </Description> <ogc:Filter>
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -995,135 +207,10 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- StrassenbegleitGruen -->
-  <Rule>
-    <Name>StrassenbegleitGruen</Name>
-    <Description>
-      <Title>FP: Strassenbegleitgrün</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>24000</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflstrabeglgruen_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Boeschungsflaeche -->
-  <Rule>
-    <Name>Boeschungsflaeche</Name>
-    <Description>
-      <Title>FP: Böschungsfläche</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>24001</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>10000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflboeschung_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- FeldWaldWiese -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>FeldWaldWiese</Name> <Description> <Title>FP: Feld Wald Wiese</Title> </Description> <ogc:Filter>
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -1136,7 +223,6 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- Uferschutzstreifen -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>Uferschutzstreifen</Name> <Description> <Title>FP: Uferschutzstreifen</Title> </Description>
       <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -1149,7 +235,6 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- Abschirmgruen -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>Abschirmgruen</Name> <Description> <Title>FP: Abschirmgrün</Title> </Description> <ogc:Filter>
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -1162,7 +247,6 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- UmweltbildungsparkSchaugatter -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>UmweltbildungsparkSchaugatter</Name> <Description> <Title>FP: Umweltbildungspark Schaugatter</Title>
       </Description> <ogc:Filter> <ogc:PropertyIsEqualTo>
@@ -1176,7 +260,6 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- RuhenderVerkehr -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>RuhenderVerkehr</Name> <Description> <Title>FP: Ruhender Verkehr</Title> </Description> <ogc:Filter>
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
@@ -1189,7 +272,6 @@
       </PointSymbolizer> </Rule>
   -->
   <!-- Gaertnerei -->
-  <!-- TODO: style -->
   <!--
       <Rule> <Name>Gaertnerei</Name> <Description> <Title>FP: Gärtnerei</Title> </Description> <ogc:Filter>
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
