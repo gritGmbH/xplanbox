@@ -10,6 +10,7 @@
   <FeatureStoreId>xplan50archive</FeatureStoreId>
 
   <EnableTransactions>false</EnableTransactions>
+
   <EnableResponseBuffering>false</EnableResponseBuffering>
 
   <QueryCRS>${vectorCrs}</QueryCRS>
@@ -24,7 +25,6 @@
   <QueryCRS>EPSG:4839</QueryCRS>
   <QueryCRS>CRS:84</QueryCRS>
 
-  <!-- StoredQuery -->
   <StoredQuery>storedqueries/xplan50/planName50.xml</StoredQuery>
   <StoredQuery>storedqueries/xplan50/planId50.xml</StoredQuery>
   <StoredQuery>storedqueries/xplan50/internalId50.xml</StoredQuery>

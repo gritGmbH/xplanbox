@@ -104,7 +104,7 @@ StoredQueries zurück. Diese Operation steht nur in der Protokollversion
 === StoredQueries
 
 Neben den üblichen StoredQueries urn:ogc:def:query:OGC-WFS::GetFeatureById
-und urn:ogc:def:query:OGC-WFS::GetFeatureByType bietet der Endpoint __dls__
+und urn:ogc:def:query:OGC-WFS::GetFeatureByType bietet der Endpoint __xplansynwfs__
 drei weitere StoredQueries an:
 
  * urn:ogc:def:query:OGC-WFS::InternalId

@@ -22,8 +22,7 @@ JRE 1.7]) unterstützt.
 NOTE: Empfohlen wird Oracle JDK 1.7_45+.
 
 NOTE: Empfohlen wird die Nutzung eines der folgenden Betriebssysteme: Debian
-Wheezy, SLES 11 SP4, Oracle Linux 7, CentOS 7.x, Windows Server 2008
-R2/2012 R2.
+Wheezy, SLES 11 SP4, Oracle Linux 7, CentOS 7.x, Windows Server 2012 R2.
 
 NOTE: Das Gebietsschema des Betriebssystems ("Locale") sollte auf deutsch
 konfiguriert sein, da einzelne Fehlerbeschreibungen in dieser Sprache
