@@ -47,10 +47,10 @@ Profil. Empfohlen wird Apache Tomcat Version 8.5.46+ oder 9.0.27+.
 [[datenbank]]
 === Datenbank
 
-Als Datenbanksystem ist eine Installation von PostgreSQL 9.3+ mit der
-Erweiterung PostGIS 2.3+ erforderlich.
+Als Datenbanksystem ist eine Installation von PostgreSQL 9.4+ mit der
+Erweiterung PostGIS 2.3+ mindestens erforderlich.
 
-NOTE: Empfohlen wird PostgreSQL 9.6+ mit PostGIS 2.4+.
+NOTE: Empfohlen wird PostgreSQL 11+ mit PostGIS 2.5+.
 
 === GDAL
 
