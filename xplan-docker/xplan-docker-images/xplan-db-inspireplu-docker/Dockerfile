@@ -1,4 +1,4 @@
-FROM postgres:10
+FROM postgres:11
 
 MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
@@ -8,7 +8,7 @@ ENV POSTGIS_VERSION=2.5
 RUN apt-get update && apt-get -y install unzip
 RUN apt-get update && apt-get -y install wget
 
-RUN set -ex && echo "deb http://apt.postgresql.org/pub/repos/apt xenial-pgdg main" >> /etc/apt/sources.list && wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add - && apt-get update && apt-get install -y postgresql-10-postgis-$POSTGIS_VERSION
+RUN set -ex && echo "deb http://apt.postgresql.org/pub/repos/apt xenial-pgdg main" >> /etc/apt/sources.list && wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add - && apt-get update && apt-get install -y postgresql-11-postgis-$POSTGIS_VERSION
 
 COPY ./setup_db.sh /docker-entrypoint-initdb.d/setup_db.sh
 

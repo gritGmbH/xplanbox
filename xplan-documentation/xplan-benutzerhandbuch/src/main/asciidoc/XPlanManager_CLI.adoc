@@ -357,18 +357,6 @@ Datenbank erzeugen:
   werden. Der XPlanManager wird beim Erzeugen der Datenhaltung auf diese
   neue Datenbank eingestellt.
 
-Bei Nutzung von PostgreSQL-Datenbanken mit PostGIS bis Version 1.5 muss
-die Datenbank über ein Template mit installierten postgis-Erweiterungen
-erzeugt werden.
-
-----
-XPlanManager -createdb 'test' jdbc:postgresql://localhost:5432 -u postgres -p postgres -t template_postgis
-----
-
-In PostgreSQL-Datenbanken mit PostGIS ab Version 2.0 wird die
-Erweiterung vom Manager automatisch installiert. Daher entfällt die
-Angabe eines Templates mit PostGIS-Erweiterung.
-
 ----
 XPlanManager -createdb 'test' jdbc:postgresql://localhost:5432 -u postgres -p postgres
 ----
