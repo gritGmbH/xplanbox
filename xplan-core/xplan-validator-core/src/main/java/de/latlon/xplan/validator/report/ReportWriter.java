@@ -54,22 +54,18 @@ public class ReportWriter {
      * 
      * @param report
      *            the report to write, never <code>null</code>
-     * @param planName
-     *            the name of the plane, never <code>null</code>
-     * @param validationName
-     *            the name of the validation run, never <code>null</code>
      * @param targetDirectory
      *            the directory to put the archive in, never <code>null</code>
      * @throws ReportGenerationException
      *             if an exception occurred during writing the reports or zip archive
      */
-    public void writeArtefacts( ValidatorReport report, String planName, String validationName, File targetDirectory ) {
+    public void writeArtefacts( ValidatorReport report, File targetDirectory ) {
         List<String> failures = new ArrayList<>();
-        addXmlEntry( report, planName, validationName, targetDirectory, failures );
-        addHtmlEntry( report, planName, validationName, targetDirectory, failures );
-        addPdfEntry( report, planName, validationName, targetDirectory, failures );
-        addPNGEntry( report, validationName, targetDirectory, failures );
-        addShapeDirectoryEntry( report, validationName, targetDirectory, failures );
+        addXmlEntry( report, targetDirectory, failures );
+        addHtmlEntry( report, targetDirectory, failures );
+        addPdfEntry( report, targetDirectory, failures );
+        addPNGEntry( report, targetDirectory, failures );
+        addShapeDirectoryEntry( report, targetDirectory, failures );
 
         addFailureLog( failures, targetDirectory );
     }
@@ -92,39 +88,39 @@ public class ReportWriter {
         }
     }
 
-    private void addPdfEntry( ValidatorReport report, String planName, String validationName,
-                              File directoryToCreateZip, List<String> failures ) {
+    private void addPdfEntry( ValidatorReport report, File directoryToCreateZip, List<String> failures ) {
+        String validationName = report.getValidationName();
         File pdfFile = new File( directoryToCreateZip, validationName + ".pdf" );
         try (FileOutputStream fileOutputStream = new FileOutputStream( pdfFile )) {
-            pdfGenerator.createPdfReport( report, validationName, planName, fileOutputStream );
+            pdfGenerator.createPdfReport( report, fileOutputStream );
         } catch ( Exception e ) {
             failures.add( e.getMessage() );
         }
     }
 
-    private void addXmlEntry( ValidatorReport report, String planName, String validationName,
-                              File directoryToCreateZip, List<String> failures ) {
+    private void addXmlEntry( ValidatorReport report, File directoryToCreateZip, List<String> failures ) {
+        String validationName = report.getValidationName();
         File xmlFile = new File( directoryToCreateZip, validationName + ".xml" );
         try (FileOutputStream fileOutputStream = new FileOutputStream( xmlFile )) {
-            xmlReportGenerator.generateXmlReport( report, validationName, planName, fileOutputStream );
+            xmlReportGenerator.generateXmlReport( report, fileOutputStream );
         } catch ( Exception e ) {
             failures.add( e.getMessage() );
         }
 
     }
 
-    private void addHtmlEntry( ValidatorReport report, String planName, String validationName,
-                               File directoryToCreateZip, List<String> failures ) {
+    private void addHtmlEntry( ValidatorReport report, File directoryToCreateZip, List<String> failures ) {
+        String validationName = report.getValidationName();
         File htmlFile = new File( directoryToCreateZip, validationName + ".html" );
         try (FileOutputStream fileOutputStream = new FileOutputStream( htmlFile )) {
-            htmlGenerator.generateHtmlReport( report, validationName, planName, fileOutputStream );
+            htmlGenerator.generateHtmlReport( report, fileOutputStream );
         } catch ( Exception e ) {
             failures.add( e.getMessage() );
         }
     }
 
-    private void addPNGEntry( ValidatorReport report, String validationName, File directoryToCreateZip,
-                              List<String> failures ) {
+    private void addPNGEntry( ValidatorReport report, File directoryToCreateZip, List<String> failures ) {
+        String validationName = report.getValidationName();
         try {
             if ( badGeometryImgGenerator.hasBadGeometry( report ) ) {
                 File pngFile = new File( directoryToCreateZip, validationName + ".png" );
@@ -138,8 +134,8 @@ public class ReportWriter {
         }
     }
 
-    private void addShapeDirectoryEntry( ValidatorReport report, String validationName, File directoryToCreateZip,
-                                         List<String> failures ) {
+    private void addShapeDirectoryEntry( ValidatorReport report, File directoryToCreateZip, List<String> failures ) {
+        String validationName = report.getValidationName();
         try {
             if ( shapefileGenerator.hasBadGeometry( report ) ) {
                 File directoryToCreateShapes = new File( directoryToCreateZip, "shapes" );

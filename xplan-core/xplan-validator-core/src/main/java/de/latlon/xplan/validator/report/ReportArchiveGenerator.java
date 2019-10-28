@@ -61,9 +61,9 @@ public class ReportArchiveGenerator {
         File outputFile = new File( validationReportDirectory, validationName + ".zip" );
         try ( FileOutputStream fileOutStream = new FileOutputStream( outputFile );
               ZipOutputStream zipOutStream = new ZipOutputStream( fileOutStream ) ) {
-            addXmlEntry( archive, report, validationName, zipOutStream );
-            addHtmlEntry( archive, report, validationName, zipOutStream );
-            addPdfEntry( archive, report, validationName, zipOutStream );
+            addXmlEntry( report, validationName, zipOutStream );
+            addHtmlEntry( report, validationName, zipOutStream );
+            addPdfEntry( report, validationName, zipOutStream );
             addPNGEntry( report, validationName, zipOutStream );
             addShapeDirectoryEntry( report, validationName, validationReportDirectory, zipOutStream );
             return validationReportDirectory;
@@ -72,30 +72,30 @@ public class ReportArchiveGenerator {
         }
     }
 
-    private void addPdfEntry( XPlanArchive archive, ValidatorReport report, String validationName,
+    private void addPdfEntry( ValidatorReport report, String validationName,
                               ZipOutputStream zipOutStream )
                     throws IOException, ReportGenerationException {
         ZipEntry pdfEntry = new ZipEntry( validationName + ".pdf" );
         zipOutStream.putNextEntry( pdfEntry );
-        pdfGenerator.createPdfReport( report, validationName, archive.getName(), zipOutStream );
+        pdfGenerator.createPdfReport( report, zipOutStream );
         zipOutStream.closeEntry();
     }
 
-    private void addXmlEntry( XPlanArchive archive, ValidatorReport report, String validationName,
+    private void addXmlEntry( ValidatorReport report, String validationName,
                               ZipOutputStream zipOutStream )
                     throws IOException, ReportGenerationException {
         ZipEntry xmlEntry = new ZipEntry( validationName + ".xml" );
         zipOutStream.putNextEntry( xmlEntry );
-        xmlReportGenerator.generateXmlReport( report, validationName, archive.getName(), zipOutStream );
+        xmlReportGenerator.generateXmlReport( report, zipOutStream );
         zipOutStream.closeEntry();
     }
 
-    private void addHtmlEntry( XPlanArchive archive, ValidatorReport report, String validationName,
+    private void addHtmlEntry( ValidatorReport report, String validationName,
                                ZipOutputStream zipOutStream )
                     throws IOException, ReportGenerationException {
         ZipEntry xmlEntry = new ZipEntry( validationName + ".html" );
         zipOutStream.putNextEntry( xmlEntry );
-        htmlGenerator.generateHtmlReport( report, validationName, archive.getName(), zipOutStream );
+        htmlGenerator.generateHtmlReport( report, zipOutStream );
         zipOutStream.closeEntry();
     }
 

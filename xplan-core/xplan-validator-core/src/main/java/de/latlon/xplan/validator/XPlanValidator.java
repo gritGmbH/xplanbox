@@ -1,7 +1,24 @@
 package de.latlon.xplan.validator;
 
 import de.latlon.xplan.commons.XPlanSchemas;
+import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.SYNTAX_ERRORS;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
+import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
+import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
+import org.deegree.feature.types.AppSchema;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
@@ -77,13 +94,14 @@ public class XPlanValidator {
      *            to validate, never <code>null</code> and must point to a zip file with a gml plan
      * @return <link>ValidatorReport</link>
      * @throws ValidatorException
+     * @throws ParseException
      * @throws IOException
      * @throws ReportGenerationException
      */
-    public ValidatorReport validate( ValidationSettings validationSettings, File planArchive )
-                    throws ValidatorException, IOException, ReportGenerationException {
+    public ValidatorReport validate( ValidationSettings validationSettings, File planArchive, String planName )
+                    throws ValidatorException, ParseException, IOException, ReportGenerationException {
         XPlanArchive archive = retrieveXPlanArchive( planArchive );
-        ValidatorReport report = validate( validationSettings, archive );
+        ValidatorReport report = validate( validationSettings, archive, planName );
         writeReport( report );
         LOG.info( "Archiv mit Validierungsergebnissen wird erstellt." );
         File validationReportDirectory = createZipArchive( validationSettings, archive, report );
@@ -102,10 +120,11 @@ public class XPlanValidator {
      * @throws ValidatorException
      * @throws IOException
      */
-    public ValidatorReport validateNotWriteReport( ValidationSettings validationSettings, File planArchive )
+    public ValidatorReport validateNotWriteReport( ValidationSettings validationSettings, File planArchive,
+                                                   String planName )
                     throws ValidatorException, IOException {
         XPlanArchive archive = retrieveXPlanArchive( planArchive );
-        return validate( validationSettings, archive );
+        return validate( validationSettings, archive, planName );
     }
 
     /**
@@ -141,12 +160,15 @@ public class XPlanValidator {
         }
     }
 
-    private ValidatorReport validate( ValidationSettings validationSettings, XPlanArchive archive )
+    private ValidatorReport validate( ValidationSettings validationSettings, XPlanArchive archive, String planName )
                             throws ValidatorException {
         List<ValidationOption> voOptions = validationSettings.getExtendedOptions();
         List<SemanticValidationOptions> semanticValidationOptions = extractSemanticValidationOptions( validationSettings );
 
         ValidatorReport report = new ValidatorReport();
+        report.setValidationName( validationSettings.getValidationName() );
+        report.setPlanName( planName );
+        report.setDate( new Date() );
         ValidationType validationType = validationSettings.getValidationType();
         if ( validationType == null )
             validationType = ValidationType.NONE;
@@ -241,7 +263,7 @@ public class XPlanValidator {
     }
 
     private void log( GeometricValidatorResult validatorResult ) {
-        LOG.info( "Ergebnisse der geometrischen Validerung:" );
+        LOG.info( "Ergebnisse der geometrischen Validierung:" );
 
         List<String> warnings = validatorResult.getWarnings();
         LOG.info( "  Warnungen: {}", warnings.size() );
@@ -256,16 +278,21 @@ public class XPlanValidator {
 
     private void log( SemanticValidatorResult validatorResult ) {
         List<RuleResult> ruleResults = validatorResult.getRules();
-        LOG.info( "Ergebnisse der semantischen Validerung: {}", ruleResults.size() );
+        LOG.info( "Ergebnisse der semantischen Validierung: {}", ruleResults.size() );
         for ( RuleResult ruleResult : ruleResults ) {
-            String label = ruleResult.isValid() ? "Erfolgreich" : "Fehler";
-            LOG.info( "  - {}: {}", label, ruleResult.getMessage() );
+            if ( ruleResult.isValid() ) {
+                LOG.info( "  - Erfolgreich: {}", ruleResult.getMessage() );
+            } else {
+                List<String> invalidFeatures = ruleResult.getInvalidFeatures();
+                LOG.info( "  - Fehler: {}, fehlerhafte Features: {}", ruleResult.getMessage(),
+                          invalidFeatures.stream().collect( Collectors.joining( ", " ) ) );
+            }
         }
     }
 
     private void log( SyntacticValidatorResult validatorResult ) {
         List<String> messages = validatorResult.getMessages();
-        LOG.info( "Ergebnisse der syntaktischen Validerung: {}", messages.size() );
+        LOG.info( "Ergebnisse der syntaktischen Validierung: {}", messages.size() );
         for ( String mess : messages )
             LOG.info( "  - {}", mess );
     }

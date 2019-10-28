@@ -1,4 +1,11 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/0';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-every $h in //BP_VerEntsorgung[detaillierteZweckbestimmung] satisfies
-count($h/zweckbestimmung) >= count($h/detaillierteZweckbestimmung)
+for $h in //BP_VerEntsorgung
+where (
+	count($h/detaillierteZweckbestimmung) >= 1
+	and not ( 
+		count($h/zweckbestimmung) >= count($h/detaillierteZweckbestimmung)
+	)
+)
+return $h/@gml:id/string()

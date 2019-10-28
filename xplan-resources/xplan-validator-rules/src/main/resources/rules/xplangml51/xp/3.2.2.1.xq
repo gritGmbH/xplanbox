@@ -1,6 +1,15 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
-declare namespace xlink='http://www.w3.org/1999/xlink';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-every $h in //XP_BegruendungAbschnitt satisfies
-  (exists($h/text) or exists($h/refText/@xlink:href)) and
-  (not(exists($h/text)) and not(exists($h/refText/@xlink:href)))
+for $h in //XP_BegruendungAbschnitt
+where
+  not (
+    $h/text
+    or
+    $h/refText
+  )
+  or
+  (
+    $h/text and $h/refText
+  )
+return $h/@gml:id

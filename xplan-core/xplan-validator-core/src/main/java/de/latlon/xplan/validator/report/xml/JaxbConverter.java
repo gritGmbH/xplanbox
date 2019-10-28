@@ -2,11 +2,15 @@ package de.latlon.xplan.validator.report.xml;
 
 import static de.latlon.xplan.validator.report.ReportUtils.createValidLabel;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ErrorsType;
 import de.latlon.xplan.validator.report.GeomType;
+import de.latlon.xplan.validator.report.InvalidFeaturesType;
 import de.latlon.xplan.validator.report.MessagesType;
 import de.latlon.xplan.validator.report.ObjectFactory;
 import de.latlon.xplan.validator.report.PlanType;
@@ -14,7 +18,7 @@ import de.latlon.xplan.validator.report.RuleType;
 import de.latlon.xplan.validator.report.RulesType;
 import de.latlon.xplan.validator.report.SemType;
 import de.latlon.xplan.validator.report.SynType;
-import de.latlon.xplan.validator.report.ValidationReportType;
+import de.latlon.xplan.validator.report.ValidationReport;
 import de.latlon.xplan.validator.report.ValidationType;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.WarningsType;
@@ -36,18 +40,15 @@ public class JaxbConverter {
      *
      * @param report
      *            to convert, never <code>null</code>
-     * @param validationName
-     *            to put in the converted {@link ValidationReportType}, never <code>null</code>
-     * @param planName
-     *            to put in the converted {@link ValidationReportType}, never <code>null</code>
      * @return the converted {@link JaxbConverter} instance, never <code>null</code>
      */
-    public ValidationReportType convertValidationReport( ValidatorReport report, String validationName,
-                                                         String planName ) {
+    public ValidationReport convertValidationReport( ValidatorReport report ) {
         ObjectFactory objectFactory = new ObjectFactory();
-        ValidationReportType validationReportType = objectFactory.createValidationReportType();
-        validationReportType.setName( validationName );
-        validationReportType.setPlan( convertPlanType( planName ) );
+        ValidationReport validationReportType = objectFactory.createValidationReport();
+        validationReportType.setDate( toCalendar( report.getDate() ) );
+        validationReportType.setName( report.getValidationName() );
+        validationReportType.setIsValid( report.isReportValid() );
+        validationReportType.setPlan( convertPlanType( report ) );
         validationReportType.setValidation( convertValidationResults( report ) );
         return validationReportType;
     }
@@ -64,10 +65,10 @@ public class JaxbConverter {
         return jaxbValidation;
     }
 
-    private PlanType convertPlanType( String planName ) {
+    private PlanType convertPlanType( ValidatorReport report ) {
         ObjectFactory objectFactory = new ObjectFactory();
         PlanType pt = objectFactory.createPlanType();
-        pt.setName( planName );
+        pt.setName( report.getPlanName() );
         return pt;
     }
 
@@ -79,10 +80,10 @@ public class JaxbConverter {
             geomType.setResult( result.getSkipCode().getMessage() );
         } else {
             WarningsType warningsXml = objectFactory.createWarningsType();
-            warningsXml.getWarning().addAll( result.getWarnings() );
+            warningsXml.getWarnings().addAll( result.getWarnings() );
 
             ErrorsType errorsXml = objectFactory.createErrorsType();
-            errorsXml.getError().addAll( result.getErrors() );
+            errorsXml.getErrors().addAll( result.getErrors() );
 
             geomType.setWarnings( warningsXml );
             geomType.setErrors( errorsXml );
@@ -102,12 +103,13 @@ public class JaxbConverter {
             semType.setResult( result.getSkipCode().getMessage() );
         } else {
             RulesType rulesXML = objectFactory.createRulesType();
-            List<RuleType> rulesListXML = rulesXML.getRule();
+            List<RuleType> rulesListXML = rulesXML.getRules();
             for ( RuleResult rule : result.getRules() ) {
                 RuleType ruleXML = objectFactory.createRuleType();
                 ruleXML.setName( rule.getName() );
                 ruleXML.setIsValid( rule.isValid() );
                 ruleXML.setMessage( rule.getMessage() );
+                addInvalidFeatures( ruleXML, rule.getInvalidFeatures() );
                 rulesListXML.add( ruleXML );
             }
             semType.setRules( rulesXML );
@@ -120,12 +122,21 @@ public class JaxbConverter {
         val.setSem( semType );
     }
 
+    private void addInvalidFeatures( RuleType ruleXML, List<String> invalidFeatures ) {
+        ObjectFactory objectFactory = new ObjectFactory();
+        for ( String invalidFeature : invalidFeatures ) {
+            InvalidFeaturesType invalidFeaturesType = objectFactory.createInvalidFeaturesType();
+            invalidFeaturesType.setGmlid( invalidFeature );
+            ruleXML.getInvalidFeatures().add( invalidFeaturesType );
+        }
+    }
+
     private void convertResultToJaxb( SyntacticValidatorResult result, ValidationType val ) {
         ObjectFactory objectFactory = new ObjectFactory();
         SynType synType = objectFactory.createSynType();
 
         MessagesType messagesXml = objectFactory.createMessagesType();
-        messagesXml.getMessage().addAll( result.getMessages() );
+        messagesXml.getMessages().addAll( result.getMessages() );
 
         synType.setMessages( messagesXml );
         synType.setResult( createValidLabel( result.isValid() ) );
@@ -133,6 +144,14 @@ public class JaxbConverter {
             synType.setDetails( result.getValidatorDetail().toString() );
 
         val.setSyn( synType );
+    }
+
+    private static Calendar toCalendar( Date date ) {
+        if ( date == null )
+            return null;
+        Calendar cal = Calendar.getInstance();
+        cal.setTime( date );
+        return cal;
     }
 
 }

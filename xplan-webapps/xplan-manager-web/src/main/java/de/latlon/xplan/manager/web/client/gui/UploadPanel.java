@@ -66,6 +66,8 @@ public class UploadPanel extends DecoratorPanel {
 
     private DialogBox uploading;
 
+    private final FileUpload upload = new FileUpload();
+
     public UploadPanel( ManagerWebConfiguration configuration, PlanListPanel planListPanel ) {
         this.importWizardCreator = new ImportWizardCreator( configuration, planListPanel );
         createUi();
@@ -227,7 +229,7 @@ public class UploadPanel extends DecoratorPanel {
             }
         };
         return new ValidatorOptionsDialog( reportDownloadFinishedListener, messages.reportCloseButtonTitle(),
-                        messages.reportNextButtonTitle() );
+                        messages.reportNextButtonTitle(), getFilename() );
     }
 
     private Widget createUploadWidget() {
@@ -244,7 +246,6 @@ public class UploadPanel extends DecoratorPanel {
         l.setStylePrimaryName( "stdFont" );
         vPanel.add( l );
 
-        final FileUpload upload = new FileUpload();
         upload.setName( "planZipFile" );
         upload.setStylePrimaryName( "stdFont" );
         vPanel.add( upload );
@@ -376,4 +377,18 @@ public class UploadPanel extends DecoratorPanel {
         } );
     }
 
+    private String getFilename() {
+        if ( upload != null ) {
+            try {
+                String filename = upload.getFilename();
+                int indexOfSep = filename.lastIndexOf( "\\" ) + 1;
+                filename = filename.substring( indexOfSep );
+                int indexOfPref = filename.lastIndexOf( "." );
+                filename = filename.substring( 0, indexOfPref );
+                return filename;
+            } catch ( Exception e ) {
+            }
+        }
+        return null;
+    }
 }

@@ -26,14 +26,17 @@ class UploadFinishedDialogBox extends DialogBox {
 
     private final ValidatorWebCommonsMessages messages = GWT.create( ValidatorWebCommonsMessages.class );
 
+    private final String fileName;
+
     /**
      * @param xPlanValidatorWeb
      *            never <code>null</code>
      * @param htmlMessage
      *            to show as content
      */
-    public UploadFinishedDialogBox( XPlanValidatorWeb xPlanValidatorWeb, String htmlMessage ) {
+    public UploadFinishedDialogBox( XPlanValidatorWeb xPlanValidatorWeb, String htmlMessage, String fileName ) {
         super( false );
+        this.fileName = fileName;
         setText( messages.uploadSucessTitle() );
         initDialog( xPlanValidatorWeb, htmlMessage );
     }
@@ -77,7 +80,8 @@ class UploadFinishedDialogBox extends DialogBox {
                         if ( NEXT.equals( finishStatus ) )
                             xPlanValidatorWeb.resetPanelToUpload();
                     }
-                } );
+
+                }, fileName );
                 xPlanValidatorWeb.setPanel( xPlanValidatorSettings );
             }
         };

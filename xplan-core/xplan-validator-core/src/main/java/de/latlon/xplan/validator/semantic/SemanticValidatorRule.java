@@ -6,6 +6,8 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
 
+import java.util.List;
+
 /**
  * Encapsulates a single validation rule
  * 
@@ -20,9 +22,9 @@ public interface SemanticValidatorRule {
      * 
      * @param archive
      *            the archive to validate, never <code>null</code>
-     * @return true if valid, false if not
+     * @return list of GML Ids of the invalid features, empty if the all features are valid
      */
-    boolean validate( SemanticValidableXPlanArchive archive )
+    List<String> validate( SemanticValidableXPlanArchive archive )
                             throws ValidatorException;
 
     /**
