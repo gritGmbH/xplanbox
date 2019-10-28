@@ -1,13 +1,13 @@
 package de.latlon.xplan.validator.geometric;
 
-import static java.lang.String.format;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.stream.XMLStreamException;
-
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
+import de.latlon.xplan.validator.ValidatorException;
+import de.latlon.xplan.validator.geometric.report.BadGeometry;
+import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
+import de.latlon.xplan.validator.report.ValidatorResult;
+import de.latlon.xplan.validator.web.shared.ValidationOption;
 import org.deegree.commons.tom.ReferenceResolvingException;
 import org.deegree.commons.tom.gml.GMLReference;
 import org.deegree.commons.xml.XMLParsingException;
@@ -17,25 +17,23 @@ import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 import org.deegree.geometry.GeometryFactory;
-import org.deegree.gml.GMLInputFactory;
 import org.deegree.gml.GMLStreamReader;
 import org.deegree.gml.GMLVersion;
 import org.deegree.gml.reference.FeatureReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
-import de.latlon.xplan.validator.ValidatorException;
-import de.latlon.xplan.validator.geometric.report.BadGeometry;
-import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
-import de.latlon.xplan.validator.report.ValidatorResult;
-import de.latlon.xplan.validator.web.shared.ValidationOption;
+import javax.xml.stream.XMLStreamException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static java.lang.String.format;
+import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 
 /**
  * Validates <link>XPlanArchives</link> geometrically
- * 
+ *
  * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
  */
 public class GeometricValidatorImpl implements GeometricValidator {
@@ -45,35 +43,97 @@ public class GeometricValidatorImpl implements GeometricValidator {
     // Maximum distance for gaps that are to be closed
     private static final double EPSILON = 0.10;
 
+    public static final String SKIP_FLAECHENSCHLUSS_OPTION = "SKIPFLAECHENSCHLUSS";
+
+    public static final ValidationOption SKIP_FLAECHENSCHLUSS = new ValidationOption( SKIP_FLAECHENSCHLUSS_OPTION,
+                                                                                      Boolean.toString( true ) );
+
     @Override
     public ValidatorResult validateGeometry( XPlanArchive archive, ICRS crs, AppSchema schema, boolean force,
                                              List<ValidationOption> voOptions )
-                                                             throws ValidatorException {
-        List<String> errors = new ArrayList<>();
-        List<String> warnings = new ArrayList<>();
-        List<BadGeometry> badGeometries = new ArrayList<>();
-
-        retrieveXPlanFeatureCollectionAndReturnErrors( warnings, errors, badGeometries, archive, crs, force, schema,
-                                                       voOptions );
-
-        ValidatorResult geometricValidatorResult = new GeometricValidatorResult( warnings, errors, badGeometries, crs,
-                        ( errors.isEmpty() ) );
-
-        return geometricValidatorResult;
+                            throws ValidatorException {
+        try {
+            ParserAndValidatorResult result = retrieveFeatureCollection( archive, crs, force, schema, voOptions );
+            return new GeometricValidatorResult( result.warnings, result.errors, result.badGeometries, crs,
+                                                 result.isValid() );
+        } catch ( XMLStreamException | UnknownCRSException e ) {
+            LOG.trace( "Geometric validation failed!", e );
+            throw new ValidatorException(
+                                    "Geometrische Validierung wurde aufgrund von schwerwiegenden Fehlern abgebrochen",
+                                    e );
+        }
     }
 
     @Override
     public XPlanFeatureCollection retrieveGeometricallyValidXPlanFeatures( XPlanArchive archive, ICRS crs,
                                                                            AppSchema schema, boolean force,
                                                                            String internalId )
-                    throws XMLStreamException, UnknownCRSException {
-        FeatureCollection fc = retrieveFeatureCollection( new ArrayList<String>(), new ArrayList<String>(),
-                                                          new ArrayList<BadGeometry>(), archive, crs, force, schema,
-                                                          null, internalId );
-        return new XPlanFeatureCollectionBuilder( fc, archive.getType() ).build();
+                            throws XMLStreamException, UnknownCRSException {
+        List<ValidationOption> validationOptions = Collections.singletonList( SKIP_FLAECHENSCHLUSS );
+        ParserAndValidatorResult result = retrieveFeatureCollection( archive, crs, force, schema, validationOptions );
+        return new XPlanFeatureCollectionBuilder( result.xPlanFeatures, archive.getType() ).build();
     }
 
-    private void resolveAndValidateXlinks( GMLStreamReader gmlStream, List<String> errors ) {
+    private ParserAndValidatorResult retrieveFeatureCollection( XPlanArchive archive, ICRS crs, boolean force,
+                                                                AppSchema schema, List<ValidationOption> voOptions )
+                            throws XMLStreamException, UnknownCRSException {
+        ParserAndValidatorResult result = readAndValidateArchive( archive, crs, schema, voOptions );
+        logResult( force, result );
+        return result;
+    }
+
+    private ParserAndValidatorResult readAndValidateArchive( XPlanArchive archive, ICRS crs, AppSchema schema,
+                                                             List<ValidationOption> voOptions )
+                            throws XMLStreamException, UnknownCRSException {
+        ParserAndValidatorResult result = new ParserAndValidatorResult();
+        XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper( archive.getMainFileXmlReader(), null );
+        long begin = System.currentTimeMillis();
+        LOG.info( "- Einlesen der Features (+ Geometrievalidierung)..." );
+        XPlanGeometryInspector geometryInspector = new XPlanGeometryInspector( xmlStream, EPSILON, voOptions );
+        FlaechenschlussInspector flaechenschlussInspector = new FlaechenschlussInspector();
+        GMLStreamReader gmlStream = createGmlStreamReader( archive, crs, schema, xmlStream, geometryInspector,
+                                                           flaechenschlussInspector, voOptions );
+        try {
+            FeatureCollection xPlanFeatures = (FeatureCollection) gmlStream.readFeature();
+            result.setXplanFeatures( xPlanFeatures );
+            List<String> flaechenschlussErrors = flaechenschlussInspector.checkFlaechenschluss();
+            result.elapsed = System.currentTimeMillis() - begin;
+            result.addErrors( geometryInspector.getErrors() );
+            List<String> brokenGeometryErrors = extendMessagesOfBrokenGeometryErrors( gmlStream );
+            result.addErrors( brokenGeometryErrors );
+            result.addErrors( flaechenschlussErrors );
+            result.addWarnings( geometryInspector.getWarnings() );
+            result.addBadGeometries( geometryInspector.getBadGeometries() );
+
+            resolveAndValidateXlinks( gmlStream, result );
+            return result;
+        } catch ( XMLParsingException e ) {
+            String msg = "Die geometrische Validierung wurde aufgrund von schwerwiegenden Fehlern abgebrochen. "
+                         + "Das XPlanGML-Dokument (xplan.gml) entspricht nicht dem GML-Schema.";
+            result.addError( msg );
+            return null;
+        }
+    }
+
+    private GMLStreamReader createGmlStreamReader( XPlanArchive archive, ICRS crs, AppSchema schema,
+                                                   XMLStreamReaderWrapper xmlStream, XPlanGeometryInspector inspector,
+                                                   FlaechenschlussInspector flaechenschlussInspector,
+                                                   List<ValidationOption> voOptions )
+                            throws XMLStreamException {
+        GMLVersion gmlVersion = archive.getVersion().getGmlVersion();
+        GeometryFactory geomFac = new GeometryFactory();
+        geomFac.addInspector( inspector );
+        GMLStreamReader gmlStream = createGMLStreamReader( gmlVersion, xmlStream );
+        gmlStream.setDefaultCRS( crs );
+        gmlStream.setGeometryFactory( geomFac );
+        gmlStream.setApplicationSchema( schema );
+        gmlStream.setSkipBrokenGeometries( true );
+        if ( !isFlaechenschlussSkipped( voOptions ) )
+            gmlStream.addInspector( flaechenschlussInspector );
+        return gmlStream;
+    }
+
+    private void resolveAndValidateXlinks( GMLStreamReader gmlStream, ParserAndValidatorResult result ) {
         long begin = System.currentTimeMillis();
         LOG.info( "- Überprüfung der XLink-Integrität..." );
         try {
@@ -87,175 +147,112 @@ public class GeometricValidatorImpl implements GeometricValidator {
                                              + "Nur Dokument-lokale xlinks werden unterstützt.",
                                              gmlReference.getURI() );
                         LOG.info( msg );
-                        errors.add( msg );
+                        result.addError( msg );
                     }
         } catch ( ReferenceResolvingException e ) {
             LOG.trace( "Resolving XLinks failed!", e );
             String errorMessage = format( "Die XLink-Integrität konnte nicht sichergestellt werden: %s",
                                           e.getMessage() );
             LOG.info( errorMessage );
-            errors.add( errorMessage );
+            result.addError( errorMessage );
         }
-        long elapsed = System.currentTimeMillis() - begin;
-        LOG.info( "OK [{} ms]", elapsed );
+        result.elapsed = System.currentTimeMillis() - begin;
     }
 
-    private void retrieveXPlanFeatureCollectionAndReturnErrors( List<String> warnings, List<String> errors,
-                                                                List<BadGeometry> badGeometries, XPlanArchive archive,
-                                                                ICRS crs, boolean force, AppSchema schema,
-                                                                List<ValidationOption> voOptions )
-                                                                                throws ValidatorException {
-        try {
-            retrieveFeatureCollection( warnings, errors, badGeometries, archive, crs, force, schema, voOptions, null );
-        } catch ( XMLStreamException | UnknownCRSException e ) {
-            LOG.trace( "Geomteric validation failed!", e );
-            throw new ValidatorException(
-                            "Geometrische Validierung wurde aufgrund von schwerwiegenden Fehlern abgebrochen", e );
+    private boolean isFlaechenschlussSkipped( List<ValidationOption> voOptions ) {
+        if ( voOptions == null )
+            return false;
+        for ( ValidationOption voOption : voOptions ) {
+            if ( SKIP_FLAECHENSCHLUSS_OPTION.equals( voOption.getName() ) ) {
+                if ( voOption.getArgument() != null )
+                    return Boolean.valueOf( voOption.getArgument() );
+            }
         }
+        return false;
     }
 
-    private FeatureCollection retrieveFeatureCollection( List<String> warnings, List<String> errors,
-                                                         List<BadGeometry> badGeometries, XPlanArchive archive,
-                                                         ICRS crs, boolean force, AppSchema schema,
-                                                         List<ValidationOption> voOptions, String internalId )
-                                                                         throws XMLStreamException,
-                                                                         UnknownCRSException {
-
-        PerformReadGmlStream performReadGmlStream = new PerformReadGmlStream( archive, crs, schema, voOptions,
-                        internalId );
-
-        if ( performReadGmlStream.getErrors() != null )
-            errors.addAll( performReadGmlStream.getErrors() );
-        if ( performReadGmlStream.getWarnings() != null )
-            warnings.addAll( performReadGmlStream.getWarnings() );
-        if ( performReadGmlStream.getBadList() != null )
-            badGeometries.addAll( performReadGmlStream.getBadList() );
-        long elapsed = performReadGmlStream.getElapsed();
-        FeatureCollection xplanFeatures = performReadGmlStream.getXplanFeatures();
-        GMLStreamReader gmlStream = performReadGmlStream.getGmlStream();
-
-        if ( !errors.isEmpty() )
-            printErrorMessages( errors, force, warnings );
+    private void logResult( boolean force, ParserAndValidatorResult result ) {
+        if ( result.isValid() )
+            logSuccessMessages( result );
         else
-            printSuccessMessages( warnings, elapsed, xplanFeatures );
-        resolveAndValidateXlinks( gmlStream, errors );
-        return xplanFeatures;
+            logErrorMessages( force, result );
     }
 
-    private void printSuccessMessages( List<String> warnings, long elapsed, FeatureCollection xplanFeatures ) {
-        LOG.info( "OK [{} ms]: {} Features", elapsed, xplanFeatures.size() );
-        if ( !warnings.isEmpty() ) {
-            LOG.info( "Geometrie-Warnungen: {}", warnings.size() );
-            for ( String warning : warnings )
+    private void logSuccessMessages( ParserAndValidatorResult result ) {
+        LOG.info( "OK [{} ms]: {} Features", result.elapsed, result.xPlanFeatures.size() );
+        if ( !result.warnings.isEmpty() ) {
+            LOG.info( "Geometrie-Warnungen: {}", result.warnings.size() );
+            for ( String warning : result.warnings )
                 LOG.info( " - {}", warning );
         }
     }
 
-    private void printErrorMessages( List<String> errors, boolean force, List<String> warnings ) {
-        if ( !warnings.isEmpty() ) {
-            LOG.info( "Geometrie-Warnungen: {}", warnings.size() );
-            for ( String warning : warnings )
+    private void logErrorMessages( boolean force, ParserAndValidatorResult result ) {
+        if ( !result.warnings.isEmpty() ) {
+            LOG.info( "Geometrie-Warnungen: {}", result.warnings.size() );
+            for ( String warning : result.warnings )
                 LOG.info( " - {}", warning );
         }
-        LOG.info( "Geometrie-Fehler: {}", errors.size() );
-        for ( String error : errors )
+        LOG.info( "Geometrie-Fehler: {}", result.errors.size() );
+        for ( String error : result.errors )
             LOG.info( " - {}", error );
         if ( !force ) {
             LOG.info( "{} Geometrie-Fehler, {} Geometrie-Warnung(en). Hinweis: Sie k\u00f6nnen das "
-                      + "Importieren des Plans mit der Kommandozeilen-Option --force erzwingen.", errors.size(),
-                      warnings.size() );
-            throw new IllegalArgumentException( "Der Plan kann aufgrund von " + errors.size()
-                                                + " Geometrie-Fehler(n) und " + warnings.size()
-                                                + " Geometrie-Warnung(en) nicht verarbeitet werden." );
+                      + "Importieren des Plans mit der Kommandozeilen-Option --force erzwingen.", result.errors.size(),
+                      result.warnings.size() );
+            throw new IllegalArgumentException(
+                                    "Der Plan kann aufgrund von " + result.errors.size() + " Geometrie-Fehler(n) und "
+                                    + result.warnings.size() + " Geometrie-Warnung(en) nicht verarbeitet werden." );
         } else
             LOG.info( "Fortsetzung trotz Geometrie-Fehlern (--force)." );
     }
 
-    /**
-     * Method object encapsulating the construction and read from the gml stream
-     * 
-     * @author erben
-     */
-    private class PerformReadGmlStream {
+    private List<String> extendMessagesOfBrokenGeometryErrors( GMLStreamReader gmlStream ) {
+        ArrayList<String> extendedBrokenGeometryErrors = new ArrayList<>();
+        List<String> brokenGeometryErrors = gmlStream.getSkippedBrokenGeometryErrors();
+        for ( String brokenGeometryError : brokenGeometryErrors ) {
+            extendedBrokenGeometryErrors.add( brokenGeometryError + " - Achtung: Die Geometrie ist so stark "
+                                              + "besch\u00e4digt, dass sie nicht f\u00fcr die Shapefile- und Bildgenerierung verwendet "
+                                              + "werden kann." );
+        }
+        return extendedBrokenGeometryErrors;
+    }
 
-        private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
+    private class ParserAndValidatorResult {
 
         private List<String> errors = new ArrayList<>();
 
         private List<String> warnings = new ArrayList<>();
 
-        private List<BadGeometry> badList = new ArrayList<>();
-
-        private GMLStreamReader gmlStream;
-
-        private FeatureCollection xplanFeatures;
+        private List<BadGeometry> badGeometries = new ArrayList<>();
 
         private long elapsed;
 
-        PerformReadGmlStream( XPlanArchive archive, ICRS crs, AppSchema schema, List<ValidationOption> voOptions,
-                              String internalId ) throws XMLStreamException, UnknownCRSException {
-            XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper( archive.getMainFileXmlReader(), null );
-            long begin = System.currentTimeMillis();
-            LOG.info( "- Einlesen der Features (+ Geometrievalidierung)..." );
-            GeometryFactory geomFac = new GeometryFactory();
-            XPlanGeometryInspector inspector = new XPlanGeometryInspector( xmlStream, EPSILON, voOptions );
-            geomFac.addInspector( inspector );
-            GMLVersion gmlVersion = archive.getVersion().getGmlVersion();
-            gmlStream = GMLInputFactory.createGMLStreamReader( gmlVersion, xmlStream );
-            gmlStream.setDefaultCRS( crs );
-            gmlStream.setGeometryFactory( geomFac );
-            gmlStream.setApplicationSchema( schema );
-            try {
-                xplanFeatures = (FeatureCollection) gmlStream.readFeature( true );
-                elapsed = System.currentTimeMillis() - begin;
-                errors = inspector.getErrors();
-                List<String> brokenGeometryErrors = extendMessagesOfBrokenGeometryErrors();
-                errors.addAll( brokenGeometryErrors );
-                warnings = inspector.getWarnings();
-                badList = inspector.getBadGeometries();
-            } catch ( XMLParsingException e ) {
-                String msg = "Die geometrische Validierung wurde aufgrund von schwerwiegenden Fehlern abgebrochen. "
-                             + "Das XPlanGML-Dokument (xplan.gml) entspricht nicht dem GML-Schema.";
-                errors.add( msg );
-            }
+        private FeatureCollection xPlanFeatures;
+
+        private void addError( String errorToAdd ) {
+            this.errors.add( errorToAdd );
         }
 
-        List<String> getErrors() {
-            return errors;
+        private void addErrors( List<String> errorsToAdd ) {
+            this.errors.addAll( errorsToAdd );
         }
 
-        public List<BadGeometry> getBadList() {
-            return badList;
+        private void addWarnings( List<String> warningsToAdd ) {
+            this.warnings.addAll( warningsToAdd );
         }
 
-        GMLStreamReader getGmlStream() {
-            return gmlStream;
+        private void addBadGeometries( List<BadGeometry> badGeometries ) {
+            this.badGeometries.addAll( badGeometries );
         }
 
-        FeatureCollection getXplanFeatures() {
-            return xplanFeatures;
+        private void setXplanFeatures( FeatureCollection xPlanFeatures ) {
+            this.xPlanFeatures = xPlanFeatures;
         }
 
-        long getElapsed() {
-            return elapsed;
+        public boolean isValid() {
+            return errors.isEmpty();
         }
-
-        List<String> getWarnings() {
-
-            return warnings;
-        }
-
-        private List<String> extendMessagesOfBrokenGeometryErrors() {
-            ArrayList<String> extendedBrokenGeometryErrors = new ArrayList<>();
-            List<String> brokenGeometryErrors = gmlStream.getSkippedBrokenGeometryErrors();
-            for ( String brokenGeometryError : brokenGeometryErrors ) {
-                extendedBrokenGeometryErrors.add( brokenGeometryError + " - Achtung: Die Geometrie ist so stark "
-                                                  + "besch\u00e4digt, dass sie nicht f\u00fcr die Shapefile- und Bildgenerierung verwendet "
-                                                  + "werden kann." );
-            }
-            return extendedBrokenGeometryErrors;
-        }
-
     }
 
 }

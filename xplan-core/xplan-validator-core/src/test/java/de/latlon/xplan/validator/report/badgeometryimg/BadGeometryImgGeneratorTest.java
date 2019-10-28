@@ -1,5 +1,6 @@
 package de.latlon.xplan.validator.report.badgeometryimg;
 
+import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
@@ -91,7 +92,8 @@ public class BadGeometryImgGeneratorTest {
     private ValidatorReport createReportFromSampleArchive()
                     throws Exception {
         XPlanArchive archive = getTestArchive( "xplan41/FPlan.zip" );
-        GeometricValidatorResult result = (GeometricValidatorResult) validateGeometryAndReturnReport( archive, null );
+        List<ValidationOption> voOptions = Collections.singletonList( SKIP_FLAECHENSCHLUSS );
+        GeometricValidatorResult result = (GeometricValidatorResult) validateGeometryAndReturnReport( archive, voOptions );
         ValidatorReport validatorReport = new ValidatorReport();
         validatorReport.setGeometricValidatorResult( result );
         return validatorReport;
