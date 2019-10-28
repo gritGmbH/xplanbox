@@ -64,7 +64,8 @@ public class FeatureCollectionUtils {
         GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader( gmlVersion, xmlStream );
         gmlStream.setGeometryFactory( new GeometryFactory() );
         gmlStream.setApplicationSchema( appSchema );
-        return (FeatureCollection) gmlStream.readFeature( true );
+        gmlStream.setSkipBrokenGeometries( true );
+        return (FeatureCollection) gmlStream.readFeature();
     }
 
     /**

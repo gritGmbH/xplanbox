@@ -368,7 +368,7 @@ public class XPlanToEditFactoryTest {
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( xplanVersion, null );
         gmlStream.setApplicationSchema( schema );
         gmlStream.setGeometryFactory( geomFac );
-        return (FeatureCollection) gmlStream.readFeature( true );
+        return (FeatureCollection) gmlStream.readFeature();
     }
 
     private Date asDate( String string )
