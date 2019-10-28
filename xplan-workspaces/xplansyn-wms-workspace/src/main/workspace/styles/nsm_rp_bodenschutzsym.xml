@@ -11,32 +11,7 @@
 
         <!--BeseitigungErheblicherBodenbelastungen & SicherungSanierungVonAltlasten-->
 
-        <sld:Rule>
-          <sld:Name>VR_BodenbelastungAltlasten</sld:Name>
-          <sld:Title>VR_BodenbelastungAltlasten</sld:Title>
-          <ogc:Filter>
-            <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:zweckbestimmungBS_NSMCode</ogc:PropertyName>
-              <ogc:Literal>2000</ogc:Literal>
-            </ogc:PropertyIsEqualTo>
-          </ogc:Filter>
-          <sld:PointSymbolizer>
-            <Geometry>
-              <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-            </Geometry>
-            <sld:Graphic>
-              <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Altlasten.svg" />
-                <sld:Format>image/svg</sld:Format>
-              </sld:ExternalGraphic>
-              <sld:Size>
-                <ogc:Literal>43</ogc:Literal>
-              </sld:Size>
-              <sld:Rotation>0</sld:Rotation>
-            </sld:Graphic>
-          </sld:PointSymbolizer>
-        </sld:Rule>
-
+        <!-- Rule wg. symbolPosition entfernt -->
 
       </sld:FeatureTypeStyle>
     </sld:UserStyle>
