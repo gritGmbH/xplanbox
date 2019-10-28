@@ -249,13 +249,13 @@ public class XPlanValidatorTest {
         XPlanValidator validator = spyValidator( geomVal, semVal, synVal );
         XPlanSchemas schemas = mockSchemas();
         validator.setSchemas( schemas );
-        return validator.validate( settings, new File( "" ) );
+        return validator.validate( settings, new File( "" ), "planname" );
     }
 
     private SemanticValidator mockSemanticValidator() {
         SemanticValidator mock = mock( SemanticValidator.class );
         SemanticValidatorResult toBeReturned = new SemanticValidatorResult();
-        toBeReturned.addRule( "name", true, "message" );
+        toBeReturned.addRule( "name", "message", Collections.emptyList() );
         doReturn( toBeReturned ).when( mock ).validateSemantic( archive(), list() );
         return mock;
     }

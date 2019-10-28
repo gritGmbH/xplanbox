@@ -252,6 +252,10 @@ public interface XPlanWebMessages extends Messages {
 
     String rasterTooltipNotSupportedImageFormat();
 
+    String rasterNameAndGeoreferencNameNotSame();
+
+    String rasterAndGeoreferencNotChanged();
+
     String editButtonTooltip();
 
     String editButtonTooltipPermissionDenied();

@@ -1,0 +1,23 @@
+pipeline {
+  agent any
+  triggers { cron( @midnight ) }
+  tools {
+    maven 'maven361'
+    jdk 'openjdk8'
+  }
+  stages {
+    stage('Preparation') {
+      steps{
+        deleteDir()
+        git credentialsId: 'latlon-CI-bitbucket', url: 'https://bitbucket.org/latlon/xplanbox.git'
+
+      }
+    }
+    stage('Build') {
+      steps{
+        sh 'mvn --version'
+        sh 'mvn clean package -Pdocker'
+      }
+    }
+  }
+}

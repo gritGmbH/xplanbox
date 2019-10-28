@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
-import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.DoubleBox;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -23,7 +19,7 @@ import de.latlon.xplan.validator.web.shared.ValidationOption;
  * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
-class ExtendedOptionsDialog extends DialogBox {
+class ExtendedOptionsPanel extends HorizontalPanel {
 
     private static final ValidatorWebCommonsMessages messages = GWT.create( ValidatorWebCommonsMessages.class );
 
@@ -41,9 +37,7 @@ class ExtendedOptionsDialog extends DialogBox {
 
     private DoubleBox minNodeDistanceUnit;
 
-    public ExtendedOptionsDialog() {
-        super( false, true );
-        setText( messages.extendedOptionsDialogTitle() );
+    public ExtendedOptionsPanel() {
         initDialog();
     }
 
@@ -64,7 +58,6 @@ class ExtendedOptionsDialog extends DialogBox {
         HorizontalPanel minNodeDistancePanel = createMinNodeDistancePanel();
         CheckBox ignoreOther = new CheckBox( messages.ignoreOther() );
         CheckBox ignorePresentation = new CheckBox( messages.ignorePresentation() );
-        HorizontalPanel buttonsPanel = createButtonsPanel();
 
         VerticalPanel verticalPanel = new VerticalPanel();
         verticalPanel.setSpacing( 10 );
@@ -73,7 +66,6 @@ class ExtendedOptionsDialog extends DialogBox {
         verticalPanel.add( minNodeDistancePanel );
         verticalPanel.add( ignoreOther );
         verticalPanel.add( ignorePresentation );
-        verticalPanel.add( buttonsPanel );
 
         add( verticalPanel );
     }
@@ -92,19 +84,4 @@ class ExtendedOptionsDialog extends DialogBox {
         return baseDistancePanel;
     }
 
-    private HorizontalPanel createButtonsPanel() {
-        Button saveButton = createSaveButton();
-        HorizontalPanel buttonsPanel = new HorizontalPanel();
-        buttonsPanel.setSpacing( 20 );
-        buttonsPanel.add( saveButton );
-        return buttonsPanel;
-    }
-
-    private Button createSaveButton() {
-        return new Button( messages.validationPopupSave(), new ClickHandler() {
-            public void onClick( ClickEvent event ) {
-                hide();
-            }
-        } );
-    }
 }

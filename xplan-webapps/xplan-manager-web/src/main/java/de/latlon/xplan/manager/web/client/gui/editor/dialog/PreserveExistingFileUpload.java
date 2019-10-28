@@ -72,6 +72,7 @@ public class PreserveExistingFileUpload extends VerticalPanel implements Validab
 
     private final Label existingFile = new Label();
 
+    private boolean isNewFileUploaded = false;
     /**
      * @param nameOfTheFileUploadField
      *            the name of the {@link FileUpload} element used to upload a new file, never <code>null</code>
@@ -131,6 +132,19 @@ public class PreserveExistingFileUpload extends VerticalPanel implements Validab
      */
     public void addChangeHandler( ChangeHandler changeHandler ) {
         selectedFile.addChangeHandler( changeHandler );
+        selectedFile.addChangeHandler( new ChangeHandler() {
+            @Override
+            public void onChange( ChangeEvent changeEvent ) {
+                isNewFileUploaded = true;
+            }
+        } );
+    }
+
+    /**
+     * @return <code>true</code> if a new file was uploaded, <code>false</code> otherwise
+     */
+    public boolean isNewFileUploaded() {
+        return isNewFileUploaded;
     }
 
     private void initPanel() {

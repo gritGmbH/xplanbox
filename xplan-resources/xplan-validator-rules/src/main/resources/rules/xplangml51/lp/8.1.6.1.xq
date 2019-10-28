@@ -1,11 +1,13 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
 declare namespace gml='http://www.opengis.net/gml/3.2';
-declare namespace xlink='http://www.w3.org/1999/xlink';
 
-every $h in //LP_Abgrenzung/position satisfies
-exists($h/position/gml:Curve) or
-exists($h/position/gml:LineString) or
-exists($h/position/gml:MultiCurve) or
-exists($h/position/gml:LineStringSegment) or
-exists($h/position/gml:Arc) or
-exists($h/position/gml:Circle)
+for $h in //LP_Abgrenzung
+where not (
+	$h/position/gml:Curve or
+	$h/position/gml:LineString or
+	$h/position/gml:MultiCurve or
+	$h/position/gml:LineStringSegment or
+	$h/position/gml:Arc or
+	$h/position/gml:Circle
+)
+return $h/@gml:id/string()

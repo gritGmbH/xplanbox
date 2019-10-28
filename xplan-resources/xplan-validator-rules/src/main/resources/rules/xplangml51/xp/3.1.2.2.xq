@@ -2,34 +2,172 @@ declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
 declare namespace gml = 'http://www.opengis.net/gml/3.2';
 declare namespace xlink = 'http://www.w3.org/1999/xlink';
 
-declare variable $featuretypes := ('BP_AbgrabungsFlaeche', 'BP_AufschuettungsFlaeche', 'BP_AusgleichsFlaeche', 'BP_BesondererNutzungszweckFlaeche', 'BP_BodenschaetzeFlaeche', 'BP_Flaechenschlussobjekt', 'BP_KennzeichnungsFlaeche', 'BP_RekultivierungsFlaeche', 'BP_SchutzPflegeEntwicklungsFlaeche', 'BP_AbstandsFlaeche', 'BP_EingriffsBereich', 'BP_ErhaltungsBereichFlaeche', 'BP_FoerderungsFlaeche', 'BP_FreiFlaeche', 'BP_GebaeudeFlaeche', 'BP_GemeinschaftsanlagenFlaeche', 'BP_NebenanlagenAusschlussFlaeche', 'BP_NebenanlagenFlaeche', 'BP_NichtUeberbaubareGrundstuecksflaeche', 'BP_PersGruppenBestimmteFlaeche', 'BP_RegelungVergnuegungsstaetten', 'BP_SpezielleBauweise', 'BP_TechnischeMassnahmenFlaeche', 'BP_TextlicheFestsetzungsFlaeche', 'BP_UeberbaubareGrundstuecksFlaeche', 'BP_Veraenderungssperre', 'BP_WasserwirtschaftsFlaeche', 'BP_AbstandsMass', 'BP_AnpflanzungBindungErhaltung', 'BP_AusgleichsMassnahme', 'BP_FestsetzungNachLandesrecht', 'BP_GemeinschaftsanlagenZuordnung', 'BP_GenerischesObjekt', 'BP_HoehenMass', 'BP_Immissionsschutz', 'BP_Landwirtschaft', 'BP_SchutzPflegeEntwicklungsMassnahme', 'BP_Strassenkoerper', 'BP_UnverbindlicheVormerkung', 'BP_VerEntsorgung', 'BP_Wegerecht', 'BP_BaugebietsTeilFlaeche', 'BP_GemeinbedarfsFlaeche', 'BP_GewaesserFlaeche', 'BP_GruenFlaeche', 'BP_KleintierhaltungFlaeche', 'BP_LandwirtschaftsFlaeche', 'BP_SpielSportanlagenFlaeche', 'BP_StrassenVerkehrsFlaeche', 'BP_VerkehrsflaecheBesondererZweckbestimmung', 'BP_WaldFlaeche', 'BP_BauGrenze', 'BP_BauLinie', 'BP_BereichOhneEinAusfahrtLinie', 'BP_EinfahrtsbereichLinie', 'BP_FirstRichtungsLinie', 'BP_NutzungsartenGrenze', 'BP_StrassenbegrenzungsLinie', 'BP_EinfahrtPunkt', 'FP_AusgleichsFlaeche', 'FP_Flaechenschlussobjekt', 'FP_BebauungsFlaeche', 'FP_LandwirtschaftsFlaeche', 'FP_WaldFlaeche', 'FP_KeineZentrAbwasserBeseitigungFlaeche', 'FP_NutzungsbeschraenkungsFlaeche', 'FP_TextlicheDarstellungsFlaeche', 'FP_ZentralerVersorgungsbereich', 'FP_VorbehalteFlaeche', 'FP_Abgrabung', 'FP_AnpassungKlimawandel', 'FP_Aufschuettung', 'FP_Bodenschaetze', 'FP_Gemeinbedarf', 'FP_GenerischesObjekt', 'FP_Gewaesser', 'FP_Gruen', 'FP_Kennzeichnung', 'FP_PrivilegiertesVorhaben', 'FP_SchutzPflegeEntwicklung', 'FP_SpielSportanlage', 'FP_Strassenverkehr', 'FP_UnverbindlicheVormerkung', 'FP_VerEntsorgung', 'FP_Wasserwirtschaft', 'LP_AllgGruenflaeche', 'LP_TextlicheFestsetzungsFlaeche', 'LP_ZuBegruenendeGrundstueckflaeche', 'LP_AnpflanzungBindungErhaltung', 'LP_Ausgleich', 'LP_Biotopverbundflaeche', 'LP_Bodenschutzrecht', 'LP_ErholungFreizeit', 'LP_Forstrecht', 'LP_GenerischesObjekt', 'LP_Landschaftsbild', 'LP_NutzungsAusschluss', 'LP_NutzungserfordernisRegelung', 'LP_PlanerischeVertiefung', 'LP_SchutzobjektInternatRecht', 'LP_SchutzobjektLandesrecht', 'LP_SchutzPflegeEntwicklung', 'LP_SonstigesRecht', 'LP_WasserrechtGemeingebrEinschraenkungNaturschutz', 'LP_WasserrechtSchutzgebiet', 'LP_WasserrechtSonstige', 'LP_WasserrechtWirtschaftAbflussHochwSchutz', 'LP_Zwischennutzung', 'LP_Abgrenzung', 'RP_Achse', 'RP_Energieversorgung', 'RP_Entsorgung', 'RP_Freiraum', 'RP_Bodenschutz', 'RP_Erholung', 'RP_ErneuerbareEnergie', 'RP_Forstwirtschaft', 'RP_Gewaesser', 'RP_GruenzugGruenzaesur', 'RP_Hochwasserschutz', 'RP_Klimaschutz', 'RP_Kulturlandschaft', 'RP_Landwirtschaft', 'RP_NaturLandschaft', 'RP_NaturschutzrechtlichesSchutzgebiet', 'RP_RadwegWanderweg', 'RP_Rohstoff', 'RP_SonstigerFreiraumschutz', 'RP_Sportanlage', 'RP_Wasserschutz', 'RP_Funktionszuweisung', 'RP_GenerischesObjekt', 'RP_Grenze', 'RP_Kommunikation', 'RP_LaermschutzBauschutz', 'RP_Planungsraum', 'RP_Raumkategorie', 'RP_Siedlung', 'RP_Einzelhandel', 'RP_IndustrieGewerbe', 'RP_SonstigerSiedlungsbereich', 'RP_WohnenSiedlung', 'RP_SonstigeInfrastruktur', 'RP_SozialeInfrastruktur', 'RP_Sperrgebiet', 'RP_Verkehr', 'RP_Luftverkehr', 'RP_Schienenverkehr', 'RP_SonstVerkehr', 'RP_Strassenverkehr', 'RP_Wasserverkehr', 'RP_Wasserwirtschaft', 'RP_ZentralerOrt', 'SO_Objekt', 'SO_Gebiet', 'SO_Bodenschutzrecht', 'SO_Denkmalschutzrecht', 'SO_Forstrecht', 'SO_Luftverkehrsrecht', 'SO_Schienenverkehrsrecht', 'SO_SchutzgebietNaturschutzrecht', 'SO_SchutzgebietSonstigesRecht', 'SO_SchutzgebietWasserrecht', 'SO_SonstigesRecht', 'SO_Strassenverkehrsrecht', 'SO_Wasserrecht', 'SO_Grenze');
-
-declare function local:refPlaninhalt($rootNode as node(), $id as xs:string)
-as xs:boolean {
-    let $feature := $rootNode//*[@gml:id = $id]
-    return $feature and index-of($featuretypes, local-name($feature))
-};
-
-declare variable $xplanauszug := //XPlanAuszug;
-
-(
-    every $h in //BP_Bereich/planinhalt/@xlink:href satisfies
-    let $id := substring($h, 2)
-    return local:refPlaninhalt($xplanauszug, $id)
-) and (
-    every $h in //FP_Bereich/planinhalt/@xlink:href satisfies
-    let $id := substring($h, 2)
-    return local:refPlaninhalt($xplanauszug, $id)
-) and (
-    every $h in //LP_Bereich/planinhalt/@xlink:href satisfies
-    let $id := substring($h, 2)
-    return local:refPlaninhalt($xplanauszug, $id)
-) and (
-    every $h in //RP_Bereich/planinhalt/@xlink:href satisfies
-    let $id := substring($h, 2)
-    return local:refPlaninhalt($xplanauszug, $id)
-) and (
-    every $h in //SO_Bereich/planinhalt/@xlink:href satisfies
-    let $id := substring($h, 2)
-    return local:refPlaninhalt($xplanauszug, $id)
+for $id in //planinhalt/@xlink:href/string()
+where not(
+	//BP_AbgrabungsFlaeche[@gml:id eq substring($id,2)] or
+	//BP_AufschuettungsFlaeche[@gml:id eq substring($id,2)] or
+	//BP_AusgleichsFlaeche[@gml:id eq substring($id,2)] or
+	//BP_BesondererNutzungszweckFlaeche[@gml:id eq substring($id,2)] or
+	//BP_BodenschaetzeFlaeche[@gml:id eq substring($id,2)] or
+	//BP_Flaechenschlussobjekt[@gml:id eq substring($id,2)] or
+	//BP_KennzeichnungsFlaeche[@gml:id eq substring($id,2)] or
+	//BP_RekultivierungsFlaeche[@gml:id eq substring($id,2)] or
+	//BP_SchutzPflegeEntwicklungsFlaeche[@gml:id eq substring($id,2)] or
+	//BP_AbstandsFlaeche[@gml:id eq substring($id,2)] or
+	//BP_EingriffsBereich[@gml:id eq substring($id,2)] or
+	//BP_ErhaltungsBereichFlaeche[@gml:id eq substring($id,2)] or
+	//BP_FoerderungsFlaeche[@gml:id eq substring($id,2)] or
+	//BP_FreiFlaeche[@gml:id eq substring($id,2)] or
+	//BP_GebaeudeFlaeche[@gml:id eq substring($id,2)] or
+	//BP_GemeinschaftsanlagenFlaeche[@gml:id eq substring($id,2)] or
+	//BP_NebenanlagenAusschlussFlaeche[@gml:id eq substring($id,2)] or
+	//BP_NebenanlagenFlaeche[@gml:id eq substring($id,2)] or
+	//BP_PersGruppenBestimmteFlaeche[@gml:id eq substring($id,2)] or
+	//BP_RegelungVergnuegungsstaetten[@gml:id eq substring($id,2)] or
+	//BP_SpezielleBauweise[@gml:id eq substring($id,2)] or
+	//BP_TechnischeMassnahmenFlaeche[@gml:id eq substring($id,2)] or
+	//BP_TextlicheFestsetzungsFlaeche[@gml:id eq substring($id,2)] or
+	//BP_UeberbaubareGrundstuecksFlaeche[@gml:id eq substring($id,2)] or
+	//BP_Veraenderungssperre[@gml:id eq substring($id,2)] or
+	//BP_WasserwirtschaftsFlaeche[@gml:id eq substring($id,2)] or
+	//BP_AbstandsMass[@gml:id eq substring($id,2)] or
+	//BP_AnpflanzungBindungErhaltung[@gml:id eq substring($id,2)] or
+	//BP_AusgleichsMassnahme[@gml:id eq substring($id,2)] or
+	//BP_FestsetzungNachLandesrecht[@gml:id eq substring($id,2)] or
+	//BP_GemeinschaftsanlagenZuordnung[@gml:id eq substring($id,2)] or
+	//BP_GenerischesObjekt[@gml:id eq substring($id,2)] or
+	//BP_HoehenMass[@gml:id eq substring($id,2)] or
+	//BP_Immissionsschutz[@gml:id eq substring($id,2)] or
+	//BP_Landwirtschaft[@gml:id eq substring($id,2)] or
+	//BP_SchutzPflegeEntwicklungsMassnahme[@gml:id eq substring($id,2)] or
+	//BP_Strassenkoerper[@gml:id eq substring($id,2)] or
+	//BP_UnverbindlicheVormerkung[@gml:id eq substring($id,2)] or
+	//BP_VerEntsorgung[@gml:id eq substring($id,2)] or
+	//BP_Wegerecht[@gml:id eq substring($id,2)] or
+	//BP_BauGrenze[@gml:id eq substring($id,2)] or
+	//BP_BauLinie[@gml:id eq substring($id,2)] or
+	//BP_BereichOhneEinAusfahrtLinie[@gml:id eq substring($id,2)] or
+	//BP_EinfahrtsbereichLinie[@gml:id eq substring($id,2)] or
+	//BP_FirstRichtungsLinie[@gml:id eq substring($id,2)] or
+	//BP_NutzungsartenGrenze[@gml:id eq substring($id,2)] or
+	//BP_StrassenbegrenzungsLinie[@gml:id eq substring($id,2)] or
+	//BP_EinfahrtPunkt[@gml:id eq substring($id,2)] or
+	//BP_BaugebietsTeilFlaeche[@gml:id eq substring($id,2)] or
+	//BP_GemeinbedarfsFlaeche[@gml:id eq substring($id,2)] or
+	//BP_GewaesserFlaeche[@gml:id eq substring($id,2)] or
+	//BP_GruenFlaeche[@gml:id eq substring($id,2)] or
+	//BP_KleintierhaltungFlaeche[@gml:id eq substring($id,2)] or
+	//BP_SpielSportanlagenFlaeche[@gml:id eq substring($id,2)] or
+	//BP_StrassenVerkehrsFlaeche[@gml:id eq substring($id,2)] or
+	//BP_VerkehrsflaecheBesondererZweckbestimmung[@gml:id eq substring($id,2)] or
+	//BP_WaldFlaeche[@gml:id eq substring($id,2)] or
+	//FP_AusgleichsFlaeche[@gml:id eq substring($id,2)] or
+	//FP_Flaechenschlussobjekt[@gml:id eq substring($id,2)] or
+	//FP_BebauungsFlaeche[@gml:id eq substring($id,2)] or
+	//FP_LandwirtschaftsFlaeche[@gml:id eq substring($id,2)] or
+	//FP_WaldFlaeche[@gml:id eq substring($id,2)] or
+	//FP_KeineZentrAbwasserBeseitigungFlaeche[@gml:id eq substring($id,2)] or
+	//FP_NutzungsbeschraenkungsFlaeche[@gml:id eq substring($id,2)] or
+	//FP_TextlicheDarstellungsFlaeche[@gml:id eq substring($id,2)] or
+	//FP_ZentralerVersorgungsbereich[@gml:id eq substring($id,2)] or
+	//FP_VorbehalteFlaeche[@gml:id eq substring($id,2)] or
+	//FP_Abgrabung[@gml:id eq substring($id,2)] or
+	//FP_AnpassungKlimawandel[@gml:id eq substring($id,2)] or
+	//FP_Aufschuettung[@gml:id eq substring($id,2)] or
+	//FP_Bodenschaetze[@gml:id eq substring($id,2)] or
+	//FP_Gemeinbedarf[@gml:id eq substring($id,2)] or
+	//FP_GenerischesObjekt[@gml:id eq substring($id,2)] or
+	//FP_Gewaesser[@gml:id eq substring($id,2)] or
+	//FP_Gruen[@gml:id eq substring($id,2)] or
+	//FP_Kennzeichnung[@gml:id eq substring($id,2)] or
+	//FP_PrivilegiertesVorhaben[@gml:id eq substring($id,2)] or
+	//FP_SchutzPflegeEntwicklung[@gml:id eq substring($id,2)] or
+	//FP_SpielSportanlage[@gml:id eq substring($id,2)] or
+	//FP_Strassenverkehr[@gml:id eq substring($id,2)] or
+	//FP_UnverbindlicheVormerkung[@gml:id eq substring($id,2)] or
+	//FP_VerEntsorgung[@gml:id eq substring($id,2)] or
+	//FP_Wasserwirtschaft[@gml:id eq substring($id,2)] or
+	//LP_AllgGruenflaeche[@gml:id eq substring($id,2)] or
+	//LP_TextlicheFestsetzungsFlaeche[@gml:id eq substring($id,2)] or
+	//LP_ZuBegruenendeGrundstueckflaeche[@gml:id eq substring($id,2)] or
+	//LP_AnpflanzungBindungErhaltung[@gml:id eq substring($id,2)] or
+	//LP_Ausgleich[@gml:id eq substring($id,2)] or
+	//LP_Biotopverbundflaeche[@gml:id eq substring($id,2)] or
+	//LP_Bodenschutzrecht[@gml:id eq substring($id,2)] or
+	//LP_ErholungFreizeit[@gml:id eq substring($id,2)] or
+	//LP_Forstrecht[@gml:id eq substring($id,2)] or
+	//LP_GenerischesObjekt[@gml:id eq substring($id,2)] or
+	//LP_Landschaftsbild[@gml:id eq substring($id,2)] or
+	//LP_NutzungsAusschluss[@gml:id eq substring($id,2)] or
+	//LP_NutzungserfordernisRegelung[@gml:id eq substring($id,2)] or
+	//LP_PlanerischeVertiefung[@gml:id eq substring($id,2)] or
+	//LP_SchutzobjektInternatRecht[@gml:id eq substring($id,2)] or
+	//LP_SchutzobjektLandesrecht[@gml:id eq substring($id,2)] or
+	//LP_SchutzPflegeEntwicklung[@gml:id eq substring($id,2)] or
+	//LP_SonstigesRecht[@gml:id eq substring($id,2)] or
+	//LP_WasserrechtGemeingebrEinschraenkungNaturschutz[@gml:id eq substring($id,2)] or
+	//LP_WasserrechtSchutzgebiet[@gml:id eq substring($id,2)] or
+	//LP_WasserrechtSonstige[@gml:id eq substring($id,2)] or
+	//LP_WasserrechtWirtschaftAbflussHochwSchutz[@gml:id eq substring($id,2)] or
+	//LP_Zwischennutzung[@gml:id eq substring($id,2)] or
+	//LP_Abgrenzung[@gml:id eq substring($id,2)] or
+	//RP_Achse[@gml:id eq substring($id,2)] or
+	//RP_Energieversorgung[@gml:id eq substring($id,2)] or
+	//RP_Entsorgung[@gml:id eq substring($id,2)] or
+	//RP_Freiraum[@gml:id eq substring($id,2)] or
+	//RP_Bodenschutz[@gml:id eq substring($id,2)] or
+	//RP_Erholung[@gml:id eq substring($id,2)] or
+	//RP_ErneuerbareEnergie[@gml:id eq substring($id,2)] or
+	//RP_Forstwirtschaft[@gml:id eq substring($id,2)] or
+	//RP_Gewaesser[@gml:id eq substring($id,2)] or
+	//RP_GruenzugGruenzaesur[@gml:id eq substring($id,2)] or
+	//RP_Hochwasserschutz[@gml:id eq substring($id,2)] or
+	//RP_Klimaschutz[@gml:id eq substring($id,2)] or
+	//RP_Kulturlandschaft[@gml:id eq substring($id,2)] or
+	//RP_Landwirtschaft[@gml:id eq substring($id,2)] or
+	//RP_NaturLandschaft[@gml:id eq substring($id,2)] or
+	//RP_NaturschutzrechtlichesSchutzgebiet[@gml:id eq substring($id,2)] or
+	//RP_RadwegWanderweg[@gml:id eq substring($id,2)] or
+	//RP_Rohstoff[@gml:id eq substring($id,2)] or
+	//RP_SonstigerFreiraumschutz[@gml:id eq substring($id,2)] or
+	//RP_Sportanlage[@gml:id eq substring($id,2)] or
+	//RP_Wasserschutz[@gml:id eq substring($id,2)] or
+	//RP_Funktionszuweisung[@gml:id eq substring($id,2)] or
+	//RP_GenerischesObjekt[@gml:id eq substring($id,2)] or
+	//RP_Grenze[@gml:id eq substring($id,2)] or
+	//RP_Kommunikation[@gml:id eq substring($id,2)] or
+	//RP_LaermschutzBauschutz[@gml:id eq substring($id,2)] or
+	//RP_Planungsraum[@gml:id eq substring($id,2)] or
+	//RP_Raumkategorie[@gml:id eq substring($id,2)] or
+	//RP_Siedlung[@gml:id eq substring($id,2)] or
+	//RP_Einzelhandel[@gml:id eq substring($id,2)] or
+	//RP_IndustrieGewerbe[@gml:id eq substring($id,2)] or
+	//RP_SonstigerSiedlungsbereich[@gml:id eq substring($id,2)] or
+	//RP_WohnenSiedlung[@gml:id eq substring($id,2)] or
+	//RP_SonstigeInfrastruktur[@gml:id eq substring($id,2)] or
+	//RP_SozialeInfrastruktur[@gml:id eq substring($id,2)] or
+	//RP_Sperrgebiet[@gml:id eq substring($id,2)] or
+	//RP_Verkehr[@gml:id eq substring($id,2)] or
+	//RP_Luftverkehr[@gml:id eq substring($id,2)] or
+	//RP_Schienenverkehr[@gml:id eq substring($id,2)] or
+	//RP_SonstVerkehr[@gml:id eq substring($id,2)] or
+	//RP_Strassenverkehr[@gml:id eq substring($id,2)] or
+	//RP_Wasserverkehr[@gml:id eq substring($id,2)] or
+	//RP_Wasserwirtschaft[@gml:id eq substring($id,2)] or
+	//RP_ZentralerOrt[@gml:id eq substring($id,2)] or
+	//SO_Objekt[@gml:id eq substring($id,2)] or
+	//SO_Gebiet[@gml:id eq substring($id,2)] or
+	//SO_Bodenschutzrecht[@gml:id eq substring($id,2)] or
+	//SO_Denkmalschutzrecht[@gml:id eq substring($id,2)] or
+	//SO_Forstrecht[@gml:id eq substring($id,2)] or
+	//SO_Luftverkehrsrecht[@gml:id eq substring($id,2)] or
+	//SO_Schienenverkehrsrecht[@gml:id eq substring($id,2)] or
+	//SO_SchutzgebietNaturschutzrecht[@gml:id eq substring($id,2)] or
+	//SO_SchutzgebietSonstigesRecht[@gml:id eq substring($id,2)] or
+	//SO_SchutzgebietWasserrecht[@gml:id eq substring($id,2)] or
+	//SO_SonstigesRecht[@gml:id eq substring($id,2)] or
+	//SO_Strassenverkehrsrecht[@gml:id eq substring($id,2)] or
+	//SO_Wasserrecht[@gml:id eq substring($id,2)] or
+	//SO_Grenze[@gml:id eq substring($id,2)]
 )
+return substring($id,2)

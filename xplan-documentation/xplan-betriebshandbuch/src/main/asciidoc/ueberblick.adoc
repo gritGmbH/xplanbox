@@ -15,11 +15,11 @@ diesem Kapitel beschriebenen Voraussetzungen erfüllt werden.
 === Betriebssystem
 
 Als Betriebssystem kann ein beliebiges 64-bit Betriebssystem verwendet
-werden, das Java SE 7
+werden, das Java SE 8
 (http://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle
-JRE 1.7]) unterstützt.
+JRE 1.8]) unterstützt.
 
-NOTE: Empfohlen wird Oracle JDK 1.7_45+.
+NOTE: Empfohlen wird Oracle JDK 1.8_202+.
 
 NOTE: Empfohlen wird die Nutzung eines der folgenden Betriebssysteme: Debian
 Wheezy, SLES 11 SP4, Oracle Linux 7, CentOS 7.x, Windows Server 2008
@@ -34,7 +34,7 @@ angepasst werden.
 [[java-applikationsserver]]
 === Java Applikationsserver
 
-Als Applikationsserver wird Apache Tomcat in der Version 7 empfohlen.
+Als Applikationsserver wird Apache Tomcat empfohlen.
 Das Installationsarchiv findet sich bei der
 http://tomcat.apache.org[Apache Foundation]. Diese Dokumentation bezieht
 sich grundsätzlich auf den Apache Tomcat. Um eine spätere Trennung der
@@ -42,15 +42,15 @@ Dienste (Web-Anwendungen) zu gewährleisten, werden zwei
 Tomcat-Installationen empfohlen.
 
 NOTE: Die minimale Anforderung an den Applikationsserver ist das Java EE 6 Web
-Profil. Empfohlen wird Apache Tomcat Version 7.0.32+.
+Profil. Empfohlen wird Apache Tomcat Version 8.5.46+ oder 9.0.27+.
 
 [[datenbank]]
 === Datenbank
 
-Als Datenbanksystem ist eine Installation von PostgreSQL 9.3+ mit der
-Erweiterung PostGIS 2.3+ erforderlich.
+Als Datenbanksystem ist eine Installation von PostgreSQL 9.4+ mit der
+Erweiterung PostGIS 2.3+ mindestens erforderlich.
 
-NOTE: Empfohlen wird PostgreSQL 9.6+ mit PostGIS 2.4+.
+NOTE: Empfohlen wird PostgreSQL 11+ mit PostGIS 2.5+.
 
 === GDAL
 

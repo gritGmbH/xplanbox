@@ -1,4 +1,11 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-every $h in //FP_SpielSportanlage[detaillierteZweckbestimmung] satisfies
-count($h/zweckbestimmung) >= count($h/detaillierteZweckbestimmung)
+for $h in //FP_SpielSportanlage
+where (
+	count($h/detaillierteZweckbestimmung) >= 1
+	and not ( 
+		count($h/zweckbestimmung) >= count($h/detaillierteZweckbestimmung)
+	)
+)
+return $h/@gml:id/string()

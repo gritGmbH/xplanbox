@@ -6,30 +6,5 @@
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:LP_SchutzobjektInternatRecht</FeatureTypeName>
   <!-- Fläche -->
-  <Rule>
-    <Name>lp_schutzobjinterrecht</Name>
-    <Description>
-      <Title>LP: Schutzobjekt Internationales Recht</Title>
-    </Description>
-
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>circle</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#FFFFFF</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-            <SvgParameter name="stroke-width">0.3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>25</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
 </FeatureTypeStyle>

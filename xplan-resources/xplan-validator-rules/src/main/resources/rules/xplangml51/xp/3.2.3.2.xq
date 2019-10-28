@@ -1,4 +1,8 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-every $h in //XP_Hoehenangabe[hoehenbezug/text() = '3000'] satisfies
-  exists($h/bezugshoehe)
+for $h in //XP_Hoehenangabe[hoehenbezug/text() = '3000']
+where not (
+	//*[ends-with(name(), '_Plan')]/bezugshoehe
+)
+return $h/../../@gml:id/string()

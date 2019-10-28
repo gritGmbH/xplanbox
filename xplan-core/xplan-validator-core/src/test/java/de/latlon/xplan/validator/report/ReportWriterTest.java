@@ -59,7 +59,7 @@ public class ReportWriterTest {
     @Test
     public void testWriteArtefacts_ShouldHaveSubdirectoryWithArtifacts()
                             throws Exception {
-        reportWriter.writeArtefacts( createReport(), PLAN_NAME, VALIDATION_NAME, targetDirectory );
+        reportWriter.writeArtefacts( createReport(), targetDirectory );
 
         assertThat( targetDirectory, containsFile( VALIDATION_NAME + ".html" ) );
         assertThat( targetDirectory, containsFile( VALIDATION_NAME + ".pdf" ) );
@@ -70,7 +70,7 @@ public class ReportWriterTest {
 
     @Test
     public void testWriteArtefacts_WithFailure() {
-        reportWriter.writeArtefacts( createReportThrowingFailure(), PLAN_NAME, VALIDATION_NAME, targetDirectory );
+        reportWriter.writeArtefacts( createReportThrowingFailure(), targetDirectory );
 
         assertThat( targetDirectory, containsFile( "error.log" ) );
     }
@@ -78,7 +78,7 @@ public class ReportWriterTest {
     @Test
     public void testRetrieveHtmlReport_ShouldExistWithCorrectName()
                             throws Exception {
-        reportWriter.writeArtefacts( createReport(), PLAN_NAME, VALIDATION_NAME, targetDirectory );
+        reportWriter.writeArtefacts( createReport(), targetDirectory );
 
         File htmlReport = reportWriter.retrieveHtmlReport( VALIDATION_NAME, targetDirectory );
 
@@ -89,7 +89,7 @@ public class ReportWriterTest {
     @Test
     public void testWriteZipWithArtifacts_ShouldContainHtml()
                             throws Exception {
-        reportWriter.writeArtefacts( createReport(), PLAN_NAME, VALIDATION_NAME, targetDirectory );
+        reportWriter.writeArtefacts( createReport(), targetDirectory );
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         reportWriter.writeZipWithArtifacts( outputStream, VALIDATION_NAME, Collections.singletonList( HTML ),
@@ -101,7 +101,7 @@ public class ReportWriterTest {
     @Test
     public void testWriteZipWithArtifacts_WithFailure()
                             throws Exception {
-        reportWriter.writeArtefacts( createReportThrowingFailure(), PLAN_NAME, VALIDATION_NAME, targetDirectory );
+        reportWriter.writeArtefacts( createReportThrowingFailure(), targetDirectory );
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         reportWriter.writeZipWithArtifacts( outputStream, VALIDATION_NAME, Collections.singletonList( HTML ),
@@ -122,11 +122,15 @@ public class ReportWriterTest {
                                                                         badGeometries, crs, false );
         ValidatorReport report = new ValidatorReport();
         report.setGeometricValidatorResult( result );
+        report.setPlanName( PLAN_NAME );
+        report.setValidationName( VALIDATION_NAME );
         return report;
     }
 
     private ValidatorReport createReportThrowingFailure() {
         ValidatorReport report = mock( ValidatorReport.class );
+        when( report.getPlanName() ).thenReturn( PLAN_NAME );
+        when( report.getValidationName() ).thenReturn( VALIDATION_NAME );
         when( report.getGeometricValidatorResult() ).thenThrow( new IllegalArgumentException( FAILURE ) );
         return report;
     }

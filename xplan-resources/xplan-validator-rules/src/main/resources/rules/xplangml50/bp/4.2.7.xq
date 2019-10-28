@@ -1,46 +1,10 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/0';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-(
-  every $h in //BP_BaugebietsTeilFlaeche satisfies
-  ($h/GRZmin and $h/GRZmax) or $h/GRZ or not($h/GRZmin and $h/GRZmax and $h/GRZ)
+for $h in //*[matches(name(), 'GRZ')]
+where not (
+  ($h/../GRZmin and $h/../GRZmax and not ($h/../GRZ)) or
+  ($h/../GRZ and not ($h/../GRZmin or $h/../GRZmax))
 )
-and
-(
-  every $h in //BP_BesondererNutzungszweckFlaeche satisfies
-  ($h/GRZmin and $h/GRZmax) or $h/GRZ or not($h/GRZmin and $h/GRZmax and $h/GRZ)
-)
-and
-(
-  every $h in //BP_UeberbaubareGrundstuecksFlaeche satisfies
-  ($h/GRZmin and $h/GRZmax) or $h/GRZ or not($h/GRZmin and $h/GRZmax and $h/GRZ)
-)
-and
-(
-  every $h in //BP_GemeinbedarfsFlaeche satisfies
-  ($h/GRZmin and $h/GRZmax) or $h/GRZ or not($h/GRZmin and $h/GRZmax and $h/GRZ)
-)
-and
-(
-  every $h in //BP_GruenFlaeche satisfies
-  ($h/GRZmin and $h/GRZmax) or $h/GRZ or not($h/GRZmin and $h/GRZmax and $h/GRZ)
-)
-and
-(
-  every $h in //BP_SpielSportanlagenFlaeche satisfies
-  ($h/GRZmin and $h/GRZmax) or $h/GRZ or not($h/GRZmin and $h/GRZmax and $h/GRZ)
-)
-and
-(
-  every $h in //BP_StrassenVerkehrsFlaeche satisfies
-  ($h/GRZmin and $h/GRZmax) or $h/GRZ or not($h/GRZmin and $h/GRZmax and $h/GRZ)
-)
-and
-(
-  every $h in //BP_VerEntsorgung satisfies
-  ($h/GRZmin and $h/GRZmax) or $h/GRZ or not($h/GRZmin and $h/GRZmax and $h/GRZ)
-)
-and
-(
-  every $h in //BP_VerkehrsflaecheBesondererZweckbestimmung satisfies
-  ($h/GRZmin and $h/GRZmax) or $h/GRZ or not($h/GRZmin and $h/GRZmax and $h/GRZ)
-)
+group by $oId := $h/../@gml:id/string()
+return $oId

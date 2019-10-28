@@ -130,26 +130,7 @@
         <Size>35</Size>
       </Graphic>
     </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>circle</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-            <SvgParameter name="stroke-width">0.3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
+    <!-- PointSymbolizer wg. symbolPosition entfernt -->
   </Rule>
   <!-- SchutzgebietOberflaechengewaesser Punkt -->
   <Rule>
@@ -193,26 +174,7 @@
         <Size>35</Size>
       </Graphic>
     </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>circle</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-            <SvgParameter name="stroke-width">0.3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
+    <!-- PointSymbolizer wg. symbolPosition entfernt -->
   </Rule>
   <!-- WasserschutzgebietZone1 Punkt-->
   <Rule>
@@ -256,26 +218,7 @@
         <Size>35</Size>
       </Graphic>
     </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>circle</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-            <SvgParameter name="stroke-width">0.3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
+    <!-- PointSymbolizer wg. symbolPosition entfernt -->
   </Rule>
   <!-- WasserschutzgebietZone2 Punkt -->
   <Rule>
@@ -319,26 +262,7 @@
         <Size>35</Size>
       </Graphic>
     </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>circle</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-            <SvgParameter name="stroke-width">0.3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
+    <!-- PointSymbolizer wg. symbolPosition entfernt -->
   </Rule>
   <!-- WasserschutzgebietZone3  Punkt -->
   <Rule>
@@ -382,26 +306,7 @@
         <Size>35</Size>
       </Graphic>
     </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>circle</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-            <SvgParameter name="stroke-width">0.3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
+    <!-- PointSymbolizer wg. symbolPosition entfernt -->
   </Rule>
   <!-- WasserschutzgebietZone3a Punkt -->
   <Rule>
@@ -445,26 +350,7 @@
         <Size>35</Size>
       </Graphic>
     </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>circle</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-            <SvgParameter name="stroke-width">0.3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
+    <!-- PointSymbolizer wg. symbolPosition entfernt -->
   </Rule>
   <!-- WasserschutzgebietZone3b Punkt-->
   <Rule>
@@ -487,46 +373,6 @@
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/wrlfestsflz3b_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">0.0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>35</Size>
-      </Graphic>
-    </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>circle</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-            <SvgParameter name="stroke-width">0.3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
+    <!-- PointSymbolizer wg. symbolPosition entfernt -->
   </Rule>
 </FeatureTypeStyle>
