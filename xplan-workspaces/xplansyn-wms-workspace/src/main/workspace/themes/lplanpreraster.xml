@@ -1,5 +1,5 @@
 <Themes xmlns="http://www.deegree.org/themes/standard" xmlns:ns2="http://www.deegree.org/metadata/description"
-        xmlns:ns3="http://www.deegree.org/metadata/spatial" configVersion="3.2.0">
+        xmlns:ns3="http://www.deegree.org/metadata/spatial" configVersion="3.4.0">
   <Theme>
     <Identifier>LP_Planraster</Identifier>
     <ns2:Title>LPlan Raster</ns2:Title>
