@@ -2,7 +2,7 @@
 === Installation und Konfiguration von GDAL
 
 Die xPlanBox unterstützt die Darstellung von Rasterdaten mittels
-GDAL-Integration. Es wird GDAL in der Version 1.10.1 empfohlen. Die GDAL Unterstützung ist optional, die Konfiguration im
+GDAL-Integration. Es wird GDAL in der Version 2.4 empfohlen. Die GDAL Unterstützung ist optional, die Konfiguration im
 XPlanManager ist unter <<GDAL>> beschrieben.
 
 IMPORTANT: Der Zugriff auf die GDAL-Bibliothek erfolgt über JNI. Je JVM kann die
@@ -33,8 +33,8 @@ zeigen, in dem sich die Datei libgdaljni.so befindet.
 ==== Windows
 
 GDAL für Windows kann bei http://www.gisinternals.com/[GISInternals]
-heruntergeladen werden. Die empfohlene Version 1.10.1 befindet sich
-unter "Archive Versions". Die Architektur der GDAL-Bibliothek (32bit
+heruntergeladen werden. Die empfohlene Version 2.4.2 befindet sich
+unter "Stable Versions". Die Architektur der GDAL-Bibliothek (32bit
 oder 64bit) muss der Architektur von Java und
 http://windows.microsoft.com/de-de/windows/32-bit-and-64-bit-windows[Windows]
 entsprechen. Bei den Downloads sollten die kompilierten Binaries in
