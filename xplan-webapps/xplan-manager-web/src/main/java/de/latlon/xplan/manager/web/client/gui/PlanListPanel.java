@@ -303,7 +303,7 @@ public class PlanListPanel extends DecoratorPanel {
         TextColumn<XPlan> versionColumn = new TextColumn<XPlan>() {
             @Override
             public String getValue( XPlan object ) {
-                return object.getVersion();
+                return translateVersion( object.getVersion() );
             }
         };
         versionColumn.setSortable( true );
@@ -725,6 +725,22 @@ public class PlanListPanel extends DecoratorPanel {
     private boolean isVersionSupportedByInpirePlu( XPlan xPlan ) {
         return "XPLAN_41".equals( xPlan.getVersion() ) || "XPLAN_50".equals( xPlan.getVersion() ) || "XPLAN_51".equals(
                         xPlan.getVersion() );
+    }
+
+    private String translateVersion( String version ) {
+        if ( "XPLAN_2".equalsIgnoreCase( version ) )
+            return "2.0";
+        if ( "XPLAN_3".equalsIgnoreCase( version ) )
+            return "3.0";
+        if ( "XPLAN_40".equalsIgnoreCase( version ) )
+            return "4.0";
+        if ( "XPLAN_41".equalsIgnoreCase( version ) )
+            return "4.1";
+        if ( "XPLAN_250".equalsIgnoreCase( version ) )
+            return "5.0";
+        if ( "XPLAN_51".equalsIgnoreCase( version ) )
+            return "5.1";
+        return version;
     }
 
     private boolean isPublishingPluPermitted( XPlan xPlan ) {
