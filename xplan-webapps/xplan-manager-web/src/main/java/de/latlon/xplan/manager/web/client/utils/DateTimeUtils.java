@@ -141,8 +141,8 @@ public class DateTimeUtils {
      * 
      * @param format
      *            the dateValue must be
-     * @param dateInput
-     *            date input as string, may be <code>null</code>
+     * @param dateValue
+     *            date value as string, may be <code>null</code>
      * @return date, may be <code>null</code> if input value is <code>null</code> or empty
      * @throws IllegalArgumentException
      *             if date is invalid

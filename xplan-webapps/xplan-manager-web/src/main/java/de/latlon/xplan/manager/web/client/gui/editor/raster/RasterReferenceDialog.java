@@ -39,7 +39,6 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
@@ -132,7 +131,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
     @Override
     public boolean isValid() {
-        return validate();
+        return validate( true );
     }
 
     public RasterReference getEditedRasterReference() {
@@ -254,7 +253,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
         return new TypeCodeListBox( MimeTypes.class, true );
     }
 
-    private boolean validate() {
+    private boolean validate(boolean includeReferences) {
         boolean valid = super.isValid();
         List<String> validationFailures = new ArrayList<String>();
 
@@ -273,6 +272,9 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
                 validationFailures.add( MESSAGES.editCaptionRasterBasisGeoReferenceMimeTypeNotAllowed() );
             }
         }
+        if ( includeReferences && !validateReferenceAndGeoreference( validationFailures ) ) {
+            valid = false;
+        }
         showValidationError( validationFailures );
         return valid;
     }
@@ -282,7 +284,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
         @Override
         public void onChange( ChangeEvent changeEvent ) {
             validationErrors.setText( "" );
-            validate();
+            validate( false );
         }
     }
 
@@ -290,7 +292,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
         @Override
         public void onValueChange( ValueChangeEvent<T> event ) {
             validationErrors.setText( "" );
-            validate();
+            validate( false );
         }
     }
 
