@@ -12,4 +12,4 @@ let $ids := (
 return
 
 every $id in $ids satisfies
-exists(//BP_Baugrenze[@gml:id = $id])
+exists(//BP_BauGrenze[@gml:id = $id])
