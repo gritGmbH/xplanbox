@@ -1187,7 +1187,7 @@ public class XPlanManipulatorTest {
         GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader( xplanVersion.getGmlVersion(), xmlStream );
         gmlStream.setApplicationSchema( schema );
         gmlStream.setGeometryFactory( geomFac );
-        return (FeatureCollection) gmlStream.readFeature( true );
+        return (FeatureCollection) gmlStream.readFeature();
     }
 
     private Text retrieveText( XPlanToEdit xplanToEdit, String featureId ) {

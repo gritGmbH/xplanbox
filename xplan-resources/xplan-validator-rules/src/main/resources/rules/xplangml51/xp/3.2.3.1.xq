@@ -1,16 +1,15 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-(
-  every $h in //XP_Hoehenangabe[bezugspunkt] satisfies
-    $h/h or $h/hMin or ($h/hMin and $h/hMax) or $h/hZwingend
+for $h in //XP_Hoehenangabe
+where not (
+	$h/bezugspunkt and $h/h or
+	$h/bezugspunkt and $h/hMin or
+	$h/bezugspunkt and $h/hMin and $h/hMax or
+	$h/bezugspunkt and $h/hZwingend or
+	not ($h/bezugspunkt) and not ($h/../../../BP_HoehenMass) and $h/hMin or
+	not ($h/bezugspunkt) and not ($h/../../../BP_HoehenMass) and $h/hMax or
+	not ($h/bezugspunkt) and not ($h/../../../BP_HoehenMass) and $h/hMin and $h/hMax or 
+	not ($h/bezugspunkt) and $h/../../../BP_HoehenMass and $h/h
 )
-and
-(
-  every $h in //XP_Hoehenangabe[not(bezugspunkt) and not(ancestor::BP_HoehenMass)] satisfies
-    $h/hMin or $h/hMax or ($h/hMin and $h/hMax)
-)
-and
-(
-  every $h in //XP_Hoehenangabe[not(bezugspunkt) and ancestor::BP_HoehenMass] satisfies
-    $h/h
-)
+return $h/../../@gml:id/string()

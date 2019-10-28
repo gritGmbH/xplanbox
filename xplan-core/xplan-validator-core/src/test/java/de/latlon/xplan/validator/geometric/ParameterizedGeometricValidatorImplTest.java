@@ -1,5 +1,6 @@
 package de.latlon.xplan.validator.geometric;
 
+import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -45,7 +46,7 @@ public class ParameterizedGeometricValidatorImplTest {
                                       int expectedNumberOBadGeometries )
                             throws Exception {
         XPlanArchive archive = getTestArchive( testResource );
-        ValidatorResult report = validateGeometryAndReturnReport( archive, Collections.emptyList() );
+        ValidatorResult report = validateGeometryAndReturnReport( archive );
         GeometricValidatorResult geometricReport = (GeometricValidatorResult) report;
         int numberOfErrors = geometricReport.getErrors().size();
         int numberOfWarnings = geometricReport.getWarnings().size();
@@ -78,11 +79,12 @@ public class ParameterizedGeometricValidatorImplTest {
         assertThat( fc.getFeatures().size(), is( expectedNumberOfFeatures ) );
     }
 
-    private ValidatorResult validateGeometryAndReturnReport( XPlanArchive archive, List<ValidationOption> voOptions )
+    private ValidatorResult validateGeometryAndReturnReport( XPlanArchive archive )
                             throws ValidatorException {
         XPlanVersion version = archive.getVersion();
         XPlanAde ade = archive.getAde();
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, ade );
+        List<ValidationOption> voOptions = Collections.singletonList( SKIP_FLAECHENSCHLUSS );
         return new GeometricValidatorImpl().validateGeometry( archive, archive.getCrs(), schema, true, voOptions );
     }
 

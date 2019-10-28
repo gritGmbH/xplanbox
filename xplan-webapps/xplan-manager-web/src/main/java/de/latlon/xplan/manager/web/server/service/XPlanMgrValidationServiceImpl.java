@@ -72,9 +72,9 @@ public class XPlanMgrValidationServiceImpl extends RemoteServiceServlet implemen
             XPlan planToVerify = archiveManager.retrieveRequiredPlanFromSession( session );
             File archive = archiveManager.readArchiveFromFilesystem( planToVerify );
 
-            ValidatorReport report = xPlanValidator.validateNotWriteReport( validationSettings, archive );
+            ValidatorReport report = xPlanValidator.validateNotWriteReport( validationSettings, archive, planToVerify.getName() );
 
-            writeArtifacts( validationSettings, planToVerify, report );
+            writeArtifacts( planToVerify, report );
 
             updatePlanStatus( planToVerify, report );
             return new ValidationSummary( planToVerify.getId(), validationSettings.getValidationName() );
@@ -87,11 +87,10 @@ public class XPlanMgrValidationServiceImpl extends RemoteServiceServlet implemen
         }
     }
 
-    private void writeArtifacts( ValidationSettings validationSettings, XPlan planToVerify, ValidatorReport report )
+    private void writeArtifacts( XPlan planToVerify, ValidatorReport report )
                     throws ReportGenerationException {
         File targetDirectory = archiveManager.createReportDirectory( planToVerify.getId() );
-        reportWriter.writeArtefacts( report, planToVerify.getName(), validationSettings.getValidationName(),
-                                     targetDirectory );
+        reportWriter.writeArtefacts( report, targetDirectory );
     }
 
     private void updatePlanStatus( XPlan planToVerify, ValidatorReport report ) {

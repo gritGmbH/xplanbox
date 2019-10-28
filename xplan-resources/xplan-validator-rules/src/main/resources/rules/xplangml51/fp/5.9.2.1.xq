@@ -1,4 +1,9 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-every $h in //FP_Wasserwirtschaft[detaillierteZweckbestimmung] satisfies
-$h/zweckbestimmung
+for $h in //FP_Wasserwirtschaft
+where (
+	$h/detaillierteZweckbestimmung
+	and not ($h/zweckbestimmung)
+)
+return $h/@gml:id/string()

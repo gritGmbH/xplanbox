@@ -55,7 +55,7 @@ public class XPlanValidatorCli {
         ValidationSettings settings = new ValidationSettings( options.getValidationName(), options.getValidationType(),
                         options.getVoOptions() );
         XPlanValidator validator = createValidator();
-        validator.validate( settings, options.getArchive() );
+        validator.validate( settings, options.getArchive(), options.getArchive().getName() );
     }
 
     private static XPlanValidator createValidator() {

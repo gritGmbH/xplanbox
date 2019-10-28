@@ -35,7 +35,9 @@ public interface ValidatorWebCommonsMessages extends Messages {
 
     String defaultRunName();
 
-    String selectionValidationTypeHint();
+    String selectionValidationTypeLabel();
+
+    String selectionValidationSettingsLabel();
 
     String selectionValidationTypeSem();
 
@@ -43,9 +45,11 @@ public interface ValidatorWebCommonsMessages extends Messages {
 
     String selectionValidationTypeGeom();
 
-    String moreOptions();
+    String tooltipValidationTypeSem();
 
-    String extendedOptionsDialogTitle();
+    String tooltipValidationTypeSyn();
+
+    String tooltipValidationTypeGeom();
 
     String ignoreSelfIntersection();
 

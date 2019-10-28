@@ -1,11 +1,5 @@
 package de.latlon.xplan.validator.web.client;
 
-import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
-import static de.latlon.xplan.validator.web.shared.ValidationType.SEMANTIC;
-import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
-
-import java.util.List;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -17,10 +11,9 @@ import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
 import de.latlon.xplan.validator.web.client.report.ReportDialog;
 import de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListener;
 import de.latlon.xplan.validator.web.client.service.ValidationService;
@@ -30,9 +23,15 @@ import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationSummary;
 import de.latlon.xplan.validator.web.shared.ValidationType;
 
+import java.util.List;
+
+import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
+import static de.latlon.xplan.validator.web.shared.ValidationType.SEMANTIC;
+import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
+
 /**
  * Encapsulates a view with the settings for a validation run and a button to start the validation run.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
@@ -45,9 +44,13 @@ public class ValidatorOptionsDialog extends FormPanel {
 
     private final TextBox validationName = new TextBox();
 
-    private final ListBox validationType = new ListBox( false );
+    private final RadioButton validationTypeSyn = new RadioButton( "VALTYPE", messages.selectionValidationTypeSyn() );
 
-    private final ExtendedOptionsDialog extendedOptions = new ExtendedOptionsDialog();
+    private final RadioButton validationTypeSem = new RadioButton( "VALTYPE", messages.selectionValidationTypeSem() );
+
+    private final RadioButton validationTypeGeom = new RadioButton( "VALTYPE", messages.selectionValidationTypeGeom() );
+
+    private final ExtendedOptionsPanel extendedOptions = new ExtendedOptionsPanel();
 
     private final ReportDownloadFinishedListener reportDownloadFinishedListener;
 
@@ -59,82 +62,59 @@ public class ValidatorOptionsDialog extends FormPanel {
 
     /**
      * @param reportDownloadFinishedListener
-     *            informed when the validation report dialog is closed or next is clicked, never <code>null</code>
+     *                         informed when the validation report dialog is closed or next is clicked, never <code>null</code>
      */
-    public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener ) {
-        this( reportDownloadFinishedListener, messages.reportButtonCloseTitle(), messages.reportButtonNextTitle() );
+    public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener, String fileName ) {
+        this( reportDownloadFinishedListener, messages.reportButtonCloseTitle(), messages.reportButtonNextTitle(), fileName );
     }
 
     /**
-     * 
      * @param reportDownloadFinishedListener
-     *            informed when the validation report dialog is closed or next is clicked, never <code>null</code>
+     *                         informed when the validation report dialog is closed or next is clicked, never <code>null</code>
      * @param reportCloseButtonTitle
-     *            title of the close button in the report dialog
+     *                         title of the close button in the report dialog
      * @param reportNextButtonTitle
-     *            title of the next button in the report dialog
+     *                         title of the next button in the report dialog
      */
     public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener,
-                                   String reportCloseButtonTitle, String reportNextButtonTitle ) {
+                                   String reportCloseButtonTitle, String reportNextButtonTitle, String fileName ) {
         this.reportDownloadFinishedListener = reportDownloadFinishedListener;
         this.reportCloseButtonTitle = reportCloseButtonTitle;
         this.reportNextButtonTitle = reportNextButtonTitle;
+        initFormFields( fileName );
         initSettingsForm();
+        this.setStyleName( "valOptionsForm" );
     }
 
     private void initSettingsForm() {
         VerticalPanel mainPanel = new VerticalPanel();
-        mainPanel.setWidth( "100%" );
-        mainPanel.setHorizontalAlignment( HasHorizontalAlignment.ALIGN_CENTER );
-        HorizontalPanel rowWithRunName = createRowWithRunName();
-        HorizontalPanel rowWithTypeAndOptions = createRowWithTypeAndOptions();
+        mainPanel.setSpacing( 5 );
+        mainPanel.setStyleName( "valOptionsPanel" );
 
-        // Create and fill fourth row
-        HorizontalPanel fourthRow = createRow();
-        fourthRow.add( createValidationStartButton() );
-
-        mainPanel.add( rowWithRunName );
-        mainPanel.add( rowWithTypeAndOptions );
-        mainPanel.add( fourthRow );
+        mainPanel.add( createLabel( messages.fieldLabelRunName() ) );
+        mainPanel.add( validationName );
+        mainPanel.add( createLabel( messages.selectionValidationTypeLabel() ) );
+        mainPanel.add( validationTypeSem );
+        mainPanel.add( validationTypeGeom );
+        mainPanel.add( validationTypeSyn );
+        mainPanel.add( createLabel( "Einstellungen" ) );
+        mainPanel.add( extendedOptions );
+        mainPanel.add( createValidationStartButton() );
         add( mainPanel );
     }
 
-    private HorizontalPanel createRowWithRunName() {
-        HorizontalPanel rowWithRunName = createRow();
-        Label durchlauf = new Label( messages.fieldLabelRunName() );
-        validationName.setText( messages.defaultRunName() );
-
-        rowWithRunName.add( durchlauf );
-        rowWithRunName.add( validationName );
-        return rowWithRunName;
+    private void initFormFields( String fileName ) {
+        validationName.setText( fileName != null && !fileName.isEmpty() ? fileName : messages.defaultRunName() );
+        validationTypeSyn.setTitle( messages.tooltipValidationTypeSyn() );
+        validationTypeGeom.setTitle( messages.tooltipValidationTypeGeom() );
+        validationTypeSem.setTitle( messages.tooltipValidationTypeSem() );
+        validationTypeSem.setChecked( true );
     }
 
-    private HorizontalPanel createRowWithTypeAndOptions() {
-        HorizontalPanel thirdRow = createRow();
-        thirdRow.add( createValidationTypeListBox() );
-        thirdRow.add( createValidationOptionsButton() );
-        return thirdRow;
-    }
-
-    private ListBox createValidationTypeListBox() {
-        validationType.addItem( messages.selectionValidationTypeHint() );
-        validationType.addItem( messages.selectionValidationTypeSem(), SEMANTIC.name() );
-        validationType.addItem( messages.selectionValidationTypeGeom(), GEOMETRIC.name() );
-        validationType.addItem( messages.selectionValidationTypeSyn(), SYNTACTIC.name() );
-        return validationType;
-    }
-
-    private Button createValidationOptionsButton() {
-        return new Button( messages.moreOptions(), new ClickHandler() {
-            public void onClick( ClickEvent event ) {
-                openValidationOptionsPopup();
-            }
-        } );
-    }
-
-    private void openValidationOptionsPopup() {
-        extendedOptions.center();
-        extendedOptions.show();
+    private Label createLabel( String text ) {
+        Label label = new Label( text );
+        label.setStyleName( "valOptionLabel" );
+        return label;
     }
 
     private Button createValidationStartButton() {
@@ -157,14 +137,12 @@ public class ValidatorOptionsDialog extends FormPanel {
     }
 
     private ValidationType retrieveValidationType() {
-        int selectedIndex = validationType.getSelectedIndex();
-        String value = validationType.getValue( selectedIndex );
-        if ( value != null )
-            try {
-                return ValidationType.valueOf( value );
-            } catch ( IllegalArgumentException e ) {
-
-            }
+        if ( validationTypeSyn.isChecked() )
+            return SYNTACTIC;
+        if ( validationTypeGeom.isChecked() )
+            return GEOMETRIC;
+        if ( validationTypeSem.isChecked() )
+            return SEMANTIC;
         return null;
     }
 
@@ -181,7 +159,7 @@ public class ValidatorOptionsDialog extends FormPanel {
             validForm = false;
             Window.alert( messages.correctInputText() );
         }
-        if ( validationType.getSelectedIndex() == 0 ) {
+        if ( !validationTypeSyn.isChecked() && !validationTypeGeom.isChecked() && !validationTypeSem.isChecked() ) {
             Window.alert( messages.correctValidationType() );
             validForm = false;
         }
