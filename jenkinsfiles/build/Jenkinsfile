@@ -14,7 +14,7 @@ pipeline {
     stage('Build') {
       steps{
         sh 'mvn --version'
-        sh 'mvn clean deploy -Pdocker -U'
+        sh 'mvn clean deploy -Pdocker'
       }
     }
   }
