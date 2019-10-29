@@ -4,18 +4,15 @@
                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                          xsi:schemaLocation="http://www.deegree.org/services/metadata http://schemas.deegree.org/services/metadata/3.4.0/metadata.xsd">
   <ServiceIdentification>
-    <Title>Bauleitplanung, XPlanung-konform, WFS</Title>
-    <Abstract>Dieser INSPIRE Download Dienst stellt zahlreiche, die Bauleitplanung betreffende und auf dem
-      XPlanungsstandard basierende, WFS FeatureTypes bereit.
-    </Abstract>
+    <Title>InspirePluWFS download service</Title>
+    <Abstract>INSPIRE Download Service providing datasets for Annex 3 data theme land use</Abstract>
     <Keywords>
       <Keyword>XPlanung</Keyword>
       <Keyword>XPlanGML</Keyword>
       <Keyword>WFS</Keyword>
-      <Keyword>deegree</Keyword>
-      <Keyword>deegree3</Keyword>
-      <Keyword>Bauleitplanung</Keyword>
+      <Keyword>PLU</Keyword>
       <Keyword>Land Use</Keyword>
+      <Keyword>xPlanBox Version ${project.version}</Keyword>
     </Keywords>
     <Fees />
     <AccessConstraints />
@@ -26,7 +23,7 @@
     <ServiceContact>
       <IndividualName>-</IndividualName>
       <PositionName />
-      <Phone>+49(0)228184960</Phone>
+      <Phone>+49(0)22894779877</Phone>
       <Facsimile />
       <ElectronicMailAddress>info@lat-lon.de</ElectronicMailAddress>
       <Address>
