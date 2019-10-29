@@ -76,11 +76,11 @@ http://<host>:<port>/xplan-wfs/services/wfs51?
 ===== GetCapabilities
 
 ----
-http://<host>:<port>/xplan-wfs/services/wfs30?request=GetCapabilities&Service=WFS&Version=1.1.0
-http://<host>:<port>/xplan-wfs/services/wfs40?request=GetCapabilities&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs41?request=GetCapabilities&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs50?request=GetCapabilities&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs51?request=GetCapabilities&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs30?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-wfs/services/wfs40?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-wfs/services/wfs41?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-wfs/services/wfs50?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-wfs/services/wfs51?request=GetCapabilities&Service=WFS
 ----
 
 [[xplanwfs-getfeature]]
