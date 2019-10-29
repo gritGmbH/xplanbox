@@ -73,11 +73,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 2.4              | ja                                                                 |
 | 2.7              | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>)
 | 2.8              |                                                                    | ja
-| 2.9              | ja (<<aktualisierung-auf-die-version-2.9-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-2.9-der-xplanbox, Details>>)
-| 2.10             | ja (<<aktualisierung-auf-die-version-2.10-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.10-der-xplanbox, Details>>)
-| 2.11             | ja (<<aktualisierung-auf-die-version-2.11-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.11-der-xplanbox, Details>>)
-| 2.12             | ja (<<aktualisierung-auf-die-version-2.12-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.12-der-xplanbox, Details>>)
-| 2.13             | ja (<<aktualisierung-auf-die-version-2.13-der-xplanbox, Details>>) | ja (<<aktualisierung-auf-die-version-2.13-der-xplanbox, Details>>)
+| 3.0              | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -238,66 +234,28 @@ Falls die neue Funktionalität nicht genutzt werden soll, müssen die Änderunge
 * Aktualisierung der Datenbank:
  ** Ausführen der Skripte im Verzeichnis _from_2.7_to_2.8_ im Modul xplan-update-database
 
-[[aktualisierung-auf-die-version-2.9-der-xplanbox]]
-=== Aktualisierung auf die Version 2.9 der xPlanBox
+[[aktualisierung-auf-die-version-3.0-der-xplanbox]]
+=== Aktualisierung auf die Version 3.0 der xPlanBox
 
-Mit der Version 2.9 der xPlanBox können auch Pläne der der XPlanGML Version 5.0 verwaltet werden. Für die Aktualisierung auf diese Version sind folgende Schritte auszuführen:
+Mit der Version 3.0 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen vorgenommen worden. Für die Aktualisierung auf die Version3.0 sind folgende Schritte auszuführen:
 
- * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
- * Aktualisierung der Datenbank:
- ** Ausführen der Skripte im Verzeichnis _from_2.8_to_2.9_ im Modul xplan-update-database
- ** Ausführen der Skripte für die Erstelllung der Datenhaltung für 5.0 aus dem Modul _xplan-manager-workspace_:
- *** _fix/xplan50/create.sql_
- *** _pre/xplan50/create.sql_
- *** _archive/xplan50/create.sql_
+* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+* Aktualisierung der Datenbank:
+** Ausführen der Skripte für die Erstelllung der Datenhaltung für 5.0 aus dem Modul _xplan-manager-workspace_:
+*** _fix/xplan50/create.sql_
+*** _pre/xplan50/create.sql_
+*** _archive/xplan50/create.sql_
+** Ausführen der Skripte für die Erstelllung der Datenhaltung für 5.1 aus dem Modul _xplan-manager-workspace_:
+*** _fix/xplan51/create.sql_
+*** _pre/xplan51/create.sql_
+*** _archive/xplan51/create.sql_
+** Ausführen der Skripte im Verzeichnis _from_2.8_to_3.0_ im Modul xplan-update-database in der vorgegebenen Reihenfolge
 
-[[aktualisierung-auf-die-version-2.10-der-xplanbox]]
-=== Aktualisierung auf die Version 2.10 der xPlanBox
+Mit der Version 3.0 der xPlanBox können mehrere Ortsteile im XPlanGML auch durch Kommata separiert angegeben werden. Damit diese wie erwartet einem Bezirk zugeordnet werden können (s. Hinweis unter <<ortsteile>>) muss eine Aktualisierung der in der Datenbank gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __districtUpdate__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
 
-Mit der Version 2.10 der xPlanBox können auch Pläne der der XPlanGML Version 5.1 verwaltet werden. Für die Aktualisierung auf diese Version sind folgende Schritte auszuführen:
-
- * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
- * Aktualisierung der Datenbank:
- ** Ausführen der Skripte im Verzeichnis _from_2.9_to_2.10_ im Modul xplan-update-database
- ** Ausführen der Skripte für die Erstelllung der Datenhaltung für 5.1 aus dem Modul _xplan-manager-workspace_:
- *** _fix/xplan51/create.sql_
- *** _pre/xplan51/create.sql_
- *** _archive/xplan51/create.sql_
-
-
-[[aktualisierung-auf-die-version-2.11-der-xplanbox]]
-=== Aktualisierung auf die Version 2.11 der xPlanBox
-
-Mit der Version 2.11 der xPlanBox sind verschiedene Erweiterungen umgesetzt worden. Für die Aktualisierung auf diese Version sind folgende Schritte auszuführen:
-
- * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
- * Aktualisierung der Datenbank:
- ** Ausführen der Skripte im Verzeichnis _from_2.10_to_2.11_ im Modul xplan-update-database
-
-Mit der Version 2.11 der xPlanBox können mehrere Ortsteile im XPlanGML auch durch Kommata separiert angegeben werden. Damit diese wie erwartet einem Bezirk zugeordnet werden können (s. Hinweis unter <<ortsteile>>) muss eine Aktualisierung der in der Datenbank gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __districtUpdate__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
-
-Weiterhin ist mit der Version 2.11 der xPlanBox die Abbildung von Kreisbögen im XPlanSynWFS und XPlanWMS verbessert worden. Um bereits importierte Pläne mit Kreisbögen in der verbesserten Abbildung abgeben zu können, muss eine Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __reSynthesizer__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
+Weiterhin ist mit der Version 3.0 der xPlanBox die Abbildung von Kreisbögen im XPlanSynWFS und XPlanWMS verbessert worden. Um bereits importierte Pläne mit Kreisbögen in der verbesserten Abbildung abgeben zu können, muss eine Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __reSynthesizer__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
 
 Des Weiteren muss die HALE CLI auf Version 3.4.0 aktualisiert werden (siehe <<installation-hale-cli>>).
 
-[[aktualisierung-auf-die-version-2.12-der-xplanbox]]
-=== Aktualisierung auf die Version 2.12 der xPlanBox
-
-Mit der Version 2.12 der xPlanBox sind verschiedene Erweiterungen umgesetzt worden. Für die Aktualisierung auf diese Version sind folgende Schritte auszuführen:
-
- * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
- * Aktualisierung der Datenbank:
- ** Ausführen der Skripte im Verzeichnis _from_2.11_to_2.12_ im Modul xplan-update-database
-
-Mit der Version 2.12 wird bei entprechender Konfiguration (s. <<konfiguration-daten-dienste-kopplung>>) beim Import eines Plans geprüft ob für diesen Plan bereits ein Daten-Metadatensatz existiert. Ist dies der Fall wird automatisiert ein Service-Metadatensatz für den Plan bzw. dessen XPlanWerkWMS erstellt.
+Mit der Version 3.0 wird bei entprechender Konfiguration (s. <<konfiguration-daten-dienste-kopplung>>) beim Import eines Plans geprüft ob für diesen Plan bereits ein Daten-Metadatensatz existiert. Ist dies der Fall wird automatisiert ein Service-Metadatensatz für den Plan bzw. dessen XPlanWerkWMS erstellt.
 Sollen für alle oder einzelne bereits importierten Pläne die Service-Metadatensätze generiert und die dazugehörigen Informationen zur Daten-Dienste-Kopplung, die in den Capabilities des XPlanWerkWMS ausgegeben werden, erstellt werden, steht im Modul xplan-update-database das Werkzeug __serviceMetadatRecordCreator__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt dem Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert.
-
-[[aktualisierung-auf-die-version-2.13-der-xplanbox]]
-=== Aktualisierung auf die Version 2.13 der xPlanBox
-
-In der Version 2.13 der xPlanBox wurden kleinere Anpassungen und Fehlerbehebungen vorgenommen. Für die Aktualisierung auf diese Version sind folgende Schritte auszuführen:
-
- * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
- ** Umbenennung des Property mit dem Namen _directoryToStoreDatasetMetadata_ nach _directoryToStoreMetadata_ in der Datei _managerConfiguration.properties_ im Verzeichnis _~/.deegree/manager-configuration/_.
- * Aktualisierung der Datenbank:
- ** Ausführen der Skripte im Verzeichnis _from_2.12_to_2.13_ im Modul xplan-update-database
