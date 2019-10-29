@@ -136,6 +136,14 @@ div.footer td{
   width: 30%;
   }
 
+/* version */
+div.version{
+  padding: 15px;
+  padding-left: 30px;
+  background-color: #fafafa;
+  text-align: center;
+}
+
 /* Subfooter */
 div.subfooter{
   text-align: center;

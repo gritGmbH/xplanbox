@@ -153,6 +153,13 @@ button[disabled], button[disabled]:hover, button[disabled]:active, button[disabl
   margin: 1em;
   }
 
+#footer{
+	font-size: small;
+ 	color: lightgray;
+	text-align:center;
+	width: 100%;
+}
+
 .valOptionLabel {
     color: #ff9900;
     font-weight: bold;
