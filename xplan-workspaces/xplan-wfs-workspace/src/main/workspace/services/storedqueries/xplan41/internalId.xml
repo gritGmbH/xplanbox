@@ -1,0 +1,60 @@
+<wfs:StoredQueryDefinition id="urn:ogc:def:query:OGC-WFS::InternalId" xmlns:wfs="http://www.opengis.net/wfs/2.0"
+                           xmlns:fes="http://www.opengis.net/fes/2.0"
+                           xmlns:xplan41="http://www.xplanung.de/xplangml/4/1">
+  <wfs:Title>internalId</wfs:Title>
+  <wfs:Abstract>Es koennen vollstaendige XPlanGML Plaene anhand der InternalId heruntergeladen werden.</wfs:Abstract>
+  <wfs:Parameter xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="internalId" type="xsd:string">
+    <Abstract>internalId (Mandatory)</Abstract>
+  </wfs:Parameter>
+  <wfs:QueryExpressionText returnFeatureTypes="${deegreewfs:ServedFeatureTypes}"
+                           language="urn:ogc:def:queryLanguage:OGC-WFS::WFS_QueryExpression" isPrivate="false">
+
+    <!-- BP_Plan -->
+    <wfs:Query xmlns:gml="http://www.opengis.net/gml/3.2" typeNames="xplan41:BP_Plan">
+      <fes:Filter>
+        <fes:PropertyIsEqualTo>
+          <fes:ValueReference>
+            //xplan41:BP_Plan/xplan41:internalId
+          </fes:ValueReference>
+          <fes:Literal>${internalId}</fes:Literal>
+        </fes:PropertyIsEqualTo>
+      </fes:Filter>
+    </wfs:Query>
+
+    <!-- FP_Plan -->
+    <wfs:Query xmlns:gml="http://www.opengis.net/gml/3.2" typeNames="xplan41:FP_Plan">
+      <fes:Filter>
+        <fes:PropertyIsEqualTo>
+          <fes:ValueReference>
+            //xplan41:FP_Plan/xplan41:internalId
+          </fes:ValueReference>
+          <fes:Literal>${internalId}</fes:Literal>
+        </fes:PropertyIsEqualTo>
+      </fes:Filter>
+    </wfs:Query>
+
+    <!-- LP_Plan -->
+    <wfs:Query xmlns:gml="http://www.opengis.net/gml/3.2" typeNames="xplan41:LP_Plan">
+      <fes:Filter>
+        <fes:PropertyIsEqualTo>
+          <fes:ValueReference>
+            //xplan41:LP_Plan/xplan41:internalId
+          </fes:ValueReference>
+          <fes:Literal>${internalId}</fes:Literal>
+        </fes:PropertyIsEqualTo>
+      </fes:Filter>
+    </wfs:Query>
+
+    <!-- RP_Plan -->
+    <wfs:Query xmlns:gml="http://www.opengis.net/gml/3.2" typeNames="xplan41:RP_Plan">
+      <fes:Filter>
+        <fes:PropertyIsEqualTo>
+          <fes:ValueReference>
+            //xplan41:RP_Plan/xplan41:internalId
+          </fes:ValueReference>
+          <fes:Literal>${internalId}</fes:Literal>
+        </fes:PropertyIsEqualTo>
+      </fes:Filter>
+    </wfs:Query>
+  </wfs:QueryExpressionText>
+</wfs:StoredQueryDefinition>
