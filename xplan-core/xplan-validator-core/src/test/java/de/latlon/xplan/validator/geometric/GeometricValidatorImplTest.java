@@ -1,20 +1,5 @@
 package de.latlon.xplan.validator.geometric;
 
-import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
-import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS_OPTION;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertNotEquals;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import org.deegree.feature.types.AppSchema;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
@@ -25,6 +10,22 @@ import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
+import org.deegree.feature.types.AppSchema;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
+import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS_OPTION;
+import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_GELTUNGSBEREICH;
+import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_OPTIONS;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
@@ -86,8 +87,7 @@ public class GeometricValidatorImplTest {
     public void testValidateGeometryWithBrokenGeometry()
                             throws Exception {
         XPlanArchive archive = getTestArchive( "xplan41/Eidelstedt_4_V4-broken-geometry.zip" );
-        List<ValidationOption> voOptions = Collections.singletonList( SKIP_FLAECHENSCHLUSS );
-        ValidatorResult report = validateGeometryAndReturnReport( archive, voOptions );
+        ValidatorResult report = validateGeometryAndReturnReport( archive, SKIP_OPTIONS );
         GeometricValidatorResult geometricReport = (GeometricValidatorResult) report;
         int numberOfErrors = geometricReport.getErrors().size();
         int numberOfWarnings = geometricReport.getWarnings().size();
@@ -103,8 +103,7 @@ public class GeometricValidatorImplTest {
     public void testValidateGeometryWithInvalidFlaechenschluss_skipped()
                             throws Exception {
         XPlanArchive archive = getTestArchive( "xplan51/BP2070.zip" );
-        List<ValidationOption> voOptions = Collections.singletonList( SKIP_FLAECHENSCHLUSS );
-        ValidatorResult report = validateGeometryAndReturnReport( archive, voOptions );
+        ValidatorResult report = validateGeometryAndReturnReport( archive, SKIP_OPTIONS );
         GeometricValidatorResult geometricReport = (GeometricValidatorResult) report;
         int numberOfErrors = geometricReport.getErrors().size();
 
@@ -147,6 +146,7 @@ public class GeometricValidatorImplTest {
         voOptions.add( new ValidationOption( "ignore-self-intersection " ) );
         voOptions.add( new ValidationOption( "min-node-distance", "1" ) );
         voOptions.add( SKIP_FLAECHENSCHLUSS );
+        voOptions.add( SKIP_GELTUNGSBEREICH );
         return voOptions;
     }
 
@@ -155,6 +155,7 @@ public class GeometricValidatorImplTest {
         voOptions.add( new ValidationOption( "invalid" ) );
         voOptions.add( new ValidationOption( "min-node-distance", "invalid" ) );
         voOptions.add( SKIP_FLAECHENSCHLUSS );
+        voOptions.add( SKIP_GELTUNGSBEREICH );
         return voOptions;
     }
 

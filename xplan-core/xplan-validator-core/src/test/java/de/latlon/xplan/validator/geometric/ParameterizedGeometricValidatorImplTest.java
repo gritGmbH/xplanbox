@@ -1,35 +1,29 @@
 package de.latlon.xplan.validator.geometric;
 
-import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-
-import javax.xml.stream.XMLStreamException;
-
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.XPlanAde;
+import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.validator.ValidatorException;
+import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
+import de.latlon.xplan.validator.report.ValidatorResult;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
-
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.types.AppSchema;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.validator.ValidatorException;
-import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
-import de.latlon.xplan.validator.report.ValidatorResult;
-import de.latlon.xplan.validator.web.shared.ValidationOption;
+import javax.xml.stream.XMLStreamException;
+import java.io.IOException;
+
+import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_OPTIONS;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -84,8 +78,7 @@ public class ParameterizedGeometricValidatorImplTest {
         XPlanVersion version = archive.getVersion();
         XPlanAde ade = archive.getAde();
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, ade );
-        List<ValidationOption> voOptions = Collections.singletonList( SKIP_FLAECHENSCHLUSS );
-        return new GeometricValidatorImpl().validateGeometry( archive, archive.getCrs(), schema, true, voOptions );
+        return new GeometricValidatorImpl().validateGeometry( archive, archive.getCrs(), schema, true, SKIP_OPTIONS );
     }
 
     private XPlanFeatureCollection readFeaturesAndAssertGeometryValidity( XPlanArchive archive )
