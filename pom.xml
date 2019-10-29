@@ -722,7 +722,7 @@
     </repository>
     <snapshotRepository>
       <id>latlon-deploy</id>
-      <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
+      <url>https://repo.lat-lon.de/repository/xplanbox-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 
