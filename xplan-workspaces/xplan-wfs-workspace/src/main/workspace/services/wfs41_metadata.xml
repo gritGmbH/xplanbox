@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<deegreeServicesMetadata configVersion="3.2.0" xmlns="http://www.deegree.org/services/metadata"
+<deegreeServicesMetadata configVersion="3.4.0" xmlns="http://www.deegree.org/services/metadata"
                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                         xsi:schemaLocation="http://www.deegree.org/services/metadata http://schemas.deegree.org/services/metadata/3.2.0/metadata.xsd">
-  <!--
-    General service information for all services. Used in the GetCapabilities
-    responses.
-  -->
+                         xsi:schemaLocation="http://www.deegree.org/services/metadata http://schemas.deegree.org/services/metadata/3.4.0/metadata.xsd">
   <ServiceIdentification>
-    <Title>Bauleitplanung, XPlanung-konform, WFS</Title>
-    <Abstract>Dieser INSPIRE Download Dienst stellt zahlreiche, die Bauleitplanung betreffende und auf dem XPlanungsstandard basierende, WFS FeatureTypes bereit.
-    </Abstract>
+    <Title>XPlanWFS41</Title>
+    <Abstract>Dieser WFS Dienst stellt auf dem Standard XPlanung 4.1 basierende FeatureTypes bereit.</Abstract>
     <Keywords>
       <Keyword>XPlanung</Keyword>
-      <Keyword>XPlanGML4</Keyword>
+      <Keyword>XPlanGML 4.1</Keyword>
+      <Keyword>Festgestellt</Keyword>
       <Keyword>WFS</Keyword>
-      <Keyword>deegree</Keyword>
-      <Keyword>deegree3</Keyword>
-      <Keyword>Bauleitplanung</Keyword>
+      <Keyword>xPlanBox Version ${project.version}</Keyword>
     </Keywords>
     <Fees/>
     <AccessConstraints/>
@@ -27,7 +21,7 @@
     <ServiceContact>
       <IndividualName>-</IndividualName>
       <PositionName/>
-      <Phone>+49(0)228184960</Phone>
+      <Phone>+49(0)22894779877</Phone>
       <Facsimile/>
       <ElectronicMailAddress>info@lat-lon.de</ElectronicMailAddress>
       <Address>

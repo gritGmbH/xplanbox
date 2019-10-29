@@ -13,7 +13,7 @@
 <body>
 	<div id="header">
 	  <h1>${header.title}</h1>
-	  <h2>Portal für Bauleitplanung und Raumordnung</h2>
+	  <h2>Portal f&uuml;r Bauleitplanung und Raumordnung</h2>
 	  <img src="${logo.img}" alt="${logo.alt}" style="display:${logo.style.display}"/>
 	</div>
 	<div class="content">
@@ -42,104 +42,127 @@
 						target="_blank">XPlanWMS (Capabilities)</a></li>
 					<li><a
 						href="${service.xplansynwfs}"
-						target="_blank">XPlanSynWFS (Capabilities)</a></li>
+						target="_blank">XPlanSynWFS (Capabilities) - XPlanGML versions&uuml;bergreifend</a></li>
 					<li><a
-						href="${service.wfs110}"
-						target="_blank">XPlanWFS (Capabilities)</a></li>
+						href="${service.wfs30}"
+						target="_blank">XPlanWFS (Capabilities) - XPlanGML 3.0</a></li>
 					<li><a
-						href="${service.dls}"
-						target="_blank">XPlanWFS Download Service (Capabilities)</a></li>
+						href="${service.wfs40}"
+						target="_blank">XPlanWFS (Capabilities) - XPlanGML 4.0</a></li>
+					<li><a
+						href="${service.wfs41}"
+						target="_blank">XPlanWFS (Capabilities) - XPlanGML 4.1</a></li>
+					<li><a
+						href="${service.wfs50}"
+						target="_blank">XPlanWFS (Capabilities) - XPlanGML 5.0</a></li>
+					<li><a
+						href="${service.wfs51}"
+						target="_blank">XPlanWFS (Capabilities) - XPlanGML 5.1</a></li>
 				</ul>
-				<p id="dienste">
-					<small>Der INSPIRE Dienst (<em>XPlanWFS Download Service</em>),
-                        bietet nur Daten aus den Modellversionen
-						XPLanGML 4.0 und 4.1 an. Dadurch wird die Konformität zum
-						XPlanGML Datenmodell (GML 3.2.1) sichergestellt.
-					</small>
-				</p>
+
 		</div>
         <!-- Die folgende Sektion listet alle URLS bei getrennter Datenhaltung auf -->
         <!-- Aktivieren bei getrennter Datenhaltung -->
         <div class="section" id="c" style="display:${urls.separated.on.style.display}">
             <h3>XPlanDienste</h3>
             <div class="sublist">
-              <h4>Datenhaltung für <em>in Aufstellung</em> befindliche Pläne</h4>
+              <h4>Datenhaltung f&uuml;r <em>in Aufstellung</em> befindliche Pl&auml;ne</h4>
               <ul id="prediensteliste">
                 <li><a
                   href="${service.pre.wms}"
                   target="_blank">XPlanWMSInAufstellung (Capabilities)</a></li>
                 <li><a
                   href="${service.pre.xplansynwfs}"
-                  target="_blank">XPlanSynWFSInAufstellung (Capabilities)</a></li>
+                  target="_blank">XPlanSynWFSInAufstellung (Capabilities) - XPlanGML versions&uuml;bergreifend</a></li>
                 <li><a
-                  href="${service.pre.wfs110}"
-				  target="_blank">XPlanWFSInAufstellung (Capabilities)</a></li>
+                  href="${service.pre.wfs30}"
+				  target="_blank">XPlanWFSInAufstellung (Capabilities) - XPlanGML 3.0</a></li>
                 <li><a
-                  href="${service.pre.dls}"
-				  target="_blank">XPlanWFSInAufstellung Download Service (Capabilities)</a></li>
+                  href="${service.pre.wfs40}"
+				  target="_blank">XPlanWFSInAufstellung (Capabilities) - XPlanGML 4.0</a></li>
+                <li><a
+                  href="${service.pre.wfs41}"
+				  target="_blank">XPlanWFSInAufstellung (Capabilities) - XPlanGML 4.1</a></li>
+                <li><a
+                  href="${service.pre.wfs50}"
+				  target="_blank">XPlanWFSInAufstellung (Capabilities) - XPlanGML 5.0</a></li>
+                <li><a
+                  href="${service.pre.wfs51}"
+				  target="_blank">XPlanWFSInAufstellung (Capabilities) - XPlanGML 5.1</a></li>
               </ul>
-              <h4>Datenhaltung für <em>festgestellte</em> Pläne</h4>
+              <h4>Datenhaltung f&uuml;r <em>festgestellte</em> Pl&auml;ne</h4>
               <ul id="fixdiensteliste">
                 <li><a
                   href="${service.wms}"
                   target="_blank">XPlanWMSFestgestellt (Capabilities)</a></li>
                 <li><a
                   href="${service.xplansynwfs}"
-                  target="_blank">XPlanSynWFSFestgestellt (Capabilities)</a></li>
+                  target="_blank">XPlanSynWFSFestgestellt (Capabilities) - XPlanGML versions&uuml;bergreifend</a></li>
                 <li><a
-                  href="${service.wfs110}"
-				  target="_blank">XPlanWFSFestgestellt (Capabilities)</a></li>
+                  href="${service.wfs30}"
+				  target="_blank">XPlanWFSFestgestellt (Capabilities) - XPlanGML 3.0</a></li>
                 <li><a
-                  href="${service.dls}"
-				  target="_blank">XPlanWFSFestgestellt Download Service (Capabilities)</a></li>
+                  href="${service.wfs40}"
+				  target="_blank">XPlanWFSFestgestellt (Capabilities) - XPlanGML 4.0</a></li>
+                <li><a
+                  href="${service.wfs41}"
+				  target="_blank">XPlanWFSFestgestellt (Capabilities) - XPlanGML 4.1</a></li>
+                <li><a
+                  href="${service.wfs50}"
+				  target="_blank">XPlanWFSFestgestellt (Capabilities) - XPlanGML 5.0</a></li>
+                <li><a
+                  href="${service.wfs51}"
+				  target="_blank">XPlanWFSFestgestellt (Capabilities) - XPlanGML 5.1</a></li>
               </ul>
-              <h4>Datenhaltung für <em>archivierte</em> Pläne</h4>
+              <h4>Datenhaltung f&uuml;r <em>archivierte</em> Pl&auml;ne</h4>
               <ul id="archivediensteliste">
                 <li><a
                   href="${service.archive.wms}"
                   target="_blank">XPlanWMSArchiviert (Capabilities)</a></li>
                 <li><a
                   href="${service.archive.xplansynwfs}"
-                  target="_blank">XPlanSynWFSArchiviert (Capabilities)</a></li>
+                  target="_blank">XPlanSynWFSArchiviert (Capabilities) - XPlanGML versions&uuml;bergreifend</a></li>
                 <li><a
-                  href="${service.archive.wfs110}"
-				  target="_blank">XPlanWFSArchiviert (Capabilities)</a></li>
+                  href="${service.archive.wfs30}"
+				  target="_blank">XPlanWFSArchiviert (Capabilities) - XPlanGML 3.0</a></li>
                 <li><a
-                  href="${service.archive.dls}"
-				  target="_blank">XPlanWFSArchiviert Download Service (Capabilities)</a></li>
+                  href="${service.archive.wfs40}"
+				  target="_blank">XPlanWFSArchiviert (Capabilities) - XPlanGML 4.0</a></li>
+                <li><a
+                  href="${service.archive.wfs41}"
+				  target="_blank">XPlanWFSArchiviert (Capabilities) - XPlanGML 4.1</a></li>
+                <li><a
+                  href="${service.archive.wfs50}"
+				  target="_blank">XPlanWFSArchiviert (Capabilities) - XPlanGML 5.0</a></li>
+                <li><a
+                  href="${service.archive.wfs51}"
+				  target="_blank">XPlanWFSArchiviert (Capabilities) - XPlanGML 5.1</a></li>
               </ul>
-              <p id="dienstegetrennt">
-                <small>Die INSPIRE Dienste (<em>XPlanWFS Download Service</em>),
-                       bieten nur Daten aus den Modellversionen
-                       XPLanGML 4.0 und 4.1 an. Dadurch wird die Konformität zum
-                       XPlanGML Datenmodell (GML 3.2.1) sichergestellt.
-                </small>
-              </p>
             </div>
         </div>
 
 		<div class="section" id="d">
 				<h3>XPlanDokumentation</h3>
 				<ul>
-					<li><a href="xPlanBox-Benutzerhandbuch/" target="_blank">XPlanBenutzerhandbuch für die xPlanBox</a></li>
-					<li><a href="xPlanBox-Betriebshandbuch/" target="_blank">XPlanBetriebshandbuch für die xPlanBox</a></li>
+					<li><a href="xPlanBox-Benutzerhandbuch/" target="_blank">XPlanBenutzerhandbuch f&uuml;r die xPlanBox</a></li>
+					<li><a href="xPlanBox-Betriebshandbuch/" target="_blank">XPlanBetriebshandbuch f&uuml;r die xPlanBox</a></li>
 				</ul>
 		</div>
 		<div class="section" id="e">
-			<h3>Weiterführende Informationen</h3>
+			<h3>Weiterf&uuml;hrende Informationen</h3>
 			<ul>
 				<li><a href="./external/documentation/Konformitaetsbedingungen_XPlanGML_4.pdf" target="_blank">
-					Konformitätsbedingungen XPlanGML 4.0</a></li>
+					Konformit&auml;tsbedingungen XPlanGML 4.0</a></li>
 				<li><a href="./external/documentation/Konformitaetsbedingungen_XPlanGML_4_1.pdf" target="_blank">
-					Konformitätsbedingungen XPlanGML 4.1</a></li>
+					Konformit&auml;tsbedingungen XPlanGML 4.1</a></li>
 				<li><a href="./external/documentation/Konformitaetsbedingungen_XPlanGML_5.pdf" target="_blank">
-					Konformitätsbedingungen XPlanGML 5.0</a></li>
+					Konformit&auml;tsbedingungen XPlanGML 5.0</a></li>
 				<li><a href="./external/documentation/Konformitaetsbedingungen_XPlanGML_5_1.pdf" target="_blank">
-					Konformitätsbedingungen XPlanGML 5.1</a></li>
+					Konformit&auml;tsbedingungen XPlanGML 5.1</a></li>
 			</ul>
 		</div>
 		<div class="section" id="f" style="display:${testdata.style.display}">
-				<h3>Demodatensätze</h3>
+				<h3>Demodatens&auml;tze</h3>
 			    <ul>
 			  	  	<li><a href="./testdata/BP2070_4_0.zip" target="_blank">BP2070_4_0.zip</a></li>
 					<li><a href="./testdata/BP2135_4_0.zip" target="_blank">BP2135_4_0.zip</a></li>
@@ -157,11 +180,8 @@
 				<td><a href="http://www.deegree.org/"
 					target="_blank"><img align="top" src="logo-deegree.png"
 						title="deegree" alt="deegree" /></a></td>
-				<td><a href="http://www.geomajas.org"
-					target="_blank"><img align="top" src="Geomajas_logo.png"
-						title="geomajas" alt="geomajas" /></a></td>
 				<td><a href="http://www.xplanung.de"
-					target="_blank"><img align="top" src="logo_xplanung.gif"
+					target="_blank"><img align="top" src="logo_xplanung.png"
 						title="XPlanung" alt="XPlanung" /></a></td>
 			</tr>
 		</table>
