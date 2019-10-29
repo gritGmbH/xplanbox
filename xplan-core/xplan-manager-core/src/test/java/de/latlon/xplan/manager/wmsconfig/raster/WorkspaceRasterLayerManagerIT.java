@@ -87,19 +87,6 @@ public class WorkspaceRasterLayerManagerIT {
         workspaceDirectory = createTmpWorkspace().toFile();
     }
 
-    // Fails cause of missing GeoTiff installation
-    @Test(expected = UnsatisfiedLinkError.class)
-    public void testCreateRasterConfigurationsWithGdalTilestore()
-                            throws Exception {
-        WorkspaceRasterLayerManager workspaceRasterLayerManager = new WorkspaceRasterLayerManager(
-                                                                                                   workspaceDirectory,
-                                                                                                   RasterConfigurationType.gdal,
-                                                                                                   "EPSG:4326" );
-        workspaceRasterLayerManager.createRasterConfigurations( RASTER_ID, TIFF_FILE, 0, Double.MAX_VALUE );
-
-        instantiateWorkspace( workspaceDirectory.getName(), workspaceDirectory );
-    }
-
     @Test
     public void testCreateRasterConfigurationsWithGeotiffTilestore()
                             throws Exception {
