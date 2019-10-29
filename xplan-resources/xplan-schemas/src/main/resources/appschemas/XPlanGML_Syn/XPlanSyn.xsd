@@ -33,7 +33,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -105,7 +104,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -240,7 +238,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -329,7 +326,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -399,7 +395,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -455,7 +450,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -525,7 +519,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -597,7 +590,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -663,7 +655,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -738,7 +729,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -813,7 +803,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -986,7 +975,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -1180,7 +1168,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -1270,7 +1257,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -1343,7 +1329,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -1491,7 +1476,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -1613,7 +1597,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -1672,7 +1655,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -1744,7 +1726,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -1818,7 +1799,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -1941,7 +1921,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -2015,7 +1994,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -2072,7 +2050,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -2245,7 +2222,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -2316,7 +2292,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -2388,7 +2363,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -2461,7 +2435,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -2534,7 +2507,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -2697,7 +2669,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -2848,7 +2819,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -2962,7 +2932,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -3037,7 +3006,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -3084,7 +3052,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -3303,7 +3270,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -3363,7 +3329,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -3441,7 +3406,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -3570,7 +3534,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -3690,7 +3653,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -3778,7 +3740,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -3828,7 +3789,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -3897,7 +3857,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -3961,7 +3920,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -4023,7 +3981,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -4165,7 +4122,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -4240,7 +4196,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -4515,7 +4470,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -4574,7 +4528,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -4658,7 +4611,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -4732,7 +4684,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -4806,7 +4757,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -4878,7 +4828,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -5021,7 +4970,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -5156,7 +5104,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -5229,7 +5176,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -5305,7 +5251,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -5440,7 +5385,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -5499,7 +5443,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -5676,7 +5619,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -5739,7 +5681,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -5885,7 +5826,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -5975,7 +5915,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -6094,7 +6033,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -6233,7 +6171,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -6297,7 +6234,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -6380,7 +6316,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -6444,7 +6379,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -6520,7 +6454,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -6658,7 +6591,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -6826,7 +6758,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -6887,7 +6818,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -6958,7 +6888,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -7017,7 +6946,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -7063,7 +6991,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -7239,7 +7166,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -7296,7 +7222,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -7350,7 +7275,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -7404,7 +7328,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -7460,7 +7383,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -7560,7 +7482,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -7632,7 +7553,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -7697,7 +7617,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -7743,7 +7662,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -7845,7 +7763,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -7906,7 +7823,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -7971,7 +7887,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -8073,7 +7988,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -8147,7 +8061,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -8206,7 +8119,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -8417,7 +8329,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -8532,7 +8443,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -8603,7 +8513,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -8663,7 +8572,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -8739,7 +8647,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -8838,7 +8745,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -8890,7 +8796,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -8946,7 +8851,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -9034,7 +8938,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -9093,7 +8996,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -9155,7 +9057,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -9225,7 +9126,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -9284,7 +9184,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -9405,7 +9304,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -9453,7 +9351,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -9565,7 +9462,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -9656,7 +9552,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -9707,7 +9602,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -9762,7 +9656,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -9810,7 +9703,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -9873,7 +9765,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -9928,7 +9819,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10030,7 +9920,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10076,7 +9965,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10123,7 +10011,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10169,7 +10056,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10218,7 +10104,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10270,7 +10155,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10328,7 +10212,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10374,7 +10257,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10417,7 +10299,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10465,7 +10346,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10511,7 +10391,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10554,7 +10433,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10603,7 +10481,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10658,7 +10535,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10783,7 +10659,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10873,7 +10748,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10931,7 +10805,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -10980,7 +10853,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -11104,7 +10976,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -11234,7 +11105,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -11287,7 +11157,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -11343,7 +11212,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -11396,7 +11264,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -11500,7 +11367,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -11555,7 +11421,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -11658,7 +11523,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -11775,7 +11639,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -11842,7 +11705,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12020,7 +11882,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12072,7 +11933,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12121,7 +11981,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12167,7 +12026,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12336,7 +12194,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12385,7 +12242,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12436,7 +12292,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12487,7 +12342,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12538,7 +12392,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12590,7 +12443,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12640,7 +12492,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12692,7 +12543,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12745,7 +12595,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12863,7 +12712,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -12925,7 +12773,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -13095,7 +12942,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -13155,7 +13001,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -13369,7 +13214,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -13421,7 +13265,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -13561,7 +13404,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -13608,7 +13450,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -13654,7 +13495,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -13698,7 +13538,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -13742,7 +13581,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -13789,7 +13627,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -13835,7 +13672,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -13878,7 +13714,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -13922,7 +13757,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -13970,7 +13804,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14015,7 +13848,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14057,7 +13889,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14104,7 +13935,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14154,7 +13984,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14200,7 +14029,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14243,7 +14071,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14287,7 +14114,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14330,7 +14156,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14380,7 +14205,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14424,7 +14248,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14472,7 +14295,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14520,7 +14342,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14579,7 +14400,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14629,7 +14449,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14681,7 +14500,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -14978,7 +14796,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -15107,7 +14924,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -15158,7 +14974,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -15218,7 +15033,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -15382,7 +15196,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -15544,7 +15357,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -15593,7 +15405,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -15701,7 +15512,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -15959,7 +15769,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -16021,7 +15830,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -16081,7 +15889,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -16141,7 +15948,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -16195,7 +16001,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -16254,7 +16059,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -16314,7 +16118,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -16369,7 +16172,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -16490,7 +16292,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -16544,7 +16345,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -16586,7 +16386,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -16691,7 +16490,6 @@
             <element name="gliederung2" minOccurs="0" type="string" />
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />
@@ -17900,7 +17698,6 @@
             <element name="begruendungAbschnitte" minOccurs="0" type="string" />
             <element name="gliederung1" minOccurs="0" type="string" />
             <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="symbolPosition" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="ebene" minOccurs="0" type="integer" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="informell" minOccurs="0" type="string" />

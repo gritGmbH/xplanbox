@@ -1,4 +1,8 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-every $h in //BP_UeberbaubareGrundstuecksFlaeche[abweichendeBauweise] satisfies
-not($h/bauweise) or $h/bauweise = 3000
+for $h in //BP_UeberbaubareGrundstuecksFlaeche/abweichendeBauweise
+where not (
+  not ($h/../bauweise) or $h/../bauweise/text() = '3000'
+)
+return $h/../@gml:id/string()

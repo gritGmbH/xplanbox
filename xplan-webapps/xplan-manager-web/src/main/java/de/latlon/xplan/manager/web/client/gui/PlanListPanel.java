@@ -4,6 +4,7 @@ import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADDITIONALTYPE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.COMMUNITY;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ID;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.IMPORTDATE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.LEGISLATIONSTATUS;
@@ -13,6 +14,7 @@ import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.PLANSTAT
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.RELEASEDATE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.TYPE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.VALIDITIYPERIOD;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.VERSION;
 import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getImportDateFormat;
 import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getReleaseDateFormat;
 
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import de.latlon.xplan.manager.web.client.i18n.DynamicXPlanWebMessages;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
@@ -75,6 +78,8 @@ import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 public class PlanListPanel extends DecoratorPanel {
 
     private final XPlanWebMessages messages = GWT.create( XPlanWebMessages.class );
+
+    private final DynamicXPlanWebMessages dynamicMessages = GWT.create( DynamicXPlanWebMessages.class );
 
     private final CellTable<XPlan> planList = new CellTable<XPlan>();
 
@@ -203,6 +208,10 @@ public class PlanListPanel extends DecoratorPanel {
             addIdColumn( columnSortHandler, planList );
         if ( configuration.isColumnVisible( NUMBER ) )
             addNumberColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( COMMUNITY ) )
+            addCommunityColumn( columnSortHandler, planList );
+        if ( configuration.isColumnVisible( VERSION ) )
+            addVersionColumn( columnSortHandler, planList );
         if ( configuration.isColumnVisible( TYPE ) )
             addTypeColumn( columnSortHandler, planList );
         if ( configuration.isColumnVisible( ADDITIONALTYPE ) )
@@ -275,6 +284,32 @@ public class PlanListPanel extends DecoratorPanel {
         numberColumn.setCellStyleNames( "planListColumn numberColumn" );
         columnSortHandler.setComparator( numberColumn, new ColumnComparator( NUMBER ) );
         xPlanTable.addColumn( numberColumn, messages.numberColumn() );
+    }
+
+    private void addCommunityColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
+        TextColumn<XPlan> communityColumn = new TextColumn<XPlan>() {
+            @Override
+            public String getValue( XPlan object ) {
+                return object.getDistrict();
+            }
+        };
+        communityColumn.setSortable( true );
+        communityColumn.setCellStyleNames( "planListColumn communityColumn" );
+        columnSortHandler.setComparator( communityColumn, new ColumnComparator( COMMUNITY ) );
+        xPlanTable.addColumn( communityColumn, dynamicMessages.communityColumn() );
+    }
+
+    private void addVersionColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
+        TextColumn<XPlan> versionColumn = new TextColumn<XPlan>() {
+            @Override
+            public String getValue( XPlan object ) {
+                return translateVersion( object.getVersion() );
+            }
+        };
+        versionColumn.setSortable( true );
+        versionColumn.setCellStyleNames( "planListColumn versionColumn" );
+        columnSortHandler.setComparator( versionColumn, new ColumnComparator( VERSION ) );
+        xPlanTable.addColumn( versionColumn, messages.versionColumn() );
     }
 
     private void addTypeColumn( ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable ) {
@@ -627,7 +662,7 @@ public class PlanListPanel extends DecoratorPanel {
                 if ( deleting != null )
                     deleting.hide();
                 if ( 403 == method.getResponse().getStatusCode() ) {
-                    Window.alert( messages.unauthorizedDelete() );
+                    Window.alert( dynamicMessages.unauthorizedCommunity_Delete() );
                 } else {
                     Window.alert( exception.getMessage() + " " + method.getResponse().getStatusCode() );
                 }
@@ -653,7 +688,7 @@ public class PlanListPanel extends DecoratorPanel {
                 if ( publishingPlu != null )
                     publishingPlu.hide();
                 if ( 403 == method.getResponse().getStatusCode() ) {
-                    Window.alert( messages.unauthorizedPublishingPlu() );
+                    Window.alert( dynamicMessages.unauthorizedCommunity_PublishingPlu() );
                 } else {
                     Window.alert( exception.getMessage() + " " + method.getResponse().getStatusCode() );
                 }
@@ -690,6 +725,22 @@ public class PlanListPanel extends DecoratorPanel {
     private boolean isVersionSupportedByInpirePlu( XPlan xPlan ) {
         return "XPLAN_41".equals( xPlan.getVersion() ) || "XPLAN_50".equals( xPlan.getVersion() ) || "XPLAN_51".equals(
                         xPlan.getVersion() );
+    }
+
+    private String translateVersion( String version ) {
+        if ( "XPLAN_2".equalsIgnoreCase( version ) )
+            return "2.0";
+        if ( "XPLAN_3".equalsIgnoreCase( version ) )
+            return "3.0";
+        if ( "XPLAN_40".equalsIgnoreCase( version ) )
+            return "4.0";
+        if ( "XPLAN_41".equalsIgnoreCase( version ) )
+            return "4.1";
+        if ( "XPLAN_250".equalsIgnoreCase( version ) )
+            return "5.0";
+        if ( "XPLAN_51".equalsIgnoreCase( version ) )
+            return "5.1";
+        return version;
     }
 
     private boolean isPublishingPluPermitted( XPlan xPlan ) {

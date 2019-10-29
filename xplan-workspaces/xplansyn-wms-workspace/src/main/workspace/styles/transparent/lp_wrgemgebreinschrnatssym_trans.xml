@@ -35,54 +35,6 @@
         <Size>50</Size>
       </Graphic>
     </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xlink:href="../../symbols/FreeSans.ttf" />
-          <Format>ttf</Format>
-          <MarkIndex>42</MarkIndex>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>20</Size>
-        <Displacement>
-          <DisplacementX>-3</DisplacementX>
-          <DisplacementY>2</DisplacementY>
-        </Displacement>
-      </Graphic>
-    </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xlink:href="../../symbols/FreeSans.ttf" />
-          <Format>ttf</Format>
-          <MarkIndex>49</MarkIndex>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>20</Size>
-        <Displacement>
-          <DisplacementX>3</DisplacementX>
-          <DisplacementY>-2</DisplacementY>
-        </Displacement>
-      </Graphic>
-    </PointSymbolizer>
+    <!-- PointSymbolizer wg. symbolPosition entfernt (2x)-->
   </Rule>
-
 </FeatureTypeStyle>

@@ -1,34 +1,15 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-(
-every $h in //BP_TextAbschnitt satisfies
-  (exists($h/text) or exists($h/refText)) and
-  not(exists($h/text) and exists($h/refText))
-)
-and
-(
-  every $h in //FP_TextAbschnitt satisfies
-  (exists($h/text) or exists($h/refText)) and
-  not(exists($h/text) and exists($h/refText))
-)
-and
-
-(
-  every $h in //LP_TextAbschnitt satisfies
-  (exists($h/text) or exists($h/refText)) and
-  not(exists($h/text) and exists($h/refText))
-)
-and
-
-(
-  every $h in //RP_TextAbschnitt satisfies
-  (exists($h/text) or exists($h/refText)) and
-  not(exists($h/text) and exists($h/refText))
-)
-and
-
-(
-  every $h in //SO_TextAbschnitt satisfies
-  (exists($h/text) or exists($h/refText)) and
-  not(exists($h/text) and exists($h/refText))
-)
+for $h in //*[ends-with(name(), '_TextAbschnitt')]
+where
+  not (
+    $h/text
+    or
+    $h/refText
+  )
+  or
+  (
+    $h/text and $h/refText
+  )
+return $h/@gml:id

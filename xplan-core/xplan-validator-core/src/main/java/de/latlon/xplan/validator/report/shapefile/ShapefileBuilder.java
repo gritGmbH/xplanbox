@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.geotools.data.DefaultTransaction;
@@ -89,7 +90,8 @@ class ShapefileBuilder {
      *            A string describing the errors of the geometry
      */
     void addGeometry( com.vividsolutions.jts.geom.Geometry jtsGeom, String id, String errors ) {
-
+        if ( id == null )
+            id = "NOTSET_" + UUID.randomUUID().toString();
         Geometries geomType = Geometries.get( jtsGeom );
         if ( geomType == GEOM_TYPE ) {
             featureBuilder.add( jtsGeom );

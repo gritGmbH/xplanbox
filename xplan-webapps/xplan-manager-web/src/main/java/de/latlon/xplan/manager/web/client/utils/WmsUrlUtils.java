@@ -35,20 +35,19 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.client.utils;
 
+import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
+import de.latlon.xplan.manager.web.shared.PlanStatus;
+import org.gwtopenmaps.openlayers.client.Bounds;
+
 import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 
-import org.gwtopenmaps.openlayers.client.Bounds;
-
-import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
-import de.latlon.xplan.manager.web.shared.PlanStatus;
-
 /**
  * Contains some useful methods to create WMS urls.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
+ *
  * @version $Revision: $, $Date: $
  */
 public class WmsUrlUtils {
@@ -57,7 +56,7 @@ public class WmsUrlUtils {
      * Determines the correct WMS url. If the configured wms url ends with a '?' the configured url is returned (plan
      * status is ignored). If the configured wms url ends not with 'services' a '?' is appended to the configured url
      * (plan status is ignored). Otherwise the correct endpoint and a '?' is appenden.
-     * 
+     *
      * @param planStatus
      *            status of the plan, may be <code>null</code> (means PlanStatus.FESTGESTELLT)
      * @param configuration
@@ -76,6 +75,17 @@ public class WmsUrlUtils {
         if ( endpointToAdd == null )
             return wmsUrl + "?";
         return wmsUrl + "/" + endpointToAdd + "?";
+    }
+
+    public static String createPlanwerkWmsUrl( String name, MapPreviewConfiguration configuration ) {
+        String wmsUrl = determineWmsUrl( null, configuration );
+        int servicesIndex = wmsUrl.indexOf( "services" );
+        if ( servicesIndex < 0 )
+            return null;
+        wmsUrl = wmsUrl.substring( 0, servicesIndex );
+        String planname = name.replaceAll( "[^a-zA-Z0-9\\\\-_]", "" );
+        return wmsUrl + "services/planwerkwms/planname/" + planname
+               + "?request=GetCapabilities&service=WMS&version=1.3.0";
     }
 
     public static String createUrl( final MapPreviewConfiguration configuration, final String planType,

@@ -11,10 +11,10 @@ import static net.sf.dynamicreports.report.builder.DynamicReports.report;
 import static net.sf.dynamicreports.report.builder.DynamicReports.stl;
 
 import java.io.InputStream;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ReportGenerationException;
@@ -23,9 +23,11 @@ import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
+import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
 import net.sf.dynamicreports.report.builder.component.ComponentBuilder;
+import net.sf.dynamicreports.report.builder.component.HorizontalListBuilder;
 import net.sf.dynamicreports.report.builder.component.MultiPageListBuilder;
 import net.sf.dynamicreports.report.builder.component.TextFieldBuilder;
 import net.sf.dynamicreports.report.builder.component.VerticalListBuilder;
@@ -60,23 +62,19 @@ class ReportBuilder {
      *
      * @param report
      *            the validation report to serialize, never <code>null</code>
-     * @param validationName
-     *            the Name of the Validation, may be <code>null</code> or empty
-     * @param planName
-     *            the Name of the validated plan, may be <code>null</code> or empty
      * @throws ReportGenerationException
      *             if an exception occurred during writing the report
      * @throws IllegalArgumentException
      *             if the passed report is <code>null</code>
      */
-    JasperReportBuilder createReport( ValidatorReport report, String validationName, String planName )
+    JasperReportBuilder createReport( ValidatorReport report )
                     throws ReportGenerationException {
         checkReportParam( report );
         try {
             return report().setTemplate( createTemplate() ).
 
             title( Templates.createTitleComponent( LABEL_TITLE ),
-                   createMetadataSection( validationName, planName, report ) )
+                   createMetadataSection( report ) )
 
             .summary( createValidationResults( report ) )
 
@@ -105,6 +103,10 @@ class ReportBuilder {
         if ( semanticValidatorResult != null ) {
             verticalList = verticalList.add( appendHeaderAndResult( semanticValidatorResult ) );
             verticalList = appendDetailsHint( verticalList, semanticValidatorResult );
+            verticalList = verticalList.add( appendNumberOfRules( semanticValidatorResult ) );
+            verticalList = verticalList.add( appendNumberOfFailedRules( semanticValidatorResult ) );
+            verticalList = verticalList.add( appendNumberOfValidRules( semanticValidatorResult ) );
+            verticalList = verticalList.add( appendDetailsSection( semanticValidatorResult ) );
             verticalList = verticalList.add( createSemanticRules( semanticValidatorResult ) ).add( cmp.verticalGap( 10 ) );
         }
 
@@ -115,6 +117,32 @@ class ReportBuilder {
             verticalList = verticalList.add( createGeometricRules( geometricValidatorResult ) );
         }
         return verticalList;
+    }
+
+    private ComponentBuilder<?, ?> appendNumberOfRules( SemanticValidatorResult semanticValidatorResult ) {
+        int noOfRules  = semanticValidatorResult.getRules().size();
+        String text = String.format( " %s Validierungsregeln überprüft", noOfRules );
+        return addTextString( text );
+    }
+
+    private ComponentBuilder<?, ?> appendNumberOfFailedRules( SemanticValidatorResult semanticValidatorResult ) {
+        long noOfRules = semanticValidatorResult.getRules().stream().filter(  r -> !r.isValid() ).count();
+        String text = String.format( " %s Validierungsregeln nicht erfüllt", noOfRules );
+        return addTextString( text );
+    }
+    private ComponentBuilder<?, ?> appendNumberOfValidRules( SemanticValidatorResult semanticValidatorResult ) {
+        long noOfRules = semanticValidatorResult.getRules().stream().filter(  r -> r.isValid() ).count();
+        String text = String.format( " %s Validierungsregeln erfüllt", noOfRules );
+        return addTextString( text );
+    }
+    private ComponentBuilder<?, ?> appendDetailsSection( SemanticValidatorResult semanticValidatorResult ) {
+        String text = String.format( "Details: " );
+        return addTextString( "Details:" );
+    }
+    private ComponentBuilder<?, ?> addTextString( String text ) {
+        StyleBuilder detailsHintStyle = stl.style( simpleStyle ).setLeftIndent( 10 ).setTopPadding( 5 ).setBottomPadding( 5 );
+        TextFieldBuilder<String> textString = cmp.text( text).setStyle( detailsHintStyle );
+        return cmp.horizontalList().add( textString );
     }
 
     private MultiPageListBuilder createSemanticRules( SemanticValidatorResult result ) {
@@ -164,17 +192,23 @@ class ReportBuilder {
         for ( RuleResult ruleResult : ruleResults ) {
             String label = ruleResult.isValid() ? LABEL_OK : LABEL_ERROR;
             TextFieldBuilder<String> labelField = cmp.text( label ).setFixedWidth( 100 ).setStyle( root20LeftIndentStyle );
-            TextFieldBuilder<String> messageField = cmp.text( ruleResult.getMessage() ).setStyle( simpleStyle );
-            rules.add( cmp.horizontalList().add( labelField ).add( messageField ) );
+            TextFieldBuilder<String> nameField = cmp.text( ruleResult.getName() ).setFixedWidth( 60 ).setStyle( simpleStyle );
+            StringBuilder message = new StringBuilder( ruleResult.getMessage() );
+            List<String> invalidFeatures = ruleResult.getInvalidFeatures();
+            if ( !invalidFeatures.isEmpty() ) {
+                message.append( "\nGML Ids der fehlerhaften Features: " );
+                message.append( invalidFeatures.stream().collect( Collectors.joining( ", " ) ) );
+            }
+            TextFieldBuilder<String> messageField = cmp.text( message.toString() ).setStyle( simpleStyle );
+            rules.add( cmp.horizontalList().add( labelField ).add( nameField ).add( messageField ) );
         }
     }
 
-    private ComponentBuilder<?, ?> createMetadataSection( String validationName, String planName,
-                                                          ValidatorReport report )
+    private ComponentBuilder<?, ?> createMetadataSection( ValidatorReport report )
                                                                           throws JRException {
         InputStream is = PdfReportGenerator.class.getResourceAsStream( "/jrxml/metadata.jrxml" );
         JasperReport jasperTitleSubreport = JasperCompileManager.compileReport( is );
-        Map<String, Object> parameters = createParams( validationName, planName, report );
+        Map<String, Object> parameters = createParams( report );
         return cmp.verticalList().add( cmp.subreport( jasperTitleSubreport ).setParameters( parameters ) ).add( cmp.verticalGap( VERTICAL_GAP ) );
     }
 
@@ -185,13 +219,13 @@ class ReportBuilder {
         return createValidLabel( result.isValid() );
     }
 
-    private Map<String, Object> createParams( String validationName, String planName, ValidatorReport report ) {
+    private Map<String, Object> createParams( ValidatorReport report ) {
         String isValid = createValidLabel( report.isReportValid() );
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put( "valName", validationName );
-        params.put( "planName", planName );
+        params.put( "valName", report.getValidationName() );
+        params.put( "planName", report.getPlanName() );
         params.put( "valResult", isValid );
-        params.put( "date", new Date() );
+        params.put( "date", report.getDate() );
         return params;
     }
 

@@ -7,175 +7,14 @@
   <Name>transparent</Name>
   <FeatureTypeName>xplan:FP_Luftverkehr</FeatureTypeName>
   <!-- Flughafen -->
-  <Rule>
-    <Name>Flughafen</Name>
-    <Description>
-      <Title>FP: Flughafen</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:Not>
-          <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:PropertyIsNull>
-        </ogc:Not>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>1000</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/luftverkflflugh_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">5</SvgParameter>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Landeplatz -->
-  <Rule>
-    <Name>Landeplatz</Name>
-    <Description>
-      <Title>FP: Landeplatz</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:Not>
-          <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:PropertyIsNull>
-        </ogc:Not>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>2000</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/luftverkfllandepl_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">5</SvgParameter>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Segelfluggelaende -->
-  <Rule>
-    <Name>Segelfluggelaende</Name>
-    <Description>
-      <Title>FP: Segelfluggelände</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:Not>
-          <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:PropertyIsNull>
-        </ogc:Not>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>3000</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/luftverkflsegel_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">5</SvgParameter>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Hubschrauberlandeplatz -->
-  <Rule>
-    <Name>Hubschrauberlandeplatz</Name>
-    <Description>
-      <Title>FP: Hubschrauberlandeplatz</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:Not>
-          <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-          </ogc:PropertyIsNull>
-        </ogc:Not>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
-          <ogc:Literal>4000</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/luftverkflhub_sym.svg" />
-          <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">5</SvgParameter>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
   <!-- Ballonstartplatz -->
-  <!-- TODO: style -->
   <!-- <Rule>
       <Name>Ballonstartplatz</Name>
       <Description>
@@ -218,7 +57,6 @@
   </Rule>
 -->
   <!-- Haengegleiter -->
-  <!-- TODO: style -->
   <!-- <Rule>
       <Name>Haengegleiter</Name>
       <Description>
@@ -260,7 +98,6 @@
       </PointSymbolizer>
   </Rule> -->
   <!-- Gleitsegler -->
-  <!-- TODO: style -->
   <!-- <Rule>
       <Name>Gleitsegler</Name>
       <Description>
@@ -302,7 +139,6 @@
       </PointSymbolizer>
   </Rule> -->
   <!-- Sonstiges -->
-  <!-- TODO: style -->
   <!-- <Rule>
       <Name>Sonstiges</Name>
       <Description>

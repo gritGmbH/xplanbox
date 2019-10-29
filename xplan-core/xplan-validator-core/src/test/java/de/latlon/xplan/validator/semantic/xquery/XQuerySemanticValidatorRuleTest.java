@@ -9,6 +9,8 @@ import static org.junit.Assert.assertThat;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 import net.sf.saxon.trans.XPathException;
 
@@ -34,7 +36,28 @@ public class XQuerySemanticValidatorRuleTest {
         ByteArrayInputStream byteArrayInputStream = getStream();
         XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule( byteArrayInputStream, "name",
                         XPLAN_41, NONE );
-        assertThat( validatorRule.validate( retrieveArchive( "xplan41/BP2070.zip" ) ), is( true ) );
+        List<String> invalidFeatures = validatorRule.validate( retrieveArchive( "xplan41/BP2070.zip" ) );
+        assertThat( invalidFeatures.size(), is( 0 ) );
+    }
+
+    @Test
+    public void testValidRuleSelectingMultipleGmlIdsShouldReturnTrue()
+                            throws Exception {
+        InputStream xqery = XQuerySemanticValidatorRuleTest.class.getResourceAsStream( "../configuration/xquery/rules/gmlIds.xq" );
+        XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule( xqery, "name",
+                                                                                     XPLAN_41, NONE );
+        List<String> invalidFeatures = validatorRule.validate( retrieveArchive( "xplan41/BP2070.zip" ) );
+        assertThat( invalidFeatures.size(), is( 37 ) );
+    }
+
+    @Test
+    public void testValidRuleSelectingOneGmlIdShouldReturnTrue()
+                            throws Exception {
+        InputStream xqery = XQuerySemanticValidatorRuleTest.class.getResourceAsStream( "../configuration/xquery/rules/gmlId.xq" );
+        XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule( xqery, "name",
+                                                                                     XPLAN_41, NONE );
+        List<String> invalidFeatures = validatorRule.validate( retrieveArchive( "xplan41/BP2070.zip" ) );
+        assertThat( invalidFeatures.size(), is( 1 ) );
     }
 
     @Test
@@ -43,16 +66,8 @@ public class XQuerySemanticValidatorRuleTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream( "exists(/notThere)".getBytes() );
         XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule( byteArrayInputStream, "name",
                         XPLAN_41, NONE );
-        assertThat( validatorRule.validate( retrieveArchive( "xplan41/BP2070.zip" ) ), is( false ) );
-    }
-
-    @Test(expected = ValidatorException.class)
-    public void testRuleReturningMultipleLinesShouldThrowException()
-                    throws Exception {
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream( "//*".getBytes() );
-        XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule( byteArrayInputStream, "name",
-                        XPLAN_41, NONE );
-        validatorRule.validate( retrieveArchive( "xplan41/BP2070.zip" ) );
+        List<String> invalidFeatures = validatorRule.validate( retrieveArchive( "xplan41/BP2070.zip" ) );
+        assertThat( invalidFeatures.size(), is( 1 ) );
     }
 
     @Test(expected = XPathException.class)

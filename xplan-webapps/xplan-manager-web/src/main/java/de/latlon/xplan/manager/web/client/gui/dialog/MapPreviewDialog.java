@@ -1,8 +1,10 @@
 package de.latlon.xplan.manager.web.client.gui.dialog;
 
+import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.createPlanwerkWmsUrl;
 import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.createUrl;
 import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.determineWmsUrl;
 
+import de.latlon.xplan.manager.web.client.utils.WmsUrlUtils;
 import org.gwtopenmaps.openlayers.client.Bounds;
 import org.gwtopenmaps.openlayers.client.LonLat;
 import org.gwtopenmaps.openlayers.client.Map;
@@ -65,7 +67,7 @@ public class MapPreviewDialog extends DialogBox {
     private void initDialog( String planName, String planType, PlanStatus planStatus, XPlanEnvelope bbox ) {
         setText( messages.mapPreviewDialogTitle( planName ) );
         VerticalPanel dialogBoxContent = createDialogBoxContent();
-        createAndAddMapAndUrlButton( dialogBoxContent, planType, planStatus, bbox );
+        createAndAddMapAndUrlButton( dialogBoxContent, planName, planType, planStatus, bbox );
         createAndAddCloseButton( dialogBoxContent );
         setWidget( dialogBoxContent );
     }
@@ -77,15 +79,17 @@ public class MapPreviewDialog extends DialogBox {
         return dialogBoxContent;
     }
 
-    private void createAndAddMapAndUrlButton( final VerticalPanel dialogBoxContent, final String planType,
+    private void createAndAddMapAndUrlButton( final VerticalPanel dialogBoxContent, final String planName, final String planType,
                                               final PlanStatus planStatus, final XPlanEnvelope bbox ) {
         final SimplePanel mapPanel = new SimplePanel();
         final SimplePanel urlButtonPanel = new SimplePanel();
+        final SimplePanel capabilitiesButtonPanel = new SimplePanel();
         configrationService.getMapPreviewConfiguration( new AsyncCallback<MapPreviewConfiguration>() {
             @Override
             public void onSuccess( MapPreviewConfiguration configuration ) {
                 Bounds bounds = createAndAddMap( mapPanel, configuration, planType, planStatus, bbox );
                 createAndAddUrlButton( urlButtonPanel, configuration, planType, planStatus, bounds );
+                createAndAddCapabilitiesButton( capabilitiesButtonPanel, configuration, planName );
             }
 
             @Override
@@ -95,6 +99,7 @@ public class MapPreviewDialog extends DialogBox {
         } );
         dialogBoxContent.add( mapPanel );
         dialogBoxContent.add( urlButtonPanel );
+        dialogBoxContent.add( capabilitiesButtonPanel );
     }
 
     private Bounds createAndAddMap( SimplePanel contentPanel, MapPreviewConfiguration configuration, String planType,
@@ -237,6 +242,12 @@ public class MapPreviewDialog extends DialogBox {
         contentPanel.add( buttonPanel );
     }
 
+    private void createAndAddCapabilitiesButton( SimplePanel contentPanel, MapPreviewConfiguration configuration, String planName ) {
+        SimplePanel buttonPanel = createButtonPanel( messages.capabilitiesButton(),
+                                                     createCapabilitiesHandler( configuration, planName ) );
+        contentPanel.add( buttonPanel );
+    }
+
     private ClickHandler createUrlHandler( final MapPreviewConfiguration configuration, final String planType,
                                            final PlanStatus planStatus, final Bounds bounds ) {
         return new ClickHandler() {
@@ -248,6 +259,17 @@ public class MapPreviewDialog extends DialogBox {
             }
         };
     }
+
+    private ClickHandler createCapabilitiesHandler( final MapPreviewConfiguration configuration, final String planName ) {
+        return new ClickHandler() {
+            @Override
+            public void onClick( ClickEvent event ) {
+                String url = createPlanwerkWmsUrl( planName, configuration );
+                Window.open( url, "_blank", "" );
+            }
+        };
+    }
+
 
     private void createAndAddCloseButton( VerticalPanel dialogBoxContent ) {
         SimplePanel simplePanel = createButtonPanel( messages.closeButton(), createCloseHandler() );

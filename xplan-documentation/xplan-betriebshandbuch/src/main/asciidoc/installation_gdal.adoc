@@ -2,7 +2,7 @@
 === Installation und Konfiguration von GDAL
 
 Die xPlanBox unterstützt die Darstellung von Rasterdaten mittels
-GDAL-Integration. Es wird GDAL in der Version 1.10.1 empfohlen. Die GDAL Unterstützung ist optional, die Konfiguration im
+GDAL-Integration. Es wird GDAL in der Version 2.4 empfohlen. Die GDAL Unterstützung ist optional, die Konfiguration im
 XPlanManager ist unter <<GDAL>> beschrieben.
 
 IMPORTANT: Der Zugriff auf die GDAL-Bibliothek erfolgt über JNI. Je JVM kann die
@@ -33,8 +33,8 @@ zeigen, in dem sich die Datei libgdaljni.so befindet.
 ==== Windows
 
 GDAL für Windows kann bei http://www.gisinternals.com/[GISInternals]
-heruntergeladen werden. Die empfohlene Version 1.10.1 befindet sich
-unter "Archive Versions". Die Architektur der GDAL-Bibliothek (32bit
+heruntergeladen werden. Die empfohlene Version 2.4.2 befindet sich
+unter "Stable Versions". Die Architektur der GDAL-Bibliothek (32bit
 oder 64bit) muss der Architektur von Java und
 http://windows.microsoft.com/de-de/windows/32-bit-and-64-bit-windows[Windows]
 entsprechen. Bei den Downloads sollten die kompilierten Binaries in
@@ -43,7 +43,8 @@ einem einzelnen Zip-Archiv gewählt werden (oberster Link).
 NOTE: Die MSVC-Version mit der GDAL kompiliert wurde, setzt die jeweilige
 Version des Microsoft C/C++ Runtime Library (CRT) voraus. Ab der Version
 MSVC 11.0 (1700) werden Windows XP and Windows Server 2003 nicht mehr
-unterstützt.
+unterstützt. Die Version des Microsoft C/C++ Runtime Library (CRT) kann mit
+dem Befehl `cl` abgefragt oder über die Windows Systemsteuerung angezeigt werden.
 
 Dieses Zip-Archiv kann an einem beliebigen Ort entpackt werden.
 
@@ -52,7 +53,7 @@ Unter
 müssen folgende Einstellungen vorgenommen werden:
 
 * Setzen der Variable `JAVA_HOME` mit der Referenz zur Java Installation
-(JDK), z.B.: `C:\Program Files (x86)\Java\jdk1.7.0_45`
+(JDK), z.B.: `C:\Program Files (x86)\Java\jdk1.8.0_202`
 * Setzen der Variable `GDAL_DATA` mit der Referenz auf den Ordner, der
 Datei "gcs.csv" enthält, z.B.:
 `C:\Program Files (x86)\gdal\bin\gdal-data`

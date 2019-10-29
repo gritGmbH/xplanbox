@@ -25,6 +25,7 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -42,6 +43,8 @@ import static java.lang.String.format;
 public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
 
     private static final Logger LOG = LoggerFactory.getLogger( XQuerySemanticValidatorRule.class );
+
+    private static final String UNKNOWN_GML_ID = "unbekannt";
 
     private final Configuration configuration = new Configuration();
 
@@ -62,22 +65,20 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
     }
 
     @Override
-    public boolean validate( SemanticValidableXPlanArchive archive )
+    public List<String> validate( SemanticValidableXPlanArchive archive )
                             throws ValidatorException {
         final Properties props = createProperties();
-        boolean validationResult;
         try (Writer writer = new StringWriter()) {
             final DynamicQueryContext dynamicContext = createDynamicQueryContext( archive );
             expression.run( dynamicContext, new StreamResult( writer ), props );
             final SequenceIterator iterator = expression.iterator( dynamicContext );
             List<String> resultList = getResultFromIterator( iterator );
-            validationResult = evaluateXQueryResult( resultList );
+            return evaluateXQueryResult( resultList );
         } catch ( XPathException | IOException e ) {
             LOG.warn( format( "Could not validate rule %s, reason:%s", this.getName(), e.getMessage() ) );
             LOG.debug( "Exception: ", e );
             throw new ValidatorException( "Rule could not be validated!", e );
         }
-        return validationResult;
     }
 
     @Override
@@ -97,11 +98,15 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
         return ignoredOption != null && ignoredOption.equals( option );
     }
 
-    private boolean evaluateXQueryResult( List<String> resultList )
-                            throws ValidatorException {
-        if ( resultList.size() > 1 )
-            throw new ValidatorException( "XPath Queries resulting in lists with more than one item are not supported!" );
-        return parseBoolean( resultList.get( 0 ) );
+    private List<String> evaluateXQueryResult( List<String> resultList ) {
+        if ( resultList.size() == 1 ) {
+            String result = resultList.get( 0 );
+            if ( result.equalsIgnoreCase( "true" ) )
+                return Collections.emptyList();
+            if ( result.equalsIgnoreCase( "false" ) )
+                return Collections.singletonList( UNKNOWN_GML_ID );
+        }
+        return resultList;
     }
 
     private Properties createProperties() {

@@ -1,26 +1,6 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/0';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-(
-every $h in //XP_DatumAttribut/name satisfies
-$h != ''
-)
-and
-(
-every $h in //XP_DoubleAttribut/name satisfies
-$h != ''
-)
-and
-(
-every $h in //XP_IntegerAttribut/name satisfies
-$h != ''
-)
-and
-(
-every $h in //XP_StringAttribut/name satisfies
-$h != ''
-)
-and
-(
-every $h in //XP_URLAttribut/name satisfies
-$h != ''
-)
+for $h in //*[ends-with(name(), 'Attribut')]
+where ($h/name = '')
+return $h/../../@gml:id/string()

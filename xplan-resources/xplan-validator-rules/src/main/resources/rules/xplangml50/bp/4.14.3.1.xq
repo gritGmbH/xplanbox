@@ -1,11 +1,9 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/0';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-(
-  every $h in //BP_AbstandsMass[startwinkel] satisfies
-  $h/endWinkel
+for $h in //BP_AbstandsMass
+where (
+	($h/startwinkel and not ($h/endWinkel)) or
+	($h/endwinkel and not ($h/startWinkel))
 )
-and
-(
- every $h in //BP_AbstandsMass[endWinkel] satisfies
- $h/startwinkel
-)
+return $h/@gml:id/string()

@@ -160,6 +160,12 @@ button[disabled], button[disabled]:hover, button[disabled]:active, button[disabl
 	width: 100%;
 }
 
+.valOptionLabel {
+    color: #ff9900;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
 /*Stylingversuch für den Durchsuchenbutton*/
 input[type=file] button {
   background-color:#00997F;

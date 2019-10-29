@@ -78,8 +78,8 @@ public class ReportDialog extends DialogBox {
 
     private Widget createHtmlReportPanel() {
         Frame frame = new Frame();
-        frame.setHeight( "600px" );
-        frame.setWidth( "500px" );
+        frame.setHeight( "700px" );
+        frame.setWidth( "800px" );
         String url = urlBuilder.createHtmlUrl( validationSummary );
         GWT.log( "Requested URL to receive the html report: " + url );
         frame.setUrl( url );

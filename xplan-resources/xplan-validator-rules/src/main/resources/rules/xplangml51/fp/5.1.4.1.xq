@@ -1,46 +1,10 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-(
-every $h in //FP_AusgleichsFlaeche[ebene != '0'] satisfies
-$h/flaechenschluss = 'false'
+for $h in //flaechenschluss
+where (
+  $h != 'false'
+  and
+  $h/../ebene != 0
 )
-and
-(
-every $h in //FP_KeineZentrAbwasserBeseitigungFlaeche[ebene != '0'] satisfies
-$h/flaechenschluss = 'false'
-)
-and
-(
-every $h in //FP_VorbehalteFlaeche[ebene != '0'] satisfies
-$h/flaechenschluss = 'false'
-)
-and
-(
-every $h in //FP_BebauungsFlaeche[ebene != '0'] satisfies
-$h/flaechenschluss = 'false'
-)
-and
-(
-every $h in //FP_LandwirtschaftsFlaeche[ebene != '0'] satisfies
-$h/flaechenschluss = 'false'
-)
-and
-(
-every $h in //FP_WaldFlaeche[ebene != '0'] satisfies
-$h/flaechenschluss = 'false'
-)
-and
-(
-every $h in //FP_NutzungsbeschraenkungsFlaeche[ebene != '0'] satisfies
-$h/flaechenschluss = 'false'
-)
-and
-(
-every $h in //FP_TextlicheDarstellungsFlaeche[ebene != '0'] satisfies
-$h/flaechenschluss = 'false'
-)
-and
-(
-every $h in //FP_ZentralerVersorgungsbereich[ebene != '0'] satisfies
-$h/flaechenschluss = 'false'
-)
+return $h/../@gml:id/string()
