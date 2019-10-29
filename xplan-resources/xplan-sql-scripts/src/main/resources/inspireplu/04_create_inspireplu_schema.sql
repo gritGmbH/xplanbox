@@ -57,7 +57,7 @@ CREATE TABLE ad_address_ad_position (
     ad_geographicposition_ad_method_href text,
     ad_geographicposition_ad_default boolean
 );
-SELECT ADDGEOMETRYCOLUMN('', 'ad_address_ad_position','ad_geographicposition_ad_geometry_value','-1','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'ad_address_ad_position','ad_geographicposition_ad_geometry_value','0','GEOMETRY', 2);
 CREATE TABLE ad_address_ad_locator (
     id serial PRIMARY KEY,
     parentfk text NOT NULL REFERENCES ad_address ON DELETE CASCADE,
@@ -647,7 +647,7 @@ CREATE TABLE au_administrativeboundary (
     au_endlifespanversion_attr_xsi_nil boolean,
     CONSTRAINT au_administrativeboundary_pkey PRIMARY KEY (attr_gml_id)
 );
-SELECT ADDGEOMETRYCOLUMN('', 'au_administrativeboundary','au_geometry_value','-1','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'au_administrativeboundary','au_geometry_value','0','GEOMETRY', 2);
 CREATE TABLE au_administrativeboundary_au_nationallevel (
     id serial PRIMARY KEY,
     parentfk text NOT NULL REFERENCES au_administrativeboundary ON DELETE CASCADE,
@@ -706,7 +706,7 @@ CREATE TABLE au_administrativeunit (
     au_upperlevelunit_href text,
     CONSTRAINT au_administrativeunit_pkey PRIMARY KEY (attr_gml_id)
 );
-SELECT ADDGEOMETRYCOLUMN('', 'au_administrativeunit','au_geometry_value','-1','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'au_administrativeunit','au_geometry_value','0','GEOMETRY', 2);
 CREATE TABLE au_administrativeunit_au_nationallevelname (
     id serial PRIMARY KEY,
     parentfk text NOT NULL REFERENCES au_administrativeunit ON DELETE CASCADE,
@@ -841,7 +841,7 @@ CREATE TABLE au_administrativeunit_au_residenceofauthority_au_residenc_22580 (
     au_residenceofauthority_au_name_gn_geographicalname_gn_sp_22587 text,
     au_residenceofauthority_au_name_gn_geographicalname_gn_sp_22588 boolean
 );
-SELECT ADDGEOMETRYCOLUMN('', 'au_administrativeunit_au_residenceofauthority','au_residenceofauthority_au_geometry_value','-1','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'au_administrativeunit_au_residenceofauthority','au_residenceofauthority_au_geometry_value','0','GEOMETRY', 2);
 CREATE TABLE au_administrativeunit_au_condominium (
     id serial PRIMARY KEY,
     parentfk text NOT NULL REFERENCES au_administrativeunit ON DELETE CASCADE,
@@ -974,7 +974,7 @@ CREATE TABLE au_condominium_au_name_gn_geographicalname_gn_spelling (
     gn_geographicalname_gn_spellingofname_gn_transliterationsc_9853 text,
     gn_geographicalname_gn_spellingofname_gn_transliterationsc_9854 boolean
 );
-SELECT ADDGEOMETRYCOLUMN('', 'au_condominium','au_geometry_value','-1','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'au_condominium','au_geometry_value','0','GEOMETRY', 2);
 CREATE TABLE au_condominium_au_admunit (
     id serial PRIMARY KEY,
     parentfk text NOT NULL REFERENCES au_condominium ON DELETE CASCADE,
@@ -1050,7 +1050,7 @@ CREATE TABLE cp_cadastralboundary (
     cp_validto_attr_xsi_nil boolean,
     CONSTRAINT cp_cadastralboundary_pkey PRIMARY KEY (attr_gml_id)
 );
-SELECT ADDGEOMETRYCOLUMN('', 'cp_cadastralboundary','cp_geometry_value','-1','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'cp_cadastralboundary','cp_geometry_value','0','GEOMETRY', 2);
 CREATE TABLE cp_cadastralboundary_cp_parcel (
     id serial PRIMARY KEY,
     parentfk text NOT NULL REFERENCES cp_cadastralboundary ON DELETE CASCADE,
@@ -1110,8 +1110,8 @@ CREATE TABLE cp_cadastralparcel (
     cp_zoning_href text,
     CONSTRAINT cp_cadastralparcel_pkey PRIMARY KEY (attr_gml_id)
 );
-SELECT ADDGEOMETRYCOLUMN('', 'cp_cadastralparcel','cp_geometry_value','-1','GEOMETRY', 2);
-SELECT ADDGEOMETRYCOLUMN('', 'cp_cadastralparcel','cp_referencepoint_value','-1','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'cp_cadastralparcel','cp_geometry_value','0','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'cp_cadastralparcel','cp_referencepoint_value','0','GEOMETRY', 2);
 CREATE TABLE cp_cadastralparcel_cp_basicpropertyunit (
     id serial PRIMARY KEY,
     parentfk text NOT NULL REFERENCES cp_cadastralparcel ON DELETE CASCADE,
@@ -1174,7 +1174,7 @@ CREATE TABLE cp_cadastralzoning (
     cp_upperlevelunit_href text,
     CONSTRAINT cp_cadastralzoning_pkey PRIMARY KEY (attr_gml_id)
 );
-SELECT ADDGEOMETRYCOLUMN('', 'cp_cadastralzoning','cp_geometry_value','-1','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'cp_cadastralzoning','cp_geometry_value','0','GEOMETRY', 2);
 CREATE TABLE cp_cadastralzoning_cp_levelname (
     id serial PRIMARY KEY,
     parentfk text NOT NULL REFERENCES cp_cadastralzoning ON DELETE CASCADE,
@@ -1250,7 +1250,7 @@ CREATE TABLE cp_cadastralzoning_cp_name_gn_geographicalname_gn_spelling (
     gn_geographicalname_gn_spellingofname_gn_transliterationsc_9845 text,
     gn_geographicalname_gn_spellingofname_gn_transliterationsc_9846 boolean
 );
-SELECT ADDGEOMETRYCOLUMN('', 'cp_cadastralzoning','cp_referencepoint_value','-1','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'cp_cadastralzoning','cp_referencepoint_value','0','GEOMETRY', 2);
 CREATE TABLE gn_namedplace (
     attr_gml_id text,
     gml_identifier text,
@@ -1309,7 +1309,7 @@ CREATE TABLE gn_namedplace (
     gn_mostdetailedviewingresolution_gmd_md_resolution_gmd_di_13009 text,
     CONSTRAINT gn_namedplace_pkey PRIMARY KEY (attr_gml_id)
 );
-SELECT ADDGEOMETRYCOLUMN('', 'gn_namedplace','gn_geometry_value','-1','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'gn_namedplace','gn_geometry_value','0','GEOMETRY', 2);
 CREATE TABLE gn_namedplace_gn_localtype (
     id serial PRIMARY KEY,
     parentfk text NOT NULL REFERENCES gn_namedplace ON DELETE CASCADE,
@@ -1929,7 +1929,7 @@ CREATE TABLE plu_spatialplan (
     plu_backgroundmap_plu_backgroundmapvalue_plu_backgroudmapu_9671 boolean,
     CONSTRAINT plu_spatialplan_pkey PRIMARY KEY (attr_gml_id)
 );
-SELECT ADDGEOMETRYCOLUMN('', 'plu_spatialplan','plu_extent_value','-1','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'plu_spatialplan','plu_extent_value','0','GEOMETRY', 2);
 CREATE TABLE plu_spatialplan_plu_ordinance (
     id serial PRIMARY KEY,
     parentfk text NOT NULL REFERENCES plu_spatialplan ON DELETE CASCADE,
@@ -2053,7 +2053,7 @@ CREATE TABLE plu_supplementaryregulation_plu_dimensioningindication (
     plu_dimensioningindicationrealvalue_plu_indicationreference text,
     plu_dimensioningindicationrealvalue_plu_value numeric
 );
-SELECT ADDGEOMETRYCOLUMN('', 'plu_supplementaryregulation','plu_geometry_value','-1','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'plu_supplementaryregulation','plu_geometry_value','0','GEOMETRY', 2);
 CREATE TABLE plu_supplementaryregulation_plu_name (
     id serial PRIMARY KEY,
     parentfk text NOT NULL REFERENCES plu_supplementaryregulation ON DELETE CASCADE,
@@ -2146,7 +2146,7 @@ CREATE TABLE plu_zoningelement (
     plu_plan_href text,
     CONSTRAINT plu_zoningelement_pkey PRIMARY KEY (attr_gml_id)
 );
-SELECT ADDGEOMETRYCOLUMN('', 'plu_zoningelement','plu_geometry_value','-1','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'plu_zoningelement','plu_geometry_value','0','GEOMETRY', 2);
 CREATE TABLE plu_zoningelement_plu_hilucslanduse (
     id serial PRIMARY KEY,
     parentfk text NOT NULL REFERENCES plu_zoningelement ON DELETE CASCADE,
@@ -2800,7 +2800,7 @@ CREATE TABLE tn_markerpost_tn_geographicalname_gn_geographicalname_gn_spe_84 (
     tn_geographicalname_gn_geographicalname_gn_spellingofname_gn_90 text,
     tn_geographicalname_gn_geographicalname_gn_spellingofname_gn_91 boolean
 );
-SELECT ADDGEOMETRYCOLUMN('', 'tn_markerpost','tn_geometry_value','-1','GEOMETRY', 2);
+SELECT ADDGEOMETRYCOLUMN('', 'tn_markerpost','tn_geometry_value','0','GEOMETRY', 2);
 CREATE TABLE tn_ownerauthority (
     attr_gml_id text,
     gml_identifier text,
