@@ -19,6 +19,7 @@ import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
+import org.deegree.geometry.Geometry;
 import org.deegree.geometry.GeometryFactory;
 import org.deegree.gml.GMLStreamReader;
 import org.deegree.gml.GMLVersion;
@@ -113,9 +114,10 @@ public class GeometricValidatorImpl implements GeometricValidator {
             result.addErrors( geometryInspector.getErrors() );
             List<String> brokenGeometryErrors = extendMessagesOfBrokenGeometryErrors( gmlStream );
             result.addErrors( brokenGeometryErrors );
-            featureInspectors.stream().forEach( fi -> checkAndAddRules( fi, result ) );
             result.addWarnings( geometryInspector.getWarnings() );
             result.addBadGeometries( geometryInspector.getBadGeometries() );
+            featureInspectors.stream().forEach( fi -> checkAndAddRules( fi, result ) );
+
 
             resolveAndValidateXlinks( gmlStream, result );
             return result;
@@ -128,8 +130,11 @@ public class GeometricValidatorImpl implements GeometricValidator {
     }
 
     private void checkAndAddRules( GeometricFeatureInspector fi, ParserAndValidatorResult result ) {
-        List<String> errors = fi.checkGeometricRule();
-        result.addErrors( errors );
+        List<BadGeometry> errors = fi.checkGeometricRule();
+        errors.stream().forEach( error -> {
+            result.addErrors( error.getErrors() );
+        } );
+        result.addBadGeometries( errors );
     }
 
     private List<GeometricFeatureInspector> createInspectors( List<ValidationOption> voOptions ) {

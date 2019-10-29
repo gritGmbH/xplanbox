@@ -1,6 +1,7 @@
 package de.latlon.xplan.validator.geometric.inspector;
 
 import de.latlon.xplan.validator.geometric.ControlPoint;
+import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.datetime.Date;
 import org.deegree.commons.tom.datetime.ISO8601Converter;
@@ -83,15 +84,15 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
      *
      * @return <code>true</code> if the Flaechenschlussbedingung is satisfied, <code>false</code> otherwise
      */
-    public List<String> checkGeometricRule() {
+    public List<BadGeometry> checkGeometricRule() {
         controlPoints.stream().forEach( cp -> checkForIdenticalControlPoint( cp ) );
         List<ControlPoint> controlPointsWithInvalidFlaechenschluss = controlPoints.stream().filter(
                                 cp -> !isPartOfGeltungsbereich( cp.getPoint() )
                                       && !cp.hasIdenticalControlPoint() ).collect( Collectors.toList() );
 
-        List<String> flaechenschlussErrors = controlPointsWithInvalidFlaechenschluss.stream().map(
-                                cp -> String.format( ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint() ) ).collect(
-                                Collectors.toList() );
+        List<BadGeometry> flaechenschlussErrors = controlPointsWithInvalidFlaechenschluss.stream().map( cp -> {
+            String error = String.format( ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint() );
+            return new BadGeometry( cp.getPoint(), error ); } ).collect( Collectors.toList() );
         if ( flaechenschlussErrors.isEmpty() ) {
             LOG.info( "No features with invalid flaechenschluss" );
         } else {

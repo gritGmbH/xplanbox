@@ -7,6 +7,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.validator.geometric.inspector.FlaechenschlussInspector;
+import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.types.AppSchema;
@@ -34,7 +35,7 @@ public class FlaechenschlussInspectorTest {
         XPlanArchive archive = getTestArchive( "xplan51/V4_1_ID_103.zip" );
         FlaechenschlussInspector flaechenschlussInspector = readFeatures( archive );
 
-        List<String> flaechenschlussErrors = flaechenschlussInspector.checkGeometricRule();
+        List<BadGeometry> flaechenschlussErrors = flaechenschlussInspector.checkGeometricRule();
         assertThat( flaechenschlussErrors.size(), is( 0 ) );
     }
 
@@ -44,7 +45,7 @@ public class FlaechenschlussInspectorTest {
         XPlanArchive archive = getTestArchive( "xplan51/V4_1_ID_103_wirksamkeit.zip" );
         FlaechenschlussInspector flaechenschlussInspector = readFeatures( archive );
 
-        List<String> flaechenschlussErrors = flaechenschlussInspector.checkFlaechenschluss();
+        List<BadGeometry> flaechenschlussErrors = flaechenschlussInspector.checkGeometricRule();
         assertThat( flaechenschlussErrors.size(), is( 0 ) );
     }
 
@@ -54,7 +55,7 @@ public class FlaechenschlussInspectorTest {
         XPlanArchive archive = getTestArchive( "xplan51/V4_1_ID_103_kein-flaechenschluss.zip" );
         FlaechenschlussInspector flaechenschlussInspector = readFeatures( archive );
 
-        List<String> flaechenschlussErrors = flaechenschlussInspector.checkGeometricRule();
+        List<BadGeometry> flaechenschlussErrors = flaechenschlussInspector.checkGeometricRule();
         assertThat( flaechenschlussErrors.size(), is( 1 ) );
     }
 

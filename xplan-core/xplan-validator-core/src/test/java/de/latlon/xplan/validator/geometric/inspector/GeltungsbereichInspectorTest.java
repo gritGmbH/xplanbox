@@ -7,6 +7,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.validator.geometric.inspector.GeltungsbereichInspector;
+import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.types.AppSchema;
@@ -34,7 +35,7 @@ public class GeltungsbereichInspectorTest {
         XPlanArchive archive = getTestArchive( "xplan51/V4_1_ID_103_geltungsbereich-erfuellt.zip" );
         GeltungsbereichInspector geltungsbereichInspector = readFeatures( archive );
 
-        List<String> errors = geltungsbereichInspector.checkGeometricRule();
+        List<BadGeometry> errors = geltungsbereichInspector.checkGeometricRule();
         assertThat( errors.size(), is( 0 ) );
     }
 
@@ -44,7 +45,7 @@ public class GeltungsbereichInspectorTest {
         XPlanArchive archive = getTestArchive( "xplan51/V4_1_ID_103.zip" );
         GeltungsbereichInspector geltungsbereichInspector = readFeatures( archive );
 
-        List<String> errors = geltungsbereichInspector.checkGeometricRule();
+        List<BadGeometry> errors = geltungsbereichInspector.checkGeometricRule();
         assertThat( errors.size(), is( 1 ) );
     }
 

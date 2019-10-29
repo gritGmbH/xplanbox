@@ -24,6 +24,11 @@ public class BadGeometry {
         this.geometry = geometry;
     }
 
+    public BadGeometry( Geometry geometry, String error ) {
+        this.geometry = geometry;
+        addError( error );
+    }
+
     public void setGeometry( Geometry geometry ) {
         this.geometry = geometry;
     }

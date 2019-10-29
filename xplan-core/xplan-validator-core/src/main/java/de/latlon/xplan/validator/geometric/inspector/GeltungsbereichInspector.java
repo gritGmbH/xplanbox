@@ -1,6 +1,7 @@
 package de.latlon.xplan.validator.geometric.inspector;
 
 import com.vividsolutions.jts.geom.Geometry;
+import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
@@ -64,24 +65,25 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
     }
 
     @Override
-    public List<String> checkGeometricRule() {
-        List<String> allInvalidFeatureIds = new ArrayList<>();
+    public List<BadGeometry> checkGeometricRule() {
+        List<Feature> allInvalidFeatures = new ArrayList<>();
         for ( Map.Entry<String, List<Feature>> bereichIdToGeoms : bereichIdToFeatureGeoms.entrySet() ) {
             Geometry geltungsbereich = retrieveGeltungsbereichGeom( bereichIdToGeoms.getKey() );
-            List<String> invalidFeatureIds = bereichIdToGeoms.getValue().stream().filter(
-                                    f -> !isInsideGeom( f, geltungsbereich ) ).map( f -> f.getId() ).collect(
-                                    Collectors.toList() );
-            allInvalidFeatureIds.addAll( invalidFeatureIds );
+            List<Feature> invalidFeatures = bereichIdToGeoms.getValue().stream().filter(
+                                    f -> !isInsideGeom( f, geltungsbereich ) ).collect( Collectors.toList() );
+            allInvalidFeatures.addAll( invalidFeatures );
         }
-        if ( allInvalidFeatureIds.isEmpty() ) {
+        if ( allInvalidFeatures.isEmpty() ) {
             LOG.info( "No features outside geltungsbereich" );
         } else {
             LOG.info( "Features outside geltungsbereich:\n {}",
-                      allInvalidFeatureIds.stream().collect( Collectors.joining( "\n" ) ) );
+                      allInvalidFeatures.stream().map( f -> f.getId() ).collect( Collectors.joining( "\n" ) ) );
         }
-        List<String> errorsOfBereich = allInvalidFeatureIds.stream().map(
-                                id -> String.format( ERROR_MSG, id ) ).collect( Collectors.toList() );
-        return errorsOfBereich;
+        List<BadGeometry> badGeometries = allInvalidFeatures.stream().map( f -> {
+            String error = String.format( ERROR_MSG, f.getId() );
+            return new BadGeometry( getOriginalGeometry( f ), error );
+        } ).collect( Collectors.toList() );
+        return badGeometries;
     }
 
     private Geometry retrieveGeltungsbereichGeom( String bereichId ) {
@@ -121,11 +123,17 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
         return value.toString().substring( 1 );
     }
 
-    private com.vividsolutions.jts.geom.Geometry getGeometry( Feature feature ) {
-        List<Property> geometryProperties = feature.getGeometryProperties();
-        if ( !geometryProperties.isEmpty() )
-            return ( (AbstractDefaultGeometry) geometryProperties.get( 0 ).getValue() ).getJTSGeometry();
+    private Geometry getGeometry( Feature feature ) {
+        AbstractDefaultGeometry originalGeometry = getOriginalGeometry( feature );
+        if ( originalGeometry != null )
+            return originalGeometry.getJTSGeometry();
         return null;
     }
 
+    private AbstractDefaultGeometry getOriginalGeometry( Feature feature ) {
+        List<Property> geometryProperties = feature.getGeometryProperties();
+        if ( !geometryProperties.isEmpty() )
+            return  (AbstractDefaultGeometry) geometryProperties.get( 0 ).getValue();
+        return null;
+    }
 }

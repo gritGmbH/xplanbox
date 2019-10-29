@@ -1,5 +1,6 @@
 package de.latlon.xplan.validator.geometric.inspector;
 
+import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.gml.feature.FeatureInspector;
 
 import java.util.List;
@@ -9,6 +10,6 @@ import java.util.List;
  */
 public interface GeometricFeatureInspector extends FeatureInspector {
 
-    List<String> checkGeometricRule();
+    List<BadGeometry> checkGeometricRule();
 
 }
