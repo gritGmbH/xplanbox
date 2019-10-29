@@ -187,7 +187,7 @@ public class WorkspaceRasterLayerManager {
     private void createTileLayerConfig( String rasterId, double minScaleDenominator, double maxScaleDenominator )
                     throws JAXBException, IOException {
         TileLayers cfg = new TileLayers();
-        cfg.setConfigVersion( "3.2.0" );
+        cfg.setConfigVersion( "3.4.0" );
         TileLayerType lay = new TileLayerType();
         cfg.getTileLayer().add( lay );
         lay.setName( rasterId );
@@ -221,7 +221,7 @@ public class WorkspaceRasterLayerManager {
     private void createGeotiffTileMatrixSetConfig( String rasterId, String rasterFileName )
                     throws JAXBException, IOException {
         GeoTIFFTileMatrixSetConfig cfg = new GeoTIFFTileMatrixSetConfig();
-        cfg.setConfigVersion( "3.2.0" );
+        cfg.setConfigVersion( "3.4.0" );
         cfg.setStorageCRS( rasterConfigurationCrs );
         cfg.setFile( "../../../data/" + rasterFileName );
         Path tilematrixsetDir = wmsWorkspace.resolve( "datasources/tile/tilematrixset/" );
@@ -245,7 +245,7 @@ public class WorkspaceRasterLayerManager {
     private void createGeotiffTileStoreConfig( String rasterId, String rasterFileName )
                     throws JAXBException {
         GeoTIFFTileStoreJAXB cfg = new GeoTIFFTileStoreJAXB();
-        cfg.setConfigVersion( "3.2.0" );
+        cfg.setConfigVersion( "3.4.0" );
         GeoTIFFTileStoreJAXB.TileDataSet tds = new GeoTIFFTileStoreJAXB.TileDataSet();
         tds.setIdentifier( rasterId );
         tds.setFile( "../../data/" + rasterFileName );

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns4:TileLayers xmlns="http://www.deegree.org/layers/base" xmlns:ns2="http://www.deegree.org/metadata/description" xmlns:ns3="http://www.deegree.org/metadata/spatial" xmlns:ns4="http://www.deegree.org/layers/tile" configVersion="3.2.0">
+<ns4:TileLayers xmlns="http://www.deegree.org/layers/base" xmlns:ns2="http://www.deegree.org/metadata/description" xmlns:ns3="http://www.deegree.org/metadata/spatial" xmlns:ns4="http://www.deegree.org/layers/tile" configVersion="3.4.0">
   <ns4:TileLayer>
     <Name>bplan_$ID_raster</Name>
     <ns2:Title>bplan_$ID_raster</ns2:Title>
