@@ -1,46 +1,10 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/0';
+declare namespace gml='http://www.opengis.net/gml/3.2';
 
-(
-  every $h in //BP_BaugebietsTeilFlaeche satisfies
-  ($h/GRmin and $h/GRmax) or $h/GR or not($h/GRmin and $h/GRmax and $h/GR)
+for $h in //*[matches(local-name(), '^GR$|^GRmin$|^GRmax$')]
+where not (
+  ($h/../GRmin and $h/../GRmax and not ($h/../GR)) or
+  ($h/../GR and not ($h/../GRmin or $h/../GRmax))
 )
-and
-(
-  every $h in //BP_BesondererNutzungszweckFlaeche satisfies
-  ($h/GRmin and $h/GRmax) or $h/GR or not($h/GRmin and $h/GRmax and $h/GR)
-)
-and
-(
-  every $h in //BP_UeberbaubareGrundstuecksFlaeche satisfies
-  ($h/GRmin and $h/GRmax) or $h/GR or not($h/GRmin and $h/GRmax and $h/GR)
-)
-and
-(
-  every $h in //BP_GemeinbedarfsFlaeche satisfies
-  ($h/GRmin and $h/GRmax) or $h/GR or not($h/GRmin and $h/GRmax and $h/GR)
-)
-and
-(
-  every $h in //BP_GruenFlaeche satisfies
-  ($h/GRmin and $h/GRmax) or $h/GR or not($h/GRmin and $h/GRmax and $h/GR)
-)
-and
-(
-  every $h in //BP_SpielSportanlagenFlaeche satisfies
-  ($h/GRmin and $h/GRmax) or $h/GR or not($h/GRmin and $h/GRmax and $h/GR)
-)
-and
-(
-  every $h in //BP_StrassenVerkehrsFlaeche satisfies
-  ($h/GRmin and $h/GRmax) or $h/GR or not($h/GRmin and $h/GRmax and $h/GR)
-)
-and
-(
-  every $h in //BP_VerEntsorgung satisfies
-  ($h/GRmin and $h/GRmax) or $h/GR or not($h/GRmin and $h/GRmax and $h/GR)
-)
-and
-(
-  every $h in //BP_VerkehrsflaecheBesondererZweckbestimmung satisfies
-  ($h/GRmin and $h/GRmax) or $h/GR or not($h/GRmin and $h/GRmax and $h/GR)
-)
+group by $oId := $h/../@gml:id/string()
+return $oId

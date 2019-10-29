@@ -2,24 +2,15 @@ declare default element namespace 'http://www.xplanung.de/xplangml/5/0';
 declare namespace gml='http://www.opengis.net/gml/3.2';
 declare namespace xlink='http://www.w3.org/1999/xlink';
 
-if (
-  let $ids := (
-    for $h in //XP_Bereich/praesentationsobjekt/@xlink:href
-    return substring($h,2)
-  )
-  return
-  
-  every $id in $ids satisfies
-    exists(//XP_AbstraktesPraesentationsobjekt[@gml:id = $id])
+for $h in //*[ends-with(name(), '_Bereich')]/praesentationsobjekt
+let $berId := concat('#',$h/../@gml:id/string())
+let $pId := substring ($h/@xlink:href/string(),2)
+where
+not (
+	//*[@gml:id eq $pId]/gehoertZuBereich[@xlink:href/string() eq $berId]
 )
-then (
-  let $ids := (
-    for $h in //XP_AbstraktesPraesentationsobjekt/gehoertZuBereich/@xlink:href
-    return substring($h,2)
-  )
-  return
-  
-  every $id in $ids satisfies
-    count(exists(//XP_Bereich[@gml:id = $id])) = 1
+or
+(
+	count (//*[@gml:id eq $pId]/gehoertZuBereich) > 1
 )
-else boolean ('false')
+return $pId

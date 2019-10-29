@@ -200,24 +200,7 @@
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>square</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
+    <!-- PointSymbolizer wg. symbolPosition entfernt -->
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>

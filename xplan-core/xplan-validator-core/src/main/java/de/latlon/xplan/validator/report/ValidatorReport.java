@@ -4,6 +4,8 @@ import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 
+import java.util.Date;
+
 /**
  * A validation report contains all ValidationResults of one Validation
  *
@@ -18,6 +20,12 @@ public class ValidatorReport {
     private SyntacticValidatorResult syntacticValidatorResult;
 
     private SemanticValidatorResult semanticValidatorResult;
+
+    private String validationName;
+
+    private String planName;
+
+    private Date date;
 
     public ValidatorReport() {
     }
@@ -101,4 +109,45 @@ public class ValidatorReport {
         return finalResult;
     }
 
+    /**
+     * @param validationName name of the validation run
+     */
+    public void setValidationName( String validationName ) {
+        this.validationName = validationName;
+    }
+
+    /**
+     * @param planName of teh archive
+     */
+    public void setPlanName( String planName ) {
+        this.planName = planName;
+    }
+
+    /**
+     * @param date date of the validation run
+     */
+    public void setDate( Date date ) {
+        this.date = date;
+    }
+
+    /**
+     * @return name of the validation run
+     */
+    public String getValidationName() {
+        return validationName;
+    }
+
+    /**
+     * @return name of teh archive
+     */
+    public String getPlanName() {
+        return planName;
+    }
+
+    /**
+     * @return date of the validation run
+     */
+    public Date getDate() {
+        return date;
+    }
 }

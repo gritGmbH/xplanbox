@@ -14,39 +14,42 @@ public class PdfReportGeneratorTest {
     public void testCreateReportAsPdfWithNullReport()
           throws Exception {
         ReportBuilder reportBuilder = new ReportBuilder();
-        reportBuilder.createReport( null, "ValName", "PlanName" );
+        reportBuilder.createReport( null );
     }
 
     @Test
     public void testCreateReportAsPdfWithNullValidationName()
           throws Exception {
         ReportBuilder reportBuilder = new ReportBuilder();
-        reportBuilder.createReport( createReport(), null, "PlanName" );
+        reportBuilder.createReport( createReport( null, "PlanName" ));
     }
 
     @Test
     public void testCreateReportAsPdfWithEmptyValidationName()
           throws Exception {
         ReportBuilder reportBuilder = new ReportBuilder();
-        reportBuilder.createReport( createReport(), "", "PlanName" );
+        reportBuilder.createReport( createReport( "", "PlanName" ) );
     }
 
     @Test
     public void testCreateReportAsPdfWithNullPlanName()
           throws Exception {
         ReportBuilder reportBuilder = new ReportBuilder();
-        reportBuilder.createReport( createReport(), "ValName", null );
+        reportBuilder.createReport( createReport( "ValName", null ) );
     }
 
     @Test
     public void testCreateReportAsPdfWithEmptyPlanName()
           throws Exception {
         ReportBuilder reportBuilder = new ReportBuilder();
-        reportBuilder.createReport( createReport(), "ValName", "" );
+        reportBuilder.createReport( createReport( "ValName", "" ) );
     }
 
-    private ValidatorReport createReport() {
-        return new ValidatorReport();
+    private ValidatorReport createReport( String archiveName, String planName ) {
+        ValidatorReport validatorReport = new ValidatorReport();
+        validatorReport.setPlanName( archiveName );
+        validatorReport.setValidationName( planName );
+        return validatorReport;
     }
 
 }

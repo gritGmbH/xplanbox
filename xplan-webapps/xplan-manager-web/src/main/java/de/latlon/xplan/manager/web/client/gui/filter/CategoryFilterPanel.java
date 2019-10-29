@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 import de.latlon.xplan.manager.web.client.filter.CategoryFilter;
 import de.latlon.xplan.manager.web.client.filter.PlanFilter;
+import de.latlon.xplan.manager.web.client.i18n.DynamicXPlanWebMessages;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 
@@ -27,6 +28,8 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 public class CategoryFilterPanel extends AbstractFilterPanel implements ResetableFilterPanel {
 
     private final XPlanWebMessages messages = GWT.create( XPlanWebMessages.class );
+
+    private final DynamicXPlanWebMessages dynamicMmessages = GWT.create( DynamicXPlanWebMessages.class );
 
     private final ListBox categoryListBox;
 
@@ -58,7 +61,7 @@ public class CategoryFilterPanel extends AbstractFilterPanel implements Resetabl
     }
 
     private Widget createCategoryLabel() {
-        return new Label( messages.filterCategoryLabel() );
+        return new Label( dynamicMmessages.filterCommunityLabel() );
     }
 
     private ListBox createCategoryListBox( final ManagerWebConfiguration configuration ) {
@@ -81,17 +84,17 @@ public class CategoryFilterPanel extends AbstractFilterPanel implements Resetabl
                 return new CategoryFilter( categoryListBox.getValue( selectedIndex ) );
             }
         } );
-        categoryListBox.setTitle( messages.filterCategoryTooltip() );
+        categoryListBox.setTitle( dynamicMmessages.filterCommunityTooltip() );
         addItems( categoryListBox, configuration );
         return categoryListBox;
     }
 
     private void addItems( ListBox categoryListBox, ManagerWebConfiguration configuration ) {
-        categoryListBox.addItem( messages.filterCategorySelectionAll() );
+        categoryListBox.addItem( dynamicMmessages.filterCommunitySelectionAll() );
         for ( String category : configuration.getCategoryFilterValues() ) {
             categoryListBox.addItem( category );
         }
-        categoryListBox.addItem( messages.filterCategorySelectionOther() );
+        categoryListBox.addItem( dynamicMmessages.filterCommunitySelectionOther() );
     }
 
 }

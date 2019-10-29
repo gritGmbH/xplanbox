@@ -1,20 +1,5 @@
 package de.latlon.xplan.validator.report.shapefile;
 
-import static java.lang.String.format;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
-import org.deegree.feature.types.AppSchema;
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
@@ -27,6 +12,21 @@ import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
+import org.deegree.feature.types.AppSchema;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_OPTIONS;
+import static java.lang.String.format;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author bingel
@@ -89,7 +89,7 @@ public class ShapefileGeneratorTest {
     private ValidatorReport createArchive()
                     throws Exception {
         XPlanArchive archive = getTestArchive( "xplan41/FPlan.zip" );
-        GeometricValidatorResult result = (GeometricValidatorResult) validateGeometryAndReturnReport( archive, null );
+        GeometricValidatorResult result = (GeometricValidatorResult) validateGeometryAndReturnReport( archive, SKIP_OPTIONS );
         ValidatorReport validatorReport = new ValidatorReport();
         validatorReport.setGeometricValidatorResult( result );
         return validatorReport;

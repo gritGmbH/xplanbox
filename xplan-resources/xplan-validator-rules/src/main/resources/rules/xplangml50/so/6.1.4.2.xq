@@ -1,9 +1,12 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/0';
 declare namespace gml='http://www.opengis.net/gml/3.2';
 
-every $h in //SO_Gebiet/position satisfies
-  exists($h/gml:Polygon) or
-  exists($h/gml:MultiSurface) or
-  exists($h/gml:LinearRing) or
-  exists($h/gml:PolygonPatch) or
-  exists($h/gml:Ring)
+for $h in //SO_Gebiet
+where not (
+	$h/position/gml:Polygon or
+	$h/position/gml:MultiSurface or
+	$h/position/gml:LinearRing or
+	$h/position/gml:PolygonPatch or
+	$h/position/gml:Ring
+)
+return $h/@gml:id/string()

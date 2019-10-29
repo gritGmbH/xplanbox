@@ -1,23 +1,14 @@
 declare default element namespace 'http://www.xplanung.de/xplangml/5/1';
 declare namespace gml='http://www.opengis.net/gml/3.2';
 
-every $h in //FP_Gemeinbedarf[position] satisfies
-(
-  exists($h/position/gml:Point) or
-  exists($h/position/gml:MultiPoint) or
-
-  exists($h/position/gml:Polygon) or
-  exists($h/position/gml:MultiSurface) or
-  exists($h/position/gml:LinearRing) or
-  exists($h/position/gml:PolygonPatch) or
-  exists($h/position/gml:Ring)
+for $h in //FP_Gemeinbedarf/position
+where not (
+	$h/gml:Polygon or
+	$h/gml:MultiSurface or
+	$h/gml:LinearRing or
+	$h/gml:PolygonPatch or
+	$h/gml:Ring or
+	$h/gml:Point or
+	$h/gml:MultiPoint
 )
-and
-(
-  not(exists($h/position/gml:Curve)) and
-  not(exists($h/position/gml:LineString)) and
-  not(exists($h/position/gml:MultiCurve)) and
-  not(exists($h/position/gml:LineStringSegment)) and
-  not(exists($h/position/gml:Arc)) and
-  not(exists($h/position/gml:Circle))
-)
+return $h/../@gml:id/string()

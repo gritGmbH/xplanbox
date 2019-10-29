@@ -22,17 +22,15 @@ public class PdfReportGenerator {
      * Writes the {@link ValidatorReport} to an OutputStream in PDF-Format
      *
      * @param report         the validation report to serialize, never <code>null</code>
-     * @param validationName the Name of the Validation, may be <code>null</code> or empty
-     * @param planName       the Name of the validated plan, may be <code>null</code> or empty
      * @param os             the OutputStream where the PDF-Content is written into, never <code>null</code>
      * @throws ReportGenerationException if an exception occurred during writing the report
      * @throws IllegalArgumentException  if the passed report or outputstream are <code>null</code>
      */
-    public void createPdfReport( ValidatorReport report, String validationName, String planName, OutputStream os )
+    public void createPdfReport( ValidatorReport report, OutputStream os )
           throws ReportGenerationException {
         checkParameters( report, os );
         try {
-            JasperReportBuilder print = reportBuilder.createReport( report, validationName, planName );
+            JasperReportBuilder print = reportBuilder.createReport( report );
             print.toPdf( os );
         } catch ( DRException e ) {
             throw new ReportGenerationException( e );

@@ -5,51 +5,5 @@
   xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>transparent</Name>
   <FeatureTypeName>xplan:BP_BesondererNutzungszweckFlaeche</FeatureTypeName>
-  <Rule>
-    <Name>bp_besnutzzweckfl</Name>
-    <Description>
-      <Title>BP: Fläche besonderer Nutzung</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:Not>
-        <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-        </ogc:PropertyIsNull>
-      </ogc:Not>
-    </ogc:Filter>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <TextSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName>
-      </Geometry>
-      <Label>
-        <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
-      </Label>
-      <Font>
-        <SvgParameter name="font-family">Arial</SvgParameter>
-        <SvgParameter name="font-family">Sans-Serif</SvgParameter>
-        <SvgParameter name="font-weight">bold</SvgParameter>
-        <SvgParameter name="font-size">3</SvgParameter>
-      </Font>
-      <LabelPlacement>
-        <PointPlacement>
-          <Displacement>
-            <DisplacementX>0</DisplacementX>
-            <DisplacementY>7</DisplacementY>
-          </Displacement>
-        </PointPlacement>
-      </LabelPlacement>
-      <Halo>
-        <Radius>0.3</Radius>
-        <Fill>
-          <SvgParameter name="fill">#ffffff</SvgParameter>
-          <SvgParameter name="fill-opacity">0</SvgParameter>
-        </Fill>
-      </Halo>
-      <Fill>
-        <SvgParameter name="fill">#000000</SvgParameter>
-        <SvgParameter name="fill-opacity">0</SvgParameter>
-      </Fill>
-    </TextSymbolizer>
-  </Rule>
+  <!-- Rule wg. symbolPosition entfernt -->
 </FeatureTypeStyle>

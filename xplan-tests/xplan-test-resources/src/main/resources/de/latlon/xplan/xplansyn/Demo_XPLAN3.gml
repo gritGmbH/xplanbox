@@ -113,15 +113,6 @@
       <xplan:uuid>PZV_01.01.03</xplan:uuid>
       <xplan:rechtsstand>Geplant</xplan:rechtsstand>
       <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
-      <xplan:symbolPosition>
-        <gml:MultiPoint srsName="EPSG:31467">
-          <gml:pointMember>
-            <gml:Point srsName="EPSG:31467">
-              <gml:pos>3954699.500000 5499942.750000</gml:pos>
-            </gml:Point>
-          </gml:pointMember>
-        </gml:MultiPoint>
-      </xplan:symbolPosition>
       <xplan:ebene>0</xplan:ebene>
       <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
       <xplan:informell>[/getAttachment?featureID=FEATURE_6&amp;filename=Allgemeine Wohngebiete]</xplan:informell>
@@ -169,20 +160,6 @@
       <xplan:uuid>{45AD741C-A18A-4C16-900B-C806E981151E}</xplan:uuid>
       <xplan:rechtsstand>Geplant</xplan:rechtsstand>
       <xplan:rechtsstandCode>1000</xplan:rechtsstandCode>
-      <xplan:symbolPosition>
-        <gml:MultiPoint srsName="EPSG:31467">
-          <gml:pointMember>
-            <gml:Point srsName="EPSG:31467">
-              <gml:pos>3954739.500000 5499946.500000</gml:pos>
-            </gml:Point>
-          </gml:pointMember>
-          <gml:pointMember>
-            <gml:Point srsName="EPSG:31467">
-              <gml:pos>3954740.210000 5499933.850000</gml:pos>
-            </gml:Point>
-          </gml:pointMember>
-        </gml:MultiPoint>
-      </xplan:symbolPosition>
       <xplan:ebene>0</xplan:ebene>
       <xplan:gehoertZuBereich>[FEATURE_2]</xplan:gehoertZuBereich>
       <xplan:informell>[/getAttachment?featureID=FEATURE_8&amp;filename=Allgemeine Wohngebiete]</xplan:informell>

@@ -5,7 +5,7 @@ SET search_path TO xplan41nsmarchive,public;
 
 CREATE TABLE feature_types (id smallint PRIMARY KEY, qname text NOT NULL);
 COMMENT ON TABLE feature_types IS 'Ids and bboxes of concrete feature types';
-SELECT ADDGEOMETRYCOLUMN('xplan41nsmarchive', 'feature_types','bbox','-1','GEOMETRY',2);
+SELECT ADDGEOMETRYCOLUMN('xplan41nsmarchive', 'feature_types','bbox','0','GEOMETRY',2);
 INSERT INTO feature_types  (id,qname) VALUES (0,'{http://www.opengis.net/gml/3.2}AbstractDiscreteCoverage');
 INSERT INTO feature_types  (id,qname) VALUES (1,'{http://www.opengis.net/gml/3.2}MultiPointCoverage');
 INSERT INTO feature_types  (id,qname) VALUES (2,'{http://www.opengis.net/gml/3.2}RectifiedGridCoverage');
@@ -219,6 +219,6 @@ INSERT INTO feature_types  (id,qname) VALUES (209,'{http://www.xplanung.de/xplan
 INSERT INTO feature_types  (id,qname) VALUES (210,'{http://www.xplanung.de/xplangml/4/1}XP_TextAbschnitt');
 CREATE TABLE gml_objects (id serial PRIMARY KEY, gml_id text UNIQUE NOT NULL, ft_type smallint REFERENCES feature_types , binary_object bytea, plan_id text, plan_name text, internal_id text, rechtsstand text);
 COMMENT ON TABLE gml_objects IS 'All objects (features and geometries)';
-SELECT ADDGEOMETRYCOLUMN('xplan41nsmarchive', 'gml_objects','gml_bounded_by','-1','GEOMETRY',2);
+SELECT ADDGEOMETRYCOLUMN('xplan41nsmarchive', 'gml_objects','gml_bounded_by','0','GEOMETRY',2);
 ALTER TABLE gml_objects ADD CONSTRAINT gml_objects_geochk CHECK (ST_isValid(gml_bounded_by));
 CREATE INDEX gml_objects_sidx ON gml_objects  USING GIST (gml_bounded_by);

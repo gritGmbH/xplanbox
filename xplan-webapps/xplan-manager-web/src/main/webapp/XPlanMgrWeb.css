@@ -394,6 +394,12 @@ td.gwt-TabBarFirst-wrapper, td.gwt-TabBarRest-wrapper{
 	width: 100%;
 }
 
+.valOptionLabel {
+    color: #ff9900;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
 /*Stylingversuch für den Durchsuchenbutton*/
 input[type=button] {
   background-color:#005fa6;

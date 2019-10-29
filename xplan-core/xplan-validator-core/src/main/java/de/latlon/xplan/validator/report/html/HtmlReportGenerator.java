@@ -30,16 +30,13 @@ public class HtmlReportGenerator {
      * Writes the complete report to an OutputStream in HTML-Format.
      *
      * @param report         the validation report to serialize, never <code>null</code>
-     * @param validationName the Name of the Validation, never <code>null</code>
-     * @param planName       the Name of the validated plan, never <code>null</code>
      * @throws ReportGenerationException if the generation of the XML report failed
      * @throws IllegalArgumentException  if on of the parameters is <code>null</code>
      */
-    public void generateHtmlReport( ValidatorReport report, String validationName, String planName,
-                                    OutputStream htmlOut )
+    public void generateHtmlReport( ValidatorReport report, OutputStream htmlOut )
           throws ReportGenerationException {
-        checkParameters( report, validationName, planName, htmlOut );
-        ByteArrayOutputStream xmlOut = writeXmlToStream( report, validationName, planName );
+        checkParameters( report, htmlOut );
+        ByteArrayOutputStream xmlOut = writeXmlToStream( report );
 
         try (InputStream xmlIn = new ByteArrayInputStream( xmlOut.toByteArray() ); InputStream xslStream = loadXslt()) {
             Transformer transformer = TransformerFactory.newInstance().newTransformer( new StreamSource( xslStream ) );
@@ -52,12 +49,12 @@ public class HtmlReportGenerator {
         }
     }
 
-    private ByteArrayOutputStream writeXmlToStream( ValidatorReport report, String validationName, String planName )
+    private ByteArrayOutputStream writeXmlToStream( ValidatorReport report )
           throws ReportGenerationException {
         ByteArrayOutputStream xmlOut = new ByteArrayOutputStream();
         try {
             XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-            xmlReportGenerator.generateXmlReport( report, validationName, planName, xmlOut );
+            xmlReportGenerator.generateXmlReport( report, xmlOut );
             return xmlOut;
         } finally {
             IOUtils.closeQuietly( xmlOut );
@@ -68,13 +65,9 @@ public class HtmlReportGenerator {
         return HtmlReportGenerator.class.getClassLoader().getResourceAsStream( XSLT_FILE_PATH );
     }
 
-    private void checkParameters( ValidatorReport report, String validationName, String planName, OutputStream os ) {
+    private void checkParameters( ValidatorReport report, OutputStream os ) {
         if ( report == null )
             throw new IllegalArgumentException( "ValidationReport must not be null" );
-        if ( validationName == null )
-            throw new IllegalArgumentException( "ValidationName must not be null" );
-        if ( planName == null )
-            throw new IllegalArgumentException( "PlanName must not be null" );
         if ( os == null )
             throw new IllegalArgumentException( "OutputStream must not be null" );
     }

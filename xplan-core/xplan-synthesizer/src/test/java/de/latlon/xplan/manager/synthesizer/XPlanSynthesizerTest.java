@@ -176,7 +176,6 @@ public class XPlanSynthesizerTest {
     private Path createTmpDirectoryAndCopyRuleFile( String synFile, String codelistFile )
                             throws IOException {
         Path tmpDirectory = createTmpDirectory();
-        System.out.println( "Tmp dir: " + tmpDirectory );
         copyFile( tmpDirectory, synFile, "xplan41.syn" );
         copyFile( tmpDirectory, codelistFile, codelistFile );
         return tmpDirectory;
