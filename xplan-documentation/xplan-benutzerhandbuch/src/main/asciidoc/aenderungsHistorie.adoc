@@ -1,0 +1,85 @@
+[appendix]
+[[Aenderungshistorie]]
+== Änderungshistorie der xPlanBox
+
+=== Version 3.0 (deegree Enterprise 2019.1)
+
+==== Erweiterungen
+
+ - Unterstützung für XPlanGML 5.0 und 5.1 in allen Komponenten der xPlanBox
+ - Unterstützung für PostgreSQL 11 und PostGIS 2.5
+ - Unterstützung für Apache Tomcat 9.0
+ - Neuer WMS für die Darstellung einzelner Planwerke (Planwerke-WMS)
+ - Automatische Erstellung von Metaten für die Daten-Dienste-Kopplung des XPlanWMS
+
+==== Fehlerbehebungen
+
+ - (TT_10046) Abbildung von Kreisbögen in der xPlanBox verbessern
+ - (TT_10180) Fehler bei Anfrage mit BBOX Filter ohne PropertyName beheben
+ - Bereitstellung von XPlanGML 4.1 Plänen in XPlanGML 5.1 über einen neuen WFS
+ - Anzeige der Planliste im XPlanManager beschleunigen
+ - Hinzufügen von Rasterdaten im Editiermodus ermöglichen
+ - (TT_10163) Gemeinsamer Austausch von Rasterdatei und Georeferenz erforderlich
+ - Zeichenvorschriften für BP_, FP_, und SO_ Objekte vervollständigen
+ - SO-Pläne unterstützen
+ - Zeichenreihenfolge im WMS um weitere Regeln ergänzen
+ - Plan mit mehreren Ortsteilnummern genau einem Bezirk zuordnen
+ - Modifizierung der Speicherung der textlichen Festsetzungen in dem synthetisierten Datenbankschema
+ - Exception Handling beim Löschen von Dateien aus dem WMS-Workspace verbessern
+ - Entfernen eines Plans mit Rasterdaten über den XPlanManager führt zum Fehler beim Update/Reload des XPlanWMS
+ - Verbesserung der Ausgabe der Validierungsergebnisse
+ - (TT_10222) Korrektur der Konformitätsregeln 4.5.2.1
+ - Multiline-Geometrien in F-Plänen werden als Fehler markiert (Regel 3.3.3.1)
+ - Verbesserung der geometrischen Validierungsregeln des XPlanValidator
+ - (TT_10183) Geometrische Validierungsregel für den Flächenschluss implementieren
+ - Ausgabe der GML ID für die allgemeinen Regeln 2.1.2.1, 2.1.3.1, 2.2.1.1
+ - (TT_10208) Korrektur der Validierungsregeln für BP_LandwirtschaftsFlaeche (XPlanGMl 5.1)
+ - Korrekturen der Konformitätsbedingungen für 5.0 und 5.1 übernehmen
+ - (TT_10209) Korrektur der StoredQueries für XPlanGML 5.0 und 5.1
+ - Benutzerhandbuch: XPlanValidatorCLI: Beispielaufrufe aktualisieren
+ - Ausgetauschte Rasterdateien werden nicht aus dem Workspace entfernt
+ - Einträge aus den Themes-Dateien Xplanpreraster und Xplanarchiveraster werden nicht gelöscht
+ - (TT_10173) GetFeatureInfo Response enthält eine leere Referenz für TextAbschnitte
+ - Regressionsfehler: Option removeAbandoned fehlt in ConnectionPool-Konfigurationen
+ - Darstellung von Fehlern in den Regeln im Geometrie-Report
+ - Verbesserung der Dokumentation der StoredQueries Dokumentation
+ - Korrektur des Verhaltens von GFI auf BP_Planvektor
+ - (TT_10205) GFI für Layer mit mehreren Geometriespalten korrigieren
+ - Probleme mit mehreren Geometriespalten im XPlanSynWFS
+ - Ausgetauschte Rasterdaten werden erst nach dem Löschen des Browser-Cache in der Kartenvorschau angezeigt Dokumentation
+ - Voraussetzung an das XPlanArchiv im Benutzerhandbuch dokumentieren Dokumentation
+ - Anzeige der XPlanGML Version in der Planliste des XPlanManager-Web
+ - Anzeige von Gemeinde statt Bezirk im XPlanManager
+ - Spalte mit Gemeinde im XPlanManager hinzufügen
+ - Anzeige der Version der xPlanBox in allen Komponenten ergänzen
+ - Verbesserung des Loggings im XPlanManagerWeb
+ - Konfiguration für xplansearch aus xplansyn-wfs-workspace entfernen
+ - Aktualisierung der deegree Version auf 3.4.10 (dCE)
+ - GDAL Version und Installation in xPlanBox auf 2.4 aktualisieren
+ - Saxon-HE Bibliothek für XPlanValidator auf Version 9.8 aktualisieren
+ - Aktualisierung von Spring 4.3 und Spring Security 4.2
+ - Aktualisierung der deegree Schemaversion auf 3.4.0 in allen Workspaces
+ - Unit-Tests schlagen fehl, wenn Java 8 und 11 installiert sind
+
+=== Version 2.8.2 (deegree Enterprise 2018.1)
+
+==== Erweiterungen
+
+ - XPlanManager um Spalte für BP_Plan:nummer erweitert
+ - XPlanManager um Statusanzeige ob INSPIRE-PLU-Dienst freigeschaltet ist erweitert
+
+==== Fehlerbehebungen
+
+ - (#1484) In der security-configuration.xml werden Platzhalter fälschlicherweise ersetzt
+ - (#1256) Tooltipp für Gültigkeitszeitraum funktioniert nur auf erster Seite
+ - (#1461) Umlaute im AD-Passwort ermöglichen
+ - (#1543) Konformitätsbedingungen bzgl. Flächenschluss überprüfen
+ - (#1054) XPlanManagerCLI: DDEEGREE_WORKSPACE_ROOT wird nicht ausgewertet
+ - (TT_10004) Syntaktischer Fehler wird vom Validator nicht korrekt erkannt
+ - (TT_10003) Ergebnisse von StoredQuery im XPlanSynWFS
+ - (TT_10004) Fehler beim Schreiben des SHP-Files behoben
+ - (TT_10004) Geometriefehler bei Plänen ohne Koordinatensystem abfangen
+ - (TT_10109) Die Datei „manager-configuration“ für xPlanBox 2.7.1 fehlt
+ - (TT_10112) Korrektur der semantischen Regeln im XPlanValidator (u.a. 2.2.1.1, 4.1.2.1, 4.2.3, 4.2.9, 4.5.13.1, 4.9.6.1, 4.14.2.1 )
+ - (TT_10136) Verfahrens-ID wird nach dem Editieren aus der XPlanSyn-Datensatz entfernt
+ - Default Hintergrundkarte für Kartenvorschau ist nicht mehr erreichbar
