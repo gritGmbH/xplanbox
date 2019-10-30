@@ -1,4 +1,4 @@
-FROM tomcat:9-jre8
+FROM xplanbox/buster-tomcat9-jdk8:2.14-SNAPSHOT
 
 MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>

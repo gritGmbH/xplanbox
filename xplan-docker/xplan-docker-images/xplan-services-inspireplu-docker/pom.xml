@@ -16,11 +16,33 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>com.spotify</groupId>
-        <artifactId>dockerfile-maven-plugin</artifactId>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
         <configuration>
-          <repository>xplanbox/${project.artifactId}</repository>
-          <tag>${project.version}</tag>
+          <images>
+            <image>
+              <name>xplanbox/${project.artifactId}</name>
+              <build>
+                <dockerFileDir>${project.basedir}</dockerFileDir>
+                <tags>
+                  <tag>${project.version}</tag>
+                </tags>
+                <assembly>
+                  <inline>
+                    <fileSets>
+                      <fileSet>
+                        <directory>${project.build.directory}</directory>
+                        <outputDirectory>.</outputDirectory>
+                        <includes>
+                          <include>xplan-inspireplu-${project.version}.war</include>
+                        </includes>
+                      </fileSet>
+                    </fileSets>
+                  </inline>
+                </assembly>
+              </build>
+            </image>
+          </images>
         </configuration>
       </plugin>
     </plugins>

@@ -2,10 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>xplan-manager-web-docker</artifactId>
+  <artifactId>buster-tomcat9-jdk8</artifactId>
   <packaging>pom</packaging>
-  <name>XPlanManager - Docker</name>
-  <description>Execution of XPlanManager with Docker is enabled.</description>
+  <name>buster-tomcat9-jdk8</name>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
@@ -27,19 +26,6 @@
                 <tags>
                   <tag>${project.version}</tag>
                 </tags>
-                <assembly>
-                  <inline>
-                    <fileSets>
-                      <fileSet>
-                        <directory>${project.build.directory}</directory>
-                        <outputDirectory>.</outputDirectory>
-                        <includes>
-                          <include>xplan-manager-web-${project.version}.war</include>
-                        </includes>
-                      </fileSet>
-                    </fileSets>
-                  </inline>
-                </assembly>
               </build>
             </image>
           </images>
@@ -47,14 +33,5 @@
       </plugin>
     </plugins>
   </build>
-
-  <dependencies>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-manager-web</artifactId>
-      <version>${project.version}</version>
-      <type>war</type>
-    </dependency>
-  </dependencies>
 
 </project>

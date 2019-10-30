@@ -1,4 +1,4 @@
-FROM tomcat:9-jre8
+FROM xplanbox/buster-tomcat9-jdk8:2.14-SNAPSHOT
 
 MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
@@ -8,8 +8,8 @@ ENV JAVA_OPTS="-Xmx8192m"
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
 # install java
-RUN apt-get -y remove openjdk-8-jre-headless
-RUN apt-get update && apt-get -y install openjdk-8-jre
+#RUN apt-get -y remove openjdk-8-jre-headless
+#RUN apt-get update && apt-get -y install openjdk-8-jre
 
 # install gdal plus jni
 RUN apt-get update && apt-get -y install libgdal-java
