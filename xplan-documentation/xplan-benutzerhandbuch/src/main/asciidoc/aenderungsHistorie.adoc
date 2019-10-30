@@ -11,17 +11,17 @@
  - Unterstützung für Apache Tomcat 9.0
  - Neuer WMS für die Darstellung einzelner Planwerke (Planwerke-WMS)
  - Automatische Erstellung von Metaten für die Daten-Dienste-Kopplung des XPlanWMS
+ - Unterstützung von SO-Plänen
+ - Transformation und Bereitstellung von XPlanGML 4.1 Plänen als XPlanGML 5.1
+ - Hinzufügen von Rasterdaten im Editiermodus des XPlanManager
 
 ==== Fehlerbehebungen
 
  - (TT_10046) Abbildung von Kreisbögen in der xPlanBox verbessern
  - (TT_10180) Fehler bei Anfrage mit BBOX Filter ohne PropertyName beheben
- - Bereitstellung von XPlanGML 4.1 Plänen in XPlanGML 5.1 über einen neuen WFS
  - Anzeige der Planliste im XPlanManager beschleunigen
- - Hinzufügen von Rasterdaten im Editiermodus ermöglichen
  - (TT_10163) Gemeinsamer Austausch von Rasterdatei und Georeferenz erforderlich
  - Zeichenvorschriften für BP_, FP_, und SO_ Objekte vervollständigen
- - SO-Pläne unterstützen
  - Zeichenreihenfolge im WMS um weitere Regeln ergänzen
  - Plan mit mehreren Ortsteilnummern genau einem Bezirk zuordnen
  - Modifizierung der Speicherung der textlichen Festsetzungen in dem synthetisierten Datenbankschema
@@ -32,9 +32,8 @@
  - Multiline-Geometrien in F-Plänen werden als Fehler markiert (Regel 3.3.3.1)
  - Verbesserung der geometrischen Validierungsregeln des XPlanValidator
  - (TT_10183) Geometrische Validierungsregel für den Flächenschluss implementieren
- - Ausgabe der GML ID für die allgemeinen Regeln 2.1.2.1, 2.1.3.1, 2.2.1.1
+ - (TT_10223) Ausgabe der GML ID für die allgemeinen Regeln 2.1.2.1, 2.1.3.1, 2.2.1.1
  - (TT_10208) Korrektur der Validierungsregeln für BP_LandwirtschaftsFlaeche (XPlanGMl 5.1)
- - Korrekturen der Konformitätsbedingungen für 5.0 und 5.1 übernehmen
  - (TT_10209) Korrektur der StoredQueries für XPlanGML 5.0 und 5.1
  - Benutzerhandbuch: XPlanValidatorCLI: Beispielaufrufe aktualisieren
  - Ausgetauschte Rasterdateien werden nicht aus dem Workspace entfernt
