@@ -55,9 +55,9 @@ public interface ValidatorWebCommonsMessages extends Messages {
 
     String ignoreOrientation();
 
-    String ignorePresentation();
+    String skipFlaechenschluss();
 
-    String ignoreOther();
+    String skipGeltungsbereich();
 
     String nodeTolerance();
 
