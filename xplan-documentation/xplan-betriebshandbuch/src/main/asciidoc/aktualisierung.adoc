@@ -251,7 +251,7 @@ Mit der Version 3.0 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen 
 *** _archive/xplan51/create.sql_
 ** Ausführen der Skripte im Verzeichnis _from_2.8_to_3.0_ im Modul xplan-update-database in der vorgegebenen Reihenfolge
 
-Mit der Version 3.0 der xPlanBox können mehrere Ortsteile im XPlanGML auch durch Kommata separiert angegeben werden. Damit diese wie erwartet einem Bezirk zugeordnet werden können (s. Hinweis unter <<ortsteile>>) muss eine Aktualisierung der in der Datenbank gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __districtUpdate__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
+Mit der Version 3.0 der xPlanBox können mehrere Ortsteile im XPlanGML auch durch Kommata separiert angegeben werden. Damit diese wie erwartet einem Bezirk zugeordnet werden können (s. Hinweis unter <<ortsteile>>), muss eine Aktualisierung der in der Datenbank gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __districtUpdate__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
 
 Weiterhin ist mit der Version 3.0 der xPlanBox die Abbildung von Kreisbögen im XPlanSynWFS und XPlanWMS verbessert worden. Um bereits importierte Pläne mit Kreisbögen in der verbesserten Abbildung abgeben zu können, muss eine Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __reSynthesizer__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
 
