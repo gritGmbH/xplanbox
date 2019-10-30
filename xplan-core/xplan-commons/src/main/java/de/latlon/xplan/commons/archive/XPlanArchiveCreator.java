@@ -46,7 +46,10 @@ public class XPlanArchiveCreator {
      */
     public XPlanArchive createXPlanArchive( File file )
                     throws IOException {
-        return createXPlanArchive( file.getName(), new FileInputStream( file ) );
+        String fileName = file.getName();
+        if ( fileName.toLowerCase().endsWith( ".zip" ) )
+            return createXPlanArchiveFromZip( fileName, new FileInputStream( file ) );
+        return createXPlanArchiveFromGml( fileName, new FileInputStream( file ) );
     }
 
     /**
@@ -56,7 +59,7 @@ public class XPlanArchiveCreator {
      *                 never <code>null</code> and is closed on return
      * @throws IOException
      */
-    public XPlanArchive createXPlanArchive( String name, InputStream inputStream )
+    public XPlanArchive createXPlanArchiveFromZip( String name, InputStream inputStream )
                     throws IOException {
         try {
             List<ZipEntryWithContent> zipEntries = new ArrayList<>();
@@ -65,6 +68,31 @@ public class XPlanArchiveCreator {
             return new XPlanArchive( zipEntries, name, mainEntry.getVersion(), mainEntry.getAde(), mainEntry.getType(),
                                      mainEntry.getCrs(), district );
         } catch ( XMLStreamException | FactoryConfigurationError e ) {
+            String message = format( "Kann Archiv '%s' nicht lesen. Fehlermeldung: %s", name, e.getLocalizedMessage() );
+            throw new IllegalArgumentException( message, e );
+        } finally {
+            inputStream.close();
+        }
+    }
+
+    /**
+     * @param name
+     *                 never <code>null</code>
+     * @param inputStream
+     *                 never <code>null</code> and is closed on return
+     * @throws IOException
+     */
+    public XPlanArchive createXPlanArchiveFromGml( String name, InputStream inputStream )
+                            throws IOException {
+        XPlanGmlReader xPlanGmlReader = new XPlanGmlReader();
+        try {
+            List<ZipEntryWithContent> zipEntries = new ArrayList<>();
+            MainZipEntry mainEntry = xPlanGmlReader.createZipEntry( name, inputStream );
+            zipEntries.add( mainEntry );
+            String district = mapDistrict( mainEntry );
+            return new XPlanArchive( zipEntries, name, mainEntry.getVersion(), mainEntry.getAde(), mainEntry.getType(),
+                                     mainEntry.getCrs(), district );
+        } catch ( XMLStreamException e ) {
             String message = format( "Kann Archiv '%s' nicht lesen. Fehlermeldung: %s", name, e.getLocalizedMessage() );
             throw new IllegalArgumentException( message, e );
         } finally {

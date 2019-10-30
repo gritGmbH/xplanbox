@@ -57,7 +57,7 @@ public class ParameterizedSyntacticValidatorTest {
     private XPlanArchive getTestArchive( String name )
                     throws IOException {
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        return archiveCreator.createXPlanArchive( name, ResourceAccessor.readResourceStream( name ) );
+        return archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
     }
 
 }

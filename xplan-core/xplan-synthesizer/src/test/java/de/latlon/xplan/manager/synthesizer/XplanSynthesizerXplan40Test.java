@@ -47,7 +47,7 @@ public class XplanSynthesizerXplan40Test {
     private XPlanArchive getTestArchive( String name )
                     throws URISyntaxException, IOException {
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        return archiveCreator.createXPlanArchive( name, ResourceAccessor.readResourceStream( name ) );
+        return archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
     }
 
     private XPlanFeatureCollection readFeatures( XPlanArchive archive )
