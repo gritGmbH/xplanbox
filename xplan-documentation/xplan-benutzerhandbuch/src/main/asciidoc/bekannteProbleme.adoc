@@ -23,7 +23,7 @@ Referenzen:
 
 Sowohl für das XPlanManagerCLI, den XPlanManagerWeb als auch den XPlanValidator gelten
 Obergrenzen beim Import von XPlanArchiven. XPlanArchive (ZIP-Datei
-inklusive Anhänge) größer 500 MB können die Systemstabilität
+inklusive Anhänge) größer 50 MB und XPlanGML-Dateien größer 2 MB können die Systemstabilität
 beeinträchtigen. Wenn XPlanArchive mit größeren Anhängen importiert
 werden sollen, so müssen Server-seitig entsprechende
 Systemvoraussetzungen erfüllt sein.
