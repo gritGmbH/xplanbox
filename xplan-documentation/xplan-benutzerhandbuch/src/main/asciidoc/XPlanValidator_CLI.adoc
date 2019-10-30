@@ -116,15 +116,16 @@ Angabe des Parameters ist optional.
 Aufruf:
 
 ----
-XPlanValidator -validate Plan.zip -vo ignore-orientation -vo ignore-so -vo node-tolerance=1 -vo ignore-xp
+XPlanValidator -validate Plan.zip -vo ignore-orientation -vo min-node-distance=1 -vo skip-flaechenschluss -vo skip-geltungsbereich
 ----
 
-Zuordnung der Werte:
-  * ignore-orientation -> Polygonlaufrichtung ignorieren [ja]
-  * ignore-self-intersection -> Selbstüberschneidungen ignorieren [ja]
-  * node-tolerance -> Toleranz für Stützpunktabstände in m
-  * ignore-so -> sonstige Planwerke ignorieren [ja]
-  * ignore-xp -> Präsentationsobjekte ignorieren [ja]
+Zuordnung der Wert:
+
+  * ignore-orientation -> Polygonlaufrichtung bei der geometrischen Validierung ignorieren [ja]
+  * ignore-self-intersection -> Selbstüberschneidungen bei der geometrischen Validierung ignorieren [ja]
+  * min-node-distance -> Mindesabstand von Stützpunkten in m
+  * skip-flaechenschluss -> Goemetrische Überprüfung der Flächenschlussbedingung (2.2.1.1) überspringen [ja]
+  * skip-geltungsbereich -> Goemetrische Überprüfung des Geltungsbereich (2.2.3.1) überspringen [ja]
 
 [[xplanvalidator-cli-validierungsergebnis]]
 ===== Validierungsergebnis

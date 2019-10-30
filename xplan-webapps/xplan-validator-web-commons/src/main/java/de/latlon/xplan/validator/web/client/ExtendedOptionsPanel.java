@@ -27,11 +27,19 @@ class ExtendedOptionsPanel extends HorizontalPanel {
 
     private static final String IGNORE_ORIENTATION = "ignore-orientation";
 
+    private static final String SKIP_FLAECHENSCHLUSS = "skip-flaechenschluss";
+
+    private static final String SKIP_GELTUNGSBEREICH = "skip-geltungsbereich";
+
     private static final String MIN_NODE_DISTANCE = "min-node-distance";
 
     private CheckBox ignoreSelfIntersection;
 
     private CheckBox ignoreOrientation;
+
+    private CheckBox skipFlaechenschluss;
+
+    private CheckBox skipGeltungsbereich;
 
     private CheckBox minNodeDistance;
 
@@ -47,6 +55,10 @@ class ExtendedOptionsPanel extends HorizontalPanel {
             extendedOptions.add( new ValidationOption( IGNORE_SELF_INTERSECTION ) );
         if ( ignoreOrientation.getValue() )
             extendedOptions.add( new ValidationOption( IGNORE_ORIENTATION ) );
+        if ( skipFlaechenschluss.getValue() )
+            extendedOptions.add( new ValidationOption( SKIP_FLAECHENSCHLUSS, Boolean.TRUE.toString() ) );
+        if ( skipGeltungsbereich.getValue() )
+            extendedOptions.add( new ValidationOption( SKIP_GELTUNGSBEREICH, Boolean.TRUE.toString() ) );
         if ( minNodeDistance.getValue() )
             extendedOptions.add( new ValidationOption( MIN_NODE_DISTANCE, minNodeDistanceUnit.getValue().toString() ) );
         return extendedOptions;
@@ -55,17 +67,19 @@ class ExtendedOptionsPanel extends HorizontalPanel {
     private void initDialog() {
         ignoreSelfIntersection = new CheckBox( messages.ignoreSelfIntersection() );
         ignoreOrientation = new CheckBox( messages.ignoreOrientation() );
+        skipFlaechenschluss = new CheckBox( messages.skipFlaechenschluss() );
+        skipFlaechenschluss.setValue( true );
+        skipGeltungsbereich = new CheckBox( messages.skipGeltungsbereich() );
+        skipGeltungsbereich.setValue( true );
         HorizontalPanel minNodeDistancePanel = createMinNodeDistancePanel();
-        CheckBox ignoreOther = new CheckBox( messages.ignoreOther() );
-        CheckBox ignorePresentation = new CheckBox( messages.ignorePresentation() );
 
         VerticalPanel verticalPanel = new VerticalPanel();
         verticalPanel.setSpacing( 10 );
+        verticalPanel.add( skipFlaechenschluss );
+        verticalPanel.add( skipGeltungsbereich );
+        verticalPanel.add( minNodeDistancePanel );
         verticalPanel.add( ignoreSelfIntersection );
         verticalPanel.add( ignoreOrientation );
-        verticalPanel.add( minNodeDistancePanel );
-        verticalPanel.add( ignoreOther );
-        verticalPanel.add( ignorePresentation );
 
         add( verticalPanel );
     }
@@ -73,7 +87,7 @@ class ExtendedOptionsPanel extends HorizontalPanel {
     private HorizontalPanel createMinNodeDistancePanel() {
         minNodeDistance = new CheckBox( messages.nodeTolerance() );
         HorizontalPanel baseDistancePanel = new HorizontalPanel();
-        baseDistancePanel.setVerticalAlignment( HasVerticalAlignment.ALIGN_MIDDLE );
+        baseDistancePanel.setVerticalAlignment( HasVerticalAlignment.ALIGN_BOTTOM );
         minNodeDistanceUnit = new DoubleBox();
 
         minNodeDistanceUnit.setVisibleLength( 3 );

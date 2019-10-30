@@ -36,37 +36,27 @@ Durchlauf zu einem späterem Zeitpunkt eindeutig zugeordnet werden kann.
 [[xplanvalidator-web-validierungsart]]
 ===== Validierungstyp
 
-Die folgenden Validierungstypen können über eine Auswahlliste ausgewählt
-werden:
+Eine der folgenden Validierungstypen muss ausgewählt werden:
 
-  * Semantische Validierung
-  * Geometrische Validierung
-  * Syntaktische Validierung
-
-Die Auswahl des Validierungstyps ist obligatorisch. Wenn die semantische Validierung ausgewählt wird, werden die geometrische und
-syntaktische Validierung zusätzlich ausgeführt. Wird die geometrische Validierung ausgewählt, dann wird
-zusätzlich auch die syntaktische Validierung ausgeführt.
+  * Einfache Validierung: Beinhaltet nur die syntaktische Validierung
+  * Geometrische Validierung: Beinhaltet die syntaktische und geometrische Validierung
+  * Vollständige Validierung: Beinhaltet die syntaktische, geometrische und semantische Validierung
 
 [[xplanvalidator-web-validierungsoption]]
-===== Validierungsoption
+===== Validierungsoptionen
 
-Die folgenden Validierungsoptionen können über den Button _weitere
-Validierungsoptionen_ ausgewählt werden:
+Die folgenden Validierungsoptionen für die geometrische Validierung können ausgewählt werden:
 
   * Selbstüberschneidungen ignorieren
   * falsche Laufrichtung von Polygonen ignorieren
-  * Toleranz für Stützpunktabstände in Metern
-  * Sonstige Planobjekte ignorieren
-  * Präsentationsobjekte ignorieren
-
-Die Änderungen können über den Button _Speichern_ für den aktuellen
-Validierungsdurchlauf gespeichert werden. Die Auswahl der Validierungsoptionen ist optional.
+  * Mindestabstand von Stützpunkten in Metern
+  * Geometrische Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen
+  * Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen
 
 [[xplanvalidator-web-validierung]]
 ===== Validierung
 
-Die Validierung kann über den Button _Validierung starten_ gestartet
-werden.
+Die Validierung kann über den Button _Validierung starten_ gestartet werden.
 
 [[xplanvalidator-web-validierungsergebnis]]
 ==== Validierungsergebnis
