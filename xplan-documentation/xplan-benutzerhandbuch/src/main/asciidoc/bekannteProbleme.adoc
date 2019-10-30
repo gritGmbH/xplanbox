@@ -89,6 +89,10 @@ WFS-T 2.0.0 DELETE Aktion geschickt werden.
 
 Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständig. Durch den WMS werden die betroffenen Ebenen daher nur in der Standarddarstellung ausgegeben.
 
+=== Darstellung von geometrischen Fehlern in einer Grafik und im Shapefile
+
+Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) ausgegeben, Multigeomtrien werden nicht dargestellt. Die Grafik und das Shapefile enthalten die fehlerhaften Geomtrien nur, wenn diese nicht zu fehlerhaft sind um gerendert zu werden.
+
 [[fehler-melden]]
 == Fehler melden
 
