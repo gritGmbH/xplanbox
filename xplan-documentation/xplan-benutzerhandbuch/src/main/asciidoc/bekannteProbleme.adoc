@@ -80,7 +80,7 @@ Zielschema INSPIRE PLU transformiert werden.
 === Löschen von einzelnen Plänen aus dem InspirePLU Diensten
 
 Aktuell kann über den XPlanManager ein XPlanArchiv nur aus der XPlanDB-Datenhaltung entfernt werden. Wird ein Plan von XPlanGML nach INSPIRE PLU transformiert und in die InspirePLUDB-Datenhaltung
-übertragen kann dieser Datensatz nicht mehr über den XPlanManager entfernt werden.
+übertragen kann dieser Datensatz nicht mehr über den XPlanManager aus der InspirePLUDB-Datenhaltung entfernt werden.
 
 Eine Umgehung ist das Löschen des Datensatz aus der InspirePLUDB-Datenhaltung über die WFS-T Schnittstelle des InspirePLUWFS. Zum Löschen eines oder mehrerer Datensätze muss an den InspirePLUWFS eine
 WFS-T 2.0.0 DELETE Aktion geschickt werden.
