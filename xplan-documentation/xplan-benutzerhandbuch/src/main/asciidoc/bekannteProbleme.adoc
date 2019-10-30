@@ -77,6 +77,14 @@ Zugesichert werden kann, dass das über den XPlanInspirePluWFS abgegebene GML ge
 Nicht zugesichert werden kann, dass das GML alle Vorgaben aus den Technical Guidelines für das INSPIRE Annex III Datenthema Land Use erfüllt sowie dass alle Daten aus dem XPlanGML in das
 Zielschema INSPIRE PLU transformiert werden.
 
+=== Löschen von einzelnen Plänen aus dem InspirePLU Diensten
+
+Aktuell kann über den XPlanManager ein XPlanArchiv nur aus der XPlanDB-Datenhaltung entfernt werden. Wird ein Plan von XPlanGML nach INSPIRE PLU transformiert und in die InspirePLUDB-Datenhaltung
+übertragen kann dieser Datensatz nicht mehr über den XPlanManager entfernt werden.
+
+Eine Umgehung ist das Löschen des Datensatz aus der InspirePLUDB-Datenhaltung über die WFS-T Schnittstelle des InspirePLUWFS. Zum Löschen eines oder mehrerer Datensätze muss an den InspirePLUWFS eine
+WFS-T 2.0.0 DELETE Aktion geschickt werden.
+
 === Darstellungsvorschriften für Raumordnungspläne
 
 Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständig. Durch den WMS werden die betroffenen Ebenen daher nur in der Standarddarstellung ausgegeben.
@@ -84,18 +92,11 @@ Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständi
 [[fehler-melden]]
 == Fehler melden
 
-Die xPlanBox basiert auf der Open Source Software http://www.deegree.org[deegree]
-der http://www.osgeo.org/[OSGeo Foundation].
-
-Für den Fall, dass Sie einen Fehler in einer der xPlanBox Komponenten
-XPlanWMS, XPlanWFS oder XPlanSynWFS entdecken, dann melden Sie den
-  Fehler in deegree unter:
-  https://github.com/deegree/deegree3/issues[https://github.com/deegree/deegree3/issues]
+Für den Fall, dass Sie einen Fehler in einer der xPlanBox Komponenten finden, schicken Sie bitte eine Email an das Support-Postfach:
+​support@deegree-enterprise.de​.
 
 [[support]]
 == Support
 
-Professionellen Support per Telefon oder eMail bieten Ihnen die
-Entwickler von http://www.lat-lon.de[lat/lon] an. Kontaktieren Sie uns
-unter info@lat-lon.de. Gern unterstützen Sie die Mitarbeiter der Firma
-lat/lon GmbH bei Ihrer Arbeit mit der xPlanBox.
+Professionellen Support per Telefon oder eMail bieten Ihnen die Entwickler von http://www.lat-lon.de[lat/lon] an.
+Ihre Supportanfragen schicken Sie bitte an: ​support@deegree-enterprise.de​.
