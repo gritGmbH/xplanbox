@@ -46,9 +46,9 @@ public class GeometricValidatorImpl implements GeometricValidator {
     // Maximum distance for gaps that are to be closed
     private static final double EPSILON = 0.10;
 
-    public static final String SKIP_FLAECHENSCHLUSS_OPTION = "SKIPFLAECHENSCHLUSS";
+    public static final String SKIP_FLAECHENSCHLUSS_OPTION = "skip-flaechenschluss";
 
-    public static final String SKIP_GELTUNGSBEREICH_OPTION = "SKIPGELTUNGSBEREICH";
+    public static final String SKIP_GELTUNGSBEREICH_OPTION = "skip-geltungsbereich";
 
     public static final ValidationOption SKIP_FLAECHENSCHLUSS = new ValidationOption( SKIP_FLAECHENSCHLUSS_OPTION,
                                                                                       Boolean.toString( true ) );

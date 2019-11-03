@@ -119,7 +119,7 @@ public class BadGeometryImgGenerator {
                 case Solid:
                     break;
                 default:
-                    // nothing to do (unknown geometry)
+                    LOG.warn( "Geometry type " + geom.getPrimitiveType() + " is not supported to be rendered in png." );
                 }
             } catch ( Exception e ){
                 LOG.warn( "Geometry is broken (could not be rendered): " +  e.getMessage() );

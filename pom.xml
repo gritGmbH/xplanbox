@@ -4,7 +4,7 @@
   <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplanbox</artifactId>
   <packaging>pom</packaging>
-  <version>2.14-SNAPSHOT</version>
+  <version>3.1-SNAPSHOT</version>
 
   <properties>
     <java.version>1.8</java.version>
@@ -13,7 +13,7 @@
     <sonar.host.url>http://vento:9000</sonar.host.url>
     <sonar.jdbc.url>jdbc:postgresql://habub/sonar</sonar.jdbc.url>
     <!-- version properties -->
-    <deegree3.version>3.4.10-xplanbox-1.11-SNAPSHOT</deegree3.version>
+    <deegree3.version>3.4.10-xplanbox-1.11</deegree3.version>
     <gwt.version>2.5.1</gwt.version>
     <geotools.version>10.0</geotools.version>
     <slf4j.version>1.7.5</slf4j.version>
@@ -202,7 +202,7 @@
         <plugin>
           <groupId>org.asciidoctor</groupId>
           <artifactId>asciidoctor-maven-plugin</artifactId>
-          <version>1.5.6</version>
+          <version>1.5.8</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -689,8 +689,8 @@
   </dependencyManagement>
 
   <scm>
-    <connection>scm:git:https://bitbucket.org/latlon/xplanbox.git</connection>
-    <developerConnection>scm:git:https://bitbucket.org/latlon/xplanbox.git</developerConnection>
+    <connection>scm:git:git@bitbucket.org:latlon/xplanbox.git</connection>
+    <developerConnection>scm:git:git@bitbucket.org:latlon/xplanbox.git</developerConnection>
     <url>https://bitbucket.org/latlon/xplanbox</url>
     <tag>HEAD</tag>
   </scm>

@@ -173,9 +173,9 @@ drei weitere StoredQueries an. Darüber lassen sich die Vektordaten eines einzel
    - Die internalId kann, bei entsprechender Aktivierung durch den Adminstrator, beim Import eines Plans aus einer Verfahrensdatenbank ausgelesen werden
 
 
-Um die Eindeutigkeit der StoredQueries zu erreichen, muss sichergestellt werden, dass diese Eigenschaften bei den importierten Plänen eindeutig sind.
-Sind mehrere Pläne mit der gleichen Eigenschaft importiert, wird der Plan mit dem aktuellsten Verfahrensstatus zurückgegeben.
-So wird z.B. nur der Plan im Rechtsstand __inkraft getreten__ zurückgegeben, wenn daneben der Plan im Rechtstand __Entwurf__ existiert (dieses Beispiel gilt nur, wenn die getrennte Datenhaltung nicht aktiviert ist). Pläne ohne Rechtsstand werden generell nicht über die StoredQueries ausgegeben.
+Diese Eigenschaften sollten bei den importierten Plänen eindeutig sein, nur dann liefert die StoredQuery exakt ein Anfragergebnis. Pläne ohne Rechtsstand werden generell nicht über die StoredQueries ausgegeben.
+
+Ist die getrennte Datenhaltung nicht aktiviert, gilt folgende Einschränkung: Sind mehrere Pläne mit der gleichen Eigenschaft importiert, wird der Plan mit dem aktuellsten Verfahrensstatus zurückgegeben. Z.B. wird der Plan im Rechtsstand __inkraft getreten__ zurückgegeben, wenn daneben der Plan im Rechtstand __Entwurf__ existiert.
 
 Die Nutzung der StoredQueries erfolgt über GetFeature-Anfragen. Beispielanfrage für
 den Plan mit dem Namen _Musterdorf_:

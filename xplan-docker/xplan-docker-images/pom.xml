@@ -9,7 +9,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-docker</artifactId>
-    <version>2.14-SNAPSHOT</version>
+    <version>3.1-SNAPSHOT</version>
   </parent>
 
   <build>
@@ -38,9 +38,9 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>com.spotify</groupId>
-          <artifactId>dockerfile-maven-plugin</artifactId>
-          <version>1.4.13</version>
+          <groupId>io.fabric8</groupId>
+          <artifactId>docker-maven-plugin</artifactId>
+          <version>0.31.0</version>
           <executions>
             <execution>
               <id>default</id>
@@ -55,6 +55,7 @@
   </build>
 
   <modules>
+    <module>buster-tomcat9-jdk8</module>
     <module>xplan-db-docker</module>
     <module>xplan-db-inspireplu-docker</module>
     <module>xplan-manager-web-docker</module>

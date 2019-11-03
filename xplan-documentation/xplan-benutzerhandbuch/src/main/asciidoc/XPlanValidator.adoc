@@ -27,6 +27,12 @@ Dabei werden folgende Prüfungen in Abhängigkeit vom Geometrietyp durchgeführt
  * Polygon/PolygonPatch: Keine Berührung innere Ringe / innere Ringe (Fehler)
  * Polygon/PolygonPatch: Schnittmenge der von zwei inneren Ringen gebildeten Flächen ist leer (Fehler)
 
+Weiterhin werden die folgenden Regeln aus den Konformitätsbedingungen geprüft:
+
+ * 2.2.1.1: Flächenschlussbedingung (Die Prüfung von "Bei allen Objekten mit flächenhaftem Raumbezug muss das Attribut
+flaechenschluss belegt sein." ist Bestandteil der semantischen Validierung)
+ * 2.2.3.1 Raumbezogene Objekte im Innern des Geltungsbereichs
+
 === Semantische Validierung
 
 Darüber hinaus kann der XPlanValidator eine XPlanGML-Datei auf folgende Konformitätsbedingungen prüfen:
