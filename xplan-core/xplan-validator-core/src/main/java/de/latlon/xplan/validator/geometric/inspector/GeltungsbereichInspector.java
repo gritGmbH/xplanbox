@@ -35,7 +35,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private static final String GEHOERT_ZU_BEREICH = "gehoertZuBereich";
 
-    private static final String ERROR_MSG = "Das Objekt mit der gml id %s liegt nicht im Geltungsbereich des Bereichs/Plans.";
+    private static final String ERROR_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt nicht im Geltungsbereich des Bereichs/Plans.";
 
     private static final List<String> PRAESENTATIONSOBJEKTE = Arrays.asList( "XP_FPO", "XP_LPO", "XP_LTO", "XP_PPO",
                                                                              "XP_PTO", "XP_TPO" );
