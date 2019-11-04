@@ -86,13 +86,12 @@ public class XPlanArchiveCreator {
                             throws IOException {
         XPlanGmlReader xPlanGmlReader = new XPlanGmlReader();
         try {
-            List<ZipEntryWithContent> zipEntries = new ArrayList<>();
             MainZipEntry mainEntry = xPlanGmlReader.createZipEntry( name, inputStream );
-            zipEntries.add( mainEntry );
             String district = mapDistrict( mainEntry );
-            return new XPlanArchive( zipEntries, name, mainEntry.getVersion(), mainEntry.getAde(), mainEntry.getType(),
+            return new XPlanArchive( mainEntry, name, mainEntry.getVersion(), mainEntry.getAde(), mainEntry.getType(),
                                      mainEntry.getCrs(), district );
         } catch ( XMLStreamException e ) {
+            e.printStackTrace();
             String message = format( "Kann Archiv '%s' nicht lesen. Fehlermeldung: %s", name, e.getLocalizedMessage() );
             throw new IllegalArgumentException( message, e );
         } finally {
