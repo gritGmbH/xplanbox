@@ -284,6 +284,8 @@ public class XPlanManipulator {
     }
 
     private Feature detectFeatureById( FeatureCollection planToEdit, QName featureTypeName, String featureId ) {
+        if ( featureId == null )
+            return null;
         for ( Feature feature : planToEdit ) {
             if ( featureTypeName.equals( feature.getName() ) && featureId.equals( feature.getId() ) )
                 return feature;
