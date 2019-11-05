@@ -23,8 +23,8 @@
   <xs:complexType name="ValidationType">
     <xs:sequence>
       <xs:element type="SemType" name="Sem"/>
-      <xs:element type="SynType" name="Syn"/>
       <xs:element type="GeomType" name="Geom"/>
+      <xs:element type="SynType" name="Syn"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="RuleType">

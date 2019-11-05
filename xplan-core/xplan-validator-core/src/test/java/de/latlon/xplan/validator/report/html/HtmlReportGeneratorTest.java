@@ -14,9 +14,11 @@ import java.io.ByteArrayOutputStream;
 import java.util.Collections;
 import java.util.List;
 
+import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.SYNTAX_ERRORS;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 import static org.xmlmatchers.XmlMatchers.hasXPath;
+import static org.xmlmatchers.transform.XmlConverters.the;
 
 public class HtmlReportGeneratorTest {
 
@@ -26,9 +28,9 @@ public class HtmlReportGeneratorTest {
         ByteArrayOutputStream html = new ByteArrayOutputStream();
         HtmlReportGenerator htmlReportGenerator = new HtmlReportGenerator();
 
-        htmlReportGenerator.generateHtmlReport( createReport( "validationName", "planName" ), html );
+        htmlReportGenerator.generateHtmlReport( createValidationReport(), html );
 
-        assertThat( document( html ), hasXPath( "/html/body/h1", containsString( "Validierungsbericht" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/h1", containsString( "Validierungsbericht" ) ) );
     }
 
     @Test
@@ -39,9 +41,9 @@ public class HtmlReportGeneratorTest {
 
         htmlReportGenerator.generateHtmlReport( createValidatorReportWithSemanticFailures(), html );
 
-        assertThat( document( html ), hasXPath( "/html/body/p[5]/p/ul/li[1]", containsString( "2 Validierungsregeln" ) ) );
-        assertThat( document( html ), hasXPath( "/html/body/p[5]/p/ul/li[2]", containsString( "1 Validierungsregeln nicht" ) ) );
-        assertThat( document( html ), hasXPath( "/html/body/p[5]/p/ul/li[3]", containsString( "1 Validierungsregeln" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]/p/ul/li[1]", containsString( "2 Validierungsregeln" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]/p/ul/li[2]", containsString( "1 Validierungsregeln nicht" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]/p/ul/li[3]", containsString( "1 Validierungsregeln" ) ) );
     }
 
     @Test
@@ -52,7 +54,7 @@ public class HtmlReportGeneratorTest {
 
         htmlReportGenerator.generateHtmlReport( createValidatorReportWithSyntacticDetailHint(), html );
 
-        assertThat( document( html ), hasXPath( "/html/body/p/div", containsString( "detailsHint" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p/div", containsString( "detailsHint" ) ) );
     }
 
     @Test
@@ -63,39 +65,38 @@ public class HtmlReportGeneratorTest {
 
         htmlReportGenerator.generateHtmlReport( createValidatorReportWithGeometricWarnings(), html );
 
-        assertThat( document( html ), hasXPath( "/html/body/p[5]/p[2]", containsString( "1 Warnungen" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]/p[2]", containsString( "1 Warnungen" ) ) );
+    }
+
+    @Test
+    public void testGenerateHtmlReport_OrderOfValidations()
+                            throws Exception {
+        ByteArrayOutputStream html = new ByteArrayOutputStream();
+        HtmlReportGenerator htmlReportGenerator = new HtmlReportGenerator();
+
+        htmlReportGenerator.generateHtmlReport( createValidatorReportWithAllTypes(), html );
+
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]", containsString( "semantischen" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[6]", containsString( "geometrischen" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[7]", containsString( "syntaktischen" ) ) );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testGenerateXmlReportWithNullReport()
                             throws Exception {
         HtmlReportGenerator htmlReportGenerator = new HtmlReportGenerator();
-        htmlReportGenerator.generateHtmlReport( null, createSimpleStream() );
+        htmlReportGenerator.generateHtmlReport( null, new ByteArrayOutputStream() );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testGenerateXmlReportWithNullOutputStream()
                             throws Exception {
         HtmlReportGenerator htmlReportGenerator = new HtmlReportGenerator();
-        htmlReportGenerator.generateHtmlReport( createReport( "validationName", "archiveName" ), null );
-    }
-
-    private static StreamSource document( ByteArrayOutputStream html ) {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream( html.toByteArray() );
-        return new StreamSource( inputStream );
-    }
-
-    private ValidatorReport createReport( String validationName, String planName ) {
-        ValidatorReport report = new ValidatorReport();
-        report.setValidationName( validationName );
-        report.setPlanName( planName );
-        return report;
+        htmlReportGenerator.generateHtmlReport( createValidationReport(), null );
     }
 
     private ValidatorReport createValidatorReportWithSemanticFailures() {
-        ValidatorReport validatorReport = new ValidatorReport();
-        validatorReport.setPlanName( "PLAN_NAME" );
-        validatorReport.setValidationName( "VALIDATION_NAME" );
+        ValidatorReport validatorReport = createValidationReport();
         SemanticValidatorResult semanticValidatorResult = new SemanticValidatorResult();
         semanticValidatorResult.addRule( "1.1", "Test valid", Collections.emptyList() );
         semanticValidatorResult.addRule( "1.2", "Test in valid", Collections.singletonList( "id_12" ) );
@@ -104,9 +105,7 @@ public class HtmlReportGeneratorTest {
     }
 
     private ValidatorReport createValidatorReportWithSyntacticDetailHint() {
-        ValidatorReport validatorReport = new ValidatorReport();
-        validatorReport.setPlanName( "PLAN_NAME" );
-        validatorReport.setValidationName( "VALIDATION_NAME" );
+        ValidatorReport validatorReport = createValidationReport();
         List<String> messages = Collections.singletonList( "Error in xml..." );
         ValidatorDetail detail = new ValidatorDetail( "detailsHint" );
         SyntacticValidatorResult syntacticValidatorResult = new SyntacticValidatorResult( messages, false, detail );
@@ -115,9 +114,7 @@ public class HtmlReportGeneratorTest {
     }
 
     private ValidatorReport createValidatorReportWithGeometricWarnings() {
-        ValidatorReport validatorReport = new ValidatorReport();
-        validatorReport.setPlanName( "PLAN_NAME" );
-        validatorReport.setValidationName( "VALIDATION_NAME" );
+        ValidatorReport validatorReport = createValidationReport();
         List<String> warnings = Collections.singletonList( "Warning..." );
         List<String> errors = Collections.singletonList( "Error..." );
         List<BadGeometry> badGeometries = Collections.emptyList();
@@ -127,8 +124,27 @@ public class HtmlReportGeneratorTest {
         return validatorReport;
     }
 
-    private ByteArrayOutputStream createSimpleStream() {
-        return new ByteArrayOutputStream();
+    private ValidatorReport createValidatorReportWithAllTypes() {
+        ValidatorReport validatorReport = createValidationReport();
+        SyntacticValidatorResult syntacticValidatorResult = new SyntacticValidatorResult( Collections.emptyList(), true,
+                                                                                          null );
+        validatorReport.setSyntacticValidatorResult( syntacticValidatorResult );
+
+        SemanticValidatorResult semanticValidatorResult = new SemanticValidatorResult();
+        semanticValidatorResult.addRule( "1.1", "Test valid", Collections.emptyList() );
+        semanticValidatorResult.addRule( "1.2", "Test in valid", Collections.singletonList( "id_12" ) );
+        validatorReport.setSemanticValidatorResult( semanticValidatorResult );
+
+        GeometricValidatorResult geometricValidatorResult = new GeometricValidatorResult( SYNTAX_ERRORS );
+        validatorReport.setGeometricValidatorResult( geometricValidatorResult );
+        return validatorReport;
+    }
+
+    private ValidatorReport createValidationReport() {
+        ValidatorReport validatorReport = new ValidatorReport();
+        validatorReport.setPlanName( "PLAN_NAME" );
+        validatorReport.setValidationName( "VALIDATION_NAME" );
+        return validatorReport;
     }
 
 }

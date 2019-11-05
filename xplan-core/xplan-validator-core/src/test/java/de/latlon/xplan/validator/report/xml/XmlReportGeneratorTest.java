@@ -1,27 +1,21 @@
 package de.latlon.xplan.validator.report.xml;
 
+import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.junit.Test;
-import org.xmlmatchers.xpath.XpathReturnType;
 
-import javax.xml.transform.stream.StreamSource;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
 
-import static java.nio.file.Files.createTempFile;
-import static java.nio.file.Files.newInputStream;
+import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.SYNTAX_ERRORS;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.xmlmatchers.XmlMatchers.hasXPath;
+import static org.xmlmatchers.transform.XmlConverters.the;
 import static org.xmlmatchers.xpath.XpathReturnType.returningANumber;
 
 /**
@@ -31,65 +25,78 @@ import static org.xmlmatchers.xpath.XpathReturnType.returningANumber;
  */
 public class XmlReportGeneratorTest {
 
-    public static final String PLAN_NAME = "PLAN_NAME";
+    private static final String PLAN_NAME = "PLAN_NAME";
 
-    public static final String VALIDATION_NAME = "VALIDATION_NAME";
+    private static final String VALIDATION_NAME = "VALIDATION_NAME";
 
     @Test
     public void testGenerateXmlReport()
                             throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        File xmlFile = createTmpFile();
-
-        OutputStream os = new FileOutputStream( xmlFile );
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
         xmlReportGenerator.generateXmlReport( createValidatorReport(), os );
+        String xml = os.toString();
 
-        Path xml = xmlFile.toPath();
-
-        assertThat( document( xml ), hasXPath( "/ValidationReport/name", equalTo( VALIDATION_NAME ) ) );
-        assertThat( document( xml ), hasXPath( "/ValidationReport/Plan/name", equalTo( PLAN_NAME ) ) );
-        assertThat( document( xml ), hasXPath( "/ValidationReport/Validation" ) );
+        assertThat( the( xml ), hasXPath( "/ValidationReport/name", equalTo( VALIDATION_NAME ) ) );
+        assertThat( the( xml ), hasXPath( "/ValidationReport/Plan/name", equalTo( PLAN_NAME ) ) );
+        assertThat( the( xml ), hasXPath( "/ValidationReport/Validation" ) );
     }
 
     @Test
     public void testGenerateXmlReport_CheckSyntacticDetailsHint()
                             throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        File xmlFile = createTmpFile();
-
-        OutputStream os = new FileOutputStream( xmlFile );
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
         xmlReportGenerator.generateXmlReport( createValidatorReportWithSyntacticDetailHint(), os );
+        String xml = os.toString();
 
-        Path xml = xmlFile.toPath();
-
-        assertThat( document( xml ), hasXPath( "/ValidationReport/Validation/Syn/details", equalTo( "detailsHint" ) ) );
+        assertThat( the( xml ), hasXPath( "/ValidationReport/Validation/Syn/details", equalTo( "detailsHint" ) ) );
     }
 
     @Test
     public void testGenerateXmlReport_CheckSemanticsResults()
                             throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        File xmlFile = createTmpFile();
-
-        OutputStream os = new FileOutputStream( xmlFile );
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
         xmlReportGenerator.generateXmlReport( createValidatorReportWithSemanticFailures(), os );
+        String xml = os.toString();
 
-        Path xml = xmlFile.toPath();
-
-        assertThat( document( xml ), hasXPath( "/ValidationReport/Validation/Sem/result", equalTo( "nicht valide" ) ) );
-        assertThat( document( xml ), hasXPath( "count(/ValidationReport/Validation/Sem/Rules/Rule)", returningANumber(),
+        assertThat( the( xml ), hasXPath( "/ValidationReport/Validation/Sem/result", equalTo( "nicht valide" ) ) );
+        assertThat( the( xml ), hasXPath( "count(/ValidationReport/Validation/Sem/Rules/Rule)", returningANumber(),
                                                equalTo( 2d ) ) );
-        assertThat( document( xml ),
+        assertThat( the( xml ),
                     hasXPath( "/ValidationReport/Validation/Sem/Rules/Rule[1]/name", equalTo( "1.1" ) ) );
-        assertThat( document( xml ),
+        assertThat( the( xml ),
                     hasXPath( "/ValidationReport/Validation/Sem/Rules/Rule[2]/name", equalTo( "1.2" ) ) );
     }
+
+    @Test
+    public void testGenerateXmlReport_OrderOfValidations()
+                            throws Exception {
+        XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        xmlReportGenerator.generateXmlReport( createValidatorReportWithAllTypes(), os );
+        String xml = os.toString();
+
+        assertThat( the( xml ), hasXPath( "/ValidationReport/Validation/Sem" ) );
+        assertThat( the( xml ), hasXPath( "/ValidationReport/Validation/*[local-name()= 'Sem']" ) );
+        assertThat( the( xml ),
+                    hasXPath( "count(/ValidationReport/Validation/*[local-name()= 'Sem']/preceding-sibling::*)+1.",
+                              returningANumber(), equalTo( 1d ) ) );
+        assertThat( the( xml ),
+                    hasXPath( "count(/ValidationReport/Validation/*[local-name()= 'Geom']/preceding-sibling::*)+1.",
+                              returningANumber(), equalTo( 2d ) ) );
+        assertThat( the( xml ),
+                    hasXPath( "count(/ValidationReport/Validation/*[local-name()= 'Syn']/preceding-sibling::*)+1.",
+                              returningANumber(), equalTo( 3d ) ) );
+    }
+
 
     @Test(expected = IllegalArgumentException.class)
     public void testGenerateXmlReportWithNullReport()
                             throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        xmlReportGenerator.generateXmlReport( null, createSimpleStream() );
+        xmlReportGenerator.generateXmlReport( null, new ByteArrayOutputStream(  ) );
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -124,18 +131,20 @@ public class XmlReportGeneratorTest {
         return validatorReport;
     }
 
-    private ByteArrayOutputStream createSimpleStream() {
-        return new ByteArrayOutputStream();
-    }
+    private ValidatorReport createValidatorReportWithAllTypes() {
+        ValidatorReport validatorReport = createValidatorReport();
+        SyntacticValidatorResult syntacticValidatorResult = new SyntacticValidatorResult( Collections.emptyList(), true,
+                                                                                          null );
+        validatorReport.setSyntacticValidatorResult( syntacticValidatorResult );
 
-    private static StreamSource document( Path path )
-                            throws IOException {
-        return new StreamSource( newInputStream( path ) );
-    }
+        SemanticValidatorResult semanticValidatorResult = new SemanticValidatorResult();
+        semanticValidatorResult.addRule( "1.1", "Test valid", Collections.emptyList() );
+        semanticValidatorResult.addRule( "1.2", "Test in valid", Collections.singletonList( "id_12" ) );
+        validatorReport.setSemanticValidatorResult( semanticValidatorResult );
 
-    private File createTmpFile()
-                            throws IOException {
-        return createTempFile( "XmlReportGeneratorTest", ".xml" ).toFile();
+        GeometricValidatorResult geometricValidatorResult = new GeometricValidatorResult( SYNTAX_ERRORS );
+        validatorReport.setGeometricValidatorResult( geometricValidatorResult );
+        return validatorReport;
     }
 
 }
