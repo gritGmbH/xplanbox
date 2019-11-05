@@ -10,10 +10,11 @@ dem XPlanManager können XPlanArchive importiert, editiert oder gelöscht werden
 Das XPlanArchiv ist eine ZIP-Datei mit folgendem Aufbau:
 
  * Im Basisverzeichnis muss das XPlanGML Instanzdokument mit dem Dateinamen __xplan.gml__ vorhanden sein.
- * Rasterdaten sowie alle im __xplan.gml__ referenzierten Anhänge liegen ebenfalls im Basisverzeichnis der ZIP-Datei.
+ * Rasterdaten sowie alle im __xplan.gml__ referenzierten Anhänge müssen ebenfalls im Basisverzeichnis der ZIP-Datei liegen.
 
-NOTE: *Wichtig*: Dateinamen dürfen keine Sonderzeichen wie z.B. '/', '\', ' ', '"' (doppeltes Anführungszeichen) oder auch Umlaute beinhalten.
-Gross- und Kleinschreibung in den Referenzen sind zu beachten!**
+NOTE: *Wichtig*: Dateinamen dürfen keine Sonderzeichen wie z.B. '/', '\', ' ', '"' (doppeltes oder einfaches Anführungszeichen) oder auch Umlaute beinhalten.
+Gross- und Kleinschreibung in den Dateinamen (auch der Dateiendung) werden berücksichtigt und müssen vollständig mit den Referenzen im Dokument
+übereinstimmen!
 
 Wenn ein XPlanArchiv erfolgreich über den XPlanManager importiert werden konnte, können die Daten über die Dienste
 XPlanWFS und XPlanWMS abgerufen werden.

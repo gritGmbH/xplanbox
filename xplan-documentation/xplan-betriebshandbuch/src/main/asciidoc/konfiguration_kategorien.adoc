@@ -2,50 +2,48 @@
 === Kategorien
 
 Die Kategorien, auf die ein Benutzer im XPlanManagerWeb filtern kann,
-kann in der Datei _managerWebConfiguration.properties_ im Verzeichnis
-_~/.deegree/manager-configuration/_ konfiguriert werden.
+werden in der Datei _managerWebConfiguration.properties_ im Verzeichnis
+_~/.deegree/manager-configuration/_ konfiguriert.
 
 [[bezirke]]
-==== Bezirke
+==== Gemeinden
 
-Es besteht die Möglichkeit nach einzelnen Bezirken zu filtern: :
+Es besteht die Möglichkeit nach einzelnen Gemeinden zu filtern. Dazu muss für das Element `categoryFilterValues` die Liste
+der Gemeindenamen als kommaseparierte Liste gesetzt werden. Dabei muss folgende Syntax beachtet werden:
+
+----
+categoryFilterValues=Gemeinde1,Gemeinde2
+----
+
+Beispiel für die Anzeige der Hamburger Bezirke als Auswahlelemente für die "Gemeindeauswahl" im XPlanManagerWeb:
 
 ----
 categoryFilterValues=Altona,Bergedorf,Eimsb\u00fcttel,Hamburg-Mitte,Hamburg-Nord,Harburg,Wandsbek
 ----
 
-NOTE: Es müssen ggf. Zeilenumbrüche entfernt werden.
-
-Es muss folgende Syntax beachtet werden:
-
-----
-categoryFilterValues=Bezirk1,Bezirk2
-----
-
-NOTE: Umlaute müssen codiert werden.
+NOTE: Umlaute müssen codiert werden. Und Sonderzeichen wie z.B. Zeilenumbrüche müssen entfernt werden.
 
 [[ortsteile]]
 ==== Ortsteile
 
-Ortsteile können zusätzlich in der Datei
-_managerConfiguration.properties_ im Verzeichnis
-_~/.deegree/manager-configuration/_ konfiguriert werden:
+Jeder Gemeinde können mehrere Ortsteile über das Element `categoriesToParts` zugeordnet werden. Dabei ist folgende Syntax
+zu beachten:
 
 ----
-categoriesToParts=Hamburg-Mitte(HafenCity,Hamburg-Altstadt,Neustadt,St.Georg,
-St.Pauli);Altona(Altona-Altstadt,Altona-Nord);Hamburg-Nord(Alsterdorf,
-Barmbek-Nord,Barmbek-S\u00FCd)
+categoriesToParts=Gemeinde1(Ortsteil1,Ortsteil2);Gemeinde2(Ortsteil3,Ortsteil4)
 ----
 
-NOTE: Es müssen ggf. Zeilenumbrüche entfernt werden.
-
-Es muss folgende Syntax beachtet werden: :
+Beispiel für die Zuordnung der Stadtteile Hamburgs zu den Bezirken:
 
 ----
-categoriesToParts=Bezirk1(Ortsteil1,Ortsteil2);Bezirk2(Ortsteil3,Ortsteil4)
+categoriesToParts=Altona(Altona-Altstadt,Altona-Nord);
+                  Hamburg-Mitte(HafenCity,Hamburg-Altstadt,Neustadt,St.Georg,St.Pauli);
+                  Hamburg-Nord(Alsterdorf,Barmbek-Nord,Barmbek-S\u00FCd)
 ----
 
-NOTE: Umlaute müssen codiert werden.
+NOTE: Umlaute müssen codiert werden. Und Sonderzeichen wie z.B. Zeilenumbrüche müssen entfernt werden.
 
-NOTE: Mehrere Ortsteile können im XPlanGML durch Kommata separiert angegeben werden. In diesem Fall erfolgt die Zuordnung zu dem Bezirk anhand des ersten Ortsteils.
+NOTE: Im XPlanGML können mehrere Elemente des Typs `<xplan:XP_Gemeinde/>` angegeben werden. Aktuell wird bei mehreren
+Elementen nur das letzte ausgewertet. Beinhaltet dieses Element ein `<xplan:ortsteilName/>` dann können hier mehrere Ortsteilnamen kommasepariert angegeben werden.
+Die Zuordnung zu der Gemeinde erfolgt dann anhand des ersten Ortsteilnamens.
 
