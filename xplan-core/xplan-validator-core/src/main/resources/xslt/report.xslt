@@ -76,10 +76,32 @@
                         </xsl:choose>
                     </b>
                 </p>
+                <xsl:apply-templates select="ValidationReport/ExternalReferences"/>
                 <hr/>
                 <xsl:apply-templates select="ValidationReport/Validation/*"/>
             </body>
         </html>
+    </xsl:template>
+
+    <xsl:template match="ValidationReport/ExternalReferences">
+      <p>Externe Referenzen:
+        <b>
+          <xsl:choose>
+            <xsl:when test="SkipMessage">
+              <xsl:value-of select="SkipMessage"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <ul>
+                <xsl:for-each select="ExternalReference">
+                  <li>
+                    <xsl:value-of select="."/>
+                  </li>
+                </xsl:for-each>
+              </ul>
+            </xsl:otherwise>
+          </xsl:choose>
+        </b>
+      </p>
     </xsl:template>
 
     <xsl:template match="ValidationReport/Validation/*">
