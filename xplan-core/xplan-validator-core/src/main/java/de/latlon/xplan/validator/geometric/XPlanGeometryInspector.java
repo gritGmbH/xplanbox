@@ -125,20 +125,12 @@ class XPlanGeometryInspector implements GeometryInspector {
                 inspected = inspect( (GeometricPrimitive) inspected );
                 break;
             }
-            case MULTI_GEOMETRY: {
-                // nothing to do (no topological constraints)
-                break;
-            }
-            case ENVELOPE: {
-                // nothing to do (no topological constraints)
-                break;
-            }
             case COMPOSITE_GEOMETRY: {
                 String msg = createMessage( "Composites k\u00f6nnen lt. XPlanGML-Schema nicht auftreten." );
                 createError( msg );
             }
             default:
-                // nothing to do (unknown geometry)
+                LOG.warn( "Unsupported geometry type (will be ignored) {}", inspected.getGeometryType() );
             }
         } catch ( Exception e ) {
             LOG.trace( "Fehler bei der geometrischen Validierung!", e );
@@ -184,7 +176,7 @@ class XPlanGeometryInspector implements GeometryInspector {
         if ( linearizer.linearize( geom, crit ).getAsLineString().getControlPoints().size() >= 4 && geom.isClosed() ) {
             LinearRing jTSRing = getJTSLinearRing( geom );
             if ( !CGAlgorithms.isCCW( jTSRing.getCoordinates() ) ) {
-                String msg = createMessage( "Geschlossene Kurve verwendet falsche Laufrichtung (CW)." );
+                String msg = createMessage( "2.2.2.1: Geschlossene Kurve verwendet falsche Laufrichtung (CW)." );
                 warnings.add( msg );
                 inspected = GeometryFixer.invertOrientation( geom );
             }
@@ -215,7 +207,7 @@ class XPlanGeometryInspector implements GeometryInspector {
         LineString jtsLineString = getJTSLineString( ring );
         boolean selfIntersection = !jtsLineString.isSimple();
         if ( selfIntersection ) {
-            String msg = createMessage( "Selbst\u00fcberschneidung." );
+            String msg = createMessage( "2.2.2.1: Selbst\u00fcberschneidung." );
             createError( msg );
         }
         return ring;
@@ -229,12 +221,12 @@ class XPlanGeometryInspector implements GeometryInspector {
             double dist = startPoint.getDistance( endPoint, null ).getValueAsDouble();
             double minNodeDistance = retrieveMinNodeDistance();
             if ( dist <= minNodeDistance ) {
-                String msg = createMessage( String.format( "Ring nicht geschlossen: %s != %s, Abstand: %s", startPoint,
+                String msg = createMessage( String.format( "2.2.2.1: Ring nicht geschlossen: %s != %s, Abstand: %s", startPoint,
                                                            endPoint, dist ) );
                 warnings.add( msg );
                 inspected = GeometryFixer.fixUnclosedRing( inspected );
             } else {
-                String msg = createMessage( String.format( "Ring nicht geschlossen: %s != %s, Abstand: %s, nicht behoben (L\u00fccke zu gro\u00df)",
+                String msg = createMessage( String.format( "2.2.2.1: Ring nicht geschlossen: %s != %s, Abstand: %s, nicht behoben (L\u00fccke zu gro\u00df)",
                                                            startPoint, endPoint, dist ) );
                 createError( msg );
             }
@@ -262,17 +254,17 @@ class XPlanGeometryInspector implements GeometryInspector {
                 LinearRing interiorJTSRing = interiorJTSRings.get( ringIdx );
                 interiorJTSRingsAsPolygons.get( ringIdx );
                 if ( exteriorJTSRing.touches( interiorJTSRing ) ) {
-                    String msg = createMessage( String.format( "\u00c4u\u00dferer Ring ber\u00fchrt den inneren Ring mit Index %d.",
+                    String msg = createMessage( String.format( "2.2.2.1: \u00c4u\u00dferer Ring ber\u00fchrt den inneren Ring mit Index %d.",
                                                                ringIdx ) );
                     createError( msg );
                 }
                 if ( exteriorJTSRing.intersects( interiorJTSRing ) ) {
-                    String msg = createMessage( String.format( "\u00c4u\u00dferer Ring schneidet den inneren Ring mit Index %d.",
+                    String msg = createMessage( String.format( "2.2.2.1: \u00c4u\u00dferer Ring schneidet den inneren Ring mit Index %d.",
                                                                ringIdx ) );
                     createError( msg );
                 }
                 if ( !interiorJTSRing.within( exteriorJTSRingAsPolygon ) ) {
-                    String msg = createMessage( String.format( "Innerer Ring mit Index %d befindet sich nicht innerhalb des \u00e4u\u00dferen Rings.",
+                    String msg = createMessage( String.format( "2.2.2.1: Innerer Ring mit Index %d befindet sich nicht innerhalb des \u00e4u\u00dferen Rings.",
                                                                ringIdx ) );
                     createError( msg );
                 }
@@ -289,23 +281,23 @@ class XPlanGeometryInspector implements GeometryInspector {
                     LinearRing interior2JTSRing = interiorJTSRings.get( ring2Idx );
                     Polygon interior2JTSRingAsPolygon = interiorJTSRingsAsPolygons.get( ring2Idx );
                     if ( interior1JTSRing.touches( interior2JTSRing ) ) {
-                        String msg = createMessage( String.format( "Der innere Ring %d ber\u00fchrt den inneren Ring mit Index %d.",
+                        String msg = createMessage( String.format( "2.2.2.1: Der innere Ring %d ber\u00fchrt den inneren Ring mit Index %d.",
                                                                    ring1Idx, ring2Idx ) );
                         createError( msg );
                     }
                     if ( interior1JTSRing.intersects( interior2JTSRing ) ) {
                         LOG.debug( "Interior intersects interior." );
-                        String msg = createMessage( String.format( "Der innere Ring %d schneidet den inneren Ring mit Index %d.",
+                        String msg = createMessage( String.format( "2.2.2.1: Der innere Ring %d schneidet den inneren Ring mit Index %d.",
                                                                    ring1Idx, ring2Idx ) );
                         createError( msg );
                     }
                     if ( interior1JTSRing.within( interior2JTSRingAsPolygon ) ) {
-                        String msg = createMessage( String.format( "Der innere Ring %d liegt innerhalb des inneren Rings mit Index %d.",
+                        String msg = createMessage( String.format( "2.2.2.1: Der innere Ring %d liegt innerhalb des inneren Rings mit Index %d.",
                                                                    ring1Idx, ring2Idx ) );
                         createError( msg );
                     }
                     if ( interior2JTSRing.within( interior1JTSRingAsPolygon ) ) {
-                        String msg = createMessage( String.format( "Der innere Ring %d liegt innerhalb des inneren Rings mit Index %d.",
+                        String msg = createMessage( String.format( "2.2.2.1: Der innere Ring %d liegt innerhalb des inneren Rings mit Index %d.",
                                                                    ring2Idx, ring1Idx ) );
                         createError( msg );
                     }
@@ -362,7 +354,7 @@ class XPlanGeometryInspector implements GeometryInspector {
         Ring inspected = ring;
         LinearRing jTSRing = getJTSRing( inspected );
         if ( !CGAlgorithms.isCCW( jTSRing.getCoordinates() ) ) {
-            String msg = createMessage( "\u00c4u\u00dferer Ring verwendet falsche Laufrichtung (CW)." );
+            String msg = createMessage( "2.2.2.1: \u00c4u\u00dferer Ring verwendet falsche Laufrichtung (CW)." );
             warnings.add( msg );
             inspected = GeometryFixer.invertOrientation( ring );
         }
@@ -373,7 +365,7 @@ class XPlanGeometryInspector implements GeometryInspector {
         Ring inspected = ring;
         LinearRing jTSRing = getJTSRing( inspected );
         if ( CGAlgorithms.isCCW( jTSRing.getCoordinates() ) ) {
-            String msg = createMessage( "Innerer Ring verwendet falsche Laufrichtung (CCW)." );
+            String msg = createMessage( "2.2.2.1: Innerer Ring verwendet falsche Laufrichtung (CCW)." );
             warnings.add( msg );
             inspected = GeometryFixer.invertOrientation( ring );
         }

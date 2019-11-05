@@ -55,7 +55,7 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
 
     private static final Logger LOG = LoggerFactory.getLogger( FlaechenschlussInspector.class );
 
-    private static final String ERROR_MSG = "Das Object mit der gml id %s erfuellt die Flaechenschlussbedingung am Stuetzpunkt %s nicht.";
+    private static final String ERROR_MSG = "2.2.1.1: Das Object mit der gml id %s erfuellt die Flaechenschlussbedingung am Stuetzpunkt %s nicht.";
 
     private Geometry geltungsbereich;
 

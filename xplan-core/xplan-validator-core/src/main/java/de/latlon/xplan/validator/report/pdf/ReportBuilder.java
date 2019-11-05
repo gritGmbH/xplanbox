@@ -92,13 +92,6 @@ class ReportBuilder {
     private VerticalListBuilder createValidationResults( ValidatorReport report ) {
         VerticalListBuilder verticalList = cmp.verticalList();
 
-        SyntacticValidatorResult syntacticValidatorResult = report.getSyntacticValidatorResult();
-        if ( syntacticValidatorResult != null ) {
-            verticalList = verticalList.add( appendHeaderAndResult( syntacticValidatorResult ) );
-            verticalList = appendDetailsHint( verticalList, syntacticValidatorResult );
-            verticalList = verticalList.add( createSyntacticRules( syntacticValidatorResult ) ).add( cmp.verticalGap( 10 ) );
-        }
-
         SemanticValidatorResult semanticValidatorResult = report.getSemanticValidatorResult();
         if ( semanticValidatorResult != null ) {
             verticalList = verticalList.add( appendHeaderAndResult( semanticValidatorResult ) );
@@ -116,6 +109,14 @@ class ReportBuilder {
             verticalList = appendDetailsHint( verticalList, geometricValidatorResult );
             verticalList = verticalList.add( createGeometricRules( geometricValidatorResult ) );
         }
+
+        SyntacticValidatorResult syntacticValidatorResult = report.getSyntacticValidatorResult();
+        if ( syntacticValidatorResult != null ) {
+            verticalList = verticalList.add( appendHeaderAndResult( syntacticValidatorResult ) );
+            verticalList = appendDetailsHint( verticalList, syntacticValidatorResult );
+            verticalList = verticalList.add( createSyntacticRules( syntacticValidatorResult ) ).add( cmp.verticalGap( 10 ) );
+        }
+
         return verticalList;
     }
 
