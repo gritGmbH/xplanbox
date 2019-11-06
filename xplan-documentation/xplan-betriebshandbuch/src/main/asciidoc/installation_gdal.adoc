@@ -2,7 +2,7 @@
 === Installation und Konfiguration von GDAL
 
 Die xPlanBox unterstützt die Darstellung von Rasterdaten mittels
-GDAL-Integration. Es wird GDAL in der Version 2.4 empfohlen. Die GDAL Unterstützung ist optional, die Konfiguration im
+GDAL-Integration. Es ist GDAL in der Version 2.4 erforderlich. Die GDAL Unterstützung ist optional, die Konfiguration im
 XPlanManager ist unter <<GDAL>> beschrieben.
 
 IMPORTANT: Der Zugriff auf die GDAL-Bibliothek erfolgt über JNI. Je JVM kann die
@@ -13,7 +13,7 @@ getrennten Tomcat Instanzen deployt werden.
 [[installation-gdal-linux]]
 ==== Linux
 
-Für Ubuntu (14.04) kann GDAL aus einer Paketquelle installiert werden:
+Für Ubuntu Bionic (18.04) kann GDAL aus einer Paketquelle installiert werden:
 
 ----
 sudo apt-get install libgdal-java

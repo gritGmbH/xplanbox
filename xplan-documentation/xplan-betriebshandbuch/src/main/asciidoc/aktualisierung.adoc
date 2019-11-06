@@ -237,7 +237,7 @@ Falls die neue Funktionalität nicht genutzt werden soll, müssen die Änderunge
 [[aktualisierung-auf-die-version-3.0-der-xplanbox]]
 === Aktualisierung auf die Version 3.0 der xPlanBox
 
-Mit der Version 3.0 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen vorgenommen worden. Für die Aktualisierung auf die Version3.0 sind folgende Schritte auszuführen:
+Mit der Version 3.0 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen vorgenommen worden. Für die Aktualisierung auf die Version 3.0 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 * Aktualisierung der Datenbank:
@@ -251,11 +251,11 @@ Mit der Version 3.0 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen 
 *** _archive/xplan51/create.sql_
 ** Ausführen der Skripte im Verzeichnis _from_2.8_to_3.0_ im Modul xplan-update-database in der vorgegebenen Reihenfolge
 
-Mit der Version 3.0 der xPlanBox können mehrere Ortsteile im XPlanGML auch durch Kommata separiert angegeben werden. Damit diese wie erwartet einem Bezirk zugeordnet werden können (s. Hinweis unter <<ortsteile>>), muss eine Aktualisierung der in der Datenbank gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __districtUpdate__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
+Mit der Version 3.0 der xPlanBox können mehrere Ortsteilnamen im XPlanGML auch durch Kommata separiert angegeben werden. Damit diese wie erwartet einem Bezirk zugeordnet werden können (s. Hinweis unter <<ortsteile>>), muss eine Aktualisierung der in der Datenbank gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __districtUpdate__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
 
 Weiterhin ist mit der Version 3.0 der xPlanBox die Abbildung von Kreisbögen im XPlanSynWFS und XPlanWMS verbessert worden. Um bereits importierte Pläne mit Kreisbögen in der verbesserten Abbildung abgeben zu können, muss eine Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __reSynthesizer__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
 
-Des Weiteren muss die HALE CLI auf Version 3.4.0 aktualisiert werden (siehe <<installation-hale-cli>>).
+Des Weiteren muss die HALE CLI auf Version 3.4.0 (siehe <<installation-hale-cli>>) und GDAL auf Version 2.4 (siehe <<installation-gdal>>) aktualisiert werden.
 
 Mit der Version 3.0 wird bei entprechender Konfiguration (s. <<konfiguration-daten-dienste-kopplung>>) beim Import eines Plans geprüft ob für diesen Plan bereits ein Daten-Metadatensatz existiert. Ist dies der Fall wird automatisiert ein Service-Metadatensatz für den Plan bzw. dessen XPlanWerkWMS erstellt.
-Sollen für alle oder einzelne bereits importierten Pläne die Service-Metadatensätze generiert und die dazugehörigen Informationen zur Daten-Dienste-Kopplung, die in den Capabilities des XPlanWerkWMS ausgegeben werden, erstellt werden, steht im Modul xplan-update-database das Werkzeug __serviceMetadatRecordCreator__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt dem Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert.
+Sollen für alle oder einzelne bereits importierten Pläne die Service-Metadatensätze generiert und die dazugehörigen Informationen zur Daten-Dienste-Kopplung, die in den Capabilities des XPlanWerkWMS ausgegeben werden, erstellt werden, steht im Modul xplan-update-database das Werkzeug __serviceMetadatRecordCreator__ zur Verfügung. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt dem Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert.
