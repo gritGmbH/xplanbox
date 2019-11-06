@@ -1,5 +1,6 @@
 package de.latlon.xplan.manager.web.server.configuration;
 
+import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
 import de.latlon.xplan.manager.web.shared.RasterLayerConfiguration;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import static de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader.CONFIG_SYSTEM_PROPERTY;
 import static java.io.File.createTempFile;
 import static org.apache.commons.io.IOUtils.copy;
 import static org.hamcrest.CoreMatchers.is;
@@ -25,14 +27,10 @@ import static org.junit.Assert.assertThat;
  * 
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
- * @author last edited by: $Author: erben $
- * @version $Revision: $, $Date: $
  */
 public class ManagerWebConfigurationRetrieverTest {
 
     private static final String PROPERTIES_NAME = "managerWebConfiguration.properties";
-
-    private static final String CONF_PATH_VARIABLE = "MANAGER_HOME";
 
     private static String oldProperty;
 
@@ -40,30 +38,20 @@ public class ManagerWebConfigurationRetrieverTest {
     public static void copyPropertiesFileAndSetProxyConfigSystemVaraiable()
                             throws IOException {
         File configDir = copyPropertiesFileToNewConfigDir();
-        oldProperty = System.getProperty( CONF_PATH_VARIABLE );
-        System.setProperty( CONF_PATH_VARIABLE, configDir.toString() );
+        oldProperty = System.getProperty( CONFIG_SYSTEM_PROPERTY );
+        System.setProperty( CONFIG_SYSTEM_PROPERTY, configDir.toString() );
     }
 
     @AfterClass
     public static void resetProxyConfigSystemProperty() {
         if ( oldProperty != null )
-            System.setProperty( CONF_PATH_VARIABLE, oldProperty );
+            System.setProperty( CONFIG_SYSTEM_PROPERTY, oldProperty );
     }
 
     @Test
     public void testSetupManagerWebConfigurationShouldReturnMatchingPropertiesFromSystemEnv()
                             throws Exception {
-        ManagerWebConfiguration configuration = new ManagerWebConfigurationRetriever().setupManagerWebConfiguration( CONF_PATH_VARIABLE );
-
-        Properties properties = loadPropertiesFromOriginalFile();
-        assertThat( configuration.getCrsDialogDefaultCrs(), is( properties.getProperty( "defaultCrs" ) ) );
-        assertThat( configuration.getInternalIdActivated(), is( false ) );
-    }
-
-    @Test
-    public void testSetupManagerWebConfigurationShouldReturnMatchingPropertiesFromDefaultPath()
-                            throws Exception {
-        ManagerWebConfiguration configuration = new ManagerWebConfigurationRetriever().setupManagerWebConfiguration( "FOO" );
+        ManagerWebConfiguration configuration = new ManagerWebConfigurationRetriever().setupManagerWebConfiguration(  );
 
         Properties properties = loadPropertiesFromOriginalFile();
         assertThat( configuration.getCrsDialogDefaultCrs(), is( properties.getProperty( "defaultCrs" ) ) );
@@ -73,22 +61,9 @@ public class ManagerWebConfigurationRetrieverTest {
     @Test
     public void testSetupMapPreviewConfigurationShouldReturnMatchingPropertiesFromSystemEnv()
                             throws Exception {
-        MapPreviewConfiguration configuration = new ManagerWebConfigurationRetriever().setupMapPreviewConfiguration( CONF_PATH_VARIABLE );
+        MapPreviewConfiguration configuration = new ManagerWebConfigurationRetriever().setupMapPreviewConfiguration();
 
         Properties properties = loadPropertiesFromOriginalFile();
-        assertThat( configuration.getBasemapUrl(), is( properties.getProperty( "basemapUrl" ) ) );
-        assertThat( configuration.getBasemapName(), is( properties.getProperty( "basemapName" ) ) );
-        assertThat( configuration.getBasemapLayer(), is( properties.getProperty( "basemapLayer" ) ) );
-        assertThat( configuration.getWmsUrl(), is( properties.getProperty( "wmsUrl" ) ) );
-    }
-
-    @Test
-    public void testSetupMapPreviewConfigurationShouldReturnMatchingPropertiesFromDefaultPath()
-                            throws Exception {
-        MapPreviewConfiguration configuration = new ManagerWebConfigurationRetriever().setupMapPreviewConfiguration( "FOO" );
-
-        Properties properties = loadPropertiesFromOriginalFile();
-
         assertThat( configuration.getBasemapUrl(), is( properties.getProperty( "basemapUrl" ) ) );
         assertThat( configuration.getBasemapName(), is( properties.getProperty( "basemapName" ) ) );
         assertThat( configuration.getBasemapLayer(), is( properties.getProperty( "basemapLayer" ) ) );
@@ -98,21 +73,7 @@ public class ManagerWebConfigurationRetrieverTest {
     @Test
     public void testSetupVectorLayerConfigurationShouldReturnMatchingPropertiesFromSystemEnv()
                             throws Exception {
-        VectorLayerConfiguration configuration = new ManagerWebConfigurationRetriever().setupMapPreviewConfiguration( CONF_PATH_VARIABLE ).getVectorLayerConfiguration();
-
-        Properties properties = loadPropertiesFromOriginalFile();
-
-        assertThat( configuration.getVectorWmsName(), is( properties.getProperty( "vectorWmsName" ) ) );
-        assertThat( configuration.getBpVectorLayer(), is( properties.getProperty( "bpVectorLayer" ) ) );
-        assertThat( configuration.getFpVectorLayer(), is( properties.getProperty( "fpVectorLayer" ) ) );
-        assertThat( configuration.getLpVectorLayer(), is( properties.getProperty( "lpVectorLayer" ) ) );
-        assertThat( configuration.getRpVectorLayer(), is( properties.getProperty( "rpVectorLayer" ) ) );
-    }
-
-    @Test
-    public void testSetupVectorLayerConfigurationShouldReturnMatchingPropertiesFromDefaultPath()
-                            throws Exception {
-        VectorLayerConfiguration configuration = new ManagerWebConfigurationRetriever().setupMapPreviewConfiguration( "FOO" ).getVectorLayerConfiguration();
+        VectorLayerConfiguration configuration = new ManagerWebConfigurationRetriever().setupMapPreviewConfiguration().getVectorLayerConfiguration();
 
         Properties properties = loadPropertiesFromOriginalFile();
 
@@ -126,21 +87,7 @@ public class ManagerWebConfigurationRetrieverTest {
     @Test
     public void testSetupRasterLayerConfigurationShouldReturnMatchingPropertiesFromSystemEnv()
                             throws Exception {
-        RasterLayerConfiguration configuration = new ManagerWebConfigurationRetriever().setupMapPreviewConfiguration( CONF_PATH_VARIABLE ).getRasterLayerConfiguration();
-
-        Properties properties = loadPropertiesFromOriginalFile();
-
-        assertThat( configuration.getRasterWmsName(), is( properties.getProperty( "rasterWmsName" ) ) );
-        assertThat( configuration.getBpRasterLayer(), is( properties.getProperty( "bpRasterLayer" ) ) );
-        assertThat( configuration.getFpRasterLayer(), is( properties.getProperty( "fpRasterLayer" ) ) );
-        assertThat( configuration.getLpRasterLayer(), is( properties.getProperty( "lpRasterLayer" ) ) );
-        assertThat( configuration.getRpRasterLayer(), is( properties.getProperty( "rpRasterLayer" ) ) );
-    }
-
-    @Test
-    public void testSetupRasterLayerConfigurationShouldReturnMatchingPropertiesFromDefaultPath()
-                            throws Exception {
-        RasterLayerConfiguration configuration = new ManagerWebConfigurationRetriever().setupMapPreviewConfiguration( "FOO" ).getRasterLayerConfiguration();
+        RasterLayerConfiguration configuration = new ManagerWebConfigurationRetriever().setupMapPreviewConfiguration( ).getRasterLayerConfiguration();
 
         Properties properties = loadPropertiesFromOriginalFile();
 

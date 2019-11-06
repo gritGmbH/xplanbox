@@ -1,32 +1,17 @@
 package de.latlon.xplan.manager.web.spring.config;
 
-import static java.nio.file.Paths.get;
-
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
-
-import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
-import de.latlon.xplan.inspire.plu.transformation.hale.HaleCliInspirePluTransformator;
-import de.latlon.xplan.manager.transformation.HaleXplan41ToXplan51Transformer;
-import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.DefaultPropertiesLoader;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
+import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
+import de.latlon.xplan.inspire.plu.transformation.hale.HaleCliInspirePluTransformator;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
+import de.latlon.xplan.manager.transformation.HaleXplan41ToXplan51Transformer;
+import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.server.service.ManagerReportProvider;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -44,23 +29,26 @@ import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.web.server.service.ReportProvider;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+
+import static java.nio.file.Paths.get;
 
 /**
  * Basic XPlanManagerWeb Application Configuration.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
- * @version $Revision: $, $Date: $
  */
 @Configuration
-@PropertySource("classpath:manager.properties")
 public class BasicSpringConfig {
 
     private static final String RULES_DIRECTORY = "/rules";
-
-    @Autowired
-    private Environment env;
 
     @Bean
     public SyntacticValidator syntacticValidator() {
@@ -176,8 +164,7 @@ public class BasicSpringConfig {
 
     @Bean
     public PropertiesLoader managerPropertiesLoader() {
-        String configurationFilePathVariable = env.getProperty( "configurationFilePathVariable" );
-        return new SystemPropertyPropertiesLoader( configurationFilePathVariable, ManagerConfiguration.class );
+        return new SystemPropertyPropertiesLoader( ManagerConfiguration.class );
     }
 
     @Bean

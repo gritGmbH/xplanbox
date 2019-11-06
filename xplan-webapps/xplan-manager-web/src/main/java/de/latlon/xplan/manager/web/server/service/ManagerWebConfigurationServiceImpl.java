@@ -11,8 +11,6 @@ import de.latlon.xplan.manager.web.shared.VectorLayerConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
@@ -24,8 +22,6 @@ import static java.lang.String.format;
  * 
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
- * @author last edited by: $Author: erben $
- * @version $Revision: $, $Date: $
  */
 public class ManagerWebConfigurationServiceImpl extends RemoteServiceServlet implements ManagerWebConfigurationService {
 
@@ -34,8 +30,6 @@ public class ManagerWebConfigurationServiceImpl extends RemoteServiceServlet imp
     private static final Logger LOG = LoggerFactory.getLogger( ManagerWebConfigurationServiceImpl.class );
 
     private volatile ManagerWebConfigurationRetriever configurationRetriever;
-
-    private String configurationFilePathVariable;
 
     public ManagerWebConfigurationServiceImpl() {
         this( new ManagerWebConfigurationRetriever() );
@@ -46,24 +40,12 @@ public class ManagerWebConfigurationServiceImpl extends RemoteServiceServlet imp
     }
 
     @Override
-    public void init( ServletConfig config )
-                            throws ServletException {
-        super.init( config );
-        this.configurationFilePathVariable = getInitParameter( "configurationFilePathVariable" );
-    }
-
-    @Override
     public ManagerWebConfiguration getManagerWebConfiguration()
                             throws ConfigurationException {
         try {
-            LOG.info( "Configuration file path variable is: {}", configurationFilePathVariable );
-            ManagerWebConfiguration configuration = configurationRetriever.setupManagerWebConfiguration( configurationFilePathVariable );
+            ManagerWebConfiguration configuration = configurationRetriever.setupManagerWebConfiguration();
             logManagerWebConfiguration( configuration );
             return configuration;
-        } catch ( URISyntaxException | IOException e ) {
-            LOG.error( format( "Error while retrieving configuration: %s", e.getMessage() ) );
-            LOG.debug( "Exception: ", e );
-            throw new ConfigurationException( e );
         } catch ( ConfigurationException e ) {
             LOG.error( format( "Error while retrieving configuration: %s", e.getMessage() ) );
             LOG.debug( "Exception: ", e );
@@ -75,16 +57,11 @@ public class ManagerWebConfigurationServiceImpl extends RemoteServiceServlet imp
     public MapPreviewConfiguration getMapPreviewConfiguration()
                             throws ConfigurationException {
         try {
-            LOG.info( "Configuration file path variable is: {}", configurationFilePathVariable );
-            MapPreviewConfiguration configuration = configurationRetriever.setupMapPreviewConfiguration( configurationFilePathVariable );
+            MapPreviewConfiguration configuration = configurationRetriever.setupMapPreviewConfiguration();
             logMapPreviewConfiguration( configuration );
             logVectorLayerConfiguration( configuration.getVectorLayerConfiguration() );
             logRasterLayerConfiguration( configuration.getRasterLayerConfiguration() );
             return configuration;
-        } catch ( URISyntaxException | IOException e ) {
-            LOG.error( format( "Error while retrieving configuration: %s", e.getMessage() ) );
-            LOG.debug( "Exception: ", e );
-            throw new ConfigurationException( e );
         } catch ( ConfigurationException e ) {
             LOG.warn( format( "Error while retrieving configuration: %s", e.getMessage() ) );
             LOG.debug( "Exception: ", e );
