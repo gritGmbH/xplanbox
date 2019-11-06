@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureTypeStyle xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.opengis.net/se"
+  xmlns:ogc="http://www.opengis.net/ogc" xmlns:sed="http://www.deegree.org/se"
+  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
+  <Name>transparent</Name>
+  <FeatureTypeName>xplan:BP_TechnikBestimmteFlaeche</FeatureTypeName>
+  <Rule>
+    <Name>bp_techbestfl</Name>
+    <Description>
+      <Title>BP: Alternativenergiefläche</Title>
+    </Description>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <GraphicStroke>
+          <Graphic>
+            <Mark>
+              <OnlineResource xlink:href="../../symbols/FreeSans.ttf" />
+              <Format>ttf</Format>
+              <MarkIndex>55</MarkIndex>
+              <Fill>
+                <SvgParameter name="fill">#000000</SvgParameter>
+                <SvgParameter name="fill-opacity">0</SvgParameter>
+              </Fill>
+              <Stroke>
+                <SvgParameter name="stroke-opacity">0</SvgParameter>
+              </Stroke>
+            </Mark>
+            <Size>2</Size>
+          </Graphic>
+          <Gap>3</Gap>
+        </GraphicStroke>
+      </Stroke>
+      <sed:PerpendicularOffset type="Standard">-0.9</sed:PerpendicularOffset>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+</FeatureTypeStyle>

@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+  <Name>vollflaechig</Name>
+  <FeatureTypeName>xplan:BP_GemeinschaftsanlagenFlaeche</FeatureTypeName>
+
+  <!-- Stellplaetze -->
+  <Rule>
+    <Name>Gemeinschaftsstellplaetze</Name>
+    <Description>
+      <Title>BP: Gemeinschaftsstellplätze</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+        <ogc:Literal>1000</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <!-- Garagen -->
+  <Rule>
+    <Name>Gemeinschaftsgaragen</Name>
+    <Description>
+      <Title>BP: Gemeinschaftsgaragen</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+        <ogc:Literal>2000</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <!-- Spielplatz -->
+  <Rule>
+    <Name>Spielplatz</Name>
+    <Description>
+      <Title>BP: Spielplatz</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+        <ogc:Literal>3000</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <!-- Carport -->
+  <Rule>
+    <Name>Carport</Name>
+    <Description>
+      <Title>BP: Carport</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+        <ogc:Literal>3100</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <!-- GemeinschaftsTiefgarage -->
+  <Rule>
+    <Name>GemeinschaftsTiefgarage</Name>
+    <Description>
+      <Title>BP: Gemeinschaftstiefgarage</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+        <ogc:Literal>3200</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <!-- Nebengebaeude -->
+  <Rule>
+    <Name>Nebengebaeude</Name>
+    <Description>
+      <Title>BP: Nebengebäude</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+        <ogc:Literal>3300</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <!-- Abfall Sammelanlagen -->
+  <Rule>
+    <Name>AbfallSammelanlagen</Name>
+    <Description>
+      <Title>BP: Abfallsammelanlagen</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+        <ogc:Literal>3400</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <!-- EnegieVerteilungsanlagen -->
+  <Rule>
+    <Name>EnegieVerteilungsanlagen</Name>
+    <Description>
+      <Title>BP: Enegieverteilungsanlagen</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+        <ogc:Literal>3500</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <!-- AbfallWertstoffbehaelter -->
+  <Rule>
+    <Name>AbfallWertstoffbehaelter</Name>
+    <Description>
+      <Title>BP: Abfallwertstoffbehälter</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+        <ogc:Literal>3600</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <!-- Freizeiteinrichtungen -->
+  <Rule>
+    <Name>Freizeiteinrichtungen</Name>
+    <Description>
+      <Title>BP: Freizeiteinrichtungen</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+        <ogc:Literal>3700</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <!-- Laermschutzanlagen -->
+  <Rule>
+    <Name>Laermschutzanlagen</Name>
+    <Description>
+      <Title>BP: Lärmschutzanlagen</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+        <ogc:Literal>3800</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <!-- AbwasserRegenwasser -->
+  <Rule>
+    <Name>AbwasserRegenwasser</Name>
+    <Description>
+      <Title>BP: Abwasser Regenwasser</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+        <ogc:Literal>3900</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <!-- Ausgleichsmassnahmen -->
+  <Rule>
+    <Name>Ausgleichsmassnahmen</Name>
+    <Description>
+      <Title>BP: Ausgleichsmassnahmen</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+        <ogc:Literal>4000</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <!-- Sonstiges -->
+  <Rule>
+    <Name>Sonstiges</Name>
+    <Description>
+      <Title>BP: Sonstiges</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+        <ogc:Literal>9999</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+</FeatureTypeStyle>

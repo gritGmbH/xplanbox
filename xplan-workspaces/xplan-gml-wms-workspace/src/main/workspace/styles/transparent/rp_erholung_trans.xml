@@ -1,0 +1,62 @@
+<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+
+  <Name>transparent</Name>
+  <FeatureTypeName>xplan:RP_Erholung</FeatureTypeName>
+
+  <!--Erholung-->
+  <Rule>
+    <Name>vb_Erholung</Name>
+    <Description>
+      <Title>Vorbehaltsgebiet Erholung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+        <ogc:Literal>1100</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PolygonSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#64C800</SvgParameter>
+        <SvgParameter name="stroke-width">1.</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>VR_Erholung</Name>
+    <Description>
+      <Title>Vorranggebiet Erholung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+        <ogc:Literal>1000</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PolygonSymbolizer>
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#64C800</SvgParameter>
+        <SvgParameter name="stroke-width">1.5</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
+</FeatureTypeStyle>
