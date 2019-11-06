@@ -31,7 +31,7 @@ Erläuterung der einzelnen Properties:
  * *cswUrlProvidingDatasetMetadata*: GetCapabilities URL des CSW, der Daten-Metadatensätze zu einem Plan bereitstellt
  * *directoryToStoreMetadata*: Verzeichnis in dem die erstellten Service-Metadatensätze abgelegt werden (das Verzeichnis muss beim Start des Tomcats in dem sich die xplanwebapp -manager-web befindet existieren). Unter Windows muss das Zeichen "\" als Pfad-Trennzeichen verwendet werden (z.B. "C:\tmp\").
 
-Weiterhin muss im Verzeichnis <MANAGER_WEB>/metadata die Datei _service-iso-metadata-template.xml_ liegen (zum Zeitpunkt des Start des Tomcats in dem dem sich die xplanwebapp -manager-web befindet). Diese Datei dient als Template für den erstellten Service-Metadatensatz. Folgende Platzhalter werden bei der Erstellung des Service-Metadatensatz durch entsprechende Werte ausgetauscht und können im Template verwendet werden:
+Weiterhin muss im Verzeichnis <XPLANBOX_CONFIG>/metadata die Datei _service-iso-metadata-template.xml_ liegen (zum Zeitpunkt des Start des Tomcats in dem dem sich die xplanwebapp -manager-web befindet). Diese Datei dient als Template für den erstellten Service-Metadatensatz. Folgende Platzhalter werden bei der Erstellung des Service-Metadatensatz durch entsprechende Werte ausgetauscht und können im Template verwendet werden:
 
  * *METADATA_ID*: generierte UUID als FileIdentifier für den generierten Metadatensatz
  * *CURRENT_DATE*: Aktuelles Datum

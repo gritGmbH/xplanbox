@@ -12,7 +12,7 @@ Konfiguration beider Tomcats beschrieben.
 Im Anwendungs-Tomcat müssen folgende Konfigurationen vorgenommen werden:
 
 __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-.  Für den XPlanManagerWeb muss die Variable _MANAGER_WEB_ als Java
+.  Für den XPlanManagerWeb muss die Variable _XPLANBOX_CONFIG_ als Java
 Property gesetzt werden. Das mit Hilfe dieser Variable referenzierte
 Verzeichnis muss die Konfiguration des XPlanManagerWeb enthalten (es
 handelt sich um die Dateien managerConfiguration.properties und
@@ -35,30 +35,30 @@ Verzeichnis _<tomcat-root>/bin_ eine neue Datei mit dem Namen
 _setenv.sh_ angelegt werden.
 
 In dieser Datei erfolgt das Setzen der Variable
-_MANAGER_WEB_ sowie _xplan.logdir_ durch das Hinzufügen von: :
+_XPLANBOX_CONFIG_ sowie _xplan.logdir_ durch das Hinzufügen von: :
 +
 export
-JAVA_OPTS=’-DMANAGER_WEB=/home/xplanbox/.deegree/manager-configuration
+JAVA_OPTS=’-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/manager-configuration
 -Dxplan.logdir=/home/xplanbox/logs’
 
 Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, müssen
-*’-DMANAGER_WEB=/home/xplanbox/.deegree/manager-configuration’* und
+*’-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/manager-configuration’* und
 *’-Dxplan.logdir=/home/xplanbox/logs’* in die bestehenden JAVA_OPTS
 integriert werden.
 
 [[anwendungs-tomcat-windows]]
 ===== Windows
 
-Für das Setzen der Variable _MANAGER_WEB_ sowie
+Für das Setzen der Variable _XPLANBOX_CONFIG_ sowie
 _xplan.logdir_ muss zunächst eine neue Datei mit dem Namen _setenv.bat_
 im Verzeichnis _<tomcat-root>/bin_ angelegt werden. Dort werden die
 Variablen wie folgt hinzugefügt: :
 +
-export JAVA_OPTS=’-DMANAGER_WEB=C:\.deegree\manager-configuration
+export JAVA_OPTS=’-DXPLANBOX_CONFIG=C:\.deegree\manager-configuration
 -Dxplan.logdir=C:\logs’
 
 Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, müssen
-*’-DMANAGER_WEB=C:\.deegree\manager-configuration’* und
+*’-DXPLANBOX_CONFIG=C:\.deegree\manager-configuration’* und
 *’-Dxplan.logdir=C:\logs’* in die bestehenden JAVA_OPTS integriert
 werden.
 
