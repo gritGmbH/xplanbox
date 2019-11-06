@@ -1,7 +1,6 @@
 package de.latlon.xplan.manager.web.spring.config;
 
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.commons.configuration.DefaultPropertiesLoader;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
@@ -159,7 +158,7 @@ public class BasicSpringConfig {
     public ValidatorConfiguration validatorConfiguration()
                     throws IOException, ConfigurationException {
         ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
-        return validatorConfigurationParser.parse( new DefaultPropertiesLoader( ValidatorConfiguration.class ) );
+        return validatorConfigurationParser.parse( new SystemPropertyPropertiesLoader( ValidatorConfiguration.class ) );
     }
 
     @Bean
@@ -168,8 +167,11 @@ public class BasicSpringConfig {
     }
 
     @Bean
-    public Path rulesPath()
-                    throws URISyntaxException {
+    public Path rulesPath( ValidatorConfiguration validatorConfiguration )
+                            throws URISyntaxException {
+        Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
+        if ( validationRulesDirectory != null )
+            return validationRulesDirectory;
         URI rulesPath = BasicSpringConfig.class.getResource( RULES_DIRECTORY ).toURI();
         return get( rulesPath );
     }

@@ -27,6 +27,8 @@ public class ValidatorConfigurationParser {
 
     private static final String VALIDATION_REPORT_DIRECTORY = "validationReportDirectory";
 
+    private static final String VALIDATION_RULES_DIRECTORY = "validationRulesDirectory";
+
     /**
      * Parse validator configuration.
      * 
@@ -51,9 +53,10 @@ public class ValidatorConfigurationParser {
     }
 
     private ValidatorConfiguration parseConfiguration( Properties properties )
-                    throws IOException {
-        Path reportDirectoryFile = createReportDirectoryFile( properties );
-        return new ValidatorConfiguration( reportDirectoryFile );
+                            throws IOException {
+        Path reportDirectory = createReportDirectory( properties );
+        Path rulesDirectory = createRulesDirectory( properties );
+        return new ValidatorConfiguration( reportDirectory, rulesDirectory );
     }
 
     private void logConfiguration( ValidatorConfiguration configuration ) {
@@ -62,16 +65,27 @@ public class ValidatorConfigurationParser {
         LOG.info( "-------------------------------------------" );
         LOG.info( "  validation report directory" );
         LOG.info( "   - {}", configuration.getValidationReportDirectory() );
+        LOG.info( "  validation rules directory" );
+        LOG.info( "   - {}", configuration.getValidationRulesDirectory() != null ?
+                             configuration.getValidationRulesDirectory() :
+                             "internal rules are used" );
         LOG.info( "-------------------------------------------" );
     }
 
-    private Path createReportDirectoryFile( Properties properties )
+    private Path createReportDirectory( Properties properties )
                             throws IOException {
         String validationReportDirectory = properties.getProperty( VALIDATION_REPORT_DIRECTORY );
         if ( validationReportDirectory == null || validationReportDirectory.isEmpty() )
             return createTempDirectory( "validationReport" );
         else
             return Paths.get( validationReportDirectory );
+    }
+
+    private Path createRulesDirectory( Properties properties ) {
+        String validationRulesDirectory = properties.getProperty( VALIDATION_RULES_DIRECTORY );
+        if ( validationRulesDirectory != null && !validationRulesDirectory.isEmpty() )
+            return Paths.get( validationRulesDirectory );
+        return null;
     }
 
     private void checkParameters( PropertiesLoader propertiesLoader ) {

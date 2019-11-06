@@ -13,13 +13,18 @@ public class ValidatorConfiguration {
 
     private final Path validationReportDirectory;
 
+    private final Path validationRulesDirectory;
+
     /**
      * @param validationReportDirectory
-     *            directory where validation reports are saved, never <code>null</code>
+     *                         directory where validation reports are saved, never <code>null</code>
+     * @param validationRulesDirectory
+     *                         directory containing the semantic validation rules, may be <code>null</code>
      */
-    public ValidatorConfiguration( Path validationReportDirectory ) {
+    public ValidatorConfiguration( Path validationReportDirectory, Path validationRulesDirectory ) {
         checkParameters( validationReportDirectory );
         this.validationReportDirectory = validationReportDirectory;
+        this.validationRulesDirectory = validationRulesDirectory;
     }
 
     /**
@@ -31,9 +36,17 @@ public class ValidatorConfiguration {
         return validationReportDirectory;
     }
 
+    /**
+     * Returns the directory containing the semantic validation rules.
+     *
+     * @return directory containing the semantic validation rules, may be <code>null</code>
+     */
+    public Path getValidationRulesDirectory() {
+        return validationRulesDirectory;
+    }
+
     private void checkParameters( Path validationReportDirectory ) {
         if ( validationReportDirectory == null )
             throw new IllegalArgumentException( "validationReportDirectory must not be null!" );
     }
-
 }

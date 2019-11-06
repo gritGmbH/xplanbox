@@ -1,17 +1,5 @@
 package de.latlon.xplan.validator.cli;
 
-import static java.nio.file.Paths.get;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
-
 import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
@@ -27,6 +15,17 @@ import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticVal
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
+
+import static java.nio.file.Paths.get;
 
 /**
  * Defines the application context for the validator CLI
@@ -39,10 +38,8 @@ public class XPlanValidatorCliSpringConfig {
     @Bean
     @Lazy
     @Scope("prototype")
-    public SemanticValidator semanticValidator()
-                    throws ValidatorException, URISyntaxException {
-        URL pathToRules = XPlanValidatorCliSpringConfig.class.getProtectionDomain().getCodeSource().getLocation();
-        Path rulesPath = get( pathToRules.toURI() ).getParent().resolve( "etc/rules" );
+    public SemanticValidator semanticValidator( Path rulesPath )
+                            throws ValidatorException {
         return new XQuerySemanticValidator( new XQuerySemanticValidatorConfigurationRetriever( rulesPath ) );
     }
 
@@ -64,12 +61,22 @@ public class XPlanValidatorCliSpringConfig {
     }
 
     @Bean
-    public ReportArchiveGenerator reportArchiveGenerator()
-                    throws IOException, ConfigurationException, URISyntaxException {
-        return new ReportArchiveGenerator( validatorConfiguration() );
+    public ReportArchiveGenerator reportArchiveGenerator( ValidatorConfiguration validatorConfiguration ) {
+        return new ReportArchiveGenerator( validatorConfiguration );
     }
 
-    private ValidatorConfiguration validatorConfiguration()
+    @Bean
+    public Path rulesPath( ValidatorConfiguration validatorConfiguration )
+                            throws URISyntaxException {
+        Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
+        if ( validationRulesDirectory != null )
+            return validationRulesDirectory;
+        URL pathToRules = XPlanValidatorCliSpringConfig.class.getProtectionDomain().getCodeSource().getLocation();
+        return get( pathToRules.toURI() ).getParent().resolve( "etc/rules" );
+    }
+
+    @Bean
+    public ValidatorConfiguration validatorConfiguration()
                     throws IOException, ConfigurationException, URISyntaxException {
         ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
         return validatorConfigurationParser.parse( validatorPropertiesLoader() );
