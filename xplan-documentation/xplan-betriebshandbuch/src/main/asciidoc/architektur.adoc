@@ -3,7 +3,6 @@
 
 Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 
-____________________
 * XPlanManagerCLI
 * XPlanManagerWeb
 * XPlanValidatorCLI
@@ -14,7 +13,6 @@ ____________________
 * XPlanInspirePluWMS
 * XPlanInspirePluWFS
 * XPlanRessourcen
-____________________
 
 image:../images/Architektur_xPlanBox_einfach.png[Einfache Darstellung]
 
@@ -80,11 +78,9 @@ somit der entsprechende XPlanWMS-Endpoint angesprochen.
 Während der XPlanWMS planübergreifend arbeitet, beschränkt sich der
 XPlanWerkWMS auf einzelne Planwerke.
 
-________________________________
 * XPlanWMSInAufstellung => In Aufstellung
 * XPlanWMSFestgestellt => Festgestellt
 * XPlanWMSArchiviert => Archiviert
-________________________________
 
 NOTE: Gleiches gilt für den XPlanWerkWMS, XPlanWFS und XPlanSynWFS
 

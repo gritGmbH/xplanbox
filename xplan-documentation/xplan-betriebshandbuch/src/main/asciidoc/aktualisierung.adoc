@@ -4,7 +4,6 @@
 Bei einer Aktualisierung der xPlanBox müssen folgende Schritte
 durchgeführt werden:
 
-______________________________________________________________________
 Datenunabhängige Aktualisierungsschritte:
 
 * Austausch der Web-Archive (.war) in den Tomcat-Applikationsservern
@@ -16,7 +15,6 @@ Aktualisierungsschritte, die die Datenhaltung betreffen:
 * Aktualisierung der betroffenen Konfigurationsdateien in den Workspaces
 * Aktualisierung des Datenbankschemas
 * Aktualisierung der Daten
-______________________________________________________________________
 
 Bei einer vollständigen Aktualisierung kann auch das Installationsskript
 aus dem Kapitel Installation über ein Installations-Skript (s. <<Installations-Skript, Anhang>>) verwendet werden.
@@ -140,7 +138,6 @@ Element `Title` einzutragen.
 
 Die Benamung des Identifiers richtet sich nach dem Typ des Plans:
 
-______________________________________________________________________________________
 * BP_Planraster (Dateien: bplanpreraster.xml, bplanarchiveraster.xml,
 bplanraster.xml)
 * FP_Planraster (Dateien: fplanpreraster.xml, fplanarchiveraster.xml,
@@ -150,18 +147,16 @@ lplanraster.xml)
 * RP_Planraster (Dateien: rplanpreraster.xml, rplanarchiveraster.xml,
 rplanraster.xml)
 * SO_Planraster (Dateien: soplanpreraster.xml, soplanarchiveraster.xml, soplanraster.xml)
-______________________________________________________________________________________
 
 Die Themes-Konfigurationen der Vektordaten sollten komplett ausgetauscht
 werden, Daten gehen dadurch nicht verloren. Folgende Dateien sind davon
 betroffen:
-___________________________________________
+
 * bplan.xml, bplanpre.xml, bplanarchive.xml
 * fplan.xml, fplanpre.xml, fplanarchive.xml
 * lplan.xml, lplanpre.xml, lplanarchive.xml
 * rplan.xml, rplanpre.xml, rplanarchive.xml
 * soplan.xml, soplanpre.xml, soplanarchive.xml
-___________________________________________
 
 [[aktualisierung-des-wms-workspaces-auf-die-version-2.4-der-xplanbox]]
 ===== Aktualisierung des WMS-Workspaces auf die Version 2.4 der xPlanBox

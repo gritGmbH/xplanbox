@@ -7,15 +7,12 @@
 Die __zip__-Archive mit den Konfigurationen (s. <<installationskomponenten>>) müssen in das
 Verzeichnis _.deegree_ im Home-Verzeichnis (s. <<vorbereitung-der-installation>>) des Nutzers kopiert und entpackt werden:
 
-_____________________________________________________________________________________________
 * _xplan-wfs-workspace_
 * _xplansyn-wfs-workspace_
 * _xplansyn-wms-workspace_
 * _xplan-inspireplu-workspace_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
 * _xplan-manager-workspace_
-* _xplan-manager-config_ (Name des Verzeichnis nach dem Entpacken:
-__manager-configuration__)
-_____________________________________________________________________________________________
+* _xplan-manager-config_ (Name des Verzeichnis nach dem Entpacken: __manager-configuration__)
 
 NOTE: Alle Workspaces müssen in dem selben Verzeichnis liegen.
 
@@ -32,22 +29,18 @@ Die folgenden WAR-Archive (s. <<installationskomponenten>>) müssen in das Verze
 der Tomcat-Installation (__Dienste-Tomcat__, z.B. Port: 8080) kopiert
 werden:
 
-____________________
 * _xplan-wms.war_ (XPlanWMS und XPlanWerkWMS)
 * _xplan-wfs.war_ (XPlanWFS)
 * _xplansyn-wfs.war_ (XPlanSynWFS)
 * _xplan-inspireplu.war_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
-____________________
 
 Die WAR-Archive der Anwendungskomponenten werden über eine
 weitere Tomcat-Installation (_Anwendungs-Tomcat_, z.B. Port: 8081)
 bereitgestellt:
 
-______________________
 * _xplanmanager.war_ (XPlanManagerWeb)
 * _xplanvalidator.war_ (XPlanValidatorWeb)
 * _xplan-root.war_ (XPlanRessourcen)
-______________________
 
 NOTE: Da die Komponente XPlanRessourcen eine Einstiegsseite bereit stellt, bietet es sich an, diese als ROOT-Webapp des Anwendungs-Tomcat zu installieren. Das war-Archiv xplan-root.war muss dafür im Verzeichnis ROOT entpackt werden.
 
@@ -56,10 +49,8 @@ NOTE: Da die Komponente XPlanRessourcen eine Einstiegsseite bereit stellt, biete
 
 Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an beliebiger Stelle entpackt werden. _xplan-update-database_ wird nur für eine Aktualisierung der xPlanBox benötigt (weitere Informationen befinden sich im Abschnitt <<aktualisierung>>). Im jeweiligen _bin_ Verzeichnis der beiden Kommandozeilenwerkzeuge findet sich das entsprechende Ausführungsskript:
 
-______________________
 * _XPlanManager_ (XPlanManagerCLI)
 * _XPlanValidator_ (XPlanValidatorCLI)
-______________________
 
 [[dokumentation]]
 ==== Dokumentation

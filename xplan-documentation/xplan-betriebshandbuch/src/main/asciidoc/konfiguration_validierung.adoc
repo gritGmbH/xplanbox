@@ -12,8 +12,7 @@ der Nummer der Regel aus den Konformitätsbedingungen benannt.
 Bei der Ausgabe des Ergebnisses der semantischen Validerung kann eine
 Referenz auf eine externe Ressource gesetzt werden, die weiterführenden
 Informationen bereitstellt. Die Referenzen können in der Datei
-_managerConfiguration.properties_ im Verzeichnis
-_~/.deegree/manager-configuration/_ konfiguriert werden.
+_<XPLANBOX_CONFIG>/managerConfiguration.properties_ konfiguriert werden.
 
 ----
 linkSemanticConformity_XPLAN_2=
