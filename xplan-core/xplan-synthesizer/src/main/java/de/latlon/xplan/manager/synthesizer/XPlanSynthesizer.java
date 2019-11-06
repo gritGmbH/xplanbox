@@ -83,6 +83,18 @@ public class XPlanSynthesizer {
     /**
      * Transforms the features of the passed {@link XPlanFeatureCollection} to flat XPlanSyn features. First the
      * required rules are parsed from the rules files, then the transformation starts.
+     *
+     * @param xplanFc
+     *                         the feature collection to transform, never <code>null</code>
+     * @return a feature collection with the flat XPlanSyn features, never <code>null</code>
+     */
+    public FeatureCollection synthesize( XPlanFeatureCollection xplanFc ) {
+        return synthesize( xplanFc.getVersion(), xplanFc );
+    }
+
+    /**
+     * Transforms the features of the passed {@link XPlanFeatureCollection} to flat XPlanSyn features. First the
+     * required rules are parsed from the rules files, then the transformation starts.
      * 
      * @param version
      *            the version of the XPlanGML, never <code>null</code>

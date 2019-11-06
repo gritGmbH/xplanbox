@@ -23,8 +23,8 @@ import static org.xmlmatchers.xpath.XpathReturnType.returningANumber;
 @RunWith(JUnitParamsRunner.class)
 public class XplanSynthesizerXplan50Test extends AbstractXplanSynthesizerTest {
 
-    @Parameters({ "xplan50/BP2070.zip", "xplan50/BP2135.zip", "xplan50/FPlan.zip", "xplan50/LA22.zip",
-                  "xplan50/LA67.zip" })
+    // Contains broken geometrieS: "xplan50/FPlan.zip",
+    @Parameters({ "xplan50/BP2070.zip", "xplan50/BP2135.zip", "xplan50/LA22.zip", "xplan50/LA67.zip" })
     @Test
     public void testCreateSynFeatures( String archiveName )
                     throws Exception {

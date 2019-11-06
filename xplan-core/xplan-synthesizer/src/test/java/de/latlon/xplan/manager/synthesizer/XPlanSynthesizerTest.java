@@ -1,40 +1,37 @@
 package de.latlon.xplan.manager.synthesizer;
 
-import static org.apache.commons.io.IOUtils.closeQuietly;
-import static org.hamcrest.CoreMatchers.anyOf;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import org.deegree.commons.tom.gml.property.Property;
+import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
+import org.junit.Test;
 
+import javax.xml.namespace.QName;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.xml.namespace.QName;
-
-import org.deegree.commons.tom.gml.property.Property;
-import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.cs.persistence.CRSManager;
-import org.deegree.feature.Feature;
-import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
-import org.junit.Test;
-
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static org.apache.commons.io.IOUtils.closeQuietly;
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XPlanSynthesizerTest {
+public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest{
+
+    @Override
+    XPlanVersion getXPlanVersion() {
+        return XPLAN_41;
+    }
 
     @Test
     public void testSynthesize_DefaultConfiguration()
@@ -154,23 +151,6 @@ public class XPlanSynthesizerTest {
             feature.setId( "FEATURE_" + id++ );
         }
         return xplanFc;
-    }
-
-    private XPlanFeatureCollection readFeatures( XPlanArchive archive )
-                            throws Exception {
-        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( archive.getVersion(), archive.getAde() );
-        ICRS crs = CRSManager.lookup( "EPSG:31467" );
-        if ( archive.getCrs() != null ) {
-            crs = archive.getCrs();
-        }
-        return ( new GeometricValidatorImpl() ).retrieveGeometricallyValidXPlanFeatures( archive, crs, schema, true,
-                                                                                         null );
-    }
-
-    private XPlanArchive getTestArchive( String name )
-                            throws URISyntaxException, IOException {
-        XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        return archiveCreator.createXPlanArchive( name, ResourceAccessor.readResourceStream( name ) );
     }
 
     private Path createTmpDirectoryAndCopyRuleFile( String synFile, String codelistFile )
