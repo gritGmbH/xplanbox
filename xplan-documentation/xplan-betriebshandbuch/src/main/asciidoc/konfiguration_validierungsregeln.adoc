@@ -1,0 +1,11 @@
+[[semantische-validierungsregeln]]
+=== Semantische Validierungsregeln
+
+Die als XQuery-Dateien vorliegenden semantsichen Validierungsregeln können in einem externen Verzeichnis abgelegt und durch entpsrechende Konfiguration im XPlanManagerWeb und XPlanValidatorWeb verwendet werden.
+Der Pfad zu den semantischen Reglen musst in der Datei _<XPLANBOX_CONFIG>/validatorConfiguration.properties_ wie folgt konfiguriert werden:
+
+----
+validationRulesDirectory=/home/xplanbox/semantischeRegeln/1.0/
+----
+
+Ist der Pfad nicht konfiguriert, werden die internen Validierungsregeln verwendet.

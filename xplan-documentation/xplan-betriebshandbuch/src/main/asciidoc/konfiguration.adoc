@@ -50,3 +50,5 @@ include::konfiguration_migration.adoc[]
 include::konfiguration_massstabsbereich.adoc[]
 
 include::konfiguration_daten-dienste-kopplung.adoc[]
+
+include::konfiguration_validierungsregeln.adoc[]
