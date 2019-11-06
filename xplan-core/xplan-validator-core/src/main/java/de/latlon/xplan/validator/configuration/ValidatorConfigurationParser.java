@@ -1,16 +1,16 @@
 package de.latlon.xplan.validator.configuration;
 
-import static java.nio.file.Files.createTempDirectory;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Properties;
-
+import de.latlon.xplan.commons.configuration.PropertiesLoader;
+import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.commons.configuration.PropertiesLoader;
-import de.latlon.xplan.manager.web.shared.ConfigurationException;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Properties;
+
+import static java.nio.file.Files.createTempDirectory;
 
 /**
  * Parses validator configuration and returns {@link ValidatorConfiguration}.
@@ -52,7 +52,7 @@ public class ValidatorConfigurationParser {
 
     private ValidatorConfiguration parseConfiguration( Properties properties )
                     throws IOException {
-        File reportDirectoryFile = createReportDirectoryFile( properties );
+        Path reportDirectoryFile = createReportDirectoryFile( properties );
         return new ValidatorConfiguration( reportDirectoryFile );
     }
 
@@ -65,13 +65,13 @@ public class ValidatorConfigurationParser {
         LOG.info( "-------------------------------------------" );
     }
 
-    private File createReportDirectoryFile( Properties properties )
-                    throws IOException {
+    private Path createReportDirectoryFile( Properties properties )
+                            throws IOException {
         String validationReportDirectory = properties.getProperty( VALIDATION_REPORT_DIRECTORY );
         if ( validationReportDirectory == null || validationReportDirectory.isEmpty() )
-            return createTempDirectory( "validationReport" ).toFile();
+            return createTempDirectory( "validationReport" );
         else
-            return new File( validationReportDirectory );
+            return Paths.get( validationReportDirectory );
     }
 
     private void checkParameters( PropertiesLoader propertiesLoader ) {

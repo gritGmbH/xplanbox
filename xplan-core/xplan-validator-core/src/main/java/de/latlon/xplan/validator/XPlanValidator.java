@@ -5,6 +5,7 @@ import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.SYNTAX_ERROR
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -104,7 +105,7 @@ public class XPlanValidator {
         ValidatorReport report = validate( validationSettings, archive, planName );
         writeReport( report );
         LOG.info( "Archiv mit Validierungsergebnissen wird erstellt." );
-        File validationReportDirectory = createZipArchive( validationSettings, archive, report );
+        Path validationReportDirectory = createZipArchive( validationSettings, report );
         LOG.info( "Archiv mit Validierungsergebnissen wurde unter {} abgelegt.", validationReportDirectory );
         return report;
     }
@@ -309,10 +310,10 @@ public class XPlanValidator {
         return semanticValidationOptions;
     }
 
-    private File createZipArchive( ValidationSettings validationSettings, XPlanArchive archive, ValidatorReport report )
+    private Path createZipArchive( ValidationSettings validationSettings, ValidatorReport report )
                     throws ReportGenerationException {
         String validationName = validationSettings.getValidationName();
-        return reportArchiveGenerator.generateZipArchive( archive, report, validationName );
+        return reportArchiveGenerator.generateZipArchive( report, validationName );
     }
 
 }

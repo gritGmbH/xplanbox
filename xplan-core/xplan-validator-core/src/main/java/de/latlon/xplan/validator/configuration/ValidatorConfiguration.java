@@ -1,6 +1,6 @@
 package de.latlon.xplan.validator.configuration;
 
-import java.io.File;
+import java.nio.file.Path;
 
 /**
  * Encapsulates the validator configuration.
@@ -11,13 +11,13 @@ import java.io.File;
  */
 public class ValidatorConfiguration {
 
-    private final File validationReportDirectory;
+    private final Path validationReportDirectory;
 
     /**
      * @param validationReportDirectory
      *            directory where validation reports are saved, never <code>null</code>
      */
-    public ValidatorConfiguration( File validationReportDirectory ) {
+    public ValidatorConfiguration( Path validationReportDirectory ) {
         checkParameters( validationReportDirectory );
         this.validationReportDirectory = validationReportDirectory;
     }
@@ -27,11 +27,11 @@ public class ValidatorConfiguration {
      * 
      * @return directory where validation reports are saved, never <code>null</code>
      */
-    public File getValidationReportDirectory() {
+    public Path getValidationReportDirectory() {
         return validationReportDirectory;
     }
 
-    private void checkParameters( File validationReportDirectory ) {
+    private void checkParameters( Path validationReportDirectory ) {
         if ( validationReportDirectory == null )
             throw new IllegalArgumentException( "validationReportDirectory must not be null!" );
     }

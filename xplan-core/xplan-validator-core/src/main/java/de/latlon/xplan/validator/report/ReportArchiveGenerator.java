@@ -1,6 +1,5 @@
 package de.latlon.xplan.validator.report;
 
-import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
 import de.latlon.xplan.validator.report.badgeometryimg.BadGeometryImgGenerator;
 import de.latlon.xplan.validator.report.html.HtmlReportGenerator;
@@ -8,9 +7,10 @@ import de.latlon.xplan.validator.report.pdf.PdfReportGenerator;
 import de.latlon.xplan.validator.report.shapefile.ShapefileGenerator;
 import de.latlon.xplan.validator.report.xml.XmlReportGenerator;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -45,8 +45,6 @@ public class ReportArchiveGenerator {
     /**
      * Creates a zip Archive containing the {@link ValidatorReport} as XML, HTML and PDF
      * 
-     * @param archive
-     *            the validated archive, never <code>null</code>
      * @param report
      *            the report to write, never <code>null</code>
      * @param validationName
@@ -55,11 +53,11 @@ public class ReportArchiveGenerator {
      * @throws ReportGenerationException
      *             if an exception occurred during writing the reports or zip archive
      */
-    public File generateZipArchive( XPlanArchive archive, ValidatorReport report, String validationName )
+    public Path generateZipArchive( ValidatorReport report, String validationName )
                     throws ReportGenerationException {
-        File validationReportDirectory = validatorConfiguration.getValidationReportDirectory();
-        File outputFile = new File( validationReportDirectory, validationName + ".zip" );
-        try ( FileOutputStream fileOutStream = new FileOutputStream( outputFile );
+        Path validationReportDirectory = validatorConfiguration.getValidationReportDirectory();
+        Path outputFile = validationReportDirectory.resolve( validationName + ".zip" );
+        try ( OutputStream fileOutStream = Files.newOutputStream( outputFile );
               ZipOutputStream zipOutStream = new ZipOutputStream( fileOutStream ) ) {
             addXmlEntry( report, validationName, zipOutStream );
             addHtmlEntry( report, validationName, zipOutStream );
@@ -110,12 +108,12 @@ public class ReportArchiveGenerator {
     }
 
     private void addShapeDirectoryEntry( ValidatorReport report, String validationName,
-                                         File directoryToCreateShapes, ZipOutputStream zipOutStream )
+                                         Path directoryToCreateShapes, ZipOutputStream zipOutStream )
                     throws IOException, ReportGenerationException {
         if ( shapefileGenerator.hasBadGeometry( report ) ) {
-            shapefileGenerator.generateReport( report, validationName, directoryToCreateShapes );
-            ReportUtils.writeShapefilesToZipOS( directoryToCreateShapes, zipOutStream );
-            ReportUtils.deleteShapefiles( directoryToCreateShapes );
+            shapefileGenerator.generateReport( report, validationName, directoryToCreateShapes.toFile() );
+            ReportUtils.writeShapefilesToZipOS( directoryToCreateShapes.toFile(), zipOutStream );
+            ReportUtils.deleteShapefiles( directoryToCreateShapes.toFile() );
         }
     }
 
