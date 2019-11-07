@@ -280,12 +280,17 @@ public class UploadPanel extends DecoratorPanel {
         return new Button( messages.uploadButtonTitle(), new ClickHandler() {
             @Override
             public void onClick( ClickEvent event ) {
-                if ( !upload.getFilename().toLowerCase().endsWith( ".zip" ) )
+                if ( !isSupportedType( upload ) )
                     showWrongFileEndingDialog();
                 else {
                     form.submit();
                     showUploadDialogBox();
                 }
+            }
+
+            private boolean isSupportedType( final FileUpload upload ) {
+                String filename = upload.getFilename().toLowerCase();
+                return filename.endsWith( ".zip" ) || filename.endsWith( ".gml" ) || filename.endsWith( ".xml" );
             }
 
             private void showWrongFileEndingDialog() {

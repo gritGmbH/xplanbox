@@ -17,8 +17,15 @@
       <xs:element type="xs:dateTime" name="date"/>
       <xs:element type="xs:boolean" name="isValid"/>
       <xs:element type="PlanType" name="Plan"/>
+      <xs:element type="ExternalReferencesType" name="ExternalReferences"/>
       <xs:element type="ValidationType" name="Validation"/>
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ExternalReferencesType">
+    <xs:choice>
+      <xs:element name="SkipMessage" type="xs:string"/>
+      <xs:element name="ExternalReference" type="xs:string" maxOccurs="unbounded"/>
+    </xs:choice>
   </xs:complexType>
   <xs:complexType name="ValidationType">
     <xs:sequence>

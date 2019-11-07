@@ -141,7 +141,7 @@ public class SortPropertyReaderTest {
                     throws Exception {
         String name = "xplan2/BP2070.zip";
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        XPlanArchive archive = archiveCreator.createXPlanArchive( name, ResourceAccessor.readResourceStream( name ) );
+        XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
         XPlanVersion version = archive.getVersion();
         XPlanAde ade = archive.getAde();
         XMLStreamReader xmlReader = archive.getMainFileXmlReader();

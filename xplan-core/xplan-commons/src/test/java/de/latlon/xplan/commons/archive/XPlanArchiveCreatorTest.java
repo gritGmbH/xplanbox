@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import static de.latlon.xplan.commons.XPlanAde.NSM;
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
@@ -17,6 +18,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
@@ -254,16 +256,28 @@ public class XPlanArchiveCreatorTest {
         getTestArchive( "xplan41/Eidelstedt_4_V4-wrongGmlFileName.zip" );
     }
 
+    @Test
+    public void testCreateXPlanArchive_51_GmlFile()
+                            throws IOException, UnknownCRSException {
+        XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator( mockMapper() );
+        InputStream gmlAsStream = ResourceAccessor.readResourceStream( "xplan51/V4_1_ID_103.gml" );
+        XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml( "V4_1_ID_103.gml", gmlAsStream );
+        assertEquals( XPLAN_51, archive.getVersion() );
+        assertEquals( null, archive.getAde() );
+        assertEquals( null, archive.getDistrict() );
+        assertEquals( BP_Plan, archive.getType() );
+    }
+
     private XPlanArchive getTestArchive( String name )
                     throws IOException {
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        return archiveCreator.createXPlanArchive( name, ResourceAccessor.readResourceStream( name ) );
+        return archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
     }
 
     private XPlanArchive getTestArchiveWithMapper( String name )
                     throws IOException {
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator( mockMapper() );
-        return archiveCreator.createXPlanArchive( name, ResourceAccessor.readResourceStream( name ) );
+        return archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
     }
 
     private LocalCenterToDistrictMapper mockMapper() {
