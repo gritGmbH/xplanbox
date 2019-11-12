@@ -19,6 +19,7 @@ import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.validator.report.ReportUtils.SkipCode;
 import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
@@ -291,6 +292,12 @@ public class XPlanValidator {
     }
 
     private void log( SemanticValidatorResult validatorResult ) {
+        RulesMetadata rulesMetadata = validatorResult.getRulesMetadata();
+        if ( rulesMetadata != null ) {
+            LOG.info( "Informationen zur semantischen Validierung:" );
+            LOG.info( "  - Version: {}", rulesMetadata.getVersion() );
+            LOG.info( "  - Quelle: {}", rulesMetadata.getSource() );
+        }
         List<RuleResult> ruleResults = validatorResult.getRules();
         LOG.info( "Ergebnisse der semantischen Validierung: {}", ruleResults.size() );
         for ( RuleResult ruleResult : ruleResults ) {

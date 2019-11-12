@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.report.ReportUtils.SkipCode;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 
 /**
  * contains the validator result of the semantic validator
@@ -18,6 +19,8 @@ public class SemanticValidatorResult extends ValidatorResult {
     private static final String VALIDATION_TYPE_NAME = "Semantische Validierung";
 
     private final List<RuleResult> rules = new ArrayList<>();
+
+    private RulesMetadata rulesMetadata;
 
     public SemanticValidatorResult( SkipCode skipCode ) {
         super( skipCode );
@@ -63,6 +66,21 @@ public class SemanticValidatorResult extends ValidatorResult {
      */
     public List<RuleResult> getRules() {
         return rules.stream().sorted().collect( Collectors.toList() );
+    }
+
+    /**
+     * @param rulesMetadata
+     *                         may be <code>null</code>
+     */
+    public void setRulesMetadata( RulesMetadata rulesMetadata ) {
+        this.rulesMetadata = rulesMetadata;
+    }
+
+    /**
+     * @return the {@link RulesMetadata}, may be <code>null</code>
+     */
+    public RulesMetadata getRulesMetadata() {
+        return rulesMetadata;
     }
 
     @Override

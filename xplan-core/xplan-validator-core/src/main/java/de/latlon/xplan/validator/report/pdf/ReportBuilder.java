@@ -23,6 +23,7 @@ import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
@@ -103,6 +104,7 @@ class ReportBuilder {
         if ( semanticValidatorResult != null ) {
             verticalList = verticalList.add( appendHeaderAndResult( semanticValidatorResult ) );
             verticalList = appendDetailsHint( verticalList, semanticValidatorResult );
+            verticalList = appendRulesMetadata( verticalList, semanticValidatorResult );
             verticalList = verticalList.add( appendNumberOfRules( semanticValidatorResult ) );
             verticalList = verticalList.add( appendNumberOfFailedRules( semanticValidatorResult ) );
             verticalList = verticalList.add( appendNumberOfValidRules( semanticValidatorResult ) );
@@ -151,6 +153,29 @@ class ReportBuilder {
             verticalList = verticalList.add( rules );
         }
         return verticalList;
+    }
+
+    private VerticalListBuilder appendRulesMetadata( VerticalListBuilder verticalList,
+                                                     SemanticValidatorResult semanticValidatorResult ) {
+        RulesMetadata rulesMetadata = semanticValidatorResult.getRulesMetadata();
+        if ( rulesMetadata != null ) {
+            String version = String.format( " Version der Regeln: %s", rulesMetadata.getVersion() );
+            verticalList = verticalList.add( addTextString( version ) );
+            String source = String.format( "  Quelle der Regeln: %s", rulesMetadata.getSource() );
+            verticalList = verticalList.add( addTextString( source ) );
+        }
+        return verticalList;
+    }
+
+    private ComponentBuilder<?, ?> appendRulesMetadataVersion( SemanticValidatorResult semanticValidatorResult ) {
+        int noOfRules  = semanticValidatorResult.getRules().size();
+        String text = String.format( " %s Validierungsregeln überprüft", noOfRules );
+        return addTextString( text );
+    }
+    private ComponentBuilder<?, ?> appendRulesMetadataSource( SemanticValidatorResult semanticValidatorResult ) {
+        int noOfRules  = semanticValidatorResult.getRules().size();
+        String text = String.format( " %s Validierungsregeln überprüft", noOfRules );
+        return addTextString( text );
     }
 
     private ComponentBuilder<?, ?> appendNumberOfRules( SemanticValidatorResult semanticValidatorResult ) {

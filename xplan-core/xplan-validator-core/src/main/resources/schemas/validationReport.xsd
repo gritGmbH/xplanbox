@@ -59,6 +59,7 @@
   </xs:complexType>
   <xs:complexType name="SemType">
     <xs:sequence>
+      <xs:element type="RulesMetadataType" name="RulesMetadata"/>
       <xs:element type="xs:string" name="result"/>
       <xs:element type="xs:string" name="details"/>
       <xs:element type="RulesType" name="Rules"/>
@@ -83,6 +84,12 @@
     <xs:sequence>
       <xs:element type="xs:string" name="name"/>
       <xs:element type="xs:string" name="id"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RulesMetadataType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="version"/>
+      <xs:element type="xs:string" name="source"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

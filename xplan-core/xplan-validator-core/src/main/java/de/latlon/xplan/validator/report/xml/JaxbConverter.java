@@ -17,6 +17,7 @@ import de.latlon.xplan.validator.report.ObjectFactory;
 import de.latlon.xplan.validator.report.PlanType;
 import de.latlon.xplan.validator.report.ReportUtils;
 import de.latlon.xplan.validator.report.RuleType;
+import de.latlon.xplan.validator.report.RulesMetadataType;
 import de.latlon.xplan.validator.report.RulesType;
 import de.latlon.xplan.validator.report.SemType;
 import de.latlon.xplan.validator.report.SynType;
@@ -25,6 +26,7 @@ import de.latlon.xplan.validator.report.ValidationType;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.WarningsType;
 import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
@@ -118,6 +120,14 @@ public class JaxbConverter {
     private void convertResultToJaxb( SemanticValidatorResult result, ValidationType val ) {
         ObjectFactory objectFactory = new ObjectFactory();
         SemType semType = objectFactory.createSemType();
+
+        RulesMetadata rulesMetadata = result.getRulesMetadata();
+        if ( rulesMetadata != null ) {
+            RulesMetadataType rulesMetadataType = objectFactory.createRulesMetadataType();
+            rulesMetadataType.setVersion( rulesMetadata.getVersion() );
+            rulesMetadataType.setSource( rulesMetadata.getSource() );
+            semType.setRulesMetadata( rulesMetadataType );
+        }
 
         if ( result.isSkipped() ) {
             semType.setResult( result.getSkipCode().getMessage() );

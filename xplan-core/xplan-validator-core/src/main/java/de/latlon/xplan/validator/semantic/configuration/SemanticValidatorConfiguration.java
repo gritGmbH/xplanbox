@@ -2,6 +2,7 @@ package de.latlon.xplan.validator.semantic.configuration;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.semantic.SemanticValidatorRule;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,8 @@ import static java.util.Collections.unmodifiableList;
 public class SemanticValidatorConfiguration {
 
     private final List<SemanticValidatorRule> rules = new ArrayList<>();
+
+    private RulesMetadata rulesMetadata;
 
     /**
      * Retrieve all rules as unmodifiable <link>List</link>
@@ -90,6 +93,21 @@ public class SemanticValidatorConfiguration {
         addAll( this.rules, rules );
     }
 
+    /**
+     * @param rulesMetadata
+     *                         may be <code>null</code>
+     */
+    public void setRulesMetadata( RulesMetadata rulesMetadata ) {
+        this.rulesMetadata = rulesMetadata;
+    }
+
+    /**
+     * @return the {@link RulesMetadata}, may be <code>null</code>
+     */
+    public RulesMetadata getRulesMetadata() {
+        return rulesMetadata;
+    }
+
     private boolean isCorrectVersion( XPlanVersion version, SemanticValidatorRule rule ) {
         XPlanVersion ruleVersion = rule.getXPlanVersion();
         return ruleVersion == null || version.equals( ruleVersion );
@@ -111,5 +129,4 @@ public class SemanticValidatorConfiguration {
         if ( validationOptionsToIgnore == null )
             throw new IllegalArgumentException( "ValidationOptions must not be null" );
     }
-
 }
