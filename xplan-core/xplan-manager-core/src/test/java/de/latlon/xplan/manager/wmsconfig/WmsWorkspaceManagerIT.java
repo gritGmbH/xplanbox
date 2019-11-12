@@ -34,7 +34,6 @@ import org.deegree.workspace.ResourceStates;
 import org.deegree.workspace.ResourceStates.ResourceState;
 import org.deegree.workspace.standard.DefaultResourceIdentifier;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.xmlmatchers.namespace.SimpleNamespaceContext;
 import org.xmlmatchers.transform.XmlConverters;
@@ -284,7 +283,7 @@ public class WmsWorkspaceManagerIT {
                     throws IOException {
         InputStream inputStream = ResourceAccessor.readResourceStream( "/de/latlon/xplan/xplan2/BP2070.zip" );
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        return archiveCreator.createXPlanArchive( "testArchive", inputStream );
+        return archiveCreator.createXPlanArchiveFromZip( "testArchive", inputStream );
     }
 
     private List<String> rasterId() {

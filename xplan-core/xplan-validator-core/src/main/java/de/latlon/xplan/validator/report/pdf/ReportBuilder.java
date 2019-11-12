@@ -18,9 +18,11 @@ import java.util.stream.Collectors;
 
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ReportGenerationException;
+import de.latlon.xplan.validator.report.ReportUtils;
 import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.ValidatorResult;
+import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
@@ -92,6 +94,11 @@ class ReportBuilder {
     private VerticalListBuilder createValidationResults( ValidatorReport report ) {
         VerticalListBuilder verticalList = cmp.verticalList();
 
+        ExternalReferenceReport externalReferenceReport = report.getExternalReferenceReport();
+        if ( externalReferenceReport != null ) {
+            verticalList = addExternalReferenceReport( verticalList, externalReferenceReport );
+        }
+
         SemanticValidatorResult semanticValidatorResult = report.getSemanticValidatorResult();
         if ( semanticValidatorResult != null ) {
             verticalList = verticalList.add( appendHeaderAndResult( semanticValidatorResult ) );
@@ -120,6 +127,32 @@ class ReportBuilder {
         return verticalList;
     }
 
+    private VerticalListBuilder addExternalReferenceReport( VerticalListBuilder verticalList,
+                                                            ExternalReferenceReport externalReferenceReport ) {
+        ComponentBuilder<?, ?> rulesHead = cmp.text( "Externe Referenzen" ).setStyle( bold14LeftStyle );
+        HorizontalListBuilder header = cmp.horizontalList().add( rulesHead );
+        verticalList = verticalList.add( header );
+
+        ReportUtils.SkipCode skipCode = externalReferenceReport.getSkipCode();
+        if ( skipCode != null ) {
+            StyleBuilder style = stl.style( simpleStyle ).setLeftIndent( 10 );
+            TextFieldBuilder<String> skipCodeField = cmp.text( skipCode.getMessage() ).setFixedWidth( 100 ).setStyle(
+                                    style );
+            verticalList = verticalList.add( skipCodeField );
+        }
+        List<String> references = externalReferenceReport.getReferences();
+        if ( references != null && !references.isEmpty() ) {
+            MultiPageListBuilder rules = cmp.multiPageList();
+            for ( String reference : references ) {
+                StyleBuilder style = stl.style( simpleStyle ).setLeftIndent( 10 );
+                TextFieldBuilder<String> referenceField = cmp.text( reference ).setFixedWidth( 100 ).setStyle( style );
+                rules.add( cmp.horizontalList().add( referenceField ) );
+            }
+            verticalList = verticalList.add( rules );
+        }
+        return verticalList;
+    }
+
     private ComponentBuilder<?, ?> appendNumberOfRules( SemanticValidatorResult semanticValidatorResult ) {
         int noOfRules  = semanticValidatorResult.getRules().size();
         String text = String.format( " %s Validierungsregeln überprüft", noOfRules );
@@ -137,7 +170,6 @@ class ReportBuilder {
         return addTextString( text );
     }
     private ComponentBuilder<?, ?> appendDetailsSection( SemanticValidatorResult semanticValidatorResult ) {
-        String text = String.format( "Details: " );
         return addTextString( "Details:" );
     }
     private ComponentBuilder<?, ?> addTextString( String text ) {

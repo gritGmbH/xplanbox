@@ -13,13 +13,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
-import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
-import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.reference.ExternalReference;
+import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
+import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
+import de.latlon.xplan.validator.report.ReportUtils.SkipCode;
+import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
+import org.deegree.cs.exceptions.UnknownCRSException;
+import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
@@ -37,16 +42,8 @@ import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationType;
-import org.deegree.feature.types.AppSchema;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.SYNTAX_ERRORS;
+import javax.xml.stream.XMLStreamException;
 
 /**
  * Performs semantic, geometric and syntactic validation for the CLI
@@ -79,14 +76,6 @@ public class XPlanValidator {
     }
 
     /**
-     * @param schemas
-     *            never <code>null</code>
-     */
-    public void setSchemas( XPlanSchemas schemas ) {
-        this.schemas = schemas;
-    }
-
-    /**
      * Validate a plan archive
      * 
      * @param validationSettings
@@ -101,7 +90,7 @@ public class XPlanValidator {
      */
     public ValidatorReport validate( ValidationSettings validationSettings, File planArchive, String planName )
                     throws ValidatorException, ParseException, IOException, ReportGenerationException {
-        XPlanArchive archive = retrieveXPlanArchive( planArchive );
+        XPlanArchive archive = archiveCreator.createXPlanArchive( planArchive );
         ValidatorReport report = validate( validationSettings, archive, planName );
         writeReport( report );
         LOG.info( "Archiv mit Validierungsergebnissen wird erstellt." );
@@ -124,22 +113,8 @@ public class XPlanValidator {
     public ValidatorReport validateNotWriteReport( ValidationSettings validationSettings, File planArchive,
                                                    String planName )
                     throws ValidatorException, IOException {
-        XPlanArchive archive = retrieveXPlanArchive( planArchive );
+        XPlanArchive archive = archiveCreator.createXPlanArchive( planArchive );
         return validate( validationSettings, archive, planName );
-    }
-
-    /**
-     * Override this method to change the lookup of the archive file
-     * 
-     * @param planArchive
-     *            the file to create the archive from, never <code>null</code> and must point to a zip file with a gml
-     *            plan
-     * @return the archive
-     * @throws IOException
-     */
-    XPlanArchive retrieveXPlanArchive( File planArchive )
-                    throws IOException {
-        return archiveCreator.createXPlanArchive( planArchive );
     }
 
     /**
@@ -205,12 +180,13 @@ public class XPlanValidator {
             report.setSemanticValidatorResult( semanticallyResult );
         }
         }
+        parseExternalReferences( archive, report, syntacticallyResult );
         return report;
     }
 
     /**
      * Perform geometric validation of the given archive
-     * 
+     *
      * @param archive
      *            archive to validate, never <code>null</code>
      * @param voOptions
@@ -233,7 +209,7 @@ public class XPlanValidator {
 
     /**
      * Perform semantic validation of the given archive
-     * 
+     *
      * @param archive
      *            archive to validate, never <code>null</code>
      * @param semanticValidationOptions
@@ -251,7 +227,7 @@ public class XPlanValidator {
 
     /**
      * Perform syntactic validation of the given archive
-     * 
+     *
      * @param archive
      *            archive to validate, never <code>null</code>
      * @return the created report, never <code>null</code>
@@ -261,6 +237,43 @@ public class XPlanValidator {
         SyntacticValidatorResult validatorResult = (SyntacticValidatorResult) result;
         log( validatorResult );
         return validatorResult;
+    }
+
+    private void parseExternalReferences( XPlanArchive archive, ValidatorReport report,
+                                          SyntacticValidatorResult syntacticallyResult ) {
+        ExternalReferenceReport externalReferenceReport;
+        if ( syntacticallyResult.isValid() ) {
+            externalReferenceReport = parseExternalReferences( archive );
+        } else {
+
+            externalReferenceReport = new ExternalReferenceReport( SYNTAX_ERRORS );
+        }
+        report.setExternalReferenceReport( externalReferenceReport );
+    }
+
+    private ExternalReferenceReport parseExternalReferences( XPlanArchive archive ) {
+        try {
+            AppSchema appSchema = schemas.getAppSchema( archive.getVersion(), archive.getAde() );
+            XPlanFeatureCollection xPlanFeatureCollection = geometricValidator.retrieveGeometricallyValidXPlanFeatures(
+                                    archive, archive.getCrs(), appSchema, true, null );
+            FeatureCollection fc = xPlanFeatureCollection.getFeatures();
+            ExternalReferenceScanner scanner = new ExternalReferenceScanner();
+            ExternalReferenceInfo externalReferenceInfo = scanner.scan( fc );
+            List<ExternalReference> allExternalReferences = externalReferenceInfo.getExternalRefs();
+            List<String> references = new ArrayList<>();
+            for ( ExternalReference ref : allExternalReferences ) {
+                String referenzUrl = ref.getReferenzUrl();
+                if ( referenzUrl != null )
+                    references.add( referenzUrl );
+                String geoRefUrl = ref.getGeoRefUrl();
+                if ( geoRefUrl != null )
+                    references.add( geoRefUrl );
+            }
+            return new ExternalReferenceReport( references );
+        } catch ( XMLStreamException | UnknownCRSException | ValidatorException e ) {
+            LOG.warn( "Parsing of external references failed", e );
+            return new ExternalReferenceReport( SkipCode.INTERNAL_ERRORS );
+        }
     }
 
     private void log( GeometricValidatorResult validatorResult ) {

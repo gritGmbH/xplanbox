@@ -19,7 +19,9 @@ public class ReportUtils {
 
     public enum SkipCode {
 
-        SYNTAX_ERRORS( "Nicht ausgefuehrt aufgrund von syntaktischen Fehlern." );
+        SYNTAX_ERRORS( "Nicht ausgefuehrt aufgrund von syntaktischen Fehlern." ),
+
+        INTERNAL_ERRORS( "Nicht ausgefuehrt aufgrund von internen Fehlern." );
 
         private String message;
 

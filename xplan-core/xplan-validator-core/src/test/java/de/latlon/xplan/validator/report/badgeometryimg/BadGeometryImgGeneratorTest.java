@@ -127,7 +127,7 @@ public class BadGeometryImgGeneratorTest {
     private XPlanArchive getTestArchive( String name )
                     throws IOException {
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        return archiveCreator.createXPlanArchive( name, ResourceAccessor.readResourceStream( name ) );
+        return archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
     }
 
     private ValidatorResult validateGeometryAndReturnReport( XPlanArchive archive, List<ValidationOption> voOptions )

@@ -1,6 +1,7 @@
 package de.latlon.xplan.validator.report;
 
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
+import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 
@@ -21,6 +22,8 @@ public class ValidatorReport {
 
     private SemanticValidatorResult semanticValidatorResult;
 
+    private ExternalReferenceReport externalReferenceReport;
+
     private String validationName;
 
     private String planName;
@@ -31,7 +34,6 @@ public class ValidatorReport {
     }
 
     /**
-     *
      * @return result of geometric validator, maybe <code>null</code>.
      */
     public GeometricValidatorResult getGeometricValidatorResult() {
@@ -39,7 +41,6 @@ public class ValidatorReport {
     }
 
     /**
-     *
      * @return result of syntactic validator, maybe <code>null</code>.
      */
     public SyntacticValidatorResult getSyntacticValidatorResult() {
@@ -47,11 +48,17 @@ public class ValidatorReport {
     }
 
     /**
-     *
      * @return result of semantic validator, maybe <code>null</code>.
      */
     public SemanticValidatorResult getSemanticValidatorResult() {
         return semanticValidatorResult;
+    }
+
+    /**
+     * @return ExternalReferenceReport, maybe <code>null</code>.
+     */
+    public ExternalReferenceReport getExternalReferenceReport() {
+        return this.externalReferenceReport;
     }
 
     /**
@@ -76,6 +83,14 @@ public class ValidatorReport {
      */
     public void setSemanticValidatorResult( SemanticValidatorResult result ) {
         semanticValidatorResult = result;
+    }
+
+    /**
+     * sets ExternalReferenceReport.
+     * @param externalReferenceReport to set, maybe <code>null</code>.
+     */
+    public void setExternalReferenceReport( ExternalReferenceReport externalReferenceReport ) {
+        this.externalReferenceReport = externalReferenceReport;
     }
 
     /**

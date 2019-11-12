@@ -17,6 +17,7 @@ import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 import javax.xml.stream.events.XMLEvent;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 
 import static de.latlon.xplan.commons.XPlanType.valueOfDefaultNull;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
@@ -24,7 +25,7 @@ import static java.lang.String.format;
 import static org.deegree.commons.xml.stax.XMLStreamUtils.skipStartDocument;
 
 /**
- * Reads the XPlan GML, pareses required information and updated the planname.
+ * Reads the XPlan GML, pareses required information and updates the planname.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
@@ -45,20 +46,21 @@ public class XPlanGmlReader {
     private String district;
 
     /**
-     * Reads the XPlan GML, pareses required information and updated the planname.
+     * Reads the XPlan GML, pareses required information and updates the planname.
      *
      * @param entry
-     *                 XplanGML to read
-     * @return the XplanGml as {@link MainZipEntry}, never <code>null</code>
+     *                 XPlanGML to read, never <code>null</code>
+     * @return the XPlanGML as {@link MainZipEntry}, never <code>null</code>
      * @throws XMLStreamException
-     *                 if the Xplan GML could not be parsed
+     *                 if the XPlanGML GML could not be parsed
      */
     public MainZipEntry createZipEntry( ArtefactEntry entry )
                     throws XMLStreamException {
         XMLStreamReader reader = null;
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
-            reader = createReader( entry );
+            InputStream stream = entry.retrieveContentAsStream();
+            reader = createReader( stream );
             XMLStreamWriter writer = XMLOutputFactory.newInstance().createXMLStreamWriter( bos );
 
             copy( reader, writer );
@@ -66,6 +68,31 @@ public class XPlanGmlReader {
             closeQuietly( reader );
         }
         return new MainZipEntry( bos.toByteArray(), entry.getName(), version, type, ade, crs, district );
+    }
+
+    /**
+     * Reads the XPlan GML, pareses required information and updates the planname.
+     *
+     * @param name of the entry, never <code>null</code>
+     * @param xplanGml
+     *                 XPlanGML to read, never <code>null</code>
+     * @return the XPlanGML as {@link MainZipEntry}, never <code>null</code>
+     * @throws XMLStreamException
+     *                 if the XPlanGML GML could not be parsed
+     */
+    public MainZipEntry createZipEntry( String name,  InputStream xplanGml )
+                            throws XMLStreamException {
+        XMLStreamReader reader = null;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try {
+            reader = createReader( xplanGml );
+            XMLStreamWriter writer = XMLOutputFactory.newInstance().createXMLStreamWriter( bos );
+
+            copy( reader, writer );
+        } finally {
+            closeQuietly( reader );
+        }
+        return new MainZipEntry( bos.toByteArray(), name, version, type, ade, crs, district );
     }
 
     private void copy( XMLStreamReader reader, XMLStreamWriter writer )
@@ -77,10 +104,9 @@ public class XPlanGmlReader {
         this.district = ( (XPlanGmlWriterFilter) filter ).getDistrict();
     }
 
-    private XMLStreamReader createReader( ZipEntryWithContent entry )
-                    throws XMLStreamException, FactoryConfigurationError {
-        XMLStreamReader xmlReader = XMLInputFactory.newInstance().createXMLStreamReader(
-                        entry.retrieveContentAsStream() );
+    private XMLStreamReader createReader( InputStream stream )
+                            throws XMLStreamException, FactoryConfigurationError {
+        XMLStreamReader xmlReader = XMLInputFactory.newInstance().createXMLStreamReader( stream );
         skipStartDocument( xmlReader );
         return xmlReader;
     }

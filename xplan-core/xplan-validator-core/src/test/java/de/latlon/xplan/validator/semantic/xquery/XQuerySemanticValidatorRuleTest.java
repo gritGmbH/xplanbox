@@ -19,7 +19,6 @@ import org.junit.Test;
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.validator.ValidatorException;
 
 /**
  * Tests for <link>XQuerySemanticValidatorRule</link>
@@ -130,7 +129,7 @@ public class XQuerySemanticValidatorRuleTest {
     private XPlanArchive retrieveArchive( String name )
                     throws IOException {
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        return archiveCreator.createXPlanArchive( name, ResourceAccessor.readResourceStream( name ) );
+        return archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
     }
 
 }

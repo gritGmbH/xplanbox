@@ -6,6 +6,7 @@ import static org.deegree.commons.xml.stax.XMLStreamUtils.skipStartDocument;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.stream.XMLInputFactory;
@@ -34,6 +35,8 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
     private final List<ZipEntryWithContent> zipFileEntries;
 
+    private final MainZipEntry mainEntry;
+
     private final String name;
 
     private final XPlanVersion version;
@@ -48,7 +51,18 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
     XPlanArchive( List<ZipEntryWithContent> zipEntries, String name, XPlanVersion version, XPlanAde ade, XPlanType type,
                   ICRS crs, String district ) {
+        this( zipEntries, null, name, version, ade, type, crs, district );
+    }
+
+    public XPlanArchive( MainZipEntry mainEntry, String name, XPlanVersion version, XPlanAde ade, XPlanType type,
+                         ICRS crs, String district ) {
+        this( Collections.emptyList(), mainEntry, name, version, ade, type, crs, district );
+    }
+
+    private XPlanArchive( List<ZipEntryWithContent> zipEntries, MainZipEntry mainEntry, String name,
+                          XPlanVersion version, XPlanAde ade, XPlanType type, ICRS crs, String district ) {
         this.zipFileEntries = zipEntries;
+        this.mainEntry = mainEntry;
         this.name = name;
         this.version = version;
         this.ade = ade;
@@ -170,6 +184,8 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
     }
 
     private ZipEntryWithContent getMainFile() {
+        if ( mainEntry != null )
+            return mainEntry;
         for ( ZipEntryWithContent zipEntry : zipFileEntries ) {
             if ( MAIN_FILE.equals( zipEntry.getName() ) )
                 return zipEntry;

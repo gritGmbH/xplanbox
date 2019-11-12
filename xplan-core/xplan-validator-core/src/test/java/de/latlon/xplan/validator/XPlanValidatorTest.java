@@ -1,41 +1,6 @@
 package de.latlon.xplan.validator;
 
-import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_SO;
-import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_XP;
-import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
-import static de.latlon.xplan.validator.web.shared.ValidationType.NONE;
-import static de.latlon.xplan.validator.web.shared.ValidationType.SEMANTIC;
-import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
-import static java.util.Collections.singletonList;
-import static org.deegree.cs.persistence.CRSManager.lookup;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyBoolean;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.ParseException;
-import java.util.Collections;
-import java.util.List;
-
-import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.feature.types.AppSchema;
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
-
+import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
@@ -54,6 +19,49 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
+import org.apache.commons.io.IOUtils;
+import org.deegree.cs.coordinatesystems.ICRS;
+import org.deegree.feature.types.AppSchema;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Mockito;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.text.ParseException;
+import java.util.Collections;
+import java.util.List;
+
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
+import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_SO;
+import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_XP;
+import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
+import static de.latlon.xplan.validator.web.shared.ValidationType.NONE;
+import static de.latlon.xplan.validator.web.shared.ValidationType.SEMANTIC;
+import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
+import static java.util.Collections.singletonList;
+import static org.deegree.cs.persistence.CRSManager.lookup;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.when;
 
 /**
  * Tests for <link>XPlanValidator</link>
@@ -71,12 +79,26 @@ public class XPlanValidatorTest {
 
     private SyntacticValidator synVal;
 
+    private static File planToValidate;
+
     @Before
     public void resetMocks()
                     throws Exception {
         geoVal = mockGeometricValidator();
         semVal = mockSemanticValidator();
         synVal = mockSyntacticValidator();
+    }
+
+    @BeforeClass
+    public static void initFileToValidate()
+                            throws IOException {
+        InputStream input = ResourceAccessor.readResourceStream( "xplan51/V4_1_ID_103.gml" );
+        Path xPlanGml = Files.createTempFile( "XPlanValidatorTest", ".gml" );
+        FileOutputStream output = new FileOutputStream( xPlanGml.toFile() );
+        IOUtils.copy( input, output );
+        input.close();
+        output.close();
+        planToValidate = xPlanGml.toFile();
     }
 
     @Test
@@ -88,6 +110,8 @@ public class XPlanValidatorTest {
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
         verify( geoVal, times( 1 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
         verify( semVal, times( 1 ) ).validateSemantic( archive(), list() );
+        verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
+                                                                              anyString() );
     }
 
     @Test
@@ -97,8 +121,9 @@ public class XPlanValidatorTest {
         executeValidator( geoVal, semVal, synVal, settings );
 
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
-        verifyZeroInteractions( geoVal );
         verifyZeroInteractions( semVal );
+        verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
+                                                                              anyString() );
     }
 
     @Test
@@ -109,6 +134,8 @@ public class XPlanValidatorTest {
 
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
         verify( geoVal, times( 1 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
+        verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
+                                                                              anyString() );
         verifyZeroInteractions( semVal );
     }
 
@@ -121,6 +148,8 @@ public class XPlanValidatorTest {
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
         verify( geoVal, times( 1 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
         verify( semVal, times( 1 ) ).validateSemantic( archive(), list() );
+        verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
+                                                                              anyString() );
     }
 
     @Test
@@ -132,6 +161,8 @@ public class XPlanValidatorTest {
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
         verify( geoVal, times( 1 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
         verify( semVal, times( 1 ) ).validateSemantic( archive(), list() );
+        verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
+                                                                              anyString() );
     }
 
     @Test
@@ -144,6 +175,8 @@ public class XPlanValidatorTest {
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
         verify( geoVal, times( 1 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
         verify( semVal ).validateSemantic( archive(), argument.capture() );
+        verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
+                                                                              anyString() );
 
         SemanticValidationOptions actual = (SemanticValidationOptions) argument.getValue().get( 0 );
         assertThat( actual, is( IGNORE_XP ) );
@@ -159,6 +192,8 @@ public class XPlanValidatorTest {
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
         verify( geoVal, times( 1 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
         verify( semVal ).validateSemantic( archive(), argument.capture() );
+        verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
+                                                                              anyString() );
 
         SemanticValidationOptions actual = (SemanticValidationOptions) argument.getValue().get( 0 );
         assertThat( actual, is( IGNORE_SO ) );
@@ -244,12 +279,9 @@ public class XPlanValidatorTest {
 
     private ValidatorReport executeValidator( GeometricValidator geomVal, SemanticValidator semVal,
                                               SyntacticValidator synVal, ValidationSettings settings )
-                                                              throws IOException, ValidatorException, ParseException,
-                                                              ReportGenerationException {
-        XPlanValidator validator = spyValidator( geomVal, semVal, synVal );
-        XPlanSchemas schemas = mockSchemas();
-        validator.setSchemas( schemas );
-        return validator.validate( settings, new File( "" ), "planname" );
+                            throws IOException, ValidatorException, ParseException, ReportGenerationException {
+        XPlanValidator validator = new XPlanValidator( geomVal, synVal, semVal, mock( ReportArchiveGenerator.class ) );
+        return validator.validate( settings, planToValidate, "planname" );
     }
 
     private SemanticValidator mockSemanticValidator() {
@@ -265,14 +297,6 @@ public class XPlanValidatorTest {
         SyntacticValidatorResult toBeReturned = new SyntacticValidatorResult( singletonList( "message" ), true, null );
         doReturn( toBeReturned ).when( mock ).validateSyntax( archive() );
         return mock;
-    }
-
-    private XPlanValidator spyValidator( GeometricValidator geomVal, SemanticValidator semVal,
-                                         SyntacticValidator synVal )
-                                                         throws IOException {
-        XPlanValidator spy = spy( new XPlanValidator( geomVal, synVal, semVal, mock( ReportArchiveGenerator.class ) ) );
-        doReturn( mock( XPlanArchive.class ) ).when( spy ).retrieveXPlanArchive( any( File.class ) );
-        return spy;
     }
 
     private GeometricValidator mockGeometricValidator()
