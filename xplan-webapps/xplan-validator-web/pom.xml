@@ -43,8 +43,8 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>${project.groupId}</groupId>
-                  <artifactId>xplan-validator-rules</artifactId>
+                  <groupId>de.geowerkstatt-hamburg</groupId>
+                  <artifactId>xplanung</artifactId>
                   <type>zip</type>
                   <overWrite>true</overWrite>
                 </artifactItem>
@@ -128,8 +128,8 @@
       <artifactId>xplan-validator-web-commons</artifactId>
     </dependency>
     <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-validator-rules</artifactId>
+      <groupId>de.geowerkstatt-hamburg</groupId>
+      <artifactId>xplanung</artifactId>
       <type>zip</type>
     </dependency>
     <dependency>
