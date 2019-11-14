@@ -5,5 +5,4 @@
   <StorageCRS>${vectorCrs}</StorageCRS>
   <GMLSchema version="GML_32">../../appschemas/XPlanGML_Syn/XPlanSyn.xsd</GMLSchema>
 
-  <GMLFeatureCollection version="GML_32">../../data/gml/address.gml</GMLFeatureCollection>
 </MemoryFeatureStore>
