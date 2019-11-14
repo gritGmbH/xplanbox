@@ -10,5 +10,9 @@ ENV JAVA_OPTS="-Xmx8192m"
 ADD target/xplan-validator-web-*.war /root/
 RUN cd /root/ && unzip -q xplan-validator-web-*.war -d /usr/local/tomcat/webapps/xplan-validator
 
+# add xplan-wms
+ADD target/xplan-wms-*.war /root/
+RUN cd /root/ && unzip -q xplan-wms-*.war -d /usr/local/tomcat/webapps/xplan-wms
+
 # run tomcat
 CMD ["catalina.sh", "run"]

@@ -35,6 +35,7 @@
                         <outputDirectory>.</outputDirectory>
                         <includes>
                           <include>xplan-validator-web-${project.version}.war</include>
+                          <include>xplan-wms-${project.version}.war</include>
                         </includes>
                       </fileSet>
                     </fileSets>
@@ -52,6 +53,12 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-validator-web</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-wms</artifactId>
       <version>${project.version}</version>
       <type>war</type>
     </dependency>
