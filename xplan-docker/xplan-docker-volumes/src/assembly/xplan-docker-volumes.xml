@@ -58,6 +58,15 @@
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
+    <!-- xplan-validator-config -->
+    <dependencySet>
+      <outputDirectory>/xplan-validator-workspaces/xplan-gml-wms-workspace</outputDirectory>
+      <includes>
+        <include>${project.groupId}:xplan-gml-wms-workspace</include>
+      </includes>
+      <unpack>true</unpack>
+      <useProjectArtifact>false</useProjectArtifact>
+    </dependencySet>
   </dependencySets>
   <fileSets>
     <!--xplan-workspaces-->
@@ -69,6 +78,11 @@
     <fileSet>
       <outputDirectory>xplan-inspireplu-workspaces</outputDirectory>
       <directory>src/main/resources/xplan-inspireplu-workspaces</directory>
+    </fileSet>
+    <!--xplan-inspireplu-workspaces-->
+    <fileSet>
+      <outputDirectory>xplan-validator-workspaces</outputDirectory>
+      <directory>src/main/resources/xplan-validator-workspaces</directory>
     </fileSet>
   </fileSets>
 </assembly>

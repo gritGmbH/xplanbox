@@ -58,6 +58,13 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-gml-wms-workspace</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+      <classifier>default</classifier>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>xplan-manager-workspace</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
