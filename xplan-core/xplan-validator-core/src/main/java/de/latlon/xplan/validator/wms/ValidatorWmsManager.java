@@ -79,6 +79,7 @@ public class ValidatorWmsManager {
                             throws ValidatorWmsException {
         try {
             Path path = writeSynFeatureCollectionAsGml( featureCollection );
+            LOG.info( "Write XPlanValidatorWMS gml to {}", path );
             MemoryFeatureStoreConfig config = appendToConfig( path );
             persist( config );
         } catch ( IOException | JAXBException | TransformationException | XMLStreamException | UnknownCRSException e ) {

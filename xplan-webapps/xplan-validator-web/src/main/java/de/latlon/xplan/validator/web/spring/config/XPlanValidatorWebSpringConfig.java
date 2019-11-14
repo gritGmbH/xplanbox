@@ -6,7 +6,14 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
+import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.validator.wms.ValidatorWmsManager;
+import org.deegree.commons.config.DeegreeWorkspace;
+import org.deegree.workspace.Workspace;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -39,7 +46,11 @@ import de.latlon.xplan.validator.web.server.service.ValidatorReportProvider;
 @Configuration
 public class XPlanValidatorWebSpringConfig {
 
+    private static final Logger LOG = LoggerFactory.getLogger( XPlanValidatorWebSpringConfig.class );
+
     private static final String RULES_DIRECTORY = "/rules";
+
+    public static final String XPLAN_GML_WMS_WORKSPACE = "xplan-gml-wms-workspace";
 
     @Bean
     public SyntacticValidator syntacticValidator() {
@@ -65,8 +76,10 @@ public class XPlanValidatorWebSpringConfig {
     @Bean
     public XPlanValidator xplanValidator( GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
                                           SemanticValidator semanticValidator,
-                                          ReportArchiveGenerator reportArchiveGenerator ) {
-        return new XPlanValidator( geometricValidator, syntacticValidator, semanticValidator, reportArchiveGenerator );
+                                          ReportArchiveGenerator reportArchiveGenerator,
+                                          ValidatorWmsManager validatorWmsManager ) {
+        return new XPlanValidator( geometricValidator, syntacticValidator, semanticValidator, reportArchiveGenerator,
+                                   validatorWmsManager );
     }
 
     @Bean
@@ -89,6 +102,18 @@ public class XPlanValidatorWebSpringConfig {
                     throws IOException, ConfigurationException {
         ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
         return validatorConfigurationParser.parse( new DefaultPropertiesLoader( ValidatorConfiguration.class ) );
+    }
+
+    @Bean
+    public ValidatorWmsManager validatorWmsManager() {
+        XPlanSynthesizer synthesizer = new XPlanSynthesizer();
+        Path workspaceLocation = Paths.get( DeegreeWorkspace.getWorkspaceRoot() ).resolve( XPLAN_GML_WMS_WORKSPACE );
+        try {
+            return new ValidatorWmsManager( synthesizer, workspaceLocation );
+        } catch ( IOException e ) {
+            LOG.error( "Could not initialise ValidatorWmsManager. WMS resources cannot be created" );
+        }
+        return null;
     }
 
     @Bean
