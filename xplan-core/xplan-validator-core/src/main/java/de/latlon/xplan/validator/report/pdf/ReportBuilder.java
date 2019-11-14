@@ -136,7 +136,7 @@ class ReportBuilder {
         ReportUtils.SkipCode skipCode = externalReferenceReport.getSkipCode();
         if ( skipCode != null ) {
             StyleBuilder style = stl.style( simpleStyle ).setLeftIndent( 10 );
-            TextFieldBuilder<String> skipCodeField = cmp.text( skipCode.getMessage() ).setFixedWidth( 100 ).setStyle(
+            TextFieldBuilder<String> skipCodeField = cmp.text( skipCode.getMessage() ).setStyle(
                                     style );
             verticalList = verticalList.add( skipCodeField );
         }
@@ -145,7 +145,7 @@ class ReportBuilder {
             MultiPageListBuilder rules = cmp.multiPageList();
             for ( String reference : references ) {
                 StyleBuilder style = stl.style( simpleStyle ).setLeftIndent( 10 );
-                TextFieldBuilder<String> referenceField = cmp.text( reference ).setFixedWidth( 100 ).setStyle( style );
+                TextFieldBuilder<String> referenceField = cmp.text( reference ).setStyle( style );
                 rules.add( cmp.horizontalList().add( referenceField ) );
             }
             verticalList = verticalList.add( rules );
