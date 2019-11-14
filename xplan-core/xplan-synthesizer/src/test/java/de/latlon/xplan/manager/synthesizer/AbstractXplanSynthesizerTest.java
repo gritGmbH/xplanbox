@@ -123,7 +123,7 @@ public abstract class AbstractXplanSynthesizerTest {
     protected XPlanArchive getTestArchive( String name )
                     throws IOException {
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        return archiveCreator.createXPlanArchive( name, ResourceAccessor.readResourceStream( name ) );
+        return archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
     }
 
     protected XPlanFeatureCollection readFeatures( XPlanArchive archive )

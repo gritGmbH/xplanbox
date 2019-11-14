@@ -354,7 +354,7 @@ public class XPlanFeatureCollectionTest {
     private XPlanFeatureCollection getMainFileAsXplanFeatureCollection( String name )
                     throws Exception {
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        XPlanArchive archive = archiveCreator.createXPlanArchive( name, ResourceAccessor.readResourceStream( name ) );
+        XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
         XPlanVersion version = archive.getVersion();
         XPlanAde ade = archive.getAde();
         XMLStreamReader xmlReader = archive.getMainFileXmlReader();

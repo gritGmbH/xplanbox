@@ -121,12 +121,17 @@ public class XPlanValidatorWeb implements EntryPoint {
 
             @Override
             public void onClick( ClickEvent event ) {
-                if ( !upload.getFilename().toLowerCase().endsWith( ".zip" ) )
+                if ( !isSupportedFileType() )
                     showWrongFileEndingDialog();
                 else {
                     form.submit();
                     showUploadDialogBox();
                 }
+            }
+
+            private boolean isSupportedFileType() {
+                String fileName = upload.getFilename().toLowerCase();
+                return fileName.endsWith( ".zip" ) || fileName.endsWith( ".xml" ) || fileName.endsWith( ".gml" );
             }
 
             private void showWrongFileEndingDialog() {

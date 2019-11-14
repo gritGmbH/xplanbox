@@ -74,7 +74,7 @@ public class ValidatorWmsManagerTest {
     protected XPlanFeatureCollection parseFeatureCollection( String name )
                             throws Exception {
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        XPlanArchive archive = archiveCreator.createXPlanArchive( name, ResourceAccessor.readResourceStream( name ) );
+        XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( archive.getVersion(), archive.getAde() );
         GeometricValidatorImpl geometricValidator = new GeometricValidatorImpl();
         return geometricValidator.retrieveGeometricallyValidXPlanFeatures( archive, archive.getCrs(), schema, true,

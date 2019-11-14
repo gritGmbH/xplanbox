@@ -9,11 +9,13 @@ import java.util.List;
 
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ErrorsType;
+import de.latlon.xplan.validator.report.ExternalReferencesType;
 import de.latlon.xplan.validator.report.GeomType;
 import de.latlon.xplan.validator.report.InvalidFeaturesType;
 import de.latlon.xplan.validator.report.MessagesType;
 import de.latlon.xplan.validator.report.ObjectFactory;
 import de.latlon.xplan.validator.report.PlanType;
+import de.latlon.xplan.validator.report.ReportUtils;
 import de.latlon.xplan.validator.report.RuleType;
 import de.latlon.xplan.validator.report.RulesType;
 import de.latlon.xplan.validator.report.SemType;
@@ -22,6 +24,7 @@ import de.latlon.xplan.validator.report.ValidationReport;
 import de.latlon.xplan.validator.report.ValidationType;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.WarningsType;
+import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
@@ -49,8 +52,25 @@ public class JaxbConverter {
         validationReportType.setName( report.getValidationName() );
         validationReportType.setIsValid( report.isReportValid() );
         validationReportType.setPlan( convertPlanType( report ) );
+        validationReportType.setExternalReferences( convertExternalReferences( report ) );
         validationReportType.setValidation( convertValidationResults( report ) );
         return validationReportType;
+    }
+
+    private ExternalReferencesType convertExternalReferences( ValidatorReport report ) {
+        ExternalReferenceReport externalReferenceReport = report.getExternalReferenceReport();
+        if ( externalReferenceReport == null ) {
+            return null;
+        }
+        ObjectFactory objectFactory = new ObjectFactory();
+        ExternalReferencesType externalReferencesType = objectFactory.createExternalReferencesType();
+
+        ReportUtils.SkipCode skipCode = externalReferenceReport.getSkipCode();
+        if ( skipCode != null )
+            externalReferencesType.setSkipMessage( skipCode.getMessage() );
+        List<String> references = externalReferenceReport.getReferences();
+        externalReferencesType.getExternalReferences().addAll( references );
+        return externalReferencesType;
     }
 
     private ValidationType convertValidationResults( ValidatorReport report ) {

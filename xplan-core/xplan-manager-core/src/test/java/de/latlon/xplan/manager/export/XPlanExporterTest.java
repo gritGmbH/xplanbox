@@ -332,7 +332,7 @@ public class XPlanExporterTest {
                     throws IOException {
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
         InputStream archiveResource = ResourceAccessor.readResourceStream( testArchiveName );
-        return archiveCreator.createXPlanArchive( testArchiveName, archiveResource );
+        return archiveCreator.createXPlanArchiveFromZip( testArchiveName, archiveResource );
     }
 
     private XPlanFeatureCollection readFeatures( XPlanArchive archive )
