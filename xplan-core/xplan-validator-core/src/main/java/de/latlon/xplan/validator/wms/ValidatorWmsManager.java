@@ -3,6 +3,7 @@ package de.latlon.xplan.validator.wms;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import org.apache.commons.io.IOUtils;
 import org.deegree.commons.xml.stax.IndentingXMLStreamWriter;
 import org.deegree.cs.exceptions.TransformationException;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -34,7 +35,7 @@ import java.util.UUID;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static java.lang.Boolean.TRUE;
 import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
-import static org.deegree.gml.GMLVersion.GML_32;
+import static org.deegree.gml.GMLVersion.GML_31;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -82,7 +83,8 @@ public class ValidatorWmsManager {
             LOG.info( "Write XPlanValidatorWMS gml to {}", path );
             MemoryFeatureStoreConfig config = appendToConfig( path );
             persist( config );
-        } catch ( IOException | JAXBException | TransformationException | XMLStreamException | UnknownCRSException e ) {
+        } catch ( Exception e ) {
+            LOG.warn( "Could not write XPlanValidatorWMS configuration", e );
             throw new ValidatorWmsException( e );
         }
     }
@@ -93,17 +95,20 @@ public class ValidatorWmsManager {
 
         String fileName = UUID.randomUUID().toString() + ".gml";
         Path pathToFile = pathToDataDirectory.resolve( fileName );
+        OutputStream output = null;
         GMLStreamWriter gmlWriter = null;
-        try (OutputStream output = Files.newOutputStream( pathToFile )) {
+        try {
+            output = Files.newOutputStream( pathToFile );
             gmlWriter = createGmlWriter( output );
             AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema( XPLAN_SYN, null );
             Map<String, String> nsBindings = synSchema.getNamespaceBindings();
-            nsBindings.put( "gml32", GML_32.getNamespace() );
+            nsBindings.put( "gml", GML_31.getNamespace() );
             gmlWriter.setNamespaceBindings( nsBindings );
             gmlWriter.write( synthesizedFeatureCollection );
             return pathToFile;
         } finally {
             closeQuietly( gmlWriter );
+            IOUtils.closeQuietly( output );
         }
     }
 
@@ -115,7 +120,7 @@ public class ValidatorWmsManager {
             MemoryFeatureStoreConfig config = (MemoryFeatureStoreConfig) unmarshaller.unmarshal( memoryStore );
             List<MemoryFeatureStoreConfig.GMLFeatureCollection> collections = config.getGMLFeatureCollection();
             MemoryFeatureStoreConfig.GMLFeatureCollection gmlFeatureCollection = new MemoryFeatureStoreConfig.GMLFeatureCollection();
-            gmlFeatureCollection.setVersion( GMLVersionType.GML_32 );
+            gmlFeatureCollection.setVersion( GMLVersionType.GML_31 );
             gmlFeatureCollection.setValue( pathToDataFile.toString() );
             collections.add( gmlFeatureCollection );
             return config;
@@ -134,7 +139,7 @@ public class ValidatorWmsManager {
                             throws XMLStreamException {
         XMLStreamWriter xmlWriter = XMLOutputFactory.newInstance().createXMLStreamWriter( output );
         xmlWriter = new IndentingXMLStreamWriter( xmlWriter );
-        return GMLOutputFactory.createGMLStreamWriter( GML_32, xmlWriter );
+        return GMLOutputFactory.createGMLStreamWriter( GML_31, xmlWriter );
     }
 
     private void closeQuietly( GMLStreamWriter gmlWriter ) {
