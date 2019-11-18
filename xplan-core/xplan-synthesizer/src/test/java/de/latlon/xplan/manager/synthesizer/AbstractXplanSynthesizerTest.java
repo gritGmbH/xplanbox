@@ -37,11 +37,11 @@ import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -71,12 +71,6 @@ public abstract class AbstractXplanSynthesizerTest {
 
     abstract XPlanVersion getXPlanVersion();
 
-    public static Source the( Path synGml )
-                    throws IOException {
-        InputStream fileInputStream = Files.newInputStream( synGml );
-        return new StreamSource( fileInputStream );
-    }
-
     protected NamespaceContext nsContext() {
         SimpleNamespaceContext nsContext = new SimpleNamespaceContext();
         nsContext = nsContext.withBinding( "xplansyn", XPlanVersion.XPLAN_SYN.getNamespace() );
@@ -102,22 +96,19 @@ public abstract class AbstractXplanSynthesizerTest {
         return xPlanSynthesizer.synthesize( version, xplanFc );
     }
 
-    protected Path writeSynFeatureCollection( FeatureCollection fc, String archiveName )
-                    throws Exception {
-        String fileName = archiveName.substring( archiveName.indexOf( "/" ) + 1, archiveName.indexOf( "." ) );
-        Path tempFile = Files.createTempFile( "XplanSynthesizerTest_" + fileName + "_", ".gml" );
-        OutputStream os = Files.newOutputStream( tempFile );
+    protected String writeSynFeatureCollection( FeatureCollection fc )
+                            throws Exception {
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
         XMLStreamWriter xmlWriter = XMLOutputFactory.newInstance().createXMLStreamWriter( os );
         xmlWriter = new IndentingXMLStreamWriter( xmlWriter );
-        GMLStreamWriter gmlWriter = GMLOutputFactory.createGMLStreamWriter( GML_31, xmlWriter );
+        GMLStreamWriter gmlWriter = GMLOutputFactory.createGMLStreamWriter( GML_32, xmlWriter );
         Map<String, String> nsBindings = synSchema.getNamespaceBindings();
-        nsBindings.put( "gml32", GML_32.getNamespace() );
+        nsBindings.put( "gml", GML_32.getNamespace() );
         gmlWriter.setNamespaceBindings( nsBindings );
         gmlWriter.write( fc );
         gmlWriter.close();
         xmlWriter.close();
-        os.close();
-        return tempFile;
+        return os.toString();
     }
 
     protected XPlanArchive getTestArchive( String name )

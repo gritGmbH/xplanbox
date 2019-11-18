@@ -110,7 +110,7 @@ public class XPlanValidatorWebSpringConfig {
         Path workspaceLocation = Paths.get( DeegreeWorkspace.getWorkspaceRoot() ).resolve( XPLAN_GML_WMS_WORKSPACE );
         try {
             return new ValidatorWmsManager( synthesizer, workspaceLocation );
-        } catch ( IOException e ) {
+        } catch ( IOException | IllegalArgumentException e ) {
             LOG.error( "Could not initialise ValidatorWmsManager. WMS resources cannot be created" );
         }
         return null;

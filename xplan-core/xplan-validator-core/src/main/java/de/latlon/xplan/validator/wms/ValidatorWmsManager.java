@@ -56,6 +56,12 @@ public class ValidatorWmsManager {
 
     private XPlanSynthesizer synthesizer;
 
+    /**
+     * @param synthesizer used to synthesize the XPlan GML
+     * @param workspaceLocation path to the workspace xplan-gml-wms-workspace, must contain a the datasources/feature/xplansyn.xml, the dirctory data is created if required
+     * @throws IOException if the directory data could not be required
+     * @throws IllegalArgumentException if the workspace location or file datasources/feature/xplansyn.xml does not exixt
+     */
     public ValidatorWmsManager( XPlanSynthesizer synthesizer, Path workspaceLocation )
                             throws IOException {
         this.synthesizer = synthesizer;
@@ -63,7 +69,7 @@ public class ValidatorWmsManager {
             throw new IllegalArgumentException( "Workspace does not exist" );
         this.pathToMemoryFeatureStore = workspaceLocation.resolve( RELATIVE_PATH_TO_STORE );
         if ( !Files.exists( pathToMemoryFeatureStore ) )
-            throw new IllegalArgumentException( "Memory feature store confighuration does not exist at "
+            throw new IllegalArgumentException( "Memory feature store configuration does not exist at "
                                                 + pathToMemoryFeatureStore );
         this.pathToDataDirectory = workspaceLocation.resolve( RELATIVE_PATH_TO_DATE_DIR );
         if ( !Files.exists( pathToDataDirectory ) )

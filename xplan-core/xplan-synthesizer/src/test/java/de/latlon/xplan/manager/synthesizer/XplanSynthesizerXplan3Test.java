@@ -2,10 +2,12 @@ package de.latlon.xplan.manager.synthesizer;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.feature.FeatureCollection;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 
+@Ignore
 public class XplanSynthesizerXplan3Test extends AbstractXplanSynthesizerTest {
 
     @Override

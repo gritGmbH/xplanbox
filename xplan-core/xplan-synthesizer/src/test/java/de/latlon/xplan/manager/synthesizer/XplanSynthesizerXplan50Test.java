@@ -8,13 +8,13 @@ import junitparams.Parameters;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.nio.file.Path;
+import org.xmlmatchers.transform.XmlConverters;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.xmlmatchers.XmlMatchers.hasXPath;
+import static org.xmlmatchers.transform.XmlConverters.the;
 import static org.xmlmatchers.xpath.XpathReturnType.returningANumber;
 
 /**
@@ -36,7 +36,7 @@ public class XplanSynthesizerXplan50Test extends AbstractXplanSynthesizerTest {
         int numberOfSynFeatures = synFeatureCollection.size();
 
         assertThat( numberOfSynFeatures, is( numberOfOriginalFeatures ) );
-        Path synGml = writeSynFeatureCollection( synFeatureCollection, archive.getName() );
+        String synGml = writeSynFeatureCollection( synFeatureCollection);
 
         assertThat( the( synGml ),
                     hasXPath( "count(//xplansyn:rechtscharakter[text() = ''])", nsContext(), returningANumber(),
