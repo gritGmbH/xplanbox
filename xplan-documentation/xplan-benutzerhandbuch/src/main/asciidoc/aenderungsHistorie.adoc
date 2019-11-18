@@ -7,12 +7,12 @@
 ==== Erweiterungen
 
  - Unterstützung für XPlanGML 5.0 und 5.1 in allen Komponenten der xPlanBox
- - Unterstützung für PostgreSQL 11 und PostGIS 2.5
+ - Unterstützung für PostgreSQL 11 mit PostGIS 2.5
  - Unterstützung für Apache Tomcat 9.0
  - Neuer WMS für die Darstellung einzelner Planwerke (Planwerke-WMS)
- - Automatische Erstellung von Metaten für die Daten-Dienste-Kopplung des XPlanWMS
- - Unterstützung von SO-Plänen
- - Transformation und Bereitstellung von XPlanGML 4.1 Plänen als XPlanGML 5.1
+ - Automatische Erstellung von Metadaten für die Daten-Dienste-Kopplung des XPlanWMS
+ - Unterstützung von SO-Plänen im XPlanWMS
+ - Transformation und Bereitstellung von XPlanGML 4.1 Plänen als XPlanGML 5.1 mit dem XPlanTransformCLI Kommandozeilenwerkzeug
  - Hinzufügen von Rasterdaten im Editiermodus des XPlanManager
 
 ==== Fehlerbehebungen
