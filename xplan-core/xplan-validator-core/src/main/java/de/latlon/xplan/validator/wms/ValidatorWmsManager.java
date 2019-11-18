@@ -35,7 +35,7 @@ import java.util.UUID;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static java.lang.Boolean.TRUE;
 import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
-import static org.deegree.gml.GMLVersion.GML_31;
+import static org.deegree.gml.GMLVersion.GML_32;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -102,7 +102,7 @@ public class ValidatorWmsManager {
             gmlWriter = createGmlWriter( output );
             AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema( XPLAN_SYN, null );
             Map<String, String> nsBindings = synSchema.getNamespaceBindings();
-            nsBindings.put( "gml", GML_31.getNamespace() );
+            nsBindings.put( "gml", GML_32.getNamespace() );
             gmlWriter.setNamespaceBindings( nsBindings );
             gmlWriter.write( synthesizedFeatureCollection );
             return pathToFile;
@@ -120,7 +120,7 @@ public class ValidatorWmsManager {
             MemoryFeatureStoreConfig config = (MemoryFeatureStoreConfig) unmarshaller.unmarshal( memoryStore );
             List<MemoryFeatureStoreConfig.GMLFeatureCollection> collections = config.getGMLFeatureCollection();
             MemoryFeatureStoreConfig.GMLFeatureCollection gmlFeatureCollection = new MemoryFeatureStoreConfig.GMLFeatureCollection();
-            gmlFeatureCollection.setVersion( GMLVersionType.GML_31 );
+            gmlFeatureCollection.setVersion( GMLVersionType.GML_32 );
             gmlFeatureCollection.setValue( pathToDataFile.toString() );
             collections.add( gmlFeatureCollection );
             return config;
@@ -139,7 +139,7 @@ public class ValidatorWmsManager {
                             throws XMLStreamException {
         XMLStreamWriter xmlWriter = XMLOutputFactory.newInstance().createXMLStreamWriter( output );
         xmlWriter = new IndentingXMLStreamWriter( xmlWriter );
-        return GMLOutputFactory.createGMLStreamWriter( GML_31, xmlWriter );
+        return GMLOutputFactory.createGMLStreamWriter( GML_32, xmlWriter );
     }
 
     private void closeQuietly( GMLStreamWriter gmlWriter ) {

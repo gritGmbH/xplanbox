@@ -43,7 +43,7 @@ public enum XPlanVersion {
     /**
      * XPlan Syn
      */
-    XPLAN_SYN( "http://www.deegree.org/xplanung/1/0", "/appschemas/XPlanGML_Syn/XPlanSyn.xsd", GML_31 );
+    XPLAN_SYN( "http://www.deegree.org/xplanung/1/0", "/appschemas/XPlanGML_Syn/XPlanSyn.xsd", GML_32 );
 
     private final String namespace;
 
