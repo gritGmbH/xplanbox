@@ -17,6 +17,7 @@
     <module>xplansyn-wfs</module>
     <module>xplan-wfs</module>
     <module>xplan-wms</module>
+    <module>xplan-validator-wms</module>
   </modules>
 
   <build>
