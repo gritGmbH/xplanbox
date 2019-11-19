@@ -1,24 +1,7 @@
 package de.latlon.xplan.validator.web.spring.config;
 
-import static java.nio.file.Paths.get;
-
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
-import de.latlon.xplan.validator.wms.ValidatorWmsManager;
-import org.deegree.commons.config.DeegreeWorkspace;
-import org.deegree.workspace.Workspace;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-
 import de.latlon.xplan.commons.configuration.DefaultPropertiesLoader;
+import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
@@ -35,6 +18,20 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.web.server.service.ReportProvider;
 import de.latlon.xplan.validator.web.server.service.ValidatorReportProvider;
+import de.latlon.xplan.validator.wms.ValidatorWmsManager;
+import org.deegree.commons.config.DeegreeWorkspace;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import static java.nio.file.Paths.get;
 
 /**
  * XPlanValidatorWeb Application Configuration.
