@@ -94,6 +94,26 @@ public class FeatureCollectionManipulator {
     }
 
     /**
+     * Adds the id of the plan in the manager (as property xplanMgrPlanId) to each feature in the passed {@link FeatureCollection}:
+     *
+     * @param featureCollectionToModify
+     *                         {@link FeatureCollection} encapsulation a plan, never <code>null</code>
+     * @param applicationSchema
+     *                         describing the feature types, never <code>null</code>
+     * @param planId
+     *                         the id of the plan to add to all features, never <code>null</code>
+     */
+    public void addPlanIdToFeatures( FeatureCollection featureCollectionToModify, AppSchema applicationSchema,
+                                     int planId ) {
+        Iterator<Feature> featureCollectionIterator = featureCollectionToModify.iterator();
+        while ( featureCollectionIterator.hasNext() ) {
+            Feature feature = featureCollectionIterator.next();
+            FeatureType featureType = applicationSchema.getFeatureType( feature.getName() );
+            addMgrPlanIdProperty( planId, feature, featureType );
+        }
+    }
+
+    /**
      * Removes all features of a {@link XPlanFeatureCollection} except of the plan feature.
      *
      * @param fc

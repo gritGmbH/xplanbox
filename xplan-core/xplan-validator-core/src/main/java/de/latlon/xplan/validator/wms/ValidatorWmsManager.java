@@ -1,6 +1,7 @@
 package de.latlon.xplan.validator.wms;
 
 import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import org.apache.commons.io.IOUtils;
@@ -37,6 +38,10 @@ public class ValidatorWmsManager {
 
     private static final String RELATIVE_PATH_TO_DATE_DIR = "data";
 
+    private static int PLANID = 1;
+
+    private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
+
     private final Path pathToDataDirectory;
 
     private final XPlanSynthesizer synthesizer;
@@ -71,8 +76,8 @@ public class ValidatorWmsManager {
                             throws ValidatorWmsException {
         try {
             AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema( XPLAN_SYN, null );
-
             FeatureCollection fc = synthesizer.synthesize( featureCollection );
+            featureCollectionManipulator.addPlanIdToFeatures( fc, synSchema, PLANID++ );
             writeSynFeatureCollectionAsGml( fc, synSchema );
         } catch ( Exception e ) {
             LOG.warn( "Could not add featureCollection", e );
