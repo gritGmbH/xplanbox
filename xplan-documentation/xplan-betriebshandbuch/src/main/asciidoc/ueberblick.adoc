@@ -71,9 +71,8 @@ Optional kann die Installation von HALE CLI erforderlich sein. HALE CLI wird ben
 ===== Minimale Systemvoraussetzung
 
 
-* CPU: 2 CPUs mit je 2 Kernen (2x DualCore) oder 1 CPU mit 4 Kernen (1x
-QuadCore) - minimal 2,0-GHz-Prozessor mit 64 Bit
-* Arbeitsspeicher: 8 GB RAM
+* CPU: 8 CPUs bzw. 8 Kernen (64 Bit) mit minimal 2,5-GHz-Prozessorgeschwindigkeit
+* Arbeitsspeicher: 16 GB RAM
 * Netzwerkadapter: Gigabit-Ethernet-Adapter (10/100/1000baseT PHY/MAC)
 * Festplattensystem: Journaling-Dateisystem (Kapazität nach Bedarf,
 Minimum 500 GB)
@@ -90,8 +89,7 @@ notwendig.
 [[empfohlene-systemkonfiguration]]
 ===== Empfohlene Systemkonfiguration
 
-* CPU: 2 CPUs mit je 4 Kernen (2x QuadCore) or 1 CPU mit 8 Kernen (1x
-OctaCore) - 3,0-GHz-Prozessor mit 64 Bit
+* CPU: 16 CPUs bzw. 16 Kernen (64 Bit) mit 3,2-GHz-Prozessorgeschwindigkeit
 * Arbeitsspeicher: 32 GB RAM
 * Netzwerkadapter: Gigabit-Ethernet-Adapter (10/100/1000baseT PHY/MAC)
 * Festplattensystem: RAID-10 (Kapazität nach Bedarf, Minimum 500 GB)
@@ -104,7 +102,7 @@ notwendig, u.a. um die Vorgaben der INSPIRE-Richtlinien zu erfüllen.
 [[client]]
 ==== Client
 
-* CPU: 1 CPU mit mindestens 1,4-GHz-Prozessor
+* CPU: 1 CPU mit mindestens 2,0-GHz-Prozessor
 * Arbeitsspeicher: 4 GB RAM
 
 NOTE: Weitere Informationen zu den Systemvoraussetzungen bei den unterstützten

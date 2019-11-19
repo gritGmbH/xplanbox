@@ -8,7 +8,7 @@ Die transformierten Pläne können entweder syntaktisch validiert und das Validi
 [NOTE]
 ====
 
-Unterstützt wird derzeit die Transformation von XPlanGML 4.1 nach XPlanGml 5.1
+Unterstützt wird derzeit die Transformation von XPlanGML 4.1 nach XPlanGML 5.1
 
 ====
 
