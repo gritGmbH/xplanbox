@@ -65,6 +65,11 @@
     </SortBy>
     <l:Name>fp_xp_pto</l:Name>
     <d:Title>FP: XP: PTO</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_xp_pto</l:StyleStoreId>
     </l:StyleRef>
@@ -106,6 +111,11 @@
     </SortBy>
     <l:Name>fp_xp_lto</l:Name>
     <d:Title>FP: XP: LTO</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_xp_lto</l:StyleStoreId>
     </l:StyleRef>
@@ -148,6 +158,11 @@
     </SortBy>
     <l:Name>fp_xp_fpo</l:Name>
     <d:Title>FP: XP: FPO</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_xp_fpo</l:StyleStoreId>
     </l:StyleRef>
@@ -189,6 +204,11 @@
     </SortBy>
     <l:Name>fp_xp_lpo</l:Name>
     <d:Title>FP: XP: LPO</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_xp_lpo</l:StyleStoreId>
     </l:StyleRef>
@@ -230,6 +250,11 @@
     </SortBy>
     <l:Name>fp_xp_ppo</l:Name>
     <d:Title>FP: XP: PPO</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_xp_ppo</l:StyleStoreId>
     </l:StyleRef>
@@ -272,6 +297,11 @@
     </SortBy>
     <l:Name>fp_bahnverksym</l:Name>
     <d:Title>FP: Bahnverkehr Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_bahnverksym</l:StyleStoreId>
     </l:StyleRef>
@@ -313,6 +343,11 @@
     </SortBy>
     <l:Name>fp_gembedarfsym</l:Name>
     <d:Title>FP: Gemeinbedarfsfläche Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_gembedarfsym</l:StyleStoreId>
     </l:StyleRef>
@@ -354,6 +389,11 @@
     </SortBy>
     <l:Name>fp_gewflsym</l:Name>
     <d:Title>FP: Gewässer Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_gewsym</l:StyleStoreId>
     </l:StyleRef>
@@ -395,6 +435,11 @@
     </SortBy>
     <l:Name>fp_vorbhwssym</l:Name>
     <d:Title>FP: Festgesetztes Überschwemmungsgebiet Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_vorbhwssym</l:StyleStoreId>
     </l:StyleRef>
@@ -436,6 +481,11 @@
     </SortBy>
     <l:Name>fp_wrsym</l:Name>
     <d:Title>FP: Wasserrecht Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_wrsym</l:StyleStoreId>
     </l:StyleRef>
@@ -477,6 +527,11 @@
     </SortBy>
     <l:Name>fp_lwflsym</l:Name>
     <d:Title>FP: Landwirtschaftsfläche Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_lwflsym</l:StyleStoreId>
     </l:StyleRef>
@@ -518,6 +573,11 @@
     </SortBy>
     <l:Name>fp_wsssym</l:Name>
     <d:Title>FP: Wasserwirtschaft Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_wwssym</l:StyleStoreId>
     </l:StyleRef>
@@ -559,6 +619,11 @@
     </SortBy>
     <l:Name>fp_bsflsym</l:Name>
     <d:Title>FP: Bodenschätzefläche Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_bsflsym</l:StyleStoreId>
     </l:StyleRef>
@@ -600,6 +665,11 @@
     </SortBy>
     <l:Name>fp_aufschuettsflsym</l:Name>
     <d:Title>FP: Aufschüttungsfläche Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_aufschuettsflsym</l:StyleStoreId>
     </l:StyleRef>
@@ -641,6 +711,11 @@
     </SortBy>
     <l:Name>fp_abgrabungsflsym</l:Name>
     <d:Title>FP: Abgrabungsfläche Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_abgrabungsflsym</l:StyleStoreId>
     </l:StyleRef>
@@ -682,6 +757,11 @@
     </SortBy>
     <l:Name>fp_verentsorgungsym</l:Name>
     <d:Title>FP: Ver- und Entsorgung Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_verentsorgungsym</l:StyleStoreId>
     </l:StyleRef>
@@ -723,6 +803,11 @@
     </SortBy>
     <l:Name>fp_waldflsym</l:Name>
     <d:Title>FP: Waldfläche Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_waldflsym</l:StyleStoreId>
     </l:StyleRef>
@@ -764,6 +849,11 @@
     </SortBy>
     <l:Name>fp_strverksym</l:Name>
     <d:Title>FP: Strassenverkehr Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_strverksym</l:StyleStoreId>
     </l:StyleRef>
@@ -805,6 +895,11 @@
     </SortBy>
     <l:Name>fp_denkmschenssym</l:Name>
     <d:Title>FP: Denkmalensemble Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_denkmschenssym</l:StyleStoreId>
     </l:StyleRef>
@@ -846,6 +941,11 @@
     </SortBy>
     <l:Name>fp_erhssatzungsym</l:Name>
     <d:Title>FP: Erhaltungssatzung Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_erhssatzungsym</l:StyleStoreId>
     </l:StyleRef>
@@ -887,6 +987,11 @@
     </SortBy>
     <l:Name>fp_schutzgebsym</l:Name>
     <d:Title>FP: Schutzgebiet Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_schutzgebsym</l:StyleStoreId>
     </l:StyleRef>
@@ -928,6 +1033,11 @@
     </SortBy>
     <l:Name>fp_schutzpflentwsym</l:Name>
     <d:Title>FP: FP: Schutz-, Pflege- und Entwicklungsfläche Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_schutzpflentwsym</l:StyleStoreId>
     </l:StyleRef>
@@ -969,6 +1079,11 @@
     </SortBy>
     <l:Name>fp_gruensym</l:Name>
     <d:Title>FP: Grünfläche Symbol</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_gruensym</l:StyleStoreId>
     </l:StyleRef>
@@ -1011,6 +1126,11 @@
     </SortBy>
     <l:Name>fp_bebausfl</l:Name>
     <d:Title>FP: Bebauungsfläche</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_BebauungsFlaeche</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_bebausfl</l:StyleStoreId>
@@ -1056,6 +1176,11 @@
     </SortBy>
     <l:Name>fp_bahnverk</l:Name>
     <d:Title>FP: Bahnverkehr</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Bahnverkehr</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_bahnverk</l:StyleStoreId>
@@ -1101,6 +1226,11 @@
     </SortBy>
     <l:Name>fp_strverk</l:Name>
     <d:Title>FP: Straßenverkehr</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Strassenverkehr</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_strverk</l:StyleStoreId>
@@ -1146,6 +1276,11 @@
     </SortBy>
     <l:Name>fp_kennz</l:Name>
     <d:Title>FP: Kennzeichnungsfläche</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Kennzeichnung</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_kennz</l:StyleStoreId>
@@ -1191,6 +1326,11 @@
     </SortBy>
     <l:Name>fp_bsfl</l:Name>
     <d:Title>FP: Bodenschätze</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_BodenschaetzeFlaeche</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_bsfl</l:StyleStoreId>
@@ -1236,6 +1376,11 @@
     </SortBy>
     <l:Name>fp_aufschuettsfl</l:Name>
     <d:Title>FP: Aufschüttungsfläche</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_AufschuettungsFlaeche</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_aufschuettsfl</l:StyleStoreId>
@@ -1281,6 +1426,11 @@
     </SortBy>
     <l:Name>fp_aufschuettung</l:Name>
     <d:Title>FP: Aufschüttung</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Aufschuettung</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_aufschuettung</l:StyleStoreId>
@@ -1326,6 +1476,11 @@
     </SortBy>
     <l:Name>fp_abgrabungsfl</l:Name>
     <d:Title>FP: Abgrabungsfläche</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_AbgrabungsFlaeche</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_abgrabungsfl</l:StyleStoreId>
@@ -1371,6 +1526,11 @@
     </SortBy>
     <l:Name>fp_abgrabung</l:Name>
     <d:Title>FP: Abgrabung</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Abgrabung</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_abgrabung</l:StyleStoreId>
@@ -1416,6 +1576,11 @@
     </SortBy>
     <l:Name>fp_gew</l:Name>
     <d:Title>FP: Gewässer</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Gewaesser</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_gew</l:StyleStoreId>
@@ -1461,6 +1626,11 @@
     </SortBy>
     <l:Name>fp_waldfl</l:Name>
     <d:Title>FP: Waldfläche</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_WaldFlaeche</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_waldfl</l:StyleStoreId>
@@ -1506,6 +1676,11 @@
     </SortBy>
     <l:Name>fp_gruen</l:Name>
     <d:Title>FP: Grünfläche</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Gruen</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_gruen</l:StyleStoreId>
@@ -1551,6 +1726,11 @@
     </SortBy>
     <l:Name>fp_lw</l:Name>
     <d:Title>FP: Landwirtschaft</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Landwirtschaft</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_lw</l:StyleStoreId>
@@ -1596,6 +1776,11 @@
     </SortBy>
     <l:Name>fp_lwfl</l:Name>
     <d:Title>FP: Landwirtschaftsfläche</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_LandwirtschaftsFlaeche</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_lwfl</l:StyleStoreId>
@@ -1641,6 +1826,11 @@
     </SortBy>
     <l:Name>fp_genobj</l:Name>
     <d:Title>FP: Generisches Objekt</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_GenerischesObjekt</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_genobj</l:StyleStoreId>
@@ -1686,6 +1876,11 @@
     </SortBy>
     <l:Name>fp_fachgesetz</l:Name>
     <d:Title>FP: Fachgesetz</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Fachgesetz</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_fachgesetz</l:StyleStoreId>
@@ -1731,6 +1926,11 @@
     </SortBy>
     <l:Name>fp_ausgleichsfl</l:Name>
     <d:Title>FP: Ausgleichsfläche</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_AusgleichsFlaeche</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_ausgleichsfl</l:StyleStoreId>
@@ -1776,6 +1976,11 @@
     </SortBy>
     <l:Name>fp_vorbhws</l:Name>
     <d:Title>FP: Festgesetztes Überschwemmungsgebiet</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_VorbHochwSchutz</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_vorbhws</l:StyleStoreId>
@@ -1821,6 +2026,11 @@
     </SortBy>
     <l:Name>fp_wr</l:Name>
     <d:Title>FP: Wasserrecht</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Wasserrecht</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_wr</l:StyleStoreId>
@@ -1866,6 +2076,11 @@
     </SortBy>
     <l:Name>fp_wws</l:Name>
     <d:Title>FP: Wasserwirtschaft</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Wasserwirtschaft</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_wws</l:StyleStoreId>
@@ -1911,6 +2126,11 @@
     </SortBy>
     <l:Name>fp_verentsorgung</l:Name>
     <d:Title>FP: Ver- und Entsorgung</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_VerEntsorgung</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_verentsorgung</l:StyleStoreId>
@@ -1956,6 +2176,11 @@
     </SortBy>
     <l:Name>fp_schutzgeb</l:Name>
     <d:Title>FP: Schutzgebiet</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Schutzgebiet</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_schutzgeb</l:StyleStoreId>
@@ -2001,6 +2226,11 @@
     </SortBy>
     <l:Name>fp_schutzpflentw</l:Name>
     <d:Title>FP: Schutz-, Pflege- und Entwicklungsfläche</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_SchutzPflegeEntwicklung</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_schutzpflentw</l:StyleStoreId>
@@ -2046,6 +2276,11 @@
     </SortBy>
     <l:Name>fp_gembedarf</l:Name>
     <d:Title>FP: Gemeinbedarf</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Gemeinbedarf</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_gembedarf</l:StyleStoreId>
@@ -2091,6 +2326,11 @@
     </SortBy>
     <l:Name>fp_spispoanl</l:Name>
     <d:Title>FP: Spiel- und Sportanlagen</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_SpielSportanlage</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_spispoanl</l:StyleStoreId>
@@ -2136,6 +2376,11 @@
     </SortBy>
     <l:Name>fp_luftverk</l:Name>
     <d:Title>FP: Luftverkehr</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Luftverkehr</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_luftverk</l:StyleStoreId>
@@ -2181,6 +2426,11 @@
     </SortBy>
     <l:Name>fp_denkmschens</l:Name>
     <d:Title>FP: Denkmalensemble</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_DenkmalschutzEnsemble</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_denkmschens</l:StyleStoreId>
@@ -2226,6 +2476,11 @@
     </SortBy>
     <l:Name>fp_erhssatzung</l:Name>
     <d:Title>FP: Erhaltungssatzung</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Erhaltungssatzung</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_erhssatzung</l:StyleStoreId>
@@ -2271,6 +2526,11 @@
     </SortBy>
     <l:Name>fp_ber</l:Name>
     <d:Title>FP: Bereich</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Bereich</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_ber</l:StyleStoreId>
@@ -2316,6 +2576,11 @@
     </SortBy>
     <l:Name>fp_nutzbeschraenkfl</l:Name>
     <d:Title>FP: Nutzungsbeschränkung</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_NutzungsbeschraenkungsFlaeche</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_nutzbeschraenkfl</l:StyleStoreId>
@@ -2361,6 +2626,11 @@
     </SortBy>
     <l:Name>fp_rasterplanaender</l:Name>
     <d:Title>FP: Rasterplanänderung</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_RasterplanAenderung</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_rasterplanaender</l:StyleStoreId>
@@ -2406,6 +2676,11 @@
     </SortBy>
     <l:Name>fp_grabungsschutzgeb</l:Name>
     <d:Title>FP: Grabungsschutzgebiet</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Grabungsschutzgebiet</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_grabungsschutzgeb</l:StyleStoreId>
@@ -2451,6 +2726,11 @@
     </SortBy>
     <l:Name>fp_unverbindlvormerk</l:Name>
     <d:Title>FP: Unverbindliche Vormerkung</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_UnverbindlicheVormerkung</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_unverbindlvormerk</l:StyleStoreId>
@@ -2496,6 +2776,11 @@
     </SortBy>
     <l:Name>fp_textldarstfl</l:Name>
     <d:Title>FP: Bereich textlicher Festsetzungen</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_TextlicheDarstellungsFlaeche</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_textldarstfl</l:StyleStoreId>
@@ -2541,6 +2826,11 @@
     </SortBy>
     <l:Name>fp_laermschutzber</l:Name>
     <d:Title>FP: Lärmschutzbereich</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Laermschutzbereich</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_laermschutzber</l:StyleStoreId>
@@ -2586,6 +2876,11 @@
     </SortBy>
     <l:Name>fp_bauschutzber</l:Name>
     <d:Title>FP: Bauschutzbereich</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_Bauschutzbereich</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_bauschutzber</l:StyleStoreId>
@@ -2631,6 +2926,11 @@
     </SortBy>
     <l:Name>fp_keinezentrabwbesfl</l:Name>
     <d:Title>FP: ohne zentrale Abwasserbeseitigung</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_KeineZentrAbwasserBeseitigungFlaeche</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_keinezentrabwbesfl</l:StyleStoreId>
@@ -2676,6 +2976,11 @@
     </SortBy>
     <l:Name>fp_privvorh</l:Name>
     <d:Title>FP: Priviligiertes Vorhaben</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_PriviligiertesVorhaben</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_privvorh</l:StyleStoreId>
@@ -2721,6 +3026,11 @@
     </SortBy>
     <l:Name>fp_vorbehaltefl</l:Name>
     <d:Title>FP: Vorbehaltfläche</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_VorbehalteFlaeche</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_vorbehaltefl</l:StyleStoreId>
@@ -2766,6 +3076,11 @@
     </SortBy>
     <l:Name>fp_zentrversber</l:Name>
     <d:Title>FP: Zentraler Versorgungsbereich</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_ZentralerVersorgungsbereich</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_zentrversber</l:StyleStoreId>
@@ -2811,6 +3126,11 @@
     </SortBy>
     <l:Name>fp_textabschn</l:Name>
     <d:Title>FP: TextAbschnitt</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_TextAbschnitt</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_textabschn</l:StyleStoreId>
@@ -2856,6 +3176,11 @@
     </SortBy>
     <l:Name>fp_anpassklimaw</l:Name>
     <d:Title>FP: AnpassungKlimawandel</d:Title>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>FP_AnpassungKlimawandel</d:Abstract>
     <l:StyleRef>
       <l:StyleStoreId>fp_anpassklimaw</l:StyleStoreId>

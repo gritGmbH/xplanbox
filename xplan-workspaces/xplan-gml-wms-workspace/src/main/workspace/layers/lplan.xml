@@ -1229,6 +1229,11 @@
     <l:Name>lpnw_elkulturlandsch</l:Name>
     <d:Title>LP: NRW Elemente der Kulturlandschaft</d:Title>
     <d:Abstract>LP_NRW_ElementeKulturlandschaft</d:Abstract>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>lpnw_elkulturlandsch</l:StyleStoreId>
     </l:StyleRef>
@@ -1274,6 +1279,11 @@
     <l:Name>lpnw_forstlichefests</l:Name>
     <d:Title>LP: NRW Forstliche Festsetzungen</d:Title>
     <d:Abstract>LP_NRW_ForstlicheFestsetzung</d:Abstract>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>lpnw_forstlichefests</l:StyleStoreId>
     </l:StyleRef>
@@ -1319,6 +1329,11 @@
     <l:Name>lpnw_herrigrundst</l:Name>
     <d:Title>LP: NRW Herrichtung von Grundstücken</d:Title>
     <d:Abstract>LP_NRW_HerrichtungGrundstueck</d:Abstract>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>lpnw_herrigrundst</l:StyleStoreId>
     </l:StyleRef>
@@ -1364,6 +1379,11 @@
     <l:Name>lpnw_pflegeanpflanz</l:Name>
     <d:Title>LP: NRW Pflege und Anpflanzung</d:Title>
     <d:Abstract>LP_NRW_PflegeAnpflanzung</d:Abstract>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>lpnw_pflegeanpflanz</l:StyleStoreId>
     </l:StyleRef>
@@ -1409,6 +1429,11 @@
     <l:Name>lpnw_pflegelandschbild</l:Name>
     <d:Title>LP: NRW Pflege des Landschaftsbildes</d:Title>
     <d:Abstract>LP_NRW_PflegeLandschaftsbild</d:Abstract>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>lpnw_pflegelandschbild</l:StyleStoreId>
     </l:StyleRef>
@@ -1454,6 +1479,11 @@
     <l:Name>lpnw_schutzobjlandrecht</l:Name>
     <d:Title>LP: NRW Schutzobjekt</d:Title>
     <d:Abstract>LP_NRW_SchutzobjektLandesrecht</d:Abstract>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>lpnw_schutzobjlandrecht</l:StyleStoreId>
     </l:StyleRef>
@@ -1499,6 +1529,11 @@
     <l:Name>lpnw_sonstmassn</l:Name>
     <d:Title>LP: NRW Sonstige Maßnahme</d:Title>
     <d:Abstract>LP_NRW_SonstigeMassnahme</d:Abstract>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>lpnw_sonstmassn</l:StyleStoreId>
     </l:StyleRef>
@@ -1544,6 +1579,11 @@
     <l:Name>lpnw_struktelbesiedber</l:Name>
     <d:Title>LP: NRW Strukturen Besiedelter Bereich</d:Title>
     <d:Abstract>LP_NRW_StrukturenElementeBesiedelterBereich</d:Abstract>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>lpnw_struktelbesiedber</l:StyleStoreId>
     </l:StyleRef>
@@ -1589,6 +1629,11 @@
     <l:Name>lpnw_templandschschutz</l:Name>
     <d:Title>LP: NRW Temporärer Landschaftsschutz</d:Title>
     <d:Abstract>LP_NRW_TemporaererLandschaftsschutz</d:Abstract>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>lpnw_templandschschutz</l:StyleStoreId>
     </l:StyleRef>
@@ -1634,6 +1679,11 @@
     <l:Name>lpnw_verpflichtungwrrl</l:Name>
     <d:Title>LP: NRW Verpflichtung nach WRRL</d:Title>
     <d:Abstract>LP_NRW_VerpflichtungWRRL</d:Abstract>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
+    <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>lpnw_verpflichtungwrrl</l:StyleStoreId>
     </l:StyleRef>
