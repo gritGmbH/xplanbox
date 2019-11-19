@@ -1,9 +1,7 @@
 [[kategorien]]
 === Kategorien
 
-Die Kategorien, auf die ein Benutzer im XPlanManagerWeb filtern kann,
-werden in der Datei _managerWebConfiguration.properties_ im Verzeichnis
-_~/.deegree/manager-configuration/_ konfiguriert.
+Die Kategorien, auf die ein Benutzer im XPlanManagerWeb filtern kann, werden in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ konfiguriert.
 
 [[bezirke]]
 ==== Gemeinden

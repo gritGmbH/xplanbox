@@ -6,8 +6,7 @@ Löschvorgang automatisch einen Workspace-Reload des XPlanWMS/XPlanWerkWMS
 anstoßen. Dadurch werden neu importierte, editierte und gelöschte
 Rasterpläne sofort im WMS aktualisiert.
 
-In der Datei _managerConfiguration.properties_ im Verzeichnis
-_~/.deegree/manager-configuration/_ müssen folgende Felder gefüllt
+In der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ müssen folgende Felder gefüllt
 werden:
 
 ----

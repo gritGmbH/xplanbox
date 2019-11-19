@@ -1,10 +1,7 @@
 [[planstatus]]
 === Planstatus
 
-Der Dialog zur Auswahl des Planstatus, in den ein Plan einsortiert
-werden soll, kann in der Datei _managerWebConfiguration.properties_ im
-Verzeichnis _~/.deegree/manager-configuration/_ aktiviert oder
-deaktiviert werden:
+Der Dialog zur Auswahl des Planstatus, in den ein Plan einsortiert werden soll, kann in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ aktiviert oder deaktiviert werden:
 
 ----
 activateLegislationStatusDialog=[true|false]

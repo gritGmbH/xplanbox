@@ -15,7 +15,6 @@
     <module>xplan-sql-scripts</module>
     <module>xplan-schemas</module>
     <module>xplan-update-database</module>
-    <module>xplan-validator-rules</module>
   </modules>
 
 </project>

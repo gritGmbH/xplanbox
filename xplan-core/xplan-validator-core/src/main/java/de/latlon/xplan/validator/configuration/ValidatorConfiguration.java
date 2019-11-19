@@ -1,6 +1,6 @@
 package de.latlon.xplan.validator.configuration;
 
-import java.io.File;
+import java.nio.file.Path;
 
 /**
  * Encapsulates the validator configuration.
@@ -11,15 +11,20 @@ import java.io.File;
  */
 public class ValidatorConfiguration {
 
-    private final File validationReportDirectory;
+    private final Path validationReportDirectory;
+
+    private final Path validationRulesDirectory;
 
     /**
      * @param validationReportDirectory
-     *            directory where validation reports are saved, never <code>null</code>
+     *                         directory where validation reports are saved, never <code>null</code>
+     * @param validationRulesDirectory
+     *                         directory containing the semantic validation rules, may be <code>null</code>
      */
-    public ValidatorConfiguration( File validationReportDirectory ) {
+    public ValidatorConfiguration( Path validationReportDirectory, Path validationRulesDirectory ) {
         checkParameters( validationReportDirectory );
         this.validationReportDirectory = validationReportDirectory;
+        this.validationRulesDirectory = validationRulesDirectory;
     }
 
     /**
@@ -27,13 +32,21 @@ public class ValidatorConfiguration {
      * 
      * @return directory where validation reports are saved, never <code>null</code>
      */
-    public File getValidationReportDirectory() {
+    public Path getValidationReportDirectory() {
         return validationReportDirectory;
     }
 
-    private void checkParameters( File validationReportDirectory ) {
+    /**
+     * Returns the directory containing the semantic validation rules.
+     *
+     * @return directory containing the semantic validation rules, may be <code>null</code>
+     */
+    public Path getValidationRulesDirectory() {
+        return validationRulesDirectory;
+    }
+
+    private void checkParameters( Path validationReportDirectory ) {
         if ( validationReportDirectory == null )
             throw new IllegalArgumentException( "validationReportDirectory must not be null!" );
     }
-
 }

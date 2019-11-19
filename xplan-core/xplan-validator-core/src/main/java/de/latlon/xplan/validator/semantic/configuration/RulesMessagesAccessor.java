@@ -53,9 +53,9 @@ public final class RulesMessagesAccessor {
 
     private static final Logger LOG = LoggerFactory.getLogger( RulesMessagesAccessor.class );
 
-    private static final String RULES_MESSAGES_PROPERTIES = "/rules/rulesMessages.properties";
+    private static final String RULES_MESSAGES_PROPERTIES = "rulesMessages.properties";
 
-    static final String DEFAULT_MESSAGE = "Regel '%s' muss erf\u00FCllt sein!";
+    static final String DEFAULT_MESSAGE = "Regel %s muss erf\u00FCllt sein";
 
     private static final Properties PROPERTIES = new Properties();
 

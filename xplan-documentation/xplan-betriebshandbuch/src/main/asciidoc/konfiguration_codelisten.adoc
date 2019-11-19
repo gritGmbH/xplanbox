@@ -1,7 +1,7 @@
 [[konfiguration-von-externen-codelisten]]
 === Konfiguration von externen Codelisten
 
-Externe Codelisten können im Verzeichnis <MANAGER_WEB>/synthesizer abgelegt werden. Dabei weist die Variable <MANAGER_WEB> auf das Verzeichnis, in dem sich die Dateien _managerConfiguration.properties_ und _managerWebConfiguration.properties_ begfindet (s. auch <<Anwendungs-Tomcat>>).
+Externe Codelisten können im Verzeichnis <XPLANBOX_CONFIG>/synthesizer abgelegt werden. Dabei weist die Variable <XPLANBOX_CONFIG> auf das Verzeichnis, in dem sich die Dateien _managerConfiguration.properties_ und _managerWebConfiguration.properties_ begfindet (s. auch <<Anwendungs-Tomcat>>).
 Dazu müssen für die Zuordnung zu dem Property im vereinfachten XPlanSyn Schema und dem komplexen XPlanGML Regeln konfiguriert werden.
 Die Regeln müssen abhängig von der XPlanGML Version in einer der folgenden Dateien angelegt werden (die Dateinamen dürfen dabei nicht verändert werden):
 

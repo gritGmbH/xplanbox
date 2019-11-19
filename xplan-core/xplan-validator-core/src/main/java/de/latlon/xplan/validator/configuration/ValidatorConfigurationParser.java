@@ -1,16 +1,16 @@
 package de.latlon.xplan.validator.configuration;
 
-import static java.nio.file.Files.createTempDirectory;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Properties;
-
+import de.latlon.xplan.commons.configuration.PropertiesLoader;
+import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.commons.configuration.PropertiesLoader;
-import de.latlon.xplan.manager.web.shared.ConfigurationException;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Properties;
+
+import static java.nio.file.Files.createTempDirectory;
 
 /**
  * Parses validator configuration and returns {@link ValidatorConfiguration}.
@@ -26,6 +26,8 @@ public class ValidatorConfigurationParser {
     private static final String VALIDATOR_CONFIGURATION_PROPERTIES = "validatorConfiguration.properties";
 
     private static final String VALIDATION_REPORT_DIRECTORY = "validationReportDirectory";
+
+    private static final String VALIDATION_RULES_DIRECTORY = "validationRulesDirectory";
 
     /**
      * Parse validator configuration.
@@ -51,9 +53,10 @@ public class ValidatorConfigurationParser {
     }
 
     private ValidatorConfiguration parseConfiguration( Properties properties )
-                    throws IOException {
-        File reportDirectoryFile = createReportDirectoryFile( properties );
-        return new ValidatorConfiguration( reportDirectoryFile );
+                            throws IOException {
+        Path reportDirectory = createReportDirectory( properties );
+        Path rulesDirectory = createRulesDirectory( properties );
+        return new ValidatorConfiguration( reportDirectory, rulesDirectory );
     }
 
     private void logConfiguration( ValidatorConfiguration configuration ) {
@@ -62,16 +65,27 @@ public class ValidatorConfigurationParser {
         LOG.info( "-------------------------------------------" );
         LOG.info( "  validation report directory" );
         LOG.info( "   - {}", configuration.getValidationReportDirectory() );
+        LOG.info( "  validation rules directory" );
+        LOG.info( "   - {}", configuration.getValidationRulesDirectory() != null ?
+                             configuration.getValidationRulesDirectory() :
+                             "internal rules are used" );
         LOG.info( "-------------------------------------------" );
     }
 
-    private File createReportDirectoryFile( Properties properties )
-                    throws IOException {
+    private Path createReportDirectory( Properties properties )
+                            throws IOException {
         String validationReportDirectory = properties.getProperty( VALIDATION_REPORT_DIRECTORY );
         if ( validationReportDirectory == null || validationReportDirectory.isEmpty() )
-            return createTempDirectory( "validationReport" ).toFile();
+            return createTempDirectory( "validationReport" );
         else
-            return new File( validationReportDirectory );
+            return Paths.get( validationReportDirectory );
+    }
+
+    private Path createRulesDirectory( Properties properties ) {
+        String validationRulesDirectory = properties.getProperty( VALIDATION_RULES_DIRECTORY );
+        if ( validationRulesDirectory != null && !validationRulesDirectory.isEmpty() )
+            return Paths.get( validationRulesDirectory );
+        return null;
     }
 
     private void checkParameters( PropertiesLoader propertiesLoader ) {

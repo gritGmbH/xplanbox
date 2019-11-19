@@ -4,9 +4,7 @@
 [[vektordaten]]
 ==== Vektordaten
 
-Die nachfolgenden Konfigurationen müssen in der Datei
-_managerWebConfiguration.properties_ im Verzeichnis
-_~/.deegree/manager-configuration/_ angepasst werden.
+Die nachfolgenden Konfigurationen müssen in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ angepasst werden.
 
 Das Standard-Koordinatenreferenzsystem kann über den Schlüssel
 _defaultCrs_ konfiguriert werden:
@@ -26,9 +24,7 @@ chooseCrs=EPSG:4326,EPSG:25833,EPSG:31466,EPSG:31467,EPSG:31468,EPSG:31469
 [[rasterdaten]]
 ==== Rasterdaten
 
-Die nachfolgende Konfiguration muss in der Datei
-_managerConfiguration.properties_ im Verzeichnis
-_~/.deegree/manager-configuration/_ angepasst werden.
+Die nachfolgende Konfiguration muss in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ angepasst werden.
 
 Das Standard-Koordinatenreferenzsystem kann über den Schlüssel
 _rasterConfigurationCrs_ konfiguriert werden:

@@ -1,17 +1,6 @@
 package de.latlon.xplan.validator.web.spring.config;
 
-import static java.nio.file.Paths.get;
-
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-
-import de.latlon.xplan.commons.configuration.DefaultPropertiesLoader;
+import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
@@ -28,6 +17,15 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.web.server.service.ReportProvider;
 import de.latlon.xplan.validator.web.server.service.ValidatorReportProvider;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+
+import static java.nio.file.Paths.get;
 
 /**
  * XPlanValidatorWeb Application Configuration.
@@ -88,12 +86,15 @@ public class XPlanValidatorWebSpringConfig {
     public ValidatorConfiguration validatorConfiguration()
                     throws IOException, ConfigurationException {
         ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
-        return validatorConfigurationParser.parse( new DefaultPropertiesLoader( ValidatorConfiguration.class ) );
+        return validatorConfigurationParser.parse( new SystemPropertyPropertiesLoader( ValidatorConfiguration.class ) );
     }
 
     @Bean
-    public Path rulesPath()
-            throws URISyntaxException {
+    public Path rulesPath( ValidatorConfiguration validatorConfiguration )
+                            throws URISyntaxException {
+        Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
+        if ( validationRulesDirectory != null )
+            return validationRulesDirectory;
         URI rulesPath = XPlanValidatorWebSpringConfig.class.getResource( RULES_DIRECTORY ).toURI();
         return get( rulesPath );
     }
