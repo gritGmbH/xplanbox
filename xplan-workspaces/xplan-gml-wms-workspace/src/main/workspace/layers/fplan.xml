@@ -15,6 +15,10 @@
     <l:Name>fp_plan</l:Name>
     <d:Title>FP: Plan</d:Title>
     <d:Abstract>FP_Plan</d:Abstract>
+    <s:Envelope crs="EPSG:4326">
+      <s:LowerCorner>5.7 47.2</s:LowerCorner>
+      <s:UpperCorner>15.1 55.1</s:UpperCorner>
+    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>fp_plan</l:StyleStoreId>
