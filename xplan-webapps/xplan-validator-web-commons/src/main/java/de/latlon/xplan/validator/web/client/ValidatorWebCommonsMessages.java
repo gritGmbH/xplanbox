@@ -13,6 +13,8 @@ public interface ValidatorWebCommonsMessages extends Messages {
 
     String validationPopupSave();
 
+    String validationPopupClose();
+
     String validationOptionsOpen();
 
     String validationSettingsTitle();
@@ -104,5 +106,7 @@ public interface ValidatorWebCommonsMessages extends Messages {
     String reportDownloadNoArtefactsSelected();
 
     String validatingStatus();
+
+    String mapPreviewDialogTitle( String planName );
 
 }

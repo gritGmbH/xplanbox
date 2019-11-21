@@ -60,12 +60,15 @@ public class ValidatorOptionsDialog extends FormPanel {
 
     private String reportNextButtonTitle;
 
+    private boolean showMapPreview = false;
+
     /**
      * @param reportDownloadFinishedListener
      *                         informed when the validation report dialog is closed or next is clicked, never <code>null</code>
      */
-    public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener, String fileName ) {
+    public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener, String fileName, boolean showMapPreview ) {
         this( reportDownloadFinishedListener, messages.reportButtonCloseTitle(), messages.reportButtonNextTitle(), fileName );
+        this.showMapPreview = showMapPreview;
     }
 
     /**
@@ -175,7 +178,7 @@ public class ValidatorOptionsDialog extends FormPanel {
             public void onSuccess( ValidationSummary validationSummary ) {
                 hideValidatingDialogBox();
                 ReportDialog reportDialog = new ReportDialog( validationSummary, reportCloseButtonTitle,
-                                                              reportNextButtonTitle );
+                                                              reportNextButtonTitle, showMapPreview );
                 reportDialog.addReportDownloadFinishedListener( reportDownloadFinishedListener );
                 reportDialog.show();
             }

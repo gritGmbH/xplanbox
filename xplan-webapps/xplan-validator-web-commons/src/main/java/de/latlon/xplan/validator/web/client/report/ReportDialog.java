@@ -42,20 +42,23 @@ public class ReportDialog extends DialogBox {
 
     private final String nextButtonTitle;
 
+    private final boolean showMapPreview;
+
     /**
-     * 
-     * @param validationSummary
+     *  @param validationSummary
      *            encapsulates some informations about the validation run presented in this dialog, never
      * @param closeButtonTitle
      *            title of the close button
      * @param nextButtonTitle
-     *            title of the next button
+     * @param showMapPreview
      */
-    public ReportDialog( ValidationSummary validationSummary, String closeButtonTitle, String nextButtonTitle ) {
+    public ReportDialog( ValidationSummary validationSummary, String closeButtonTitle, String nextButtonTitle,
+                         boolean showMapPreview ) {
         super( false, false );
         this.validationSummary = validationSummary;
         this.closeButtonTitle = closeButtonTitle;
         this.nextButtonTitle = nextButtonTitle;
+        this.showMapPreview = showMapPreview;
         setText( messages.reportDialogTitle() );
         initDialog();
     }
@@ -89,6 +92,8 @@ public class ReportDialog extends DialogBox {
     private Widget createRightPanel() {
         VerticalPanel rightPanel = new VerticalPanel();
         rightPanel.setSpacing( 10 );
+        if ( showMapPreview )
+            rightPanel.add( createMapPreviewButton() );
         rightPanel.add( createCloseButton() );
         rightPanel.add( createNextButton() );
         rightPanel.add( createDownloadBox() );
@@ -116,6 +121,19 @@ public class ReportDialog extends DialogBox {
             public void onClick( ClickEvent event ) {
                 hide();
                 informFinishListeners( NEXT );
+            }
+        } );
+        return button;
+    }
+
+    private Widget createMapPreviewButton() {
+        Button button = new Button();
+        button.setText( "Kartenvorschau oeffnen" );
+        button.addClickHandler( new ClickHandler() {
+            @Override
+            public void onClick( ClickEvent event ) {
+                MasterportalMapPreviewDialog mapPreviewDialog = new MasterportalMapPreviewDialog( "Test");
+                mapPreviewDialog.show();
             }
         } );
         return button;
