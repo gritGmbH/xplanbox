@@ -18,6 +18,8 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.web.server.service.ReportProvider;
 import de.latlon.xplan.validator.web.server.service.ValidatorReportProvider;
+import de.latlon.xplan.validator.wms.MapPreviewManager;
+import de.latlon.xplan.validator.wms.ValidatorWmsException;
 import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.slf4j.Logger;
@@ -74,9 +76,9 @@ public class XPlanValidatorWebSpringConfig {
     public XPlanValidator xplanValidator( GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
                                           SemanticValidator semanticValidator,
                                           ReportArchiveGenerator reportArchiveGenerator,
-                                          ValidatorWmsManager validatorWmsManager ) {
+                                          MapPreviewManager mapPreviewManager ) {
         return new XPlanValidator( geometricValidator, syntacticValidator, semanticValidator, reportArchiveGenerator,
-                                   validatorWmsManager );
+                                   mapPreviewManager );
     }
 
     @Bean
@@ -102,12 +104,11 @@ public class XPlanValidatorWebSpringConfig {
     }
 
     @Bean
-    public ValidatorWmsManager validatorWmsManager() {
-        XPlanSynthesizer synthesizer = new XPlanSynthesizer();
-        Path workspaceLocation = Paths.get( DeegreeWorkspace.getWorkspaceRoot() ).resolve( XPLAN_GML_WMS_WORKSPACE );
+    public MapPreviewManager mapPreviewManager() {
         try {
-            return new ValidatorWmsManager( synthesizer, workspaceLocation );
-        } catch ( IOException | IllegalArgumentException e ) {
+            ValidatorWmsManager validatorWmsManager = createValidatorWmsManager();
+            return new MapPreviewManager( validatorWmsManager );
+        } catch ( IOException | IllegalArgumentException | ValidatorWmsException e ) {
             LOG.error( "Could not initialise ValidatorWmsManager. WMS resources cannot be created" );
         }
         return null;
@@ -118,6 +119,13 @@ public class XPlanValidatorWebSpringConfig {
             throws URISyntaxException {
         URI rulesPath = XPlanValidatorWebSpringConfig.class.getResource( RULES_DIRECTORY ).toURI();
         return get( rulesPath );
+    }
+
+    private ValidatorWmsManager createValidatorWmsManager()
+                            throws IOException {
+        XPlanSynthesizer synthesizer = new XPlanSynthesizer();
+        Path workspaceLocation = Paths.get( DeegreeWorkspace.getWorkspaceRoot() ).resolve( XPLAN_GML_WMS_WORKSPACE );
+        return new ValidatorWmsManager( synthesizer, workspaceLocation );
     }
 
 }

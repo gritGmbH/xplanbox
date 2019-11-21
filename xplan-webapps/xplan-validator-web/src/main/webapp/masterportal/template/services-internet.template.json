@@ -1,26 +1,5 @@
 [
-  {
-    "id": "001",
-    "name": "XPlan",
-    "url": "https://xplanbox2019.lat-lon.de/xplan-wms/services/wms?PLANWERK_MANAGERID=2",
-    "typ": "WMS",
-    "layers": "BP_Planvektor",
-    "format": "image/png",
-    "version": "1.1.1",
-    "singleTile": true,
-    "transparent": true,
-    "transparency": 0,
-    "tilesize": "750",
-    "gutter": "0",
-    "minScale": "0",
-    "maxScale": "2500000",
-    "gfiAttributes": "ignore",
-    "gfiTheme": "default",
-    "layerAttribution": "nicht vorhanden",
-    "legendURL": "ignore",
-    "cache": true,
-    "featureCount": "1"
-  },
+  ${SERVICESCONFIG},
   {
     "id": "452",
     "name": "Luftbilder DOP 20",
@@ -96,3 +75,4 @@
     ]
   }
 ]
+

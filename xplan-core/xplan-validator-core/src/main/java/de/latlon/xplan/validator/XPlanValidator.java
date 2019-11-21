@@ -25,8 +25,8 @@ import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationType;
+import de.latlon.xplan.validator.wms.MapPreviewManager;
 import de.latlon.xplan.validator.wms.ValidatorWmsException;
-import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
@@ -62,7 +62,7 @@ public class XPlanValidator {
 
     private final ReportArchiveGenerator reportArchiveGenerator;
 
-    private final ValidatorWmsManager validatorWmsManager;
+    private final MapPreviewManager mapPreviewManager;
 
     private final XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 
@@ -75,12 +75,12 @@ public class XPlanValidator {
 
     public XPlanValidator( GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
                            SemanticValidator semanticValidator, ReportArchiveGenerator reportArchiveGenerator,
-                           ValidatorWmsManager validatorWmsManager ) {
+                           MapPreviewManager mapPreviewManager ) {
         this.geometricValidator = geometricValidator;
         this.syntacticValidator = syntacticValidator;
         this.semanticValidator = semanticValidator;
         this.reportArchiveGenerator = reportArchiveGenerator;
-        this.validatorWmsManager = validatorWmsManager;
+        this.mapPreviewManager = mapPreviewManager;
         this.schemas = XPlanSchemas.getInstance();
     }
 
@@ -100,7 +100,7 @@ public class XPlanValidator {
     public ValidatorReport validate( ValidationSettings validationSettings, File planArchive, String planName )
                             throws ValidatorException, ParseException, IOException, ReportGenerationException {
         XPlanArchive archive = archiveCreator.createXPlanArchive( planArchive );
-        ValidatorReport report = validate( validationSettings, archive, planName );
+        ValidatorReport report = validate( validationSettings, archive, planName, null );
         writeReport( report );
         LOG.info( "Archiv mit Validierungsergebnissen wird erstellt." );
         File validationReportDirectory = createZipArchive( validationSettings, archive, report );
@@ -115,15 +115,16 @@ public class XPlanValidator {
      *                         to apply, never <code>null</code>
      * @param planArchive
      *                         to validate, never <code>null</code> and must point to a zip file with a gml plan
+     * @param id
      * @return <link>ValidatorReport</link>
      * @throws ValidatorException
      * @throws IOException
      */
     public ValidatorReport validateNotWriteReport( ValidationSettings validationSettings, File planArchive,
-                                                   String planName )
+                                                   String planName, String id )
                             throws ValidatorException, IOException {
         XPlanArchive archive = archiveCreator.createXPlanArchive( planArchive );
-        return validate( validationSettings, archive, planName );
+        return validate( validationSettings, archive, planName, id );
     }
 
     /**
@@ -145,7 +146,7 @@ public class XPlanValidator {
         }
     }
 
-    private ValidatorReport validate( ValidationSettings validationSettings, XPlanArchive archive, String planName )
+    private ValidatorReport validate( ValidationSettings validationSettings, XPlanArchive archive, String planName, String id )
                             throws ValidatorException {
         List<ValidationOption> voOptions = validationSettings.getExtendedOptions();
         List<SemanticValidationOptions> semanticValidationOptions = extractSemanticValidationOptions(
@@ -159,27 +160,27 @@ public class XPlanValidator {
         ValidationType validationType = getValidationType( validationSettings );
         switch ( validationType ) {
         case SYNTACTIC:
-            return validateSyntactic( archive, report );
+            return validateSyntactic( id, archive, report );
         case GEOMETRIC:
-            return validateGeometric( archive, voOptions, report );
+            return validateGeometric( id, archive, voOptions, report );
         case SEMANTIC:
         default:
-            return validateSemantic( archive, voOptions, semanticValidationOptions, report );
+            return validateSemantic( id, archive, voOptions, semanticValidationOptions, report );
         }
     }
 
-    private ValidatorReport validateSyntactic( XPlanArchive archive, ValidatorReport report ) {
+    private ValidatorReport validateSyntactic( String id, XPlanArchive archive, ValidatorReport report ) {
         SyntacticValidatorResult syntacticallyResult = validateSyntacticallyAndWriteResult( archive );
         report.setSyntacticValidatorResult( syntacticallyResult );
         if ( !syntacticallyResult.isValid() ) {
             report.setExternalReferenceReport( new ExternalReferenceReport( SYNTAX_ERRORS ) );
             return report;
         }
-        parseReferencesAndAddToWms( archive, report, null );
+        parseReferencesAndAddToWms( id, archive, report, null );
         return report;
     }
 
-    private ValidatorReport validateGeometric( XPlanArchive archive, List<ValidationOption> voOptions,
+    private ValidatorReport validateGeometric( String id, XPlanArchive archive, List<ValidationOption> voOptions,
                                                ValidatorReport report )
                             throws ValidatorException {
         SyntacticValidatorResult syntacticallyResult = validateSyntacticallyAndWriteResult( archive );
@@ -193,11 +194,11 @@ public class XPlanValidator {
         GemetricValidatorParsingResult featuresAndResult = validateGeometricallyAndWriteResult( archive, voOptions );
         report.setGeometricValidatorResult( featuresAndResult.getValidatorResult() );
 
-        parseReferencesAndAddToWms( archive, report, featuresAndResult );
+        parseReferencesAndAddToWms( id, archive, report, featuresAndResult );
         return report;
     }
 
-    private ValidatorReport validateSemantic( XPlanArchive archive, List<ValidationOption> voOptions,
+    private ValidatorReport validateSemantic( String id, XPlanArchive archive, List<ValidationOption> voOptions,
                                               List<SemanticValidationOptions> semanticValidationOptions,
                                               ValidatorReport report )
                             throws ValidatorException {
@@ -217,7 +218,7 @@ public class XPlanValidator {
                                                                                          semanticValidationOptions );
         report.setSemanticValidatorResult( semanticallyResult );
 
-        parseReferencesAndAddToWms( archive, report, featuresAndResult );
+        parseReferencesAndAddToWms( id, archive, report, featuresAndResult );
         return report;
     }
 
@@ -283,21 +284,22 @@ public class XPlanValidator {
         return validatorResult;
     }
 
-    private void parseReferencesAndAddToWms( XPlanArchive archive, ValidatorReport report,
+    private void parseReferencesAndAddToWms( String id, XPlanArchive archive, ValidatorReport report,
                                              GemetricValidatorParsingResult featuresAndResult ) {
         XPlanFeatureCollection featureCollection = parseFeatures( featuresAndResult, archive );
         parseAndAddExternalReferences( report, featureCollection );
-        addToWms( archive, featureCollection );
+        addToWms( id, archive, featureCollection );
     }
 
-    private void addToWms( XPlanArchive archive, XPlanFeatureCollection featureCollection ) {
-        if ( validatorWmsManager != null ) {
+    private void addToWms( String id, XPlanArchive archive, XPlanFeatureCollection featureCollection ) {
+        if ( mapPreviewManager != null && id != null ) {
             if ( featureCollection != null ) {
                 try {
-                    validatorWmsManager.insert( featureCollection );
+                    mapPreviewManager.createConfigurations( id, featureCollection );
                 } catch ( ValidatorWmsException e ) {
                     LOG.warn( "Could not create WMS configuration for plan with name {}: {}", archive.getName(),
                               e.getMessage() );
+                    e.printStackTrace();
                 }
             }
         }

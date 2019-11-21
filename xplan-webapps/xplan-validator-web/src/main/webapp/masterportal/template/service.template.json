@@ -1,0 +1,22 @@
+{
+  "id": "${PLANID}",
+  "name": "XPlan",
+  "url": "${WMSURL}?PLANWERK_MANAGERID=${MANAGERID}",
+  "typ": "WMS",
+  "layers": "${LAYERS}",
+  "format": "image/png",
+  "version": "1.1.1",
+  "singleTile": true,
+  "transparent": true,
+  "transparency": 0,
+  "tilesize": "750",
+  "gutter": "0",
+  "minScale": "0",
+  "maxScale": "2500000",
+  "gfiAttributes": "ignore",
+  "gfiTheme": "default",
+  "layerAttribution": "nicht vorhanden",
+  "legendURL": "ignore",
+  "cache": true,
+  "featureCount": "1"
+}

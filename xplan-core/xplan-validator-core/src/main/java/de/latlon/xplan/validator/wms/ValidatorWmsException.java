@@ -5,8 +5,15 @@ package de.latlon.xplan.validator.wms;
  */
 public class ValidatorWmsException extends Exception {
 
+    public ValidatorWmsException( String msg ) {
+        super( msg );
+    }
+
+    public ValidatorWmsException( String msg, Exception e ) {
+        super( msg, e );
+    }
+
     public ValidatorWmsException( Throwable cause ) {
         super( cause );
     }
-
 }

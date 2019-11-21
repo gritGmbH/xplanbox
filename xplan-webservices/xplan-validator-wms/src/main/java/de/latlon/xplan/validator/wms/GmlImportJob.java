@@ -45,6 +45,8 @@ public class GmlImportJob implements Job {
     public void execute( JobExecutionContext jobExecutionContext )
                             throws JobExecutionException {
         DeegreeWorkspace workspace = OGCFrontController.getServiceWorkspace();
+        if ( workspace == null )
+            return;
         File workspaceLocation = workspace.getLocation();
         Path path = Paths.get( workspaceLocation.toURI() ).resolve( "data" );
         if ( !Files.exists( path ) )
