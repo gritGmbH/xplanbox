@@ -10,8 +10,8 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
 
 import static java.nio.file.Files.readAllBytes;
@@ -44,13 +44,16 @@ public class MasterportalConfigWriter {
 
     private final Path configDirectory;
 
-    private final Map<String, String> idToServiceConfig = new HashMap<>();
+    private final Path servicesConfigFile;
+
+    private final ConcurrentMap<String, String> idToServiceConfig = new ConcurrentHashMap<>();
 
     public MasterportalConfigWriter( String validatorWmsEndpoint )
                             throws MapPreviewCreationException {
         this.validatorWmsEndpoint = validatorWmsEndpoint;
         Path masterportalDirectory = getMasterportalDirectory();
         this.configDirectory = getConfigDirectory( masterportalDirectory );
+        this.servicesConfigFile = getServicesConfigFile( this.configDirectory );
         Path templateDirectory = getTemplateDirectory( masterportalDirectory );
         this.configTemplate = readTemplate( templateDirectory, CONFIG_TEMPLATE );
         this.serviceTemplate = readTemplate( templateDirectory, SERVICE_TEMPLATE );
@@ -82,17 +85,14 @@ public class MasterportalConfigWriter {
 
     private void addToServicesJson( String id, int managerId )
                             throws MapPreviewCreationException {
-        Path servicesConfig = configDirectory.resolve( SERVICES_JSON );
-        if ( !Files.exists( servicesConfig ) )
-            throw new MapPreviewCreationException( "File " + servicesConfig + " does not exist" );
-
         try {
             String serviceConfigSection = createServiceConfigFromTemplate( id, managerId );
             idToServiceConfig.put( id, serviceConfigSection );
-            LOG.info( "Append service config to {}", servicesConfig );
             String servicesConfigSection = createServicesConfigFromTemplate();
-            /// TODO: must be thread safe!
-            Files.write( servicesConfig, servicesConfigSection.getBytes() );
+            synchronized ( servicesConfigFile  ) {
+                LOG.info( "Append service config to {}", servicesConfigFile );
+                Files.write( servicesConfigFile, servicesConfigSection.getBytes() );
+            }
         } catch ( IOException e ) {
             throw new MapPreviewCreationException( "Could not add service config", e );
         }
@@ -129,6 +129,14 @@ public class MasterportalConfigWriter {
         if ( !Files.exists( path ) )
             throw new MapPreviewCreationException( "Config directory in masterportal does not exist" );
         return path;
+    }
+
+    private Path getServicesConfigFile( Path configDirectory )
+                            throws MapPreviewCreationException {
+        Path servicesConfig = configDirectory.resolve( SERVICES_JSON );
+        if ( !Files.exists( servicesConfig ) )
+            throw new MapPreviewCreationException( "File " + servicesConfig + " does not exist" );
+        return servicesConfig;
     }
 
     private Path getTemplateDirectory( Path masterportalDirectory )
