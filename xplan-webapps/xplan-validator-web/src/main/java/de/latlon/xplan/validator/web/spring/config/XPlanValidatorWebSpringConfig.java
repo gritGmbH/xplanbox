@@ -102,10 +102,16 @@ public class XPlanValidatorWebSpringConfig {
     }
 
     @Bean
-    public MapPreviewManager mapPreviewManager( GeometricValidator geometricValidator ) {
+    public MapPreviewManager mapPreviewManager( GeometricValidator geometricValidator,
+                                                ValidatorConfiguration validatorConfiguration ) {
+        String validatorWmsEndpoint = validatorConfiguration.getValidatorWmsEndpoint();
+        if ( validatorWmsEndpoint == null ) {
+            LOG.info( "XPlanValidatorWMS endpoint URL is not configured. Map preview will not be available." );
+            return null;
+        }
         try {
             ValidatorWmsManager validatorWmsManager = createValidatorWmsManager();
-            return new MapPreviewManager( validatorWmsManager, geometricValidator );
+            return new MapPreviewManager( validatorWmsManager, geometricValidator, validatorWmsEndpoint );
         } catch ( IOException | IllegalArgumentException | MapPreviewCreationException e ) {
             LOG.error( "Could not initialise ValidatorWmsManager. WMS resources cannot be created" );
         }

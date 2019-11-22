@@ -2,6 +2,7 @@ package de.latlon.xplan.validator.configuration;
 
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
+import org.deegree.commons.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +29,8 @@ public class ValidatorConfigurationParser {
     private static final String VALIDATION_REPORT_DIRECTORY = "validationReportDirectory";
 
     private static final String VALIDATION_RULES_DIRECTORY = "validationRulesDirectory";
+
+    private static final String VALIDATOR_WMS_ENDPOINT = "validatorWmsEndpoint";
 
     /**
      * Parse validator configuration.
@@ -56,7 +59,8 @@ public class ValidatorConfigurationParser {
                             throws IOException {
         Path reportDirectory = createReportDirectory( properties );
         Path rulesDirectory = createRulesDirectory( properties );
-        return new ValidatorConfiguration( reportDirectory, rulesDirectory );
+        String validatorWmsEndpoint = parseValidatorWmsEndpoint( properties );
+        return new ValidatorConfiguration( reportDirectory, rulesDirectory, validatorWmsEndpoint );
     }
 
     private void logConfiguration( ValidatorConfiguration configuration ) {
@@ -69,6 +73,8 @@ public class ValidatorConfigurationParser {
         LOG.info( "   - {}", configuration.getValidationRulesDirectory() != null ?
                              configuration.getValidationRulesDirectory() :
                              "internal rules are used" );
+        LOG.info( "  XPlanValidatorWMS Endpoint" );
+        LOG.info( "   - {}", configuration.getValidatorWmsEndpoint() );
         LOG.info( "-------------------------------------------" );
     }
 
@@ -86,6 +92,11 @@ public class ValidatorConfigurationParser {
         if ( validationRulesDirectory != null && !validationRulesDirectory.isEmpty() )
             return Paths.get( validationRulesDirectory );
         return null;
+    }
+
+    private String parseValidatorWmsEndpoint( Properties properties ) {
+        String validatorWmsEndpoint = properties.getProperty( VALIDATOR_WMS_ENDPOINT );
+        return validatorWmsEndpoint == null || validatorWmsEndpoint.trim().isEmpty() ? null : validatorWmsEndpoint;
     }
 
     private void checkParameters( PropertiesLoader propertiesLoader ) {

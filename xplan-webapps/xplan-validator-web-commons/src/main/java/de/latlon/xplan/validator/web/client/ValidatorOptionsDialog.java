@@ -187,16 +187,29 @@ public class ValidatorOptionsDialog extends FormPanel {
                 Window.alert( "Fehler bei der Validierung: " + caught.getMessage() );
             }
         } );
-        mapPreviewConfigService.createMapPreviewConfig( new AsyncCallback<MapPreviewMetadata>() {
-
+        mapPreviewConfigService.isMapPreviewAvaialable( new AsyncCallback<Boolean>() {
             @Override
-            public void onSuccess( MapPreviewMetadata mapPreviewMetadata ) {
-                reportDialog.setMapPreviewMetadata( mapPreviewMetadata );
+            public void onSuccess( Boolean isMapPreviewAvailable ) {
+                if ( isMapPreviewAvailable ) {
+                    mapPreviewConfigService.createMapPreviewConfig( new AsyncCallback<MapPreviewMetadata>() {
+
+                        @Override
+                        public void onSuccess( MapPreviewMetadata mapPreviewMetadata ) {
+                            reportDialog.setMapPreviewMetadata( mapPreviewMetadata );
+                        }
+
+                        @Override
+                        public void onFailure( Throwable caught ) {
+                            Window.alert( "Fehler beim erstellen der Konfiguration der Kartenvorschau: "
+                                          + caught.getMessage() );
+                        }
+                    } );
+                }
             }
 
             @Override
-            public void onFailure( Throwable caught ) {
-                Window.alert( "Fehler beim erstellen der Konfiguration der Kartenvorschau: " + caught.getMessage() );
+            public void onFailure( Throwable throwable ) {
+                // nothing to do
             }
         } );
     }

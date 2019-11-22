@@ -11,6 +11,10 @@ import de.latlon.xplan.validator.web.shared.MapPreviewMetadata;
 @RemoteServiceRelativePath("mappreviewconfig")
 public interface MapPreviewConfigService extends RemoteService {
 
+
+    boolean isMapPreviewAvaialable()
+                            throws MapPreviewException;
+
     MapPreviewMetadata createMapPreviewConfig()
                             throws MapPreviewException;
 

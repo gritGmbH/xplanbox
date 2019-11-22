@@ -40,12 +40,15 @@ public class MasterportalConfigWriter {
 
     private final String servicesTemplate;
 
-    private Path configDirectory;
+    private final String validatorWmsEndpoint;
+
+    private final Path configDirectory;
 
     private final Map<String, String> idToServiceConfig = new HashMap<>();
 
-    public MasterportalConfigWriter()
+    public MasterportalConfigWriter( String validatorWmsEndpoint )
                             throws MapPreviewCreationException {
+        this.validatorWmsEndpoint = validatorWmsEndpoint;
         Path masterportalDirectory = getMasterportalDirectory();
         this.configDirectory = getConfigDirectory( masterportalDirectory );
         Path templateDirectory = getTemplateDirectory( masterportalDirectory );
@@ -96,8 +99,7 @@ public class MasterportalConfigWriter {
     }
 
     private String createServiceConfigFromTemplate( String id, int managerId ) {
-        return serviceTemplate.replace( "${PLANID}", id ).replace( "${WMSURL}",
-                                                                   "http://localhost:8081/xplan-validator-wms/services/wms" ).replace(
+        return serviceTemplate.replace( "${PLANID}", id ).replace( "${WMSURL}", validatorWmsEndpoint ).replace(
                                 "${MANAGERID}", Integer.toString( managerId ) ).replace( "${LAYERS}", "BP_Planvektor" );
     }
 
@@ -112,7 +114,7 @@ public class MasterportalConfigWriter {
             URL masterportal = MasterportalConfigWriter.class.getResource( "../../../../../../../masterportal" );
             if ( masterportal == null )
                 throw new MapPreviewCreationException( "masterportal directory does not exist" );
-            Path path = configDirectory = Paths.get( masterportal.toURI() );
+            Path path = Paths.get( masterportal.toURI() );
             if ( !Files.exists( path ) )
                 throw new MapPreviewCreationException( "masterportal directory does not exist" );
             return path;

@@ -53,8 +53,16 @@ public class ValidatorMapPreviewConfigService extends RemoteServiceServlet imple
     }
 
     @Override
+    public boolean isMapPreviewAvaialable()
+                            throws MapPreviewException {
+        return mapPreviewManager != null;
+    }
+
+    @Override
     public MapPreviewMetadata createMapPreviewConfig()
                             throws MapPreviewException {
+        if ( mapPreviewManager == null )
+            throw new MapPreviewException( "Map preview manager is not available" );
         try {
             XPlan planToVerify = planArchiveManager.readPlanFromSession( session );
             String planUuid = planToVerify.getId();

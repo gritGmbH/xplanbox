@@ -39,11 +39,22 @@ public class MapPreviewManager {
 
     private final XPlanSchemas schemas;
 
-    public MapPreviewManager( ValidatorWmsManager validatorWmsManager, GeometricValidator geometricValidator )
+    /**
+     * @param validatorWmsManager
+     *                         used to create wms configuration, never <code>null</code>
+     * @param geometricValidator
+     *                         used to parse the gml, never <code>null</code>
+     * @param validatorWmsEndpoint
+     *                         the base URL of the XPlanValidatorWMS, never <code>null</code>
+     * @throws MapPreviewCreationException
+     *                         if instantiation failed
+     */
+    public MapPreviewManager( ValidatorWmsManager validatorWmsManager, GeometricValidator geometricValidator,
+                              String validatorWmsEndpoint )
                             throws MapPreviewCreationException {
         this.geometricValidator = geometricValidator;
         this.validatorWmsManager = validatorWmsManager;
-        this.configWriter = new MasterportalConfigWriter();
+        this.configWriter = new MasterportalConfigWriter( validatorWmsEndpoint );
         this.schemas = XPlanSchemas.getInstance();
 
     }

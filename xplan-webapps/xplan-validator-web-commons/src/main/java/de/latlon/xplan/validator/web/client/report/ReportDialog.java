@@ -80,6 +80,9 @@ public class ReportDialog extends DialogBox {
         finishedListeners.add( finishedListener );
     }
 
+    /**
+     * @param mapPreviewMetadata configuration of the map preview, never <code>null</code>
+     */
     public void setMapPreviewMetadata( MapPreviewMetadata mapPreviewMetadata ) {
         activateMapPreviewButton( mapPreviewMetadata );
     }

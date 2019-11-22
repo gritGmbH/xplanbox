@@ -15,13 +15,19 @@ public class ValidatorConfiguration {
 
     private final Path validationRulesDirectory;
 
+    private String validatorWmsEndpoint;
+
     /**
      * @param validationReportDirectory
      *                         directory where validation reports are saved, never <code>null</code>
      * @param validationRulesDirectory
-     *                         directory containing the semantic validation rules, may be <code>null</code>
+     *                         directory where validation rules are stored, never <code>null</code>
+     * @param validatorWmsEndpoint
+     *                         XPlanValidatorWMS endpoint, may be <code>null</code>
      */
-    public ValidatorConfiguration( Path validationReportDirectory, Path validationRulesDirectory ) {
+    public ValidatorConfiguration( Path validationReportDirectory, Path validationRulesDirectory,
+                                   String validatorWmsEndpoint ) {
+        this.validatorWmsEndpoint = validatorWmsEndpoint;
         checkParameters( validationReportDirectory );
         this.validationReportDirectory = validationReportDirectory;
         this.validationRulesDirectory = validationRulesDirectory;
@@ -43,6 +49,15 @@ public class ValidatorConfiguration {
      */
     public Path getValidationRulesDirectory() {
         return validationRulesDirectory;
+    }
+
+    /**
+     * Returns the configured XPlanValidatorWMS endpoint.
+     *
+     * @return XPlanValidatorWMS endpoint, may be <code>null</code>
+     */
+    public String getValidatorWmsEndpoint() {
+        return validatorWmsEndpoint;
     }
 
     private void checkParameters( Path validationReportDirectory ) {
