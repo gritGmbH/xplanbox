@@ -30,6 +30,10 @@
     <servlet-class>de.latlon.xplan.validator.web.server.service.XPlanValidationServiceImpl</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>xplanvalidatorwebMappreviewconfigService</servlet-name>
+    <servlet-class>de.latlon.xplan.validator.web.server.service.ValidatorMapPreviewConfigService</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>xplanvalidatorrest</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
@@ -50,6 +54,10 @@
   <servlet-mapping>
     <servlet-name>xplanvalidatorwebValidationService</servlet-name>
     <url-pattern>/xplanvalidatorweb/validation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>xplanvalidatorwebMappreviewconfigService</servlet-name>
+    <url-pattern>/xplanvalidatorweb/mappreviewconfig</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>xplanvalidatorrest</servlet-name>

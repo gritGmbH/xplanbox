@@ -20,7 +20,7 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
 import de.latlon.xplan.manager.web.shared.RasterLayerConfiguration;
 import de.latlon.xplan.manager.web.shared.VectorLayerConfiguration;
-import de.latlon.xplan.manager.web.shared.XPlanEnvelope;
+import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 
 /**
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>

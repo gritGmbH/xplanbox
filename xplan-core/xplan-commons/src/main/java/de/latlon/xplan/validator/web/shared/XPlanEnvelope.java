@@ -1,4 +1,4 @@
-package de.latlon.xplan.manager.web.shared;
+package de.latlon.xplan.validator.web.shared;
 
 import java.io.Serializable;
 

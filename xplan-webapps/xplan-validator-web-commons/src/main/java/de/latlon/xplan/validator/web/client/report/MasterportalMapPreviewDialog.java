@@ -8,7 +8,9 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Frame;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import de.latlon.xplan.validator.web.client.ValidatorWebCommonsMessages;
+import de.latlon.xplan.validator.web.shared.MapPreviewMetadata;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -17,17 +19,20 @@ public class MasterportalMapPreviewDialog extends DialogBox {
 
     private static final String FRAME_WIDTH = "800px";
 
-    private static final String FRAME_HEIGHT = "700px";
+    private static final String FRAME_HEIGHT = "630px";
 
     private final ValidatorWebCommonsMessages messages = GWT.create( ValidatorWebCommonsMessages.class );
 
-    public MasterportalMapPreviewDialog( String planName ) {
+    private final MapPreviewMetadata mapPreviewMetadata;
+
+    public MasterportalMapPreviewDialog( MapPreviewMetadata mapPreviewMetadata ) {
         super( false );
-        initDialog( planName );
+        this.mapPreviewMetadata = mapPreviewMetadata;
+        initDialog();
     }
 
-    private void initDialog( String planName ) {
-        setText( messages.mapPreviewDialogTitle( planName ) );
+    private void initDialog() {
+        setText( messages.mapPreviewDialogTitle( mapPreviewMetadata.getValidationName() ) );
         VerticalPanel dialogBoxContent = createDialogBoxContent();
         createAndAddMap( dialogBoxContent );
         createAndAddCloseButton( dialogBoxContent );
@@ -45,8 +50,23 @@ public class MasterportalMapPreviewDialog extends DialogBox {
         Frame mapFrame = new Frame();
         mapFrame.setWidth( FRAME_WIDTH );
         mapFrame.setHeight( FRAME_HEIGHT );
-        mapFrame.setUrl( "http://localhost:8081/xplan-validator/masterportal/?zoomToExtent=559766,5943719,560841,5944795&config=config.001.json" );
+        mapFrame.setUrl( createUrl() );
         dialogBoxContent.add( mapFrame );
+    }
+
+    private String createUrl() {
+        StringBuilder sb = new StringBuilder();
+        sb.append( mapPreviewMetadata.getBaseURL() ).append( "?" );
+        sb.append( "style=simple&" );
+        sb.append( "zoomToExtent=" );
+        XPlanEnvelope bbox = mapPreviewMetadata.getBbox();
+        sb.append( bbox.getMinX() ).append( "," );
+        sb.append( bbox.getMinY() ).append( "," );
+        sb.append( bbox.getMaxX() ).append( "," );
+        sb.append( bbox.getMaxY() ).append( "&" );
+        sb.append( "projection=" ).append( bbox.getCrs() ).append( "&" );
+        sb.append( "config=" ).append( "config." ).append( mapPreviewMetadata.getUuid() ).append( ".json" );
+        return sb.toString();
     }
 
     private void createAndAddCloseButton( VerticalPanel dialogBoxContent ) {

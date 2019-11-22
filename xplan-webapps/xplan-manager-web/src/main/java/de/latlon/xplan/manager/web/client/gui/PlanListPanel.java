@@ -63,7 +63,7 @@ import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.XPlanEnvelope;
+import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 

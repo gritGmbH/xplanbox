@@ -69,19 +69,22 @@ public class ValidatorWmsManager {
     /**
      * @param featureCollection
      *                         feature collection to append to the {@link MemoryFeatureStoreConfig}, never <code>null</code>
-     * @throws ValidatorWmsException
+     * @throws MapPreviewCreationException
      *                         if the configuration could not be writtem
+     * @return
      */
-    public void insert( XPlanFeatureCollection featureCollection )
-                            throws ValidatorWmsException {
+    public int insert( XPlanFeatureCollection featureCollection )
+                            throws MapPreviewCreationException {
         try {
+            int managerId = PLANID++;
             AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema( XPLAN_SYN, null );
             FeatureCollection fc = synthesizer.synthesize( featureCollection );
-            featureCollectionManipulator.addPlanIdToFeatures( fc, synSchema, PLANID++ );
+            featureCollectionManipulator.addPlanIdToFeatures( fc, synSchema, managerId );
             writeSynFeatureCollectionAsGml( fc, synSchema );
+            return managerId;
         } catch ( Exception e ) {
             LOG.warn( "Could not add featureCollection", e );
-            throw new ValidatorWmsException( e );
+            throw new MapPreviewCreationException( e );
         }
     }
 

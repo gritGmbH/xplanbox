@@ -107,6 +107,10 @@ public interface ValidatorWebCommonsMessages extends Messages {
 
     String validatingStatus();
 
+    String mapPreviewOpenButton();
+
+    String mapPreviewNotAvailableButton();
+
     String mapPreviewDialogTitle( String planName );
 
 }

@@ -19,7 +19,7 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.web.server.service.ReportProvider;
 import de.latlon.xplan.validator.web.server.service.ValidatorReportProvider;
 import de.latlon.xplan.validator.wms.MapPreviewManager;
-import de.latlon.xplan.validator.wms.ValidatorWmsException;
+import de.latlon.xplan.validator.wms.MapPreviewCreationException;
 import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.slf4j.Logger;
@@ -75,10 +75,8 @@ public class XPlanValidatorWebSpringConfig {
     @Bean
     public XPlanValidator xplanValidator( GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
                                           SemanticValidator semanticValidator,
-                                          ReportArchiveGenerator reportArchiveGenerator,
-                                          MapPreviewManager mapPreviewManager ) {
-        return new XPlanValidator( geometricValidator, syntacticValidator, semanticValidator, reportArchiveGenerator,
-                                   mapPreviewManager );
+                                          ReportArchiveGenerator reportArchiveGenerator) {
+        return new XPlanValidator( geometricValidator, syntacticValidator, semanticValidator, reportArchiveGenerator );
     }
 
     @Bean
@@ -104,11 +102,11 @@ public class XPlanValidatorWebSpringConfig {
     }
 
     @Bean
-    public MapPreviewManager mapPreviewManager() {
+    public MapPreviewManager mapPreviewManager( GeometricValidator geometricValidator ) {
         try {
             ValidatorWmsManager validatorWmsManager = createValidatorWmsManager();
-            return new MapPreviewManager( validatorWmsManager );
-        } catch ( IOException | IllegalArgumentException | ValidatorWmsException e ) {
+            return new MapPreviewManager( validatorWmsManager, geometricValidator );
+        } catch ( IOException | IllegalArgumentException | MapPreviewCreationException e ) {
             LOG.error( "Could not initialise ValidatorWmsManager. WMS resources cannot be created" );
         }
         return null;

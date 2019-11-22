@@ -4,7 +4,6 @@ import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.createPlanwer
 import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.createUrl;
 import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.determineWmsUrl;
 
-import de.latlon.xplan.manager.web.client.utils.WmsUrlUtils;
 import org.gwtopenmaps.openlayers.client.Bounds;
 import org.gwtopenmaps.openlayers.client.LonLat;
 import org.gwtopenmaps.openlayers.client.Map;
@@ -35,7 +34,7 @@ import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterLayerConfiguration;
 import de.latlon.xplan.manager.web.shared.VectorLayerConfiguration;
-import de.latlon.xplan.manager.web.shared.XPlanEnvelope;
+import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 
 /**
  * PopUp window containing the preview of the plan as openlayers map.

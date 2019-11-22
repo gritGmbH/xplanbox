@@ -73,8 +73,7 @@ public class XPlanMgrValidationServiceImpl extends RemoteServiceServlet implemen
             File archive = archiveManager.readArchiveFromFilesystem( planToVerify );
 
             ValidatorReport report = xPlanValidator.validateNotWriteReport( validationSettings, archive,
-                                                                            planToVerify.getName(),
-                                                                            planToVerify.getId() );
+                                                                            planToVerify.getName() );
 
             writeArtifacts( planToVerify, report );
 

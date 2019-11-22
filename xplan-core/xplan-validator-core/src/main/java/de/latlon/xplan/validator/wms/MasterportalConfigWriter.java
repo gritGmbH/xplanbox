@@ -1,5 +1,8 @@
 package de.latlon.xplan.validator.wms;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URISyntaxException;
@@ -18,6 +21,8 @@ import static org.apache.commons.io.IOUtils.closeQuietly;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class MasterportalConfigWriter {
+
+    private static final Logger LOG = LoggerFactory.getLogger( MasterportalConfigWriter.class );
 
     private static final String CONFIG_TEMPLATE = "config.template.json";
 
@@ -40,7 +45,7 @@ public class MasterportalConfigWriter {
     private final Map<String, String> idToServiceConfig = new HashMap<>();
 
     public MasterportalConfigWriter()
-                            throws ValidatorWmsException {
+                            throws MapPreviewCreationException {
         Path masterportalDirectory = getMasterportalDirectory();
         this.configDirectory = getConfigDirectory( masterportalDirectory );
         Path templateDirectory = getTemplateDirectory( masterportalDirectory );
@@ -49,99 +54,99 @@ public class MasterportalConfigWriter {
         this.servicesTemplate = readTemplate( templateDirectory, SERVICES_TEMPLATE );
     }
 
-    public void createMasterportalConfig( String id )
-                            throws ValidatorWmsException {
+    public void createMasterportalConfig( String id, int managerId )
+                            throws MapPreviewCreationException {
         createConfigJson( id );
-        addToServicesJson( id );
+        addToServicesJson( id, managerId );
 
     }
 
     private void createConfigJson( String id )
-                            throws ValidatorWmsException {
+                            throws MapPreviewCreationException {
         Path configFile = configDirectory.resolve( String.format( CONFIG_FILENAME_TEMPLATE, id ) );
+        LOG.info( "Write config file {}", configFile );
         OutputStream out = null;
         try {
             Files.createFile( configFile );
             out = Files.newOutputStream( configFile );
             Files.write( configFile, configTemplate.replace( "${PLANID}", id ).getBytes() );
         } catch ( Exception e ) {
-            throw new ValidatorWmsException( "Could not write config file " + configFile, e );
+            throw new MapPreviewCreationException( "Could not write config file " + configFile, e );
         } finally {
             closeQuietly( out );
         }
     }
 
-    private void addToServicesJson( String id )
-                            throws ValidatorWmsException {
-        Path servicesJson = configDirectory.resolve( SERVICES_JSON );
-        if ( !Files.exists( servicesJson ) )
-            throw new ValidatorWmsException( "File " + servicesJson + " does not exist" );
+    private void addToServicesJson( String id, int managerId )
+                            throws MapPreviewCreationException {
+        Path servicesConfig = configDirectory.resolve( SERVICES_JSON );
+        if ( !Files.exists( servicesConfig ) )
+            throw new MapPreviewCreationException( "File " + servicesConfig + " does not exist" );
 
         try {
-            String serviceConfig = createServiceConfigFromTemplate( id );
-            idToServiceConfig.put( id, serviceConfig );
-
-            String servicesConfig = createServicesConfigFromTemplate();
+            String serviceConfigSection = createServiceConfigFromTemplate( id, managerId );
+            idToServiceConfig.put( id, serviceConfigSection );
+            LOG.info( "Append service config to {}", servicesConfig );
+            String servicesConfigSection = createServicesConfigFromTemplate();
             /// TODO: must be thread safe!
-            Files.write( servicesJson, servicesConfig.getBytes() );
+            Files.write( servicesConfig, servicesConfigSection.getBytes() );
         } catch ( IOException e ) {
-            throw new ValidatorWmsException( "Could not add service config", e );
+            throw new MapPreviewCreationException( "Could not add service config", e );
         }
     }
 
-    private String createServiceConfigFromTemplate( String id ) {
+    private String createServiceConfigFromTemplate( String id, int managerId ) {
         return serviceTemplate.replace( "${PLANID}", id ).replace( "${WMSURL}",
-                                                                   "https://xplanbox2019.lat-lon.de/xplan-wms/services/wms" ).replace(
-                                "${MANAGERID}", "2" ).replace( "${LAYERS}", "BP_Planvektor" );
+                                                                   "http://localhost:8081/xplan-validator-wms/services/wms" ).replace(
+                                "${MANAGERID}", Integer.toString( managerId ) ).replace( "${LAYERS}", "BP_Planvektor" );
     }
 
     private String createServicesConfigFromTemplate() {
         String allServiceConfigs = idToServiceConfig.values().stream().collect( Collectors.joining( "," ) );
-        System.out.println( allServiceConfigs );
         return servicesTemplate.replace( "${SERVICESCONFIG}", allServiceConfigs );
     }
 
     private Path getMasterportalDirectory()
-                            throws ValidatorWmsException {
+                            throws MapPreviewCreationException {
         try {
             URL masterportal = MasterportalConfigWriter.class.getResource( "../../../../../../../masterportal" );
             if ( masterportal == null )
-                throw new ValidatorWmsException( "masterportal directory does not exist" );
+                throw new MapPreviewCreationException( "masterportal directory does not exist" );
             Path path = configDirectory = Paths.get( masterportal.toURI() );
             if ( !Files.exists( path ) )
-                throw new ValidatorWmsException( "masterportal directory does not exist" );
+                throw new MapPreviewCreationException( "masterportal directory does not exist" );
             return path;
         } catch ( URISyntaxException e ) {
-            throw new ValidatorWmsException( "Config directory in masterportal is not available" );
+            throw new MapPreviewCreationException( "Config directory in masterportal is not available" );
         }
     }
 
     private Path getConfigDirectory( Path masterportalDirectory )
-                            throws ValidatorWmsException {
+                            throws MapPreviewCreationException {
         Path path = masterportalDirectory.resolve( "config" );
         if ( !Files.exists( path ) )
-            throw new ValidatorWmsException( "Config directory in masterportal does not exist" );
+            throw new MapPreviewCreationException( "Config directory in masterportal does not exist" );
         return path;
     }
 
     private Path getTemplateDirectory( Path masterportalDirectory )
-                            throws ValidatorWmsException {
+                            throws MapPreviewCreationException {
         Path path = masterportalDirectory.resolve( "template" );
         if ( !Files.exists( path ) )
-            throw new ValidatorWmsException( "Config directory in masterportal does not exist" );
+            throw new MapPreviewCreationException( "Config directory in masterportal does not exist" );
         return path;
     }
 
     private String readTemplate( Path templateirectory, String fileName )
-                            throws ValidatorWmsException {
+                            throws MapPreviewCreationException {
         Path template = templateirectory.resolve( fileName );
         if ( template == null )
-            throw new ValidatorWmsException( "Template " + fileName + " does not exist." );
+            throw new MapPreviewCreationException( "Template " + fileName + " does not exist." );
         try {
             byte[] bytes = readAllBytes( template );
             return new String( bytes );
         } catch ( IOException e ) {
-            throw new ValidatorWmsException( "Template " + fileName + " could not be read", e );
+            throw new MapPreviewCreationException( "Template " + fileName + " could not be read", e );
         }
     }
 
