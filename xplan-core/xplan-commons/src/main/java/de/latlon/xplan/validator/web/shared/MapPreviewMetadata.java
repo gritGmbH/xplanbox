@@ -7,9 +7,6 @@ import java.io.Serializable;
  */
 public class MapPreviewMetadata implements Serializable {
 
-    /// TODO!
-    private final String baseURL = "http://localhost:8081/xplan-validator/masterportal/";
-
     private String uuid;
 
     private XPlanEnvelope bbox;
@@ -35,10 +32,6 @@ public class MapPreviewMetadata implements Serializable {
 
     public XPlanEnvelope getBbox() {
         return bbox;
-    }
-
-    public String getBaseURL() {
-        return baseURL;
     }
 
     public void setUuid( String uuid ) {

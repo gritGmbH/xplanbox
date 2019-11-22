@@ -8,9 +8,9 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Frame;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import de.latlon.xplan.validator.web.client.ValidatorWebCommonsMessages;
 import de.latlon.xplan.validator.web.shared.MapPreviewMetadata;
+import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -56,7 +56,7 @@ public class MasterportalMapPreviewDialog extends DialogBox {
 
     private String createUrl() {
         StringBuilder sb = new StringBuilder();
-        sb.append( mapPreviewMetadata.getBaseURL() ).append( "?" );
+        sb.append( "./masterportal?" );
         sb.append( "style=simple&" );
         sb.append( "zoomToExtent=" );
         XPlanEnvelope bbox = mapPreviewMetadata.getBbox();
