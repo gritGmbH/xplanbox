@@ -49,6 +49,15 @@
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
+    <!--xplan-validator-config-->
+    <dependencySet>
+      <outputDirectory>/xplan-validator-config</outputDirectory>
+      <includes>
+        <include>${project.groupId}:xplan-validator-config</include>
+      </includes>
+      <unpack>true</unpack>
+      <useProjectArtifact>false</useProjectArtifact>
+    </dependencySet>
     <!--xplan-inspireplu-workspaces-->
     <dependencySet>
       <outputDirectory>/xplan-inspireplu-workspaces/xplan-inspireplu-workspace</outputDirectory>

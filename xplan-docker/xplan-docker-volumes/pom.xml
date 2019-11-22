@@ -78,6 +78,13 @@
       <type>zip</type>
       <classifier>default</classifier>
     </dependency>
+    <!--xplan-validator-config-->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-validator-config</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
     <!--xplan-inspireplu-workspaces-->
     <dependency>
       <groupId>${project.groupId}</groupId>
