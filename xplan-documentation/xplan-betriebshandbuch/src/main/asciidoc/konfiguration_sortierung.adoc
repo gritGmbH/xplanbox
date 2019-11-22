@@ -3,8 +3,7 @@
 
 Für die Sortierung von Plandaten im XPlanWMS nach einem Datumsfeld stehen
 alle Datumsfelder zur Verfügung. Welches Feld für die Sortierung
-verwendet wird, kann in der Datei _managerConfiguration.properties_ im
-Verzeichnis _~/.deegree/manager-configuration/_ konfiguriert werden.
+verwendet wird, kann in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ konfiguriert werden.
 
 ----
 wmsSortDate_BP_Plan_XPLAN_2=BP_Plan,inkrafttretensDatum

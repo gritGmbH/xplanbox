@@ -1,19 +1,5 @@
 package de.latlon.xplan.manager.web.server.configuration;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-
-import javax.servlet.ServletException;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import de.latlon.xplan.manager.web.server.service.ManagerWebConfigurationServiceImpl;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
@@ -21,12 +7,17 @@ import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
 import de.latlon.xplan.manager.web.shared.RasterLayerConfiguration;
 import de.latlon.xplan.manager.web.shared.VectorLayerConfiguration;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
- * @author last edited by: $Author: erben $
- * @version $Revision: $, $Date: $
  */
 public class ManagerWebConfigurationServiceImplTest {
 
@@ -61,17 +52,17 @@ public class ManagerWebConfigurationServiceImplTest {
     }
 
     protected ManagerWebConfigurationServiceImpl retrieveConfigurationService( ManagerWebConfiguration config )
-                    throws ServletException, URISyntaxException, IOException, ConfigurationException {
+                            throws ConfigurationException {
         ManagerWebConfigurationRetriever configurationRetriever = mock( ManagerWebConfigurationRetriever.class );
-        when( configurationRetriever.setupManagerWebConfiguration( anyString() ) ).thenReturn( config );
+        when( configurationRetriever.setupManagerWebConfiguration() ).thenReturn( config );
 
         return new ManagerWebConfigurationServiceImpl( configurationRetriever );
     }
 
     protected ManagerWebConfigurationServiceImpl retrieveConfigurationService( MapPreviewConfiguration config )
-                    throws ServletException, URISyntaxException, IOException, ConfigurationException {
+                            throws ConfigurationException {
         ManagerWebConfigurationRetriever configurationRetriever = mock( ManagerWebConfigurationRetriever.class );
-        when( configurationRetriever.setupMapPreviewConfiguration( anyString() ) ).thenReturn( config );
+        when( configurationRetriever.setupMapPreviewConfiguration() ).thenReturn( config );
 
         return new ManagerWebConfigurationServiceImpl( configurationRetriever );
     }

@@ -127,10 +127,17 @@
                 <xsl:with-param name="string" select="normalize-space(details)"/>
               </xsl:call-template>
             </div>
+            <xsl:apply-templates select="RulesMetadata"/>
             <xsl:apply-templates select="Messages | Warnings | Errors"/>
             <xsl:apply-templates select="Rules"/>
             <hr/>
         </p>
+    </xsl:template>
+
+    <xsl:template match="RulesMetadata">
+      <div>Informationen zu den Regeln:</div>
+      <p>Version: <xsl:value-of select="version"/></p>
+      <p>Quelle: <xsl:value-of select="source"/></p>
     </xsl:template>
 
     <xsl:template match="Rules">

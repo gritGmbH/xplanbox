@@ -44,7 +44,7 @@
   <dependencySets>
     <dependencySet>
       <includes>
-        <include>de.latlon.product.xplanbox:xplan-validator-rules:zip</include>
+        <include>de.geowerkstatt-hamburg:xplanung:zip</include>
       </includes>
       <useProjectArtifact>true</useProjectArtifact>
       <unpack>true</unpack>

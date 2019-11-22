@@ -1,6 +1,8 @@
 package de.latlon.xplan.validator.semantic.configuration.xquery;
 
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadataParser;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfigurationRetriever;
@@ -42,6 +44,8 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 
     private final Path rulesPath;
 
+    private final RulesMetadataParser rulesMetadataParser = new RulesMetadataParser();
+
     public XQuerySemanticValidatorConfigurationRetriever( Path rulesPath ) {
         this.rulesPath = rulesPath;
     }
@@ -52,6 +56,8 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
         SemanticValidatorConfiguration config = new SemanticValidatorConfiguration();
 
         if ( isDirectory( rulesPath ) ) {
+            RulesMetadata rulesMetadata = rulesMetadataParser.parserMetadata( rulesPath );
+            config.setRulesMetadata( rulesMetadata );
             try (DirectoryStream<Path> directoryStream = retrieveDirectoriesAndRules( rulesPath )) {
                 for ( Path path : directoryStream ) {
                     if ( isDirectory( path ) ) {

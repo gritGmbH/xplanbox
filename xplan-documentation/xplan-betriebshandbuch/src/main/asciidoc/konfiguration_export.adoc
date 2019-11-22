@@ -6,8 +6,7 @@ kann die Erzeugung einer Datei xplan-reexported.gml erfolgen. Es handelt
 sich dabei um die wiederhergestellte Datei xplan.gml aus dem XPlanWFS.
 In dieser können zum Beispiel Geometriefehler korrigiert sein. Ob der
 Export dieser Datei erfolgen soll, kann in der Datei
-_managerConfiguration.properties_ im Verzeichnis
-_~/.deegree/manager-configuration/_ konfiguriert werden:
+_<XPLANBOX_CONFIG>/managerConfiguration.properties_ konfiguriert werden:
 
 ----
 activateExportOfReexported=[true|false]

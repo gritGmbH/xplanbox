@@ -1,7 +1,7 @@
 [[planliste]]
 === Planliste
 
-Die angezeigten Spalten der Planliste auf der Hauptseite können in der Datei _managerWebConfiguration.properties_ im Verzeichnis _~/.deegree/manager-configuration/_ konfiguriert werden.
+Die angezeigten Spalten der Planliste auf der Hauptseite können in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ konfiguriert werden.
 
 Im folgenden Beispiel werden die Spalten 'Nummer' und 'ADE' aus der Planliste entfernt:
 

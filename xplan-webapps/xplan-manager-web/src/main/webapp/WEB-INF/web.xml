@@ -25,10 +25,6 @@
   <servlet>
     <servlet-name>configurationService</servlet-name>
     <servlet-class>de.latlon.xplan.manager.web.server.service.ManagerWebConfigurationServiceImpl</servlet-class>
-    <init-param>
-      <param-name>configurationFilePathVariable</param-name>
-      <param-value>MANAGER_WEB</param-value>
-    </init-param>
   </servlet>
   <servlet>
     <servlet-name>xplanValidationService</servlet-name>

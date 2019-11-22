@@ -1,11 +1,5 @@
 package de.latlon.xplan.manager.web.server.configuration;
 
-import static java.lang.Double.parseDouble;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.Properties;
-
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
@@ -14,38 +8,15 @@ import de.latlon.xplan.manager.web.shared.RasterLayerConfiguration;
 import de.latlon.xplan.manager.web.shared.VectorLayerConfiguration;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 
+import java.util.Properties;
+
+import static java.lang.Double.parseDouble;
+
 /**
- * Reads a configuration file of the following format: <br/>
- * <br/>
- * activateInternalIdDialog={isInternalIdDialogActivated}<br/>
- * defaultCrs={EPSG Code}<br/>
- * chooseCrs={comma separated list of EPSG codes}<br/>
- * categoryFilterValues={categoryFilterValues}<br/>
- * <br/>
- * wmsUrl={wms url}<br/>
- * basemapUrl={basemap url}<br/>
- * basemapName={basemap name}<br/>
- * basemapLayer={basemap layer name}<br/>
- * mapCrs={crs}<br/>
- * mapExtent={extent}<br/>
- * <br/>
- * vectorWmsName={vector wms name}<br/>
- * bpVectorLayer={comma separated list of bp vector layers}<br/>
- * fpVectorLayer={comma separated list of fp vector layers}<br/>
- * lpVectorLayer={comma separated list of lp vector layers}<br/>
- * rpVectorLayer={comma separated list of rp vector layers}<br/>
- * <br/>
- * rasterWmsName={raster wms name}<br/>
- * bpRasterLayer={comma separated list of bp raster layers}<br/>
- * fpRasterLayer={comma separated list of fp raster layers}<br/>
- * lpRasterLayer={comma separated list of lp raster layers}<br/>
- * rpRasterLayer={comma separated list of rp raster layers}
+ * Reads the managerWebConfiguration.properties configuration file.
  * 
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
- * @author last edited by: $Author: lyn $
- * 
- * @version $Revision: $, $Date: $
  */
 public class ManagerWebConfigurationRetriever {
 
@@ -54,16 +25,12 @@ public class ManagerWebConfigurationRetriever {
     /**
      * Sets up an instance of <link>ManagerWebConfiguration</link>
      * 
-     * @param configurationFilePathVariable
-     *            the environment variable to read the config file path
-     * @return the web configuration
-     * @throws URISyntaxException
-     * @throws IOException
+     * @return the web configuration, never <code>null</code>
+     * @throws ConfigurationException if the configuration could not be parsed
      */
-    public ManagerWebConfiguration setupManagerWebConfiguration( String configurationFilePathVariable )
-                    throws URISyntaxException, IOException, ConfigurationException {
-        SystemPropertyPropertiesLoader configurationRetriever = new SystemPropertyPropertiesLoader(
-                        configurationFilePathVariable, this.getClass() );
+    public ManagerWebConfiguration setupManagerWebConfiguration()
+                    throws ConfigurationException {
+        SystemPropertyPropertiesLoader configurationRetriever = new SystemPropertyPropertiesLoader( this.getClass() );
         Properties props = configurationRetriever.loadProperties( MANAGER_WEB_CONFIGURATION_PROPERTIES );
         checkIfPropsNotNull( props );
         return createManagerWebConfigurationFromProperties( props );
@@ -72,16 +39,12 @@ public class ManagerWebConfigurationRetriever {
     /**
      * Sets up an instance of <link>MapPreviewConfiguration</link>
      * 
-     * @param configurationFilePathVariable
-     *            the environment variable to read the config file path
-     * @return the map preview configuration
-     * @throws URISyntaxException
-     * @throws IOException
+     * @return the web configuration, never <code>null</code>
+     * @throws ConfigurationException if the configuration could not be parsed
      */
-    public MapPreviewConfiguration setupMapPreviewConfiguration( String configurationFilePathVariable )
-                    throws URISyntaxException, IOException, ConfigurationException {
-        SystemPropertyPropertiesLoader configurationRetriever = new SystemPropertyPropertiesLoader(
-                        configurationFilePathVariable, this.getClass() );
+    public MapPreviewConfiguration setupMapPreviewConfiguration()
+                    throws ConfigurationException {
+        SystemPropertyPropertiesLoader configurationRetriever = new SystemPropertyPropertiesLoader( this.getClass() );
         Properties props = configurationRetriever.loadProperties( MANAGER_WEB_CONFIGURATION_PROPERTIES );
         checkIfPropsNotNull( props );
         return createMapPreviewConfigurationFromProperties( props );

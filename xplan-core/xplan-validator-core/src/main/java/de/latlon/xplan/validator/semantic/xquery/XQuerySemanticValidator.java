@@ -77,6 +77,7 @@ public class XQuerySemanticValidator implements SemanticValidator {
         checkParameters( archive, semanticValidationOptions );
         ValidatorDetail detail = createDetail( archive );
         SemanticValidatorResult validatorResult = new SemanticValidatorResult( detail );
+        validatorResult.setRulesMetadata( semanticValidatorConfiguration.getRulesMetadata() );
         boolean isArchiveValid = true;
         List<SemanticValidatorRule> rulesToApply = retrieveRulesToApply( archive, semanticValidationOptions );
         LOG.info( "Number of rules to apply: {}", rulesToApply.size() );

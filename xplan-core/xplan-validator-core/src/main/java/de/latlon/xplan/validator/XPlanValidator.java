@@ -18,6 +18,7 @@ import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
@@ -34,6 +35,7 @@ import org.slf4j.LoggerFactory;
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -92,7 +94,7 @@ public class XPlanValidator {
         ValidatorReport report = validate( validationSettings, archive, planName );
         writeReport( report );
         LOG.info( "Archiv mit Validierungsergebnissen wird erstellt." );
-        File validationReportDirectory = createZipArchive( validationSettings, archive, report );
+        Path validationReportDirectory = createZipArchive( validationSettings, report );
         LOG.info( "Archiv mit Validierungsergebnissen wurde unter {} abgelegt.", validationReportDirectory );
         return report;
     }
@@ -334,6 +336,12 @@ public class XPlanValidator {
     }
 
     private void log( SemanticValidatorResult validatorResult ) {
+        RulesMetadata rulesMetadata = validatorResult.getRulesMetadata();
+        if ( rulesMetadata != null ) {
+            LOG.info( "Informationen zur semantischen Validierung:" );
+            LOG.info( "  - Version: {}", rulesMetadata.getVersion() );
+            LOG.info( "  - Quelle: {}", rulesMetadata.getSource() );
+        }
         List<RuleResult> ruleResults = validatorResult.getRules();
         LOG.info( "Ergebnisse der semantischen Validierung: {}", ruleResults.size() );
         for ( RuleResult ruleResult : ruleResults ) {
@@ -367,10 +375,10 @@ public class XPlanValidator {
         return semanticValidationOptions;
     }
 
-    private File createZipArchive( ValidationSettings validationSettings, XPlanArchive archive, ValidatorReport report )
-                            throws ReportGenerationException {
+    private Path createZipArchive( ValidationSettings validationSettings, ValidatorReport report )
+                    throws ReportGenerationException {
         String validationName = validationSettings.getValidationName();
-        return reportArchiveGenerator.generateZipArchive( archive, report, validationName );
+        return reportArchiveGenerator.generateZipArchive( report, validationName );
     }
 
 }
