@@ -1,0 +1,105 @@
+{
+	"Portalconfig": {
+		"portalTitle": {
+			"title": "Basic - Portal",
+			"logo": "../ressources/img/mp_logo.png",
+			"link": "https://geoinfo.hamburg.de",
+			"tooTtip": "Landesbetrieb Geoinformation und Vermessung"
+		},
+		"treeType": "light",
+		"searchBar": {
+			"osm": {
+				"minChars": 3,
+				"serviceId": "10",
+				"limit": 60,
+				"states": "Hamburg",
+				"classes": "place,highway,building,shop,historic,leisure,city,county"
+			},
+      "visibleVector": {},
+      "tree": {},
+			"zoomLevel": 9,
+			"placeholder": "Suche nach: - Adresse - Aktiven WFS"
+		},
+		"mapView": {
+			"backgroundImage": "../ressources/img/backgroundCanvas.jpeg",
+			"startCenter": [561210, 5932600],
+			"extent": [510000.0, 5850000.0, 625000.4, 6000000.0],
+			"zoomLevel": 1
+		},
+		"menu": {
+			"tree": {
+				"name": "Themen"
+			},
+			"tools": {
+				"name": "Werkzeuge",
+				"children": {
+					"gfi": {
+						"name": "Informationen abfragen",
+						"isActive": true
+					},
+					"searchByCoord": {
+						"name": "Koordinatensuche"
+					},
+					"coord": {
+						"name": "Koordinaten abfragen"
+					},
+					"measure": {
+						"name": "Strecke / Fläche messen"
+					},
+					"draw": {
+						"name": "Zeichnen / Schreiben",
+						"glyphicon": "glyphicon-pencil"
+					},
+					"kmlimport": {
+						"name": "KML Import"
+					},
+					"saveSelection": {
+						"name": "Auswahl speichern"
+					}
+				}
+			},
+			"legend": {
+				"name": "Legende"
+			},
+			"info": {
+				"name": "Informationen",
+				"children": {
+					"staticlinks": [
+						{
+							"name": "Masterportal",
+							"url": "https://masterportal.org"
+						}
+					]
+				}
+			}
+		},
+		"controls": {
+			"zoom": true,
+			"orientation": {
+				"zoomMode": "once"
+			},
+			"attributions": true,
+			"mousePosition": true
+		}
+	},
+	"Themenconfig": {
+		"Hintergrundkarten": {
+			"Layer": [
+				{
+					"id": "453",
+					"name": "Stadtplan",
+					"visibility": true
+				}
+			]
+		},
+		"Fachdaten": {
+			"Layer": [
+				{
+					"id": "${PLANID}",
+					"name": "XPlan",
+					"visibility": true
+				}
+			]
+		}
+	}
+}

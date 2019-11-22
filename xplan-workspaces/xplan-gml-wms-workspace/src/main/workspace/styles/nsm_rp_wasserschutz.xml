@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+  <sld:NamedLayer>
+    <sld:Name>NSM_RP_Wasserschutz</sld:Name>
+    <sld:UserStyle>
+      <sld:Name>vollflaechig</sld:Name>
+      <sld:FeatureTypeStyle>
+        <sld:FeatureTypeName>xplan:RP_Wasserschutz</sld:FeatureTypeName>
+
+
+        <!--Trinkwassergewinnung-->
+
+        <sld:Rule>
+          <sld:Name>Trinkwasser_Rand</sld:Name>
+          <sld:Title>Trinkwasser_Rand</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:zweckbestimmungWS_NSMCode</ogc:PropertyName>
+                <ogc:Literal>2000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>40000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>2000000</sld:MaxScaleDenominator>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Fill>
+              <sld:CssParameter name="fill">#B4E6FF</sld:CssParameter>
+              <sld:CssParameter name="fill-opacity">0.8</sld:CssParameter>
+            </sld:Fill>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>Trinkwasser_Rand</sld:Name>
+          <sld:Title>Trinkwasser_Rand</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:zweckbestimmungWS_NSMCode</ogc:PropertyName>
+                <ogc:Literal>2000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Fill>
+              <sld:CssParameter name="fill">#B4E6FF</sld:CssParameter>
+              <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+            </sld:Fill>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Trinkwasser</sld:Name>
+          <sld:Title>VR_Trinkwasser</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:zweckbestimmungWS_NSMCode</ogc:PropertyName>
+                <ogc:Literal>2000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>450000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>2000000</sld:MaxScaleDenominator>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#0096FF</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">2</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Trinkwasser</sld:Name>
+          <sld:Title>VR_Trinkwasser</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:zweckbestimmungWS_NSMCode</ogc:PropertyName>
+                <ogc:Literal>2000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>150000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>450000</sld:MaxScaleDenominator>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#0096FF</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">5</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Trinkwasser</sld:Name>
+          <sld:Title>VR_Trinkwasser</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:zweckbestimmungWS_NSMCode</ogc:PropertyName>
+                <ogc:Literal>2000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>80000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>150000</sld:MaxScaleDenominator>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#0096FF</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">13</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Trinkwasser</sld:Name>
+          <sld:Title>VR_Trinkwasser</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:zweckbestimmungWS_NSMCode</ogc:PropertyName>
+                <ogc:Literal>2000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>40000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>80000</sld:MaxScaleDenominator>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#0096FF</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">28</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Trinkwasser</sld:Name>
+          <sld:Title>VR_Trinkwasser</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:zweckbestimmungWS_NSMCode</ogc:PropertyName>
+                <ogc:Literal>2000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#00A0FF</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">3</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_Trinkwasser</sld:Name>
+          <sld:Title>vb_Trinkwasser</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>2000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:zweckbestimmungWS_NSMCode</ogc:PropertyName>
+                <ogc:Literal>2000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:LineSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Stroke>
+              <sld:GraphicStroke>
+                <sld:Graphic>
+                  <sld:ExternalGraphic>
+                    <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                      xlink:href="../symbols/RROP/RROP_S_Trinkwasser_vb.svg" />
+                    <sld:Format>image/svg</sld:Format>
+                  </sld:ExternalGraphic>
+                  <sld:Size>3.5</sld:Size>
+                  <sld:Rotation>0</sld:Rotation>
+                </sld:Graphic>
+              </sld:GraphicStroke>
+            </sld:Stroke>
+          </sld:LineSymbolizer>
+        </sld:Rule>
+
+
+        <!--Heilquelle-->
+
+        <sld:Rule>
+          <sld:Name>VR_Heilquelle</sld:Name>
+          <sld:Title>Vorranggebiet Heilquelle</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+                <ogc:Literal>1000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>xplan:zweckbestimmungWS_NSMCode</ogc:PropertyName>
+                <ogc:Literal>3000</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Heilquelle.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>40</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+
+
+      </sld:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+</sld:StyledLayerDescriptor>

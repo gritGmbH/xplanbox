@@ -81,7 +81,7 @@ class UploadFinishedDialogBox extends DialogBox {
                             xPlanValidatorWeb.resetPanelToUpload();
                     }
 
-                }, fileName );
+                }, fileName, true );
                 xPlanValidatorWeb.setPanel( xPlanValidatorSettings );
             }
         };

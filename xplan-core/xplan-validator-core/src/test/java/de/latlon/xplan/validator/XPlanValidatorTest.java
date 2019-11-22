@@ -1,10 +1,8 @@
 package de.latlon.xplan.validator;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.validator.geometric.GemetricValidatorParsingResult;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
@@ -29,7 +27,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,7 +38,6 @@ import java.text.ParseException;
 import java.util.Collections;
 import java.util.List;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_SO;
 import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_XP;
 import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
@@ -61,11 +57,10 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
 
 /**
  * Tests for <link>XPlanValidator</link>
- * 
+ *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
@@ -304,15 +299,11 @@ public class XPlanValidatorTest {
         GeometricValidator geomVal = spy( new GeometricValidatorImpl() );
         GeometricValidatorResult result = new GeometricValidatorResult( emptyList(), emptyList(), emptyList(),
                         lookup( "epsg:4326" ), true );
-        doReturn( result ).when( geomVal ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
+        GemetricValidatorParsingResult gemetricValidatorParsingResult = mock( GemetricValidatorParsingResult.class );
+        doReturn( result ).when( gemetricValidatorParsingResult ).getValidatorResult();
+        doReturn( gemetricValidatorParsingResult ).when( geomVal ).validateGeometry( archive(), crs(), schema(),
+                                                                                     anyBoolean(), list() );
         return geomVal;
-    }
-
-    private XPlanSchemas mockSchemas() {
-        XPlanSchemas schemas = Mockito.mock( XPlanSchemas.class );
-        when( schemas.getAppSchema( any( XPlanVersion.class ),
-                                    any( XPlanAde.class ) ) ).thenReturn( mock( AppSchema.class ) );
-        return schemas;
     }
 
     private List emptyList() {

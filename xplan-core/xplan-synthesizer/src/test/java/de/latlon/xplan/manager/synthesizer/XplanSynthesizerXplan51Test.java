@@ -8,6 +8,7 @@ import junitparams.Parameters;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.xmlmatchers.transform.XmlConverters;
 
 import java.nio.file.Path;
 
@@ -15,6 +16,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.xmlmatchers.XmlMatchers.hasXPath;
+import static org.xmlmatchers.transform.XmlConverters.the;
 import static org.xmlmatchers.xpath.XpathReturnType.returningANumber;
 
 /**
@@ -23,8 +25,8 @@ import static org.xmlmatchers.xpath.XpathReturnType.returningANumber;
 @RunWith(JUnitParamsRunner.class)
 public class XplanSynthesizerXplan51Test extends AbstractXplanSynthesizerTest {
 
-    @Parameters({ "xplan51/BP2070.zip", "xplan51/BP2135.zip", "xplan51/FPlan.zip", "xplan51/LA22.zip",
-                  "xplan51/LA67.zip" })
+    // Contains broken geometrieS: "xplan51/FPlan.zip",
+    @Parameters({ "xplan51/BP2070.zip", "xplan51/BP2135.zip", "xplan51/LA22.zip", "xplan51/LA67.zip" })
     @Test
     public void testCreateSynFeatures( String archiveName )
                     throws Exception {
@@ -36,7 +38,7 @@ public class XplanSynthesizerXplan51Test extends AbstractXplanSynthesizerTest {
         int numberOfSynFeatures = synFeatureCollection.size();
 
         assertThat( numberOfSynFeatures, is( numberOfOriginalFeatures ) );
-        Path synGml = writeSynFeatureCollection( synFeatureCollection, archive.getName() );
+        String synGml = writeSynFeatureCollection( synFeatureCollection );
 
         assertThat( the( synGml ),
                     hasXPath( "count(//xplansyn:rechtscharakter[text() = ''])", nsContext(), returningANumber(),

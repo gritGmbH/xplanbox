@@ -78,7 +78,8 @@ public class ParameterizedGeometricValidatorImplTest {
         XPlanVersion version = archive.getVersion();
         XPlanAde ade = archive.getAde();
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, ade );
-        return new GeometricValidatorImpl().validateGeometry( archive, archive.getCrs(), schema, true, SKIP_OPTIONS );
+        return new GeometricValidatorImpl().validateGeometry( archive, archive.getCrs(), schema, true,
+                                                              SKIP_OPTIONS ).getValidatorResult();
     }
 
     private XPlanFeatureCollection readFeaturesAndAssertGeometryValidity( XPlanArchive archive )

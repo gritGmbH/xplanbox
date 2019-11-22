@@ -40,7 +40,7 @@ public interface GeometricValidator {
      * @throws ValidatorException
      *             - validation failed
      */
-    ValidatorResult validateGeometry( XPlanArchive archive, ICRS crs, AppSchema schema, boolean force,
+    GemetricValidatorParsingResult validateGeometry( XPlanArchive archive, ICRS crs, AppSchema schema, boolean force,
                                       List<ValidationOption> voOptions )
                     throws ValidatorException;
 

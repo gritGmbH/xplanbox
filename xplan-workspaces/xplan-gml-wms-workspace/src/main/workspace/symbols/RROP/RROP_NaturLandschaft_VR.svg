@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="400" height="400"
+ xmlns="http://www.w3.org/2000/svg">
+ <title>SVG</title>
+ <style type="text/css"><![CDATA[
+  text {font-size:60px; text-anchor:middle;}
+ ]]></style>
+
+
+<polygon points=" 66.5 0 133.5 0 133.5 400 66.5 400 " stroke="#009664" stroke-width="1px" fill="#009664" />
+
+
+<polygon points="266.5 0 333.5 0 333.5 400 266.5 400 " stroke="#009664" stroke-width="1px" fill="#009664" />
+
+
+
+
+
+
+
+
+
+
+
+ 
+</svg>

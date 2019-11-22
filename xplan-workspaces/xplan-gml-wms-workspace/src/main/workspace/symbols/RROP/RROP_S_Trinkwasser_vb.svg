@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="200" height="110"
+ xmlns="http://www.w3.org/2000/svg">
+ <title>Kreis</title>
+ 
+
+
+<circle cx="100" cy="55" r="50"      fill="#00A0FF" stroke="#00A0FF" />
+
+
+
+
+ 
+</svg>

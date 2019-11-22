@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+  <sld:NamedLayer>
+    <sld:Name>RP_NSM_Abfallentsorgung</sld:Name>
+    <sld:UserStyle>
+      <sld:Name>vollflaechig</sld:Name>
+      <sld:FeatureTypeStyle>
+        <sld:FeatureTypeName>xplan:RP_NSM_Abfallentsorgung</sld:FeatureTypeName>
+
+
+        <!--Abfallwirtschaft-->
+
+        <sld:Rule>
+          <sld:Name>VR_Abfall</sld:Name>
+          <sld:Title>Vorranggebiet Abfall</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+              <ogc:Literal>1000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Abfall_VR.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>43</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+          <TextSymbolizer>
+            <Label>
+              <ogc:PropertyName>k_bez</ogc:PropertyName>
+            </Label>
+            <Font>
+              <CssParameter name="font-family">Arial</CssParameter>
+              <CssParameter name="font-weight">normal</CssParameter>
+              <CssParameter name="font-size">12</CssParameter>
+            </Font>
+            <LabelPlacement>
+              <PointPlacement>
+                <AnchorPoint>
+                  <AnchorPointX>0.6</AnchorPointX>
+                  <AnchorPointY>0.8</AnchorPointY>
+                </AnchorPoint>
+              </PointPlacement>
+            </LabelPlacement>
+            <Fill>
+              <CssParameter name="fill">#000000</CssParameter>
+            </Fill>
+          </TextSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_Abfall</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Abfall</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+              <ogc:Literal>1000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Abfall_vb.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>43</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+          <TextSymbolizer>
+            <Label>
+              <ogc:PropertyName>k_bez</ogc:PropertyName>
+            </Label>
+            <Font>
+              <CssParameter name="font-family">Arial</CssParameter>
+              <CssParameter name="font-weight">normal</CssParameter>
+              <CssParameter name="font-size">12</CssParameter>
+            </Font>
+            <LabelPlacement>
+              <PointPlacement>
+                <AnchorPoint>
+                  <AnchorPointX>0.6</AnchorPointX>
+                  <AnchorPointY>0.8</AnchorPointY>
+                </AnchorPoint>
+              </PointPlacement>
+            </LabelPlacement>
+            <Fill>
+              <CssParameter name="fill">#000000</CssParameter>
+            </Fill>
+          </TextSymbolizer>
+        </sld:Rule>
+
+
+        <!--Sonderabfallbeseitigung-->
+
+        <sld:Rule>
+          <sld:Name>VR_Sonderabfall</sld:Name>
+          <sld:Title>Vorranggebiet Sonderabfall</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typAE_NSMCode</ogc:PropertyName>
+              <ogc:Literal>3000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Sonderabfall_VR.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>43</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+          <TextSymbolizer>
+            <Label>
+              <ogc:PropertyName>k_bez</ogc:PropertyName>
+            </Label>
+            <Font>
+              <CssParameter name="font-family">Arial</CssParameter>
+              <CssParameter name="font-weight">normal</CssParameter>
+              <CssParameter name="font-size">12</CssParameter>
+            </Font>
+            <LabelPlacement>
+              <PointPlacement>
+                <AnchorPoint>
+                  <AnchorPointX>0.6</AnchorPointX>
+                  <AnchorPointY>0.8</AnchorPointY>
+                </AnchorPoint>
+              </PointPlacement>
+            </LabelPlacement>
+            <Fill>
+              <CssParameter name="fill">#000000</CssParameter>
+            </Fill>
+          </TextSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_Sonderabfall</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Sonderabfall</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typAE_NSMCode</ogc:PropertyName>
+              <ogc:Literal>3000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Sonderabfall_vb.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>43</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+          <TextSymbolizer>
+            <Label>
+              <ogc:PropertyName>k_bez</ogc:PropertyName>
+            </Label>
+            <Font>
+              <CssParameter name="font-family">Arial</CssParameter>
+              <CssParameter name="font-weight">normal</CssParameter>
+              <CssParameter name="font-size">12</CssParameter>
+            </Font>
+            <LabelPlacement>
+              <PointPlacement>
+                <AnchorPoint>
+                  <AnchorPointX>0.6</AnchorPointX>
+                  <AnchorPointY>0.8</AnchorPointY>
+                </AnchorPoint>
+              </PointPlacement>
+            </LabelPlacement>
+            <Fill>
+              <CssParameter name="fill">#000000</CssParameter>
+            </Fill>
+          </TextSymbolizer>
+        </sld:Rule>
+
+
+        <!--EntsorgungRadioaktiverAbfaelle-->
+
+        <sld:Rule>
+          <sld:Name>VR_radioaktiverAbfall</sld:Name>
+          <sld:Title>Vorranggebiet radioaktiver Abfall</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typAE_NSMCode</ogc:PropertyName>
+              <ogc:Literal>4000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_radioaktivAbfall_VR.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>43</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR Entsorgung radioaktiver Abfaelle</sld:Name>
+          <sld:Title>VR Entsorgung radioaktiver Abf\E4lle</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typAE_NSMCode</ogc:PropertyName>
+              <ogc:Literal>4000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>450000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>2000000</sld:MaxScaleDenominator>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_Abfall.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>38</ogc:Literal>
+              </sld:Size>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR Entsorgung radioaktiver Abfaelle</sld:Name>
+          <sld:Title>VR Entsorgung radioaktiver Abf\E4lle</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typAE_NSMCode</ogc:PropertyName>
+              <ogc:Literal>4000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>150000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>450000</sld:MaxScaleDenominator>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_Abfall.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>76</ogc:Literal>
+              </sld:Size>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR Entsorgung radioaktiver Abfaelle</sld:Name>
+          <sld:Title>VR Entsorgung radioaktiver Abf\E4lle</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typAE_NSMCode</ogc:PropertyName>
+              <ogc:Literal>4000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>80000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>150000</sld:MaxScaleDenominator>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_Abfall.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>194</ogc:Literal>
+              </sld:Size>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR Entsorgung radioaktiver Abfaelle</sld:Name>
+          <sld:Title>VR Entsorgung radioaktiver Abf\E4lle</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:typAE_NSMCode</ogc:PropertyName>
+              <ogc:Literal>4000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>40000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>80000</sld:MaxScaleDenominator>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_Abfall.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>385</ogc:Literal>
+              </sld:Size>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+
+
+      </sld:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+</sld:StyledLayerDescriptor>
+

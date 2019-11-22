@@ -58,6 +58,13 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-gml-wms-workspace</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+      <classifier>default</classifier>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>xplan-manager-workspace</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
@@ -70,6 +77,13 @@
       <version>${project.version}</version>
       <type>zip</type>
       <classifier>default</classifier>
+    </dependency>
+    <!--xplan-validator-config-->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-validator-config</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
     </dependency>
     <!--xplan-inspireplu-workspaces-->
     <dependency>

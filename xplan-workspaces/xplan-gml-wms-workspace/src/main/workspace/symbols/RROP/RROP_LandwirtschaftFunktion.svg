@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="600" height="600"
+ xmlns="http://www.w3.org/2000/svg">
+ <title>SVG</title>
+ <style type="text/css"><![CDATA[
+  text {font-size:60px; text-anchor:middle;}
+ ]]></style>
+
+
+<polygon points="260 0 340 0 600 260 600 340" stroke="#F0BE00" stroke-width="2px" fill="#F0BE00" />
+
+<polygon points="0 260 0 340 260 600 340 600" stroke="#F0BE00" stroke-width="2px" fill="#F0BE00" />
+
+
+
+
+
+
+
+
+ 
+</svg>

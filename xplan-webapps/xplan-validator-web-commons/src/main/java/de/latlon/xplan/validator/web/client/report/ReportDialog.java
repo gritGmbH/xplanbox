@@ -9,6 +9,7 @@ import java.util.List;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Frame;
@@ -18,6 +19,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 import de.latlon.xplan.validator.web.client.ValidatorWebCommonsMessages;
 import de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListener.FinishStatus;
+import de.latlon.xplan.validator.web.shared.MapPreviewMetadata;
 import de.latlon.xplan.validator.web.shared.ValidationSummary;
 
 /**
@@ -36,27 +38,37 @@ public class ReportDialog extends DialogBox {
 
     private final List<ReportDownloadFinishedListener> finishedListeners = new ArrayList<ReportDownloadFinishedListener>();
 
-    private final ValidationSummary validationSummary;
+    private ValidationSummary validationSummary;
 
-    private final String closeButtonTitle;
+    private Button mapPreviewButton = new Button();
 
-    private final String nextButtonTitle;
+    private String closeButtonTitle;
+
+    private String nextButtonTitle;
+
+    private boolean showMapPreview;
+
+    public ReportDialog() {
+        super( false, false );
+        setText( messages.reportDialogTitle() );
+        mapPreviewButton.setText( messages.mapPreviewNotAvailableButton() );
+        mapPreviewButton.setEnabled( false );
+    }
 
     /**
-     * 
      * @param validationSummary
-     *            encapsulates some informations about the validation run presented in this dialog, never
+     *                         encapsulates some informations about the validation run presented in this dialog, never
      * @param closeButtonTitle
-     *            title of the close button
+     *                         title of the close button
      * @param nextButtonTitle
-     *            title of the next button
+     * @param showMapPreview
      */
-    public ReportDialog( ValidationSummary validationSummary, String closeButtonTitle, String nextButtonTitle ) {
-        super( false, false );
+    public void init( ValidationSummary validationSummary, String closeButtonTitle, String nextButtonTitle,
+                      boolean showMapPreview ) {
         this.validationSummary = validationSummary;
         this.closeButtonTitle = closeButtonTitle;
         this.nextButtonTitle = nextButtonTitle;
-        setText( messages.reportDialogTitle() );
+        this.showMapPreview = showMapPreview;
         initDialog();
     }
 
@@ -66,6 +78,13 @@ public class ReportDialog extends DialogBox {
      */
     public void addReportDownloadFinishedListener( ReportDownloadFinishedListener finishedListener ) {
         finishedListeners.add( finishedListener );
+    }
+
+    /**
+     * @param mapPreviewMetadata configuration of the map preview, never <code>null</code>
+     */
+    public void setMapPreviewMetadata( MapPreviewMetadata mapPreviewMetadata ) {
+        activateMapPreviewButton( mapPreviewMetadata );
     }
 
     private void initDialog() {
@@ -89,6 +108,8 @@ public class ReportDialog extends DialogBox {
     private Widget createRightPanel() {
         VerticalPanel rightPanel = new VerticalPanel();
         rightPanel.setSpacing( 10 );
+        if ( showMapPreview )
+            rightPanel.add( mapPreviewButton );
         rightPanel.add( createCloseButton() );
         rightPanel.add( createNextButton() );
         rightPanel.add( createDownloadBox() );
@@ -121,6 +142,23 @@ public class ReportDialog extends DialogBox {
         return button;
     }
 
+    private void activateMapPreviewButton( final MapPreviewMetadata mapPreviewMetadata ) {
+        mapPreviewButton.setText( messages.mapPreviewOpenButton() );
+        mapPreviewButton.setEnabled( true );
+        mapPreviewButton.addClickHandler( new ClickHandler() {
+            @Override
+            public void onClick( ClickEvent event ) {
+                try {
+                    MasterportalMapPreviewDialog mapPreviewDialog = new MasterportalMapPreviewDialog(
+                                            mapPreviewMetadata );
+                    mapPreviewDialog.show();
+                } catch ( Exception e ) {
+                    Window.alert( e.getMessage() );
+                }
+            }
+        } );
+    }
+
     private Widget createDownloadBox() {
         return new ReportDownloadPanel( validationSummary );
     }
@@ -130,5 +168,4 @@ public class ReportDialog extends DialogBox {
             finishedListener.downloadFinished( status );
         }
     }
-
 }

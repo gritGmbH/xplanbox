@@ -6,13 +6,9 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
 import de.latlon.xplan.manager.web.shared.RasterLayerConfiguration;
 import de.latlon.xplan.manager.web.shared.VectorLayerConfiguration;
-import de.latlon.xplan.manager.web.shared.XPlanEnvelope;
+import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import javax.servlet.ServletException;
-import java.io.IOException;
-import java.net.URISyntaxException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

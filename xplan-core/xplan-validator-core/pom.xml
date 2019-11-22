@@ -54,6 +54,10 @@
     </dependency>
     <dependency>
       <groupId>org.deegree</groupId>
+      <artifactId>deegree-featurestore-memory</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.deegree</groupId>
       <artifactId>deegree-tilestore-geotiff</artifactId>
     </dependency>
     <dependency>
@@ -67,6 +71,10 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-commons</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-synthesizer</artifactId>
     </dependency>
     <dependency>
       <groupId>net.sf.saxon</groupId>

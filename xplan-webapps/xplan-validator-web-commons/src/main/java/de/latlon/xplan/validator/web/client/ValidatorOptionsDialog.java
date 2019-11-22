@@ -16,8 +16,11 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import de.latlon.xplan.validator.web.client.report.ReportDialog;
 import de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListener;
+import de.latlon.xplan.validator.web.client.service.MapPreviewConfigService;
+import de.latlon.xplan.validator.web.client.service.MapPreviewConfigServiceAsync;
 import de.latlon.xplan.validator.web.client.service.ValidationService;
 import de.latlon.xplan.validator.web.client.service.ValidationServiceAsync;
+import de.latlon.xplan.validator.web.shared.MapPreviewMetadata;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationSummary;
@@ -42,6 +45,8 @@ public class ValidatorOptionsDialog extends FormPanel {
 
     private final ValidationServiceAsync validationService = GWT.create( ValidationService.class );
 
+    private final MapPreviewConfigServiceAsync mapPreviewConfigService = GWT.create( MapPreviewConfigService.class );
+
     private final TextBox validationName = new TextBox();
 
     private final RadioButton validationTypeSyn = new RadioButton( "VALTYPE", messages.selectionValidationTypeSyn() );
@@ -60,12 +65,15 @@ public class ValidatorOptionsDialog extends FormPanel {
 
     private String reportNextButtonTitle;
 
+    private boolean showMapPreview = false;
+
     /**
      * @param reportDownloadFinishedListener
      *                         informed when the validation report dialog is closed or next is clicked, never <code>null</code>
      */
-    public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener, String fileName ) {
+    public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener, String fileName, boolean showMapPreview ) {
         this( reportDownloadFinishedListener, messages.reportButtonCloseTitle(), messages.reportButtonNextTitle(), fileName );
+        this.showMapPreview = showMapPreview;
     }
 
     /**
@@ -128,14 +136,6 @@ public class ValidatorOptionsDialog extends FormPanel {
         } );
     }
 
-    private HorizontalPanel createRow() {
-        HorizontalPanel panel = new HorizontalPanel();
-        panel.setHorizontalAlignment( HasHorizontalAlignment.ALIGN_CENTER );
-        panel.setWidth( "400px" );
-        panel.setHeight( "40px" );
-        return panel;
-    }
-
     private ValidationType retrieveValidationType() {
         if ( validationTypeSyn.isChecked() )
             return SYNTACTIC;
@@ -169,13 +169,14 @@ public class ValidatorOptionsDialog extends FormPanel {
     private void startValidation() {
         showValidatingDialogBox();
         ValidationSettings validationSettings = createValidationSettings();
+        final ReportDialog reportDialog = new ReportDialog();
         validationService.validate( validationSettings, new AsyncCallback<ValidationSummary>() {
 
             @Override
             public void onSuccess( ValidationSummary validationSummary ) {
                 hideValidatingDialogBox();
-                ReportDialog reportDialog = new ReportDialog( validationSummary, reportCloseButtonTitle,
-                                                              reportNextButtonTitle );
+                reportDialog.init( validationSummary, reportCloseButtonTitle,
+                                                              reportNextButtonTitle, showMapPreview );
                 reportDialog.addReportDownloadFinishedListener( reportDownloadFinishedListener );
                 reportDialog.show();
             }
@@ -184,6 +185,31 @@ public class ValidatorOptionsDialog extends FormPanel {
             public void onFailure( Throwable caught ) {
                 hideValidatingDialogBox();
                 Window.alert( "Fehler bei der Validierung: " + caught.getMessage() );
+            }
+        } );
+        mapPreviewConfigService.isMapPreviewAvaialable( new AsyncCallback<Boolean>() {
+            @Override
+            public void onSuccess( Boolean isMapPreviewAvailable ) {
+                if ( isMapPreviewAvailable ) {
+                    mapPreviewConfigService.createMapPreviewConfig( new AsyncCallback<MapPreviewMetadata>() {
+
+                        @Override
+                        public void onSuccess( MapPreviewMetadata mapPreviewMetadata ) {
+                            reportDialog.setMapPreviewMetadata( mapPreviewMetadata );
+                        }
+
+                        @Override
+                        public void onFailure( Throwable caught ) {
+                            Window.alert( "Fehler beim erstellen der Konfiguration der Kartenvorschau: "
+                                          + caught.getMessage() );
+                        }
+                    } );
+                }
+            }
+
+            @Override
+            public void onFailure( Throwable throwable ) {
+                // nothing to do
             }
         } );
     }

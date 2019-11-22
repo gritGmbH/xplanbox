@@ -17,7 +17,7 @@ import de.latlon.xplan.manager.export.XPlanExportException;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.XPlanEnvelope;
+import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import org.apache.commons.io.IOUtils;

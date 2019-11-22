@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureTypeStyle xmlns="http://www.opengis.net/se"
+  xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+  <Name>transparent</Name>
+  <FeatureTypeName>xplan:FP_Bereich</FeatureTypeName>
+  <Rule>
+    <Name>fp_ber</Name>
+    <Description>
+      <Title>FP: Bereich</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:Function name="IsSurface">
+          <ogc:PropertyName>xplan:geltungsbereich</ogc:PropertyName>
+        </ogc:Function>
+        <ogc:Literal>true</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:geltungsbereich</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-width">3</SvgParameter>
+        <SvgParameter name="stroke-opacity">0</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+</FeatureTypeStyle>
