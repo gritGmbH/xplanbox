@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServlet;
  */
 public class GmlImportServlet extends HttpServlet {
 
-    private static final Logger LOG = LoggerFactory.getLogger( GmlImportJob.class );
+    private static final Logger LOG = LoggerFactory.getLogger( GmlImportServlet.class );
 
     private static final int INTERVAL_IN_SECONDS = 1;
 

@@ -24,11 +24,9 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.Set;
 
 import static org.deegree.gml.GMLVersion.GML_32;
-import static org.deegree.protocol.wfs.transaction.action.IDGenMode.USE_EXISTING;
+import static org.deegree.protocol.wfs.transaction.action.IDGenMode.GENERATE_NEW;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -38,8 +36,6 @@ public class GmlImportJob implements Job {
     private static final Logger LOG = LoggerFactory.getLogger( GmlImportJob.class );
 
     private static final String MEMORY_FEATURESTORE = "xplansyn";
-
-    private static Set<Path> insertedGml = new HashSet<>();
 
     @Override
     public void execute( JobExecutionContext jobExecutionContext )
@@ -52,8 +48,7 @@ public class GmlImportJob implements Job {
         if ( !Files.exists( path ) )
             return;
         try {
-            Files.find( path, Integer.MAX_VALUE,
-                        ( p, bfa ) -> Files.isRegularFile( p ) && !insertedGml.contains( p.getFileName() ) ).forEach(
+            Files.find( path, Integer.MAX_VALUE, ( p, bfa ) -> Files.isRegularFile( p ) ).forEach(
                                     p -> importGml( p, workspace ) );
         } catch ( IOException e ) {
             LOG.warn( "Could not find GML files to insert", e );
@@ -73,10 +68,11 @@ public class GmlImportJob implements Job {
             FeatureStore fs = workspace.getNewWorkspace().getResource( FeatureStoreProvider.class,
                                                                        MEMORY_FEATURESTORE );
             FeatureStoreTransaction ta = fs.acquireTransaction();
-            int fids = ta.performInsert( fc, USE_EXISTING ).size();
+            int fids = ta.performInsert( fc, GENERATE_NEW ).size();
             LOG.info( "Inserted featureCollection with " + fids + " features in memory." );
             ta.commit();
-            insertedGml.add( p.getFileName() );
+            LOG.info( "Remove inserted gml file {} from data directory", p );
+            Files.delete( p );
         } catch ( Exception e ) {
             LOG.warn( "Could not add featureCollection", e );
         } finally {
