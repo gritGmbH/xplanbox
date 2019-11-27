@@ -59,19 +59,19 @@ public class MapPreviewManager {
 
     }
 
-    public MapPreviewMetadata createConfigurations( String planId, File xPlan )
+    public MapPreviewMetadata createConfigurations( File xPlan )
                             throws MapPreviewCreationException {
         try {
             XPlanArchive archive = archiveCreator.createXPlanArchive( xPlan );
             XPlanFeatureCollection featureCollection = parseFeatures( archive );
             int managerId = this.validatorWmsManager.insert( featureCollection );
-            this.configWriter.createMasterportalConfig( planId, managerId, archive.getType() );
+            String configFileName = this.configWriter.createMasterportalConfig( managerId, archive.getType() );
 
             Envelope envelope = transformBboxTo25832( featureCollection.getBboxIn4326() );
             XPlanEnvelope xPlanEnvelope = new XPlanEnvelope( envelope.getMin().get0(), envelope.getMin().get1(),
                                                              envelope.getMax().get0(), envelope.getMax().get1(),
                                                              "EPSG:4326" );
-            return new MapPreviewMetadata( planId, featureCollection.getPlanName(), xPlanEnvelope );
+            return new MapPreviewMetadata( configFileName, featureCollection.getPlanName(), xPlanEnvelope );
         } catch ( IOException e ) {
             LOG.error( "An exception occurred during creation of the map preview configuration", e );
             throw new MapPreviewCreationException( e.getMessage() );

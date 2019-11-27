@@ -11,6 +11,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
@@ -61,16 +62,17 @@ public class MasterportalConfigWriter {
         this.servicesTemplate = readTemplate( templateDirectory, SERVICES_TEMPLATE );
     }
 
-    public void createMasterportalConfig( String id, int managerId, XPlanType type )
+    String createMasterportalConfig( int managerId, XPlanType type )
                             throws MapPreviewCreationException {
-        createConfigJson( id );
+        String id = UUID.randomUUID().toString();
+        Path configFile = configDirectory.resolve( String.format( CONFIG_FILENAME_TEMPLATE, id ) );
+        createConfigJson( id, configFile );
         addToServicesJson( id, managerId, type );
-
+        return configFile.getFileName().toString();
     }
 
-    private void createConfigJson( String id )
+    private void createConfigJson( String id, Path configFile )
                             throws MapPreviewCreationException {
-        Path configFile = configDirectory.resolve( String.format( CONFIG_FILENAME_TEMPLATE, id ) );
         LOG.info( "Write config file {}", configFile );
         OutputStream out = null;
         try {
@@ -90,7 +92,7 @@ public class MasterportalConfigWriter {
             String serviceConfigSection = createServiceConfigFromTemplate( id, managerId, type );
             idToServiceConfig.put( id, serviceConfigSection );
             String servicesConfigSection = createServicesConfigFromTemplate();
-            synchronized ( servicesConfigFile  ) {
+            synchronized ( servicesConfigFile ) {
                 LOG.info( "Append service config to {}", servicesConfigFile );
                 Files.write( servicesConfigFile, servicesConfigSection.getBytes() );
             }

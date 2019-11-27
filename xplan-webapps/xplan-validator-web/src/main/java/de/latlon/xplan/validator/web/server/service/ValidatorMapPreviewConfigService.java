@@ -65,10 +65,9 @@ public class ValidatorMapPreviewConfigService extends RemoteServiceServlet imple
             throw new MapPreviewException( "Map preview manager is not available" );
         try {
             XPlan planToVerify = planArchiveManager.readPlanFromSession( session );
-            String planUuid = planToVerify.getId();
             File archive = planArchiveManager.retrieveXPlanArchiveFromFileSystem( planToVerify );
 
-            return mapPreviewManager.createConfigurations( planUuid, archive );
+            return mapPreviewManager.createConfigurations( archive );
         } catch ( ValidatorException | IOException | MapPreviewCreationException e ) {
             LOG.error( "An exception occurred during validation", e );
             throw new MapPreviewException( e.getMessage() );

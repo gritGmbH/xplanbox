@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class MapPreviewMetadata implements Serializable {
 
-    private String uuid;
+    private String configFileName;
 
     private XPlanEnvelope bbox;
 
@@ -16,14 +16,14 @@ public class MapPreviewMetadata implements Serializable {
     public MapPreviewMetadata() {
     }
 
-    public MapPreviewMetadata( String uuid, String validationName, XPlanEnvelope bbox ) {
-        this.uuid = uuid;
+    public MapPreviewMetadata( String configFileName, String validationName, XPlanEnvelope bbox ) {
+        this.configFileName = configFileName;
         this.validationName = validationName;
         this.bbox = bbox;
     }
 
-    public String getUuid() {
-        return uuid;
+    public String getConfigFileName() {
+        return configFileName;
     }
 
     public String getValidationName() {
@@ -34,8 +34,8 @@ public class MapPreviewMetadata implements Serializable {
         return bbox;
     }
 
-    public void setUuid( String uuid ) {
-        this.uuid = uuid;
+    public void setConfigFileName( String configFileName ) {
+        this.configFileName = configFileName;
     }
 
     public void setValidationName( String validationName ) {
