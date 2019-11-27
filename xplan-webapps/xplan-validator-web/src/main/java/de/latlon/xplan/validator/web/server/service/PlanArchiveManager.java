@@ -57,7 +57,8 @@ public class PlanArchiveManager {
                             throws IOException {
         String planId = plan.getId();
         Iterator<Path> paths = Files.find( UPLOAD_FOLDER, 1,
-                                           ( path, basicFileAttributes ) -> path.getFileName().toString().startsWith(
+                                           ( path, basicFileAttributes ) -> Files.isRegularFile( path )
+                                                                            && path.getFileName().toString().startsWith(
                                                                    planId ) ).iterator();
         if ( paths.hasNext() )
             return paths.next().toFile();
