@@ -30,6 +30,7 @@ import org.deegree.geometry.primitive.segments.CurveSegment;
 import org.deegree.geometry.primitive.segments.Geodesic;
 import org.deegree.geometry.primitive.segments.GeodesicString;
 import org.deegree.geometry.primitive.segments.LineStringSegment;
+import org.deegree.geometry.standard.AbstractDefaultGeometry;
 import org.deegree.geometry.standard.points.PointsPoints;
 import org.deegree.gml.feature.FeatureInspectionException;
 import org.slf4j.Logger;
@@ -37,6 +38,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.xml.namespace.QName;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,21 +59,32 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
 
     private static final String ERROR_MSG = "2.2.1.1: Das Object mit der gml id %s erfuellt die Flaechenschlussbedingung am Stuetzpunkt %s nicht.";
 
+    private static final String ERROR_MSG_INVALID_GELTUNGSBEREICH = "2.2.1.1: Der Geltungsbereich des Plans ist geometrisch nicht valide. Betroffen ist das Feature mit der gml id %s. Die Pruefung der Flaechenschlussbedingung kann nicht durchgeführt werden.";
+
     private Geometry geltungsbereich;
 
     private final List<ControlPoint> controlPoints = new ArrayList<>();
 
     private final Date now = new Date( new java.util.Date(), null );
 
+    private BadGeometry invalidGeltungsbereich;
+
     @Override
     public Feature inspect( Feature feature )
                             throws FeatureInspectionException {
+        if ( invalidGeltungsbereich != null )
+            return feature;
         if ( isFlaechenschlussobjekt( feature ) ) {
             Geometry geometry = getGeometry( feature );
             checkAndAddGeometry( feature, geometry );
         }
         if ( isGeltungsbereichFeature( feature ) ) {
             geltungsbereich = (Geometry) feature.getGeometryProperties().get( 0 ).getValue();
+            if ( !( (AbstractDefaultGeometry) geltungsbereich ).getJTSGeometry().isValid() ) {
+                invalidGeltungsbereich = new BadGeometry( geltungsbereich,
+                                                          String.format( ERROR_MSG_INVALID_GELTUNGSBEREICH,
+                                                                         feature.getId() ) );
+            }
         }
         return feature;
     }
@@ -84,7 +97,11 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
      *
      * @return <code>true</code> if the Flaechenschlussbedingung is satisfied, <code>false</code> otherwise
      */
+    @Override
     public List<BadGeometry> checkGeometricRule() {
+        if ( invalidGeltungsbereich != null )
+            return Collections.singletonList( invalidGeltungsbereich );
+
         controlPoints.stream().forEach( cp -> checkForIdenticalControlPoint( cp ) );
         List<ControlPoint> controlPointsWithInvalidFlaechenschluss = controlPoints.stream().filter(
                                 cp -> !isPartOfGeltungsbereich( cp.getPoint() )

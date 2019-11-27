@@ -1,6 +1,7 @@
 package de.latlon.xplan.validator.geometric.inspector;
 
 import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.TopologyException;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import javax.xml.namespace.QName;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,12 +39,14 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private static final String ERROR_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt nicht im Geltungsbereich des Bereichs/Plans.";
 
+    private static final String ERROR_MSG_INVALID_GELTUNGSBEREICH = "2.2.3.1: Der Geltungsbereich des Plans ist geometrisch nicht valide. Betroffen ist das Feature mit der gml id %s. Die Pruefung des Geltungsbereichs kann nicht durchgeführt werden.";
+
     private static final List<String> PRAESENTATIONSOBJEKTE = Arrays.asList( "XP_FPO", "XP_LPO", "XP_LTO", "XP_PPO",
                                                                              "XP_PTO", "XP_TPO" );
 
-    private Geometry planGeom;
+    private Feature planFeature;
 
-    private Map<String, Geometry> bereichGeoms = new HashMap<>();
+    private Map<String, Feature> bereichFeatures = new HashMap<>();
 
     private Map<String, List<Feature>> bereichIdToFeatureGeoms = new HashMap<>();
 
@@ -51,10 +55,9 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
                             throws FeatureInspectionException {
 
         if ( isPlanFeature( feature ) ) {
-            planGeom = getGeometry( feature );
+            planFeature = feature;
         } else if ( isBereichFeature( feature ) ) {
-            Geometry bereichGeom = getGeometry( feature );
-            bereichGeoms.put( feature.getId(), bereichGeom );
+            bereichFeatures.put( feature.getId(), feature );
         } else if ( hasGehoertZuBereichProperty( feature ) && !isPraesentationsobjekt( feature ) ) {
             String gehortZuBereich = getGehortZuBereichId( feature );
             if ( !bereichIdToFeatureGeoms.containsKey( gehortZuBereich ) )
@@ -68,7 +71,14 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
     public List<BadGeometry> checkGeometricRule() {
         List<Feature> allInvalidFeatures = new ArrayList<>();
         for ( Map.Entry<String, List<Feature>> bereichIdToGeoms : bereichIdToFeatureGeoms.entrySet() ) {
-            Geometry geltungsbereich = retrieveGeltungsbereichGeom( bereichIdToGeoms.getKey() );
+            Feature geltungsbereichFeature = retrieveGeltungsbereichFeature( bereichIdToGeoms.getKey() );
+            Geometry geltungsbereich = getGeometry( geltungsbereichFeature );
+            if ( !geltungsbereich.isValid() ) {
+                BadGeometry error = new BadGeometry( getOriginalGeometry( geltungsbereichFeature ),
+                                                     String.format( ERROR_MSG_INVALID_GELTUNGSBEREICH,
+                                                                    geltungsbereichFeature.getId() ) );
+                return Collections.singletonList( error );
+            }
             List<Feature> invalidFeatures = bereichIdToGeoms.getValue().stream().filter(
                                     f -> !isInsideGeom( f, geltungsbereich ) ).collect( Collectors.toList() );
             allInvalidFeatures.addAll( invalidFeatures );
@@ -86,10 +96,14 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
         return badGeometries;
     }
 
-    private Geometry retrieveGeltungsbereichGeom( String bereichId ) {
-        if ( bereichGeoms.containsKey( bereichId ) && bereichGeoms.get( bereichId ) != null )
-            return bereichGeoms.get( bereichId );
-        return planGeom;
+    private Feature retrieveGeltungsbereichFeature( String bereichId ) {
+        if ( bereichFeatures.containsKey( bereichId ) && bereichFeatures.get( bereichId ) != null ) {
+            Feature bereich = bereichFeatures.get( bereichId );
+            AbstractDefaultGeometry bereichGeom = getOriginalGeometry( bereich );
+            if ( bereichGeom != null )
+                return bereich;
+        }
+        return planFeature;
     }
 
     private boolean isInsideGeom( Feature feature, Geometry geltungsbereich ) {

@@ -131,6 +131,12 @@ public class GeometricValidatorImpl implements GeometricValidator {
                          + "Das XPlanGML-Dokument (xplan.gml) entspricht nicht dem GML-Schema.";
             result.addError( msg );
             return null;
+        } catch ( Exception e ) {
+            String msg = "Die geometrische Validierung wurde aufgrund von schwerwiegenden Fehlern abgebrochen. "
+                         + "Das XPlanGML-Dokument (xplan.gml) entspricht nicht dem GML-Schema.";
+            result.addError( msg );
+            LOG.info( "Unexpected failure by geometry validation ", e );
+            return null;
         }
     }
 
