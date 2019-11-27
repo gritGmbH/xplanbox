@@ -50,7 +50,7 @@ public class ValidatorWmsManager {
      * @param synthesizer
      *                         used to synthesize the XPlan GML
      * @param workspaceLocation
-     *                         path to the workspace xplan-gml-wms-workspace, the directory data is created if required
+     *                         path to the workspace xplan-validator-wms-workspace, the directory data is created if required
      * @throws IOException
      *                         if the directory data could not be required
      * @throws IllegalArgumentException

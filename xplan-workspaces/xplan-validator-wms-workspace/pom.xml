@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>xplan-gml-wms-workspace</artifactId>
+  <artifactId>xplan-validator-wms-workspace</artifactId>
   <packaging>pom</packaging>
-  <description>Workspace fuer die Bereitstellung von XPlanSynGML und XPlan-WMS</description>
+  <description>Workspace fuer den XPlanValidatorWMS</description>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>

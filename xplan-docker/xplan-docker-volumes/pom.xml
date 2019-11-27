@@ -58,7 +58,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-gml-wms-workspace</artifactId>
+      <artifactId>xplan-validator-wms-workspace</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
       <classifier>default</classifier>

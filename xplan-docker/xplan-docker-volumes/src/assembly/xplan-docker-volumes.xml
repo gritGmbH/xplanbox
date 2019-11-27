@@ -69,9 +69,9 @@
     </dependencySet>
     <!-- xplan-validator-config -->
     <dependencySet>
-      <outputDirectory>/xplan-validator-workspaces/xplan-gml-wms-workspace</outputDirectory>
+      <outputDirectory>/xplan-validator-workspaces/xplan-validator-wms-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-gml-wms-workspace</include>
+        <include>${project.groupId}:xplan-validator-wms-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
