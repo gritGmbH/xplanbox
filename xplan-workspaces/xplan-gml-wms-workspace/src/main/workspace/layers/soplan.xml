@@ -42,10 +42,6 @@
     <l:Name>so_bereich</l:Name>
     <d:Title>SO: Bereich</d:Title>
     <d:Abstract>SO_Bereich</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>so_bereich</l:StyleStoreId>
@@ -93,10 +89,6 @@
     <l:Name>so_bodenschutzrecht</l:Name>
     <d:Title>SO: Bodenschutzrecht</d:Title>
     <d:Abstract>SO_Bodenschutzrecht</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>so_bodenschutzrecht</l:StyleStoreId>
@@ -144,10 +136,6 @@
     <l:Name>so_denkmalschutzrecht</l:Name>
     <d:Title>SO: Denkmalschutzrecht</d:Title>
     <d:Abstract>SO_Denkmalschutzrecht</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>so_denkmalschutzrecht</l:StyleStoreId>
@@ -195,10 +183,6 @@
     <l:Name>so_forstrecht</l:Name>
     <d:Title>SO: Forstrecht</d:Title>
     <d:Abstract>SO_Forstrecht</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>so_forstrecht</l:StyleStoreId>
@@ -246,10 +230,6 @@
     <l:Name>so_gebiet</l:Name>
     <d:Title>SO: Gebiet</d:Title>
     <d:Abstract>SO_Gebiet</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/so_gebiet_trans</l:StyleStoreId>
@@ -297,10 +277,6 @@
     <l:Name>so_grenze</l:Name>
     <d:Title>SO: Grenze</d:Title>
     <d:Abstract>SO_Grenze</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>so_grenze</l:StyleStoreId>
@@ -348,10 +324,6 @@
     <l:Name>so_linienobjekt</l:Name>
     <d:Title>SO: Linienobjekt</d:Title>
     <d:Abstract>SO_Linienobjekt</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
   </FeatureLayer>
   <FeatureLayer>
@@ -390,10 +362,6 @@
     <l:Name>so_luftverkehrsrecht</l:Name>
     <d:Title>SO: Luftverkehrsrecht</d:Title>
     <d:Abstract>SO_Luftverkehrsrecht</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>so_luftverkehrsrecht</l:StyleStoreId>
@@ -441,10 +409,6 @@
     <l:Name>so_objekt</l:Name>
     <d:Title>SO: Objekt</d:Title>
     <d:Abstract>SO_Objekt</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
   </FeatureLayer>
   <FeatureLayer>
@@ -483,10 +447,6 @@
     <l:Name>so_plan</l:Name>
     <d:Title>SO: Plan</d:Title>
     <d:Abstract>SO_Plan</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>so_plan</l:StyleStoreId>
@@ -534,10 +494,6 @@
     <l:Name>so_schienenverkehrsrecht</l:Name>
     <d:Title>SO: Schienenverkehrsrecht</d:Title>
     <d:Abstract>SO_Schienenverkehrsrecht</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>so_schienenverkehrsrecht</l:StyleStoreId>
@@ -585,10 +541,6 @@
     <l:Name>so_schutzgebietNaturschutzrecht</l:Name>
     <d:Title>SO: SchutzgebietNaturschutzrecht</d:Title>
     <d:Abstract>SO_SchutzgebietNaturschutzrecht</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>so_schutzgebietnaturschutzrecht</l:StyleStoreId>
@@ -636,10 +588,6 @@
     <l:Name>so_schutzgebietsonstigesrecht</l:Name>
     <d:Title>SO: SchutzgebietSonstigesRecht</d:Title>
     <d:Abstract>SO_SchutzgebietSonstigesRecht</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>so_schutzgebietsonstigesrecht</l:StyleStoreId>
@@ -687,10 +635,6 @@
     <l:Name>so_schutzgebietwasserrecht</l:Name>
     <d:Title>SO: SchutzgebietWasserrecht</d:Title>
     <d:Abstract>SO_SchutzgebietWasserrecht</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>so_schutzgebietwasserrecht</l:StyleStoreId>
@@ -738,10 +682,6 @@
     <l:Name>so_sonstigesrecht</l:Name>
     <d:Title>SO: SonstigesRecht</d:Title>
     <d:Abstract>SO_SonstigesRecht</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>so_sonstigesrecht</l:StyleStoreId>
@@ -789,10 +729,6 @@
     <l:Name>so_strassenverkehrsrecht</l:Name>
     <d:Title>SO: Strassenverkehrsrecht</d:Title>
     <d:Abstract>SO_Strassenverkehrsrecht</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>so_strassenverkehrsrecht</l:StyleStoreId>
@@ -840,10 +776,6 @@
     <l:Name>so_wasserrecht</l:Name>
     <d:Title>SO: Wasserrecht</d:Title>
     <d:Abstract>SO_Wasserrecht</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>so_wasserrecht</l:StyleStoreId>

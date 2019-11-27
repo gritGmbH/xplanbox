@@ -15,10 +15,6 @@
     <l:Name>rp_plan</l:Name>
     <d:Title>RP: Plan</d:Title>
     <d:Abstract>RP_Plan</d:Abstract>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>rp_plan</l:StyleStoreId>
@@ -66,10 +62,6 @@
 
     <l:Name>rp_xp_pto</l:Name>
     <d:Title>RP: XP: PTO</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>rp_xp_pto</l:StyleStoreId>
@@ -113,10 +105,6 @@
 
     <l:Name>rp_xp_lto</l:Name>
     <d:Title>RP: XP: LTO</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>rp_xp_lto</l:StyleStoreId>
@@ -161,10 +149,6 @@
 
     <l:Name>rp_xp_fpo</l:Name>
     <d:Title>RP: XP: FPO</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>rp_xp_fpo</l:StyleStoreId>
@@ -208,10 +192,6 @@
 
     <l:Name>rp_xp_lpo</l:Name>
     <d:Title>RP: XP: LPO</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>rp_xp_lpo</l:StyleStoreId>
@@ -255,10 +235,6 @@
 
     <l:Name>rp_xp_ppo</l:Name>
     <d:Title>RP: XP: PPO</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>rp_xp_ppo</l:StyleStoreId>
@@ -302,10 +278,6 @@
 
     <l:Name>rp_ber</l:Name>
     <d:Title>RP: Bereich</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Bereich</d:Abstract>
     <l:StyleRef>
@@ -353,10 +325,6 @@
 
     <l:Name>rp_achse</l:Name>
     <d:Title>RP: Achse</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Achse</d:Abstract>
     <l:StyleRef>
@@ -404,10 +372,6 @@
 
     <l:Name>rp_bodenschutz</l:Name>
     <d:Title>RP: Bodenschutz</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Bodenschutz</d:Abstract>
     <l:StyleRef>
@@ -455,10 +419,6 @@
 
     <l:Name>rp_einzelhandel</l:Name>
     <d:Title>RP: Einzelhandel</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Einzelhandel</d:Abstract>
     <l:StyleRef>
@@ -506,10 +466,6 @@
 
     <l:Name>rp_energieversorgung</l:Name>
     <d:Title>RP: Energieversorgung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Energieversorgung</d:Abstract>
     <l:StyleRef>
@@ -557,10 +513,6 @@
 
     <l:Name>rp_entsorgung</l:Name>
     <d:Title>RP: Entsorgung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Entsorgung</d:Abstract>
     <l:StyleRef>
@@ -608,10 +560,6 @@
 
     <l:Name>rp_entwschwerpte</l:Name>
     <d:Title>RP: Entwicklungsschwerpunkte</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Entwicklungsschwerpunkte</d:Abstract>
     <l:StyleRef>
@@ -659,10 +607,6 @@
 
     <l:Name>rp_erholung</l:Name>
     <d:Title>RP: Erholung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Erholung</d:Abstract>
     <l:StyleRef>
@@ -710,10 +654,6 @@
 
     <l:Name>rp_erneuerbareenergie</l:Name>
     <d:Title>RP: ErneuerbareEnergie</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_ErneuerbareEnergie</d:Abstract>
     <l:StyleRef>
@@ -761,10 +701,6 @@
 
     <l:Name>rp_forstwirtsch</l:Name>
     <d:Title>RP: Forstwirtschaft</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Forstwirtschaft</d:Abstract>
     <l:StyleRef>
@@ -812,10 +748,6 @@
 
     <l:Name>rp_freiraum</l:Name>
     <d:Title>RP: Freiraum</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Freiraum</d:Abstract>
     <l:StyleRef>
@@ -863,10 +795,6 @@
 
     <l:Name>rp_freizeiterholung</l:Name>
     <d:Title>RP: Freizeit und Erholung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_FreizeitErholung</d:Abstract>
     <l:StyleRef>
@@ -914,10 +842,6 @@
 
     <l:Name>rp_funktionszuweisung</l:Name>
     <d:Title>RP: Funktionszuweisung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Funktionszuweisung</d:Abstract>
     <l:StyleRef>
@@ -965,10 +889,6 @@
 
     <l:Name>rp_gemfunktsiedlentw</l:Name>
     <d:Title>RP: Gemeindefunktion</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_GemeindeFunktionSiedlungsentwicklung</d:Abstract>
     <l:StyleRef>
@@ -1016,10 +936,6 @@
 
     <l:Name>rp_genobj</l:Name>
     <d:Title>RP: Generisches Objekt</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_GenerischesObjekt</d:Abstract>
     <l:StyleRef>
@@ -1067,10 +983,6 @@
 
     <l:Name>rp_gr</l:Name>
     <d:Title>RP: Grenze</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Grenze</d:Abstract>
     <l:StyleRef>
@@ -1118,10 +1030,6 @@
 
     <l:Name>rp_gruenzuggruenzaesur</l:Name>
     <d:Title>RP: Grünzug und - zäsur</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_GruenzugGruenzaesur</d:Abstract>
     <l:StyleRef>
@@ -1169,10 +1077,6 @@
 
     <l:Name>rp_hochwasserschutz</l:Name>
     <d:Title>RP: Hochwasserschutz</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Hochwasserschutz</d:Abstract>
     <l:StyleRef>
@@ -1220,10 +1124,6 @@
 
     <l:Name>rp_industriegewerbe</l:Name>
     <d:Title>RP: IndustrieGewerbe</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_IndustrieGewerbe</d:Abstract>
     <l:StyleRef>
@@ -1271,10 +1171,6 @@
 
     <l:Name>rp_klimaschutz</l:Name>
     <d:Title>RP: Klimaschutz</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Klimaschutz</d:Abstract>
     <l:StyleRef>
@@ -1322,10 +1218,6 @@
 
     <l:Name>rp_kommunikation</l:Name>
     <d:Title>RP: Kommunikation</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Kommunikation</d:Abstract>
     <l:StyleRef>
@@ -1373,10 +1265,6 @@
 
     <l:Name>rp_kulturlandschaft</l:Name>
     <d:Title>RP: Kulturlandschaft</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Kulturlandschaft</d:Abstract>
     <l:StyleRef>
@@ -1424,10 +1312,6 @@
 
     <l:Name>rp_laermschutzbauschutz</l:Name>
     <d:Title>RP: LärmschutzBauschutz</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_LaermschutzBauschutz</d:Abstract>
     <l:StyleRef>
@@ -1475,10 +1359,6 @@
 
     <l:Name>rp_laermschutzber</l:Name>
     <d:Title>RP: Lärmschutzbereich</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Laermschutzbereich</d:Abstract>
     <l:StyleRef>
@@ -1526,10 +1406,6 @@
 
     <l:Name>rp_luftverkehr</l:Name>
     <d:Title>RP: Luftverkehr</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Luftverkehr</d:Abstract>
     <l:StyleRef>
@@ -1577,10 +1453,6 @@
 
     <l:Name>rp_lw</l:Name>
     <d:Title>RP: Landwirtschaft</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Landwirtschaft</d:Abstract>
     <l:StyleRef>
@@ -1628,10 +1500,6 @@
 
     <l:Name>rp_naturlandsch</l:Name>
     <d:Title>RP: Natur und Landschaft</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NaturLandschaft</d:Abstract>
     <l:StyleRef>
@@ -1679,10 +1547,6 @@
 
     <l:Name>rp_natsrechtlschutzgeb</l:Name>
     <d:Title>RP: Naturschutzgebiete</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NaturschutzrechtlichesSchutzgebiet</d:Abstract>
     <l:StyleRef>
@@ -1730,10 +1594,6 @@
 
     <l:Name>rpnw_asb</l:Name>
     <d:Title>RP: NRW ASB</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_ASB</d:Abstract>
     <l:StyleRef>
@@ -1781,10 +1641,6 @@
 
     <l:Name>rpnw_aufschuettablager</l:Name>
     <d:Title>RP: NRW Ablagerung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_AufschuettungAblagerung</d:Abstract>
     <l:StyleRef>
@@ -1832,10 +1688,6 @@
 
     <l:Name>rpnw_forstwirtsch</l:Name>
     <d:Title>RP: NRW Forstwirtschaft</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_Forstwirtschaft</d:Abstract>
     <l:StyleRef>
@@ -1883,10 +1735,6 @@
 
     <l:Name>rpnw_freiraumagrarber</l:Name>
     <d:Title>RP: NRW Freiraum- und Agrarbereiche</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_FreiraumAgrarbereich</d:Abstract>
     <l:StyleRef>
@@ -1934,10 +1782,6 @@
 
     <l:Name>rpnw_gib</l:Name>
     <d:Title>RP: NRW GIB</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_GIB</d:Abstract>
     <l:StyleRef>
@@ -1985,10 +1829,6 @@
 
     <l:Name>rpnw_grundwgewschutz</l:Name>
     <d:Title>RP: NRW Grundwasser- und Gewässerschutz</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_GrundwasserGewaesserschutz</d:Abstract>
     <l:StyleRef>
@@ -2036,10 +1876,6 @@
 
     <l:Name>rpnw_laermschutzzone</l:Name>
     <d:Title>RP: NRW Lärmschutzzone</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_Laermschutzzone</d:Abstract>
     <l:StyleRef>
@@ -2087,10 +1923,6 @@
 
     <l:Name>rpnw_landschschutz</l:Name>
     <d:Title>RP: NRW Landschaftsschutz</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_Landschaftsschutz</d:Abstract>
     <l:StyleRef>
@@ -2138,10 +1970,6 @@
 
     <l:Name>rpnw_luftverk</l:Name>
     <d:Title>RP: NRW Luftverkehr</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_Luftverkehr</d:Abstract>
     <l:StyleRef>
@@ -2189,10 +2017,6 @@
 
     <l:Name>rpnw_nats</l:Name>
     <d:Title>RP: NRW Naturschutz</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_Naturschutz</d:Abstract>
     <l:StyleRef>
@@ -2240,10 +2064,6 @@
 
     <l:Name>rpnw_oberflngew</l:Name>
     <d:Title>RP: NRW Oberflächengewässer</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_OberflaechenGewaesser</d:Abstract>
     <l:StyleRef>
@@ -2291,10 +2111,6 @@
 
     <l:Name>rpnw_oberflnnahebs</l:Name>
     <d:Title>RP: NRW Oberflächennahe Bodenschätze</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_OberflaechennaheBodenschaetze</d:Abstract>
     <l:StyleRef>
@@ -2342,10 +2158,6 @@
 
     <l:Name>rpnw_schienenverk</l:Name>
     <d:Title>RP: NRW Schienenverkehr</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_Schienenverkehr</d:Abstract>
     <l:StyleRef>
@@ -2393,10 +2205,6 @@
 
     <l:Name>rpnw_sonstinfrastrukt</l:Name>
     <d:Title>RP: NRW sonstige Infrastruktur</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_Schienenverkehr</d:Abstract>
     <l:StyleRef>
@@ -2444,10 +2252,6 @@
 
     <l:Name>rpnw_sonstrsiedlber</l:Name>
     <d:Title>RP: NRW sonstiger Siedlungsbereich</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_SonstigerSiedlungsbereich</d:Abstract>
     <l:StyleRef>
@@ -2495,10 +2299,6 @@
 
     <l:Name>rpnw_sonstzweckbind</l:Name>
     <d:Title>RP: NRW sonstige Zweckbindung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_SonstigeZweckbindung</d:Abstract>
     <l:StyleRef>
@@ -2546,10 +2346,6 @@
 
     <l:Name>rpnw_sonstverk</l:Name>
     <d:Title>RP: NRW sonstiger Verkehr</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_SonstVerkehr</d:Abstract>
     <l:StyleRef>
@@ -2597,10 +2393,6 @@
 
     <l:Name>rpnw_strverk</l:Name>
     <d:Title>RP: NRW Straßenverkehr</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_Strassenverkehr</d:Abstract>
     <l:StyleRef>
@@ -2648,10 +2440,6 @@
 
     <l:Name>rpnw_uberschwber</l:Name>
     <d:Title>RP: NRW Überschwemmungsbereich</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_Ueberschwemmungsbereich</d:Abstract>
     <l:StyleRef>
@@ -2699,10 +2487,6 @@
 
     <l:Name>rpnw_wasserverk</l:Name>
     <d:Title>RP: NRW Wasserverkehr</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_Wasserverkehr</d:Abstract>
     <l:StyleRef>
@@ -2750,10 +2534,6 @@
 
     <l:Name>rpnw_zeitlin</l:Name>
     <d:Title>RP: NRW Zeitlinie</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_NRW_Zeitlinie</d:Abstract>
     <l:StyleRef>
@@ -2801,10 +2581,6 @@
 
     <l:Name>rp_planungsraum</l:Name>
     <d:Title>RP: Planungsraum</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Planungsraum</d:Abstract>
     <l:StyleRef>
@@ -2852,10 +2628,6 @@
 
     <l:Name>rp_radwegwanderweg</l:Name>
     <d:Title>RP: RadwegWanderweg</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_RadwegWanderweg</d:Abstract>
     <l:StyleRef>
@@ -2903,10 +2675,6 @@
 
     <l:Name>rp_raumkategorie</l:Name>
     <d:Title>RP: Raumkategorie</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Raumkategorie</d:Abstract>
     <l:StyleRef>
@@ -2954,10 +2722,6 @@
 
     <l:Name>rp_rohstoff</l:Name>
     <d:Title>RP: Rohstoff</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Rohstoff</d:Abstract>
     <l:StyleRef>
@@ -3005,10 +2769,6 @@
 
     <l:Name>rp_rohstoffsicherung</l:Name>
     <d:Title>RP: Rohstoffsicherung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Rohstoffsicherung</d:Abstract>
     <l:StyleRef>
@@ -3056,10 +2816,6 @@
 
     <l:Name>rp_schienenverkehr</l:Name>
     <d:Title>RP: Schienenverkehr</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Schienenverkehr</d:Abstract>
     <l:StyleRef>
@@ -3107,10 +2863,6 @@
 
     <l:Name>rp_siedlung</l:Name>
     <d:Title>RP: Siedlung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Siedlung</d:Abstract>
     <l:StyleRef>
@@ -3158,10 +2910,6 @@
 
     <l:Name>rp_sonstinfrastrukt</l:Name>
     <d:Title>RP: sonstige Infrastruktur</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_SonstigeInfrastruktur</d:Abstract>
     <l:StyleRef>
@@ -3209,10 +2957,6 @@
 
     <l:Name>rp_sonstrfreiraumstrukt</l:Name>
     <d:Title>RP: sonstige Freiraumstruktur</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_SonstigerFreiraumstruktur</d:Abstract>
     <l:StyleRef>
@@ -3260,10 +3004,6 @@
 
     <l:Name>rp_sonstsiedlstrukt</l:Name>
     <d:Title>RP: sonstige Siedlungsstruktur</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_SonstigeSiedlungsstruktur</d:Abstract>
     <l:StyleRef>
@@ -3311,10 +3051,6 @@
 
     <l:Name>rp_sonstfreiraumschutz</l:Name>
     <d:Title>RP: Sonstiger Freiraumschutz</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_SonstigerFreiraumschutz</d:Abstract>
     <l:StyleRef>
@@ -3362,10 +3098,6 @@
 
     <l:Name>rp_sonstsiedlbereich</l:Name>
     <d:Title>RP: Sonstiger Siedlungsbereich</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_SonstigerSiedlungsbereich</d:Abstract>
     <l:StyleRef>
@@ -3413,10 +3145,6 @@
 
     <l:Name>rp_sonstverkehr</l:Name>
     <d:Title>RP: Sonstiger Verkehr</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_SonstVerkehr</d:Abstract>
     <l:StyleRef>
@@ -3464,10 +3192,6 @@
 
     <l:Name>rp_sozinfrastrukt</l:Name>
     <d:Title>RP: soziale Infrastruktur</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_SozialeInfrastruktur</d:Abstract>
     <l:StyleRef>
@@ -3515,10 +3239,6 @@
 
     <l:Name>rp_sportanlage</l:Name>
     <d:Title>RP: Sportanlage</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Sportanlage</d:Abstract>
     <l:StyleRef>
@@ -3566,10 +3286,6 @@
 
     <l:Name>rp_strassenverkehr</l:Name>
     <d:Title>RP: Strassenverkehr</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Strassenverkehr</d:Abstract>
     <l:StyleRef>
@@ -3617,10 +3333,6 @@
 
     <l:Name>rp_verk</l:Name>
     <d:Title>RP: Verkehr</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Verkehr</d:Abstract>
     <l:StyleRef>
@@ -3668,10 +3380,6 @@
 
     <l:Name>rp_vorbhwschutz</l:Name>
     <d:Title>RP: vorbeugender Hochwasserschutz</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_VorbHochwasserschutz</d:Abstract>
     <l:StyleRef>
@@ -3719,10 +3427,6 @@
 
     <l:Name>rp_wasserschutz</l:Name>
     <d:Title>RP: Wasserschutz</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Wasserschutz</d:Abstract>
     <l:StyleRef>
@@ -3770,10 +3474,6 @@
 
     <l:Name>rp_wasserverkehr</l:Name>
     <d:Title>RP: Wasserverkehr</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Wasserverkehr</d:Abstract>
     <l:StyleRef>
@@ -3821,10 +3521,6 @@
 
     <l:Name>rp_wws</l:Name>
     <d:Title>RP: Wasserwirtschaft</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Wasserwirtschaft</d:Abstract>
     <l:StyleRef>
@@ -3873,10 +3569,6 @@
 
     <l:Name>rp_windenergie</l:Name>
     <d:Title>RP: Windenergie</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Windenergie</d:Abstract>
     <l:StyleRef>
@@ -3924,10 +3616,6 @@
 
     <l:Name>rp_windenergienutz</l:Name>
     <d:Title>RP: Windenergienutzung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_Windenergienutzung</d:Abstract>
     <l:StyleRef>
@@ -3975,10 +3663,6 @@
 
     <l:Name>rp_wohnensiedlung</l:Name>
     <d:Title>RP: Wohnen Siedlung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_WohnenSiedlung</d:Abstract>
     <l:StyleRef>
@@ -4026,10 +3710,6 @@
 
     <l:Name>rp_zentralerort</l:Name>
     <d:Title>RP: Zentrale Orte</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
     <s:CRS>${vectorCrs}</s:CRS>
     <d:Abstract>RP_ZentralerOrt</d:Abstract>
     <l:StyleRef>
