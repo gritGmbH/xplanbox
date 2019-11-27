@@ -65,7 +65,7 @@ public class MapPreviewManager {
             XPlanArchive archive = archiveCreator.createXPlanArchive( xPlan );
             XPlanFeatureCollection featureCollection = parseFeatures( archive );
             int managerId = this.validatorWmsManager.insert( featureCollection );
-            this.configWriter.createMasterportalConfig( planId, managerId );
+            this.configWriter.createMasterportalConfig( planId, managerId, archive.getType() );
 
             Envelope envelope = transformBboxTo25832( featureCollection.getBboxIn4326() );
             XPlanEnvelope xPlanEnvelope = new XPlanEnvelope( envelope.getMin().get0(), envelope.getMin().get1(),

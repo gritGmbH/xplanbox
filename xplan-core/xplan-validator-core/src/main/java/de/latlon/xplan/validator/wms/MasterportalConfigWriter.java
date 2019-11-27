@@ -1,5 +1,6 @@
 package de.latlon.xplan.validator.wms;
 
+import de.latlon.xplan.commons.XPlanType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,10 +61,10 @@ public class MasterportalConfigWriter {
         this.servicesTemplate = readTemplate( templateDirectory, SERVICES_TEMPLATE );
     }
 
-    public void createMasterportalConfig( String id, int managerId )
+    public void createMasterportalConfig( String id, int managerId, XPlanType type )
                             throws MapPreviewCreationException {
         createConfigJson( id );
-        addToServicesJson( id, managerId );
+        addToServicesJson( id, managerId, type );
 
     }
 
@@ -83,10 +84,10 @@ public class MasterportalConfigWriter {
         }
     }
 
-    private void addToServicesJson( String id, int managerId )
+    private void addToServicesJson( String id, int managerId, XPlanType type )
                             throws MapPreviewCreationException {
         try {
-            String serviceConfigSection = createServiceConfigFromTemplate( id, managerId );
+            String serviceConfigSection = createServiceConfigFromTemplate( id, managerId, type );
             idToServiceConfig.put( id, serviceConfigSection );
             String servicesConfigSection = createServicesConfigFromTemplate();
             synchronized ( servicesConfigFile  ) {
@@ -98,9 +99,25 @@ public class MasterportalConfigWriter {
         }
     }
 
-    private String createServiceConfigFromTemplate( String id, int managerId ) {
+    private String createServiceConfigFromTemplate( String id, int managerId, XPlanType type ) {
+        String bp_planvektor = getLayerNameByType( type );
         return serviceTemplate.replace( "${PLANID}", id ).replace( "${WMSURL}", validatorWmsEndpoint ).replace(
-                                "${MANAGERID}", Integer.toString( managerId ) ).replace( "${LAYERS}", "BP_Planvektor" );
+                                "${MANAGERID}", Integer.toString( managerId ) ).replace( "${LAYERS}", bp_planvektor );
+    }
+
+    private String getLayerNameByType( XPlanType type ) {
+        switch ( type ) {
+        case FP_Plan:
+            return "FP_Planvektor";
+        case LP_Plan:
+            return "LP_Planvektor";
+        case RP_Plan:
+            return "RP_Planvektor";
+        case SO_Plan:
+            return "SO_Planvektor";
+        default:
+            return "BP_Planvektor";
+        }
     }
 
     private String createServicesConfigFromTemplate() {
