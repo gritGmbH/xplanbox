@@ -70,7 +70,11 @@
   <servlet>
     <servlet-name>gmlimport</servlet-name>
     <servlet-class>de.latlon.xplan.validator.wms.GmlImportServlet</servlet-class>
-    <load-on-startup>2</load-on-startup>
+    <load-on-startup>3</load-on-startup>
+    <init-param>
+      <param-name>DeleteAfterInMinutes</param-name>
+      <param-value>5</param-value>
+    </init-param>
   </servlet>
 
   <servlet-mapping>
