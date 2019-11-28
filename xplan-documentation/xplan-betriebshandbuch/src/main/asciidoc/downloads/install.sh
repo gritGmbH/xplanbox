@@ -12,10 +12,10 @@ WORK_DIR=`pwd`
 
 ################# Cleanup #################
 function cleantomcat () {
-  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/xplanmanager
-  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/xplanmanager.war
-  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/xplanvalidator
-  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/xplanvalidator.war
+  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/xplan-manager-web
+  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/xplan-manager-web.war
+  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/xplan-validator-web
+  rm -rf ${TOMCAT_APPLICATIONS_ROOT}/webapps/xplan-validator-web.war
   rm -rf ${TOMCAT_SERVICES_ROOT}/webapps/xplan-wms
   rm -rf ${TOMCAT_SERVICES_ROOT}/webapps/xplan-wms.war
   rm -rf ${TOMCAT_SERVICES_ROOT}/webapps/xplansyn-wfs
@@ -44,8 +44,8 @@ function clean () {
 }
 
 function copywarstotomcat () {
-  cp web/xplanmanager.war ${TOMCAT_APPLICATIONS_ROOT}/webapps/xplanmanager.war
-  cp web/xplanvalidator.war ${TOMCAT_APPLICATIONS_ROOT}/webapps/xplanvalidator.war
+  cp web/xplan-manager-web.war ${TOMCAT_APPLICATIONS_ROOT}/webapps/xplan-manager-web.war
+  cp web/xplan-validator-web.war ${TOMCAT_APPLICATIONS_ROOT}/webapps/xplan-validator-web.war
   cp web/xplan-wms.war ${TOMCAT_SERVICES_ROOT}/webapps/xplan-wms.war
   cp web/xplansyn-wfs.war ${TOMCAT_SERVICES_ROOT}/webapps/xplansyn-wfs.war
   cp web/xplan-wfs.war ${TOMCAT_SERVICES_ROOT}/webapps/xplan-wfs.war

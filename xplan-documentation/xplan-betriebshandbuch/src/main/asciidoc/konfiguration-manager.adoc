@@ -1,6 +1,6 @@
-== Konfiguration
+== Konfiguration der XPlanManagerWeb
 
-In den nachfolgenden Kapiteln wird die Konfiguration der einzelnen Komponenten erläutert:
+In den nachfolgenden Kapiteln wird die Konfiguration des XPlanManagerWeb erläutert:
 
 
 include::konfiguration_planliste.adoc[]

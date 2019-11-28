@@ -12,9 +12,10 @@ Verzeichnis _.deegree_ im Home-Verzeichnis (s. <<vorbereitung-der-installation>>
 * _xplansyn-wms-workspace_
 * _xplan-inspireplu-workspace_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
 * _xplan-manager-workspace_
-* _xplan-manager-config_ (Name des Verzeichnis nach dem Entpacken: __manager-configuration__)
+* _xplan-manager-config_
+* _xplan-validator-config_
 
-NOTE: Alle Workspaces müssen in dem selben Verzeichnis liegen.
+NOTE: Alle KOnfigurationen müssen in dem selben Verzeichnis liegen.
 
 [[web-anwendungen]]
 ==== Web-Anwendungen
@@ -33,13 +34,14 @@ werden:
 * _xplan-wfs.war_ (XPlanWFS)
 * _xplansyn-wfs.war_ (XPlanSynWFS)
 * _xplan-inspireplu.war_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
+* _xplan-validator-wms.war_ (XPlanValidatorWMS)
 
 Die WAR-Archive der Anwendungskomponenten werden über eine
 weitere Tomcat-Installation (_Anwendungs-Tomcat_, z.B. Port: 8081)
 bereitgestellt:
 
-* _xplanmanager.war_ (XPlanManagerWeb)
-* _xplanvalidator.war_ (XPlanValidatorWeb)
+* _xplan-manager-web.war_ (XPlanManagerWeb)
+* _xplan-validator-web.war_ (XPlanValidatorWeb)
 * _xplan-root.war_ (XPlanRessourcen)
 
 NOTE: Da die Komponente XPlanRessourcen eine Einstiegsseite bereit stellt, bietet es sich an, diese als ROOT-Webapp des Anwendungs-Tomcat zu installieren. Das war-Archiv xplan-root.war muss dafür im Verzeichnis ROOT entpackt werden.

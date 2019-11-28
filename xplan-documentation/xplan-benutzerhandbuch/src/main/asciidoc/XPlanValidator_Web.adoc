@@ -68,3 +68,8 @@ gespeichert werden.
 
 Alle Ergebnisdateien werden in einem ZIP-Archiv gespeichert. Der
 Dateiname enthält die Bezeichnung des Validierungsdurchlaufs.
+
+[[xplanvalidator-web-kartenvorschau]]
+==== Kartenvorschau
+
+Über den Button _Kartenvorschau_ kann in die Kartenansicht des Plans gewechselt werden. Hier kann eine visuelle Überprüfung des Plans vorgenommen werden. Der Plan steht in der Kartenansicht nur für eine begrenzte Zeitspanne zur Verfügung, anschließend ist nur noch die Hintergrundkarte zu sehen.

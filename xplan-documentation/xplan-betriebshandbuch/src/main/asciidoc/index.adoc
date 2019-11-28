@@ -21,7 +21,9 @@ include::installation.adoc[]
 
 include::installation_docker.adoc[]
 
-include::konfiguration.adoc[]
+include::konfiguration-manager.adoc[]
+
+include::konfiguration/validator/main.adoc[]
 
 include::aktualisierung.adoc[]
 

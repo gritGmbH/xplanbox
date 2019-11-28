@@ -26,8 +26,8 @@ Es müssen die bereit gestellten Web-Archive in das Webapps-Verzeichnis
 des jeweiligen Tomcats kopiert werden:
 
 ----
-cp ${WORK_DIR}/web/xplanmanager.war <CATALINA_HOME>/webapps/
-cp ${WORK_DIR}/web/xplanvalidator.war <CATALINA_HOME>/webapps/
+cp ${WORK_DIR}/web/xplan-manager-web.war <CATALINA_HOME>/webapps/
+cp ${WORK_DIR}/web/xplan-validator-web.war <CATALINA_HOME>/webapps/
 
 cp ${WORK_DIR}/web/xplansyn-wfs.war <CATALINA_HOME>/webapps/
 cp ${WORK_DIR}/web/xplan-wfs.war <CATALINA_HOME>/webapps/

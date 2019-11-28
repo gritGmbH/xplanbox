@@ -12,6 +12,7 @@ Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 * XPlanSynWFS
 * XPlanInspirePluWMS
 * XPlanInspirePluWFS
+* XPlanValidatorWMS
 * XPlanRessourcen
 
 image:../images/Architektur_xPlanBox_einfach.png[Einfache Darstellung]
@@ -59,6 +60,13 @@ Die Komponente XPlanValidatorWeb ist eine Web-Oberfläche, welche dem
 Fachadministrator der xPlanBox ermöglicht,
 XPlanGML Instanzdokumente zu validieren. Der XPlanValidatorWeb ist auf dem
 Kommandozeilenwerkzeug aufgebaut.
+
+[[xplanvalidator-wms]]
+=== XPlanValidatorWMS
+
+Bei der Komponente XPlanValidatorWMS handelt es sich um eine interne Komponente
+die vom XPlanValidatorWeb verwendet wird. Validierte Plänen können über den
+XPlanValidatorWMS in der Kartenvorschau angezeigt werden.
 
 [[xplanwms]]
 === XPlanWMS und XPlanWerkWMS
