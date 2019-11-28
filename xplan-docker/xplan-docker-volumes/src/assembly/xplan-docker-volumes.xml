@@ -67,7 +67,7 @@
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
-    <!-- xplan-validator-config -->
+    <!-- xplan-validator-workspaces -->
     <dependencySet>
       <outputDirectory>/xplan-validator-workspaces/xplan-validator-wms-workspace</outputDirectory>
       <includes>
@@ -88,7 +88,7 @@
       <outputDirectory>xplan-inspireplu-workspaces</outputDirectory>
       <directory>src/main/resources/xplan-inspireplu-workspaces</directory>
     </fileSet>
-    <!--xplan-inspireplu-workspaces-->
+    <!--xplan-validator-workspaces-->
     <fileSet>
       <outputDirectory>xplan-validator-workspaces</outputDirectory>
       <directory>src/main/resources/xplan-validator-workspaces</directory>

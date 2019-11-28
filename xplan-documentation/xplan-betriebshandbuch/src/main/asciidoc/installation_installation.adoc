@@ -11,11 +11,12 @@ Verzeichnis _.deegree_ im Home-Verzeichnis (s. <<vorbereitung-der-installation>>
 * _xplansyn-wfs-workspace_
 * _xplansyn-wms-workspace_
 * _xplan-inspireplu-workspace_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
+* _xplan-validator-wms-workspace_
 * _xplan-manager-workspace_
 * _xplan-manager-config_
 * _xplan-validator-config_
 
-NOTE: Alle KOnfigurationen müssen in dem selben Verzeichnis liegen.
+NOTE: Alle Konfigurationen müssen in dem selben Verzeichnis liegen.
 
 [[web-anwendungen]]
 ==== Web-Anwendungen

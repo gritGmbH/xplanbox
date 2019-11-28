@@ -6,7 +6,7 @@ Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 * XPlanManagerCLI
 * XPlanManagerWeb
 * XPlanValidatorCLI
-* XPlanValidatorWeb
+* XPlanValidatorWeb (inkl. XPlanValidatorWMS)
 * XPlanWMS und XPlanWerkWMS
 * XPlanWFS
 * XPlanSynWFS
@@ -62,7 +62,7 @@ XPlanGML Instanzdokumente zu validieren. Der XPlanValidatorWeb ist auf dem
 Kommandozeilenwerkzeug aufgebaut.
 
 [[xplanvalidator-wms]]
-=== XPlanValidatorWMS
+==== XPlanValidatorWMS
 
 Bei der Komponente XPlanValidatorWMS handelt es sich um eine interne Komponente
 die vom XPlanValidatorWeb verwendet wird. Validierte Plänen können über den
