@@ -1,0 +1,6 @@
+## Zeile mit ## entfernen
+## Rendern mit https://yuml.me/diagram/class/draw
+## Ablage unter ../asciidoc/images/docker-spezifikation-validator.png
+[XPlanValidator]-r>[xplan-validator-config{bg:orange}]
+[XPlanValidator]-rw>[xplan-validator-workspaces{bg:orange}]
+[XPlanValidatorWMS]-r>[xplan-validator-workspaces{bg:orange}]
