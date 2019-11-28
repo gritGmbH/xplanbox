@@ -1,4 +1,4 @@
-[[semantische-validierungsregeln]]
+[[semantische-validierungsregeln-validiator]]
 === Semantische Validierungsregeln
 
 Die als XQuery-Dateien vorliegenden semantischen Validierungsregeln können in einem externen Verzeichnis abgelegt und durch entsprechende Konfiguration im XPlanManagerWeb und XPlanValidatorWeb verwendet werden.

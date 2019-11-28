@@ -1,4 +1,4 @@
-[[kartenvorschau]]
+[[kartenvorschau-validator]]
 === Kartenvorschau im XPlanValidatorWeb
 
 Die nachfolgenden Konfiguration muss in der Datei _<XPLANBOX_CONFIG>/validatorConfiguration.properties_ angepasst werden.

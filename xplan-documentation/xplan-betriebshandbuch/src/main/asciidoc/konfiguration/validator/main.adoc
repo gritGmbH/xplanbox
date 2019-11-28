@@ -1,5 +1,7 @@
-== Konfiguration der XPlanValidatorWeb
+== Konfiguration des XPlanValidatorWeb
 
 In den nachfolgenden Kapiteln wird die Konfiguration des XPlanValidatorWeb erläutert:
 
 include::kartenvorschau.adoc[]
+
+include::validierungsregeln.adoc[]
