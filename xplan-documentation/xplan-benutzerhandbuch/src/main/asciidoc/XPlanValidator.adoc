@@ -47,6 +47,19 @@ alle in den Konformitätsbedingungen spezifizierten Regeln erfüllt werden.
 
 Der Validator kann über ein Kommandozeilentool (XPlanValidatorCLI) und eine Web-Oberfläche (XPlanValidatorWeb) aufgerufen werden.
 
+Folgende Validierungsregeln werden derzeit nicht durch den Validiator geprüft:
+
+  * 4.1.5.3 Ausschluss von gemischter Geometrie (ab Version 5.0)
+  * 5.1.5.3 Ausschluss von gemischter Geometrie (ab Version 5.0)
+  * 6.1.5.3 Ausschluss von gemischter Geometrie (ab Version 5.0)
+  * 7.1.5.2 Ausschluss von gemischter Geometrie
+  * 8.1.5.1 Ausschluss von gemischter Geometrie
+  * 8.1.7.1 Einschränkung auf Punktgeometrie
+
+Der Ausschluss von gemischter Geometrie ist bereits durch das GmlProfil abgedeckt. Verstösse fallen somit bereits bei der syntaktischer Validierung auf.
+
+Die Regel 8.1.7.1 Einschränkung auf Punktgeometrie bezieht sich auf LP_Punktobjekt. Dabei handelt es sich um eine abstrakte Klasse, für die es keine abgeleitet Klassen gibt.
+
 include::XPlanValidator_CLI.adoc[]
 
 include::XPlanValidator_Web.adoc[]
