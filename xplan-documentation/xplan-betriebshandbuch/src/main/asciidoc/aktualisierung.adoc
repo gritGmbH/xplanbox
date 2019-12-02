@@ -259,7 +259,7 @@ Sollen für alle oder einzelne bereits importierten Pläne die Service-Metadaten
 [[aktualisierung-auf-die-version-3.1-der-xplanbox]]
 === Aktualisierung auf die Version 3.1 der xPlanBox
 
-Wenn die neuen Features "Kartenvorschau" (siehe <<kartenvorschau-validator>>) und "ausgelagerte semantische Validierungsregeln" (siehe <<semantische-validierungsregeln-validiator>>) im XPlanValidatorWeb genutzt werden sollen, sind folgende Anpassungen nötig.
+Wenn die neuen Features <<kartenvorschau-validator>> und <<semantische-validierungsregeln-validiator>> im XPlanValidatorWeb genutzt werden sollen, sind folgende Anpassungen nötig.
 
  * Workspace __xplan-inspireplu-workspace__ und Konfiguration __xplan-validator-config__ entpacken und installieren (siehe <<konfiguration>>).
  * Webanwendung __xplan-validator-wms.war__ installieren (siehe <<web-anwendungen>>).
