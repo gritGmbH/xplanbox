@@ -25,6 +25,7 @@
         </executions>
         <configuration>
           <repositoryLayout>flat</repositoryLayout>
+          <useWildcardClassPath>true</useWildcardClassPath>
           <programs>
             <program>
               <mainClass>de.latlon.xplan.update.DatabaseUpdateTool</mainClass>
