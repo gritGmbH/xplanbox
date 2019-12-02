@@ -72,6 +72,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 2.7              | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>)
 | 2.8              |                                                                    | ja
 | 3.0              | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)
+| 3.1              | ja (<<aktualisierung-auf-die-version-3.1-der-xplanbox, Details>>)  | nein
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -254,3 +255,12 @@ Des Weiteren muss die HALE CLI auf Version 3.4.0 (siehe <<installation-hale-cli>
 
 Mit der Version 3.0 wird bei entprechender Konfiguration (s. <<konfiguration-daten-dienste-kopplung>>) beim Import eines Plans geprüft ob für diesen Plan bereits ein Daten-Metadatensatz existiert. Ist dies der Fall wird automatisiert ein Service-Metadatensatz für den Plan bzw. dessen XPlanWerkWMS erstellt.
 Sollen für alle oder einzelne bereits importierten Pläne die Service-Metadatensätze generiert und die dazugehörigen Informationen zur Daten-Dienste-Kopplung, die in den Capabilities des XPlanWerkWMS ausgegeben werden, erstellt werden, steht im Modul xplan-update-database das Werkzeug __serviceMetadatRecordCreator__ zur Verfügung. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt dem Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert.
+
+[[aktualisierung-auf-die-version-3.1-der-xplanbox]]
+=== Aktualisierung auf die Version 3.1 der xPlanBox
+
+Wenn die neuen Features "Kartenvorschau" (siehe <<kartenvorschau-validator>>) und "ausgelagerte semantische Validierungsregeln" (siehe <<semantische-validierungsregeln-validiator>>) im XPlanValidatorWeb genutzt werden sollen, sind folgende Anpassungen nötig.
+
+ * Workspace __xplan-inspireplu-workspace__ und Konfiguration __xplan-validator-config__ entpacken und installieren (siehe <<konfiguration>>).
+ * Webanwendung __xplan-validator-wms.war__ installieren (siehe <<web-anwendungen>>).
+ * XPlanValidatorWeb gemäß <<konfiguration-validator>> konfigurieren.
