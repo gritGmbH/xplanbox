@@ -1,6 +1,5 @@
 package de.latlon.xplan.validator.geometric.inspector;
 
-import de.latlon.xplan.validator.geometric.ControlPoint;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.datetime.Date;
