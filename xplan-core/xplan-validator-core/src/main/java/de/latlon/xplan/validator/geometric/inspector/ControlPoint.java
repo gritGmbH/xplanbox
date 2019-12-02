@@ -1,14 +1,18 @@
-package de.latlon.xplan.validator.geometric;
+package de.latlon.xplan.validator.geometric.inspector;
 
 import org.deegree.commons.uom.Measure;
+import org.deegree.cs.components.IUnit;
+import org.deegree.cs.components.Unit;
 import org.deegree.geometry.primitive.Point;
+
+import java.math.BigDecimal;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class ControlPoint {
 
-    private static final Measure ALLOWEDDISTANCE = new Measure( "2", "mm" );
+    private static final double ALLOWEDDISTANCE_METRE = 0.002;
 
     private final String featureGmlId;
 
@@ -54,11 +58,30 @@ public class ControlPoint {
      * @return <code>true</code> if this control point an identical point, <code>false</code> otherwise
      */
     public boolean checkIfIdentical( Point pointToCheck ) {
-        boolean isIdentical = this.point.isWithinDistance( pointToCheck, ALLOWEDDISTANCE );
+        Measure allowedDistance = calculateAllowedDistance( pointToCheck );
+        boolean isIdentical = this.point.isWithinDistance( pointToCheck, allowedDistance );
         if ( isIdentical ) {
             this.hasIdenticalControlPoint = true;
         }
         return isIdentical;
+    }
+
+    private Measure calculateAllowedDistance( Point pointToCheck ) {
+        double allowedDistanceValue = calculateAllowedDistanceValue( pointToCheck );
+        return new Measure( BigDecimal.valueOf( allowedDistanceValue ), "m" );
+    }
+
+    private double calculateAllowedDistanceValue( Point pointToCheck ) {
+        if ( pointToCheck.getCoordinateSystem() != null ) {
+            IUnit[] units = pointToCheck.getCoordinateSystem().getUnits();
+            if ( units != null && units.length > 0 ) {
+                if ( units[0].canConvert( Unit.METRE ) ) {
+                    return units[0].convert( ALLOWEDDISTANCE_METRE, Unit.METRE );
+                }
+            }
+
+        }
+        return ALLOWEDDISTANCE_METRE;
     }
 
     /**
