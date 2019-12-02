@@ -17,7 +17,7 @@ konformen Plänen und ist unter:
 http://<host>:<port>/xplan-manager/
 ----
 
-verfügbar und kann mit einem gängigen Web-Browser aufgerufen werden.
+verfügbar und kann mit einem Web-Browser aufgerufen werden.
 
 [[xplanmanager-web-hilfe]]
 ===== Hilfe
@@ -52,10 +52,15 @@ in Form eines PopUps informiert.
 ===== Auflistung
 
 Standardmäßig werden alle importierten Pläne in einer Liste angezeigt.
-Diese Liste kann nach dem __Namen__, der __ID__, dem __Plantyp__, der
-__sonstige Planart__, dem __Rechtsstand__, dem
-__Veröffentlichungsdatum__, dem _Importdatum_ oder nach dem _Planstatus_
+Diese Liste kann nach den angezeigen Spaltennamen
 auf- oder absteigend sortiert werden.
+
+[[xplanmanager-filter]]
+===== Filter
+
+Diese Liste kann auch nach verschiedenen Kriterien gefiltert werden. Neben dem Filter nach "Gemeinde" und "Planstatus" kann
+über den freien Filer die Anzeige der Pläne im XPlanManager reduziert werden. Mit dem Button "Alle Pläne anzeigen" können alle Filter aufgehoben werden und alle
+Pläne werden wieder angezeigt.
 
 [[xplanmanager-web-kartenvorschau]]
 ===== Kartenvorschau
