@@ -16,22 +16,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>default</id>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
-              <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/assembly.xml</descriptor>
-              </descriptors>
-              <appendAssemblyId>true</appendAssemblyId>
-            </configuration>
-            <phase>package</phase>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
