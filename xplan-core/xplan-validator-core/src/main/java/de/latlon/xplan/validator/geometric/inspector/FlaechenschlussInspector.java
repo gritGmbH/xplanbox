@@ -108,7 +108,8 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
 
         List<BadGeometry> flaechenschlussErrors = controlPointsWithInvalidFlaechenschluss.stream().map( cp -> {
             String error = String.format( ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint() );
-            return new BadGeometry( cp.getPoint(), error ); } ).collect( Collectors.toList() );
+            return new BadGeometry( cp.getPoint(), error );
+        } ).collect( Collectors.toList() );
         if ( flaechenschlussErrors.isEmpty() ) {
             LOG.info( "No features with invalid flaechenschluss" );
         } else {
@@ -135,7 +136,18 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
 
     private void checkAndAddSurface( Feature feature, Surface surface ) {
         Points controlPoints = getControlPoints( surface );
-        controlPoints.forEach( p -> checkAndAdd( feature.getId(), p ) );
+        Point first = null;
+        int index = 0;
+        for ( Point controlPoint : controlPoints ) {
+            if ( first == null )
+                first = controlPoint;
+            boolean isLast = index == controlPoints.size() - 1;
+            if ( isLast && controlPoint.equals( first ) ) {
+                return;
+            }
+            checkAndAdd( feature.getId(), controlPoint );
+            index++;
+        }
     }
 
     private void checkAndAdd( String id, Point point ) {
