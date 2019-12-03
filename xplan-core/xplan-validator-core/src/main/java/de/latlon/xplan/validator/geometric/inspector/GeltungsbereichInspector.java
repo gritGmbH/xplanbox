@@ -1,7 +1,6 @@
 package de.latlon.xplan.validator.geometric.inspector;
 
 import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.TopologyException;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
@@ -35,7 +34,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private static final Logger LOG = LoggerFactory.getLogger( GeltungsbereichInspector.class );
 
-    private static final String GEHOERT_ZU_BEREICH = "gehoertZuBereich";
+    private static final List<String> GEHOERT_ZU_BEREICH_PROPNAMES = new ArrayList<>();
 
     private static final String ERROR_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt nicht im Geltungsbereich des Bereichs/Plans.";
 
@@ -50,6 +49,16 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private Map<String, List<Feature>> bereichIdToFeatureGeoms = new HashMap<>();
 
+    static {
+        GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuBereich" );
+        GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuBereich" );
+        GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuBP_Bereich" );
+        GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuLP_Bereich" );
+        GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuFP_Bereich" );
+        GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuRP_Bereich" );
+        GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuSO_Bereich" );
+    }
+
     @Override
     public Feature inspect( Feature feature )
                             throws FeatureInspectionException {
@@ -58,11 +67,13 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
             planFeature = feature;
         } else if ( isBereichFeature( feature ) ) {
             bereichFeatures.put( feature.getId(), feature );
-        } else if ( hasGehoertZuBereichProperty( feature ) && !isPraesentationsobjekt( feature ) ) {
+        } else if ( !isPraesentationsobjekt( feature ) ) {
             String gehortZuBereich = getGehortZuBereichId( feature );
-            if ( !bereichIdToFeatureGeoms.containsKey( gehortZuBereich ) )
-                bereichIdToFeatureGeoms.put( gehortZuBereich, new ArrayList<>() );
-            bereichIdToFeatureGeoms.get( gehortZuBereich ).add( feature );
+            if ( gehortZuBereich != null ) {
+                if ( !bereichIdToFeatureGeoms.containsKey( gehortZuBereich ) )
+                    bereichIdToFeatureGeoms.put( gehortZuBereich, new ArrayList<>() );
+                bereichIdToFeatureGeoms.get( gehortZuBereich ).add( feature );
+            }
         }
         return feature;
     }
@@ -119,18 +130,26 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
         return feature.getName().getLocalPart().endsWith( "_Bereich" );
     }
 
-    private boolean hasGehoertZuBereichProperty( Feature feature ) {
-        return !feature.getProperties( new QName( feature.getName().getNamespaceURI(), GEHOERT_ZU_BEREICH ) ).isEmpty();
-    }
-
     private boolean isPraesentationsobjekt( Feature feature ) {
         String featureLocalName = feature.getName().getLocalPart();
         return PRAESENTATIONSOBJEKTE.contains( featureLocalName );
     }
 
     private String getGehortZuBereichId( Feature feature ) {
-        Property property = feature.getProperties(
-                                new QName( feature.getName().getNamespaceURI(), GEHOERT_ZU_BEREICH ) ).get( 0 );
+        for ( String propName : GEHOERT_ZU_BEREICH_PROPNAMES ) {
+            String gehortZuBereichId = getGehortZuBereichId( feature, propName );
+            if ( gehortZuBereichId != null )
+                return gehortZuBereichId;
+        }
+        return null;
+    }
+
+    private String getGehortZuBereichId( Feature feature, String propName ) {
+        QName qName = new QName( feature.getName().getNamespaceURI(), propName );
+        List<Property> properties = feature.getProperties( qName );
+        if ( properties == null || properties.isEmpty() )
+            return null;
+        Property property = properties.get( 0 );
         TypedObjectNode value = property.getValue();
         if ( value instanceof FeatureReference )
             return ( (FeatureReference) value ).getURI().substring( 1 );
@@ -147,7 +166,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
     private AbstractDefaultGeometry getOriginalGeometry( Feature feature ) {
         List<Property> geometryProperties = feature.getGeometryProperties();
         if ( !geometryProperties.isEmpty() )
-            return  (AbstractDefaultGeometry) geometryProperties.get( 0 ).getValue();
+            return (AbstractDefaultGeometry) geometryProperties.get( 0 ).getValue();
         return null;
     }
 }
