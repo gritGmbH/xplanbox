@@ -7,12 +7,14 @@ import org.deegree.commons.tom.datetime.ISO8601Converter;
 import org.deegree.commons.tom.genericxml.GenericXMLElement;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
+import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.Feature;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.i18n.Messages;
 import org.deegree.geometry.multi.MultiSurface;
 import org.deegree.geometry.points.Points;
 import org.deegree.geometry.primitive.Point;
+import org.deegree.geometry.primitive.Polygon;
 import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.Surface;
 import org.deegree.geometry.primitive.patches.PolygonPatch;
@@ -41,6 +43,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static de.latlon.xplan.validator.geometric.inspector.FlaechenschlussTolerance.calculateAllowedDistanceValue;
+
 /**
  * Inspector for 2.2.1 Flaechenschlussbedingung:
  *
@@ -60,7 +64,9 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
 
     private static final String ERROR_MSG_INVALID_GELTUNGSBEREICH = "2.2.1.1: Der Geltungsbereich des Plans ist geometrisch nicht valide. Betroffen ist das Feature mit der gml id %s. Die Pruefung der Flaechenschlussbedingung kann nicht durchgeführt werden.";
 
-    private Geometry geltungsbereich;
+    private static final String ERROR_MSG_GELTUNGSBEREICH_BUFFER = "2.2.1.1: Der Geltungsbereich des Plans konnte nicht verwendet werden. Betroffen ist das Feature mit der gml id %s. Die Pruefung der Flaechenschlussbedingung kann nicht durchgeführt werden.";
+
+    private com.vividsolutions.jts.geom.Geometry geltungsbereich;
 
     private final List<ControlPoint> controlPoints = new ArrayList<>();
 
@@ -78,11 +84,19 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
             checkAndAddGeometry( feature, geometry );
         }
         if ( isGeltungsbereichFeature( feature ) ) {
-            geltungsbereich = (Geometry) feature.getGeometryProperties().get( 0 ).getValue();
-            if ( !( (AbstractDefaultGeometry) geltungsbereich ).getJTSGeometry().isValid() ) {
-                invalidGeltungsbereich = new BadGeometry( geltungsbereich,
+            Geometry originalGeltungsbereich = (Geometry) feature.getGeometryProperties().get( 0 ).getValue();
+            if ( !( (AbstractDefaultGeometry) originalGeltungsbereich ).getJTSGeometry().isValid() ) {
+                invalidGeltungsbereich = new BadGeometry( originalGeltungsbereich,
                                                           String.format( ERROR_MSG_INVALID_GELTUNGSBEREICH,
                                                                          feature.getId() ) );
+            } else {
+                this.geltungsbereich = createJtsGeltungsbereichWithBuffer(
+                                        (AbstractDefaultGeometry) originalGeltungsbereich );
+                if ( this.geltungsbereich == null ) {
+                    invalidGeltungsbereich = new BadGeometry( originalGeltungsbereich,
+                                                              String.format( ERROR_MSG_GELTUNGSBEREICH_BUFFER,
+                                                                             feature.getId() ) );
+                }
             }
         }
         return feature;
@@ -119,6 +133,43 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
                                               Collectors.joining( "\n" ) ) );
         }
         return flaechenschlussErrors;
+    }
+
+    private com.vividsolutions.jts.geom.Geometry createJtsGeltungsbereichWithBuffer(
+                            AbstractDefaultGeometry geltungsbereich ) {
+        com.vividsolutions.jts.geom.Geometry jtsGeometry = geltungsbereich.getJTSGeometry();
+        if ( jtsGeometry instanceof Polygon ) {
+            com.vividsolutions.jts.geom.Polygon polygon = (com.vividsolutions.jts.geom.Polygon) jtsGeometry;
+            return fromPolygon( polygon, geltungsbereich.getCoordinateSystem() );
+        } else if ( jtsGeometry instanceof com.vividsolutions.jts.geom.MultiPolygon ) {
+            com.vividsolutions.jts.geom.MultiPolygon multiPolygon = (com.vividsolutions.jts.geom.MultiPolygon) jtsGeometry;
+            int numGeometries = multiPolygon.getNumGeometries();
+            com.vividsolutions.jts.geom.Geometry buffer = null;
+            for ( int indexGeometry = 0; indexGeometry < numGeometries; indexGeometry++ ) {
+                com.vividsolutions.jts.geom.Polygon geometryN = (com.vividsolutions.jts.geom.Polygon) multiPolygon.getGeometryN(
+                                        indexGeometry );
+                com.vividsolutions.jts.geom.Geometry geometryNBuffer = fromPolygon( geometryN,
+                                                                                    geltungsbereich.getCoordinateSystem() );
+                if ( buffer == null )
+                    buffer = geometryNBuffer;
+                else
+                    buffer = buffer.union( geometryN );
+            }
+            return buffer;
+        }
+        return null;
+    }
+
+    private com.vividsolutions.jts.geom.Geometry fromPolygon( com.vividsolutions.jts.geom.Polygon polygon, ICRS crs ) {
+        com.vividsolutions.jts.geom.LineString exteriorRing = polygon.getExteriorRing();
+        com.vividsolutions.jts.geom.Geometry buffer = exteriorRing.buffer( 0.05 );
+        int numInteriorRing = polygon.getNumInteriorRing();
+        for ( int indexInteriorRing = 0; indexInteriorRing < numInteriorRing; indexInteriorRing++ ) {
+            com.vividsolutions.jts.geom.Geometry geometryN = polygon.getInteriorRingN( indexInteriorRing );
+            geometryN = geometryN.buffer( calculateAllowedDistanceValue( crs ) );
+            buffer = buffer.union( geometryN );
+        }
+        return buffer;
     }
 
     private void checkAndAddGeometry( Feature feature, Geometry geometry ) {
@@ -185,8 +236,8 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
     }
 
     private boolean isPartOfGeltungsbereich( Point point ) {
-        if ( geltungsbereich != null ) {
-            return geltungsbereich.touches( point );
+        if ( geltungsbereich != null && point != null ) {
+            return geltungsbereich.contains( ( (AbstractDefaultGeometry) point ).getJTSGeometry() );
         }
         return false;
     }
