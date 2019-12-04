@@ -7,12 +7,12 @@ import org.deegree.geometry.primitive.Point;
 
 import java.math.BigDecimal;
 
+import static de.latlon.xplan.validator.geometric.inspector.FlaechenschlussTolerance.calculateAllowedDistance;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class ControlPoint {
-
-    private static final double ALLOWEDDISTANCE_METRE = 0.002;
 
     private final String featureGmlId;
 
@@ -58,7 +58,7 @@ public class ControlPoint {
      * @return <code>true</code> if this control point an identical point, <code>false</code> otherwise
      */
     public boolean checkIfIdentical( Point pointToCheck ) {
-        Measure allowedDistance = calculateAllowedDistance( pointToCheck );
+        Measure allowedDistance = calculateAllowedDistance( pointToCheck.getCoordinateSystem() );
         boolean isIdentical = this.point.isWithinDistance( pointToCheck, allowedDistance );
         if ( isIdentical ) {
             this.hasIdenticalControlPoint = true;
@@ -66,23 +66,6 @@ public class ControlPoint {
         return isIdentical;
     }
 
-    private Measure calculateAllowedDistance( Point pointToCheck ) {
-        double allowedDistanceValue = calculateAllowedDistanceValue( pointToCheck );
-        return new Measure( BigDecimal.valueOf( allowedDistanceValue ), "m" );
-    }
-
-    private double calculateAllowedDistanceValue( Point pointToCheck ) {
-        if ( pointToCheck.getCoordinateSystem() != null ) {
-            IUnit[] units = pointToCheck.getCoordinateSystem().getUnits();
-            if ( units != null && units.length > 0 ) {
-                if ( units[0].canConvert( Unit.METRE ) ) {
-                    return units[0].convert( ALLOWEDDISTANCE_METRE, Unit.METRE );
-                }
-            }
-
-        }
-        return ALLOWEDDISTANCE_METRE;
-    }
 
     /**
      * @return the gml id of the feature this control point is part of, never <code>null</code>

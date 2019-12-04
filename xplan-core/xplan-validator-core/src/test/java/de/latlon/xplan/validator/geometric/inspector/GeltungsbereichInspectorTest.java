@@ -48,6 +48,16 @@ public class GeltungsbereichInspectorTest {
         assertThat( errors.size(), is( 1 ) );
     }
 
+    @Test
+    public void testCheck_invalid_41()
+                            throws Exception {
+        XPlanArchive archive = getTestArchive( "xplan41/V4_1_ID_103.zip" );
+        GeltungsbereichInspector geltungsbereichInspector = readFeatures( archive );
+
+        List<BadGeometry> errors = geltungsbereichInspector.checkGeometricRule();
+        assertThat( errors.size(), is( 1 ) );
+    }
+
     private GeltungsbereichInspector readFeatures( XPlanArchive archive )
                             throws XMLStreamException, UnknownCRSException {
         XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper( archive.getMainFileXmlReader(), null );
