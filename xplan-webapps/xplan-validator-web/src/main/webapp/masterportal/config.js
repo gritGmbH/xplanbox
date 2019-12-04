@@ -20,7 +20,7 @@ const Config = {
     },
     portalConf: "./config",
     layerConf: "./config/services-internet.json",
-    restConf: "./rest-services-internet.json",
+    restConf: "./ressources/rest-services-internet.json",
     styleConf: "./ressources/style_v2.json",
     scaleLine: true,
     mouseHover: {
