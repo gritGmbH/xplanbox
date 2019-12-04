@@ -71,7 +71,7 @@ XPlanValidatorWMS in der Kartenvorschau angezeigt werden.
 [[xplanwms]]
 === XPlanWMS und XPlanWerkWMS
 
-Der XPlanWMS und XPlanWerkWMS sind dauf dem Standard Web Map Service
+Der XPlanWMS und XPlanWerkWMS sind auf dem Standard Web Map Service
 (Version 1.1.1 und 1.3.0) des Open Geospatial Consortium (OGC)
 basierende Kartendienste. Diese bieten die Möglichkeit,
 Visualisierungen von Plandaten sowie Sachinformationsabfragen zu

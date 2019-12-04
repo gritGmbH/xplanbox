@@ -112,7 +112,7 @@ http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=
 [[xplanwms-inhalte-des-kartendienstes]]
 === Inhalte des Kartendienstes
 
-Der XPlanWMS dient der Darstellung aller importierten XPlanArchive,  während der XPlanWerkWMS einzelne Planwerke visualisiert. Die Datenbasis beider Dienste basiert auf den über den XPlanManager importierten XPlanArchiven. Für jede Objektart aus den unterstützen XPlanGML-Applikationsschema, das Geometrie-Attribute enthält, existiert eine entsprechende Ebene im XPlanWMS und XPlanWerkWMS. Zusätzlich zu den aus dem XPlanGML abgeleiteten Ebenen stellen beide Dienste Ebenen zur Darstellung von gescanten Rasterplan-Dateien bereit.
+Der XPlanWMS dient der Darstellung aller importierten XPlanArchive, während der XPlanWerkWMS einzelne Planwerke visualisiert. Die Datenbasis beider Dienste basiert auf den über den XPlanManager importierten XPlanArchiven. Für jede Objektart aus den unterstützten XPlanGML-Applikationsschema, das Geometrie-Attribute enthält, existiert eine entsprechende Ebene im XPlanWMS und XPlanWerkWMS. Zusätzlich zu den aus dem XPlanGML abgeleiteten Ebenen stellen beide Dienste Ebenen zur Darstellung von gescanten Rasterplan-Dateien bereit.
 
 [[xplanwms-operationen]]
 === Operationen
