@@ -60,6 +60,8 @@ public interface XPlanWebMessages extends Messages {
 
     String fileNameMustEndWithZip();
 
+    String fileNameInvalidCharacters();
+
     String getPlansFailed();
 
     String downloadPlan();
