@@ -67,7 +67,7 @@ public class XPlanUploadService extends RemoteServiceServlet {
                 super.service( request, response );
             }
         } catch ( Exception e ) {
-            LOG.error( "An error occured during uploadind a plan!", e );
+            LOG.error( "An error occurred during uploading a plan!", e );
         }
     }
 

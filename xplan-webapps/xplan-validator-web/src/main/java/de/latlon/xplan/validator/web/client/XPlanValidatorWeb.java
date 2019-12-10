@@ -11,7 +11,6 @@ import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 import com.google.gwt.user.client.ui.FormPanel.SubmitEvent;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
@@ -19,7 +18,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-
 import de.latlon.xplan.commons.web.CloseableDialogBox;
 
 /**
@@ -122,7 +120,9 @@ public class XPlanValidatorWeb implements EntryPoint {
             @Override
             public void onClick( ClickEvent event ) {
                 if ( !isSupportedFileType() )
-                    showWrongFileEndingDialog();
+                    showInvalidFile( messages.fileNameMustEndWithZip() );
+                else if (!isValidFileName())
+                    showInvalidFile( messages.fileNameInvalidCharacters() );
                 else {
                     form.submit();
                     showUploadDialogBox();
@@ -134,9 +134,13 @@ public class XPlanValidatorWeb implements EntryPoint {
                 return fileName.endsWith( ".zip" ) || fileName.endsWith( ".xml" ) || fileName.endsWith( ".gml" );
             }
 
-            private void showWrongFileEndingDialog() {
-                DialogBox errorUpload = new CloseableDialogBox( messages.errorTitle(),
-                                                                messages.fileNameMustEndWithZip() );
+            private boolean isValidFileName() {
+                String fileName = getFilename( upload );
+                return fileName.matches( "[a-zA-Z0-9_-]*" );
+            }
+
+            private void showInvalidFile( String message ) {
+                DialogBox errorUpload = new CloseableDialogBox( messages.errorTitle(), message );
                 errorUpload.center();
                 errorUpload.show();
             }
@@ -181,7 +185,7 @@ public class XPlanValidatorWeb implements EntryPoint {
             }
 
             private void showSucessfulUploadedDialog( SubmitCompleteEvent event ) {
-                String filename = getFilename();
+                String filename = getFilename( uploadItem );
                 UploadFinishedDialogBox dialogBox = new UploadFinishedDialogBox( XPlanValidatorWeb.this,
                                                                                  event.getResults(),
                                                                                  filename );
@@ -189,20 +193,22 @@ public class XPlanValidatorWeb implements EntryPoint {
                 dialogBox.show();
             }
 
-            private String getFilename() {
-                try {
-                    String filename = uploadItem.getFilename();
-                    int indexOfSep = filename.lastIndexOf( "\\" ) + 1;
-                    filename = filename.substring( indexOfSep );
-                    int indexOfPref = filename.lastIndexOf( "." );
-                    filename = filename.substring( 0, indexOfPref );
-                    return filename;
-                } catch ( Exception e ) {
-                    return null;
-                }
-            }
+
 
         } );
+    }
+
+    private String getFilename( FileUpload uploadItem  ) {
+        try {
+            String filename = uploadItem.getFilename();
+            int indexOfSep = filename.lastIndexOf( "\\" ) + 1;
+            filename = filename.substring( indexOfSep );
+            int indexOfPref = filename.lastIndexOf( "." );
+            filename = filename.substring( 0, indexOfPref );
+            return filename;
+        } catch ( Exception e ) {
+            return null;
+        }
     }
 
 }

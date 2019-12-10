@@ -229,7 +229,7 @@ public class UploadPanel extends DecoratorPanel {
             }
         };
         return new ValidatorOptionsDialog( reportDownloadFinishedListener, messages.reportCloseButtonTitle(),
-                        messages.reportNextButtonTitle(), getFilename() );
+                        messages.reportNextButtonTitle(), getFilename( upload ) );
     }
 
     private Widget createUploadWidget() {
@@ -281,7 +281,9 @@ public class UploadPanel extends DecoratorPanel {
             @Override
             public void onClick( ClickEvent event ) {
                 if ( !isSupportedType( upload ) )
-                    showWrongFileEndingDialog();
+                    showInvalidFileDialog( messages.fileNameMustEndWithZip() );
+                if ( !isValidFileName( upload ) )
+                    showInvalidFileDialog( messages.fileNameInvalidCharacters() );
                 else {
                     form.submit();
                     showUploadDialogBox();
@@ -293,14 +295,19 @@ public class UploadPanel extends DecoratorPanel {
                 return filename.endsWith( ".zip" ) || filename.endsWith( ".gml" ) || filename.endsWith( ".xml" );
             }
 
-            private void showWrongFileEndingDialog() {
+            private boolean isValidFileName( final FileUpload upload ) {
+                String fileName = getFilename( upload );
+                return fileName.matches( "[a-zA-Z0-9_-]*" );
+            }
+
+            private void showInvalidFileDialog( String message ) {
                 final DialogBox errorUpload = new DialogBox( false, true );
                 Button closeButton = new Button( messages.close(), new ClickHandler() {
                     public void onClick( ClickEvent event ) {
                         errorUpload.hide();
                     }
                 } );
-                errorUpload.setText( messages.fileNameMustEndWithZip() );
+                errorUpload.setText( message );
                 errorUpload.add( closeButton );
                 errorUpload.center();
                 errorUpload.show();
@@ -382,7 +389,7 @@ public class UploadPanel extends DecoratorPanel {
         } );
     }
 
-    private String getFilename() {
+    private String getFilename( FileUpload upload ) {
         if ( upload != null ) {
             try {
                 String filename = upload.getFilename();

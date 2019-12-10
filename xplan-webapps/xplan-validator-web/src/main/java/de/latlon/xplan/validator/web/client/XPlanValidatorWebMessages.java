@@ -25,6 +25,8 @@ interface XPlanValidatorWebMessages extends Messages {
 
     String fileNameMustEndWithZip();
 
+    String fileNameInvalidCharacters();
+
     String uploadingFile();
 
     String uploadFailed();
