@@ -1,10 +1,16 @@
 [[ldap]]
-=== LDAP
+=== Absicherung mit LDAP
 
-Als LDAP Server kann Microsoft Active Directory verwendet.
+Der Zugriff auf die Komponente XPlanManagerWeb kann mittels Spring Security abgesichert werden. Zur Authentifizierung
+eines Benutzer kann ein LDAP bzw. Microsoft Active Directory (AD) Server verwendet werden.
+Der Zugriff auf den XPlanManagerWeb kann somit auf Benutzer eingeschränkt werden, die sich erfolgreich über LDAP
+anmelden können. Zu jeden erfolgreich authentifizierten Benutzer können über LDAP auch Rolleninformationen
+abgerufen werden.
 
-Um die Security zu aktivieren, müssen folgende Änderungen an der
-_WEB-INF/web.xml_ vorgenommen werden.
+==== Absicherung aktivieren
+
+Um die Absicherung des XPlanManagerWeb zu aktivieren, müssen folgende Änderungen in dem Deployment-Deskriptor _WEB-INF/web.xml_
+der Webanwendung _xplan-manager-web.war_ vorgenommen werden.
 
 Der Spring Security Servlet-Filter muss hinzugefügt werden:
 
@@ -19,57 +25,58 @@ Der Spring Security Servlet-Filter muss hinzugefügt werden:
 </filter-mapping>
 ----
 
-Die korrekte Spring Konfiguration muss eingebunden werden:
+Zusätzlich muss die passende Spring Konfiguration eingebunden werden:
 
-----
 Folgende Zeilen:
-
+----
 <context-param>
   <param-name>contextConfigLocation</param-name>
   <param-value>de.latlon.xplan.manager.web.spring.config.ManagerWebSpringConfig</param-value>
 </context-param>
-
+----
 zu folgenden Zeilen abändern:
-
+----
 <context-param>
   <param-name>contextConfigLocation</param-name>
   <param-value>de.latlon.xplan.manager.web.spring.config.ManagerWebSpringConfigWithAdLdapSecurity</param-value>
 </context-param>
 ----
 
-Um die Security zu deaktivieren, müssen der oben genannte Filter
+==== Absicherung deaktivieren
+
+Um die Absicherung zu deaktivieren, müssen der oben genannte Servlet-Filter
 entfernt und die zuerst beschriebene Spring Konfiguration eingebunden
 werden.
 
-Die Verbindung zum Active Directory Server kann in der Webapp des
+==== Verbindung zu LDAP Server konfigurieren
+
+Die Verbindung zum LDAP bzw. AD Server kann in der Webapp des
 XPlanManagers in der Datei _WEB-INF/classes/security.properties_
 konfiguriert werden:
 
 ----
 ldap.server.domain=adserver.lat-lon
 ldap.server.url=ldap://adserver:389
-----
-
-Weiterhin kann dort die Konfiguration für das dynamische Auslesen der
-Gruppenhierarchien erfolgen. Dies ist lediglich nötig, wenn dynamische
-Gruppenhierarchien genutzt werden (siehe weiter unten):
-
-----
 ldap.server.searchUser=ll-technical
 ldap.server.searchPassword=ADServer!
 ldap.server.searchNode=OU=xplanisk,DC=adserver,DC=lat-lon
 ----
 
-Hier muss ein (technischer) Nutzer konfiguriert werden, der lesenden
-Zugriff auf das Active Directory hat um die Rollen auslesen zu können
+Hier muss neben der Adresse und der Domain des AD ein (technischer) Nutzer konfiguriert werden, der lesenden
+Zugriff auf das AD hat, um die Rollen auslesen zu können
 (__ldap.server.searchUser__ und __ldap.server.searchPassword__). Mit dem
 Schlüssel _ldap.server.searchNode_ wird die Organisationseinheit mit OU,
 und die Domänen Komponenten mit DC in kommaseparierter Form notiert.
 
-Die Active Directory-Gruppen mit den dazugehörigen Bezirken auf die die
-Gruppe zugreifen darf, die Superuser-Gruppen und die Editor-Gruppen
-können in der Webapp des XPlanManagerWebs in der Datei
-_WEB-INF/classes/security-configuration.xml_ konfiguriert werden:
+Weiterhin kann in dieser Datei die Konfiguration für das dynamische Auslesen der
+Gruppenhierarchien erfolgen. Dies ist lediglich nötig, wenn dynamische
+Gruppenhierarchien genutzt werden (siehe <<gruppenhierarchien>>).
+
+==== Rollen und Gruppen konfigurieren
+
+Die Konfiguration der Superuser-Gruppen, der Editor-Gruppen und der Active Directory-Gruppen mit den dazugehörigen Bezirken,
+auf die diese Gruppen zugreifen dürfen, erfolgt in der Datei
+_WEB-INF/classes/security-configuration.xml_:
 
 ----
 <util:list id="groupsSuper" value-type="java.lang.String">
@@ -122,7 +129,7 @@ aller Superuser-Gruppen dar. Ein Nutzer, der einer Superuser-Gruppe
 zugeordnet ist, hat keinerlei Beschränkungen bei der Nutzung des
 XPlanManagers.
 * Die Liste _groupsEditor_ (momentan mit EDITOR gefüllt) stellt eine
-Liste aller Editor-Gruppen dar. Falls ein Nutzer einer Editor-Gruppe
+Liste aller Editor-Gruppen dar. Wenn ein Nutzer einer Editor-Gruppe
 zugeordnet ist, kann dieser alle Pläne aus Bezirken editieren, für die
 der Nutzer Rechte hat (siehe nächste Zeile).
 * Die Map _groupsTodistricts_ (momentan mit ALTONA, HARBURG und
@@ -141,10 +148,10 @@ sollen (siehe nächster Absatz).
 genutzt. Der nächste Absatz muss zwingend beachtet werden.
 
 [[gruppenhierarchien]]
-==== Gruppenhierarchien
+===== Gruppenhierarchien
 
 Es können Gruppenhierarchien konfiguriert werden, um hierarchische
-Abhängigkeiten zwischen Gruppen abzubilden. So kann eine Gruppen
+Abhängigkeiten zwischen Gruppen abzubilden. So kann eine Gruppe
 Mitglied einer anderen Gruppe sein und dabei die Eigenschaften der
 übergeordneten Gruppe übernehmen.
 
@@ -209,8 +216,14 @@ Beispiel 2 - Konfiguration einer dynamischen Rollenhierarchie:
 </beans:bean>
 ----
 
+Weitere Informationen zur Konfiguration von Spring und Spring Security sind in der Online Dokumentation zu finden:
+
+* https://docs.spring.io/spring/docs/4.3.23.RELEASE/spring-framework-reference/htmlsingle/[Allgemeine Informationen zur Konfiguration von Spring]
+* https://docs.spring.io/spring-security/site/docs/4.2.12.RELEASE/reference/htmlsingle/[Konfiguration von Spring Security]
+* https://docs.spring.io/spring-security/site/docs/4.2.12.RELEASE/reference/htmlsingle/#ldap[Anbindung von LDAP und AD mit Spring Security]
+
 NOTE: Sowohl die dynamische als auch die statische Gruppenhierarchie wird
-während des Starts der Webapp ausgewertet. Falls es nachträgliche
+während des Starts der Webapp einmalig ausgewertet. Falls es nachträgliche
 Änderungen an den Hierarchien gibt, muss die Webapp neu gestartet
-werden, damit diese von der Software erkannt und genutzt werden.
+werden, damit diese Änderungen von der Software erkannt und genutzt werden können.
 

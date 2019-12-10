@@ -3,6 +3,8 @@
 
 Der XPlanManager dient zur Verwaltung von XPlanArchiven innerhalb der xPlanBox. Mit
 dem XPlanManager können XPlanArchive importiert, editiert oder gelöscht werden.
+Wenn ein XPlanArchiv erfolgreich über den XPlanManager importiert werden konnte, können die Daten über die Dienste
+XPlanWFS und XPlanWMS abgerufen werden.
 
 [[xplanarchiv]]
 ==== Das XPlanArchiv
@@ -15,10 +17,6 @@ Das XPlanArchiv ist eine ZIP-Datei mit folgendem Aufbau:
 NOTE: *Wichtig*: Dateinamen dürfen keine Sonderzeichen wie z.B. `&`, `#` , `/`, `\`, `"`, `'` (doppeltes oder einfaches Anführungszeichen),
 Leerzeichen oder auch Umlaute beinhalten. Gross- und Kleinschreibung in den Dateinamen (auch der Dateiendung) werden berücksichtigt
 und müssen vollständig mit den Referenzen im Dokument übereinstimmen!
-
-Wenn ein XPlanArchiv erfolgreich über den XPlanManager importiert werden konnte, können die Daten über die Dienste
-XPlanWFS und XPlanWMS abgerufen werden.
-
 
 [[anlegen-von-deegree-konfigurationsstrukturen-fuer-rasterdaten]]
 ==== Anlegen von deegree Konfigurationsstrukturen für Rasterdaten

@@ -8,7 +8,7 @@ Instanzdokumente in die Datenhaltung laden, editieren, löschen sowie
 bereits importiere XPlanArchive in einer Liste anzeigen.
 
 [[xplanmanager-web-benutzungsanleitung]]
-==== Benutzungsanleitung
+==== Einstiegsseite
 
 Die Webanwendung XPlanManagerWeb dient der Verwaltung von XPlanGML
 konformen Plänen und ist unter:
@@ -18,6 +18,8 @@ http://<host>:<port>/xplan-manager/
 ----
 
 verfügbar und kann mit einem Web-Browser aufgerufen werden.
+
+==== Funktionen des XPlanManagerWeb
 
 [[xplanmanager-web-hilfe]]
 ===== Hilfe

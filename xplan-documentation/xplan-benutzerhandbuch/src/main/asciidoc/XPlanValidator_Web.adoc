@@ -1,12 +1,12 @@
 [[xplanvalidator-web]]
 === XPlanValidatorWeb
 
-Die Komponente XPlanValidatorWeb ist eine Web-Oberfläche, welche dem
-Fachadministrator der xPlanBox ermöglicht, XPlanGML Instanzdokumente zu
+Die Komponente XPlanValidatorWeb ist eine Web-Oberfläche, die einem
+Benutzer der xPlanBox ermöglicht, XPlanGML Instanzdokumente zu
 validieren.
 
 [[xplanvalidator-web-benutzungsanleitung]]
-==== Benutzungsanleitung
+==== Einstiegsseite
 
 Die Web-Anwendung XPlanValidatorWeb dient der Validierung von XPlanGML und
 ist unter:
@@ -15,7 +15,9 @@ ist unter:
 http://<host>:<port>/xplan-validator/
 ----
 
-verfügbar kann mit einem gängigen Web-Browser aufgerufen werden.
+verfügbar kann mit einem Web-Browser aufgerufen werden.
+
+==== Funktionen des XPlanValidatorWeb
 
 [[xplanvalidator-web-hinzufuegen]]
 ===== XPlanArchiv Hinzufügen
@@ -59,7 +61,7 @@ Die folgenden Validierungsoptionen für die geometrische Validierung können aus
 Die Validierung kann über den Button _Validierung starten_ gestartet werden.
 
 [[xplanvalidator-web-validierungsergebnis]]
-==== Validierungsergebnis
+====== Validierungsergebnis
 
 Das Ergebnis der Validierung kann im Anschluss als HTML, PDF und XML
 Report herunter geladen werden. Je nachdem ob ein Geometriefehler
@@ -70,7 +72,7 @@ Alle Ergebnisdateien werden in einem ZIP-Archiv gespeichert. Der
 Dateiname enthält die Bezeichnung des Validierungsdurchlaufs.
 
 [[xplanvalidator-web-kartenvorschau]]
-==== Kartenvorschau
+===== Kartenvorschau
 
 Über den Button _Kartenvorschau_ kann in die Kartenansicht des Plans gewechselt werden. Hier kann eine visuelle Überprüfung des Plans vorgenommen werden. Der Plan steht in der Kartenansicht nur für eine begrenzte Zeitspanne zur Verfügung, anschließend ist nur noch die Hintergrundkarte zu sehen.
 

@@ -5,7 +5,7 @@ In diesem Betriebshandbuch befinden sich Informationen zu
 Systemvoraussetzungen, Schnittstellen und Installation für den Betrieb
 der xPlanBox. Die Web-Anwendungen basieren auf den Komponenten des
 Open-Source-Projekts http://www.deegree.org/[deegree]. Als zugrunde liegende
-Basistechnologien werden Java, Apache Tomcat und PostgreSQL / PostGIS
+Basistechnologien werden Java, Apache Tomcat und PostgreSQL mit PostGIS
 verwendet.
 
 Zur erfolgreichen Installation der Software-Komponenten müssen die in
@@ -37,8 +37,8 @@ Als Applikationsserver wird Apache Tomcat empfohlen.
 Das Installationsarchiv findet sich bei der
 http://tomcat.apache.org[Apache Foundation]. Diese Dokumentation bezieht
 sich grundsätzlich auf den Apache Tomcat. Um eine spätere Trennung der
-Dienste (Web-Anwendungen) zu gewährleisten, werden zwei
-Tomcat-Installationen empfohlen.
+Dienste (Web-Anwendungen) zu gewährleisten, wird die Konfiguration von zwei
+Tomcat-Instanzen empfohlen.
 
 NOTE: Die minimale Anforderung an den Applikationsserver ist das Java EE 6 Web
 Profil. Empfohlen wird Apache Tomcat Version 8.5.46+ oder 9.0.27+.
