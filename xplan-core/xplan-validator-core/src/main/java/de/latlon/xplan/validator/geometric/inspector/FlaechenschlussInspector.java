@@ -153,7 +153,7 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
                 if ( buffer == null )
                     buffer = geometryNBuffer;
                 else
-                    buffer = buffer.union( geometryN );
+                    buffer = buffer.union( geometryNBuffer );
             }
             return buffer;
         }
