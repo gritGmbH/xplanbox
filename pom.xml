@@ -14,7 +14,7 @@
     <sonar.jdbc.url>jdbc:postgresql://habub/sonar</sonar.jdbc.url>
     <!-- version properties -->
     <deegree3.version>3.4.10-xplanbox-1.12</deegree3.version>
-    <geowerkstatt-hamburg.xplanung.version>0.9.2</geowerkstatt-hamburg.xplanung.version>
+    <geowerkstatt-hamburg.xplanung.version>0.9.3</geowerkstatt-hamburg.xplanung.version>
     <gwt.version>2.5.1</gwt.version>
     <geotools.version>10.0</geotools.version>
     <slf4j.version>1.7.5</slf4j.version>
