@@ -3,17 +3,17 @@
 
 Der XPlanValidator beinhaltet die semantischen Validierungsregeln als XQuery-Dateien. Diese Dateien können in einem externen Verzeichnis abgelegt werden,
 wenn die semantischen Validierungsregeln angepasst, erweiterert oder durch eine aktuellere Version ersetzt werden sollen.
-Um statt der mit dem XPlanValidator ausgelieferten Regeln die externen Regeln zu verwenden, muss dies für den XPlanManagerWeb und XPlanValidatorWeb konfiguriert werden.
+Um statt der mit dem XPlanValidator ausgelieferten Regeln die externen Regeln zu verwenden, muss das Verzeichnis für den XPlanManagerWeb und XPlanValidatorWeb konfiguriert werden.
 Der Pfad zu den semantischen Regeln muss in der Datei _<XPLANBOX_CONFIG>/validatorConfiguration.properties_ wie folgt konfiguriert werden:
 
 ----
-validationRulesDirectory=/home/xplanbox/semantischeRegeln/1.0/
+validationRulesDirectory=/home/xplanbox/semantischeRegeln/0.9/
 ----
 
 Ist der Pfad nicht konfiguriert, werden die internen Validierungsregeln verwendet.
 
 Wenn innerhalb des Validierungsbericht die Version und die Quelle der semantischen Validierungsregeln angezeigt werden sollen, dann
-muss im _validationRulesDirectory_ Verzeichnis eine Textdatei mit dem Dateinamen _VERSION.txt_ und folgendem Inhalt angelegt werden:
+muss im übergeordneten Verzeichnis aus _validationRulesDirectory_ eine Textdatei mit dem Dateinamen _VERSION.txt_ und folgendem Inhalt angelegt werden:
 
 ----
 version=0.9
