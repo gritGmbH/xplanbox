@@ -3,8 +3,7 @@
 
 Der Zugriff auf die Komponente XPlanManagerWeb kann mittels Spring Security abgesichert werden. Zur Authentifizierung
 eines Benutzer kann ein LDAP bzw. Microsoft Active Directory (AD) Server verwendet werden.
-Der Zugriff auf den XPlanManagerWeb kann somit auf Benutzer eingeschränkt werden, die sich erfolgreich über LDAP
-anmelden können. Zu jeden erfolgreich authentifizierten Benutzer können über LDAP auch Rolleninformationen
+Neben der Authentifizierung können über LDAP auch Autorisierungsinformationen wie Rollen- und Gruppenzugehörigkeiten
 abgerufen werden.
 
 ==== Absicherung aktivieren
@@ -55,11 +54,11 @@ XPlanManagers in der Datei _WEB-INF/classes/security.properties_
 konfiguriert werden:
 
 ----
-ldap.server.domain=adserver.lat-lon
+ldap.server.domain=adserver.domain
 ldap.server.url=ldap://adserver:389
-ldap.server.searchUser=ll-technical
-ldap.server.searchPassword=ADServer!
-ldap.server.searchNode=OU=xplanisk,DC=adserver,DC=lat-lon
+ldap.server.searchUser=user
+ldap.server.searchPassword=password
+ldap.server.searchNode=OU=xplanisk,DC=adserver,DC=domain
 ----
 
 Hier muss neben der Adresse und der Domain des AD ein (technischer) Nutzer konfiguriert werden, der lesenden

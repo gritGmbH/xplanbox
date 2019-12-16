@@ -2,9 +2,9 @@
 === Konfiguration der Applikationsserver
 
 Wie im Abschnitt <<anwendung-installieren>> beschrieben,
-werden zum Betreiben aller Komponenten zwei Tomcat-Instanzen empfohlen,
+werden für den Betrieb aller Komponenten der xPlanBox zwei Tomcat-Instanzen empfohlen,
 der _Dienste-Tomcat_ sowie __Anwendungs-Tomcat__. Im Folgenden wird die
-Konfiguration beider Tomcats beschrieben.
+Konfiguration beider Tomcat-Instanzen beschrieben.
 
 [[anwendungs-tomcat]]
 ==== Anwendungs-Tomcat
@@ -74,6 +74,7 @@ Zeilen hinzugefügt werden:
 <role rolename="deegree"/>
 <user username="<NUTZERNAME>" password="<PASSWORT>" roles="deegree"/>
 ----
+Weitere Informationen zur https://tomcat.apache.org/tomcat-8.5-doc/realm-howto.html[Konfiguration von Benutzern] ist in der Dokumentation von Apache Tomcat zu finden.
 
 NOTE: Der Nutzername und das Passwort müssen in die
 managerConfiguration.properties eingetragen werden (s. Kapitel
@@ -81,3 +82,16 @@ managerConfiguration.properties eingetragen werden (s. Kapitel
 
 NOTE: Der Dienste-Tomcat muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch setzen der Umgebungsvariable: _exportJAVA_OPTS=’-Xmx4096m’_ erfolgen.
+
+==== Absicherung des Tomcat und der Webanwendungen
+
+Wenn die xPlanBox in einer produktiven Umgebung betrieben wird, sollte der Apache Tomcat abgesichert werden. Dazu sind die
+allgemeinen Empfehlungen aus der https://tomcat.apache.org/tomcat-8.5-doc/security-howto.html[Dokumentation von Apache Tomcat zum Thema Sicherheit] zu beachten.
+
+Zusätzlich sollte die xPlanBox wie folgt konfiguriert sein:
+
+. die deegree webservice console für die drei Dienste-Konfigurationen _xplan-wms_, _xplan_wfs_ und _xplansyn-wfs_ im _Dienste-Tomcat_ ist durch ein Kennwort geschützt (Datei _console.pw_ im deegree Workspace).
+. die deegree REST-Schnittstelle ist durch Benutzername und Kennwort abgesichert (Datei _web.xml_ und _tomcat-users.xml_ im Tomcat-Konfigurationsverzeichnis, siehe Kapitel <<dienste-tomcat>>).
+. der Zugriff auf die deegree webservice console ist auf IP-Adressbereiche bzw. Domänen eingeschränkt (Datei _context.xml_ innerhalb der Webanwendungen).
+. beide Tomcat-Instanzen werden hinter einem Proxy (z.B. Apache httpd) betrieben (Datei _server.xml_ im Tomcat-Konfigurationsverzeichnis).
+. der Zugriff auf den XPlanManagerWeb ist durch Benutzername und Kennwort abgesichert (siehe Kapitel <<ldap>>).

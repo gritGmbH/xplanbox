@@ -17,8 +17,9 @@ workspaceReloadPassword=<TOMCAT-PASSWORT>
 
 Es können mehrere URLs kommasepariert eingetragen werden, für den Fall das der XPlanWMS/XPlanWerkWMS dupliziert wurde. In dem Fall
 wird für alle eingetragenen Dienste ein Reload durchgeführt.
-Achtung: Alle Dienste müssen über die gleiche Nutzer/Passwort-Kombination angesprochen werden können.
 
 ----
 workspaceReloadUrls=http://server1/xplan-wms/,http://server2/xplan-wms/
 ----
+
+NOTE: Wichtig! Alle Dienste müssen über die gleiche Nutzer/Passwort-Kombination angesprochen werden können.
