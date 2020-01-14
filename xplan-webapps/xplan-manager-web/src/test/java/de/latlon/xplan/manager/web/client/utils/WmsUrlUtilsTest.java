@@ -226,6 +226,15 @@ public class WmsUrlUtilsTest {
         assertThat( planwerkWmsUrl, is( "http://localhost:8080/xplan-wms/services/planwerkwms/planname/PlanName10mit?request=GetCapabilities&service=WMS&version=1.3.0" ) );
     }
 
+    @Test
+    public void testCreatePlanwerkWmsUrlReplaceRquiredWithServices()
+                            throws Exception {
+        String wmsBaseUrl = "http://xplanservices.xplanbox.de/xplan-wms/services/wms?";
+        String planwerkWmsUrl = WmsUrlUtils.createPlanwerkWmsUrl( "Plan Name 10 mit /", mockConfiguration( wmsBaseUrl ) );
+
+        assertThat( planwerkWmsUrl, is( "http://xplanservices.xplanbox.de/xplan-wms/services/planwerkwms/planname/PlanName10mit?request=GetCapabilities&service=WMS&version=1.3.0" ) );
+    }
+
 
     private MapPreviewConfiguration mockConfigurationWithoutWmsEndpoint( String wmsUrl ) {
         return mockConfiguration( wmsUrl, null, "wmspre" );

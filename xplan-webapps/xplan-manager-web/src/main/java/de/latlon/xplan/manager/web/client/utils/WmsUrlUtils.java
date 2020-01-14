@@ -79,7 +79,7 @@ public class WmsUrlUtils {
 
     public static String createPlanwerkWmsUrl( String name, MapPreviewConfiguration configuration ) {
         String wmsUrl = determineWmsUrl( null, configuration );
-        int servicesIndex = wmsUrl.indexOf( "services" );
+        int servicesIndex = wmsUrl.lastIndexOf("services" );
         if ( servicesIndex < 0 )
             return null;
         wmsUrl = wmsUrl.substring( 0, servicesIndex );
