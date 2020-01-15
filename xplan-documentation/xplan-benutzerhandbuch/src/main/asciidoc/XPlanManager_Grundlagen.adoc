@@ -237,9 +237,9 @@ Folgende Voraussetzung werden an die einzelnen Formate gestellt:
   * GeoTiff-Dateien liegen als gekachelte BIGTIFF GeoTiff-Dateien vor.
   * GeoTiff-Dateien liegen in dem Koordinatenreferenzsystem vor, welches
   für den XPlanManager konfiguriert ist.
-  * GeoTiff-Dateien enthalten ihre räumliche Ausdehnung.
+  * GeoTiff-Dateien enthalten ihre räumliche Ausdehnung als Metatags innerhalb der Datei.
   * Zur Optimierung der Antwortzeit beim Zugriff auf die GeoTiff-Dateien
-  wird empfohlen, in den GeoTiff-Dateien Overlays mit geringerer
+  wird empfohlen, in den GeoTiff-Dateien Overlays mit niedriger
   Auflösung hinzuzufügen.
 
 
@@ -256,4 +256,4 @@ Folgende Voraussetzung werden an die einzelnen Formate gestellt:
   einer aux.xml-Datei das Koordinatenreferenzsystem der PNGs definiert
   sein. Für den XPlanManagerWeb ist dies keine Voraussetzung, der
   Nutzer kann beim Import der Daten das Koordinatenreferenzsystem der
-  PNGs bestätigen.
+  PNG-Datei bestätigen.
