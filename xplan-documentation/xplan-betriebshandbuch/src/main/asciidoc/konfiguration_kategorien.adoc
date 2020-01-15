@@ -24,8 +24,8 @@ NOTE: Umlaute müssen in Unicode für Java codiert werden. Und Sonderzeichen wie
 [[ortsteile]]
 ==== Ortsteile
 
-Jeder Gemeinde können mehrere Ortsteile über das Element `categoriesToParts` zugeordnet werden. Dabei ist folgende Syntax
-zu beachten:
+Jeder Gemeinde können mehrere Ortsteile über das Element `categoriesToParts` in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ zugeordnet werden.
+Dabei ist folgende Syntax zu beachten:
 
 ----
 categoriesToParts=Gemeinde1(Ortsteil1,Ortsteil2);Gemeinde2(Ortsteil3,Ortsteil4)
