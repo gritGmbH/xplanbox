@@ -60,7 +60,3 @@ Datei "gcs.csv" enthält, z.B.:
 * Der bestehenden Umgebungsvariable _PATH_ müssen zwei Pfade hinzugefügt
 werden (Annahme: Entpacktes Zip-Archiv von GISInternals wurde genutzt):
 `<GDAL-INSTALLATIONSORDNER>\bin;<GDAL-INSTALLATIONSORDNER>\bin\gdal\java`
-
-Die Datei `<GDAL-INSTALLATIONSORDNER>\bin\gdal\java\gdal.jar` muss in
-das Verzeichnis `lib` der Webapps (`xplan-wms` und `xplan-manager-web`)
-kopiert werden.
