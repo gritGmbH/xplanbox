@@ -1,7 +1,7 @@
 [[getrennte-datenhaltung]]
 === Getrennte Datenhaltung
 
-Der XPlanMananger kann auf eine getrennte Datenhaltung zugreifen. Es
+Der XPlanManager kann auf eine getrennte Datenhaltung zugreifen. Es
 wird beim Import ermittelt, ob sich ein Plan _In Aufstellung_ befindet,
 _Festgestellt_ oder bereits _Archiviert_ ist. Ob eine getrennte
 Datenhaltung verwendet wird, kann in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ konfiguriert werden:
