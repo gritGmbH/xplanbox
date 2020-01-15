@@ -21,8 +21,8 @@ JRE 1.8]) unterstützt.
 
 NOTE: Empfohlen wird Oracle JDK 1.8_202+.
 
-NOTE: Empfohlen wird die Nutzung eines der folgenden Betriebssysteme: Debian
-Wheezy, SLES 11 SP4, Oracle Linux 7, CentOS 7.x, Windows Server 2012 R2.
+NOTE: Empfohlen wird die Nutzung eines der folgenden Betriebssysteme: Debian 10 (Buster),
+Ubuntu 19.04 (Disco Dingo), SLES 12 SP5, CentOS 7.x, Windows Server 2012 R2.
 
 NOTE: Das Gebietsschema des Betriebssystems ("Locale") sollte auf deutsch
 konfiguriert sein, da einzelne Fehlerbeschreibungen in dieser Sprache

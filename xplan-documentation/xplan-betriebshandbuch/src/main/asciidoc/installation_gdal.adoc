@@ -13,7 +13,7 @@ getrennten Tomcat Instanzen deployt werden.
 [[installation-gdal-linux]]
 ==== Linux
 
-Für Ubuntu Bionic (18.04) kann GDAL aus einer Paketquelle installiert werden:
+Für Debian 10 (Buster) kann GDAL aus einer Paketquelle installiert werden:
 
 ----
 sudo apt-get install libgdal-java
