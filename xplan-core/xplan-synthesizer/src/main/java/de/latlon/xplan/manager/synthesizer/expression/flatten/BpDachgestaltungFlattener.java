@@ -24,13 +24,15 @@ public class BpDachgestaltungFlattener extends AbstractFlattener {
     }
 
     @Override
-    public String flatten( TypedObjectNode xpVerbundenerPlan ) {
-        XPlanVersion version = XPlanVersionUtils.determineBaseVersion( ( (ElementNode) xpVerbundenerPlan ).getName() );
+    public String flatten( TypedObjectNode bpDachgestaltung ) {
+        XPlanVersion version = XPlanVersionUtils.determineBaseVersion( ( (ElementNode) bpDachgestaltung ).getName() );
         List<Pair<String, String>> properties = new ArrayList<>();
-        append( "Verbundener Plan", xpVerbundenerPlan, "planName", properties );
-        appendTranslatedCode( "Rechtscharakter Planänderung", xpVerbundenerPlan, "rechtscharakter", version,
-                              "XP_RechtscharakterPlanaenderung", properties );
-        append( "Nummer verbundener Plan", xpVerbundenerPlan, "nummer", properties );
+        append( "Dachneigung", bpDachgestaltung, "DN", properties );
+        append( "Dachneigung Min", bpDachgestaltung, "DNmin", properties );
+        append( "Dachneigung Max", bpDachgestaltung, "DNmax", properties );
+        append( "Dachneigung Zwingend", bpDachgestaltung, "DNzwingend", properties );
+        appendTranslatedCode( "Dachform", bpDachgestaltung, "dachform", version, "BP_Dachform", properties );
+        append( "Detaillierte Dachform", bpDachgestaltung, "detaillierteDachform", properties );
         return encode( properties );
     }
 
