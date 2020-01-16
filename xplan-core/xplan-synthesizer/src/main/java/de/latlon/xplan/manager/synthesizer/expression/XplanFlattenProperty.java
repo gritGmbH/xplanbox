@@ -49,6 +49,7 @@ public class XplanFlattenProperty implements Expression {
         customFlatteners.add( new XpVerfahrensMerkmalFlattener() );
         customFlatteners.add( new XpVerbundenerPlanFlattener() );
         customFlatteners.add( new BpDachgestaltungFlattener() );
+        customFlatteners.add( new XpSPEMassnahmenDatenFlattener() );
     }
 
     @Override
