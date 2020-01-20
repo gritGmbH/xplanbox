@@ -39,6 +39,10 @@
       </Font>
       <LabelPlacement>
         <PointPlacement>
+          <AnchorPoint>
+            <AnchorPointX>0.0</AnchorPointX>
+            <AnchorPointY>0.5</AnchorPointY>
+          </AnchorPoint>
           <Rotation>
             <ogc:Mul>
               <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>

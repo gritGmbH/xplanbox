@@ -39,7 +39,7 @@
       <LabelPlacement>
         <PointPlacement>
           <AnchorPoint>
-            <AnchorPointX>0</AnchorPointX>
+            <AnchorPointX>0.0</AnchorPointX>
             <AnchorPointY>0.5</AnchorPointY>
           </AnchorPoint>
           <Rotation>
