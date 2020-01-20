@@ -34,8 +34,12 @@
         <SvgParameter name="font-family">Arial</SvgParameter>
         <SvgParameter name="font-family">Sans-Serif</SvgParameter>
         <SvgParameter name="font-weight">bold</SvgParameter>
-        <SvgParameter name="font-size">6</SvgParameter>
-
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
       </Font>
       <LabelPlacement>
         <PointPlacement>
