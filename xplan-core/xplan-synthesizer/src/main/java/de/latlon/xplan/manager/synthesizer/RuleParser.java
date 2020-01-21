@@ -68,7 +68,7 @@ class RuleParser {
     }
 
     private Expression parseXPlanFlattenFeature( List<String> args ) {
-        return new XplanFlattenProperty( parse( args.get( 0 ) ), xPlanSynthesizer );
+        return new XplanFlattenProperty( parse( args.get( 0 ) ) );
     }
 
     private Expression parseXPlanCodeNormalize( List<String> args ) {

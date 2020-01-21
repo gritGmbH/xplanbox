@@ -2,8 +2,10 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
-import org.deegree.commons.tom.gml.property.Property;
-import org.deegree.commons.tom.primitive.PrimitiveValue;
+import org.deegree.commons.utils.Pair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class XpGemeindeFlattener extends AbstractFlattener {
 
@@ -17,34 +19,13 @@ public class XpGemeindeFlattener extends AbstractFlattener {
     }
 
     @Override
-    public String flatten( TypedObjectNode xpHoehenangabe ) {
-        if ( xpHoehenangabe instanceof ElementNode ) {
-            ElementNode elNode = (ElementNode) xpHoehenangabe;
-            String s = "[";
-            for ( TypedObjectNode child : elNode.getChildren() ) {
-                if ( child instanceof ElementNode ) {
-                    ElementNode childEl = (ElementNode) child;
-                    String propName = ( (ElementNode) child ).getName().getLocalPart();
-                    if ( childEl.getChildren().size() == 1 ) {
-                        s += concatenateValues( propName, childEl.getChildren().get( 0 ) ) + ";";
-                    }
-                }
-            }
-            s += "]";
-            return s;
-        }
-        return "";
-    }
-
-    private String concatenateValues( String propName, TypedObjectNode value ) {
-        String resultString = propName + "=";
-        if ( value instanceof Property ) {
-            value = ( (Property) value ).getValue();
-        }
-        if ( value instanceof PrimitiveValue ) {
-            resultString += value.toString();
-        }
-        return resultString;
+    public String flatten( TypedObjectNode xpGemeinde ) {
+        List<Pair<String, String>> properties = new ArrayList<>();
+        append( "AGS", xpGemeinde, "ags", properties );
+        append( "RS", xpGemeinde, "rs", properties );
+        append( "Gemeinde", xpGemeinde, "gemeindeName", properties );
+        append( "Ortsteil", xpGemeinde, "ortsteilName", properties );
+        return encode( properties );
     }
 
 }

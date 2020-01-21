@@ -53,7 +53,7 @@ public class XplanSynthesizerXplan41Test extends AbstractXplanSynthesizerTest {
 
         assertThat( features, hasFeature( "BP_BaugebietsTeilFlaeche" ) );
         assertThat( features, hasHoehenangabeProperty( "BP_BaugebietsTeilFlaeche",
-                                                       "[hoehenbezug=absolutNHN;bezugspunkt=HBA;h=23;]" ) );
+                                                       "[Höhenbezug: absolutNHN, Bezugspunkt Höhenangabe: HBA, Höhe: 23]" ) );
     }
 
     @Test
