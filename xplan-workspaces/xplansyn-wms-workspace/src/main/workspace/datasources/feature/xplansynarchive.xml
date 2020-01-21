@@ -16559,6 +16559,8 @@
     <Primitive path="xplan:horizontaleAusrichtungCode" mapping="xplan_horizontaleausrichtungcode" />
     <Primitive path="xplan:vertikaleAusrichtung" mapping="xplan_vertikaleausrichtung" />
     <Primitive path="xplan:vertikaleAusrichtungCode" mapping="xplan_vertikaleausrichtungcode" />
+    <Primitive path="xplan:anchorX" mapping="xplan_anchorX" />
+    <Primitive path="xplan:anchorY" mapping="xplan_anchorY" />
     <Primitive path="xplan:hat" mapping="xplan_hat" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:index" mapping="xplan_index" />
@@ -16591,6 +16593,8 @@
     <Primitive path="xplan:horizontaleAusrichtungCode" mapping="xplan_horizontaleausrichtungcode" />
     <Primitive path="xplan:vertikaleAusrichtung" mapping="xplan_vertikaleausrichtung" />
     <Primitive path="xplan:vertikaleAusrichtungCode" mapping="xplan_vertikaleausrichtungcode" />
+    <Primitive path="xplan:anchorX" mapping="xplan_anchorX" />
+    <Primitive path="xplan:anchorY" mapping="xplan_anchorY" />
     <Primitive path="xplan:hat" mapping="xplan_hat" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:drehwinkel" mapping="xplan_drehwinkel" />
@@ -16653,6 +16657,8 @@
     <Primitive path="xplan:horizontaleAusrichtungCode" mapping="xplan_horizontaleausrichtungcode" />
     <Primitive path="xplan:vertikaleAusrichtung" mapping="xplan_vertikaleausrichtung" />
     <Primitive path="xplan:vertikaleAusrichtungCode" mapping="xplan_vertikaleausrichtungcode" />
+    <Primitive path="xplan:anchorX" mapping="xplan_anchorX" />
+    <Primitive path="xplan:anchorY" mapping="xplan_anchorY" />
     <Primitive path="xplan:hat" mapping="xplan_hat" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:drehwinkel" mapping="xplan_drehwinkel" />

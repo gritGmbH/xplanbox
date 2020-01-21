@@ -98,4 +98,11 @@ class Expressions {
         }
         return new PrimitiveValue( s );
     }
+
+    public static PrimitiveValue toPrimitiveValue( Double s ) {
+        if ( s == null ) {
+            return null;
+        }
+        return new PrimitiveValue( s );
+    }
 }
