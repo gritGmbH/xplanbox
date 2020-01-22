@@ -43,6 +43,8 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
     private static final List<String> PRAESENTATIONSOBJEKTE = Arrays.asList( "XP_FPO", "XP_LPO", "XP_LTO", "XP_PPO",
                                                                              "XP_PTO", "XP_TPO" );
 
+    public static final double TOLERANCE_METRE = 0.001;
+
     private Feature planFeature;
 
     private Map<String, Feature> bereichFeatures = new HashMap<>();
@@ -90,8 +92,9 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
                                                                     geltungsbereichFeature.getId() ) );
                 return Collections.singletonList( error );
             }
+            Geometry geltungsbereichWithBuffer = geltungsbereich.buffer( TOLERANCE_METRE );
             List<Feature> invalidFeatures = bereichIdToGeoms.getValue().stream().filter(
-                                    f -> !isInsideGeom( f, geltungsbereich ) ).collect( Collectors.toList() );
+                                    f -> !isInsideGeom( f, geltungsbereichWithBuffer ) ).collect( Collectors.toList() );
             allInvalidFeatures.addAll( invalidFeatures );
         }
         if ( allInvalidFeatures.isEmpty() ) {
