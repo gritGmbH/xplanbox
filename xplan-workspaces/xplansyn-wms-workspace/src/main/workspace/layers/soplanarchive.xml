@@ -6,6 +6,219 @@
                configVersion="3.4.0">
   <FeatureStoreId>xplansynarchive</FeatureStoreId>
 
+  <!-- Beschriftung Anfang -->
+  <FeatureLayer>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc">
+        <SortProperty>
+          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>so_xp_pto</l:Name>
+    <d:Title>SO: XP: PTO</d:Title>
+    <s:CRS>${vectorCrs}</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>so_xp_pto</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/so_xp_pto_trans</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc">
+        <SortProperty>
+          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>so_xp_lto</l:Name>
+    <d:Title>SO: XP: LTO</d:Title>
+    <s:CRS>${vectorCrs}</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>so_xp_lto</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/so_xp_lto_trans</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <!-- Beschriftung Ende -->
+  <FeatureLayer>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc">
+        <SortProperty>
+          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>so_xp_fpo</l:Name>
+    <d:Title>SO: XP: FPO</d:Title>
+    <s:CRS>${vectorCrs}</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>so_xp_fpo</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/so_xp_fpo_trans</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc">
+        <SortProperty>
+          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>so_xp_lpo</l:Name>
+    <d:Title>SO: XP: LPO</d:Title>
+    <s:CRS>${vectorCrs}</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>so_xp_lpo</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/so_xp_lpo_trans</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc">
+        <SortProperty>
+          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>so_xp_ppo</l:Name>
+    <d:Title>SO: XP: PPO</d:Title>
+    <s:CRS>${vectorCrs}</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>so_xp_ppo</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/so_xp_ppo_trans</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+
   <FeatureLayer>
     <FeatureType>xplan:SO_Bereich</FeatureType>
     <Filter>
