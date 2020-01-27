@@ -4,6 +4,7 @@ import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationType;
 import org.apache.commons.cli.ParseException;
 import org.hamcrest.BaseMatcher;
+import org.hamcrest.CoreMatchers;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.junit.Test;
@@ -11,8 +12,14 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 
+import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
+import static de.latlon.xplan.validator.web.shared.ValidationType.SEMANTIC;
+import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
 import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -88,13 +95,23 @@ public class CliOptionsParserTest {
   public void testNoVtypeShouldDefaultToSemantic() throws Exception {
     String[] args = new String[] { "-validate", "path", "-name", "validation" };
     CliOptions options = new CliOptionsParser().parse( args );
-    assertThat( options.getValidationType(), is( ValidationType.SEMANTIC ) );
+    assertThat( options.getValidationTypes(), hasItems( SEMANTIC, SYNTACTIC, GEOMETRIC ) );
   }
 
   @Test
-  public void testVoShouldNotBeRequired() throws Exception {
+  public void testVtype() throws Exception {
     String[] args = new String[] { "-validate", "path", "-name", "validation" };
-    new CliOptionsParser().parse( args );
+    CliOptions options = new CliOptionsParser().parse( args );
+    assertThat( options.getValidationTypes(), hasItems( SEMANTIC, SYNTACTIC, GEOMETRIC ) );
+  }
+
+  @Test
+  public void testVoShouldNotBeRequired()
+                          throws Exception {
+    String[] args = new String[] { "-validate", "path", "-name", "validation", "-vtype", "syntax,semantic" };
+    CliOptions options = new CliOptionsParser().parse( args );
+    assertThat( options.getValidationTypes(), hasItems( SYNTACTIC, SEMANTIC ) );
+    assertThat( options.getValidationTypes(), not( hasItem( GEOMETRIC ) ) );
   }
 
   private BaseMatcher<List<ValidationOption>> hasCorrectArgument( final String parameter, final String value ) {

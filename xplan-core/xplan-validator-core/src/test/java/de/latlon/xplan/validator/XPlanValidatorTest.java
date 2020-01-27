@@ -41,7 +41,6 @@ import java.util.List;
 import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_SO;
 import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_XP;
 import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
-import static de.latlon.xplan.validator.web.shared.ValidationType.NONE;
 import static de.latlon.xplan.validator.web.shared.ValidationType.SEMANTIC;
 import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
 import static java.util.Collections.singletonList;
@@ -103,8 +102,8 @@ public class XPlanValidatorTest {
         executeValidator( geoVal, semVal, synVal, settings );
 
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
-        verify( geoVal, times( 1 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
-        verify( semVal, times( 1 ) ).validateSemantic( archive(), list() );
+        verify( geoVal, times( 0 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
+        verify( semVal, times( 0 ) ).validateSemantic( archive(), list() );
         verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
                                                                               anyString() );
     }
@@ -112,7 +111,7 @@ public class XPlanValidatorTest {
     @Test
     public void testValidateNotWriteReportTypeSyntax()
                     throws Exception {
-        ValidationSettings settings = new ValidationSettings( "", SYNTACTIC, emptyList() );
+        ValidationSettings settings = new ValidationSettings( "", singletonList( SYNTACTIC ), emptyList() );
         executeValidator( geoVal, semVal, synVal, settings );
 
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
@@ -124,7 +123,7 @@ public class XPlanValidatorTest {
     @Test
     public void testValidateNotWriteReportTypeGeometry()
                     throws Exception {
-        ValidationSettings settings = new ValidationSettings( "", GEOMETRIC, emptyList() );
+        ValidationSettings settings = new ValidationSettings( "", singletonList( GEOMETRIC ), emptyList() );
         executeValidator( geoVal, semVal, synVal, settings );
 
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
@@ -137,7 +136,7 @@ public class XPlanValidatorTest {
     @Test
     public void testValidateNotWriteReportTypeSemantic()
                     throws Exception {
-        ValidationSettings settings = new ValidationSettings( "", SEMANTIC, emptyList() );
+        ValidationSettings settings = new ValidationSettings( "", singletonList( SEMANTIC ), emptyList() );
         executeValidator( geoVal, semVal, synVal, settings );
 
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
@@ -148,14 +147,14 @@ public class XPlanValidatorTest {
     }
 
     @Test
-    public void testValidateNotWriteReportTypeNone()
+    public void testValidateNotWriteReportTypeEmpty()
                     throws Exception {
-        ValidationSettings settings = new ValidationSettings( "", NONE, emptyList() );
+        ValidationSettings settings = new ValidationSettings( "", emptyList(), emptyList() );
         executeValidator( geoVal, semVal, synVal, settings );
 
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
-        verify( geoVal, times( 1 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
-        verify( semVal, times( 1 ) ).validateSemantic( archive(), list() );
+        verify( geoVal, times( 0 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
+        verify( semVal, times( 0 ) ).validateSemantic( archive(), list() );
         verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
                                                                               anyString() );
     }
@@ -163,7 +162,7 @@ public class XPlanValidatorTest {
     @Test
     public void testValidateNotWriteReportIgnoreXp()
                     throws Exception {
-        ValidationSettings settings = new ValidationSettings( "", SEMANTIC, singleOption( "ignore-xp" ) );
+        ValidationSettings settings = new ValidationSettings( "", singletonList( SEMANTIC ), singleOption( "ignore-xp" ) );
         executeValidator( geoVal, semVal, synVal, settings );
         ArgumentCaptor<List> argument = ArgumentCaptor.forClass( List.class );
 
@@ -180,7 +179,7 @@ public class XPlanValidatorTest {
     @Test
     public void testValidateNotWriteReportIgnoreSo()
                     throws Exception {
-        ValidationSettings settings = new ValidationSettings( "", SEMANTIC, singleOption( "ignore-so" ) );
+        ValidationSettings settings = new ValidationSettings( "", singletonList( SEMANTIC ), singleOption( "ignore-so" ) );
         executeValidator( geoVal, semVal, synVal, settings );
         ArgumentCaptor<List> argument = ArgumentCaptor.forClass( List.class );
 
@@ -197,9 +196,9 @@ public class XPlanValidatorTest {
     @Test
     public void testWriteReport()
                     throws Exception {
-        ValidationSettings semanticSettings = new ValidationSettings( "", SEMANTIC, emptyList() );
+        ValidationSettings semanticSettings = new ValidationSettings( "", singletonList( SEMANTIC ), emptyList() );
         ValidatorReport semanticReportNotValid = executeValidator( geoVal, semVal, synVal, semanticSettings );
-        ValidationSettings geometricSettings = new ValidationSettings( "", GEOMETRIC, emptyList() );
+        ValidationSettings geometricSettings = new ValidationSettings( "", singletonList( GEOMETRIC ), emptyList() );
         ValidatorReport geometricReportValid = executeValidator( geoVal, semVal, synVal, geometricSettings );
 
         assertThat( semanticReportNotValid.isReportValid(), is( false ) );

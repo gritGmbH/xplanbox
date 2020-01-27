@@ -52,7 +52,7 @@ public class XPlanValidatorCli {
     static void validate( String[] args )
                     throws Exception {
         CliOptions options = new CliOptionsParser().parse( args );
-        ValidationSettings settings = new ValidationSettings( options.getValidationName(), options.getValidationType(),
+        ValidationSettings settings = new ValidationSettings( options.getValidationName(), options.getValidationTypes(),
                         options.getVoOptions() );
         XPlanValidator validator = createValidator();
         validator.validate( settings, options.getArchive(), options.getArchive().getName() );

@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -26,6 +27,7 @@ import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationSummary;
 import de.latlon.xplan.validator.web.shared.ValidationType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
@@ -49,11 +51,11 @@ public class ValidatorOptionsDialog extends FormPanel {
 
     private final TextBox validationName = new TextBox();
 
-    private final RadioButton validationTypeSyn = new RadioButton( "VALTYPE", messages.selectionValidationTypeSyn() );
+    private final CheckBox validationTypeSyn = new CheckBox( messages.selectionValidationTypeSyn() );
 
-    private final RadioButton validationTypeSem = new RadioButton( "VALTYPE", messages.selectionValidationTypeSem() );
+    private final CheckBox validationTypeSem = new CheckBox( messages.selectionValidationTypeSem() );
 
-    private final RadioButton validationTypeGeom = new RadioButton( "VALTYPE", messages.selectionValidationTypeGeom() );
+    private final CheckBox validationTypeGeom = new CheckBox( messages.selectionValidationTypeGeom() );
 
     private final ExtendedOptionsPanel extendedOptions = new ExtendedOptionsPanel();
 
@@ -102,9 +104,9 @@ public class ValidatorOptionsDialog extends FormPanel {
         mainPanel.add( createLabel( messages.fieldLabelRunName() ) );
         mainPanel.add( validationName );
         mainPanel.add( createLabel( messages.selectionValidationTypeLabel() ) );
+        mainPanel.add( validationTypeSyn );
         mainPanel.add( validationTypeSem );
         mainPanel.add( validationTypeGeom );
-        mainPanel.add( validationTypeSyn );
         mainPanel.add( createLabel( "Einstellungen" ) );
         mainPanel.add( extendedOptions );
         mainPanel.add( createValidationStartButton() );
@@ -113,10 +115,10 @@ public class ValidatorOptionsDialog extends FormPanel {
 
     private void initFormFields( String fileName ) {
         validationName.setText( fileName != null && !fileName.isEmpty() ? fileName : messages.defaultRunName() );
-        validationTypeSyn.setTitle( messages.tooltipValidationTypeSyn() );
-        validationTypeGeom.setTitle( messages.tooltipValidationTypeGeom() );
-        validationTypeSem.setTitle( messages.tooltipValidationTypeSem() );
-        validationTypeSem.setChecked( true );
+        validationTypeSyn.setEnabled( false );
+        validationTypeSyn.setValue( true );
+        validationTypeSem.setValue( true );
+        validationTypeGeom.setValue( true );
     }
 
     private Label createLabel( String text ) {
@@ -136,19 +138,20 @@ public class ValidatorOptionsDialog extends FormPanel {
         } );
     }
 
-    private ValidationType retrieveValidationType() {
-        if ( validationTypeSyn.isChecked() )
-            return SYNTACTIC;
-        if ( validationTypeGeom.isChecked() )
-            return GEOMETRIC;
-        if ( validationTypeSem.isChecked() )
-            return SEMANTIC;
-        return null;
+    private List<ValidationType> retrieveValidationTypes() {
+        List<ValidationType> validationTypes = new ArrayList<ValidationType>();
+        if ( validationTypeSyn.getValue() )
+            validationTypes.add( SYNTACTIC );
+        if ( validationTypeGeom.getValue() )
+            validationTypes.add( GEOMETRIC );
+        if ( validationTypeSem.getValue() )
+            validationTypes.add( SEMANTIC );
+        return validationTypes;
     }
 
     private ValidationSettings createValidationSettings() {
         String name = validationName.getText();
-        ValidationType validationType = retrieveValidationType();
+        List<ValidationType> validationType = retrieveValidationTypes();
         List<ValidationOption> options = extendedOptions.retrieveExtendedOptionsStatus();
         return new ValidationSettings( name, validationType, options );
     }

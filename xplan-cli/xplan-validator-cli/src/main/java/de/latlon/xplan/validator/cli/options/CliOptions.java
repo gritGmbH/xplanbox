@@ -19,16 +19,16 @@ public class CliOptions {
 
     private final List<ValidationOption> voOptions;
 
-    private final ValidationType validationType;
+    private final List<ValidationType> validationTypes;
 
     private final File archive;
 
     public CliOptions( String validationName, List<ValidationOption> voOptions,
-                       File archive, ValidationType validationType ) {
+                       File archive, List<ValidationType> validationTypes ) {
         this.validationName = validationName;
         this.voOptions = voOptions;
         this.archive = archive;
-        this.validationType = validationType;
+        this.validationTypes = validationTypes;
     }
 
     public String getValidationName() {
@@ -43,7 +43,7 @@ public class CliOptions {
         return archive;
     }
 
-    public ValidationType getValidationType() {
-        return validationType;
+    public List<ValidationType> getValidationTypes() {
+        return validationTypes;
     }
 }

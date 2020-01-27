@@ -10,11 +10,11 @@ package de.latlon.xplan.validator.web.shared;
 public enum ValidationType {
     GEOMETRIC( "geometric" ),
     SYNTACTIC( "syntactic" ),
-    SEMANTIC( "semantic" ), NONE( "none" );
+    SEMANTIC( "semantic" );
 
     private final String option;
 
-    private ValidationType( String option ) {
+    ValidationType( String option ) {
         this.option = option;
     }
 

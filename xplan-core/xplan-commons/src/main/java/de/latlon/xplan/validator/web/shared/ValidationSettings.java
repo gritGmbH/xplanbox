@@ -17,17 +17,17 @@ public class ValidationSettings implements Serializable {
 
     private String validationName;
 
-    private ValidationType validationType;
+    private List<ValidationType> validationTypes;
 
     private List<ValidationOption> extendedOptions;
 
     public ValidationSettings() {
     }
 
-    public ValidationSettings( String validationName, ValidationType validationType,
+    public ValidationSettings( String validationName, List<ValidationType> validationTypes,
                                List<ValidationOption> extendedOptions ) {
         this.validationName = validationName;
-        this.validationType = validationType;
+        this.validationTypes = validationTypes;
         this.extendedOptions = extendedOptions;
     }
 
@@ -39,12 +39,12 @@ public class ValidationSettings implements Serializable {
         this.validationName = validationName;
     }
 
-    public ValidationType getValidationType() {
-        return validationType;
+    public List<ValidationType> getValidationTypes() {
+        return validationTypes;
     }
 
-    public void setValidationType( ValidationType validationType ) {
-        this.validationType = validationType;
+    public void setValidationTypes( List<ValidationType> validationTypes ) {
+        this.validationTypes = validationTypes;
     }
 
     public List<ValidationOption> getExtendedOptions() {
