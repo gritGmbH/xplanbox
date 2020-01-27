@@ -45,6 +45,10 @@ public class ValidatorOptionsDialog extends FormPanel {
 
     private static final ValidatorWebCommonsMessages messages = GWT.create( ValidatorWebCommonsMessages.class );
 
+    private static final String SKIP_FLAECHENSCHLUSS = "skip-flaechenschluss";
+
+    private static final String SKIP_GELTUNGSBEREICH = "skip-geltungsbereich";
+
     private final ValidationServiceAsync validationService = GWT.create( ValidationService.class );
 
     private final MapPreviewConfigServiceAsync mapPreviewConfigService = GWT.create( MapPreviewConfigService.class );
@@ -56,6 +60,10 @@ public class ValidatorOptionsDialog extends FormPanel {
     private final CheckBox validationTypeSem = new CheckBox( messages.selectionValidationTypeSem() );
 
     private final CheckBox validationTypeGeom = new CheckBox( messages.selectionValidationTypeGeom() );
+
+    private CheckBox skipFlaechenschluss = new CheckBox( messages.skipFlaechenschluss() );
+
+    private CheckBox skipGeltungsbereich = new CheckBox( messages.skipGeltungsbereich() );
 
     private final ExtendedOptionsPanel extendedOptions = new ExtendedOptionsPanel();
 
@@ -107,6 +115,8 @@ public class ValidatorOptionsDialog extends FormPanel {
         mainPanel.add( validationTypeSyn );
         mainPanel.add( validationTypeSem );
         mainPanel.add( validationTypeGeom );
+        mainPanel.add( skipFlaechenschluss );
+        mainPanel.add( skipGeltungsbereich );
         mainPanel.add( createLabel( "Einstellungen" ) );
         mainPanel.add( extendedOptions );
         mainPanel.add( createValidationStartButton() );
@@ -119,6 +129,9 @@ public class ValidatorOptionsDialog extends FormPanel {
         validationTypeSyn.setValue( true );
         validationTypeSem.setValue( true );
         validationTypeGeom.setValue( true );
+
+        skipFlaechenschluss.setStyleName( "valOption" );
+        skipGeltungsbereich.setStyleName( "valOption" );
     }
 
     private Label createLabel( String text ) {
@@ -153,6 +166,10 @@ public class ValidatorOptionsDialog extends FormPanel {
         String name = validationName.getText();
         List<ValidationType> validationType = retrieveValidationTypes();
         List<ValidationOption> options = extendedOptions.retrieveExtendedOptionsStatus();
+        if ( skipFlaechenschluss.getValue() )
+            options.add( new ValidationOption( SKIP_FLAECHENSCHLUSS, Boolean.TRUE.toString() ) );
+        if ( skipGeltungsbereich.getValue() )
+            options.add( new ValidationOption( SKIP_GELTUNGSBEREICH, Boolean.TRUE.toString() ) );
         return new ValidationSettings( name, validationType, options );
     }
 

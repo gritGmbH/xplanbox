@@ -400,6 +400,10 @@ td.gwt-TabBarFirst-wrapper, td.gwt-TabBarRest-wrapper{
     margin-top: 10px;
 }
 
+.valOption {
+    margin-left: 30px;
+}
+
 /*Stylingversuch für den Durchsuchenbutton*/
 input[type=button] {
   background-color:#005fa6;

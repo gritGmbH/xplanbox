@@ -1,8 +1,5 @@
 package de.latlon.xplan.validator.web.client;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DoubleBox;
@@ -11,6 +8,9 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Shows all extended validation options.
@@ -27,19 +27,11 @@ class ExtendedOptionsPanel extends HorizontalPanel {
 
     private static final String IGNORE_ORIENTATION = "ignore-orientation";
 
-    private static final String SKIP_FLAECHENSCHLUSS = "skip-flaechenschluss";
-
-    private static final String SKIP_GELTUNGSBEREICH = "skip-geltungsbereich";
-
     private static final String MIN_NODE_DISTANCE = "min-node-distance";
 
     private CheckBox ignoreSelfIntersection;
 
     private CheckBox ignoreOrientation;
-
-    private CheckBox skipFlaechenschluss;
-
-    private CheckBox skipGeltungsbereich;
 
     private CheckBox minNodeDistance;
 
@@ -55,10 +47,6 @@ class ExtendedOptionsPanel extends HorizontalPanel {
             extendedOptions.add( new ValidationOption( IGNORE_SELF_INTERSECTION ) );
         if ( ignoreOrientation.getValue() )
             extendedOptions.add( new ValidationOption( IGNORE_ORIENTATION ) );
-        if ( skipFlaechenschluss.getValue() )
-            extendedOptions.add( new ValidationOption( SKIP_FLAECHENSCHLUSS, Boolean.TRUE.toString() ) );
-        if ( skipGeltungsbereich.getValue() )
-            extendedOptions.add( new ValidationOption( SKIP_GELTUNGSBEREICH, Boolean.TRUE.toString() ) );
         if ( minNodeDistance.getValue() )
             extendedOptions.add( new ValidationOption( MIN_NODE_DISTANCE, minNodeDistanceUnit.getValue().toString() ) );
         return extendedOptions;
@@ -67,16 +55,10 @@ class ExtendedOptionsPanel extends HorizontalPanel {
     private void initDialog() {
         ignoreSelfIntersection = new CheckBox( messages.ignoreSelfIntersection() );
         ignoreOrientation = new CheckBox( messages.ignoreOrientation() );
-        skipFlaechenschluss = new CheckBox( messages.skipFlaechenschluss() );
-        skipFlaechenschluss.setValue( true );
-        skipGeltungsbereich = new CheckBox( messages.skipGeltungsbereich() );
-        skipGeltungsbereich.setValue( true );
         HorizontalPanel minNodeDistancePanel = createMinNodeDistancePanel();
 
         VerticalPanel verticalPanel = new VerticalPanel();
         verticalPanel.setSpacing( 10 );
-        verticalPanel.add( skipFlaechenschluss );
-        verticalPanel.add( skipGeltungsbereich );
         verticalPanel.add( minNodeDistancePanel );
         verticalPanel.add( ignoreSelfIntersection );
         verticalPanel.add( ignoreOrientation );
