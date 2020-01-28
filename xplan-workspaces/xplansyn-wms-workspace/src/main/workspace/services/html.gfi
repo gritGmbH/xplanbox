@@ -3,28 +3,25 @@
   <head>
     <title>deegree XPlan WMS Sachdatenanzeige</title>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-    <link href="styles.css" rel="stylesheet" type="text/css" />
   </head>
+  
   <body>
-    <h2>deegree XPlan WMS: Sachdaten</h2>
-    <table>
+    <h2>XPlanWMS: Sachdaten</h2>
+    <table style='font-family:Arial; font-size: 0.9em;'>
       <?feature *:feature>
     </table>
   </body>
 </html>
 
 <?template feature>
-<tr style="background-color: #99BBE8;">
-      <td colspan="2" style="border: solid black 1px;">
-<?name:map ftname>
-</td>
+<tr style="background-color: white;">
+      <td colspan="2" style="font-size: 1.1em; border-bottom: solid black 1px; padding-top: 10px; padding-bottom: 5px;">
+		<strong>
+            <?name:map ftname>
+		</strong>
+      </td>
 </tr>
-<?property not(gmlId,raster*,ref*,fachobjekt,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,bereich):property>
-<!--
-<?property zweckbestimmung:property>
-<?property flaechenschluss:property>
-<?property *:property>
--->
+<?property not(wirdDargestelltDurch,gmlId,raster*,ref*,fachobjekt,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,bereich,wmsSortDate,praesentationsobjekt):property>
 
 <tr>
     <td colspan="2">
@@ -45,15 +42,19 @@
 
 <?template property>
 <tr>
-  <td <?even:maybegray> valign="top"><strong> 
-<?name:map propname> 
-</strong></td>
-  <td <?even:maybegray>><?value:map propvalue></td>
+  <td <?even:maybegray> valign="top" style="width:20%;">
+        <strong> 
+          <?name:map propname>
+        </strong>
+  </td>
+  <td <?even:maybegray>>
+    <?value:map propvalue>
+  </td>
 </tr>
 
-<?template oddcolor>style="background-color: #99BBE8;"
+<?template oddcolor>style="background-color: #F2F2F2;"
 <?template evencolor>style="background-color: white;"
-<?template maybegray>style="background-color: #D9E8FB;"
+<?template maybegray>style="background-color: #F2F2F2;"
 
 <?map propvalue>
 true=Ja
@@ -409,7 +410,7 @@ externesSymbolURL=externesSymbolURL
 fachobjekt=Fachobjekt
 festlegungCode=festlegungCode
 festlegung=Festlegung
-flaechenschluss=Flächenschluß
+flaechenschluss=Flächenschluss
 flaechenteil=Flächenteil
 Fmax=Fmax
 Fmin=Fmin
@@ -432,6 +433,7 @@ gehoertZuBereich=gehoertZuBereich
 gehoertZuPlan=Gehoert zu Plan
 geltungsbereichAenderung=Geltungsbereich Änderung
 geltungsbereich=Geltungsbereich
+gemeinde=Gemeinde
 georefMimeTypeCode=georefMimeTypeCode
 georefMimeType=georefMimeType
 georefURL=Georeferenz URL
@@ -455,6 +457,7 @@ GR_Ausn=GR_Ausn
 GR=GR
 GRmax=GRmax
 GRmin=GRmin
+gruenordnungsplan=Grünordnungsplan
 grundCode=grundCode
 grund=Grund
 GRZ_Ausn=GRZ_Ausn
@@ -513,6 +516,7 @@ ortsteil=Ortsteil
 planArtCode=planArtCode
 planArt=Plan-Art
 planbeschlussDatum=Planbeschluß Datum
+plangeber=Plangeber
 planungsregion=Planungsregion
 planungstraegerGKZ=Planungsträger GKZ
 planungstraeger=Planungsträger
@@ -619,6 +623,7 @@ unterirdisch=Unterirdisch
 uuid=uuid
 veraenderungssperreDatum=Veränderungssperre Datum
 veraenderungssperre=Veränderungssperre
+verfahren=Verfahren
 verfahrensMerkmale=Verfahrens-Merkmale
 vermerk=Vermerk
 versionBauNVO=Version der BauNVO
@@ -689,7 +694,7 @@ wirksamkeitsDatum=Wirksamkeitsdatum
 wurdeGeaendertVon=Wurde geändert von
 xpVersion=XPlan-Version
 xpPlanType=xpPlanType
-xpPlanName=xpPlanName
+xpPlanName=Name
 Z_Ausn=Z_Ausn
 zeitlinieText=Zeitlinie Text
 zielCode=zielCode
@@ -703,6 +708,6 @@ zweckbestimmungCode=zweckbestimmungCode
 zweckbestimmung=Zweckbestimmung
 zweckbindungCode=zweckbindungCode
 zweckbindung=Zweckbindung
-Z=Z
-Zzwingend=Z zwingend
-
+Z=Anzahl Vollgeschosse
+Zzwingend=Vollgeschoss zwingend
+Z_Staffel=Staffelgeschosse
