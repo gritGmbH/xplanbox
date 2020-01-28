@@ -112,11 +112,11 @@ public class ValidatorOptionsDialog extends FormPanel {
         mainPanel.add( createLabel( messages.fieldLabelRunName() ) );
         mainPanel.add( validationName );
         mainPanel.add( createLabel( messages.selectionValidationTypeLabel() ) );
-        mainPanel.add( validationTypeSyn );
         mainPanel.add( validationTypeSem );
         mainPanel.add( validationTypeGeom );
         mainPanel.add( skipFlaechenschluss );
         mainPanel.add( skipGeltungsbereich );
+        mainPanel.add( validationTypeSyn );
         mainPanel.add( createLabel( "Einstellungen" ) );
         mainPanel.add( extendedOptions );
         mainPanel.add( createValidationStartButton() );
