@@ -68,8 +68,6 @@ class XPlanGeometryInspector implements GeometryInspector {
 
     private static final String IGNORE_SELF_INTERSECTION_PARAMETER = "ignore-self-intersection";
 
-    private static final String MIN_NODE_DISTANCE_PARAMETER = "min-node-distance";
-
     private final com.vividsolutions.jts.geom.GeometryFactory jtsFactory;
 
     private final LinearizationCriterion crit;
@@ -214,24 +212,16 @@ class XPlanGeometryInspector implements GeometryInspector {
     }
 
     Ring checkClosed( Ring ring ) {
-        Ring inspected = ring;
-        Point startPoint = inspected.getStartPoint();
-        Point endPoint = inspected.getEndPoint();
+        Point startPoint = ring.getStartPoint();
+        Point endPoint = ring.getEndPoint();
         if ( !startPoint.equals( endPoint ) ) {
             double dist = startPoint.getDistance( endPoint, null ).getValueAsDouble();
-            double minNodeDistance = retrieveMinNodeDistance();
-            if ( dist <= minNodeDistance ) {
-                String msg = createMessage( String.format( "2.2.2.1: Ring nicht geschlossen: %s != %s, Abstand: %s", startPoint,
-                                                           endPoint, dist ) );
-                warnings.add( msg );
-                inspected = GeometryFixer.fixUnclosedRing( inspected );
-            } else {
-                String msg = createMessage( String.format( "2.2.2.1: Ring nicht geschlossen: %s != %s, Abstand: %s, nicht behoben (L\u00fccke zu gro\u00df)",
-                                                           startPoint, endPoint, dist ) );
-                createError( msg );
-            }
+            String msg = createMessage(
+                                    String.format( "2.2.2.1: Ring nicht geschlossen: %s != %s, Abstand: %s", startPoint,
+                                                   endPoint, dist ) );
+            createError( msg );
         }
-        return inspected;
+        return ring;
     }
 
     void checkSelfIntersection( PolygonPatch inspected ) {
@@ -449,32 +439,6 @@ class XPlanGeometryInspector implements GeometryInspector {
             }
         }
         return false;
-    }
-
-    private double retrieveMinNodeDistance() {
-        List<ValidationOption> options = getVoOptions(); // better support for mocking
-        if ( options != null && !options.isEmpty() ) {
-            for ( ValidationOption voOption : options ) {
-                if ( MIN_NODE_DISTANCE_PARAMETER.equals( voOption.getName() ) ) {
-                    if ( voOption.getArgument() != null ) {
-                        return parseMinNodeDistanceToDoubleIfPossibleOtherwiseReturnDefault( voOption );
-                    }
-                }
-            }
-        }
-        return epsilon;
-    }
-
-    private double parseMinNodeDistanceToDoubleIfPossibleOtherwiseReturnDefault( ValidationOption voOption ) {
-        String argument = voOption.getArgument();
-        try {
-            return Double.parseDouble( argument );
-        } catch ( NumberFormatException e ) {
-            String msg = createMessage( String.format( "Der %s-Parameter (%s) stellt keine Zahl dar. Deshalb wird er ignoriert.",
-                                                       MIN_NODE_DISTANCE_PARAMETER, argument ) );
-            warnings.add( msg );
-            return epsilon;
-        }
     }
 
     private GeometricPrimitive inspect( GeometricPrimitive geom )
