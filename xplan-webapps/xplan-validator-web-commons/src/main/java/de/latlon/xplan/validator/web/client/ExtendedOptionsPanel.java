@@ -2,10 +2,7 @@ package de.latlon.xplan.validator.web.client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.CheckBox;
-import com.google.gwt.user.client.ui.DoubleBox;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 
@@ -27,15 +24,9 @@ class ExtendedOptionsPanel extends HorizontalPanel {
 
     private static final String IGNORE_ORIENTATION = "ignore-orientation";
 
-    private static final String MIN_NODE_DISTANCE = "min-node-distance";
-
     private CheckBox ignoreSelfIntersection;
 
     private CheckBox ignoreOrientation;
-
-    private CheckBox minNodeDistance;
-
-    private DoubleBox minNodeDistanceUnit;
 
     public ExtendedOptionsPanel() {
         initDialog();
@@ -47,37 +38,19 @@ class ExtendedOptionsPanel extends HorizontalPanel {
             extendedOptions.add( new ValidationOption( IGNORE_SELF_INTERSECTION ) );
         if ( ignoreOrientation.getValue() )
             extendedOptions.add( new ValidationOption( IGNORE_ORIENTATION ) );
-        if ( minNodeDistance.getValue() )
-            extendedOptions.add( new ValidationOption( MIN_NODE_DISTANCE, minNodeDistanceUnit.getValue().toString() ) );
         return extendedOptions;
     }
 
     private void initDialog() {
         ignoreSelfIntersection = new CheckBox( messages.ignoreSelfIntersection() );
         ignoreOrientation = new CheckBox( messages.ignoreOrientation() );
-        HorizontalPanel minNodeDistancePanel = createMinNodeDistancePanel();
 
         VerticalPanel verticalPanel = new VerticalPanel();
         verticalPanel.setSpacing( 10 );
-        verticalPanel.add( minNodeDistancePanel );
         verticalPanel.add( ignoreSelfIntersection );
         verticalPanel.add( ignoreOrientation );
 
         add( verticalPanel );
-    }
-
-    private HorizontalPanel createMinNodeDistancePanel() {
-        minNodeDistance = new CheckBox( messages.nodeTolerance() );
-        HorizontalPanel baseDistancePanel = new HorizontalPanel();
-        baseDistancePanel.setVerticalAlignment( HasVerticalAlignment.ALIGN_BOTTOM );
-        minNodeDistanceUnit = new DoubleBox();
-
-        minNodeDistanceUnit.setVisibleLength( 3 );
-        minNodeDistanceUnit.setValue( 0.002 );
-        baseDistancePanel.add( minNodeDistance );
-        baseDistancePanel.add( minNodeDistanceUnit );
-        baseDistancePanel.add( new Label( messages.nodeToleranceUnit() ) );
-        return baseDistancePanel;
     }
 
 }

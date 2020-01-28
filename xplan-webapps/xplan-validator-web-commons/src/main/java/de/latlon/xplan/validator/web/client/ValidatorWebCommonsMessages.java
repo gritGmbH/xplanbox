@@ -53,10 +53,6 @@ public interface ValidatorWebCommonsMessages extends Messages {
 
     String skipGeltungsbereich();
 
-    String nodeTolerance();
-
-    String nodeToleranceUnit();
-
     String startValidationButton();
 
     String uploadFinishedNextButton();
