@@ -49,24 +49,10 @@ import de.latlon.xplan.validator.web.shared.ValidationOption;
 public class XPlanGeometryInspectorTest {
 
     @Test
-    public void testInspectLineStringShouldIgnoreOrientationOnOption() {
-        XPlanGeometryInspector inspector = mockInspectorWithOptions( ignoreOrientation() );
-        inspector.inspect( mockLineString() );
-        verify( inspector, never() ).checkOrientation( any( Curve.class ), any( Curve.class ) );
-    }
-
-    @Test
     public void testInspectLineStringShouldNotIgnoreOrientationOnNoOption() {
         XPlanGeometryInspector inspector = mockInspectorWithOptions( noOption() );
         inspector.inspect( mockLineString() );
         verify( inspector, times( 1 ) ).checkOrientation( any( Curve.class ), any( Curve.class ) );
-    }
-
-    @Test
-    public void testInspectRingShouldIgnoreSelfIntersectionOnOption() {
-        XPlanGeometryInspector inspector = mockInspectorWithOptions( ignoreSelfIntersection() );
-        inspector.inspect( mockRing() );
-        verify( inspector, never() ).checkSelfIntersection( any( Ring.class ) );
     }
 
     @Test
@@ -77,24 +63,11 @@ public class XPlanGeometryInspectorTest {
     }
 
     @Test
-    public void testInspectPolygonPatchShouldIgnoreSelfIntersectionOnOption() {
-        XPlanGeometryInspector inspector = mockInspectorWithOptions( ignoreSelfIntersection() );
-        inspector.inspect( mockPolygon() );
-        verify( inspector, never() ).checkSelfIntersection( any( Ring.class ) );
-    }
-
-    @Test
     public void testInspectPolygonPatchShouldNotIgnoreSelfIntersectionOnNoOption() {
         XPlanGeometryInspector inspector = mockInspectorWithOptions( noOption() );
         inspector.inspect( mockPolygon() );
         verify( inspector, times( 1 ) ).checkSelfIntersection( any( PolygonPatch.class ) );
-    }
-
-    @Test
-    public void testInspectPolygonPatchShouldIgnoreOrientationOnOption() {
-        XPlanGeometryInspector inspector = mockInspectorWithOptions( ignoreOrientation() );
-        inspector.inspect( mockPolygon() );
-        verify( inspector, never() ).checkRingOrientations( any( PolygonPatch.class ) );
+        verify( inspector, times( 1 )  ).checkRingOrientations( any( PolygonPatch.class ) );
     }
 
     @Test
@@ -171,18 +144,6 @@ public class XPlanGeometryInspectorTest {
         XPlanGeometryInspector spiedInspector = Mockito.spy( inspector );
         doAnswer( returnsFirstArg() ).when( spiedInspector ).createMessage( Mockito.anyString() );
         return spiedInspector;
-    }
-
-    private List<ValidationOption> ignoreOrientation() {
-        List<ValidationOption> voOptions = new ArrayList<>();
-        voOptions.add( new ValidationOption( "ignore-orientation" ) );
-        return voOptions;
-    }
-
-    private List<ValidationOption> ignoreSelfIntersection() {
-        List<ValidationOption> voOptions = new ArrayList<>();
-        voOptions.add( new ValidationOption( "ignore-self-intersection" ) );
-        return voOptions;
     }
 
     private List<ValidationOption> noOption() {

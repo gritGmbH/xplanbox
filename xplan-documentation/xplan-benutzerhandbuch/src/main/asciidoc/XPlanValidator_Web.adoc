@@ -49,8 +49,6 @@ Eine der folgenden Validierungstypen muss ausgewählt werden:
 
 Die folgenden Validierungsoptionen für die geometrische Validierung können ausgewählt werden:
 
-  * Selbstüberschneidungen ignorieren
-  * falsche Laufrichtung von Polygonen ignorieren
   * Geometrische Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen
   * Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen
 

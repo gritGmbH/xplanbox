@@ -65,8 +65,6 @@ public class ValidatorOptionsDialog extends FormPanel {
 
     private CheckBox skipGeltungsbereich = new CheckBox( messages.skipGeltungsbereich() );
 
-    private final ExtendedOptionsPanel extendedOptions = new ExtendedOptionsPanel();
-
     private final ReportDownloadFinishedListener reportDownloadFinishedListener;
 
     private DialogBox validating;
@@ -117,8 +115,6 @@ public class ValidatorOptionsDialog extends FormPanel {
         mainPanel.add( skipFlaechenschluss );
         mainPanel.add( skipGeltungsbereich );
         mainPanel.add( validationTypeSyn );
-        mainPanel.add( createLabel( "Einstellungen" ) );
-        mainPanel.add( extendedOptions );
         mainPanel.add( createValidationStartButton() );
         add( mainPanel );
     }
@@ -165,7 +161,7 @@ public class ValidatorOptionsDialog extends FormPanel {
     private ValidationSettings createValidationSettings() {
         String name = validationName.getText();
         List<ValidationType> validationType = retrieveValidationTypes();
-        List<ValidationOption> options = extendedOptions.retrieveExtendedOptionsStatus();
+        List<ValidationOption> options = new ArrayList<ValidationOption>();
         if ( skipFlaechenschluss.getValue() )
             options.add( new ValidationOption( SKIP_FLAECHENSCHLUSS, Boolean.TRUE.toString() ) );
         if ( skipGeltungsbereich.getValue() )

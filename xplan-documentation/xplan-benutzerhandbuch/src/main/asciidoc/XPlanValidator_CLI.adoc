@@ -116,13 +116,11 @@ Angabe des Parameters ist optional.
 Aufruf:
 
 ----
-XPlanValidator -validate Plan.zip -vo ignore-orientation -vo skip-flaechenschluss -vo skip-geltungsbereich
+XPlanValidator -validate Plan.zip -vo skip-flaechenschluss -vo skip-geltungsbereich
 ----
 
-Zuordnung der Wert:
+Zuordnung der Werte:
 
-  * ignore-orientation -> Polygonlaufrichtung bei der geometrischen Validierung ignorieren [ja]
-  * ignore-self-intersection -> Selbstüberschneidungen bei der geometrischen Validierung ignorieren [ja]
   * skip-flaechenschluss -> Goemetrische Überprüfung der Flächenschlussbedingung (2.2.1.1) überspringen [ja]
   * skip-geltungsbereich -> Goemetrische Überprüfung des Geltungsbereich (2.2.3.1) überspringen [ja]
 

@@ -36,11 +36,11 @@ public class CliOptionsParserTest {
     CliOptionsParser parser = new CliOptionsParser();
     String[] optionsToParse = new String[] { "-validate", ".",
                                              "-name", "validation",
-                                             "-vo", "ignore-orientation" };
+                                             "-vo", "skip-flaechenschluss" };
     CliOptions options = parser.parse( optionsToParse );
     List<ValidationOption> parsedOptions = options.getVoOptions();
     assertThat( parsedOptions.size(), is( 1 ) );
-    assertThat( parsedOptions, containsOption( "ignore-orientation", null ) );
+    assertThat( parsedOptions, containsOption( "skip-flaechenschluss", null ) );
   }
 
   @Test
@@ -78,13 +78,13 @@ public class CliOptionsParserTest {
   public void testValidateWithVoOptionsExpectCorrectOptions() throws Exception {
     String[] args = new String[] { "-validate", "path",
                                    "-name", "validation",
-                                   "-vo", "ignore-orientation",
-                                   "-vo", "ignore-self-intersection"};
+                                   "-vo", "skip-flaechenschluss",
+                                   "-vo", "skip-geltungsbereich"};
     CliOptions options = new CliOptionsParser().parse( args );
     List<ValidationOption> voOptions = options.getVoOptions();
     assertThat( voOptions, allOf(
-        hasCorrectArgument( "ignore-orientation", null ),
-        hasCorrectArgument( "ignore-self-intersection", null ) ) );
+        hasCorrectArgument( "skip-flaechenschluss", null ),
+        hasCorrectArgument( "skip-geltungsbereich", null ) ) );
   }
 
   @Test
