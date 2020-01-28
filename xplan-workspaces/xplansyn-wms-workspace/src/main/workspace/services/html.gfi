@@ -6,6 +6,14 @@
   </head>
   
   <body>
+    <script>
+        window.onload = function () {
+          var complexProperties = document.getElementsByClassName('complexProperty');
+          for(var i = 0; i < complexProperties.length; i++) {
+            complexProperties[i].innerHTML = complexProperties[i].innerHTML.replace(/\|/g, '<br/>');
+          }
+        }
+      </script>
     <h2>XPlanWMS: Sachdaten</h2>
     <table style='font-family:Arial; font-size: 0.9em;'>
       <?feature *:feature>
@@ -21,7 +29,9 @@
 		</strong>
       </td>
 </tr>
-<?property not(wirdDargestelltDurch,gmlId,raster*,ref*,fachobjekt,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,bereich,wmsSortDate,praesentationsobjekt):property>
+<?property not(wirdDargestelltDurch,gmlId,raster*,ref*,fachobjekt,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,bereich,wmsSortDate,praesentationsobjekt,gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme):property>
+<?property gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme:complexproperty>
+
 
 <tr>
     <td colspan="2">
@@ -48,6 +58,18 @@
         </strong>
   </td>
   <td <?even:maybegray>>
+    <?value:map propvalue>
+  </td>
+</tr>
+
+<?template complexproperty>
+<tr>
+  <td <?even:maybegray> valign="top" style="width:20%;">
+        <strong>
+          <?name:map propname>
+        </strong>
+  </td>
+  <td <?even:maybegray> class='complexProperty' style="white-space: pre-line;">
     <?value:map propvalue>
   </td>
 </tr>
@@ -360,6 +382,7 @@ bundesland=Bundesland
 bundeslandCode=bundeslandCode
 dachformCode=dachformCode
 dachform=Dachform
+dachgestaltung=Dachgestaltung
 darstellungsprioritaet=Darstellungspriorität
 datum=Datum
 datumDesInkrafttretens=Datum des Inkrafttretens
