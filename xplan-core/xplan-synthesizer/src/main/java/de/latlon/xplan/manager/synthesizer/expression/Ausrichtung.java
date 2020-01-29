@@ -11,7 +11,7 @@ import org.deegree.feature.property.SimpleProperty;
  */
 public class Ausrichtung implements Expression {
 
-    private static final double AUSRICHTUNG_DEFAULT = 0.5;
+    private static final double AUSRICHTUNG_DEFAULT = 0.0;
 
     private enum AUSRICHTUNG {
 
