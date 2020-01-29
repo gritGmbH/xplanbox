@@ -6,7 +6,7 @@
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:XP_PTO</FeatureTypeName>
   <Rule>
-    <Name>fp_xp_pto</Name>
+    <Name>fp_xp_pto_bis5000</Name>
     <Description>
       <Title>FP: Beschriftung</Title>
     </Description>
@@ -23,6 +23,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
     <TextSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -38,6 +39,73 @@
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
             <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <AnchorPoint>
+            <AnchorPointX>
+              <ogc:PropertyName>xplan:anchorX</ogc:PropertyName>
+            </AnchorPointX>
+            <AnchorPointY>
+              <ogc:PropertyName>xplan:anchorX</ogc:PropertyName>
+            </AnchorPointY>
+          </AnchorPoint>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Halo>
+        <Radius>0.3</Radius>
+        <Fill>
+          <SvgParameter name="fill">#ffffff</SvgParameter>
+          <SvgParameter name="fill-opacity">0.8</SvgParameter>
+        </Fill>
+      </Halo>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>fp_xp_pto_ab5000</Name>
+    <Description>
+      <Title>FP: Beschriftung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>FP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-family">Sans-Serif</SvgParameter>
+        <SvgParameter name="font-weight">bold</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>18</ogc:Literal>
           </ogc:Mul>
         </SvgParameter>
       </Font>
