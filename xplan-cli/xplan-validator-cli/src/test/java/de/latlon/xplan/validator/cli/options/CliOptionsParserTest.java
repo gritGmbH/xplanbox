@@ -29,13 +29,11 @@ public class CliOptionsParserTest {
     CliOptionsParser parser = new CliOptionsParser();
     String[] optionsToParse = new String[] { "-validate", ".",
                                              "-name", "validation",
-                                             "-vo", "ignore-orientation",
-                                             "-vo", "min-node-distance=1" };
+                                             "-vo", "ignore-orientation" };
     CliOptions options = parser.parse( optionsToParse );
     List<ValidationOption> parsedOptions = options.getVoOptions();
-    assertThat( parsedOptions.size(), is( 2 ) );
+    assertThat( parsedOptions.size(), is( 1 ) );
     assertThat( parsedOptions, containsOption( "ignore-orientation", null ) );
-    assertThat( parsedOptions, containsOption( "min-node-distance", "1" ) );
   }
 
   @Test
@@ -74,12 +72,10 @@ public class CliOptionsParserTest {
     String[] args = new String[] { "-validate", "path",
                                    "-name", "validation",
                                    "-vo", "ignore-orientation",
-                                   "-vo", "ignore-self-intersection",
-                                   "-vo", "min-node-distance=1" };
+                                   "-vo", "ignore-self-intersection"};
     CliOptions options = new CliOptionsParser().parse( args );
     List<ValidationOption> voOptions = options.getVoOptions();
     assertThat( voOptions, allOf(
-        hasCorrectArgument( "min-node-distance", "1" ),
         hasCorrectArgument( "ignore-orientation", null ),
         hasCorrectArgument( "ignore-self-intersection", null ) ) );
   }

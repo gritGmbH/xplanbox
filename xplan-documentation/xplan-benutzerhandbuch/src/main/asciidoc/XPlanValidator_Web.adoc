@@ -51,7 +51,6 @@ Die folgenden Validierungsoptionen für die geometrische Validierung können aus
 
   * Selbstüberschneidungen ignorieren
   * falsche Laufrichtung von Polygonen ignorieren
-  * Mindestabstand von Stützpunkten in Metern
   * Geometrische Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen
   * Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen
 

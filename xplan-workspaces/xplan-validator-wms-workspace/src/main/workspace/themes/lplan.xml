@@ -3,6 +3,7 @@
         configVersion="3.4.0"
         xsi:schemaLocation="http://www.deegree.org/themes/standard http://schemas.deegree.org/themes/3.4.0/themes.xsd">
   <LayerStoreId>lplan</LayerStoreId>
+  <LayerStoreId>soplan</LayerStoreId>
   <Theme>
     <Identifier>LP_Planvektor</Identifier>
     <d:Title>XPlan WMS LPlan</d:Title>
@@ -11,6 +12,171 @@
       <s:UpperCorner>15.1 55.1</s:UpperCorner>
     </s:Envelope>
     <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+
+    <!-- SO -->
+    <Theme>
+      <Identifier>so</Identifier>
+      <d:Title>SO</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Theme>
+        <Identifier>so_objekt</Identifier>
+        <d:Title>SO: Objekt</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_objekt</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_linienobjekt</Identifier>
+        <d:Title>SO: Linienobjekt</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_linienobjekt</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_sonstigesrecht</Identifier>
+        <d:Title>SO: SonstigesRecht</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_sonstigesrecht</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_bodenschutzrecht</Identifier>
+        <d:Title>SO: Bodenschutzrecht</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_bodenschutzrecht</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_denkmalschutzrecht</Identifier>
+        <d:Title>SO: Denkmalschutzrecht</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_denkmalschutzrecht</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_forstrecht</Identifier>
+        <d:Title>SO: Forstrecht</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_forstrecht</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_luftverkehrsrecht</Identifier>
+        <d:Title>SO: Luftverkehrsrecht</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_luftverkehrsrecht</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_schienenverkehrsrecht</Identifier>
+        <d:Title>SO: Schienenverkehrsrecht</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_schienenverkehrsrecht</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_schutzgebietNaturschutzrecht</Identifier>
+        <d:Title>SO: SchutzgebietNaturschutzrecht</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_schutzgebietNaturschutzrecht</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_schutzgebietsonstigesrecht</Identifier>
+        <d:Title>SO: SchutzgebietSonstigesRecht</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_schutzgebietsonstigesrecht</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_schutzgebietwasserrecht</Identifier>
+        <d:Title>SO: SchutzgebietWasserrecht</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_schutzgebietwasserrecht</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_strassenverkehrsrecht</Identifier>
+        <d:Title>SO: Strassenverkehrsrecht</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_strassenverkehrsrecht</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_wasserrecht</Identifier>
+        <d:Title>SO: Wasserrecht</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_wasserrecht</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_gebiet</Identifier>
+        <d:Title>SO: Gebiet</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_gebiet</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_grenze</Identifier>
+        <d:Title>SO: Grenze</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_grenze</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_bereich</Identifier>
+        <d:Title>SO: Bereich</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_bereich</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_plan</Identifier>
+        <d:Title>SO: Plan</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_plan</Layer>
+      </Theme>
+    </Theme>
+
     <Theme>
       <Identifier>lp_plan</Identifier>
       <d:Title>LP: Plan</d:Title>
