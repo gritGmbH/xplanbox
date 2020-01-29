@@ -26,6 +26,11 @@
       <artifactId>xplan-schemas</artifactId>
       <type>zip</type>
     </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-styles</artifactId>
+      <type>zip</type>
+    </dependency>
   </dependencies>
 
 </project>

@@ -28,5 +28,12 @@
       <unpack>true</unpack>
       <outputDirectory>/</outputDirectory>
     </dependencySet>
+    <dependencySet>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplan-styles</include>
+      </includes>
+      <unpack>true</unpack>
+      <outputDirectory>/</outputDirectory>
+    </dependencySet>
   </dependencySets>
 </assembly>
