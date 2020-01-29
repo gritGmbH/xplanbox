@@ -40,7 +40,10 @@
       <LabelPlacement>
         <PointPlacement>
           <Rotation>
-            <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
           </Rotation>
         </PointPlacement>
       </LabelPlacement>

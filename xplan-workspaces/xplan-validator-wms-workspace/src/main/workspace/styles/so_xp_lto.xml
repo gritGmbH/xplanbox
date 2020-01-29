@@ -4,11 +4,11 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
-  <FeatureTypeName>xplan:XP_PTO</FeatureTypeName>
+  <FeatureTypeName>xplan:XP_LTO</FeatureTypeName>
   <Rule>
-    <Name>rp_xp_pto</Name>
+    <Name>bp_xp_lto</Name>
     <Description>
-      <Title>RP: Beschriftung</Title>
+      <Title>BP: Beschriftung</Title>
     </Description>
     <ogc:Filter>
       <ogc:And>
@@ -19,7 +19,7 @@
         </ogc:Not>
         <ogc:PropertyIsEqualTo>
           <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-          <ogc:Literal>RP_Plan</ogc:Literal>
+          <ogc:Literal>BP_Plan</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
@@ -34,30 +34,13 @@
         <SvgParameter name="font-family">Arial</SvgParameter>
         <SvgParameter name="font-family">Sans-Serif</SvgParameter>
         <SvgParameter name="font-weight">bold</SvgParameter>
-        <SvgParameter name="font-size">
-          <ogc:Mul>
-            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
-          </ogc:Mul>
-        </SvgParameter>
+        <SvgParameter name="font-size">3</SvgParameter>
       </Font>
       <LabelPlacement>
-        <PointPlacement>
-          <AnchorPoint>
-            <AnchorPointX>
-              <ogc:PropertyName>xplan:anchorX</ogc:PropertyName>
-            </AnchorPointX>
-            <AnchorPointY>
-              <ogc:PropertyName>xplan:anchorX</ogc:PropertyName>
-            </AnchorPointY>
-          </AnchorPoint>
-          <Rotation>
-            <ogc:Mul>
-              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
-              <ogc:Literal>-1</ogc:Literal>
-            </ogc:Mul>
-          </Rotation>
-        </PointPlacement>
+        <LinePlacement>
+          <IsRepeated>false</IsRepeated>
+          <IsAligned>true</IsAligned>
+        </LinePlacement>
       </LabelPlacement>
       <Halo>
         <Radius>0.3</Radius>
