@@ -160,6 +160,10 @@ button[disabled], button[disabled]:hover, button[disabled]:active, button[disabl
 	width: 100%;
 }
 
+.valOptionsPanel button{
+    margin-top: 15px;
+}
+
 .valOptionTitle {
   color: #ff9900;
   font-weight: bold;
