@@ -33,6 +33,8 @@ public interface ValidatorWebCommonsMessages extends Messages {
 
     String uploadSucessTitle();
 
+    String validationOptionTitle();
+
     String fieldLabelRunName();
 
     String defaultRunName();

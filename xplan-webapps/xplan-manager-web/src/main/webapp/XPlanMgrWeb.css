@@ -394,6 +394,12 @@ td.gwt-TabBarFirst-wrapper, td.gwt-TabBarRest-wrapper{
 	width: 100%;
 }
 
+.valOptionTitle {
+  color: #ff9900;
+  font-weight: bold;
+  font-size: larger;
+}
+
 .valOptionLabel {
     color: #ff9900;
     font-weight: bold;
