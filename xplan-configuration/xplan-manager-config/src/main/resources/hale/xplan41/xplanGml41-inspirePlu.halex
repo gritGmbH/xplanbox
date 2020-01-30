@@ -24,48 +24,6 @@
         <setting name="source">http://inspire.ec.europa.eu/schemas/plu/4.0/PlannedLandUse.xsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xsd</setting>
     </resource>
-    <resource action-id="eu.esdihumboldt.hale.io.instance.read.source" provider-id="eu.esdihumboldt.hale.io.gml.reader">
-        <setting name="charset">UTF-8</setting>
-        <setting name="resourceId">cf556ae9-a03c-4271-883f-19f54921a7cd</setting>
-        <setting name="interpolation.grid.moveAllToGrid">false</setting>
-        <setting name="source">../../../test/resources/testdata/Eidelstedt%204/xplan.gml</setting>
-        <setting name="interpolation.maxError">0.1</setting>
-        <setting name="strict">false</setting>
-        <setting name="interpolation.algorithm">segment</setting>
-        <setting name="contentType">eu.esdihumboldt.hale.io.gml</setting>
-        <setting name="ignoreNamespaces">false</setting>
-        <setting name="paginateRequest">true</setting>
-        <setting name="featuresPerWfsRequest">1000</setting>
-        <setting name="ignoreRoot">true</setting>
-    </resource>
-    <resource action-id="eu.esdihumboldt.hale.io.instance.read.source" provider-id="eu.esdihumboldt.hale.io.gml.reader">
-        <setting name="charset">UTF-8</setting>
-        <setting name="resourceId">7b52b0e2-fd53-4d7d-8cb4-de6aca353783</setting>
-        <setting name="interpolation.grid.moveAllToGrid">false</setting>
-        <setting name="source">../../../test/resources/testdata/Billstedt28/xplan.gml</setting>
-        <setting name="interpolation.maxError">0.1</setting>
-        <setting name="strict">false</setting>
-        <setting name="interpolation.algorithm">segment</setting>
-        <setting name="contentType">eu.esdihumboldt.hale.io.gml</setting>
-        <setting name="ignoreNamespaces">false</setting>
-        <setting name="paginateRequest">true</setting>
-        <setting name="featuresPerWfsRequest">1000</setting>
-        <setting name="ignoreRoot">true</setting>
-    </resource>
-    <resource action-id="eu.esdihumboldt.hale.io.instance.read.source" provider-id="eu.esdihumboldt.hale.io.gml.reader">
-        <setting name="charset">UTF-8</setting>
-        <setting name="resourceId">fbd6825f-6c50-4c74-99fc-e80d7c31deb0</setting>
-        <setting name="interpolation.grid.moveAllToGrid">false</setting>
-        <setting name="source">../../../test/resources/testdata/V4_1_ID_103-25832/xplan.gml</setting>
-        <setting name="interpolation.maxError">0.1</setting>
-        <setting name="strict">false</setting>
-        <setting name="interpolation.algorithm">segment</setting>
-        <setting name="contentType">eu.esdihumboldt.hale.io.gml</setting>
-        <setting name="ignoreNamespaces">false</setting>
-        <setting name="paginateRequest">true</setting>
-        <setting name="featuresPerWfsRequest">1000</setting>
-        <setting name="ignoreRoot">true</setting>
-    </resource>
     <file name="alignment.xml" location="xplanGml41-inspirePlu.halex.alignment.xml"/>
     <file name="styles.sld" location="xplanGml41-inspirePlu.halex.styles.sld"/>
     <property name="defaultGeometry:{http://inspire.ec.europa.eu/schemas/plu/4.0}OfficialDocumentationType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
