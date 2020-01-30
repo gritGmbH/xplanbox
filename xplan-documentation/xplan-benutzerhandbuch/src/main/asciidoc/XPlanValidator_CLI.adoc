@@ -44,10 +44,10 @@ XPlanValidator -validate Plan.zip
 ----
 
 [[xplanvalidator-cli-bezeichnung-der-validierung]]
-===== Bezeichnung der Validierung
+===== Bezeichnung für den Report
 
-Über den Parameter _-name <bezeichnung>_ kann dem Validierungsdurchlauf
-ein Name vergeben werden. Die Angabe des Parameters ist optional.
+Über den Parameter _-name <bezeichnung>_ kann eine Bezeichnung für den generierten
+Report vergeben werden. Die Angabe des Parameters ist optional.
 Fehlt dieser Parameter wird der Name des XPlanArchivs verwendet.
 
 Aufruf:
