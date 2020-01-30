@@ -740,6 +740,7 @@
                 <child name="extent" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -759,6 +760,7 @@
                 <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -781,6 +783,7 @@
                 <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -803,6 +806,7 @@
                 <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -825,6 +829,7 @@
                 <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3622,6 +3627,7 @@
                 <child name="AbstractSolid" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3644,6 +3650,7 @@
                 <child name="AbstractSolid" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3664,6 +3671,7 @@
                 <child name="AbstractSolid" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3684,6 +3692,7 @@
                 <child name="AbstractSolid" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3704,6 +3713,7 @@
                 <child name="AbstractSolid" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3726,6 +3736,7 @@
                 <child name="CompositeCurve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3748,6 +3759,7 @@
                 <child name="CompositeCurve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3768,6 +3780,7 @@
                 <child name="CompositeCurve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3788,6 +3801,7 @@
                 <child name="CompositeCurve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3808,6 +3822,7 @@
                 <child name="CompositeCurve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3830,6 +3845,7 @@
                 <child name="CompositeSolid" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3852,6 +3868,7 @@
                 <child name="CompositeSolid" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3872,6 +3889,7 @@
                 <child name="CompositeSolid" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3892,6 +3910,7 @@
                 <child name="CompositeSolid" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3912,6 +3931,7 @@
                 <child name="CompositeSolid" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3934,6 +3954,7 @@
                 <child name="Curve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3956,6 +3977,7 @@
                 <child name="Curve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3976,6 +3998,7 @@
                 <child name="Curve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -3996,6 +4019,7 @@
                 <child name="Curve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4016,6 +4040,7 @@
                 <child name="Curve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4038,6 +4063,7 @@
                 <child name="LineString" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4060,6 +4086,7 @@
                 <child name="LineString" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4080,6 +4107,7 @@
                 <child name="LineString" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4100,6 +4128,7 @@
                 <child name="LineString" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4120,6 +4149,7 @@
                 <child name="LineString" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4142,6 +4172,7 @@
                 <child name="MultiCurve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4164,6 +4195,7 @@
                 <child name="MultiCurve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4184,6 +4216,7 @@
                 <child name="MultiCurve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4204,6 +4237,7 @@
                 <child name="MultiCurve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4224,6 +4258,7 @@
                 <child name="MultiCurve" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4246,6 +4281,7 @@
                 <child name="MultiPoint" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4268,6 +4304,7 @@
                 <child name="MultiPoint" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4288,6 +4325,7 @@
                 <child name="MultiPoint" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4308,6 +4346,7 @@
                 <child name="MultiPoint" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4328,6 +4367,7 @@
                 <child name="MultiPoint" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4350,6 +4390,7 @@
                 <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4372,6 +4413,7 @@
                 <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4392,6 +4434,7 @@
                 <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4412,6 +4455,7 @@
                 <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4432,6 +4476,7 @@
                 <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4454,6 +4499,7 @@
                 <child name="Point" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4476,6 +4522,7 @@
                 <child name="Point" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4496,6 +4543,7 @@
                 <child name="Point" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4516,6 +4564,7 @@
                 <child name="Point" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4536,6 +4585,7 @@
                 <child name="Point" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4558,6 +4608,7 @@
                 <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4580,6 +4631,7 @@
                 <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4600,6 +4652,7 @@
                 <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4620,6 +4673,7 @@
                 <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4640,6 +4694,7 @@
                 <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4662,6 +4717,7 @@
                 <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4684,6 +4740,7 @@
                 <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4704,6 +4761,7 @@
                 <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4724,6 +4782,7 @@
                 <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4744,6 +4803,7 @@
                 <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4766,6 +4826,7 @@
                 <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4788,6 +4849,7 @@
                 <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4808,6 +4870,7 @@
                 <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4828,6 +4891,7 @@
                 <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -4848,6 +4912,7 @@
                 <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -6819,6 +6884,7 @@
                 <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -6840,6 +6906,7 @@
                 <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -6861,6 +6928,7 @@
                 <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -6885,6 +6953,7 @@
                 <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -6909,6 +6978,7 @@
                 <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -6933,6 +7003,7 @@
                 <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -6957,6 +7028,7 @@
                 <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -6981,6 +7053,7 @@
                 <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -7005,6 +7078,7 @@
                 <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -7029,6 +7103,7 @@
                 <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -7053,6 +7128,7 @@
                 <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -7077,6 +7153,7 @@
                 <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
