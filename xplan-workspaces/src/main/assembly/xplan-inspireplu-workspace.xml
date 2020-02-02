@@ -14,13 +14,11 @@
         <include>appschemas/inspireplu/PlannedLandUse.xsd</include>
         <include>datasources/feature/inspireplu.xml</include>
         <include>jdbc/inspireplu.xml</include>
-        <include>layers/*</include>
-        <include>services/wfs.xml</include>
-        <include>services/wfs_metadata.xml</include>
-        <include>services/wms.xml</include>
-        <include>services/wms_metadata.xml</include>
+        <include>layers/inspireplu.xml</include>
+        <include>services/downloadservice*</include>
+        <include>services/viewservice*</include>
         <include>styles/*</include>
-        <include>themes/*</include>
+        <include>themes/inspireplu.xml</include>
       </includes>
     </fileSet>
     <fileSet>
