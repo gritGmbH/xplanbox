@@ -1,6 +1,6 @@
 <assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
-  <id>xplan-wfs-workspace</id>
+  <id>xplansyn-wfs-workspace-default</id>
   <formats>
     <format>zip</format>
   </formats>
@@ -9,28 +9,21 @@
     <fileSet>
       <directory>${basedir}/src/main/workspace</directory>
       <includes>
-        <include>datasources/feature/xplan3*</include>
-        <include>datasources/feature/xplan4*</include>
-        <include>datasources/feature/xplan5*</include>
+        <include>datasources/feature/xplansyn*</include>
         <include>jdbc/xplan.xml</include>
-        <include>services/storedqueries/xplan40/**</include>
-        <include>services/storedqueries/xplan41/**</include>
-        <include>services/storedqueries/xplan50/**</include>
-        <include>services/storedqueries/xplan51/**</include>
-        <include>services/wfs3*</include>
-        <include>services/wfs4*</include>
-        <include>services/wfs5*</include>
+        <include>services/xplansyn*</include>
+        <include>services/storedqueries/xplansyn/**</include>
       </includes>
       <excludes>
         <exclude>appschemas/*</exclude>
       </excludes>
       <outputDirectory>.</outputDirectory>
-      <filtered>false</filtered>
+      <filtered>true</filtered>
     </fileSet>
     <fileSet>
-      <directory>${basedir}/src/main/workspace/datasources/feature/bbox_cache-xplangml</directory>
+      <directory>${basedir}/src/main/workspace/datasources/feature/bbox_cache-xplansyn</directory>
       <outputDirectory>datasources/feature/</outputDirectory>
-      <filtered>false</filtered>
+      <filtered>true</filtered>
     </fileSet>
   </fileSets>
   <dependencySets>

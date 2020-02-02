@@ -13,7 +13,6 @@
       <includes>
         <include>appschemas/inspireplu/PlannedLandUse.xsd</include>
         <include>datasources/feature/inspireplu.xml</include>
-        <include>datasources/feature/bbox_cache.properties</include>
         <include>jdbc/inspireplu.xml</include>
         <include>layers/*</include>
         <include>services/wfs.xml</include>
@@ -23,6 +22,11 @@
         <include>styles/*</include>
         <include>themes/*</include>
       </includes>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/datasources/feature/bbox_cache-inspireplu</directory>
+      <outputDirectory>datasources/feature/</outputDirectory>
+      <filtered>false</filtered>
     </fileSet>
   </fileSets>
 </assembly>

@@ -128,6 +128,43 @@
             </configuration>
             <phase>package</phase>
           </execution>
+          <!-- XPlanSynWFS Workspace -->
+          <execution>
+            <id>xplansyn-wfs-workspace</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <filters>
+                <filter>${project.basedir}/src/main/filter/filter.properties</filter>
+              </filters>
+              <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+              <descriptors>
+                <descriptor>${project.basedir}/src/main/assembly/xplansyn-wfs-workspace.xml</descriptor>
+              </descriptors>
+              <appendAssemblyId>false</appendAssemblyId>
+              <finalName>xplansyn-wfs-workspace-${project.version}</finalName>
+            </configuration>
+            <phase>package</phase>
+          </execution>
+          <execution>
+            <id>xplansyn-wfs-workspace-default</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <filters>
+                <filter>${project.basedir}/src/main/filter/filter-default.properties</filter>
+              </filters>
+              <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+              <descriptors>
+                <descriptor>${project.basedir}/src/main/assembly/xplansyn-wfs-workspace-default.xml</descriptor>
+              </descriptors>
+              <appendAssemblyId>false</appendAssemblyId>
+              <finalName>xplansyn-wfs-workspace-${project.version}-default</finalName>
+            </configuration>
+            <phase>package</phase>
+          </execution>
          </executions>
       </plugin>
     </plugins>
