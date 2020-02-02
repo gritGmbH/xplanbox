@@ -1,0 +1,47 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+  <id>xplan-manager-workspace-default</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <fileSets>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace</directory>
+      <includes>
+        <include>datasources/feature/*</include>
+        <include>jdbc/xplan.xml</include>
+        <include>services/**</include>
+      </includes>
+      <excludes>
+        <exclude>appschemas/*</exclude>
+        <exclude>datasources/feature/bbox_cache*</exclude>
+        <exclude>datasources/feature/inspireplu.xml</exclude>
+        <exclude>datasources/feature/xplansyn*</exclude>
+        <exclude>datasources/feature/xplan2.xml</exclude>
+        <exclude>datasources/feature/xplan2archive.xml</exclude>
+        <exclude>datasources/feature/xplan2pre.xml</exclude>
+        <exclude>services/wfs.xml</exclude>
+        <exclude>services/wfs_metadata.xml</exclude>
+        <exclude>services/wms.xml</exclude>
+        <exclude>services/wms_metadata.xml</exclude>
+      </excludes>
+      <outputDirectory>.</outputDirectory>
+      <filtered>true</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/datasources/feature/bbox_cache-xplangml</directory>
+      <outputDirectory>datasources/feature/</outputDirectory>
+      <filtered>true</filtered>
+    </fileSet>
+  </fileSets>
+  <dependencySets>
+    <dependencySet>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplan-schemas</include>
+      </includes>
+      <unpack>true</unpack>
+      <outputDirectory>/</outputDirectory>
+    </dependencySet>
+  </dependencySets>
+</assembly>

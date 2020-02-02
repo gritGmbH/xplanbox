@@ -16,7 +16,10 @@
         <include>datasources/feature/bbox_cache.properties</include>
         <include>jdbc/inspireplu.xml</include>
         <include>layers/*</include>
-        <include>services/*</include>
+        <include>services/wfs.xml</include>
+        <include>services/wfs_metadata.xml</include>
+        <include>services/wms.xml</include>
+        <include>services/wms_metadata.xml</include>
         <include>styles/*</include>
         <include>themes/*</include>
       </includes>
