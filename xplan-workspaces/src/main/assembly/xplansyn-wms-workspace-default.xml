@@ -24,7 +24,7 @@
         <include>themes/lplan*</include>
         <include>themes/rplan*</include>
         <include>themes/soplan*</include>
-        <include>gda.ignore</include>
+        <include>gdal.ignore</include>
       </includes>
       <excludes>
         <exclude>appschemas/*</exclude>

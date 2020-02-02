@@ -1,6 +1,6 @@
 <assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
-  <id>xplansyn-wfs-workspace</id>
+  <id>xplan-validator-wfs-workspace-default</id>
   <formats>
     <format>zip</format>
   </formats>
@@ -9,34 +9,33 @@
     <fileSet>
       <directory>${basedir}/src/main/workspace</directory>
       <includes>
-        <include>datasources/feature/xplansyn*</include>
-        <include>jdbc/xplan.xml</include>
-        <include>services/wms*</include>
+        <include>layers/bplan.xml</include>
+        <include>layers/fplan.xml</include>
+        <include>layers/lplan.xml</include>
+        <include>layers/rplan.xml</include>
+        <include>layers/soplan.xml</include>
         <include>services/html.gfi</include>
-        <include>layers/bplan*</include>
-        <include>layers/fplan*</include>
-        <include>layers/lplan*</include>
-        <include>layers/rplan*</include>
-        <include>layers/soplan*</include>
-        <include>legends/*</include>
-        <include>services/wms*</include>
-        <include>themes/bplan*</include>
-        <include>themes/fplan*</include>
-        <include>themes/lplan*</include>
-        <include>themes/rplan*</include>
-        <include>themes/soplan*</include>
-        <include>gdal.ignore</include>
       </includes>
       <excludes>
         <exclude>appschemas/*</exclude>
       </excludes>
       <outputDirectory>.</outputDirectory>
-      <filtered>false</filtered>
+      <filtered>true</filtered>
     </fileSet>
     <fileSet>
-      <directory>${basedir}/src/main/workspace/datasources/feature/bbox_cache-xplansyn</directory>
+      <directory>${basedir}/src/main/workspace/datasources/feature/xplansyn-memory</directory>
       <outputDirectory>datasources/feature/</outputDirectory>
-      <filtered>false</filtered>
+      <filtered>true</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/services/validator-wms</directory>
+      <outputDirectory>services/</outputDirectory>
+      <filtered>true</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/themes/validator-wms</directory>
+      <outputDirectory>themes/</outputDirectory>
+      <filtered>true</filtered>
     </fileSet>
   </fileSets>
   <dependencySets>
