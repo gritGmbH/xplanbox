@@ -14,8 +14,11 @@
         <include>jdbc/*</include>
         <include>sql/*</include>
       </includes>
+      <excludes>
+        <exclude>datasources/feature/bbox_cache.properties</exclude>
+      </excludes>
       <outputDirectory>.</outputDirectory>
-      <filtered>true</filtered>
+      <filtered>false</filtered>
     </fileSet>
   </fileSets>
   <dependencySets>

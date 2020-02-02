@@ -13,12 +13,14 @@
     <Property name="username" value="${inspireplu.jdbc.user}"/>
     <Property name="password" value="${inspireplu.jdbc.password}"/>
     <Property name="initialSize" value="1"/>
-    <Property name="maxActive" value="5"/>
+    <Property name="maxActive" value="10"/>
     <Property name="maxIdle" value="1"/>
     <Property name="maxWait" value="5000"/>
     <Property name="defaultReadOnly" value="false"/>
     <Property name="testOnReturn" value="true"/>
     <Property name="testOnBorrow" value="true"/>
-    <Property name="validationQuery" value="select version(), PostGIS_full_version()"/>
+    <Property name="validationQuery" value="select 1"/>
+    <Property name="removeAbandoned" value="true"/>
+    <Property name="removeAbandonedTimeout" value="300"/>
 
 </DataSourceConnectionProvider>
