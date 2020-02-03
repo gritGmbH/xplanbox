@@ -1,6 +1,6 @@
 <assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
-  <id>xplan-manager-workspace-default</id>
+  <id>xplan-inspireplu-workspace-default</id>
   <formats>
     <format>zip</format>
   </formats>
@@ -14,11 +14,11 @@
         <include>appschemas/inspireplu/PlannedLandUse.xsd</include>
         <include>datasources/feature/inspireplu.xml</include>
         <include>jdbc/inspireplu.xml</include>
-        <include>layers/*</include>
+        <include>layers/inspireplu.xml</include>
         <include>services/downloadservice*</include>
         <include>services/viewservice*</include>
         <include>styles/*</include>
-        <include>themes/*</include>
+        <include>themes/inspireplu.xml</include>
       </includes>
     </fileSet>
     <fileSet>
