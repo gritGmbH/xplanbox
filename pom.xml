@@ -491,12 +491,6 @@
         <type>zip</type>
       </dependency>
       <dependency>
-        <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-styles</artifactId>
-        <version>${project.version}</version>
-        <type>zip</type>
-      </dependency>
-      <dependency>
         <groupId>de.geowerkstatt-hamburg</groupId>
         <artifactId>xplanung</artifactId>
         <version>${geowerkstatt-hamburg.xplanung.version}</version>

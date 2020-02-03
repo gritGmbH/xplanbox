@@ -24,7 +24,12 @@
     <fileSet>
       <directory>${basedir}/src/main/workspace/datasources/feature/bbox_cache-inspireplu</directory>
       <outputDirectory>datasources/feature/</outputDirectory>
-      <filtered>false</filtered>
+      <filtered>true</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/styles/inspireplu</directory>
+      <outputDirectory>styles/</outputDirectory>
+      <filtered>true</filtered>
     </fileSet>
   </fileSets>
 </assembly>

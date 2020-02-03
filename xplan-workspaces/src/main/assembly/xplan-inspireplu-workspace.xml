@@ -26,5 +26,10 @@
       <outputDirectory>datasources/feature/</outputDirectory>
       <filtered>false</filtered>
     </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/styles/inspireplu</directory>
+      <outputDirectory>styles/</outputDirectory>
+      <filtered>false</filtered>
+    </fileSet>
   </fileSets>
 </assembly>

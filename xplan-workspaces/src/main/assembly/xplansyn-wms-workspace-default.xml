@@ -18,7 +18,9 @@
         <include>layers/lplan*</include>
         <include>layers/rplan*</include>
         <include>layers/soplan*</include>
+        <include>legends/*</include>
         <include>services/wms*</include>
+        <include>symbols/**</include>
         <include>themes/bplan*</include>
         <include>themes/fplan*</include>
         <include>themes/lplan*</include>
@@ -48,18 +50,16 @@
       <outputDirectory>datasources/feature/</outputDirectory>
       <filtered>true</filtered>
     </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/styles/xplansyn</directory>
+      <outputDirectory>styles/</outputDirectory>
+      <filtered>false</filtered>
+    </fileSet>
   </fileSets>
   <dependencySets>
     <dependencySet>
       <includes>
         <include>de.latlon.product.xplanbox:xplan-schemas</include>
-      </includes>
-      <unpack>true</unpack>
-      <outputDirectory>/</outputDirectory>
-    </dependencySet>
-    <dependencySet>
-      <includes>
-        <include>de.latlon.product.xplanbox:xplan-styles</include>
       </includes>
       <unpack>true</unpack>
       <outputDirectory>/</outputDirectory>
