@@ -46,7 +46,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Ltg_Abwasser.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Ltg_Abwasser.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -129,7 +129,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="../symbols/RROP/RROP_Abwasserverwertung.svg" />
+                      xlink:href="./symbols/RROP/RROP_Abwasserverwertung.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>18</sld:Size>

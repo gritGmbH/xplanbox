@@ -34,7 +34,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Radfahren.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Radfahren.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -71,7 +71,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Reiten.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Reiten.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -108,7 +108,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Wandern.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Wandern.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -145,7 +145,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Wasserwandern.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Wasserwandern.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>

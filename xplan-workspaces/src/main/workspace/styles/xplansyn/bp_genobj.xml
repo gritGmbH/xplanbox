@@ -150,7 +150,7 @@
       </Geometry>
       <Graphic>
         <Mark>
-          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <OnlineResource xlink:href="./symbols/FreeSans.ttf" />
           <Format>ttf</Format>
           <MarkIndex>42</MarkIndex>
           <Fill>

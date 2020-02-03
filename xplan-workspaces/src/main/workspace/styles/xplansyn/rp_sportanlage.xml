@@ -32,7 +32,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Wassersport.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Wassersport.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>
@@ -68,7 +68,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Motorsport.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Motorsport.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>
@@ -104,7 +104,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Flugsport.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Flugsport.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>
@@ -140,7 +140,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Reitsport.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Reitsport.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>
@@ -175,7 +175,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Golfsport.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Golfsport.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>

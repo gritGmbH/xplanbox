@@ -20,7 +20,6 @@
         <include>layers/soplan*</include>
         <include>legends/*</include>
         <include>services/wms*</include>
-        <include>symbols/**</include>
         <include>themes/bplan*</include>
         <include>themes/fplan*</include>
         <include>themes/lplan*</include>

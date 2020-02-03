@@ -1924,7 +1924,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Anschlussstelle_VR.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Anschlussstelle_VR.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>
@@ -1957,7 +1957,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Anschlussstelle_vb.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Anschlussstelle_vb.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>

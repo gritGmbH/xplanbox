@@ -118,7 +118,7 @@
           <Graphic>
             <ExternalGraphic>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../symbols/RROP/RROP_NeueVerkehrstechnik_VR.svg"/>
+                              xlink:href="./symbols/RROP/RROP_NeueVerkehrstechnik_VR.svg"/>
               <Format>image/svg</Format>
             </ExternalGraphic>
             <Size>23</Size>
@@ -157,7 +157,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_GVZ.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_GVZ.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>
@@ -189,7 +189,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_GVZ.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_GVZ.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>
@@ -221,7 +221,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_GVZ.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_GVZ.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>
@@ -253,7 +253,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_GVZ.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_GVZ.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>
@@ -283,7 +283,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_GVZ_VR.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_GVZ_VR.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>
@@ -314,7 +314,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_GVZ_vb.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_GVZ_vb.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>
@@ -352,7 +352,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_GVZreg_VR.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_GVZreg_VR.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>
@@ -387,7 +387,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_GVZreg_vb.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_GVZreg_vb.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>
@@ -421,7 +421,7 @@
     <PointSymbolizer>
       <Graphic>
         <ExternalGraphic>
-          <OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_neueVerkehrstechnik.svg"/>
+          <OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_neueVerkehrstechnik.svg"/>
           <Format>image/svg</Format>
         </ExternalGraphic>
         <Size>

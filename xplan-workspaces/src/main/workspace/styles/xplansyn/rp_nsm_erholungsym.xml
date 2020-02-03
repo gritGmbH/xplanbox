@@ -20,7 +20,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Erholungsschwerpunkt.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Erholungsschwerpunkt.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -43,7 +43,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Erholung_ruhige.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Erholung_ruhige.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -63,7 +63,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Erholung_intensive.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Erholung_intensive.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -83,7 +83,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_StErholung.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_StErholung.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>

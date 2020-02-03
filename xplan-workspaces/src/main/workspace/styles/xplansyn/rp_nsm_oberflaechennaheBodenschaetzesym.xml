@@ -23,7 +23,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Rohstoff_vb.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Rohstoff_vb.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -67,7 +67,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Rohstoff_VR.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Rohstoff_VR.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -215,7 +215,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Rohstoff_Zeitstufe.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Rohstoff_Zeitstufe.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>

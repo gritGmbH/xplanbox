@@ -30,7 +30,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/spispoanfl_rs.svg" />
+                xlink:href="./symbols/spispoanfl_rs.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#000000</SvgParameter>

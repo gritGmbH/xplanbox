@@ -34,7 +34,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_StWohnstaetten.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_StWohnstaetten.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -70,7 +70,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_StArbeitsstaetten.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_StArbeitsstaetten.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>

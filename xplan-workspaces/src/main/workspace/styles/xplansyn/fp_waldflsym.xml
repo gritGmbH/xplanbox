@@ -27,7 +27,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/todo.svg" />
+            xlink:href="./symbols/todo.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -63,7 +63,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/todo.svg" />
+            xlink:href="./symbols/todo.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -105,7 +105,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/todo.svg" />
+            xlink:href="./symbols/todo.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -139,7 +139,7 @@
       </Geometry>
       <Graphic>
         <Mark>
-          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <OnlineResource xlink:href="./symbols/FreeSans.ttf" />
           <Format>ttf</Format>
           <MarkIndex>55</MarkIndex>
           <Fill>

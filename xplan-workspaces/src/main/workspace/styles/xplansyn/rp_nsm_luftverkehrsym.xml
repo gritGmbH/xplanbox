@@ -20,7 +20,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Verkehrsflughafen_VR.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Verkehrsflughafen_VR.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -44,7 +44,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_Flug.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_Flug.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -68,7 +68,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_Flug_ausser.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_Flug_ausser.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -92,7 +92,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_Flug.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_Flug.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -116,7 +116,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_Flug_ausser.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_Flug_ausser.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -140,7 +140,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_Flug.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_Flug.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -164,7 +164,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_Flug_ausser.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_Flug_ausser.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -188,7 +188,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_Flug.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_Flug.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -212,7 +212,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_Flug_ausser.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_Flug_ausser.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -235,7 +235,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Verkehrslandeplatz_VR.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Verkehrslandeplatz_VR.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>

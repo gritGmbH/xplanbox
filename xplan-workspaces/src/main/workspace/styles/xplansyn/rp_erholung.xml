@@ -29,7 +29,7 @@
           <Graphic>
             <ExternalGraphic>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../symbols/RROP/RROP_Erholung_vb.svg"/>
+                              xlink:href="./symbols/RROP/RROP_Erholung_vb.svg"/>
               <Format>image/svg</Format>
             </ExternalGraphic>
             <Size>22</Size>
@@ -65,7 +65,7 @@
           <Graphic>
             <ExternalGraphic>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../symbols/RROP/RROP_Erholung_VR.svg"/>
+                              xlink:href="./symbols/RROP/RROP_Erholung_VR.svg"/>
               <Format>image/svg</Format>
             </ExternalGraphic>
             <Size>22</Size>

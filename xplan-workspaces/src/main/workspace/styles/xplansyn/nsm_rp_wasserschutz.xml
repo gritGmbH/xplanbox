@@ -232,7 +232,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="../symbols/RROP/RROP_S_Trinkwasser_vb.svg" />
+                      xlink:href="./symbols/RROP/RROP_S_Trinkwasser_vb.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>3.5</sld:Size>
@@ -267,7 +267,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Heilquelle.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Heilquelle.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>

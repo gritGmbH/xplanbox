@@ -149,7 +149,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/anpflanzbinderhbebau_sym.svg" />
+            xlink:href="./symbols/anpflanzbinderhbebau_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#008000</SvgParameter>
@@ -214,7 +214,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/anpflanzbinderhbebau_sym.svg" />
+                xlink:href="./symbols/anpflanzbinderhbebau_sym.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#008000</SvgParameter>
@@ -265,7 +265,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/anpflanzbinderhbebau_sym.svg" />
+            xlink:href="./symbols/anpflanzbinderhbebau_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#008000</SvgParameter>
@@ -285,7 +285,7 @@
       </Geometry>
       <Graphic>
         <Mark>
-          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <OnlineResource xlink:href="./symbols/FreeSans.ttf" />
           <Format>ttf</Format>
           <MarkIndex>46</MarkIndex>
           <Fill>
@@ -334,7 +334,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/anpflanzbinderhbebau_sym.svg" />
+                xlink:href="./symbols/anpflanzbinderhbebau_sym.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#008000</SvgParameter>
@@ -359,7 +359,7 @@
         <GraphicStroke>
           <Graphic>
             <Mark>
-              <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+              <OnlineResource xlink:href="./symbols/FreeSans.ttf" />
               <Format>ttf</Format>
               <MarkIndex>46</MarkIndex>
               <Fill>
@@ -409,7 +409,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/anpflanzbinderhbestr_sym.svg" />
+            xlink:href="./symbols/anpflanzbinderhbestr_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#008000</SvgParameter>
@@ -459,7 +459,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/anpflanzbinderhbestr_sym.svg" />
+                xlink:href="./symbols/anpflanzbinderhbestr_sym.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#008000</SvgParameter>
@@ -510,7 +510,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/anpflanzbinderhbestr_sym.svg" />
+            xlink:href="./symbols/anpflanzbinderhbestr_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#008000</SvgParameter>
@@ -530,7 +530,7 @@
       </Geometry>
       <Graphic>
         <Mark>
-          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <OnlineResource xlink:href="./symbols/FreeSans.ttf" />
           <Format>ttf</Format>
           <MarkIndex>43</MarkIndex>
           <Fill>
@@ -579,7 +579,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/anpflanzbinderhbestr_sym.svg" />
+                xlink:href="./symbols/anpflanzbinderhbestr_sym.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#008000</SvgParameter>
@@ -604,7 +604,7 @@
         <GraphicStroke>
           <Graphic>
             <Mark>
-              <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+              <OnlineResource xlink:href="./symbols/FreeSans.ttf" />
               <Format>ttf</Format>
               <MarkIndex>46</MarkIndex>
               <Fill>
@@ -654,7 +654,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/anpflanzbinderhbestr_sym.svg" />
+            xlink:href="./symbols/anpflanzbinderhbestr_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#008000</SvgParameter>
@@ -674,7 +674,7 @@
       </Geometry>
       <Graphic>
         <Mark>
-          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <OnlineResource xlink:href="./symbols/FreeSans.ttf" />
           <Format>ttf</Format>
           <MarkIndex>46</MarkIndex>
           <Fill>
@@ -723,7 +723,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/anpflanzbinderhbestr_sym.svg" />
+                xlink:href="./symbols/anpflanzbinderhbestr_sym.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#008000</SvgParameter>
@@ -748,7 +748,7 @@
         <GraphicStroke>
           <Graphic>
             <Mark>
-              <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+              <OnlineResource xlink:href="./symbols/FreeSans.ttf" />
               <Format>ttf</Format>
               <MarkIndex>46</MarkIndex>
               <Fill>
@@ -798,7 +798,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/anpflanzbinderhbesons_sym.svg" />
+            xlink:href="./symbols/anpflanzbinderhbesons_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#008000</SvgParameter>
@@ -848,7 +848,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/anpflanzbinderhbesons_sym.svg" />
+                xlink:href="./symbols/anpflanzbinderhbesons_sym.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#008000</SvgParameter>
@@ -982,7 +982,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/anpflanzbinderhabau_sym.svg" />
+            xlink:href="./symbols/anpflanzbinderhabau_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#008000</SvgParameter>
@@ -1032,7 +1032,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/anpflanzbinderhabau_sym.svg" />
+                xlink:href="./symbols/anpflanzbinderhabau_sym.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#008000</SvgParameter>
@@ -1083,7 +1083,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/anpflanzbinderhabau_sym.svg" />
+            xlink:href="./symbols/anpflanzbinderhabau_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#008000</SvgParameter>
@@ -1103,7 +1103,7 @@
       </Geometry>
       <Graphic>
         <Mark>
-          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <OnlineResource xlink:href="./symbols/FreeSans.ttf" />
           <Format>ttf</Format>
           <MarkIndex>46</MarkIndex>
           <Fill>
@@ -1152,7 +1152,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/anpflanzbinderhabau_sym.svg" />
+                xlink:href="./symbols/anpflanzbinderhabau_sym.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#008000</SvgParameter>
@@ -1177,7 +1177,7 @@
         <GraphicStroke>
           <Graphic>
             <Mark>
-              <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+              <OnlineResource xlink:href="./symbols/FreeSans.ttf" />
               <Format>ttf</Format>
               <MarkIndex>46</MarkIndex>
               <Fill>
@@ -1227,7 +1227,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/anpflanzbinderhastr_sym.svg" />
+            xlink:href="./symbols/anpflanzbinderhastr_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#008000</SvgParameter>
@@ -1277,7 +1277,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/anpflanzbinderhastr_sym.svg" />
+                xlink:href="./symbols/anpflanzbinderhastr_sym.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#008000</SvgParameter>
@@ -1328,7 +1328,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/anpflanzbinderhastr_sym.svg" />
+            xlink:href="./symbols/anpflanzbinderhastr_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#008000</SvgParameter>
@@ -1348,7 +1348,7 @@
       </Geometry>
       <Graphic>
         <Mark>
-          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <OnlineResource xlink:href="./symbols/FreeSans.ttf" />
           <Format>ttf</Format>
           <MarkIndex>43</MarkIndex>
           <Fill>
@@ -1397,7 +1397,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/anpflanzbinderhastr_sym.svg" />
+                xlink:href="./symbols/anpflanzbinderhastr_sym.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#008000</SvgParameter>
@@ -1422,7 +1422,7 @@
         <GraphicStroke>
           <Graphic>
             <Mark>
-              <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+              <OnlineResource xlink:href="./symbols/FreeSans.ttf" />
               <Format>ttf</Format>
               <MarkIndex>43</MarkIndex>
               <Fill>
@@ -1472,7 +1472,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/anpflanzbinderhastr_sym.svg" />
+            xlink:href="./symbols/anpflanzbinderhastr_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#008000</SvgParameter>
@@ -1492,7 +1492,7 @@
       </Geometry>
       <Graphic>
         <Mark>
-          <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+          <OnlineResource xlink:href="./symbols/FreeSans.ttf" />
           <Format>ttf</Format>
           <MarkIndex>46</MarkIndex>
           <Fill>
@@ -1541,7 +1541,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/anpflanzbinderhastr_sym.svg" />
+                xlink:href="./symbols/anpflanzbinderhastr_sym.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#008000</SvgParameter>
@@ -1566,7 +1566,7 @@
         <GraphicStroke>
           <Graphic>
             <Mark>
-              <OnlineResource xlink:href="../symbols/FreeSans.ttf" />
+              <OnlineResource xlink:href="./symbols/FreeSans.ttf" />
               <Format>ttf</Format>
               <MarkIndex>46</MarkIndex>
               <Fill>
@@ -1616,7 +1616,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/anpflanzbinderhasons_sym.svg" />
+            xlink:href="./symbols/anpflanzbinderhasons_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#008000</SvgParameter>
@@ -1666,7 +1666,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/anpflanzbinderhasons_sym.svg" />
+                xlink:href="./symbols/anpflanzbinderhasons_sym.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#008000</SvgParameter>

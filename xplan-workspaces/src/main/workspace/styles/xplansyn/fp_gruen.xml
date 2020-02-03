@@ -176,7 +176,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflpark_sym.svg" />
+            xlink:href="./symbols/gruenflpark_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -222,7 +222,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfldakleingar_sym.svg" />
+            xlink:href="./symbols/gruenfldakleingar_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -268,7 +268,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
+            xlink:href="./symbols/gruenfl_bg.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -289,7 +289,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflsportpl_sym.svg" />
+            xlink:href="./symbols/gruenflsportpl_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -335,7 +335,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflspielpl_sym.svg" />
+            xlink:href="./symbols/gruenflspielpl_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -381,7 +381,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflzeltpl_sym.svg" />
+            xlink:href="./symbols/gruenflzeltpl_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -427,7 +427,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflbadpl_sym.svg" />
+            xlink:href="./symbols/gruenflbadpl_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -473,7 +473,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflfreizherh_sym.svg" />
+            xlink:href="./symbols/gruenflfreizherh_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -519,7 +519,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
+            xlink:href="./symbols/gruenfl_bg.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -540,7 +540,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflspezgru_sym.svg" />
+            xlink:href="./symbols/gruenflspezgru_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -586,7 +586,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflfriedh_sym.svg" />
+            xlink:href="./symbols/gruenflfriedh_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -632,7 +632,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
+            xlink:href="./symbols/gruenfl_bg.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -653,7 +653,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflsons_sym.svg" />
+            xlink:href="./symbols/gruenflsons_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -699,7 +699,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflskate_sym.svg" />
+            xlink:href="./symbols/gruenflskate_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -723,7 +723,7 @@
       <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>10000</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -736,7 +736,7 @@
       <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>10001</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -749,7 +749,7 @@
       <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>10002</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -762,7 +762,7 @@
       <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>10003</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -796,7 +796,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
+            xlink:href="./symbols/gruenfl_bg.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -817,7 +817,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflerholgaerten_sym.svg" />
+            xlink:href="./symbols/gruenflerholgaerten_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -839,7 +839,7 @@
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>14000</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -852,7 +852,7 @@
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>14001</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -865,7 +865,7 @@
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>14002</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -878,7 +878,7 @@
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>14003</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -912,7 +912,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
+            xlink:href="./symbols/gruenfl_bg.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -933,7 +933,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflgolfpl_sym.svg" />
+            xlink:href="./symbols/gruenflgolfpl_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -955,7 +955,7 @@
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>14005</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -968,7 +968,7 @@
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>14006</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -981,7 +981,7 @@
       <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>14007</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -1015,7 +1015,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflbolzpl_sym.svg" />
+            xlink:href="./symbols/gruenflbolzpl_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -1037,7 +1037,7 @@
       <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>16001</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -1050,7 +1050,7 @@
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>18000</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -1084,7 +1084,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
+            xlink:href="./symbols/gruenfl_bg.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -1105,7 +1105,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflkleintier_sym.svg" />
+            xlink:href="./symbols/gruenflkleintier_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -1127,7 +1127,7 @@
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>22001</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -1161,7 +1161,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
+            xlink:href="./symbols/gruenfl_bg.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -1182,7 +1182,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflstrabeglgruen_sym.svg" />
+            xlink:href="./symbols/gruenflstrabeglgruen_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -1225,7 +1225,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenfl_bg.svg" />
+            xlink:href="./symbols/gruenfl_bg.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -1246,7 +1246,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/gruenflboeschung_sym.svg" />
+            xlink:href="./symbols/gruenflboeschung_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -1268,7 +1268,7 @@
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>24002</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -1281,7 +1281,7 @@
       <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>24003</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -1294,7 +1294,7 @@
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>24004</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -1308,7 +1308,7 @@
       <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName> <ogc:Literal>24005</ogc:Literal>
       </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -1321,7 +1321,7 @@
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>24006</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -1334,7 +1334,7 @@
       <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
       <ogc:Literal>99990</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>

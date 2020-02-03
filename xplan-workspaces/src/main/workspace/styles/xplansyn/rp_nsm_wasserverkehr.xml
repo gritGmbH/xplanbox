@@ -127,7 +127,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="../symbols/RROP/RROP_S_Schleuse_VR.svg" />
+                      xlink:href="./symbols/RROP/RROP_S_Schleuse_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>47</sld:Size>
@@ -164,7 +164,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="../symbols/RROP/RROP_S_Schleuse_VR.svg" />
+                      xlink:href="./symbols/RROP/RROP_S_Schleuse_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>92</sld:Size>
@@ -201,7 +201,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="../symbols/RROP/RROP_S_Schleuse_VR.svg" />
+                      xlink:href="./symbols/RROP/RROP_S_Schleuse_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>23</sld:Size>

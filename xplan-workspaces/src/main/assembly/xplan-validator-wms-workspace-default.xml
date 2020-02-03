@@ -15,7 +15,6 @@
         <include>layers/rplan.xml</include>
         <include>layers/soplan.xml</include>
         <include>services/html.gfi</include>
-        <include>symbols/**</include>
       </includes>
       <excludes>
         <exclude>appschemas/*</exclude>

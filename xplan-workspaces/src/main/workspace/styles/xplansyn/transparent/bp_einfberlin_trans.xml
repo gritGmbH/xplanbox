@@ -33,7 +33,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/einfberlin_as.svg" />
+                xlink:href="../symbols/einfberlin_as.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#000000</SvgParameter>
@@ -61,7 +61,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/einfberlin_es.svg" />
+                xlink:href="../symbols/einfberlin_es.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#000000</SvgParameter>

@@ -26,7 +26,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Ltg_Fernwaerme.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Ltg_Fernwaerme.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -49,7 +49,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Ltg_Gas.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Ltg_Gas.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -72,7 +72,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Ltg_Oel.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Ltg_Oel.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -95,7 +95,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Ltg_Produkte.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Ltg_Produkte.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -121,7 +121,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Kraftwerk_VR.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Kraftwerk_VR.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -144,7 +144,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Kraftwerk_vb.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Kraftwerk_vb.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -172,7 +172,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_KW.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_KW.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -197,7 +197,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_KW_ausser.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_KW_ausser.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -222,7 +222,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_KW.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_KW.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -247,7 +247,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_KW_ausser.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_KW_ausser.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -272,7 +272,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_KW.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_KW.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -297,7 +297,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_KW_ausser.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_KW_ausser.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -322,7 +322,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_KW.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_KW.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -347,7 +347,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/LROP/LROP_S_VR_KW_ausser.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_KW_ausser.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -373,7 +373,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Primaerenergie_Gas_VR.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Primaerenergie_Gas_VR.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -396,7 +396,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_Primaerenergie_Oel_VR.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Primaerenergie_Oel_VR.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -423,7 +423,7 @@
             <sld:Graphic>
               <sld:ExternalGraphic>
                 <sld:OnlineResource xlink:type="simple"
-                  xlink:href="../symbols/RROP/RROP_S_Speicherung_regEnergie.svg" />
+                  xlink:href="./symbols/RROP/RROP_S_Speicherung_regEnergie.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -449,7 +449,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="../symbols/RROP/RROP_S_erneuerbEnergie_VR.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_erneuerbEnergie_VR.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
