@@ -39,7 +39,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="./symbols/spispoanfl_rs.svg" />
+                xlink:href="../../symbols/spispoanfl_rs.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#000000</SvgParameter>
@@ -90,7 +90,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="./symbols/spispoanfl_rs.svg" />
+                xlink:href="../../symbols/spispoanfl_rs.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#000000</SvgParameter>
@@ -136,7 +136,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/spispoanlfl_bg.svg" />
+            xlink:href="../../symbols/spispoanlfl_bg.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -157,7 +157,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/gembedarfsflspo_sym.svg" />
+            xlink:href="../../symbols/gembedarfsflspo_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#FFFFFF</SvgParameter>
@@ -199,7 +199,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/spispoanlfl_bg.svg" />
+            xlink:href="../../symbols/spispoanlfl_bg.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -220,7 +220,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/spispoanlflspi_sym.svg" />
+            xlink:href="../../symbols/spispoanlflspi_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#FFFFFF</SvgParameter>
@@ -238,7 +238,7 @@
   <!-- Sonstiges TODO: style -->
   <!--
       <Rule> <Name>fp_spispoanl</Name> <Description> <Title>FP: Spiel- und Sportanlagen</Title> </Description> <ogc:Filter> <ogc:And> <ogc:PropertyIsEqualTo> <ogc:Function name="IsPoint"> <ogc:PropertyName>xplan:position</ogc:PropertyName> </ogc:Function> <ogc:Literal>true</ogc:Literal> </ogc:PropertyIsEqualTo> <ogc:PropertyIsEqualTo>
-      <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName> <ogc:Literal>9999</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:And> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry> <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
+      <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName> <ogc:Literal>9999</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:And> </ogc:Filter> <MaxScaleDenominator>100000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry> <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter name="fill-opacity">1.0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter> <SvgParameter name="stroke-width">3</SvgParameter> </Stroke> </Mark> <Size>70</Size> </Graphic> </PointSymbolizer> </Rule>
   -->
 </FeatureTypeStyle>

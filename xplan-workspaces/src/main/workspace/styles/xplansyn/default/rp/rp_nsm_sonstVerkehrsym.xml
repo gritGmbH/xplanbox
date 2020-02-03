@@ -30,7 +30,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_GVZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_VR_GVZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -60,7 +60,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_GVZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_VR_GVZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -90,7 +90,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_GVZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_VR_GVZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -120,7 +120,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_VR_GVZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_VR_GVZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -148,7 +148,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_GVZ_VR.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_GVZ_VR.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -177,7 +177,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_GVZ_vb.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_GVZ_vb.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -209,7 +209,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_GVZreg_VR.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_GVZreg_VR.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -238,7 +238,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_GVZreg_vb.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_GVZreg_vb.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -270,7 +270,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_neueVerkehrstechnik.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_neueVerkehrstechnik.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>

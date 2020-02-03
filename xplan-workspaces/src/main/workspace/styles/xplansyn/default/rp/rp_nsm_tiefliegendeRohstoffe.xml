@@ -64,7 +64,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_Rohstoff_VR.svg" />
+                      xlink:href="../../symbols/RROP/RROP_Rohstoff_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>6</sld:Size>
@@ -100,7 +100,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/LROP/LROP_VR_Rohstoff.svg" />
+                      xlink:href="../../symbols/LROP/LROP_VR_Rohstoff.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>9</sld:Size>
@@ -136,7 +136,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/LROP/LROP_VR_Rohstoff.svg" />
+                      xlink:href="../../symbols/LROP/LROP_VR_Rohstoff.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>25</sld:Size>
@@ -172,7 +172,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/LROP/LROP_VR_Rohstoff.svg" />
+                      xlink:href="../../symbols/LROP/LROP_VR_Rohstoff.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>55</sld:Size>

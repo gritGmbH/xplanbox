@@ -31,7 +31,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Wassersport.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_Wassersport.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -65,7 +65,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Motorsport.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_Motorsport.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -99,7 +99,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Flugsport.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_Flugsport.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -133,7 +133,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Reitsport.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_Reitsport.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -166,7 +166,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Golfsport.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_Golfsport.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>

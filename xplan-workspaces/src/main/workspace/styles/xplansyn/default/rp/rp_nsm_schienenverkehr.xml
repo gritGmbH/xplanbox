@@ -811,7 +811,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_FernBahnhof_VR.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_FernBahnhof_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>47</sld:Size>
@@ -848,7 +848,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_FernBahnhof_VR.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_FernBahnhof_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>92</sld:Size>
@@ -885,7 +885,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_FernBahnhof_VR.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_FernBahnhof_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>23</sld:Size>
@@ -925,7 +925,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_Bahnhof_VR.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_Bahnhof_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>47</sld:Size>
@@ -962,7 +962,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_Bahnhof_vb.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_Bahnhof_vb.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>47</sld:Size>
@@ -999,7 +999,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_Bahnhof_VR.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_Bahnhof_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>92</sld:Size>
@@ -1036,7 +1036,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_Bahnhof_vb.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_Bahnhof_vb.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>92</sld:Size>
@@ -1073,7 +1073,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_Bahnhof_VR.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_Bahnhof_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>23</sld:Size>
@@ -1110,7 +1110,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_Bahnhof_vb.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_Bahnhof_vb.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>23</sld:Size>
@@ -1150,7 +1150,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_eltBetrieb_VR.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_eltBetrieb_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>44</sld:Size>
@@ -1187,7 +1187,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_eltBetrieb_vb.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_eltBetrieb_vb.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>44</sld:Size>
@@ -1224,7 +1224,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_eltBetrieb_VR.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_eltBetrieb_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>86</sld:Size>
@@ -1261,7 +1261,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_eltBetrieb_vb.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_eltBetrieb_vb.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>86</sld:Size>
@@ -1298,7 +1298,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_eltBetrieb_VR.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_eltBetrieb_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>22</sld:Size>
@@ -1335,7 +1335,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_eltBetrieb_vb.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_eltBetrieb_vb.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>22</sld:Size>

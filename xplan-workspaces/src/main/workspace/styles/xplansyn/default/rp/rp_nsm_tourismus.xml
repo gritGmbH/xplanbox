@@ -26,7 +26,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_StTourismus.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_StTourismus.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>

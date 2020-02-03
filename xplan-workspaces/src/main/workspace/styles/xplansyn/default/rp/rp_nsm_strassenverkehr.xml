@@ -1774,7 +1774,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_Faehre_VR.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_Faehre_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>15</sld:Size>
@@ -1811,7 +1811,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_Faehre_VR.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_Faehre_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>32</sld:Size>
@@ -1848,7 +1848,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_S_Faehre_VR.svg" />
+                      xlink:href="../../symbols/RROP/RROP_S_Faehre_VR.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>7</sld:Size>
@@ -1878,7 +1878,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Anschlussstelle_VR.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_Anschlussstelle_VR.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -1907,7 +1907,7 @@
           <sld:PointSymbolizer>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_Anschlussstelle_vb.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_Anschlussstelle_vb.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>

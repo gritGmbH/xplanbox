@@ -40,7 +40,7 @@
     <fileSet>
       <directory>${basedir}/src/main/workspace/styles/xplansyn</directory>
       <outputDirectory>styles/</outputDirectory>
-      <filtered>true</filtered>
+      <filtered>false</filtered>
     </fileSet>
   </fileSets>
   <dependencySets>

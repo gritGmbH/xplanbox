@@ -107,7 +107,7 @@
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </ogc:Function> <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo> </ogc:And> </ogc:Filter> <MaxScaleDenominator>25000</MaxScaleDenominator> <PolygonSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Stroke> <GraphicStroke> <Graphic> <Mark>
-      <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg"
+      <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg"
       /> <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> </Graphic> </GraphicStroke> </Stroke>
@@ -121,7 +121,7 @@
       <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName> <ogc:Literal>1200</ogc:Literal>
       </ogc:PropertyIsEqualTo> </ogc:And> </ogc:Filter> <MaxScaleDenominator>25000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -135,7 +135,7 @@
       <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName> <ogc:Literal>1400</ogc:Literal>
       </ogc:PropertyIsEqualTo> </ogc:And> </ogc:Filter> <MaxScaleDenominator>25000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -149,7 +149,7 @@
       <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName> <ogc:Literal>1400</ogc:Literal>
       </ogc:PropertyIsEqualTo> </ogc:And> </ogc:Filter> <MaxScaleDenominator>25000</MaxScaleDenominator> <LineSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Stroke> <GraphicStroke> <Graphic> <Mark>
-      <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg"
+      <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg"
       /> <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic> <Gap>4</Gap>
@@ -163,7 +163,7 @@
       <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName> <ogc:Literal>9999</ogc:Literal>
       </ogc:PropertyIsEqualTo> </ogc:And> </ogc:Filter> <MaxScaleDenominator>25000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
-      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg" />
+      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
       <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic>
@@ -177,7 +177,7 @@
       <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName> <ogc:Literal>9999</ogc:Literal>
       </ogc:PropertyIsEqualTo> </ogc:And> </ogc:Filter> <MaxScaleDenominator>25000</MaxScaleDenominator> <LineSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Stroke> <GraphicStroke> <Graphic> <Mark>
-      <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg"
+      <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg"
       /> <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> <Size>7</Size> </Graphic> <Gap>4</Gap>
@@ -191,7 +191,7 @@
       <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName> <ogc:Literal>9999</ogc:Literal>
       </ogc:PropertyIsEqualTo> </ogc:And> </ogc:Filter> <MaxScaleDenominator>25000</MaxScaleDenominator> <PolygonSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Stroke> <GraphicStroke> <Graphic> <Mark>
-      <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="./symbols/todo.svg"
+      <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg"
       /> <Format>svg</Format> <Fill> <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter
       name="fill-opacity">0</SvgParameter> </Fill> <Stroke> <SvgParameter name="stroke">#000000</SvgParameter>
       <SvgParameter name="stroke-width">0.3</SvgParameter> </Stroke> </Mark> </Graphic> </GraphicStroke> </Stroke>
@@ -289,7 +289,7 @@
       name="stroke">#000000</SvgParameter> <SvgParameter name="stroke-width">2</SvgParameter> <SvgParameter
       name="stroke-linecap">butt</SvgParameter> </Stroke> </LineSymbolizer> <LineSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Stroke> <GraphicStroke> <Graphic> <Mark>
-      <OnlineResource xlink:href="./symbols/FreeSans.ttf" /> <Format>ttf</Format> <MarkIndex>56</MarkIndex> <Fill>
+      <OnlineResource xlink:href="../../symbols/FreeSans.ttf" /> <Format>ttf</Format> <MarkIndex>56</MarkIndex> <Fill>
       <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter name="fill-opacity">0</SvgParameter> </Fill>
       <Stroke> <SvgParameter name="stroke">#000000</SvgParameter> <SvgParameter name="stroke-width">0.7</SvgParameter>
       <SvgParameter name="stroke-opacity">0</SvgParameter> </Stroke> </Mark> <Size>6</Size> </Graphic> <Gap>12</Gap>
@@ -306,7 +306,7 @@
       name="stroke">#000000</SvgParameter> <SvgParameter name="stroke-width">2</SvgParameter> <SvgParameter
       name="stroke-linecap">butt</SvgParameter> </Stroke> </LineSymbolizer> <LineSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:position</ogc:PropertyName> </Geometry> <Stroke> <GraphicStroke> <Graphic> <Mark>
-      <OnlineResource xlink:href="./symbols/FreeSans.ttf" /> <Format>ttf</Format> <MarkIndex>54</MarkIndex> <Fill>
+      <OnlineResource xlink:href="../../symbols/FreeSans.ttf" /> <Format>ttf</Format> <MarkIndex>54</MarkIndex> <Fill>
       <SvgParameter name="fill">#000000</SvgParameter> <SvgParameter name="fill-opacity">0</SvgParameter> </Fill>
       <Stroke> <SvgParameter name="stroke">#000000</SvgParameter> <SvgParameter name="stroke-width">0.7</SvgParameter>
       <SvgParameter name="stroke-opacity">0</SvgParameter> </Stroke> </Mark> <Size>6</Size> </Graphic> <Gap>12</Gap>

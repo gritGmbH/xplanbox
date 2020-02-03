@@ -28,7 +28,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_OZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_OZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -56,7 +56,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_OZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_OZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -84,7 +84,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_OZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_OZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -112,7 +112,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_OZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_OZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -281,7 +281,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_MZ_OZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_MZ_OZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -309,7 +309,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_MZ_OZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_MZ_OZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -337,7 +337,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_MZ_OZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_MZ_OZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -365,7 +365,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_MZ_OZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_MZ_OZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -396,7 +396,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_MZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_MZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -424,7 +424,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_MZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_MZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -452,7 +452,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_MZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_MZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -480,7 +480,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/LROP/LROP_S_MZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_MZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -647,7 +647,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_GZ_MZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_GZ_MZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>
@@ -700,7 +700,7 @@
             </Geometry>
             <sld:Graphic>
               <sld:ExternalGraphic>
-                <sld:OnlineResource xlink:type="simple" xlink:href="./symbols/RROP/RROP_S_GZ.svg" />
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_GZ.svg" />
                 <sld:Format>image/svg</sld:Format>
               </sld:ExternalGraphic>
               <sld:Size>

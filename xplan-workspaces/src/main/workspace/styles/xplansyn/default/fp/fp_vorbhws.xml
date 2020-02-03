@@ -155,7 +155,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/vorbhwsflfest_sym.svg" />
+            xlink:href="../../symbols/vorbhwsflfest_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#FFFFFF</SvgParameter>
@@ -199,7 +199,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/vorbhwsflnichtfest_sym.svg" />
+            xlink:href="../../symbols/vorbhwsflnichtfest_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#FFFFFF</SvgParameter>
@@ -257,7 +257,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/vorbhwsflgefaehr_sym.svg" />
+            xlink:href="../../symbols/vorbhwsflgefaehr_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#FFFFFF</SvgParameter>

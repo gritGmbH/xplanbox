@@ -41,7 +41,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="./symbols/FreeSans.ttf" />
+                xlink:href="../../symbols/FreeSans.ttf" />
               <Format>ttf</Format>
               <MarkIndex>18</MarkIndex>
               <Fill>
@@ -95,7 +95,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="./symbols/FreeSans.ttf" />
+                xlink:href="../../symbols/FreeSans.ttf" />
               <Format>ttf</Format>
               <MarkIndex>18</MarkIndex>
               <Fill>
@@ -155,7 +155,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/FreeSans.ttf" />
+            xlink:href="../../symbols/FreeSans.ttf" />
           <Format>ttf</Format>
           <MarkIndex>18</MarkIndex>
           <Fill>

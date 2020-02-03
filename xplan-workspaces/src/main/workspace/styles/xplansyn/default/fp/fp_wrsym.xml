@@ -34,7 +34,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/wrlfestsflquellgrund_sym.svg" />
+            xlink:href="../../symbols/wrlfestsflquellgrund_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -78,7 +78,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/wrlfestsfloberflwa_sym.svg" />
+            xlink:href="../../symbols/wrlfestsfloberflwa_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -122,7 +122,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/wrlfestsflz1_sym.svg" />
+            xlink:href="../../symbols/wrlfestsflz1_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -166,7 +166,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/wrlfestsflz2_sym.svg" />
+            xlink:href="../../symbols/wrlfestsflz2_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -210,7 +210,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/wrlfestsflz3_sym.svg" />
+            xlink:href="../../symbols/wrlfestsflz3_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -254,7 +254,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/wrlfestsflz3a_sym.svg" />
+            xlink:href="../../symbols/wrlfestsflz3a_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -298,7 +298,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/wrlfestsflz3b_sym.svg" />
+            xlink:href="../../symbols/wrlfestsflz3b_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>

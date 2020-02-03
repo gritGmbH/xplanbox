@@ -46,7 +46,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/schutzgeb_rs.svg" />
+                xlink:href="../../symbols/schutzgeb_rs.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#000000</SvgParameter>
@@ -118,7 +118,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../symbols/schutzgeb_rs.svg" />
+                xlink:href="../../symbols/schutzgeb_rs.svg" />
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#000000</SvgParameter>
@@ -178,7 +178,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/FreeSans.ttf" />
+            xlink:href="../../symbols/FreeSans.ttf" />
           <Format>ttf</Format>
           <MarkIndex>49</MarkIndex>
           <Fill>
@@ -242,7 +242,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/schutzgebnatpark_sym.svg" />
+            xlink:href="../../symbols/schutzgebnatpark_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -287,7 +287,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/schutzgebbiosph_sym.svg" />
+            xlink:href="../../symbols/schutzgebbiosph_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -332,7 +332,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/FreeSans.ttf" />
+            xlink:href="../../symbols/FreeSans.ttf" />
           <Format>ttf</Format>
           <MarkIndex>47</MarkIndex>
           <Fill>
@@ -396,7 +396,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/schutzgebnaturpark_sym.svg" />
+            xlink:href="../../symbols/schutzgebnaturpark_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -441,7 +441,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/schutzgebnaturdenk_sym.svg" />
+            xlink:href="../../symbols/schutzgebnaturdenk_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -486,7 +486,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/schutzgebgeschla_sym.svg" />
+            xlink:href="../../symbols/schutzgebgeschla_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -531,7 +531,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/schutzgebgeschbio_sym.svg" />
+            xlink:href="../../symbols/schutzgebgeschbio_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -576,7 +576,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/schutzgebgembed_sym.svg" />
+            xlink:href="../../symbols/schutzgebgembed_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -621,7 +621,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../symbols/schutzgebeurvog_sym.svg" />
+            xlink:href="../../symbols/schutzgebeurvog_sym.svg" />
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>

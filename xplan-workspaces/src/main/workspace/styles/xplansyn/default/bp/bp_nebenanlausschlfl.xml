@@ -54,7 +54,7 @@
           <Graphic>
             <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="./symbols/unverbvormerkung.svg" />
+            xlink:href="../../symbols/unverbvormerkung.svg" />
           <Format>svg</Format>
               <Stroke>
                 <SvgParameter name="stroke">#000000</SvgParameter>

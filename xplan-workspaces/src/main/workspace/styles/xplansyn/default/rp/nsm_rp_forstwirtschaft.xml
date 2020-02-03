@@ -61,7 +61,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_VergroesserungWald.svg" />
+                      xlink:href="../../symbols/RROP/RROP_VergroesserungWald.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>11</sld:Size>
@@ -93,7 +93,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_Aufforstung_freihalten.svg" />
+                      xlink:href="../../symbols/RROP/RROP_Aufforstung_freihalten.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>7</sld:Size>
@@ -124,7 +124,7 @@
                 <sld:Graphic>
                   <sld:ExternalGraphic>
                     <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                      xlink:href="./symbols/RROP/RROP_SchutzfunktionWald.svg" />
+                      xlink:href="../../symbols/RROP/RROP_SchutzfunktionWald.svg" />
                     <sld:Format>image/svg</sld:Format>
                   </sld:ExternalGraphic>
                   <sld:Size>14</sld:Size>
