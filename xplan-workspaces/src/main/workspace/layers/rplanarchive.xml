@@ -17,10 +17,10 @@
     <d:Abstract>RP_Plan</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_plan_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_plan_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_plan</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_plan</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -63,10 +63,10 @@
     <l:Name>rp_xp_pto</l:Name>
     <d:Title>RP: XP: PTO</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_xp_pto_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_xp_pto_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_xp_pto</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_xp_pto</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -105,10 +105,10 @@
     <l:Name>rp_xp_lto</l:Name>
     <d:Title>RP: XP: LTO</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_xp_lto_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_xp_lto_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_xp_lto</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_xp_lto</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <!-- Beschriftung Ende -->
@@ -148,10 +148,10 @@
     <l:Name>rp_xp_fpo</l:Name>
     <d:Title>RP: XP: FPO</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_xp_fpo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_xp_fpo_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_xp_fpo</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_xp_fpo</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -190,10 +190,10 @@
     <l:Name>rp_xp_lpo</l:Name>
     <d:Title>RP: XP: LPO</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_xp_lpo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_xp_lpo_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_xp_lpo</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_xp_lpo</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -232,10 +232,10 @@
     <l:Name>rp_xp_ppo</l:Name>
     <d:Title>RP: XP: PPO</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_xp_ppo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_xp_ppo_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_xp_ppo</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_xp_ppo</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -275,10 +275,10 @@
     <d:Title>RP: Bereich</d:Title>
     <d:Abstract>RP_Bereich</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_ber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_ber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_ber</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_ber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -321,10 +321,10 @@
     <d:Title>RP: Achse</d:Title>
     <d:Abstract>RP_Achse</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_achse_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_achse_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_achse</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_achse</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -367,10 +367,10 @@
     <d:Title>RP: Bodenschutz</d:Title>
     <d:Abstract>RP_Bodenschutz</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_bodenschutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_bodenschutz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_bodenschutz</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_bodenschutz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -413,10 +413,10 @@
     <d:Title>RP: Energieversorgung</d:Title>
     <d:Abstract>RP_Energieversorgung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_energieversorgung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_energieversorgung_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_energieversorgung</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_energieversorgung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -459,10 +459,10 @@
     <d:Title>RP: Entsorgung</d:Title>
     <d:Abstract>RP_Entsorgung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_entsorgung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_entsorgung_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_entsorgung</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_entsorgung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -505,10 +505,10 @@
     <d:Title>RP: Entwicklungsschwerpunkte</d:Title>
     <d:Abstract>RP_Entwicklungsschwerpunkte</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_entwschwerpte_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_entwschwerpte_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_entwschwerpte</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_entwschwerpte</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -551,10 +551,10 @@
     <d:Title>RP: Forstwirtschaft</d:Title>
     <d:Abstract>RP_Forstwirtschaft</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_forstwirtsch_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_forstwirtsch_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_forstwirtsch</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_forstwirtsch</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -597,10 +597,10 @@
     <d:Title>RP: Freizeit und Erholung</d:Title>
     <d:Abstract>RP_FreizeitErholung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_freizeiterholung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_freizeiterholung_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_freizeiterholung</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_freizeiterholung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -643,10 +643,10 @@
     <d:Title>RP: Gemeindefunktion</d:Title>
     <d:Abstract>RP_GemeindeFunktionSiedlungsentwicklung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_gemfunktsiedlentw_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_gemfunktsiedlentw_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_gemfunktsiedlentw</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_gemfunktsiedlentw</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -689,10 +689,10 @@
     <d:Title>RP: Generisches Objekt</d:Title>
     <d:Abstract>RP_GenerischesObjekt</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_genobj_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_genobj_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_genobj</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_genobj</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -735,10 +735,10 @@
     <d:Title>RP: Grenze</d:Title>
     <d:Abstract>RP_Grenze</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_gr_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_gr_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_gr</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_gr</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -781,10 +781,10 @@
     <d:Title>RP: Grünzug und - zäsur</d:Title>
     <d:Abstract>RP_GruenzugGruenzaesur</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_gruenzuggruenzaesur_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_gruenzuggruenzaesur_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_gruenzuggruenzaesur</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_gruenzuggruenzaesur</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -827,10 +827,10 @@
     <d:Title>RP: Klimaschutz</d:Title>
     <d:Abstract>RP_Klimaschutz</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_klimaschutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_klimaschutz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_klimaschutz</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_klimaschutz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -873,10 +873,10 @@
     <d:Title>RP: Kommunikation</d:Title>
     <d:Abstract>RP_Kommunikation</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_kommunikation_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_kommunikation_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_kommunikation</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_kommunikation</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -919,10 +919,10 @@
     <d:Title>RP: Lärmschutzbereich</d:Title>
     <d:Abstract>RP_Laermschutzbereich</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_laermschutzber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_laermschutzber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_laermschutzber</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_laermschutzber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -965,10 +965,10 @@
     <d:Title>RP: Landwirtschaft</d:Title>
     <d:Abstract>RP_Landwirtschaft</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_lw_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_lw_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_lw</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_lw</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1011,10 +1011,10 @@
     <d:Title>RP: Natur und Landschaft</d:Title>
     <d:Abstract>RP_NaturLandschaft</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_naturlandsch_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_naturlandsch_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_naturlandsch</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_naturlandsch</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1057,10 +1057,10 @@
     <d:Title>RP: Naturschutzgebiete</d:Title>
     <d:Abstract>RP_NaturschutzrechtlichesSchutzgebiet</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_natsrechtlschutzgeb_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_natsrechtlschutzgeb_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_natsrechtlschutzgeb</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_natsrechtlschutzgeb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1103,10 +1103,10 @@
     <d:Title>RP: NRW ASB</d:Title>
     <d:Abstract>RP_NRW_ASB</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_asb_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_asb_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_asb</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_asb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1149,10 +1149,10 @@
     <d:Title>RP: NRW Ablagerung</d:Title>
     <d:Abstract>RP_NRW_AufschuettungAblagerung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_aufschuettablager_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_aufschuettablager_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_aufschuettablager</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_aufschuettablager</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1195,10 +1195,10 @@
     <d:Title>RP: NRW Forstwirtschaft</d:Title>
     <d:Abstract>RP_NRW_Forstwirtschaft</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_forstwirtsch_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_forstwirtsch_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_forstwirtsch</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_forstwirtsch</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1241,10 +1241,10 @@
     <d:Title>RP: NRW Freiraum- und Agrarbereiche</d:Title>
     <d:Abstract>RP_NRW_FreiraumAgrarbereich</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_freiraumagrarber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_freiraumagrarber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_freiraumagrarber</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_freiraumagrarber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1287,10 +1287,10 @@
     <d:Title>RP: NRW GIB</d:Title>
     <d:Abstract>RP_NRW_GIB</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_gib_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_gib_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_gib</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_gib</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1333,10 +1333,10 @@
     <d:Title>RP: NRW Grundwasser- und Gewässerschutz</d:Title>
     <d:Abstract>RP_NRW_GrundwasserGewaesserschutz</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_grundwgewschutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_grundwgewschutz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_grundwgewschutz</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_grundwgewschutz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1379,10 +1379,10 @@
     <d:Title>RP: NRW Lärmschutzzone</d:Title>
     <d:Abstract>RP_NRW_Laermschutzzone</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_laermschutzzone_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_laermschutzzone_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_laermschutzzone</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_laermschutzzone</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1425,10 +1425,10 @@
     <d:Title>RP: NRW Landschaftsschutz</d:Title>
     <d:Abstract>RP_NRW_Landschaftsschutz</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_landschschutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_landschschutz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_landschschutz</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_landschschutz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1471,10 +1471,10 @@
     <d:Title>RP: NRW Luftverkehr</d:Title>
     <d:Abstract>RP_NRW_Luftverkehr</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_luftverk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_luftverk_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_luftverk</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_luftverk</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1517,10 +1517,10 @@
     <d:Title>RP: NRW Naturschutz</d:Title>
     <d:Abstract>RP_NRW_Naturschutz</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_nats_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_nats_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_nats</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_nats</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1563,10 +1563,10 @@
     <d:Title>RP: NRW Oberflächengewässer</d:Title>
     <d:Abstract>RP_NRW_OberflaechenGewaesser</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_oberflngew_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_oberflngew_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_oberflngew</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_oberflngew</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1609,10 +1609,10 @@
     <d:Title>RP: NRW Oberflächennahe Bodenschätze</d:Title>
     <d:Abstract>RP_NRW_OberflaechennaheBodenschaetze</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_oberflnnahebs_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_oberflnnahebs_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_oberflnnahebs</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_oberflnnahebs</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1655,10 +1655,10 @@
     <d:Title>RP: NRW Schienenverkehr</d:Title>
     <d:Abstract>RP_NRW_Schienenverkehr</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_schienenverk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_schienenverk_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_schienenverk</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_schienenverk</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1701,10 +1701,10 @@
     <d:Title>RP: NRW sonstige Infrastruktur</d:Title>
     <d:Abstract>RP_NRW_Schienenverkehr</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_sonstinfrastrukt_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_sonstinfrastrukt_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_sonstinfrastrukt</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_sonstinfrastrukt</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1747,10 +1747,10 @@
     <d:Title>RP: NRW sonstiger Siedlungsbereich</d:Title>
     <d:Abstract>RP_NRW_SonstigerSiedlungsbereich</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_sonstrsiedlber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_sonstrsiedlber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_sonstrsiedlber</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_sonstrsiedlber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1793,10 +1793,10 @@
     <d:Title>RP: NRW sonstige Zweckbindung</d:Title>
     <d:Abstract>RP_NRW_SonstigeZweckbindung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_sonstzweckbind_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_sonstzweckbind_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_sonstzweckbind</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_sonstzweckbind</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1839,10 +1839,10 @@
     <d:Title>RP: NRW sonstiger Verkehr</d:Title>
     <d:Abstract>RP_NRW_SonstVerkehr</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_sonstverk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_sonstverk_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_sonstverk</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_sonstverk</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1885,10 +1885,10 @@
     <d:Title>RP: NRW Straßenverkehr</d:Title>
     <d:Abstract>RP_NRW_Strassenverkehr</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_strverk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_strverk_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_strverk</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_strverk</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1931,10 +1931,10 @@
     <d:Title>RP: NRW Überschwemmungsbereich</d:Title>
     <d:Abstract>RP_NRW_Ueberschwemmungsbereich</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_uberschwber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_uberschwber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_uberschwber</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_uberschwber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1977,10 +1977,10 @@
     <d:Title>RP: NRW Wasserverkehr</d:Title>
     <d:Abstract>RP_NRW_Wasserverkehr</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_wasserverk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_wasserverk_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_wasserverk</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_wasserverk</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2023,10 +2023,10 @@
     <d:Title>RP: NRW Zeitlinie</d:Title>
     <d:Abstract>RP_NRW_Zeitlinie</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rpnw_zeitlin_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rpnw_zeitlin_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rpnw_zeitlin</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rpnw_zeitlin</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2069,10 +2069,10 @@
     <d:Title>RP: Raumkategorie</d:Title>
     <d:Abstract>RP_Raumkategorie</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_raumkategorie_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_raumkategorie_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_raumkategorie</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_raumkategorie</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2115,10 +2115,10 @@
     <d:Title>RP: Rohstoffsicherung</d:Title>
     <d:Abstract>RP_Rohstoffsicherung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_rohstoffsicherung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_rohstoffsicherung_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_rohstoffsicherung</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_rohstoffsicherung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2161,10 +2161,10 @@
     <d:Title>RP: sonstige Infrastruktur</d:Title>
     <d:Abstract>RP_SonstigeInfrastruktur</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_sonstinfrastrukt_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_sonstinfrastrukt_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_sonstinfrastrukt</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_sonstinfrastrukt</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2207,10 +2207,10 @@
     <d:Title>RP: sonstige Freiraumstruktur</d:Title>
     <d:Abstract>RP_SonstigerFreiraumstruktur</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_sonstrfreiraumstrukt_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_sonstrfreiraumstrukt_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_sonstrfreiraumstrukt</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_sonstrfreiraumstrukt</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2253,10 +2253,10 @@
     <d:Title>RP: sonstige Siedlungsstruktur</d:Title>
     <d:Abstract>RP_SonstigeSiedlungsstruktur</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_sonstsiedlstrukt_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_sonstsiedlstrukt_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_sonstsiedlstrukt</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_sonstsiedlstrukt</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2299,10 +2299,10 @@
     <d:Title>RP: soziale Infrastruktur</d:Title>
     <d:Abstract>RP_SozialeInfrastruktur</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_sozinfrastrukt_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_sozinfrastrukt_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_sozinfrastrukt</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_sozinfrastrukt</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2345,10 +2345,10 @@
     <d:Title>RP: Verkehr</d:Title>
     <d:Abstract>RP_Verkehr</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_verk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_verk_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_verk</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_verk</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2391,10 +2391,10 @@
     <d:Title>RP: vorbeugender Hochwasserschutz</d:Title>
     <d:Abstract>RP_VorbHochwasserschutz</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_vorbhwschutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_vorbhwschutz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_vorbhwschutz</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_vorbhwschutz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2437,10 +2437,10 @@
     <d:Title>RP: Wasserschutz</d:Title>
     <d:Abstract>RP_Wasserschutz</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_wasserschutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_wasserschutz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_wasserschutz</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_wasserschutz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2483,10 +2483,10 @@
     <d:Title>RP: Wasserwirtschaft</d:Title>
     <d:Abstract>RP_Wasserwirtschaft</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_wws_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_wws_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_wws</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_wws</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2529,10 +2529,10 @@
     <d:Title>RP: Windenergie</d:Title>
     <d:Abstract>RP_Windenergie</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_windenergie_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_windenergie_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_windenergie</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_windenergie</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2575,10 +2575,10 @@
     <d:Title>RP: Windenergienutzung</d:Title>
     <d:Abstract>RP_Windenergienutzung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_windenergienutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_windenergienutz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_windenergienutz</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_windenergienutz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2621,10 +2621,10 @@
     <d:Title>RP: Zentrale Orte</d:Title>
     <d:Abstract>RP_ZentralerOrt</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_zentralerort_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_zentralerort_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>rp_zentralerort</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_zentralerort</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>

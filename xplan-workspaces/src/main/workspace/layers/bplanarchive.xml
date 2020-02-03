@@ -44,10 +44,10 @@
     <d:Abstract>BP_FestsetzungenBaugebiet</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_festsbaugeb_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_festsbaugeb_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_festsbaugeb</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_festsbaugeb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -90,10 +90,10 @@
     <d:Abstract>BP_FestsetzungNachLandesrecht</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_festsland_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_festsland_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_festsland</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_festsland</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -136,10 +136,10 @@
     <d:Abstract>BP_GestaltungBaugebiet</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_gestbaugeb_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_gestbaugeb_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_gestbaugeb</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gestbaugeb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -159,10 +159,10 @@
     <d:Abstract>BP_Plan</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_plan_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_plan_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_plan</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_plan</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -206,10 +206,10 @@
     <d:Title>BP: XP: PTO</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_xp_pto_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_xp_pto_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_xp_pto</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_xp_pto</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -248,10 +248,10 @@
     <d:Title>BP: XP: LTO</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_xp_lto_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_xp_lto_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_xp_lto</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_xp_lto</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <!-- Beschriftung Ende -->
@@ -291,10 +291,10 @@
     <d:Title>BP: XP: FPO</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_xp_fpo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_xp_fpo_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_xp_fpo</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_xp_fpo</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -333,10 +333,10 @@
     <d:Title>BP: XP: LPO</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_xp_lpo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_xp_lpo_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_xp_lpo</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_xp_lpo</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -375,10 +375,10 @@
     <d:Title>BP: XP: PPO</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_xp_ppo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_xp_ppo_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_xp_ppo</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_xp_ppo</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <!-- Symbole Anfang -->
@@ -418,10 +418,10 @@
     <d:Title>BP: Abgrabungsfläche Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_abgrabungsflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_abgrabungsflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_abgrabungsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_abgrabungsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -460,10 +460,10 @@
     <d:Title>BP: Aufschüttungsfläche Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_aufschuettsflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_aufschuettsflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_aufschuettsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_aufschuettsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -502,10 +502,10 @@
     <d:Title>BP: Bahnverkehr Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_bahnverksym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_bahnverksym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_bahnverksym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_bahnverksym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -544,10 +544,10 @@
     <d:Title>BP: Baugebietsteilfläche Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_baugebteilflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_baugebteilflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_baugebteilflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_baugebteilflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -586,10 +586,10 @@
     <d:Title>BP: Fläche besonderer Nutzung Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_besnutzzweckflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_besnutzzweckflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_besnutzzweckflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_besnutzzweckflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -628,10 +628,10 @@
     <d:Title>BP: Gewinnung von Bodenschätzen Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_bsflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_bsflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_bsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_bsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -670,10 +670,10 @@
     <d:Title>BP: Denkmalensemble Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_denkmschensflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_denkmschensflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_denkmschensflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_denkmschensflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -712,10 +712,10 @@
     <d:Title>BP: Erhaltungsbereich Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_erhsberflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_erhsberflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_erhsberflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_erhsberflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -754,10 +754,10 @@
     <d:Title>BP: Festsetzungen Baugebiet Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_festsbaugebsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_festsbaugebsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_festsbaugebsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_festsbaugebsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -796,10 +796,10 @@
     <d:Title>BP: Gemeinbedarfsfläche Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_gembedarfsflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_gembedarfsflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_gembedarfsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gembedarfsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -838,10 +838,10 @@
     <d:Title>BP: Gemeinschaftsanlagen Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_gemanlflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_gemanlflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_gemanlflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gemanlflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -880,10 +880,10 @@
     <d:Title>BP: Gewässer Fläche Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_gewflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_gewflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_gewflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gewflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -922,10 +922,10 @@
     <d:Title>BP: Grünfläche Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_gruenflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_gruenflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_gruenflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gruenflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -964,10 +964,10 @@
     <d:Title>BP: Landwirtschaftsfläche Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_lwflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_lwflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_lwflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_lwflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1006,10 +1006,10 @@
     <d:Title>BP: Luftverkehrfläche Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_luftverkflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_luftverkflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_luftverkflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_luftverkflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1048,10 +1048,10 @@
     <d:Title>BP: Nebenanlagen Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_nebenanlflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_nebenanlflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_nebenanlflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_nebenanlflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1090,10 +1090,10 @@
     <d:Title>BP: Schutzgebiet Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_schutzgebsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_schutzgebsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_schutzgebsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_schutzgebsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1133,10 +1133,10 @@
     </d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_schutzpflentwmassnsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_schutzpflentwmassnsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_schutzpflentwmassnsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_schutzpflentwmassnsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1175,10 +1175,10 @@
     <d:Title>BP: Spiel- und Sportanlagen Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_spispoanlflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_spispoanlflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_spispoanlflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_spispoanlflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1217,10 +1217,10 @@
     <d:Title>BP: Ver- und Entsorgungsfläche Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_verentsorgungsflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_verentsorgungsflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_verentsorgungsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_verentsorgungsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1259,10 +1259,10 @@
     <d:Title>BP: Ver- und Entsorgung Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_verentsorgungsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_verentsorgungsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_verentsorgungsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_verentsorgungsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1302,10 +1302,10 @@
     </d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_verksflbeszwbsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_verksflbeszwbsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_verksflbeszwbsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_verksflbeszwbsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1344,10 +1344,10 @@
     <d:Title>BP: Festgesetztes Überschwemmungsgebiet Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_vorbhwsflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_vorbhwsflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_vorbhwsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_vorbhwsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1386,10 +1386,10 @@
     <d:Title>BP: Waldfläche Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_waldflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_waldflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_waldflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_waldflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1428,10 +1428,10 @@
     <d:Title>BP: Wasserrechtliche Festsetzungen Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_wrlfestsflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_wrlfestsflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_wrlfestsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_wrlfestsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1470,10 +1470,10 @@
     <d:Title>BP: Wasserwirtschaftsfläche Symbol</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_wwssflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_wwssflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_wwssflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_wwssflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <!-- Symbole Ende -->
@@ -1514,10 +1514,10 @@
     <d:Abstract>BP_AbgrabungsFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_abgrabungsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_abgrabungsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_abgrabungsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_abgrabungsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1560,10 +1560,10 @@
     <d:Abstract>BP_AbstandsMass</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_abstandsmass_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_abstandsmass_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_abstandsmass</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_abstandsmass</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1606,10 +1606,10 @@
     <d:Abstract>BP_AbstandsFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_abstandsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_abstandsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_abstandsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_abstandsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1652,10 +1652,10 @@
     <d:Abstract>BP_AnpflanzungBindungErhaltung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_anpflanzbinderh_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_anpflanzbinderh_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_anpflanzbinderh</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_anpflanzbinderh</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1698,10 +1698,10 @@
     <d:Abstract>BP_AufschuettungsFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_aufschuettsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_aufschuettsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_aufschuettsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_aufschuettsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1744,10 +1744,10 @@
     <d:Abstract>BP_Ausgleich</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_ausgleich_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_ausgleich_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_ausgleich</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_ausgleich</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1790,10 +1790,10 @@
     <d:Abstract>BP_AusgleichsFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_ausgleichsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_ausgleichsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_ausgleichsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_ausgleichsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1836,10 +1836,10 @@
     <d:Abstract>BP_AusgleichsMassnahme</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_ausgleichsmassn_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_ausgleichsmassn_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_ausgleichsmassn</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_ausgleichsmassn</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1882,10 +1882,10 @@
     <d:Abstract>BP_BahnVerkehr</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_bahnverk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_bahnverk_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_bahnverk</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_bahnverk</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1928,10 +1928,10 @@
     <d:Abstract>BP_Baugebiet</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_baugeb_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_baugeb_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_baugeb</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_baugeb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1975,10 +1975,10 @@
     <s:CRS>${vectorCrs}</s:CRS>
     <l:ScaleDenominators min="0" max="100000" />
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_baugebteilfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_baugebteilfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_baugebteilfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_baugebteilfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2021,10 +2021,10 @@
     <d:Abstract>BP_BauGrenze</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_baugr_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_baugr_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_baugr</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_baugr</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2067,10 +2067,10 @@
     <d:Abstract>BP_BauLinie</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_baulin_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_baulin_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_baulin</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_baulin</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2113,10 +2113,10 @@
     <d:Abstract>BP_Bauschutzbereich</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_bauschutzber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_bauschutzber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_bauschutzber</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_bauschutzber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2159,10 +2159,10 @@
     <d:Abstract>BP_EingriffsBereich</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_eingriffsber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_eingriffsber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_eingriffsber</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_eingriffsber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2205,10 +2205,10 @@
     <d:Abstract>BP_Bereich</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_ber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_ber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_ber</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_ber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2251,10 +2251,10 @@
     <d:Abstract>BP_BereichOhneEinAusfahrtLinie</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_berohneeinausflin_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_berohneeinausflin_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_berohneeinausflin</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_berohneeinausflin</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2297,10 +2297,10 @@
     <d:Abstract>BP_BesondererNutzungszweckFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_besnutzzweckfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_besnutzzweckfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_besnutzzweckfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_besnutzzweckfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2343,10 +2343,10 @@
     <d:Abstract>BP_BodenschaetzeFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_bsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_bsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_bsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_bsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2389,10 +2389,10 @@
     <d:Abstract>BP_DenkmalschutzEinzelanlagePunkt</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_denkmscheinzanlpt_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_denkmscheinzanlpt_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_denkmscheinzanlpt</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_denkmscheinzanlpt</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2435,10 +2435,10 @@
     <d:Abstract>BP_DenkmalschutzEinzelanlage</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_denkmscheinzanl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_denkmscheinzanl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_denkmscheinzanl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_denkmscheinzanl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2481,10 +2481,10 @@
     <d:Abstract>BP_DenkmalschutzEnsembleFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_denkmschensfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_denkmschensfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_denkmschensfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_denkmschensfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2527,10 +2527,10 @@
     <d:Abstract>BP_EinfahrtPunkt</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_einfpt_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_einfpt_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_einfpt</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_einfpt</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2573,10 +2573,10 @@
     <d:Abstract>BP_EinfahrtsbereichLinie</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_einfberlin_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_einfberlin_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_einfberlin</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_einfberlin</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2619,10 +2619,10 @@
     <d:Abstract>BP_ErhaltungsBereichFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_erhsberfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_erhsberfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_erhsberfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_erhsberfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2665,10 +2665,10 @@
     <d:Abstract>BP_ErneuerbareEnergieFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_erneuerbenergiefl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_erneuerbenergiefl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_erneuerbenergiefl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_erneuerbenergiefl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2711,10 +2711,10 @@
     <d:Abstract>BP_Fachgesetz</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_fachgesetz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_fachgesetz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_fachgesetz</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_fachgesetz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2757,10 +2757,10 @@
     <d:Abstract>BP_FirstRichtungsLinie</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_firstrilin_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_firstrilin_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_firstrilin</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_firstrilin</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2803,10 +2803,10 @@
     <d:Abstract>BP_FoerderungsFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_foerderfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_foerderfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_foerderfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_foerderfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2849,10 +2849,10 @@
     <d:Abstract>BP_FreiFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_freifl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_freifl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_freifl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_freifl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2895,10 +2895,10 @@
     <d:Abstract>BP_GebaeudeFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_gebaeudefl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_gebaeudefl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_gebaeudefl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gebaeudefl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2942,10 +2942,10 @@
     <s:CRS>${vectorCrs}</s:CRS>
     <l:ScaleDenominators min="0" max="100000" />
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_gembedarfsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_gembedarfsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_gembedarfsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gembedarfsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2988,10 +2988,10 @@
     <d:Abstract>BP_GemeinschaftsanlagenZuordnung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_gemanlzu_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_gemanlzu_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_gemanlzu</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gemanlzu</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3034,10 +3034,10 @@
     <d:Abstract>BP_GemeinschaftsanlagenFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_gemanlfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_gemanlfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_gemanlfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gemanlfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3080,10 +3080,10 @@
     <d:Abstract>BP_GenerischesObjekt</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_genobj_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_genobj_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_genobj</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_genobj</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3127,10 +3127,10 @@
     <s:CRS>${vectorCrs}</s:CRS>
     <l:ScaleDenominators min="0" max="100000" />
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_gewfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_gewfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_gewfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gewfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3173,10 +3173,10 @@
     <d:Abstract>BP_Grabungsschutzgebiet</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_grabungsschutzgeb_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_grabungsschutzgeb_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_grabungsschutzgeb</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_grabungsschutzgeb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3220,10 +3220,10 @@
     <s:CRS>${vectorCrs}</s:CRS>
     <l:ScaleDenominators min="0" max="100000" />
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_gruenfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_gruenfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_gruenfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gruenfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3266,10 +3266,10 @@
     <d:Abstract>BP_HoehenPunkt</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_hoehenpt_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_hoehenpt_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_hoehenpt</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_hoehenpt</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3312,10 +3312,10 @@
     <d:Abstract>BP_HoehenMass</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_hoehenmass_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_hoehenmass_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_hoehenmass</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_hoehenmass</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3358,10 +3358,10 @@
     <d:Abstract>BP_Veraenderungssperre</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_veraendsper_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_veraendsper_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_veraendsper</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_veraendsper</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3404,10 +3404,10 @@
     <d:Abstract>BP_RegelungVergnuegungsstaetten</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_regvergstaett_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_regvergstaett_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_regvergstaett</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_regvergstaett</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3450,10 +3450,10 @@
     <d:Abstract>BP_Immissionsschutz</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_immsschutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_immsschutz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_immsschutz</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_immsschutz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3496,10 +3496,10 @@
     <d:Abstract>BP_KennzeichnungsFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_kennzsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_kennzsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_kennzsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_kennzsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3542,10 +3542,10 @@
     <d:Abstract>BP_Laermschutzbereich</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_laermschutzber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_laermschutzber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_laermschutzber</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_laermschutzber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3589,10 +3589,10 @@
     <s:CRS>${vectorCrs}</s:CRS>
     <l:ScaleDenominators min="0" max="100000" />
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_lw_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_lw_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_lw</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_lw</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3636,10 +3636,10 @@
     <s:CRS>${vectorCrs}</s:CRS>
     <l:ScaleDenominators min="0" max="100000" />
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_lwfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_lwfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_lwfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_lwfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3683,10 +3683,10 @@
     <s:CRS>${vectorCrs}</s:CRS>
     <l:ScaleDenominators min="0" max="100000" />
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_kleintierhfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_kleintierhfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_kleintierhfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_kleintierhfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3729,10 +3729,10 @@
     <d:Abstract>BP_LandwirtschaftsLinie</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_lwlin_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_lwlin_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_lwlin</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_lwlin</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3775,10 +3775,10 @@
     <d:Abstract>BP_LuftreinhalteFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_luftreinhfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_luftreinhfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_luftreinhfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_luftreinhfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3822,10 +3822,10 @@
     <s:CRS>${vectorCrs}</s:CRS>
     <l:ScaleDenominators min="0" max="100000" />
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_luftverkfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_luftverkfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_luftverkfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_luftverkfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3868,10 +3868,10 @@
     <d:Abstract>BP_NebenanlagenAusschlussFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_nebenanlausschlfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_nebenanlausschlfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_nebenanlausschlfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_nebenanlausschlfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3914,10 +3914,10 @@
     <d:Abstract>BP_NebenanlagenFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_nebenanlfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_nebenanlfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_nebenanlfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_nebenanlfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3960,10 +3960,10 @@
     <d:Abstract>BP_NichtUeberbaubareGrundstuecksflaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_nichtueberbaubgrundstsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_nichtueberbaubgrundstsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_nichtueberbaubgrundstsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_nichtueberbaubgrundstsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4006,10 +4006,10 @@
     <d:Abstract>BP_NutzungsartenGrenze</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_nutzartgr_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_nutzartgr_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_nutzartgr</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_nutzartgr</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4052,10 +4052,10 @@
     <d:Abstract>BP_PersGruppenBestimmteFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_persgrbestfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_persgrbestfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_persgrbestfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_persgrbestfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4098,10 +4098,10 @@
     <d:Abstract>BP_RasterplanAenderung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_rasterplanaender_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_rasterplanaender_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_rasterplanaender</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_rasterplanaender</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4144,10 +4144,10 @@
     <d:Abstract>BP_RekultivierungsFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_rekultivierungsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_rekultivierungsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_rekultivierungsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_rekultivierungsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4190,10 +4190,10 @@
     <d:Abstract>BP_Schutzgebiet</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_schutzgeb_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_schutzgeb_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_schutzgeb</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_schutzgeb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4236,10 +4236,10 @@
     <d:Abstract>BP_SchutzPflegeEntwicklungsFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_schutzpflentwfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_schutzpflentwfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_schutzpflentwfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_schutzpflentwfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4282,10 +4282,10 @@
     <d:Abstract>BP_SchutzPflegeEntwicklungsMassnahme</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_schutzpflentwmassn_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_schutzpflentwmassn_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_schutzpflentwmassn</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_schutzpflentwmassn</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4328,10 +4328,10 @@
     <d:Abstract>BP_SpezielleBauweise</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_speziellebauweise_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_speziellebauweise_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_speziellebauweise</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_speziellebauweise</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4375,10 +4375,10 @@
     <s:CRS>${vectorCrs}</s:CRS>
     <l:ScaleDenominators min="0" max="100000" />
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_spispoanlfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_spispoanlfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_spispoanlfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_spispoanlfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4421,10 +4421,10 @@
     <d:Abstract>BP_StrassenbegrenzungsLinie</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_strbegrlin_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_strbegrlin_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_strbegrlin</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_strbegrlin</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4467,10 +4467,10 @@
     <d:Abstract>BP_Strassenkoerper</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_strkoerper_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_strkoerper_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_strkoerper</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_strkoerper</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4514,10 +4514,10 @@
     <s:CRS>${vectorCrs}</s:CRS>
     <l:ScaleDenominators min="0" max="100000" />
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_strverksfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_strverksfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_strverksfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_strverksfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4560,10 +4560,10 @@
     <d:Abstract>BP_TechnikBestimmteFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_techbestfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_techbestfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_techbestfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_techbestfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4606,10 +4606,10 @@
     <d:Abstract>BP_TechnischeMassnahmenFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_techmassnfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_techmassnfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_techmassnfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_techmassnfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4652,10 +4652,10 @@
     <d:Abstract>BP_TextlicheFestsetzungsFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_textlfestsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_textlfestsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_textlfestsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_textlfestsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4698,10 +4698,10 @@
     <d:Abstract>BP_UeberbaubareGrundstuecksFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_ueberbaubgrundstsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_ueberbaubgrundstsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_ueberbaubgrundstsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4744,10 +4744,10 @@
     <d:Abstract>BP_UnverbindlicheVormerkung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_unverbindlvormerk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_unverbindlvormerk_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_unverbindlvormerk</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_unverbindlvormerk</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4790,10 +4790,10 @@
     <d:Abstract>BP_VerEntsorgung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_verentsorgung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_verentsorgung_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_verentsorgung</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_verentsorgung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4836,10 +4836,10 @@
     <d:Abstract>BP_VerEntsorgungsFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_verentsorgungsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_verentsorgungsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_verentsorgungsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_verentsorgungsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4882,10 +4882,10 @@
     <d:Abstract>BP_VerEntsorgungsleitungLinie</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_verentsorgungsleitlin_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_verentsorgungsleitlin_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_verentsorgungsleitlin</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_verentsorgungsleitlin</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4929,10 +4929,10 @@
     <s:CRS>${vectorCrs}</s:CRS>
     <l:ScaleDenominators min="0" max="100000" />
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_verksflbeszwb_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_verksflbeszwb_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_verksflbeszwb</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_verksflbeszwb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4975,10 +4975,10 @@
     <d:Abstract>BP_VorbHochwSchutzFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_vorbhwsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_vorbhwsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_vorbhwsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_vorbhwsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -5022,10 +5022,10 @@
     <s:CRS>${vectorCrs}</s:CRS>
     <l:ScaleDenominators min="0" max="100000" />
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_waldfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_waldfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_waldfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_waldfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -5068,10 +5068,10 @@
     <d:Abstract>BP_WasserrechtlicheFestsetzungsFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_wrlfestsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_wrlfestsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_wrlfestsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_wrlfestsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -5114,10 +5114,10 @@
     <d:Abstract>BP_WasserwirtschaftsFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_wwssfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_wwssfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_wwssfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_wwssfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -5160,10 +5160,10 @@
     <d:Abstract>BP_Wegerecht</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp_wegerecht_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_wegerecht_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>bp_wegerecht</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_wegerecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>

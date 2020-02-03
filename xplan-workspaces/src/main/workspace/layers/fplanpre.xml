@@ -17,10 +17,10 @@
     <d:Abstract>FP_Plan</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_plan_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_plan_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_plan</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_plan</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -62,10 +62,10 @@
     <l:Name>fp_xp_pto</l:Name>
     <d:Title>FP: XP: PTO</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_xp_pto_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_xp_pto_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_xp_pto</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_xp_pto</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -103,10 +103,10 @@
     <l:Name>fp_xp_lto</l:Name>
     <d:Title>FP: XP: LTO</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_xp_lto_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_xp_lto_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_xp_lto</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_xp_lto</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <!-- Beschriftung Ende -->
@@ -145,10 +145,10 @@
     <l:Name>fp_xp_fpo</l:Name>
     <d:Title>FP: XP: FPO</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_xp_fpo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_xp_fpo_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_xp_fpo</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_xp_fpo</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -186,10 +186,10 @@
     <l:Name>fp_xp_lpo</l:Name>
     <d:Title>FP: XP: LPO</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_xp_lpo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_xp_lpo_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_xp_lpo</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_xp_lpo</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -227,10 +227,10 @@
     <l:Name>fp_xp_ppo</l:Name>
     <d:Title>FP: XP: PPO</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_xp_ppo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_xp_ppo_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_xp_ppo</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_xp_ppo</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <!-- Symbole Anfang -->
@@ -269,10 +269,10 @@
     <l:Name>fp_bahnverksym</l:Name>
     <d:Title>FP: Bahnverkehr Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_bahnverksym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_bahnverksym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_bahnverksym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_bahnverksym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -310,10 +310,10 @@
     <l:Name>fp_gembedarfsym</l:Name>
     <d:Title>FP: Gemeinbedarfsfläche Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_gembedarfsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_gembedarfsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_gembedarfsym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_gembedarfsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -351,10 +351,10 @@
     <l:Name>fp_gewflsym</l:Name>
     <d:Title>FP: Gewässer Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_gewsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_gewsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_gewsym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_gewsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -392,10 +392,10 @@
     <l:Name>fp_vorbhwssym</l:Name>
     <d:Title>FP: Festgesetztes Überschwemmungsgebiet Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_vorbhwssym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_vorbhwssym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_vorbhwssym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_vorbhwssym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -433,10 +433,10 @@
     <l:Name>fp_wrsym</l:Name>
     <d:Title>FP: Wasserrecht Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_wrsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_wrsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_wrsym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_wrsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -474,10 +474,10 @@
     <l:Name>fp_lwflsym</l:Name>
     <d:Title>FP: Landwirtschaftsfläche Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_lwflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_lwflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_lwflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_lwflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -515,10 +515,10 @@
     <l:Name>fp_wsssym</l:Name>
     <d:Title>FP: Wasserwirtschaft Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_wwssym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_wwssym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_wwssym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_wwssym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -556,10 +556,10 @@
     <l:Name>fp_bsflsym</l:Name>
     <d:Title>FP: Bodenschätzefläche Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_bsflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_bsflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_bsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_bsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -597,10 +597,10 @@
     <l:Name>fp_aufschuettsflsym</l:Name>
     <d:Title>FP: Aufschüttungsfläche Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_aufschuettsflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_aufschuettsflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_aufschuettsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_aufschuettsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -638,10 +638,10 @@
     <l:Name>fp_abgrabungsflsym</l:Name>
     <d:Title>FP: Abgrabungsfläche Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_abgrabungsflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_abgrabungsflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_abgrabungsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_abgrabungsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -679,10 +679,10 @@
     <l:Name>fp_verentsorgungsym</l:Name>
     <d:Title>FP: Ver- und Entsorgung Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_verentsorgungsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_verentsorgungsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_verentsorgungsym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_verentsorgungsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -720,10 +720,10 @@
     <l:Name>fp_waldflsym</l:Name>
     <d:Title>FP: Waldfläche Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_waldflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_waldflsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_waldflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_waldflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -761,10 +761,10 @@
     <l:Name>fp_strverksym</l:Name>
     <d:Title>FP: Strassenverkehr Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_strverksym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_strverksym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_strverksym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_strverksym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -802,10 +802,10 @@
     <l:Name>fp_denkmschenssym</l:Name>
     <d:Title>FP: Denkmalensemble Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_denkmschenssym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_denkmschenssym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_denkmschenssym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_denkmschenssym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -843,10 +843,10 @@
     <l:Name>fp_erhssatzungsym</l:Name>
     <d:Title>FP: Erhaltungssatzung Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_erhssatzungsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_erhssatzungsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_erhssatzungsym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_erhssatzungsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -884,10 +884,10 @@
     <l:Name>fp_schutzgebsym</l:Name>
     <d:Title>FP: Schutzgebiet Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_schutzgebsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_schutzgebsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_schutzgebsym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_schutzgebsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -925,10 +925,10 @@
     <l:Name>fp_schutzpflentwsym</l:Name>
     <d:Title>FP: FP: Schutz-, Pflege- und Entwicklungsfläche Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_schutzpflentwsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_schutzpflentwsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_schutzpflentwsym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_schutzpflentwsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -966,10 +966,10 @@
     <l:Name>fp_gruensym</l:Name>
     <d:Title>FP: Grünfläche Symbol</d:Title>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_gruensym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_gruensym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_gruensym</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_gruensym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <!-- Symbole Ende -->
@@ -1009,10 +1009,10 @@
     <d:Title>FP: Bebauungsfläche</d:Title>
     <d:Abstract>FP_BebauungsFlaeche</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_bebausfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_bebausfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_bebausfl</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_bebausfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1054,10 +1054,10 @@
     <d:Title>FP: Bahnverkehr</d:Title>
     <d:Abstract>FP_Bahnverkehr</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_bahnverk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_bahnverk_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_bahnverk</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_bahnverk</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1099,10 +1099,10 @@
     <d:Title>FP: Straßenverkehr</d:Title>
     <d:Abstract>FP_Strassenverkehr</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_strverk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_strverk_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_strverk</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_strverk</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1144,10 +1144,10 @@
     <d:Title>FP: Kennzeichnungsfläche</d:Title>
     <d:Abstract>FP_Kennzeichnung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_kennz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_kennz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_kennz</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_kennz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1189,10 +1189,10 @@
     <d:Title>FP: Bodenschätze</d:Title>
     <d:Abstract>FP_BodenschaetzeFlaeche</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_bsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_bsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_bsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_bsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1234,10 +1234,10 @@
     <d:Title>FP: Aufschüttungsfläche</d:Title>
     <d:Abstract>FP_AufschuettungsFlaeche</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_aufschuettsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_aufschuettsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_aufschuettsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_aufschuettsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1279,10 +1279,10 @@
     <d:Title>FP: Aufschüttung</d:Title>
     <d:Abstract>FP_Aufschuettung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_aufschuettung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_aufschuettung_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_aufschuettung</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_aufschuettung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1324,10 +1324,10 @@
     <d:Title>FP: Abgrabungsfläche</d:Title>
     <d:Abstract>FP_AbgrabungsFlaeche</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_abgrabungsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_abgrabungsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_abgrabungsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_abgrabungsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1369,10 +1369,10 @@
     <d:Title>FP: Abgrabung</d:Title>
     <d:Abstract>FP_Abgrabung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_abgrabung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_abgrabung_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_abgrabung</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_abgrabung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1414,10 +1414,10 @@
     <d:Title>FP: Gewässer</d:Title>
     <d:Abstract>FP_Gewaesser</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_gew_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_gew_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_gew</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_gew</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1459,10 +1459,10 @@
     <d:Title>FP: Waldfläche</d:Title>
     <d:Abstract>FP_WaldFlaeche</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_waldfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_waldfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_waldfl</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_waldfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1504,10 +1504,10 @@
     <d:Title>FP: Grünfläche</d:Title>
     <d:Abstract>FP_Gruen</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_gruen_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_gruen_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_gruen</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_gruen</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1549,10 +1549,10 @@
     <d:Title>FP: Landwirtschaft</d:Title>
     <d:Abstract>FP_Landwirtschaft</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_lw_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_lw_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_lw</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_lw</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1594,10 +1594,10 @@
     <d:Title>FP: Landwirtschaftsfläche</d:Title>
     <d:Abstract>FP_LandwirtschaftsFlaeche</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_lwfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_lwfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_lwfl</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_lwfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1639,10 +1639,10 @@
     <d:Title>FP: Generisches Objekt</d:Title>
     <d:Abstract>FP_GenerischesObjekt</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_genobj_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_genobj_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_genobj</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_genobj</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1684,10 +1684,10 @@
     <d:Title>FP: Fachgesetz</d:Title>
     <d:Abstract>FP_Fachgesetz</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_fachgesetz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_fachgesetz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_fachgesetz</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_fachgesetz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1729,10 +1729,10 @@
     <d:Title>FP: Ausgleichsfläche</d:Title>
     <d:Abstract>FP_AusgleichsFlaeche</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_ausgleichsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_ausgleichsfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_ausgleichsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_ausgleichsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1774,10 +1774,10 @@
     <d:Title>FP: Festgesetztes Überschwemmungsgebiet</d:Title>
     <d:Abstract>FP_VorbHochwSchutz</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_vorbhws_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_vorbhws_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_vorbhws</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_vorbhws</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1819,10 +1819,10 @@
     <d:Title>FP: Wasserrecht</d:Title>
     <d:Abstract>FP_Wasserrecht</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_wr_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_wr_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_wr</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_wr</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1864,10 +1864,10 @@
     <d:Title>FP: Wasserwirtschaft</d:Title>
     <d:Abstract>FP_Wasserwirtschaft</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_wws_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_wws_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_wws</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_wws</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1909,10 +1909,10 @@
     <d:Title>FP: Ver- und Entsorgung</d:Title>
     <d:Abstract>FP_VerEntsorgung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_verentsorgung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_verentsorgung_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_verentsorgung</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_verentsorgung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1954,10 +1954,10 @@
     <d:Title>FP: Schutzgebiet</d:Title>
     <d:Abstract>FP_Schutzgebiet</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_schutzgeb_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_schutzgeb_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_schutzgeb</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_schutzgeb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1999,10 +1999,10 @@
     <d:Title>FP: Schutz-, Pflege- und Entwicklungsfläche</d:Title>
     <d:Abstract>FP_SchutzPflegeEntwicklung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_schutzpflentw_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_schutzpflentw_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_schutzpflentw</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_schutzpflentw</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2044,10 +2044,10 @@
     <d:Title>FP: Gemeinbedarf</d:Title>
     <d:Abstract>FP_Gemeinbedarf</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_gembedarf_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_gembedarf_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_gembedarf</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_gembedarf</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2089,10 +2089,10 @@
     <d:Title>FP: Spiel- und Sportanlagen</d:Title>
     <d:Abstract>FP_SpielSportanlage</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_spispoanl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_spispoanl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_spispoanl</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_spispoanl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2134,10 +2134,10 @@
     <d:Title>FP: Luftverkehr</d:Title>
     <d:Abstract>FP_Luftverkehr</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_luftverk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_luftverk_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_luftverk</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_luftverk</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2179,10 +2179,10 @@
     <d:Title>FP: Denkmalensemble</d:Title>
     <d:Abstract>FP_DenkmalschutzEnsemble</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_denkmschens_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_denkmschens_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_denkmschens</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_denkmschens</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2224,10 +2224,10 @@
     <d:Title>FP: Erhaltungssatzung</d:Title>
     <d:Abstract>FP_Erhaltungssatzung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_erhssatzung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_erhssatzung_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_erhssatzung</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_erhssatzung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2269,10 +2269,10 @@
     <d:Title>FP: Bereich</d:Title>
     <d:Abstract>FP_Bereich</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_ber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_ber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_ber</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_ber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2314,10 +2314,10 @@
     <d:Title>FP: Nutzungsbeschränkung</d:Title>
     <d:Abstract>FP_NutzungsbeschraenkungsFlaeche</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_nutzbeschraenkfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_nutzbeschraenkfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_nutzbeschraenkfl</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_nutzbeschraenkfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2359,10 +2359,10 @@
     <d:Title>FP: Rasterplanänderung</d:Title>
     <d:Abstract>FP_RasterplanAenderung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_rasterplanaender_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_rasterplanaender_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_rasterplanaender</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_rasterplanaender</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2404,10 +2404,10 @@
     <d:Title>FP: Grabungsschutzgebiet</d:Title>
     <d:Abstract>FP_Grabungsschutzgebiet</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_grabungsschutzgeb_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_grabungsschutzgeb_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_grabungsschutzgeb</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_grabungsschutzgeb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2449,10 +2449,10 @@
     <d:Title>FP: Unverbindliche Vormerkung</d:Title>
     <d:Abstract>FP_UnverbindlicheVormerkung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_unverbindlvormerk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_unverbindlvormerk_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_unverbindlvormerk</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_unverbindlvormerk</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2494,10 +2494,10 @@
     <d:Title>FP: Bereich textlicher Festsetzungen</d:Title>
     <d:Abstract>FP_TextlicheDarstellungsFlaeche</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_textldarstfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_textldarstfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_textldarstfl</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_textldarstfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2539,10 +2539,10 @@
     <d:Title>FP: Lärmschutzbereich</d:Title>
     <d:Abstract>FP_Laermschutzbereich</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_laermschutzber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_laermschutzber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_laermschutzber</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_laermschutzber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2584,10 +2584,10 @@
     <d:Title>FP: Bauschutzbereich</d:Title>
     <d:Abstract>FP_Bauschutzbereich</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_bauschutzber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_bauschutzber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_bauschutzber</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_bauschutzber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2629,10 +2629,10 @@
     <d:Title>FP: ohne zentrale Abwasserbeseitigung</d:Title>
     <d:Abstract>FP_KeineZentrAbwasserBeseitigungFlaeche</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_keinezentrabwbesfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_keinezentrabwbesfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_keinezentrabwbesfl</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_keinezentrabwbesfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2674,10 +2674,10 @@
     <d:Title>FP: Priviligiertes Vorhaben</d:Title>
     <d:Abstract>FP_PriviligiertesVorhaben</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_privvorh_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_privvorh_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_privvorh</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_privvorh</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2719,10 +2719,10 @@
     <d:Title>FP: Vorbehaltfläche</d:Title>
     <d:Abstract>FP_VorbehalteFlaeche</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_vorbehaltefl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_vorbehaltefl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_vorbehaltefl</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_vorbehaltefl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2764,10 +2764,10 @@
     <d:Title>FP: Zentraler Versorgungsbereich</d:Title>
     <d:Abstract>FP_ZentralerVersorgungsbereich</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_zentrversber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_zentrversber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_zentrversber</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_zentrversber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2809,10 +2809,10 @@
     <d:Title>FP: TextAbschnitt</d:Title>
     <d:Abstract>FP_TextAbschnitt</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_textabschn_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_textabschn_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_textabschn</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_textabschn</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2854,10 +2854,10 @@
     <d:Title>FP: AnpassungKlimawandel</d:Title>
     <d:Abstract>FP_AnpassungKlimawandel</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp_anpassklimaw_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_anpassklimaw_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>fp_anpassklimaw</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_anpassklimaw</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>

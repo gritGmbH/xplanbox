@@ -17,10 +17,10 @@
     <d:Abstract>LP_Plan</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_plan_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_plan_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_plan</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_plan</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -63,10 +63,10 @@
     <d:Title>LP: XP: PTO</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_xp_pto_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_xp_pto_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_xp_pto</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_xp_pto</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -105,10 +105,10 @@
     <d:Title>LP: XP: LTO</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_xp_lto_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_xp_lto_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_xp_lto</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_xp_lto</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <!-- Beschriftung Ende -->
@@ -150,10 +150,10 @@
     <d:Abstract>LP_SchutzobjektBundesrecht Symbole</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_schutzobjbundesrechtsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_schutzobjbundesrechtsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_schutzobjbundesrechtsym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_schutzobjbundesrechtsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -193,10 +193,10 @@
     <d:Abstract>LP_SchutzobjektLandesrecht Symbole</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_schutzobjlandesrechtsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_schutzobjlandesrechtsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_schutzobjlandesrechtsym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_schutzobjlandesrechtsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -236,10 +236,10 @@
     <d:Abstract>LP_Schutzobjekt internationales Recht Symbole</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_schutzobjinterrechtsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_schutzobjinterrechtsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_schutzobjinterrechtsym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_schutzobjinterrechtsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -279,10 +279,10 @@
     <d:Abstract>LP_Denkmalschutzrecht Symbole</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_denkmschrechtsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_denkmschrechtsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_denkmschrechtsym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_denkmschrechtsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -322,10 +322,10 @@
     <d:Abstract>LP_Ausgleich Symbole</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_ausgleichsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_ausgleichsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_ausgleichsym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_ausgleichsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -365,10 +365,10 @@
     <d:Abstract>LP_NutzungserfordernisRegelung Symbole</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_nutzerforderregelungsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_nutzerforderregelungsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_nutzerforderregelungsym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_nutzerforderregelungsym</l:StyleStoreId>
     </l:StyleRef>
 
   </FeatureLayer>
@@ -408,10 +408,10 @@
     <d:Title>LP: XP: FPO</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_xp_fpo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_xp_fpo_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_xp_fpo</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_xp_fpo</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -450,10 +450,10 @@
     <d:Title>LP: XP: LPO</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_xp_lpo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_xp_lpo_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_xp_lpo</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_xp_lpo</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -492,10 +492,10 @@
     <d:Title>LP: XP: PPO</d:Title>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_xp_ppo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_xp_ppo_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_xp_ppo</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_xp_ppo</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <!-- Symbole ENde -->
@@ -536,10 +536,10 @@
     <d:Abstract>LP_Bereich</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_ber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_ber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_ber</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_ber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -582,10 +582,10 @@
     <d:Abstract>LP_Abgrenzung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_abgrenzung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_abgrenzung_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_abgrenzung</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_abgrenzung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -628,10 +628,10 @@
     <d:Abstract>LP_AllgGruenflaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_allggruenfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_allggruenfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_allggruenfl</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_allggruenfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -674,10 +674,10 @@
     <d:Abstract>LP_Ausgleich</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_ausgleich_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_ausgleich_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_ausgleich</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_ausgleich</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -720,10 +720,10 @@
     <d:Abstract>LP_Biotopverbundflaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_biotopverbundfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_biotopverbundfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_biotopverbundfl</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_biotopverbundfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -766,10 +766,10 @@
     <d:Abstract>LP_Bodenschutzrecht</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_bodenschutzrecht_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_bodenschutzrecht_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_bodenschutzrecht</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_bodenschutzrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -812,10 +812,10 @@
     <d:Abstract>LP_Denkmalschutzrecht</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_denkmschrecht_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_denkmschrecht_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_denkmschrecht</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_denkmschrecht</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -855,10 +855,10 @@
     <d:Abstract>LP_ErholungFreizeit</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_erholungfreizeit_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_erholungfreizeit_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_erholungfreizeit</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_erholungfreizeit</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -901,10 +901,10 @@
     <d:Abstract>LP_Forstrecht</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_forstrecht_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_forstrecht_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_forstrecht</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_forstrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -947,10 +947,10 @@
     <d:Abstract>LP_Forstrecht</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_forstrechtsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_forstrechtsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_forstrechtsym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_forstrechtsym</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -993,10 +993,10 @@
     <d:Abstract>LP_GenerischesObjekt</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_genobj_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_genobj_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_genobj</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_genobj</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1039,10 +1039,10 @@
     <d:Abstract>LP_NRW_Biotopschutz</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lpnw_biotopschutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lpnw_biotopschutz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lpnw_biotopschutz</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lpnw_biotopschutz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1085,10 +1085,10 @@
     <d:Abstract>LP_NRW_Brachflaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lpnw_brachfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lpnw_brachfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lpnw_brachfl</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lpnw_brachfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1130,10 +1130,10 @@
     <d:Title>LP: NRW Elemente der Kulturlandschaft</d:Title>
     <d:Abstract>LP_NRW_ElementeKulturlandschaft</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lpnw_elkulturlandsch_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lpnw_elkulturlandsch_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lpnw_elkulturlandsch</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lpnw_elkulturlandsch</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1175,10 +1175,10 @@
     <d:Title>LP: NRW Forstliche Festsetzungen</d:Title>
     <d:Abstract>LP_NRW_ForstlicheFestsetzung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lpnw_forstlichefests_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lpnw_forstlichefests_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lpnw_forstlichefests</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lpnw_forstlichefests</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1220,10 +1220,10 @@
     <d:Title>LP: NRW Herrichtung von Grundstücken</d:Title>
     <d:Abstract>LP_NRW_HerrichtungGrundstueck</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lpnw_herrigrundst_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lpnw_herrigrundst_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-    <l:StyleStoreId>lpnw_herrigrundst</l:StyleStoreId>
+    <l:StyleStoreId>default/lp/lpnw_herrigrundst</l:StyleStoreId>
   </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1265,10 +1265,10 @@
     <d:Title>LP: NRW Pflege und Anpflanzung</d:Title>
     <d:Abstract>LP_NRW_PflegeAnpflanzung</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lpnw_pflegeanpflanz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lpnw_pflegeanpflanz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lpnw_pflegeanpflanz</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lpnw_pflegeanpflanz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1310,10 +1310,10 @@
     <d:Title>LP: NRW Pflege des Landschaftsbildes</d:Title>
     <d:Abstract>LP_NRW_PflegeLandschaftsbild</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lpnw_pflegelandschbild_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lpnw_pflegelandschbild_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lpnw_pflegelandschbild</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lpnw_pflegelandschbild</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1355,10 +1355,10 @@
     <d:Title>LP: NRW Schutzobjekt</d:Title>
     <d:Abstract>LP_NRW_SchutzobjektLandesrecht</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lpnw_schutzobjlandrecht_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lpnw_schutzobjlandrecht_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lpnw_schutzobjlandrecht</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lpnw_schutzobjlandrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1400,10 +1400,10 @@
     <d:Title>LP: NRW Sonstige Maßnahme</d:Title>
     <d:Abstract>LP_NRW_SonstigeMassnahme</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lpnw_sonstmassn_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lpnw_sonstmassn_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lpnw_sonstmassn</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lpnw_sonstmassn</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1445,10 +1445,10 @@
     <d:Title>LP: NRW Strukturen Besiedelter Bereich</d:Title>
     <d:Abstract>LP_NRW_StrukturenElementeBesiedelterBereich</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lpnw_struktelbesiedber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lpnw_struktelbesiedber_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lpnw_struktelbesiedber</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lpnw_struktelbesiedber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1490,10 +1490,10 @@
     <d:Title>LP: NRW Temporärer Landschaftsschutz</d:Title>
     <d:Abstract>LP_NRW_TemporaererLandschaftsschutz</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lpnw_templandschschutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lpnw_templandschschutz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lpnw_templandschschutz</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lpnw_templandschschutz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1535,10 +1535,10 @@
     <d:Title>LP: NRW Verpflichtung nach WRRL</d:Title>
     <d:Abstract>LP_NRW_VerpflichtungWRRL</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lpnw_verpflichtungwrrl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lpnw_verpflichtungwrrl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lpnw_verpflichtungwrrl</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lpnw_verpflichtungwrrl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1581,10 +1581,10 @@
     <d:Abstract>LP_NutzungsAusschluss</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_nutzausschl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_nutzausschl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_nutzausschl</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_nutzausschl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1627,10 +1627,10 @@
     <d:Abstract>LP_NutzungserfordernisRegelung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_nutzerforderregelung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_nutzerforderregelung_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_nutzerforderregelung</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_nutzerforderregelung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1673,10 +1673,10 @@
     <d:Abstract>LP_PlanerischeVertiefung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_planerischevertief_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_planerischevertief_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_planerischevertief</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_planerischevertief</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1719,10 +1719,10 @@
     <d:Abstract>LP_SchutzobjektBundesrecht</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_schutzobjbundesrecht_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_schutzobjbundesrecht_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_schutzobjbundesrecht</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_schutzobjbundesrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1765,10 +1765,10 @@
     <d:Abstract>LP_SchutzobjektLandesrecht</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_schutzobjlandesrecht_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_schutzobjlandesrecht_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_schutzobjlandesrecht</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_schutzobjlandesrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1811,10 +1811,10 @@
     <d:Abstract>LP_SchutzobjektInternatRecht</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_schutzobjinterrecht_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_schutzobjinterrecht_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_schutzobjinterrecht</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_schutzobjinterrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1857,10 +1857,10 @@
     <d:Abstract>LP_SchutzPflegeEntwicklung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_schutzpflentw_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_schutzpflentw_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_schutzpflentw</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_schutzpflentw</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1903,10 +1903,10 @@
     <d:Abstract>LP_SonstigesRecht</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_sonstsrecht_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_sonstsrecht_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_sonstsrecht</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_sonstsrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1950,10 +1950,10 @@
     </d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_wrgemgebreinschrnats_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_wrgemgebreinschrnats_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_wrgemgebreinschrnats</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_wrgemgebreinschrnats</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1997,10 +1997,10 @@
     </d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_wrgemgebreinschrnatssym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_wrgemgebreinschrnatssym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_wrgemgebreinschrnatssym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_wrgemgebreinschrnatssym</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2043,10 +2043,10 @@
     <d:Abstract>LP_WasserrechtSchutzgebiet</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_wrschutzgeb_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_wrschutzgeb_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_wrschutzgeb</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_wrschutzgeb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2089,10 +2089,10 @@
     <d:Abstract>LP_WasserrechtSchutzgebiet</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_wrschutzgebsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_wrschutzgebsym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_wrschutzgebsym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_wrschutzgebsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2132,10 +2132,10 @@
     <d:Abstract>LP_WasserrechtSonstige</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_wrsonst_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_wrsonst_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_wrsonst</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_wrsonst</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2178,10 +2178,10 @@
     <d:Abstract>LP_WasserrechtWirtschaftAbflussHochwSchutz</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_wrwirtschabflusshws_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_wrwirtschabflusshws_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_wrwirtschabflusshws</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_wrwirtschabflusshws</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2224,10 +2224,10 @@
     <d:Abstract>LP_WasserrechtWirtschaftAbflussHochwSchutz</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_wrwirtschabflusshwssym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_wrwirtschabflusshwssym_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_wrwirtschabflusshwssym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_wrwirtschabflusshwssym</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2270,10 +2270,10 @@
     <d:Abstract>LP_Zwischennutzung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp_zwischennutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_zwischennutz_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>lp_zwischennutz</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_zwischennutz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>

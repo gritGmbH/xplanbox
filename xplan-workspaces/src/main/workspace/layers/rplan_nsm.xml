@@ -42,7 +42,7 @@
     <d:Abstract>NSMRP_Achse</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>nsm_rp_achse</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/nsm_rp_achse</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>NSM_RP_Achse</l:LayerNameRef>
@@ -50,7 +50,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/nsm_rp_achse_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/nsm_rp_achse_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>NSM_RP_Achse</l:LayerNameRef>
@@ -98,7 +98,7 @@
     <d:Abstract>NSMRP_Bodenschutz</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>nsm_rp_bodenschutz</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/nsm_rp_bodenschutz</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>NSM_RP_Bodenschutz</l:LayerNameRef>
@@ -106,7 +106,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/nsm_rp_bodenschutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/nsm_rp_bodenschutz_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>NSM_RP_Bodenschutz</l:LayerNameRef>
@@ -154,7 +154,7 @@
     <d:Abstract>NSMRP_Energieversorgung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>nsm_rp_energieversorgung</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/nsm_rp_energieversorgung</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>NSM_RP_Energieversorgung</l:LayerNameRef>
@@ -162,7 +162,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/nsm_rp_energieversorgung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/nsm_rp_energieversorgung_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>NSM_RP_Energieversorgung</l:LayerNameRef>
@@ -211,7 +211,7 @@
     <d:Abstract>NSMRP_Forstwirtschaft</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>nsm_rp_forstwirtschaft</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/nsm_rp_forstwirtschaft</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>NSM_RP_Forstwirtschaft</l:LayerNameRef>
@@ -219,7 +219,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/nsm_rp_forstwirtschaft_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/nsm_rp_forstwirtschaft_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>NSM_RP_Forstwirtschaft</l:LayerNameRef>
@@ -267,7 +267,7 @@
     <d:Abstract>NSMRP_FreizeitErholung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>nsm_rp_freizeiterholung</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/nsm_rp_freizeiterholung</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>NSM_RP_FreizeitErholung</l:LayerNameRef>
@@ -275,7 +275,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/nsm_rp_freizeiterholung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/nsm_rp_freizeiterholung_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>NSM_RP_FreizeitErholung</l:LayerNameRef>
@@ -324,7 +324,7 @@
     <d:Abstract>NSMRP_Laermschutzbereich</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>nsm_rp_laermschutzbereich</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/nsm_rp_laermschutzbereich</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>NSM_RP_Laermschutzbereich</l:LayerNameRef>
@@ -332,7 +332,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/nsm_rp_laermschutzbereich_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/nsm_rp_laermschutzbereich_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>NSM_RP_Laermschutzbereich</l:LayerNameRef>
@@ -380,7 +380,7 @@
     <d:Abstract>NSMRP_Landwirtschaft</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>nsm_rp_landwirtschaft</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/nsm_rp_landwirtschaft</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>NSM_RP_Landwirtschaft</l:LayerNameRef>
@@ -388,7 +388,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/nsm_rp_landwirtschaft_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/nsm_rp_landwirtschaft_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>NSM_RP_Landwirtschaft</l:LayerNameRef>
@@ -437,7 +437,7 @@
     <d:Abstract>NSMRP_NaturschutzrechtlichesSchutzgebiet</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>nsm_rp_naturschutzrechtlichesSchutzgebiet</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/nsm_rp_naturschutzrechtlichesSchutzgebiet</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>NSM_RP_NaturschutzrechtlichesSchutzgebiet</l:LayerNameRef>
@@ -445,7 +445,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/nsm_rp_naturschutzrechtlichesSchutzgebiet_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/nsm_rp_naturschutzrechtlichesSchutzgebiet_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>NSM_RP_NaturschutzrechtlichesSchutzgebiet</l:LayerNameRef>
@@ -494,7 +494,7 @@
     <d:Abstract>NSMRP_Raumkategorie</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>nsm_rp_raumkategorie</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/nsm_rp_raumkategorie</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>NSM_RP_Raumkategorie</l:LayerNameRef>
@@ -502,7 +502,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/nsm_rp_raumkategorie_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/nsm_rp_raumkategorie_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>NSM_RP_Raumkategorie</l:LayerNameRef>
@@ -551,7 +551,7 @@
     <d:Abstract>NSMRP_Sperrgebiet</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>nsm_rp_sperrgebiet</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/nsm_rp_sperrgebiet</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>NSM_RP_Sperrgebiet</l:LayerNameRef>
@@ -559,7 +559,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/nsm_rp_sperrgebiet_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/nsm_rp_sperrgebiet_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>NSM_RP_Sperrgebiet</l:LayerNameRef>
@@ -608,7 +608,7 @@
     <d:Abstract>NSMRP_VorbHochwasserschutz</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>nsm_rp_vorbHochwasserschutz</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/nsm_rp_vorbHochwasserschutz</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>NSM_RP_VorbHochwasserschutz</l:LayerNameRef>
@@ -616,7 +616,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/nsm_rp_vorbHochwasserschutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/nsm_rp_vorbHochwasserschutz_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>NSM_RP_VorbHochwasserschutz</l:LayerNameRef>
@@ -664,7 +664,7 @@
     <d:Abstract>NSMRP_Wasserschutz</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>nsm_rp_wasserschutz</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/nsm_rp_wasserschutz</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>NSM_RP_Wasserschutz</l:LayerNameRef>
@@ -672,7 +672,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/nsm_rp_wasserschutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/nsm_rp_wasserschutz_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>NSM_RP_Wasserschutz</l:LayerNameRef>
@@ -721,7 +721,7 @@
     <d:Abstract>NSMRP_ZentralerOrt</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>nsm_rp_zentralerOrt</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/nsm_rp_zentralerOrt</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>NSM_RP_ZentralerOrt</l:LayerNameRef>
@@ -729,7 +729,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/nsm_rp_zentralerOrt_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/nsm_rp_zentralerOrt_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>NSM_RP_ZentralerOrt</l:LayerNameRef>
@@ -777,7 +777,7 @@
     <d:Abstract>RP_NSM_Abfallentsorgung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_abfallentsorgung</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_abfallentsorgung</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_Abfallentsorgung</l:LayerNameRef>
@@ -785,7 +785,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_abfallentsorgung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_abfallentsorgung_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_Abfallentsorgung</l:LayerNameRef>
@@ -833,7 +833,7 @@
     <d:Abstract>RP_NSM_Abwasser</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_abwasser</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_abwasser</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_Abwasser</l:LayerNameRef>
@@ -841,7 +841,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_abwasser_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_abwasser_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_Abwasser</l:LayerNameRef>
@@ -889,7 +889,7 @@
     <d:Abstract>RP_NSM_ASB</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_asb</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_asb</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_ASB</l:LayerNameRef>
@@ -897,7 +897,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_asb_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_asb_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_ASB</l:LayerNameRef>
@@ -945,7 +945,7 @@
     <d:Abstract>RP_NSM_Erholung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_erholung</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_erholung</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_Erholung</l:LayerNameRef>
@@ -953,7 +953,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_erholung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_erholung_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_Erholung</l:LayerNameRef>
@@ -1001,7 +1001,7 @@
     <d:Abstract>RP_NSM_GIB</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_gib</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_gib</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_GIB</l:LayerNameRef>
@@ -1009,7 +1009,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_gib_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_gib_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_GIB</l:LayerNameRef>
@@ -1057,7 +1057,7 @@
     <d:Abstract>RP_NSM_Landschaftsschutz</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_landschaftsschutz</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_landschaftsschutz</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_Landschaftsschutz</l:LayerNameRef>
@@ -1065,7 +1065,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_landschaftsschutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_landschaftsschutz_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_Landschaftsschutz</l:LayerNameRef>
@@ -1113,7 +1113,7 @@
     <d:Abstract>RP_NSM_Luftverkehr</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_luftverkehr</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_luftverkehr</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_Luftverkehr</l:LayerNameRef>
@@ -1121,7 +1121,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_luftverkehr_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_luftverkehr_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_Luftverkehr</l:LayerNameRef>
@@ -1169,7 +1169,7 @@
     <d:Abstract>RP_NSM_Naturschutz</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_naturschutz</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_naturschutz</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_Naturschutz</l:LayerNameRef>
@@ -1177,7 +1177,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_naturschutz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_naturschutz_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_Naturschutz</l:LayerNameRef>
@@ -1225,7 +1225,7 @@
     <d:Abstract>RP_NSM_OberflaechennaheBodenschaetze</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_oberflaechennaheBodenschaetze</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_oberflaechennaheBodenschaetze</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_OberflaechennaheBodenschaetze</l:LayerNameRef>
@@ -1233,7 +1233,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_oberflaechennaheBodenschaetze_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_oberflaechennaheBodenschaetze_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_OberflaechennaheBodenschaetze</l:LayerNameRef>
@@ -1281,7 +1281,7 @@
     <d:Abstract>RP_NSM_RegionalBedeutsamerWanderweg</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_regionalBedeutsamerWanderweg</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_regionalBedeutsamerWanderweg</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_RegionalBedeutsamerWanderweg</l:LayerNameRef>
@@ -1289,7 +1289,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_regionalBedeutsamerWanderweg_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_regionalBedeutsamerWanderweg_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_RegionalBedeutsamerWanderweg</l:LayerNameRef>
@@ -1337,7 +1337,7 @@
     <d:Abstract>RP_NSM_RegionalBedeutsameSportanlage</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_regionalBedeutsameSportanlage</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_regionalBedeutsameSportanlage</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_RegionalBedeutsameSportanlage</l:LayerNameRef>
@@ -1345,7 +1345,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_regionalBedeutsameSportanlage_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_regionalBedeutsameSportanlage_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_RegionalBedeutsameSportanlage</l:LayerNameRef>
@@ -1393,7 +1393,7 @@
     <d:Abstract>RP_NSM_Schienenverkehr</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_schienenverkehr</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_schienenverkehr</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_Schienenverkehr</l:LayerNameRef>
@@ -1401,7 +1401,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_schienenverkehr_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_schienenverkehr_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_Schienenverkehr</l:LayerNameRef>
@@ -1449,7 +1449,7 @@
     <d:Abstract>RP_NSM_SonstVerkehr</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_sonstVerkehr</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_sonstVerkehr</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_SonstVerkehr</l:LayerNameRef>
@@ -1457,7 +1457,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_sonstVerkehr_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_sonstVerkehr_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_SonstVerkehr</l:LayerNameRef>
@@ -1505,7 +1505,7 @@
     <d:Abstract>RP_NSM_Strassenverkehr</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_strassenverkehr</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_strassenverkehr</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_Strassenverkehr</l:LayerNameRef>
@@ -1513,7 +1513,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_strassenverkehr_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_strassenverkehr_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_Strassenverkehr</l:LayerNameRef>
@@ -1561,7 +1561,7 @@
     <d:Abstract>RP_NSM_TiefliegendeRohstoffe</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_tiefliegendeRohstoffe</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_tiefliegendeRohstoffe</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_TiefliegendeRohstoffe</l:LayerNameRef>
@@ -1569,7 +1569,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_tiefliegendeRohstoffe_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_tiefliegendeRohstoffe_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_TiefliegendeRohstoffe</l:LayerNameRef>
@@ -1617,7 +1617,7 @@
     <d:Abstract>RP_NSM_Tourismus</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_tourismus</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_tourismus</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_Tourismus</l:LayerNameRef>
@@ -1625,7 +1625,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_tourismus_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_tourismus_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_Tourismus</l:LayerNameRef>
@@ -1673,7 +1673,7 @@
     <d:Abstract>RP_NSM_Wasserverkehr</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>rp_nsm_wasserverkehr</l:StyleStoreId>
+      <l:StyleStoreId>default/rp/rp_nsm_wasserverkehr</l:StyleStoreId>
       <l:Style>
         <l:StyleName>vollflaechig</l:StyleName>
         <l:LayerNameRef>RP_NSM_Wasserverkehr</l:LayerNameRef>
@@ -1681,7 +1681,7 @@
       </l:Style>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/rp_nsm_wasserverkehr_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/rp/rp_nsm_wasserverkehr_trans</l:StyleStoreId>
       <l:Style>
         <l:StyleName>transparent</l:StyleName>
         <l:LayerNameRef>RP_NSM_Wasserverkehr</l:LayerNameRef>
