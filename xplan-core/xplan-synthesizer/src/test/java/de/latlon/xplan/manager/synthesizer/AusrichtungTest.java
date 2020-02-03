@@ -22,11 +22,11 @@ public class AusrichtungTest {
         Feature feature = new ScenarioLoader().getTestFeature( XPLAN_51, "Praesentationsobjekte.gml", "XP_PTO_EMPTY" );
         Ausrichtung horzontaleAusrichtung = new Ausrichtung( new Xpath( "xplan:horizontaleAusrichtung" ) );
         TypedObjectNode horizontaleValue = horzontaleAusrichtung.evaluate( feature );
-        assertThat( asDouble( horizontaleValue ), is( 0.5 ) );
+        assertThat( asDouble( horizontaleValue ), is( 0.0 ) );
 
         Ausrichtung vertikaleAusrichtung = new Ausrichtung( new Xpath( "xplan:vertikaleAusrichtung" ) );
         TypedObjectNode vertikaleValue = vertikaleAusrichtung.evaluate( feature );
-        assertThat( asDouble( vertikaleValue ), is( 0.5 ) );
+        assertThat( asDouble( vertikaleValue ), is( 0.0 ) );
     }
 
     @Test
