@@ -17,6 +17,7 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
+import de.latlon.xplan.validator.web.shared.ValidationType;
 import org.apache.commons.io.IOUtils;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.types.AppSchema;
@@ -35,6 +36,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -103,7 +105,7 @@ public class XPlanValidatorTest {
 
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
         verify( geoVal, times( 0 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
-        verify( semVal, times( 0 ) ).validateSemantic( archive(), list() );
+        verifyZeroInteractions( semVal );
         verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
                                                                               anyString() );
     }
@@ -115,6 +117,7 @@ public class XPlanValidatorTest {
         executeValidator( geoVal, semVal, synVal, settings );
 
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
+        verify( geoVal, times( 0 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
         verifyZeroInteractions( semVal );
         verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
                                                                               anyString() );
@@ -140,6 +143,20 @@ public class XPlanValidatorTest {
         executeValidator( geoVal, semVal, synVal, settings );
 
         verify( synVal, times( 1 ) ).validateSyntax( archive() );
+        verify( geoVal, times( 0 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
+        verify( semVal, times( 1 ) ).validateSemantic( archive(), list() );
+        verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
+                                                                              anyString() );
+    }
+
+    @Test
+    public void testValidateNotWriteReportAllTypes()
+                            throws Exception {
+        List<ValidationType> validationTypes = Arrays.asList( new ValidationType[] { SYNTACTIC, SEMANTIC, GEOMETRIC } );
+        ValidationSettings settings = new ValidationSettings( "", validationTypes, emptyList() );
+        executeValidator( geoVal, semVal, synVal, settings );
+
+        verify( synVal, times( 1 ) ).validateSyntax( archive() );
         verify( geoVal, times( 1 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
         verify( semVal, times( 1 ) ).validateSemantic( archive(), list() );
         verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
@@ -160,53 +177,29 @@ public class XPlanValidatorTest {
     }
 
     @Test
-    public void testValidateNotWriteReportIgnoreXp()
-                    throws Exception {
-        ValidationSettings settings = new ValidationSettings( "", singletonList( SEMANTIC ), singleOption( "ignore-xp" ) );
-        executeValidator( geoVal, semVal, synVal, settings );
-        ArgumentCaptor<List> argument = ArgumentCaptor.forClass( List.class );
-
-        verify( synVal, times( 1 ) ).validateSyntax( archive() );
-        verify( geoVal, times( 1 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
-        verify( semVal ).validateSemantic( archive(), argument.capture() );
-        verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
-                                                                              anyString() );
-
-        SemanticValidationOptions actual = (SemanticValidationOptions) argument.getValue().get( 0 );
-        assertThat( actual, is( IGNORE_XP ) );
-    }
-
-    @Test
-    public void testValidateNotWriteReportIgnoreSo()
-                    throws Exception {
-        ValidationSettings settings = new ValidationSettings( "", singletonList( SEMANTIC ), singleOption( "ignore-so" ) );
-        executeValidator( geoVal, semVal, synVal, settings );
-        ArgumentCaptor<List> argument = ArgumentCaptor.forClass( List.class );
-
-        verify( synVal, times( 1 ) ).validateSyntax( archive() );
-        verify( geoVal, times( 1 ) ).validateGeometry( archive(), crs(), schema(), anyBoolean(), list() );
-        verify( semVal ).validateSemantic( archive(), argument.capture() );
-        verify( geoVal, times( 1 ) ).retrieveGeometricallyValidXPlanFeatures( archive(), crs(), schema(), anyBoolean(),
-                                                                              anyString() );
-
-        SemanticValidationOptions actual = (SemanticValidationOptions) argument.getValue().get( 0 );
-        assertThat( actual, is( IGNORE_SO ) );
-    }
-
-    @Test
-    public void testWriteReport()
+    public void testWriteReport_Valid()
                     throws Exception {
         ValidationSettings semanticSettings = new ValidationSettings( "", singletonList( SEMANTIC ), emptyList() );
         ValidatorReport semanticReportNotValid = executeValidator( geoVal, semVal, synVal, semanticSettings );
-        ValidationSettings geometricSettings = new ValidationSettings( "", singletonList( GEOMETRIC ), emptyList() );
-        ValidatorReport geometricReportValid = executeValidator( geoVal, semVal, synVal, geometricSettings );
 
         assertThat( semanticReportNotValid.isReportValid(), is( false ) );
-        assertThat( geometricReportValid.isReportValid(), is( true ) );
 
         assertThat( semanticReportNotValid.getSemanticValidatorResult(), containsSemanticResult( "message", "name" ) );
         assertThat( semanticReportNotValid.getSyntacticValidatorResult(), containsSyntaticResult( "message" ) );
-        assertThat( semanticReportNotValid.getGeometricValidatorResult(), containsGeometricResult() );
+    }
+
+    @Test
+    public void testWriteReport_Invalid()
+                            throws Exception {
+        List<ValidationType> validationTypes = Arrays.asList( new ValidationType[] { SYNTACTIC, SEMANTIC, GEOMETRIC } );
+        ValidationSettings settings = new ValidationSettings( "", validationTypes, emptyList() );
+        ValidatorReport report = executeValidator( geoVal, semVal, synVal, settings );
+
+        assertThat( report.isReportValid(), is( false ) );
+
+        assertThat( report.getSemanticValidatorResult(), containsSemanticResult( "message", "name" ) );
+        assertThat( report.getSyntacticValidatorResult(), containsSyntaticResult( "message" ) );
+        assertThat( report.getGeometricValidatorResult(), containsGeometricResult() );
     }
 
     private Matcher<SyntacticValidatorResult> containsSyntaticResult( final String messageToCheck ) {
