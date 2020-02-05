@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Unit Testing') {
       steps{
-        sh 'mvn -B -C -q clean test'
+        sh 'mvn -B -C -q clean install'
       }
       post {
         always {
