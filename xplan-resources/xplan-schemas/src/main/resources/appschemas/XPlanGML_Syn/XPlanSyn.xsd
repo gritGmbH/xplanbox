@@ -11503,6 +11503,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -11605,6 +11607,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -11660,6 +11664,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -11726,6 +11732,8 @@
             <element name="spannungCode" minOccurs="0" type="string" />
             <element name="istAufschuettungAblagerung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -11790,6 +11798,8 @@
             <element name="typAWCode" minOccurs="0" type="string" />
             <element name="istAufschuettungAblagerung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -11849,6 +11859,8 @@
             <element name="besondererTyp" minOccurs="0" type="string" />
             <element name="besondererTypCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -11904,6 +11916,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12108,6 +12122,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12161,6 +12177,8 @@
             <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
             <element name="imVerbund" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12215,6 +12233,8 @@
             <element name="typCode" minOccurs="0" type="string" />
             <element name="bezeichnung" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12675,6 +12695,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12733,6 +12755,8 @@
             <element name="imVerbund" minOccurs="0" type="string" />
             <element name="gewaesserTyp" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12794,6 +12818,8 @@
             <element name="sonstTyp" minOccurs="0" type="string" />
             <element name="sonstTypCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12853,6 +12879,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12908,6 +12936,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12963,6 +12993,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -13022,6 +13054,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -13079,6 +13113,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -13134,6 +13170,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -13235,6 +13273,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -13347,6 +13387,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14422,6 +14464,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14586,6 +14630,8 @@
             <element name="typCode" minOccurs="0" type="string" />
             <element name="istKernzone" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14723,6 +14769,8 @@
             <element name="flussrichtung" minOccurs="0" type="string" />
             <element name="planungsraumBeschreibung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14778,6 +14826,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14878,6 +14928,8 @@
             <element name="besondererTyp" minOccurs="0" type="string" />
             <element name="besondererTypCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14945,6 +14997,8 @@
             <element name="istAufschuettungAblagerung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="detaillierterRohstoffTyp" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15217,6 +15271,8 @@
             <element name="bauhoehenbeschraenkung" minOccurs="0" type="integer" />
             <element name="istSiedlungsbeschraenkung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15272,6 +15328,8 @@
             <element name="flaechenschluss" minOccurs="0" type="string" />
             <element name="flussrichtung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15325,6 +15383,8 @@
             <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
             <element name="imVerbund" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15378,6 +15438,8 @@
             <element name="bauhoehenbeschraenkung" minOccurs="0" type="integer" />
             <element name="istSiedlungsbeschraenkung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15590,6 +15652,8 @@
             <element name="flaechenschluss" minOccurs="0" type="string" />
             <element name="flussrichtung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15649,6 +15713,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15704,6 +15770,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15852,6 +15920,8 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="bezeichnung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -16256,6 +16326,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -16370,6 +16442,8 @@
             <element name="flaechenschluss" minOccurs="0" type="string" />
             <element name="flussrichtung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -16511,6 +16585,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -16574,6 +16650,8 @@
             <element name="sonstigerTyp" minOccurs="0" type="string" />
             <element name="sonstigerTypCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

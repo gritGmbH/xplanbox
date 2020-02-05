@@ -10620,6 +10620,8 @@ CREATE TABLE xplansynpre.xplan_rp_achse (
 	xplan_flussrichtung text,
 	xplan_typ text,
 	xplan_typCode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_achse_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_achse','xplan_position','0','GEOMETRY', 2);
@@ -10712,6 +10714,8 @@ CREATE TABLE xplansynpre.xplan_rp_bodenschutz (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_bodenschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_bodenschutz','xplan_position','0','GEOMETRY', 2);
@@ -10762,6 +10766,8 @@ CREATE TABLE xplansynpre.xplan_rp_einzelhandel (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_einzelhandel_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_einzelhandel','xplan_position','0','GEOMETRY', 2);
@@ -10822,6 +10828,8 @@ CREATE TABLE xplansynpre.xplan_rp_energieversorgung (
     xplan_primaerenergietypcode text,
     xplan_spannung text,
     xplan_spannungcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_energieversorgung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_energieversorgung','xplan_position','0','GEOMETRY', 2);
@@ -10881,6 +10889,8 @@ CREATE TABLE xplansynpre.xplan_rp_entsorgung (
     xplan_typaw text,
     xplan_typawcode text,
     xplan_istaufschuettungablagerung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_entsorgung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_entsorgung','xplan_position','0','GEOMETRY', 2);
@@ -10935,6 +10945,8 @@ CREATE TABLE xplansynpre.xplan_rp_erholung (
     xplan_besonderertyp text,
     xplan_besonderertypcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_erholung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_erholung','xplan_position','0','GEOMETRY', 2);
@@ -10985,6 +10997,8 @@ CREATE TABLE xplansynpre.xplan_rp_erneuerbareenergie (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_erneuerbareenergie_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_erneuerbareenergie','xplan_position','0','GEOMETRY', 2);
@@ -11077,6 +11091,8 @@ CREATE TABLE xplansynpre.xplan_rp_forstwirtschaft (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_forstwirtschaft_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_forstwirtschaft','xplan_position','0','GEOMETRY', 2);
@@ -11125,6 +11141,8 @@ CREATE TABLE xplansynpre.xplan_rp_freiraum (
     xplan_istausgleichsgebiet text,
     xplan_imverbund text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_freiraum_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_freiraum','xplan_position','0','GEOMETRY', 2);
@@ -11174,6 +11192,8 @@ CREATE TABLE xplansynpre.xplan_rp_funktionszuweisung (
     xplan_typcode text,
     xplan_bezeichnung text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_funktionszuweisung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_funktionszuweisung','xplan_position','0','GEOMETRY', 2);
@@ -11317,6 +11337,8 @@ CREATE TABLE xplansynpre.xplan_rp_generischesobjekt (
     xplan_flussrichtung text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_generischesobjekt_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_generischesobjekt','xplan_position','0','GEOMETRY', 2);
@@ -11370,6 +11392,8 @@ CREATE TABLE xplansynpre.xplan_rp_gewaesser (
     xplan_flussrichtung text,
     xplan_imverbund text,
     xplan_gewaessertyp text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_gewaesser_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_gewaesser','xplan_position','0','GEOMETRY', 2);
@@ -11426,6 +11450,8 @@ CREATE TABLE xplansynpre.xplan_rp_grenze (
     xplan_flussrichtung text,
     xplan_spezifischertyp text,
     xplan_spezifischertypcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_grenze_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_grenze','xplan_position','0','GEOMETRY', 2);
@@ -11480,6 +11506,8 @@ CREATE TABLE xplansynpre.xplan_rp_gruenzuggruenzaesur (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_gruenzuggruenzaesur_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_gruenzuggruenzaesur','xplan_position','0','GEOMETRY', 2);
@@ -11530,6 +11558,8 @@ CREATE TABLE xplansynpre.xplan_rp_hochwasserschutz (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_hochwasserschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_hochwasserschutz','xplan_position','0','GEOMETRY', 2);
@@ -11580,6 +11610,8 @@ CREATE TABLE xplansynpre.xplan_rp_industriegewerbe (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_industriegewerbe_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_industriegewerbe','xplan_position','0','GEOMETRY', 2);
@@ -11634,6 +11666,8 @@ CREATE TABLE xplansynpre.xplan_rp_klimaschutz (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_klimaschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_klimaschutz','xplan_position','0','GEOMETRY', 2);
@@ -11686,6 +11720,8 @@ CREATE TABLE xplansynpre.xplan_rp_kommunikation (
     xplan_flussrichtung text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_kommunikation_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_kommunikation','xplan_position','0','GEOMETRY', 2);
@@ -11736,6 +11772,8 @@ CREATE TABLE xplansynpre.xplan_rp_kulturlandschaft (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_kulturlandschaft_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_kulturlandschaft','xplan_position','0','GEOMETRY', 2);
@@ -11827,6 +11865,8 @@ CREATE TABLE xplansynpre.xplan_rp_laermschutzbauschutz (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_laermschutzbauschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_laermschutzbauschutz','xplan_position','0','GEOMETRY', 2);
@@ -11928,6 +11968,8 @@ CREATE TABLE xplansynpre.xplan_rp_landwirtschaft (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_landwirtschaft_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_landwirtschaft','xplan_position','0','GEOMETRY', 2);
@@ -13647,6 +13689,8 @@ CREATE TABLE xplansynpre.xplan_rp_naturlandschaft (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_naturlandschaft_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_naturlandschaft','xplan_position','0','GEOMETRY', 2);
@@ -13706,6 +13750,8 @@ CREATE TABLE xplansynpre.xplan_rp_naturschutzrechtlichesschutzgebiet (
     xplan_typ text,
     xplan_typcode text,
     xplan_istkernzone text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_naturschutzrechtlichesschutzgebiet_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_naturschutzrechtlichesschutzgebiet','xplan_position','0','GEOMETRY', 2);
@@ -13833,6 +13879,8 @@ CREATE TABLE xplansynpre.xplan_rp_planungsraum (
     xplan_flussrichtung text,
     xplan_planungsraumbeschreibung text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_planungsraum_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_planungsraum','xplan_position','0','GEOMETRY', 2);
@@ -13883,6 +13931,8 @@ CREATE TABLE xplansynpre.xplan_rp_radwegwanderweg (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_radwegwanderweg_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_radwegwanderweg','xplan_position','0','GEOMETRY', 2);
@@ -13973,6 +14023,8 @@ CREATE TABLE xplansynpre.xplan_rp_raumkategorie (
     xplan_typcode text,
     xplan_besonderertyp text,
     xplan_besonderertypcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_raumkategorie_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_raumkategorie','xplan_position','0','GEOMETRY', 2);
@@ -14035,6 +14087,8 @@ CREATE TABLE xplansynpre.xplan_rp_rohstoff (
     xplan_istaufschuettungablagerung text,
     xplan_detaillierterrohstofftyp text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_rohstoff_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_rohstoff','xplan_position','0','GEOMETRY', 2);
@@ -14184,6 +14238,8 @@ CREATE TABLE xplansynpre.xplan_rp_siedlung (
     xplan_bauhoehenbeschraenkung integer,
     xplan_istsiedlungsbeschraenkung text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_siedlung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_siedlung','xplan_position','0','GEOMETRY', 2);
@@ -14234,6 +14290,8 @@ CREATE TABLE xplansynpre.xplan_rp_sonstigeinfrastruktur (
     xplan_istzweckbindung text,
     xplan_flaechenschluss text,
     xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_sonstigeinfrastruktur_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_sonstigeinfrastruktur','xplan_position','0','GEOMETRY', 2);
@@ -14282,6 +14340,8 @@ CREATE TABLE xplansynpre.xplan_rp_sonstigerfreiraumschutz (
     xplan_istausgleichsgebiet text,
     xplan_imverbund text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_sonstigerfreiraumschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_sonstigerfreiraumschutz','xplan_position','0','GEOMETRY', 2);
@@ -14330,6 +14390,8 @@ CREATE TABLE xplansynpre.xplan_rp_sonstigersiedlungsbereich (
     xplan_bauhoehenbeschraenkung integer,
     xplan_istsiedlungsbeschraenkung text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_sonstigersiedlungsbereich_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_sonstigersiedlungsbereich','xplan_position','0','GEOMETRY', 2);
@@ -14522,6 +14584,8 @@ CREATE TABLE xplansynpre.xplan_rp_sozialeinfrastruktur (
     xplan_istzweckbindung text,
     xplan_flaechenschluss text,
     xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_sozialeinfrastruktur_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_sozialeinfrastruktur','xplan_position','0','GEOMETRY', 2);
@@ -14576,6 +14640,8 @@ CREATE TABLE xplansynpre.xplan_rp_sperrgebiet (
     xplan_flussrichtung text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_sperrgebiet_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_sperrgebiet','xplan_position','0','GEOMETRY', 2);
@@ -14626,6 +14692,8 @@ CREATE TABLE xplansynpre.xplan_rp_sportanlage (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_sportanlage_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_sportanlage','xplan_position','0','GEOMETRY', 2);
@@ -14758,6 +14826,8 @@ CREATE TABLE xplansynpre.xplan_rp_verkehr (
     xplan_status text,
     xplan_statuscode text,
     xplan_bezeichnung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_verkehr_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_verkehr','xplan_position','0','GEOMETRY', 2);
@@ -14864,6 +14934,8 @@ CREATE TABLE xplansynpre.xplan_rp_wasserschutz (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_wasserschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_wasserschutz','xplan_position','0','GEOMETRY', 2);
@@ -14969,6 +15041,8 @@ CREATE TABLE xplansynpre.xplan_rp_wasserwirtschaft (
     xplan_istzweckbindung text,
     xplan_flaechenschluss text,
     xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_wasserwirtschaft_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_wasserwirtschaft','xplan_position','0','GEOMETRY', 2);
@@ -15095,6 +15169,8 @@ CREATE TABLE xplansynpre.xplan_rp_wohnensiedlung (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_wohnensiedlung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_wohnensiedlung','xplan_position','0','GEOMETRY', 2);
@@ -15153,6 +15229,8 @@ CREATE TABLE xplansynpre.xplan_rp_zentralerort (
     xplan_typcode text,
     xplan_sonstigertyp text,
     xplan_sonstigertypcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_zentralerort_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_zentralerort','xplan_position','0','GEOMETRY', 2);
