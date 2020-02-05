@@ -12,7 +12,7 @@ pipeline {
         sh 'mvn --version'
       }
     }
-    stage('Unit Testing') {
+    stage('Build') {
       steps{
         sh 'mvn -B -C -q clean install'
       }
@@ -22,9 +22,12 @@ pipeline {
         }
       }
     }
-    stage('Build') {
+    stage('Deploy') {
       when {
-        branch 'master'
+        anyOf {
+          branch 'master'
+          environment name: 'DEPLOY_STEP', value: 'true'
+        }
       }
       steps{
         sh 'mvn deploy -Dskip.unit.tests=true -Pdocker'
