@@ -17815,6 +17815,8 @@
             <element name="horizontaleAusrichtungCode" minOccurs="0" type="string" />
             <element name="vertikaleAusrichtung" minOccurs="0" type="string" />
             <element name="vertikaleAusrichtungCode" minOccurs="0" type="string" />
+            <element name="anchorX" minOccurs="0" type="decimal" />
+            <element name="anchorY" minOccurs="0" type="decimal" />
             <element name="hat" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="index" minOccurs="0" type="integer" />
@@ -17851,6 +17853,8 @@
             <element name="horizontaleAusrichtungCode" minOccurs="0" type="string" />
             <element name="vertikaleAusrichtung" minOccurs="0" type="string" />
             <element name="vertikaleAusrichtungCode" minOccurs="0" type="string" />
+            <element name="anchorX" minOccurs="0" type="decimal" />
+            <element name="anchorY" minOccurs="0" type="decimal" />
             <element name="hat" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="drehwinkel" minOccurs="0" type="double" />
@@ -17921,6 +17925,8 @@
             <element name="horizontaleAusrichtungCode" minOccurs="0" type="string" />
             <element name="vertikaleAusrichtung" minOccurs="0" type="string" />
             <element name="vertikaleAusrichtungCode" minOccurs="0" type="string" />
+            <element name="anchorX" minOccurs="0" type="decimal" />
+            <element name="anchorY" minOccurs="0" type="decimal" />
             <element name="hat" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="drehwinkel" minOccurs="0" type="double" />

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<sld:StyledLayerDescriptor xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0" version="1.0.0">
+  <sld:NamedLayer>
+    <sld:Name>RP_NSM_Luftverkehr</sld:Name>
+    <sld:UserStyle>
+      <sld:Name>vollflaechig</sld:Name>
+      <sld:FeatureTypeStyle>
+        <sld:FeatureTypeName>xplan:RP_NSM_Luftverkehr</sld:FeatureTypeName>
+        <!--Verkehrsflughafen-->
+        <sld:Rule>
+          <sld:Name>VR_Verkehrsflughafen</sld:Name>
+          <sld:Title>Vorranggebiet Verkehrsflughafen</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsLike wildCard="*" singleChar="?" escapeChar="!">
+              <ogc:PropertyName>zvs_pz_sym</ogc:PropertyName>
+              <ogc:Literal>8517_5100</ogc:Literal>
+            </ogc:PropertyIsLike>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_Verkehrsflughafen_VR.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>41</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>VR Verkehrsflughafen</sld:Name>
+          <sld:Title>VR Verkehrsflughafen</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsLike wildCard="*" singleChar="?" escapeChar="\">
+              <ogc:PropertyName>zvs</ogc:PropertyName>
+              <ogc:Literal>8517_5101</ogc:Literal>
+            </ogc:PropertyIsLike>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>450000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>2000000</sld:MaxScaleDenominator>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_VR_Flug.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>30</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>VR Verkehrsflughafen außerhalb</sld:Name>
+          <sld:Title>VR Verkehrsflughafen außerhalb</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsLike wildCard="*" singleChar="?" escapeChar="\">
+              <ogc:PropertyName>zvs</ogc:PropertyName>
+              <ogc:Literal>8517_5109</ogc:Literal>
+            </ogc:PropertyIsLike>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>450000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>2000000</sld:MaxScaleDenominator>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_VR_Flug_ausser.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>30</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>VR Verkehrsflughafen</sld:Name>
+          <sld:Title>VR Verkehrsflughafen</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsLike wildCard="*" singleChar="?" escapeChar="\">
+              <ogc:PropertyName>zvs</ogc:PropertyName>
+              <ogc:Literal>8517_5101</ogc:Literal>
+            </ogc:PropertyIsLike>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>150000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>450000</sld:MaxScaleDenominator>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_VR_Flug.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>60</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>VR Verkehrsflughafen außerhalb</sld:Name>
+          <sld:Title>VR Verkehrsflughafen außerhalb</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsLike wildCard="*" singleChar="?" escapeChar="\">
+              <ogc:PropertyName>zvs</ogc:PropertyName>
+              <ogc:Literal>8517_5109</ogc:Literal>
+            </ogc:PropertyIsLike>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>150000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>450000</sld:MaxScaleDenominator>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_VR_Flug_ausser.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>60</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>VR Verkehrsflughafen</sld:Name>
+          <sld:Title>VR Verkehrsflughafen</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsLike wildCard="*" singleChar="?" escapeChar="\">
+              <ogc:PropertyName>zvs</ogc:PropertyName>
+              <ogc:Literal>8517_5101</ogc:Literal>
+            </ogc:PropertyIsLike>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>80000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>150000</sld:MaxScaleDenominator>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_VR_Flug.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>153</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>VR Verkehrsflughafen außerhalb</sld:Name>
+          <sld:Title>VR Verkehrsflughafen außerhalb</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsLike wildCard="*" singleChar="?" escapeChar="\">
+              <ogc:PropertyName>zvs</ogc:PropertyName>
+              <ogc:Literal>8517_5109</ogc:Literal>
+            </ogc:PropertyIsLike>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>80000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>150000</sld:MaxScaleDenominator>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_VR_Flug_ausser.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>153</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>VR Verkehrsflughafen</sld:Name>
+          <sld:Title>VR Verkehrsflughafen</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsLike wildCard="*" singleChar="?" escapeChar="\">
+              <ogc:PropertyName>zvs</ogc:PropertyName>
+              <ogc:Literal>8517_5101</ogc:Literal>
+            </ogc:PropertyIsLike>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>40000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>80000</sld:MaxScaleDenominator>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_VR_Flug.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>305</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>VR Verkehrsflughafen außerhalb</sld:Name>
+          <sld:Title>VR Verkehrsflughafen außerhalb</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsLike wildCard="*" singleChar="?" escapeChar="\">
+              <ogc:PropertyName>zvs</ogc:PropertyName>
+              <ogc:Literal>8517_5109</ogc:Literal>
+            </ogc:PropertyIsLike>
+          </ogc:Filter>
+          <sld:MinScaleDenominator>40000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>80000</sld:MaxScaleDenominator>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/LROP/LROP_S_VR_Flug_ausser.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>305</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <!--Verkehrslandeplatz-->
+        <sld:Rule>
+          <sld:Name>VR_Verkehrslandeplatz</sld:Name>
+          <sld:Title>Vorranggebiet Verkehrslandeplatz</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsLike wildCard="*" singleChar="?" escapeChar="\">
+              <ogc:PropertyName>zvs_pz_sym</ogc:PropertyName>
+              <ogc:Literal>8517_5200</ogc:Literal>
+            </ogc:PropertyIsLike>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_Verkehrslandeplatz_VR.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>41</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+      </sld:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+</sld:StyledLayerDescriptor>

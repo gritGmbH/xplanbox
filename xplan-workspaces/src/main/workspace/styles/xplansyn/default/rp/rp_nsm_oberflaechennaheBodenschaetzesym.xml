@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+  <sld:NamedLayer>
+    <sld:Name>RP_NSM_OberflaechennaheBodenschaetze</sld:Name>
+    <sld:UserStyle>
+      <sld:Name>vollflaechig</sld:Name>
+      <sld:FeatureTypeStyle>
+        <sld:FeatureTypeName>xplan:RP_NSM_OberflaechennaheBodenschaetze</sld:FeatureTypeName>
+
+
+        <!--Rohstoffe-->
+
+        <sld:Rule>
+          <sld:Name>vb_Rohstoff</sld:Name>
+          <sld:Title>vb_Rohstoff</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+              <ogc:Literal>2000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_Rohstoff_vb.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>40</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+          <TextSymbolizer>
+            <Label>
+              <ogc:PropertyName>k_bez</ogc:PropertyName>
+            </Label>
+            <Font>
+              <CssParameter name="font-family">Arial Narrow</CssParameter>
+              <CssParameter name="font-weight">Bold</CssParameter>
+              <CssParameter name="font-size">13</CssParameter>
+            </Font>
+            <LabelPlacement>
+              <PointPlacement>
+                <AnchorPoint>
+                  <AnchorPointX>0.6</AnchorPointX>
+                  <AnchorPointY>0.8</AnchorPointY>
+                </AnchorPoint>
+              </PointPlacement>
+            </LabelPlacement>
+            <Fill>
+              <CssParameter name="fill">#000000</CssParameter>
+            </Fill>
+          </TextSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>VR_Rohstoff</sld:Name>
+          <sld:Title>VR_Rohstoff</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+              <ogc:Literal>1000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_Rohstoff_VR.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>40</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+          <TextSymbolizer>
+            <Label>
+              <ogc:PropertyName>k_bez</ogc:PropertyName>
+            </Label>
+            <Font>
+              <CssParameter name="font-family">Arial Narrow</CssParameter>
+              <CssParameter name="font-weight">Bold</CssParameter>
+              <CssParameter name="font-size">13</CssParameter>
+            </Font>
+            <LabelPlacement>
+              <PointPlacement>
+                <AnchorPoint>
+                  <AnchorPointX>0.6</AnchorPointX>
+                  <AnchorPointY>0.8</AnchorPointY>
+                </AnchorPoint>
+              </PointPlacement>
+            </LabelPlacement>
+            <Fill>
+              <CssParameter name="fill">#000000</CssParameter>
+            </Fill>
+          </TextSymbolizer>
+        </sld:Rule>
+
+
+        <sld:Rule>
+          <sld:Name>Text_Rohstoff</sld:Name>
+          <sld:Title>Text_Rohstoff</sld:Title>
+          <sld:MinScaleDenominator>450000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>2000000</sld:MaxScaleDenominator>
+          <TextSymbolizer>
+            <Label>
+              <ogc:PropertyName>bezeich3</ogc:PropertyName>
+            </Label>
+            <Font>
+              <CssParameter name="font-family">Arial Narrow</CssParameter>
+              <CssParameter name="font-weight">Bold</CssParameter>
+              <CssParameter name="font-size">7</CssParameter>
+            </Font>
+            <LabelPlacement>
+              <PointPlacement>
+                <AnchorPoint>
+                  <AnchorPointX>0.5</AnchorPointX>
+                  <AnchorPointY>0.72</AnchorPointY>
+                </AnchorPoint>
+              </PointPlacement>
+            </LabelPlacement>
+          </TextSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>Text_Rohstoff</sld:Name>
+          <sld:Title>Text_Rohstoff</sld:Title>
+          <sld:MinScaleDenominator>150000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>450000</sld:MaxScaleDenominator>
+          <TextSymbolizer>
+            <Label>
+              <ogc:PropertyName>bezeich3</ogc:PropertyName>
+            </Label>
+            <Font>
+              <CssParameter name="font-family">Arial Narrow</CssParameter>
+              <CssParameter name="font-weight">Bold</CssParameter>
+              <CssParameter name="font-size">14</CssParameter>
+            </Font>
+            <LabelPlacement>
+              <PointPlacement>
+                <AnchorPoint>
+                  <AnchorPointX>0.5</AnchorPointX>
+                  <AnchorPointY>0.72</AnchorPointY>
+                </AnchorPoint>
+              </PointPlacement>
+            </LabelPlacement>
+          </TextSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>Text_Rohstoff</sld:Name>
+          <sld:Title>Text_Rohstoff</sld:Title>
+          <sld:MinScaleDenominator>80000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>150000</sld:MaxScaleDenominator>
+          <TextSymbolizer>
+            <Label>
+              <ogc:PropertyName>bezeich3</ogc:PropertyName>
+            </Label>
+            <Font>
+              <CssParameter name="font-family">Arial Narrow</CssParameter>
+              <CssParameter name="font-weight">Bold</CssParameter>
+              <CssParameter name="font-size">35</CssParameter>
+            </Font>
+            <LabelPlacement>
+              <PointPlacement>
+                <AnchorPoint>
+                  <AnchorPointX>0.5</AnchorPointX>
+                  <AnchorPointY>0.72</AnchorPointY>
+                </AnchorPoint>
+              </PointPlacement>
+            </LabelPlacement>
+          </TextSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>Text_Rohstoff</sld:Name>
+          <sld:Title>Text_Rohstoff</sld:Title>
+          <sld:MinScaleDenominator>30000</sld:MinScaleDenominator>
+          <sld:MaxScaleDenominator>80000</sld:MaxScaleDenominator>
+          <TextSymbolizer>
+            <Label>
+              <ogc:PropertyName>bezeich3</ogc:PropertyName>
+            </Label>
+            <Font>
+              <CssParameter name="font-family">Arial Narrow</CssParameter>
+              <CssParameter name="font-weight">Bold</CssParameter>
+              <CssParameter name="font-size">72</CssParameter>
+            </Font>
+            <LabelPlacement>
+              <PointPlacement>
+                <AnchorPoint>
+                  <AnchorPointX>0.5</AnchorPointX>
+                  <AnchorPointY>0.72</AnchorPointY>
+                </AnchorPoint>
+              </PointPlacement>
+            </LabelPlacement>
+          </TextSymbolizer>
+        </sld:Rule>
+
+
+        <!--RohstoffZeitstufe-->
+
+        <sld:Rule>
+          <sld:Name>VR_Rohstoff_Zeitstufe</sld:Name>
+          <sld:Title>VR_Rohstoff_Zeitstufe</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:zeitstufeText_NSMCode</ogc:PropertyName>
+              <ogc:Literal>1000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:ExternalGraphic>
+                <sld:OnlineResource xlink:type="simple" xlink:href="../../symbols/RROP/RROP_S_Rohstoff_Zeitstufe.svg" />
+                <sld:Format>image/svg</sld:Format>
+              </sld:ExternalGraphic>
+              <sld:Size>
+                <ogc:Literal>40</ogc:Literal>
+              </sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+          <TextSymbolizer>
+            <Label>
+              <ogc:PropertyName>k_bez</ogc:PropertyName>
+            </Label>
+            <Font>
+              <CssParameter name="font-family">Arial Narrow</CssParameter>
+              <CssParameter name="font-weight">Bold</CssParameter>
+              <CssParameter name="font-size">13</CssParameter>
+            </Font>
+            <LabelPlacement>
+              <PointPlacement>
+                <AnchorPoint>
+                  <AnchorPointX>0.6</AnchorPointX>
+                  <AnchorPointY>0.8</AnchorPointY>
+                </AnchorPoint>
+              </PointPlacement>
+            </LabelPlacement>
+            <Fill>
+              <CssParameter name="fill">#000000</CssParameter>
+            </Fill>
+          </TextSymbolizer>
+        </sld:Rule>
+
+
+      </sld:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+</sld:StyledLayerDescriptor>

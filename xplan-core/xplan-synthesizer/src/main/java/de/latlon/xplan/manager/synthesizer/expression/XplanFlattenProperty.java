@@ -1,6 +1,5 @@
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.*;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.Reference;
@@ -38,18 +37,19 @@ public class XplanFlattenProperty implements Expression {
     /**
      * @param exp
      *            an expression that targets a property node
-     * @param xPlanSynthesizer
-     *            the XPlanSynthesizer currently used (containing the parsed rules), never <code>null</code>
      */
-    public XplanFlattenProperty( Expression exp, XPlanSynthesizer xPlanSynthesizer) {
+    public XplanFlattenProperty( Expression exp ) {
         this.exp = exp;
         customFlatteners.add( new XpBegruendungAbschnittFlattener() );
         customFlatteners.add( new XpGemeindeFlattener() );
         customFlatteners.add( new XpGenerAttributFlattener() );
-        customFlatteners.add( new XpHoehenangabeFlattener( xPlanSynthesizer ) );
+        customFlatteners.add( new XpHoehenangabeFlattener() );
         customFlatteners.add( new XpRasterplanFlattener() );
         customFlatteners.add( new XpTextAbschnittFlattener() );
         customFlatteners.add( new XpVerfahrensMerkmalFlattener() );
+        customFlatteners.add( new XpVerbundenerPlanFlattener() );
+        customFlatteners.add( new BpDachgestaltungFlattener() );
+        customFlatteners.add( new XpSPEMassnahmenDatenFlattener() );
     }
 
     @Override

@@ -1,12 +1,17 @@
 package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.synthesizer.Features;
+import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
+import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
+import org.deegree.commons.utils.Pair;
 import org.deegree.feature.Feature;
 
 import javax.xml.namespace.QName;
+import java.util.List;
 
 abstract class AbstractFlattener implements Flattener {
 
@@ -47,5 +52,50 @@ abstract class AbstractFlattener implements Flattener {
         }
         result = result.replace( "][", "][][" );
         return result;
+    }
+
+    protected String encode( List<Pair<String, String>> properties ) {
+        if ( properties.isEmpty() )
+            return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append( "[" );
+        for ( Pair<String, String> property : properties ) {
+            if ( properties.indexOf( property ) > 0 )
+                sb.append( ", " );
+            sb.append( property.first ).append( ": " ).append( property.second );
+        }
+        sb.append( "]" );
+        return sb.toString();
+    }
+
+    protected void append( String label, TypedObjectNode feature, String propertyName,
+                           List<Pair<String, String>> properties ) {
+        String propertyValue = asString( feature, propertyName );
+        if ( propertyValue != null ) {
+            properties.add( new Pair( label, propertyValue ) );
+        }
+    }
+
+    protected void appendTranslatedCode( String label, TypedObjectNode feature, String propertyName,
+                                         XPlanVersion version, String codeListName,
+                                         List<Pair<String, String>> properties ) {
+        String propertyValue = asString( feature, propertyName );
+        if ( propertyValue != null ) {
+            String translatedValue = XPlanCodeListsFactory.get( version ).getDescription( codeListName, propertyValue );
+            properties.add( new Pair( label, translatedValue ) );
+        }
+    }
+
+    protected String asString( TypedObjectNode property, String ags ) {
+        if ( property instanceof Property ) {
+            property = ( (Property) property ).getValue();
+        }
+        if ( property instanceof PrimitiveValue ) {
+            return ( (PrimitiveValue) property ).getAsText();
+        }
+        PrimitiveValue propertyValue = (PrimitiveValue) getPropertyValue( property, ags );
+        if ( propertyValue != null )
+            return propertyValue.getAsText();
+        return null;
     }
 }

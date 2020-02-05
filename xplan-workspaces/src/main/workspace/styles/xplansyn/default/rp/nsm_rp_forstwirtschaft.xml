@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+  <sld:NamedLayer>
+    <sld:Name>NSM_RP_Forstwirtschaft</sld:Name>
+    <sld:UserStyle>
+      <sld:Name>vollflaechig</sld:Name>
+      <sld:FeatureTypeStyle>
+        <sld:FeatureTypeName>xplan:RP_Forstwirtschaft</sld:FeatureTypeName>
+
+
+        <!--Wald-->
+
+        <sld:Rule>
+          <sld:Name>vb_Wald</sld:Name>
+          <sld:Title>Vorbehaltsgebiet Wald</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:zweckbestimmungFW_NSMCode</ogc:PropertyName>
+              <ogc:Literal>1000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Fill>
+              <sld:CssParameter name="fill">#BEE696</sld:CssParameter>
+              <sld:CssParameter name="fill-opacity">0.8</sld:CssParameter>
+            </sld:Fill>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+
+        <!--VergroesserungDesWaldanteils-->
+
+        <sld:Rule>
+          <sld:Name>vb_VergroesserungWald</sld:Name>
+          <sld:Title>vb_VergroesserungWald</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:zweckbestimmungFW_NSMCode</ogc:PropertyName>
+              <ogc:Literal>2000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Fill>
+              <sld:CssParameter name="fill">#BEE696</sld:CssParameter>
+              <sld:CssParameter name="fill-opacity">0.8</sld:CssParameter>
+            </sld:Fill>
+          </sld:PolygonSymbolizer>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Fill>
+              <sld:GraphicFill>
+                <sld:Graphic>
+                  <sld:ExternalGraphic>
+                    <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                      xlink:href="../../symbols/RROP/RROP_VergroesserungWald.svg" />
+                    <sld:Format>image/svg</sld:Format>
+                  </sld:ExternalGraphic>
+                  <sld:Size>11</sld:Size>
+                  <sld:Rotation>0</sld:Rotation>
+                </sld:Graphic>
+              </sld:GraphicFill>
+            </sld:Fill>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+
+        <!--VonAufforstungFreizuhaltendesGebiet-->
+
+        <sld:Rule>
+          <sld:Name>vb_vonAufforstung_freihalten</sld:Name>
+          <sld:Title>vb_vonAufforstung_freihalten</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:zweckbestimmungFW_NSMCode</ogc:PropertyName>
+              <ogc:Literal>3000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Fill>
+              <sld:GraphicFill>
+                <sld:Graphic>
+                  <sld:ExternalGraphic>
+                    <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                      xlink:href="../../symbols/RROP/RROP_Aufforstung_freihalten.svg" />
+                    <sld:Format>image/svg</sld:Format>
+                  </sld:ExternalGraphic>
+                  <sld:Size>7</sld:Size>
+                  <sld:Rotation>0</sld:Rotation>
+                </sld:Graphic>
+              </sld:GraphicFill>
+            </sld:Fill>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+        <!--BesondereSchutzfunktionDesWaldes-->
+
+        <sld:Rule>
+          <sld:Name>vb_SchutzfunktionWald</sld:Name>
+          <sld:Title>vb_SchutzfunktionWald</sld:Title>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:zweckbestimmungFW_NSMCode</ogc:PropertyName>
+              <ogc:Literal>4000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Fill>
+              <sld:GraphicFill>
+                <sld:Graphic>
+                  <sld:ExternalGraphic>
+                    <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                      xlink:href="../../symbols/RROP/RROP_SchutzfunktionWald.svg" />
+                    <sld:Format>image/svg</sld:Format>
+                  </sld:ExternalGraphic>
+                  <sld:Size>14</sld:Size>
+                  <sld:Rotation>0</sld:Rotation>
+                </sld:Graphic>
+              </sld:GraphicFill>
+            </sld:Fill>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+
+      </sld:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+</sld:StyledLayerDescriptor>

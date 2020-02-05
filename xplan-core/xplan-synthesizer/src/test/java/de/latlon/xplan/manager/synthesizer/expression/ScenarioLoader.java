@@ -15,10 +15,22 @@ import java.io.InputStream;
 
 import static org.apache.commons.io.IOUtils.closeQuietly;
 
-class ScenarioLoader {
+public class ScenarioLoader {
 
   public Feature getTestFeature( XPlanVersion version, String gmlId ) {
     FeatureCollection fc = load( version );
+    XpPpoLookup.init( fc );
+    XplanAbschnittLookup.init( fc );
+    for ( Feature f : fc ) {
+      if ( gmlId.equals( f.getId() ) ) {
+        return f;
+      }
+    }
+    return null;
+  }
+
+  public Feature getTestFeature( XPlanVersion version, String resourceName, String gmlId ) {
+    FeatureCollection fc = load( version, resourceName );
     XpPpoLookup.init( fc );
     XplanAbschnittLookup.init( fc );
     for ( Feature f : fc ) {
