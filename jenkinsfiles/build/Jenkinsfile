@@ -9,12 +9,25 @@ pipeline {
       steps{
         deleteDir()
         git credentialsId: 'latlon-CI-bitbucket', url: 'https://bitbucket.org/latlon/xplanbox.git'
+        sh 'mvn --version'
+      }
+    }
+    stage('Unit Testing') {
+      steps{
+        sh 'mvn -B -C -q clean test'
+      }
+      post {
+        always {
+          junit '**/target/surefire-reports/*.xml'
+        }
       }
     }
     stage('Build') {
+      when {
+        branch 'master'
+      }
       steps{
-        sh 'mvn --version'
-        sh 'mvn clean deploy -Pdocker'
+        sh 'mvn deploy -Dskip.unit.tests=true -Pdocker'
       }
     }
   }
