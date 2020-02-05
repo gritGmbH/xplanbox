@@ -142,9 +142,7 @@ public class GeometricValidatorImplTest {
     }
 
     private List<ValidationOption> createValidVoOptions() {
-        List<ValidationOption> voOptions = new ArrayList<ValidationOption>();
-        voOptions.add( new ValidationOption( "ignore-orientation" ) );
-        voOptions.add( new ValidationOption( "ignore-self-intersection " ) );
+        List<ValidationOption> voOptions = new ArrayList<>();
         voOptions.add( SKIP_FLAECHENSCHLUSS );
         voOptions.add( SKIP_GELTUNGSBEREICH );
         return voOptions;

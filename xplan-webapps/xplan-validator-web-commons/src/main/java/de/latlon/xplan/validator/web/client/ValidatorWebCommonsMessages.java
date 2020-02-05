@@ -33,25 +33,19 @@ public interface ValidatorWebCommonsMessages extends Messages {
 
     String uploadSucessTitle();
 
+    String validationOptionTitle();
+
     String fieldLabelRunName();
 
     String defaultRunName();
 
     String selectionValidationTypeLabel();
 
-    String selectionValidationSettingsLabel();
-
     String selectionValidationTypeSem();
 
     String selectionValidationTypeSyn();
 
     String selectionValidationTypeGeom();
-
-    String tooltipValidationTypeSem();
-
-    String tooltipValidationTypeSyn();
-
-    String tooltipValidationTypeGeom();
 
     String ignoreSelfIntersection();
 
