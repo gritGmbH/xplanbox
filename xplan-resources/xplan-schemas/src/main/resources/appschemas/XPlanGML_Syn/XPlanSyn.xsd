@@ -208,6 +208,8 @@
             <element name="endWinkel" minOccurs="0" type="double" />
             <element name="endWinkelUOM" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="typ" minOccurs="0" type="string" />
+            <element name="typCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -1139,6 +1141,8 @@
             <element name="GFGewerbeUOM" minOccurs="0" type="double" />
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="dachgestaltung" minOccurs="0" type="string" />
+            <element name="VF" minOccurs="0" type="string" />
+            <element name="VFUOM" minOccurs="0" type="double" />
           </sequence>
         </extension>
       </complexContent>
@@ -1446,6 +1450,12 @@
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="dachgestaltung" minOccurs="0" type="string" />
+            <element name="bauweise" minOccurs="0" type="string" />
+            <element name="bauweiseCode" minOccurs="0" type="string" />
+            <element name="bebauungsArt" minOccurs="0" type="string" />
+            <element name="bebauungsArtCode" minOccurs="0" type="string" />
+            <element name="abweichendeBauweise" minOccurs="0" type="string" />
+            <element name="abweichendeBauweiseCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -2639,6 +2649,27 @@
             <element name="zugunstenVon" minOccurs="0" type="string" />
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="DNmin" minOccurs="0" type="double" />
+            <element name="DNminUOM" minOccurs="0" type="string" />
+            <element name="DNmax" minOccurs="0" type="double" />
+            <element name="DNmaxUOM" minOccurs="0" type="string" />
+            <element name="DN" minOccurs="0" type="double" />
+            <element name="DNUOM" minOccurs="0" type="string" />
+            <element name="DNZwingend" minOccurs="0" type="double" />
+            <element name="DNZwingendUOM" minOccurs="0" type="string" />
+            <element name="FR" minOccurs="0" type="double" />
+            <element name="FRUOM" minOccurs="0" type="string" />
+            <element name="dachform" minOccurs="0" type="string" />
+            <element name="dachformCode" minOccurs="0" type="string" />
+            <element name="detaillierteDachform" minOccurs="0" type="string" />
+            <element name="detaillierteDachformCode" minOccurs="0" type="string" />
+            <element name="bauweise" minOccurs="0" type="string" />
+            <element name="bauweiseCode" minOccurs="0" type="string" />
+            <element name="abweichendeBauweise" minOccurs="0" type="string" />
+            <element name="abweichendeBauweiseCode" minOccurs="0" type="string" />
+            <element name="bebauungsArtCode" minOccurs="0" type="string" />
+            <element name="bebauungVordereGrenze" minOccurs="0" type="string" />
+            <element name="dachgestaltung" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -3376,6 +3407,12 @@
             <element name="laermpegelbereich" minOccurs="0" type="string" />
             <element name="laermpegelbereichCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="technVorkehrung" minOccurs="0" type="string" />
+            <element name="technVorkehrungCode" minOccurs="0" type="string" />
+            <element name="detaillierteTechnVorkehrung" minOccurs="0" type="string" />
+            <element name="detaillierteTechnVorkehrungCode" minOccurs="0" type="string" />
+            <element name="typ" minOccurs="0" type="string" />
+            <element name="typCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -3453,6 +3490,8 @@
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
             <element name="gehoertZuBP_Bereich" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="istVerdachtsflaeche" minOccurs="0" type="string" />
+            <element name="nummer" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -4092,6 +4131,8 @@
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="nutzung" minOccurs="0" type="string" />
+            <element name="nutzungCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -5589,6 +5630,8 @@
             <element name="refGebaeudequerschnitt" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="dachgestaltung" minOccurs="0" type="string" />
+            <element name="VF" minOccurs="0" type="string" />
+            <element name="VFUOM" minOccurs="0" type="double" />
           </sequence>
         </extension>
       </complexContent>
@@ -6287,6 +6330,10 @@
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
             <element name="gehoertZuBP_Bereich" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="eigentumsart" minOccurs="0" type="string" />
+            <element name="eigentumsartCode" minOccurs="0" type="string" />
+            <element name="betreten" minOccurs="0" type="string" />
+            <element name="betretenCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -7858,6 +7905,8 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="istVerdachtsflaeche" minOccurs="0" type="string" />
+            <element name="nummer" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9097,6 +9146,10 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="eigentumsart" minOccurs="0" type="string" />
+            <element name="eigentumsartCode" minOccurs="0" type="string" />
+            <element name="betreten" minOccurs="0" type="string" />
+            <element name="betretenCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14615,7 +14668,7 @@
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="verfahren" minOccurs="0" type="string" />
             <element name="verfahrenCode" minOccurs="0" type="string" />
-            <element name="amtlicherSchluessel" minOccurs="0" type="integer" />
+            <element name="amtlicherSchluessel" minOccurs="0" type="string" />
             <element name="technischerPlanersteller" minOccurs="0" type="string" />
             <element name="genehmigungsbehoerde" minOccurs="0" type="string" />
           </sequence>
@@ -16730,6 +16783,10 @@
             <element name="name" minOccurs="0" type="string" />
             <element name="nummer" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="funktion" minOccurs="0" type="string" />
+            <element name="funktionCode" minOccurs="0" type="string" />
+            <element name="betreten" minOccurs="0" type="string" />
+            <element name="betretenCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -17054,6 +17111,10 @@
             <element name="technischerPlanersteller" minOccurs="0" type="string" />
             <element name="gemeinde" minOccurs="0" type="string" />
             <element name="planaufstellendeGemeinde" minOccurs="0" type="string" />
+            <element name="versionBauGBDatum" minOccurs="0" type="date" />
+            <element name="versionBauGBText" minOccurs="0" type="string" />
+            <element name="versionSonstRechtsgrundlageDatum" minOccurs="0" type="date" />
+            <element name="versionSonstRechtsgrundlageText" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

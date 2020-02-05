@@ -186,6 +186,8 @@ CREATE TABLE xplansynarchive.xplan_bp_abstandsmass (
     xplan_startwinkeluom text,
     xplan_endwinkel numeric,
     xplan_endwinkeluom text,
+    xplan_typ text,
+    xplan_typcode text,
     CONSTRAINT xplan_bp_abstandsmass_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_abstandsmass','xplan_position','0','GEOMETRY', 2);
@@ -1067,6 +1069,8 @@ CREATE TABLE xplansynarchive.xplan_bp_baugebietsteilflaeche (
     xplan_gfgewerbe numeric,
     xplan_gfgewerbeuom text,
     xplan_dachgestaltung text,
+    xplan_vf numeric,
+    xplan_vfuom text,
     CONSTRAINT xplan_bp_baugebietsteilflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_baugebietsteilflaeche','xplan_position','0','GEOMETRY', 2);
@@ -1354,6 +1358,12 @@ CREATE TABLE xplansynarchive.xplan_bp_besonderernutzungszweckflaeche (
     xplan_zu_ausn integer,
     xplan_z_staffel integer,
     xplan_dachgestaltung text,
+    xplan_bauweise text,
+    xplan_bauweisecode text,
+    xplan_bebauungsart text,
+    xplan_bebauungsartcode text,
+    xplan_abweichendebauweise text,
+    xplan_abweichendebauweisecode text,
     CONSTRAINT xplan_bp_besonderernutzungszweckflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_besonderernutzungszweckflaeche','xplan_position','0','GEOMETRY', 2);
@@ -2461,6 +2471,27 @@ CREATE TABLE xplansynarchive.xplan_bp_gemeinbedarfsflaeche (
     xplan_zu_ausn integer,
     xplan_zugunstenvon text,
     xplan_z_staffel integer,
+	xplan_dnmin numeric,
+	xplan_dnminuom text,
+	xplan_dnmax numeric,
+	xplan_dnmaxuom text,
+	xplan_dn numeric,
+	xplan_dnuom text,
+	xplan_dnzwingend numeric,
+	xplan_dnzwingendUOM text,
+	xplan_fr numeric,
+	xplan_fruom text,
+	xplan_dachform text,
+	xplan_dachformcode text,
+	xplan_detailliertedachform text,
+	xplan_detailliertedachformcode text,
+	xplan_bauweise text,
+	xplan_bauweisecode text,
+	xplan_abweichendebauweise text,
+	xplan_abweichendebauweisecode text,
+	xplan_bebauungsart text,
+	xplan_bebauungsartcode text,
+    xplan_dachgestaltung text,
     CONSTRAINT xplan_bp_gemeinbedarfsflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_gemeinbedarfsflaeche','xplan_position','0','GEOMETRY', 2);
@@ -3147,6 +3178,12 @@ CREATE TABLE xplansynarchive.xplan_bp_immissionsschutz (
     xplan_gehoertzubp_bereich text,
     xplan_laermpegelbereich text,
     xplan_laermpegelbereichcode text,
+    xplan_technvorkehrung text,
+    xplan_technvorkehrungcode text,
+    xplan_detailliertetechnvorkehrung text,
+    xplan_detailliertetechnvorkehrungcode text,
+    xplan_typ text,
+    xplan_typcode text,
     CONSTRAINT xplan_bp_immissionsschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_immissionsschutz','xplan_position','0','GEOMETRY', 2);
@@ -3219,6 +3256,8 @@ CREATE TABLE xplansynarchive.xplan_bp_kennzeichnungsflaeche (
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
     xplan_gehoertzubp_bereich text,
+    xplan_istverdachtsflaeche text,
+    xplan_nummer text,
     CONSTRAINT xplan_bp_kennzeichnungsflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_kennzeichnungsflaeche','xplan_position','0','GEOMETRY', 2);
@@ -3808,6 +3847,8 @@ CREATE TABLE xplansynarchive.xplan_bp_nichtueberbaubaregrundstuecksflaeche (
     xplan_wirdausgeglichendurchspeflaeche text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_flaechenschluss text,
+    xplan_nutzung text,
+    xplan_nutzungcode text,
     CONSTRAINT xplan_bp_nichtueberbaubaregrundstuecksflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_nichtueberbaubaregrundstuecksflaeche','xplan_position','0','GEOMETRY', 2);
@@ -5209,6 +5250,8 @@ CREATE TABLE xplansynarchive.xplan_bp_ueberbaubaregrundstuecksflaeche (
 	xplan_bebauungseitlichegrenzecode text,
 	xplan_refgebaeudequerschnitt text,
     xplan_dachgestaltung text,
+    xplan_vf numeric,
+    xplan_vfuom text,
     CONSTRAINT xplan_bp_ueberbaubaregrundstuecksflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_ueberbaubaregrundstuecksflaeche','xplan_position','0','GEOMETRY', 2);
@@ -5867,6 +5910,10 @@ CREATE TABLE xplansynarchive.xplan_bp_waldflaeche (
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
     xplan_gehoertzubp_bereich text,
+    xplan_eigentumsart text,
+    xplan_eigentumsartcode text,
+    xplan_betreten text,
+    xplan_betretencode text,
     CONSTRAINT xplan_bp_waldflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_waldflaeche','xplan_position','0','GEOMETRY', 2);
@@ -7313,6 +7360,8 @@ CREATE TABLE xplansynarchive.xplan_fp_kennzeichnung (
     xplan_wirddargestelltdurch text,
     xplan_gehoertzufp_bereich text,
     xplan_wirdausgeglichendurchspe text,
+    xplan_istverdachtsflaeche text,
+    xplan_nummer text,
     CONSTRAINT xplan_fp_kennzeichnung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_fp_kennzeichnung','xplan_position','0','GEOMETRY', 2);
@@ -8451,6 +8500,10 @@ CREATE TABLE xplansynarchive.xplan_fp_waldflaeche (
     xplan_wirddargestelltdurch text,
     xplan_gehoertzufp_bereich text,
     xplan_wirdausgeglichendurchspe text,
+    xplan_eigentumsart text,
+    xplan_eigentumsartcode text,
+    xplan_betreten text,
+    xplan_betretencode text,
     CONSTRAINT xplan_fp_waldflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_fp_waldflaeche','xplan_position','0','GEOMETRY', 2);
@@ -13730,7 +13783,7 @@ CREATE TABLE xplansynarchive.xplan_rp_plan (
     xplan_externereferenz text,
     xplan_verfahren text,
     xplan_verfahrencode text,
-    xplan_amtlicherschluessel integer,
+    xplan_amtlicherschluessel text,
     xplan_technischerplanersteller text,
     xplan_genehmigungsbehoerde text,
     CONSTRAINT xplan_rp_plan_pkey PRIMARY KEY (attr_gml_id)
@@ -15289,6 +15342,10 @@ CREATE TABLE xplansynarchive.xplan_so_forstrecht (
     xplan_detailartderfestlegungcode text,
     xplan_name text,
     xplan_nummer text,
+    xplan_funktion text,
+    xplan_funktioncode text,
+    xplan_betreten text,
+    xplan_betretencode text,
     CONSTRAINT xplan_so_forstrecht_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_so_forstrecht','xplan_position','0','GEOMETRY', 2);
@@ -15582,6 +15639,10 @@ CREATE TABLE xplansynarchive.xplan_so_plan (
     xplan_technischerplanersteller text,
     xplan_gemeinde text,
     xplan_planaufstellendegemeinde text,
+	xplan_versionbaugbdatum date,
+	xplan_versionbaugbtext text,
+	xplan_versionsonstrechtsgrundlagedatum date,
+	xplan_versionsonstrechtsgrundlagetext text,
     CONSTRAINT xplan_so_plan_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_so_plan','xplan_raeumlichergeltungsbereich','0','GEOMETRY', 2);
