@@ -21,7 +21,7 @@ public class BpDachgestaltungFlattenerTest {
                                                                "BP_BAUGEBTF" );
         XplanFlattenProperty expr = new XplanFlattenProperty( new Xpath( "xplan:dachgestaltung" ) );
         PrimitiveValue value = expr.evaluate( feature );
-        assertEquals( "[Dachneigung: 7, Dachneigung Min: 9, Dachneigung Max: 90, Dachneigung Zwingend: 8, Dachform: Kegeldach]",
+        assertEquals( "[Dachneigung: 7|Dachneigung Min: 9|Dachneigung Max: 90|Dachneigung Zwingend: 8|Dachform: Kegeldach]",
                       value.toString() );
     }
 
