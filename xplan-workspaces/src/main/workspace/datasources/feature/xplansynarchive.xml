@@ -214,6 +214,103 @@
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
   </FeatureTypeMapping>
+  <FeatureTypeMapping name="xplan:BP_AbweichungVonBaugrenze" table="xplansynarchive.xplan_bp_abweichungvonbaugrenze">
+    <FIDMapping prefix="XPLAN_BP_ABWEICHUNGVONBAUGRENZE_">
+      <Column name="attr_gml_id" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
+    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
+    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
+    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
+    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
+    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
+    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
+    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
+    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
+    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
+    <Primitive path="xplan:text" mapping="xplan_text" />
+    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
+    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
+    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
+    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
+    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
+    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
+    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
+    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
+    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
+    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
+    <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent" />
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet" />
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent" />
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche" />
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze" />
+    <Primitive path="xplan:wirdAusgeglichenDurchMassnahme" mapping="xplan_wirdausgeglichendurchmassnahme" />
+    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
+    <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
+    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
+    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
+    <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
+    <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
+    <Primitive path="xplan:wirdAusgeglichenDurchABE" mapping="xplan_wirdausgeglichendurchabe" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEMassnahme" mapping="xplan_wirdausgeglichendurchspemassnahme" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
+  </FeatureTypeMapping>
+  <FeatureTypeMapping name="xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche" table="xplansynarchive.xplan_bp_abweichungvonueberbauberergrundstuecksflaeche">
+    <FIDMapping prefix="XPLAN_BP_ABWEICHUNGVONUEBERBAUBARERGRUNDSTUECKSFLAECHE_">
+      <Column name="attr_gml_id" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
+    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
+    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
+    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
+    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
+    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
+    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
+    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
+    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
+    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
+    <Primitive path="xplan:text" mapping="xplan_text" />
+    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
+    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
+    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
+    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
+    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
+    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
+    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
+    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
+    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
+    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
+    <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent" />
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet" />
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent" />
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche" />
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze" />
+    <Primitive path="xplan:wirdAusgeglichenDurchMassnahme" mapping="xplan_wirdausgeglichendurchmassnahme" />
+    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
+    <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
+    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
+    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
+    <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
+    <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
+    <Primitive path="xplan:wirdAusgeglichenDurchABE" mapping="xplan_wirdausgeglichendurchabe" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEMassnahme" mapping="xplan_wirdausgeglichendurchspemassnahme" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+  </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_AnpflanzungBindungErhaltung" table="xplansynarchive.xplan_bp_anpflanzungbindungerhaltung">
     <FIDMapping prefix="XPLAN_BP_ANPFLANZUNGBINDUNGERHALTUNG_">
       <Column name="attr_gml_id" type="string" />
@@ -4501,6 +4598,54 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
     <Primitive path="xplan:gehoertZuBP_Bereich" mapping="xplan_gehoertzubp_bereich" />
   </FeatureTypeMapping>
+  <FeatureTypeMapping name="xplan:BP_RichtungssektorGrenze" table="xplansynarchive.xplan_bp_richtungssektorgrenze">
+    <FIDMapping prefix="XPLAN_BP_RICHTUNGSSEKTORGRENZE_">
+      <Column name="attr_gml_id" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
+    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
+    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
+    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
+    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
+    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
+    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
+    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
+    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
+    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
+    <Primitive path="xplan:text" mapping="xplan_text" />
+    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
+    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
+    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
+    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
+    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
+    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
+    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
+    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
+    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
+    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
+    <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent" />
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet" />
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent" />
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche" />
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze" />
+    <Primitive path="xplan:wirdAusgeglichenDurchMassnahme" mapping="xplan_wirdausgeglichendurchmassnahme" />
+    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
+    <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
+    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
+    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
+    <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
+    <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
+    <Primitive path="xplan:wirdAusgeglichenDurchABE" mapping="xplan_wirdausgeglichendurchabe" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEMassnahme" mapping="xplan_wirdausgeglichendurchspemassnahme" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
+  </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_SchutzPflegeEntwicklungsFlaeche" table="xplansynarchive.xplan_bp_schutzpflegeentwicklungsflaeche">
     <FIDMapping prefix="XPLAN_BP_SCHUTZPFLEGEENTWICKLUNGSFLAECHE_">
       <Column name="attr_gml_id" type="string" />
@@ -4727,6 +4872,55 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPEMassnahme" mapping="xplan_wirdausgeglichendurchspemassnahme" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
     <Primitive path="xplan:gehoertZuBP_Bereich" mapping="xplan_gehoertzubp_bereich" />
+  </FeatureTypeMapping>
+  <FeatureTypeMapping name="xplan:BP_Sichtflaeche" table="xplansynarchive.xplan_bp_sichtflaeche">
+    <FIDMapping prefix="XPLAN_BP_SICHTFLAECHE_">
+      <Column name="attr_gml_id" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
+    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
+    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
+    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
+    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
+    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
+    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
+    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
+    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
+    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
+    <Primitive path="xplan:text" mapping="xplan_text" />
+    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
+    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
+    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
+    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
+    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
+    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
+    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
+    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
+    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
+    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
+    <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent" />
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet" />
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent" />
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche" />
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze" />
+    <Primitive path="xplan:wirdAusgeglichenDurchMassnahme" mapping="xplan_wirdausgeglichendurchmassnahme" />
+    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
+    <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
+    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
+    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
+    <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
+    <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
+    <Primitive path="xplan:wirdAusgeglichenDurchABE" mapping="xplan_wirdausgeglichendurchabe" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEMassnahme" mapping="xplan_wirdausgeglichendurchspemassnahme" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_SpezielleBauweise" table="xplansynarchive.xplan_bp_speziellebauweise">
     <FIDMapping prefix="XPLAN_BP_SPEZIELLEBAUWEISE_">
@@ -6502,6 +6696,107 @@
     <Primitive path="xplan:breite" mapping="xplan_breite" />
     <Primitive path="xplan:breiteUOM" mapping="xplan_breiteuom" />
     <Primitive path="xplan:istSchmal" mapping="xplan_istschmal" />
+  </FeatureTypeMapping>
+  <FeatureTypeMapping name="xplan:BP_ZusatzkontingentLaerm" table="xplansynarchive.xplan_bp_zusatzkontingentlaerm">
+    <FIDMapping prefix="XPLAN_BP_ZUSATZKONTINGENTLAERM_">
+      <Column name="attr_gml_id" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
+    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
+    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
+    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
+    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
+    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
+    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
+    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
+    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
+    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
+    <Primitive path="xplan:text" mapping="xplan_text" />
+    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
+    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
+    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
+    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
+    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
+    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
+    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
+    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
+    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
+    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
+    <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent" />
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet" />
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent" />
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche" />
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze" />
+    <Primitive path="xplan:wirdAusgeglichenDurchMassnahme" mapping="xplan_wirdausgeglichendurchmassnahme" />
+    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
+    <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
+    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
+    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
+    <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
+    <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
+    <Primitive path="xplan:wirdAusgeglichenDurchABE" mapping="xplan_wirdausgeglichendurchabe" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEMassnahme" mapping="xplan_wirdausgeglichendurchspemassnahme" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
+    <Primitive path="xplan:bezeichnung" mapping="xplan_bezeichnung" />
+    <Primitive path="xplan:richtungssektor" mapping="xplan_richtungssektor" />
+  </FeatureTypeMapping>
+  <FeatureTypeMapping name="xplan:BP_ZusatzkontingentLaermFlaeche" table="xplansynarchive.xplan_bp_zusatzkontingentlaermflaeche">
+    <FIDMapping prefix="XPLAN_BP_ZUSATZKONTINGENTLAERMFLAECHE_">
+      <Column name="attr_gml_id" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
+    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
+    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
+    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
+    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
+    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
+    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
+    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
+    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
+    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
+    <Primitive path="xplan:text" mapping="xplan_text" />
+    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
+    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
+    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
+    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
+    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
+    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
+    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
+    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
+    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
+    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
+    <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent" />
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet" />
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent" />
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche" />
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze" />
+    <Primitive path="xplan:wirdAusgeglichenDurchMassnahme" mapping="xplan_wirdausgeglichendurchmassnahme" />
+    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
+    <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
+    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
+    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
+    <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
+    <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
+    <Primitive path="xplan:wirdAusgeglichenDurchABE" mapping="xplan_wirdausgeglichendurchabe" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEMassnahme" mapping="xplan_wirdausgeglichendurchspemassnahme" />
+    <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Abgrabung" table="xplansynarchive.xplan_fp_abgrabung">
     <FIDMapping prefix="XPLAN_FP_ABGRABUNG_">
@@ -15807,6 +16102,58 @@
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
+  <FeatureTypeMapping name="xplan:SO_Bauverbotszone" table="xplansynarchive.xplan_so_bauverbotszone">
+    <FIDMapping prefix="XPLAN_SO_BAUVERBOTSZONE_">
+      <Column name="attr_gml_id" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
+    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
+    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
+    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
+    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
+    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
+    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
+    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
+    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
+    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
+    <Primitive path="xplan:text" mapping="xplan_text" />
+    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
+    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
+    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
+    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
+    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
+    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
+    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
+    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
+    <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
+    <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
+    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
+    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
+    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
+    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
+    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
+    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
+    <Primitive path="xplan:sonstRechtscharakter" mapping="xplan_sonstrechtscharakter" />
+    <Primitive path="xplan:sonstRechtscharakterCode" mapping="xplan_sonstrechtscharaktercode" />
+    <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
+    <Primitive path="xplan:artDerFestlegung" mapping="xplan_artderfestlegung" />
+    <Primitive path="xplan:artDerFestlegungCode" mapping="xplan_artderfestlegungcode" />
+    <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung" />
+    <Primitive path="xplan:detailArtDerFestlegungCode" mapping="xplan_detailartderfestlegungcode" />
+    <Primitive path="xplan:rechtlicheGrundlage" mapping="xplan_rechtlichegrundlage" />
+    <Primitive path="xplan:rechtlicheGrundlageCode" mapping="xplan_rechtlichegrundlagecode" />
+    <Primitive path="xplan:name" mapping="xplan_name" />
+    <Primitive path="xplan:nummer" mapping="xplan_nummer" />
+  </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:SO_Bereich" table="xplansynarchive.xplan_so_bereich">
     <FIDMapping prefix="XPLAN_SO_BEREICH_">
       <Column name="attr_gml_id" type="string" />
@@ -16061,6 +16408,56 @@
     <Primitive path="xplan:durchfuehrungStartDatum" mapping="xplan_durchfuehrungstartdatum" />
     <Primitive path="xplan:durchfuehrungEndDatum" mapping="xplan_durchfuehrungenddatum" />
     <Primitive path="xplan:traegerMassnahme" mapping="xplan_traegermassnahme" />
+  </FeatureTypeMapping>
+  <FeatureTypeMapping name="xplan:SO_Gewaesser" table="xplansynarchive.xplan_so_gewaesser">
+    <FIDMapping prefix="XPLAN_SO_GEWAESSER_">
+      <Column name="attr_gml_id" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
+    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
+    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
+    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
+    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
+    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
+    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
+    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
+    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
+    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
+    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
+    <Primitive path="xplan:text" mapping="xplan_text" />
+    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
+    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
+    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
+    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
+    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
+    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
+    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
+    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
+    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift" />
+    <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung" />
+    <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung" />
+    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
+    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
+    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
+    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
+    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
+    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
+    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
+    <Primitive path="xplan:sonstRechtscharakter" mapping="xplan_sonstrechtscharakter" />
+    <Primitive path="xplan:sonstRechtscharakterCode" mapping="xplan_sonstrechtscharaktercode" />
+    <Geometry path="xplan:position" mapping="xplan_position" />
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
+    <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
+    <Primitive path="xplan:artDerFestlegung" mapping="xplan_artderfestlegung" />
+    <Primitive path="xplan:artDerFestlegungCode" mapping="xplan_artderfestlegungcode" />
+    <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung" />
+    <Primitive path="xplan:detailArtDerFestlegungCode" mapping="xplan_detailartderfestlegungcode" />
+    <Primitive path="xplan:name" mapping="xplan_name" />
+    <Primitive path="xplan:nummer" mapping="xplan_nummer" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:SO_Grenze" table="xplansynarchive.xplan_so_grenze">
     <FIDMapping prefix="XPLAN_SO_GRENZE_">
