@@ -61,7 +61,7 @@ abstract class AbstractFlattener implements Flattener {
         sb.append( "[" );
         for ( Pair<String, String> property : properties ) {
             if ( properties.indexOf( property ) > 0 )
-                sb.append( ", " );
+                sb.append( "|" );
             sb.append( property.first ).append( ": " ).append( property.second );
         }
         sb.append( "]" );
