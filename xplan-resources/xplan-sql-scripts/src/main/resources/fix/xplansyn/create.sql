@@ -297,6 +297,7 @@ CREATE TABLE xplansyn.xplan_bp_abweichungvonueberbauberergrundstuecksflaeche (
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
+    xplan_flaechenschluss text,
     CONSTRAINT xplan_bp_baugrenze_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_bp_abweichungvonueberbauberergrundstuecksflaeche','xplan_position','0','GEOMETRY', 2);
@@ -4731,6 +4732,54 @@ CREATE TABLE xplansyn.xplan_bp_schutzpflegeentwicklungsmassnahme (
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_bp_schutzpflegeentwicklungsmassnahme','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_108 ON xplan_bp_schutzpflegeentwicklungsmassnahme USING GIST ( xplan_position  );
+CREATE TABLE xplansyn.xplan_bp_sichtflaeche (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+	xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_uuid text,
+    xplan_text text,
+    xplan_rechtsstand text,
+    xplan_rechtsstandcode text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
+    xplan_textabschnitte text,
+    xplan_begruendungabschnitte text,
+    xplan_gliederung1 text,
+    xplan_gliederung2 text,
+    xplan_ebene integer,
+    xplan_gehoertzubereich text,
+    xplan_hatgenerattribut text,
+    xplan_aufschrift text,
+    xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
+    xplan_wirdausgeglichendurchmassnahme text,
+    xplan_hoehenangabe text,
+    xplan_externereferenz text,
+    xplan_wirddargestelltdurch text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_wirdausgeglichendurchabe text,
+    xplan_wirdausgeglichendurchspemassnahme text,
+    xplan_wirdausgeglichendurchspeflaeche text,
+    xplan_flaechenschluss text,
+    CONSTRAINT xplan_bp_baugrenze_pkey PRIMARY KEY (attr_gml_id)
+);
+SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_bp_sichtflaeche','xplan_position','0','GEOMETRY', 2);
+CREATE INDEX spatial_idx_498 ON xplan_bp_sichtflaeche USING GIST ( xplan_position  );
 CREATE TABLE xplansyn.xplan_bp_schutzgebiet (
     attr_gml_id text,
     xplan_gmlid text,
@@ -6646,6 +6695,7 @@ CREATE TABLE xplansyn.xplan_bp_zusatzkontingentlaermflaeche (
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
+    xplan_flaechenschluss text,
     CONSTRAINT xplan_bp_baugrenze_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_bp_zusatzkontingentlaermflaeche','xplan_position','0','GEOMETRY', 2);
@@ -15764,6 +15814,57 @@ CREATE TABLE xplansyn.xplan_rp_zentralerort (
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_rp_zentralerort','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_405 ON xplan_rp_zentralerort USING GIST ( xplan_position  );
+CREATE TABLE xplansyn.xplan_so_bauverbotszone (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+	xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_uuid text,
+    xplan_text text,
+    xplan_rechtsstand text,
+    xplan_rechtsstandcode text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
+    xplan_textabschnitte text,
+    xplan_begruendungabschnitte text,
+    xplan_gliederung1 text,
+    xplan_gliederung2 text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_aufschrift text,
+    xplan_ebene integer,
+    xplan_hatgenerattribut text,
+    xplan_hoehenangabe text,
+    xplan_externereferenz text,
+    xplan_gehoertzubereich text,
+    xplan_wirddargestelltdurch text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_sonstrechtscharakter text,
+    xplan_sonstrechtscharaktercode text,
+    xplan_flaechenschluss text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
+    xplan_artderfestlegung text,
+    xplan_artderfestlegungcode text,
+    xplan_detailartderfestlegung text,
+    xplan_detailartderfestlegungcode text,
+    xplan_rechtlichegrundlage text,
+    xplan_rechtlichegrundlagecode text,
+    xplan_name text,
+    xplan_nummer text,
+    CONSTRAINT xplan_so_bodenschutzrecht_pkey PRIMARY KEY (attr_gml_id)
+);
+SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_so_bauverbotszone','xplan_position','0','GEOMETRY', 2);
+CREATE INDEX spatial_idx_499 ON xplan_so_bauverbotszone USING GIST ( xplan_position  );
 CREATE TABLE xplansyn.xplan_so_bereich (
     attr_gml_id text,
     xplan_gmlid text,
@@ -16014,6 +16115,55 @@ CREATE TABLE xplansyn.xplan_so_gebiet (
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_so_gebiet','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_410 ON xplan_so_gebiet USING GIST ( xplan_position  );
+CREATE TABLE xplansyn.xplan_so_gewaesser (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+	xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_uuid text,
+    xplan_text text,
+    xplan_rechtsstand text,
+    xplan_rechtsstandcode text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
+    xplan_textabschnitte text,
+    xplan_begruendungabschnitte text,
+    xplan_gliederung1 text,
+    xplan_gliederung2 text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_aufschrift text,
+    xplan_ebene integer,
+    xplan_hatgenerattribut text,
+    xplan_hoehenangabe text,
+    xplan_externereferenz text,
+    xplan_gehoertzubereich text,
+    xplan_wirddargestelltdurch text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_sonstrechtscharakter text,
+    xplan_sonstrechtscharaktercode text,
+    xplan_flaechenschluss text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
+    xplan_artderfestlegung text,
+    xplan_artderfestlegungcode text,
+    xplan_detailartderfestlegung text,
+    xplan_detailartderfestlegungcode text,
+    xplan_name text,
+    xplan_nummer text,
+    CONSTRAINT xplan_so_bodenschutzrecht_pkey PRIMARY KEY (attr_gml_id)
+);
+SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_so_gewaesser','xplan_position','0','GEOMETRY', 2);
+CREATE INDEX spatial_idx_500 ON xplan_so_gewaesser USING GIST ( xplan_position  );
 CREATE TABLE xplansyn.xplan_so_grenze (
     attr_gml_id text,
     xplan_gmlid text,
