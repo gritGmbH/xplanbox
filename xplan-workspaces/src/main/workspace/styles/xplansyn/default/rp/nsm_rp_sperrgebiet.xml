@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+  <sld:NamedLayer>
+    <sld:Name>NSM_RP_Sperrgebiet</sld:Name>
+    <sld:UserStyle>
+      <sld:Name>vollflaechig</sld:Name>
+      <sld:FeatureTypeStyle>
+        <sld:FeatureTypeName>xplan:RP_Sperrgebiet</sld:FeatureTypeName>
+
+        <sld:Rule>
+          <sld:Name>VR_Sperrgebiet</sld:Name>
+          <sld:Title>VR_Sperrgebiet</sld:Title>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Fill>
+              <sld:GraphicFill>
+                <sld:Graphic>
+                  <sld:ExternalGraphic>
+                    <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                      xlink:href="../../symbols/RROP/RROP_Sperrgebiet_VR.svg" />
+                    <sld:Format>image/svg</sld:Format>
+                  </sld:ExternalGraphic>
+                  <sld:Size>22</sld:Size>
+                  <sld:Rotation>0</sld:Rotation>
+                </sld:Graphic>
+              </sld:GraphicFill>
+            </sld:Fill>
+            <sld:Stroke>
+              <sld:CssParameter name="stroke">#666666</sld:CssParameter>
+              <sld:CssParameter name="stroke-width">1.5</sld:CssParameter>
+              <sld:CssParameter name="stroke-opacity">1</sld:CssParameter>
+            </sld:Stroke>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+        <sld:Rule>
+          <sld:Name>vb_Sperrgebiet</sld:Name>
+          <sld:Title>vb_Sperrgebiet</sld:Title>
+          <sld:PolygonSymbolizer>
+            <Geometry>
+              <ogc:PropertyName>xplan:position</ogc:PropertyName>
+            </Geometry>
+            <sld:Fill>
+              <sld:GraphicFill>
+                <sld:Graphic>
+                  <sld:ExternalGraphic>
+                    <sld:OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                      xlink:href="../../symbols/RROP/RROP_Sperrgebiet_VR.svg" />
+                    <sld:Format>image/svg</sld:Format>
+                  </sld:ExternalGraphic>
+                  <sld:Size>22</sld:Size>
+                  <sld:Rotation>0</sld:Rotation>
+                </sld:Graphic>
+              </sld:GraphicFill>
+            </sld:Fill>
+          </sld:PolygonSymbolizer>
+        </sld:Rule>
+
+
+      </sld:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+</sld:StyledLayerDescriptor>
+
+     

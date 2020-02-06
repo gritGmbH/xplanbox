@@ -6,10 +6,13 @@ import org.apache.commons.cli.*;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static de.latlon.xplan.validator.cli.options.CliOptionsParser.CLIParams.*;
-
+import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
+import static de.latlon.xplan.validator.web.shared.ValidationType.SEMANTIC;
+import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
 
 /**
  * Parses CLI Options from argument array
@@ -37,9 +40,9 @@ public class CliOptionsParser {
     File archive = parseArchive( commandLine );
     String validationName = parseValidationName( commandLine, archive );
     List<ValidationOption> voOptions = parseValidationOptions( commandLine.getOptionValues( is( VO ) ) );
-    ValidationType validationType = parseValidationTypeSemanticIfNone(
+    List<ValidationType> validationTypes = parseValidationTypeSemanticIfNone(
         commandLine.getOptionValue( is( CLIParams.VALIDATE_TYPE ) ) );
-    return new CliOptions( validationName, voOptions, archive, validationType );
+    return new CliOptions( validationName, voOptions, archive, validationTypes );
   }
 
   private File parseArchive( CommandLine commandLine ) {
@@ -60,7 +63,7 @@ public class CliOptionsParser {
     Option nameOption = new Option( is( NAME ), HAS_ARG, "name of the validation" );
     Option voOption = new Option( is( VO ), HAS_ARG, "validation options" );
     Option xqOption = new Option( is( XQUERY ), HAS_ARG, "xquery file path" );
-    Option vTypeOption = new Option( is( VALIDATE_TYPE ), HAS_ARG, "" );
+    Option vTypeOption = new Option( is( VALIDATE_TYPE ), HAS_ARG, "values: syntax, geometric, semantic. multiple types must be comma separated" );
     nameOption.setRequired( false );
     zipFileNameOption.setRequired( true );
     voOption.setRequired( false );
@@ -72,19 +75,18 @@ public class CliOptionsParser {
     return options;
   }
 
-  private ValidationType parseValidationTypeSemanticIfNone( String s ) {
-    if ( s == null )
-      return ValidationType.SEMANTIC;
-    switch ( s ) {
-    case "syntax":
-      return ValidationType.SYNTACTIC;
-    case "geometric":
-      return ValidationType.GEOMETRIC;
-    case "semantic":
-      return ValidationType.SEMANTIC;
-    default:
-      return ValidationType.SEMANTIC;
+  private List<ValidationType> parseValidationTypeSemanticIfNone( String s ) {
+    if ( s == null ) {
+      return Arrays.asList( ValidationType.values() );
     }
+    List<ValidationType> validationTypes = new ArrayList<>();
+    if ( s.contains( "syntax" ) )
+      validationTypes.add( SYNTACTIC );
+    if ( s.contains( "geometric" ) )
+      validationTypes.add( GEOMETRIC );
+    if ( s.contains( "semantic" ) )
+      validationTypes.add( SEMANTIC );
+    return validationTypes;
   }
 
 
@@ -120,7 +122,7 @@ public class CliOptionsParser {
 
     private final String option;
 
-    private CLIParams( String option ) {
+    CLIParams( String option ) {
       this.option = option;
     }
 

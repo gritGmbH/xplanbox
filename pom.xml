@@ -22,6 +22,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.version>4.3.23.RELEASE</spring.version>
     <spring.security.version>4.2.12.RELEASE</spring.security.version>
+    <skip.unit.tests>false</skip.unit.tests>
   </properties>
 
   <modules>
@@ -98,6 +99,7 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.22.2</version>
           <configuration>
+            <skip>${skip.unit.tests}</skip>
             <excludes>
               <exclude>**/*IT*</exclude>
             </excludes>

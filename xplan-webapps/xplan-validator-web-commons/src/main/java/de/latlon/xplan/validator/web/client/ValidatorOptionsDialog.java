@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -26,6 +27,7 @@ import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationSummary;
 import de.latlon.xplan.validator.web.shared.ValidationType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
@@ -43,19 +45,25 @@ public class ValidatorOptionsDialog extends FormPanel {
 
     private static final ValidatorWebCommonsMessages messages = GWT.create( ValidatorWebCommonsMessages.class );
 
+    private static final String SKIP_FLAECHENSCHLUSS = "skip-flaechenschluss";
+
+    private static final String SKIP_GELTUNGSBEREICH = "skip-geltungsbereich";
+
     private final ValidationServiceAsync validationService = GWT.create( ValidationService.class );
 
     private final MapPreviewConfigServiceAsync mapPreviewConfigService = GWT.create( MapPreviewConfigService.class );
 
     private final TextBox validationName = new TextBox();
 
-    private final RadioButton validationTypeSyn = new RadioButton( "VALTYPE", messages.selectionValidationTypeSyn() );
+    private final CheckBox validationTypeSyn = new CheckBox( messages.selectionValidationTypeSyn() );
 
-    private final RadioButton validationTypeSem = new RadioButton( "VALTYPE", messages.selectionValidationTypeSem() );
+    private final CheckBox validationTypeSem = new CheckBox( messages.selectionValidationTypeSem() );
 
-    private final RadioButton validationTypeGeom = new RadioButton( "VALTYPE", messages.selectionValidationTypeGeom() );
+    private final CheckBox validationTypeGeom = new CheckBox( messages.selectionValidationTypeGeom() );
 
-    private final ExtendedOptionsPanel extendedOptions = new ExtendedOptionsPanel();
+    private CheckBox skipFlaechenschluss = new CheckBox( messages.skipFlaechenschluss() );
+
+    private CheckBox skipGeltungsbereich = new CheckBox( messages.skipGeltungsbereich() );
 
     private final ReportDownloadFinishedListener reportDownloadFinishedListener;
 
@@ -99,24 +107,35 @@ public class ValidatorOptionsDialog extends FormPanel {
         mainPanel.setSpacing( 5 );
         mainPanel.setStyleName( "valOptionsPanel" );
 
+        mainPanel.add( createTitel() );
         mainPanel.add( createLabel( messages.fieldLabelRunName() ) );
         mainPanel.add( validationName );
         mainPanel.add( createLabel( messages.selectionValidationTypeLabel() ) );
         mainPanel.add( validationTypeSem );
         mainPanel.add( validationTypeGeom );
+        mainPanel.add( skipFlaechenschluss );
+        mainPanel.add( skipGeltungsbereich );
         mainPanel.add( validationTypeSyn );
-        mainPanel.add( createLabel( "Einstellungen" ) );
-        mainPanel.add( extendedOptions );
         mainPanel.add( createValidationStartButton() );
         add( mainPanel );
     }
 
     private void initFormFields( String fileName ) {
         validationName.setText( fileName != null && !fileName.isEmpty() ? fileName : messages.defaultRunName() );
-        validationTypeSyn.setTitle( messages.tooltipValidationTypeSyn() );
-        validationTypeGeom.setTitle( messages.tooltipValidationTypeGeom() );
-        validationTypeSem.setTitle( messages.tooltipValidationTypeSem() );
-        validationTypeSem.setChecked( true );
+        validationName.setWidth( "100%" );
+        validationTypeSyn.setEnabled( false );
+        validationTypeSyn.setValue( true );
+        validationTypeSem.setValue( true );
+        validationTypeGeom.setValue( true );
+
+        skipFlaechenschluss.setStyleName( "valOption" );
+        skipGeltungsbereich.setStyleName( "valOption" );
+    }
+
+    private Label createTitel() {
+        Label label = new Label( messages.validationOptionTitle() );
+        label.setStyleName( "valOptionTitle" );
+        return label;
     }
 
     private Label createLabel( String text ) {
@@ -136,20 +155,25 @@ public class ValidatorOptionsDialog extends FormPanel {
         } );
     }
 
-    private ValidationType retrieveValidationType() {
-        if ( validationTypeSyn.isChecked() )
-            return SYNTACTIC;
-        if ( validationTypeGeom.isChecked() )
-            return GEOMETRIC;
-        if ( validationTypeSem.isChecked() )
-            return SEMANTIC;
-        return null;
+    private List<ValidationType> retrieveValidationTypes() {
+        List<ValidationType> validationTypes = new ArrayList<ValidationType>();
+        if ( validationTypeSyn.getValue() )
+            validationTypes.add( SYNTACTIC );
+        if ( validationTypeGeom.getValue() )
+            validationTypes.add( GEOMETRIC );
+        if ( validationTypeSem.getValue() )
+            validationTypes.add( SEMANTIC );
+        return validationTypes;
     }
 
     private ValidationSettings createValidationSettings() {
         String name = validationName.getText();
-        ValidationType validationType = retrieveValidationType();
-        List<ValidationOption> options = extendedOptions.retrieveExtendedOptionsStatus();
+        List<ValidationType> validationType = retrieveValidationTypes();
+        List<ValidationOption> options = new ArrayList<ValidationOption>();
+        if ( skipFlaechenschluss.getValue() )
+            options.add( new ValidationOption( SKIP_FLAECHENSCHLUSS, Boolean.TRUE.toString() ) );
+        if ( skipGeltungsbereich.getValue() )
+            options.add( new ValidationOption( SKIP_GELTUNGSBEREICH, Boolean.TRUE.toString() ) );
         return new ValidationSettings( name, validationType, options );
     }
 

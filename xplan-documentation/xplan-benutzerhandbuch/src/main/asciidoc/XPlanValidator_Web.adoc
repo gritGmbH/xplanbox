@@ -22,37 +22,32 @@ verfügbar kann mit einem Web-Browser aufgerufen werden.
 [[xplanvalidator-web-hinzufuegen]]
 ===== XPlanArchiv Hinzufügen
 
-Ein im lokalen Dateisystem vorliegendes XPlanArchiv kann über den Button _Durchsuchen_ ausgewählt und über
-die Auswahl _Hochladen und Validierungsoption einstellen_ auf den Server
-hochgeladen werden.
+Ein im lokalen Dateisystem vorliegendes XPlanArchiv oder eine XML- oder GML-Datei kann über den Button _Durchsuchen_ ausgewählt und über
+die Auswahl _Hochladen und Validierungsoption einstellen_ auf den Server hochgeladen werden.
 
-Nachdem die Datei erfolgreich übertragen wurde, erhält der Benutzer einen Hinweis, dass das XPlanArchiv in die Web-Anwendung
-geladen wurde.
+Nachdem die Datei erfolgreich übertragen wurde, erhält der Benutzer einen Hinweis, dass das XPlanArchiv oder die Datei in die Web-Anwendung geladen wurde.
 
 [[xplanvalidator-web--bezeichnung-der-validierung]]
-===== Bezeichnung der Validierung
+===== Bezeichnung für den Report
 
-Für jede Validierung kann eine Bezeichnung vergeben werden, sodass der
-Durchlauf zu einem späterem Zeitpunkt eindeutig zugeordnet werden kann.
+Für den generierten Report kann eine Bezeichnung vergeben werden, so dass eine Validierung zu einem späterem Zeitpunkt eindeutig zugeordnet werden kann.
 
 [[xplanvalidator-web-validierungsart]]
 ===== Validierungstyp
 
-Eine der folgenden Validierungstypen muss ausgewählt werden:
+Folgende Validierungstypen können ausgewählt werden:
 
-  * Einfache Validierung: Beinhaltet nur die syntaktische Validierung
-  * Geometrische Validierung: Beinhaltet die syntaktische und geometrische Validierung
-  * Vollständige Validierung: Beinhaltet die syntaktische, geometrische und semantische Validierung
+  * geometrisch
+  * synatktisch
+  * syntaktisch: Die syntaktische Validierung ist immer aktiviert und ein positives Ergebnis Voraussetzung für die Ausführung der anderen Validierungstypen.
 
 [[xplanvalidator-web-validierungsoption]]
 ===== Validierungsoptionen
 
 Die folgenden Validierungsoptionen für die geometrische Validierung können ausgewählt werden:
 
-  * Selbstüberschneidungen ignorieren
-  * falsche Laufrichtung von Polygonen ignorieren
-  * Geometrische Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen
-  * Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen
+  * Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen
+  * Prüfung des Geltungsbereichs (2.2.3.1) überspringen
 
 [[xplanvalidator-web-validierung]]
 ===== Validierung

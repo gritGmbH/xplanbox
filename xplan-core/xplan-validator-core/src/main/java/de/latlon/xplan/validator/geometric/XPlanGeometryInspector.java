@@ -64,10 +64,6 @@ class XPlanGeometryInspector implements GeometryInspector {
 
     private static final Logger LOG = LoggerFactory.getLogger( XPlanGeometryInspector.class );
 
-    private static final String IGNORE_ORIENTATION_PARAMETER = "ignore-orientation";
-
-    private static final String IGNORE_SELF_INTERSECTION_PARAMETER = "ignore-self-intersection";
-
     private final com.vividsolutions.jts.geom.GeometryFactory jtsFactory;
 
     private final LinearizationCriterion crit;
@@ -201,14 +197,13 @@ class XPlanGeometryInspector implements GeometryInspector {
         return geom;
     }
 
-    Curve checkSelfIntersection( Ring ring ) {
+    void checkSelfIntersection( Ring ring ) {
         LineString jtsLineString = getJTSLineString( ring );
         boolean selfIntersection = !jtsLineString.isSimple();
         if ( selfIntersection ) {
             String msg = createMessage( "2.2.2.1: Selbst\u00fcberschneidung." );
             createError( msg );
         }
-        return ring;
     }
 
     Ring checkClosed( Ring ring ) {
@@ -420,27 +415,6 @@ class XPlanGeometryInspector implements GeometryInspector {
         return jtsFactory.createLinearRing( coordinates.toArray( new Coordinate[coordinates.size()] ) );
     }
 
-    private boolean isOrientationIgnored() {
-        if ( getVoOptions() != null && !getVoOptions().isEmpty() ) {
-            for ( ValidationOption voOption : getVoOptions() ) {
-                if ( IGNORE_ORIENTATION_PARAMETER.equals( voOption.getName() ) )
-                    return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean isSelfIntersectionIgnored() {
-        List<ValidationOption> options = getVoOptions(); // better support for mocking
-        if ( options != null && !options.isEmpty() ) {
-            for ( ValidationOption voOption : options ) {
-                if ( IGNORE_SELF_INTERSECTION_PARAMETER.equals( voOption.getName() ) )
-                    return true;
-            }
-        }
-        return false;
-    }
-
     private GeometricPrimitive inspect( GeometricPrimitive geom )
                     throws GeometryInspectionException {
 
@@ -480,15 +454,12 @@ class XPlanGeometryInspector implements GeometryInspector {
         switch ( inspected.getCurveType() ) {
         case Curve:
         case LineString: {
-            if ( !isOrientationIgnored() ) {
-                inspected = checkOrientation( geom, inspected );
-            }
+            inspected = checkOrientation( geom, inspected );
             break;
         }
         case Ring: {
             inspected = checkClosed( (Ring) inspected );
-            if ( !isSelfIntersectionIgnored() )
-                inspected = checkSelfIntersection( (Ring) inspected );
+            checkSelfIntersection( (Ring) inspected );
             break;
         }
         case OrientableCurve:
@@ -541,16 +512,8 @@ class XPlanGeometryInspector implements GeometryInspector {
     }
 
     private PolygonPatch inspect( PolygonPatch patch ) {
-
-        PolygonPatch inspected;
-        if ( !isOrientationIgnored() )
-            inspected = checkRingOrientations( patch );
-        else
-            inspected = patch;
-
-        if ( !isSelfIntersectionIgnored() ) {
-            checkSelfIntersection( inspected );
-        }
+        PolygonPatch inspected = checkRingOrientations( patch );
+        checkSelfIntersection( inspected );
         return inspected;
     }
 

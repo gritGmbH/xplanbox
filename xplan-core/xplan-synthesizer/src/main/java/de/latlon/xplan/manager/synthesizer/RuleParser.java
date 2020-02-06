@@ -3,6 +3,7 @@ package de.latlon.xplan.manager.synthesizer;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.latlon.xplan.manager.synthesizer.expression.Ausrichtung;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.StringConstant;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanBesondZweckbest;
@@ -68,7 +69,7 @@ class RuleParser {
     }
 
     private Expression parseXPlanFlattenFeature( List<String> args ) {
-        return new XplanFlattenProperty( parse( args.get( 0 ) ), xPlanSynthesizer );
+        return new XplanFlattenProperty( parse( args.get( 0 ) ) );
     }
 
     private Expression parseXPlanCodeNormalize( List<String> args ) {
@@ -122,6 +123,10 @@ class RuleParser {
         String codeListFile = trimString( args.get( 1 ) );
         String codeListName = args.size() > 2 ? trimString( args.get( 2 ) ) : null;
         return new XPlanExternalCodeLookup( expression, codeListFile, codeListName, xPlanSynthesizer.getExternalConfigurationFile() );
+    }
+
+    private Expression parseAusrichtungLookup( List<String> args ) {
+        return new Ausrichtung( parse( args.get( 0 ) ) );
     }
 
     private Expression parseFunction( String functionName, List<String> args ) {
@@ -192,6 +197,9 @@ class RuleParser {
             break;
         case "xplanExternalCodeLookup":
             result = parseXPlanExternalCodeLookup( args );
+            break;
+        case "ausrichtungLookup":
+            result = parseAusrichtungLookup( args );
             break;
         default:
             throw new RuntimeException( String.format( "Expression %s is not expected.", functionName ) );
