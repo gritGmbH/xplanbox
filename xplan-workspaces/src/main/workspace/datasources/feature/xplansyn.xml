@@ -10807,6 +10807,8 @@
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typCode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Bereich" table="xplansyn.xplan_rp_bereich">
     <FIDMapping prefix="XPLAN_RP_BEREICH_">
@@ -10901,6 +10903,8 @@
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Einzelhandel" table="xplansyn.xplan_rp_einzelhandel">
     <FIDMapping prefix="XPLAN_RP_EINZELHANDEL_">
@@ -10952,6 +10956,8 @@
     <Primitive path="xplan:istSiedlungsbeschraenkung" mapping="xplan_istsiedlungsbeschraenkung" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Energieversorgung" table="xplansyn.xplan_rp_energieversorgung">
     <FIDMapping prefix="XPLAN_RP_ENERGIEVERSORGUNG_">
@@ -11013,6 +11019,8 @@
     <Primitive path="xplan:primaerenergieTypCode" mapping="xplan_primaerenergietypcode" />
     <Primitive path="xplan:spannung" mapping="xplan_spannung" />
     <Primitive path="xplan:spannungCode" mapping="xplan_spannungcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Entsorgung" table="xplansyn.xplan_rp_entsorgung">
     <FIDMapping prefix="XPLAN_RP_ENTSORGUNG_">
@@ -11073,6 +11081,8 @@
     <Primitive path="xplan:typAW" mapping="xplan_typaw" />
     <Primitive path="xplan:typAWCode" mapping="xplan_typawcode" />
     <Primitive path="xplan:istAufschuettungAblagerung" mapping="xplan_istaufschuettungablagerung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Erholung" table="xplansyn.xplan_rp_erholung">
     <FIDMapping prefix="XPLAN_RP_ERHOLUNG_">
@@ -11128,6 +11138,8 @@
     <Primitive path="xplan:typTourismusCode" mapping="xplan_typtourismuscode" />
     <Primitive path="xplan:besondererTyp" mapping="xplan_besonderertyp" />
     <Primitive path="xplan:besondererTypCode" mapping="xplan_besonderertypcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_ErneuerbareEnergie" table="xplansyn.xplan_rp_erneuerbareenergie">
     <FIDMapping prefix="XPLAN_RP_ERNEUERBAREENERGIE_">
@@ -11179,6 +11191,8 @@
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Entwicklungsschwerpunkte" table="xplansyn.xplan_rp_entwicklungsschwerpunkte">
     <FIDMapping prefix="XPLAN_RP_ENTWICKLUNGSSCHWERPUNKTE_">
@@ -11273,6 +11287,8 @@
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Freiraum" table="xplansyn.xplan_rp_freiraum">
     <FIDMapping prefix="XPLAN_RP_FREIRAUM_">
@@ -11322,6 +11338,8 @@
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:istAusgleichsgebiet" mapping="xplan_istausgleichsgebiet" />
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Funktionszuweisung" table="xplansyn.xplan_rp_funktionszuweisung">
     <FIDMapping prefix="XPLAN_RP_FUNKTIONSZUWEISUNG_">
@@ -11372,6 +11390,8 @@
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
     <Primitive path="xplan:bezeichnung" mapping="xplan_bezeichnung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_FreizeitErholung" table="xplansyn.xplan_rp_freizeiterholung">
     <FIDMapping prefix="XPLAN_RP_FREIZEITERHOLUNG_">
@@ -11518,6 +11538,8 @@
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Gewaesser" table="xplansyn.xplan_rp_gewaesser">
     <FIDMapping prefix="XPLAN_RP_GEWAESSER_">
@@ -11572,6 +11594,8 @@
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
     <Primitive path="xplan:gewaesserTyp" mapping="xplan_gewaessertyp" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Grenze" table="xplansyn.xplan_rp_grenze">
     <FIDMapping prefix="XPLAN_RP_GRENZE_">
@@ -11629,6 +11653,8 @@
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:spezifischerTyp" mapping="xplan_spezifischertyp" />
     <Primitive path="xplan:spezifischerTypCode" mapping="xplan_spezifischertypcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_GruenzugGruenzaesur" table="xplansyn.xplan_rp_gruenzuggruenzaesur">
     <FIDMapping prefix="XPLAN_RP_GRUENZUGGRUENZAESUR_">
@@ -11684,6 +11710,8 @@
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Hochwasserschutz" table="xplansyn.xplan_rp_hochwasserschutz">
     <FIDMapping prefix="XPLAN_RP_HOCHWASSERSCHUTZ_">
@@ -11735,6 +11763,8 @@
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_IndustrieGewerbe" table="xplansyn.xplan_rp_industriegewerbe">
     <FIDMapping prefix="XPLAN_RP_INDUSTRIEGEWERBE_">
@@ -11786,6 +11816,8 @@
     <Primitive path="xplan:istSiedlungsbeschraenkung" mapping="xplan_istsiedlungsbeschraenkung" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Klimaschutz" table="xplansyn.xplan_rp_klimaschutz">
     <FIDMapping prefix="XPLAN_RP_KLIMASCHUTZ_">
@@ -11841,6 +11873,8 @@
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Kommunikation" table="xplansyn.xplan_rp_kommunikation">
     <FIDMapping prefix="XPLAN_RP_KOMMUNIKATION_">
@@ -11893,6 +11927,8 @@
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Kulturlandschaft" table="xplansyn.xplan_rp_kulturlandschaft">
     <FIDMapping prefix="XPLAN_RP_KULTURLANDSCHAFT_">
@@ -11944,6 +11980,8 @@
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_KulturellesSachgut" table="xplansyn.xplan_rp_kulturellessachgut">
     <FIDMapping prefix="XPLAN_RP_KULTURELLESSACHGUT_">
@@ -12037,6 +12075,8 @@
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Laermschutzbereich" table="xplansyn.xplan_rp_laermschutzbereich">
     <FIDMapping prefix="XPLAN_RP_LAERMSCHUTZBEREICH_">
@@ -12140,6 +12180,8 @@
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Legendenobjekt" table="xplansyn.xplan_rp_legendenobjekt">
     <FIDMapping prefix="XPLAN_RP_LEGENDENOBJEKT_">
@@ -13901,6 +13943,8 @@
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_NaturschutzrechtlichesSchutzgebiet" table="xplansyn.xplan_rp_naturschutzrechtlichesschutzgebiet">
     <FIDMapping prefix="XPLAN_RP_NATURSCHUTZRECHTLICHESSCHUTZGEBIET_">
@@ -13961,6 +14005,8 @@
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
     <Primitive path="xplan:istKernzone" mapping="xplan_istkernzone" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Plan" table="xplansyn.xplan_rp_plan">
     <FIDMapping prefix="XPLAN_RP_PLAN_">
@@ -14090,6 +14136,8 @@
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:planungsraumBeschreibung" mapping="xplan_planungsraumbeschreibung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_RadwegWanderweg" table="xplansyn.xplan_rp_radwegwanderweg">
     <FIDMapping prefix="XPLAN_RP_RADWEGWANDERWEG_">
@@ -14141,6 +14189,8 @@
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_RasterplanAenderung" table="xplansyn.xplan_rp_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_RP_RASTERPLANAENDERUNG_">
@@ -14233,6 +14283,8 @@
     <Primitive path="xplan:besondererTypCode" mapping="xplan_besonderertypcode" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Rohstoff" table="xplansyn.xplan_rp_rohstoff">
     <FIDMapping prefix="XPLAN_RP_ROHSTOFF_">
@@ -14296,6 +14348,8 @@
     <Primitive path="xplan:bergbauplanungTypCode" mapping="xplan_bergbauplanungtypcode" />
     <Primitive path="xplan:istAufschuettungAblagerung" mapping="xplan_istaufschuettungablagerung" />
     <Primitive path="xplan:detaillierterRohstoffTyp" mapping="xplan_detaillierterrohstofftyp" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Rohstoffsicherung" table="xplansyn.xplan_rp_rohstoffsicherung">
     <FIDMapping prefix="XPLAN_RP_ROHSTOFFSICHERUNG_">
@@ -14448,6 +14502,8 @@
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:bauhoehenbeschraenkung" mapping="xplan_bauhoehenbeschraenkung" />
     <Primitive path="xplan:istSiedlungsbeschraenkung" mapping="xplan_istsiedlungsbeschraenkung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_SonstigeInfrastruktur" table="xplansyn.xplan_rp_sonstigeinfrastruktur">
     <FIDMapping prefix="XPLAN_RP_SONSTIGEINFRASTRUKTUR_">
@@ -14499,6 +14555,8 @@
     <Primitive path="xplan:istZweckbindung" mapping="xplan_istzweckbindung" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_SonstigerFreiraumschutz" table="xplansyn.xplan_rp_sonstigerfreiraumschutz">
     <FIDMapping prefix="XPLAN_RP_SONSTIGERFREIRAUMSCHUTZ_">
@@ -14548,6 +14606,8 @@
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:istAusgleichsgebiet" mapping="xplan_istausgleichsgebiet" />
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_SonstigerSiedlungsbereich" table="xplansyn.xplan_rp_sonstigersiedlungsbereich">
     <FIDMapping prefix="XPLAN_RP_SONSTIGERSIEDLUNGSBEREICH_">
@@ -14597,6 +14657,8 @@
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:bauhoehenbeschraenkung" mapping="xplan_bauhoehenbeschraenkung" />
     <Primitive path="xplan:istSiedlungsbeschraenkung" mapping="xplan_istsiedlungsbeschraenkung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_SonstigeSiedlungsstruktur" table="xplansyn.xplan_rp_sonstigesiedlungsstruktur">
     <FIDMapping prefix="XPLAN_RP_SONSTIGESIEDLUNGSSTRUKTUR_">
@@ -14793,6 +14855,8 @@
     <Primitive path="xplan:istZweckbindung" mapping="xplan_istzweckbindung" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Sperrgebiet" table="xplansyn.xplan_rp_sperrgebiet">
     <FIDMapping prefix="XPLAN_RP_SPERRGEBIET_">
@@ -14848,6 +14912,8 @@
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Sportanlage" table="xplansyn.xplan_rp_sportanlage">
     <FIDMapping prefix="XPLAN_RP_SPORTANLAGE_">
@@ -14899,6 +14965,8 @@
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Strassenverkehr" table="xplansyn.xplan_rp_strassenverkehr">
     <FIDMapping prefix="XPLAN_RP_STRASSENVERKEHR_">
@@ -15035,6 +15103,8 @@
     <Primitive path="xplan:status" mapping="xplan_status" />
     <Primitive path="xplan:statusCode" mapping="xplan_statuscode" />
     <Primitive path="xplan:bezeichnung" mapping="xplan_bezeichnung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_VorbHochwasserschutz" table="xplansyn.xplan_rp_vorbhochwasserschutz">
     <FIDMapping prefix="XPLAN_RP_VORBHOCHWASSERSCHUTZ_">
@@ -15143,6 +15213,8 @@
     <Primitive path="xplan:imVerbund" mapping="xplan_imverbund" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Wasserverkehr" table="xplansyn.xplan_rp_wasserverkehr">
     <FIDMapping prefix="XPLAN_RP_WASSERVERKEHR_">
@@ -15250,6 +15322,8 @@
     <Primitive path="xplan:istZweckbindung" mapping="xplan_istzweckbindung" />
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Windenergie" table="xplansyn.xplan_rp_windenergie">
     <FIDMapping prefix="XPLAN_RP_WINDENERGIE_">
@@ -15379,6 +15453,8 @@
     <Primitive path="xplan:istSiedlungsbeschraenkung" mapping="xplan_istsiedlungsbeschraenkung" />
     <Primitive path="xplan:typ" mapping="xplan_typ" />
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_ZentralerOrt" table="xplansyn.xplan_rp_zentralerort">
     <FIDMapping prefix="XPLAN_RP_ZENTRALERORT_">
@@ -15438,6 +15514,8 @@
     <Primitive path="xplan:typCode" mapping="xplan_typcode" />
     <Primitive path="xplan:sonstigerTyp" mapping="xplan_sonstigertyp" />
     <Primitive path="xplan:sonstigerTypCode" mapping="xplan_sonstigertypcode" />
+    <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
+    <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:SO_Bereich" table="xplansyn.xplan_so_bereich">
     <FIDMapping prefix="XPLAN_SO_BEREICH_">
