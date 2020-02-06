@@ -1,0 +1,1 @@
+DROP SCHEMA xplan52pre CASCADE;

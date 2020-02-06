@@ -103,6 +103,7 @@ public class DatabaseCreator {
             FileReader xplan41nsm = new FileReader( wsDirectory.toString() + "/sql/fix/xplan41nsm/create.sql" );
             FileReader xplan50 = new FileReader( wsDirectory.toString() + "/sql/fix/xplan50/create.sql" );
             FileReader xplan51 = new FileReader( wsDirectory.toString() + "/sql/fix/xplan51/create.sql" );
+            FileReader xplan52 = new FileReader( wsDirectory.toString() + "/sql/fix/xplan52/create.sql" );
             FileReader xplanSyn = new FileReader( wsDirectory.toString() + "/sql/fix/xplansyn/create.sql" );
 
             FileReader xplan2pre = new FileReader( wsDirectory.toString() + "/sql/pre/xplan2/create.sql" );
@@ -111,6 +112,7 @@ public class DatabaseCreator {
             FileReader xplan41pre = new FileReader( wsDirectory.toString() + "/sql/pre/xplan41/create.sql" );
             FileReader xplan50pre = new FileReader( wsDirectory.toString() + "/sql/pre/xplan50/create.sql" );
             FileReader xplan51pre = new FileReader( wsDirectory.toString() + "/sql/pre/xplan51/create.sql" );
+            FileReader xplan52pre = new FileReader( wsDirectory.toString() + "/sql/pre/xplan52/create.sql" );
             FileReader xplan41nsmpre = new FileReader( wsDirectory.toString() + "/sql/pre/xplan41nsm/create.sql" );
             FileReader xplanSynpre = new FileReader( wsDirectory.toString() + "/sql/pre/xplansyn/create.sql" );
 
@@ -120,6 +122,7 @@ public class DatabaseCreator {
             FileReader xplan41archive = new FileReader( wsDirectory.toString() + "/sql/archive/xplan41/create.sql" );
             FileReader xplan50archive = new FileReader( wsDirectory.toString() + "/sql/archive/xplan50/create.sql" );
             FileReader xplan51archive = new FileReader( wsDirectory.toString() + "/sql/archive/xplan51/create.sql" );
+            FileReader xplan52archive = new FileReader( wsDirectory.toString() + "/sql/archive/xplan52/create.sql" );
             FileReader xplan41nsmarchive  = new FileReader( wsDirectory.toString() + "/sql/archive/xplan41nsm/create.sql" );
             FileReader xplanSynarchive  = new FileReader( wsDirectory.toString() + "/sql/archive/xplansyn/create.sql" );
 
@@ -133,6 +136,7 @@ public class DatabaseCreator {
             runner.runScript( xplan41nsm );
             runner.runScript( xplan50 );
             runner.runScript( xplan51 );
+            runner.runScript( xplan52 );
             runner.runScript( xplanMgr );
             runner.runScript( xplanSyn );
 
@@ -142,6 +146,7 @@ public class DatabaseCreator {
             runner.runScript( xplan41pre );
             runner.runScript( xplan50pre );
             runner.runScript( xplan51pre );
+            runner.runScript( xplan52pre );
             runner.runScript( xplan41nsmpre );
             runner.runScript( xplanSynpre );
             
@@ -151,6 +156,7 @@ public class DatabaseCreator {
             runner.runScript( xplan41archive );
             runner.runScript( xplan50archive );
             runner.runScript( xplan51archive );
+            runner.runScript( xplan52archive );
             runner.runScript( xplan41nsmarchive );
             runner.runScript( xplanSynarchive );
         }
