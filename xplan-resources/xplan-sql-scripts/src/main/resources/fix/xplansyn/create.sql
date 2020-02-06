@@ -250,7 +250,7 @@ CREATE TABLE xplansyn.xplan_bp_abweichungvonbaugrenze (
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
-    CONSTRAINT xplan_bp_baugrenze_pkey PRIMARY KEY (attr_gml_id)
+    CONSTRAINT xplan_bp_abweichungvonbaugrenze_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_bp_abweichungvonbaugrenze','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_493 ON xplan_bp_abweichungvonbaugrenze USING GIST ( xplan_position  );
@@ -298,7 +298,7 @@ CREATE TABLE xplansyn.xplan_bp_abweichungvonueberbauberergrundstuecksflaeche (
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
     xplan_flaechenschluss text,
-    CONSTRAINT xplan_bp_baugrenze_pkey PRIMARY KEY (attr_gml_id)
+    CONSTRAINT xplan_bp_abweichungvonueberbauberergrundstuecksflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_bp_abweichungvonueberbauberergrundstuecksflaeche','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_494 ON xplan_bp_abweichungvonueberbauberergrundstuecksflaeche USING GIST ( xplan_position  );
@@ -4572,7 +4572,7 @@ CREATE TABLE xplansyn.xplan_bp_richtungssektorgrenze (
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
-    CONSTRAINT xplan_bp_baugrenze_pkey PRIMARY KEY (attr_gml_id)
+    CONSTRAINT xplan_bp_richtungssektorgrenze_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_bp_richtungssektorgrenze','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_495 ON xplan_bp_richtungssektorgrenze USING GIST ( xplan_position  );
@@ -4776,7 +4776,7 @@ CREATE TABLE xplansyn.xplan_bp_sichtflaeche (
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
     xplan_flaechenschluss text,
-    CONSTRAINT xplan_bp_baugrenze_pkey PRIMARY KEY (attr_gml_id)
+    CONSTRAINT xplan_bp_sichtflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_bp_sichtflaeche','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_498 ON xplan_bp_sichtflaeche USING GIST ( xplan_position  );
@@ -6648,7 +6648,7 @@ CREATE TABLE xplansyn.xplan_bp_zusatzkontingentlaerm (
     xplan_nordwinkelUOM text,
     xplan_bezeichnung text,
     xplan_richtungssektor text,
-    CONSTRAINT xplan_bp_baugrenze_pkey PRIMARY KEY (attr_gml_id)
+    CONSTRAINT xplan_bp_zusatzkontingentlaerm_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_bp_zusatzkontingentlaerm','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_497 ON xplan_bp_zusatzkontingentlaerm USING GIST ( xplan_position  );
@@ -6696,7 +6696,7 @@ CREATE TABLE xplansyn.xplan_bp_zusatzkontingentlaermflaeche (
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
     xplan_flaechenschluss text,
-    CONSTRAINT xplan_bp_baugrenze_pkey PRIMARY KEY (attr_gml_id)
+    CONSTRAINT xplan_bp_zusatzkontingentlaermflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_bp_zusatzkontingentlaermflaeche','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_496 ON xplan_bp_zusatzkontingentlaermflaeche USING GIST ( xplan_position  );
@@ -15861,7 +15861,7 @@ CREATE TABLE xplansyn.xplan_so_bauverbotszone (
     xplan_rechtlichegrundlagecode text,
     xplan_name text,
     xplan_nummer text,
-    CONSTRAINT xplan_so_bodenschutzrecht_pkey PRIMARY KEY (attr_gml_id)
+    CONSTRAINT xplan_so_bauverbotszone_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_so_bauverbotszone','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_499 ON xplan_so_bauverbotszone USING GIST ( xplan_position  );
@@ -16160,7 +16160,7 @@ CREATE TABLE xplansyn.xplan_so_gewaesser (
     xplan_detailartderfestlegungcode text,
     xplan_name text,
     xplan_nummer text,
-    CONSTRAINT xplan_so_bodenschutzrecht_pkey PRIMARY KEY (attr_gml_id)
+    CONSTRAINT xplan_so_gewaesser_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_so_gewaesser','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_500 ON xplan_so_gewaesser USING GIST ( xplan_position  );
