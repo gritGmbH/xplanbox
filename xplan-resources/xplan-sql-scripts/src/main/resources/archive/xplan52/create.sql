@@ -205,7 +205,7 @@ INSERT INTO FEATURE_TYPES  (id,qname) VALUES (195,'{http://www.xplanung.de/xplan
 INSERT INTO FEATURE_TYPES  (id,qname) VALUES (196,'{http://www.xplanung.de/xplangml/5/2}XP_PTO');
 INSERT INTO FEATURE_TYPES  (id,qname) VALUES (197,'{http://www.xplanung.de/xplangml/5/2}XP_Praesentationsobjekt');
 INSERT INTO FEATURE_TYPES  (id,qname) VALUES (198,'{http://www.xplanung.de/xplangml/5/2}XP_Rasterdarstellung');
-CREATE TABLE GML_OBJECTS (id serial PRIMARY KEY, gml_id text UNIQUE NOT NULL, ft_type smallint REFERENCES FEATURE_TYPES , binary_object bytea);
+CREATE TABLE GML_OBJECTS (id serial PRIMARY KEY, gml_id text UNIQUE NOT NULL, ft_type smallint REFERENCES FEATURE_TYPES , binary_object bytea, plan_id text, plan_name text, internal_id text, rechtsstand text);
 COMMENT ON TABLE GML_OBJECTS IS 'All objects (features and geometries)';
 SELECT ADDGEOMETRYCOLUMN('xplan52archive', 'gml_objects','gml_bounded_by','0','GEOMETRY',2);
 ALTER TABLE GML_OBJECTS ADD CONSTRAINT gml_objects_geochk CHECK (ST_IsValid(gml_bounded_by));
