@@ -29,106 +29,12 @@ public class XPlanCodeLists {
 
     private static final Logger LOG = LoggerFactory.getLogger( XPlanCodeLists.class );
 
-    private Dictionary codeLists;
-
     // for each code list: key: code, value: description
     private Map<String, Map<String, String>> codeListIdToMapping = new TreeMap<String, Map<String, String>>();
 
     // for each code list: key: description, value: code
     private Map<String, Map<String, String>> codeListIdToReverseMapping = new TreeMap<String, Map<String, String>>();
 
-    /**
-     * Erzeugt eine neue {@link XPlanCodeLists} Instanz ohne Einträge.
-     */
-    XPlanCodeLists() {
-        // nothing to do
-    }
-
-    /**
-     * Erzeugt eine neue {@link XPlanCodeLists} Instanz, die durch das Einlesen des spezifizierten GML Dictionaries
-     * initialisiert wird.
-     *
-     * @param codeListUrl
-     * @throws XMLStreamException
-     * @throws FactoryConfigurationError
-     * @throws IOException
-     */
-    XPlanCodeLists( URL codeListUrl ) throws XMLStreamException, FactoryConfigurationError, IOException {
-
-        GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader( GML_30, codeListUrl );
-        codeLists = gmlStream.readDictionary();
-        gmlStream.close();
-
-        if ( !codeLists.isEmpty() ) {
-            Definition firstDefinition = codeLists.get( 0 );
-            if ( firstDefinition instanceof Dictionary ) {
-                for ( Definition codeListDef : codeLists ) {
-                    parseDictionary( codeListUrl, (Dictionary) codeListDef );
-                }
-            } else {
-                parseDictionary( codeListUrl, codeLists );
-            }
-        }
-    }
-
-    private void parseDictionary( URL codeListUrl, Dictionary codeListDef ) {
-        Dictionary codeListDict = codeListDef;
-        String codeListId = codeListDict.getId();
-        if ( codeListIdToMapping.get( codeListId ) != null ) {
-            String msg = "CodeList '" + codeListId + "' ist in Dictionary '" + codeListUrl +
-                         "' doppelt vorhanden.";
-            throw new RuntimeException( msg );
-        }
-
-        if ( codeListDict.isEmpty() ) {
-            codeListIdToMapping.put( codeListId, new HashMap<String, String>() );
-            codeListIdToReverseMapping.put( codeListId, new HashMap<String, String>() );
-        }
-
-        for ( Definition def : codeListDict ) {
-            parseDefinition( codeListUrl, codeListId, def );
-        }
-    }
-
-    private void parseDefinition( URL codeListUrl, String codeListId, Definition def ) {
-        if ( def.getNames().length == 1 ) {
-            if ( def.getDescription() != null ) {
-                String description = def.getDescription().getString();
-                if ( def.getNames() == null || def.getNames().length != 1 ) {
-                    String msg = "CodeList '" + codeListId + "' in Dictionary '" + codeListUrl
-                                 + "' definiert mehrerere Codes für '" + description + "'.";
-                    throw new RuntimeException( msg );
-                }
-                addCodeAndDescription( codeListId, def.getNames()[0].getCode(), description );
-            } else {
-                // no description -> treat
-                addCodeAndDescription( codeListId, def.getNames()[0].getCode(), def.getNames()[0].getCode() );
-            }
-        } else {
-            String msg = "CodeList '" + codeListId + "' in Dictionary '" + codeListUrl
-                         + "' enthält Einträge mit keinem oder mehreren Codes.";
-            throw new RuntimeException( msg );
-        }
-    }
-
-    void addCodeAndDescription( String codeListId, String code, String description ) {
-        Map<String, String> codeToDesc = codeListIdToMapping.get( codeListId );
-        Map<String, String> descToCode = codeListIdToReverseMapping.get( codeListId );
-        if ( codeToDesc == null ) {
-            codeToDesc = new HashMap<String, String>();
-            codeListIdToMapping.put( codeListId, codeToDesc );
-            descToCode = new HashMap<String, String>();
-            codeListIdToReverseMapping.put( codeListId, descToCode );
-        }
-        if ( codeToDesc.get( code ) != null && !description.equals( codeToDesc.get( code ) ) ) {
-            String msg = "Cannot add code '" + code + "' with description '" + description + "' to code list '"
-                         + codeListId + "' -- list already defines description '" + codeToDesc.get( code )
-                         + "' for this code.";
-            throw new IllegalArgumentException( msg );
-        }
-        codeToDesc.put( code, description );
-        descToCode.put( description, code );
-    }
 
     /**
      * @param codeListIdToMapping

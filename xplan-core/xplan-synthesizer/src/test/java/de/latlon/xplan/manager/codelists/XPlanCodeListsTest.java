@@ -41,7 +41,6 @@ import static org.junit.Assert.assertThat;
 import java.net.URL;
 import java.util.Map;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import de.latlon.xplan.commons.XPlanVersion;
@@ -52,8 +51,17 @@ import de.latlon.xplan.commons.XPlanVersion;
 public class XPlanCodeListsTest {
 
     @Test
-    public void testGetDescription() {
+    public void testGetDescription_XPlan42() {
         XPlanVersion version = XPlanVersion.XPLAN_41;
+        XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get( version );
+        String legislationStatusTranslation = xPlanCodeLists.getDescription( "BP_Rechtsstand", "4000" );
+
+        assertThat( legislationStatusTranslation, is( "InkraftGetreten" ) );
+    }
+
+    @Test
+    public void testGetDescription_XPlan52() {
+        XPlanVersion version = XPlanVersion.XPLAN_52;
         XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get( version );
         String legislationStatusTranslation = xPlanCodeLists.getDescription( "BP_Rechtsstand", "4000" );
 
@@ -64,7 +72,7 @@ public class XPlanCodeListsTest {
     public void testParseOld()
                             throws Exception {
         URL codeListFile = XPlanCodeListsTest.class.getResource( "../synthesizer/XP_BesondereArtDerBaulNutzung.xml" );
-        XPlanCodeLists codeLists = new XPlanCodeLists( codeListFile );
+        XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists( codeListFile );
 
         Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
         assertThat( codesToDescriptions.size(), is( 1 ) );
@@ -75,7 +83,7 @@ public class XPlanCodeListsTest {
     public void testParseNew()
                             throws Exception {
         URL codeListFile = XPlanCodeListsTest.class.getResource( "../synthesizer/xplan_XP_BesondereArtDerBaulNutzung.xml" );
-        XPlanCodeLists codeLists = new XPlanCodeLists( codeListFile );
+        XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists( codeListFile );
 
         Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
         assertThat( codesToDescriptions.size(), is( 1 ) );

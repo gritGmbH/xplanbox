@@ -61,6 +61,8 @@ public class XPlanCodeListsFactory {
 
     private static XPlanCodeLists xplan52CodeLists;
 
+    private static XPlanCodeListsParser xPlanCodeListParser = new XPlanCodeListsParser();
+
     /**
      * @param version
      *                 the version of the XPlanGML, never <code>null</code>
@@ -98,13 +100,13 @@ public class XPlanCodeListsFactory {
      */
     public static XPlanCodeLists getXPlanCodeLists( URL codeListUrl )
                     throws IOException, XMLStreamException {
-        return new XPlanCodeLists( codeListUrl );
+        return xPlanCodeListParser.parseCodelists( codeListUrl );
     }
 
     public static synchronized XPlanCodeLists getXPlanSyn() {
         if ( xplanSynCodeLists == null ) {
             try {
-                xplanSynCodeLists = new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_SYN_CODE_LISTS ) );
+                xplanSynCodeLists = xPlanCodeListParser.parseCodelists( XPlanCodeLists.class.getResource( XPLAN_SYN_CODE_LISTS ) );
             } catch ( Exception e ) {
                 String msg = "Internal error reading code lists file: " + e.getMessage();
                 throw new RuntimeException( msg );
@@ -116,7 +118,7 @@ public class XPlanCodeListsFactory {
     public static synchronized XPlanCodeLists getXPlan2Ext() {
         if ( xplan2ExtCodeLists == null ) {
             try {
-                xplan2ExtCodeLists = new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_2_EXT_CODE_LISTS ) );
+                xplan2ExtCodeLists = xPlanCodeListParser.parseCodelists( XPlanCodeLists.class.getResource( XPLAN_2_EXT_CODE_LISTS ) );
             } catch ( Exception e ) {
                 String msg = "Internal error reading code lists file: " + e.getMessage();
                 throw new RuntimeException( msg );
@@ -128,7 +130,7 @@ public class XPlanCodeListsFactory {
     public static synchronized XPlanCodeLists getXPlan3Ext() {
         if ( xplan3ExtCodeLists == null ) {
             try {
-                xplan3ExtCodeLists = new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_3_EXT_CODE_LISTS ) );
+                xplan3ExtCodeLists = xPlanCodeListParser.parseCodelists( XPlanCodeLists.class.getResource( XPLAN_3_EXT_CODE_LISTS ) );
             } catch ( Exception e ) {
                 String msg = "Internal error reading code lists file: " + e.getMessage();
                 throw new RuntimeException( msg );
@@ -141,8 +143,8 @@ public class XPlanCodeListsFactory {
         if ( xplanSynExtCodeLists == null ) {
             try {
                 xplanSynExtCodeLists = mergeCodeLists(
-                                new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_SYN_EXT_CODE_LISTS_XP3 ) ),
-                                new XPlanCodeLists(
+                                 xPlanCodeListParser.parseCodelists( XPlanCodeLists.class.getResource( XPLAN_SYN_EXT_CODE_LISTS_XP3 ) ),
+                                 xPlanCodeListParser.parseCodelists(
                                                 XPlanCodeLists.class.getResource( XPLAN_SYN_EXT_CODE_LISTS_XP2 ) ) );
             } catch ( Exception e ) {
                 String msg = "Fehler in Codelists Datei: " + e.getMessage();
@@ -155,7 +157,7 @@ public class XPlanCodeListsFactory {
     private static synchronized XPlanCodeLists getXPlan2() {
         if ( xplan2CodeLists == null ) {
             try {
-                xplan2CodeLists = new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_2_CODE_LISTS ) );
+                xplan2CodeLists = xPlanCodeListParser.parseCodelists( XPlanCodeLists.class.getResource( XPLAN_2_CODE_LISTS ) );
             } catch ( Exception e ) {
                 String msg = "Internal error reading code lists file: " + e.getMessage();
                 throw new RuntimeException( msg, e );
@@ -167,7 +169,7 @@ public class XPlanCodeListsFactory {
     private static synchronized XPlanCodeLists getXPlan3() {
         if ( xplan3CodeLists == null ) {
             try {
-                xplan3CodeLists = new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_3_CODE_LISTS ) );
+                xplan3CodeLists = xPlanCodeListParser.parseCodelists( XPlanCodeLists.class.getResource( XPLAN_3_CODE_LISTS ) );
             } catch ( Exception e ) {
                 String msg = "Internal error reading code lists file: " + e.getMessage();
                 throw new RuntimeException( msg, e );
@@ -179,7 +181,7 @@ public class XPlanCodeListsFactory {
     private static synchronized XPlanCodeLists getXPlan40() {
         if ( xplan40CodeLists == null ) {
             try {
-                xplan40CodeLists = new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_40_CODE_LISTS ) );
+                xplan40CodeLists = xPlanCodeListParser.parseCodelists( XPlanCodeLists.class.getResource( XPLAN_40_CODE_LISTS ) );
             } catch ( Exception e ) {
                 String msg = "Internal error reading code lists file: " + e.getMessage();
                 throw new RuntimeException( msg, e );
@@ -191,7 +193,7 @@ public class XPlanCodeListsFactory {
     private static synchronized XPlanCodeLists getXPlan41() {
         if ( xplan41CodeLists == null ) {
             try {
-                xplan41CodeLists = new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_41_CODE_LISTS ) );
+                xplan41CodeLists = xPlanCodeListParser.parseCodelists( XPlanCodeLists.class.getResource( XPLAN_41_CODE_LISTS ) );
             } catch ( Exception e ) {
                 String msg = "Internal error reading code lists file: " + e.getMessage();
                 throw new RuntimeException( msg, e );
@@ -203,7 +205,7 @@ public class XPlanCodeListsFactory {
     private static synchronized XPlanCodeLists getXPlan50() {
         if ( xplan50CodeLists == null ) {
             try {
-                xplan50CodeLists = new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_50_CODE_LISTS ) );
+                xplan50CodeLists = xPlanCodeListParser.parseCodelists( XPlanCodeLists.class.getResource( XPLAN_50_CODE_LISTS ) );
             } catch ( Exception e ) {
                 String msg = "Internal error reading code lists file: " + e.getMessage();
                 throw new RuntimeException( msg, e );
@@ -215,7 +217,7 @@ public class XPlanCodeListsFactory {
     private static synchronized XPlanCodeLists getXPlan51() {
         if ( xplan51CodeLists == null ) {
             try {
-                xplan51CodeLists = new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_51_CODE_LISTS ) );
+                xplan51CodeLists = xPlanCodeListParser.parseCodelists( XPlanCodeLists.class.getResource( XPLAN_51_CODE_LISTS ) );
             } catch ( Exception e ) {
                 String msg = "Internal error reading code lists file: " + e.getMessage();
                 throw new RuntimeException( msg, e );
@@ -227,7 +229,8 @@ public class XPlanCodeListsFactory {
     private static synchronized XPlanCodeLists getXPlan52() {
         if ( xplan52CodeLists == null ) {
             try {
-                xplan52CodeLists = new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_52_CODE_LISTS ) );
+                xplan52CodeLists = xPlanCodeListParser.parseCodelists(
+                                        XPlanCodeLists.class.getResource( XPLAN_52_CODE_LISTS ) );
             } catch ( Exception e ) {
                 String msg = "Internal error reading code lists file: " + e.getMessage();
                 throw new RuntimeException( msg, e );
