@@ -31,6 +31,8 @@ public class XPlanCodeListsFactory {
 
     private static final String XPLAN_51_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_5_1.xml";
 
+    private static final String XPLAN_52_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_5_2.xml";
+
     private static final String XPLAN_SYN_CODE_LISTS = "/appschemas/XPlanGML_Syn/XPlanSyn_CodeLists.xml";
 
     private static final String XPLAN_SYN_EXT_CODE_LISTS_XP2 = "/appschemas/XPlanGML_Syn/XPlanSyn_ExternalCodeLists_XP2.xml";
@@ -56,6 +58,9 @@ public class XPlanCodeListsFactory {
     private static XPlanCodeLists xplan50CodeLists;
 
     private static XPlanCodeLists xplan51CodeLists;
+
+    private static XPlanCodeLists xplan52CodeLists;
+
     /**
      * @param version
      *                 the version of the XPlanGML, never <code>null</code>
@@ -77,6 +82,8 @@ public class XPlanCodeListsFactory {
             return getXPlan50();
         case XPLAN_51:
             return getXPlan51();
+        case XPLAN_52:
+            return getXPlan52();
         default:
             throw new IllegalArgumentException( "Could not find codelists for version " + version );
         }
@@ -215,6 +222,18 @@ public class XPlanCodeListsFactory {
             }
         }
         return xplan51CodeLists;
+    }
+
+    private static synchronized XPlanCodeLists getXPlan52() {
+        if ( xplan52CodeLists == null ) {
+            try {
+                xplan52CodeLists = new XPlanCodeLists( XPlanCodeLists.class.getResource( XPLAN_52_CODE_LISTS ) );
+            } catch ( Exception e ) {
+                String msg = "Internal error reading code lists file: " + e.getMessage();
+                throw new RuntimeException( msg, e );
+            }
+        }
+        return xplan52CodeLists;
     }
 
     private static XPlanCodeLists mergeCodeLists( XPlanCodeLists xplanCodeLists1, XPlanCodeLists xplanCodeLists2 ) {
