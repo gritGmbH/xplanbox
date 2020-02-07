@@ -5,7 +5,7 @@ SET search_path TO xplan52archive,public;
 /* --- END schema setup --- */
 CREATE TABLE FEATURE_TYPES (id smallint PRIMARY KEY, qname text NOT NULL);
 COMMENT ON TABLE FEATURE_TYPES IS 'Ids and bboxes of concrete feature types';
-SELECT ADDGEOMETRYCOLUMN('public', 'feature_types','bbox','0','GEOMETRY',2);
+SELECT ADDGEOMETRYCOLUMN('xplan52archive', 'feature_types','bbox','0','GEOMETRY',2);
 INSERT INTO FEATURE_TYPES  (id,qname) VALUES (0,'{http://www.xplanung.de/xplangml/5/2}BP_AbgrabungsFlaeche');
 INSERT INTO FEATURE_TYPES  (id,qname) VALUES (1,'{http://www.xplanung.de/xplangml/5/2}BP_AbstandsFlaeche');
 INSERT INTO FEATURE_TYPES  (id,qname) VALUES (2,'{http://www.xplanung.de/xplangml/5/2}BP_AbstandsMass');
