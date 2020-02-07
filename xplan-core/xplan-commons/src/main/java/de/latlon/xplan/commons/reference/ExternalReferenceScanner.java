@@ -64,10 +64,11 @@ public class ExternalReferenceScanner {
             break;
         case XPLAN_50:
         case XPLAN_51:
+        case XPLAN_52:
             scanXplan5( fc );
             break;
         default:
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException( "Unsupported XPlanGML Version: " + version );
         }
     }
 
