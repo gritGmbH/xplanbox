@@ -49,7 +49,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -125,7 +125,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -205,7 +205,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -263,7 +263,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -315,7 +315,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -376,7 +376,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -469,7 +469,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -598,7 +598,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -672,7 +672,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -813,7 +813,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -892,7 +892,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -1143,7 +1143,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -1432,7 +1432,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -1509,7 +1509,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -1667,7 +1667,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -1922,7 +1922,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2000,7 +2000,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2077,7 +2077,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -2132,7 +2132,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2328,7 +2328,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -2443,7 +2443,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2518,7 +2518,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2594,7 +2594,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2671,7 +2671,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2748,7 +2748,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2887,8 +2887,8 @@
             <element name="bauweiseCode" minOccurs="0" type="string" />
             <element name="abweichendeBauweise" minOccurs="0" type="string" />
             <element name="abweichendeBauweiseCode" minOccurs="0" type="string" />
+            <element name="bebauungsArt" minOccurs="0" type="string" />
             <element name="bebauungsArtCode" minOccurs="0" type="string" />
-            <element name="bebauungVordereGrenze" minOccurs="0" type="string" />
             <element name="dachgestaltung" minOccurs="0" type="string" />
           </sequence>
         </extension>
@@ -2936,7 +2936,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -3037,7 +3037,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -3096,7 +3096,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -3214,7 +3214,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -3339,7 +3339,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -3510,7 +3510,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -3626,7 +3626,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -3714,7 +3714,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -3800,7 +3800,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -3904,7 +3904,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -3978,7 +3978,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
@@ -4250,7 +4250,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -4316,7 +4316,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -4414,7 +4414,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -4469,7 +4469,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -4548,7 +4548,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -4775,7 +4775,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -4832,7 +4832,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -4887,7 +4887,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -4947,7 +4947,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5035,7 +5035,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5105,7 +5105,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5239,7 +5239,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5315,7 +5315,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5462,7 +5462,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5601,7 +5601,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5678,7 +5678,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5814,7 +5814,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -5897,7 +5897,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5960,7 +5960,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -6143,7 +6143,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -6210,7 +6210,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -6513,7 +6513,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -6572,7 +6572,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -6778,7 +6778,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -6932,7 +6932,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -7012,7 +7012,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -7090,7 +7090,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -7146,7 +7146,7 @@
             <element name="laermkontingentGebiet" minOccurs="0" type="string" />
             <element name="zusatzkontingent" minOccurs="0" type="string" />
             <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
-            <element name="richtungssektorGrenze" minOccurs="0" type="string" />>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
