@@ -226,4 +226,59 @@ public interface CodelistMessages extends Messages {
 
     String XPLAN_51_XP_RechtscharakterPlanaenderung_2000_Aufhebung();
 
+    String XPLAN_52_BP_PlanArt_1000_BPlan();
+
+    String XPLAN_52_BP_PlanArt_10000_EinfacherBPlan();
+
+    String XPLAN_52_BP_PlanArt_10001_QualifizierterBPlan();
+
+    String XPLAN_52_BP_PlanArt_3000_VorhabenbezogenerBPlan();
+
+    String XPLAN_52_BP_PlanArt_4000_InnenbereichsSatzung();
+
+    String XPLAN_52_BP_PlanArt_40000_KlarstellungsSatzung();
+
+    String XPLAN_52_BP_PlanArt_40001_EntwicklungsSatzung();
+
+    String XPLAN_52_BP_PlanArt_40002_ErgaenzungsSatzung();
+
+    String XPLAN_52_BP_PlanArt_5000_AussenbereichsSatzung();
+
+    String XPLAN_52_BP_PlanArt_7000_OertlicheBauvorschrift();
+
+    String XPLAN_52_BP_PlanArt_9999_Sonstiges();
+
+    String XPLAN_52_BP_Rechtsstand_1000_Aufstellungsbeschluss();
+
+    String XPLAN_52_BP_Rechtsstand_2000_Entwurf();
+
+    String XPLAN_52_BP_Rechtsstand_2100_FruehzeitigeBehoerdenBeteiligung();
+
+    String XPLAN_52_BP_Rechtsstand_2200_FruehzeitigeOeffentlichkeitsBeteiligung();
+
+    String XPLAN_52_BP_Rechtsstand_2300_BehoerdenBeteiligung();
+
+    String XPLAN_52_BP_Rechtsstand_2400_OeffentlicheAuslegung();
+
+    String XPLAN_52_BP_Rechtsstand_3000_Satzung();
+
+    String XPLAN_52_BP_Rechtsstand_4000_InkraftGetreten();
+
+    String XPLAN_52_BP_Rechtsstand_4500_TeilweiseUntergegangen();
+
+    String XPLAN_52_BP_Rechtsstand_5000_Untergegangen();
+
+    String XPLAN_52_BP_Verfahren_1000_Normal();
+
+    String XPLAN_52_BP_Verfahren_2000_Parag13();
+
+    String XPLAN_52_BP_Verfahren_3000_Parag13a();
+
+    String XPLAN_52_BP_Verfahren_4000_Parag13b();
+
+    String XPLAN_52_XP_RechtscharakterPlanaenderung_1000_Aenderung();
+
+    String XPLAN_52_XP_RechtscharakterPlanaenderung_1100_Ergaenzung();
+
+    String XPLAN_52_XP_RechtscharakterPlanaenderung_2000_Aufhebung();
 }
