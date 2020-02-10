@@ -12,6 +12,7 @@ müssen die URLs zu den XPlanDiensten modifiziert werden:
 * http://localhost:8080/xplan-wfs/services/wfs41?service=WFS&request=GetCapabilities
 * http://localhost:8080/xplan-wfs/services/wfs50?service=WFS&request=GetCapabilities
 * http://localhost:8080/xplan-wfs/services/wfs51?service=WFS&request=GetCapabilities
+* http://localhost:8080/xplan-wfs/services/wfs52?service=WFS&request=GetCapabilities
 
 Weiterhin kann es notwendig sein, die relativ angegeben Referenzen zu
 den Komponenten XPlanManagerWeb und XPlanValidatorWeb

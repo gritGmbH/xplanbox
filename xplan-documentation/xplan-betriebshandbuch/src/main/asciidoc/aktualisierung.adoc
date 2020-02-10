@@ -73,6 +73,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 2.8              |                                                                    | ja
 | 3.0              | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)
 | 3.1              | ja (<<aktualisierung-auf-die-version-3.1-der-xplanbox, Details>>)  | nein
+| 3.2             | ja (<<aktualisierung-auf-die-version-3.2-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.2-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -264,3 +265,16 @@ Wenn die neuen Features <<kartenvorschau-validator>> und <<semantische-validieru
  * Workspace __xplan-inspireplu-workspace__ und Konfiguration __xplan-validator-config__ entpacken und installieren (siehe <<konfiguration>>).
  * Webanwendung __xplan-validator-wms.war__ installieren (siehe <<web-anwendungen>>).
  * XPlanValidatorWeb gemäß <<konfiguration-validator>> konfigurieren.
+
+[[aktualisierung-auf-die-version-3.2-der-xplanbox]]
+=== Aktualisierung auf die Version 3.2 der xPlanBox
+
+Mit der Version 3.2 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen vorgenommen worden. Darunter auch die Unterstützung von XPlanGML 5.2. Für die Aktualisierung auf die Version 3.2 sind folgende Schritte auszuführen:
+
+* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+* Aktualisierung der Datenbank:
+** Ausführen der Skripte für die Erstelllung der Datenhaltung für 5.2 aus dem Modul _xplan-manager-workspace_:
+*** _fix/xplan52/create.sql_
+*** _pre/xplan52/create.sql_
+*** _archive/xplan52/create.sql_
+** Ausführen der Skripte im Verzeichnis _from_3.1_to_3.2_ im Modul xplan-update-database in der vorgegebenen Reihenfolge
