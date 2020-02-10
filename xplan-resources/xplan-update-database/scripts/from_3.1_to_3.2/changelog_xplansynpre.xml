@@ -1,0 +1,2626 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="lyn (generated)" id="1581343214705-2">
+        <createTable tableName="xplan_bp_abweichungvonbaugrenze">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints primaryKey="true" primaryKeyName="xplan_bp_abweichungvonbaugrenze_pkey"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INTEGER"/>
+            <column name="xplan_gueltigkeitbeginn" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_gueltigkeitende" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_wmssortdate" type="date"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INTEGER"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_aufschrift" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchflaeche" type="TEXT"/>
+            <column name="xplan_laermkontingent" type="TEXT"/>
+            <column name="xplan_laermkontingentgebiet" type="TEXT"/>
+            <column name="xplan_zusatzkontingent" type="TEXT"/>
+            <column name="xplan_zusatzkontingentflaeche" type="TEXT"/>
+            <column name="xplan_richtungssektorgrenze" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchmassnahme" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_externereferenz" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_startbedingung" type="TEXT"/>
+            <column name="xplan_endebedingung" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchabe" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchspemassnahme" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchspeflaeche" type="TEXT"/>
+            <column name="xplan_position" type="&quot;PUBLIC&quot;.&quot;GEOMETRY&quot;"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-3">
+        <createTable tableName="xplan_bp_abweichungvonueberbauberergrundstuecksflaeche">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints primaryKey="true" primaryKeyName="xplan_bp_abweichungvonueberbauberergrundstuecksflaeche_pkey"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INTEGER"/>
+            <column name="xplan_gueltigkeitbeginn" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_gueltigkeitende" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_wmssortdate" type="date"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INTEGER"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_aufschrift" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchflaeche" type="TEXT"/>
+            <column name="xplan_laermkontingent" type="TEXT"/>
+            <column name="xplan_laermkontingentgebiet" type="TEXT"/>
+            <column name="xplan_zusatzkontingent" type="TEXT"/>
+            <column name="xplan_zusatzkontingentflaeche" type="TEXT"/>
+            <column name="xplan_richtungssektorgrenze" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchmassnahme" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_externereferenz" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_startbedingung" type="TEXT"/>
+            <column name="xplan_endebedingung" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchabe" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchspemassnahme" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchspeflaeche" type="TEXT"/>
+            <column name="xplan_flaechenschluss" type="TEXT"/>
+            <column name="xplan_position" type="&quot;PUBLIC&quot;.&quot;GEOMETRY&quot;"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-4">
+        <createTable tableName="xplan_bp_richtungssektorgrenze">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints primaryKey="true" primaryKeyName="xplan_bp_richtungssektorgrenze_pkey"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INTEGER"/>
+            <column name="xplan_gueltigkeitbeginn" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_gueltigkeitende" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_wmssortdate" type="date"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INTEGER"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_aufschrift" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchflaeche" type="TEXT"/>
+            <column name="xplan_laermkontingent" type="TEXT"/>
+            <column name="xplan_laermkontingentgebiet" type="TEXT"/>
+            <column name="xplan_zusatzkontingent" type="TEXT"/>
+            <column name="xplan_zusatzkontingentflaeche" type="TEXT"/>
+            <column name="xplan_richtungssektorgrenze" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchmassnahme" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_externereferenz" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_startbedingung" type="TEXT"/>
+            <column name="xplan_endebedingung" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchabe" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchspemassnahme" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchspeflaeche" type="TEXT"/>
+            <column name="xplan_position" type="&quot;PUBLIC&quot;.&quot;GEOMETRY&quot;"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-5">
+        <createTable tableName="xplan_bp_sichtflaeche">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints primaryKey="true" primaryKeyName="xplan_bp_sichtflaeche_pkey"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INTEGER"/>
+            <column name="xplan_gueltigkeitbeginn" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_gueltigkeitende" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_wmssortdate" type="date"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INTEGER"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_aufschrift" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchflaeche" type="TEXT"/>
+            <column name="xplan_laermkontingent" type="TEXT"/>
+            <column name="xplan_laermkontingentgebiet" type="TEXT"/>
+            <column name="xplan_zusatzkontingent" type="TEXT"/>
+            <column name="xplan_zusatzkontingentflaeche" type="TEXT"/>
+            <column name="xplan_richtungssektorgrenze" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchmassnahme" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_externereferenz" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_startbedingung" type="TEXT"/>
+            <column name="xplan_endebedingung" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchabe" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchspemassnahme" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchspeflaeche" type="TEXT"/>
+            <column name="xplan_flaechenschluss" type="TEXT"/>
+            <column name="xplan_position" type="&quot;PUBLIC&quot;.&quot;GEOMETRY&quot;"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-6">
+        <createTable tableName="xplan_bp_zusatzkontingentlaerm">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints primaryKey="true" primaryKeyName="xplan_bp_zusatzkontingentlaerm_pkey"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INTEGER"/>
+            <column name="xplan_gueltigkeitbeginn" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_gueltigkeitende" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_wmssortdate" type="date"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INTEGER"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_aufschrift" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchflaeche" type="TEXT"/>
+            <column name="xplan_laermkontingent" type="TEXT"/>
+            <column name="xplan_laermkontingentgebiet" type="TEXT"/>
+            <column name="xplan_zusatzkontingent" type="TEXT"/>
+            <column name="xplan_zusatzkontingentflaeche" type="TEXT"/>
+            <column name="xplan_richtungssektorgrenze" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchmassnahme" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_externereferenz" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_startbedingung" type="TEXT"/>
+            <column name="xplan_endebedingung" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchabe" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchspemassnahme" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchspeflaeche" type="TEXT"/>
+            <column name="xplan_nordwinkel" type="TEXT"/>
+            <column name="xplan_nordwinkeluom" type="TEXT"/>
+            <column name="xplan_bezeichnung" type="TEXT"/>
+            <column name="xplan_richtungssektor" type="TEXT"/>
+            <column name="xplan_position" type="&quot;PUBLIC&quot;.&quot;GEOMETRY&quot;"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-7">
+        <createTable tableName="xplan_bp_zusatzkontingentlaermflaeche">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints primaryKey="true" primaryKeyName="xplan_bp_zusatzkontingentlaermflaeche_pkey"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INTEGER"/>
+            <column name="xplan_gueltigkeitbeginn" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_gueltigkeitende" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_wmssortdate" type="date"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INTEGER"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_aufschrift" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchflaeche" type="TEXT"/>
+            <column name="xplan_laermkontingent" type="TEXT"/>
+            <column name="xplan_laermkontingentgebiet" type="TEXT"/>
+            <column name="xplan_zusatzkontingent" type="TEXT"/>
+            <column name="xplan_zusatzkontingentflaeche" type="TEXT"/>
+            <column name="xplan_richtungssektorgrenze" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchmassnahme" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_externereferenz" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_startbedingung" type="TEXT"/>
+            <column name="xplan_endebedingung" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchabe" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchspemassnahme" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchspeflaeche" type="TEXT"/>
+            <column name="xplan_flaechenschluss" type="TEXT"/>
+            <column name="xplan_position" type="&quot;PUBLIC&quot;.&quot;GEOMETRY&quot;"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-8">
+        <createTable tableName="xplan_so_bauverbotszone">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints primaryKey="true" primaryKeyName="xplan_so_bauverbotszone_pkey"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INTEGER"/>
+            <column name="xplan_gueltigkeitbeginn" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_gueltigkeitende" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_wmssortdate" type="date"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_startbedingung" type="TEXT"/>
+            <column name="xplan_endebedingung" type="TEXT"/>
+            <column name="xplan_aufschrift" type="TEXT"/>
+            <column name="xplan_ebene" type="INTEGER"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_externereferenz" type="TEXT"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_sonstrechtscharakter" type="TEXT"/>
+            <column name="xplan_sonstrechtscharaktercode" type="TEXT"/>
+            <column name="xplan_flaechenschluss" type="TEXT"/>
+            <column name="xplan_flussrichtung" type="TEXT"/>
+            <column name="xplan_nordwinkel" type="TEXT"/>
+            <column name="xplan_nordwinkeluom" type="TEXT"/>
+            <column name="xplan_artderfestlegung" type="TEXT"/>
+            <column name="xplan_artderfestlegungcode" type="TEXT"/>
+            <column name="xplan_detailartderfestlegung" type="TEXT"/>
+            <column name="xplan_detailartderfestlegungcode" type="TEXT"/>
+            <column name="xplan_rechtlichegrundlage" type="TEXT"/>
+            <column name="xplan_rechtlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_name" type="TEXT"/>
+            <column name="xplan_nummer" type="TEXT"/>
+            <column name="xplan_position" type="&quot;PUBLIC&quot;.&quot;GEOMETRY&quot;"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-9">
+        <createTable tableName="xplan_so_gewaesser">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints primaryKey="true" primaryKeyName="xplan_so_gewaesser_pkey"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INTEGER"/>
+            <column name="xplan_gueltigkeitbeginn" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_gueltigkeitende" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_wmssortdate" type="date"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_startbedingung" type="TEXT"/>
+            <column name="xplan_endebedingung" type="TEXT"/>
+            <column name="xplan_aufschrift" type="TEXT"/>
+            <column name="xplan_ebene" type="INTEGER"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_externereferenz" type="TEXT"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_sonstrechtscharakter" type="TEXT"/>
+            <column name="xplan_sonstrechtscharaktercode" type="TEXT"/>
+            <column name="xplan_flaechenschluss" type="TEXT"/>
+            <column name="xplan_flussrichtung" type="TEXT"/>
+            <column name="xplan_nordwinkel" type="TEXT"/>
+            <column name="xplan_nordwinkeluom" type="TEXT"/>
+            <column name="xplan_artderfestlegung" type="TEXT"/>
+            <column name="xplan_artderfestlegungcode" type="TEXT"/>
+            <column name="xplan_detailartderfestlegung" type="TEXT"/>
+            <column name="xplan_detailartderfestlegungcode" type="TEXT"/>
+            <column name="xplan_name" type="TEXT"/>
+            <column name="xplan_nummer" type="TEXT"/>
+            <column name="xplan_position" type="&quot;PUBLIC&quot;.&quot;GEOMETRY&quot;"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-10">
+        <addColumn tableName="xplan_xp_lto">
+            <column name="xplan_anchorx" type="numeric(131089)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-11">
+        <addColumn tableName="xplan_xp_pto">
+            <column name="xplan_anchorx" type="numeric(131089)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-12">
+        <addColumn tableName="xplan_xp_nutzungsschablone">
+            <column name="xplan_anchorx" type="numeric(131089)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-13">
+        <addColumn tableName="xplan_xp_lto">
+            <column name="xplan_anchory" type="numeric(131089)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-14">
+        <addColumn tableName="xplan_xp_pto">
+            <column name="xplan_anchory" type="numeric(131089)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-15">
+        <addColumn tableName="xplan_xp_nutzungsschablone">
+            <column name="xplan_anchory" type="numeric(131089)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-16">
+        <addColumn tableName="xplan_bp_technischemassnahmenflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-17">
+        <addColumn tableName="xplan_bp_technischemassnahmenflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-18">
+        <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-19">
+        <addColumn tableName="xplan_bp_nichtueberbaubaregrundstuecksflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-20">
+        <addColumn tableName="xplan_bp_technischemassnahmenflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-21">
+        <addColumn tableName="xplan_bp_abgrabungsflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-22">
+        <addColumn tableName="xplan_bp_abstandsflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-23">
+        <addColumn tableName="xplan_bp_anpflanzungbindungerhaltung">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-24">
+        <addColumn tableName="xplan_bp_aufschuettungsflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-25">
+        <addColumn tableName="xplan_bp_ausgleichsflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-26">
+        <addColumn tableName="xplan_bp_ausgleichsmassnahme">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-27">
+        <addColumn tableName="xplan_bp_baugebietsteilflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-28">
+        <addColumn tableName="xplan_bp_baugrenze">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-29">
+        <addColumn tableName="xplan_bp_baulinie">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-30">
+        <addColumn tableName="xplan_bp_bereichohneeinausfahrtlinie">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-31">
+        <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-32">
+        <addColumn tableName="xplan_bp_bodenschaetzeflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-33">
+        <addColumn tableName="xplan_bp_einfahrtpunkt">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-34">
+        <addColumn tableName="xplan_bp_einfahrtsbereichlinie">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-35">
+        <addColumn tableName="xplan_bp_erhaltungsbereichflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-36">
+        <addColumn tableName="xplan_bp_firstrichtungslinie">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-37">
+        <addColumn tableName="xplan_bp_foerderungsflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-38">
+        <addColumn tableName="xplan_bp_freiflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-39">
+        <addColumn tableName="xplan_bp_gebaeudeflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-40">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-41">
+        <addColumn tableName="xplan_bp_gemeinschaftsanlagenflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-42">
+        <addColumn tableName="xplan_bp_generischesobjekt">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-43">
+        <addColumn tableName="xplan_bp_gewaesserflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-44">
+        <addColumn tableName="xplan_bp_gruenflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-45">
+        <addColumn tableName="xplan_bp_immissionsschutz">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-46">
+        <addColumn tableName="xplan_bp_kennzeichnungsflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-47">
+        <addColumn tableName="xplan_bp_nebenanlagenausschlussflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-48">
+        <addColumn tableName="xplan_bp_nebenanlagenflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-49">
+        <addColumn tableName="xplan_bp_nutzungsartengrenze">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-50">
+        <addColumn tableName="xplan_bp_persgruppenbestimmteflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-51">
+        <addColumn tableName="xplan_bp_rekultivierungsflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-52">
+        <addColumn tableName="xplan_bp_schutzpflegeentwicklungsflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-53">
+        <addColumn tableName="xplan_bp_schutzpflegeentwicklungsmassnahme">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-54">
+        <addColumn tableName="xplan_bp_speziellebauweise">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-55">
+        <addColumn tableName="xplan_bp_spielsportanlagenflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-56">
+        <addColumn tableName="xplan_bp_strassenbegrenzungslinie">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-57">
+        <addColumn tableName="xplan_bp_strassenkoerper">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-58">
+        <addColumn tableName="xplan_bp_strassenverkehrsflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-59">
+        <addColumn tableName="xplan_bp_textlichefestsetzungsflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-60">
+        <addColumn tableName="xplan_bp_ueberbaubaregrundstuecksflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-61">
+        <addColumn tableName="xplan_bp_unverbindlichevormerkung">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-62">
+        <addColumn tableName="xplan_bp_verentsorgung">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-63">
+        <addColumn tableName="xplan_bp_verkehrsflaechebesondererzweckbestimmung">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-64">
+        <addColumn tableName="xplan_bp_waldflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-65">
+        <addColumn tableName="xplan_bp_wasserwirtschaftsflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-66">
+        <addColumn tableName="xplan_bp_wegerecht">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-67">
+        <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-68">
+        <addColumn tableName="xplan_bp_nichtueberbaubaregrundstuecksflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-69">
+        <addColumn tableName="xplan_bp_technischemassnahmenflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-70">
+        <addColumn tableName="xplan_bp_abgrabungsflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-71">
+        <addColumn tableName="xplan_bp_abstandsflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-72">
+        <addColumn tableName="xplan_bp_anpflanzungbindungerhaltung">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-73">
+        <addColumn tableName="xplan_bp_aufschuettungsflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-74">
+        <addColumn tableName="xplan_bp_ausgleichsflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-75">
+        <addColumn tableName="xplan_bp_ausgleichsmassnahme">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-76">
+        <addColumn tableName="xplan_bp_baugebietsteilflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-77">
+        <addColumn tableName="xplan_bp_baugrenze">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-78">
+        <addColumn tableName="xplan_bp_baulinie">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-79">
+        <addColumn tableName="xplan_bp_bereichohneeinausfahrtlinie">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-80">
+        <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-81">
+        <addColumn tableName="xplan_bp_bodenschaetzeflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-82">
+        <addColumn tableName="xplan_bp_einfahrtpunkt">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-83">
+        <addColumn tableName="xplan_bp_einfahrtsbereichlinie">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-84">
+        <addColumn tableName="xplan_bp_erhaltungsbereichflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-85">
+        <addColumn tableName="xplan_bp_firstrichtungslinie">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-86">
+        <addColumn tableName="xplan_bp_foerderungsflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-87">
+        <addColumn tableName="xplan_bp_freiflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-88">
+        <addColumn tableName="xplan_bp_gebaeudeflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-89">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-90">
+        <addColumn tableName="xplan_bp_gemeinschaftsanlagenflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-91">
+        <addColumn tableName="xplan_bp_generischesobjekt">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-92">
+        <addColumn tableName="xplan_bp_gewaesserflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-93">
+        <addColumn tableName="xplan_bp_gruenflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-94">
+        <addColumn tableName="xplan_bp_immissionsschutz">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-95">
+        <addColumn tableName="xplan_bp_kennzeichnungsflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-96">
+        <addColumn tableName="xplan_bp_nebenanlagenausschlussflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-97">
+        <addColumn tableName="xplan_bp_nebenanlagenflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-98">
+        <addColumn tableName="xplan_bp_nutzungsartengrenze">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-99">
+        <addColumn tableName="xplan_bp_persgruppenbestimmteflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-100">
+        <addColumn tableName="xplan_bp_rekultivierungsflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-101">
+        <addColumn tableName="xplan_bp_schutzpflegeentwicklungsflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-102">
+        <addColumn tableName="xplan_bp_schutzpflegeentwicklungsmassnahme">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-103">
+        <addColumn tableName="xplan_bp_speziellebauweise">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-104">
+        <addColumn tableName="xplan_bp_spielsportanlagenflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-105">
+        <addColumn tableName="xplan_bp_strassenbegrenzungslinie">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-106">
+        <addColumn tableName="xplan_bp_strassenkoerper">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-107">
+        <addColumn tableName="xplan_bp_strassenverkehrsflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-108">
+        <addColumn tableName="xplan_bp_textlichefestsetzungsflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-109">
+        <addColumn tableName="xplan_bp_ueberbaubaregrundstuecksflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-110">
+        <addColumn tableName="xplan_bp_unverbindlichevormerkung">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-111">
+        <addColumn tableName="xplan_bp_verentsorgung">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-112">
+        <addColumn tableName="xplan_bp_verkehrsflaechebesondererzweckbestimmung">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-113">
+        <addColumn tableName="xplan_bp_waldflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-114">
+        <addColumn tableName="xplan_bp_wasserwirtschaftsflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-115">
+        <addColumn tableName="xplan_bp_wegerecht">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-116">
+        <addColumn tableName="xplan_bp_technischemassnahmenflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-117">
+        <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-118">
+        <addColumn tableName="xplan_bp_nichtueberbaubaregrundstuecksflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-119">
+        <addColumn tableName="xplan_bp_abstandsmass">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-120">
+        <addColumn tableName="xplan_bp_eingriffsbereich">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-121">
+        <addColumn tableName="xplan_bp_festsetzungnachlandesrecht">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-122">
+        <addColumn tableName="xplan_bp_gemeinschaftsanlagenzuordnung">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-123">
+        <addColumn tableName="xplan_bp_hoehenmass">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-124">
+        <addColumn tableName="xplan_bp_kleintierhaltungflaeche">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-125">
+        <addColumn tableName="xplan_bp_landwirtschaft">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-126">
+        <addColumn tableName="xplan_bp_regelungvergnuegungsstaetten">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-127">
+        <addColumn tableName="xplan_bp_veraenderungssperre">
+            <column name="xplan_laermkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-128">
+        <addColumn tableName="xplan_bp_abgrabungsflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-129">
+        <addColumn tableName="xplan_bp_abstandsflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-130">
+        <addColumn tableName="xplan_bp_anpflanzungbindungerhaltung">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-131">
+        <addColumn tableName="xplan_bp_aufschuettungsflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-132">
+        <addColumn tableName="xplan_bp_ausgleichsflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-133">
+        <addColumn tableName="xplan_bp_ausgleichsmassnahme">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-134">
+        <addColumn tableName="xplan_bp_baugebietsteilflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-135">
+        <addColumn tableName="xplan_bp_baugrenze">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-136">
+        <addColumn tableName="xplan_bp_baulinie">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-137">
+        <addColumn tableName="xplan_bp_bereichohneeinausfahrtlinie">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-138">
+        <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-139">
+        <addColumn tableName="xplan_bp_bodenschaetzeflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-140">
+        <addColumn tableName="xplan_bp_einfahrtpunkt">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-141">
+        <addColumn tableName="xplan_bp_einfahrtsbereichlinie">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-142">
+        <addColumn tableName="xplan_bp_erhaltungsbereichflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-143">
+        <addColumn tableName="xplan_bp_firstrichtungslinie">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-144">
+        <addColumn tableName="xplan_bp_foerderungsflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-145">
+        <addColumn tableName="xplan_bp_freiflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-146">
+        <addColumn tableName="xplan_bp_gebaeudeflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-147">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-148">
+        <addColumn tableName="xplan_bp_gemeinschaftsanlagenflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-149">
+        <addColumn tableName="xplan_bp_generischesobjekt">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-150">
+        <addColumn tableName="xplan_bp_gewaesserflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-151">
+        <addColumn tableName="xplan_bp_gruenflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-152">
+        <addColumn tableName="xplan_bp_immissionsschutz">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-153">
+        <addColumn tableName="xplan_bp_kennzeichnungsflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-154">
+        <addColumn tableName="xplan_bp_nebenanlagenausschlussflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-155">
+        <addColumn tableName="xplan_bp_nebenanlagenflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-156">
+        <addColumn tableName="xplan_bp_nutzungsartengrenze">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-157">
+        <addColumn tableName="xplan_bp_persgruppenbestimmteflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-158">
+        <addColumn tableName="xplan_bp_rekultivierungsflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-159">
+        <addColumn tableName="xplan_bp_schutzpflegeentwicklungsflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-160">
+        <addColumn tableName="xplan_bp_schutzpflegeentwicklungsmassnahme">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-161">
+        <addColumn tableName="xplan_bp_speziellebauweise">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-162">
+        <addColumn tableName="xplan_bp_spielsportanlagenflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-163">
+        <addColumn tableName="xplan_bp_strassenbegrenzungslinie">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-164">
+        <addColumn tableName="xplan_bp_strassenkoerper">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-165">
+        <addColumn tableName="xplan_bp_strassenverkehrsflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-166">
+        <addColumn tableName="xplan_bp_textlichefestsetzungsflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-167">
+        <addColumn tableName="xplan_bp_ueberbaubaregrundstuecksflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-168">
+        <addColumn tableName="xplan_bp_unverbindlichevormerkung">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-169">
+        <addColumn tableName="xplan_bp_verentsorgung">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-170">
+        <addColumn tableName="xplan_bp_verkehrsflaechebesondererzweckbestimmung">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-171">
+        <addColumn tableName="xplan_bp_waldflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-172">
+        <addColumn tableName="xplan_bp_wasserwirtschaftsflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-173">
+        <addColumn tableName="xplan_bp_wegerecht">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-174">
+        <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-175">
+        <addColumn tableName="xplan_bp_nichtueberbaubaregrundstuecksflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-176">
+        <addColumn tableName="xplan_bp_abstandsmass">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-177">
+        <addColumn tableName="xplan_bp_eingriffsbereich">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-178">
+        <addColumn tableName="xplan_bp_festsetzungnachlandesrecht">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-179">
+        <addColumn tableName="xplan_bp_gemeinschaftsanlagenzuordnung">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-180">
+        <addColumn tableName="xplan_bp_hoehenmass">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-181">
+        <addColumn tableName="xplan_bp_kleintierhaltungflaeche">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-182">
+        <addColumn tableName="xplan_bp_landwirtschaft">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-183">
+        <addColumn tableName="xplan_bp_regelungvergnuegungsstaetten">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-184">
+        <addColumn tableName="xplan_bp_veraenderungssperre">
+            <column name="xplan_laermkontingentgebiet" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-185">
+        <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-186">
+        <addColumn tableName="xplan_bp_nichtueberbaubaregrundstuecksflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-187">
+        <addColumn tableName="xplan_bp_abgrabungsflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-188">
+        <addColumn tableName="xplan_bp_abstandsflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-189">
+        <addColumn tableName="xplan_bp_anpflanzungbindungerhaltung">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-190">
+        <addColumn tableName="xplan_bp_aufschuettungsflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-191">
+        <addColumn tableName="xplan_bp_ausgleichsflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-192">
+        <addColumn tableName="xplan_bp_ausgleichsmassnahme">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-193">
+        <addColumn tableName="xplan_bp_baugebietsteilflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-194">
+        <addColumn tableName="xplan_bp_baugrenze">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-195">
+        <addColumn tableName="xplan_bp_baulinie">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-196">
+        <addColumn tableName="xplan_bp_bereichohneeinausfahrtlinie">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-197">
+        <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-198">
+        <addColumn tableName="xplan_bp_bodenschaetzeflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-199">
+        <addColumn tableName="xplan_bp_einfahrtpunkt">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-200">
+        <addColumn tableName="xplan_bp_einfahrtsbereichlinie">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-201">
+        <addColumn tableName="xplan_bp_erhaltungsbereichflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-202">
+        <addColumn tableName="xplan_bp_firstrichtungslinie">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-203">
+        <addColumn tableName="xplan_bp_foerderungsflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-204">
+        <addColumn tableName="xplan_bp_freiflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-205">
+        <addColumn tableName="xplan_bp_gebaeudeflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-206">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-207">
+        <addColumn tableName="xplan_bp_gemeinschaftsanlagenflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-208">
+        <addColumn tableName="xplan_bp_generischesobjekt">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-209">
+        <addColumn tableName="xplan_bp_gewaesserflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-210">
+        <addColumn tableName="xplan_bp_gruenflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-211">
+        <addColumn tableName="xplan_bp_immissionsschutz">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-212">
+        <addColumn tableName="xplan_bp_kennzeichnungsflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-213">
+        <addColumn tableName="xplan_bp_nebenanlagenausschlussflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-214">
+        <addColumn tableName="xplan_bp_nebenanlagenflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-215">
+        <addColumn tableName="xplan_bp_nutzungsartengrenze">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-216">
+        <addColumn tableName="xplan_bp_persgruppenbestimmteflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-217">
+        <addColumn tableName="xplan_bp_rekultivierungsflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-218">
+        <addColumn tableName="xplan_bp_schutzpflegeentwicklungsflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-219">
+        <addColumn tableName="xplan_bp_schutzpflegeentwicklungsmassnahme">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-220">
+        <addColumn tableName="xplan_bp_speziellebauweise">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-221">
+        <addColumn tableName="xplan_bp_spielsportanlagenflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-222">
+        <addColumn tableName="xplan_bp_strassenbegrenzungslinie">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-223">
+        <addColumn tableName="xplan_bp_strassenkoerper">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-224">
+        <addColumn tableName="xplan_bp_strassenverkehrsflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-225">
+        <addColumn tableName="xplan_bp_textlichefestsetzungsflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-226">
+        <addColumn tableName="xplan_bp_ueberbaubaregrundstuecksflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-227">
+        <addColumn tableName="xplan_bp_unverbindlichevormerkung">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-228">
+        <addColumn tableName="xplan_bp_verentsorgung">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-229">
+        <addColumn tableName="xplan_bp_verkehrsflaechebesondererzweckbestimmung">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-230">
+        <addColumn tableName="xplan_bp_waldflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-231">
+        <addColumn tableName="xplan_bp_wasserwirtschaftsflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-232">
+        <addColumn tableName="xplan_bp_wegerecht">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-233">
+        <addColumn tableName="xplan_bp_abgrabungsflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-234">
+        <addColumn tableName="xplan_bp_abstandsflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-235">
+        <addColumn tableName="xplan_bp_anpflanzungbindungerhaltung">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-236">
+        <addColumn tableName="xplan_bp_aufschuettungsflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-237">
+        <addColumn tableName="xplan_bp_ausgleichsflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-238">
+        <addColumn tableName="xplan_bp_ausgleichsmassnahme">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-239">
+        <addColumn tableName="xplan_bp_baugebietsteilflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-240">
+        <addColumn tableName="xplan_bp_baugrenze">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-241">
+        <addColumn tableName="xplan_bp_baulinie">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-242">
+        <addColumn tableName="xplan_bp_bereichohneeinausfahrtlinie">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-243">
+        <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-244">
+        <addColumn tableName="xplan_bp_bodenschaetzeflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-245">
+        <addColumn tableName="xplan_bp_einfahrtpunkt">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-246">
+        <addColumn tableName="xplan_bp_einfahrtsbereichlinie">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-247">
+        <addColumn tableName="xplan_bp_erhaltungsbereichflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-248">
+        <addColumn tableName="xplan_bp_firstrichtungslinie">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-249">
+        <addColumn tableName="xplan_bp_foerderungsflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-250">
+        <addColumn tableName="xplan_bp_freiflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-251">
+        <addColumn tableName="xplan_bp_gebaeudeflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-252">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-253">
+        <addColumn tableName="xplan_bp_gemeinschaftsanlagenflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-254">
+        <addColumn tableName="xplan_bp_generischesobjekt">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-255">
+        <addColumn tableName="xplan_bp_gewaesserflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-256">
+        <addColumn tableName="xplan_bp_gruenflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-257">
+        <addColumn tableName="xplan_bp_immissionsschutz">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-258">
+        <addColumn tableName="xplan_bp_kennzeichnungsflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-259">
+        <addColumn tableName="xplan_bp_nebenanlagenausschlussflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-260">
+        <addColumn tableName="xplan_bp_nebenanlagenflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-261">
+        <addColumn tableName="xplan_bp_nutzungsartengrenze">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-262">
+        <addColumn tableName="xplan_bp_persgruppenbestimmteflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-263">
+        <addColumn tableName="xplan_bp_rekultivierungsflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-264">
+        <addColumn tableName="xplan_bp_schutzpflegeentwicklungsflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-265">
+        <addColumn tableName="xplan_bp_schutzpflegeentwicklungsmassnahme">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-266">
+        <addColumn tableName="xplan_bp_speziellebauweise">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-267">
+        <addColumn tableName="xplan_bp_spielsportanlagenflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-268">
+        <addColumn tableName="xplan_bp_strassenbegrenzungslinie">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-269">
+        <addColumn tableName="xplan_bp_strassenkoerper">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-270">
+        <addColumn tableName="xplan_bp_strassenverkehrsflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-271">
+        <addColumn tableName="xplan_bp_textlichefestsetzungsflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-272">
+        <addColumn tableName="xplan_bp_ueberbaubaregrundstuecksflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-273">
+        <addColumn tableName="xplan_bp_unverbindlichevormerkung">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-274">
+        <addColumn tableName="xplan_bp_verentsorgung">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-275">
+        <addColumn tableName="xplan_bp_verkehrsflaechebesondererzweckbestimmung">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-276">
+        <addColumn tableName="xplan_bp_waldflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-277">
+        <addColumn tableName="xplan_bp_wasserwirtschaftsflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-278">
+        <addColumn tableName="xplan_bp_wegerecht">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-279">
+        <addColumn tableName="xplan_bp_abstandsmass">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-280">
+        <addColumn tableName="xplan_bp_eingriffsbereich">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-281">
+        <addColumn tableName="xplan_bp_festsetzungnachlandesrecht">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-282">
+        <addColumn tableName="xplan_bp_gemeinschaftsanlagenzuordnung">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-283">
+        <addColumn tableName="xplan_bp_hoehenmass">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-284">
+        <addColumn tableName="xplan_bp_kleintierhaltungflaeche">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-285">
+        <addColumn tableName="xplan_bp_landwirtschaft">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-286">
+        <addColumn tableName="xplan_bp_regelungvergnuegungsstaetten">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-287">
+        <addColumn tableName="xplan_bp_veraenderungssperre">
+            <column name="xplan_zusatzkontingent" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-288">
+        <addColumn tableName="xplan_bp_abstandsmass">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-289">
+        <addColumn tableName="xplan_bp_eingriffsbereich">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-290">
+        <addColumn tableName="xplan_bp_festsetzungnachlandesrecht">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-291">
+        <addColumn tableName="xplan_bp_gemeinschaftsanlagenzuordnung">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-292">
+        <addColumn tableName="xplan_bp_hoehenmass">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-293">
+        <addColumn tableName="xplan_bp_kleintierhaltungflaeche">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-294">
+        <addColumn tableName="xplan_bp_landwirtschaft">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-295">
+        <addColumn tableName="xplan_bp_regelungvergnuegungsstaetten">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-296">
+        <addColumn tableName="xplan_bp_veraenderungssperre">
+            <column name="xplan_zusatzkontingentflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-297">
+        <addColumn tableName="xplan_bp_abstandsmass">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-298">
+        <addColumn tableName="xplan_bp_eingriffsbereich">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-299">
+        <addColumn tableName="xplan_bp_festsetzungnachlandesrecht">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-300">
+        <addColumn tableName="xplan_bp_gemeinschaftsanlagenzuordnung">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-301">
+        <addColumn tableName="xplan_bp_hoehenmass">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-302">
+        <addColumn tableName="xplan_bp_kleintierhaltungflaeche">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-303">
+        <addColumn tableName="xplan_bp_landwirtschaft">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-304">
+        <addColumn tableName="xplan_bp_regelungvergnuegungsstaetten">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-305">
+        <addColumn tableName="xplan_bp_veraenderungssperre">
+            <column name="xplan_richtungssektorgrenze" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-306">
+        <addColumn tableName="xplan_rp_planungsraum">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-307">
+        <addColumn tableName="xplan_rp_freiraum">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-308">
+        <addColumn tableName="xplan_rp_laermschutzbauschutz">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-309">
+        <addColumn tableName="xplan_rp_siedlung">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-310">
+        <addColumn tableName="xplan_rp_sonstigerfreiraumschutz">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-311">
+        <addColumn tableName="xplan_rp_sonstigersiedlungsbereich">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-312">
+        <addColumn tableName="xplan_rp_planungsraum">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-313">
+        <addColumn tableName="xplan_bp_nichtueberbaubaregrundstuecksflaeche">
+            <column name="xplan_nutzung" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-314">
+        <addColumn tableName="xplan_rp_funktionszuweisung">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-315">
+        <addColumn tableName="xplan_rp_freiraum">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-316">
+        <addColumn tableName="xplan_rp_laermschutzbauschutz">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-317">
+        <addColumn tableName="xplan_rp_siedlung">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-318">
+        <addColumn tableName="xplan_rp_sonstigerfreiraumschutz">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-319">
+        <addColumn tableName="xplan_rp_sonstigersiedlungsbereich">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-320">
+        <addColumn tableName="xplan_bp_nichtueberbaubaregrundstuecksflaeche">
+            <column name="xplan_nutzungcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-321">
+        <addColumn tableName="xplan_rp_einzelhandel">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-322">
+        <addColumn tableName="xplan_rp_erneuerbareenergie">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-323">
+        <addColumn tableName="xplan_rp_hochwasserschutz">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-324">
+        <addColumn tableName="xplan_rp_industriegewerbe">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-325">
+        <addColumn tableName="xplan_rp_kulturlandschaft">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-326">
+        <addColumn tableName="xplan_rp_radwegwanderweg">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-327">
+        <addColumn tableName="xplan_rp_sonstigeinfrastruktur">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-328">
+        <addColumn tableName="xplan_rp_sportanlage">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-329">
+        <addColumn tableName="xplan_rp_wohnensiedlung">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-330">
+        <addColumn tableName="xplan_rp_funktionszuweisung">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-331">
+        <addColumn tableName="xplan_so_plan">
+            <column name="xplan_versionbaugbdatum" type="date"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-332">
+        <addColumn tableName="xplan_rp_einzelhandel">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-333">
+        <addColumn tableName="xplan_rp_erneuerbareenergie">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-334">
+        <addColumn tableName="xplan_rp_hochwasserschutz">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-335">
+        <addColumn tableName="xplan_rp_industriegewerbe">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-336">
+        <addColumn tableName="xplan_rp_kulturlandschaft">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-337">
+        <addColumn tableName="xplan_rp_radwegwanderweg">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-338">
+        <addColumn tableName="xplan_rp_sonstigeinfrastruktur">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-339">
+        <addColumn tableName="xplan_rp_sportanlage">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-340">
+        <addColumn tableName="xplan_rp_wohnensiedlung">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-341">
+        <addColumn tableName="xplan_so_plan">
+            <column name="xplan_versionbaugbtext" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-342">
+        <addColumn tableName="xplan_rp_kommunikation">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-343">
+        <addColumn tableName="xplan_rp_sozialeinfrastruktur">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-344">
+        <addColumn tableName="xplan_rp_wasserwirtschaft">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-345">
+        <addColumn tableName="xplan_so_plan">
+            <column name="xplan_versionsonstrechtsgrundlagedatum" type="date"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-346">
+        <addColumn tableName="xplan_so_forstrecht">
+            <column name="xplan_funktion" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-347">
+        <addColumn tableName="xplan_rp_gewaesser">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-348">
+        <addColumn tableName="xplan_rp_kommunikation">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-349">
+        <addColumn tableName="xplan_rp_sozialeinfrastruktur">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-350">
+        <addColumn tableName="xplan_rp_wasserwirtschaft">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-351">
+        <addColumn tableName="xplan_so_plan">
+            <column name="xplan_versionsonstrechtsgrundlagetext" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-352">
+        <addColumn tableName="xplan_so_forstrecht">
+            <column name="xplan_funktioncode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-353">
+        <addColumn tableName="xplan_rp_erholung">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-354">
+        <addColumn tableName="xplan_rp_generischesobjekt">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-355">
+        <addColumn tableName="xplan_rp_gruenzuggruenzaesur">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-356">
+        <addColumn tableName="xplan_rp_klimaschutz">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-357">
+        <addColumn tableName="xplan_rp_naturlandschaft">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-358">
+        <addColumn tableName="xplan_rp_sperrgebiet">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-359">
+        <addColumn tableName="xplan_rp_gewaesser">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-360">
+        <addColumn tableName="xplan_so_forstrecht">
+            <column name="xplan_betreten" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-361">
+        <addColumn tableName="xplan_rp_erholung">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-362">
+        <addColumn tableName="xplan_rp_generischesobjekt">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-363">
+        <addColumn tableName="xplan_rp_gruenzuggruenzaesur">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-364">
+        <addColumn tableName="xplan_rp_klimaschutz">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-365">
+        <addColumn tableName="xplan_rp_naturlandschaft">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-366">
+        <addColumn tableName="xplan_rp_sperrgebiet">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-367">
+        <addColumn tableName="xplan_so_forstrecht">
+            <column name="xplan_betretencode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-368">
+        <addColumn tableName="xplan_rp_achse">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-369">
+        <addColumn tableName="xplan_rp_bodenschutz">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-370">
+        <addColumn tableName="xplan_rp_forstwirtschaft">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-371">
+        <addColumn tableName="xplan_rp_grenze">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-372">
+        <addColumn tableName="xplan_rp_landwirtschaft">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-373">
+        <addColumn tableName="xplan_rp_raumkategorie">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-374">
+        <addColumn tableName="xplan_rp_verkehr">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-375">
+        <addColumn tableName="xplan_rp_achse">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-376">
+        <addColumn tableName="xplan_rp_bodenschutz">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-377">
+        <addColumn tableName="xplan_rp_forstwirtschaft">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-378">
+        <addColumn tableName="xplan_rp_grenze">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-379">
+        <addColumn tableName="xplan_rp_landwirtschaft">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-380">
+        <addColumn tableName="xplan_rp_raumkategorie">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-381">
+        <addColumn tableName="xplan_rp_wasserschutz">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-382">
+        <addColumn tableName="xplan_rp_zentralerort">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-383">
+        <addColumn tableName="xplan_rp_verkehr">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-384">
+        <addColumn tableName="xplan_rp_entsorgung">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-385">
+        <addColumn tableName="xplan_rp_naturschutzrechtlichesschutzgebiet">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-386">
+        <addColumn tableName="xplan_rp_wasserschutz">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-387">
+        <addColumn tableName="xplan_rp_zentralerort">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-388">
+        <addColumn tableName="xplan_rp_energieversorgung">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-389">
+        <addColumn tableName="xplan_rp_entsorgung">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-390">
+        <addColumn tableName="xplan_rp_naturschutzrechtlichesschutzgebiet">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-391">
+        <addColumn tableName="xplan_rp_energieversorgung">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-392">
+        <addColumn tableName="xplan_bp_abstandsmass">
+            <column name="xplan_typ" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-393">
+        <addColumn tableName="xplan_fp_kennzeichnung">
+            <column name="xplan_istverdachtsflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-394">
+        <addColumn tableName="xplan_rp_rohstoff">
+            <column name="xplan_nordwinkel" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-395">
+        <addColumn tableName="xplan_bp_abstandsmass">
+            <column name="xplan_typcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-396">
+        <addColumn tableName="xplan_rp_rohstoff">
+            <column name="xplan_nordwinkeluom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-397">
+        <addColumn tableName="xplan_fp_kennzeichnung">
+            <column name="xplan_nummer" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-398">
+        <addColumn tableName="xplan_fp_waldflaeche">
+            <column name="xplan_eigentumsart" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-399">
+        <addColumn tableName="xplan_fp_waldflaeche">
+            <column name="xplan_eigentumsartcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-400">
+        <addColumn tableName="xplan_fp_waldflaeche">
+            <column name="xplan_betreten" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-401">
+        <addColumn tableName="xplan_fp_waldflaeche">
+            <column name="xplan_betretencode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-402">
+        <addColumn tableName="xplan_bp_kennzeichnungsflaeche">
+            <column name="xplan_istverdachtsflaeche" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-403">
+        <addColumn tableName="xplan_bp_immissionsschutz">
+            <column name="xplan_technvorkehrung" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-404">
+        <addColumn tableName="xplan_bp_kennzeichnungsflaeche">
+            <column name="xplan_nummer" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-405">
+        <addColumn tableName="xplan_bp_immissionsschutz">
+            <column name="xplan_technvorkehrungcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-406">
+        <addColumn tableName="xplan_bp_immissionsschutz">
+            <column name="xplan_detailliertetechnvorkehrung" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-407">
+        <addColumn tableName="xplan_bp_immissionsschutz">
+            <column name="xplan_detailliertetechnvorkehrungcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-408">
+        <addColumn tableName="xplan_bp_immissionsschutz">
+            <column name="xplan_typ" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-409">
+        <addColumn tableName="xplan_bp_immissionsschutz">
+            <column name="xplan_typcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-410">
+        <addColumn tableName="xplan_bp_waldflaeche">
+            <column name="xplan_eigentumsart" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-411">
+        <addColumn tableName="xplan_bp_waldflaeche">
+            <column name="xplan_eigentumsartcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-412">
+        <addColumn tableName="xplan_bp_waldflaeche">
+            <column name="xplan_betreten" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-413">
+        <addColumn tableName="xplan_bp_waldflaeche">
+            <column name="xplan_betretencode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-414">
+        <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
+            <column name="xplan_bauweise" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-415">
+        <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
+            <column name="xplan_bauweisecode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-416">
+        <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
+            <column name="xplan_bebauungsart" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-417">
+        <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
+            <column name="xplan_bebauungsartcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-418">
+        <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
+            <column name="xplan_abweichendebauweise" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-419">
+        <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
+            <column name="xplan_abweichendebauweisecode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-420">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_dnmin" type="numeric(131089)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-421">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_dnminuom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-422">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_dnmax" type="numeric(131089)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-423">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_dnmaxuom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-424">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_dn" type="numeric(131089)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-425">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_dnuom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-426">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_dnzwingend" type="numeric(131089)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-427">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_dnzwingenduom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-428">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_fr" type="numeric(131089)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-429">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_fruom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-430">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_dachform" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-431">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_dachformcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-432">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_detailliertedachform" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-433">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_detailliertedachformcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-434">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_bauweise" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-435">
+        <addColumn tableName="xplan_bp_ueberbaubaregrundstuecksflaeche">
+            <column name="xplan_vf" type="numeric(131089)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-436">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_bauweisecode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-437">
+        <addColumn tableName="xplan_bp_ueberbaubaregrundstuecksflaeche">
+            <column name="xplan_vfuom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-438">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_abweichendebauweise" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-439">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_abweichendebauweisecode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-440">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_bebauungsart" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-441">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_bebauungsartcode" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-442">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_dachgestaltung" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-443">
+        <addColumn tableName="xplan_bp_baugebietsteilflaeche">
+            <column name="xplan_vf" type="numeric(131089)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-444">
+        <addColumn tableName="xplan_bp_baugebietsteilflaeche">
+            <column name="xplan_vfuom" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-445">
+        <createIndex indexName="spatial_idx_493" tableName="xplan_bp_abweichungvonbaugrenze">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-446">
+        <createIndex indexName="spatial_idx_494" tableName="xplan_bp_abweichungvonueberbauberergrundstuecksflaeche">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-447">
+        <createIndex indexName="spatial_idx_495" tableName="xplan_bp_richtungssektorgrenze">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-448">
+        <createIndex indexName="spatial_idx_496" tableName="xplan_bp_zusatzkontingentlaermflaeche">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-449">
+        <createIndex indexName="spatial_idx_497" tableName="xplan_bp_zusatzkontingentlaerm">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-450">
+        <createIndex indexName="spatial_idx_498" tableName="xplan_bp_sichtflaeche">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-451">
+        <createIndex indexName="spatial_idx_499" tableName="xplan_so_bauverbotszone">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-452">
+        <createIndex indexName="spatial_idx_500" tableName="xplan_so_gewaesser">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1581343214705-1">
+        <modifyDataType columnName="xplan_amtlicherschluessel" newDataType="clob" tableName="xplan_rp_plan"/>
+    </changeSet>
+</databaseChangeLog>
