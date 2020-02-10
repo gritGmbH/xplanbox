@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hale-project version="3.3.1.release">
+<hale-project version="3.5.0.release">
     <name>XPlan GML 5.2 to INSPRE PLU</name>
     <author>lat/lon GmbH</author>
     <created>2018-11-19T14:09:54.783+01:00</created>
-    <modified>2018-11-28T15:58:32.588+01:00</modified>
+    <modified>2020-02-10T07:10:09.593+01:00</modified>
     <save-config action-id="project.save" provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -47,6 +47,12 @@
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_AbstandsMassType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_AbstandsMassType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_AbstandsMassType/count">2</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_AbweichungVonBaugrenzeType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_AbweichungVonBaugrenzeType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_AbweichungVonBaugrenzeType/count">2</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_AbweichungVonUeberbaubererGrundstuecksFlaecheType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_AbweichungVonUeberbaubererGrundstuecksFlaecheType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_AbweichungVonUeberbaubererGrundstuecksFlaecheType/count">2</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_AnpflanzungBindungErhaltungType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_AnpflanzungBindungErhaltungType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_AnpflanzungBindungErhaltungType/count">2</property>
@@ -185,12 +191,18 @@
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_RekultivierungsFlaecheType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_RekultivierungsFlaecheType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_RekultivierungsFlaecheType/count">2</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_RichtungssektorGrenzeType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_RichtungssektorGrenzeType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_RichtungssektorGrenzeType/count">2</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_SchutzPflegeEntwicklungsFlaecheType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_SchutzPflegeEntwicklungsFlaecheType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_SchutzPflegeEntwicklungsFlaecheType/count">2</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_SchutzPflegeEntwicklungsMassnahmeType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_SchutzPflegeEntwicklungsMassnahmeType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_SchutzPflegeEntwicklungsMassnahmeType/count">2</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_SichtflaecheType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_SichtflaecheType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_SichtflaecheType/count">2</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_SpezielleBauweiseType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_SpezielleBauweiseType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_SpezielleBauweiseType/count">2</property>
@@ -242,6 +254,12 @@
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_WegerechtType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_WegerechtType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_WegerechtType/count">2</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_ZusatzkontingentLaermFlaecheType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_ZusatzkontingentLaermFlaecheType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_ZusatzkontingentLaermFlaecheType/count">2</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_ZusatzkontingentLaermType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_ZusatzkontingentLaermType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}BP_ZusatzkontingentLaermType/count">2</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}FP_AbgrabungType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}FP_AbgrabungType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}FP_AbgrabungType/count">2</property>
@@ -596,6 +614,9 @@
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}RP_ZentralerOrtType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}RP_ZentralerOrtType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}RP_ZentralerOrtType/count">2</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_BauverbotszoneType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_BauverbotszoneType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_BauverbotszoneType/count">2</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_BereichType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_BereichType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_BereichType/count">2</property>
@@ -617,6 +638,9 @@
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_GeometrieobjektType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_GeometrieobjektType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_GeometrieobjektType/count">2</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_GewaesserType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_GewaesserType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_GewaesserType/count">2</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_GrenzeType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_GrenzeType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}SO_GrenzeType/count">2</property>

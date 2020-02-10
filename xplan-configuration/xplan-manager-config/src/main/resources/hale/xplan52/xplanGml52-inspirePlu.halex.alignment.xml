@@ -1577,6 +1577,36 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="Ccb5cf68c-f78c-4fb4-8046-75eebfd72fdd" priority="normal">
+        <source>
+            <class>
+                <type name="BP_AbweichungVonBaugrenzeType" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="C7d49048c-9250-453a-b9ff-39843f2080b2" priority="normal">
+        <source>
+            <class>
+                <type name="BP_AbweichungVonUeberbaubererGrundstuecksFlaecheType" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C02faab91-bfc7-4ac2-87ec-3512188620eb" priority="normal">
         <source>
             <class>
@@ -2225,6 +2255,21 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="C2ddeff7d-e879-4e72-afae-e134a5d72016" priority="normal">
+        <source>
+            <class>
+                <type name="BP_RichtungssektorGrenzeType" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C4a9d102d-c24a-4e4f-9150-7ea2c3323718" priority="normal">
         <source>
             <class>
@@ -2254,6 +2299,21 @@
                 <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
             </class>
         </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="C071a2fef-450b-46e5-b9f1-719aaab55550" priority="normal">
+        <source>
+            <class>
+                <type name="BP_SichtflaecheType" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
@@ -2496,6 +2556,36 @@
                 <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
             </class>
         </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="C6960c8f3-6911-4ae9-bfee-f32d561e90f8" priority="normal">
+        <source>
+            <class>
+                <type name="BP_ZusatzkontingentLaermFlaecheType" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="Ce05a97d9-06dd-415e-95a9-84bcb8167e47" priority="normal">
+        <source>
+            <class>
+                <type name="BP_ZusatzkontingentLaermType" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
