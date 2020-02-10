@@ -125,20 +125,18 @@ public class GeometricValidatorImpl implements GeometricValidator {
 
 
             resolveAndValidateXlinks( gmlStream, result );
-            return result;
         } catch ( XMLParsingException e ) {
             String msg = "Die geometrische Validierung wurde aufgrund von schwerwiegenden Fehlern abgebrochen. "
                          + "Das XPlanGML-Dokument (xplan.gml) entspricht nicht dem GML-Schema.";
             result.addError( msg );
             LOG.info( "Unexpected failure by geometry validation ", e );
-            return null;
         } catch ( Exception e ) {
             String msg = "Die geometrische Validierung wurde aufgrund von schwerwiegenden Fehlern abgebrochen. "
                          + "Das XPlanGML-Dokument (xplan.gml) entspricht nicht dem GML-Schema.";
             result.addError( msg );
             LOG.info( "Unexpected failure by geometry validation ", e );
-            return null;
         }
+        return result;
     }
 
     private void checkAndAddRules( GeometricFeatureInspector fi, ParserAndValidatorResult result ) {
