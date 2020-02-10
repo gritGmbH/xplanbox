@@ -68,6 +68,16 @@
       <Layer>so_strassenverkehrsrecht</Layer>
     </Theme>
     <Theme>
+      <Identifier>so_bauverbotszone</Identifier>
+      <d:Title>SO: Bauverbotszone</d:Title>
+      <Layer>so_bauverbotszone</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_gewaesser</Identifier>
+      <d:Title>SO: Gewaesser</d:Title>
+      <Layer>so_gewaesser</Layer>
+    </Theme>
+    <Theme>
       <Identifier>so_wasserrecht</Identifier>
       <d:Title>SO: Wasserrecht</d:Title>
       <Layer>so_wasserrecht</Layer>

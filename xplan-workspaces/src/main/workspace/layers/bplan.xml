@@ -5249,10 +5249,10 @@
     <d:Abstract>BP_AbweichungVonUeberbaubererGrundstuecksFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_abwueberbaubarergrundstuecksf</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_abwueberbaubarergrundstuecksfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp/bp_abwueberbaubarergrundstuecksf_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_abwueberbaubarergrundstuecksfl_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -5383,7 +5383,7 @@
       </SortBy>
     </SortBy>
     <l:Name>bp_zusatzkontingentlaermflaeche</l:Name>
-    <d:Title>BP: BP_ZusatzkontingentLaermFlaeche</d:Title>
+    <d:Title>BP: ZusatzkontingentLaermFlaeche</d:Title>
     <d:Abstract>BP_ZusatzkontingentLaermFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
@@ -5429,7 +5429,7 @@
       </SortBy>
     </SortBy>
     <l:Name>bp_sichtflaeche</l:Name>
-    <d:Title>BP: BP_Sichtflaeche</d:Title>
+    <d:Title>BP: Sichtflaeche</d:Title>
     <d:Abstract>BP_Sichtflaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>

@@ -837,6 +837,66 @@
       <Layer>bp_baulin</Layer>
     </Theme>
     <Theme>
+      <Identifier>bp_abweichungenvonbaugrenze</Identifier>
+      <d:Title>BP: AbweichungVonBaugrenze</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_abweichungenvonbaugrenze</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_abweichungvonueberbauberergrundstuecksflaeche</Identifier>
+      <d:Title>BP: BP_AbweichungVonUeberbaubererGrundstuecksFlaeche</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_abweichungvonueberbauberergrundstuecksflaeche</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_richtungssektorgrenze</Identifier>
+      <d:Title>BP: RichtungssektorGrenze</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_richtungssektorgrenze</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_zusatzkontingentlaerm</Identifier>
+      <d:Title>BP: ZusatzkontingentLaerm</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_zusatzkontingentlaerm</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>ZusatzkontingentLaerm</Identifier>
+      <d:Title>BP: ZusatzkontingentLaermFlaeche</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>ZusatzkontingentLaerm</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_sichtflaeche</Identifier>
+      <d:Title>BP: Sichtflaeche</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_sichtflaeche</Layer>
+    </Theme>
+    <Theme>
       <Identifier>bp_symbole</Identifier>
       <d:Title>bp_symbole</d:Title>
     <s:Envelope crs="EPSG:4326">
@@ -1221,6 +1281,24 @@
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
         <Layer>so_strassenverkehrsrecht</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_bauverbotszone</Identifier>
+        <d:Title>SO: Bauverbotszone</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_bauverbotszone</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_gewaesser</Identifier>
+        <d:Title>SO: Gewaesser</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_gewaesser</Layer>
       </Theme>
       <Theme>
         <Identifier>so_wasserrecht</Identifier>
