@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -30,7 +31,8 @@ public class HaleCliInspirePluTransformator implements InspirePluTransformator {
     private static final Map<XPlanVersion, String> VERSION_TO_HALEPROJECT = Collections.unmodifiableMap(
                     Stream.of( new SimpleEntry<>( XPLAN_41, "xplan41/xplanGml41-inspirePlu.halex" ),
                                new SimpleEntry<>( XPLAN_50, "xplan50/xplanGml50-inspirePlu.halex" ),
-                               new SimpleEntry<>( XPLAN_51, "xplan51/xplanGml51-inspirePlu.halex" ) ).collect(
+                               new SimpleEntry<>( XPLAN_51, "xplan51/xplanGml51-inspirePlu.halex" ),
+                               new SimpleEntry<>( XPLAN_52, "xplan52/xplanGml52-inspirePlu.halex" ) ).collect(
                                     Collectors.toMap( ( e ) -> e.getKey(), ( e ) -> e.getValue() ) ) );
 
     public HaleCliInspirePluTransformator( String haleCli, Path haleProjectDirectory ) {
