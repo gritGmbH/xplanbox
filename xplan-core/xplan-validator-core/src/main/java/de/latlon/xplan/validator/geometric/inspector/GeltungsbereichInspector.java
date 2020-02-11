@@ -140,7 +140,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
                                                     + " could not be parsed (or is empty)" );
             }
             return geltungsbereich.covers( geometry );
-        } catch ( TopologyException e ) {
+        } catch ( TopologyException | IllegalArgumentException e ) {
             throw new InvalidGeometryException( e );
         }
     }

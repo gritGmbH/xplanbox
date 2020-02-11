@@ -72,7 +72,7 @@ public class MapPreviewManager {
                                                              envelope.getMax().get0(), envelope.getMax().get1(),
                                                              "EPSG:4326" );
             return new MapPreviewMetadata( configFileName, featureCollection.getPlanName(), xPlanEnvelope );
-        } catch ( IOException e ) {
+        } catch ( Exception e ) {
             LOG.error( "An exception occurred during creation of the map preview configuration", e );
             throw new MapPreviewCreationException( e.getMessage() );
         }

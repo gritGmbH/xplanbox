@@ -1,7 +1,5 @@
 package de.latlon.xplan.validator.geometric.inspector;
 
-import com.vividsolutions.jts.geom.TopologyException;
-
 /**
  * Indicates an iinvalid geometry.
  *
@@ -13,7 +11,7 @@ public class InvalidGeometryException extends Exception {
         super( msg );
     }
 
-    public InvalidGeometryException( TopologyException e ) {
+    public InvalidGeometryException( Exception e ) {
         super( e );
     }
 
