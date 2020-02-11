@@ -1,0 +1,65 @@
+<?template start>
+<html>
+  <head>
+    <title>XPlanInspirePluWMS</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  </head>
+  
+  <body>
+    <table style='font-family:Arial; font-size: 0.9em;'>
+      <?feature *:feature>
+    </table>
+  </body>
+</html>
+
+<?template feature>
+<tr style="background-color: white;">
+      <td colspan="2" style="font-size: 1.1em; border-bottom: solid black 1px; padding-top: 10px; padding-bottom: 5px;">
+		<strong>
+            <?name:map ftname>
+		</strong>
+      </td>
+</tr>
+<?property *:property>
+
+<?template property>
+<tr>
+  <td <?even:maybegray> valign="top" style="width:20%;">
+        <strong> 
+          <?name:map propname>
+        </strong>
+  </td>
+  <td <?even:maybegray>>
+    <?value>
+  </td>
+</tr>
+
+<?template oddcolor>style="background-color: #F2F2F2;"
+<?template evencolor>style="background-color: white;"
+<?template maybegray>style="background-color: #F2F2F2;"
+
+<?map ftname>
+SpatialPlan=SpatialPlan
+SupplementaryRegulation=SupplementaryRegulation
+ZoningElement=ZoningElement
+
+<?map propname>
+inspireid=Inspire ID
+levelofspatialplan=Level of spatial plan
+officialtitle=Official title
+alternativetitle=Alternative title
+ordinances=Ordinances
+regulationnature=Regulationnature
+dimensioningindications=Dimensioning indications
+supplementaryregulations=Supplementaryregulations
+inheritedfromotherplans=Inherited from other plans
+names=Names
+specificregulationnature=Specific regulationnature
+specificsupplementaryregulations=Specific supplementaryregulations
+hilucs=HILUCS
+specificlanduse=Specific land use
+processstepgeneral=Processstepgeneral
+validfrom=Valid from
+validto=Valid to
+beginlifespanversion=Begin lifespanversion
+endlifespanversion=End lifespanversion

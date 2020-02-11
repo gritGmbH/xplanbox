@@ -9,5 +9,12 @@
   <ServiceConfiguration>
     <ThemeId>inspireplu</ThemeId>
   </ServiceConfiguration>
+  
+  <FeatureInfoFormats>
+    <GetFeatureInfoFormat>
+      <File>inspirepluhtml.gfi</File>
+      <Format>text/html</Format>
+    </GetFeatureInfoFormat>
+  </FeatureInfoFormats>
 
 </deegreeWMS>
