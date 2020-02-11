@@ -50,7 +50,9 @@ Für die Bereitstellung von Plänen, die vom XPlanManager verwaltet werden, als 
 
  * Anlegen einer neuen Datenbank.
  * Installation der PostGIS-Erweiterung für die neue Datenbank.
- * SQL-Create-Skript _04_create_inspireplu_schema.sql_ aus dem Verzeichnis _xplan-manager-workspace/sql/inspireplu_ in der neu angelegten Datenbank ausführen.
+ * Die folgenden SQL-Create-Skript aus dem Verzeichnis _xplan-manager-workspace/sql/inspireplu_ in der neu angelegten Datenbank ausführen (in dieser Reihenfolge):
+ ** _04_create_inspireplu_schema.sql_
+ ** _05_create_inspireplu_view.sql_
  * Anpassen der Datenbank-Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace:
  ** _.deegree/xplan-inspireplu-workspace/jdbc/inspireplu.xml_
  ** _.deegree/xplan-manager-workspace/jdbc/inspireplu.xml_

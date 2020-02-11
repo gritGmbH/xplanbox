@@ -19,4 +19,5 @@ else
 
     echo "02: setup db"
     psql -q -p $PORT -U $POSTGRES_USER -d inspireplu -f /xplan-sql-scripts/inspireplu/04_create_inspireplu_schema.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d inspireplu -f /xplan-sql-scripts/inspireplu/05_create_inspireplu_view.sql
 fi
