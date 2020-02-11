@@ -10,7 +10,7 @@ FROM plu_spatialplan sp;
 CREATE OR REPLACE VIEW VIEWSERVICE_SUPPLEMENTARY_REGULATION AS
 SELECT 
   sr.attr_gml_id as supplementaryregulation_gml_id, 
-  sr.plu_geometry_value as extent,
+  sr.plu_geometry_value as geometry,
   string_agg(DISTINCT srsr.href, '|') as supplementaryregulations
 FROM plu_supplementaryregulation sr 
 LEFT JOIN plu_supplementaryregulation_plu_supplementaryregulation srsr 
@@ -21,7 +21,7 @@ GROUP BY supplementaryregulation_gml_id;
 CREATE OR REPLACE VIEW VIEWSERVICE_ZONING_ELEMENT AS
 SELECT 
   ze.attr_gml_id as zoningelement_gml_id, 
-  ze.plu_geometry_value as extent,
+  ze.plu_geometry_value as geometry,
   string_agg(DISTINCT zeh.href, '|') as hilucs
 FROM plu_zoningelement ze 
 LEFT JOIN plu_zoningelement_plu_hilucslanduse zeh 
