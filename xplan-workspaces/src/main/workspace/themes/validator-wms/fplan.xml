@@ -276,15 +276,6 @@
       <Layer>fp_verentsorgung</Layer>
     </Theme>
     <Theme>
-      <Identifier>rp_erneuerbareenergie</Identifier>
-      <d:Title>RP: ErneuerbareEnergie</d:Title>
-      <s:Envelope crs="EPSG:4326">
-        <s:LowerCorner>5.7 47.2</s:LowerCorner>
-        <s:UpperCorner>15.1 55.1</s:UpperCorner>
-      </s:Envelope>
-      <Layer>rp_erneuerbareenergie</Layer>
-    </Theme>
-    <Theme>
       <Identifier>fp_schutzgeb</Identifier>
       <d:Title>FP: Schutzgebiet</d:Title>
     <s:Envelope crs="EPSG:4326">
@@ -463,6 +454,15 @@
     </s:Envelope>
       <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_vorbehaltefl</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_erneuerbareenergie</Identifier>
+      <d:Title>RP: ErneuerbareEnergie</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <Layer>rp_erneuerbareenergie</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_beschriftung</Identifier>
