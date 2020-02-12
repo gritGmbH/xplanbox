@@ -6,6 +6,7 @@
   <Theme>
     <Identifier>SO_Planvektor</Identifier>
     <d:Title>SOPlan Vektor</d:Title>
+    <d:Abstract>Vektordaten SOPlan</d:Abstract>
     <s:Envelope crs="EPSG:4326">
       <s:LowerCorner>5.7 47.2</s:LowerCorner>
       <s:UpperCorner>15.1 55.1</s:UpperCorner>

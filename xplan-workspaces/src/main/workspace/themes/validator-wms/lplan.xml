@@ -6,7 +6,8 @@
   <LayerStoreId>soplan</LayerStoreId>
   <Theme>
     <Identifier>LP_Planvektor</Identifier>
-    <d:Title>XPlan WMS LPlan</d:Title>
+    <d:Title>LPlan Vektor</d:Title>
+    <d:Abstract>Vektordaten LPlan</d:Abstract>
     <s:Envelope crs="EPSG:4326">
       <s:LowerCorner>5.7 47.2</s:LowerCorner>
       <s:UpperCorner>15.1 55.1</s:UpperCorner>

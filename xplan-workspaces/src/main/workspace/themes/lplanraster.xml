@@ -1,12 +1,13 @@
-<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:ns2="http://www.deegree.org/metadata/description"
-        xmlns:ns3="http://www.deegree.org/metadata/spatial" configVersion="3.4.0">
+<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description"
+        xmlns:s="http://www.deegree.org/metadata/spatial" configVersion="3.4.0">
   <Theme>
     <Identifier>LP_Planraster</Identifier>
-    <ns2:Title>LPlan Raster</ns2:Title>
-    <ns3:CRS>${rasterCrs}</ns3:CRS>
+    <d:Title>LPlan Raster</d:Title>
+    <d:Abstract>Rasterdaten LPlan</d:Abstract>
+    <s:CRS>${rasterCrs}</s:CRS>
     <Theme>
       <Identifier>lplanraster_sortiert</Identifier>
-      <ns2:Title>LPlan Raster Theme</ns2:Title>
+      <d:Title>LPlan Raster Theme</d:Title>
     </Theme>
   </Theme>
 </Themes>

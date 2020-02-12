@@ -6,6 +6,7 @@
   <Theme>
     <Identifier>BP_Planvektor</Identifier>
     <d:Title>BPlan Vektor</d:Title>
+    <d:Abstract>Vektordaten BPlan</d:Abstract>
     <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
     <Theme>
       <Identifier>bp_strkoerper</Identifier>
