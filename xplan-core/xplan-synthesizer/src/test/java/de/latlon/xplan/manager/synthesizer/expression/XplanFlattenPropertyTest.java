@@ -67,7 +67,7 @@ public class XplanFlattenPropertyTest {
         Feature feature = new ScenarioLoader().getTestFeature( XPLAN_41, "BP_Baugebiet_1" );
         XplanFlattenProperty expr = new XplanFlattenProperty( new Xpath( "xplan:hoehenangabe" ) );
         PrimitiveValue value = expr.evaluate( feature );
-        assertEquals( "[Höhenbezug: absolutNHN|Abweichender Höhenbezug: 1|Bezugspunkt Höhenangabe: FH|Höhe: 4|Höhe Min: 1|Höhe Max: 2|Höhe Zwingend: 3]",
+        assertEquals( "[Höhenbezug: absolutNHN|Abweichender Höhenbezug: 1|Bezugspunkt: FH|Höhe: 4|Höhe Min: 1|Höhe Max: 2|Höhe Zwingend: 3]",
                       value.toString() );
     }
 
@@ -103,7 +103,7 @@ public class XplanFlattenPropertyTest {
         Feature feature = new ScenarioLoader().getTestFeature( XPLAN_41, "BP_Plan_1" );
         XplanFlattenProperty expr = new XplanFlattenProperty( new Xpath( "xplan:gemeinde" ) );
         PrimitiveValue value = expr.evaluate( feature );
-        assertEquals( "[AGS: 4011000|RS: rs|Gemeinde: Bremen|Ortsteil: Whatever]", value.toString() );
+        assertEquals( "[Gemeindeschlüssel: 4011000|Regionalschlüssel: rs|Gemeinde: Bremen|Ortsteil: Whatever]", value.toString() );
     }
 
     @Test

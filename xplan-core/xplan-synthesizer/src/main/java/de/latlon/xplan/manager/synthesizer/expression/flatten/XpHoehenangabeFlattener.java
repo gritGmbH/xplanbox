@@ -30,9 +30,9 @@ public class XpHoehenangabeFlattener extends AbstractFlattener {
         List<Pair<String, String>> properties = new ArrayList<>();
         appendTranslatedCode( "Höhenbezug", xpHoehenangabe, "hoehenbezug", version, "XP_ArtHoehenbezug", properties );
         append( "Abweichender Höhenbezug", xpHoehenangabe, "abweichenderHoehenbezug", properties );
-        appendTranslatedCode( "Bezugspunkt Höhenangabe", xpHoehenangabe, "bezugspunkt", version,
+        appendTranslatedCode( "Bezugspunkt", xpHoehenangabe, "bezugspunkt", version,
                               "XP_ArtHoehenbezugspunkt", properties );
-        append( "Abweichender Bezugspunkt Höhenangabe", xpHoehenangabe, "abweichenderBezugspunkt", properties );
+        append( "Abweichender Bezugspunkt", xpHoehenangabe, "abweichenderBezugspunkt", properties );
         append( "Höhe", xpHoehenangabe, "h", properties );
         append( "Höhe Min", xpHoehenangabe, "hMin", properties );
         append( "Höhe Max", xpHoehenangabe, "hMax", properties );

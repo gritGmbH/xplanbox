@@ -21,8 +21,8 @@ public class XpGemeindeFlattener extends AbstractFlattener {
     @Override
     public String flatten( TypedObjectNode xpGemeinde ) {
         List<Pair<String, String>> properties = new ArrayList<>();
-        append( "AGS", xpGemeinde, "ags", properties );
-        append( "RS", xpGemeinde, "rs", properties );
+        append( "Gemeindeschlüssel", xpGemeinde, "ags", properties );
+        append( "Regionalschlüssel", xpGemeinde, "rs", properties );
         append( "Gemeinde", xpGemeinde, "gemeindeName", properties );
         append( "Ortsteil", xpGemeinde, "ortsteilName", properties );
         return encode( properties );
