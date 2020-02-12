@@ -37,9 +37,7 @@
     <Primitive path="inspireid" mapping="inspireid" type="string"/>
     <Primitive path="regulationnature" mapping="regulationnature" type="string"/>
     <Primitive path="supplementaryregulations" mapping="supplementaryregulations" type="string"/>
-    <!--
     <Primitive path="dimensioningindications" mapping="dimensioningindications" type="string"/>
-    -->
     <Primitive path="inheritedfromotherplans" mapping="inheritedfromotherplans" type="boolean"/>
     <Primitive path="names" mapping="names" type="string"/>
     <Primitive path="processstepgeneral" mapping="processstepgeneral" type="string"/>
@@ -62,9 +60,7 @@
     <Primitive path="hilucs" mapping="hilucs" type="string"/>
     <Primitive path="inspireid" mapping="inspireid" type="string"/>
     <Primitive path="regulationnature" mapping="regulationnature" type="string"/>
-    <!--
     <Primitive path="dimensioningindications" mapping="dimensioningindications" type="string"/>
-    -->
     <Primitive path="processstepgeneral" mapping="processstepgeneral" type="string"/>
     <Primitive path="specificlanduse" mapping="specificlanduse" type="string"/>
     <Primitive path="validfrom" mapping="validfrom" type="date"/>

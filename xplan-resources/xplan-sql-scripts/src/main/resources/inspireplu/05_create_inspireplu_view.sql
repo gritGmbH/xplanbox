@@ -35,7 +35,19 @@ SELECT
 		 sr.plu_inspireid_base_identifier_base_localid) as inspireid,
   sr.plu_regulationnature_href as regulationnature,
   string_agg(DISTINCT srsr.href, '|') as supplementaryregulations,
-  -- TODO:	dimensioningindications
+  array_to_string( array_agg( DISTINCT CASE
+									 WHEN srdi.plu_dimensioningindicationvalue_plu_indicationreference is not null
+									 	THEN srdi.plu_dimensioningindicationvalue_plu_indicationreference
+									 WHEN srdi.plu_dimensioningindicationcharactervalue_plu_indicationrefe_117 is not null
+									 	THEN srdi.plu_dimensioningindicationcharactervalue_plu_indicationrefe_117 || ': ' || srdi.plu_dimensioningindicationcharactervalue_plu_value
+									 WHEN srdi.plu_dimensioningindicationmeasurevalue_plu_indicationreference is not null
+									 	THEN srdi.plu_dimensioningindicationmeasurevalue_plu_indicationreference || ': ' || srdi.plu_dimensioningindicationmeasurevalue_plu_value || ' [' || srdi.plu_dimensioningindicationmeasurevalue_plu_value_attr_uom || ']'
+									 WHEN srdi.plu_dimensioningindicationintegervalue_plu_indicationreference is not null
+									 	THEN srdi.plu_dimensioningindicationintegervalue_plu_indicationreference || ': ' || srdi.plu_dimensioningindicationintegervalue_plu_value
+									 WHEN srdi.plu_dimensioningindicationrealvalue_plu_indicationreference is not null
+									 	THEN srdi.plu_dimensioningindicationrealvalue_plu_indicationreference || ': ' || srdi.plu_dimensioningindicationrealvalue_plu_value
+            						 ELSE NULL
+                               END), ', ', '') as dimensioningindications,
   sr.plu_inheritedfromotherplans as inheritedfromotherplans,
   string_agg(DISTINCT srn.value, '|') as names,
   sr.plu_processstepgeneral_href as processstepgeneral,
@@ -52,8 +64,8 @@ LEFT JOIN plu_supplementaryregulation_plu_specificsupplementaryregula_113 srssr
    ON sr.attr_gml_id = srssr.parentfk
 LEFT JOIN plu_supplementaryregulation_plu_name srn
    ON sr.attr_gml_id = srn.parentfk
---LEFT JOIN plu_supplementaryregulation_plu_dimensioningindication srdi
---   ON sr.attr_gml_id = srdi.parentfk
+LEFT JOIN plu_supplementaryregulation_plu_dimensioningindication srdi
+   ON sr.attr_gml_id = srdi.parentfk
 GROUP BY supplementaryregulation_gml_id;
 
 --DROP VIEW VIEWSERVICE_ZONING_ELEMENT;
@@ -67,7 +79,19 @@ SELECT
 		 '}',
 		 ze.plu_inspireid_base_identifier_base_localid) as inspireid,
   ze.plu_regulationnature_href as regulationnature,
-  -- TODO: dimensioningindications
+  array_to_string( array_agg( DISTINCT CASE
+									 WHEN zedi.plu_dimensioningindicationvalue_plu_indicationreference is not null
+									 	THEN zedi.plu_dimensioningindicationvalue_plu_indicationreference
+									 WHEN zedi.plu_dimensioningindicationcharactervalue_plu_indicationre_13217 is not null
+									 	THEN zedi.plu_dimensioningindicationcharactervalue_plu_indicationre_13217 || ': ' || zedi.plu_dimensioningindicationcharactervalue_plu_value
+									 WHEN zedi.plu_dimensioningindicationmeasurevalue_plu_indicationreference is not null
+									 	THEN zedi.plu_dimensioningindicationmeasurevalue_plu_indicationreference || ': ' || zedi.plu_dimensioningindicationmeasurevalue_plu_value || ' [' || zedi.plu_dimensioningindicationmeasurevalue_plu_value_attr_uom || ']'
+									 WHEN zedi.plu_dimensioningindicationintegervalue_plu_indicationreference is not null
+									 	THEN zedi.plu_dimensioningindicationintegervalue_plu_indicationreference || ': ' || zedi.plu_dimensioningindicationintegervalue_plu_value
+									 WHEN zedi.plu_dimensioningindicationrealvalue_plu_indicationreference is not null
+									 	THEN zedi.plu_dimensioningindicationrealvalue_plu_indicationreference || ': ' || zedi.plu_dimensioningindicationrealvalue_plu_value
+            						 ELSE NULL
+                               END), ', ', '') as dimensioningindications,
   ze.plu_processstepgeneral_href as processstepgeneral,
   -- nil in XPlanGML 5.0 -> INSPIRE PLU 4.0: hilucsPresence -->
   string_agg(DISTINCT zeslu.href, '|') as specificlanduse,
@@ -81,4 +105,6 @@ LEFT JOIN plu_zoningelement_plu_hilucslanduse zeh
    ON ze.attr_gml_id = zeh.parentfk
 LEFT JOIN plu_zoningelement_plu_specificlanduse zeslu
    ON ze.attr_gml_id = zeslu.parentfk
+LEFT JOIN plu_zoningelement_plu_dimensioningindication zedi
+   ON ze.attr_gml_id = zedi.parentfk
 GROUP BY zoningelement_gml_id;
