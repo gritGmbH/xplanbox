@@ -73,7 +73,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 2.8              |                                                                    | ja
 | 3.0              | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)
 | 3.1              | ja (<<aktualisierung-auf-die-version-3.1-der-xplanbox, Details>>)  | nein
-| 3.2             | ja (<<aktualisierung-auf-die-version-3.2-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.2-der-xplanbox, Details>>)
+| 3.2              | ja (<<aktualisierung-auf-die-version-3.2-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.2-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
