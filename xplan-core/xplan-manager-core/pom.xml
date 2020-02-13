@@ -129,7 +129,8 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-manager-workspace</artifactId>
+      <artifactId>xplan-workspaces</artifactId>
+      <classifier>xplan-manager-workspace</classifier>
       <scope>test</scope>
       <type>zip</type>
     </dependency>

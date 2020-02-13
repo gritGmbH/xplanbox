@@ -500,7 +500,8 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-manager-workspace</artifactId>
+        <artifactId>xplan-workspaces</artifactId>
+        <classifier>xplan-manager-workspace</classifier>
         <version>${project.version}</version>
         <type>zip</type>
       </dependency>
