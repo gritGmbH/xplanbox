@@ -15,7 +15,7 @@
         <include>sql/*</include>
       </includes>
       <excludes>
-        <exclude>datasources/feature/bbox_cache.properties</exclude>
+        <exclude>datasources/feature/inspireplu_view.xml</exclude>
       </excludes>
       <outputDirectory>.</outputDirectory>
       <filtered>false</filtered>

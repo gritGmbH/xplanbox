@@ -2,8 +2,8 @@
 <se:FeatureTypeStyle version="1.1.0"
                      xmlns:se="http://www.opengis.net/se"
                      xmlns:ogc="http://www.opengis.net/ogc"
-                     xmlns:plu="http://inspire.ec.europa.eu/schemas/plu/4.0"
                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xmlns:app="http://www.deegree.org/app"
                      xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <se:Name>LandUse.SupplementaryRegulation.Default</se:Name>
   <se:Description>
@@ -12,20 +12,20 @@
       colour depending of the value of the attribute supplementaryRegulation...
     </se:Abstract>
   </se:Description>
-  <se:FeatureTypeName>plu:SupplementaryRegulation</se:FeatureTypeName>
+  <se:FeatureTypeName>app:SupplementaryRegulation</se:FeatureTypeName>
 
   <!--ImpactOnEnvironment-->
   <se:Rule>
     <se:Name>Impact on Environment</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/1_*</ogc:Literal>
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/1_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:LineSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Stroke>
         <se:SvgParameter name="stroke">#b4e66e</se:SvgParameter>
@@ -38,13 +38,13 @@
     <se:Name>Risk Exposure</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_*</ogc:Literal>
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:LineSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Stroke>
         <se:SvgParameter name="stroke">#646464</se:SvgParameter>
@@ -57,13 +57,13 @@
     <se:Name>Heritage Proection</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_*</ogc:Literal>
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:LineSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Stroke>
         <se:SvgParameter name="stroke">#949494</se:SvgParameter>
@@ -76,13 +76,13 @@
     <se:Name>General Interest</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_*</ogc:Literal>
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:LineSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Stroke>
         <se:SvgParameter name="stroke">#B478F0</se:SvgParameter>
@@ -95,13 +95,13 @@
     <se:Name>Land Property Right</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/5_*</ogc:Literal>
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/5_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:LineSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Stroke>
         <se:SvgParameter name="stroke">#F07864</se:SvgParameter>
@@ -114,13 +114,13 @@
     <se:Name>Regulations on Building</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_*</ogc:Literal>
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:LineSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Stroke>
         <se:SvgParameter name="stroke">#DCDCDC</se:SvgParameter>
@@ -133,13 +133,13 @@
     <se:Name>Local-regional-state development policies</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_*</ogc:Literal>
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:LineSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Stroke>
         <se:SvgParameter name="stroke">#E6E66E</se:SvgParameter>
@@ -152,13 +152,13 @@
     <se:Name>Social Health Choices</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/8_*</ogc:Literal>
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/8_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:LineSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Stroke>
         <se:SvgParameter name="stroke">#C8FFC8</se:SvgParameter>
@@ -171,13 +171,13 @@
     <se:Name>Regulated Activities</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_*</ogc:Literal>
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:LineSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Stroke>
         <se:SvgParameter name="stroke">#C8C8FF</se:SvgParameter>
@@ -190,13 +190,13 @@
     <se:Name>Other Supplementary Regulation</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:supplementaryRegulation/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_*</ogc:Literal>
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:LineSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Stroke>
         <se:SvgParameter name="stroke">#8C78F0</se:SvgParameter>

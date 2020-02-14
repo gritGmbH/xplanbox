@@ -13,10 +13,12 @@
       <includes>
         <include>appschemas/inspireplu/PlannedLandUse.xsd</include>
         <include>datasources/feature/inspireplu.xml</include>
+        <include>datasources/feature/inspireplu_view.xml</include>
         <include>jdbc/inspireplu.xml</include>
         <include>layers/inspireplu.xml</include>
         <include>services/downloadservice*</include>
         <include>services/viewservice*</include>
+        <include>services/inspirepluhtml.gfi</include>
         <include>styles/*</include>
         <include>themes/inspireplu.xml</include>
       </includes>

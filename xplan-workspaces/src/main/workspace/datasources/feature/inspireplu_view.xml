@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SQLFeatureStore configVersion="3.4.0"
+                 xmlns="http://www.deegree.org/datasource/feature/sql"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:app="http://www.deegree.org/app"
+                 xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.4.0/sql.xsd">
+  <JDBCConnId>inspireplu</JDBCConnId>
+
+  <FeatureTypeMapping name="app:SpatialPlan" table="VIEWSERVICE_SPATIALPLAN">
+    <FIDMapping prefix="SPATIALPLAN_">
+      <Column name="spatialplan_gml_id" type="string"/>
+      <UUIDGenerator/>
+    </FIDMapping>
+    <Geometry path="extent" mapping="extent" type="Point">
+      <StorageCRS srid="-1" dim="2D">${vectorCrs}</StorageCRS>
+    </Geometry>
+    <Primitive path="inspireid" mapping="inspireid" type="string"/>
+    <Primitive path="levelofspatialplan" mapping="levelofspatialplan" type="string"/>
+    <Primitive path="officialtitle" mapping="officialtitle" type="string"/>
+    <Primitive path="alternativetitle" mapping="alternativetitle  " type="string"/>
+    <Primitive path="ordinances" mapping="ordinances  " type="string"/>
+    <Primitive path="processstepgeneral" mapping="processstepgeneral" type="string"/>
+    <Primitive path="validfrom" mapping="validfrom" type="date"/>
+    <Primitive path="validto" mapping="validto" type="date"/>
+    <Primitive path="beginlifespanversion" mapping="beginlifespanversion" type="dateTime"/>
+    <Primitive path="endlifespanversion" mapping="endlifespanversion" type="dateTime"/>
+  </FeatureTypeMapping>
+
+  <FeatureTypeMapping name="app:SupplementaryRegulation" table="VIEWSERVICE_SUPPLEMENTARY_REGULATION">
+    <FIDMapping prefix="SUPPLEMENTARY_REGULATION_">
+      <Column name="supplementaryregulation_gml_id" type="string"/>
+      <UUIDGenerator/>
+    </FIDMapping>
+    <Geometry path="geometry" mapping="geometry" type="Point">
+      <StorageCRS srid="-1" dim="2D">${vectorCrs}</StorageCRS>
+    </Geometry>
+    <Primitive path="inspireid" mapping="inspireid" type="string"/>
+    <Primitive path="regulationnature" mapping="regulationnature" type="string"/>
+    <Primitive path="supplementaryregulations" mapping="supplementaryregulations" type="string"/>
+    <Primitive path="dimensioningindications" mapping="dimensioningindications" type="string"/>
+    <Primitive path="inheritedfromotherplans" mapping="inheritedfromotherplans" type="boolean"/>
+    <Primitive path="names" mapping="names" type="string"/>
+    <Primitive path="processstepgeneral" mapping="processstepgeneral" type="string"/>
+    <Primitive path="specificregulationnature" mapping="specificregulationnature" type="string"/>
+    <Primitive path="specificsupplementaryregulations" mapping="specificsupplementaryregulations" type="string"/>
+    <Primitive path="validfrom" mapping="validfrom" type="date"/>
+    <Primitive path="validto" mapping="validto" type="date"/>
+    <Primitive path="beginlifespanversion" mapping="beginlifespanversion" type="dateTime"/>
+    <Primitive path="endlifespanversion" mapping="endlifespanversion" type="dateTime"/>
+  </FeatureTypeMapping>
+
+  <FeatureTypeMapping name="app:ZoningElement" table="VIEWSERVICE_ZONING_ELEMENT">
+    <FIDMapping prefix="ZONING_ELEMENT_">
+      <Column name="zoningelement_gml_id" type="string"/>
+      <UUIDGenerator/>
+    </FIDMapping>
+    <Geometry path="geometry" mapping="geometry" type="Point">
+      <StorageCRS srid="-1" dim="2D">${vectorCrs}</StorageCRS>
+    </Geometry>
+    <Primitive path="hilucs" mapping="hilucs" type="string"/>
+    <Primitive path="inspireid" mapping="inspireid" type="string"/>
+    <Primitive path="regulationnature" mapping="regulationnature" type="string"/>
+    <Primitive path="dimensioningindications" mapping="dimensioningindications" type="string"/>
+    <Primitive path="processstepgeneral" mapping="processstepgeneral" type="string"/>
+    <Primitive path="specificlanduse" mapping="specificlanduse" type="string"/>
+    <Primitive path="validfrom" mapping="validfrom" type="date"/>
+    <Primitive path="validto" mapping="validto" type="date"/>
+    <Primitive path="beginlifespanversion" mapping="beginlifespanversion" type="dateTime"/>
+    <Primitive path="endlifespanversion" mapping="endlifespanversion" type="dateTime"/>
+  </FeatureTypeMapping>
+
+</SQLFeatureStore>

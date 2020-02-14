@@ -2,8 +2,8 @@
 <se:FeatureTypeStyle version="1.1.0"
                      xmlns:se="http://www.opengis.net/se"
                      xmlns:ogc="http://www.opengis.net/ogc"
-                     xmlns:plu="http://inspire.ec.europa.eu/schemas/plu/4.0"
                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xmlns:app="http://www.deegree.org/app"
                      xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <se:Name>LandUse.ZoningElement.Default</se:Name>
   <se:Description>
@@ -12,20 +12,20 @@
       from HILUCS level 1 nomenclature and their boundaries as black lines of 2 pixels...
     </se:Abstract>
   </se:Description>
-  <se:FeatureTypeName>plu:ZoningElement</se:FeatureTypeName>
+  <se:FeatureTypeName>app:ZoningElement</se:FeatureTypeName>
 
   <!--PrimaryProduction-->
   <se:Rule>
     <se:Name>Primary  Production</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:hilucsLandUse/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/1_*</ogc:Literal>
+        <ogc:PropertyName>app:hilucs</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/HILUCSValue/1_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:PolygonSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Fill>
         <se:SvgParameter name="fill">#B4E66E</se:SvgParameter>
@@ -42,13 +42,13 @@
     <se:Name>Secondary Production</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:hilucsLandUse/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/2_*</ogc:Literal>
+        <ogc:PropertyName>app:hilucs</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/HILUCSValue/2_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:PolygonSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Fill>
         <se:SvgParameter name="fill">#646464</se:SvgParameter>
@@ -65,13 +65,13 @@
     <se:Name>Tertiary Production</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:hilucsLandUse/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/3_*</ogc:Literal>
+        <ogc:PropertyName>app:hilucs</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/HILUCSValue/3_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:PolygonSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Fill>
         <se:SvgParameter name="fill">#969696</se:SvgParameter>
@@ -88,13 +88,13 @@
     <se:Name>Transport Networkd Logistics AndU tilities</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:hilucsLandUse/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/4_*</ogc:Literal>
+        <ogc:PropertyName>app:hilucs</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/HILUCSValue/4_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:PolygonSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Fill>
         <se:SvgParameter name="fill">#B478F0</se:SvgParameter>
@@ -111,13 +111,13 @@
     <se:Name>Residential Use</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:hilucsLandUse/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/5_*</ogc:Literal>
+        <ogc:PropertyName>app:hilucs</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/HILUCSValue/5_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:PolygonSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Fill>
         <se:SvgParameter name="fill">#F07864</se:SvgParameter>
@@ -134,13 +134,13 @@
     <se:Name>Other Uses</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
-        <ogc:PropertyName>plu:hilucsLandUse/@xlink:href</ogc:PropertyName>
-        <ogc:Literal>http://inspire.ec.europa.eu/codelist/HILUCSValue/6_*</ogc:Literal>
+        <ogc:PropertyName>app:hilucs</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/HILUCSValue/6_*</ogc:Literal>
       </ogc:PropertyIsLike>
     </ogc:Filter>
     <se:PolygonSymbolizer>
       <se:Geometry>
-        <ogc:PropertyName>plu:geometry</ogc:PropertyName>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
       </se:Geometry>
       <se:Fill>
         <se:SvgParameter name="fill">#DCDCDC</se:SvgParameter>
