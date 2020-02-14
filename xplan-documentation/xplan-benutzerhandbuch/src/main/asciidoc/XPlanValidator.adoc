@@ -36,6 +36,7 @@ Bei falscher Laufrichtung wird eine Warnung ausgegeben, das XPlanGML-Dokument wi
 
 Darüber hinaus kann der XPlanValidator eine XPlanGML-Datei auf folgende Konformitätsbedingungen prüfen:
 
+* http://www.xleitstelle.de/releases/xplanung_v_5_2/Konformit%C3%A4tsbedingungen-XPlanGML_5_2.pdf[Konformitätsbedingungen für XPlanGML 5.2]
  * http://www.xleitstelle.de/releases/xplanung_v_5_1_2/konformitaetsbedingungen-xplanGML_%205_1_2.pdf[Konformitätsbedingungen für XPlanGML 5.1]
  * http://www.xleitstelle.de/releases/xplanung_v_5_0_1/konformitaetsbedingungen.pdf[Konformitätsbedingungen für XPlanGML 5.0]
  * http://www.xleitstelle.de/releases/xplanung_v_4_1/Konformit%C3%A4tsbedingungen-XPlanGML_4_1V2.pdf[Konformitätsbedingungen für XPlanGML 4.1]

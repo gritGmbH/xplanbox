@@ -499,6 +499,24 @@
         <Layer>so_strassenverkehrsrecht</Layer>
       </Theme>
       <Theme>
+        <Identifier>so_bauverbotszone</Identifier>
+        <d:Title>SO: Bauverbotszone</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_bauverbotszone</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_gewaesser</Identifier>
+        <d:Title>SO: Gewaesser</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <Layer>so_gewaesser</Layer>
+      </Theme>
+      <Theme>
         <Identifier>so_wasserrecht</Identifier>
         <d:Title>SO: Wasserrecht</d:Title>
         <s:Envelope crs="EPSG:4326">

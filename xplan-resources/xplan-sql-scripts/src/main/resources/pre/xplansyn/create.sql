@@ -35,6 +35,11 @@ CREATE TABLE xplansynpre.xplan_bp_abgrabungsflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -101,6 +106,11 @@ CREATE TABLE xplansynpre.xplan_bp_abstandsflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -171,6 +181,11 @@ CREATE TABLE xplansynpre.xplan_bp_abstandsmass (
     xplan_startbedingung text,
     xplan_endebedingung text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
@@ -186,10 +201,107 @@ CREATE TABLE xplansynpre.xplan_bp_abstandsmass (
     xplan_startwinkeluom text,
     xplan_endwinkel numeric,
     xplan_endwinkeluom text,
+    xplan_typ text,
+    xplan_typcode text,
     CONSTRAINT xplan_bp_abstandsmass_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_abstandsmass','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_5 ON xplan_bp_abstandsmass USING GIST ( xplan_position  );
+CREATE TABLE xplansynpre.xplan_bp_abweichungvonbaugrenze (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+	xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_uuid text,
+    xplan_text text,
+    xplan_rechtsstand text,
+    xplan_rechtsstandcode text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
+    xplan_textabschnitte text,
+    xplan_begruendungabschnitte text,
+    xplan_gliederung1 text,
+    xplan_gliederung2 text,
+    xplan_ebene integer,
+    xplan_gehoertzubereich text,
+    xplan_hatgenerattribut text,
+    xplan_aufschrift text,
+    xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
+    xplan_wirdausgeglichendurchmassnahme text,
+    xplan_hoehenangabe text,
+    xplan_externereferenz text,
+    xplan_wirddargestelltdurch text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_wirdausgeglichendurchabe text,
+    xplan_wirdausgeglichendurchspemassnahme text,
+    xplan_wirdausgeglichendurchspeflaeche text,
+    CONSTRAINT xplan_bp_abweichungvonbaugrenze_pkey PRIMARY KEY (attr_gml_id)
+);
+SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_abweichungvonbaugrenze','xplan_position','0','GEOMETRY', 2);
+CREATE INDEX spatial_idx_493 ON xplan_bp_abweichungvonbaugrenze USING GIST ( xplan_position  );
+CREATE TABLE xplansynpre.xplan_bp_abweichungvonueberbauberergrundstuecksflaeche (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+	xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_uuid text,
+    xplan_text text,
+    xplan_rechtsstand text,
+    xplan_rechtsstandcode text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
+    xplan_textabschnitte text,
+    xplan_begruendungabschnitte text,
+    xplan_gliederung1 text,
+    xplan_gliederung2 text,
+    xplan_ebene integer,
+    xplan_gehoertzubereich text,
+    xplan_hatgenerattribut text,
+    xplan_aufschrift text,
+    xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
+    xplan_wirdausgeglichendurchmassnahme text,
+    xplan_hoehenangabe text,
+    xplan_externereferenz text,
+    xplan_wirddargestelltdurch text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_wirdausgeglichendurchabe text,
+    xplan_wirdausgeglichendurchspemassnahme text,
+    xplan_wirdausgeglichendurchspeflaeche text,
+    xplan_flaechenschluss text,
+    CONSTRAINT xplan_bp_abweichungvonueberbauberergrundstuecksflaeche_pkey PRIMARY KEY (attr_gml_id)
+);
+SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_abweichungvonueberbauberergrundstuecksflaeche','xplan_position','0','GEOMETRY', 2);
+CREATE INDEX spatial_idx_494 ON xplan_bp_abweichungvonueberbauberergrundstuecksflaeche USING GIST ( xplan_position  );
 CREATE TABLE xplansynpre.xplan_bp_anpflanzungbindungerhaltung (
     attr_gml_id text,
     xplan_gmlid text,
@@ -225,6 +337,11 @@ CREATE TABLE xplansynpre.xplan_bp_anpflanzungbindungerhaltung (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -308,6 +425,11 @@ CREATE TABLE xplansynpre.xplan_bp_aufschuettungsflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -422,6 +544,11 @@ CREATE TABLE xplansynpre.xplan_bp_ausgleichsflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -486,6 +613,11 @@ CREATE TABLE xplansynpre.xplan_bp_ausgleichsmassnahme (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -612,6 +744,11 @@ CREATE TABLE xplansynpre.xplan_bp_baugrenze (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -681,6 +818,11 @@ CREATE TABLE xplansynpre.xplan_bp_baulinie (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -917,6 +1059,11 @@ CREATE TABLE xplansynpre.xplan_bp_baugebietsteilflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -1067,6 +1214,8 @@ CREATE TABLE xplansynpre.xplan_bp_baugebietsteilflaeche (
     xplan_gfgewerbe numeric,
     xplan_gfgewerbeuom text,
     xplan_dachgestaltung text,
+    xplan_vf numeric,
+    xplan_vfuom text,
     CONSTRAINT xplan_bp_baugebietsteilflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_baugebietsteilflaeche','xplan_position','0','GEOMETRY', 2);
@@ -1184,6 +1333,11 @@ CREATE TABLE xplansynpre.xplan_bp_bereichohneeinausfahrtlinie (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -1251,6 +1405,11 @@ CREATE TABLE xplansynpre.xplan_bp_besonderernutzungszweckflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -1354,6 +1513,12 @@ CREATE TABLE xplansynpre.xplan_bp_besonderernutzungszweckflaeche (
     xplan_zu_ausn integer,
     xplan_z_staffel integer,
     xplan_dachgestaltung text,
+    xplan_bauweise text,
+    xplan_bauweisecode text,
+    xplan_bebauungsart text,
+    xplan_bebauungsartcode text,
+    xplan_abweichendebauweise text,
+    xplan_abweichendebauweisecode text,
     CONSTRAINT xplan_bp_besonderernutzungszweckflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_besonderernutzungszweckflaeche','xplan_position','0','GEOMETRY', 2);
@@ -1393,6 +1558,11 @@ CREATE TABLE xplansynpre.xplan_bp_bodenschaetzeflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -1623,6 +1793,11 @@ CREATE TABLE xplansynpre.xplan_bp_einfahrtpunkt (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -1691,6 +1866,11 @@ CREATE TABLE xplansynpre.xplan_bp_einfahrtsbereichlinie (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -1758,6 +1938,11 @@ CREATE TABLE xplansynpre.xplan_bp_eingriffsbereich (
     xplan_startbedingung text,
     xplan_endebedingung text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
@@ -1803,6 +1988,11 @@ CREATE TABLE xplansynpre.xplan_bp_erhaltungsbereichflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -1979,6 +2169,11 @@ CREATE TABLE xplansynpre.xplan_bp_festsetzungnachlandesrecht (
     xplan_startbedingung text,
     xplan_endebedingung text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
@@ -2078,6 +2273,11 @@ CREATE TABLE xplansynpre.xplan_bp_firstrichtungslinie (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -2143,6 +2343,11 @@ CREATE TABLE xplansynpre.xplan_bp_foerderungsflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -2209,6 +2414,11 @@ CREATE TABLE xplansynpre.xplan_bp_freiflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -2276,6 +2486,11 @@ CREATE TABLE xplansynpre.xplan_bp_gebaeudeflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -2343,6 +2558,11 @@ CREATE TABLE xplansynpre.xplan_bp_gemeinbedarfsflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -2461,6 +2681,27 @@ CREATE TABLE xplansynpre.xplan_bp_gemeinbedarfsflaeche (
     xplan_zu_ausn integer,
     xplan_zugunstenvon text,
     xplan_z_staffel integer,
+	xplan_dnmin numeric,
+	xplan_dnminuom text,
+	xplan_dnmax numeric,
+	xplan_dnmaxuom text,
+	xplan_dn numeric,
+	xplan_dnuom text,
+	xplan_dnzwingend numeric,
+	xplan_dnzwingendUOM text,
+	xplan_fr numeric,
+	xplan_fruom text,
+	xplan_dachform text,
+	xplan_dachformcode text,
+	xplan_detailliertedachform text,
+	xplan_detailliertedachformcode text,
+	xplan_bauweise text,
+	xplan_bauweisecode text,
+	xplan_abweichendebauweise text,
+	xplan_abweichendebauweisecode text,
+	xplan_bebauungsart text,
+	xplan_bebauungsartcode text,
+    xplan_dachgestaltung text,
     CONSTRAINT xplan_bp_gemeinbedarfsflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_gemeinbedarfsflaeche','xplan_position','0','GEOMETRY', 2);
@@ -2500,6 +2741,11 @@ CREATE TABLE xplansynpre.xplan_bp_gemeinschaftsanlagenflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -2591,6 +2837,11 @@ CREATE TABLE xplansynpre.xplan_bp_gemeinschaftsanlagenzuordnung (
     xplan_startbedingung text,
     xplan_endebedingung text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
@@ -2640,6 +2891,11 @@ CREATE TABLE xplansynpre.xplan_bp_generischesobjekt (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -2742,6 +2998,11 @@ CREATE TABLE xplansynpre.xplan_bp_gewaesserflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -2852,6 +3113,11 @@ CREATE TABLE xplansynpre.xplan_bp_gruenflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -3013,6 +3279,11 @@ CREATE TABLE xplansynpre.xplan_bp_hoehenmass (
     xplan_startbedingung text,
     xplan_endebedingung text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
@@ -3114,6 +3385,11 @@ CREATE TABLE xplansynpre.xplan_bp_immissionsschutz (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -3147,6 +3423,12 @@ CREATE TABLE xplansynpre.xplan_bp_immissionsschutz (
     xplan_gehoertzubp_bereich text,
     xplan_laermpegelbereich text,
     xplan_laermpegelbereichcode text,
+    xplan_technvorkehrung text,
+    xplan_technvorkehrungcode text,
+    xplan_detailliertetechnvorkehrung text,
+    xplan_detailliertetechnvorkehrungcode text,
+    xplan_typ text,
+    xplan_typcode text,
     CONSTRAINT xplan_bp_immissionsschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_immissionsschutz','xplan_position','0','GEOMETRY', 2);
@@ -3186,6 +3468,11 @@ CREATE TABLE xplansynpre.xplan_bp_kennzeichnungsflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -3219,6 +3506,8 @@ CREATE TABLE xplansynpre.xplan_bp_kennzeichnungsflaeche (
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
     xplan_gehoertzubp_bereich text,
+    xplan_istverdachtsflaeche text,
+    xplan_nummer text,
     CONSTRAINT xplan_bp_kennzeichnungsflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_kennzeichnungsflaeche','xplan_position','0','GEOMETRY', 2);
@@ -3260,6 +3549,11 @@ CREATE TABLE xplansynpre.xplan_bp_kleintierhaltungflaeche (
     xplan_startbedingung text,
     xplan_endebedingung text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
@@ -3349,6 +3643,11 @@ CREATE TABLE xplansynpre.xplan_bp_landwirtschaft (
     xplan_startbedingung text,
     xplan_endebedingung text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
@@ -3412,6 +3711,11 @@ CREATE TABLE xplansynpre.xplan_bp_landwirtschaftsflaeche (
     xplan_startdatum date,
     xplan_enddatum date,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_flaechenschluss text,
@@ -3660,6 +3964,11 @@ CREATE TABLE xplansynpre.xplan_bp_nebenanlagenausschlussflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -3716,6 +4025,11 @@ CREATE TABLE xplansynpre.xplan_bp_nebenanlagenflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -3803,11 +4117,18 @@ CREATE TABLE xplansynpre.xplan_bp_nichtueberbaubaregrundstuecksflaeche (
     xplan_rechtscharaktercode text,
     xplan_reftextinhalt text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_flaechenschluss text,
+    xplan_nutzung text,
+    xplan_nutzungcode text,
     CONSTRAINT xplan_bp_nichtueberbaubaregrundstuecksflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_nichtueberbaubaregrundstuecksflaeche','xplan_position','0','GEOMETRY', 2);
@@ -3847,6 +4168,11 @@ CREATE TABLE xplansynpre.xplan_bp_nutzungsartengrenze (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -3916,6 +4242,11 @@ CREATE TABLE xplansynpre.xplan_bp_persgruppenbestimmteflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -4123,6 +4454,11 @@ CREATE TABLE xplansynpre.xplan_bp_regelungvergnuegungsstaetten (
     xplan_startbedingung text,
     xplan_endebedingung text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
@@ -4170,6 +4506,11 @@ CREATE TABLE xplansynpre.xplan_bp_rekultivierungsflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -4188,6 +4529,53 @@ CREATE TABLE xplansynpre.xplan_bp_rekultivierungsflaeche (
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_rekultivierungsflaeche','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_104 ON xplan_bp_rekultivierungsflaeche USING GIST ( xplan_position  );
+CREATE TABLE xplansynpre.xplan_bp_richtungssektorgrenze (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+	xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_uuid text,
+    xplan_text text,
+    xplan_rechtsstand text,
+    xplan_rechtsstandcode text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
+    xplan_textabschnitte text,
+    xplan_begruendungabschnitte text,
+    xplan_gliederung1 text,
+    xplan_gliederung2 text,
+    xplan_ebene integer,
+    xplan_gehoertzubereich text,
+    xplan_hatgenerattribut text,
+    xplan_aufschrift text,
+    xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
+    xplan_wirdausgeglichendurchmassnahme text,
+    xplan_hoehenangabe text,
+    xplan_externereferenz text,
+    xplan_wirddargestelltdurch text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_wirdausgeglichendurchabe text,
+    xplan_wirdausgeglichendurchspemassnahme text,
+    xplan_wirdausgeglichendurchspeflaeche text,
+    CONSTRAINT xplan_bp_richtungssektorgrenze_pkey PRIMARY KEY (attr_gml_id)
+);
+SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_richtungssektorgrenze','xplan_position','0','GEOMETRY', 2);
+CREATE INDEX spatial_idx_495 ON xplan_bp_richtungssektorgrenze USING GIST ( xplan_position  );
 CREATE TABLE xplansynpre.xplan_bp_schutzpflegeentwicklungsflaeche (
     attr_gml_id text,
     xplan_gmlid text,
@@ -4223,6 +4611,11 @@ CREATE TABLE xplansynpre.xplan_bp_schutzpflegeentwicklungsflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -4301,6 +4694,11 @@ CREATE TABLE xplansynpre.xplan_bp_schutzpflegeentwicklungsmassnahme (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -4334,6 +4732,54 @@ CREATE TABLE xplansynpre.xplan_bp_schutzpflegeentwicklungsmassnahme (
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_schutzpflegeentwicklungsmassnahme','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_108 ON xplan_bp_schutzpflegeentwicklungsmassnahme USING GIST ( xplan_position  );
+CREATE TABLE xplansynpre.xplan_bp_sichtflaeche (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+	xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_uuid text,
+    xplan_text text,
+    xplan_rechtsstand text,
+    xplan_rechtsstandcode text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
+    xplan_textabschnitte text,
+    xplan_begruendungabschnitte text,
+    xplan_gliederung1 text,
+    xplan_gliederung2 text,
+    xplan_ebene integer,
+    xplan_gehoertzubereich text,
+    xplan_hatgenerattribut text,
+    xplan_aufschrift text,
+    xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
+    xplan_wirdausgeglichendurchmassnahme text,
+    xplan_hoehenangabe text,
+    xplan_externereferenz text,
+    xplan_wirddargestelltdurch text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_wirdausgeglichendurchabe text,
+    xplan_wirdausgeglichendurchspemassnahme text,
+    xplan_wirdausgeglichendurchspeflaeche text,
+    xplan_flaechenschluss text,
+    CONSTRAINT xplan_bp_sichtflaeche_pkey PRIMARY KEY (attr_gml_id)
+);
+SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_sichtflaeche','xplan_position','0','GEOMETRY', 2);
+CREATE INDEX spatial_idx_498 ON xplan_bp_sichtflaeche USING GIST ( xplan_position  );
 CREATE TABLE xplansynpre.xplan_bp_schutzgebiet (
     attr_gml_id text,
     xplan_gmlid text,
@@ -4437,6 +4883,11 @@ CREATE TABLE xplansynpre.xplan_bp_speziellebauweise (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -4503,6 +4954,11 @@ CREATE TABLE xplansynpre.xplan_bp_spielsportanlagenflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -4640,6 +5096,11 @@ CREATE TABLE xplansynpre.xplan_bp_strassenverkehrsflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -4769,6 +5230,11 @@ CREATE TABLE xplansynpre.xplan_bp_strassenbegrenzungslinie (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -4836,6 +5302,11 @@ CREATE TABLE xplansynpre.xplan_bp_strassenkoerper (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -4957,6 +5428,11 @@ CREATE TABLE xplansynpre.xplan_bp_technischemassnahmenflaeche (
     xplan_rechtscharakter text,
     xplan_rechtscharaktercode text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
@@ -5024,6 +5500,11 @@ CREATE TABLE xplansynpre.xplan_bp_textlichefestsetzungsflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -5077,6 +5558,11 @@ CREATE TABLE xplansynpre.xplan_bp_ueberbaubaregrundstuecksflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -5209,6 +5695,8 @@ CREATE TABLE xplansynpre.xplan_bp_ueberbaubaregrundstuecksflaeche (
 	xplan_bebauungseitlichegrenzecode text,
 	xplan_refgebaeudequerschnitt text,
     xplan_dachgestaltung text,
+    xplan_vf numeric,
+    xplan_vfuom text,
     CONSTRAINT xplan_bp_ueberbaubaregrundstuecksflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_ueberbaubaregrundstuecksflaeche','xplan_position','0','GEOMETRY', 2);
@@ -5248,6 +5736,11 @@ CREATE TABLE xplansynpre.xplan_bp_unverbindlichevormerkung (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -5305,6 +5798,11 @@ CREATE TABLE xplansynpre.xplan_bp_verentsorgung (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -5588,6 +6086,11 @@ CREATE TABLE xplansynpre.xplan_bp_veraenderungssperre (
     xplan_startbedingung text,
     xplan_endebedingung text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchabe text,
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
@@ -5637,6 +6140,11 @@ CREATE TABLE xplansynpre.xplan_bp_verkehrsflaechebesondererzweckbestimmung (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -5828,6 +6336,11 @@ CREATE TABLE xplansynpre.xplan_bp_waldflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -5867,6 +6380,10 @@ CREATE TABLE xplansynpre.xplan_bp_waldflaeche (
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
     xplan_gehoertzubp_bereich text,
+    xplan_eigentumsart text,
+    xplan_eigentumsartcode text,
+    xplan_betreten text,
+    xplan_betretencode text,
     CONSTRAINT xplan_bp_waldflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_waldflaeche','xplan_position','0','GEOMETRY', 2);
@@ -5963,6 +6480,11 @@ CREATE TABLE xplansynpre.xplan_bp_wasserwirtschaftsflaeche (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -6033,6 +6555,11 @@ CREATE TABLE xplansynpre.xplan_bp_wegerecht (
     xplan_enddatum date,
     xplan_aufschrift text,
     xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
     xplan_wirdausgeglichendurchmassnahme text,
     xplan_hoehenangabe text,
     xplan_externereferenz text,
@@ -6074,6 +6601,105 @@ CREATE TABLE xplansynpre.xplan_bp_wegerecht (
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_wegerecht','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_147 ON xplan_bp_wegerecht USING GIST ( xplan_position  );
+CREATE TABLE xplansynpre.xplan_bp_zusatzkontingentlaerm (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+	xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_uuid text,
+    xplan_text text,
+    xplan_rechtsstand text,
+    xplan_rechtsstandcode text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
+    xplan_textabschnitte text,
+    xplan_begruendungabschnitte text,
+    xplan_gliederung1 text,
+    xplan_gliederung2 text,
+    xplan_ebene integer,
+    xplan_gehoertzubereich text,
+    xplan_hatgenerattribut text,
+    xplan_aufschrift text,
+    xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
+    xplan_wirdausgeglichendurchmassnahme text,
+    xplan_hoehenangabe text,
+    xplan_externereferenz text,
+    xplan_wirddargestelltdurch text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_wirdausgeglichendurchabe text,
+    xplan_wirdausgeglichendurchspemassnahme text,
+    xplan_wirdausgeglichendurchspeflaeche text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
+    xplan_bezeichnung text,
+    xplan_richtungssektor text,
+    CONSTRAINT xplan_bp_zusatzkontingentlaerm_pkey PRIMARY KEY (attr_gml_id)
+);
+SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_zusatzkontingentlaerm','xplan_position','0','GEOMETRY', 2);
+CREATE INDEX spatial_idx_497 ON xplan_bp_zusatzkontingentlaerm USING GIST ( xplan_position  );
+CREATE TABLE xplansynpre.xplan_bp_zusatzkontingentlaermflaeche (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+	xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_uuid text,
+    xplan_text text,
+    xplan_rechtsstand text,
+    xplan_rechtsstandcode text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
+    xplan_textabschnitte text,
+    xplan_begruendungabschnitte text,
+    xplan_gliederung1 text,
+    xplan_gliederung2 text,
+    xplan_ebene integer,
+    xplan_gehoertzubereich text,
+    xplan_hatgenerattribut text,
+    xplan_aufschrift text,
+    xplan_wirdausgeglichendurchflaeche text,
+    xplan_laermkontingent text,
+    xplan_laermkontingentgebiet text,
+    xplan_zusatzkontingent text,
+    xplan_zusatzkontingentflaeche text,
+    xplan_richtungssektorgrenze text,
+    xplan_wirdausgeglichendurchmassnahme text,
+    xplan_hoehenangabe text,
+    xplan_externereferenz text,
+    xplan_wirddargestelltdurch text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_wirdausgeglichendurchabe text,
+    xplan_wirdausgeglichendurchspemassnahme text,
+    xplan_wirdausgeglichendurchspeflaeche text,
+    xplan_flaechenschluss text,
+    CONSTRAINT xplan_bp_zusatzkontingentlaermflaeche_pkey PRIMARY KEY (attr_gml_id)
+);
+SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_zusatzkontingentlaermflaeche','xplan_position','0','GEOMETRY', 2);
+CREATE INDEX spatial_idx_496 ON xplan_bp_zusatzkontingentlaermflaeche USING GIST ( xplan_position  );
 CREATE TABLE xplansynpre.xplan_fp_abgrabung (
     attr_gml_id text,
     xplan_gmlid text,
@@ -7313,6 +7939,8 @@ CREATE TABLE xplansynpre.xplan_fp_kennzeichnung (
     xplan_wirddargestelltdurch text,
     xplan_gehoertzufp_bereich text,
     xplan_wirdausgeglichendurchspe text,
+    xplan_istverdachtsflaeche text,
+    xplan_nummer text,
     CONSTRAINT xplan_fp_kennzeichnung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_fp_kennzeichnung','xplan_position','0','GEOMETRY', 2);
@@ -8451,6 +9079,10 @@ CREATE TABLE xplansynpre.xplan_fp_waldflaeche (
     xplan_wirddargestelltdurch text,
     xplan_gehoertzufp_bereich text,
     xplan_wirdausgeglichendurchspe text,
+    xplan_eigentumsart text,
+    xplan_eigentumsartcode text,
+    xplan_betreten text,
+    xplan_betretencode text,
     CONSTRAINT xplan_fp_waldflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_fp_waldflaeche','xplan_position','0','GEOMETRY', 2);
@@ -10567,6 +11199,8 @@ CREATE TABLE xplansynpre.xplan_rp_achse (
 	xplan_flussrichtung text,
 	xplan_typ text,
 	xplan_typCode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_achse_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_achse','xplan_position','0','GEOMETRY', 2);
@@ -10659,6 +11293,8 @@ CREATE TABLE xplansynpre.xplan_rp_bodenschutz (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_bodenschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_bodenschutz','xplan_position','0','GEOMETRY', 2);
@@ -10709,6 +11345,8 @@ CREATE TABLE xplansynpre.xplan_rp_einzelhandel (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_einzelhandel_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_einzelhandel','xplan_position','0','GEOMETRY', 2);
@@ -10769,6 +11407,8 @@ CREATE TABLE xplansynpre.xplan_rp_energieversorgung (
     xplan_primaerenergietypcode text,
     xplan_spannung text,
     xplan_spannungcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_energieversorgung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_energieversorgung','xplan_position','0','GEOMETRY', 2);
@@ -10828,6 +11468,8 @@ CREATE TABLE xplansynpre.xplan_rp_entsorgung (
     xplan_typaw text,
     xplan_typawcode text,
     xplan_istaufschuettungablagerung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_entsorgung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_entsorgung','xplan_position','0','GEOMETRY', 2);
@@ -10882,6 +11524,8 @@ CREATE TABLE xplansynpre.xplan_rp_erholung (
     xplan_besonderertyp text,
     xplan_besonderertypcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_erholung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_erholung','xplan_position','0','GEOMETRY', 2);
@@ -10932,6 +11576,8 @@ CREATE TABLE xplansynpre.xplan_rp_erneuerbareenergie (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_erneuerbareenergie_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_erneuerbareenergie','xplan_position','0','GEOMETRY', 2);
@@ -11024,6 +11670,8 @@ CREATE TABLE xplansynpre.xplan_rp_forstwirtschaft (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_forstwirtschaft_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_forstwirtschaft','xplan_position','0','GEOMETRY', 2);
@@ -11072,6 +11720,8 @@ CREATE TABLE xplansynpre.xplan_rp_freiraum (
     xplan_istausgleichsgebiet text,
     xplan_imverbund text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_freiraum_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_freiraum','xplan_position','0','GEOMETRY', 2);
@@ -11121,6 +11771,8 @@ CREATE TABLE xplansynpre.xplan_rp_funktionszuweisung (
     xplan_typcode text,
     xplan_bezeichnung text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_funktionszuweisung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_funktionszuweisung','xplan_position','0','GEOMETRY', 2);
@@ -11264,6 +11916,8 @@ CREATE TABLE xplansynpre.xplan_rp_generischesobjekt (
     xplan_flussrichtung text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_generischesobjekt_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_generischesobjekt','xplan_position','0','GEOMETRY', 2);
@@ -11317,6 +11971,8 @@ CREATE TABLE xplansynpre.xplan_rp_gewaesser (
     xplan_flussrichtung text,
     xplan_imverbund text,
     xplan_gewaessertyp text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_gewaesser_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_gewaesser','xplan_position','0','GEOMETRY', 2);
@@ -11373,6 +12029,8 @@ CREATE TABLE xplansynpre.xplan_rp_grenze (
     xplan_flussrichtung text,
     xplan_spezifischertyp text,
     xplan_spezifischertypcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_grenze_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_grenze','xplan_position','0','GEOMETRY', 2);
@@ -11427,6 +12085,8 @@ CREATE TABLE xplansynpre.xplan_rp_gruenzuggruenzaesur (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_gruenzuggruenzaesur_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_gruenzuggruenzaesur','xplan_position','0','GEOMETRY', 2);
@@ -11477,6 +12137,8 @@ CREATE TABLE xplansynpre.xplan_rp_hochwasserschutz (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_hochwasserschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_hochwasserschutz','xplan_position','0','GEOMETRY', 2);
@@ -11527,6 +12189,8 @@ CREATE TABLE xplansynpre.xplan_rp_industriegewerbe (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_industriegewerbe_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_industriegewerbe','xplan_position','0','GEOMETRY', 2);
@@ -11581,6 +12245,8 @@ CREATE TABLE xplansynpre.xplan_rp_klimaschutz (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_klimaschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_klimaschutz','xplan_position','0','GEOMETRY', 2);
@@ -11633,6 +12299,8 @@ CREATE TABLE xplansynpre.xplan_rp_kommunikation (
     xplan_flussrichtung text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_kommunikation_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_kommunikation','xplan_position','0','GEOMETRY', 2);
@@ -11683,6 +12351,8 @@ CREATE TABLE xplansynpre.xplan_rp_kulturlandschaft (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_kulturlandschaft_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_kulturlandschaft','xplan_position','0','GEOMETRY', 2);
@@ -11774,6 +12444,8 @@ CREATE TABLE xplansynpre.xplan_rp_laermschutzbauschutz (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_laermschutzbauschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_laermschutzbauschutz','xplan_position','0','GEOMETRY', 2);
@@ -11875,6 +12547,8 @@ CREATE TABLE xplansynpre.xplan_rp_landwirtschaft (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_landwirtschaft_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_landwirtschaft','xplan_position','0','GEOMETRY', 2);
@@ -13594,6 +14268,8 @@ CREATE TABLE xplansynpre.xplan_rp_naturlandschaft (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_naturlandschaft_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_naturlandschaft','xplan_position','0','GEOMETRY', 2);
@@ -13653,6 +14329,8 @@ CREATE TABLE xplansynpre.xplan_rp_naturschutzrechtlichesschutzgebiet (
     xplan_typ text,
     xplan_typcode text,
     xplan_istkernzone text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_naturschutzrechtlichesschutzgebiet_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_naturschutzrechtlichesschutzgebiet','xplan_position','0','GEOMETRY', 2);
@@ -13730,7 +14408,7 @@ CREATE TABLE xplansynpre.xplan_rp_plan (
     xplan_externereferenz text,
     xplan_verfahren text,
     xplan_verfahrencode text,
-    xplan_amtlicherschluessel integer,
+    xplan_amtlicherschluessel text,
     xplan_technischerplanersteller text,
     xplan_genehmigungsbehoerde text,
     CONSTRAINT xplan_rp_plan_pkey PRIMARY KEY (attr_gml_id)
@@ -13780,6 +14458,8 @@ CREATE TABLE xplansynpre.xplan_rp_planungsraum (
     xplan_flussrichtung text,
     xplan_planungsraumbeschreibung text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_planungsraum_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_planungsraum','xplan_position','0','GEOMETRY', 2);
@@ -13830,6 +14510,8 @@ CREATE TABLE xplansynpre.xplan_rp_radwegwanderweg (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_radwegwanderweg_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_radwegwanderweg','xplan_position','0','GEOMETRY', 2);
@@ -13920,6 +14602,8 @@ CREATE TABLE xplansynpre.xplan_rp_raumkategorie (
     xplan_typcode text,
     xplan_besonderertyp text,
     xplan_besonderertypcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_raumkategorie_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_raumkategorie','xplan_position','0','GEOMETRY', 2);
@@ -13982,6 +14666,8 @@ CREATE TABLE xplansynpre.xplan_rp_rohstoff (
     xplan_istaufschuettungablagerung text,
     xplan_detaillierterrohstofftyp text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_rohstoff_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_rohstoff','xplan_position','0','GEOMETRY', 2);
@@ -14131,6 +14817,8 @@ CREATE TABLE xplansynpre.xplan_rp_siedlung (
     xplan_bauhoehenbeschraenkung integer,
     xplan_istsiedlungsbeschraenkung text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_siedlung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_siedlung','xplan_position','0','GEOMETRY', 2);
@@ -14181,6 +14869,8 @@ CREATE TABLE xplansynpre.xplan_rp_sonstigeinfrastruktur (
     xplan_istzweckbindung text,
     xplan_flaechenschluss text,
     xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_sonstigeinfrastruktur_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_sonstigeinfrastruktur','xplan_position','0','GEOMETRY', 2);
@@ -14229,6 +14919,8 @@ CREATE TABLE xplansynpre.xplan_rp_sonstigerfreiraumschutz (
     xplan_istausgleichsgebiet text,
     xplan_imverbund text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_sonstigerfreiraumschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_sonstigerfreiraumschutz','xplan_position','0','GEOMETRY', 2);
@@ -14277,6 +14969,8 @@ CREATE TABLE xplansynpre.xplan_rp_sonstigersiedlungsbereich (
     xplan_bauhoehenbeschraenkung integer,
     xplan_istsiedlungsbeschraenkung text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_sonstigersiedlungsbereich_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_sonstigersiedlungsbereich','xplan_position','0','GEOMETRY', 2);
@@ -14469,6 +15163,8 @@ CREATE TABLE xplansynpre.xplan_rp_sozialeinfrastruktur (
     xplan_istzweckbindung text,
     xplan_flaechenschluss text,
     xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_sozialeinfrastruktur_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_sozialeinfrastruktur','xplan_position','0','GEOMETRY', 2);
@@ -14523,6 +15219,8 @@ CREATE TABLE xplansynpre.xplan_rp_sperrgebiet (
     xplan_flussrichtung text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_sperrgebiet_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_sperrgebiet','xplan_position','0','GEOMETRY', 2);
@@ -14573,6 +15271,8 @@ CREATE TABLE xplansynpre.xplan_rp_sportanlage (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_sportanlage_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_sportanlage','xplan_position','0','GEOMETRY', 2);
@@ -14705,6 +15405,8 @@ CREATE TABLE xplansynpre.xplan_rp_verkehr (
     xplan_status text,
     xplan_statuscode text,
     xplan_bezeichnung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_verkehr_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_verkehr','xplan_position','0','GEOMETRY', 2);
@@ -14811,6 +15513,8 @@ CREATE TABLE xplansynpre.xplan_rp_wasserschutz (
     xplan_imverbund text,
     xplan_typ text,
     xplan_typcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_wasserschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_wasserschutz','xplan_position','0','GEOMETRY', 2);
@@ -14916,6 +15620,8 @@ CREATE TABLE xplansynpre.xplan_rp_wasserwirtschaft (
     xplan_istzweckbindung text,
     xplan_flaechenschluss text,
     xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_wasserwirtschaft_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_wasserwirtschaft','xplan_position','0','GEOMETRY', 2);
@@ -15042,6 +15748,8 @@ CREATE TABLE xplansynpre.xplan_rp_wohnensiedlung (
     xplan_typ text,
     xplan_typcode text,
     xplan_gehoertZuBereich text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_wohnensiedlung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_wohnensiedlung','xplan_position','0','GEOMETRY', 2);
@@ -15100,10 +15808,63 @@ CREATE TABLE xplansynpre.xplan_rp_zentralerort (
     xplan_typcode text,
     xplan_sonstigertyp text,
     xplan_sonstigertypcode text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
     CONSTRAINT xplan_rp_zentralerort_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_zentralerort','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_405 ON xplan_rp_zentralerort USING GIST ( xplan_position  );
+CREATE TABLE xplansynpre.xplan_so_bauverbotszone (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+	xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_uuid text,
+    xplan_text text,
+    xplan_rechtsstand text,
+    xplan_rechtsstandcode text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
+    xplan_textabschnitte text,
+    xplan_begruendungabschnitte text,
+    xplan_gliederung1 text,
+    xplan_gliederung2 text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_aufschrift text,
+    xplan_ebene integer,
+    xplan_hatgenerattribut text,
+    xplan_hoehenangabe text,
+    xplan_externereferenz text,
+    xplan_gehoertzubereich text,
+    xplan_wirddargestelltdurch text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_sonstrechtscharakter text,
+    xplan_sonstrechtscharaktercode text,
+    xplan_flaechenschluss text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
+    xplan_artderfestlegung text,
+    xplan_artderfestlegungcode text,
+    xplan_detailartderfestlegung text,
+    xplan_detailartderfestlegungcode text,
+    xplan_rechtlichegrundlage text,
+    xplan_rechtlichegrundlagecode text,
+    xplan_name text,
+    xplan_nummer text,
+    CONSTRAINT xplan_so_bauverbotszone_pkey PRIMARY KEY (attr_gml_id)
+);
+SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_so_bauverbotszone','xplan_position','0','GEOMETRY', 2);
+CREATE INDEX spatial_idx_499 ON xplan_so_bauverbotszone USING GIST ( xplan_position  );
 CREATE TABLE xplansynpre.xplan_so_bereich (
     attr_gml_id text,
     xplan_gmlid text,
@@ -15289,6 +16050,10 @@ CREATE TABLE xplansynpre.xplan_so_forstrecht (
     xplan_detailartderfestlegungcode text,
     xplan_name text,
     xplan_nummer text,
+    xplan_funktion text,
+    xplan_funktioncode text,
+    xplan_betreten text,
+    xplan_betretencode text,
     CONSTRAINT xplan_so_forstrecht_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_so_forstrecht','xplan_position','0','GEOMETRY', 2);
@@ -15350,6 +16115,55 @@ CREATE TABLE xplansynpre.xplan_so_gebiet (
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_so_gebiet','xplan_position','0','GEOMETRY', 2);
 CREATE INDEX spatial_idx_410 ON xplan_so_gebiet USING GIST ( xplan_position  );
+CREATE TABLE xplansynpre.xplan_so_gewaesser (
+    attr_gml_id text,
+    xplan_gmlid text,
+    xplan_gmlname text,
+    xplan_gmldescription text,
+    xplan_xpversion text,
+    xplan_xpplantype text,
+    xplan_xpplanname text,
+	xplan_mgr_planid integer,
+    xplan_gueltigkeitBeginn timestamp,
+    xplan_gueltigkeitEnde timestamp,
+    xplan_wmsSortDate date,
+    xplan_uuid text,
+    xplan_text text,
+    xplan_rechtsstand text,
+    xplan_rechtsstandcode text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagecode text,
+    xplan_textabschnitte text,
+    xplan_begruendungabschnitte text,
+    xplan_gliederung1 text,
+    xplan_gliederung2 text,
+    xplan_startbedingung text,
+    xplan_endebedingung text,
+    xplan_aufschrift text,
+    xplan_ebene integer,
+    xplan_hatgenerattribut text,
+    xplan_hoehenangabe text,
+    xplan_externereferenz text,
+    xplan_gehoertzubereich text,
+    xplan_wirddargestelltdurch text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharaktercode text,
+    xplan_sonstrechtscharakter text,
+    xplan_sonstrechtscharaktercode text,
+    xplan_flaechenschluss text,
+    xplan_flussrichtung text,
+    xplan_nordwinkel text,
+    xplan_nordwinkelUOM text,
+    xplan_artderfestlegung text,
+    xplan_artderfestlegungcode text,
+    xplan_detailartderfestlegung text,
+    xplan_detailartderfestlegungcode text,
+    xplan_name text,
+    xplan_nummer text,
+    CONSTRAINT xplan_so_gewaesser_pkey PRIMARY KEY (attr_gml_id)
+);
+SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_so_gewaesser','xplan_position','0','GEOMETRY', 2);
+CREATE INDEX spatial_idx_500 ON xplan_so_gewaesser USING GIST ( xplan_position  );
 CREATE TABLE xplansynpre.xplan_so_grenze (
     attr_gml_id text,
     xplan_gmlid text,
@@ -15582,6 +16396,10 @@ CREATE TABLE xplansynpre.xplan_so_plan (
     xplan_technischerplanersteller text,
     xplan_gemeinde text,
     xplan_planaufstellendegemeinde text,
+	xplan_versionbaugbdatum date,
+	xplan_versionbaugbtext text,
+	xplan_versionsonstrechtsgrundlagedatum date,
+	xplan_versionsonstrechtsgrundlagetext text,
     CONSTRAINT xplan_so_plan_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_so_plan','xplan_raeumlichergeltungsbereich','0','GEOMETRY', 2);

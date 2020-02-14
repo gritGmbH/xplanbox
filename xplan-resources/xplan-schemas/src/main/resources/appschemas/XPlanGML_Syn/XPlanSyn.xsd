@@ -45,6 +45,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -116,6 +121,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -191,6 +201,11 @@
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -208,6 +223,113 @@
             <element name="endWinkel" minOccurs="0" type="double" />
             <element name="endWinkelUOM" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="typ" minOccurs="0" type="string" />
+            <element name="typCode" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+  <element name="BP_AbweichungVonBaugrenze" substitutionGroup="gml:AbstractFeature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="textAbschnitte" minOccurs="0" type="string" />
+            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+  <element name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche" substitutionGroup="gml:AbstractFeature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="textAbschnitte" minOccurs="0" type="string" />
+            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -250,6 +372,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -338,6 +465,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -462,6 +594,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -531,6 +668,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -667,6 +809,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -741,6 +888,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -987,6 +1139,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -1139,6 +1296,8 @@
             <element name="GFGewerbeUOM" minOccurs="0" type="double" />
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="dachgestaltung" minOccurs="0" type="string" />
+            <element name="VF" minOccurs="0" type="string" />
+            <element name="VFUOM" minOccurs="0" type="double" />
           </sequence>
         </extension>
       </complexContent>
@@ -1269,6 +1428,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -1341,6 +1505,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -1446,6 +1615,12 @@
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="dachgestaltung" minOccurs="0" type="string" />
+            <element name="bauweise" minOccurs="0" type="string" />
+            <element name="bauweiseCode" minOccurs="0" type="string" />
+            <element name="bebauungsArt" minOccurs="0" type="string" />
+            <element name="bebauungsArtCode" minOccurs="0" type="string" />
+            <element name="abweichendeBauweise" minOccurs="0" type="string" />
+            <element name="abweichendeBauweiseCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -1488,6 +1663,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -1738,6 +1918,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -1811,6 +1996,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -1883,6 +2073,11 @@
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -1933,6 +2128,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2124,6 +2324,11 @@
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -2234,6 +2439,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2304,6 +2514,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2375,6 +2590,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2447,6 +2667,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2519,6 +2744,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2639,6 +2869,27 @@
             <element name="zugunstenVon" minOccurs="0" type="string" />
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="DNmin" minOccurs="0" type="double" />
+            <element name="DNminUOM" minOccurs="0" type="string" />
+            <element name="DNmax" minOccurs="0" type="double" />
+            <element name="DNmaxUOM" minOccurs="0" type="string" />
+            <element name="DN" minOccurs="0" type="double" />
+            <element name="DNUOM" minOccurs="0" type="string" />
+            <element name="DNZwingend" minOccurs="0" type="double" />
+            <element name="DNZwingendUOM" minOccurs="0" type="string" />
+            <element name="FR" minOccurs="0" type="double" />
+            <element name="FRUOM" minOccurs="0" type="string" />
+            <element name="dachform" minOccurs="0" type="string" />
+            <element name="dachformCode" minOccurs="0" type="string" />
+            <element name="detaillierteDachform" minOccurs="0" type="string" />
+            <element name="detaillierteDachformCode" minOccurs="0" type="string" />
+            <element name="bauweise" minOccurs="0" type="string" />
+            <element name="bauweiseCode" minOccurs="0" type="string" />
+            <element name="abweichendeBauweise" minOccurs="0" type="string" />
+            <element name="abweichendeBauweiseCode" minOccurs="0" type="string" />
+            <element name="bebauungsArt" minOccurs="0" type="string" />
+            <element name="bebauungsArtCode" minOccurs="0" type="string" />
+            <element name="dachgestaltung" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -2681,6 +2932,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2777,6 +3033,11 @@
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -2831,6 +3092,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -2944,6 +3210,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -3064,6 +3335,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -3230,6 +3506,11 @@
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -3341,6 +3622,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -3376,6 +3662,12 @@
             <element name="laermpegelbereich" minOccurs="0" type="string" />
             <element name="laermpegelbereichCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="technVorkehrung" minOccurs="0" type="string" />
+            <element name="technVorkehrungCode" minOccurs="0" type="string" />
+            <element name="detaillierteTechnVorkehrung" minOccurs="0" type="string" />
+            <element name="detaillierteTechnVorkehrungCode" minOccurs="0" type="string" />
+            <element name="typ" minOccurs="0" type="string" />
+            <element name="typCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -3418,6 +3710,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -3453,6 +3750,8 @@
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
             <element name="gehoertZuBP_Bereich" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="istVerdachtsflaeche" minOccurs="0" type="string" />
+            <element name="nummer" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -3497,6 +3796,11 @@
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -3596,6 +3900,11 @@
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -3665,6 +3974,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
@@ -3932,6 +4246,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -3993,6 +4312,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -4086,12 +4410,19 @@
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
             <element name="refTextInhalt" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="nutzung" minOccurs="0" type="string" />
+            <element name="nutzungCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -4134,6 +4465,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -4208,6 +4544,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -4430,6 +4771,11 @@
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -4482,6 +4828,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -4497,6 +4848,58 @@
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
             <element name="gehoertZuBP_Bereich" minOccurs="0" type="string" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+  <element name="BP_RichtungssektorGrenze" substitutionGroup="gml:AbstractFeature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="textAbschnitte" minOccurs="0" type="string" />
+            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
           </sequence>
         </extension>
@@ -4540,6 +4943,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -4623,6 +5031,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -4654,6 +5067,59 @@
             <element name="refMassnahmenText" minOccurs="0" type="string" />
             <element name="refLandschaftsplan" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+  <element name="BP_Sichtflaeche" substitutionGroup="gml:AbstractFeature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="textAbschnitte" minOccurs="0" type="string" />
+            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -4769,6 +5235,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -4840,6 +5311,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -4982,6 +5458,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5116,6 +5597,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5188,6 +5674,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5319,6 +5810,11 @@
             <element name="rechtscharakter" minOccurs="0" type="string" />
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -5397,6 +5893,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5455,6 +5956,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5589,6 +6095,8 @@
             <element name="refGebaeudequerschnitt" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="dachgestaltung" minOccurs="0" type="string" />
+            <element name="VF" minOccurs="0" type="string" />
+            <element name="VFUOM" minOccurs="0" type="double" />
           </sequence>
         </extension>
       </complexContent>
@@ -5631,6 +6139,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5693,6 +6206,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -5991,6 +6509,11 @@
             <element name="startBedingung" minOccurs="0" type="string" />
             <element name="endeBedingung" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
@@ -6045,6 +6568,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -6246,6 +6774,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -6287,6 +6820,10 @@
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
             <element name="gehoertZuBP_Bereich" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="eigentumsart" minOccurs="0" type="string" />
+            <element name="eigentumsartCode" minOccurs="0" type="string" />
+            <element name="betreten" minOccurs="0" type="string" />
+            <element name="betretenCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -6391,6 +6928,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -6466,6 +7008,11 @@
             <element name="startDatum" minOccurs="0" type="date" />
             <element name="endDatum" minOccurs="0" type="date" />
             <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
@@ -6505,6 +7052,115 @@
             <element name="breiteUOM" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="istSchmal" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+  <element name="BP_ZusatzkontingentLaerm" substitutionGroup="gml:AbstractFeature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="textAbschnitte" minOccurs="0" type="string" />
+            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
+            <element name="bezeichnung" minOccurs="0" type="string" />
+            <element name="richtungssektor" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+  <element name="BP_ZusatzkontingentLaermFlaeche" substitutionGroup="gml:AbstractFeature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="textAbschnitte" minOccurs="0" type="string" />
+            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -7858,6 +8514,8 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="istVerdachtsflaeche" minOccurs="0" type="string" />
+            <element name="nummer" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9097,6 +9755,10 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="eigentumsart" minOccurs="0" type="string" />
+            <element name="eigentumsartCode" minOccurs="0" type="string" />
+            <element name="betreten" minOccurs="0" type="string" />
+            <element name="betretenCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -11450,6 +12112,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -11552,6 +12216,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -11607,6 +12273,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -11673,6 +12341,8 @@
             <element name="spannungCode" minOccurs="0" type="string" />
             <element name="istAufschuettungAblagerung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -11737,6 +12407,8 @@
             <element name="typAWCode" minOccurs="0" type="string" />
             <element name="istAufschuettungAblagerung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -11796,6 +12468,8 @@
             <element name="besondererTyp" minOccurs="0" type="string" />
             <element name="besondererTypCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -11851,6 +12525,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12055,6 +12731,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12108,6 +12786,8 @@
             <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
             <element name="imVerbund" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12162,6 +12842,8 @@
             <element name="typCode" minOccurs="0" type="string" />
             <element name="bezeichnung" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12622,6 +13304,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12680,6 +13364,8 @@
             <element name="imVerbund" minOccurs="0" type="string" />
             <element name="gewaesserTyp" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12741,6 +13427,8 @@
             <element name="sonstTyp" minOccurs="0" type="string" />
             <element name="sonstTypCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12800,6 +13488,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12855,6 +13545,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12910,6 +13602,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -12969,6 +13663,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -13026,6 +13722,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -13081,6 +13779,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -13182,6 +13882,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -13294,6 +13996,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14369,6 +15073,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14533,6 +15239,8 @@
             <element name="typCode" minOccurs="0" type="string" />
             <element name="istKernzone" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14615,7 +15323,7 @@
             <element name="externeReferenz" minOccurs="0" type="string" />
             <element name="verfahren" minOccurs="0" type="string" />
             <element name="verfahrenCode" minOccurs="0" type="string" />
-            <element name="amtlicherSchluessel" minOccurs="0" type="integer" />
+            <element name="amtlicherSchluessel" minOccurs="0" type="string" />
             <element name="technischerPlanersteller" minOccurs="0" type="string" />
             <element name="genehmigungsbehoerde" minOccurs="0" type="string" />
           </sequence>
@@ -14670,6 +15378,8 @@
             <element name="flussrichtung" minOccurs="0" type="string" />
             <element name="planungsraumBeschreibung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14725,6 +15435,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14825,6 +15537,8 @@
             <element name="besondererTyp" minOccurs="0" type="string" />
             <element name="besondererTypCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14892,6 +15606,8 @@
             <element name="istAufschuettungAblagerung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="detaillierterRohstoffTyp" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15164,6 +15880,8 @@
             <element name="bauhoehenbeschraenkung" minOccurs="0" type="integer" />
             <element name="istSiedlungsbeschraenkung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15219,6 +15937,8 @@
             <element name="flaechenschluss" minOccurs="0" type="string" />
             <element name="flussrichtung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15272,6 +15992,8 @@
             <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
             <element name="imVerbund" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15325,6 +16047,8 @@
             <element name="bauhoehenbeschraenkung" minOccurs="0" type="integer" />
             <element name="istSiedlungsbeschraenkung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15537,6 +16261,8 @@
             <element name="flaechenschluss" minOccurs="0" type="string" />
             <element name="flussrichtung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15596,6 +16322,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15651,6 +16379,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -15799,6 +16529,8 @@
             <element name="statusCode" minOccurs="0" type="string" />
             <element name="bezeichnung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -16203,6 +16935,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -16317,6 +17051,8 @@
             <element name="flaechenschluss" minOccurs="0" type="string" />
             <element name="flussrichtung" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -16458,6 +17194,8 @@
             <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -16520,6 +17258,64 @@
             <element name="typCode" minOccurs="0" type="string" />
             <element name="sonstigerTyp" minOccurs="0" type="string" />
             <element name="sonstigerTypCode" minOccurs="0" type="string" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+  <element name="SO_Bauverbotszone" substitutionGroup="gml:AbstractFeature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="textAbschnitte" minOccurs="0" type="string" />
+            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="sonstRechtscharakter" minOccurs="0" type="string" />
+            <element name="sonstRechtscharakterCode" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
+            <element name="artDerFestlegung" minOccurs="0" type="string" />
+            <element name="artDerFestlegungCode" minOccurs="0" type="string" />
+            <element name="detailArtDerFestlegung" minOccurs="0" type="string" />
+            <element name="detailArtDerFestlegungCode" minOccurs="0" type="string" />
+            <element name="rechtlicheGrundlage" minOccurs="0" type="string" />
+            <element name="rechtlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="name" minOccurs="0" type="string" />
+            <element name="nummer" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
           </sequence>
         </extension>
@@ -16730,6 +17526,10 @@
             <element name="name" minOccurs="0" type="string" />
             <element name="nummer" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="funktion" minOccurs="0" type="string" />
+            <element name="funktionCode" minOccurs="0" type="string" />
+            <element name="betreten" minOccurs="0" type="string" />
+            <element name="betretenCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -16791,6 +17591,60 @@
             <element name="durchfuehrungStartDatum" minOccurs="0" type="date" />
             <element name="durchfuehrungEndDatum" minOccurs="0" type="date" />
             <element name="traegerMassnahme" minOccurs="0" type="string" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+  <element name="SO_Gewaesser" substitutionGroup="gml:AbstractFeature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="textAbschnitte" minOccurs="0" type="string" />
+            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="sonstRechtscharakter" minOccurs="0" type="string" />
+            <element name="sonstRechtscharakterCode" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
+            <element name="artDerFestlegung" minOccurs="0" type="string" />
+            <element name="artDerFestlegungCode" minOccurs="0" type="string" />
+            <element name="detailArtDerFestlegung" minOccurs="0" type="string" />
+            <element name="detailArtDerFestlegungCode" minOccurs="0" type="string" />
+            <element name="name" minOccurs="0" type="string" />
+            <element name="nummer" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
           </sequence>
         </extension>
@@ -17054,6 +17908,10 @@
             <element name="technischerPlanersteller" minOccurs="0" type="string" />
             <element name="gemeinde" minOccurs="0" type="string" />
             <element name="planaufstellendeGemeinde" minOccurs="0" type="string" />
+            <element name="versionBauGBDatum" minOccurs="0" type="date" />
+            <element name="versionBauGBText" minOccurs="0" type="string" />
+            <element name="versionSonstRechtsgrundlageDatum" minOccurs="0" type="date" />
+            <element name="versionSonstRechtsgrundlageText" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

@@ -25,6 +25,7 @@ else
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplan41nsm/create.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplan50/create.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplan51/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplan52/create.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/fix/xplansyn/create.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan2/create.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan3/create.sql
@@ -33,6 +34,7 @@ else
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan41nsm/create.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan50/create.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan51/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplan52/create.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/pre/xplansyn/create.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan2/create.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan3/create.sql
@@ -41,6 +43,7 @@ else
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan41nsm/create.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan50/create.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan51/create.sql
+    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplan52/create.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/archive/xplansyn/create.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/xplanmgr/create.sql
 fi

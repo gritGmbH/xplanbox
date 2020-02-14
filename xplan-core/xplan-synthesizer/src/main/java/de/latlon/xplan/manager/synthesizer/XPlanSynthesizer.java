@@ -206,6 +206,8 @@ public class XPlanSynthesizer {
             return "xplan50.syn";
         case XPLAN_51:
             return "xplan51.syn";
+        case XPLAN_52:
+            return "xplan52.syn";
         default:
             throw new IllegalArgumentException( "Could not find rules file for XPlan version " + version );
         }

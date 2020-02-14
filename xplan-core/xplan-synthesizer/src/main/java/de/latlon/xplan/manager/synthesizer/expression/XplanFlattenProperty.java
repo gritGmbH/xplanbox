@@ -50,6 +50,9 @@ public class XplanFlattenProperty implements Expression {
         customFlatteners.add( new XpVerbundenerPlanFlattener() );
         customFlatteners.add( new BpDachgestaltungFlattener() );
         customFlatteners.add( new XpSPEMassnahmenDatenFlattener() );
+        customFlatteners.add( new BpRichtungssektorFlattener() );
+        customFlatteners.add( new BP_EmissionskontingentLaermFlattener() );
+        customFlatteners.add( new BP_EmissionskontingentLaermGebietFlattener() );
     }
 
     @Override

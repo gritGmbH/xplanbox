@@ -505,6 +505,42 @@
       <Layer>bp_baulin</Layer>
     </Theme>
     <Theme>
+      <Identifier>bp_abweichungenvonbaugrenze</Identifier>
+      <d:Title>BP: AbweichungVonBaugrenze</d:Title>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_abweichungenvonbaugrenze</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_abweichungvonueberbauberergrundstuecksflaeche</Identifier>
+      <d:Title>BP: BP_AbweichungVonUeberbaubererGrundstuecksFlaeche</d:Title>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_abweichungvonueberbauberergrundstuecksflaeche</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_richtungssektorgrenze</Identifier>
+      <d:Title>BP: RichtungssektorGrenze</d:Title>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_richtungssektorgrenze</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_zusatzkontingentlaerm</Identifier>
+      <d:Title>BP: ZusatzkontingentLaerm</d:Title>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_zusatzkontingentlaerm</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>ZusatzkontingentLaerm</Identifier>
+      <d:Title>BP: ZusatzkontingentLaermFlaeche</d:Title>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>ZusatzkontingentLaerm</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_sichtflaeche</Identifier>
+      <d:Title>BP: Sichtflaeche</d:Title>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_sichtflaeche</Layer>
+    </Theme>
+    <Theme>
       <Identifier>bp_symbole</Identifier>
       <d:Title>bp_symbole</d:Title>
       <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>

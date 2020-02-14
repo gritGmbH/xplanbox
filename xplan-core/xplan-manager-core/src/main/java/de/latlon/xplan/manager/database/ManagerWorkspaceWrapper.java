@@ -14,31 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.INSPIREPLU_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN2ARCHIVE_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN2PRE_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN2_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN3ARCHIVE_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN3PRE_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN3_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN40ARCHIVE_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN40PRE_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN40_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN41ARCHIVE_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN41ARCHIVE_NSM_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN41PRE_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN41PRE_NSM_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN41_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN41_NSM_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN50ARCHIVE_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN50PRE_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN50_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN51ARCHIVE_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN51PRE_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLAN51_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLANSYNARCHIVE_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLANSYNPRE_FS_ID;
-import static de.latlon.xplan.manager.database.FeatureStoreResourceNames.XPLANSYN_FS_ID;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 
@@ -50,6 +26,12 @@ public class ManagerWorkspaceWrapper {
     private static final Logger LOG = LoggerFactory.getLogger( ManagerWorkspaceWrapper.class );
 
     private static final String JDBC_POOL_ID = "xplan";
+
+    private static final String INSPIREPLU_FS_ID = "inspireplu";
+
+    private static final String PRE_SUFFIX = "pre";
+
+    private static final String ARCHIVE_SUFFIX = "archive";
 
     private Workspace managerWorkspace;
 
@@ -100,28 +82,17 @@ public class ManagerWorkspaceWrapper {
      *                 if a FeatureStore can not be found
      */
     public FeatureStore lookupStore( XPlanVersion version, XPlanAde ade, PlanStatus planStatus ) {
-        switch ( version ) {
-        case XPLAN_2:
-            return decideIfPreStore( planStatus, XPLAN2_FS_ID, XPLAN2PRE_FS_ID, XPLAN2ARCHIVE_FS_ID );
-        case XPLAN_3:
-            return decideIfPreStore( planStatus, XPLAN3_FS_ID, XPLAN3PRE_FS_ID, XPLAN3ARCHIVE_FS_ID );
-        case XPLAN_40:
-            return decideIfPreStore( planStatus, XPLAN40_FS_ID, XPLAN40PRE_FS_ID, XPLAN40ARCHIVE_FS_ID );
-        case XPLAN_41:
-            if ( XPlanAde.NSM.equals( ade ) ) {
-                return decideIfPreStore( planStatus, XPLAN41_NSM_FS_ID, XPLAN41PRE_NSM_FS_ID,
-                                         XPLAN41ARCHIVE_NSM_FS_ID );
-            } else {
-                return decideIfPreStore( planStatus, XPLAN41_FS_ID, XPLAN41PRE_FS_ID, XPLAN41ARCHIVE_FS_ID );
-            }
-        case XPLAN_50:
-            return decideIfPreStore( planStatus, XPLAN50_FS_ID, XPLAN50PRE_FS_ID, XPLAN50ARCHIVE_FS_ID );
-        case XPLAN_51:
-            return decideIfPreStore( planStatus, XPLAN51_FS_ID, XPLAN51PRE_FS_ID, XPLAN51ARCHIVE_FS_ID );
-        case XPLAN_SYN:
-            return decideIfPreStore( planStatus, XPLANSYN_FS_ID, XPLANSYNPRE_FS_ID, XPLANSYNARCHIVE_FS_ID );
+        String store = version.name().replace( "_", "" ).toLowerCase();
+        if ( XPLAN_41.equals( version ) && XPlanAde.NSM.equals( ade ) ) {
+            store = "xplan41nsm";
         }
-        throw new IllegalArgumentException();
+        if ( managerConfiguration.isSeperatedDataManagementActived() ) {
+            if ( IN_AUFSTELLUNG.equals( planStatus ) )
+                return lookupStore( store + PRE_SUFFIX );
+            else if ( ARCHIVIERT.equals( planStatus ) )
+                return lookupStore( store + ARCHIVE_SUFFIX );
+        }
+        return lookupStore( store );
     }
 
     /**
@@ -135,20 +106,10 @@ public class ManagerWorkspaceWrapper {
         ensureWorkspaceInitialized();
         FeatureStore sfs = managerWorkspace.getResource( FeatureStoreProvider.class, id );
         if ( sfs == null ) {
-            LOG.debug( "Can't get Feature Store '" + id + "', available Feature Stores:" );
+            LOG.debug( "Feature Store '" + id + "' is not available" );
             throw new IllegalArgumentException( "Wrong FeatureStore Id " + id );
         }
         return sfs;
-    }
-
-    private FeatureStore decideIfPreStore( PlanStatus planStatus, String store, String preStore, String archiveStore ) {
-        if ( managerConfiguration.isSeperatedDataManagementActived() ) {
-            if ( IN_AUFSTELLUNG.equals( planStatus ) )
-                return lookupStore( preStore );
-            else if ( ARCHIVIERT.equals( planStatus ) )
-                return lookupStore( archiveStore );
-        }
-        return lookupStore( store );
     }
 
 }
