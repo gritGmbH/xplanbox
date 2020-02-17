@@ -49,7 +49,7 @@
               <ogc:PropertyName>xplan:anchorX</ogc:PropertyName>
             </AnchorPointX>
             <AnchorPointY>
-              <ogc:PropertyName>xplan:anchorX</ogc:PropertyName>
+              <ogc:PropertyName>xplan:anchorY</ogc:PropertyName>
             </AnchorPointY>
           </AnchorPoint>
           <Rotation>
@@ -116,7 +116,7 @@
               <ogc:PropertyName>xplan:anchorX</ogc:PropertyName>
             </AnchorPointX>
             <AnchorPointY>
-              <ogc:PropertyName>xplan:anchorX</ogc:PropertyName>
+              <ogc:PropertyName>xplan:anchorY</ogc:PropertyName>
             </AnchorPointY>
           </AnchorPoint>
           <Rotation>
