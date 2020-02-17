@@ -2,6 +2,7 @@ package de.latlon.xplan.manager.synthesizer.expression;
 
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
+import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.commons.xml.NamespaceBindings;
 import org.deegree.feature.Feature;
 import org.deegree.feature.xpath.TypedObjectNodeXPathEvaluator;
@@ -22,8 +23,15 @@ public class Xpath implements Expression {
 
     private final String expression;
 
+    private final Object defaultValue;
+
     public Xpath( String expression ) {
+        this( expression, null );
+    }
+
+    public Xpath( String expression, Object defaultValue ) {
         this.expression = expression;
+        this.defaultValue = defaultValue;
     }
 
     @Override
@@ -38,16 +46,23 @@ public class Xpath implements Expression {
             throw new RuntimeException( e.getMessage() );
         }
         if ( valueNodes == null || valueNodes.length == 0 ) {
-            return null;
+            if ( defaultValue == null )
+                return null;
+            else
+                return new PrimitiveValue( defaultValue );
         }
         if ( valueNodes.length == 1 ) {
             return valueNodes[0];
         }
-        return new TypedObjectNodeArray<TypedObjectNode>( valueNodes );
+        return new TypedObjectNodeArray<>( valueNodes );
     }
 
     public String toString() {
         return "xpath( " + expression + " )";
+    }
+
+    public Object getDefaultValue() {
+        return defaultValue;
     }
 
 }

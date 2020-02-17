@@ -534,6 +534,15 @@
       <xplan:drehwinkel uom="urn:adv:uom:grad">0.314</xplan:drehwinkel>
       <xplan:skalierung>0.3</xplan:skalierung>
     </xplan:XP_PPO>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:XP_PPO gml:id="XP_PPO_4">
+      <xplan:stylesheetId>SymbolAbwasser</xplan:stylesheetId>
+      <xplan:gehoertZuBereich xlink:href="#BP_Bereich_1"/>
+      <xplan:dientZurDarstellungVon xlink:href="#BP_BaugebietsTeilFlaeche_1"/>
+      <xplan:position/>
+      <xplan:skalierung>0.3</xplan:skalierung>
+    </xplan:XP_PPO>
   </gml:featureMember>  
   <gml:featureMember>
     <xplan:BP_Baugebiet gml:id="BP_Baugebiet_1">

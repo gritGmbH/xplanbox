@@ -2,6 +2,7 @@ package de.latlon.xplan.manager.synthesizer.expression;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static org.deegree.commons.tom.primitive.BaseType.DECIMAL;
+import static org.deegree.commons.tom.primitive.BaseType.DOUBLE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -45,7 +46,16 @@ public class XpathTest {
     }
 
     @Test
-    public void testUomValue() {
+    public void testDrehwinkelDefaultValue() {
+        Feature feature = new ScenarioLoader().getTestFeature( XPLAN_41, "XP_PPO_4" );
+        Xpath expr = new Xpath( "xplan:drehwinkel/text()", 0.0 );
+        PrimitiveValue value = (PrimitiveValue) expr.evaluate( feature );
+        assertEquals( DOUBLE, value.getType().getBaseType() );
+        assertEquals( "0", value.toString() );
+    }
+
+    @Test
+    public void testDrehwinkelValue() {
         Feature feature = new ScenarioLoader().getTestFeature( XPLAN_41, "XP_PPO_1" );
         Xpath expr = new Xpath( "xplan:drehwinkel/text()" );
         PrimitiveValue value = (PrimitiveValue) expr.evaluate( feature );
@@ -54,7 +64,7 @@ public class XpathTest {
     }
 
     @Test
-    public void testUomAttribute() {
+    public void testDrehwinkelUomAttribute() {
         Feature feature = new ScenarioLoader().getTestFeature( XPLAN_41, "XP_PPO_1" );
         Xpath expr = new Xpath( "xplan:drehwinkel/@uom" );
         PrimitiveValue value = (PrimitiveValue) expr.evaluate( feature );

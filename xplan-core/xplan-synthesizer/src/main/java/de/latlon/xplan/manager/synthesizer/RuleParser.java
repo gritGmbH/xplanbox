@@ -64,7 +64,22 @@ class RuleParser {
         return result;
     }
 
+    private Object parseDefaultValue( String s ) {
+        s = s.replace( "\"", "" );
+        try {
+            return Integer.parseInt( s );
+        } catch ( IllegalArgumentException ei ) {
+            try {
+                return Double.parseDouble( s );
+            } catch ( IllegalArgumentException ed ) {
+            }
+        }
+        return s;
+    }
+
     private Xpath parseXPath( List<String> args ) {
+        if ( args.size() > 1 )
+            return new Xpath( trimString( args.get( 0 ) ), parseDefaultValue(args.get( 1 )) );
         return new Xpath( trimString( args.get( 0 ) ) );
     }
 
