@@ -30,6 +30,11 @@
       <Layer>rp_bodenschutz</Layer>
     </Theme>
     <Theme>
+      <Identifier>rp_einzelhandel</Identifier>
+      <d:Title>RP: Einzelhandel</d:Title>
+      <Layer>rp_einzelhandel</Layer>
+    </Theme>
+    <Theme>
       <Identifier>rp_energieversorgung</Identifier>
       <d:Title>RP: Energieversorgung</d:Title>
       <Layer>rp_energieversorgung</Layer>
@@ -45,14 +50,34 @@
       <Layer>rp_entwschwerpte</Layer>
     </Theme>
     <Theme>
+      <Identifier>rp_erholung</Identifier>
+      <d:Title>RP: Erholung</d:Title>
+      <Layer>rp_erholung</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_erneuerbareenergie</Identifier>
+      <d:Title>RP: ErneuerbareEnergie</d:Title>
+      <Layer>rp_erneuerbareenergie</Layer>
+    </Theme>
+    <Theme>
       <Identifier>rp_forstwirtsch</Identifier>
       <d:Title>RP: Forstwirtschaft</d:Title>
       <Layer>rp_forstwirtsch</Layer>
     </Theme>
     <Theme>
+      <Identifier>rp_freiraum</Identifier>
+      <d:Title>RP: Freiraum</d:Title>
+      <Layer>rp_freiraum</Layer>
+    </Theme>
+    <Theme>
       <Identifier>rp_freizeiterholung</Identifier>
       <d:Title>RP: Freizeit und Erholung</d:Title>
       <Layer>rp_freizeiterholung</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_funktionszuweisung</Identifier>
+      <d:Title>RP: Funktionszuweisung</d:Title>
+      <Layer>rp_funktionszuweisung</Layer>
     </Theme>
     <Theme>
       <Identifier>rp_gemfunktsiedlentw</Identifier>
@@ -75,6 +100,16 @@
       <Layer>rp_gruenzuggruenzaesur</Layer>
     </Theme>
     <Theme>
+      <Identifier>rp_hochwasserschutz</Identifier>
+      <d:Title>RP: Hochwasserschutz</d:Title>
+      <Layer>rp_hochwasserschutz</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_industriegewerbe</Identifier>
+      <d:Title>RP: IndustrieGewerbe</d:Title>
+      <Layer>rp_industriegewerbe</Layer>
+    </Theme>
+    <Theme>
       <Identifier>rp_klimaschutz</Identifier>
       <d:Title>RP: Klimaschutz</d:Title>
       <Layer>rp_klimaschutz</Layer>
@@ -85,9 +120,24 @@
       <Layer>rp_kommunikation</Layer>
     </Theme>
     <Theme>
+      <Identifier>rp_kulturlandschaft</Identifier>
+      <d:Title>RP: Kulturlandschaft</d:Title>
+      <Layer>rp_kulturlandschaft</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_laermschutzbauschutz</Identifier>
+      <d:Title>RP: LärmschutzBauschutz</d:Title>
+      <Layer>rp_laermschutzbauschutz</Layer>
+    </Theme>
+    <Theme>
       <Identifier>rp_laermschutzber</Identifier>
       <d:Title>RP: Lärmschutzbereich</d:Title>
       <Layer>rp_laermschutzber</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_luftverkehr</Identifier>
+      <d:Title>RP: Luftverkehr</d:Title>
+      <Layer>rp_luftverkehr</Layer>
     </Theme>
     <Theme>
       <Identifier>rp_lw</Identifier>
@@ -105,14 +155,39 @@
       <Layer>rp_natsrechtlschutzgeb</Layer>
     </Theme>
     <Theme>
+      <Identifier>rp_planungsraum</Identifier>
+      <d:Title>RP: Planungsraum</d:Title>
+      <Layer>rp_planungsraum</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_radwegwanderweg</Identifier>
+      <d:Title>RP: RadwegWanderweg</d:Title>
+      <Layer>rp_radwegwanderweg</Layer>
+    </Theme>
+    <Theme>
       <Identifier>rp_raumkategorie</Identifier>
       <d:Title>RP: Raumkategorie</d:Title>
       <Layer>rp_raumkategorie</Layer>
     </Theme>
     <Theme>
+      <Identifier>rp_rohstoff</Identifier>
+      <d:Title>RP: Rohstoff</d:Title>
+      <Layer>rp_rohstoff</Layer>
+    </Theme>
+    <Theme>
       <Identifier>rp_rohstoffsicherung</Identifier>
       <d:Title>RP: Rohstoffsicherung</d:Title>
       <Layer>rp_rohstoffsicherung</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_schienenverkehr</Identifier>
+      <d:Title>RP: Schienenverkehr</d:Title>
+      <Layer>rp_schienenverkehr</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_siedlung</Identifier>
+      <d:Title>RP: Siedlung</d:Title>
+      <Layer>rp_siedlung</Layer>
     </Theme>
     <Theme>
       <Identifier>rp_sonstinfrastrukt</Identifier>
@@ -130,9 +205,34 @@
       <Layer>rp_sonstsiedlstrukt</Layer>
     </Theme>
     <Theme>
+      <Identifier>rp_sonstfreiraumschutz</Identifier>
+      <d:Title>RP: Sonstiger Freiraumschutz</d:Title>
+      <Layer>rp_sonstfreiraumschutz</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_sonstsiedlbereich</Identifier>
+      <d:Title>RP: Sonstiger Siedlungsbereich</d:Title>
+      <Layer>rp_sonstsiedlbereich</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_sonstverkehr</Identifier>
+      <d:Title>RP: Sonstiger Verkehr</d:Title>
+      <Layer>rp_sonstverkehr</Layer>
+    </Theme>
+    <Theme>
       <Identifier>rp_sozinfrastrukt</Identifier>
       <d:Title>RP: soziale Infrastruktur</d:Title>
       <Layer>rp_sozinfrastrukt</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_sportanlage</Identifier>
+      <d:Title>RP: Sportanlage</d:Title>
+      <Layer>rp_sportanlage</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_strassenverkehr</Identifier>
+      <d:Title>RP: Strassenverkehr</d:Title>
+      <Layer>rp_strassenverkehr</Layer>
     </Theme>
     <Theme>
       <Identifier>rp_verk</Identifier>
@@ -150,6 +250,11 @@
       <Layer>rp_wasserschutz</Layer>
     </Theme>
     <Theme>
+      <Identifier>rp_wasserverkehr</Identifier>
+      <d:Title>RP: Wasserverkehr</d:Title>
+      <Layer>rp_wasserverkehr</Layer>
+    </Theme>
+    <Theme>
       <Identifier>rp_wws</Identifier>
       <d:Title>RP: Wasserwirtschaft</d:Title>
       <Layer>rp_wws</Layer>
@@ -163,6 +268,11 @@
       <Identifier>rp_windenergienutz</Identifier>
       <d:Title>RP: Windenergienutzung</d:Title>
       <Layer>rp_windenergienutz</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_wohnensiedlung</Identifier>
+      <d:Title>RP: Wohnen Siedlung</d:Title>
+      <Layer>rp_wohnensiedlung</Layer>
     </Theme>
     <Theme>
       <Identifier>rp_zentralerort</Identifier>
@@ -319,7 +429,6 @@
       <d:Title>NSMRP: Wasserverkehr</d:Title>
       <Layer>rp_nsm_wasserverkehr</Layer>
     </Theme>
-
     <Theme>
       <Identifier>rp_beschriftung</Identifier>
       <d:Title>RP: Beschriftung</d:Title>
@@ -333,22 +442,21 @@
         <d:Title>RP: XP: LTO</d:Title>
         <Layer>rp_xp_lto</Layer>
       </Theme>
-
-    </Theme>
-    <Theme>
-      <Identifier>rp_xp_fpo</Identifier>
-      <d:Title>RP: XP: FPO</d:Title>
-      <Layer>rp_xp_fpo</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>rp_xp_lpo</Identifier>
-      <d:Title>RP: XP: LPO</d:Title>
-      <Layer>rp_xp_lpo</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>rp_xp_ppo</Identifier>
-      <d:Title>RP: XP: PPO</d:Title>
-      <Layer>rp_xp_ppo</Layer>
+      <Theme>
+        <Identifier>rp_xp_fpo</Identifier>
+        <d:Title>RP: XP: FPO</d:Title>
+        <Layer>rp_xp_fpo</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>rp_xp_lpo</Identifier>
+        <d:Title>RP: XP: LPO</d:Title>
+        <Layer>rp_xp_lpo</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>rp_xp_ppo</Identifier>
+        <d:Title>RP: XP: PPO</d:Title>
+        <Layer>rp_xp_ppo</Layer>
+      </Theme>
     </Theme>
   </Theme>
 </Themes>

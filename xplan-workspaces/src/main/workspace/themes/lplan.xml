@@ -128,9 +128,6 @@
       <d:Title>LP: Zwischennutzung</d:Title>
       <Layer>lp_zwischennutz</Layer>
     </Theme>
-    <Theme>
-      <Identifier>lp_beschr_sym</Identifier>
-      <d:Title>Beschriftung und Symbole</d:Title>
       <Theme>
         <Identifier>lp_beschriftung</Identifier>
         <d:Title>LP: Beschriftung</d:Title>
@@ -144,11 +141,6 @@
           <d:Title>LP: XP: LTO</d:Title>
           <Layer>lp_xp_lto</Layer>
         </Theme>
-      </Theme>
-      <Theme>
-        <Identifier>lp_symbole</Identifier>
-        <d:Title>LP: Symbole</d:Title>
-
         <Theme>
           <Identifier>lp_xp_fpo</Identifier>
           <d:Title>LP: XP: FPO</d:Title>
@@ -164,51 +156,54 @@
           <d:Title>LP: XP: PPO</d:Title>
           <Layer>lp_xp_ppo</Layer>
         </Theme>
-        <Theme>
-          <Identifier>lp_schutzobjbundesrechtsym</Identifier>
-          <d:Title>LP: Schutzobjekt Bundesrecht Symbole</d:Title>
-          <Layer>lp_schutzobjbundesrechtsym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_schutzobjinterrechtsym</Identifier>
-          <d:Title>LP: Schutzobjekt internationales Recht Symbole</d:Title>
-          <Layer>lp_schutzobjinterrechtsym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_denkmschrechtsym</Identifier>
-          <d:Title>LP: Denkmalschutzrecht Symbole</d:Title>
-          <Layer>lp_denkmschrechtsym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_ausgleichsym</Identifier>
-          <d:Title>LP: Ausgleich Symbole</d:Title>
-          <Layer>lp_ausgleichsym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_wrschutzgebsym</Identifier>
-          <d:Title>LP: Wasserrechtliche Schutzgebiete Symbole</d:Title>
-          <Layer>lp_wrschutzgebsym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_wrgemgebreinschrnatssym</Identifier>
-          <d:Title>LP: Wasserrechtliche Einschränkungen Symbole</d:Title>
-          <Layer>lp_wrgemgebreinschrnatssym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_wrwirtschabflusshwssym</Identifier>
-          <d:Title>LP: Wasserwirtschaft Abfluss Hochwasserschutz</d:Title>
-          <Layer>lp_wrwirtschabflusshwssym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_forstrechtsym</Identifier>
-          <d:Title>LP: Forstrecht Symbole</d:Title>
-          <Layer>lp_forstrechtsym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_nutzerforderregelungsym</Identifier>
-          <d:Title>LP: Nutzungserfordernis Symbole</d:Title>
-          <Layer>lp_nutzerforderregelungsym</Layer>
-        </Theme>
+      </Theme>
+      <Theme>
+      <Identifier>lp_symbole</Identifier>
+      <d:Title>LP: Symbole</d:Title>
+      <Theme>
+        <Identifier>lp_schutzobjbundesrechtsym</Identifier>
+        <d:Title>LP: Schutzobjekt Bundesrecht Symbole</d:Title>
+        <Layer>lp_schutzobjbundesrechtsym</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>lp_schutzobjinterrechtsym</Identifier>
+        <d:Title>LP: Schutzobjekt internationales Recht Symbole</d:Title>
+        <Layer>lp_schutzobjinterrechtsym</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>lp_denkmschrechtsym</Identifier>
+        <d:Title>LP: Denkmalschutzrecht Symbole</d:Title>
+        <Layer>lp_denkmschrechtsym</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>lp_ausgleichsym</Identifier>
+        <d:Title>LP: Ausgleich Symbole</d:Title>
+        <Layer>lp_ausgleichsym</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>lp_wrschutzgebsym</Identifier>
+        <d:Title>LP: Wasserrechtliche Schutzgebiete Symbole</d:Title>
+        <Layer>lp_wrschutzgebsym</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>lp_wrgemgebreinschrnatssym</Identifier>
+        <d:Title>LP: Wasserrechtliche Einschränkungen Symbole</d:Title>
+        <Layer>lp_wrgemgebreinschrnatssym</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>lp_wrwirtschabflusshwssym</Identifier>
+        <d:Title>LP: Wasserwirtschaft Abfluss Hochwasserschutz</d:Title>
+        <Layer>lp_wrwirtschabflusshwssym</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>lp_forstrechtsym</Identifier>
+        <d:Title>LP: Forstrecht Symbole</d:Title>
+        <Layer>lp_forstrechtsym</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>lp_nutzerforderregelungsym</Identifier>
+        <d:Title>LP: Nutzungserfordernis Symbole</d:Title>
+        <Layer>lp_nutzerforderregelungsym</Layer>
       </Theme>
     </Theme>
   </Theme>

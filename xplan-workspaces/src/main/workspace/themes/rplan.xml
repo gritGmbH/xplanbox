@@ -429,7 +429,6 @@
       <d:Title>NSMRP: Wasserverkehr</d:Title>
       <Layer>rp_nsm_wasserverkehr</Layer>
     </Theme>
-
     <Theme>
       <Identifier>rp_beschriftung</Identifier>
       <d:Title>RP: Beschriftung</d:Title>
@@ -443,22 +442,21 @@
         <d:Title>RP: XP: LTO</d:Title>
         <Layer>rp_xp_lto</Layer>
       </Theme>
-
-    </Theme>
-    <Theme>
-      <Identifier>rp_xp_fpo</Identifier>
-      <d:Title>RP: XP: FPO</d:Title>
-      <Layer>rp_xp_fpo</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>rp_xp_lpo</Identifier>
-      <d:Title>RP: XP: LPO</d:Title>
-      <Layer>rp_xp_lpo</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>rp_xp_ppo</Identifier>
-      <d:Title>RP: XP: PPO</d:Title>
-      <Layer>rp_xp_ppo</Layer>
+      <Theme>
+        <Identifier>rp_xp_fpo</Identifier>
+        <d:Title>RP: XP: FPO</d:Title>
+        <Layer>rp_xp_fpo</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>rp_xp_lpo</Identifier>
+        <d:Title>RP: XP: LPO</d:Title>
+        <Layer>rp_xp_lpo</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>rp_xp_ppo</Identifier>
+        <d:Title>RP: XP: PPO</d:Title>
+        <Layer>rp_xp_ppo</Layer>
+      </Theme>
     </Theme>
   </Theme>
 </Themes>
