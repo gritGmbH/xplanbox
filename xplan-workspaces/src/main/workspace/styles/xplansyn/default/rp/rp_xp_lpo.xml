@@ -6,14 +6,14 @@
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:XP_LPO</FeatureTypeName>
   <Rule>
-    <Name>lp_xp_lpo</Name>
+    <Name>rp_xp_lpo</Name>
     <Description>
       <Title>RP: Linienhaftes Präsentationsobjekt</Title>
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
         <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-        <ogc:Literal>LP_Plan</ogc:Literal>
+        <ogc:Literal>RP_Plan</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
     <LineSymbolizer>

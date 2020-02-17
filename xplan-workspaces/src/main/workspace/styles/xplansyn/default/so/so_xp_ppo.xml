@@ -6,14 +6,14 @@
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:XP_PPO</FeatureTypeName>
   <Rule>
-    <Name>bp_xp_ppo</Name>
+    <Name>so_xp_ppo</Name>
     <Description>
-      <Title>BP: Punkthaftes Präsentationobjekt</Title>
+      <Title>SO: Punkthaftes Präsentationobjekt</Title>
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
         <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-        <ogc:Literal>BP_Plan</ogc:Literal>
+        <ogc:Literal>SO_Plan</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
     <PointSymbolizer>

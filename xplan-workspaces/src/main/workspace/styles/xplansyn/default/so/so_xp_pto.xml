@@ -6,9 +6,9 @@
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:XP_PTO</FeatureTypeName>
   <Rule>
-    <Name>bp_xp_pto</Name>
+    <Name>so_xp_pto</Name>
     <Description>
-      <Title>BP: Beschriftung</Title>
+      <Title>SO: Beschriftung</Title>
     </Description>
     <ogc:Filter>
       <ogc:And>
@@ -19,7 +19,7 @@
         </ogc:Not>
         <ogc:PropertyIsEqualTo>
           <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-          <ogc:Literal>BP_Plan</ogc:Literal>
+          <ogc:Literal>SO_Plan</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>

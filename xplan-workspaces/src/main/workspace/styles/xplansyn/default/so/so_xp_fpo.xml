@@ -6,14 +6,14 @@
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:XP_FPO</FeatureTypeName>
   <Rule>
-    <Name>bp_xp_fpo</Name>
+    <Name>so_xp_fpo</Name>
     <Description>
-      <Title>BP: Flächenhaftes Präsentationsobjekt</Title>
+      <Title>SO Präsentationsobjekt</Title>
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
         <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-        <ogc:Literal>BP_Plan</ogc:Literal>
+        <ogc:Literal>SO_Plan</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
     <PolygonSymbolizer>
