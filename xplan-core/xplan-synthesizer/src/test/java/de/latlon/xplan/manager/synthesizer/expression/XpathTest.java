@@ -51,7 +51,7 @@ public class XpathTest {
         Xpath expr = new Xpath( "xplan:drehwinkel/text()", 0.0 );
         PrimitiveValue value = (PrimitiveValue) expr.evaluate( feature );
         assertEquals( DOUBLE, value.getType().getBaseType() );
-        assertEquals( "0", value.toString() );
+        assertEquals( "0.0", value.toString() );
     }
 
     @Test
