@@ -263,7 +263,7 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche" table="xplansyn.xplan_bp_abweichungvonueberbauberergrundstuecksflaeche">
-    <FIDMapping prefix="XPLAN_BP_ABWEICHUNGVONUEBERBAUBARERGRUNDSTUECKSFLAECHE_">
+    <FIDMapping prefix="XPLAN_BP_ABWEICHUNGVONUEBERBAUBERERGRUNDSTUECKSFLAECHE_">
       <Column name="attr_gml_id" type="string" />
       <UUIDGenerator />
     </FIDMapping>
