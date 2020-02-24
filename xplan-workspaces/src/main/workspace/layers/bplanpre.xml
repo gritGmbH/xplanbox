@@ -5248,7 +5248,7 @@
       </SortBy>
     </SortBy>
     <l:Name>bp_abweichungvonueberbauberergrundstuecksflaeche</l:Name>
-    <d:Title>BP: BP_AbweichungVonUeberbaubererGrundstuecksFlaeche</d:Title>
+    <d:Title>BP: AbweichungVonUeberbaubererGrundstuecksFlaeche</d:Title>
     <d:Abstract>BP_AbweichungVonUeberbaubererGrundstuecksFlaeche</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>

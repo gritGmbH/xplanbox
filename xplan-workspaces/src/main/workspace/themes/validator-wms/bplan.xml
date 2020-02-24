@@ -849,7 +849,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_abweichungvonueberbauberergrundstuecksflaeche</Identifier>
-      <d:Title>BP: BP_AbweichungVonUeberbaubererGrundstuecksFlaeche</d:Title>
+      <d:Title>BP: AbweichungVonUeberbaubererGrundstuecksFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -878,14 +878,14 @@
       <Layer>bp_zusatzkontingentlaerm</Layer>
     </Theme>
     <Theme>
-      <Identifier>ZusatzkontingentLaerm</Identifier>
+      <Identifier>bp_zusatzkontingentlaermflaeche</Identifier>
       <d:Title>BP: ZusatzkontingentLaermFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
       </s:Envelope>
       <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>ZusatzkontingentLaerm</Layer>
+      <Layer>bp_zusatzkontingentlaermflaeche</Layer>
     </Theme>
     <Theme>
       <Identifier>bp_sichtflaeche</Identifier>
