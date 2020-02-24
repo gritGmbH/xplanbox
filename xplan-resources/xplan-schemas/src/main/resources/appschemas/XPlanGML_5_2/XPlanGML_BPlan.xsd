@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 03.07.2019 08:17:04-->
-<schema xmlns="http://www.w3.org/2001/XMLSchema"
- xmlns:xplan="http://www.xplanung.de/xplangml/5/2"
- targetNamespace="http://www.xplanung.de/xplangml/5/2"
-  xmlns:gml="http://www.opengis.net/gml/3.2" 
-  elementFormDefault="qualified" version="5.2">
+<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 20.02.2020 15:37:16-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/5/2" targetNamespace="http://www.xplanung.de/xplangml/5/2" xmlns:kit="http://www.kit.edu" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="5.2.1">
   <include schemaLocation="XPlanGML_Basisschema.xsd" />
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="gmlProfile/gmlProfilexplan.xsd" />
   <!--=========================================================================================-->
@@ -681,7 +677,7 @@ Die Klasse wird als &lt;b&gt;veraltet &lt;/b&gt;gekennzeichnet und wird in XPlan
           <element name="DNmin" minOccurs="0" type="gml:AngleType" />
           <element name="DNmax" minOccurs="0" type="gml:AngleType" />
           <element name="DN" minOccurs="0" type="gml:AngleType" />
-          <element name="DNzwingend" minOccurs="0" type="gml:AngleType" />
+          <element name="DNZwingend" minOccurs="0" type="gml:AngleType" />
           <element name="FR" minOccurs="0" type="gml:AngleType" />
           <element name="dachform" minOccurs="0" maxOccurs="unbounded" type="xplan:BP_Dachform" />
           <element name="detaillierteDachform" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType" />
@@ -904,7 +900,7 @@ Durch die Digitalisierungsreihenfolge der Linienstützpunkte muss sichergestellt
           <element name="DNmin" minOccurs="0" type="gml:AngleType" />
           <element name="DNmax" minOccurs="0" type="gml:AngleType" />
           <element name="DN" minOccurs="0" type="gml:AngleType" />
-          <element name="DNzwingend" minOccurs="0" type="gml:AngleType" />
+          <element name="DNZwingend" minOccurs="0" type="gml:AngleType" />
           <element name="FR" minOccurs="0" type="gml:AngleType" />
           <element name="dachform" minOccurs="0" maxOccurs="unbounded" type="xplan:BP_Dachform" />
           <element name="detaillierteDachform" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType" />
@@ -949,8 +945,8 @@ Durch die Digitalisierungsreihenfolge der Linienstützpunkte muss sichergestellt
           <element name="ZU_Ausn" minOccurs="0" type="int" />
           <element name="zweckbestimmung" minOccurs="0" type="string" />
           <element name="bauweise" minOccurs="0" type="xplan:BP_Bauweise" />
-          <element name="bebauungsArt" minOccurs="0" type="xplan:BP_BebauungsArt" />
           <element name="abweichendeBauweise" minOccurs="0" type="gml:CodeType" />
+          <element name="bebauungsArt" minOccurs="0" type="xplan:BP_BebauungsArt" />
           <element ref="xplan:_GenericApplicationPropertyOfBP_BesondererNutzungszweckFlaeche" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -1098,7 +1094,7 @@ Empfohlene Abkürzung: SDF</documentation>
       <element name="DNmin" minOccurs="0" type="gml:AngleType" />
       <element name="DNmax" minOccurs="0" type="gml:AngleType" />
       <element name="DN" minOccurs="0" type="gml:AngleType" />
-      <element name="DNZwingend" minOccurs="0" type="gml:AngleType" />
+      <element name="DNzwingend" minOccurs="0" type="gml:AngleType" />
       <element name="dachform" minOccurs="0" type="xplan:BP_Dachform" />
       <element name="detaillierteDachform" minOccurs="0" type="gml:CodeType" />
       <element ref="xplan:_GenericApplicationPropertyOfBP_Dachgestaltung" minOccurs="0" maxOccurs="unbounded" />
@@ -1482,7 +1478,7 @@ Empfohlene Abkürzung: SDF</documentation>
           <element name="DNmin" minOccurs="0" type="gml:AngleType" />
           <element name="DNmax" minOccurs="0" type="gml:AngleType" />
           <element name="DN" minOccurs="0" type="gml:AngleType" />
-          <element name="DNzwingend" minOccurs="0" type="gml:AngleType" />
+          <element name="DNZwingend" minOccurs="0" type="gml:AngleType" />
           <element name="FR" minOccurs="0" type="gml:AngleType" />
           <element name="dachform" minOccurs="0" maxOccurs="unbounded" type="xplan:BP_Dachform" />
           <element name="detaillierteDachform" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType" />
@@ -1834,7 +1830,7 @@ Die Enumeration wird als &lt;b&gt;veraltet &lt;/b&gt;gekennzeichnet und fällt i
           <element name="DNmin" minOccurs="0" type="gml:AngleType" />
           <element name="DNmax" minOccurs="0" type="gml:AngleType" />
           <element name="DN" minOccurs="0" type="gml:AngleType" />
-          <element name="DNzwingend" minOccurs="0" type="gml:AngleType" />
+          <element name="DNZwingend" minOccurs="0" type="gml:AngleType" />
           <element name="FR" minOccurs="0" type="gml:AngleType" />
           <element name="dachform" minOccurs="0" maxOccurs="unbounded" type="xplan:BP_Dachform" />
           <element name="detaillierteDachform" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType" />
@@ -2697,10 +2693,10 @@ Dieser Enumerationswert ist veraltet und wird in in Version 6.0 wegfallen. Statt
       <extension base="xplan:BP_GeometrieobjektType">
         <sequence>
           <element name="nutzung" minOccurs="0" type="string" />
-          <element name="laermpegelbereich" minOccurs="0" type="xplan:BP_Laerrmpegelbereich" />
+          <element name="laermpegelbereich" minOccurs="0" type="xplan:BP_Laermpegelbereich" />
+          <element name="typ" minOccurs="0" type="xplan:BP_ImmissionsschutzTypen" />
           <element name="technVorkehrung" minOccurs="0" type="xplan:BP_TechnVorkehrungenImmissionsschutz" />
           <element name="detaillierteTechnVorkehrung" minOccurs="0" type="gml:CodeType" />
-          <element name="typ" minOccurs="0" type="xplan:BP_ImmissionsschutzTypen" />
           <element ref="xplan:_GenericApplicationPropertyOfBP_Immissionsschutz" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -2708,9 +2704,9 @@ Dieser Enumerationswert ist veraltet und wird in in Version 6.0 wegfallen. Statt
   </complexType>
   <element name="_GenericApplicationPropertyOfBP_Immissionsschutz" type="anyType" abstract="true" />
   <!--=========================================================================================-->
-  <!--BP_Laerrmpegelbereich-->
+  <!--BP_Laermpegelbereich-->
   <!--=========================================================================================-->
-  <simpleType name="BP_Laerrmpegelbereich">
+  <simpleType name="BP_Laermpegelbereich">
     <restriction base="string">
       <enumeration value="1000">
         <!--I-->

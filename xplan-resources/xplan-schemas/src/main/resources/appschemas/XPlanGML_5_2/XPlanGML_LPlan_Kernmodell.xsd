@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 03.07.2019 08:17:44-->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" 
- xmlns:xplan="http://www.xplanung.de/xplangml/5/2"
- targetNamespace="http://www.xplanung.de/xplangml/5/2" 
- xmlns:gml="http://www.opengis.net/gml/3.2"
- elementFormDefault="qualified" version="5.2">
+<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 20.02.2020 15:38:21-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/5/2" targetNamespace="http://www.xplanung.de/xplangml/5/2" xmlns:kit="http://www.kit.edu" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="5.2.1">
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="gmlProfile/gmlProfilexplan.xsd" />
   <include schemaLocation="XPlanGML_Basisschema.xsd" />
   <!--=========================================================================================-->
