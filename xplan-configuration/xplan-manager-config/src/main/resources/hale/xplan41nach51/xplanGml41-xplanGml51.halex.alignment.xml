@@ -7159,17 +7159,17 @@
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 if(gehoertZuBP_Bereich){
   _target {
-    href(gehoertZuBP_Bereich.value().href);
+    href(gehoertZuBP_Bereich.p.href.value());
   }
 } else if (gehoertNachrichtlichZuBereich){
   _target {
-    href(gehoertNachrichtlichZuBereich.value().href);
+    href(gehoertNachrichtlichZuBereich.p.href.value());
   }
 }
 
 </core:text>
         </complexParameter>
-        <parameter value="false" name="variablesAsInstances"/>
+        <parameter value="true" name="variablesAsInstances"/>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C593e3751-21d7-47ef-ae8c-13f2c9c11869" priority="normal">
         <source name="var">
@@ -13137,17 +13137,17 @@ withTransformationContext {
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 if(gehoertZuFP_Bereich){
   _target {
-    href(gehoertZuFP_Bereich.value().href);
+    href(gehoertZuFP_Bereich.p.href);
   }
 } else if (gehoertNachrichtlichZuBereich){
   _target {
-    href(gehoertNachrichtlichZuBereich.value().href);
+    href(gehoertNachrichtlichZuBereich.p.href);
   }
 }
 
 </core:text>
         </complexParameter>
-        <parameter value="false" name="variablesAsInstances"/>
+        <parameter value="true" name="variablesAsInstances"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8616d173-71cd-49de-ab34-6b9af84a0213" priority="normal">
         <source>
@@ -15131,17 +15131,17 @@ if(textSchluessel){
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 if(gehoertZuFP_Bereich){
   _target {
-    href(gehoertZuFP_Bereich.value().href);
+    href(gehoertZuFP_Bereich.p.href);
   }
 } else if (gehoertNachrichtlichZuBereich){
   _target {
-    href(gehoertNachrichtlichZuBereich.value().href);
+    href(gehoertNachrichtlichZuBereich.p.href);
   }
 }
 
 </core:text>
         </complexParameter>
-        <parameter value="false" name="variablesAsInstances"/>
+        <parameter value="true" name="variablesAsInstances"/>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C0d29f557-eb35-4496-8a6e-1d07b4269d41" priority="normal">
         <source name="var">
@@ -17615,17 +17615,17 @@ withTransformationContext {
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 if(gehoertZuLP_Bereich){
   _target {
-    href(gehoertZuLP_Bereich.value().href);
+    href(gehoertZuLP_Bereich.p.href);
   }
 } else if (gehoertNachrichtlichZuBereich){
   _target {
-    href(gehoertNachrichtlichZuBereich.value().href);
+    href(gehoertNachrichtlichZuBereich.p.href);
   }
 }
 
 </core:text>
         </complexParameter>
-        <parameter value="false" name="variablesAsInstances"/>
+        <parameter value="true" name="variablesAsInstances"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf3c77632-421a-4871-987e-bdce84cb8e61" priority="normal">
         <source>
@@ -20160,16 +20160,16 @@ if(rechtscharakter) {
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 if(gehoertZuSO_Bereich){
   _target {
-    href(gehoertZuSO_Bereich.value().href);
+    href(gehoertZuSO_Bereich.p.href);
   }
 } else if (gehoertNachrichtlichZuBereich){
   _target {
-    href(gehoertNachrichtlichZuBereich.value().href);
+    href(gehoertNachrichtlichZuBereich.p.href);
   }
 }
 </core:text>
         </complexParameter>
-        <parameter value="false" name="variablesAsInstances"/>
+        <parameter value="true" name="variablesAsInstances"/>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C5d9b85a9-af1b-4826-8d14-dae48ed0603a" priority="normal">
         <source name="var">
@@ -20647,50 +20647,16 @@ withTransformationContext {
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 if(gehoertZuBP_Bereich){
   _target {
-    href(gehoertZuBP_Bereich.value().href);
+    href(gehoertZuBP_Bereich.p.href);
   }
 } else if (gehoertNachrichtlichZuBereich){
   _target {
-    href(gehoertNachrichtlichZuBereich.value().href);
+    href(gehoertNachrichtlichZuBereich.p.href);
   }
 }
 </core:text>
         </complexParameter>
-        <parameter value="false" name="variablesAsInstances"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C93d3b214-2eae-46b3-a3aa-a7d6087344f8" priority="normal">
-        <source name="var">
-            <property>
-                <type name="LP_SchutzobjektBundesrechtType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="gehoertZuLP_Bereich" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <source name="var">
-            <property>
-                <type name="LP_SchutzobjektBundesrechtType" ns="http://www.xplanung.de/xplangml/4/1"/>
-                <child name="gehoertNachrichtlichZuBereich" ns="http://www.xplanung.de/xplangml/4/1"/>
-            </property>
-        </source>
-        <target name="result">
-            <property>
-                <type name="SO_SchutzgebietNaturschutzrechtType" ns="http://www.xplanung.de/xplangml/5/1"/>
-                <child name="gehoertZuBereich" ns="http://www.xplanung.de/xplangml/5/1"/>
-            </property>
-        </target>
-        <complexParameter name="script">
-            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if(gehoertZuLP_Bereich){
-  _target {
-    href(gehoertZuLP_Bereich.value().href);
-  }
-} else if (gehoertNachrichtlichZuBereich){
-  _target {
-    href(gehoertNachrichtlichZuBereich.value().href);
-  }
-}
-</core:text>
-        </complexParameter>
-        <parameter value="false" name="variablesAsInstances"/>
+        <parameter value="true" name="variablesAsInstances"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce65fa496-c05f-4e48-92af-0a1460f57822" priority="normal">
         <source>
