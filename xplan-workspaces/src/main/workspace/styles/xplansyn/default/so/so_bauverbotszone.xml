@@ -24,6 +24,23 @@
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
+      <Fill>
+        <GraphicFill>
+          <Graphic>
+            <ExternalGraphic>
+              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                              xlink:href="../../symbols/bauverbotszone.png" />
+              <Format>image/png</Format>
+            </ExternalGraphic>
+            <Size>25</Size>
+          </Graphic>
+        </GraphicFill>
+      </Fill>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
@@ -36,17 +53,28 @@
 
   <!-- Linie -->
   <Rule>
-    <Name>so_bauverbotszone Linie</Name>
+    <Name>so_bauverbotszone Linie Bauverbotszone</Name>
     <Description>
-      <Title>BP: Bauverbotszone Linie</Title>
+      <Title>BP: Bauverbotszone Linie Bauverbotszone</Title>
     </Description>
     <ogc:Filter>
-      <ogc:PropertyIsEqualTo>
-        <ogc:Function name="IsCurve">
-          <ogc:PropertyName>xplan:position</ogc:PropertyName>
-        </ogc:Function>
-        <ogc:Literal>true</ogc:Literal>
-      </ogc:PropertyIsEqualTo>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsCurve">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+            <ogc:Literal>1000</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Or>
+      </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
@@ -56,9 +84,72 @@
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">0.75</SvgParameter>
-        <SvgParameter name="stroke-linecap">round</SvgParameter>
-        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1 2</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>so_bauverbotszone Linie Baubeschraenkungszone</Name>
+    <Description>
+      <Title>BP: Bauverbotszone Linie Baubeschraenkungszone</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsCurve">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:Literal>2000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
+        <SvgParameter name="stroke-dasharray">4 2</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>so_bauverbotszone Linie Waldabstand</Name>
+    <Description>
+      <Title>BP: Bauverbotszone Linie Waldabstand</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsCurve">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:Literal>3000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
+        <SvgParameter name="stroke-dasharray">6 2 0.25 2</SvgParameter>
       </Stroke>
     </LineSymbolizer>
   </Rule>
