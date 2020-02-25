@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:sed="http://www.deegree.org/se"
                   xmlns:xplan="http://www.deegree.org/xplanung/1/0"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
@@ -24,16 +25,18 @@
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
+      <Fill>
+        <SvgParameter name="fill">#75c7ff</SvgParameter>
+        <SvgParameter name="fill-opacity">1.0</SvgParameter>
+      </Fill>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">0.75</SvgParameter>
-        <SvgParameter name="stroke-linecap">round</SvgParameter>
-        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+        <SvgParameter name="stroke-width">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
   </Rule>
-
   <!-- Linie -->
   <Rule>
     <Name>so_gewaesser Linie</Name>
@@ -54,9 +57,22 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
+        <SvgParameter name="stroke">#75c7ff</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">4.0</SvgParameter>
+        <SvgParameter name="stroke-linecap">round</SvgParameter>
+        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+      </Stroke>
+      <sed:PerpendicularOffset type="Standard">-2</sed:PerpendicularOffset>
+    </LineSymbolizer>
+    <LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">0.75</SvgParameter>
+        <SvgParameter name="stroke-width">1.0</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
         <SvgParameter name="stroke-linejoin">round</SvgParameter>
       </Stroke>
