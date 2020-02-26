@@ -13141,7 +13141,7 @@ if(gehoertZuFP_Bereich){
   }
 } else if (gehoertNachrichtlichZuBereich){
   _target {
-    href(gehoertNachrichtlichZuBereich.p.href);
+    href(gehoertNachrichtlichZuBereich.p.href.value());
   }
 }
 
@@ -15135,7 +15135,7 @@ if(gehoertZuFP_Bereich){
   }
 } else if (gehoertNachrichtlichZuBereich){
   _target {
-    href(gehoertNachrichtlichZuBereich.p.href);
+    href(gehoertNachrichtlichZuBereich.p.href.value());
   }
 }
 
@@ -17619,7 +17619,7 @@ if(gehoertZuLP_Bereich){
   }
 } else if (gehoertNachrichtlichZuBereich){
   _target {
-    href(gehoertNachrichtlichZuBereich.p.href);
+    href(gehoertNachrichtlichZuBereich.p.href.value());
   }
 }
 
@@ -20164,7 +20164,7 @@ if(gehoertZuSO_Bereich){
   }
 } else if (gehoertNachrichtlichZuBereich){
   _target {
-    href(gehoertNachrichtlichZuBereich.p.href);
+    href(gehoertNachrichtlichZuBereich.p.href.value());
   }
 }
 </core:text>
@@ -20651,7 +20651,7 @@ if(gehoertZuBP_Bereich){
   }
 } else if (gehoertNachrichtlichZuBereich){
   _target {
-    href(gehoertNachrichtlichZuBereich.p.href);
+    href(gehoertNachrichtlichZuBereich.p.href.value());
   }
 }
 </core:text>
