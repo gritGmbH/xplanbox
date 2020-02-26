@@ -282,7 +282,7 @@ public class UploadPanel extends DecoratorPanel {
             public void onClick( ClickEvent event ) {
                 if ( !isSupportedType( upload ) )
                     showInvalidFileDialog( messages.fileNameMustEndWithZip() );
-                if ( !isValidFileName( upload ) )
+                else if ( !isValidFileName( upload ) )
                     showInvalidFileDialog( messages.fileNameInvalidCharacters() );
                 else {
                     form.submit();
@@ -292,7 +292,7 @@ public class UploadPanel extends DecoratorPanel {
 
             private boolean isSupportedType( final FileUpload upload ) {
                 String filename = upload.getFilename().toLowerCase();
-                return filename.endsWith( ".zip" ) || filename.endsWith( ".gml" ) || filename.endsWith( ".xml" );
+                return filename.endsWith( ".zip" );
             }
 
             private boolean isValidFileName( final FileUpload upload ) {
