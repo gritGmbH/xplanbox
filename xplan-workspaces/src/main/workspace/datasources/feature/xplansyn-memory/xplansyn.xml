@@ -3,6 +3,6 @@
                     xsi:schemaLocation="http://www.deegree.org/datasource/feature/memory
   http://schemas.deegree.org/datasource/feature/memory/3.4.0/memory.xsd">
   <StorageCRS>${vectorCrs}</StorageCRS>
-  <GMLSchema version="GML_32">../../appschemas/XPlanGML_Syn/XPlanSyn.xsd</GMLSchema>
+  <GMLSchema version="GML_31">../../appschemas/XPlanGML_Syn/XPlanSyn.xsd</GMLSchema>
 
 </MemoryFeatureStore>
