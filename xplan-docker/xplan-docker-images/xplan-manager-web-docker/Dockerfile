@@ -20,5 +20,9 @@ RUN cd / && wget https://github.com/halestudio/hale-cli/releases/download/v3.4.0
 # Fix for #96 (java.awt.AWTError: Assistive Technology not found: org.GNOME.Accessibility.AtkWrapper)
 ADD accessibility.properties /etc/java-8-openjdk/accessibility.properties
 
+# add xplan-root
+ADD target/xplan-root-*-default.war /root/
+RUN cd /root/ && unzip -q xplan-root-*-default.war -d /usr/local/tomcat/webapps/ROOT
+
 # run tomcat
 CMD ["catalina.sh", "run"]
