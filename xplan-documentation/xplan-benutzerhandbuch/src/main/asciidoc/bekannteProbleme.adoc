@@ -93,6 +93,65 @@ Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständi
 
 Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) ausgegeben, Multigeometrien werden nicht dargestellt. Die Grafik und das Shapefile enthalten die fehlerhaften Geomtrien nur, wenn diese nicht zu fehlerhaft sind um gerendert zu werden.
 
+=== Umsetzung von Präsentationsobjekte
+
+Im XPlanWMS ist der Umfang der Darstellung von Präsentationsobjekten nurt eingeschränkt implementiert. Über die folgenden Layern werden diese angezeigt:
+
+* BP_Plan
+** bp_xp_fpo
+** bp_xp_lpo
+** bp_xp_lto
+** bp_xp_ppo
+** bp_xp_pto
+* FP_Plan
+** fp_xp_fpo
+** fp_xp_lpo
+** fp_xp_lto
+** fp_xp_ppo
+** fp_xp_pto
+* LP_Plan
+** lp_xp_fpo
+** lp_xp_lpo
+** lp_xp_lto
+** lp_xp_ppo
+** lp_xp_pto
+* RP_Plan
+** rp_xp_fpo
+** rp_xp_lpo
+** rp_xp_lto
+** rp_xp_ppo
+** rp_xp_pto
+* SO_Plan
+** so_xp_fpo
+** so_xp_lpo
+** so_xp_lto
+** so_xp_ppo
+** so_xp_pto
+
+Derzeit werden die folgenden Attribute bei der Visualisierung berücksichtigt:
+
+* XP_LTO
+** schriftinhalt
+** position
+* XP_PTO
+** schriftinhalt
+** skalierung
+** drehwinkel
+** horizontaleAusrichtung
+** vertikaleAusrichtung
+** position
+* XP_FPO
+** Polygon wird mit grauem Umring dargestellt
+** position
+* XP_LPO
+** Linie wird grau dargestellt
+** position
+* XP_PPO
+** Darstellung erfolgt als Kreis mit grauem Umring
+** position
+
+Nicht umgesetzt ist dagegen insbesondere die Auswertung der Attribute _art_ und _index_.
+
 [[fehler-melden]]
 == Fehler melden
 
