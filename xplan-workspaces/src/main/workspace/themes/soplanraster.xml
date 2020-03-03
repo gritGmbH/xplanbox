@@ -10,6 +10,7 @@
     <Theme>
       <Identifier>soplanraster_sortiert</Identifier>
       <d:Title>SOPlan Raster Theme</d:Title>
+      <!--<Layer layerStore="dummyrasterlayer">dummyraster</Layer>-->
     </Theme>
   </Theme>
 </Themes>

@@ -8,6 +8,7 @@
     <Theme>
       <Identifier>bplanraster_sortiert</Identifier>
       <d:Title>BPlan Raster Theme</d:Title>
+      <!--<Layer layerStore="dummyrasterlayer">dummyraster</Layer>-->
     </Theme>
   </Theme>
 </Themes>
