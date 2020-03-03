@@ -62,7 +62,6 @@
 						href="${service.wfs52}"
 						target="_blank">XPlanWFS (Capabilities) - XPlanGML 5.2</a></li>
 				</ul>
-
 		</div>
         <!-- Die folgende Sektion listet alle URLS bei getrennter Datenhaltung auf -->
         <!-- Aktivieren bei getrennter Datenhaltung -->
@@ -153,14 +152,26 @@
             </div>
         </div>
 
-		<div class="section" id="d">
+		<div class="section" id="d" style="display:${urls.inspireplu.style.display}">
+			<h3>XPlanInspirePluDienste</h3>
+			<ul id="inspireplu">
+				<li><a
+						href="${service.inspireplu.wms}"
+						target="_blank">XPlanInspirePluWMS (Capabilities)</a></li>
+				<li><a
+						href="${service.inspireplu.wfs}"
+						target="_blank">XPlanInspirePluWFS (Capabilities)</a></li>
+			</ul>
+		</div>
+
+		<div class="section" id="e">
 				<h3>XPlanDokumentation</h3>
 				<ul>
 					<li><a href="xPlanBox-Benutzerhandbuch/" target="_blank">XPlanBenutzerhandbuch f&uuml;r die xPlanBox</a></li>
 					<li><a href="xPlanBox-Betriebshandbuch/" target="_blank">XPlanBetriebshandbuch f&uuml;r die xPlanBox</a></li>
 				</ul>
 		</div>
-		<div class="section" id="e">
+		<div class="section" id="f">
 			<h3>Weiterf&uuml;hrende Informationen</h3>
 			<ul>
 				<li><a href="./external/documentation/Konformitaetsbedingungen_XPlanGML_4.pdf" target="_blank">
@@ -175,7 +186,7 @@
 					Konformit&auml;tsbedingungen XPlanGML 5.2</a></li>
 			</ul>
 		</div>
-		<div class="section" id="f" style="display:${testdata.style.display}">
+		<div class="section" id="g" style="display:${testdata.style.display}">
 				<h3>Demodatens&auml;tze</h3>
 			    <ul>
 			  	  	<li><a href="./testdata/BP2070_4_0.zip" target="_blank">BP2070_4_0.zip</a></li>
