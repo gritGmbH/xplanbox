@@ -1,78 +1,233 @@
-[[xplanvalidator-web]]
-=== XPlanValidatorWeb
+==== In 3 Schritten zum Validierungsbericht
 
-Die Komponente XPlanValidatorWeb ist eine Web-Oberfläche, die einem
-Benutzer der xPlanBox ermöglicht, XPlanGML Instanzdokumente zu
-validieren.
+===== Schritt 1 – Plan hochladen
 
-[[xplanvalidator-web-benutzungsanleitung]]
-==== Einstiegsseite
+Laden Sie Ihren Plan bzw. Planarchiv hoch, indem Sie auf „Datei auswählen“ klicken.
 
-Die Web-Anwendung XPlanValidatorWeb dient der Validierung von XPlanGML und
-ist unter:
+Akzeptiert werden:
 
-----
-http://<host>:<port>/xplan-validator/
-----
+* XPlanArchive = ZIP-Datei mit folgendem Aufbau: Im Basisverzeichnis muss das XPlanGML Instanzdokument mit dem Dateinamen *xplan.gml* vorhanden sein. Rasterdaten sowie alle im *xplan.gml* referenzierten Anhänge liegen ebenfalls im Basisverzeichnis der ZIP-Datei.
+* GML-Dateien
+* XML-Dateien
 
-verfügbar kann mit einem Web-Browser aufgerufen werden.
-
-==== Funktionen des XPlanValidatorWeb
-
-[[xplanvalidator-web-hinzufuegen]]
-===== XPlanArchiv Hinzufügen
-
-Ein im lokalen Dateisystem vorliegendes XPlanArchiv oder eine XML- oder GML-Datei kann über den Button _Durchsuchen_ ausgewählt und über
-die Auswahl _Hochladen und Validierungsoption einstellen_ auf den Server hochgeladen werden.
-
-Nachdem die Datei erfolgreich übertragen wurde, erhält der Benutzer einen Hinweis, dass das XPlanArchiv oder die Datei in die Web-Anwendung geladen wurde.
-
-[[xplanvalidator-web--bezeichnung-der-validierung]]
-===== Bezeichnung für den Report
-
-Für den generierten Report kann eine Bezeichnung vergeben werden, so dass eine Validierung zu einem späterem Zeitpunkt eindeutig zugeordnet werden kann.
-
-[[xplanvalidator-web-validierungsart]]
-===== Validierungstyp
-
-Folgende Validierungstypen können ausgewählt werden:
-
-  * geometrisch
-  * synatktisch
-  * syntaktisch: Die syntaktische Validierung ist immer aktiviert und ein positives Ergebnis Voraussetzung für die Ausführung der anderen Validierungstypen.
-
-[[xplanvalidator-web-validierungsoption]]
-===== Validierungsoptionen
-
-Die folgenden Validierungsoptionen für die geometrische Validierung können ausgewählt werden:
-
-  * Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen
-  * Prüfung des Geltungsbereichs (2.2.3.1) überspringen
-
-[[xplanvalidator-web-validierung]]
-===== Validierung
-
-Die Validierung kann über den Button _Validierung starten_ gestartet werden.
-
-[[xplanvalidator-web-validierungsergebnis]]
-====== Validierungsergebnis
-
-Das Ergebnis der Validierung kann im Anschluss als HTML, PDF und XML
-Report herunter geladen werden. Je nachdem ob ein Geometriefehler
-enthalten ist, können Geometriefehler zusätzlich auch als Shapefile und als Grafik
-gespeichert werden.
-
-Alle Ergebnisdateien werden in einem ZIP-Archiv gespeichert. Der
-Dateiname enthält die Bezeichnung des Validierungsdurchlaufs.
-
-[[xplanvalidator-web-kartenvorschau]]
-===== Kartenvorschau
-
-Über den Button _Kartenvorschau_ kann in die Kartenansicht des Plans gewechselt werden. Hier kann eine visuelle Überprüfung des Plans vorgenommen werden. Der Plan steht in der Kartenansicht nur für eine begrenzte Zeitspanne zur Verfügung, anschließend ist nur noch die Hintergrundkarte zu sehen.
+image:../images/validator//Hochladen.png[Hochladen]
 
 [NOTE]
 ====
+Achten Sie auf den Dateinamen.
 
-Die Kartenvorschau visualisiert ausschließlich die XPlanGML-Datei. Angehängte Rasterpläne werden beispielsweise nicht dargestellt.
+Der Dateiname darf nur
 
+ * Kleinbuchstaben von a-z,
+ * Großbuchstaben von A-Z,
+ * Zahlen von 0-9 und/oder
+ * einen Bindestrich (-) bzw.
+ * einen Unterstrich (_)
+
+enthalten.
+
+Sonderzeichen wie Umlaute, Sonderzeichen oder Leerzeichen sind nicht erlaubt.
 ====
+
+[NOTE]
+====
+Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der Validierung.
+====
+
+===== Schritt 2 – Bezeichnung des Validierungsberichts und Validierungstyp wählen
+
+Wenn Sie einen Plan hochgeladen haben, steht im Feld „Bezeichnung für den Report“ der Name der Datei ohne Endung.
+
+image:../images/validator/Validierungsoptionen.png[Validierungsoptionen]
+
+Sie können der aktuellen Validierung, falls notwendig, einen eigenen Namen geben. Dieser erscheint ausschließlich auf dem Validierungsbericht.
+
+[NOTE]
+====
+Vermeiden Sie auch hier, Umlaute, Sonderzeichen und/oder Leerzeichen.
+====
+
+image:../images/validator/Validierungsoptionen_bezeichnung.png[Validerungsoptionen]
+
+In Ihrem Validierungsbericht später wird Ihre Bezeichnung wie folgt dargestellt:
+
+image:../images/validator/Validierungsbericht.png[Validierungsbericht]
+
+Wählen Sie nun unter folgenden Validierungstypen:
+
+image:../images/validator/Validierungstypen.png[Validierungstypen]
+
+Standardmäßig sind alle Validierungstypen selektiert.
+
+*1) Semantische Validierung (optional)*
+
+Die semantische Validierung überprüft die fachlich-inhaltliche Kohärenz der XPlanGML-Datei. Genauer gesagt wird geprüft, ob die Validierungsregeln der Konformitätsbedingungen in der jeweiligen Version eingehalten wurden.
+
+ * 4.0 (194 Regeln)
+ * 4.1 (235 Regeln)
+ * 5.0 (178 Regeln)
+ * 5.1 (184 Regeln)
+ * 5.2 (191 Regeln)
+
+Eine XPlanGML-Datei ist dann zu der jeweiligen XPlanGML Version konform, wenn das XMLDokument gegen das jeweilige XPlanGML Schema validiert und alle in den Konformitätsbedingungen spezifizierten Regeln (= Validierungsregeln) erfüllt werden.
+
+[NOTE]
+====
+Folgende Validierungsregeln werden derzeit nicht durch die semantische Validierung geprüft:
+
+ * 4.1.5.3 Ausschluss von gemischter Geometrie (ab Version 5.0)
+ * 5.1.5.3 Ausschluss von gemischter Geometrie (ab Version 5.0)
+ * 6.1.5.3 Ausschluss von gemischter Geometrie (ab Version 5.0)
+ * 7.1.5.2 Ausschluss von gemischter Geometrie
+ * 8.1.5.1 Ausschluss von gemischter Geometrie
+ * 8.1.7.1 Einschränkung auf Punktgeometrie
+
+Der Ausschluss von gemischter Geometrie ist bereits durch das GMLProfil abgedeckt. Verstöße fallen somit bereits bei der syntaktischen Validierung auf.
+
+Die Regel 8.1.7.1 Die Einschränkung auf Punktgeometrie bezieht sich auf LP_Punktobjekt. Dabei handelt es sich um eine abstrakte Klasse, für die es keine abgeleitet Klassen gibt.
+====
+
+*2) Geometrische Validierung (optional)*
+
+Bei der geometrischen Validierung wird die Korrektheit der Geometrien überprüft. XPlanung bezieht sich dabei auf das Simple Feature Model des OGC. Räumliche Objekte werden hier als Punkte, Linien oder Flächen mit speziellen geometrischen Eigenschaften modellhaft abgebildet. Als Fehler werden z. B. sich überschneidende Polygone identifiziert.
+
+Folgende Prüfungen in Abhängigkeit vom Geometrietyp durchgeführt:
+
+ * Punkte: Prüfung auf 2D-Koordinaten
+ * Linien: Segment-Kontinuität
+ * Polygon:
+  ** Geschlossenheit (äußere und innere Ringe)
+  ** Äußerer Ring: Orientierung im Gegenuhrzeigersinn (Warnung)
+  ** Innere Ringe: Orientierung im Uhrzeigersinn (Warnung)
+  ** Keine Berührung äußerer Ring / innere Ringe
+  ** Kein Schnitt äußerer Ring / innere Ringe
+  ** Innere Ringe liegen innerhalb der vom äußeren Ring umschlossenen Fläche
+  ** Keine Berührung innere Ringe / innere Ringe
+  ** Schnittmenge der von zwei inneren Ringen gebildeten Flächen ist leer
+
+
+Nutzung der Optionen
+
+ * „Geometrische Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen“
++
+Bei der Flächenschlussprüfung werden Lücken als Fehler ausgegeben. Ist eine Lücke im Plan gewollt, können Sie die Option "Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen" aktivieren.
+ * „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“
++
+Wenn Fehler im Geltungsbereich nicht korrigiert werden können, selektieren Sie die Option „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“. Aktuell gilt eine Toleranz  von 1 mm bei Überlappungen des Geltungsbereiches.
+
+*3) Syntaktische Validierung (obligatorisch)*
+
+Eine syntaktische Validierung ist die Voraussetzung einer Validierung und ist daher nicht abwählbar.
+
+Bei einer syntaktischen Validierung wird die Struktur der XPlanGML-Datei geprüft. Eine syntaktisch valide XPlanGML-Datei muss auf der einen Seite den Anforderungen der Wohlgeformtheit von XML entsprechen und auf der anderen Seite die vom XPlan-Schema definierten Regeln erfüllen.
+
+Die Validierung kann über den Button image:../images/validator/BT_ValidierungStarten.png[] gestartet werden.
+
+===== Schritt 3 – Validierungsergebnis und Validierungsbericht
+
+====== Das Validierungsergebnis
+
+*1) Allgemeine Informationen*
+
+Der Kopf des Validierungsberichts gibt Ihnen einen Überblick über die formalen Informationen.
+
+image:../images/validator/Validierungsbericht_2.png[Validierungsbericht]
+
+Externe Referenzen zeigen an, ob Rasterdaten in Form von PNG und PGW Dateien vorhanden sind.
+
+*2) Semantische Validierung – valide*
+
+Eine technisch valide semantische Prüfung wir Ihnen wie folgt angezeigt.
+
+image:../images/validator/Validierung_semantisch-valide.png[Validerung semantisch valide]
+
+Die Anzahl der Validierungsregeln variiert in Abhängigkeit der Version der GML-Datei.
+
+*3) Semantische Validierung – nicht valide*
+
+Am Beispiel der nachfolgenden Abbildung sehen Sie welche Konformitätsbedingung (bzw. Validierungsregel) nicht erfüllt ist.
+
+Die ausgegebene GML-ID gibt Ihnen einen Hinweis, an welcher Stelle der Fehler auftritt, bzw. Sie korrigieren müssen.
+
+image:../images/validator/Validierung_semantisch-nicht-valide.png[Validerung semantisch nicht valide]
+
+*4) Geometrische Validierung – valide*
+
+Eine technisch valide geometrische Prüfung wir Ihnen wie folgt angezeigt.
+
+image:../images/validator/Validierung_geometrisch-valide.png[Validerung geometrisch valide]
+
+Eine geometrische Validierung kann technisch valide sein, aber dennoch Warnungen enthalten.
+
+image:../images/validator/Validierung_geometrisch-warnung.png[Validerung geometrisch Warnungen]
+
+Warnungen werden angezeigt, wenn bei Polygonen
+
+ * der äußere Ring eine Orientierung gegen den Uhrzeigersinn oder
+ * der innere Ring eine Orientierung im Uhrzeigersinn
+
+aufweist.
+
+*5) Geometrische Validierung – nicht valide*
+
+Am Beispiel der nachfolgenden Abbildung sehen Sie, welche Validierungsregeln nicht erfüllt sind.
+
+image:../images/validator/Validierung_geometrisch-nicht-valide.png[Validerung geometrisch nicht valide]
+
+Die ausgegebene GML-ID gibt Ihnen einen Hinweis, an welcher Stelle der Fehler auftritt, bzw. Sie korrigieren müssen.
+
+*6) Syntaktische Validierung – valide*
+
+Eine technisch valide geometrische Prüfung wir Ihnen wie folgt angezeigt.
+
+image:../images/validator/Validierung_syntaktisch-valide.png[Validerungsoptionen]
+
+*7) Syntaktische Validierung – nicht valide*
+
+image:../images/validator/Validierung_syntaktisch-nicht-valide.png[Validerung syntaktisch valide]
+
+Wenn die syntaktische Validierung nicht valide ist, werden die semantische und die geometrische Validierung nicht durchgeführt und es ist auch keine Kartenvorschau vorhanden.
+
+image:../images/validator/Validierung_syntaktisch-nicht-valide-andere.png[Validerung syntaktisch valide]
+
+image:../images/validator/Kartenvorschau-nicht-verfuegbar.png[Kartenvorschau nicht verfügbar]
+
+====== Der Validierungsbericht
+
+image:../images/validator/Validierungsbericht_download.png[Validierungsbericht Download]
+
+Der Validierungsbericht kann in den Formaten:
+
+ * HTML
+ * PDF
+ * XML
+
+exportiert werden.
+
+Geometriefehler können zusätzlich auch als Shapefile und als Grafik gespeichert werden.
+
+Alle Ergebnisdateien, selektierte Reports und Geometriefehler,  werden in einem ZIP-Archiv gespeichert. Der Dateiname enthält die Bezeichnung des Validierungsdurchlaufs.
+
+====== Kartenvorschau
+
+Über den Button image:../images/validator/BT_KartenvorschauOeffnen.png[] wechseln Sie zur Kartenansicht des Plans. Hier kann eine visuelle Überprüfung des Plans vorgenommen werden.
+
+Ihr Plan wird mittig in der Kartenvorschau angezeigt.
+
+
+image:../images/validator/Kartenvorschau.png[]
+
+[NOTE]
+====
+Der Plan steht in der Kartenansicht nur für eine begrenzte Zeitspanne (ca. 5 Minuten) zur Verfügung, anschließend ist nur noch die Hintergrundkarte zu sehen.
+
+Die Kartenvorschau visualisiert ausschließlich die XPlanGML-Datei.
+Angehängte Rasterpläne werden beispielsweise nicht dargestellt.
+====
+
+
+====== Navigation:
+
+Mit image:../images/validator/BT_Zurueck.png[] können Sie die Validierungsoptionen verändern.
+
+Mit image:../images/validator/BT_WeiterenPlan.png[]  kehren Sie zur Startseite zurück und können einen neuen oder geänderten Plan hochladen.
