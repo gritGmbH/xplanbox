@@ -37,4 +37,4 @@ rasterConfigurationType=geotiff
 Der xplansyn-wms-workspace wird mit einer Dummy-Konfiguration eines GDAL-Rasterlayers ausgeliefert. Liegen zu nächst keine Daten vor, kann dieser aktiviert werden, um Fehler nach dem ersten Import eines Plans mit Rasterdaten zu vermeiden. Dazu muss in den Theme-Konfigurationen unter _thems_ in allen Dateien, die mit raster.xml enden, die folgende Zeile auskommentiert werden:
 ----
 <Layer layerStore="dummyrasterlayer">dummyraster</Layer>
----
+----
