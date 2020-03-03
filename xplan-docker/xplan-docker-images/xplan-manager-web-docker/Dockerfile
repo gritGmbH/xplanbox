@@ -12,7 +12,7 @@ RUN apt-get update && apt-get -y install libgdal-java
 
 # add xplan-manager-web
 ADD target/xplan-manager-web-*.war /root/
-RUN cd /root/ && unzip -q xplan-manager-web-*.war -d /usr/local/tomcat/webapps/xplan-manager
+RUN cd /root/ && unzip -q xplan-manager-web-*.war -d /usr/local/tomcat/webapps/xplan-manager-web
 
 # add hale-cli
 RUN cd / && wget https://github.com/halestudio/hale-cli/releases/download/v3.4.0/hale-cli-3.4.0.zip && unzip hale-cli-3.4.0.zip
