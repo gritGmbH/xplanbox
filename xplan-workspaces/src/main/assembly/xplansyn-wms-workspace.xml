@@ -9,7 +9,9 @@
     <fileSet>
       <directory>${basedir}/src/main/workspace</directory>
       <includes>
+        <include>data/**</include>
         <include>datasources/feature/xplansyn*</include>
+        <include>datasources/tile/**</include>
         <include>jdbc/xplan.xml</include>
         <include>services/wms*</include>
         <include>services/html.gfi</include>
@@ -18,6 +20,7 @@
         <include>layers/lplan*</include>
         <include>layers/rplan*</include>
         <include>layers/soplan*</include>
+        <include>layers/dummyrasterlayer.ignore</include>
         <include>legends/*</include>
         <include>services/wms*</include>
         <include>themes/bplan*</include>

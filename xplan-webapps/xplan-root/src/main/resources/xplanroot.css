@@ -68,7 +68,7 @@ div.section{
   border: 1px solid #fafafa;
 
   }
-div.section#a, #c, #e{
+div.section#a, #c, #e, #g{
   border-right: 4px solid #ff9900;
 }
 div.section#b, #d, #f{

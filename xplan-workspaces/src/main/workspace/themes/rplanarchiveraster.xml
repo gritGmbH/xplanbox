@@ -8,6 +8,7 @@
     <Theme>
       <Identifier>rplanraster_sortiert</Identifier>
       <d:Title>RPlan Raster Theme</d:Title>
+      <!--<Layer layerStore="dummyrasterlayer">dummyraster</Layer>-->
     </Theme>
   </Theme>
 </Themes>
