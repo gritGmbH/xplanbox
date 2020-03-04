@@ -76,4 +76,6 @@ interface XPlanValidatorWebMessages extends Messages {
     String correctInputText();
 
     String correctValidationType();
+
+    String openUserManual();
 }

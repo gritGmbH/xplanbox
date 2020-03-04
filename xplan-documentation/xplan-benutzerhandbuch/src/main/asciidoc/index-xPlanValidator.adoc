@@ -1,0 +1,9 @@
+:doctype: book
+:encoding: utf-8
+:!toc:
+
+= Benutzerhandbuch für den XPlanValidator
+
+include::XPlanValidator-Einleitung.adoc[]
+
+include::XPlanValidator_Web.adoc[]

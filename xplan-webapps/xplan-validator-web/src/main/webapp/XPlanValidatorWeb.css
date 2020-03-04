@@ -118,7 +118,7 @@ form{
   padding-bottom: 15px;
   background-color: #fafafa;
   margin:auto;
-  width:1000px;
+  width:100%;
   border: 1px solid #fafafa;
   }
 button{
@@ -160,6 +160,11 @@ button[disabled], button[disabled]:hover, button[disabled]:active, button[disabl
 	width: 100%;
 }
 
+.valOptionsPanel {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .valOptionsPanel button{
     margin-top: 15px;
 }
@@ -178,6 +183,10 @@ button[disabled], button[disabled]:hover, button[disabled]:active, button[disabl
 
 .valOption {
     margin-left: 30px;
+}
+
+.helpBt {
+    margin-right: 15px;
 }
 
 /*Stylingversuch für den Durchsuchenbutton*/

@@ -5,6 +5,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FileUpload;
@@ -12,6 +13,7 @@ import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 import com.google.gwt.user.client.ui.FormPanel.SubmitEvent;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -35,9 +37,7 @@ public class XPlanValidatorWeb implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        FormPanel mainPanel = createFormPanel();
-        RootPanel rootPanel = detectContentPanel();
-        rootPanel.add( mainPanel );
+        resetPanelToUpload();
     }
 
     /**
@@ -46,10 +46,11 @@ public class XPlanValidatorWeb implements EntryPoint {
      * @param panel
      *            never <code>null</code>
      */
-    public void setPanel( Widget panel ) {
+    public void setPanel( Panel panel ) {
         RootPanel rootPanel = detectContentPanel();
         rootPanel.clear();
-        rootPanel.add( panel );
+        Panel panelWithHelp = createPanelWithHelp( panel );
+        rootPanel.add( panelWithHelp );
     }
 
 
@@ -65,7 +66,8 @@ public class XPlanValidatorWeb implements EntryPoint {
      * Shows the upload panel
      */
     public void resetPanelToUpload() {
-        setPanel( createFormPanel() );
+        FormPanel formPanel = createFormPanel();
+        setPanel( formPanel );
     }
 
     private FormPanel createFormPanel() {
@@ -86,8 +88,26 @@ public class XPlanValidatorWeb implements EntryPoint {
         return form;
     }
 
+    private VerticalPanel createPanelWithHelp( Panel panel ) {
+        VerticalPanel mainPanel = new VerticalPanel();
+        mainPanel.setWidth( "100%" );
+        mainPanel.setHorizontalAlignment( VerticalPanel.ALIGN_RIGHT );
+        Button helpLink = new Button( messages.openUserManual() );
+        helpLink.setStyleName( "helpBt" );
+        helpLink.addClickHandler( new ClickHandler() {
+            @Override
+            public void onClick( ClickEvent clickEvent ) {
+                Window.open( "../XPlanValidatorWeb-Benutzerhandbuch/index-xPlanValidator.html","_blank","" );
+            }
+        } );
+        mainPanel.add( helpLink );
+        mainPanel.add( panel );
+        return mainPanel;
+    }
+
     private VerticalPanel createMainPanel( Panel uploadPanel, Panel openButtonPanel ) {
         VerticalPanel mainPanel = new VerticalPanel();
+        mainPanel.setHorizontalAlignment( VerticalPanel.ALIGN_CENTER );
         mainPanel.setWidth( "100%" );
         mainPanel.add( uploadPanel );
         mainPanel.add( openButtonPanel );

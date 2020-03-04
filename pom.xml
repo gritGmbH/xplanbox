@@ -505,7 +505,13 @@
         <version>${project.version}</version>
         <type>zip</type>
       </dependency>
-
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>xplan-benutzerhandbuch</artifactId>
+        <version>${project.version}</version>
+        <classifier>validator-html</classifier>
+        <type>zip</type>
+      </dependency>
       <!-- for tests -->
       <dependency>
         <groupId>junit</groupId>

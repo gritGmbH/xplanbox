@@ -1,69 +1,11 @@
 [[xplanvalidator]]
 == XPlanValidator
 
-Der XPlanValidator ist ein Prüftool, das eine XPlanGML-Datei validieren kann. Dabei bietet der XPlanValidator verschiedene Prüfmethoden zur Validierung an.
+include::XPlanValidator-Einleitung.adoc[]
 
-=== Syntaktische Validierung
-
-Der XPlanValidator kann XPlanGML-Dateien in allen unterstützten Versionen prüfen, ob diese die im zugehörigen XML-Schema festgelegten Syntaxregeln
-erfüllen. Die Minimalvoraussetzung wird damit sichergestellt: die XPlanGML-Datei ist wohlgeformt und valide gegenüber den jeweiligen XML-Schema des Standards XPlanung.
-
-=== Geometrische Validierung
-
-Zusätzlich kann der XPlanValidator die in dem XPlanGML-Dokument enthaltenen Geometrien auf Korrektheit hin prüfen.
-Dabei werden folgende Prüfungen in Abhängigkeit vom Geometrietyp durchgeführt:
-
- * Punkte/Punktelisten: Prüfung auf 2D-Koordinaten
- * Kurven: Segment-Kontinuität
- * Generische Kurve/LineString: falls geschlossen, Laufrichtung CCW
- * Ring: Geschlossenheit
- * Ring: Keine Selbstüberschneidung
- * Polygon/PolygonPatch: Keine Berührung äußerer Ring / innere Ringe
- * Polygon/PolygonPatch: Kein Schnitt äußerer Ring / innere Ringe
- * Polygon/PolygonPatch: Innere Ringe liegen innerhalb der vom äußeren Ring umschlossenen Fläche
- * Polygon/PolygonPatch: Keine Berührung innere Ringe / innere Ringe (Fehler)
- * Polygon/PolygonPatch: Schnittmenge der von zwei inneren Ringen gebildeten Flächen ist leer (Fehler)
-
-Weiterhin werden die folgenden Regeln aus den Konformitätsbedingungen geprüft:
-
- * 2.2.1.1: Flächenschlussbedingung: Die Prüfung von "Bei allen Objekten mit flächenhaftem Raumbezug muss das Attribut
-flaechenschluss belegt sein" ist Bestandteil der semantischen Validierung.
- * 2.2.3.1 Raumbezogene Objekte im Innern des Geltungsbereichs
-
-Bei falscher Laufrichtung wird eine Warnung ausgegeben, das XPlanGML-Dokument wird jedoch als valide eingestuft.
-
-=== Semantische Validierung
-
-Darüber hinaus kann der XPlanValidator eine XPlanGML-Datei auf folgende Konformitätsbedingungen prüfen:
-
-* http://www.xleitstelle.de/releases/xplanung_v_5_2/Konformit%C3%A4tsbedingungen-XPlanGML_5_2.pdf[Konformitätsbedingungen für XPlanGML 5.2]
- * http://www.xleitstelle.de/releases/xplanung_v_5_1_2/konformitaetsbedingungen-xplanGML_%205_1_2.pdf[Konformitätsbedingungen für XPlanGML 5.1]
- * http://www.xleitstelle.de/releases/xplanung_v_5_0_1/konformitaetsbedingungen.pdf[Konformitätsbedingungen für XPlanGML 5.0]
- * http://www.xleitstelle.de/releases/xplanung_v_4_1/Konformit%C3%A4tsbedingungen-XPlanGML_4_1V2.pdf[Konformitätsbedingungen für XPlanGML 4.1]
- * http://www.xleitstelle.de/releases/xplanung_v_4_0_2/konformitaetsbedingungen_xplanGML_4_0_2.pdf[Konformitätsbedingungen für XPlanGML 4.0]
-
-Eine XPlanGML-Datei ist dann zu der jeweiligen XPlanGML Version konform, wenn das XML-Dokument gegen das jeweilige XPlanGML Schema validiert und alle in den Konformitätsbedingungen spezifizierten Regeln erfüllt werden. Die Anzahl der überprüften Validierungsregeln variiert abhängig von der XPlanGML Version, in dem die XPlanGML-Datei vorliegt.
-
-Der Validator kann über ein Kommandozeilentool (XPlanValidatorCLI) und eine Web-Oberfläche (XPlanValidatorWeb) aufgerufen werden.
-
-Folgende Validierungsregeln werden derzeit nicht durch den Validator geprüft:
-
-  * 4.1.5.3 Ausschluss von gemischter Geometrie (ab Version 5.0)
-  * 5.1.5.3 Ausschluss von gemischter Geometrie (ab Version 5.0)
-  * 6.1.5.3 Ausschluss von gemischter Geometrie (ab Version 5.0)
-  * 7.1.5.2 Ausschluss von gemischter Geometrie
-  * 8.1.5.1 Ausschluss von gemischter Geometrie
-  * 8.1.7.1 Einschränkung auf Punktgeometrie
-
-Der Ausschluss von gemischter Geometrie ist bereits durch das GmlProfil abgedeckt. Verstösse fallen somit bereits bei der syntaktischen Validierung auf.
-
-Die Regel 8.1.7.1 "Einschränkung auf Punktgeometrie" bezieht sich auf LP_Punktobjekt. Dabei handelt es sich um eine abstrakte Klasse, für die es keine abgeleitet Klassen gibt.
-
-=== Unterstützte Dateiformate
-
-Der XPlanValidator kann Dateien im XML-Format mit den Dateiendungen __.gml__ und __.xml__ validieren. Auch können vom XPlanValidator XPlanGML-Dateien innerhalb einer XPlanArchiv-Datei mit der Dateiendung __.zip__ validiert werden.
-Weitere Informationen zum Aufbau des XPlanArchiv stehen im Kapitel <<xplanarchiv>>.
-
-include::XPlanValidator_CLI.adoc[]
+[[xplanvalidator-web]]
+=== XPlanValidatorWeb
 
 include::XPlanValidator_Web.adoc[]
+
+include::XPlanValidator_CLI.adoc[]

@@ -52,6 +52,24 @@
               <outputDirectory>${project.build.outputDirectory}</outputDirectory>
             </configuration>
           </execution>
+          <execution>
+            <id>unpack-benutzerhandbuch</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>${project.groupId}</groupId>
+                  <artifactId>xplan-benutzerhandbuch</artifactId>
+                  <classifier>validator-html</classifier>
+                  <type>zip</type>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${project.build.directory}/benutzerhandbuch</outputDirectory>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -72,6 +90,9 @@
                 <exclude>index.html</exclude>
               </excludes>
               <filtering>false</filtering>
+            </resource>
+            <resource>
+              <directory>${project.build.directory}/benutzerhandbuch</directory>
             </resource>
           </webResources>
         </configuration>
@@ -126,6 +147,12 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-validator-web-commons</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-benutzerhandbuch</artifactId>
+      <classifier>validator-html</classifier>
+      <type>zip</type>
     </dependency>
     <dependency>
       <groupId>de.geowerkstatt-hamburg</groupId>

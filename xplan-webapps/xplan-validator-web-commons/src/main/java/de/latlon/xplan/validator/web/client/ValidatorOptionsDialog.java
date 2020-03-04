@@ -106,6 +106,7 @@ public class ValidatorOptionsDialog extends FormPanel {
         VerticalPanel mainPanel = new VerticalPanel();
         mainPanel.setSpacing( 5 );
         mainPanel.setStyleName( "valOptionsPanel" );
+        mainPanel.setWidth( "450px" );
 
         mainPanel.add( createTitel() );
         mainPanel.add( createLabel( messages.fieldLabelRunName() ) );
@@ -122,7 +123,7 @@ public class ValidatorOptionsDialog extends FormPanel {
 
     private void initFormFields( String fileName ) {
         validationName.setText( fileName != null && !fileName.isEmpty() ? fileName : messages.defaultRunName() );
-        validationName.setWidth( "100%" );
+        validationName.setWidth( "400px" );
         validationTypeSyn.setEnabled( false );
         validationTypeSyn.setValue( true );
         validationTypeSem.setValue( true );

@@ -89,10 +89,11 @@ Es müssen die bereit gestellten Konfigurationsdateien in das Verzeichnis
 _.deegree_ kopiert werden. Diese ersetzen die bereits vorhandenen:
 
 ----
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-workspace-${VERSION}-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-wfs-workspace-${VERSION}-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplansyn-wfs-workspace-${VERSION}-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplansyn-wms-workspace-${VERSION}-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wms-workspace-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace-${ENV}.zip
 cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-${ENV}.zip
 ----
 
@@ -102,9 +103,10 @@ Es müssen die bereit gestellten Konfigurationsdateien mit Ausnahme des xplansyn
 _.deegree_ kopiert werden. Diese ersetzen die bereits vorhanden:
 
 ----
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-workspace-${VERSION}-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-wfs-workspace-${VERSION}-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplansyn-wfs-workspace-${VERSION}-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace-${ENV}.zip
+cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace-${ENV}.zip
 cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-${ENV}.zip
 ----
 
@@ -273,9 +275,12 @@ Mit der Version 3.2 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen 
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 ** Im xplansyn-wms-workspace ist mit dieser Version eine Dummy-Konfiguration eines GDALRasterLayers hinzugekommen. Diese muss bei der Aktualisierung nicht übernommen werden (Hintergründe: <<GDAL>>).
+* Anlegen des _xplan-validator-wms-workspace_ Workspaces (s. <<konfiguration>>).
+* Installation der _xplan-validator-wms.war_ Webanwendung (s. <<web-anwendungen>>). Achtung: Anschließend muss der _xplan-validator-wms-workspace_ initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt über die webapps.properties-Datei plus Neustart der Webanwendung geschehen.
 * Aktualisierung der Datenbank:
 ** Ausführen der Skripte für die Erstelllung der Datenhaltung für 5.2 aus dem Modul _xplan-manager-workspace_:
 *** _fix/xplan52/create.sql_
 *** _pre/xplan52/create.sql_
 *** _archive/xplan52/create.sql_
+*** _inspireplu/05_create_inspireplu_view.sql_
 ** Ausführen der Skripte im Verzeichnis _from_3.1_to_3.2_ im Modul xplan-update-database in der vorgegebenen Reihenfolge

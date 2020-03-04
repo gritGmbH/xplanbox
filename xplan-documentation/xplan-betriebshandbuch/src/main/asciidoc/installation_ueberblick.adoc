@@ -19,12 +19,12 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
  ** xplan-validator-wms-<VERSION>.war
 
  * Konfiguration (im Verzeichnis _configuration_)
- ** xplan-manager-workspace-<VERSION>.zip
- ** xplansyn-wfs-workspace-<VERSION>.zip
- ** xplansyn-wms-workspace-<VERSION>.zip
- ** xplan-wfs-workspace-<VERSION>.zip
- ** xplan-inspireplu-workspace-<VERSION>.zip
- ** xplan-validator-wms-workspace-<VERSION>.zip
+ ** xplan-workspaces-<VERSION>-xplan-manager-workspace.zip
+ ** xplan-workspaces-<VERSION>-xplansyn-wfs-workspace.zip
+ ** xplan-workspaces-<VERSION>-xplansyn-wms-workspace.zip
+ ** xplan-workspaces-<VERSION>-xplan-wfs-workspace.zip
+ ** xplan-workspaces-<VERSION>-xplan-inspireplu-workspace.zip
+ ** xplan-workspaces-<VERSION>-xplan-validator-wms-workspace.zip
  ** xplan-manager-config-<VERSION.zip
  ** xplan-validator-config-<VERSION.zip
 
