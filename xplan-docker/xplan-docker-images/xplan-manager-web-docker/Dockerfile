@@ -24,5 +24,13 @@ ADD accessibility.properties /etc/java-8-openjdk/accessibility.properties
 ADD target/xplan-root-*-default.war /root/
 RUN cd /root/ && unzip -q xplan-root-*-default.war -d /usr/local/tomcat/webapps/ROOT
 
+# add xplan-benutzerhandbuch
+ADD target/xplan-benutzerhandbuch-*-html.zip /root/
+RUN cd /root/ && unzip -q xplan-benutzerhandbuch-*-html.zip -d /usr/local/tomcat/webapps/ROOT/
+
+# add xplan-betriebshandbuch
+ADD target/xplan-betriebshandbuch-*-html.zip /root/
+RUN cd /root/ && unzip -q xplan-betriebshandbuch-*-html.zip -d /usr/local/tomcat/webapps/ROOT/
+
 # run tomcat
 CMD ["catalina.sh", "run"]

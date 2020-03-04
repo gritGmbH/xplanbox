@@ -36,6 +36,8 @@
                         <includes>
                           <include>xplan-manager-web-${project.version}.war</include>
                           <include>xplan-root-${project.version}-default.war</include>
+                          <include>xplan-benutzerhandbuch-${project.version}-html.zip</include>
+                          <include>xplan-betriebshandbuch-${project.version}-html.zip</include>
                         </includes>
                       </fileSet>
                     </fileSets>
@@ -62,6 +64,20 @@
       <version>${project.version}</version>
       <type>war</type>
       <classifier>default</classifier>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-benutzerhandbuch</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+      <classifier>html</classifier>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-betriebshandbuch</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+      <classifier>html</classifier>
     </dependency>
   </dependencies>
 
