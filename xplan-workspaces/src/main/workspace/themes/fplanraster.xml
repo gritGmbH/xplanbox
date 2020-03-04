@@ -8,6 +8,7 @@
     <Theme>
       <Identifier>fplanraster_sortiert</Identifier>
       <d:Title>FPlan Raster Theme</d:Title>
+      <!--<Layer layerStore="dummyrasterlayer">dummyraster</Layer>-->
     </Theme>
   </Theme>
 </Themes>

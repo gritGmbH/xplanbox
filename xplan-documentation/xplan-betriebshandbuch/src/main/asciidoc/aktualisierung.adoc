@@ -274,6 +274,7 @@ Wenn die neuen Features <<kartenvorschau-validator>> und <<semantische-validieru
 Mit der Version 3.2 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen vorgenommen worden. Darunter auch die Unterstützung von XPlanGML 5.2. Für die Aktualisierung auf die Version 3.2 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+** Im xplansyn-wms-workspace ist mit dieser Version eine Dummy-Konfiguration eines GDALRasterLayers hinzugekommen. Diese muss bei der Aktualisierung nicht übernommen werden (Hintergründe: <<GDAL>>).
 * Anlegen des _xplan-validator-wms-workspace_ Workspaces (s. <<konfiguration>>).
 * Installation der _xplan-validator-wms.war_ Webanwendung (s. <<web-anwendungen>>). Achtung: Anschließend muss der _xplan-validator-wms-workspace_ initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt über die webapps.properties-Datei plus Neustart der Webanwendung geschehen.
 * Aktualisierung der Datenbank:
