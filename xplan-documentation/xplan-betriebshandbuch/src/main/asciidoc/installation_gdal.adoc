@@ -20,7 +20,7 @@ sudo apt-get install libgdal-java
 ----
 
 Damit GDAL über die JNI-Schnittstelle angesprochen werden kann, muss die
-Umgebungsvariable zur GDAL-Bibliothek gesetzt werden, z.B.:
+Umgebungsvariable zur GDAL-Bibliothek gesetzt werden, z. B.:
 
 ----
 export LD_LIBRARY_PATH=/usr/lib/jni/
@@ -53,9 +53,9 @@ Unter
 müssen folgende Einstellungen vorgenommen werden:
 
 * Setzen der Variable `JAVA_HOME` mit der Referenz zur Java Installation
-(JDK), z.B.: `C:\Program Files (x86)\Java\jdk1.8.0_202`
+(JDK), z. B.: `C:\Program Files (x86)\Java\jdk1.8.0_202`
 * Setzen der Variable `GDAL_DATA` mit der Referenz auf den Ordner, der
-Datei "gcs.csv" enthält, z.B.:
+Datei "gcs.csv" enthält, z. B.:
 `C:\Program Files (x86)\gdal\bin\gdal-data`
 * Der bestehenden Umgebungsvariable _PATH_ müssen zwei Pfade hinzugefügt
 werden (Annahme: Entpacktes Zip-Archiv von GISInternals wurde genutzt):

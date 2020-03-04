@@ -28,7 +28,7 @@ Anwendungskomponenten empfohlen. Zwingend erforderlich ist dies beim
 Einsatz von GDAL (s. <<installation-gdal>>).
 
 Die folgenden WAR-Archive (s. <<installationskomponenten>>) müssen in das Verzeichnis
-der Tomcat-Instanz (__Dienste-Tomcat__, z.B. Port: 8080) kopiert
+der Tomcat-Instanz (__Dienste-Tomcat__, z. B. Port: 8080) kopiert
 werden:
 
 * _xplan-wms.war_ (XPlanWMS und XPlanWerkWMS)
@@ -38,7 +38,7 @@ werden:
 * _xplan-validator-wms.war_ (XPlanValidatorWMS)
 
 Die WAR-Archive der Anwendungskomponenten werden über eine
-weitere Tomcat-Instanz (_Anwendungs-Tomcat_, z.B. Port: 8081)
+weitere Tomcat-Instanz (_Anwendungs-Tomcat_, z. B. Port: 8081)
 bereitgestellt:
 
 * _xplan-manager-web.war_ (XPlanManagerWeb)

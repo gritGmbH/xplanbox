@@ -30,7 +30,7 @@ Für jede XPlanGML-Version kann hier die Referenz auf eine externe
 Resource konfiguriert werden. Ist für eine Version keine Resource
 vorhanden, kann der Eintrag vollständig entfernt oder der Wert zu dem
 Schlüssel leer gelassen werdem (wie im Beispiel für XPLAN_2 und
-XPLAN_3). Es wird dann kein Hinweis im Validierungs-Report ausgegeben.
+XPLAN_3). Es wird dann kein Hinweis im Validierungsbericht ausgegeben.
 
 NOTE: Es wird empfohlen die Dokumente über die Komponente XPlanRessourcen
 bereit zu stellen, um die Unabhängigkeit zu externen Resourcen

@@ -80,7 +80,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 [[aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces]]
 === Aktualisierung der betroffenen Konfigurationsdateien in den Workspaces
 
-Bei der Aktualisierung der Workspaces ist zwischen einer vollständigen und teilweisen Aktualisierung zu unterscheiden. Bei der im Abschnitt <<vollstaendige-aktualisierung>> beschriebenen vollständigen Aktualisierung werden z.B. Rasterdaten aus Plänen die bereits importiert wurden verworfen. Sollen vorhandene Daten beibehalten werden, ist die im Abschnitt <<teilweise-aktualisierung>> beschriebene Variante durchzuführen.
+Bei der Aktualisierung der Workspaces ist zwischen einer vollständigen und teilweisen Aktualisierung zu unterscheiden. Bei der im Abschnitt <<vollstaendige-aktualisierung>> beschriebenen vollständigen Aktualisierung werden z. B. Rasterdaten aus Plänen die bereits importiert wurden verworfen. Sollen vorhandene Daten beibehalten werden, ist die im Abschnitt <<teilweise-aktualisierung>> beschriebene Variante durchzuführen.
 
 [[vollstaendige-aktualisierung]]
 ==== Vollständige Aktualisierung des Workspaces
@@ -116,7 +116,7 @@ cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-
 Bei Übernahme eines alten Workspaces für den WMS
 (xplansyn-wms-workspace) mit bereits importierten Rasterdaten sind die
 Themes-Konfigurationen anzupassen. Im ersten `Theme`-Block ist ein neuer
-Identifier, z.B. `<Identifier>BP_Planraster</Identifier>` vor dem
+Identifier, z. B. `<Identifier>BP_Planraster</Identifier>` vor dem
 Element `Title` einzutragen.
 
 [source,xml]
@@ -205,7 +205,7 @@ Programmaufruf mit dem Parameter –help angezeigt.
 [[datenaktualisierung-auf-die-version-2.0-sowie-2.2-der-xplanbox]]
 ==== Datenaktualisierung auf die Version 2.0 sowie 2.2 der xPlanBox
 
-Bei der Aktualisierung der Daten auf die Version 2.0 sowie 2.2 (z.B. von
+Bei der Aktualisierung der Daten auf die Version 2.0 sowie 2.2 (z. B. von
 1.8 auf 2.0 oder 2.1 auf 2.2) der xPlanBox ist abschließend die
 Ausführung des CLIs zur Aktualisierung des Sortierfeldes für die
 Visualisierung erforderlich. Informationen dazu finden sich im Abschnitt

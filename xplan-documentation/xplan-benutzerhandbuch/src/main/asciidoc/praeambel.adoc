@@ -23,9 +23,8 @@ info@lat-lon.de.
 [[autoren]]
 === Autoren
 
-Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Dirk Stenger,
-Sebastian Goerke, Lyn Elisa Goltz, Carmen Tawalika, Jeronimo Wanhoff,
-Lena Rippolz.
+Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Sebastian Goerke, Lyn Elisa Goltz,
+Lena Rippolz, Sabine Schmitz, Dirk Stenger, Carmen Tawalika, Jeronimo Wanhoff.
 
 [[lizenz-des-dokuments]]
 === Lizenz des Dokuments

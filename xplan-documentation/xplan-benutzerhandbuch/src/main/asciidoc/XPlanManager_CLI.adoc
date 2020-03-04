@@ -122,7 +122,7 @@ Korrektheitsüberprüfungen statt. Dies betrifft u.a. Schemavalidität,
 Geometrievalidität, Korrektheit von Links, Angabe von
 Koordinatenreferenzsystemen, u.v.m.
 
-Folgende Zusatzparameter können mit angegeben werden, um z.B. fehlende
+Folgende Zusatzparameter können mit angegeben werden, um z. B. fehlende
 Informationen anzugeben.
 
 ----

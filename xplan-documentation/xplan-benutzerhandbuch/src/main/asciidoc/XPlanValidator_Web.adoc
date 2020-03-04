@@ -4,27 +4,23 @@
 
 Laden Sie Ihren Plan bzw. Planarchiv hoch, indem Sie auf „Datei auswählen“ klicken.
 
-Akzeptiert werden:
+Vom XPlanValidator werden folgende Dateiformate akzeptiert:
 
-* XPlanArchive = ZIP-Datei mit folgendem Aufbau: Im Basisverzeichnis muss das XPlanGML Instanzdokument mit dem Dateinamen *xplan.gml* vorhanden sein. Rasterdaten sowie alle im *xplan.gml* referenzierten Anhänge liegen ebenfalls im Basisverzeichnis der ZIP-Datei.
-* GML-Dateien
-* XML-Dateien
+* ZIP-Dateien (Dateiendung `.zip`) mit folgendem Aufbau: Im Basisverzeichnis muss das XPlanGML Instanzdokument mit dem Dateinamen *xplan.gml* vorhanden sein. Rasterdaten sowie alle im *xplan.gml* referenzierten Anhänge liegen ebenfalls im Basisverzeichnis der ZIP-Datei. Eine solche ZIP-Datei wird XPlanArchiv genannt.
+* GML-Dateien (Dateiendung `.gml`)
+* XML-Dateien (Dateiendung `.xml`)
 
 image:../images/validator//Hochladen.png[Hochladen]
 
 [NOTE]
 ====
-Achten Sie auf den Dateinamen.
+Bitte beachten Sie die Anforderungen an den Dateinamen. Der Dateiname darf nur folgende Zeichen enthalten:
 
-Der Dateiname darf nur
-
- * Kleinbuchstaben von a-z,
- * Großbuchstaben von A-Z,
- * Zahlen von 0-9 und/oder
- * einen Bindestrich (-) bzw.
+ * Kleinbuchstaben von a-z
+ * Großbuchstaben von A-Z
+ * Zahlen von 0-9
+ * einen Bindestrich (-)
  * einen Unterstrich (_)
-
-enthalten.
 
 Sonderzeichen wie Umlaute, Sonderzeichen oder Leerzeichen sind nicht erlaubt.
 ====
@@ -69,7 +65,7 @@ Die semantische Validierung überprüft die fachlich-inhaltliche Kohärenz der X
  * 5.1 (184 Regeln)
  * 5.2 (191 Regeln)
 
-Eine XPlanGML-Datei ist dann zu der jeweiligen XPlanGML Version konform, wenn das XMLDokument gegen das jeweilige XPlanGML Schema validiert und alle in den Konformitätsbedingungen spezifizierten Regeln (= Validierungsregeln) erfüllt werden.
+Eine XPlanGML-Datei ist dann zu der jeweiligen XPlanGML Version konform, wenn das XMLDokument gegen das jeweilige XPlanGML Schema validiert und alle in den Konformitätsbedingungen spezifizierten Regeln erfüllt werden.
 
 [NOTE]
 ====
@@ -82,16 +78,16 @@ Folgende Validierungsregeln werden derzeit nicht durch die semantische Validieru
  * 8.1.5.1 Ausschluss von gemischter Geometrie
  * 8.1.7.1 Einschränkung auf Punktgeometrie
 
-Der Ausschluss von gemischter Geometrie ist bereits durch das GMLProfil abgedeckt. Verstöße fallen somit bereits bei der syntaktischen Validierung auf.
+Der Ausschluss von gemischter Geometrie ist bereits durch das GML-Profil abgedeckt. Verstöße fallen somit bereits bei der syntaktischen Validierung auf.
 
-Die Regel 8.1.7.1 Die Einschränkung auf Punktgeometrie bezieht sich auf LP_Punktobjekt. Dabei handelt es sich um eine abstrakte Klasse, für die es keine abgeleitet Klassen gibt.
+Die Regel "8.1.7.1 Die Einschränkung auf Punktgeometrie" bezieht sich auf LP_Punktobjekt. Dabei handelt es sich um eine abstrakte Klasse, für die es keine abgeleiteten Klassen gibt.
 ====
 
 *2) Geometrische Validierung (optional)*
 
-Bei der geometrischen Validierung wird die Korrektheit der Geometrien überprüft. XPlanung bezieht sich dabei auf das Simple Feature Model des OGC. Räumliche Objekte werden hier als Punkte, Linien oder Flächen mit speziellen geometrischen Eigenschaften modellhaft abgebildet. Als Fehler werden z. B. sich überschneidende Polygone identifiziert.
+Bei der geometrischen Validierung wird die Korrektheit der Geometrien überprüft. XPlanung bezieht sich auf das https://www.ogc.org/standards/sfa[Simple Feature Model des OGC]. Räumliche Objekte werden hier als Punkte, Linien oder Flächen mit speziellen geometrischen Eigenschaften modellhaft abgebildet. Als Fehler werden z. B. sich überschneidende Polygone identifiziert.
 
-Folgende Prüfungen in Abhängigkeit vom Geometrietyp durchgeführt:
+Folgende Prüfungen werden in Abhängigkeit vom Geometrietyp durchgeführt:
 
  * Punkte: Prüfung auf 2D-Koordinaten
  * Linien: Segment-Kontinuität
@@ -113,13 +109,13 @@ Nutzung der Optionen
 Bei der Flächenschlussprüfung werden Lücken als Fehler ausgegeben. Ist eine Lücke im Plan gewollt, können Sie die Option "Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen" aktivieren.
  * „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“
 +
-Wenn Fehler im Geltungsbereich nicht korrigiert werden können, selektieren Sie die Option „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“. Aktuell gilt eine Toleranz  von 1 mm bei Überlappungen des Geltungsbereiches.
+Wenn Fehler im Geltungsbereich nicht korrigiert werden können, selektieren Sie die Option „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“. Bei Überlappungen des Geltungsbereiches gilt eine Toleranz von 1 mm.
 
 *3) Syntaktische Validierung (obligatorisch)*
 
-Eine syntaktische Validierung ist die Voraussetzung einer Validierung und ist daher nicht abwählbar.
+Die syntaktische Validierung ist die Voraussetzung für die semantische und geometrische Validierung und ist daher nicht abwählbar.
 
-Bei einer syntaktischen Validierung wird die Struktur der XPlanGML-Datei geprüft. Eine syntaktisch valide XPlanGML-Datei muss auf der einen Seite den Anforderungen der Wohlgeformtheit von XML entsprechen und auf der anderen Seite die vom XPlan-Schema definierten Regeln erfüllen.
+Bei der syntaktischen Validierung wird die Struktur der XPlanGML-Datei geprüft. Eine syntaktisch valide XPlanGML-Datei muss sowohl den Anforderungen der Wohlgeformtheit von XML entsprechen als auch die vom XPlanGML-Schema definierten Regeln erfüllen.
 
 Die Validierung kann über den Button image:../images/validator/BT_ValidierungStarten.png[] gestartet werden.
 
@@ -137,27 +133,27 @@ Externe Referenzen zeigen an, ob Rasterdaten in Form von PNG und PGW Dateien vor
 
 *2) Semantische Validierung – valide*
 
-Eine technisch valide semantische Prüfung wir Ihnen wie folgt angezeigt.
+Eine valide semantische Prüfung wir Ihnen wie folgt angezeigt.
 
 image:../images/validator/Validierung_semantisch-valide.png[Validerung semantisch valide]
 
-Die Anzahl der Validierungsregeln variiert in Abhängigkeit der Version der GML-Datei.
+Die Anzahl der ausgeführten Validierungsregeln variiert in Abhängigkeit der Version der GML-Datei.
 
 *3) Semantische Validierung – nicht valide*
 
 Am Beispiel der nachfolgenden Abbildung sehen Sie welche Konformitätsbedingung (bzw. Validierungsregel) nicht erfüllt ist.
 
-Die ausgegebene GML-ID gibt Ihnen einen Hinweis, an welcher Stelle der Fehler auftritt, bzw. Sie korrigieren müssen.
+Die ausgegebene GML-ID gibt Ihnen einen Hinweis, welches Element in der XPlanGML-Datei davon betroffen ist.
 
 image:../images/validator/Validierung_semantisch-nicht-valide.png[Validerung semantisch nicht valide]
 
 *4) Geometrische Validierung – valide*
 
-Eine technisch valide geometrische Prüfung wir Ihnen wie folgt angezeigt.
+Eine valide geometrische Prüfung wird wie folgt angezeigt.
 
 image:../images/validator/Validierung_geometrisch-valide.png[Validerung geometrisch valide]
 
-Eine geometrische Validierung kann technisch valide sein, aber dennoch Warnungen enthalten.
+Eine geometrische Validierung kann valide sein, aber dennoch Warnungen enthalten.
 
 image:../images/validator/Validierung_geometrisch-warnung.png[Validerung geometrisch Warnungen]
 
@@ -174,11 +170,11 @@ Am Beispiel der nachfolgenden Abbildung sehen Sie, welche Validierungsregeln nic
 
 image:../images/validator/Validierung_geometrisch-nicht-valide.png[Validerung geometrisch nicht valide]
 
-Die ausgegebene GML-ID gibt Ihnen einen Hinweis, an welcher Stelle der Fehler auftritt, bzw. Sie korrigieren müssen.
+Die ausgegebene GML-ID gibt Ihnen einen Hinweis, welches Element in der XPlanGML-Datei davon betroffen ist.
 
 *6) Syntaktische Validierung – valide*
 
-Eine technisch valide geometrische Prüfung wir Ihnen wie folgt angezeigt.
+Eine valide geometrische Prüfung wird wie folgt angezeigt.
 
 image:../images/validator/Validierung_syntaktisch-valide.png[Validerungsoptionen]
 
@@ -206,13 +202,13 @@ exportiert werden.
 
 Geometriefehler können zusätzlich auch als Shapefile und als Grafik gespeichert werden.
 
-Alle Ergebnisdateien, selektierte Reports und Geometriefehler,  werden in einem ZIP-Archiv gespeichert. Der Dateiname enthält die Bezeichnung des Validierungsdurchlaufs.
+Alle Ergebnisdateien, selektierte Reports und Geometriefehler,  werden in einer ZIP-Datei gespeichert. Der Dateiname enthält die Bezeichnung des Validierungsdurchlaufs.
 
 ====== Kartenvorschau
 
 Über den Button image:../images/validator/BT_KartenvorschauOeffnen.png[] wechseln Sie zur Kartenansicht des Plans. Hier kann eine visuelle Überprüfung des Plans vorgenommen werden.
 
-Ihr Plan wird mittig in der Kartenvorschau angezeigt.
+Der Plan wird zentriert in der Kartenvorschau angezeigt.
 
 
 image:../images/validator/Kartenvorschau.png[]
@@ -221,7 +217,7 @@ image:../images/validator/Kartenvorschau.png[]
 ====
 Der Plan steht in der Kartenansicht nur für eine begrenzte Zeitspanne (ca. 5 Minuten) zur Verfügung, anschließend ist nur noch die Hintergrundkarte zu sehen.
 
-Die Kartenvorschau visualisiert ausschließlich die XPlanGML-Datei.
+Die Kartenvorschau visualisiert ausschließlich die Geometrien aus der XPlanGML-Datei.
 Angehängte Rasterpläne werden beispielsweise nicht dargestellt.
 ====
 
