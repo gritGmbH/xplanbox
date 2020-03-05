@@ -4,6 +4,7 @@
 :chapter-label:
 :numbered:
 :toc-title: Inhaltsverzeichnis
+:docinfo: shared,private-head
 
 = Benutzerhandbuch für die xPlanBox
 

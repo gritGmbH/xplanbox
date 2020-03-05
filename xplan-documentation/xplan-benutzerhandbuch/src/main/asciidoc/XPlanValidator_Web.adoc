@@ -10,7 +10,8 @@ Vom XPlanValidator werden folgende Dateiformate akzeptiert:
 * GML-Dateien (Dateiendung `.gml`)
 * XML-Dateien (Dateiendung `.xml`)
 
-image:../images/validator//Hochladen.png[Hochladen]
+[.bordered]
+image::../images/validator//Hochladen.png[Hochladen]
 
 [NOTE]
 ====
@@ -34,7 +35,8 @@ Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der Validier
 
 Wenn Sie einen Plan hochgeladen haben, steht im Feld „Bezeichnung für den Report“ der Name der Datei ohne Endung.
 
-image:../images/validator/Validierungsoptionen.png[Validierungsoptionen]
+[.bordered]
+image::../images/validator/Validierungsoptionen.png[Validierungsoptionen]
 
 Sie können der aktuellen Validierung, falls notwendig, einen eigenen Namen geben. Dieser erscheint ausschließlich auf dem Validierungsbericht.
 
@@ -43,15 +45,18 @@ Sie können der aktuellen Validierung, falls notwendig, einen eigenen Namen gebe
 Vermeiden Sie auch hier, Umlaute, Sonderzeichen und/oder Leerzeichen.
 ====
 
-image:../images/validator/Validierungsoptionen_bezeichnung.png[Validerungsoptionen]
+[.bordered]
+image::../images/validator/Validierungsoptionen_bezeichnung.png[Validerungsoptionen]
 
 In Ihrem Validierungsbericht später wird Ihre Bezeichnung wie folgt dargestellt:
 
-image:../images/validator/Validierungsbericht.png[Validierungsbericht]
+[.bordered]
+image::../images/validator/Validierungsbericht.png[Validierungsbericht]
 
 Wählen Sie nun unter folgenden Validierungstypen:
 
-image:../images/validator/Validierungstypen.png[Validierungstypen]
+[.bordered]
+image::../images/validator/Validierungstypen.png[Validierungstypen]
 
 Standardmäßig sind alle Validierungstypen selektiert.
 
@@ -127,15 +132,17 @@ Die Validierung kann über den Button image:../images/validator/BT_ValidierungSt
 
 Der Kopf des Validierungsberichts gibt Ihnen einen Überblick über die formalen Informationen.
 
-image:../images/validator/Validierungsbericht_2.png[Validierungsbericht]
+[.bordered]
+image::../images/validator/Validierungsbericht_2.png[Validierungsbericht]
 
 Externe Referenzen zeigen an, ob Rasterdaten in Form von PNG und PGW Dateien vorhanden sind.
 
 *2) Semantische Validierung – valide*
 
-Eine valide semantische Prüfung wir Ihnen wie folgt angezeigt.
+Eine valide semantische Prüfung wird Ihnen wie folgt angezeigt.
 
-image:../images/validator/Validierung_semantisch-valide.png[Validerung semantisch valide]
+[.bordered]
+image::../images/validator/Validierung_semantisch-valide.png[Validerung semantisch valide]
 
 Die Anzahl der ausgeführten Validierungsregeln variiert in Abhängigkeit der Version der GML-Datei.
 
@@ -145,17 +152,20 @@ Am Beispiel der nachfolgenden Abbildung sehen Sie welche Konformitätsbedingung 
 
 Die ausgegebene GML-ID gibt Ihnen einen Hinweis, welches Element in der XPlanGML-Datei davon betroffen ist.
 
-image:../images/validator/Validierung_semantisch-nicht-valide.png[Validerung semantisch nicht valide]
+[.bordered]
+image::../images/validator/Validierung_semantisch-nicht-valide.png[Validerung semantisch nicht valide]
 
 *4) Geometrische Validierung – valide*
 
 Eine valide geometrische Prüfung wird wie folgt angezeigt.
 
-image:../images/validator/Validierung_geometrisch-valide.png[Validerung geometrisch valide]
+[.bordered]
+image::../images/validator/Validierung_geometrisch-valide.png[Validerung geometrisch valide]
 
 Eine geometrische Validierung kann valide sein, aber dennoch Warnungen enthalten.
 
-image:../images/validator/Validierung_geometrisch-warnung.png[Validerung geometrisch Warnungen]
+[.bordered]
+image::../images/validator/Validierung_geometrisch-warnung.png[Validerung geometrisch Warnungen]
 
 Warnungen werden angezeigt, wenn bei Polygonen
 
@@ -168,7 +178,8 @@ aufweist.
 
 Am Beispiel der nachfolgenden Abbildung sehen Sie, welche Validierungsregeln nicht erfüllt sind.
 
-image:../images/validator/Validierung_geometrisch-nicht-valide.png[Validerung geometrisch nicht valide]
+[.bordered]
+image::../images/validator/Validierung_geometrisch-nicht-valide.png[Validerung geometrisch nicht valide]
 
 Die ausgegebene GML-ID gibt Ihnen einen Hinweis, welches Element in der XPlanGML-Datei davon betroffen ist.
 
@@ -176,21 +187,26 @@ Die ausgegebene GML-ID gibt Ihnen einen Hinweis, welches Element in der XPlanGML
 
 Eine valide geometrische Prüfung wird wie folgt angezeigt.
 
-image:../images/validator/Validierung_syntaktisch-valide.png[Validerungsoptionen]
+[.bordered]
+image::../images/validator/Validierung_syntaktisch-valide.png[Validerungsoptionen]
 
 *7) Syntaktische Validierung – nicht valide*
 
-image:../images/validator/Validierung_syntaktisch-nicht-valide.png[Validerung syntaktisch valide]
+[.bordered]
+image::../images/validator/Validierung_syntaktisch-nicht-valide.png[Validerung syntaktisch valide]
 
 Wenn die syntaktische Validierung nicht valide ist, werden die semantische und die geometrische Validierung nicht durchgeführt und es ist auch keine Kartenvorschau vorhanden.
 
-image:../images/validator/Validierung_syntaktisch-nicht-valide-andere.png[Validerung syntaktisch valide]
+[.bordered]
+image::../images/validator/Validierung_syntaktisch-nicht-valide-andere.png[Validerung syntaktisch valide]
 
-image:../images/validator/Kartenvorschau-nicht-verfuegbar.png[Kartenvorschau nicht verfügbar]
+[.bordered]
+image::../images/validator/Kartenvorschau-nicht-verfuegbar.png[Kartenvorschau nicht verfügbar]
 
 ====== Der Validierungsbericht
 
-image:../images/validator/Validierungsbericht_download.png[Validierungsbericht Download]
+[.bordered]
+image::../images/validator/Validierungsbericht_download.png[Validierungsbericht Download]
 
 Der Validierungsbericht kann in den Formaten:
 
@@ -202,7 +218,7 @@ exportiert werden.
 
 Geometriefehler können zusätzlich auch als Shapefile und als Grafik gespeichert werden.
 
-Alle Ergebnisdateien, selektierte Reports und Geometriefehler,  werden in einer ZIP-Datei gespeichert. Der Dateiname enthält die Bezeichnung des Validierungsdurchlaufs.
+Alle Ergebnisdateien, selektierte Reports und Geometriefehler,  werden in einer ZIP-Datei gespeichert. Der Dateiname entspricht der Bezeichnung des Validierungsdurchlaufs.
 
 ====== Kartenvorschau
 
@@ -210,8 +226,8 @@ Alle Ergebnisdateien, selektierte Reports und Geometriefehler,  werden in einer 
 
 Der Plan wird zentriert in der Kartenvorschau angezeigt.
 
-
-image:../images/validator/Kartenvorschau.png[]
+[.bordered]
+image::../images/validator/Kartenvorschau.png[]
 
 [NOTE]
 ====

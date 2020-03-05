@@ -1,9 +1,12 @@
 :doctype: book
 :encoding: utf-8
-:!toc:
+:docinfo: shared,private-head
+:toc-title: Inhaltsverzeichnis
+
 
 = Benutzerhandbuch für den XPlanValidator
 
+== Einleitung
 include::XPlanValidator-Einleitung.adoc[]
 
-include::XPlanValidator_Web.adoc[]
+include::XPlanValidator_Web.adoc[leveloffset=-2]
