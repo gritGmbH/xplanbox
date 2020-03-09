@@ -284,3 +284,4 @@ Mit der Version 3.2 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen 
 *** _archive/xplan52/create.sql_
 *** _inspireplu/05_create_inspireplu_view.sql_
 ** Ausführen der Skripte im Verzeichnis _from_3.1_to_3.2_ im Modul xplan-update-database in der vorgegebenen Reihenfolge
+** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__  im Modul xplan-update-database zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
