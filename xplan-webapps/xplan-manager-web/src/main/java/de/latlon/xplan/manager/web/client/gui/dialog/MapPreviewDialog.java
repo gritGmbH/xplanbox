@@ -88,7 +88,7 @@ public class MapPreviewDialog extends DialogBox {
             public void onSuccess( MapPreviewConfiguration configuration ) {
                 Bounds bounds = createAndAddMap( mapPanel, configuration, planType, planStatus, bbox );
                 createAndAddUrlButton( urlButtonPanel, configuration, planType, planStatus, bounds );
-                createAndAddCapabilitiesButton( capabilitiesButtonPanel, configuration, planName );
+                createAndAddCapabilitiesButton( capabilitiesButtonPanel, configuration, planName, planStatus );
             }
 
             @Override
@@ -241,9 +241,10 @@ public class MapPreviewDialog extends DialogBox {
         contentPanel.add( buttonPanel );
     }
 
-    private void createAndAddCapabilitiesButton( SimplePanel contentPanel, MapPreviewConfiguration configuration, String planName ) {
+    private void createAndAddCapabilitiesButton( SimplePanel contentPanel, MapPreviewConfiguration configuration,
+                                                 String planName, PlanStatus planStatus ) {
         SimplePanel buttonPanel = createButtonPanel( messages.capabilitiesButton(),
-                                                     createCapabilitiesHandler( configuration, planName ) );
+                                                     createCapabilitiesHandler( configuration, planName, planStatus ) );
         contentPanel.add( buttonPanel );
     }
 
@@ -259,11 +260,12 @@ public class MapPreviewDialog extends DialogBox {
         };
     }
 
-    private ClickHandler createCapabilitiesHandler( final MapPreviewConfiguration configuration, final String planName ) {
+    private ClickHandler createCapabilitiesHandler( final MapPreviewConfiguration configuration, final String planName,
+                                                    final PlanStatus planStatus ) {
         return new ClickHandler() {
             @Override
             public void onClick( ClickEvent event ) {
-                String url = createPlanwerkWmsUrl( planName, configuration );
+                String url = createPlanwerkWmsUrl( planName, configuration, planStatus );
                 Window.open( url, "_blank", "" );
             }
         };

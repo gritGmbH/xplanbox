@@ -77,15 +77,22 @@ public class WmsUrlUtils {
         return wmsUrl + "/" + endpointToAdd + "?";
     }
 
-    public static String createPlanwerkWmsUrl( String name, MapPreviewConfiguration configuration ) {
+    public static String createPlanwerkWmsUrl( String name, MapPreviewConfiguration configuration,
+                                               PlanStatus planStatus ) {
         String wmsUrl = determineWmsUrl( null, configuration );
-        int servicesIndex = wmsUrl.indexOf( "services" );
+        int servicesIndex = wmsUrl.lastIndexOf( "services" );
         if ( servicesIndex < 0 )
             return null;
         wmsUrl = wmsUrl.substring( 0, servicesIndex );
         String planname = name.replaceAll( "[^a-zA-Z0-9\\\\-_]", "" );
-        return wmsUrl + "services/planwerkwms/planname/" + planname
-               + "?request=GetCapabilities&service=WMS&version=1.3.0";
+        StringBuilder planwerkWmsUrl = new StringBuilder();
+        planwerkWmsUrl.append( wmsUrl );
+        planwerkWmsUrl.append( "services/" );
+        planwerkWmsUrl.append( planwerkWmsPath( planStatus ) );
+        planwerkWmsUrl.append( "/planname/" );
+        planwerkWmsUrl.append( planname );
+        planwerkWmsUrl.append( "?request=GetCapabilities&service=WMS&version=1.3.0" );
+        return planwerkWmsUrl.toString();
     }
 
     public static String createUrl( final MapPreviewConfiguration configuration, final String planType,
@@ -105,6 +112,17 @@ public class WmsUrlUtils {
         urlBuilder.append( "&WIDTH=" ).append( width );
         urlBuilder.append( "&HEIGHT=" ).append( height );
         return urlBuilder.toString();
+    }
+
+    private static String planwerkWmsPath( PlanStatus planStatus ) {
+        switch ( planStatus ) {
+        case ARCHIVIERT:
+            return "planwerkwmsarchive";
+        case IN_AUFSTELLUNG:
+            return "planwerkwmspre";
+        default:
+            return "planwerkwms";
+        }
     }
 
     private static String detectEndpointToAdd( MapPreviewConfiguration configuration, PlanStatus planStatus ) {
