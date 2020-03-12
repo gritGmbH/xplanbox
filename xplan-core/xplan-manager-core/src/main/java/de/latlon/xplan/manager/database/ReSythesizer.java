@@ -73,7 +73,7 @@ public class ReSythesizer {
 
     private void reSynthesize( XPlan plan )
                     throws Exception {
-        LOG.debug( "Synthesize plan with id {}", plan.getId() );
+        LOG.debug( "Synthesize plan with id {}, version {}", plan.getId(), plan.getVersion() );
         XPlanType planType = XPlanType.valueOf( plan.getType() );
         XPlanVersion version = XPlanVersion.valueOf( plan.getVersion() );
 

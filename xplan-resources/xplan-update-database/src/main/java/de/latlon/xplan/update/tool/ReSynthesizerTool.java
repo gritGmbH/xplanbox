@@ -55,7 +55,7 @@ public class ReSynthesizerTool {
                 e.printStackTrace();
             }
         } catch ( ParseException exp ) {
-            System.err.println( "Could nor parse command line" );
+            System.err.println( "Could not parse command line" );
             exp.printStackTrace();
         }
 
