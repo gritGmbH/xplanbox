@@ -35,6 +35,7 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.client.utils;
 
+import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 import static org.hamcrest.CoreMatchers.is;
@@ -212,18 +213,30 @@ public class WmsUrlUtilsTest {
     public void testCreatePlanwerkWmsUrl()
                             throws Exception {
         String wmsBaseUrl = "http://localhost:8080/xplan-wms/services/wms?";
-        String planwerkWmsUrl = WmsUrlUtils.createPlanwerkWmsUrl( "PlanName10", mockConfiguration( wmsBaseUrl ) );
+        String planwerkWmsUrl = WmsUrlUtils.createPlanwerkWmsUrl( "PlanName10", mockConfiguration( wmsBaseUrl ),
+                                                                  ARCHIVIERT );
 
-        assertThat( planwerkWmsUrl, is( "http://localhost:8080/xplan-wms/services/planwerkwms/planname/PlanName10?request=GetCapabilities&service=WMS&version=1.3.0" ) );
+        assertThat( planwerkWmsUrl, is( "http://localhost:8080/xplan-wms/services/planwerkwmsarchive/planname/PlanName10?request=GetCapabilities&service=WMS&version=1.3.0" ) );
     }
 
     @Test
-    public void testCreatePlanwerkWmsUrlReplaceRquired()
+    public void testCreatePlanwerkWmsUrlReplaceRequired()
                             throws Exception {
         String wmsBaseUrl = "http://localhost:8080/xplan-wms/services/wms?";
-        String planwerkWmsUrl = WmsUrlUtils.createPlanwerkWmsUrl( "Plan Name 10 mit /", mockConfiguration( wmsBaseUrl ) );
+        String planwerkWmsUrl = WmsUrlUtils.createPlanwerkWmsUrl( "Plan Name 10 mit /", mockConfiguration( wmsBaseUrl ),
+                                                                  FESTGESTELLT );
 
         assertThat( planwerkWmsUrl, is( "http://localhost:8080/xplan-wms/services/planwerkwms/planname/PlanName10mit?request=GetCapabilities&service=WMS&version=1.3.0" ) );
+    }
+
+    @Test
+    public void testCreatePlanwerkWmsUrlReplaceRequiredWithServices()
+                            throws Exception {
+        String wmsBaseUrl = "http://xplanservices.xplanbox.de/xplan-wms/services/wms?";
+        String planwerkWmsUrl = WmsUrlUtils.createPlanwerkWmsUrl( "Plan Name 10 mit /", mockConfiguration( wmsBaseUrl ),
+                                                                  IN_AUFSTELLUNG );
+
+        assertThat( planwerkWmsUrl, is( "http://xplanservices.xplanbox.de/xplan-wms/services/planwerkwmspre/planname/PlanName10mit?request=GetCapabilities&service=WMS&version=1.3.0" ) );
     }
 
 
