@@ -78,6 +78,9 @@ public class ReSythesizer {
         XPlanVersion version = XPlanVersion.valueOf( plan.getVersion() );
 
         FeatureCollection featureCollection = xPlanDao.retrieveFeatureCollection( plan );
+        if ( featureCollection.isEmpty() ) {
+            LOG.warn( "FeatureCollection is not available! Plan with id {} is skipped", plan.getId() );
+        }
         XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder( featureCollection,
                                                                                            planType ).build();
         Date sortDate = sortPropertyReader.readSortDate( planType, version, xPlanFeatureCollection.getFeatures() );
