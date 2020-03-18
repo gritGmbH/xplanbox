@@ -15,8 +15,6 @@ import java.util.Map;
  */
 public class XPlanCodeListsFactory {
 
-    private static final String XPLAN_2_EXT_CODE_LISTS = "/appschemas/XPlanGML_2_0/XPlanGml_ExternalCodeLists.xml";
-
     private static final String XPLAN_3_CODE_LISTS = "/appschemas/XPlanGML_3_0/XPlanGML_CodeLists.xml";
 
     private static final String XPLAN_3_EXT_CODE_LISTS = "/appschemas/XPlanGML_3_0/XPlanGML_ExternalCodeLists.xml";
@@ -107,18 +105,6 @@ public class XPlanCodeListsFactory {
             }
         }
         return xplanSynCodeLists;
-    }
-
-    public static synchronized XPlanCodeLists getXPlan2Ext() {
-        if ( xplan2ExtCodeLists == null ) {
-            try {
-                xplan2ExtCodeLists = xPlanCodeListParser.parseCodelists( XPlanCodeLists.class.getResource( XPLAN_2_EXT_CODE_LISTS ) );
-            } catch ( Exception e ) {
-                String msg = "Internal error reading code lists file: " + e.getMessage();
-                throw new RuntimeException( msg );
-            }
-        }
-        return xplan2ExtCodeLists;
     }
 
     public static synchronized XPlanCodeLists getXPlan3Ext() {
