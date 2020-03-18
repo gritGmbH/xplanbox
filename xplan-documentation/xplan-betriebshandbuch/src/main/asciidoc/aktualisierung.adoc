@@ -74,6 +74,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 3.0              | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)
 | 3.1              | ja (<<aktualisierung-auf-die-version-3.1-der-xplanbox, Details>>)  | nein
 | 3.2              | ja (<<aktualisierung-auf-die-version-3.2-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.2-der-xplanbox, Details>>)
+| 3.3              | ja (<<aktualisierung-auf-die-version-3.3-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.3-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -285,3 +286,11 @@ Mit der Version 3.2 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen 
 *** _inspireplu/05_create_inspireplu_view.sql_
 ** Ausführen der Skripte im Verzeichnis _from_3.1_to_3.2_ im Modul xplan-update-database in der vorgegebenen Reihenfolge
 ** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__  im Modul xplan-update-database zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
+
+[[aktualisierung-auf-die-version-3.3-der-xplanbox]]
+=== Aktualisierung auf die Version 3.3 der xPlanBox
+
+Seit der Version 3.3 wird die XPlanGML Version 2.0 nicht mehr unterstützt.
+
+* Aktualisierung der Datenbank:
+** Ausführen der Skripte im Verzeichnis _from_3.2_to_3.3_ im Modul xplan-update-database in der vorgegebenen Reihenfolge.
