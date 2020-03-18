@@ -27,8 +27,7 @@ public class ParameterizedSyntacticValidatorTest {
 
     @Parameterized.Parameters
     public static List<Object[]> data() {
-        return Arrays.asList( new Object[][] { { "xplan2/BP2070.zip" }, { "xplan2/BP2135.zip" }, { "xplan2/FPlan.zip" },
-                                               { "xplan2/LA22.zip" }, { "xplan2/LA67.zip" }, { "xplan3/BP2070.zip" },
+        return Arrays.asList( new Object[][] { { "xplan3/BP2070.zip" },
                                                { "xplan3/BP2135.zip" }, { "xplan3/FPlan.zip" },
                                                { "xplan41/BP2070.zip" }, { "xplan41/BP2135.zip" },
                                                { "xplan41/Demo.zip" }, { "xplan41/Eidelstedt_4_V4.zip" },

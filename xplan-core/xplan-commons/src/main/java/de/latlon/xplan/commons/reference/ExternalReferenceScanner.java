@@ -53,7 +53,6 @@ public class ExternalReferenceScanner {
 
     private void scanFc( FeatureCollection fc, XPlanVersion version ) {
         switch ( version ) {
-        case XPLAN_2:
         case XPLAN_3:
             Map<String, ExternalReference> fidToExternalRef = scanForExternalReferencesXplan2or3( fc );
             scanForRasterplanFeaturesXplan2or3( fidToExternalRef, fc );

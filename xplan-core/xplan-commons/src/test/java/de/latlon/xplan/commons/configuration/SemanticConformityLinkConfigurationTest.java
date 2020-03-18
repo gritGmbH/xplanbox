@@ -35,7 +35,7 @@
 ----------------------------------------------------------------------------*/
 package de.latlon.xplan.commons.configuration;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static org.hamcrest.CoreMatchers.is;
@@ -58,7 +58,7 @@ public class SemanticConformityLinkConfigurationTest {
 
         String firstLink = linkConfiguration.retrieveLink( XPLAN_40 );
         String overwrittenLink = linkConfiguration.retrieveLink( XPLAN_41 );
-        String unconfiguredLink = linkConfiguration.retrieveLink( XPLAN_2 );
+        String unconfiguredLink = linkConfiguration.retrieveLink( XPLAN_3 );
 
         assertThat( firstLink, is( "link1" ) );
         assertThat( overwrittenLink, is( "link3" ) );

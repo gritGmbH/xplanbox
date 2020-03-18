@@ -15,8 +15,6 @@ import java.util.Map;
  */
 public class XPlanCodeListsFactory {
 
-    private static final String XPLAN_2_CODE_LISTS = "/appschemas/XPlanGML_2_0/XPlanGml_CodeLists.xml";
-
     private static final String XPLAN_2_EXT_CODE_LISTS = "/appschemas/XPlanGML_2_0/XPlanGml_ExternalCodeLists.xml";
 
     private static final String XPLAN_3_CODE_LISTS = "/appschemas/XPlanGML_3_0/XPlanGML_CodeLists.xml";
@@ -38,8 +36,6 @@ public class XPlanCodeListsFactory {
     private static final String XPLAN_SYN_EXT_CODE_LISTS_XP2 = "/appschemas/XPlanGML_Syn/XPlanSyn_ExternalCodeLists_XP2.xml";
 
     private static final String XPLAN_SYN_EXT_CODE_LISTS_XP3 = "/appschemas/XPlanGML_Syn/XPlanSyn_ExternalCodeLists_XP3.xml";
-
-    private static XPlanCodeLists xplan2CodeLists;
 
     private static XPlanCodeLists xplan2ExtCodeLists;
 
@@ -72,8 +68,6 @@ public class XPlanCodeListsFactory {
      */
     public static XPlanCodeLists get( XPlanVersion version ) {
         switch ( version ) {
-        case XPLAN_2:
-            return getXPlan2();
         case XPLAN_3:
             return getXPlan3();
         case XPLAN_40:
@@ -152,18 +146,6 @@ public class XPlanCodeListsFactory {
             }
         }
         return xplanSynExtCodeLists;
-    }
-
-    private static synchronized XPlanCodeLists getXPlan2() {
-        if ( xplan2CodeLists == null ) {
-            try {
-                xplan2CodeLists = xPlanCodeListParser.parseCodelists( XPlanCodeLists.class.getResource( XPLAN_2_CODE_LISTS ) );
-            } catch ( Exception e ) {
-                String msg = "Internal error reading code lists file: " + e.getMessage();
-                throw new RuntimeException( msg, e );
-            }
-        }
-        return xplan2CodeLists;
     }
 
     private static synchronized XPlanCodeLists getXPlan3() {
