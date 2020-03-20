@@ -23,10 +23,10 @@
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
-      <!--<Fill>
+      <Fill>
         <SvgParameter name="fill">#d1de85</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
-      </Fill>-->
+      </Fill>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
