@@ -7,6 +7,7 @@ import de.latlon.xplan.manager.database.DistrictUpdater;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
+import de.latlon.xplan.update.AbstractUpdater;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
@@ -16,7 +17,10 @@ import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.tools.CommandUtils;
 import org.deegree.workspace.Workspace;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -26,6 +30,8 @@ import java.nio.file.Paths;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class DistrictUpdateTool {
+
+    private static final Logger LOG = LoggerFactory.getLogger( DistrictUpdateTool.class );
 
     private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
@@ -51,7 +57,7 @@ public class DistrictUpdateTool {
                 DistrictUpdateTool tool = new DistrictUpdateTool();
                 tool.run( workspaceName, configurationDirectory );
             } catch ( Exception e ) {
-                e.printStackTrace();
+                LOG.error( "DistrictUpdateTool could not be executed!", e );
             }
         } catch ( ParseException exp ) {
             System.err.println( "Could nor parse command line" );
@@ -69,8 +75,10 @@ public class DistrictUpdateTool {
     }
 
     private static Workspace initWorkspace( String workspaceName )
-                    throws ResourceInitException {
+                            throws ResourceInitException {
         DeegreeWorkspace workspace = DeegreeWorkspace.getInstance( workspaceName );
+        File location = workspace.getLocation();
+        LOG.info( "Initialise Workspace " + location );
         workspace.initAll();
         return workspace.getNewWorkspace();
     }
