@@ -742,7 +742,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cca3e3395-b08b-4d73-b55c-38c7f61f511b" priority="normal">
         <source>
@@ -762,7 +762,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf7519446-24ab-46bd-ab9d-ef1c3f1c7e27" priority="normal">
         <source>
@@ -785,7 +785,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8abb6151-f63e-40e0-af0a-8bad0ad48039" priority="normal">
         <source>
@@ -808,7 +808,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C944fca63-0d3a-4b3b-ad1e-513b9c1db281" priority="normal">
         <source>
@@ -831,7 +831,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.generateuid" id="C69c68c48-eeda-4b31-8935-c262384f686b" priority="normal">
         <target>
@@ -3599,7 +3599,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ccb820461-e5b2-4905-9cfa-333e1dd03b42" priority="normal">
         <source>
@@ -3622,7 +3622,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cab219251-e6a9-4fa2-a198-532ee73ce62c" priority="normal">
         <source>
@@ -3643,7 +3643,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Caf48a25b-88f2-4bfd-9bb7-23800e5740a6" priority="normal">
         <source>
@@ -3664,7 +3664,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C819ea33a-8283-48ad-8cf5-969fb274a0ed" priority="normal">
         <source>
@@ -3685,7 +3685,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C18209543-d444-4aaf-9008-5ca057620de2" priority="normal">
         <source>
@@ -3708,7 +3708,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce60ab0d2-33b9-4826-8a4e-87581dd375b2" priority="normal">
         <source>
@@ -3731,7 +3731,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc363b0f0-81eb-4981-b1ee-d52a7f4f8c76" priority="normal">
         <source>
@@ -3752,7 +3752,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C1a62933a-8901-4c26-af9a-1d283d172da9" priority="normal">
         <source>
@@ -3773,7 +3773,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbad3d247-8c7a-4fac-9cc6-5acef05b1dc9" priority="normal">
         <source>
@@ -3794,7 +3794,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C0ccae697-fcc2-4e2e-bd65-5a29d0302974" priority="normal">
         <source>
@@ -3817,7 +3817,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Caa3ea108-5426-409e-a667-a10cd6f00850" priority="normal">
         <source>
@@ -3840,7 +3840,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf3a93615-087d-4537-94d5-d43852241aaf" priority="normal">
         <source>
@@ -3861,7 +3861,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cce255e63-1c00-4ebb-ab07-770b5f361846" priority="normal">
         <source>
@@ -3882,7 +3882,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C4c305d95-fc3f-4626-991b-429fe62f8ed5" priority="normal">
         <source>
@@ -3903,7 +3903,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc362b067-5ead-4d62-a7ef-06bf6b26a32e" priority="normal">
         <source>
@@ -3926,7 +3926,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C5cd05a34-873d-4c8d-9255-93a05e4cc5c3" priority="normal">
         <source>
@@ -3949,7 +3949,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C391080f2-91f3-4e60-8269-0252ef086a76" priority="normal">
         <source>
@@ -3970,7 +3970,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C00d54368-3966-4c8e-963c-9c936cde32a6" priority="normal">
         <source>
@@ -3991,7 +3991,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C7d0091a7-ba5e-4f17-9029-2cf149248ccc" priority="normal">
         <source>
@@ -4012,7 +4012,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce981c4f4-d4e8-4ea2-89b5-8f275c7bf473" priority="normal">
         <source>
@@ -4035,7 +4035,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C014667d6-822f-455d-b5d0-f20c96779141" priority="normal">
         <source>
@@ -4058,7 +4058,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C895a2fbb-eb5a-499f-b44b-dcfe5117f5f0" priority="normal">
         <source>
@@ -4079,7 +4079,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C0feb37f9-4e0b-4afc-a7bd-e518d3aba74d" priority="normal">
         <source>
@@ -4100,7 +4100,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cb7809808-41ed-479b-9e1c-958653715928" priority="normal">
         <source>
@@ -4121,7 +4121,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cef12344e-7f7d-4567-8e2c-e2d33f0c1d2c" priority="normal">
         <source>
@@ -4144,7 +4144,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C95cf8765-8fef-4e54-96eb-6862545fe29c" priority="normal">
         <source>
@@ -4167,7 +4167,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cafce12b0-cdab-46ef-a21b-eaf788419f79" priority="normal">
         <source>
@@ -4188,7 +4188,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C754ab4b3-024b-46fe-8eab-107d9f29dfc3" priority="normal">
         <source>
@@ -4209,7 +4209,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C22c533d5-1061-4fc3-9f9f-f58d9ba01de9" priority="normal">
         <source>
@@ -4230,7 +4230,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd5b049d6-3497-4266-a7fc-01f776cb88da" priority="normal">
         <source>
@@ -4253,7 +4253,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C15fc8cf9-67d8-4f7e-8d97-716652ee999c" priority="normal">
         <source>
@@ -4276,7 +4276,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cfd840344-403b-4367-aac7-32a46081550c" priority="normal">
         <source>
@@ -4297,7 +4297,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc357b2b8-3a27-4779-83e0-3a2854b99e89" priority="normal">
         <source>
@@ -4318,7 +4318,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8412085a-eb67-4dba-ae11-bf67472ef80e" priority="normal">
         <source>
@@ -4339,7 +4339,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbcc61580-d6de-4471-ad26-2cb173138b6b" priority="normal">
         <source>
@@ -4362,7 +4362,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C59900548-3a0a-4976-83c9-e49f46ce10a6" priority="normal">
         <source>
@@ -4385,7 +4385,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce248e139-4dc8-4e44-ba53-2b73f14c8e64" priority="normal">
         <source>
@@ -4406,7 +4406,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce6b98250-81c4-4e49-a967-11669fb82377" priority="normal">
         <source>
@@ -4427,7 +4427,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cca089ec6-91bb-48e7-9592-50736a374f47" priority="normal">
         <source>
@@ -4448,7 +4448,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C7929e8c0-95f7-4cd7-89f7-0a0790fe6c25" priority="normal">
         <source>
@@ -4471,7 +4471,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C1009d7b9-35ee-4fd9-b2ac-a07f8c7608f5" priority="normal">
         <source>
@@ -4494,7 +4494,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C3d608707-4858-401c-96d4-e863043f2afd" priority="normal">
         <source>
@@ -4515,7 +4515,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cca353c52-1019-4fad-bed9-d48c6c6e5b4f" priority="normal">
         <source>
@@ -4536,7 +4536,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cccfc3ebb-9ebe-4c70-9cee-7c1ba6c6c792" priority="normal">
         <source>
@@ -4557,7 +4557,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ccd8f93a7-520d-474d-9b82-377369618b3c" priority="normal">
         <source>
@@ -4580,7 +4580,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C1e536931-a623-4621-8230-b377aa2d9ae3" priority="normal">
         <source>
@@ -4603,7 +4603,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C398ef161-a8a1-40d4-b1b0-9d3dc261bcdb" priority="normal">
         <source>
@@ -4624,7 +4624,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C015bec07-77f9-48b5-b92f-07b2b2f23393" priority="normal">
         <source>
@@ -4645,7 +4645,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cad13dc95-fce0-48c0-9a44-a85d09dfbb9c" priority="normal">
         <source>
@@ -4666,7 +4666,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C5e37b33a-1b07-45bc-8775-5376fb7ede22" priority="normal">
         <source>
@@ -4689,7 +4689,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8fcda886-7e01-4479-bec8-da97c5f1c0dc" priority="normal">
         <source>
@@ -4712,7 +4712,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C1422137f-9bf7-4f92-a275-e13cbe8f55ea" priority="normal">
         <source>
@@ -4733,7 +4733,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C06fe7649-2d3b-4fac-bd3c-f513dcec4c6e" priority="normal">
         <source>
@@ -4754,7 +4754,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbef23a4b-3886-4486-870b-1adaeaa8ab6e" priority="normal">
         <source>
@@ -4775,7 +4775,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C93086e63-c82b-415b-9cf7-5c64eca6165f" priority="normal">
         <source>
@@ -4798,7 +4798,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C73de1f9f-4b6a-4162-a332-3da60697c600" priority="normal">
         <source>
@@ -4821,7 +4821,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C5e461339-0574-4730-aff9-74a3b294a229" priority="normal">
         <source>
@@ -4842,7 +4842,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C556a1bd5-91e7-48e1-b0bd-507724f05f92" priority="normal">
         <source>
@@ -4863,7 +4863,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C10fcb881-2173-488e-8395-05116b29ddba" priority="normal">
         <source>
@@ -4884,7 +4884,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C274a9f0a-eb61-42ba-b650-e64bf80e8842" priority="normal">
         <source>
@@ -6840,7 +6840,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc7796cd6-a893-4af1-96f6-9331088cf310" priority="normal">
         <source>
@@ -6862,7 +6862,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cccb8de0e-ca97-4e0b-9b6a-a80c1d464924" priority="normal">
         <source>
@@ -6884,7 +6884,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C3f94817b-333a-4b0c-8424-252c8c5a8225" priority="normal">
         <source>
@@ -6909,7 +6909,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C07a29ccf-6bb6-4d4d-8d09-afafd8372328" priority="normal">
         <source>
@@ -6934,7 +6934,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cec3b9810-d6d3-43ff-9022-6778867d9a1e" priority="normal">
         <source>
@@ -6959,7 +6959,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C545f40ff-0fe5-4d4e-92ba-36accacba055" priority="normal">
         <source>
@@ -6984,7 +6984,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C0258b2b0-5639-419e-a685-11e94b62f953" priority="normal">
         <source>
@@ -7009,7 +7009,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbec7f9c2-d6c0-4f0f-b65c-1d04626d9e2a" priority="normal">
         <source>
@@ -7034,7 +7034,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca97846a8-e047-4edc-827a-1ae2689944db" priority="normal">
         <source>
@@ -7059,7 +7059,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C64122498-fab7-4280-a5b0-789a30a79e54" priority="normal">
         <source>
@@ -7084,7 +7084,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2d76b95c-22f6-4fd1-8725-a5b6f710310e" priority="normal">
         <source>
@@ -7109,7 +7109,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C4efcac08-6b59-4ca1-ba54-4b1dc556cec1" priority="normal">
         <source>
