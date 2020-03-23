@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hale-project version="3.3.1.release">
-    <name>XPlan GML to INSPRE PLU</name>
+<hale-project version="3.5.0.release">
+    <name>XPlan GML 4.1 to INSPRE PLU</name>
     <author>lat/lon GmbH</author>
     <created>2017-10-23T08:12:00.060+02:00</created>
-    <modified>2017-11-21T09:05:27.922+01:00</modified>
+    <modified>2020-03-23T18:41:36.712+01:00</modified>
     <save-config action-id="project.save" provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -21,7 +21,7 @@
         <setting name="charset">UTF-8</setting>
         <setting name="onlyElementsMappable">true</setting>
         <setting name="resourceId">66731e01-15e5-4ed3-bbdf-8df669ac5897</setting>
-        <setting name="source">http://inspire.ec.europa.eu/schemas/plu/4.0/PlannedLandUse.xsd</setting>
+        <setting name="source">../../appschemas/inspireplu/PlannedLandUse-AdaptedGml.xsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xsd</setting>
     </resource>
     <file name="alignment.xml" location="xplanGml41-inspirePlu.halex.alignment.xml"/>
@@ -113,6 +113,9 @@
     <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}RingType/count">2</property>
     <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SolidPropertyType/1">{http://www.opengis.net/gml/3.2/AbstractSolid}choice</property>
     <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SolidPropertyType/count">1</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SolidType/1">{http://www.opengis.net/gml/3.2}exterior</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SolidType/2">{http://www.opengis.net/gml/3.2}Shell</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SolidType/count">2</property>
     <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SurfacePatchArrayPropertyType/1">{http://www.opengis.net/gml/3.2}PolygonPatch</property>
     <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SurfacePatchArrayPropertyType/count">1</property>
     <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SurfacePropertyType/1">{http://www.opengis.net/gml/3.2/AbstractSurface}choice</property>
@@ -795,4 +798,7 @@
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/4/1}XP_TextAbschnittType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/4/1}XP_TextAbschnittType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/4/1}XP_TextAbschnittType/count">2</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/4/1}XPlanAuszugType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/4/1}XPlanAuszugType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/4/1}XPlanAuszugType/count">2</property>
 </hale-project>
