@@ -764,6 +764,29 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8abb6151-f63e-40e0-af0a-8bad0ad48039" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="raeumlicherGeltungsbereich" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="extent" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf7519446-24ab-46bd-ab9d-ef1c3f1c7e27" priority="normal">
         <source>
             <property>
@@ -787,7 +810,33 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8abb6151-f63e-40e0-af0a-8bad0ad48039" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca57b3915-6160-4020-a62c-1506e3e955b8" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="raeumlicherGeltungsbereich" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="extent" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C944fca63-0d3a-4b3b-ad1e-513b9c1db281" priority="normal">
         <source>
             <property>
                 <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/2"/>
@@ -810,7 +859,33 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C944fca63-0d3a-4b3b-ad1e-513b9c1db281" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C59fccb26-1c3b-4786-98dc-f971d815289c" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="raeumlicherGeltungsbereich" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="extent" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce76780dd-58b4-4b3d-a9a7-2832591b7cbd" priority="normal">
         <source>
             <property>
                 <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/2"/>
