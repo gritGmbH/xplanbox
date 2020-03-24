@@ -1,14 +1,14 @@
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2"
         xmlns:xplan="http://www.deegree.org/xplanung/1/0"
         targetNamespace="http://www.deegree.org/xplanung/1/0" elementFormDefault="qualified"
         attributeFormDefault="unqualified">
-  <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd" />
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
   <!--=========================================================================================-->
   <!-- Erweitertes Schema für XPLANSYN mit NSM-Unterstützung -->
   <!-- Basis: XPlanGML_Regionalplanung_NSM_ADE.xsd, Erstellungsdatum: 11.09.2013 11:07:20 -->
   <!-- Erstellt von fitzke@lat-lon.de, 2014-03-25 -->
   <!--=========================================================================================-->
-  <element name="BP_AbgrabungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_AbgrabungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -84,7 +84,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_AbstandsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_AbstandsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -162,7 +162,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_AbstandsMass" substitutionGroup="gml:_Feature">
+  <element name="BP_AbstandsMass" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -230,7 +230,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_AbweichungVonBaugrenze" substitutionGroup="gml:_Feature">
+  <element name="BP_AbweichungVonBaugrenze" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -282,7 +282,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -335,7 +335,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_AnpflanzungBindungErhaltung" substitutionGroup="gml:_Feature">
+  <element name="BP_AnpflanzungBindungErhaltung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -428,7 +428,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_AufschuettungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_AufschuettungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -504,7 +504,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Ausgleich" substitutionGroup="gml:_Feature">
+  <element name="BP_Ausgleich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -557,7 +557,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_AusgleichsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_AusgleichsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -631,7 +631,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_AusgleichsMassnahme" substitutionGroup="gml:_Feature">
+  <element name="BP_AusgleichsMassnahme" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -708,7 +708,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_BahnVerkehr" substitutionGroup="gml:_Feature">
+  <element name="BP_BahnVerkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -772,7 +772,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_BauGrenze" substitutionGroup="gml:_Feature">
+  <element name="BP_BauGrenze" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -851,7 +851,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_BauLinie" substitutionGroup="gml:_Feature">
+  <element name="BP_BauLinie" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -930,7 +930,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Baugebiet" substitutionGroup="gml:_Feature">
+  <element name="BP_Baugebiet" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -1102,7 +1102,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_BaugebietsTeilFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_BaugebietsTeilFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -1303,7 +1303,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Bauschutzbereich" substitutionGroup="gml:_Feature">
+  <element name="BP_Bauschutzbereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -1348,7 +1348,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Bereich" substitutionGroup="gml:_Feature">
+  <element name="BP_Bereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -1391,7 +1391,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_BereichOhneEinAusfahrtLinie" substitutionGroup="gml:_Feature">
+  <element name="BP_BereichOhneEinAusfahrtLinie" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -1468,7 +1468,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_BesondererNutzungszweckFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_BesondererNutzungszweckFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -1626,7 +1626,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_BodenschaetzeFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_BodenschaetzeFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -1703,7 +1703,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_DenkmalschutzEinzelanlage" substitutionGroup="gml:_Feature">
+  <element name="BP_DenkmalschutzEinzelanlage" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -1753,7 +1753,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_DenkmalschutzEinzelanlagePunkt" substitutionGroup="gml:_Feature">
+  <element name="BP_DenkmalschutzEinzelanlagePunkt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -1810,7 +1810,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_DenkmalschutzEnsembleFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_DenkmalschutzEnsembleFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -1881,7 +1881,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_EinfahrtPunkt" substitutionGroup="gml:_Feature">
+  <element name="BP_EinfahrtPunkt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -1959,7 +1959,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_EinfahrtsbereichLinie" substitutionGroup="gml:_Feature">
+  <element name="BP_EinfahrtsbereichLinie" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -2034,7 +2034,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_EingriffsBereich" substitutionGroup="gml:_Feature">
+  <element name="BP_EingriffsBereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -2091,7 +2091,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_ErhaltungsBereichFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_ErhaltungsBereichFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -2169,7 +2169,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_ErneuerbareEnergieFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_ErneuerbareEnergieFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -2226,7 +2226,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Fachgesetz" substitutionGroup="gml:_Feature">
+  <element name="BP_Fachgesetz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -2285,7 +2285,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_FestsetzungNachLandesrecht" substitutionGroup="gml:_Feature">
+  <element name="BP_FestsetzungNachLandesrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -2346,7 +2346,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_FestsetzungenBaugebiet" substitutionGroup="gml:_Feature">
+  <element name="BP_FestsetzungenBaugebiet" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -2402,7 +2402,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_FirstRichtungsLinie" substitutionGroup="gml:_Feature">
+  <element name="BP_FirstRichtungsLinie" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -2477,7 +2477,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_FoerderungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_FoerderungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -2553,7 +2553,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_FreiFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_FreiFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -2630,7 +2630,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_GebaeudeFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_GebaeudeFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -2707,7 +2707,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_GemeinbedarfsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_GemeinbedarfsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -2895,7 +2895,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_GemeinschaftsanlagenFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_GemeinschaftsanlagenFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -2994,7 +2994,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_GemeinschaftsanlagenZuordnung" substitutionGroup="gml:_Feature">
+  <element name="BP_GemeinschaftsanlagenZuordnung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -3055,7 +3055,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_GenerischesObjekt" substitutionGroup="gml:_Feature">
+  <element name="BP_GenerischesObjekt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -3144,7 +3144,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_GestaltungBaugebiet" substitutionGroup="gml:_Feature">
+  <element name="BP_GestaltungBaugebiet" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -3173,7 +3173,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_GewaesserFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_GewaesserFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -3253,7 +3253,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Grabungsschutzgebiet" substitutionGroup="gml:_Feature">
+  <element name="BP_Grabungsschutzgebiet" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -3298,7 +3298,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_GruenFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_GruenFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -3467,7 +3467,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_HoehenMass" substitutionGroup="gml:_Feature">
+  <element name="BP_HoehenMass" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -3527,7 +3527,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_HoehenPunkt" substitutionGroup="gml:_Feature">
+  <element name="BP_HoehenPunkt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -3585,7 +3585,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Immissionsschutz" substitutionGroup="gml:_Feature">
+  <element name="BP_Immissionsschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -3673,7 +3673,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_KennzeichnungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_KennzeichnungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -3757,7 +3757,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_KleintierhaltungFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_KleintierhaltungFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -3814,7 +3814,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Laermschutzbereich" substitutionGroup="gml:_Feature">
+  <element name="BP_Laermschutzbereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -3861,7 +3861,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Landwirtschaft" substitutionGroup="gml:_Feature">
+  <element name="BP_Landwirtschaft" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -3937,7 +3937,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_LandwirtschaftsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_LandwirtschaftsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4030,7 +4030,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_LandwirtschaftsLinie" substitutionGroup="gml:_Feature">
+  <element name="BP_LandwirtschaftsLinie" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4078,7 +4078,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_LuftreinhalteFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_LuftreinhalteFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4147,7 +4147,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_LuftverkehrFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_LuftverkehrFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4209,7 +4209,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_NebenanlagenAusschlussFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_NebenanlagenAusschlussFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4275,7 +4275,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_NebenanlagenFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_NebenanlagenFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4373,7 +4373,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_NichtUeberbaubareGrundstuecksflaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_NichtUeberbaubareGrundstuecksflaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4428,7 +4428,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_NutzungsartenGrenze" substitutionGroup="gml:_Feature">
+  <element name="BP_NutzungsartenGrenze" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4507,7 +4507,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_PersGruppenBestimmteFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_PersGruppenBestimmteFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4583,7 +4583,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Plan" substitutionGroup="gml:_Feature">
+  <element name="BP_Plan" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4685,7 +4685,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_RasterplanAenderung" substitutionGroup="gml:_Feature">
+  <element name="BP_RasterplanAenderung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4732,7 +4732,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_RegelungVergnuegungsstaetten" substitutionGroup="gml:_Feature">
+  <element name="BP_RegelungVergnuegungsstaetten" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4791,7 +4791,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_RekultivierungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_RekultivierungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4854,7 +4854,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_RichtungssektorGrenze" substitutionGroup="gml:_Feature">
+  <element name="BP_RichtungssektorGrenze" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4906,7 +4906,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_SchutzPflegeEntwicklungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_SchutzPflegeEntwicklungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -4994,7 +4994,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_SchutzPflegeEntwicklungsMassnahme" substitutionGroup="gml:_Feature">
+  <element name="BP_SchutzPflegeEntwicklungsMassnahme" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -5072,7 +5072,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Sichtflaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_Sichtflaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -5125,7 +5125,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Schutzgebiet" substitutionGroup="gml:_Feature">
+  <element name="BP_Schutzgebiet" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -5198,7 +5198,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_SpezielleBauweise" substitutionGroup="gml:_Feature">
+  <element name="BP_SpezielleBauweise" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -5274,7 +5274,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_SpielSportanlagenFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_SpielSportanlagenFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -5421,7 +5421,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_StrassenVerkehrsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_StrassenVerkehrsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -5560,7 +5560,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_StrassenbegrenzungsLinie" substitutionGroup="gml:_Feature">
+  <element name="BP_StrassenbegrenzungsLinie" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -5637,7 +5637,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Strassenkoerper" substitutionGroup="gml:_Feature">
+  <element name="BP_Strassenkoerper" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -5718,7 +5718,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_TechnikBestimmteFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_TechnikBestimmteFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -5776,7 +5776,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_TechnischeMassnahmenFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_TechnischeMassnahmenFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -5830,7 +5830,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_TextAbschnitt" substitutionGroup="gml:_Feature">
+  <element name="BP_TextAbschnitt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -5856,7 +5856,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_TextlicheFestsetzungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_TextlicheFestsetzungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -5919,7 +5919,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_UeberbaubareGrundstuecksFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_UeberbaubareGrundstuecksFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -6102,7 +6102,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_UnverbindlicheVormerkung" substitutionGroup="gml:_Feature">
+  <element name="BP_UnverbindlicheVormerkung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -6169,7 +6169,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_VerEntsorgung" substitutionGroup="gml:_Feature">
+  <element name="BP_VerEntsorgung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -6321,7 +6321,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_VerEntsorgungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_VerEntsorgungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -6410,7 +6410,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_VerEntsorgungsleitungLinie" substitutionGroup="gml:_Feature">
+  <element name="BP_VerEntsorgungsleitungLinie" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -6470,7 +6470,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Veraenderungssperre" substitutionGroup="gml:_Feature">
+  <element name="BP_Veraenderungssperre" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -6531,7 +6531,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_VerkehrsflaecheBesondererZweckbestimmung" substitutionGroup="gml:_Feature">
+  <element name="BP_VerkehrsflaecheBesondererZweckbestimmung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -6675,7 +6675,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_VorbHochwSchutzFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_VorbHochwSchutzFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -6737,7 +6737,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_WaldFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_WaldFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -6829,7 +6829,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_WasserrechtlicheFestsetzungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_WasserrechtlicheFestsetzungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -6891,7 +6891,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_WasserwirtschaftsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_WasserwirtschaftsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -6971,7 +6971,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_Wegerecht" substitutionGroup="gml:_Feature">
+  <element name="BP_Wegerecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7057,7 +7057,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_ZusatzkontingentLaerm" substitutionGroup="gml:_Feature">
+  <element name="BP_ZusatzkontingentLaerm" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7113,7 +7113,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="BP_ZusatzkontingentLaermFlaeche" substitutionGroup="gml:_Feature">
+  <element name="BP_ZusatzkontingentLaermFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7166,7 +7166,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Abgrabung" substitutionGroup="gml:_Feature">
+  <element name="FP_Abgrabung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7220,7 +7220,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_AbgrabungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="FP_AbgrabungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7278,7 +7278,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_AnpassungKlimawandel" substitutionGroup="gml:_Feature">
+  <element name="FP_AnpassungKlimawandel" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7332,7 +7332,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Aufschuettung" substitutionGroup="gml:_Feature">
+  <element name="FP_Aufschuettung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7387,7 +7387,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_AufschuettungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="FP_AufschuettungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7447,7 +7447,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_AusgleichsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="FP_AusgleichsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7520,7 +7520,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Bahnverkehr" substitutionGroup="gml:_Feature">
+  <element name="FP_Bahnverkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7578,7 +7578,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Bauschutzbereich" substitutionGroup="gml:_Feature">
+  <element name="FP_Bauschutzbereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7620,7 +7620,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_BebauungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="FP_BebauungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7697,7 +7697,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Bereich" substitutionGroup="gml:_Feature">
+  <element name="FP_Bereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7740,7 +7740,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Bodenschaetze" substitutionGroup="gml:_Feature">
+  <element name="FP_Bodenschaetze" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7795,7 +7795,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_BodenschaetzeFlaeche" substitutionGroup="gml:_Feature">
+  <element name="FP_BodenschaetzeFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7854,7 +7854,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_DenkmalschutzEnsemble" substitutionGroup="gml:_Feature">
+  <element name="FP_DenkmalschutzEnsemble" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7907,7 +7907,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Erhaltungssatzung" substitutionGroup="gml:_Feature">
+  <element name="FP_Erhaltungssatzung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -7960,7 +7960,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Fachgesetz" substitutionGroup="gml:_Feature">
+  <element name="FP_Fachgesetz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8012,7 +8012,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Gemeinbedarf" substitutionGroup="gml:_Feature">
+  <element name="FP_Gemeinbedarf" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8111,7 +8111,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_GenerischesObjekt" substitutionGroup="gml:_Feature">
+  <element name="FP_GenerischesObjekt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8182,7 +8182,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Gewaesser" substitutionGroup="gml:_Feature">
+  <element name="FP_Gewaesser" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8249,7 +8249,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Grabungsschutzgebiet" substitutionGroup="gml:_Feature">
+  <element name="FP_Grabungsschutzgebiet" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8291,7 +8291,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Gruen" substitutionGroup="gml:_Feature">
+  <element name="FP_Gruen" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8392,7 +8392,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_KeineZentrAbwasserBeseitigungFlaeche" substitutionGroup="gml:_Feature">
+  <element name="FP_KeineZentrAbwasserBeseitigungFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8452,7 +8452,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Kennzeichnung" substitutionGroup="gml:_Feature">
+  <element name="FP_Kennzeichnung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8521,7 +8521,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Laermschutzbereich" substitutionGroup="gml:_Feature">
+  <element name="FP_Laermschutzbereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8565,7 +8565,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Landwirtschaft" substitutionGroup="gml:_Feature">
+  <element name="FP_Landwirtschaft" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8619,7 +8619,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_LandwirtschaftsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="FP_LandwirtschaftsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8695,7 +8695,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Luftverkehr" substitutionGroup="gml:_Feature">
+  <element name="FP_Luftverkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8750,7 +8750,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_NutzungsbeschraenkungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="FP_NutzungsbeschraenkungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8810,7 +8810,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Plan" substitutionGroup="gml:_Feature">
+  <element name="FP_Plan" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8900,7 +8900,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_PrivilegiertesVorhaben" substitutionGroup="gml:_Feature">
+  <element name="FP_PrivilegiertesVorhaben" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -8961,7 +8961,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_PriviligiertesVorhaben" substitutionGroup="gml:_Feature">
+  <element name="FP_PriviligiertesVorhaben" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9027,7 +9027,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_RasterplanAenderung" substitutionGroup="gml:_Feature">
+  <element name="FP_RasterplanAenderung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9074,7 +9074,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_SchutzPflegeEntwicklung" substitutionGroup="gml:_Feature">
+  <element name="FP_SchutzPflegeEntwicklung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9147,7 +9147,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Schutzgebiet" substitutionGroup="gml:_Feature">
+  <element name="FP_Schutzgebiet" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9203,7 +9203,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_SpielSportanlage" substitutionGroup="gml:_Feature">
+  <element name="FP_SpielSportanlage" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9278,7 +9278,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Strassenverkehr" substitutionGroup="gml:_Feature">
+  <element name="FP_Strassenverkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9350,7 +9350,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_TextAbschnitt" substitutionGroup="gml:_Feature">
+  <element name="FP_TextAbschnitt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9376,7 +9376,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_TextlicheDarstellungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="FP_TextlicheDarstellungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9427,7 +9427,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_UnverbindlicheVormerkung" substitutionGroup="gml:_Feature">
+  <element name="FP_UnverbindlicheVormerkung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9482,7 +9482,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_VerEntsorgung" substitutionGroup="gml:_Feature">
+  <element name="FP_VerEntsorgung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9572,7 +9572,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_VorbHochwSchutz" substitutionGroup="gml:_Feature">
+  <element name="FP_VorbHochwSchutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9627,7 +9627,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_VorbehalteFlaeche" substitutionGroup="gml:_Feature">
+  <element name="FP_VorbehalteFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9688,7 +9688,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_WaldFlaeche" substitutionGroup="gml:_Feature">
+  <element name="FP_WaldFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9764,7 +9764,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Wasserrecht" substitutionGroup="gml:_Feature">
+  <element name="FP_Wasserrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9819,7 +9819,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_Wasserwirtschaft" substitutionGroup="gml:_Feature">
+  <element name="FP_Wasserwirtschaft" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9886,7 +9886,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="FP_ZentralerVersorgungsbereich" substitutionGroup="gml:_Feature">
+  <element name="FP_ZentralerVersorgungsbereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9939,7 +9939,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_Abgrenzung" substitutionGroup="gml:_Feature">
+  <element name="LP_Abgrenzung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -9986,7 +9986,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_AllgGruenflaeche" substitutionGroup="gml:_Feature">
+  <element name="LP_AllgGruenflaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10033,7 +10033,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_AnpflanzungBindungErhaltung" substitutionGroup="gml:_Feature">
+  <element name="LP_AnpflanzungBindungErhaltung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10097,7 +10097,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_Ausgleich" substitutionGroup="gml:_Feature">
+  <element name="LP_Ausgleich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10151,7 +10151,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_Bereich" substitutionGroup="gml:_Feature">
+  <element name="LP_Bereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10187,7 +10187,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_Biotopverbundflaeche" substitutionGroup="gml:_Feature">
+  <element name="LP_Biotopverbundflaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10237,7 +10237,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_Bodenschutzrecht" substitutionGroup="gml:_Feature">
+  <element name="LP_Bodenschutzrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10291,7 +10291,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_Denkmalschutzrecht" substitutionGroup="gml:_Feature">
+  <element name="LP_Denkmalschutzrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10338,7 +10338,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_ErholungFreizeit" substitutionGroup="gml:_Feature">
+  <element name="LP_ErholungFreizeit" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10400,7 +10400,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_Forstrecht" substitutionGroup="gml:_Feature">
+  <element name="LP_Forstrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10454,7 +10454,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_GenerischesObjekt" substitutionGroup="gml:_Feature">
+  <element name="LP_GenerischesObjekt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10506,7 +10506,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_Landschaftsbild" substitutionGroup="gml:_Feature">
+  <element name="LP_Landschaftsbild" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10558,7 +10558,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_NRW_Biotopschutz" substitutionGroup="gml:_Feature">
+  <element name="LP_NRW_Biotopschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10603,7 +10603,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_NRW_Brachflaeche" substitutionGroup="gml:_Feature">
+  <element name="LP_NRW_Brachflaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10649,7 +10649,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_NRW_ElementeKulturlandschaft" substitutionGroup="gml:_Feature">
+  <element name="LP_NRW_ElementeKulturlandschaft" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10694,7 +10694,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_NRW_ForstlicheFestsetzung" substitutionGroup="gml:_Feature">
+  <element name="LP_NRW_ForstlicheFestsetzung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10742,7 +10742,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_NRW_HerrichtungGrundstueck" substitutionGroup="gml:_Feature">
+  <element name="LP_NRW_HerrichtungGrundstueck" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10793,7 +10793,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_NRW_PflegeAnpflanzung" substitutionGroup="gml:_Feature">
+  <element name="LP_NRW_PflegeAnpflanzung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10850,7 +10850,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_NRW_PflegeLandschaftsbild" substitutionGroup="gml:_Feature">
+  <element name="LP_NRW_PflegeLandschaftsbild" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10895,7 +10895,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_NRW_SchutzobjektLandesrecht" substitutionGroup="gml:_Feature">
+  <element name="LP_NRW_SchutzobjektLandesrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10937,7 +10937,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_NRW_SonstigeMassnahme" substitutionGroup="gml:_Feature">
+  <element name="LP_NRW_SonstigeMassnahme" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -10984,7 +10984,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_NRW_StrukturenElementeBesiedelterBereich" substitutionGroup="gml:_Feature">
+  <element name="LP_NRW_StrukturenElementeBesiedelterBereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11029,7 +11029,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_NRW_TemporaererLandschaftsschutz" substitutionGroup="gml:_Feature">
+  <element name="LP_NRW_TemporaererLandschaftsschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11071,7 +11071,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_NRW_VerpflichtungWRRL" substitutionGroup="gml:_Feature">
+  <element name="LP_NRW_VerpflichtungWRRL" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11116,7 +11116,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_NutzungsAusschluss" substitutionGroup="gml:_Feature">
+  <element name="LP_NutzungsAusschluss" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11170,7 +11170,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_NutzungserfordernisRegelung" substitutionGroup="gml:_Feature">
+  <element name="LP_NutzungserfordernisRegelung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11226,7 +11226,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_Plan" substitutionGroup="gml:_Feature">
+  <element name="LP_Plan" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11294,7 +11294,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_PlanerischeVertiefung" substitutionGroup="gml:_Feature">
+  <element name="LP_PlanerischeVertiefung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11345,7 +11345,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_RasterplanAenderung" substitutionGroup="gml:_Feature">
+  <element name="LP_RasterplanAenderung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11383,7 +11383,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_SchutzPflegeEntwicklung" substitutionGroup="gml:_Feature">
+  <element name="LP_SchutzPflegeEntwicklung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11440,7 +11440,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_SchutzobjektBundesrecht" substitutionGroup="gml:_Feature">
+  <element name="LP_SchutzobjektBundesrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11488,7 +11488,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_SchutzobjektInternatRecht" substitutionGroup="gml:_Feature">
+  <element name="LP_SchutzobjektInternatRecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11543,7 +11543,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_SchutzobjektLandesrecht" substitutionGroup="gml:_Feature">
+  <element name="LP_SchutzobjektLandesrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11591,7 +11591,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_SonstigeAbgrenzuung" substitutionGroup="gml:_Feature">
+  <element name="LP_SonstigeAbgrenzuung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11611,7 +11611,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_SonstigesRecht" substitutionGroup="gml:_Feature">
+  <element name="LP_SonstigesRecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11665,7 +11665,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_TextAbschnitt" substitutionGroup="gml:_Feature">
+  <element name="LP_TextAbschnitt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11693,7 +11693,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_TextlicheFestsetzungsFlaeche" substitutionGroup="gml:_Feature">
+  <element name="LP_TextlicheFestsetzungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11740,7 +11740,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_WasserrechtGemeingebrEinschraenkungNaturschutz" substitutionGroup="gml:_Feature">
+  <element name="LP_WasserrechtGemeingebrEinschraenkungNaturschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11792,7 +11792,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_WasserrechtSchutzgebiet" substitutionGroup="gml:_Feature">
+  <element name="LP_WasserrechtSchutzgebiet" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11847,7 +11847,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_WasserrechtSonstige" substitutionGroup="gml:_Feature">
+  <element name="LP_WasserrechtSonstige" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11899,7 +11899,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_WasserrechtWirtschaftAbflussHochwSchutz" substitutionGroup="gml:_Feature">
+  <element name="LP_WasserrechtWirtschaftAbflussHochwSchutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -11953,7 +11953,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_ZuBegruenendeGrundstueckflaeche" substitutionGroup="gml:_Feature">
+  <element name="LP_ZuBegruenendeGrundstueckflaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12002,7 +12002,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="LP_Zwischennutzung" substitutionGroup="gml:_Feature">
+  <element name="LP_Zwischennutzung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12056,7 +12056,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Achse" substitutionGroup="gml:_Feature">
+  <element name="RP_Achse" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12119,7 +12119,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Bereich" substitutionGroup="gml:_Feature">
+  <element name="RP_Bereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12160,7 +12160,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Bodenschutz" substitutionGroup="gml:_Feature">
+  <element name="RP_Bodenschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12223,7 +12223,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Einzelhandel" substitutionGroup="gml:_Feature">
+  <element name="RP_Einzelhandel" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12280,7 +12280,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Energieversorgung" substitutionGroup="gml:_Feature">
+  <element name="RP_Energieversorgung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12348,7 +12348,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Entsorgung" substitutionGroup="gml:_Feature">
+  <element name="RP_Entsorgung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12414,7 +12414,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Erholung" substitutionGroup="gml:_Feature">
+  <element name="RP_Erholung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12475,7 +12475,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_ErneuerbareEnergie" substitutionGroup="gml:_Feature">
+  <element name="RP_ErneuerbareEnergie" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12533,7 +12533,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_Entsorgung mit NSM-Erweiterung -->
-  <element name="RP_NSM_Abfallentsorgung" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_Abfallentsorgung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12584,7 +12584,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_Entsorgung mit NSM-Erweiterung -->
-  <element name="RP_NSM_Abwasser" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_Abwasser" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12634,7 +12634,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Entwicklungsschwerpunkte" substitutionGroup="gml:_Feature">
+  <element name="RP_Entwicklungsschwerpunkte" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12675,7 +12675,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Forstwirtschaft" substitutionGroup="gml:_Feature">
+  <element name="RP_Forstwirtschaft" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12738,7 +12738,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Freiraum" substitutionGroup="gml:_Feature">
+  <element name="RP_Freiraum" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12793,7 +12793,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Funktionszuweisung" substitutionGroup="gml:_Feature">
+  <element name="RP_Funktionszuweisung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12849,7 +12849,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_FreizeitErholung" substitutionGroup="gml:_Feature">
+  <element name="RP_FreizeitErholung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12899,7 +12899,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_FreizeitErholung mit NSM-Erweiterung -->
-  <element name="RP_NSM_Erholung" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_Erholung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12949,7 +12949,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_FreizeitErholung mit NSM-Erweiterung -->
-  <element name="RP_NSM_RegionalBedeutsamerWanderweg" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_RegionalBedeutsamerWanderweg" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -12999,7 +12999,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_FreizeitErholung mit NSM-Erweiterung -->
-  <element name="RP_NSM_RegionalBedeutsameSportanlage" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_RegionalBedeutsameSportanlage" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13049,7 +13049,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_FreizeitErholung mit NSM-Erweiterung -->
-  <element name="RP_NSM_Tourismus" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_Tourismus" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13098,7 +13098,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_GemeindeFunktionSiedlungsentwicklung" substitutionGroup="gml:_Feature">
+  <element name="RP_GemeindeFunktionSiedlungsentwicklung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13149,7 +13149,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_GemeindeFunktionSiedlungsentwicklung mit NSM-Erweiterung -->
-  <element name="RP_NSM_ASB" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_ASB" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13200,7 +13200,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_GemeindeFunktionSiedlungsentwicklung mit NSM-Erweiterung -->
-  <element name="RP_NSM_GIB" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_GIB" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13250,7 +13250,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_GenerischesObjekt" substitutionGroup="gml:_Feature">
+  <element name="RP_GenerischesObjekt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13311,7 +13311,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Gewaesser" substitutionGroup="gml:_Feature">
+  <element name="RP_Gewaesser" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13371,7 +13371,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Grenze" substitutionGroup="gml:_Feature">
+  <element name="RP_Grenze" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13434,7 +13434,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_GruenzugGruenzaesur" substitutionGroup="gml:_Feature">
+  <element name="RP_GruenzugGruenzaesur" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13495,7 +13495,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Hochwasserschutz" substitutionGroup="gml:_Feature">
+  <element name="RP_Hochwasserschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13552,7 +13552,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_IndustrieGewerbe" substitutionGroup="gml:_Feature">
+  <element name="RP_IndustrieGewerbe" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13609,7 +13609,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Klimaschutz" substitutionGroup="gml:_Feature">
+  <element name="RP_Klimaschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13670,7 +13670,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Kommunikation" substitutionGroup="gml:_Feature">
+  <element name="RP_Kommunikation" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13729,7 +13729,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Kulturlandschaft" substitutionGroup="gml:_Feature">
+  <element name="RP_Kulturlandschaft" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13786,7 +13786,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_KulturellesSachgut" substitutionGroup="gml:_Feature">
+  <element name="RP_KulturellesSachgut" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13834,7 +13834,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_LaermschutzBauschutz" substitutionGroup="gml:_Feature">
+  <element name="RP_LaermschutzBauschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13889,7 +13889,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Laermschutzbereich" substitutionGroup="gml:_Feature">
+  <element name="RP_Laermschutzbereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -13940,7 +13940,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Landwirtschaft" substitutionGroup="gml:_Feature">
+  <element name="RP_Landwirtschaft" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14003,7 +14003,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Legendenobjekt" substitutionGroup="gml:_Feature">
+  <element name="RP_Legendenobjekt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14026,7 +14026,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Luftverkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_Luftverkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14084,7 +14084,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_ASB" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_ASB" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14130,7 +14130,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_AufschuettungAblagerung" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_AufschuettungAblagerung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14175,7 +14175,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_Forstwirtschaft" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_Forstwirtschaft" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14218,7 +14218,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_FreiraumAgrarbereich" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_FreiraumAgrarbereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14261,7 +14261,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_GIB" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_GIB" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14307,7 +14307,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_GrundwasserGewaesserschutz" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_GrundwasserGewaesserschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14352,7 +14352,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_Laermschutzzone" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_Laermschutzzone" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14394,7 +14394,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_Landschaftsschutz" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_Landschaftsschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14437,7 +14437,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_Luftverkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_Luftverkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14484,7 +14484,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_Naturschutz" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_Naturschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14528,7 +14528,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_OberflaechenGewaesser" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_OberflaechenGewaesser" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14569,7 +14569,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_OberflaechennaheBodenschaetze" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_OberflaechennaheBodenschaetze" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14615,7 +14615,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_Schienenverkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_Schienenverkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14664,7 +14664,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_SonstVerkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_SonstVerkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14709,7 +14709,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_SonstigeInfrastruktur" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_SonstigeInfrastruktur" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14751,7 +14751,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_SonstigeZweckbindung" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_SonstigeZweckbindung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14794,7 +14794,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_SonstigerSiedlungsbereich" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_SonstigerSiedlungsbereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14836,7 +14836,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_Strassenverkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_Strassenverkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14885,7 +14885,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_Ueberschwemmungsbereich" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_Ueberschwemmungsbereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14928,7 +14928,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_Wasserverkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_Wasserverkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -14975,7 +14975,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NRW_Zeitlinie" substitutionGroup="gml:_Feature">
+  <element name="RP_NRW_Zeitlinie" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15019,7 +15019,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NaturLandschaft" substitutionGroup="gml:_Feature">
+  <element name="RP_NaturLandschaft" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15081,7 +15081,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_NaturLandschaft mit NSM-Erweiterung -->
-  <element name="RP_NSM_Landschaftsschutz" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_Landschaftsschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15130,7 +15130,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_NaturLandschaft mit NSM-Erweiterung -->
-  <element name="RP_NSM_Naturschutz" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_Naturschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15179,7 +15179,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_NaturschutzrechtlichesSchutzgebiet" substitutionGroup="gml:_Feature">
+  <element name="RP_NaturschutzrechtlichesSchutzgebiet" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15246,7 +15246,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Plan" substitutionGroup="gml:_Feature">
+  <element name="RP_Plan" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15331,7 +15331,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Planungsraum" substitutionGroup="gml:_Feature">
+  <element name="RP_Planungsraum" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15385,7 +15385,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_RadwegWanderweg" substitutionGroup="gml:_Feature">
+  <element name="RP_RadwegWanderweg" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15442,7 +15442,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_RasterplanAenderung" substitutionGroup="gml:_Feature">
+  <element name="RP_RasterplanAenderung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15481,7 +15481,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Raumkategorie" substitutionGroup="gml:_Feature">
+  <element name="RP_Raumkategorie" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15544,7 +15544,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Rohstoff" substitutionGroup="gml:_Feature">
+  <element name="RP_Rohstoff" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15613,7 +15613,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Rohstoffsicherung" substitutionGroup="gml:_Feature">
+  <element name="RP_Rohstoffsicherung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15665,7 +15665,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_Rohstoffsicherung mit NSM-Erweiterung -->
-  <element name="RP_NSM_OberflaechennaheBodenschaetze" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_OberflaechennaheBodenschaetze" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15724,7 +15724,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_Rohstoffsicherung mit NSM-Erweiterung -->
-  <element name="RP_NSM_TiefliegendeRohstoffe" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_TiefliegendeRohstoffe" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15772,7 +15772,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Schienenverkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_Schienenverkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15832,7 +15832,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Siedlung" substitutionGroup="gml:_Feature">
+  <element name="RP_Siedlung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15887,7 +15887,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_SonstigeInfrastruktur" substitutionGroup="gml:_Feature">
+  <element name="RP_SonstigeInfrastruktur" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15944,7 +15944,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_SonstigerFreiraumschutz" substitutionGroup="gml:_Feature">
+  <element name="RP_SonstigerFreiraumschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -15999,7 +15999,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_SonstigerSiedlungsbereich" substitutionGroup="gml:_Feature">
+  <element name="RP_SonstigerSiedlungsbereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16054,7 +16054,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_SonstigeSiedlungsstruktur" substitutionGroup="gml:_Feature">
+  <element name="RP_SonstigeSiedlungsstruktur" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16102,7 +16102,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_SonstigerFreiraumstruktur" substitutionGroup="gml:_Feature">
+  <element name="RP_SonstigerFreiraumstruktur" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16151,7 +16151,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_SonstVerkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_SonstVerkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16209,7 +16209,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_SozialeInfrastruktur" substitutionGroup="gml:_Feature">
+  <element name="RP_SozialeInfrastruktur" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16268,7 +16268,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Sperrgebiet" substitutionGroup="gml:_Feature">
+  <element name="RP_Sperrgebiet" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16329,7 +16329,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Sportanlage" substitutionGroup="gml:_Feature">
+  <element name="RP_Sportanlage" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16386,7 +16386,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Strassenverkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_Strassenverkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16446,7 +16446,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_TextAbschnitt" substitutionGroup="gml:_Feature">
+  <element name="RP_TextAbschnitt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16472,7 +16472,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Verkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_Verkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16537,7 +16537,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_Verkehr mit NSM-Erweiterung -->
-  <element name="RP_NSM_Luftverkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_Luftverkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16596,7 +16596,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_Verkehr mit NSM-Erweiterung -->
-  <element name="RP_NSM_Schienenverkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_Schienenverkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16655,7 +16655,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_Verkehr mit NSM-Erweiterung -->
-  <element name="RP_NSM_SonstVerkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_SonstVerkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16708,7 +16708,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_Verkehr mit NSM-Erweiterung -->
-  <element name="RP_NSM_Strassenverkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_Strassenverkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16766,7 +16766,7 @@
     </complexType>
   </element>
   <!-- Erweiterte Kopie von RP_Verkehr mit NSM-Erweiterung -->
-  <element name="RP_NSM_Wasserverkehr" substitutionGroup="gml:_Feature">
+  <element name="RP_NSM_Wasserverkehr" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16823,7 +16823,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_VorbHochwasserschutz" substitutionGroup="gml:_Feature">
+  <element name="RP_VorbHochwasserschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16877,7 +16877,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Wasserschutz" substitutionGroup="gml:_Feature">
+  <element name="RP_Wasserschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -16941,7 +16941,7 @@
         </extension>
       </complexContent>
     </complexType>
-  </element><element name="RP_Wasserverkehr" substitutionGroup="gml:_Feature">
+  </element><element name="RP_Wasserverkehr" substitutionGroup="gml:AbstractFeature">
   <complexType>
     <complexContent>
       <extension base="gml:AbstractFeatureType">
@@ -16999,7 +16999,7 @@
     </complexContent>
   </complexType>
 </element>
-  <element name="RP_Wasserwirtschaft" substitutionGroup="gml:_Feature">
+  <element name="RP_Wasserwirtschaft" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17058,7 +17058,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Windenergie" substitutionGroup="gml:_Feature">
+  <element name="RP_Windenergie" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17095,7 +17095,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_Windenergienutzung" substitutionGroup="gml:_Feature">
+  <element name="RP_Windenergienutzung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17144,7 +17144,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_WohnenSiedlung" substitutionGroup="gml:_Feature">
+  <element name="RP_WohnenSiedlung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17201,7 +17201,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="RP_ZentralerOrt" substitutionGroup="gml:_Feature">
+  <element name="RP_ZentralerOrt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17266,7 +17266,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Bauverbotszone" substitutionGroup="gml:_Feature">
+  <element name="SO_Bauverbotszone" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17322,7 +17322,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Bereich" substitutionGroup="gml:_Feature">
+  <element name="SO_Bereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17355,7 +17355,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Bodenschutzrecht" substitutionGroup="gml:_Feature">
+  <element name="SO_Bodenschutzrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17414,7 +17414,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Denkmalschutzrecht" substitutionGroup="gml:_Feature">
+  <element name="SO_Denkmalschutzrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17473,7 +17473,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Forstrecht" substitutionGroup="gml:_Feature">
+  <element name="SO_Forstrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17535,7 +17535,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Gebiet" substitutionGroup="gml:_Feature">
+  <element name="SO_Gebiet" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17597,7 +17597,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Gewaesser" substitutionGroup="gml:_Feature">
+  <element name="SO_Gewaesser" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17651,7 +17651,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Grenze" substitutionGroup="gml:_Feature">
+  <element name="SO_Grenze" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17703,7 +17703,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Linienobjekt" substitutionGroup="gml:_Feature">
+  <element name="SO_Linienobjekt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17751,7 +17751,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Luftverkehrsrecht" substitutionGroup="gml:_Feature">
+  <element name="SO_Luftverkehrsrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17811,7 +17811,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Objekt" substitutionGroup="gml:_Feature">
+  <element name="SO_Objekt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17858,7 +17858,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Plan" substitutionGroup="gml:_Feature">
+  <element name="SO_Plan" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17917,7 +17917,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_RasterplanAenderung" substitutionGroup="gml:_Feature">
+  <element name="SO_RasterplanAenderung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -17947,7 +17947,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Schienenverkehrsrecht" substitutionGroup="gml:_Feature">
+  <element name="SO_Schienenverkehrsrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18007,7 +18007,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_SchutzgebietNaturschutzrecht" substitutionGroup="gml:_Feature">
+  <element name="SO_SchutzgebietNaturschutzrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18067,7 +18067,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_SchutzgebietSonstigesRecht" substitutionGroup="gml:_Feature">
+  <element name="SO_SchutzgebietSonstigesRecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18127,7 +18127,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_SchutzgebietWasserrecht" substitutionGroup="gml:_Feature">
+  <element name="SO_SchutzgebietWasserrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18187,7 +18187,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_SonstigesRecht" substitutionGroup="gml:_Feature">
+  <element name="SO_SonstigesRecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18245,7 +18245,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Strassenverkehrsrecht" substitutionGroup="gml:_Feature">
+  <element name="SO_Strassenverkehrsrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18303,7 +18303,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_TextAbschnitt" substitutionGroup="gml:_Feature">
+  <element name="SO_TextAbschnitt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18329,7 +18329,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="SO_Wasserrecht" substitutionGroup="gml:_Feature">
+  <element name="SO_Wasserrecht" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18388,7 +18388,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_BegruendungAbschnitt" substitutionGroup="gml:_Feature">
+  <element name="XP_BegruendungAbschnitt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18411,7 +18411,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_DatumAttribut" substitutionGroup="gml:_Feature">
+  <element name="XP_DatumAttribut" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18432,7 +18432,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_DoubleAttribut" substitutionGroup="gml:_Feature">
+  <element name="XP_DoubleAttribut" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18453,7 +18453,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_ExterneReferenz" substitutionGroup="gml:_Feature">
+  <element name="XP_ExterneReferenz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18478,7 +18478,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_ExterneReferenzPlan" substitutionGroup="gml:_Feature">
+  <element name="XP_ExterneReferenzPlan" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18506,7 +18506,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_FPO" substitutionGroup="gml:_Feature">
+  <element name="XP_FPO" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18533,7 +18533,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_Grenze" substitutionGroup="gml:_Feature">
+  <element name="XP_Grenze" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18570,7 +18570,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_Hoehenangabe" substitutionGroup="gml:_Feature">
+  <element name="XP_Hoehenangabe" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18598,7 +18598,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_IntegerAttribut" substitutionGroup="gml:_Feature">
+  <element name="XP_IntegerAttribut" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18619,7 +18619,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_LPO" substitutionGroup="gml:_Feature">
+  <element name="XP_LPO" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18646,7 +18646,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_LTO" substitutionGroup="gml:_Feature">
+  <element name="XP_LTO" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18683,7 +18683,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_Nutzungsschablone" substitutionGroup="gml:_Feature">
+  <element name="XP_Nutzungsschablone" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18724,7 +18724,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_PPO" substitutionGroup="gml:_Feature">
+  <element name="XP_PPO" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18756,7 +18756,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_PTO" substitutionGroup="gml:_Feature">
+  <element name="XP_PTO" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18795,7 +18795,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_Praesentationsobjekt" substitutionGroup="gml:_Feature">
+  <element name="XP_Praesentationsobjekt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18821,7 +18821,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_RasterplanBasis" substitutionGroup="gml:_Feature">
+  <element name="XP_RasterplanBasis" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18847,7 +18847,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_Rasterdarstellung" substitutionGroup="gml:_Feature">
+  <element name="XP_Rasterdarstellung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18873,7 +18873,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_StringAttribut" substitutionGroup="gml:_Feature">
+  <element name="XP_StringAttribut" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18894,7 +18894,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_TextAbschnitt" substitutionGroup="gml:_Feature">
+  <element name="XP_TextAbschnitt" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18918,7 +18918,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_URLAttribut" substitutionGroup="gml:_Feature">
+  <element name="XP_URLAttribut" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
@@ -18939,7 +18939,7 @@
       </complexContent>
     </complexType>
   </element>
-  <element name="XP_VerfahrensMerkmal" substitutionGroup="gml:_Feature">
+  <element name="XP_VerfahrensMerkmal" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
