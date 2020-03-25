@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.latlon.xplan.validator.web.shared.ArtifactType;
+
+import static org.springframework.http.MediaType.TEXT_HTML_VALUE;
 
 /**
  * REST-Interface providing report artefacts
@@ -34,7 +37,7 @@ public class ReportController {
     @Autowired
     private ReportProvider reportProvider;
 
-    @RequestMapping(value = "/html/{uuid}", params = { "validationName" }, method = RequestMethod.GET)
+    @RequestMapping(value = "/html/{uuid}", params = { "validationName" }, method = RequestMethod.GET, produces = TEXT_HTML_VALUE)
     @ResponseBody
     public void getHtmlReport( HttpServletResponse response, 
                                @PathVariable String uuid, 
