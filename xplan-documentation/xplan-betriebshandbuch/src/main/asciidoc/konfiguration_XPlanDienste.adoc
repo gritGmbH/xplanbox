@@ -9,9 +9,9 @@ Aktuell kann es dazu kommen, dass die in den Capabilities-Dokumenten angegebene 
 
 Es wird daher empfohlen, die BoundingBox manuell auf den Bereich zu konfigurieren, der den gesamten zu beplanenden Bereich umfasst. Dieser kann sowohl bereits importierte als auch zukünftig noch einzupflegende Planwerke beinhalten.
 
-Die BoundingBox wird für jeden Workspace in der Datei bbox_cache.properties in dem Verzeichnis _.deegree/<XPlanDienst-Workspace>/datasources/feature_ konfiguriert. Sollte die Datei noch nicht existieren, ist diese manuell anzulegen. Andernfalls kann der Inhalt ausgetauscht werden (sofern keine weiteren manuellen Anpassungen erfolgt sind). Die Dienste dürfen beim Anlegen und Anpassen der Datei nicht gestartet sein.
+Die BoundingBox wird für jeden Workspace in der Datei _bbox_cache.properties_ in dem Verzeichnis _.deegree/<XPlanDienst-Workspace>/datasources/feature_ konfiguriert. Sollte die Datei noch nicht existieren, ist diese manuell anzulegen. Andernfalls kann der Inhalt ausgetauscht werden (sofern keine weiteren manuellen Anpassungen erfolgt sind). Die Dienste dürfen beim Anlegen und Anpassen der Datei nicht gestartet sein.
 
-Beispiel: Auschnitt aus der bbox_cache.properties Datei (ein vollständiges Beispiel findet sich im <<bbox_cache.properties, Anhang>>)
+Beispiel: Auschnitt aus der _bbox_cache.properties_ Datei (ein vollständiges Beispiel findet sich im <<bbox_cache.properties, Anhang>>)
 
 ----
 ....
