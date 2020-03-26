@@ -20,8 +20,8 @@
     <slf4j.version>1.7.5</slf4j.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.version>4.3.23.RELEASE</spring.version>
-    <spring.security.version>4.2.12.RELEASE</spring.security.version>
+    <spring.version>4.3.26.RELEASE</spring.version>
+    <spring.security.version>4.2.14.RELEASE</spring.security.version>
     <skip.unit.tests>false</skip.unit.tests>
   </properties>
 
