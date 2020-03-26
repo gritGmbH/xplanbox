@@ -9,9 +9,9 @@ Konfiguration beider Tomcat-Instanzen beschrieben.
 [[anwendungs-tomcat]]
 ==== Anwendungs-Tomcat
 
-Im Anwendungs-Tomcat müssen folgende Konfigurationen vorgenommen werden:
+Im Anwendungs-Tomcat muss folgende Konfigurationen vorgenommen werden:
 
-.  Für den XPlanManagerWeb muss die Variable _XPLANBOX_CONFIG_ als Java
+Für den XPlanManagerWeb muss die Variable _XPLANBOX_CONFIG_ als Java
 Property gesetzt werden. Das mit Hilfe dieser Variable referenzierte
 Verzeichnis muss die Konfiguration des XPlanManagerWeb enthalten (es
 handelt sich um die Dateien managerConfiguration.properties und
@@ -19,11 +19,6 @@ managerWebConfiguration.properties). Wurde der Anleitung in Abschnitt
 <<anwendung-installieren>> gefolgt, befindet sich das
 Verzeichnis mit dem Namen _manager-configuration_ im Verzeichnis
 _.deegree_ im Home-Verzeichnis des Nutzers.
-.  Um das Logging der Anwendungen XPlanManagerWeb und XPlanValidatorWeb in ein gesondertes Verzeichnis zu aktivieren (s. Details im
-Abschnitt <<Logging>> muss die Variable
-_xplan.logdir_ als Java Property gesetzt werden. In dem so
-konfigurierten Verzeichnis werden die log-Dateien der beiden Anwendungen
-abgelegt.
 
 [[anwendungs-tomcat-linux]]
 ===== Linux
@@ -32,31 +27,28 @@ Für die Konfiguration der oben genannten Punkte muss zunächst im
 Verzeichnis _<tomcat-root>/bin_ eine neue Datei mit dem Namen
 _setenv.sh_ angelegt werden.
 
-In dieser Datei erfolgt das Setzen der Variable
-_XPLANBOX_CONFIG_ sowie _xplan.logdir_ durch das Hinzufügen von:
+In dieser Datei erfolgt das Setzen der Variable _XPLANBOX_CONFIG_ durch das Hinzufügen von:
 
 ----
-export JAVA_OPTS=’-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/manager-configuration -Dxplan.logdir=/home/xplanbox/logs’
+export JAVA_OPTS=’-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/manager-configuration’
 ----
 
-Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, müssen *-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/manager-configuration* und *-Dxplan.logdir=/home/xplanbox/logs* in die bestehenden JAVA_OPTS integriert werden.
+Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, muss die Variable *-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/manager-configuration* in die bestehenden JAVA_OPTS integriert werden.
 
 [[anwendungs-tomcat-windows]]
 ===== Windows
 
-Für das Setzen der Variable _XPLANBOX_CONFIG_ sowie
-_xplan.logdir_ muss zunächst eine neue Datei mit dem Namen _setenv.bat_
-im Verzeichnis _<tomcat-root>/bin_ angelegt werden. Dort werden die
-Variablen wie folgt hinzugefügt:
+Für das Setzen der Variable _XPLANBOX_CONFIG_ sowie muss zunächst eine neue Datei mit dem Namen _setenv.bat_
+im Verzeichnis _<tomcat-root>/bin_ angelegt werden. Dort wird die Variable wie folgt hinzugefügt:
 
 ----
-export JAVA_OPTS=’-DXPLANBOX_CONFIG=C:\.deegree\manager-configuration -Dxplan.logdir=C:\logs’
+export JAVA_OPTS=’-DXPLANBOX_CONFIG=C:\.deegree\manager-configuration’
 ----
 
-Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, müssen *-DXPLANBOX_CONFIG=C:\.deegree\manager-configuration* und *-Dxplan.logdir=C:\logs* in die bestehenden JAVA_OPTS integriert werden.
+Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, muss die Variable *-DXPLANBOX_CONFIG=C:\.deegree\manager-configuration* in die bestehenden JAVA_OPTS integriert werden.
 
 NOTE: Der Anwendungs-Tomcat muss mindestens über 4GB Arbeitsspeicher verfügen,
-dies kann durch setzen der Umgebungsvariable: _exportJAVA_OPTS=’-Xmx4096m’_ erfolgen.
+dies kann durch setzen der Umgebungsvariable: _export JAVA_OPTS=’-Xmx4096m’_ erfolgen.
 
 [[dienste-tomcat]]
 ==== Dienste-Tomcat
