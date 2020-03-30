@@ -5645,11 +5645,7 @@ _target {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( massnahme == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' )
-  }
-} else if ( massnahme == '1000' ) {
+if ( massnahme == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' )
   }
@@ -5658,6 +5654,10 @@ if ( massnahme == '0' ) {
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' )
   }
 } else if ( massnahme == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' )
+  }
+} else {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' )
   }
@@ -5683,11 +5683,7 @@ if ( massnahme == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( ziel == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
-  }
-} else if ( ziel == '1000' ) {
+if ( ziel == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
   }
@@ -5704,6 +5700,10 @@ if ( ziel == '0' ) {
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
   }
 } else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
+  }
+} else {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
   }
@@ -5729,11 +5729,7 @@ if ( ziel == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( ziel == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
-  }
-} else if ( ziel == '1000' ) {
+if ( ziel == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
   }
@@ -5750,6 +5746,10 @@ if ( ziel == '0' ) {
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
   }
 } else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
+  }
+} else {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
   }
@@ -5775,11 +5775,7 @@ if ( ziel == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( besondereArtDerBaulNutzung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
-  }
-} else if ( besondereArtDerBaulNutzung == '1000' ) {
+else if ( besondereArtDerBaulNutzung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
   }
@@ -5839,6 +5835,10 @@ if ( besondereArtDerBaulNutzung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -5859,11 +5859,7 @@ if ( besondereArtDerBaulNutzung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( typ == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' )
-  }
-} else if ( typ == '1000' ) {
+if ( typ == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' )
   }
@@ -5872,6 +5868,10 @@ if ( typ == '0' ) {
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' )
   }
 } else if ( typ == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' )
+  }
+} else {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' )
   }
@@ -5895,11 +5895,7 @@ if ( typ == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( typ == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
-  }
-} else if ( typ == '1000' ) {
+if ( typ == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
   }
@@ -5908,6 +5904,10 @@ if ( typ == '0' ) {
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
   }
 } else if ( typ == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
+  }
+} else {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
   }
@@ -5931,11 +5931,7 @@ if ( typ == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( typ == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
-  }
-} else if ( typ == '1000' ) {
+if ( typ == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
   }
@@ -5944,6 +5940,10 @@ if ( typ == '0' ) {
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
   }
 } else if ( typ == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
+  }
+} else {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
   }
@@ -5967,11 +5967,7 @@ if ( typ == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( grund == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' )
-  }
-} else if ( grund == '1000' ) {
+if ( grund == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_3_BuiltHeritageProtection' )
   }
@@ -5982,6 +5978,10 @@ if ( grund == '0' ) {
 } else if ( grund == '3000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/8_1_CompositionOfLocalResidentialPopulation' )
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' )
   }
 }
 </core:text>
@@ -6005,11 +6005,7 @@ if ( grund == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
   }
@@ -6177,6 +6173,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -6197,11 +6197,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
   }
@@ -6257,6 +6253,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -6279,11 +6279,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_9_Water' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_9_HarborActivities' ) 
   }
@@ -6298,6 +6294,10 @@ if ( zweckbestimmung == '0' ) {
 } else if ( zweckbestimmung == '9999' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_9_Water' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_9_Water' )
   }
 }
 </core:text>
@@ -6321,11 +6321,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_OpenSpaceStructure' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
   }
@@ -6469,6 +6465,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_OpenSpaceStructure' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -6491,11 +6491,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_RiskExposure' ) 
   }
@@ -6531,6 +6527,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -6553,11 +6553,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
   }
@@ -6593,6 +6589,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -6613,17 +6613,17 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( typ == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' ) 
-  }
-} else if ( typ == '1000' ) {
+if ( typ == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' ) 
   }
 } else if ( typ == '2000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' )
   }
 }
 </core:text>
@@ -6645,11 +6645,7 @@ if ( typ == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' ) 
   }
@@ -6689,6 +6685,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -6709,17 +6709,17 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( typ == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
-  }
-} else if ( typ == '1000' ) {
+if ( typ == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
   }
 } else if ( typ == '9999' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' )
   }
 }
 </core:text>
@@ -6741,11 +6741,7 @@ if ( typ == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zulaessigkeit == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_RegulatedActivities' ) 
-  }
-} else if ( zulaessigkeit == '1000' ) {
+if ( zulaessigkeit == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' ) 
   }
@@ -6756,6 +6752,10 @@ if ( zulaessigkeit == '0' ) {
 } else if ( zulaessigkeit == '3000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_RegulatedActivities' )
   }
 }
 </core:text>
@@ -6779,11 +6779,7 @@ if ( zulaessigkeit == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( ziel == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
-  }
-} else if ( ziel == '1000' ) {
+if ( ziel == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
   }
@@ -6802,6 +6798,10 @@ if ( ziel == '0' ) {
 } else if ( ziel == '9999' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' )
   }
 }
 </core:text>
@@ -6825,11 +6825,7 @@ if ( ziel == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( ziel == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
-  }
-} else if ( ziel == '1000' ) {
+if ( ziel == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
   }
@@ -6848,6 +6844,10 @@ if ( ziel == '0' ) {
 } else if ( ziel == '9999' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' )
   }
 }
 </core:text>
@@ -6869,11 +6869,7 @@ if ( ziel == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( typ == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_3_SpatialDesign' ) 
-  }
-} else if ( typ == '1000' ) {
+if ( typ == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_3_SpatialDesign' ) 
   }
@@ -6901,6 +6897,10 @@ if ( typ == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_3_SpatialDesign' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_3_SpatialDesign' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -6923,11 +6923,7 @@ if ( typ == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
   }
@@ -6942,6 +6938,10 @@ if ( zweckbestimmung == '0' ) {
 } else if ( zweckbestimmung == '9999' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' )
   }
 }
 </core:text>
@@ -6965,17 +6965,17 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( nutzungsform == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_1_Road' ) 
-  }
-} else if ( nutzungsform == '1000' ) {
+if ( nutzungsform == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_1_Road' ) 
   }
 } else if ( nutzungsform == '2000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_1_Road' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_1_Road' )
   }
 }
 </core:text>
@@ -6999,11 +6999,7 @@ if ( nutzungsform == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( typ == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
-  }
-} else if ( typ == '1000' ) {
+if ( typ == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
   }
@@ -7014,6 +7010,10 @@ if ( typ == '0' ) {
 } else if ( typ == '3000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' )
   }
 }
 </core:text>
@@ -7069,11 +7069,7 @@ if ( zweckbestimmung == '1000' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_Infrastructure' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
   }
@@ -7337,6 +7333,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_Infrastructure' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -7357,11 +7357,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( verlaengerung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_3_ForbidenActivities' ) 
-  }
-} else if ( verlaengerung == '1000' ) {
+if ( verlaengerung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_3_ForbidenActivities' ) 
   }
@@ -7372,6 +7368,10 @@ if ( verlaengerung == '0' ) {
 } else if ( verlaengerung == '3000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_3_ForbidenActivities' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_3_ForbidenActivities' )
   }
 }
 </core:text>
@@ -7395,11 +7395,7 @@ if ( verlaengerung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_5_2_ParkingObligationArea' ) 
   }
@@ -7467,6 +7463,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -7489,11 +7489,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_1_FloodRisks' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_1_2_FloodRiskManagementZone' ) 
   }
@@ -7517,6 +7513,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_1_FloodRisks' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_1_FloodRisks' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -7539,11 +7539,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( typ == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_1_PublicEasement' ) 
-  }
-} else if ( typ == '1000' ) {
+if ( typ == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_1_PublicEasement' ) 
   }
@@ -7570,6 +7566,10 @@ if ( typ == '0' ) {
 } else if ( typ == '5000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_1_PublicEasement' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_1_PublicEasement' )
   }
 }
 </core:text>
@@ -9264,11 +9264,7 @@ _target {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( ziel == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
-  }
-} else if ( ziel == '1000' ) {
+if ( ziel == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
   }
@@ -9287,6 +9283,10 @@ if ( ziel == '0' ) {
 } else if ( ziel == '9999' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' )
   }
 }
 </core:text>
@@ -9310,11 +9310,7 @@ if ( ziel == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( besondereArtDerBaulNutzung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
-  }
-} else if ( besondereArtDerBaulNutzung == '1000' ) {
+if ( besondereArtDerBaulNutzung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/5_1_PermanentResidentialUse' ) 
   }
@@ -9376,6 +9372,10 @@ if ( besondereArtDerBaulNutzung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -9398,11 +9398,7 @@ if ( besondereArtDerBaulNutzung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_TertiaryProduction' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_1_PublicAdministrationDefenceAndSocialSecurityServices' ) 
   }
@@ -9570,6 +9566,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_5_OtherCommunityServices' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_TertiaryProduction' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -9592,11 +9592,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_2_WaterAreasNotInOtherEconomicUse' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_4_WaterTransport' ) 
   }
@@ -9611,6 +9607,10 @@ if ( zweckbestimmung == '0' ) {
 } else if ( zweckbestimmung == '9999' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_2_WaterAreasNotInOtherEconomicUse' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_2_WaterAreasNotInOtherEconomicUse' )
   }
 }
 </core:text>
@@ -9634,11 +9634,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
   }
@@ -9785,6 +9781,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_1_CommercialAgriculturalProduction' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -9807,11 +9807,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
   }
@@ -9847,6 +9843,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -9869,11 +9869,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_Agriculture' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_Agriculture' ) 
   }
@@ -9909,6 +9905,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_Agriculture' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_Agriculture' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -9931,11 +9931,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( ziel == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
-  }
-} else if ( ziel == '1000' ) {
+if ( ziel == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
   }
@@ -9954,6 +9950,10 @@ if ( ziel == '0' ) {
 } else if ( ziel == '9999' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' )
   }
 }
 </core:text>
@@ -9977,11 +9977,7 @@ if ( ziel == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( ziel == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
-  }
-} else if ( ziel == '1000' ) {
+if ( ziel == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
   }
@@ -10000,6 +9996,10 @@ if ( ziel == '0' ) {
 } else if ( ziel == '9999' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' )
   }
 }
 </core:text>
@@ -10023,11 +10023,7 @@ if ( ziel == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
   }
@@ -10042,6 +10038,10 @@ if ( zweckbestimmung == '0' ) {
 } else if ( zweckbestimmung == '9999' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' )
   }
 }
 </core:text>
@@ -10065,17 +10065,17 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( nutzungsform == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
-  }
-} else if ( nutzungsform == '1000' ) {
+if ( nutzungsform == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
   }
 } else if ( nutzungsform == '2000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' )
   }
 }
 </core:text>
@@ -10099,11 +10099,7 @@ if ( nutzungsform == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_Utilities' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/2_4_EnergyProduction' ) 
   }
@@ -10370,6 +10366,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_4_OtherUtilities' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_Utilities' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -10392,11 +10392,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_TransportNetworks' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
   }
@@ -10464,6 +10460,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_5_OtherTransportNetwork' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_TransportNetworks' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -10486,11 +10486,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_2_Forestry' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_1_LandAreasNotInOtherEconomicUse' ) 
   }
@@ -10514,6 +10510,10 @@ if ( zweckbestimmung == '0' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
   }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_2_Forestry' )
+  }
 }
 </core:text>
         </complexParameter>
@@ -10536,11 +10536,7 @@ if ( zweckbestimmung == '0' ) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( zweckbestimmung == '0' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
-  }
-} else if ( zweckbestimmung == '1000' ) {
+if ( zweckbestimmung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
   }
@@ -10563,6 +10559,10 @@ if ( zweckbestimmung == '0' ) {
 } else if ( zweckbestimmung == '9999' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' )
   }
 }
 </core:text>
