@@ -39,8 +39,14 @@
       <Layer>fp_kennz</Layer>
     </Theme>
     <Theme>
-      <Identifier>fp_bsfl</Identifier>
+      <Identifier>fp_bs</Identifier>
       <d:Title>FP: Bodenschätze</d:Title>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>fp_bs</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>fp_bsfl</Identifier>
+      <d:Title>FP: BodenschätzeFläche</d:Title>
       <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_bsfl</Layer>
     </Theme>
