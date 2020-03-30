@@ -3,7 +3,7 @@
     <name>XPlan GML 5.1 to INSPRE PLU</name>
     <author>lat/lon GmbH</author>
     <created>2018-11-19T14:09:54.783+01:00</created>
-    <modified>2020-03-23T15:41:50.181+01:00</modified>
+    <modified>2020-03-30T10:26:18.178+02:00</modified>
     <save-config action-id="project.save" provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -23,6 +23,14 @@
         <setting name="resourceId">38bbd4a7-d319-43f2-a605-8214937b4d15</setting>
         <setting name="source">../../appschemas/inspireplu/PlannedLandUse-AdaptedGml.xsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xsd</setting>
+    </resource>
+    <resource action-id="eu.esdihumboldt.hale.io.groovy.snippets.load" provider-id="eu.esdihumboldt.hale.io.groovy.snippets">
+        <setting name="identifier">classification</setting>
+        <setting name="charset">UTF-8</setting>
+        <setting name="resourceId">15949be6-b409-4c74-8566-06ba37aae8d5</setting>
+        <setting name="source">../xplan50/classification.groovy</setting>
+        <setting name="contentType">eu.esdihumboldt.hale.io.groovy</setting>
+        <setting name="autoReload">true</setting>
     </resource>
     <file name="alignment.xml" location="xplanGml51-inspirePlu.halex.alignment.xml"/>
     <file name="styles.sld" location="xplanGml51-inspirePlu.halex.styles.sld"/>

@@ -7232,6 +7232,1466 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cad5b9dee-3e7e-483c-bdc4-cf984c1c2d8e" priority="normal">
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def featureTypeName = _snippets.classification {
+    featureTypeName(_sourceTypes)
+}
+
+def value = 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse';
+
+if ( featureTypeName == 'BP_AbgrabungsFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_3_MiningAndQuarrying';
+} else if ( featureTypeName == 'BP_AufschuettungsFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse';
+} else if ( featureTypeName == 'BP_BesondererNutzungszweckFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse';
+} else if ( featureTypeName == 'BP_BodenschaetzeFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_3_MiningAndQuarrying';
+} else if ( featureTypeName == 'BP_FestsetzungNachLandesrecht' ){
+    value = 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse';
+} else if ( featureTypeName == 'BP_GenerischesObjekt' ){
+    value = 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse';
+} else if ( featureTypeName == 'BP_KleintierhaltungFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_3_AgriculturalProductionForOwnConsumption';
+} else if ( featureTypeName == 'BP_RekultivierungsFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse';
+}
+
+_target {
+    href ( value )
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C3e94fe93-36cf-48b2-994a-2cddbb0f3630" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_AusgleichsFlaecheType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="ziel" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( ziel == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '4000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C3d6d3558-2b9f-4c21-98ec-6e026b8396ff" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_BaugebietsTeilFlaecheType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="besondereArtDerBaulNutzung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( besondereArtDerBaulNutzung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/5_1_PermanentResidentialUse' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/5_1_PermanentResidentialUse' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/5_ResidentialUse' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/5_3_OtherResidentialUse' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_2_FarmingInfrastructure' ) 
+  }
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/5_ResidentialUse' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1500' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/5_2_ResidentialUseWithOtherCompatibleUses' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1550' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/5_2_ResidentialUseWithOtherCompatibleUses' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_TertiaryProduction' ) 
+  }
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/5_ResidentialUse' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1700' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/2_3_LightEndProductIndustry' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1800' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/2_SecondaryProduction' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_5_OtherRecreationalServices' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_5_OtherRecreationalServices' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '4000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_5_OtherServices' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C77f33cc6-0603-4bc2-9ac8-56b44600003d" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_GemeinbedarfsFlaecheType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_TertiaryProduction' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_1_PublicAdministrationDefenceAndSocialSecurityServices' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_2_EducationalServices' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_4_ReligiousServices' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_3_HealthAndSocialServices' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_3_HealthAndSocialServices' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_1_CulturalServices' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_1_PublicAdministrationDefenceAndSocialSecurityServices' ) 
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_5_OtherCommunityServices' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_5_OtherServices' ) 
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_1_PublicAdministrationDefenceAndSocialSecurityServices' ) 
+  }
+} else if ( zweckbestimmung == '10001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_1_PublicAdministrationDefenceAndSocialSecurityServices' ) 
+  }
+} else if ( zweckbestimmung == '10002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_1_PublicAdministrationDefenceAndSocialSecurityServices' ) 
+  }
+} else if ( zweckbestimmung == '10003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_1_PublicAdministrationDefenceAndSocialSecurityServices' ) 
+  }
+} else if ( zweckbestimmung == '12000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_2_EducationalServices' ) 
+  }
+} else if ( zweckbestimmung == '12001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_2_EducationalServices' ) 
+  }
+} else if ( zweckbestimmung == '12002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_2_EducationalServices' ) 
+  }
+} else if ( zweckbestimmung == '12003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_2_EducationalServices' ) 
+  }
+} else if ( zweckbestimmung == '12004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_2_EducationalServices' ) 
+  }
+} else if ( zweckbestimmung == '14000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_4_ReligiousServices' ) 
+  }
+} else if ( zweckbestimmung == '14001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_4_ReligiousServices' ) 
+  }
+} else if ( zweckbestimmung == '14002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_4_ReligiousServices' ) 
+  }
+} else if ( zweckbestimmung == '14003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_4_ReligiousServices' ) 
+  }
+} else if ( zweckbestimmung == '16000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_3_HealthAndSocialServices' ) 
+  }
+} else if ( zweckbestimmung == '16001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_3_HealthAndSocialServices' ) 
+  }
+} else if ( zweckbestimmung == '16002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_3_HealthAndSocialServices' ) 
+  }
+} else if ( zweckbestimmung == '16003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_3_HealthAndSocialServices' ) 
+  }
+} else if ( zweckbestimmung == '16004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_3_HealthAndSocialServices' ) 
+  }
+} else if ( zweckbestimmung == '18000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_3_HealthAndSocialServices' ) 
+  }
+} else if ( zweckbestimmung == '18001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_3_HealthAndSocialServices' ) 
+  }
+} else if ( zweckbestimmung == '20000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_1_CulturalServices' ) 
+  }
+} else if ( zweckbestimmung == '20001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_1_CulturalServices' ) 
+  }
+} else if ( zweckbestimmung == '20002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_1_CulturalServices' ) 
+  }
+} else if ( zweckbestimmung == '22000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '22001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '22002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '24000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_1_PublicAdministrationDefenceAndSocialSecurityServices' ) 
+  }
+} else if ( zweckbestimmung == '24001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_1_PublicAdministrationDefenceAndSocialSecurityServices' ) 
+  }
+} else if ( zweckbestimmung == '24002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_1_PublicAdministrationDefenceAndSocialSecurityServices' ) 
+  }
+} else if ( zweckbestimmung == '24003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_1_PublicAdministrationDefenceAndSocialSecurityServices' ) 
+  }
+} else if ( zweckbestimmung == '26000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_2_3_InformationAndCommunicationServices' ) 
+  }
+} else if ( zweckbestimmung == '26001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_5_OtherCommunityServices' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C6444d095-ed4d-4260-848c-6fc2188f0b40" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_GewaesserFlaecheType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_2_WaterAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_4_WaterTransport' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_2_WaterAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_2_WaterAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_2_WaterAreasNotInOtherEconomicUse' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C4bf5c6a4-b85a-44f3-8ed4-2db34de16fda" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_GruenFlaecheType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_3_AgriculturalProductionForOwnConsumption' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_CulturalEntertainmentAndRecreationalServices' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_5_OtherServices' ) 
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_5_OtherCommunityServices' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
+  }
+} else if ( zweckbestimmung == '10001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
+  }
+} else if ( zweckbestimmung == '10002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
+  }
+} else if ( zweckbestimmung == '10003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
+  }
+} else if ( zweckbestimmung == '12000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_3_AgriculturalProductionForOwnConsumption' ) 
+  }
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
+  }
+} else if ( zweckbestimmung == '14000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '14001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '14002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '14003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '14004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '14005' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '14006' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '14007' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '16000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '16001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
+  }
+} else if ( zweckbestimmung == '18000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
+  }
+} else if ( zweckbestimmung == '22000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_3_AgriculturalProductionForOwnConsumption' ) 
+  }
+} else if ( zweckbestimmung == '22001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_2_EntertainmentServices' ) 
+  }
+} else if ( zweckbestimmung == '24000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_1_LandAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( zweckbestimmung == '24001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( zweckbestimmung == '24002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_1_LandAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( zweckbestimmung == '24003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( zweckbestimmung == '24004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_1_LandAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( zweckbestimmung == '24005' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_3_2_EducationalServices' ) 
+  }
+} else if ( zweckbestimmung == '24006' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( zweckbestimmung == '99990' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_1_CommercialAgriculturalProduction' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C0dc26ffe-ca8c-4c21-ab6b-b914bbc1e96c" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_KennzeichnungsFlaecheType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_3_MiningAndQuarrying' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
+  }
+} else if ( zweckbestimmung == '4000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
+  }
+} else if ( zweckbestimmung == '5000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
+  }
+} else if ( zweckbestimmung == '6000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_3_MiningAndQuarrying' ) 
+  }
+} else if ( zweckbestimmung == '7000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
+  }
+} else if ( zweckbestimmung == '8000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cf8093513-3913-43a2-a680-0b93f591c797" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_LandwirtschaftType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_Agriculture' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_Agriculture' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_1_CommercialAgriculturalProduction' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_1_CommercialAgriculturalProduction' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_1_CommercialAgriculturalProduction' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_1_CommercialAgriculturalProduction' ) 
+  }
+} else if ( zweckbestimmung == '1500' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_1_CommercialAgriculturalProduction' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_1_CommercialAgriculturalProduction' ) 
+  }
+} else if ( zweckbestimmung == '1700' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_4_2_ProfessionalFishing' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_Agriculture' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cb627a347-ae21-4230-9f61-9905e0cd72a2" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_LandwirtschaftsFlaecheType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_Agriculture' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_Agriculture' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_1_CommercialAgriculturalProduction' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_1_CommercialAgriculturalProduction' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_1_CommercialAgriculturalProduction' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_1_CommercialAgriculturalProduction' ) 
+  }
+} else if ( zweckbestimmung == '1500' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_1_CommercialAgriculturalProduction' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_1_CommercialAgriculturalProduction' ) 
+  }
+} else if ( zweckbestimmung == '1700' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_4_2_ProfessionalFishing' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_1_Agriculture' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cb2f3914a-696c-43aa-b31a-803619bd8bdc" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_SchutzPflegeEntwicklungsFlaecheType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="ziel" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( ziel == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '4000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C95c73e00-c79b-4f59-8345-bf03b31aa1f4" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_SchutzPflegeEntwicklungsMassnahmeType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="ziel" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( ziel == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '4000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_NaturalAreasNotInOtherEconomicUse' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C0974452c-5e56-4c61-83f8-91e6e01c9368" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_SpielSportanlagenFlaecheType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_3_SportsInfrastructure' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C812cb38a-9603-46e7-a69a-0ad6138378a8" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_StrassenVerkehrsFlaecheType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="nutzungsform" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( nutzungsform == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( nutzungsform == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( nutzungsform == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cf30de2aa-c1cd-4589-80c4-1a57c97c2c16" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_VerEntsorgungType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_Utilities' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/2_4_EnergyProduction' ) 
+  }
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_3_WasteTreatment' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_3_WasteTreatment' ) 
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_4_OtherUtilities' ) 
+  }
+} else if ( zweckbestimmung == '2800' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/2_4_4_RenewableEnergyProduction' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/2_4_4_RenewableEnergyProduction' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_4_OtherUtilities' ) 
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '10001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '10002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/2_4_4_RenewableEnergyProduction' ) 
+  }
+} else if ( zweckbestimmung == '10003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/2_4_4_RenewableEnergyProduction' ) 
+  }
+} else if ( zweckbestimmung == '10004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/2_4_4_RenewableEnergyProduction' ) 
+  }
+} else if ( zweckbestimmung == '10005' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/2_4_EnergyProduction' ) 
+  }
+} else if ( zweckbestimmung == '10006' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/2_4_4_RenewableEnergyProduction' ) 
+  }
+} else if ( zweckbestimmung == '10007' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/2_4_3_BiomassBasedEnergyProduction' ) 
+  }
+} else if ( zweckbestimmung == '10008' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '10009' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '12000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '12001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '12002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '12003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '12004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '12005' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '13000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '13001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '13002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '13003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '14000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/2_4_EnergyProduction' ) 
+  }
+} else if ( zweckbestimmung == '14001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_1_ElectricityGasAndThermalPowerDistributionServices' ) 
+  }
+} else if ( zweckbestimmung == '14002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/2_4_EnergyProduction' ) 
+  }
+} else if ( zweckbestimmung == '16000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '16001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '16002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '16003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '16004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '16005' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '18000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '18001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '18002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '18003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '18004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '18005' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '18006' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '20000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '20001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '22000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_3_WasteTreatment' ) 
+  }
+} else if ( zweckbestimmung == '22001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_3_WasteTreatment' ) 
+  }
+} else if ( zweckbestimmung == '22002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_3_WasteTreatment' ) 
+  }
+} else if ( zweckbestimmung == '22003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_3_WasteTreatment' ) 
+  }
+} else if ( zweckbestimmung == '24000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_3_WasteTreatment' ) 
+  }
+} else if ( zweckbestimmung == '24001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_3_WasteTreatment' ) 
+  }
+} else if ( zweckbestimmung == '24002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_3_WasteTreatment' ) 
+  }
+} else if ( zweckbestimmung == '24003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_3_WasteTreatment' ) 
+  }
+} else if ( zweckbestimmung == '24004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_3_WasteTreatment' ) 
+  }
+} else if ( zweckbestimmung == '24005' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_3_WasteTreatment' ) 
+  }
+} else if ( zweckbestimmung == '26000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_4_OtherUtilities' ) 
+  }
+} else if ( zweckbestimmung == '26001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_4_OtherUtilities' ) 
+  }
+} else if ( zweckbestimmung == '26002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_4_OtherUtilities' ) 
+  }
+} else if ( zweckbestimmung == '99990' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_4_OtherUtilities' ) 
+  }
+} else if ( zweckbestimmung == '100010' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_4_OtherUtilities' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ccbe861f1-ffdf-4c9d-8a94-e6c2bb85cbd6" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_VerkehrsflaecheBesondererZweckbestimmungType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_TransportNetworks' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_5_OtherTransportNetwork' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_5_OtherTransportNetwork' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_5_OtherTransportNetwork' ) 
+  }
+} else if ( zweckbestimmung == '1500' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_5_OtherTransportNetwork' ) 
+  }
+} else if ( zweckbestimmung == '1550' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_5_OtherTransportNetwork' ) 
+  }
+} else if ( zweckbestimmung == '1560' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_5_OtherTransportNetwork' ) 
+  }
+} else if ( zweckbestimmung == '1580' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_5_OtherTransportNetwork' ) 
+  }
+} else if ( zweckbestimmung == '1700' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_TransportNetworks' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_TransportNetworks' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( zweckbestimmung == '2100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_5_OtherTransportNetwork' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( zweckbestimmung == '2300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( zweckbestimmung == '2500' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( zweckbestimmung == '3100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_5_OtherTransportNetwork' ) 
+  }
+} else if ( zweckbestimmung == '3200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_5_OtherTransportNetwork' ) 
+  }
+} else if ( zweckbestimmung == '3300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( zweckbestimmung == '3400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_5_OtherTransportNetwork' ) 
+  }
+} else if ( zweckbestimmung == '3500' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_5_OtherTransportNetwork' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cb206750f-91cd-4e98-bbb7-b0b464885fd7" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_WaldFlaecheType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_2_Forestry' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_1_LandAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_2_Forestry' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/3_4_4_OpenAirRecreationalAreas' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_3_1_LandAreasNotInOtherEconomicUse' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/1_2_Forestry' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C1aa440cb-34f7-4157-87ce-a94d72ae6723" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_WasserwirtschaftsFlaecheType" ns="http://www.xplanung.de/xplangml/5/1">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/1"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_3_2_WaterAndSewageInfrastructure' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C4efcac08-6b59-4ca1-ba54-4b1dc556cec1" priority="normal">
         <source>
             <property>
