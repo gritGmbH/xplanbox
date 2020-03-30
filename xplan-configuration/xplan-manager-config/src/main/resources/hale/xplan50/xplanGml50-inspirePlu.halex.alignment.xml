@@ -5558,6 +5558,2024 @@
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C0a923e00-9236-4129-9ce6-020993ca5103" priority="low">
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def featureTypeName = _snippets.classification {
+    featureTypeName(_sourceTypes)
+}
+
+def value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation';
+
+if ( featureTypeName == 'BP_AbgrabungsFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_7_RawMaterials';
+} else if ( featureTypeName == 'BP_AbstandsFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_3_SpatialDesign';
+} else if ( featureTypeName == 'BP_AbstandsMass' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation';
+} else if ( featureTypeName == 'BP_AufschuettungsFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation';
+} else if ( featureTypeName == 'BP_BauGrenze' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_1_BuildingLine';
+} else if ( featureTypeName == 'BP_BauLinie' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_2_BoundaryLine';
+} else if ( featureTypeName == 'BP_BesondererNutzungszweckFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings';
+} else if ( featureTypeName == 'BP_BodenschaetzeFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_7_RawMaterials';
+} else if ( featureTypeName == 'BP_EingriffsBereich' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/1_8_OtherImpactOnEnvironment';
+} else if ( featureTypeName == 'BP_FestsetzungNachLandesrecht' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation';
+} else if ( featureTypeName == 'BP_FirstRichtungsLinie' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_3_SpatialDesign';
+} else if ( featureTypeName == 'BP_FoerderungsFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/8_2_PubliclySubsidisedHousingArea';
+} else if ( featureTypeName == 'BP_FreiFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_3_ForbidenActivities';
+} else if ( featureTypeName == 'BP_GemeinschaftsanlagenZuordnung' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility';
+} else if ( featureTypeName == 'BP_GenerischesObjekt' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation';
+} else if ( featureTypeName == 'BP_HoehenMass' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation';
+} else if ( featureTypeName == 'BP_Immissionsschutz' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/1_ImpactOnEnvironment';
+} else if ( featureTypeName == 'BP_PersGruppenBestimmteFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/8_2_PubliclySubsidisedHousingArea';
+} else if ( featureTypeName == 'BP_RekultivierungsFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_8_Recultivation';
+} else if ( featureTypeName == 'BP_StrassenbegrenzungsLinie' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation';
+} else if ( featureTypeName == 'BP_TextlicheFestsetzungsFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation';
+} else if ( featureTypeName == 'BP_UeberbaubareGrundstuecksFlaeche' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/5_1_UsableBuildingArea';
+} else if ( featureTypeName == 'BP_UnverbindlicheVormerkung' ){
+    value = 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation';
+}
+
+_target {
+    href ( value )
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C8e69b062-73c4-4708-998c-731c3b6c5672" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_AnpflanzungBindungErhaltungType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="massnahme" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( massnahme == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' )
+  }
+} else if ( massnahme == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' )
+  }
+} else if ( massnahme == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' )
+  }
+} else if ( massnahme == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' )
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C42632675-3b67-445d-aeb1-6dd03a8aa9b9" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_AusgleichsFlaecheType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="ziel" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( ziel == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
+  }
+} else if ( ziel == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
+  }
+} else if ( ziel == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
+  }
+} else if ( ziel == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
+  }
+} else if ( ziel == '4000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
+  }
+} else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cc6aaa480-ba74-41b0-b395-482ed3aab502" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_AusgleichsMassnahmeType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="ziel" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( ziel == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
+  }
+} else if ( ziel == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
+  }
+} else if ( ziel == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
+  }
+} else if ( ziel == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
+  }
+} else if ( ziel == '4000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
+  }
+} else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_1_NaturalHeritageProtection' )
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C70b2cf0e-5ece-476b-91bb-cfab055a31a3" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_BaugebietsTeilFlaecheType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="besondereArtDerBaulNutzung" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( besondereArtDerBaulNutzung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '1100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '1300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '1500' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '1550' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '1600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '1700' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '1800' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '2100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '4000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+} else if ( besondereArtDerBaulNutzung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' )
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cc980ed64-f26f-4f7a-a818-b88c4e873bf8" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_BereichOhneEinAusfahrtLinieType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' )
+  }
+} else if ( typ == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' )
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' )
+  }
+} else if ( typ == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' )
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C72127a84-e614-4551-895c-16b127e552a0" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_EinfahrtPunktType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
+  }
+} else if ( typ == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
+  }
+} else if ( typ == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C0aba2321-3975-45cc-8dfb-18d7da8881ec" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_EinfahrtsbereichLinieType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
+  }
+} else if ( typ == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
+  }
+} else if ( typ == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' )
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C9f01b0fb-8bb4-4037-b5ed-bd273f4b91f5" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_ErhaltungsBereichFlaecheType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="grund" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( grund == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' )
+  }
+} else if ( grund == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_3_BuiltHeritageProtection' )
+  }
+} else if ( grund == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/8_1_CompositionOfLocalResidentialPopulation' )
+  }
+} else if ( grund == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/8_1_CompositionOfLocalResidentialPopulation' )
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cc2fbe9dd-c869-4cf1-8d5b-d4191eb49c68" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_GemeinbedarfsFlaecheType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '10001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '10002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '10003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '12000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '12001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '12002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '12003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '12004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '14000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '14001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '14002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '14003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '16000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '16001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '16002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '16003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '16004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '18000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '18001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '20000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '20001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '20002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '22000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '22001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '22002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '24000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '24001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '24002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '24003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '26000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+} else if ( zweckbestimmung == '26001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_3_Services' )
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C75a90a8f-76c2-4674-ab4a-cb7f5e15097d" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_GemeinschaftsanlagenFlaecheType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+} else if ( zweckbestimmung == '3100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+} else if ( zweckbestimmung == '3200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+} else if ( zweckbestimmung == '3300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+} else if ( zweckbestimmung == '3400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+} else if ( zweckbestimmung == '3500' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+} else if ( zweckbestimmung == '3600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+} else if ( zweckbestimmung == '3700' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+} else if ( zweckbestimmung == '3800' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+} else if ( zweckbestimmung == '3900' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+} else if ( zweckbestimmung == '4000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_5_CollectiveFacility' )
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cb67b32d0-5c08-4deb-9ea4-86f41778b138" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_GewaesserFlaecheType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_9_Water' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_3_9_HarborActivities' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_9_Water' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_9_Water' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_9_Water' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ce1af0460-c05b-4ddf-bfaf-156fe9b25ed2" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_GruenFlaecheType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_OpenSpaceStructure' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_10_OtherOpenSpaceStructures' ) 
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_10_OtherOpenSpaceStructures' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_10_OtherOpenSpaceStructures' ) 
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '10001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '10002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '10003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '12000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '14000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '14001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '14002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '14003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '14004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '14005' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '14006' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '14007' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '16000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '16001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '18000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '22000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '22001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '24000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_10_OtherOpenSpaceStructures' ) 
+  }
+} else if ( zweckbestimmung == '24001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_10_OtherOpenSpaceStructures' ) 
+  }
+} else if ( zweckbestimmung == '24002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_10_OtherOpenSpaceStructures' ) 
+  }
+} else if ( zweckbestimmung == '24003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_10_OtherOpenSpaceStructures' ) 
+  }
+} else if ( zweckbestimmung == '24004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_10_OtherOpenSpaceStructures' ) 
+  }
+} else if ( zweckbestimmung == '24005' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '24006' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_10_OtherOpenSpaceStructures' ) 
+  }
+} else if ( zweckbestimmung == '99990' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C1ccedf0e-2e43-4681-817a-58d2aa612cda" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_KennzeichnungsFlaecheType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_RiskExposure' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_3_Mining' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_RiskExposure' ) 
+  }
+} else if ( zweckbestimmung == '4000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_2_IndustrialRisk' ) 
+  }
+} else if ( zweckbestimmung == '5000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/1_1_NoiseManagementZone' ) 
+  }
+} else if ( zweckbestimmung == '6000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_3_Mining' ) 
+  }
+} else if ( zweckbestimmung == '7000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/5_3_AreaReservedForRestructuringParcels' ) 
+  }
+} else if ( zweckbestimmung == '8000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_1_5_SpatialDevelopmentProjects' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C1f499c3f-6ebc-426d-9483-32b17d81201c" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_LandwirtschaftType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
+  }
+} else if ( zweckbestimmung == '1500' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
+  }
+} else if ( zweckbestimmung == '1700' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_1_Agriculture' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C7975cddc-eaef-4cfd-b48b-4a60d60ef782" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_NebenanlagenAusschlussFlaecheType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' ) 
+  }
+} else if ( typ == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' ) 
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cba9bc104-8079-427a-84a4-cda528fad75a" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_NebenanlagenFlaecheType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' ) 
+  }
+} else if ( zweckbestimmung == '3100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' ) 
+  }
+} else if ( zweckbestimmung == '3200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' ) 
+  }
+} else if ( zweckbestimmung == '3300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' ) 
+  }
+} else if ( zweckbestimmung == '3400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' ) 
+  }
+} else if ( zweckbestimmung == '3500' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' ) 
+  }
+} else if ( zweckbestimmung == '3600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_4_SecondaryStructuraArea' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C59b1b3de-290f-4c6d-b16f-633b63bdd77e" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_NutzungsartenGrenzeType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
+  }
+} else if ( typ == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
+  }
+} else if ( typ == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C42e93d42-f8fb-4cbd-bd97-9d158df0ee42" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_RegelungVergnuegungsstaettenType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="zulaessigkeit" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zulaessigkeit == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_RegulatedActivities' ) 
+  }
+} else if ( zulaessigkeit == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_2_PermittedActivities' ) 
+  }
+} else if ( zulaessigkeit == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_3_ForbidenActivities' ) 
+  }
+} else if ( zulaessigkeit == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_1_RestrictedActivities' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C11cd9735-996f-4070-a5b7-f4c7f8333e51" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_SchutzPflegeEntwicklungsFlaecheType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="ziel" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( ziel == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
+  }
+} else if ( ziel == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
+  }
+} else if ( ziel == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
+  }
+} else if ( ziel == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
+  }
+} else if ( ziel == '4000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
+  }
+} else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ccf733241-4d92-42e2-8eb8-95f9b4bdc593" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_SchutzPflegeEntwicklungsMassnahmeType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="ziel" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( ziel == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
+  }
+} else if ( ziel == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
+  }
+} else if ( ziel == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
+  }
+} else if ( ziel == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
+  }
+} else if ( ziel == '4000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
+  }
+} else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_HeritageProtection' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ca53be04d-d4fb-4a02-85cc-2d69a69c63f6" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_SpezielleBauweiseType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_3_SpatialDesign' ) 
+  }
+} else if ( typ == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_3_SpatialDesign' ) 
+  }
+} else if ( typ == '1100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_3_SpatialDesign' ) 
+  }
+} else if ( typ == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_3_SpatialDesign' ) 
+  }
+} else if ( typ == '1300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_3_SpatialDesign' ) 
+  }
+} else if ( typ == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_3_SpatialDesign' ) 
+  }
+} else if ( typ == '1500' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_3_SpatialDesign' ) 
+  }
+} else if ( typ == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_3_SpatialDesign' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C7a8cf0f1-6613-4fa1-a9af-51d3e7687f23" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_SpielSportanlagenFlaecheType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_2_3_Recreation' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cff3d02fa-26eb-4eee-be60-f3343d046067" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_StrassenVerkehrsFlaecheType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="nutzungsform" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( nutzungsform == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_1_Road' ) 
+  }
+} else if ( nutzungsform == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_1_Road' ) 
+  }
+} else if ( nutzungsform == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_1_Road' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cee830211-147b-476c-bf09-fd642973bca7" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_StrassenkoerperType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
+  }
+} else if ( typ == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
+  }
+} else if ( typ == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C2dc37280-bbba-4193-b906-37125817995a" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_TechnischeMassnahmenFlaecheType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/1_2_EmmissionControlArea' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/1_3_RewenableEnergyArea' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_RiskExposure' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cc99a9226-3d30-4474-98d1-eb4e054a5b40" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_VerEntsorgungType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_Infrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_4_Communication' ) 
+  }
+} else if ( zweckbestimmung == '2800' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_Infrastructure' ) 
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '10001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '10002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '10003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '10004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '10005' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '10006' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '10007' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '10008' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '10009' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '12000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '12001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '12002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '12003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '12004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '12005' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '13000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '13001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '13002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '13003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '14000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '14001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '14002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '16000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '16001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '16002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '16003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '16004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '16005' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '18000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '18001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '18002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '18003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '18004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '18005' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '18006' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '20000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '20001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '22000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '22001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '22002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '22003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '24000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '24001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '24002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '24003' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '24004' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '24005' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_3_Disposal' ) 
+  }
+} else if ( zweckbestimmung == '26000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_4_Communication' ) 
+  }
+} else if ( zweckbestimmung == '26001' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_4_Communication' ) 
+  }
+} else if ( zweckbestimmung == '26002' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_4_Communication' ) 
+  }
+} else if ( zweckbestimmung == '99990' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+} else if ( zweckbestimmung == '100010' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_2_Supply' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cf4fafc78-c68e-4501-906e-193fc3e5821a" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_VeraenderungssperreType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="verlaengerung" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( verlaengerung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_3_ForbidenActivities' ) 
+  }
+} else if ( verlaengerung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_3_ForbidenActivities' ) 
+  }
+} else if ( verlaengerung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_3_ForbidenActivities' ) 
+  }
+} else if ( verlaengerung == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_3_ForbidenActivities' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C0fae9192-e5b5-49fa-81e7-436da56de0e2" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_VerkehrsflaecheBesondererZweckbestimmungType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_5_2_ParkingObligationArea' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1500' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1550' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1580' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1700' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_5_2_ParkingObligationArea' ) 
+  }
+} else if ( zweckbestimmung == '2100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '2300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_4_OtherNetworkInfrastructure' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cab2445ef-affe-4dba-9982-409b6df904b4" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_WasserwirtschaftsFlaecheType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_1_FloodRisks' ) 
+  }
+} else if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_1_2_FloodRiskManagementZone' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_1_1_AreaExposedToFloodRisk' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_1_2_FloodRiskManagementZone' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_1_2_FloodRiskManagementZone' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_1_2_FloodRiskManagementZone' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_1_FloodRisks' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C663028e1-a68f-410e-bd50-6b5badc74369" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_WegerechtType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '0' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_1_PublicEasement' ) 
+  }
+} else if ( typ == '1000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_1_PublicEasement' ) 
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_1_PublicEasement' ) 
+  }
+} else if ( typ == '3000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_1_PublicEasement' ) 
+  }
+} else if ( typ == '4000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_1_3_UtilityEasement' ) 
+  }
+} else if ( typ == '4100' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_1_PublicEasement' ) 
+  }
+} else if ( typ == '4200' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_1_PublicEasement' ) 
+  }
+} else if ( typ == '5000' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_1_PublicEasement' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C0af59832-58b6-4c92-9366-208ea092aa73" priority="normal">
         <source>
             <property>
