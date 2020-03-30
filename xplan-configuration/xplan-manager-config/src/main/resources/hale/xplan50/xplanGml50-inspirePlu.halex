@@ -3,7 +3,7 @@
     <name>XPlan GML 5.0 to INSPRE PLU</name>
     <author>lat/lon GmbH</author>
     <created>2018-11-19T14:09:54.783+01:00</created>
-    <modified>2020-03-23T15:41:50.181+01:00</modified>
+    <modified>2020-03-30T07:45:40.354+02:00</modified>
     <save-config action-id="project.save" provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -24,6 +24,14 @@
         <setting name="source">../../appschemas/inspireplu/PlannedLandUse-AdaptedGml.xsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xsd</setting>
     </resource>
+    <resource action-id="eu.esdihumboldt.hale.io.groovy.snippets.load" provider-id="eu.esdihumboldt.hale.io.groovy.snippets">
+        <setting name="identifier">classification</setting>
+        <setting name="charset">UTF-8</setting>
+        <setting name="resourceId">ae6474f6-99b3-46e1-b47d-db62924163bd</setting>
+        <setting name="source">./classification.groovy</setting>
+        <setting name="contentType">eu.esdihumboldt.hale.io.groovy</setting>
+        <setting name="autoReload">true</setting>
+    </resource>
     <file name="alignment.xml" location="xplanGml50-inspirePlu.halex.alignment.xml"/>
     <file name="styles.sld" location="xplanGml50-inspirePlu.halex.styles.sld"/>
     <property name="defaultGeometry:{http://inspire.ec.europa.eu/schemas/plu/4.0}OfficialDocumentationType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
@@ -38,6 +46,84 @@
     <property name="defaultGeometry:{http://inspire.ec.europa.eu/schemas/plu/4.0}ZoningElementType/1">{http://inspire.ec.europa.eu/schemas/plu/4.0}geometry</property>
     <property name="defaultGeometry:{http://inspire.ec.europa.eu/schemas/plu/4.0}ZoningElementType/2">{http://www.opengis.net/gml/3.2}MultiSurface</property>
     <property name="defaultGeometry:{http://inspire.ec.europa.eu/schemas/plu/4.0}ZoningElementType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}AbstractCoverageType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}AbstractCoverageType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}AbstractCoverageType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}AbstractFeatureCollectionType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}AbstractFeatureCollectionType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}AbstractFeatureCollectionType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}AbstractFeatureType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}AbstractFeatureType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}AbstractFeatureType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}AbstractRingPropertyType/1">{http://www.opengis.net/gml/3.2/AbstractRing}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}AbstractRingPropertyType/count">1</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}AssociationRoleType/1">{http://www.opengis.net/gml/3.2/AbstractObject}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}AssociationRoleType/count">1</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}BoundingShapeType/1">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}BoundingShapeType/count">1</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}CompositeCurveType/1">{http://www.opengis.net/gml/3.2}curveMember</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}CompositeCurveType/2">{http://www.opengis.net/gml/3.2/AbstractCurve}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}CompositeCurveType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}CompositeSolidType/1">{http://www.opengis.net/gml/3.2}solidMember</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}CompositeSolidType/2">{http://www.opengis.net/gml/3.2/AbstractSolid}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}CompositeSolidType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}CurvePropertyType/1">{http://www.opengis.net/gml/3.2/AbstractCurve}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}CurvePropertyType/count">1</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}CurveSegmentArrayPropertyType/1">{http://www.opengis.net/gml/3.2/AbstractCurveSegment}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}CurveSegmentArrayPropertyType/count">1</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}CurveType/1">{http://www.opengis.net/gml/3.2}segments</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}CurveType/2">{http://www.opengis.net/gml/3.2/AbstractCurveSegment}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}CurveType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}DataBlockType/1">{http://www.opengis.net/gml/3.2}rangeParameters</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}DataBlockType/2">{http://www.opengis.net/gml/3.2/AbstractObject}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}DataBlockType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}DiscreteCoverageType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}DiscreteCoverageType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}DiscreteCoverageType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}DomainSetType/1">{http://www.opengis.net/gml/3.2/AbstractGeometry}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}DomainSetType/count">1</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}FeaturePropertyType/1">{http://www.opengis.net/gml/3.2/AbstractFeature}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}FeaturePropertyType/2">{http://www.xplanung.de/xplangml/5/0}RP_Legendenobjekt</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}FeaturePropertyType/3">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}FeaturePropertyType/4">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}FeaturePropertyType/count">4</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}FileType/1">{http://www.opengis.net/gml/3.2}rangeParameters</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}FileType/2">{http://www.opengis.net/gml/3.2/AbstractObject}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}FileType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}MultiCurveType/1">{http://www.opengis.net/gml/3.2}curveMember</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}MultiCurveType/2">{http://www.opengis.net/gml/3.2/AbstractCurve}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}MultiCurveType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}MultiPointType/1">{http://www.opengis.net/gml/3.2}pointMember</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}MultiPointType/2">{http://www.opengis.net/gml/3.2}Point</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}MultiPointType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}MultiSurfaceType/1">{http://www.opengis.net/gml/3.2}surfaceMember</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}MultiSurfaceType/2">{http://www.opengis.net/gml/3.2/AbstractSurface}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}MultiSurfaceType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}PointPropertyType/1">{http://www.opengis.net/gml/3.2}Point</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}PointPropertyType/count">1</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}PolygonPatchType/1">{http://www.opengis.net/gml/3.2}exterior</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}PolygonPatchType/2">{http://www.opengis.net/gml/3.2/AbstractRing}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}PolygonPatchType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}PolygonType/1">{http://www.opengis.net/gml/3.2}exterior</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}PolygonType/2">{http://www.opengis.net/gml/3.2/AbstractRing}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}PolygonType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}RangeSetType/1">{http://www.opengis.net/gml/3.2/RangeSetType}choice_1</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}RangeSetType/2">{http://www.opengis.net/gml/3.2}DataBlock</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}RangeSetType/3">{http://www.opengis.net/gml/3.2}rangeParameters</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}RangeSetType/4">{http://www.opengis.net/gml/3.2/AbstractObject}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}RangeSetType/count">4</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}RingType/1">{http://www.opengis.net/gml/3.2}curveMember</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}RingType/2">{http://www.opengis.net/gml/3.2/AbstractCurve}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}RingType/count">2</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SolidPropertyType/1">{http://www.opengis.net/gml/3.2/AbstractSolid}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SolidPropertyType/count">1</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SurfacePatchArrayPropertyType/1">{http://www.opengis.net/gml/3.2}PolygonPatch</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SurfacePatchArrayPropertyType/count">1</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SurfacePropertyType/1">{http://www.opengis.net/gml/3.2/AbstractSurface}choice</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SurfacePropertyType/count">1</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SurfaceType/1">{http://www.opengis.net/gml/3.2}patches</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SurfaceType/2">{http://www.opengis.net/gml/3.2}PolygonPatch</property>
+    <property name="defaultGeometry:{http://www.opengis.net/gml/3.2}SurfaceType/count">2</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/0}BP_AbgrabungsFlaecheType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/0}BP_AbgrabungsFlaecheType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/0}BP_AbgrabungsFlaecheType/count">2</property>
@@ -695,6 +781,9 @@
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/0}XP_TextAbschnittType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/0}XP_TextAbschnittType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/0}XP_TextAbschnittType/count">2</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/0}XPlanAuszugType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/0}XPlanAuszugType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/0}XPlanAuszugType/count">2</property>
     <property name="resource-1d78d644-c295-40fd-9d62-d3d677fcbd91:defaultCRS:{http://www.xplanung.de/xplangml/5/0}BP_BauGrenzeType/{http://www.xplanung.de/xplangml/5/0}position/{http://www.opengis.net/gml/3.2}Curve/{http://www.opengis.net/gml/3.2}segments/{http://www.opengis.net/gml/3.2}ArcString">code:EPSG:4326</property>
     <property name="resource-1d78d644-c295-40fd-9d62-d3d677fcbd91:defaultCRS:{http://www.xplanung.de/xplangml/5/0}BP_BauGrenzeType/{http://www.xplanung.de/xplangml/5/0}position/{http://www.opengis.net/gml/3.2}Curve/{http://www.opengis.net/gml/3.2}segments/{http://www.opengis.net/gml/3.2}LineStringSegment">code:EPSG:4326</property>
     <property name="resource-1d78d644-c295-40fd-9d62-d3d677fcbd91:defaultCRS:{http://www.xplanung.de/xplangml/5/0}BP_BaugebietsTeilFlaecheType/{http://www.xplanung.de/xplangml/5/0}position/{http://www.opengis.net/gml/3.2}Polygon/{http://www.opengis.net/gml/3.2}exterior/{http://www.opengis.net/gml/3.2}LinearRing">code:EPSG:4326</property>
