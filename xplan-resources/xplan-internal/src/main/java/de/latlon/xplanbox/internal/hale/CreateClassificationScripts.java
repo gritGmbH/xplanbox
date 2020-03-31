@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.internal.hale;
 
+import de.latlon.xplanbox.internal.hale.Classification.CLASSIFICATIONTYPE;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -13,6 +14,8 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static de.latlon.xplanbox.internal.hale.Classification.CLASSIFICATIONTYPE.SPECIFIC;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
@@ -22,32 +25,44 @@ public class CreateClassificationScripts {
 
     private static final String HILUCS_URL = "http://inspire.ec.europa.eu/codelist/HILUCSValue/";
 
+    private static final String HILUCS_SPECIFIC_URL ="http://unknownregistry.xplanung.de/SpecificLandUseValue/";
+
     private static final String HILUCS_NOT_KNOWN = "6_6_NotKnownUse";
 
     private static final String SR_URL = "http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/";
+
+    private static final String SR_SPECIFIC_URL ="http://unknownregistry.xplanung.de/SupplementaryRegulationValue";
 
     private static final String SR_NOT_KNOWN = "10_OtherSupplementaryRegulation";
 
     public static void main( String[] args )
                             throws IOException {
+        /** -Begin- **/
+        /** Change this **/
+        String src = "/xplanung/5_2/XPlanToINSPIRE-SupplementaryRegulation_2_2_2019-12-17.xlsx";
+        CLASSIFICATIONTYPE type = SPECIFIC;
+        /** -End- **/
 
-        InputStream is = CreateClassificationScripts.class.getResourceAsStream(
-                                "/xplanung/5_2/XPlanToINSPIRE-SupplementaryRegulation_2_2_2019-12-17.xlsx" );
-        String urlPrefix = SR_URL;
-        String notKnown = SR_NOT_KNOWN;
+        String urlPrefix = type.equals( SPECIFIC ) ? HILUCS_SPECIFIC_URL : HILUCS_URL;
+        String notKnown = HILUCS_NOT_KNOWN;
+        if ( src.contains( "SupplementaryRegulation" ) ) {
+            urlPrefix = type.equals( SPECIFIC ) ? SR_SPECIFIC_URL : SR_URL;
+            notKnown = SR_NOT_KNOWN;
+        }
 
+        InputStream is = CreateClassificationScripts.class.getResourceAsStream( src );
         Workbook workbook = WorkbookFactory.create( is );
         Sheet sheet = getSheetFoRPlanType( workbook, "BPlan" );
 
         Map<String, Classification> classifications = parseSheet( sheet );
-        createDirectMappingScript( classifications, urlPrefix, notKnown );
-        createClassificationScript( urlPrefix, classifications );
+        createDirectMappingScript( classifications, urlPrefix, type, notKnown );
+        createClassificationScript( classifications, urlPrefix, type );
 
         workbook.close();
     }
 
     private static void createDirectMappingScript( Map<String, Classification> classifications, String urlPrefix,
-                                                   String notKnown ) {
+                                                   CLASSIFICATIONTYPE type, String notKnown ) {
         StringBuilder sb = new StringBuilder();
 
         sb.append( "def featureTypeName = _snippets.classification {" ).append( "\n" );
@@ -68,7 +83,7 @@ public class CreateClassificationScripts {
                     sb.append( " else " );
                 sb.append( "if ( featureTypeName == '" ).append( xplanungKlasse ).append( "' ){" ).append( "\n" );
 
-                List<String> values = classification.getDefaultClassification();
+                List<String> values = classification.getDefaultClassification( type );
                 values.forEach( ( codeValue ) -> {
                     sb.append( "    value = '" ).append( urlPrefix ).append( codeValue ).append( "';" ).append( "\n" );
                 } );
@@ -85,21 +100,22 @@ public class CreateClassificationScripts {
         System.out.println( sb.toString() );
     }
 
-    private static void createClassificationScript( String urlPrefix, Map<String, Classification> classifications ) {
+    private static void createClassificationScript( Map<String, Classification> classifications, String urlPrefix,
+                                                    CLASSIFICATIONTYPE type ) {
         AtomicInteger index = new AtomicInteger( 1 );
         classifications.forEach( ( s, classification ) -> {
-            createClassificationScript( s, classification, urlPrefix, index );
+            createClassificationScript( s, classification, urlPrefix, type, index );
         } );
     }
 
     private static void createClassificationScript( String s, Classification classification, String urlPrefix,
-                                                    AtomicInteger index ) {
+                                                    CLASSIFICATIONTYPE type, AtomicInteger index ) {
         StringBuilder sb = new StringBuilder();
         if ( NONE_ATTRIBUTE.equals( classification.getXplanungAttribut() ) ) {
             return;
         }
 
-        Map<Integer, List<String>> values = classification.getClassification();
+        Map<Integer, List<String>> values = classification.getClassification( type );
         values.forEach( ( code, codeValues ) -> {
             if ( sb.length() > 0 )
                 sb.append( " else " );
@@ -114,7 +130,7 @@ public class CreateClassificationScripts {
             sb.append( "}" );
 
         } );
-        List<String> defaultClassification = classification.getDefaultClassification();
+        List<String> defaultClassification = classification.getDefaultClassification( type );
         if ( defaultClassification != null ) {
             sb.append( " else {" ).append( "\n" );
             defaultClassification.forEach( value -> {

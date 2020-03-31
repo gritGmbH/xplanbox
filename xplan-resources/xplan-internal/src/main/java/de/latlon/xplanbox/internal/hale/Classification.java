@@ -12,6 +12,8 @@ import static java.util.Arrays.asList;
  */
 public class Classification {
 
+    public enum CLASSIFICATIONTYPE {MAIN, SPECIFIC}
+
     private final String xplanungKlasse;
 
     private String xplanungAttribut;
@@ -52,20 +54,16 @@ public class Classification {
 
     }
 
-    public List<String> getDefaultClassification() {
+    public List<String> getDefaultClassification( CLASSIFICATIONTYPE type ) {
+        if ( CLASSIFICATIONTYPE.SPECIFIC.equals( type ) )
+            return defaultSpecificClassification;
         return defaultClassification;
     }
 
-    public Map<Integer, List<String>> getClassification() {
+    public Map<Integer, List<String>> getClassification( CLASSIFICATIONTYPE type ) {
+        if ( CLASSIFICATIONTYPE.SPECIFIC.equals( type ) )
+            return specificClassification;
         return classification;
-    }
-
-    public List<String> getDefaultSpecificClassification() {
-        return defaultSpecificClassification;
-    }
-
-    public Map<Integer, List<String>> getSpecificClassification() {
-        return specificClassification;
     }
 
     private List<String> parseMultiple( String value ) {
