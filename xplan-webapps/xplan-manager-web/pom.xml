@@ -81,6 +81,10 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.deegree</groupId>
+      <artifactId>deegree-layers-feature</artifactId>
+    </dependency>
+    <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
     </dependency>
