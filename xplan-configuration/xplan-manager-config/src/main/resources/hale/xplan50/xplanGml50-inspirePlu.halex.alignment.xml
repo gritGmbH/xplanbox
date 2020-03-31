@@ -5558,7 +5558,7 @@
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ccfb625c5-ba26-4ca5-9838-32b1bf9a1cd8" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ccfb625c5-ba26-4ca5-9838-32b1bf9a1cd8" priority="low">
         <target name="result">
             <property>
                 <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
@@ -12896,7 +12896,7 @@ if ( zweckbestimmung == '1000' ) {
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C73c15ebf-fc14-4449-afee-4fd4fb57c736" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C73c15ebf-fc14-4449-afee-4fd4fb57c736" priority="low">
         <target name="result">
             <property>
                 <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>

@@ -5585,7 +5585,7 @@
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C57662945-c829-4818-ba81-68f6035fc40d" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C57662945-c829-4818-ba81-68f6035fc40d" priority="low">
         <target name="result">
             <property>
                 <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
@@ -7681,7 +7681,7 @@ if ( typ == '1000' ) {
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C0ac61a5d-832c-4a15-bb55-191dc6072157" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C0ac61a5d-832c-4a15-bb55-191dc6072157" priority="low">
         <target name="result">
             <property>
                 <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
@@ -11424,7 +11424,7 @@ if ( typ == '1000' ) {
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cad5b9dee-3e7e-483c-bdc4-cf984c1c2d8e" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cad5b9dee-3e7e-483c-bdc4-cf984c1c2d8e" priority="low">
         <target name="result">
             <property>
                 <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
@@ -13193,7 +13193,7 @@ if ( zweckbestimmung == '1000' ) {
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ceb1d261e-bafd-4c52-84cc-b03df5a52dfe" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ceb1d261e-bafd-4c52-84cc-b03df5a52dfe" priority="low">
         <target name="result">
             <property>
                 <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>

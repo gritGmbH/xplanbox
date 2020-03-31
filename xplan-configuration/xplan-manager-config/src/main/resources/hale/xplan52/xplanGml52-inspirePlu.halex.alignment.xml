@@ -11685,7 +11685,7 @@ if ( typ == '1000' ) {
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C0a47b96c-c996-4640-8dbf-af0e04dc18ac" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C0a47b96c-c996-4640-8dbf-af0e04dc18ac" priority="low">
         <target name="result">
             <property>
                 <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
@@ -13494,7 +13494,7 @@ if ( zweckbestimmung == '1000' ) {
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cc0dfa5db-ea06-4c18-bcd1-1bf1cd2af120" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cc0dfa5db-ea06-4c18-bcd1-1bf1cd2af120" priority="low">
         <target name="result">
             <property>
                 <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
