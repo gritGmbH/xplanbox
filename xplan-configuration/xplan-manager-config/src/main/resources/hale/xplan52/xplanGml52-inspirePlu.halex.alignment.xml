@@ -5675,7 +5675,2190 @@
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C8e9d993f-4b61-4e8c-a0a3-9eefef107cbf" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C1ca142b2-3aed-43b9-ad5e-1ce7a3fb4c75" priority="low">
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def featureTypeName = _snippets.classification {
+    featureTypeName(_sourceTypes)
+}
+
+def value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue10_OtherSupplementaryRegulation';
+
+if ( featureTypeName == 'BP_AbgrabungsFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_1_AbgrabungsFlaeche';
+} else if ( featureTypeName == 'BP_AbstandsFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_2_AbstandsFlaeche';
+} else if ( featureTypeName == 'BP_AbweichungVonBaugrenze' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_58_AbweichungVonBaugrenze';
+} else if ( featureTypeName == 'BP_AbweichungVonUeberbaubareGrundstuecksFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_59_AbweichungVonUeberbaubareGrundstuecksFlaeche';
+} else if ( featureTypeName == 'BP_AufschuettungsFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_5_AufschuettungsFlaeche';
+} else if ( featureTypeName == 'BP_BauGrenze' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_8_BauGrenze';
+} else if ( featureTypeName == 'BP_BauLinie' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_9_BauLinie';
+} else if ( featureTypeName == 'BP_BesondererNutzungszweckFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_12_BesondererNutzungszweckFlaeche';
+} else if ( featureTypeName == 'BP_BodenschaetzeFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_13_BodenschaetzeFlaeche';
+} else if ( featureTypeName == 'BP_EingriffsBereich' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_16_EingriffsBereich';
+} else if ( featureTypeName == 'BP_FestsetzungNachLandesrecht' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_18_FestsetzungNachLandesrecht';
+} else if ( featureTypeName == 'BP_FirstRichtungsLinie' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_19_FirstRichtungsLinie';
+} else if ( featureTypeName == 'BP_FoerderungsFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_20_FoerderungsFlaeche';
+} else if ( featureTypeName == 'BP_FreiFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_21_FreiFlaeche';
+} else if ( featureTypeName == 'BP_GemeinschaftsanlagenZuordnung' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_25_GemeinschaftsanlagenZuordnung';
+} else if ( featureTypeName == 'BP_GenerischesObjekt' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_26_GenerischesObjekt';
+} else if ( featureTypeName == 'BP_HoehenMass' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_29_HoehenMass';
+} else if ( featureTypeName == 'BP_NichtUeberbaubareGrundstuecksflaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_57_NichtUeberbaubareGrundstuecksflaeche';
+} else if ( featureTypeName == 'BP_PersGruppenBestimmteFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_37_PersGruppenBestimmteFlaeche';
+} else if ( featureTypeName == 'BP_RekultivierungsFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_39_RekultivierungsFlaeche';
+} else if ( featureTypeName == 'BP_RichtungssektorGrenze' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_61_RichtungssektorGrenze';
+} else if ( featureTypeName == 'BP_Sichtflaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_60_Sichtflaeche';
+} else if ( featureTypeName == 'BP_StrassenbegrenzungsLinie' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_45_StrassenbegrenzungsLinie';
+} else if ( featureTypeName == 'BP_TextlicheFestsetzungsFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_48_TextlicheFestsetzungsFlaeche';
+} else if ( featureTypeName == 'BP_UeberbaubareGrundstuecksFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_49_UeberbaubareGrundstuecksFlaeche';
+} else if ( featureTypeName == 'BP_UnverbindlicheVormerkung' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_50_UnverbindlicheVormerkung';
+} else if ( featureTypeName == 'BP_ZusatzkontingentLaerm' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_62_ZusatzkontingentLaerm';
+} else if ( featureTypeName == 'BP_ZusatzkontingentLaermFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_63_ZusatzkontingentLaermFlaeche';
+}
+
+_target {
+    href ( value )
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cbf071f4c-a880-4fd1-96ab-43eaa87d1d05" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_AbstandsMassType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_3_1_Masspfeil' ) 
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_3_2_Masskreis' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_3_AbstandsMass' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C492ab5bd-9c2d-4c47-83a7-acbe38b3fe23" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_AnpflanzungBindungErhaltungType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="massnahme" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( massnahme == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_4_1_BindungErhaltung' ) 
+  }
+} else if ( massnahme == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_4_2_Anpflanzung' ) 
+  }
+} else if ( massnahme == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_4_3_AnpflanzungBindungErhaltung' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_4_AnpflanzungBindungErhaltung' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C1228e748-ae43-4213-9944-ba7205372e30" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_AusgleichsFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="ziel" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( ziel == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_6_1_SchutzPflege' ) 
+  }
+} else if ( ziel == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_6_2_Entwicklung' ) 
+  }
+} else if ( ziel == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_6_3_Anlage' ) 
+  }
+} else if ( ziel == '4000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_6_4_SchutzPflegeEntwicklung' ) 
+  }
+} else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_6_5_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_6_AusgleichsFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C7b1b99b1-daf3-4f6c-9156-a8f1dce1f359" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_AusgleichsMassnahmeType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="ziel" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( ziel == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_7_1_SchutzPflege' ) 
+  }
+} else if ( ziel == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_7_2_Entwicklung' ) 
+  }
+} else if ( ziel == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_7_3_Anlage' ) 
+  }
+} else if ( ziel == '4000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_7_4_SchutzPflegeEntwicklung' ) 
+  }
+} else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_7_5_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_7_AusgleichsMassnahme' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C30375112-71df-45bb-b8d2-c939f0edaccf" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_BaugebietsTeilFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="besondereArtDerBaulNutzung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( besondereArtDerBaulNutzung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_1_1_Kleinsiedlungsgebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_1_2_ReinesWohngebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_1_3_AllgWohngebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_1_4_BesonderesWohngebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_2_1_Dorfgebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_2_2_Mischgebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1550' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_2_3_UrbanesGebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_2_4_Kerngebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1700' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_3_1_Gewerbegebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_3_2_Industriegebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_4_1_SondergebietErholung' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '2100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_4_2_SondergebietSonst' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_4_3_Wochenendhausgebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '4000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_4_4_Sondergebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_5_1_SonstigesGebiet' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_BaugebietsTeilFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C6dd9edca-bd85-4891-a79e-c72ab4934179" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_BereichOhneEinAusfahrtLinieType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_11_1_KeineEinfahrt' ) 
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_11_2_KeineAusfahrt' ) 
+  }
+} else if ( typ == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_11_3_KeineEinAusfahrt' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_11_BereichOhneEinAusfahrtLinie' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C99a54b87-2445-4dd3-befb-aeb7b762a525" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_EinfahrtPunktType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_14_1_Einfahrt' ) 
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_14_2_Ausfahrt' ) 
+  }
+} else if ( typ == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_14_3_EinAusfahrt' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_14_EinfahrtPunkt' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C2ff3ed7a-34b7-4b5f-a7dd-975399a9ee34" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_EinfahrtsbereichLinieType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_15_1_Einfahrt' ) 
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_15_2_Ausfahrt' ) 
+  }
+} else if ( typ == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_15_3_EinAusfahrt' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_15_EinfahrtsbereichLinie' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C365e464f-4cba-4d39-ad04-f14588828123" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_ErhaltungsBereichFlaecheType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="grund" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( grund == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_17_1_StaedtebaulicheGestalt' ) 
+  }
+} else if ( grund == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_17_2_Wohnbevoelkerung' ) 
+  }
+} else if ( grund == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_17_3_Umstrukturierung' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_17_ErhaltungsBereichFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cf870f208-e9cb-4bd7-ab38-6dd141dee1c6" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_GemeinbedarfsFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_1_OeffentlicheVerwaltung' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_2_BildungForschung' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_3_Kirche' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_4_Sozial' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_5_Gesundheit' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_6_Kultur' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_7_Sport' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_8_SicherheitOrdnung' ) 
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_9_Infrastruktur' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_10_Sonstiges' ) 
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_1_1_KommunaleEinrichtung' ) 
+  }
+} else if ( zweckbestimmung == '10001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_1_2_BetriebOeffentlZweckbestimmung' ) 
+  }
+} else if ( zweckbestimmung == '10002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_1_3_AnlageBundLand' ) 
+  }
+} else if ( zweckbestimmung == '10003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_1_4_SonstigeOeffentlicheVerwaltung' ) 
+  }
+} else if ( zweckbestimmung == '12000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_2_1_Schule' ) 
+  }
+} else if ( zweckbestimmung == '12001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_2_2_Hochschule' ) 
+  }
+} else if ( zweckbestimmung == '12002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_2_3_BerufsbildendeSchule' ) 
+  }
+} else if ( zweckbestimmung == '12003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_2_4_Forschungseinrichtung' ) 
+  }
+} else if ( zweckbestimmung == '12004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_2_5_SonstigesBildungForschung' ) 
+  }
+} else if ( zweckbestimmung == '14000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_3_1_Sakralgebaeude' ) 
+  }
+} else if ( zweckbestimmung == '14001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_3_2_KirchlicheVerwaltung' ) 
+  }
+} else if ( zweckbestimmung == '14002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_3_3_Kirchengemeinde' ) 
+  }
+} else if ( zweckbestimmung == '14003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_3_4_SonstigesKirche' ) 
+  }
+} else if ( zweckbestimmung == '16000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_4_1_EinrichtungKinder' ) 
+  }
+} else if ( zweckbestimmung == '16001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_4_2_EinrichtungJugendliche' ) 
+  }
+} else if ( zweckbestimmung == '16002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_4_3_EinrichtungFamilienErwachsene' ) 
+  }
+} else if ( zweckbestimmung == '16003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_4_4_EinrichtungSenioren' ) 
+  }
+} else if ( zweckbestimmung == '16004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_4_5_SonstigeSozialeEinrichtung' ) 
+  }
+} else if ( zweckbestimmung == '18000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_5_1_Krankenhaus' ) 
+  }
+} else if ( zweckbestimmung == '18001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_5_2_SonstigesGesundheit' ) 
+  }
+} else if ( zweckbestimmung == '20000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_6_1_MusikTheater' ) 
+  }
+} else if ( zweckbestimmung == '20001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_6_2_Bildung' ) 
+  }
+} else if ( zweckbestimmung == '20002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_6_3_SonstigeKultur' ) 
+  }
+} else if ( zweckbestimmung == '22000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_7_1_Bad' ) 
+  }
+} else if ( zweckbestimmung == '22001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_7_2_SportplatzSporthalle' ) 
+  }
+} else if ( zweckbestimmung == '22002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_7_3_SonstigerSport' ) 
+  }
+} else if ( zweckbestimmung == '24000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_8_1_Feuerwehr' ) 
+  }
+} else if ( zweckbestimmung == '24001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_8_2_Schutzbauwerk' ) 
+  }
+} else if ( zweckbestimmung == '24002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_8_3_Justiz' ) 
+  }
+} else if ( zweckbestimmung == '24003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_8_4_SonstigeSicherheitOrdnung' ) 
+  }
+} else if ( zweckbestimmung == '26000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_9_1_Post' ) 
+  }
+} else if ( zweckbestimmung == '26001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_9_2_SonstigeInfrastruktur' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_23_Gemeinbedarf' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C162ff1a4-da99-44a7-aea3-c11e702a508f" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_GemeinschaftsanlagenFlaecheType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_1_Gemeinschaftsstellplaetze' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_2_Gemeinschaftsgaragen' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_3_Spielplatz' ) 
+  }
+} else if ( zweckbestimmung == '3100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_4_Carport' ) 
+  }
+} else if ( zweckbestimmung == '3200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_5_GemeinschaftsTiefgarage' ) 
+  }
+} else if ( zweckbestimmung == '3300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_6_Nebengebaeude' ) 
+  }
+} else if ( zweckbestimmung == '3400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_7_AbfallSammelanlagen' ) 
+  }
+} else if ( zweckbestimmung == '3500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_8_EnergieVerteilungsanlagen' ) 
+  }
+} else if ( zweckbestimmung == '3600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_9_AbfallWertstoffbehaelter' ) 
+  }
+} else if ( zweckbestimmung == '3700' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_10_Freizeiteinrichtungen' ) 
+  }
+} else if ( zweckbestimmung == '3800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_11_Laermschutzanlagen' ) 
+  }
+} else if ( zweckbestimmung == '3900' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_12_AbwasserRegenwasser' ) 
+  }
+} else if ( zweckbestimmung == '4000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_13_Ausgleichsmassnahmen' ) 
+  }
+} else if ( zweckbestimmung == '4100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_15_Fahrradstellplaetze' ) 
+  }
+} else if ( zweckbestimmung == '4200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_16_Gemeinschaftsdachgaerten' ) 
+  }
+} else if ( zweckbestimmung == '4300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_17_GemeinschaftlichNutzbareDachflaechen' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_14_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_24_GemeinschaftsanlagenFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ca728fbad-7f5f-4839-929e-54cb54175156" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_GewaesserFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_27_1_Hafen' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_27_2_Wasserflaeche' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_27_3_Fliessgewaesser' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_27_4_Sonstiges' ) 
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_27_1_1_Sportboothafen' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_27_GewaesserFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ccb691aa1-2286-45ba-8805-bd7b2ea6edf5" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_GruenFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_1_Parkanlage' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_2_Dauerkleingarten' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_3_Sportplatz' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_4_Spielplatz' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_5_Zeltplatz' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_6_Badeplatz' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_7_FreizeitErholung' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_8_SpezGruenflaeche' ) 
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_9_Friedhof' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_10_Sonstiges' ) 
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_1_1_ParkanlageHistorisch' ) 
+  }
+} else if ( zweckbestimmung == '10001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_1_2_ParkanlageNaturnah' ) 
+  }
+} else if ( zweckbestimmung == '10002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_1_3_ParkanlageWaldcharakter' ) 
+  }
+} else if ( zweckbestimmung == '10003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_1_4_NaturnaheUferParkanlage' ) 
+  }
+} else if ( zweckbestimmung == '12000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_2_1_ErholungsGaerten' ) 
+  }
+} else if ( zweckbestimmung == '14000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_3_1_Reitsportanlage' ) 
+  }
+} else if ( zweckbestimmung == '14001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_3_2_Hundesportanlage' ) 
+  }
+} else if ( zweckbestimmung == '14002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_3_3_Wassersportanlage' ) 
+  }
+} else if ( zweckbestimmung == '14003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_3_4_Schiessstand' ) 
+  }
+} else if ( zweckbestimmung == '14004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_3_5_Golfplatz' ) 
+  }
+} else if ( zweckbestimmung == '14005' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_3_6_Skisport' ) 
+  }
+} else if ( zweckbestimmung == '14006' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_3_7_Tennisanlage' ) 
+  }
+} else if ( zweckbestimmung == '14007' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_3_8_SonstigerSportplatz' ) 
+  }
+} else if ( zweckbestimmung == '16000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_4_1_Bolzplatz' ) 
+  }
+} else if ( zweckbestimmung == '16001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_4_2_Abenteuerspielplatz' ) 
+  }
+} else if ( zweckbestimmung == '18000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_5_1_Campingplatz' ) 
+  }
+} else if ( zweckbestimmung == '22000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_7_1_Kleintierhaltung' ) 
+  }
+} else if ( zweckbestimmung == '22001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_7_2_Festplatz' ) 
+  }
+} else if ( zweckbestimmung == '24000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_8_1_StrassenbegleitGruen' ) 
+  }
+} else if ( zweckbestimmung == '24001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_8_2_BoeschungsFlaeche' ) 
+  }
+} else if ( zweckbestimmung == '24002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_8_3_FeldWaldWiese' ) 
+  }
+} else if ( zweckbestimmung == '24003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_8_4_Uferschutzstreifen' ) 
+  }
+} else if ( zweckbestimmung == '24004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_8_5_Abschirmgruen' ) 
+  }
+} else if ( zweckbestimmung == '24005' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_8_6_UmweltbildungsparkSchaugatter' ) 
+  }
+} else if ( zweckbestimmung == '24006' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_8_7_RuhenderVerkehr' ) 
+  }
+} else if ( zweckbestimmung == '99990' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_10_1_Gaertnerei' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_28_Gruen' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cdf5f7abb-fec0-4927-ae11-922c63a9afd5" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_ImmissionsschutzType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_30_1_Schutzflaeche' ) 
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_30_2_BesondereAnlagenVorkehrungen' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_30_Immissionsschutz' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ceec5c838-d078-4814-9161-465d592280c3" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_KennzeichnungsFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_31_1_Naturgewalten' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_31_2_Abbauflaeche' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_31_3_AeussereEinwirkungen' ) 
+  }
+} else if ( zweckbestimmung == '4000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_31_4_SchadstoffBelastBoden' ) 
+  }
+} else if ( zweckbestimmung == '5000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_31_5_LaermBelastung' ) 
+  }
+} else if ( zweckbestimmung == '6000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_31_6_Bergbau' ) 
+  }
+} else if ( zweckbestimmung == '7000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_31_7_Bodenordnung' ) 
+  }
+} else if ( zweckbestimmung == '8000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_31_8_Vorhabensgebiet' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_31_9_AndereGesetzlVorschriften' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_31_KennzeichnungsFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cc4061d3b-d263-4dd3-b03b-5219e2226d0d" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_LandwirtschaftType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_33_1_LandwirtschaftAllgemein' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_33_2_Ackerbau' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_33_3_WiesenWeidewirtschaft' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_33_4_GartenbaulicheErzeugung' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_33_5_Obstbau' ) 
+  }
+} else if ( zweckbestimmung == '1500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_33_6_Weinbau' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_33_7_Imkerei' ) 
+  }
+} else if ( zweckbestimmung == '1700' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_33_8_Binnenfischerei' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_33_9_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_33_Landwirtschaft' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C8915148b-a5d5-4db1-ab8c-cf5d44e0f3c3" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_NebenanlagenAusschlussFlaecheType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_34_1_Einschraenkung' ) 
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_34_2_Ausschluss' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_34_NebenanlagenAusschlussFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C8bbb930c-dbe5-46f3-b767-7127df598419" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_NebenanlagenFlaecheType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_35_1_Stellplaetze' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_35_2_Garagen' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_35_3_Spielplatz' ) 
+  }
+} else if ( zweckbestimmung == '3100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_35_4_Carport' ) 
+  }
+} else if ( zweckbestimmung == '3200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_35_5_Tiefgarage' ) 
+  }
+} else if ( zweckbestimmung == '3300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_35_6_Nebengebaeude' ) 
+  }
+} else if ( zweckbestimmung == '3400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_35_7_AbfallSammelanlagen' ) 
+  }
+} else if ( zweckbestimmung == '3500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_35_8_EnergieVerteilungsanlagen' ) 
+  }
+} else if ( zweckbestimmung == '3600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_35_9_AbfallWertstoffbehaelter' ) 
+  }
+} else if ( zweckbestimmung == '3700' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_35_11_Fahrradstellplaetze' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_35_10_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_35_NebenanlagenFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C01580aef-c9ac-46da-9efa-4614511689f8" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_NutzungsartenGrenzeType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_36_1_Nutzungsartengrenze' ) 
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_36_3_UnterschiedlicheHoehen' ) 
+  }
+} else if ( typ == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_36_2_SonstigeAbgrenzung' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_36_NutzungsartenGrenze' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ccae64729-3762-4570-9f89-cacfcf556e14" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_RegelungVergnuegungsstaettenType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="zulaessigkeit" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zulaessigkeit == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_38_1_Zulaessig' ) 
+  }
+} else if ( zulaessigkeit == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_38_2_NichtZulaessig' ) 
+  }
+} else if ( zulaessigkeit == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_38_3_AusnahmsweiseZulaessig' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_38_RegelungVergnuegungsstaetten' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C05f5bc3a-0c70-43f5-a775-7d1a783ebcb6" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_SchutzPflegeEntwicklungsFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="ziel" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( ziel == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_40_1_SchutzPflege' ) 
+  }
+} else if ( ziel == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_40_2_Entwicklung' ) 
+  }
+} else if ( ziel == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_40_3_Anlage' ) 
+  }
+} else if ( ziel == '4000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_40_4_SchutzPflegeEntwicklung' ) 
+  }
+} else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_40_5_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_40_SchutzPflegeEntwicklungsFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cbf98e337-c847-46dd-a55c-d6aa50253db4" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_SchutzPflegeEntwicklungsMassnahmeType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="ziel" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( ziel == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_41_1_SchutzPflege' ) 
+  }
+} else if ( ziel == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_41_2_Entwicklung' ) 
+  }
+} else if ( ziel == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_41_3_Anlage' ) 
+  }
+} else if ( ziel == '4000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_41_4_SchutzPflegeEntwicklung' ) 
+  }
+} else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_41_5_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_41_SchutzPflegeEntwicklungsMassnahme' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C42458134-cc9f-48ae-9c44-8d6e7c0b7d66" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_SpezielleBauweiseType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_42_1_Durchfahrt' ) 
+  }
+} else if ( typ == '1100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_42_2_Durchgang' ) 
+  }
+} else if ( typ == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_42_3_DurchfahrtDurchgang' ) 
+  }
+} else if ( typ == '1300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_42_4_Auskragung' ) 
+  }
+} else if ( typ == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_42_5_Arkade' ) 
+  }
+} else if ( typ == '1500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_42_6_Luftgeschoss' ) 
+  }
+} else if ( typ == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_42_8_Bruecke' ) 
+  }
+} else if ( typ == '1700' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_42_9_Tunnel' ) 
+  }
+} else if ( typ == '1800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_42_10_Rampe' ) 
+  }
+} else if ( typ == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_42_7_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_42_SpezielleBauweise' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C100e6e6c-6690-469a-9a5e-44195eff6425" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_SpielSportanlagenFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_43_1_Sportanlage' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_43_2_Spielanlage' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_43_3_SpielSportanlage' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_43_4_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_43_SpielSportanlagenFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C1afbea48-8d3d-4f61-99ee-6ea9901b52a3" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_StrassenVerkehrsFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="nutzungsform" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( nutzungsform == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_44_1_Privat' ) 
+  }
+} else if ( nutzungsform == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_44_2_Oeffentlich' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_44_StrassenVerkehrsFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cd26c6530-3180-4782-a47c-fa789e7602ad" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_StrassenkoerperType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_46_1_Aufschuettung' ) 
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_46_2_Abgrabung' ) 
+  }
+} else if ( typ == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_46_3_Stuetzmauer' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_46_Strassenkoerper' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C76a96898-4458-4577-be30-7a321801db0c" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_TechnischeMassnahmenFlaecheType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_47_1_Luftreinhaltung' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_47_2_NutzungErneurerbarerEnergien' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_47_3_MinderungStoerfallfolgen' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C9a91a93c-17a6-4920-a65a-ecf8fb3cf676" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_VerEntsorgungType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_1_Elektrizitaet' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_2_Gas' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_3_Erdoel' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_4_Waermeversorgung' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_5_Wasser' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_6_Abwasser' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_7_Regenwasser' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_8_Abfallentsorgung' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_9_Ablagerung' ) 
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_10_Telekommunikation' ) 
+  }
+} else if ( zweckbestimmung == '2800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_11_ErneuerbareEnergien' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_12_KraftWaermeKopplung' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_13_Sonstiges' ) 
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_1_1_Hochspannungsleitung' ) 
+  }
+} else if ( zweckbestimmung == '10001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_1_2_TrafostationUmspannwerk' ) 
+  }
+} else if ( zweckbestimmung == '10002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_1_3_Solarkraftwerk' ) 
+  }
+} else if ( zweckbestimmung == '10003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_1_4_Windkraftwerk' ) 
+  }
+} else if ( zweckbestimmung == '10004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_1_5_Geothermiekraftwerk' ) 
+  }
+} else if ( zweckbestimmung == '10005' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_1_6_Elektrizitaetswerk' ) 
+  }
+} else if ( zweckbestimmung == '10006' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_1_7_Wasserkraftwerk' ) 
+  }
+} else if ( zweckbestimmung == '10007' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_1_8_BiomasseKraftwerk' ) 
+  }
+} else if ( zweckbestimmung == '10008' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_1_9_Kabelleitung' ) 
+  }
+} else if ( zweckbestimmung == '10009' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_1_10_Niederspannungsleitung' ) 
+  }
+} else if ( zweckbestimmung == '12000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_2_1_Ferngasleitung' ) 
+  }
+} else if ( zweckbestimmung == '12001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_2_2_Gaswerk' ) 
+  }
+} else if ( zweckbestimmung == '12002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_2_3_Gasbehaelter' ) 
+  }
+} else if ( zweckbestimmung == '12003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_2_4_Gasdruckregler' ) 
+  }
+} else if ( zweckbestimmung == '12004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_2_5_Gasstation' ) 
+  }
+} else if ( zweckbestimmung == '12005' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_2_6_Gasleitung' ) 
+  }
+} else if ( zweckbestimmung == '13000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_3_1_Erdoelleitung' ) 
+  }
+} else if ( zweckbestimmung == '13001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_3_2_Bohrstelle' ) 
+  }
+} else if ( zweckbestimmung == '13002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_3_3_Erdoelpumpstation' ) 
+  }
+} else if ( zweckbestimmung == '13003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_3_4_Oeltank' ) 
+  }
+} else if ( zweckbestimmung == '14000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_4_1_Blockheizkraftwerk' ) 
+  }
+} else if ( zweckbestimmung == '14001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_4_2_Fernwaermeleitung' ) 
+  }
+} else if ( zweckbestimmung == '14002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_4_3_Fernheizwerk' ) 
+  }
+} else if ( zweckbestimmung == '16000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_5_1_Wasserwerk' ) 
+  }
+} else if ( zweckbestimmung == '16001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_5_2_Wasserleitung' ) 
+  }
+} else if ( zweckbestimmung == '16002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_5_3_Wasserspeicher' ) 
+  }
+} else if ( zweckbestimmung == '16003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_5_4_Brunnen' ) 
+  }
+} else if ( zweckbestimmung == '16004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_5_5_Pumpwerk' ) 
+  }
+} else if ( zweckbestimmung == '16005' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_5_6_Quelle' ) 
+  }
+} else if ( zweckbestimmung == '18000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_6_1_Abwasserleitung' ) 
+  }
+} else if ( zweckbestimmung == '18001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_6_2_Abwasserrueckhaltebecken' ) 
+  }
+} else if ( zweckbestimmung == '18002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_6_3_Abwasserpumpwerk' ) 
+  }
+} else if ( zweckbestimmung == '18003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_6_4_Klaeranlage' ) 
+  }
+} else if ( zweckbestimmung == '18004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_6_5_AnlageKlaerschlamm' ) 
+  }
+} else if ( zweckbestimmung == '18005' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_6_6_SonstigeAbwasserBehandlungsanlage' ) 
+  }
+} else if ( zweckbestimmung == '18006' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_6_7_SalzSoleeinleitungen' ) 
+  }
+} else if ( zweckbestimmung == '20000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_7_1_RegenwasserRueckhaltebecken' ) 
+  }
+} else if ( zweckbestimmung == '20001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_7_2_Niederschlagswasserleitung' ) 
+  }
+} else if ( zweckbestimmung == '22000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_8_1_Muellumladestation' ) 
+  }
+} else if ( zweckbestimmung == '22001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_8_2_Muellbeseitigungsanlage' ) 
+  }
+} else if ( zweckbestimmung == '22002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_8_3_Muellsortieranlage' ) 
+  }
+} else if ( zweckbestimmung == '22003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_8_4_Recyclinghof' ) 
+  }
+} else if ( zweckbestimmung == '24000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_9_1_Erdaushubdeponie' ) 
+  }
+} else if ( zweckbestimmung == '24001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_9_2_Bauschuttdeponie' ) 
+  }
+} else if ( zweckbestimmung == '24002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_9_3_Hausmuelldeponie' ) 
+  }
+} else if ( zweckbestimmung == '24003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_9_4_Sondermuelldeponie' ) 
+  }
+} else if ( zweckbestimmung == '24004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_9_5_StillgelegteDeponie' ) 
+  }
+} else if ( zweckbestimmung == '24005' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_9_6_RekultivierteDeponie' ) 
+  }
+} else if ( zweckbestimmung == '26000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_10_1_Fernmeldeanlage' ) 
+  }
+} else if ( zweckbestimmung == '26001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_10_4_Mobilfunkanlage' ) 
+  }
+} else if ( zweckbestimmung == '26002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_10_3_Fernmeldekabel' ) 
+  }
+} else if ( zweckbestimmung == '99990' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_13_1_Produktenleitung' ) 
+  }
+} else if ( zweckbestimmung == '100010' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_1_11_Leitungsmast' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_51_VerEntsorgung' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Caf0e9448-413a-4203-bb1d-a2b2b764bc96" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_VeraenderungssperreType" ns="http://www.xplanung.de/xplangml/5/2"/>
+                <child name="verlaengerung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( verlaengerung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_52_1_Keine' ) 
+  }
+} else if ( verlaengerung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_52_2_ErsteVerlaengerung' ) 
+  }
+} else if ( verlaengerung == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_52_3_ZweiteVerlaengerung' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_52_Veraenderungssperre' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C4bd26059-5a22-4cff-b25e-e796d7fb9fce" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_VerkehrsflaecheBesondererZweckbestimmungType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_27_Parkplatz' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_2_Fussgaengerbereich' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_3_VerkehrsberuhigterBereich' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_28_RadGehweg' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_5_Radweg' ) 
+  }
+} else if ( zweckbestimmung == '1500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_29_Gehweg' ) 
+  }
+} else if ( zweckbestimmung == '1550' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_7_Wanderweg' ) 
+  }
+} else if ( zweckbestimmung == '1560' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_18_Reitkutschweg' ) 
+  }
+} else if ( zweckbestimmung == '1580' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_8_Wirtschaftsweg' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_9_FahrradAbstellplatz' ) 
+  }
+} else if ( zweckbestimmung == '1700' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_10_UeberfuehrenderVerkehrsweg' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_11_UnterfuehrenderVerkehrsweg' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_12_PRAnlage' ) 
+  }
+} else if ( zweckbestimmung == '2100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_13_Platz' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_14_Anschlussflaeche' ) 
+  }
+} else if ( zweckbestimmung == '2300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_15_LandwirtschaftlicherVerkehr' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_16_Verkehrsgruen' ) 
+  }
+} else if ( zweckbestimmung == '2500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_19_Rastanlage' ) 
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_20_Busbahnhof' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_21_CarSharing' ) 
+  }
+} else if ( zweckbestimmung == '3100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_22_BikeSharing' ) 
+  }
+} else if ( zweckbestimmung == '3200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_23_BRAnlage' ) 
+  }
+} else if ( zweckbestimmung == '3300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_24_Parkhaus' ) 
+  }
+} else if ( zweckbestimmung == '3400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_25_Mischverkehrsflaeche' ) 
+  }
+} else if ( zweckbestimmung == '3500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_26_Ladestation' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_17_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_53_VerkehrsflaecheBesondererZweckbestimmung' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C5c3ed3f2-314d-4621-b952-3801f7d6e2ac" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_WasserwirtschaftsFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_55_1_HochwasserRueckhaltebecken' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_55_2_Ueberschwemmgebiet' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_55_3_Versickerungsflaeche' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_55_4_Entwaesserungsgraben' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_55_5_Deich' ) 
+  }
+} else if ( zweckbestimmung == '1500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_55_7_RegenRueckhaltebecken' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_55_6_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_55_WasserwirtschaftsFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C1f077280-4898-4de3-8f25-50b1bc2e31a4" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_WegerechtType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="typ" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( typ == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_56_1_Gehrecht' ) 
+  }
+} else if ( typ == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_56_2_Fahrrecht' ) 
+  }
+} else if ( typ == '2500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_56_8_Radfahrrecht' ) 
+  }
+} else if ( typ == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_56_3_GehFahrrecht' ) 
+  }
+} else if ( typ == '4000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_56_4_Leitungsrecht' ) 
+  }
+} else if ( typ == '4100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_56_5_GehLeitungsrecht' ) 
+  }
+} else if ( typ == '4200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_56_6_FahrLeitungsrecht' ) 
+  }
+} else if ( typ == '5000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_56_7_GehFahrLeitungsrecht' ) 
+  }
+} else if ( typ == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_56_9_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_56_Wegerecht' ) 
+  }
+}
+
+Process finished with exit code 0
+
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C8e9d993f-4b61-4e8c-a0a3-9eefef107cbf" priority="low">
         <target name="result">
             <property>
                 <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
