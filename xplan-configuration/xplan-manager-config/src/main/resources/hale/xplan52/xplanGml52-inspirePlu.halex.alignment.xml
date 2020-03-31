@@ -11311,6 +11311,1494 @@ if ( zweckbestimmung == '1000' ) {
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cc0dfa5db-ea06-4c18-bcd1-1bf1cd2af120" priority="normal">
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def featureTypeName = _snippets.classification {
+    featureTypeName(_sourceTypes)
+}
+
+def value = 'http://unknownregistry.xplanung.de/SpecificLandUseValue/6_6_NotKnownUse';
+
+if ( featureTypeName == 'BP_AbgrabungsFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_1_AbgrabungsFlaeche';
+} else if ( featureTypeName == 'BP_AufschuettungsFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_5_AufschuettungsFlaeche';
+} else if ( featureTypeName == 'BP_BesondererNutzungszweckFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_12_BesondererNutzungszweckFlaeche';
+} else if ( featureTypeName == 'BP_BodenschaetzeFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_13_BodenschaetzeFlaeche';
+} else if ( featureTypeName == 'BP_FestsetzungNachLandesrecht' ){
+    value = 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_18_FestsetzungNachLandesrecht';
+} else if ( featureTypeName == 'BP_GenerischesObjekt' ){
+    value = 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_26_GenerischesObjekt';
+} else if ( featureTypeName == 'BP_KleintierhaltungFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_32_KleintierhaltungFlaeche';
+} else if ( featureTypeName == 'BP_RekultivierungsFlaeche' ){
+    value = 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_39_RekultivierungsFlaeche';
+}
+
+_target {
+    href ( value )
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C90843277-1be4-4e0d-b22b-967d56d85855" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_AusgleichsFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="ziel" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( ziel == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_6_1_SchutzPflege' ) 
+  }
+} else if ( ziel == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_6_2_Entwicklung' ) 
+  }
+} else if ( ziel == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_6_3_Anlage' ) 
+  }
+} else if ( ziel == '4000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_6_4_SchutzPflegeEntwicklung' ) 
+  }
+} else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_6_5_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_6_AusgleichsFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C220746e3-0c63-44ef-bd41-03885a6fcfd1" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_BaugebietsTeilFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="besondereArtDerBaulNutzung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( besondereArtDerBaulNutzung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_1_1_Kleinsiedlungsgebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_1_2_ReinesWohngebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_1_3_AllgWohngebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_1_4_BesonderesWohngebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_2_1_Dorfgebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_2_2_Mischgebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1550' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_2_3_UrbanesGebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_2_4_Kerngebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1700' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_3_1_Gewerbegebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '1800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_3_2_Industriegebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_4_1_SondergebietErholung' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_4_3_Wochenendhausgebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '4000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_4_4_Sondergebiet' ) 
+  }
+} else if ( besondereArtDerBaulNutzung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_5_1_SonstigesGebiet' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_10_BaugebietsTeilFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cbcd0533f-60a0-4acf-9685-7aa9aea219dd" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_GemeinbedarfsFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_1_OeffentlicheVerwaltung' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_2_BildungForschung' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_3_Kirche' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_4_Sozial' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_5_Gesundheit' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_6_Kultur' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_7_Sport' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_8_SicherheitOrdnung' ) 
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_9_Infrastruktur' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_10_Sonstiges' ) 
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_1_1_KommunaleEinrichtung' ) 
+  }
+} else if ( zweckbestimmung == '10001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_1_2_BetriebOeffentlZweckbestimmung' ) 
+  }
+} else if ( zweckbestimmung == '10002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_1_3_AnlageBundLand' ) 
+  }
+} else if ( zweckbestimmung == '10003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_1_4_SonstigeOeffentlicheVerwaltung' ) 
+  }
+} else if ( zweckbestimmung == '12000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_2_1_Schule' ) 
+  }
+} else if ( zweckbestimmung == '12001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_2_2_Hochschule' ) 
+  }
+} else if ( zweckbestimmung == '12002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_2_3_BerufsbildendeSchule' ) 
+  }
+} else if ( zweckbestimmung == '12003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_2_4_Forschungseinrichtung' ) 
+  }
+} else if ( zweckbestimmung == '12004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_2_5_SonstigesBildungForschung' ) 
+  }
+} else if ( zweckbestimmung == '14000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_3_1_Sakralgebaeude' ) 
+  }
+} else if ( zweckbestimmung == '14001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_3_2_KirchlicheVerwaltung' ) 
+  }
+} else if ( zweckbestimmung == '14002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_3_3_Kirchengemeinde' ) 
+  }
+} else if ( zweckbestimmung == '14003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_3_4_SonstigesKirche' ) 
+  }
+} else if ( zweckbestimmung == '16000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_4_1_EinrichtungKinder' ) 
+  }
+} else if ( zweckbestimmung == '16001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_4_2_EinrichtungJugendliche' ) 
+  }
+} else if ( zweckbestimmung == '16002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_4_3_EinrichtungFamilienErwachsene' ) 
+  }
+} else if ( zweckbestimmung == '16003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_4_4_EinrichtungSenioren' ) 
+  }
+} else if ( zweckbestimmung == '16004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_4_5_SonstigeSozialeEinrichtung' ) 
+  }
+} else if ( zweckbestimmung == '18000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_5_1_Krankenhaus' ) 
+  }
+} else if ( zweckbestimmung == '18001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_5_2_SonstigesGesundheit' ) 
+  }
+} else if ( zweckbestimmung == '20000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_6_1_MusikTheater' ) 
+  }
+} else if ( zweckbestimmung == '20001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_6_2_Bildung' ) 
+  }
+} else if ( zweckbestimmung == '20002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_6_3_SonstigeKultur' ) 
+  }
+} else if ( zweckbestimmung == '22000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_7_1_Bad' ) 
+  }
+} else if ( zweckbestimmung == '22001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_7_2_SportplatzSporthalle' ) 
+  }
+} else if ( zweckbestimmung == '22002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_7_3_SonstigerSport' ) 
+  }
+} else if ( zweckbestimmung == '24000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_8_1_Feuerwehr' ) 
+  }
+} else if ( zweckbestimmung == '24001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_8_2_Schutzbauwerk' ) 
+  }
+} else if ( zweckbestimmung == '24002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_8_3_Justiz' ) 
+  }
+} else if ( zweckbestimmung == '24003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_8_4_SonstigeSicherheitOrdnung' ) 
+  }
+} else if ( zweckbestimmung == '26000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_9_1_Post' ) 
+  }
+} else if ( zweckbestimmung == '26001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_9_2_SonstigeInfrastruktur' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_7_Gemeinbedarf' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cd87b6651-5c25-4e9d-8a1e-d53e3a6040d4" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_GewaesserFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_27_1_Hafen' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_27_2_Wasserflaeche' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_27_3_Fliessgewaesser' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_27_4_Sonstiges' ) 
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_27_1_1_Sportboothafen' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_27_GewaesserFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cbb8004a9-9d24-4833-9710-ada1359a7583" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_GruenFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_1_Parkanlage' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_2_Dauerkleingarten' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_3_Sportplatz' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_4_Spielplatz' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_5_Zeltplatz' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_6_Badeplatz' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_7_FreizeitErholung' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_8_SpezGruenflaeche' ) 
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_9_Friedhof' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_10_Sonstiges' ) 
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_1_1_ParkanlageHistorisch' ) 
+  }
+} else if ( zweckbestimmung == '10001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_1_2_ParkanlageNaturnah' ) 
+  }
+} else if ( zweckbestimmung == '10002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_1_3_ParkanlageWaldcharakter' ) 
+  }
+} else if ( zweckbestimmung == '10003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_1_4_NaturnaheUferParkanlage' ) 
+  }
+} else if ( zweckbestimmung == '12000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_2_1_ErholungsGaerten' ) 
+  }
+} else if ( zweckbestimmung == '14000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_3_1_Reitsportanlage' ) 
+  }
+} else if ( zweckbestimmung == '14001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_3_2_Hundesportanlage' ) 
+  }
+} else if ( zweckbestimmung == '14002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_3_3_Wassersportanlage' ) 
+  }
+} else if ( zweckbestimmung == '14003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_3_4_Schiessstand' ) 
+  }
+} else if ( zweckbestimmung == '14004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_3_5_Golfplatz' ) 
+  }
+} else if ( zweckbestimmung == '14005' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_3_6_Skisport' ) 
+  }
+} else if ( zweckbestimmung == '14006' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_3_7_Tennisanlage' ) 
+  }
+} else if ( zweckbestimmung == '14007' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_3_8_SonstigerSportplatz' ) 
+  }
+} else if ( zweckbestimmung == '16000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_4_1_Bolzplatz' ) 
+  }
+} else if ( zweckbestimmung == '16001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_4_2_Abenteuerspielplatz' ) 
+  }
+} else if ( zweckbestimmung == '18000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_5_1_Campingplatz' ) 
+  }
+} else if ( zweckbestimmung == '22000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_7_1_Kleintierhaltung' ) 
+  }
+} else if ( zweckbestimmung == '22001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_7_2_Festplatz' ) 
+  }
+} else if ( zweckbestimmung == '24000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_8_1_StrassenbegleitGruen' ) 
+  }
+} else if ( zweckbestimmung == '24001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_8_2_BoeschungsFlaeche' ) 
+  }
+} else if ( zweckbestimmung == '24002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_8_3_FeldWaldWiese' ) 
+  }
+} else if ( zweckbestimmung == '24003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_8_4_Uferschutzstreifen' ) 
+  }
+} else if ( zweckbestimmung == '24004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_8_5_Abschirmgruen' ) 
+  }
+} else if ( zweckbestimmung == '24005' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_8_6_UmweltbildungsparkSchaugatter' ) 
+  }
+} else if ( zweckbestimmung == '24006' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_8_7_RuhenderVerkehr' ) 
+  }
+} else if ( zweckbestimmung == '99990' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_10_1_Gaertnerei' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_28_Gruen' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ccd2de8bd-6692-47af-bb7e-b365fce8a3c7" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_KennzeichnungsFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_31_1_Naturgewalten' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_31_2_Abbauflaeche' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_31_3_AeussereEinwirkungen' ) 
+  }
+} else if ( zweckbestimmung == '4000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_31_4_SchadstoffBelastBoden' ) 
+  }
+} else if ( zweckbestimmung == '5000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_31_5_LaermBelastung' ) 
+  }
+} else if ( zweckbestimmung == '6000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_31_6_Bergbau' ) 
+  }
+} else if ( zweckbestimmung == '7000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_31_7_Bodenordnung' ) 
+  }
+} else if ( zweckbestimmung == '8000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_31_8_Vorhabensgebiet' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_31_9_AndereGesetzlVorschriften' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_31_KennzeichnungsFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cbc63530e-05ce-4cbc-866e-dbe9e79e3621" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_LandwirtschaftType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_1_LandwirtschaftAllgemein' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_2_Ackerbau' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_3_WiesenWeidewirtschaft' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_4_GartenbaulicheErzeugung' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_5_Obstbau' ) 
+  }
+} else if ( zweckbestimmung == '1500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_6_Weinbau' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_7_Imkerei' ) 
+  }
+} else if ( zweckbestimmung == '1700' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_8_Binnenfischerei' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_9_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_Landwirtschaft' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cfa76f899-0690-4554-965f-041f236d001a" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_LandwirtschaftsFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_1_LandwirtschaftAllgemein' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_2_Ackerbau' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_3_WiesenWeidewirtschaft' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_4_GartenbaulicheErzeugung' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_5_Obstbau' ) 
+  }
+} else if ( zweckbestimmung == '1500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_6_Weinbau' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_7_Imkerei' ) 
+  }
+} else if ( zweckbestimmung == '1700' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_8_Binnenfischerei' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_9_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_33_Landwirtschaftsflaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C0ea9923f-22af-40bb-99a6-4da6b52bb661" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_SchutzPflegeEntwicklungsFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="ziel" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( ziel == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_40_1_SchutzPflege' ) 
+  }
+} else if ( ziel == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_40_2_Entwicklung' ) 
+  }
+} else if ( ziel == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_40_3_Anlage' ) 
+  }
+} else if ( ziel == '4000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_40_4_SchutzPflegeEntwicklung' ) 
+  }
+} else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_40_5_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_40_SchutzPflegeEntwicklungsFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C9e3e20f9-9b9a-4e21-bed6-2d68a6c8e36e" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_SchutzPflegeEntwicklungsMassnahmeType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="ziel" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( ziel == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_41_1_SchutzPflege' ) 
+  }
+} else if ( ziel == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_41_2_Entwicklung' ) 
+  }
+} else if ( ziel == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_41_3_Anlage' ) 
+  }
+} else if ( ziel == '4000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_41_4_SchutzPflegeEntwicklung' ) 
+  }
+} else if ( ziel == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_41_5_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_41_SchutzPflegeEntwicklungsMassnahme' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C793d478b-23e9-4d78-9b44-c7aefc65b7e9" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_SpielSportanlagenFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_43_1_Sportanlage' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_43_2_Spielanlage' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_43_3_SpielSportanlage' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_43_4_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_43_SpielSportanlagenFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C801081e5-1fd2-49ca-a6e3-b55d45983569" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_StrassenVerkehrsFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="nutzungsform" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( nutzungsform == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_44_1_Privat' ) 
+  }
+} else if ( nutzungsform == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_44_2_Oeffentlich' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_44_StrassenVerkehrsFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C1d95badf-74c8-4ed9-b6e0-9f7e2cde39da" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_VerEntsorgungType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_1_Elektrizitaet' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_2_Gas' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_3_Erdoel' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_4_Waermeversorgung' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_5_Wasser' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_6_Abwasser' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_7_Regenwasser' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_8_Abfallentsorgung' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_9_Ablagerung' ) 
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_10_Telekommunikation' ) 
+  }
+} else if ( zweckbestimmung == '2800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_11_ErneuerbareEnergien' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_12_KraftWaermeKopplung' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_13_Sonstiges' ) 
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_1_1_Hochspannungsleitung' ) 
+  }
+} else if ( zweckbestimmung == '10001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_1_2_TrafostationUmspannwerk' ) 
+  }
+} else if ( zweckbestimmung == '10002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_1_3_Solarkraftwerk' ) 
+  }
+} else if ( zweckbestimmung == '10003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_1_4_Windkraftwerk' ) 
+  }
+} else if ( zweckbestimmung == '10004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_1_5_Geothermiekraftwerk' ) 
+  }
+} else if ( zweckbestimmung == '10005' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_1_6_Elektrizitaetswerk' ) 
+  }
+} else if ( zweckbestimmung == '10006' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_1_7_Wasserkraftwerk' ) 
+  }
+} else if ( zweckbestimmung == '10007' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_1_8_BiomasseKraftwerk' ) 
+  }
+} else if ( zweckbestimmung == '10008' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_1_9_Kabelleitung' ) 
+  }
+} else if ( zweckbestimmung == '10009' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_1_10_Niederspannungsleitung' ) 
+  }
+} else if ( zweckbestimmung == '12000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_2_1_Ferngasleitung' ) 
+  }
+} else if ( zweckbestimmung == '12001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_2_2_Gaswerk' ) 
+  }
+} else if ( zweckbestimmung == '12002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_2_3_Gasbehaelter' ) 
+  }
+} else if ( zweckbestimmung == '12003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_2_4_Gasdruckregler' ) 
+  }
+} else if ( zweckbestimmung == '12004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_2_5_Gasstation' ) 
+  }
+} else if ( zweckbestimmung == '12005' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_2_6_Gasleitung' ) 
+  }
+} else if ( zweckbestimmung == '13000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_3_1_Erdoelleitung' ) 
+  }
+} else if ( zweckbestimmung == '13001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_3_2_Bohrstelle' ) 
+  }
+} else if ( zweckbestimmung == '13002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_3_3_Erdoelpumpstation' ) 
+  }
+} else if ( zweckbestimmung == '13003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_3_4_Oeltank' ) 
+  }
+} else if ( zweckbestimmung == '14000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_4_1_Blockheizkraftwerk' ) 
+  }
+} else if ( zweckbestimmung == '14001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_4_2_Fernwaermeleitung' ) 
+  }
+} else if ( zweckbestimmung == '14002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_4_3_Fernheizwerk' ) 
+  }
+} else if ( zweckbestimmung == '16000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_5_1_Wasserwerk' ) 
+  }
+} else if ( zweckbestimmung == '16001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_5_2_Wasserleitung' ) 
+  }
+} else if ( zweckbestimmung == '16002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_5_3_Wasserspeicher' ) 
+  }
+} else if ( zweckbestimmung == '16003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_5_4_Brunnen' ) 
+  }
+} else if ( zweckbestimmung == '16004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_5_5_Pumpwerk' ) 
+  }
+} else if ( zweckbestimmung == '16005' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_5_6_Quelle' ) 
+  }
+} else if ( zweckbestimmung == '18000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_6_1_Abwasserleitung' ) 
+  }
+} else if ( zweckbestimmung == '18001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_6_2_Abwasserrueckhaltebecken' ) 
+  }
+} else if ( zweckbestimmung == '18002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_6_3_Abwasserpumpwerk' ) 
+  }
+} else if ( zweckbestimmung == '18003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_6_4_Klaeranlage' ) 
+  }
+} else if ( zweckbestimmung == '18004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_6_5_AnlageKlaerschlamm' ) 
+  }
+} else if ( zweckbestimmung == '18005' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_6_6_SonstigeAbwasserBehandlungsanlage' ) 
+  }
+} else if ( zweckbestimmung == '18006' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_6_7_SalzSoleeinleitungen' ) 
+  }
+} else if ( zweckbestimmung == '20000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_7_1_RegenwasserRueckhaltebecken' ) 
+  }
+} else if ( zweckbestimmung == '20001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_7_2_Niederschlagswasserleitung' ) 
+  }
+} else if ( zweckbestimmung == '22000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_8_1_Muellumladestation' ) 
+  }
+} else if ( zweckbestimmung == '22001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_8_2_Muellbeseitigungsanlage' ) 
+  }
+} else if ( zweckbestimmung == '22002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_8_3_Muellsortieranlage' ) 
+  }
+} else if ( zweckbestimmung == '22003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_8_4_Recyclinghof' ) 
+  }
+} else if ( zweckbestimmung == '24000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_9_1_Erdaushubdeponie' ) 
+  }
+} else if ( zweckbestimmung == '24001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_9_2_Bauschuttdeponie' ) 
+  }
+} else if ( zweckbestimmung == '24002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_9_3_Hausmuelldeponie' ) 
+  }
+} else if ( zweckbestimmung == '24003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_9_4_Sondermuelldeponie' ) 
+  }
+} else if ( zweckbestimmung == '24004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_9_5_StillgelegteDeponie' ) 
+  }
+} else if ( zweckbestimmung == '24005' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_9_6_RekultivierteDeponie' ) 
+  }
+} else if ( zweckbestimmung == '26000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_10_1_Fernmeldeanlage' ) 
+  }
+} else if ( zweckbestimmung == '26001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_10_4_Mobilfunkanlage' ) 
+  }
+} else if ( zweckbestimmung == '26002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_10_3_Fernmeldekabel' ) 
+  }
+} else if ( zweckbestimmung == '99990' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_13_1_Produktenleitung' ) 
+  }
+} else if ( zweckbestimmung == '100010' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_1_11_Leitungsmast' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_51_VerEntsorgung' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ce5fce54f-9a3a-4b65-8f9a-09d8d930a588" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_VerkehrsflaecheBesondererZweckbestimmungType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_27_Parkplatz' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_2_Fussgaengerbereich' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_3_VerkehrsberuhigterBereich' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_28_RadGehweg' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_5_Radweg' ) 
+  }
+} else if ( zweckbestimmung == '1500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_29_Gehweg' ) 
+  }
+} else if ( zweckbestimmung == '1550' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_7_Wanderweg' ) 
+  }
+} else if ( zweckbestimmung == '1560' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_18_Reitkutschweg' ) 
+  }
+} else if ( zweckbestimmung == '1580' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_8_Wirtschaftsweg' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_9_FahrradAbstellplatz' ) 
+  }
+} else if ( zweckbestimmung == '1700' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_10_UeberfuehrenderVerkehrsweg' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_11_UnterfuehrenderVerkehrsweg' ) 
+  }
+} else if ( zweckbestimmung == '2000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_12_PRAnlage' ) 
+  }
+} else if ( zweckbestimmung == '2100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_13_Platz' ) 
+  }
+} else if ( zweckbestimmung == '2200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_14_Anschlussflaeche' ) 
+  }
+} else if ( zweckbestimmung == '2300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_15_LandwirtschaftlicherVerkehr' ) 
+  }
+} else if ( zweckbestimmung == '2400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_16_Verkehrsgruen' ) 
+  }
+} else if ( zweckbestimmung == '2500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_19_Rastanlage' ) 
+  }
+} else if ( zweckbestimmung == '2600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_20_Busbahnhof' ) 
+  }
+} else if ( zweckbestimmung == '3000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_21_CarSharing' ) 
+  }
+} else if ( zweckbestimmung == '3100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_22_BikeSharing' ) 
+  }
+} else if ( zweckbestimmung == '3200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_23_BRAnlage' ) 
+  }
+} else if ( zweckbestimmung == '3300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_24_Parkhaus' ) 
+  }
+} else if ( zweckbestimmung == '3400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_25_Mischverkehrsflaeche' ) 
+  }
+} else if ( zweckbestimmung == '3500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_26_Ladestation' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_17_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_53_VerkehrsflaecheBesondererZweckbestimmung' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C0bd91250-d1f9-4655-ae81-8dfa7705365b" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_WaldFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_1_Naturwald' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_2_Nutzwald' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_3_Erholungswald' ) 
+  }
+} else if ( zweckbestimmung == '1600' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_4_Schutzwald' ) 
+  }
+} else if ( zweckbestimmung == '1700' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_7_Bannwald' ) 
+  }
+} else if ( zweckbestimmung == '1800' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_5_FlaecheForstwirtschaft' ) 
+  }
+} else if ( zweckbestimmung == '1900' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_8_ImmissionsgeschaedigterWald' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_6_Sonstiges' ) 
+  }
+} else if ( zweckbestimmung == '10000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_1_1_Waldschutzgebiet' ) 
+  }
+} else if ( zweckbestimmung == '16000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_4_1_Bodenschutzwald' ) 
+  }
+} else if ( zweckbestimmung == '16001' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_4_2_Biotopschutzwald' ) 
+  }
+} else if ( zweckbestimmung == '16002' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_4_3_NaturnaherWald' ) 
+  }
+} else if ( zweckbestimmung == '16003' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_4_4_SchutzwaldSchaedlicheUmwelteinwirkungen' ) 
+  }
+} else if ( zweckbestimmung == '16004' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_4_5_Schonwald' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_WaldFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Ca878a188-5fc8-4461-95df-ea97e0359b89" priority="normal">
+        <source name="var">
+            <property>
+                <type name="BP_WasserwirtschaftsFlaecheType" ns="http://www.xplanung.de/xplangml/5/2">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="zweckbestimmung" ns="http://www.xplanung.de/xplangml/5/2"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if ( zweckbestimmung == '1000' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_55_1_HochwasserRueckhaltebecken' ) 
+  }
+} else if ( zweckbestimmung == '1100' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_55_2_Ueberschwemmgebiet' ) 
+  }
+} else if ( zweckbestimmung == '1200' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_55_3_Versickerungsflaeche' ) 
+  }
+} else if ( zweckbestimmung == '1300' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_55_4_Entwaesserungsgraben' ) 
+  }
+} else if ( zweckbestimmung == '1400' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_55_5_Deich' ) 
+  }
+} else if ( zweckbestimmung == '1500' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_55_7_RegenRueckhaltebecken' ) 
+  }
+} else if ( zweckbestimmung == '9999' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_55_6_Sonstiges' ) 
+  }
+} else {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_55_WasserwirtschaftsFlaeche' ) 
+  }
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbce6e220-4c4e-41b9-b7b4-2513c2ff145b" priority="normal">
         <source>
             <property>
