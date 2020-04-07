@@ -18,7 +18,10 @@ import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.tools.CommandUtils;
 import org.deegree.workspace.Workspace;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -28,6 +31,8 @@ import java.nio.file.Paths;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class ReSynthesizerTool {
+
+    private static final Logger LOG = LoggerFactory.getLogger( ReSynthesizerTool.class );
 
     private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
@@ -52,7 +57,7 @@ public class ReSynthesizerTool {
                 ReSynthesizerTool tool = new ReSynthesizerTool();
                 tool.run( workspaceName, configurationDirectory, mgrId );
             } catch ( Exception e ) {
-                e.printStackTrace();
+                LOG.error( "ReSynthesizerTool could not be executed!", e );
             }
         } catch ( ParseException exp ) {
             System.err.println( "Could not parse command line" );
@@ -89,6 +94,8 @@ public class ReSynthesizerTool {
     private static Workspace initWorkspace( String workspaceName )
                     throws ResourceInitException {
         DeegreeWorkspace workspace = DeegreeWorkspace.getInstance( workspaceName );
+        File location = workspace.getLocation();
+        LOG.info( "Initialise Workspace " + location );
         workspace.initAll();
         return workspace.getNewWorkspace();
     }

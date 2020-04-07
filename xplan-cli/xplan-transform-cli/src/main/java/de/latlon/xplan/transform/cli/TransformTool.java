@@ -21,6 +21,7 @@ import org.deegree.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -70,7 +71,7 @@ public class TransformTool {
                 TransformTool tool = new TransformTool();
                 tool.run( workspaceName, configurationDirectory, type, outDirectory );
             } catch ( Exception e ) {
-                e.printStackTrace();
+                LOG.error( "TransformTool could not be executed!", e );
             }
         } catch ( ParseException exp ) {
             System.err.println( "Could not parse command line" );
@@ -151,6 +152,8 @@ public class TransformTool {
     private static Workspace initWorkspace( String workspaceName )
                     throws ResourceInitException {
         DeegreeWorkspace workspace = DeegreeWorkspace.getInstance( workspaceName );
+        File location = workspace.getLocation();
+        LOG.info( "Initialise Workspace " + location );
         workspace.initAll();
         return workspace.getNewWorkspace();
     }

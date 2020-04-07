@@ -20,14 +20,15 @@
           </ogc:Function>
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
-          <ogc:Literal>0</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-          <ogc:Literal>BP_Plan</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
+            <ogc:Literal>0</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
@@ -64,10 +65,6 @@
           <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
           <ogc:Literal>-1</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-          <ogc:Literal>BP_Plan</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
@@ -103,10 +100,6 @@
         <ogc:PropertyIsEqualTo>
           <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
           <ogc:Literal>1</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-          <ogc:Literal>BP_Plan</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>

@@ -3,6 +3,7 @@ package de.latlon.xplan.manager.synthesizer.expression;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.*;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.Reference;
+import org.deegree.commons.tom.ReferenceResolvingException;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.gml.property.Property;
@@ -88,11 +89,12 @@ public class XplanFlattenProperty implements Expression {
             } catch ( Exception e ) {
                 return new DefaultFlattener().flatten( value );
             }
-        } else if ( value instanceof Feature ) {
-            Feature subFeature = (Feature) value;
-            if ( subFeature instanceof Reference && ( (Reference<?>) subFeature ).isResolved() ) {
-                value = ( (Reference<?>) subFeature ).getReferencedObject();
-            } else {
+        } else if ( value instanceof Reference ) {
+            Reference<?> reference = (Reference<?>) value;
+            try {
+                value = reference.getReferencedObject();
+            } catch ( ReferenceResolvingException e ) {
+                LOG.warn( "FeatureReference could not be resolved (URI: " + reference.getURI() + ")" );
                 return flatten( ( (Reference<?>) value ) );
             }
         } else if ( value != null ) {

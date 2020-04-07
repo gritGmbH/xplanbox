@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.latlon.xplan.validator.web.shared.ArtifactType;
 
+import static org.springframework.http.MediaType.TEXT_HTML_VALUE;
+
 /**
  * REST-Interface providing report artefacts
  * 
@@ -34,12 +36,13 @@ public class ReportController {
     @Autowired
     private ReportProvider reportProvider;
 
-    @RequestMapping(value = "/html/{uuid}", params = { "validationName" }, method = RequestMethod.GET)
+    @RequestMapping(value = "/html/{uuid}", params = { "validationName" }, method = RequestMethod.GET, produces = TEXT_HTML_VALUE)
     @ResponseBody
     public void getHtmlReport( HttpServletResponse response, 
                                @PathVariable String uuid, 
                                @RequestParam(value = "validationName", required = true) String validationName )
                             throws IOException {
+        response.addHeader( "Content-Type", TEXT_HTML_VALUE );
         LOG.debug( "HTML-Report for '{}' and validationName '{}' requested.", uuid, validationName );
         reportProvider.writeHtmlReport( response, uuid, validationName );
         response.setContentType( "text/html" );

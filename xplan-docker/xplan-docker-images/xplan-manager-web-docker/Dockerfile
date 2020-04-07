@@ -32,5 +32,13 @@ RUN cd /root/ && unzip -q xplan-benutzerhandbuch-*-html.zip -d /usr/local/tomcat
 ADD target/xplan-betriebshandbuch-*-html.zip /root/
 RUN cd /root/ && unzip -q xplan-betriebshandbuch-*-html.zip -d /usr/local/tomcat/webapps/ROOT/
 
+# add CLIs
+ADD target/xplan-update-database-*.zip /root/
+RUN cd /root/ && unzip -q xplan-update-database-*.zip
+ADD target/xplan-manager-cli-*.zip /root/
+RUN cd /root/ && unzip -q xplan-manager-cli-*.zip
+ADD target/xplan-transform-cli-*.zip /root/
+RUN cd /root/ && unzip -q xplan-transform-cli-*.zip
+
 # run tomcat
 CMD ["catalina.sh", "run"]
