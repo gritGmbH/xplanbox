@@ -93,7 +93,6 @@ Beispiel Ausgabe:
 
 ----
 Id: 3, Version: XPLAN_3, Typ: FP_Plan, Name: Gesamtgeltungsbereich Flächennutzungsplan, Nummer: 12062024, GKZ: 12062024, Features: 2808, Importiert: 2010-02-18 17:57:11.669
-Id: 5, Version: XPLAN_2, Typ: BP_Plan, Name: Gewerbe- und Industriepark Massen, Nummer: 01, GKZ: 111111, Features: 15, Importiert: 2010-02-18 17:58:21.583
 Id: 6, Version: XPLAN_3, Typ: BP_Plan, Name: Lokstedt, Nummer: 56, GKZ: 02000000, Features: 251, Importiert: 2010-02-18 17:58:57.2
 Id: 7, Version: XPLAN_3, Typ: BP_Plan, Name: Unbenannter Plan (3d099551-1f49-4b77-9008-68237a60426b), Nummer: -, GKZ: 4011000, Features: 351, Importiert: 2010-02-18 17:59:38.704
 Id: 8, Version: XPLAN_3, Typ: BP_Plan, Name: Bebauungsplan 2135, Nummer: 2135, GKZ: 4011000, Features: 241, Importiert: 2010-02-18 18:00:45.077

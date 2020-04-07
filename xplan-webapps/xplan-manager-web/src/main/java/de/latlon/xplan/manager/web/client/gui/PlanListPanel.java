@@ -731,8 +731,6 @@ public class PlanListPanel extends DecoratorPanel {
     }
 
     private String translateVersion( String version ) {
-        if ( "XPLAN_2".equalsIgnoreCase( version ) )
-            return "2.0";
         if ( "XPLAN_3".equalsIgnoreCase( version ) )
             return "3.0";
         if ( "XPLAN_40".equalsIgnoreCase( version ) )

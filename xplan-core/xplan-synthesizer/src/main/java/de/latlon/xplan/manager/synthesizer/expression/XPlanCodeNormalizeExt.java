@@ -22,11 +22,7 @@ import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToA
  */
 public class XPlanCodeNormalizeExt implements Expression {
 
-    private static final String XPLAN_2_NS = "http://www.xplanung.de/xplangml";
-
     private final Expression exp;
-
-    private final String xplan2CodeList;
 
     private final String xplan3CodeList;
 
@@ -34,14 +30,12 @@ public class XPlanCodeNormalizeExt implements Expression {
 
     public XPlanCodeNormalizeExt( Expression exp, String xplan2CodeList, String xplan3CodeList ) {
         this.exp = exp;
-        this.xplan2CodeList = xplan2CodeList;
         this.xplan3CodeList = xplan3CodeList;
         this.xplanSynCodeList = xplan3CodeList;
     }
 
     @Override
     public TypedObjectNodeArray<PrimitiveValue> evaluate( Feature feature ) {
-        boolean isXPlan2 = feature.getName().getNamespaceURI().equals( XPLAN_2_NS );
         PrimitiveValue[] normalizedCodes = null;
         try {
             TypedObjectNodeArray<TypedObjectNode> codes = castToArray( exp.evaluate( feature ) );
@@ -49,18 +43,13 @@ public class XPlanCodeNormalizeExt implements Expression {
                 normalizedCodes = new PrimitiveValue[codes.getElements().length];
                 int i = 0;
                 for ( TypedObjectNode code : codes.getElements() ) {
-                    String description;
-                    if ( isXPlan2 ) {
-                        description = getXPlan2Ext().getDescription( xplan2CodeList, code.toString() );
-                    } else {
-                        description = getXPlan3Ext().getDescription( xplan3CodeList, code.toString() );
-                    }
+                    String description = getXPlan3Ext().getDescription( xplan3CodeList, code.toString() );
                     String xplanSynCode = getXPlanSynExt().getCode( xplanSynCodeList, description );
                     normalizedCodes[i++] = new PrimitiveValue( xplanSynCode );
                 }
             }
         } catch ( Exception e ) {
-            String msg = "Error performing external code list lookup (" + xplan2CodeList + ") for feature '"
+            String msg = "Error performing external code list lookup (" + xplan3CodeList + ") for feature '"
                          + feature.getId() + "': " + e.getMessage();
             throw new RuntimeException( msg, e );
         }

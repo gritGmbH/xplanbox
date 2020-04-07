@@ -37,8 +37,8 @@ package de.latlon.xplan.commons.feature;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.FP_Plan;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -70,16 +70,12 @@ import de.latlon.xplan.commons.configuration.SortConfiguration;
  */
 public class SortPropertyReaderTest {
 
-    private static final XPlanType TYPE = BP_Plan;
-
-    private static final XPlanVersion VERSION = XPLAN_2;
-
     @Test
     public void testReadSortDate()
                     throws Exception {
         SortConfiguration sortConfiguration = createSortConfiguration( "BP_Plan", "technHerstellDatum" );
         SortPropertyReader sortPropertyReader = new SortPropertyReader( sortConfiguration );
-        Date readSortDate = sortPropertyReader.readSortDate( TYPE, VERSION, readFeatureCollection() );
+        Date readSortDate = sortPropertyReader.readSortDate( BP_Plan, XPLAN_40, readFeatureCollection() );
 
         assertThat( readSortDate, is( asDate( "2001-08-06" ) ) );
     }
@@ -89,7 +85,7 @@ public class SortPropertyReaderTest {
                     throws Exception {
         SortConfiguration sortConfiguration = createSortConfiguration( "BP_Plan", "technHerstellDatum" );
         SortPropertyReader sortPropertyReader = new SortPropertyReader( sortConfiguration );
-        Date readSortDate = sortPropertyReader.readSortDate( FP_Plan, VERSION, readFeatureCollection() );
+        Date readSortDate = sortPropertyReader.readSortDate( FP_Plan, XPLAN_40, readFeatureCollection() );
 
         assertThat( readSortDate, nullValue() );
     }
@@ -99,7 +95,7 @@ public class SortPropertyReaderTest {
                     throws Exception {
         SortConfiguration sortConfiguration = createSortConfiguration( "BP_Plan", "technHerstellDatum" );
         SortPropertyReader sortPropertyReader = new SortPropertyReader( sortConfiguration );
-        Date readSortDate = sortPropertyReader.readSortDate( TYPE, XPLAN_3, readFeatureCollection() );
+        Date readSortDate = sortPropertyReader.readSortDate( BP_Plan, XPLAN_3, readFeatureCollection() );
 
         assertThat( readSortDate, nullValue() );
     }
@@ -109,7 +105,7 @@ public class SortPropertyReaderTest {
                     throws Exception {
         SortConfiguration sortConfiguration = createSortConfiguration( "BP_PlanNotThere", "technHerstellDatum" );
         SortPropertyReader sortPropertyReader = new SortPropertyReader( sortConfiguration );
-        Date readSortDate = sortPropertyReader.readSortDate( TYPE, XPLAN_3, readFeatureCollection() );
+        Date readSortDate = sortPropertyReader.readSortDate( BP_Plan, XPLAN_3, readFeatureCollection() );
 
         assertThat( readSortDate, nullValue() );
     }
@@ -119,7 +115,7 @@ public class SortPropertyReaderTest {
                     throws Exception {
         SortConfiguration sortConfiguration = createSortConfiguration( "BP_Plan", "notThereDatum" );
         SortPropertyReader sortPropertyReader = new SortPropertyReader( sortConfiguration );
-        Date readSortDate = sortPropertyReader.readSortDate( TYPE, XPLAN_3, readFeatureCollection() );
+        Date readSortDate = sortPropertyReader.readSortDate( BP_Plan, XPLAN_3, readFeatureCollection() );
 
         assertThat( readSortDate, nullValue() );
     }
@@ -132,14 +128,14 @@ public class SortPropertyReaderTest {
 
     private SortConfiguration createSortConfiguration( String featureType, String propertyName ) {
         SortConfiguration mockedSortConfig = mock( SortConfiguration.class );
-        when( mockedSortConfig.retrieveFeatureType( TYPE, VERSION ) ).thenReturn( featureType );
-        when( mockedSortConfig.retrievePropertyName( TYPE, VERSION ) ).thenReturn( propertyName );
+        when( mockedSortConfig.retrieveFeatureType( BP_Plan, XPLAN_40 ) ).thenReturn( featureType );
+        when( mockedSortConfig.retrievePropertyName( BP_Plan, XPLAN_40 ) ).thenReturn( propertyName );
         return mockedSortConfig;
     }
 
     private FeatureCollection readFeatureCollection()
                     throws Exception {
-        String name = "xplan2/BP2070.zip";
+        String name = "xplan51/BP2070.zip";
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
         XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
         XPlanVersion version = archive.getVersion();

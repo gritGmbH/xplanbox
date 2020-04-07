@@ -44,8 +44,6 @@ public class ScenarioLoader {
   @SuppressWarnings("incomplete-switch")
   private FeatureCollection load( XPlanVersion version ) {
     switch ( version ) {
-    case XPLAN_2:
-      return load( version, "xplan2.xml" );
     case XPLAN_3:
       return load( version, "xplan3.xml" );
     case XPLAN_40:

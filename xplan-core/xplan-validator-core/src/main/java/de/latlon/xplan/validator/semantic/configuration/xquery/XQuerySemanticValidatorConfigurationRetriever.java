@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Path;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
@@ -172,8 +171,6 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
             return XPLAN_40;
         if ("xplangml3".equals(dirName))
             return XPLAN_3;
-        if ("xplangml2".equals(dirName))
-            return XPLAN_2;
         LOG.info("{} is not a known XPlanVersion", dirName);
         return UNKNOWN_VERSION;
     }

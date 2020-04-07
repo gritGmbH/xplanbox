@@ -1,1 +1,0 @@
-DROP SCHEMA xplan2archive CASCADE;

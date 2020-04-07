@@ -35,9 +35,8 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.validator.semantic.configuration;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
@@ -63,13 +62,13 @@ public class RulesMessagesAccessorTest {
 
     @Test
     public void testRetrieveMessageForRule_KnownRuleWithVersion() {
-        String message = RulesMessagesAccessor.retrieveMessageForRule( "3.1.2.3", XPLAN_2 );
-        assertThat( message, is( "Regel 3.1.2.3 muss erf\u00FCllt sein" ) );
+        String message = RulesMessagesAccessor.retrieveMessageForRule( "3.1.2.3", XPLAN_51 );
+        assertThat( message, is( "XP_Bereich: Relation auf Basis-Rasterplan" ) );
     }
 
     @Test
     public void testRetrieveMessageForRule_UnknownRuleWithVersion() {
-        String message = RulesMessagesAccessor.retrieveMessageForRule( "unknownRule", XPLAN_2 );
+        String message = RulesMessagesAccessor.retrieveMessageForRule( "unknownRule", XPLAN_51 );
         assertThat( message, notNullValue() );
     }
 

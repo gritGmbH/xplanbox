@@ -194,8 +194,6 @@ public class XPlanSynthesizer {
 
     private String detectRulesFileName( XPlanVersion version ) {
         switch ( version ) {
-        case XPLAN_2:
-            return "xplan2.syn";
         case XPLAN_3:
             return "xplan3.syn";
         case XPLAN_40:

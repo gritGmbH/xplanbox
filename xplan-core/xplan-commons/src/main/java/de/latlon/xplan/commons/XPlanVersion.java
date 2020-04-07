@@ -17,10 +17,6 @@ import org.deegree.gml.GMLVersion;
 public enum XPlanVersion {
 
     /**
-     * XPlan 2.x
-     */
-    XPLAN_2( "http://www.xplanung.de/xplangml", "/appschemas/XPlanGML_2_0/XPlanung-Operationen.xsd", GML_30 ),
-    /**
      * XPlan 3.x
      */
     XPLAN_3( "http://www.xplanung.de/xplangml/3/0", "/appschemas/XPlanGML_3_0/XPlanung-Operationen.xsd", GML_30 ),

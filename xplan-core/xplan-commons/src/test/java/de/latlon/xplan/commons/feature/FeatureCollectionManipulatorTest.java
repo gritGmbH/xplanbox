@@ -134,18 +134,6 @@ public class FeatureCollectionManipulatorTest {
         assertThat( nameOfFirstFeature, is( new QName( "http://www.xplanung.de/xplangml/3/0", "BP_Plan" ) ) );
     }
 
-    @Test
-    public void testRemoveAllFeaturesExceptOfPlanFeatureWithXPlan2()
-                    throws Exception {
-        XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection( "xplan2/BP2070.zip" );
-        removeAllFeaturesExceptOfPlanFeature( fc );
-        FeatureCollection features = fc.getFeatures();
-        QName nameOfFirstFeature = features.iterator().next().getName();
-
-        assertThat( features.size(), is( 1 ) );
-        assertThat( nameOfFirstFeature, is( new QName( "http://www.xplanung.de/xplangml", "BP_Plan" ) ) );
-    }
-
     private ArrayList<Feature> createFeaturesWithAllProperties() {
         ArrayList<Property> properties = createProperties();
         return createFeatures( properties );

@@ -1,11 +1,6 @@
 package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
-import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersion;
-
-import javax.xml.namespace.QName;
-
+import de.latlon.xplan.commons.XPlanVersion;
 import org.apache.xerces.xs.XSElementDeclaration;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -13,7 +8,10 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.types.AppSchema;
 import org.deegree.feature.types.FeatureType;
 
-import de.latlon.xplan.commons.XPlanVersion;
+import javax.xml.namespace.QName;
+
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
+import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersion;
 
 public class XpGenerAttributFlattener extends AbstractFlattener {
 
@@ -30,7 +28,7 @@ public class XpGenerAttributFlattener extends AbstractFlattener {
 
     private boolean isGenerAttribut( Feature feature ) {
         XPlanVersion version = determineBaseVersion( feature.getName() );
-        if ( !( XPLAN_2.equals( version ) || XPLAN_3.equals( version ) ) ) {
+        if ( !XPLAN_3.equals( version ) ) {
             return false;
         }
         FeatureType ft = feature.getType();
