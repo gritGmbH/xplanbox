@@ -44,7 +44,7 @@ Datei xplan.gml liegen.
 Innerhalb des XPlanGML müssen die Rasterdateien wie folgt referenziert
 sein:
 
-*XPlanGML 2 und 3:*
+*XPlanGML 3:*
 
 Rasterdateien werden im Feature Type XP_RasterplanBasis,
 XP_RasterplanAenderung, BP_RasterplanAenderung oder
