@@ -5,6 +5,7 @@ import java.util.List;
 
 import de.latlon.xplan.manager.synthesizer.expression.Ausrichtung;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
+import de.latlon.xplan.manager.synthesizer.expression.LatestDate;
 import de.latlon.xplan.manager.synthesizer.expression.StringConstant;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanBesondZweckbest;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanBesondZweckbestLookup;
@@ -144,6 +145,10 @@ class RuleParser {
         return new Ausrichtung( parse( args.get( 0 ) ) );
     }
 
+    private Expression parseLatest( List<String> args ) {
+        return new LatestDate( parse( args.get( 0 ) ) );
+    }
+
     private Expression parseFunction( String functionName, List<String> args ) {
         Expression result;
         switch ( functionName ) {
@@ -215,6 +220,9 @@ class RuleParser {
             break;
         case "ausrichtungLookup":
             result = parseAusrichtungLookup( args );
+            break;
+        case "latest":
+            result = parseLatest( args );
             break;
         default:
             throw new RuntimeException( String.format( "Expression %s is not expected.", functionName ) );
