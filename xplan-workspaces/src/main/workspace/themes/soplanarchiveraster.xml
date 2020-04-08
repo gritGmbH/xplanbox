@@ -2,6 +2,7 @@
         xmlns:s="http://www.deegree.org/metadata/spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         configVersion="3.4.0"
         xsi:schemaLocation="http://www.deegree.org/themes/standard http://schemas.deegree.org/themes/3.4.0/themes.xsd">
+  <!--<LayerStoreId>dummyrasterlayer</LayerStoreId>-->
   <Theme>
     <Identifier>SO_Planraster</Identifier>
     <d:Title>SOPlan Raster</d:Title>

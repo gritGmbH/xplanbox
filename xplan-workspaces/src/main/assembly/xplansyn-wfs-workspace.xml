@@ -12,7 +12,7 @@
         <include>datasources/feature/xplansyn*</include>
         <include>jdbc/xplan.xml</include>
         <include>services/xplansyn*</include>
-        <include>services/storedqueries/xplansyn/**</include>
+        <include>storedqueries/xplansyn/**</include>
       </includes>
       <excludes>
         <exclude>appschemas/*</exclude>

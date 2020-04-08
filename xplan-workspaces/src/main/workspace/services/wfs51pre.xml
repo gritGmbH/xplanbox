@@ -25,8 +25,8 @@
   <QueryCRS>EPSG:4839</QueryCRS>
   <QueryCRS>CRS:84</QueryCRS>
   
-  <StoredQuery>storedqueries/xplan51/planName51.xml</StoredQuery>
-  <StoredQuery>storedqueries/xplan51/planId51.xml</StoredQuery>
-  <StoredQuery>storedqueries/xplan51/internalId51.xml</StoredQuery>
+  <StoredQuery>../storedqueries/xplan51/planName51.xml</StoredQuery>
+  <StoredQuery>../storedqueries/xplan51/planId51.xml</StoredQuery>
+  <StoredQuery>../storedqueries/xplan51/internalId51.xml</StoredQuery>
 
 </deegreeWFS>
