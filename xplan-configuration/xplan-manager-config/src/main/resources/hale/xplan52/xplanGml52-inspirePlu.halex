@@ -3,7 +3,7 @@
     <name>XPlan GML 5.2 to INSPRE PLU</name>
     <author>lat/lon GmbH</author>
     <created>2018-11-19T14:09:54.783+01:00</created>
-    <modified>2020-02-10T07:10:09.593+01:00</modified>
+    <modified>2020-03-23T15:41:50.181+01:00</modified>
     <save-config action-id="project.save" provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -21,7 +21,7 @@
         <setting name="charset">UTF-8</setting>
         <setting name="onlyElementsMappable">true</setting>
         <setting name="resourceId">38bbd4a7-d319-43f2-a605-8214937b4d15</setting>
-        <setting name="source">http://inspire.ec.europa.eu/schemas/plu/4.0/PlannedLandUse.xsd</setting>
+        <setting name="source">../../appschemas/inspireplu/PlannedLandUse-AdaptedGml.xsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xsd</setting>
     </resource>
     <file name="alignment.xml" location="xplanGml52-inspirePlu.halex.alignment.xml"/>
@@ -728,6 +728,9 @@
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}XP_TextAbschnittType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}XP_TextAbschnittType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}XP_TextAbschnittType/count">2</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}XPlanAuszugType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}XPlanAuszugType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/2}XPlanAuszugType/count">2</property>
     <property name="resource-1d78d644-c295-40fd-9d62-d3d677fcbd91:defaultCRS:{http://www.xplanung.de/xplangml/5/2}BP_BauGrenzeType/{http://www.xplanung.de/xplangml/5/2}position/{http://www.opengis.net/gml/3.2}Curve/{http://www.opengis.net/gml/3.2}segments/{http://www.opengis.net/gml/3.2}ArcString">code:EPSG:4326</property>
     <property name="resource-1d78d644-c295-40fd-9d62-d3d677fcbd91:defaultCRS:{http://www.xplanung.de/xplangml/5/2}BP_BauGrenzeType/{http://www.xplanung.de/xplangml/5/2}position/{http://www.opengis.net/gml/3.2}Curve/{http://www.opengis.net/gml/3.2}segments/{http://www.opengis.net/gml/3.2}LineStringSegment">code:EPSG:4326</property>
     <property name="resource-1d78d644-c295-40fd-9d62-d3d677fcbd91:defaultCRS:{http://www.xplanung.de/xplangml/5/2}BP_BaugebietsTeilFlaecheType/{http://www.xplanung.de/xplangml/5/2}position/{http://www.opengis.net/gml/3.2}Polygon/{http://www.opengis.net/gml/3.2}exterior/{http://www.opengis.net/gml/3.2}LinearRing">code:EPSG:4326</property>
