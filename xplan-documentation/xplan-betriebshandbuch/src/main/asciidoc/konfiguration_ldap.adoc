@@ -28,7 +28,7 @@ Der Spring Security Servlet-Filter muss hinzugefügt werden:
 </filter-mapping>
 ----
 
-NOTE: Diese Konfiguration ist für alle drei Varianten erforderlich! Wenn der Servlet-Filter aktiviert ist, muss zusätzlich noch eine drei Varianten konfiguriert werden. Wie die Absicherung deaktiviert werden kann ist in <<disable_security>> beschrieben.
+NOTE: Diese Konfiguration ist für alle drei Varianten erforderlich! Wenn der Servlet-Filter aktiviert ist, muss zusätzlich noch eine der drei Varianten konfiguriert werden. Wie die Absicherung deaktiviert werden kann, ist in <<disable_security>> beschrieben.
 
 Weitere Informationen zur Absicherung mit Spring Security sind Online in der Referenzdokumentation von Spring Security zu finden:
 
@@ -52,7 +52,7 @@ Weitere Informationen zu den Rollen und Berechtigungen stehen im Kapitel <<rolle
 Steht keine Datenbank oder ein LDAP mit Benutzerinformationen zur Verfügung, dann kann die Absicherung über einen UserService von Spring Security erfolgen,
 dessen Konfiguration aus der Konfigurationsdatei _security-simple.xml_ ausgelesen wird.
 
-Die Vorgabewerte für die beiden vorkonfigurierten Benutzer "xplanisk" (Rolle _SUPERUSER_) und "guest" (Rolle _USER_) sind in der Konfgurationsdatei _WEB-INF/classes/security.properties_ gesetzt.
+Die Vorgabewerte für die beiden vorkonfigurierten Benutzer "admin" (Rolle _SUPERUSER_) und "guest" (Rolle _USER_) sind in der Konfgurationsdatei _WEB-INF/classes/security.properties_ gesetzt.
 
 Um die Absicherung zu aktivieren ist neben der Konfiguration des Spring Security Servlet-Filter wie oben in <<enable_security>> beschrieben folgende
 Anpassungen im Deployment-Deskriptor _WEB-INF/web.xml_ notwendig:
@@ -95,9 +95,9 @@ durch:
 ----
 
 NOTE: Die Datenbankverbindung mit dem Bezeichner _datasource_ muss zusätzlich in der Datei _security-simple.xml_ ergänzt werden. Weitere Informationen und Beispiele sind in
-der Referenzdokumentation von Spring Security zu finden.
+der Referenzdokumentation von Spring Security zu finden. Auch diese Variante unterstützt keine Gruppenhierarchien (siehe Kapitel <<gruppenhierarchien>>).
 
-Die Konfiguration eines UserService ist in der Referenzdokumentation von Spring Security beschrieben:
+Die Konfiguration eines UserService mit allen Optionen ist auch in der Referenzdokumentation von Spring Security beschrieben:
 
 * https://docs.spring.io/spring-security/site/docs/4.2.12.RELEASE/reference/htmlsingle/#core-services-jdbc-user-service[Datenbank UserService]
 
@@ -150,14 +150,14 @@ Weiterhin kann in dieser Datei die Konfiguration für das dynamische Auslesen de
 Gruppenhierarchien erfolgen. Dies ist lediglich nötig, wenn dynamische
 Gruppenhierarchien genutzt werden (siehe <<gruppenhierarchien>>).
 
-Weitere Informationen zur LDAP/AD-Anbindung in der Referenzdokumentation von Spring Security:
+Weitere Informationen zur LDAP/AD-Anbindung in der Referenzdokumentation von Spring Security im Kapitel:
 
 * https://docs.spring.io/spring-security/site/docs/4.2.12.RELEASE/reference/htmlsingle/#ldap[LDAP/AD-Anbindung]
 
 [[rollenundgruppen]]
 ===== Rollen und Gruppen konfigurieren
 
-Die Konfiguration der Superuser-Gruppen, der Editor-Gruppen und der Active Directory-Gruppen mit den dazugehörigen Bezirken,
+Die Konfiguration der Superuser-Gruppen, der Editor-Gruppen und der Active Directory-Gruppen mit den dazugehörigen Organisationseinheiten (wie z.B. einer Kommune oder eines Bezirks),
 auf die diese Gruppen zugreifen dürfen, erfolgt in der Datei _WEB-INF/classes/security-configuration.xml_.
 
 Konfigurationsbeispiel:
@@ -307,9 +307,9 @@ Weitere Informationen zur Konfiguration von Spring und Spring Security sind in d
 * https://docs.spring.io/spring-security/site/docs/4.2.12.RELEASE/reference/htmlsingle/[Konfiguration von Spring Security]
 
 NOTE: Sowohl die dynamische als auch die statische Gruppenhierarchie wird
-während des Starts der Webapp einmalig ausgewertet. Falls es nachträgliche
+während des Starts der Webapp einmalig ausgewertet. Wenn es zur Laufzeit
 Änderungen an den Hierarchien gibt, muss die Webapp neu gestartet
-werden, damit die Änderungen von der Software erkannt und genutzt werden können.
+werden, damit die Änderungen von der Software erkannt und ausgewertet werden können.
 
 [[disable_security]]
 ==== Absicherung deaktivieren
