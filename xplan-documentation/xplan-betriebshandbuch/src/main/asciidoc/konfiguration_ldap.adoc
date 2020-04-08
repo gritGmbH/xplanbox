@@ -220,7 +220,7 @@ der Nutzer Rechte hat (siehe nächste Zeile).
 HAMBURGNORD konfiguriert) muss eine Active Directory-Gruppe als Key erhalten
 und als Value eine Liste aller Bezirke, auf welche die Gruppe zugreifen
 darf. Ein Nutzer, der einer oder mehrerer dieser Gruppen zugeordnet
-ist, besitzt Rechte für die jeweils konfgurierten Bezirke.
+ist, besitzt alle Rechte für die den Bezirken zugeordneten Pläne.
 * Die Listen der Bezirke _groupsTodistricts_ (im Beispiel mit Altona,
 Harburg und Hamburg-Nord konfiguriert) stellen eigene Spring-Beans dar und
 werden von der zuvor beschriebenen Map referenziert.
@@ -314,6 +314,6 @@ werden, damit die Änderungen von der Software erkannt und ausgewertet werden k�
 [[disable_security]]
 ==== Absicherung deaktivieren
 
-Um die Absicherung zu deaktivieren, müssen der oben genannte Servlet-Filter aus der _web.xml_
+Um die Absicherung zu deaktivieren, müssen der im Abschnitt <<enable_security>> genannte Servlet-Filter aus der web.xml
 entfernt und die Spring Konfiguration `de.latlon.xplan.manager.web.spring.config.ManagerWebSpringConfig` eingebunden
 werden.
