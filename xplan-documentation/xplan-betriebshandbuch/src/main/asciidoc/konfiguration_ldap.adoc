@@ -1,5 +1,5 @@
 [[security]]
-=== Absicherung des XPlanManager
+=== Absicherung des XPlanManagerWeb
 
 Der Zugriff auf die Komponente XPlanManagerWeb kann mittels Spring Security über BASIC-Authentication abgesichert werden.
 
@@ -212,7 +212,7 @@ Details zur Konfiguration:
 aller Superuser-Gruppen dar. Ein Nutzer, der einer Superuser-Gruppe
 zugeordnet ist, hat keinerlei Beschränkungen bei der Nutzung des
 XPlanManager.
-* Die Liste _groupsEditor_ (mit EDITOR konfiguriert) stellt eine
+* Die Liste _groupsEditor_ (im Beispiel mit EDITOR konfiguriert) stellt eine
 Liste aller Editor-Gruppen dar. Wenn ein Nutzer einer Editor-Gruppe
 zugeordnet ist, kann dieser alle Pläne aus Bezirken editieren, für die
 der Nutzer Rechte hat (siehe nächste Zeile).
