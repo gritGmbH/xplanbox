@@ -1,7 +1,6 @@
 package de.latlon.xplan.commons.util;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
@@ -38,21 +37,6 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
  * @version $Revision: $, $Date: $
  */
 public class FeatureCollectionUtilsTest {
-
-    @Test
-    public void testFindPlanFeatureWithXPlan2()
-                    throws Exception {
-        FeatureCollection fc = getMainFileAsFeatureCollection( "xplan2/BP2070.zip" );
-        Feature planFeature = findPlanFeature( fc, BP_Plan );
-        String id = planFeature.getId();
-        String name = planFeature.getName().toString();
-        String envelope = planFeature.getEnvelope().toString();
-
-        assertThat( id, is( "obj_0_0" ) );
-        assertThat( name, is( "{http://www.xplanung.de/xplangml}BP_Plan" ) );
-        assertThat( envelope,
-                    is( "min: (3478519.018,5889194.887), max: (3480922.418,5890728.997), span0: 2403.399999999907, span1: 1534.1100000003353 , crs: {uri=EPSG:31467, resolved=false}" ) );
-    }
 
     @Test
     public void testFindPlanFeatureWithXPlan3()
@@ -125,15 +109,6 @@ public class FeatureCollectionUtilsTest {
         String additionalType = retrieveAdditionalType( fc, BP_Plan );
 
         assertThat( additionalType, is( "INSERT ADDITIONAL TYPE" ) );
-    }
-
-    @Test
-    public void testRetrieveDistrictWithXPlan2ShouldReturnNull()
-                    throws Exception {
-        FeatureCollection fc = getMainFileAsFeatureCollection( "xplan2/BP2070.zip" );
-        String district = retrieveDistrict( fc, BP_Plan, XPLAN_2 );
-
-        assertThat( district, nullValue() );
     }
 
     @Test

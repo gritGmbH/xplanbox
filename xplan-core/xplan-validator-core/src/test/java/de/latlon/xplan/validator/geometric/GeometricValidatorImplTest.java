@@ -32,24 +32,6 @@ import static org.junit.Assert.assertNotEquals;
  */
 public class GeometricValidatorImplTest {
 
-    @Test
-    public void testValidateGeometryWithValidVoOptions()
-                            throws Exception {
-        XPlanArchive archive = getTestArchive( "xplan2/FPlan.zip" );
-        List<ValidationOption> validVoOptions = createValidVoOptions();
-        ValidatorResult report = validateGeometryAndReturnReport( archive, validVoOptions );
-        assertNotEquals( null, report );
-    }
-
-    @Test
-    public void testValidateGeometryWithInvalidVoOptions()
-                            throws Exception {
-        XPlanArchive archive = getTestArchive( "xplan2/FPlan.zip" );
-        List<ValidationOption> invalidVoOptions = createInvalidVoOptions();
-        ValidatorResult report = validateGeometryAndReturnReport( archive, invalidVoOptions );
-        assertNotEquals( null, report );
-    }
-
     @Ignore("TODO: test plan is required (with only few features)")
     @Test
     public void testValidateGeometryWithNullVoOptions()

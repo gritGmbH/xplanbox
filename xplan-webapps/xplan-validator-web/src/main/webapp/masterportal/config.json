@@ -23,7 +23,7 @@
 		"mapView": {
 			"backgroundImage": "./ressources/img/backgroundCanvas.jpeg",
 			"startCenter": [561210, 5932600],
-			"extent": [510000.0, 5850000.0, 625000.4, 6000000.0],
+			"extent": [250063.8, 5232673.8, 888982.3, 6122928.6],
 			"zoomLevel": 1
 		},
 		"menu": {
@@ -86,8 +86,8 @@
 		"Hintergrundkarten": {
 			"Layer": [
 				{
-          "id": "453",
-          "name": "Stadtplan",
+          "id": "452",
+          "name": "Basiskarte",
 					"visibility": true
 				}
 			]

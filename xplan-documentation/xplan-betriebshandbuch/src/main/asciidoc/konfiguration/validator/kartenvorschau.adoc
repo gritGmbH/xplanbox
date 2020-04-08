@@ -8,3 +8,22 @@ Um die Kartenvorschau im XPlanValidatorWeb zu aktivieren, muss die URL des XPlan
 ----
 validatorWmsEndpoint=http://<host>:<port>>/xplan-validator-wms/services/wms
 ----
+
+Um die Hintergrundkarte der Kartenvorschau anzupassen, ist die Anpassung einer Datei im _xplan-validator-web.war_ erforderlich.
+
+Der Inhalt der anzupassende Datei link:./downloads/services-internet.template.json[services-internet.template.json] ist im folgenden dargestellt:
+
+----
+include::../../downloads/services-internet.template.json[]
+----
+
+Um die Hintergrundkarte anzupassen, müssen folgende Schritte ausgeführt werden:
+
+1. Ablegen der Datei unter _masterportal/template/services-internet.template.json_ im Dateisystem (Pfad und Dateiname müssen beibehalten werden).
+1. Anpassen der URL des Dienstes (Zeile 6, "url") und des Layers (Zeile 8, "layers")
+1. Austausch der Datei im _xplan-validator-web.war_, z.B. durch Ausführen des folgenden Kommandos:
+----
+jar uf xplan-validator-web.war masterportal/template/services-internet.template.json
+----
+
+NOTE: Die Zeilen 2, 4 und 5 dürfen nicht angepasst werden!

@@ -1,7 +1,6 @@
 package de.latlon.xplan.commons.util;
 
 import static de.latlon.xplan.commons.XPlanAde.NSM;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
@@ -23,13 +22,6 @@ import org.junit.Test;
 import de.latlon.xplan.commons.XPlanVersion;
 
 public class XPlanVersionUtilsTest {
-
-    @Test
-    public void testDetermineBaseVersionFor2() {
-        QName element = new QName( XPLAN_2.getNamespace(), "element" );
-        XPlanVersion version = XPlanVersionUtils.determineBaseVersion( element );
-        assertThat( version, is( XPLAN_2 ) );
-    }
 
     @Test
     public void testDetermineBaseVersionFor3() {
@@ -77,14 +69,6 @@ public class XPlanVersionUtilsTest {
     public void testDetermineBaseVersionForUnknownNamespaceShouldFail() {
         QName element = new QName( "http://unknown.namespaceuri.de", "element" );
         XPlanVersionUtils.determineBaseVersion( element );
-    }
-
-    @Test
-    public void testRetrieveNamespaceBindingsFor2() {
-        QName element = new QName( XPLAN_2.getNamespace(), "element" );
-        NamespaceBindings namespaceBindings = XPlanVersionUtils.retrieveNamespaceBindings( element );
-        assertThat( namespaceBindings, hasNamespace( XPLAN_2.getNamespace(), "xplan" ) );
-        assertThat( namespaceBindings, hasNamespace( XPLAN_2.getGmlVersion().getNamespace(), "gml" ) );
     }
 
     @Test

@@ -1,14 +1,10 @@
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import de.latlon.xplan.manager.codelists.XPlanCodeConverter;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
-import org.deegree.commons.utils.Pair;
 import org.deegree.feature.Feature;
 
-import static de.latlon.xplan.manager.codelists.XPlanCodeConverter.xplan2ToSynCode;
-import static de.latlon.xplan.manager.codelists.XPlanCodeListsFactory.getXPlanSyn;
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimitiveValue;
 
@@ -26,8 +22,6 @@ import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimi
  */
 public class Xplan2CodeNormalize implements Expression {
 
-    private static final String XPLAN_2_NS = "http://www.xplanung.de/xplangml";
-
     private final Expression exp;
 
     private String xplan2CodeList;
@@ -40,7 +34,6 @@ public class Xplan2CodeNormalize implements Expression {
         this.exp = exp;
         this.xplanSynCodeList = xplan3CodeList;
         try {
-            XPlanCodeConverter.xplan2ToSynCodeList( xplan2CodeList );
             this.xplan2CodeList = xplan2CodeList;
         } catch ( IllegalArgumentException e ) {
             // no xplan2 code list available for this property
@@ -50,7 +43,6 @@ public class Xplan2CodeNormalize implements Expression {
 
     @Override
     public PrimitiveValue evaluate( Feature feature ) {
-        boolean isXPlan2 = feature.getName().getNamespaceURI().equals( XPLAN_2_NS );
         String normalizedCodes = null;
         try {
             TypedObjectNodeArray<TypedObjectNode> codes = castToArray( exp.evaluate( feature ) );
@@ -58,10 +50,6 @@ public class Xplan2CodeNormalize implements Expression {
                 normalizedCodes = "";
                 for ( TypedObjectNode o : codes.getElements() ) {
                     String code = o.toString();
-                    if ( isXPlan2 ) {
-                        Pair<String, String> codeAndDesc = getXPlanSynCodeAndDesc( code );
-                        code = codeAndDesc.first;
-                    }
                     normalizedCodes += "[" + escape( code ) + "]";
                 }
                 if ( codes.getElements().length == 1 ) {
@@ -82,26 +70,4 @@ public class Xplan2CodeNormalize implements Expression {
         return desc.replace( "][", "][][" );
     }
 
-    /**
-     * Retrieves the XPlan Syn code and description for the given XPlan 2 code.
-     *
-     * @param xplan2Code
-     * @return
-     */
-    private Pair<String, String> getXPlanSynCodeAndDesc( String xplan2Code ) {
-
-        String xplanSynCode;
-        String xplanSynDesc;
-
-        if ( noXPlan2CodeList ) {
-            // property is string-valued in XPlan 2
-            xplanSynCode = "9999";
-            xplanSynDesc = "Sonstiges";
-        } else {
-            // property has an XPlan 2 code list
-            xplanSynCode = xplan2ToSynCode( xplan2Code.toString(), xplan2CodeList ).getXplanSynCode();
-            xplanSynDesc = getXPlanSyn().getDescription( xplanSynCodeList, xplanSynCode );
-        }
-        return new Pair<String, String>( xplanSynCode, xplanSynDesc );
-    }
 }

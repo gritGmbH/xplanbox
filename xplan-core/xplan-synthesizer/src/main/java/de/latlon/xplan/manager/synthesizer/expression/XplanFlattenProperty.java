@@ -89,11 +89,12 @@ public class XplanFlattenProperty implements Expression {
             } catch ( Exception e ) {
                 return new DefaultFlattener().flatten( value );
             }
-        } else if ( value instanceof Feature ) {
-            Feature subFeature = (Feature) value;
-            if ( subFeature instanceof Reference ) {
-                value = ( (Reference<?>) subFeature ).getReferencedObject();
-            } else {
+        } else if ( value instanceof Reference ) {
+            Reference<?> reference = (Reference<?>) value;
+            try {
+                value = reference.getReferencedObject();
+            } catch ( ReferenceResolvingException e ) {
+                LOG.warn( "FeatureReference could not be resolved (URI: " + reference.getURI() + ")" );
                 return flatten( ( (Reference<?>) value ) );
             }
         } else if ( value != null ) {

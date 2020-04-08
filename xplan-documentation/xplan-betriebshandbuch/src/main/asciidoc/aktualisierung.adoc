@@ -74,6 +74,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 3.0              | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)
 | 3.1              | ja (<<aktualisierung-auf-die-version-3.1-der-xplanbox, Details>>)  | nein
 | 3.2              | ja (<<aktualisierung-auf-die-version-3.2-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.2-der-xplanbox, Details>>)
+| 3.3              | ja (<<aktualisierung-auf-die-version-3.3-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.3-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -290,5 +291,9 @@ Mit der Version 3.2 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen 
 [[aktualisierung-auf-die-version-3.3-der-xplanbox]]
 === Aktualisierung auf die Version 3.3 der xPlanBox
 
+Seit der Version 3.3 wird die XPlanGML Version 2.0 nicht mehr unterstützt.
+
+* Aktualisierung der Datenbank:
+** Ausführen der Skripte im Verzeichnis _from_3.2_to_3.3_ im Modul xplan-update-database in der vorgegebenen Reihenfolge.
 * Anpassungen im Logging führen dazu, dass standardmäßig in das Log-Verzeichnis des
 Tomcats ($\{catalina.base}/logs) gelogged wird. Das Java Property _xplan.logdir_ wird nicht mehr ausgewertet und kann entfernt werden.

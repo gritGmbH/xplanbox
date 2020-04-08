@@ -1,8 +1,20 @@
 package de.latlon.xplan.manager.configuration;
 
+import de.latlon.xplan.commons.configuration.PropertiesLoader;
+import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration;
+import de.latlon.xplan.commons.configuration.SortConfiguration;
+import de.latlon.xplan.manager.web.shared.ConfigurationException;
+import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
+import org.deegree.geometry.Envelope;
+import org.junit.Test;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.ACTIVATE_EXPORT_OF_REEXPORTED;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.CATEGORIES_TO_PARTS_KEY;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.DEFAULT_BBOX_IN_4326;
@@ -19,19 +31,6 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-
-import org.deegree.geometry.Envelope;
-import org.junit.Test;
-
-import de.latlon.xplan.commons.configuration.PropertiesLoader;
-import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration;
-import de.latlon.xplan.commons.configuration.SortConfiguration;
-import de.latlon.xplan.manager.web.shared.ConfigurationException;
-import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -112,8 +111,8 @@ public class ManagerConfigurationTest {
 
         SortConfiguration sortConfiguration = managerConfiguration.getSortConfiguration();
 
-        assertThat( sortConfiguration.retrieveFeatureType( BP_Plan, XPLAN_2 ), is( "BP_Plan" ) );
-        assertThat( sortConfiguration.retrievePropertyName( BP_Plan, XPLAN_2 ), is( "rechtsverordnungsDatum" ) );
+        assertThat( sortConfiguration.retrieveFeatureType( BP_Plan, XPLAN_50 ), is( "BP_Plan" ) );
+        assertThat( sortConfiguration.retrievePropertyName( BP_Plan, XPLAN_50 ), is( "rechtsverordnungsDatum" ) );
     }
 
     @Test
@@ -122,7 +121,7 @@ public class ManagerConfigurationTest {
         ManagerConfiguration managerConfiguration = new ManagerConfiguration( mockPropertiesLoader() );
 
         SemanticConformityLinkConfiguration semanticConformityLinkConfiguration = managerConfiguration.getSemanticConformityLinkConfiguration();
-        assertThat( semanticConformityLinkConfiguration.retrieveLink( XPLAN_2 ), is( "http://link.de/to.pdf" ) );
+        assertThat( semanticConformityLinkConfiguration.retrieveLink( XPLAN_50 ), is( "http://link.de/to.pdf" ) );
         assertThat( semanticConformityLinkConfiguration.retrieveLink( XPLAN_3 ), nullValue() );
     }
 
@@ -224,8 +223,8 @@ public class ManagerConfigurationTest {
         properties.put( CATEGORIES_TO_PARTS_KEY, "Cat1(A,B,C D);Cat2(1 , 7)" );
         properties.put( RASTER_CONFIG_CRS, "epsg:4326" );
         properties.put( DEFAULT_BBOX_IN_4326, "-180,-90,180,90" );
-        properties.put( "wmsSortDate_BP_Plan_XPLAN_2", "BP_Plan,rechtsverordnungsDatum" );
-        properties.put( "linkSemanticConformity_XPLAN_2", "http://link.de/to.pdf" );
+        properties.put( "wmsSortDate_BP_Plan_XPLAN_50", "BP_Plan,rechtsverordnungsDatum" );
+        properties.put( "linkSemanticConformity_XPLAN_50", "http://link.de/to.pdf" );
         properties.put( WORKSPACE_RELOAD_URLS, "url1,url2" );
         properties.put( WORKSPACE_RELOAD_USER, "user" );
         properties.put( WORKSPACE_RELOAD_PASSWORD, "password" );

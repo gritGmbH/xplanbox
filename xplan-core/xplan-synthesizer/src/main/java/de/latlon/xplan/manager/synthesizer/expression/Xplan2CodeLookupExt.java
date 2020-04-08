@@ -24,23 +24,17 @@ public class Xplan2CodeLookupExt implements Expression {
 
     private static final Logger LOG = LoggerFactory.getLogger( Xplan2CodeLookupExt.class );
 
-    private static final String XPLAN_2_NS = "http://www.xplanung.de/xplangml";
-
     private final Expression exp;
-
-    private final String xplan2CodeList;
 
     private final String xplan3CodeList;
 
     public Xplan2CodeLookupExt( Expression exp, String xplan2CodeList, String xplan3CodeList ) {
         this.exp = exp;
-        this.xplan2CodeList = xplan2CodeList;
         this.xplan3CodeList = xplan3CodeList;
     }
 
     @Override
     public PrimitiveValue evaluate( Feature feature ) {
-        boolean isXPlan2 = XPLAN_2_NS.equals( feature.getName().getNamespaceURI() );
         String descriptions = null;
         TypedObjectNodeArray<TypedObjectNode> codes = Expressions.castToArray( exp.evaluate( feature ) );
         if ( codes != null ) {
@@ -48,22 +42,13 @@ public class Xplan2CodeLookupExt implements Expression {
                 LOG.warn( "More than one value for " + this );
             }
             for ( TypedObjectNode code : codes.getElements() ) {
-                String desc;
                 XPlanCodeLists synExt = XPlanCodeListsFactory.getXPlanSynExt();
-                String xplanCodeList = xplan2CodeList;
                 try {
-                    if ( isXPlan2 ) {
-                        desc = synExt.getDescription( xplan2CodeList, code.toString() );
-                        xplanCodeList = xplan2CodeList;
-                    } else {
-                        desc = synExt.getDescription( xplan3CodeList, code.toString() );
-                        xplanCodeList = xplan3CodeList;
-                    }
-                    descriptions = desc;
+                    descriptions = synExt.getDescription( xplan3CodeList, code.toString() );
                 } catch ( Exception e ) {
                     descriptions = "" + code;
                     String msg = "Keine Beschreibung für externen Code '" + code.toString() + "' (CodeList "
-                                 + xplanCodeList + ") gefunden. Verwende Code als Beschreibung.";
+                                 + xplan3CodeList + ") gefunden. Verwende Code als Beschreibung.";
                     LOG.debug( msg );
                 }
             }

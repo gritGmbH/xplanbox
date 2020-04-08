@@ -38,7 +38,7 @@ package de.latlon.xplan.commons.configuration;
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.FP_Plan;
 import static de.latlon.xplan.commons.XPlanType.LP_Plan;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static org.hamcrest.CoreMatchers.is;
@@ -58,17 +58,17 @@ public class SortConfigurationTest {
         sortConfiguration.addSortField( BP_Plan, XPLAN_40, "ft1", "pn1" );
         sortConfiguration.addSortField( BP_Plan, XPLAN_41, "ft1", "pn2" );
         sortConfiguration.addSortField( FP_Plan, XPLAN_41, "ft2", "pn1" );
-        sortConfiguration.addSortField( FP_Plan, XPLAN_2, null, "pn3" );
-        sortConfiguration.addSortField( LP_Plan, XPLAN_2, "ft4", "pn4" );
-        sortConfiguration.addSortField( LP_Plan, XPLAN_2, "ft5", "pn5" );
+        sortConfiguration.addSortField( FP_Plan, XPLAN_3, null, "pn3" );
+        sortConfiguration.addSortField( LP_Plan, XPLAN_3, "ft4", "pn4" );
+        sortConfiguration.addSortField( LP_Plan, XPLAN_3, "ft5", "pn5" );
 
         String firstFeatureType = sortConfiguration.retrieveFeatureType( BP_Plan, XPLAN_40 );
         String secondFeatureType = sortConfiguration.retrieveFeatureType( BP_Plan, XPLAN_41 );
         String thirdFeatureType = sortConfiguration.retrieveFeatureType( FP_Plan, XPLAN_41 );
-        String nullFeatureType = sortConfiguration.retrieveFeatureType( FP_Plan, XPLAN_2 );
-        String overwrittenFeatureType = sortConfiguration.retrieveFeatureType( LP_Plan, XPLAN_2 );
+        String nullFeatureType = sortConfiguration.retrieveFeatureType( FP_Plan, XPLAN_3 );
+        String overwrittenFeatureType = sortConfiguration.retrieveFeatureType( LP_Plan, XPLAN_3 );
         String unconfiguredPlanTypeFeatureType = sortConfiguration.retrieveFeatureType( LP_Plan, XPLAN_41 );
-        String unconfiguredVersionFeatureType = sortConfiguration.retrieveFeatureType( BP_Plan, XPLAN_2 );
+        String unconfiguredVersionFeatureType = sortConfiguration.retrieveFeatureType( BP_Plan, XPLAN_3 );
 
         assertThat( firstFeatureType, is( "ft1" ) );
         assertThat( secondFeatureType, is( "ft1" ) );
@@ -85,17 +85,17 @@ public class SortConfigurationTest {
         sortConfiguration.addSortField( BP_Plan, XPLAN_40, "ft1", "pn1" );
         sortConfiguration.addSortField( BP_Plan, XPLAN_41, "ft1", "pn2" );
         sortConfiguration.addSortField( FP_Plan, XPLAN_41, "ft2", "pn1" );
-        sortConfiguration.addSortField( FP_Plan, XPLAN_2, "ft3", null );
-        sortConfiguration.addSortField( LP_Plan, XPLAN_2, "ft4", "pn4" );
-        sortConfiguration.addSortField( LP_Plan, XPLAN_2, "ft5", "pn5" );
+        sortConfiguration.addSortField( FP_Plan, XPLAN_3, "ft3", null );
+        sortConfiguration.addSortField( LP_Plan, XPLAN_3, "ft4", "pn4" );
+        sortConfiguration.addSortField( LP_Plan, XPLAN_3, "ft5", "pn5" );
 
         String firstPropertyName = sortConfiguration.retrievePropertyName( BP_Plan, XPLAN_40 );
         String secondPropertyName = sortConfiguration.retrievePropertyName( BP_Plan, XPLAN_41 );
         String thirdPropertyName = sortConfiguration.retrievePropertyName( FP_Plan, XPLAN_41 );
-        String nullPropertyName = sortConfiguration.retrievePropertyName( FP_Plan, XPLAN_2 );
-        String overwrittenPropertyName = sortConfiguration.retrievePropertyName( LP_Plan, XPLAN_2 );
+        String nullPropertyName = sortConfiguration.retrievePropertyName( FP_Plan, XPLAN_3 );
+        String overwrittenPropertyName = sortConfiguration.retrievePropertyName( LP_Plan, XPLAN_3 );
         String unconfiguredPlanTypePropertyName = sortConfiguration.retrievePropertyName( LP_Plan, XPLAN_41 );
-        String unconfiguredVersionPropertyName = sortConfiguration.retrievePropertyName( BP_Plan, XPLAN_2 );
+        String unconfiguredVersionPropertyName = sortConfiguration.retrievePropertyName( BP_Plan, XPLAN_3 );
 
         assertThat( firstPropertyName, is( "pn1" ) );
         assertThat( secondPropertyName, is( "pn2" ) );

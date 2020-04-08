@@ -14,13 +14,11 @@ import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.FP_Plan;
 import static de.latlon.xplan.commons.XPlanType.RP_Plan;
 import static de.latlon.xplan.commons.XPlanType.SO_Plan;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_2;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
 
 /**
@@ -30,51 +28,6 @@ import static org.mockito.Mockito.when;
  * @version $Revision: $, $Date: $
  */
 public class XPlanArchiveCreatorTest {
-
-    @Test
-    public void testMetadataBP2070XPlan2()
-                    throws IOException {
-        XPlanArchive archive = getTestArchive( "xplan2/BP2070.zip" );
-        assertEquals( XPLAN_2, archive.getVersion() );
-        assertEquals( BP_Plan, archive.getType() );
-        assertEquals( "EPSG:31467", archive.getCrs().getName() );
-    }
-
-    @Test
-    public void testMetadataBP2135XPlan2()
-                    throws IOException {
-        XPlanArchive archive = getTestArchive( "xplan2/BP2135.zip" );
-        assertEquals( XPLAN_2, archive.getVersion() );
-        assertEquals( BP_Plan, archive.getType() );
-        assertNull( archive.getCrs() );
-    }
-
-    @Test
-    public void testMetadataFPlanXPlan2()
-                    throws IOException {
-        XPlanArchive archive = getTestArchive( "xplan2/FPlan.zip" );
-        assertEquals( XPLAN_2, archive.getVersion() );
-        assertEquals( FP_Plan, archive.getType() );
-        assertNull( archive.getCrs() );
-    }
-
-    @Test
-    public void testMetadataLA22XPlan2()
-                    throws IOException {
-        XPlanArchive archive = getTestArchive( "xplan2/LA22.zip" );
-        assertEquals( XPLAN_2, archive.getVersion() );
-        assertEquals( BP_Plan, archive.getType() );
-        assertEquals( "EPSG:31467", archive.getCrs().getName() );
-    }
-
-    @Test
-    public void testMetadataLA67XPlan2()
-                    throws IOException {
-        XPlanArchive archive = getTestArchive( "xplan2/LA67.zip" );
-        assertEquals( XPLAN_2, archive.getVersion() );
-        assertEquals( BP_Plan, archive.getType() );
-        assertNull( archive.getCrs() );
-    }
 
     @Test
     public void testMetadataBP2070XPlan3()
