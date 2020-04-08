@@ -13,8 +13,8 @@
         <include>datasources/feature/xplan4*</include>
         <include>datasources/feature/xplan5*</include>
         <include>jdbc/xplan.xml</include>
-        <include>services/storedqueries/xplan4*/**</include>
-        <include>services/storedqueries/xplan5*/**</include>
+        <include>storedqueries/xplan4*/**</include>
+        <include>storedqueries/xplan5*/**</include>
         <include>services/wfs3*</include>
         <include>services/wfs4*</include>
         <include>services/wfs5*</include>
