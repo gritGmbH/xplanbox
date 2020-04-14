@@ -3118,6 +3118,26 @@
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C3f70729d-e8f2-4d13-bb93-4609d709e0a6" priority="normal">
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://unknownregistry.xplanung.de/SpecificLandUseValue/6_Sonstiges" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="Cdad93423-97a6-4930-bb47-e53bd49fc8d6" priority="normal">
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_OtherSupplementaryRegulation" name="value"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cb9f1b0b8-7159-4a6a-b934-edc500b21103" priority="normal">
         <source>
             <property>
@@ -3499,6 +3519,16 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="Cbc2a19c4-59d0-4096-83b9-a076633caf96" priority="normal">
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/codelist/HILUCSValue/6_6_NotKnownUse" name="value"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C1d0f0543-d80e-4029-aded-828a8030b0e2" priority="normal">
         <source>
             <property>
@@ -3625,6 +3655,16 @@
             </lookup-table>
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="Ceebd3723-15d6-453a-900f-d329e65ab11f" priority="normal">
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://unknownregistry.xplanung.de/SupplementaryRegulationValue/6_Sonstiges" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C0c86e10c-df2e-4a1f-8160-7ee834fc3323" priority="normal">
         <source>
