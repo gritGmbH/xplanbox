@@ -37,7 +37,7 @@ cp ${WORK_DIR}/web/xplan-wms.war <CATALINA_HOME>/webapps/
 [[neustart-der-tomcats]]
 === Neustart der Tomcats
 
-Es müssen beide Applikationsserver neu gestartet werden.
+Es müssen beide Applikationsserver neu gestartet werden. Der Neustart muss nach der Aktualisierung der Workspaces erfolgen (s. <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>>).
 
 [[austausch-der-commandline-tools]]
 === Austausch der Commandline-Tools
@@ -213,6 +213,13 @@ Visualisierung erforderlich. Informationen dazu finden sich im Abschnitt
 _XPlanManagerCLI_ im XPlanBenutzerhandbuch. Die erforderliche
 Konfiguration ist im Abschnitt _Konfiguration_ -> _Sortierung der Daten
 in der Visualisierung_ in dieser Dokumentation beschrieben.
+
+=== Troubleshooting
+
+Bei unerwartetem Verhalten der xPlanBox nach der Aktualisierung können folgende Punkte helfen:
+
+ * Löschen des Work-Verzeichnis des Tomcats. Der Tomcat muss zuvor gestoppt und anschließend neu gestartet werden.
+ * Löschen des Browser-Caches
 
 [[aktualisierung-auf-die-version-2.7-der-xplanbox]]
 === Aktualisierung auf die Version 2.7 der xPlanBox
