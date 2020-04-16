@@ -72,8 +72,6 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 2.7              | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-2.7-der-xplanbox, Details>>)
 | 2.8              |                                                                    | ja
 | 3.0              | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)
-| 3.1              | ja (<<aktualisierung-auf-die-version-3.1-der-xplanbox, Details>>)  | nein
-| 3.2              | ja (<<aktualisierung-auf-die-version-3.2-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.2-der-xplanbox, Details>>)
 | 3.3              | ja (<<aktualisierung-auf-die-version-3.3-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.3-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
@@ -268,39 +266,27 @@ Des Weiteren muss die HALE CLI auf Version 3.4.0 (siehe <<installation-hale-cli>
 Mit der Version 3.0 wird bei entprechender Konfiguration (s. <<konfiguration-daten-dienste-kopplung>>) beim Import eines Plans geprüft ob für diesen Plan bereits ein Daten-Metadatensatz existiert. Ist dies der Fall wird automatisiert ein Service-Metadatensatz für den Plan bzw. dessen XPlanWerkWMS erstellt.
 Sollen für alle oder einzelne bereits importierten Pläne die Service-Metadatensätze generiert und die dazugehörigen Informationen zur Daten-Dienste-Kopplung, die in den Capabilities des XPlanWerkWMS ausgegeben werden, erstellt werden, steht im Modul xplan-update-database das Werkzeug __serviceMetadatRecordCreator__ zur Verfügung. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt dem Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert.
 
-[[aktualisierung-auf-die-version-3.1-der-xplanbox]]
-=== Aktualisierung auf die Version 3.1 der xPlanBox
+[[aktualisierung-auf-die-version-3.3-der-xplanbox]]
+=== Aktualisierung auf die Version 3.3 der xPlanBox
 
-Wenn die neuen Features <<kartenvorschau-validator>> und <<semantische-validierungsregeln-validiator>> im XPlanValidatorWeb genutzt werden sollen, sind folgende Anpassungen nötig.
-
- * Workspace __xplan-inspireplu-workspace__ und Konfiguration __xplan-validator-config__ entpacken und installieren (siehe <<konfiguration>>).
- * Webanwendung __xplan-validator-wms.war__ installieren (siehe <<web-anwendungen>>).
- * XPlanValidatorWeb gemäß <<konfiguration-validator>> konfigurieren.
-
-[[aktualisierung-auf-die-version-3.2-der-xplanbox]]
-=== Aktualisierung auf die Version 3.2 der xPlanBox
-
-Mit der Version 3.2 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen vorgenommen worden. Darunter auch die Unterstützung von XPlanGML 5.2. Für die Aktualisierung auf die Version 3.2 sind folgende Schritte auszuführen:
+Mit der Version 3.3 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen vorgenommen worden. Darunter auch die Unterstützung von XPlanGML 5.2 und die Entfernung der Unterstützung von XPlanGML 2.0.
+Für die Aktualisierung auf die Version 3.3 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 ** Im xplansyn-wms-workspace ist mit dieser Version eine Dummy-Konfiguration eines GDALRasterLayers hinzugekommen. Diese muss bei der Aktualisierung nicht übernommen werden (Hintergründe: <<GDAL>>).
-* Anlegen des _xplan-validator-wms-workspace_ Workspaces (s. <<konfiguration>>).
-* Installation der _xplan-validator-wms.war_ Webanwendung (s. <<web-anwendungen>>). Achtung: Anschließend muss der _xplan-validator-wms-workspace_ initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt über die webapps.properties-Datei plus Neustart der Webanwendung geschehen.
 * Aktualisierung der Datenbank:
 ** Ausführen der Skripte für die Erstelllung der Datenhaltung für 5.2 aus dem Modul _xplan-manager-workspace_:
 *** _fix/xplan52/create.sql_
 *** _pre/xplan52/create.sql_
 *** _archive/xplan52/create.sql_
 *** _inspireplu/05_create_inspireplu_view.sql_
-** Ausführen der Skripte im Verzeichnis _from_3.1_to_3.2_ im Modul xplan-update-database in der vorgegebenen Reihenfolge
+** Ausführen der Skripte im Verzeichnis _from_3.0_to_3.3_ im Modul xplan-update-database in der vorgegebenen Reihenfolge
 ** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__  im Modul xplan-update-database zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
-
-[[aktualisierung-auf-die-version-3.3-der-xplanbox]]
-=== Aktualisierung auf die Version 3.3 der xPlanBox
-
-Seit der Version 3.3 wird die XPlanGML Version 2.0 nicht mehr unterstützt.
-
-* Aktualisierung der Datenbank:
-** Ausführen der Skripte im Verzeichnis _from_3.2_to_3.3_ im Modul xplan-update-database in der vorgegebenen Reihenfolge.
 * Anpassungen im Logging führen dazu, dass standardmäßig in das Log-Verzeichnis des
 Tomcats ($\{catalina.base}/logs) gelogged wird. Das Java Property _xplan.logdir_ wird nicht mehr ausgewertet und kann entfernt werden.
+
+Wenn die neuen Features <<kartenvorschau-validator>> und <<semantische-validierungsregeln-validiator>> im XPlanValidatorWeb genutzt werden sollen, sind folgende Anpassungen nötig.
+
+ * Workspace __xplan-inspireplu-workspace__ und Konfiguration __xplan-validator-config__ entpacken und installieren (siehe <<konfiguration>>).
+* Installation der _xplan-validator-wms.war_ Webanwendung (s. <<web-anwendungen>>). Achtung: Anschließend muss der _xplan-validator-wms-workspace_ initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt über die webapps.properties-Datei plus Neustart der Webanwendung geschehen.
+ * XPlanValidatorWeb gemäß <<konfiguration-validator>> konfigurieren.
