@@ -2,6 +2,39 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
+[[Aenderungshistorie-3.3]]
+=== Version 3.3 (deegree Enterprise 2020.1)
+
+==== Erweiterungen
+
+ - Unterstützung für XPlanGML 5.2 in allen Komponenten der xPlanBox
+ - Erweiterung der Transformation nach INSPIRE PLU um HILUCS und SupplementaryRegulationValue
+ - Integration einer Kartenvorschau im XPlanValidator
+ - Unterstützung für XPlanGML Version 2.0 aus der xPlanBox entfernen
+ - Diverse Verbesserungen im XPlanValidator
+   * Angabe der GML Id bei semantischen Fehlern (ab XPlan GML 5.0)
+   * Verbesserung der geometrischen Validierung
+ - Verbesserung der Darstellung von Präsentationsobjekten
+ - Verbesserung der Sachdatenabfrage im XPlanWMS (HTML)
+ - Verbesserung der Performanz des XPlanInspirePluWFS
+ - Verbesserung der Interoberabilität von XPlanWMS und XPlanSynWFS mit GIS-Clienten
+
+==== Fehlerbehebungen
+
+ - (TT_10228) Synthetisierung mehrfacher Datumsfelder anpassen Stadt Freiburg bug
+ - (TT_10249) Korrektur des Drehwinkels von Texten (Präsentationsobjekten)
+ - (TT_10263) Fehler beim Publizieren von PLU bei Curves im Originalplan
+ - (TT_10285) Fehler bei Transformation von XPlanGML 4.1 nach 5.1 (gehoertZuBereich)
+ - (TT_10291) Fehler bei DescribeFeatureType Response für XPlanSynWFS (2.0)
+ - (TT_10304) BP|FP|LP|RR|SO_TextAbschnitte werden nicht synthetisiert
+ - (TT_10304) TextAbschnitte durch den ReSythesizer unvollständig
+ - (TT_10269) Validierungsreport wird im XPlanManagerWeb nicht korrekt angezeigt
+ - (TT_10312) Darstellung von FP_Bodenschaetze im XPlanWMS
+ - (TT_10313) Darstellung von Schienenverkehrsrecht (FP Plan)
+ - Verbesserung des Betriebs- und Benutzerhandbuchs
+ - Warnungen beim Start des XPlanWMS behoben
+ - Verbesserung des Loggings
+
 === Version 3.0 (deegree Enterprise 2019.1)
 
 ==== Erweiterungen
