@@ -44,6 +44,8 @@ public abstract class ValidityPeriodInspector implements LayerVisibilityInspecto
     public boolean isVisible( LayerMetadata layerMetadata ) {
         String layerName = layerMetadata.getName();
         int planId = parsePlanId( layerName );
+        if ( planId < 0 )
+            return true;
         Timestamp now = new Timestamp( System.currentTimeMillis() );
 
         PreparedStatement stmt = null;
@@ -77,8 +79,11 @@ public abstract class ValidityPeriodInspector implements LayerVisibilityInspecto
     }
 
     private int parsePlanId( String layerName ) {
-        String planId = layerName.substring( 0, layerName.indexOf( "_" ) );
-        return Integer.parseInt( planId );
+        if ( layerName.contains( "_" ) ) {
+            String planId = layerName.substring( 0, layerName.indexOf( "_" ) );
+            return Integer.parseInt( planId );
+        }
+        return -1;
     }
 
     private String createSql() {
