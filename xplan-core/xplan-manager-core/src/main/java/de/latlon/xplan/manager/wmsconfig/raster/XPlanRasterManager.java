@@ -70,6 +70,7 @@ public class XPlanRasterManager {
     static {
         try {
             gdal.AllRegister();
+            LOG.info( "Installed GDAL JNI Version : " + gdal.VersionInfo() );
             gdalSuccessfullInitialized = true;
         } catch ( Throwable e ) {
             LOG.warn( "Registration of GDAL JNI adapter failed: " + e.getMessage(), e );
