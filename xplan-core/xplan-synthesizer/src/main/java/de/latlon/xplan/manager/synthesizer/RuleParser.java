@@ -162,6 +162,7 @@ class RuleParser {
             result = new XPlanGmlDescription();
             break;
         case "xplanFlattenFeature":
+        case "xplanFlatten":
             result = parseXPlanFlattenFeature( args );
             break;
         case "xplanCodeLookup":
@@ -211,9 +212,6 @@ class RuleParser {
             break;
         case "xplanName":
             result = new XPlanName( xplanName );
-            break;
-        case "xplanFlatten":
-            result = parseXPlanFlattenFeature( args );
             break;
         case "xplanExternalCodeLookup":
             result = parseXPlanExternalCodeLookup( args );

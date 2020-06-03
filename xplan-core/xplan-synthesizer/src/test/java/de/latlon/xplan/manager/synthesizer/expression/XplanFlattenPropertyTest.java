@@ -116,6 +116,15 @@ public class XplanFlattenPropertyTest {
     }
 
     @Test
+    public void testEvaluateXpTextAbschnitte() {
+        Feature feature = new ScenarioLoader().getTestFeature( XPLAN_41, "BP_Plan_1" );
+        XplanFlattenProperty expr = new XplanFlattenProperty( new Xpath( "xplan:texte" ) );
+        PrimitiveValue value = expr.evaluate( feature );
+        assertEquals( "[text1 | Das ist Textabschnitt No 1 (Keine gesetzliche Grundlage)][text2 | Das ist Textabschnitt No 2 (Gesetzliche Grundlage: BGB)]",
+                      value.toString() );
+    }
+
+    @Test
     public void testEvaluate50WithXpBegruendungAbschnitt() {
         Feature feature = new ScenarioLoader().getTestFeature( XPLAN_50, "BP_VerEntsorgung" );
         XplanFlattenProperty expr = new XplanFlattenProperty( new Xpath( "xplan:refBegruendungInhalt" ) );

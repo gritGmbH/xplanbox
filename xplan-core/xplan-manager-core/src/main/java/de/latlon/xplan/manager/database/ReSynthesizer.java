@@ -1,10 +1,9 @@
 package de.latlon.xplan.manager.database;
 
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.XPlan;
@@ -20,9 +19,9 @@ import java.util.List;
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class ReSythesizer {
+public class ReSynthesizer {
 
-    private static final Logger LOG = LoggerFactory.getLogger( ReSythesizer.class );
+    private static final Logger LOG = LoggerFactory.getLogger( ReSynthesizer.class );
 
     private final XPlanDao xPlanDao;
 
@@ -38,7 +37,7 @@ public class ReSythesizer {
      * @param sortPropertyReader
      *                 used to to retrieve the configured sort property, never <code>null</code>
      */
-    public ReSythesizer( XPlanDao dao, XPlanSynthesizer xPlanSynthesizer, SortPropertyReader sortPropertyReader ) {
+    public ReSynthesizer( XPlanDao dao, XPlanSynthesizer xPlanSynthesizer, SortPropertyReader sortPropertyReader ) {
         this.xPlanDao = dao;
         this.xPlanSynthesizer = xPlanSynthesizer;
         this.sortPropertyReader = sortPropertyReader;

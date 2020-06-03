@@ -1,6 +1,21 @@
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import de.latlon.xplan.manager.synthesizer.expression.flatten.*;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.BP_EmissionskontingentLaermFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.BP_EmissionskontingentLaermGebietFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.BpDachgestaltungFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.BpRichtungssektorFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.DefaultFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.Flattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.XpBegruendungAbschnittFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.XpExterneReferenzFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.XpGemeindeFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.XpGenerAttributFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.XpHoehenangabeFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.XpRasterplanFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.XpSPEMassnahmenDatenFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.XpTextAbschnittFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.XpVerbundenerPlanFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.XpVerfahrensMerkmalFlattener;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.Reference;
 import org.deegree.commons.tom.ReferenceResolvingException;
