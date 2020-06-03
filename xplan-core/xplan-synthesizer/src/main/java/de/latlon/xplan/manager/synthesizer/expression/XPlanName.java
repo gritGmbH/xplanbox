@@ -2,6 +2,7 @@ package de.latlon.xplan.manager.synthesizer.expression;
 
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 
 /**
  * {@link Expression} that returns the name of the plan.
@@ -25,7 +26,7 @@ public class XPlanName implements Expression {
     }
 
     @Override
-    public PrimitiveValue evaluate( Feature feature ) {
+    public PrimitiveValue evaluate( Feature feature, FeatureCollection features ) {
         return xplanName;
     }
 }

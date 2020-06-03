@@ -24,6 +24,10 @@ import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
+import org.deegree.feature.xpath.TypedObjectNodeXPathEvaluator;
+import org.deegree.filter.FilterEvaluationException;
+import org.deegree.filter.IdFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,11 +76,11 @@ public class XplanFlattenProperty implements Expression {
     }
 
     @Override
-    public PrimitiveValue evaluate( Feature feature ) {
+    public PrimitiveValue evaluate( Feature feature, FeatureCollection features ) {
         String s = null;
         XpExterneReferenzFlattener extRefFlattener = new XpExterneReferenzFlattener( feature );
         try {
-            TypedObjectNodeArray<TypedObjectNode> props = castToArray( exp.evaluate( feature ) );
+            TypedObjectNodeArray<TypedObjectNode> props = castToArray( exp.evaluate( feature, features ) );
             if ( props != null && props.getElements().length > 0 ) {
                 s = "";
                 for ( TypedObjectNode o : props.getElements() ) {
@@ -84,7 +88,7 @@ public class XplanFlattenProperty implements Expression {
                         String msg = "Trying to flatten  '" + o.getClass() + "', but it can only flatten properties.";
                         throw new IllegalArgumentException( msg );
                     }
-                    s += flatten( (Property) o, extRefFlattener );
+                    s += flatten( (Property) o, extRefFlattener, features );
                 }
             }
         } catch ( Exception e ) {
@@ -96,7 +100,7 @@ public class XplanFlattenProperty implements Expression {
         return toPrimitiveValue( s );
     }
 
-    private String flatten( Property prop, XpExterneReferenzFlattener extRefFlattener ) {
+    private String flatten( Property prop, XpExterneReferenzFlattener extRefFlattener, FeatureCollection features ) {
         TypedObjectNode value = prop.getValue();
         if ( value instanceof ElementNode ) {
             try {
@@ -106,10 +110,22 @@ public class XplanFlattenProperty implements Expression {
             }
         } else if ( value instanceof Reference ) {
             Reference<?> reference = (Reference<?>) value;
-            try {
-                value = reference.getReferencedObject();
-            } catch ( ReferenceResolvingException e ) {
-                LOG.warn( "FeatureReference could not be resolved (URI: " + reference.getURI() + ")" );
+            if ( reference.isLocal() ) {
+                String id = reference.getId();
+                try {
+                    FeatureCollection members = features.getMembers( new IdFilter( id ),
+                                                                     new TypedObjectNodeXPathEvaluator() );
+                    if ( members.size() == 1 ) {
+                        value = members.iterator().next();
+                    } else {
+                        LOG.warn( "FeatureReference could not be resolved (URI: " + id + ")" );
+                        return flatten( ( (Reference<?>) value ) );
+                    }
+                } catch ( FilterEvaluationException e ) {
+                    LOG.warn( "FeatureReference could not be resolved (URI: " + id + ")" );
+                    return flatten( ( (Reference<?>) value ) );
+                }
+            } else {
                 return flatten( ( (Reference<?>) value ) );
             }
         } else if ( value != null ) {

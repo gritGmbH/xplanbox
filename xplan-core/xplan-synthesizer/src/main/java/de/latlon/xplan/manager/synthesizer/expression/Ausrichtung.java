@@ -4,6 +4,7 @@ import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.genericxml.GenericXMLElement;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.property.SimpleProperty;
 
 /**
@@ -55,8 +56,8 @@ public class Ausrichtung implements Expression {
     }
 
     @Override
-    public TypedObjectNode evaluate( Feature feature ) {
-        TypedObjectNode property = exp.evaluate( feature );
+    public TypedObjectNode evaluate( Feature feature, FeatureCollection features ) {
+        TypedObjectNode property = exp.evaluate( feature, features );
         if ( property != null ) {
             if ( property instanceof SimpleProperty ) {
                 return asTypedObjectNode( ( (SimpleProperty) property ).getValue() );

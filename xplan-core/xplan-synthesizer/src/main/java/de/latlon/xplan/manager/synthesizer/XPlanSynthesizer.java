@@ -117,7 +117,7 @@ public class XPlanSynthesizer {
 
         List<Feature> featureMembers = new ArrayList<Feature>();
         for ( Feature feature : fc ) {
-            Feature synFeature = synthesize( feature );
+            Feature synFeature = synthesize( feature, fc );
             featureMembers.add( synFeature );
         }
 
@@ -211,7 +211,7 @@ public class XPlanSynthesizer {
         }
     }
 
-    private Feature synthesize( Feature feature ) {
+    private Feature synthesize( Feature feature, FeatureCollection features ) {
         List<Property> newProps = new ArrayList<Property>();
         QName synFeatureName = new QName( SYN_NS, feature.getType().getName().getLocalPart() );
 
@@ -226,7 +226,7 @@ public class XPlanSynthesizer {
             String key = feature.getName().getLocalPart() + "/" + propType.getName().getLocalPart();
 
             if ( rules.containsKey( key ) ) {
-                TypedObjectNode newPropValue = rules.get( key ).evaluate( feature );
+                TypedObjectNode newPropValue = rules.get( key ).evaluate( feature, features );
 
                 if ( newPropValue == null ) {
                     continue;

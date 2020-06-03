@@ -12,6 +12,7 @@ import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.reference.FeatureReference;
 
 import de.latlon.xplan.commons.synthesizer.Features;
@@ -28,7 +29,7 @@ import de.latlon.xplan.commons.synthesizer.Features;
 public class XplanBegruendungAbschnitte implements Expression {
 
     @Override
-    public PrimitiveValue evaluate( Feature feature ) {
+    public PrimitiveValue evaluate( Feature feature, FeatureCollection features ) {
         Set<Feature> abschnittFeatures = new LinkedHashSet<Feature>();
         abschnittFeatures.addAll( getBegruendungAbschnitteReferencedBySchluessel( feature ) );
         abschnittFeatures.addAll( getBegruendungAbschnitteReferencedByRef( feature ) );

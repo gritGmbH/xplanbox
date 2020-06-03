@@ -20,6 +20,7 @@ import org.deegree.commons.tom.gml.GMLReference;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 import org.deegree.feature.types.FeatureType;
 import org.deegree.feature.types.property.SimplePropertyType;
@@ -69,10 +70,10 @@ public class XPlanFlattenFeature implements Expression {
     }
 
     @Override
-    public PrimitiveValue evaluate( Feature feature ) {
+    public PrimitiveValue evaluate( Feature feature, FeatureCollection features ) {
         String description = null;
         try {
-            TypedObjectNodeArray<TypedObjectNode> props = Expressions.castToArray( exp.evaluate( feature ) );
+            TypedObjectNodeArray<TypedObjectNode> props = Expressions.castToArray( exp.evaluate( feature, features ) );
             if ( props != null ) {
                 description = "";
                 for ( TypedObjectNode o : props.getElements() ) {
@@ -80,7 +81,7 @@ public class XPlanFlattenFeature implements Expression {
                         throw new IllegalArgumentException( "Expression targets '" + o.getClass()
                                                             + "', but can only be evaluated for property nodes." );
                     }
-                    description += flatten( (Property) o );
+                    description += flatten( (Property) o, features );
                 }
             }
         } catch ( Exception e ) {
@@ -92,7 +93,7 @@ public class XPlanFlattenFeature implements Expression {
         return toPrimitiveValue( description );
     }
 
-    private String flatten( Property prop ) {
+    private String flatten( Property prop, FeatureCollection features ) {
         TypedObjectNode value = prop.getValue();
         if ( value == null ) {
             return "";
@@ -102,7 +103,7 @@ public class XPlanFlattenFeature implements Expression {
                 subFeature = (Feature) ( (Reference<?>) subFeature ).getReferencedObject();
             }
             if ( subFeature != null ) {
-                return flattenFeature( subFeature );
+                return flattenFeature( subFeature, features );
             }
         } /*
            * else if ( value instanceof ElementNode ) { // TODO: Flatten ElementNode }
@@ -112,7 +113,7 @@ public class XPlanFlattenFeature implements Expression {
         return "";
     }
 
-    private String flattenFeature( Feature feature ) {
+    private String flattenFeature( Feature feature, FeatureCollection features ) {
 
         String s = "";
         if ( !( feature instanceof GMLReference<?> ) || ( (GMLReference<?>) feature ).isLocal() ) {
@@ -139,7 +140,8 @@ public class XPlanFlattenFeature implements Expression {
                     for ( Property prop : props ) {
                         if ( prop.getType() instanceof SimplePropertyType ) {
                             String propLocal = prop.getName().getLocalPart();
-                            TypedObjectNode value = xPlanSynthesizer.getRules().get( ftName + "/" + propLocal ).evaluate( feature );
+                            TypedObjectNode value = xPlanSynthesizer.getRules().get( ftName + "/" + propLocal ).evaluate( feature,
+                                                                                                                          features );
                             s += concatenateValues( propLocal, value ) + ";";
                         }
                     }

@@ -11,6 +11,7 @@ import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.GMLVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +35,7 @@ public class XplanGmlName implements Expression {
      *          have any)
      */
     @Override
-    public PrimitiveValue evaluate( Feature feature ) {
+    public PrimitiveValue evaluate( Feature feature, FeatureCollection features ) {
         StringBuilder sBuilder = new StringBuilder( "" );
         QName gmlName = getGmlNameQName( feature );
         List<Property> props = feature.getProperties( gmlName );

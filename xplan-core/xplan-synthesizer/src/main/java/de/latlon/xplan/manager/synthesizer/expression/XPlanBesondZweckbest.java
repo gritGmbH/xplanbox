@@ -4,6 +4,7 @@ import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
 
@@ -23,11 +24,11 @@ public class XPlanBesondZweckbest implements Expression {
     }
 
     @Override
-    public TypedObjectNodeArray<PrimitiveValue> evaluate( Feature feature ) {
+    public TypedObjectNodeArray<PrimitiveValue> evaluate( Feature feature, FeatureCollection features ) {
         PrimitiveValue[] normalizedCodes = null;
 
         // XPlan 3: always use value from besondereZweckbestimmung property
-        TypedObjectNodeArray<TypedObjectNode> codes = castToArray( besondZweckbest.evaluate( feature ) );
+        TypedObjectNodeArray<TypedObjectNode> codes = castToArray( besondZweckbest.evaluate( feature, features ) );
         if ( codes != null && codes.getElements().length > 0 ) {
             // property has maxOccurs="1", so accessing the first value is fine
             normalizedCodes = new PrimitiveValue[] { new PrimitiveValue( codes.getElements()[0].toString() ) };

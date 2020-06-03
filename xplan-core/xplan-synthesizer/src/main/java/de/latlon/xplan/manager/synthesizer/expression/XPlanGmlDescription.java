@@ -7,6 +7,7 @@ import javax.xml.namespace.QName;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.GMLVersion;
 
 import de.latlon.xplan.commons.synthesizer.Features;
@@ -28,7 +29,7 @@ public class XPlanGmlDescription implements Expression {
      *         property
      */
     @Override
-    public PrimitiveValue evaluate( Feature feature ) {
+    public PrimitiveValue evaluate( Feature feature, FeatureCollection features ) {
         String s = null;
         QName propName = getGmlDescriptionQName( feature );
         TypedObjectNode propValue = Features.getPropertyValue( feature, propName );

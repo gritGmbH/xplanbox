@@ -42,6 +42,7 @@ import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.reference.FeatureReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,7 +66,7 @@ public class XplanRefTextAbschnitte implements Expression {
     private static final Logger LOG = LoggerFactory.getLogger( XplanRefTextAbschnitte.class );
 
 	@Override
-	public PrimitiveValue evaluate(Feature feature) {
+	public PrimitiveValue evaluate( Feature feature, FeatureCollection features ) {
 		StringBuilder s = new StringBuilder();
 		QName textePropName = new QName(feature.getName().getNamespaceURI(), "texte");
 		List<Property> props = feature.getProperties(textePropName);

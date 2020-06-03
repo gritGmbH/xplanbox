@@ -4,6 +4,7 @@ import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimitiveValue;
@@ -42,10 +43,10 @@ public class Xplan2CodeNormalize implements Expression {
     }
 
     @Override
-    public PrimitiveValue evaluate( Feature feature ) {
+    public PrimitiveValue evaluate( Feature feature, FeatureCollection features ) {
         String normalizedCodes = null;
         try {
-            TypedObjectNodeArray<TypedObjectNode> codes = castToArray( exp.evaluate( feature ) );
+            TypedObjectNodeArray<TypedObjectNode> codes = castToArray( exp.evaluate( feature, features ) );
             if ( codes != null ) {
                 normalizedCodes = "";
                 for ( TypedObjectNode o : codes.getElements() ) {

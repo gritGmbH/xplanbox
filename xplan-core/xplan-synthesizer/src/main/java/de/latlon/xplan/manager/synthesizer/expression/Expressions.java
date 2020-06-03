@@ -6,12 +6,13 @@ import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 import org.deegree.geometry.Geometry;
 
 class Expressions {
 
-    public static TypedObjectNode evaluateSingle( Expression expr, Feature f ) {
-        TypedObjectNode value = expr.evaluate( f );
+    public static TypedObjectNode evaluateSingle( Expression expr, Feature f, FeatureCollection features ) {
+        TypedObjectNode value = expr.evaluate( f, features );
         if ( value == null ) {
             return null;
         }

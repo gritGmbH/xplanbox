@@ -6,6 +6,7 @@ import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,9 +35,9 @@ public class Xplan2CodeLookupExt implements Expression {
     }
 
     @Override
-    public PrimitiveValue evaluate( Feature feature ) {
+    public PrimitiveValue evaluate( Feature feature, FeatureCollection features ) {
         String descriptions = null;
-        TypedObjectNodeArray<TypedObjectNode> codes = Expressions.castToArray( exp.evaluate( feature ) );
+        TypedObjectNodeArray<TypedObjectNode> codes = Expressions.castToArray( exp.evaluate( feature, features ) );
         if ( codes != null ) {
             if ( codes.getElements().length > 1 ) {
                 LOG.warn( "More than one value for " + this );

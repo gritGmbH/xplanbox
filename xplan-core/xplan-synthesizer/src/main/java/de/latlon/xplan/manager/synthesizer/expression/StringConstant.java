@@ -2,6 +2,7 @@ package de.latlon.xplan.manager.synthesizer.expression;
 
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 
 /**
  * {@link Expression} that returns a string constant.
@@ -19,7 +20,7 @@ public class StringConstant implements Expression {
     }
 
     @Override
-    public PrimitiveValue evaluate( Feature feature ) {
+    public PrimitiveValue evaluate( Feature feature, FeatureCollection features ) {
         return value;
     }
 }
