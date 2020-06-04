@@ -86,7 +86,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
             featureCollectionManipulator.addInternalId( synFc, synSchema, internalId );
         }
         Date sortDate = sortPropertyReader.readSortDate( archive.getType(), archive.getVersion(), fc.getFeatures() );
-        int planId = xplanDao.insert( archive, fc, synFc, xPlanMetadata, sortDate );
+        int planId = xplanDao.insert( archive, fc, synFc, xPlanMetadata, sortDate, internalId );
         createRasterConfigurations( archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus,
                                     sortDate );
         startCreationOfDataServicesCoupling( planId, fc, crs );
