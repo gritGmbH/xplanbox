@@ -407,7 +407,7 @@ public class XPlanDao {
         try ( Connection mgrConn = managerWorkspaceWrapper.openConnection() ) {
             StringBuffer sql = new StringBuffer();
             sql.append( "SELECT " );
-            sql.append( "id, import_date, xp_version, xp_type, name, nummer, gkz, has_raster, release_date, ST_AsText(bbox), ade, sonst_plan_art, planstatus, rechtsstand, district, gueltigkeitBeginn, gueltigkeitEnde, inspirepublished " );
+            sql.append( "id, import_date, xp_version, xp_type, name, nummer, gkz, has_raster, release_date, ST_AsText(bbox), ade, sonst_plan_art, planstatus, rechtsstand, district, gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid " );
             if ( includeNoOfFeature )
                 sql.append( ", (SELECT count(fid) FROM xplanmgr.features WHERE id = plan) AS numfeatures " );
             sql.append( "FROM xplanmgr.plans" );
@@ -445,7 +445,7 @@ public class XPlanDao {
             stmt = mgrConn.prepareStatement( "SELECT id, import_date, xp_version, xp_type, name, "
                                              + "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
                                              + "ade, sonst_plan_art, planstatus, rechtsstand, district, "
-                                             + "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished FROM xplanmgr.plans WHERE id =?" );
+                                             + "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid FROM xplanmgr.plans WHERE id =?" );
             stmt.setInt( 1, planId );
             rs = stmt.executeQuery();
             if ( rs.next() )
@@ -817,9 +817,10 @@ public class XPlanDao {
         Timestamp startDateTime = rs.getTimestamp( 16 );
         Timestamp endDateTime = rs.getTimestamp( 17 );
         Boolean isInspirePublished = rs.getBoolean( 18 );
+        String internalId = rs.getString( 19 );
         int numFeatures = -1;
         if ( includeNoOfFeature )
-            numFeatures = rs.getInt( 19 );
+            numFeatures = rs.getInt( 20 );
 
         XPlan xPlan = new XPlan( ( name != null ? name : "-" ), ( new Integer( id ) ).toString(), xpType );
         xPlan.setVersion( xpVersion );
@@ -836,6 +837,7 @@ public class XPlanDao {
         xPlan.setXplanMetadata( createXPlanMetadata( planStatus, startDateTime, endDateTime ) );
         xPlan.setDistrict( categoryMapper.mapToCategory( district ) );
         xPlan.setInspirePublished( isInspirePublished );
+        xPlan.setInternalId( internalId );
         return xPlan;
     }
 

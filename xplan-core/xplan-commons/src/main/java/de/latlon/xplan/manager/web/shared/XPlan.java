@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * Main Web UI class.
- * 
+ *
  * @author Florian Bingel
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
@@ -54,8 +54,10 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
     private String district;
 
+    private String internalId;
+
     private AdditionalPlanData xplanMetadata;
-    
+
     public XPlan() {
         this.name = "N/A";
         this.id = "-";
@@ -223,9 +225,16 @@ public class XPlan implements Serializable, Comparable<XPlan> {
         this.inspirePublished = inspirePublished;
     }
 
+    public String getInternalId() {
+        return internalId;
+    }
+
+    public void setInternalId( String internalId ) {
+        this.internalId = internalId;
+    }
+
     @Override
     public int compareTo( XPlan o ) {
         return ( o == null || o.name == null ) ? -1 : -o.name.compareTo( name );
     }
-
 }
