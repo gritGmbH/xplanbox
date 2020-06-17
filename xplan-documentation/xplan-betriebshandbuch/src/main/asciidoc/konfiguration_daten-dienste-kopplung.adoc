@@ -1,7 +1,8 @@
 [[konfiguration-daten-dienste-kopplung]]
 === Konfiguration der automatisierten Erstellung von Service-Metadatensätzen
 
-Die XPlanBox bietet die Möglichkeit einen Service-Metadatensatz für einen Plan bzw. dessen XPlanWerkWMS automatisiert zu erstellen. Dafür muss die Konfiguration in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ angepasst werden. Im folgenden der relevante Abschnitt:
+Die xPlanBox bietet die Möglichkeit einen Service-Metadatensatz für einen Plan bzw. den dazugehörigen XPlanWerkWMS automatisiert zu erstellen. Voraussetzung dafür ist, dass für den Plan bereits ein Datensatz-Metadatensatz in einen Metadatenkatalog (CSW) vorhanden ist.
+Um diese Funktion zu aktivieren, muss die Konfiguration in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ angepasst werden. Im folgenden der relevante Abschnitt:
 
 ---------
 #Daten-Dienste-Kopplung
@@ -25,28 +26,28 @@ directoryToStoreMetadata=/tmp/
 
 Erläuterung der einzelnen Properties:
 
- * *planWerkWmsBaseUrl*: Basis-URL des XPlanWerkWMS, z. B. http://localhost:8083/xplan-wms/
+ * *planWerkWmsBaseUrl*: Die öffentlich Basis-URL des XPlanWerkWMS, z. B. http://xplanbox.lat-lon.de/xplan-wms/
  * *planWerkWmsGetMapLayers_BP_Plan* und *planWerkWmsGetMapStyles_BP_Plan*: Angabe der zu verwendenen Layer und Styles, die in der GetMap Anfrage (GraphicOverview) angegeben werden sollen
  * *planWerkWmsGetMapWidth* und *planWerkWmsGetMapHeight*: Angabe der zu verwendenen Höhe und Breite des Kartenbildes in Pixeln, die in der GetMap Anfrage (GraphicOverview) angegeben werden sollen
  * *cswUrlProvidingDatasetMetadata*: GetCapabilities URL des CSW, der Daten-Metadatensätze zu einem Plan bereitstellt
- * *directoryToStoreMetadata*: Verzeichnis in dem die erstellten Service-Metadatensätze abgelegt werden (das Verzeichnis muss beim Start des Tomcats in dem sich die xplanwebapp -manager-web befindet existieren). Unter Windows muss das Zeichen "\" als Pfad-Trennzeichen verwendet werden (z. B. "C:\tmp\").
+ * *directoryToStoreMetadata*: Verzeichnis in dem die erstellten Service-Metadatensätze abgelegt werden (das Verzeichnis muss beim Start des Tomcats, in dem sich die xplanwebapp-manager-web befindet, existieren). Unter Windows muss das Zeichen "\" als Pfad-Trennzeichen verwendet werden (z. B. "C:\tmp\").
 
-Weiterhin muss im Verzeichnis <XPLANBOX_CONFIG>/metadata die Datei _service-iso-metadata-template.xml_ liegen (zum Zeitpunkt des Start des Tomcats in dem dem sich die xplanwebapp -manager-web befindet). Diese Datei dient als Template für den erstellten Service-Metadatensatz. Folgende Platzhalter werden bei der Erstellung des Service-Metadatensatz durch entsprechende Werte ausgetauscht und können im Template verwendet werden:
+Weiterhin muss im Verzeichnis <XPLANBOX_CONFIG>/metadata die Datei _service-iso-metadata-template.xml_ liegen (zum Zeitpunkt des Start des Tomcats in dem sich die xplanwebapp-manager-web befindet). Diese Datei dient als Template für die vom System zu erstellenden Service-Metadatensätze. Folgende Platzhalter werden bei der Erstellung des Service-Metadatensatz durch entsprechende Werte zur Laufzeit durch das System ausgetauscht und können im Template verwendet werden:
 
- * *METADATA_ID*: generierte UUID als FileIdentifier für den generierten Metadatensatz
+ * *METADATA_ID*: Generierte UUID als FileIdentifier für den generierten Metadatensatz
  * *CURRENT_DATE*: Aktuelles Datum
  * *CURRENT_DATE_TIME*: Aktuelles Datum und Uhrzeit
  * *TITLE*: Titel des WMS
  * *ABSTRACT*: Beschreibung des Plans
- * *PLANWERKWMS_OVERVIEW*: generierte GetMap-URL des XPlanWerkWMS mit dem Geltungsbereich des Planwerks
+ * *PLANWERKWMS_OVERVIEW*: Generierte GetMap-URL des XPlanWerkWMS mit dem Geltungsbereich des Planwerks
  * *WEST_BOUND_LONG*, *EAST_BOUND_LONG*, *SOUTH_BOUND_LAT*, *NORTH_BOUND_LAT*: räumlicher Geltungsbereich des Plans
  * *DATA_METADATA_RESOURCEIDENTIFIER*: GetRecordById-URL zur Abfrage des Daten-Metadatensatz (generiert aus dem FileIdentifier des Daten-Metadatensatz)
  * *DATA_METADATA_FILEIDENTIFIER*: ResourceIdentifier aus dem Daten-Metadatensatz
- * *PLANWERKWMS_CAPABILITIES*: generierte GetCapabilities-URL des XPlanWerkWMS
+ * *PLANWERKWMS_CAPABILITIES*: Generierte GetCapabilities-URL des XPlanWerkWMS
 
-*Hinweise*
+==== Abfrage der Datensatz-Metadaten
 
-Die Anfrage des Daten-Metadatensatzes erfolgt mit Hilfe des Plannamens aus dem XPlanGML:
+Die Abfrage des Daten-Metadatensatzes erfolgt mit Hilfe des Plannamens aus dem XPlanGML. Im Folgenden ist die CSW GetRecords-Anfrage dokumentiert, mit der die Metadaten abgerufen werden:
 
 ---------
 <csw:GetRecords xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:apiso="http://www.opengis.net/cat/csw/apiso/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="CSW" version="2.0.2" maxRecords="1" startPosition="1" resultType="results" outputFormat="application/xml" outputSchema="http://www.isotc211.org/2005/gmd" xsi:schemaLocation="http://www.opengis.net/cat/csw/2.0.2 http://schemas.opengis.net/csw/2.0.2/CSW-discovery.xsd">
@@ -64,5 +65,12 @@ Die Anfrage des Daten-Metadatensatzes erfolgt mit Hilfe des Plannamens aus dem X
 </csw:GetRecords>
 ---------
 
-Werden mehrere Datensätze gefunden, wird nur einer verwendet (maxRecords="1" ). Es wird eine Warnung im Log ausgegeben. Beim Editieren wird ebenfalls ein neuere Daten-Metadatensatz erstellt, sofern beim Editieren der Planname oder die Beschreibung verändert wurde.
+Werden mehrere Datensätze gefunden, wird nur einer verwendet (maxRecords="1" ). Es wird eine Warnung im Log ausgegeben.
+
+==== Erzeugung der Service-Metadaten
+
+Der Service-Metadatensatz wird beim Import eines Plans über den XPlanManager erzeugt und im Dateisystem abgelegt.
+Ändert ein Benutzer den Plannamen oder die Beschreibung über die Änderungsfunktion des XPlanManager, dann wird ebenfalls ein neuer Service-Metadatensatz erstellt.
+
+NOTE: Um die erstellten Service-Metadatensätze in einen Metadatenkatalog zu übernehmen, müssen diese entweder über die Harvest-Funktion des CSW oder über die CSW-Transaction Insert-Operation in den Metadatenkatalog übernommen werden. Die Funktion für die Übernahme der Service-Metadaten ist nicht Teil der xPlanBox und ist abhängig vom Funktionsumfang des Metadatenkatalogs.
 
