@@ -258,11 +258,11 @@ Mit der Version 3.0 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen 
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 * Aktualisierung der Datenbank:
-** Ausführen der Skripte für die Erstelllung der Datenhaltung für 5.0 aus dem Modul _xplan-manager-workspace_:
+** Ausführen der Skripte für die Erstellung der Datenhaltung für 5.0 aus dem Modul _xplan-manager-workspace_:
 *** _fix/xplan50/create.sql_
 *** _pre/xplan50/create.sql_
 *** _archive/xplan50/create.sql_
-** Ausführen der Skripte für die Erstelllung der Datenhaltung für 5.1 aus dem Modul _xplan-manager-workspace_:
+** Ausführen der Skripte für die Erstellung der Datenhaltung für 5.1 aus dem Modul _xplan-manager-workspace_:
 *** _fix/xplan51/create.sql_
 *** _pre/xplan51/create.sql_
 *** _archive/xplan51/create.sql_
@@ -287,7 +287,7 @@ Für die Aktualisierung auf die Version 3.3 sind folgende Schritte auszuführen:
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 ** Im xplansyn-wms-workspace ist mit dieser Version eine Dummy-Konfiguration eines GDALRasterLayers hinzugekommen. Diese muss bei der Aktualisierung nicht übernommen werden (Hintergründe: <<GDAL>>).
 * Aktualisierung der Datenbank:
-** Ausführen der Skripte für die Erstelllung der Datenhaltung für 5.2 aus dem Modul _xplan-manager-workspace_:
+** Ausführen der Skripte für die Erstellung der Datenhaltung für 5.2 aus dem Modul _xplan-manager-workspace_:
 *** _fix/xplan52/create.sql_
 *** _pre/xplan52/create.sql_
 *** _archive/xplan52/create.sql_
@@ -302,3 +302,14 @@ Wenn die neuen Features <<kartenvorschau-validator>> und <<semantische-validieru
  * Workspace __xplan-inspireplu-workspace__ und Konfiguration __xplan-validator-config__ entpacken und installieren (siehe <<konfiguration>>).
  * Installation der _xplan-validator-wms.war_ Webanwendung (s. <<web-anwendungen>>). Achtung: Anschließend muss der _xplan-validator-wms-workspace_ initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt über die webapps.properties-Datei plus Neustart der Webanwendung geschehen.
  * XPlanValidatorWeb gemäß <<konfiguration-validator>> konfigurieren.
+
+[[aktualisierung-auf-die-version-3.4-der-xplanbox]]
+=== Aktualisierung auf die Version 3.4 der xPlanBox
+
+Mit der Version 3.4 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen vorgenommen worden.
+
+Für die Aktualisierung auf die Version 3.4 sind folgende Schritte auszuführen:
+
+* Aktualisierung der Datenbank:
+** Ausführen der Skripte im Verzeichnis _from_3.3_to_3.4_ im Modul xplan-update-database. Die Tabelle _xplanmgr.plans_ wurde um die Spalte _internalid_ erweitert.
+** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul xplan-update-database zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der __reSynthesizer__ wurde so angepasst, dass die _xplanmgr.plans.internalid_ bei Ausführung in in die synthetisierte FeatureCollection übernommen wird.

@@ -4,6 +4,7 @@ import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.property.SimpleProperty;
 
 import java.util.Arrays;
@@ -22,8 +23,8 @@ public class LatestDate implements Expression {
     }
 
     @Override
-    public TypedObjectNode evaluate( Feature feature ) {
-        TypedObjectNode prop = expression.evaluate( feature );
+    public TypedObjectNode evaluate( Feature feature, FeatureCollection features ) {
+        TypedObjectNode prop = expression.evaluate( feature, features );
         TypedObjectNodeArray<TypedObjectNode> props = Expressions.castToArray( prop );
         if ( props == null || props.getElements().length == 0 )
             return null;

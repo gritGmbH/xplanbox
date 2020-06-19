@@ -12,6 +12,7 @@ import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 
 import de.latlon.xplan.commons.XPlanVersion;
+import org.deegree.feature.FeatureCollection;
 
 /**
  * {@link Expression} for translating codes from internal XPlan2 codelists to their XPlan3/XPlanSyn counterpart.
@@ -32,11 +33,11 @@ public class Xplan2CodeLookup implements Expression {
     }
 
     @Override
-    public PrimitiveValue evaluate( Feature feature ) {
+    public PrimitiveValue evaluate( Feature feature, FeatureCollection features ) {
         String descriptions = null;
         XPlanVersion version = determineBaseVersion( feature.getName() );
         try {
-            TypedObjectNodeArray<TypedObjectNode> codes = castToArray( exp.evaluate( feature ) );
+            TypedObjectNodeArray<TypedObjectNode> codes = castToArray( exp.evaluate( feature, features ) );
             if ( codes != null ) {
                 descriptions = "";
                 for ( TypedObjectNode o : codes.getElements() ) {

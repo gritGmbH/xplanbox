@@ -48,6 +48,7 @@ import javax.xml.namespace.QName;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 import org.deegree.geometry.Geometries;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.SFSProfiler;
@@ -81,7 +82,7 @@ public class XplanBaugebietFlaechenteile implements Expression {
     private final int MAX_NUM_POINTS = 500;
 
     @Override
-    public Geometry evaluate( Feature feature ) {
+    public Geometry evaluate( Feature feature, FeatureCollection features ) {
         List<Surface> members = new ArrayList<Surface>();
         String ns = feature.getName().getNamespaceURI();
         List<Property> props = feature.getProperties( new QName( ns, "flaechenteil" ) );

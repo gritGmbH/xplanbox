@@ -129,10 +129,11 @@ public class XPlanDao {
      *                 flattened features (of the main GML document from the archive), must not be <code>null</code>
      * @param additionalPlanData
      *                 containing some metadata about the xplan, never <code>null</code>
+     * @param internalId
      * @return database id of the plan
      */
     public int insert( XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc,
-                       AdditionalPlanData additionalPlanData, Date sortDate )
+                       AdditionalPlanData additionalPlanData, Date sortDate, String internalId )
                     throws Exception {
         Connection conn = null;
         try {
@@ -145,7 +146,7 @@ public class XPlanDao {
             conn = managerWorkspaceWrapper.openConnection();
             conn.setAutoCommit( false );
             Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanTA = insertXPlan( xplanFs, fc );
-            int planId = insertMetadata( conn, archive, fc, synFc, fidsAndXPlanTA.first, additionalPlanData, sortDate );
+            int planId = insertMetadata( conn, archive, fc, synFc, fidsAndXPlanTA.first, additionalPlanData, sortDate, internalId );
 
             addAdditionalProperties( synFc, additionalPlanData, synFs, planId, sortDate );
 
@@ -407,7 +408,7 @@ public class XPlanDao {
         try ( Connection mgrConn = managerWorkspaceWrapper.openConnection() ) {
             StringBuffer sql = new StringBuffer();
             sql.append( "SELECT " );
-            sql.append( "id, import_date, xp_version, xp_type, name, nummer, gkz, has_raster, release_date, ST_AsText(bbox), ade, sonst_plan_art, planstatus, rechtsstand, district, gueltigkeitBeginn, gueltigkeitEnde, inspirepublished " );
+            sql.append( "id, import_date, xp_version, xp_type, name, nummer, gkz, has_raster, release_date, ST_AsText(bbox), ade, sonst_plan_art, planstatus, rechtsstand, district, gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid " );
             if ( includeNoOfFeature )
                 sql.append( ", (SELECT count(fid) FROM xplanmgr.features WHERE id = plan) AS numfeatures " );
             sql.append( "FROM xplanmgr.plans" );
@@ -445,7 +446,7 @@ public class XPlanDao {
             stmt = mgrConn.prepareStatement( "SELECT id, import_date, xp_version, xp_type, name, "
                                              + "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
                                              + "ade, sonst_plan_art, planstatus, rechtsstand, district, "
-                                             + "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished FROM xplanmgr.plans WHERE id =?" );
+                                             + "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid FROM xplanmgr.plans WHERE id =?" );
             stmt.setInt( 1, planId );
             rs = stmt.executeQuery();
             if ( rs.next() )
@@ -817,9 +818,10 @@ public class XPlanDao {
         Timestamp startDateTime = rs.getTimestamp( 16 );
         Timestamp endDateTime = rs.getTimestamp( 17 );
         Boolean isInspirePublished = rs.getBoolean( 18 );
+        String internalId = rs.getString( 19 );
         int numFeatures = -1;
         if ( includeNoOfFeature )
-            numFeatures = rs.getInt( 19 );
+            numFeatures = rs.getInt( 20 );
 
         XPlan xPlan = new XPlan( ( name != null ? name : "-" ), ( new Integer( id ) ).toString(), xpType );
         xPlan.setVersion( xpVersion );
@@ -836,6 +838,7 @@ public class XPlanDao {
         xPlan.setXplanMetadata( createXPlanMetadata( planStatus, startDateTime, endDateTime ) );
         xPlan.setDistrict( categoryMapper.mapToCategory( district ) );
         xPlan.setInspirePublished( isInspirePublished );
+        xPlan.setInternalId( internalId );
         return xPlan;
     }
 
@@ -1127,13 +1130,13 @@ public class XPlanDao {
 
     private int insertMetadata( Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc,
                                 FeatureCollection synFc, List<String> fids, AdditionalPlanData xPlanMetadata,
-                                Date sortDate )
+                                Date sortDate, String internalId )
                     throws SQLException {
 
         long begin = System.currentTimeMillis();
         LOG.info( "- Einfügen der XPlan-Metadaten (XPLAN_MGR)..." );
 
-        int planId = insertPlanMetadata( mgrConn, archive, fc, synFc, xPlanMetadata, sortDate );
+        int planId = insertPlanMetadata( mgrConn, archive, fc, synFc, xPlanMetadata, sortDate, internalId );
         insertFeatureMetadata( mgrConn, fids, planId );
 
         long elapsed = System.currentTimeMillis() - begin;
@@ -1159,13 +1162,14 @@ public class XPlanDao {
     }
 
     private int insertPlanMetadata( Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc,
-                                    FeatureCollection synFc, AdditionalPlanData xPlanMetadata, Date sortDate )
+                                    FeatureCollection synFc, AdditionalPlanData xPlanMetadata, Date sortDate,
+                                    String internalId )
                     throws SQLException {
         String insertPlansSql = "INSERT INTO xplanmgr.plans "
                                 + "(import_date, xp_version, xp_type, ade, name, nummer, gkz, has_raster, rechtsstand, "
                                 + "release_date, sonst_plan_art, planstatus, district, "
-                                + "wmsSortDate, gueltigkeitBeginn, gueltigkeitEnde, bbox)"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,ST_GeometryFromText(?, 4326))";
+                                + "wmsSortDate, gueltigkeitBeginn, gueltigkeitEnde, internalid, bbox)"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,ST_GeometryFromText(?, 4326))";
         PreparedStatement stmt = null;
         int planId;
         try {
@@ -1191,7 +1195,8 @@ public class XPlanDao {
             stmt.setTimestamp( 14, convertToSqlTimestamp( sortDate ) );
             stmt.setTimestamp( 15, convertToSqlTimestamp( xPlanMetadata.getStartDateTime() ) );
             stmt.setTimestamp( 16, convertToSqlTimestamp( xPlanMetadata.getEndDateTime() ) );
-            stmt.setString( 17, createWktFromBboxIn4326( fc ) );
+            stmt.setString( 17, internalId );
+            stmt.setString( 18, createWktFromBboxIn4326( fc ) );
 
             stmt.executeUpdate();
             planId = detectPlanId( stmt );

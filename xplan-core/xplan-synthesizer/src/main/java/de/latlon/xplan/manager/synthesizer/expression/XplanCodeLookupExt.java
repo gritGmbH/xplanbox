@@ -10,6 +10,7 @@ import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 
 /**
  * {@link Expression} for translating codes from external codelists to their textual representation.
@@ -33,9 +34,9 @@ public class XplanCodeLookupExt implements Expression {
     }
 
     @Override
-    public PrimitiveValue evaluate( Feature feature ) {
+    public PrimitiveValue evaluate( Feature feature, FeatureCollection features ) {
         String descriptions = null;
-        TypedObjectNodeArray<TypedObjectNode> props = Expressions.castToArray( exp.evaluate( feature ) );
+        TypedObjectNodeArray<TypedObjectNode> props = Expressions.castToArray( exp.evaluate( feature, features ) );
         if ( props != null ) {
             for ( TypedObjectNode node : props.getElements() ) {
                 if ( node instanceof Property ) {

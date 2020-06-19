@@ -5,6 +5,7 @@ import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.commons.xml.NamespaceBindings;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.xpath.TypedObjectNodeXPathEvaluator;
 import org.deegree.filter.FilterEvaluationException;
 import org.deegree.filter.expression.ValueReference;
@@ -35,7 +36,7 @@ public class Xpath implements Expression {
     }
 
     @Override
-    public TypedObjectNode evaluate( Feature feature ) {
+    public TypedObjectNode evaluate( Feature feature, FeatureCollection features ) {
         NamespaceBindings nsContext = XPlanVersionUtils.retrieveNamespaceBindings( feature.getName() );
         ValueReference propName = new ValueReference( expression, nsContext );
         TypedObjectNodeXPathEvaluator evaluator = new TypedObjectNodeXPathEvaluator();

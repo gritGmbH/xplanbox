@@ -37,7 +37,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 
 /**
- * Transforms an {@link XPlanFeatureCollection} (with XPlan 2/3/4.0/4.1 features) into a {@link FeatureCollection} that
+ * Transforms an {@link XPlanFeatureCollection} (with XPlan 3/4.0/4.1/5.0/5.1/5.2 features) into a {@link FeatureCollection} that
  * contains flat XPlanSyn features.
  * 
  * @author <a href="mailto:ionita@lat-lon.de">Andrei Ionita</a>
@@ -117,7 +117,7 @@ public class XPlanSynthesizer {
 
         List<Feature> featureMembers = new ArrayList<Feature>();
         for ( Feature feature : fc ) {
-            Feature synFeature = synthesize( feature );
+            Feature synFeature = synthesize( feature, fc );
             featureMembers.add( synFeature );
         }
 
@@ -173,7 +173,7 @@ public class XPlanSynthesizer {
     private InputStream retrieveRulesFileFromFileSystem( String rulesFileName ) {
         if ( rulesDirectory != null ) {
             Path rulesFile = rulesDirectory.resolve( rulesFileName );
-            LOG.info( "Read additional/overwritting rules from directory: {}", rulesFile );
+            LOG.info( "Read additional/overwriting rules from directory: {}", rulesFile );
             if ( Files.exists( rulesFile ) ) {
                 try {
                     return Files.newInputStream( rulesFile );
@@ -211,7 +211,7 @@ public class XPlanSynthesizer {
         }
     }
 
-    private Feature synthesize( Feature feature ) {
+    private Feature synthesize( Feature feature, FeatureCollection features ) {
         List<Property> newProps = new ArrayList<Property>();
         QName synFeatureName = new QName( SYN_NS, feature.getType().getName().getLocalPart() );
 
@@ -226,7 +226,7 @@ public class XPlanSynthesizer {
             String key = feature.getName().getLocalPart() + "/" + propType.getName().getLocalPart();
 
             if ( rules.containsKey( key ) ) {
-                TypedObjectNode newPropValue = rules.get( key ).evaluate( feature );
+                TypedObjectNode newPropValue = rules.get( key ).evaluate( feature, features );
 
                 if ( newPropValue == null ) {
                     continue;

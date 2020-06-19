@@ -5,7 +5,7 @@ import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
-import de.latlon.xplan.manager.database.ReSythesizer;
+import de.latlon.xplan.manager.database.ReSynthesizer;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
@@ -68,27 +68,27 @@ public class ReSynthesizerTool {
 
     private void run( String workspaceName, String configurationDirectory, String mgrId )
                     throws Exception {
-        ReSythesizer reSythesizer = createReSynthesizer( workspaceName, configurationDirectory );
+        ReSynthesizer reSynthesizer = createReSynthesizer( workspaceName, configurationDirectory );
         if ( mgrId == null ) {
-            reSythesizer.reSynthesize();
+            reSynthesizer.reSynthesize();
         } else {
             try {
                 int mgrIdInt = Integer.parseInt( mgrId );
-                reSythesizer.reSynthesize( mgrIdInt );
+                reSynthesizer.reSynthesize( mgrIdInt );
             } catch ( NumberFormatException e ) {
                 System.out.println( "Invalid manager id (parameter -i), '" + mgrId + "' is not an integer value" );
             }
         }
     }
 
-    private ReSythesizer createReSynthesizer( String workspaceName, String configurationDirectory )
+    private ReSynthesizer createReSynthesizer( String workspaceName, String configurationDirectory )
                     throws ResourceInitException, ConfigurationException {
         Workspace workspace = initWorkspace( workspaceName );
         ManagerConfiguration managerConfiguration = createManagerConfiguration( configurationDirectory );
         XPlanDao xplanDao = createXplanDao( workspace, managerConfiguration );
         XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
         SortPropertyReader sortPropertyReader = new SortPropertyReader( managerConfiguration.getSortConfiguration() );
-        return new ReSythesizer( xplanDao, xPlanSynthesizer, sortPropertyReader );
+        return new ReSynthesizer( xplanDao, xPlanSynthesizer, sortPropertyReader );
     }
 
     private static Workspace initWorkspace( String workspaceName )

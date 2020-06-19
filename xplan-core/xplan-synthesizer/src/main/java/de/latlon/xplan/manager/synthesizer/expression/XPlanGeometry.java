@@ -3,6 +3,7 @@ package de.latlon.xplan.manager.synthesizer.expression;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 import org.deegree.geometry.Geometries;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.GeometryFactory;
@@ -44,8 +45,8 @@ public class XPlanGeometry implements Expression {
     }
 
     @Override
-    public Geometry evaluate( Feature feature ) {
-        TypedObjectNodeArray<?> geometries = castToArray( xpath.evaluate( feature ) );
+    public Geometry evaluate( Feature feature, FeatureCollection features ) {
+        TypedObjectNodeArray<?> geometries = castToArray( xpath.evaluate( feature, features ) );
         if ( geometries == null ) {
             return null;
         }

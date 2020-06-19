@@ -10,6 +10,7 @@ import javax.xml.namespace.QName;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 import org.deegree.geometry.multi.MultiPoint;
 import org.deegree.geometry.primitive.Point;
 import org.deegree.geometry.standard.multi.DefaultMultiPoint;
@@ -32,7 +33,7 @@ import de.latlon.xplan.manager.synthesizer.XpPpoLookup;
 public class XplanSymbolPositions implements Expression {
 
     @Override
-    public MultiPoint evaluate( Feature xpObjekt ) {
+    public MultiPoint evaluate( Feature xpObjekt, FeatureCollection features ) {
         Set<Point> positions = getPpoSymbolPositions( xpObjekt );
         positions.addAll( getXpObjektSymbolPositionsXplan2or3( xpObjekt ) );
         if ( positions.isEmpty() ) {
