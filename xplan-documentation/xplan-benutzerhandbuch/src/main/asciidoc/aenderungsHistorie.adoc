@@ -2,6 +2,17 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
+[[Aenderungshistorie-3.4]]
+=== Version 3.4 (deegree Enterprise 2020.2)
+
+==== Erweiterungen
+
+==== Fehlerbehebungen
+- (TT_10327) __reSynthesizer__-Tool entfernt internalId aus synthetisierten Schema
+- (TT_10320) Aufruf des __reSynthesizer__-Tool mit großen Planwerken für zu einem Fehler
+- (TT_10332, TT_10324) Verbesserung des Loggings
+- Verbesserung des Betriebs- und Benutzerhandbuchs
+
 [[Aenderungshistorie-3.3]]
 === Version 3.3 (deegree Enterprise 2020.1)
 
@@ -21,7 +32,7 @@
 
 ==== Fehlerbehebungen
 
- - (TT_10228) Synthetisierung mehrfacher Datumsfelder anpassen Stadt Freiburg bug
+ - (TT_10228) Synthetisierung mehrfacher Datumsfelder anpassen
  - (TT_10249) Korrektur des Drehwinkels von Texten (Präsentationsobjekten)
  - (TT_10263) Fehler beim Publizieren von PLU bei Curves im Originalplan
  - (TT_10285) Fehler bei Transformation von XPlanGML 4.1 nach 5.1 (gehoertZuBereich)

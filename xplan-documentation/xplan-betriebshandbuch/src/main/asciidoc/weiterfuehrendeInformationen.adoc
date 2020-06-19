@@ -1,7 +1,8 @@
 == Weiterführende Informationen
 
 Zur Betrachtung der über den XPlanManager importierten Planwerke bietet sich die Einbindung des <<xplanwms, XPlanWMS oder XPlanWerkWMS>> in einen geeigneten Client an. Da es sich bei beiden Diensten jeweils um einen standardkonformen WMS handelt, kann jeder Client verwendet werden, der diese Schnittstelle unterstützt.
+Der Zugriff auf die XPlanGML-Daten ist über den XPlanSynWFS oder die versionsspezifischen XPlanWFS-Dienste möglich.
 
-Mit dem XPlanPortal steht ein solcher Client bereit, der auf die Anforderungen der XPlanung zugeschnitten ist. Das XPlanPortal kann über folgenden Link heruntergeladen werden: https://github.com/lat-lon/XPlanPortal/releases/download/xplan-portal-2.5.1/xplanportal-2.5.1.zip
+NOTE: Als Desktop-Client wird https://qgis.org/[QGIS] empfohlen.
 
 Detailierte Informationen zur Installation, Konfiguration und Benutzung finden sich in der enthaltenen Dokumentation.
