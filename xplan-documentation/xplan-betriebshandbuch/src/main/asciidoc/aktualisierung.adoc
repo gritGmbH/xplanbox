@@ -303,13 +303,15 @@ Wenn die neuen Features <<kartenvorschau-validator>> und <<semantische-validieru
  * Installation der _xplan-validator-wms.war_ Webanwendung (s. <<web-anwendungen>>). Achtung: Anschließend muss der _xplan-validator-wms-workspace_ initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt über die webapps.properties-Datei plus Neustart der Webanwendung geschehen.
  * XPlanValidatorWeb gemäß <<konfiguration-validator>> konfigurieren.
 
-[[aktualisierung-auf-die-version-3.4-der-xplanbox]]
-=== Aktualisierung auf die Version 3.4 der xPlanBox
+[[aktualisierung-auf-die-version-3.3.1-der-xplanbox]]
+=== Aktualisierung auf die Version 3.3.1 der xPlanBox
 
-Mit der Version 3.4 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen vorgenommen worden.
+Mit der Version 3.3.1 der xPlanBox sind einige Fehlerbehebungen vorgenommen worden.
 
-Für die Aktualisierung auf die Version 3.4 sind folgende Schritte auszuführen:
+Für die Aktualisierung auf die Version 3.3.1 sind folgende Schritte auszuführen:
 
+* Aktualisierung der INSPIRE PLU Transformation (HALE Alignements)
+** Aktualisierung der Dateien _xplanGml41-inspirePlu.halex.alignment.xml_ und _xplanGml41-inspirePlu.halex_ im Verzeichnis _xplan-manager-config_ (s. <<teilweise-aktualisierung>>). Für die Aktualisierung der Daten im INSPIRE PLU Schema ist eine erneute Ausführung der Transformation notwendig.
 * Aktualisierung der Datenbank:
-** Ausführen der Skripte im Verzeichnis _from_3.3_to_3.4_ im Modul xplan-update-database. Die Tabelle _xplanmgr.plans_ wurde um die Spalte _internalid_ erweitert.
+** Ausführen der Skripte im Verzeichnis _from_3.3_to_3.3.1_ im Modul xplan-update-database. Die Tabelle _xplanmgr.plans_ wurde um die Spalte _internalid_ erweitert.
 ** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul xplan-update-database zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der __reSynthesizer__ wurde so angepasst, dass die _xplanmgr.plans.internalid_ bei Ausführung in in die synthetisierte FeatureCollection übernommen wird.

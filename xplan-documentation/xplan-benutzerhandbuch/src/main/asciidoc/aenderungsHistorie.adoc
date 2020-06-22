@@ -2,14 +2,15 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
-[[Aenderungshistorie-3.4]]
-=== Version 3.4 (deegree Enterprise 2020.2)
+[[Aenderungshistorie-3.3.1]]
+=== Version 3.3.1
 
 ==== Erweiterungen
 
 ==== Fehlerbehebungen
 - (TT_10327) __reSynthesizer__-Tool entfernt internalId aus synthetisierten Schema
 - (TT_10320) Aufruf des __reSynthesizer__-Tool mit großen Planwerken für zu einem Fehler
+- (TT_10339) Verbesserung der Transformationsregeln von XPlanGML nach INSPIRE PLU
 - (TT_10332, TT_10324) Verbesserung des Loggings
 - Verbesserung des Betriebs- und Benutzerhandbuchs
 
