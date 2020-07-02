@@ -252,6 +252,8 @@ public class XPlanManager {
                             boolean makeRasterConfig, File workspaceFolder, String internalId )
                     throws Exception {
         XPlanArchive archive = analyzeArchive( archiveFileName );
+        if ( archive.hasMultipleXPlanElements() )
+            throw new IllegalArgumentException( "Das XPlanGML enthält mehrere XP_Plan-Elemente." );
         xPlanInsertManager.importPlan( archive, defaultCRS, force, makeWMSConfig, makeRasterConfig, workspaceFolder,
                                        internalId, new AdditionalPlanData() );
     }
