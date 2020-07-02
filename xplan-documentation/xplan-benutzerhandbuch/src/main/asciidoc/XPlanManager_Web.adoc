@@ -3,9 +3,8 @@
 
 Die Komponente XPlanManagerWeb ist eine Web-Oberfläche, die dem
 Fachadministrator der xPlanBox ermöglicht, die Datenhaltung zu
-kontrollieren und zu verwalten. Mit dem XPlanManagerWeb kann der Benutzer ein XPlanGML
-Instanzdokumente in die Datenhaltung laden, editieren, löschen sowie
-bereits importiere XPlanArchive in einer Liste anzeigen.
+kontrollieren und zu verwalten. Mit dem XPlanManagerWeb kann der Benutzer ein XPlanGML-Instanzdokumente
+in die Datenhaltung laden, editieren, löschen sowie bereits importiere XPlanArchive in einer Liste anzeigen.
 
 [[xplanmanager-web-benutzungsanleitung]]
 ==== Einstiegsseite
@@ -30,7 +29,7 @@ Betätigen des Buttons _Hilfe_ ausgeben.
 [[xplanmanager-web-hinzufuegen]]
 ===== Hinzufügen
 
-Vor dem Importieren eines XPlanGML Instanzdokumentes in die Datenbasis,
+Vor dem Importieren eines XPlanGML-Instanzdokumentes in die Datenbasis,
 muss dieser über die Web-Oberfläche hochgeladen werden. Hierfür kann der Plan
 über den Button _Durchsuchen_ ausgewählt und durch einen Klick auf
 _Import_ hochgeladen werden. Der Benutzer wird
