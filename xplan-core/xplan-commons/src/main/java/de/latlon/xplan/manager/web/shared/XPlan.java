@@ -58,6 +58,8 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
     private AdditionalPlanData xplanMetadata;
 
+    private boolean hasMultipleXPlanElements;
+
     public XPlan() {
         this.name = "N/A";
         this.id = "-";
@@ -233,8 +235,17 @@ public class XPlan implements Serializable, Comparable<XPlan> {
         this.internalId = internalId;
     }
 
+    public void setHasMultipleXPlanElements( boolean hasMultipleXPlanElements ) {
+        this.hasMultipleXPlanElements = hasMultipleXPlanElements;
+    }
+
+    public boolean isHasMultipleXPlanElements() {
+        return this.hasMultipleXPlanElements;
+    }
+
     @Override
     public int compareTo( XPlan o ) {
         return ( o == null || o.name == null ) ? -1 : -o.name.compareTo( name );
     }
+
 }

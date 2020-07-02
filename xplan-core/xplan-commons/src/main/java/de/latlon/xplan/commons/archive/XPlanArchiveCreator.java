@@ -66,7 +66,7 @@ public class XPlanArchiveCreator {
             MainZipEntry mainEntry = readEntries( inputStream, zipEntries );
             String district = mapDistrict( mainEntry );
             return new XPlanArchive( zipEntries, name, mainEntry.getVersion(), mainEntry.getAde(), mainEntry.getType(),
-                                     mainEntry.getCrs(), district );
+                                     mainEntry.getCrs(), district, mainEntry.hasMultipleXPlanElements() );
         } catch ( XMLStreamException | FactoryConfigurationError e ) {
             String message = format( "Kann Archiv '%s' nicht lesen. Fehlermeldung: %s", name, e.getLocalizedMessage() );
             throw new IllegalArgumentException( message, e );
@@ -89,7 +89,7 @@ public class XPlanArchiveCreator {
             MainZipEntry mainEntry = xPlanGmlReader.createZipEntry( name, inputStream );
             String district = mapDistrict( mainEntry );
             return new XPlanArchive( mainEntry, name, mainEntry.getVersion(), mainEntry.getAde(), mainEntry.getType(),
-                                     mainEntry.getCrs(), district );
+                                     mainEntry.getCrs(), district, mainEntry.hasMultipleXPlanElements() );
         } catch ( XMLStreamException e ) {
             e.printStackTrace();
             String message = format( "Kann Archiv '%s' nicht lesen. Fehlermeldung: %s", name, e.getLocalizedMessage() );

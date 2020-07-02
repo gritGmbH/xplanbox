@@ -138,7 +138,6 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
     private com.vividsolutions.jts.geom.Geometry createJtsGeltungsbereichWithBuffer(
                             AbstractDefaultGeometry geltungsbereich ) {
         com.vividsolutions.jts.geom.Geometry jtsGeometry = geltungsbereich.getJTSGeometry();
-        System.out.println( jtsGeometry.getClass() );
         if ( jtsGeometry instanceof com.vividsolutions.jts.geom.Polygon ) {
             com.vividsolutions.jts.geom.Polygon polygon = (com.vividsolutions.jts.geom.Polygon) jtsGeometry;
             return fromPolygon( polygon, geltungsbereich.getCoordinateSystem() );

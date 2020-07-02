@@ -117,7 +117,9 @@ public class XPlanValidator {
                                                    String planName )
                             throws ValidatorException, IOException {
         XPlanArchive archive = archiveCreator.createXPlanArchive( planArchive );
-        return validate( validationSettings, archive, planName );
+        ValidatorReport validationReport = validate( validationSettings, archive, planName );
+        validationReport.setHasMultipleXPlanElements( archive.hasMultipleXPlanElements() );
+        return validationReport;
     }
 
     /**

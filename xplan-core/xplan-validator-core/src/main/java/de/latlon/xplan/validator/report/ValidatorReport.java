@@ -30,6 +30,8 @@ public class ValidatorReport {
 
     private Date date;
 
+    private boolean hasMultipleXPlanElements;
+
     public ValidatorReport() {
     }
 
@@ -165,4 +167,20 @@ public class ValidatorReport {
     public Date getDate() {
         return date;
     }
+
+    /**
+     * @param hasMultipleXPlanElements
+     *                         <code>true</code> if the XPLanArchive contains multiple XPlanElements, <code>false</code> otherwise
+     */
+    public void setHasMultipleXPlanElements( boolean hasMultipleXPlanElements ) {
+        this.hasMultipleXPlanElements = hasMultipleXPlanElements;
+    }
+
+    /**
+     * @return <code>true</code> if the XPLanArchive contains multiple XPlanElements, <code>false</code> otherwise
+     */
+    public boolean hasMultipleXPlanElements() {
+        return this.hasMultipleXPlanElements;
+    }
+
 }

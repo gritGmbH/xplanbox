@@ -49,18 +49,21 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
     private final String district;
 
+    private final boolean hasMultipleXPlanElements;
+
     XPlanArchive( List<ZipEntryWithContent> zipEntries, String name, XPlanVersion version, XPlanAde ade, XPlanType type,
-                  ICRS crs, String district ) {
-        this( zipEntries, null, name, version, ade, type, crs, district );
+                  ICRS crs, String district, boolean hasMultipleXPlanElements ) {
+        this( zipEntries, null, name, version, ade, type, crs, district, hasMultipleXPlanElements );
     }
 
     public XPlanArchive( MainZipEntry mainEntry, String name, XPlanVersion version, XPlanAde ade, XPlanType type,
-                         ICRS crs, String district ) {
-        this( Collections.emptyList(), mainEntry, name, version, ade, type, crs, district );
+                         ICRS crs, String district, boolean hasMultipleXPlanElements ) {
+        this( Collections.emptyList(), mainEntry, name, version, ade, type, crs, district, hasMultipleXPlanElements );
     }
 
     private XPlanArchive( List<ZipEntryWithContent> zipEntries, MainZipEntry mainEntry, String name,
-                          XPlanVersion version, XPlanAde ade, XPlanType type, ICRS crs, String district ) {
+                          XPlanVersion version, XPlanAde ade, XPlanType type, ICRS crs, String district,
+                          boolean hasMultipleXPlanElements ) {
         this.zipFileEntries = zipEntries;
         this.mainEntry = mainEntry;
         this.name = name;
@@ -69,6 +72,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
         this.type = type;
         this.crs = crs;
         this.district = district;
+        this.hasMultipleXPlanElements = hasMultipleXPlanElements;
     }
 
     /**
@@ -126,6 +130,13 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
         return district;
     }
 
+    /**
+     * @return <code>true</code> if the XPLanArchive contains multiple XPlanElements, <code>false</code> otherwise
+     */
+    public boolean hasMultipleXPlanElements() {
+        return hasMultipleXPlanElements;
+    }
+
     @Override
     public List<? extends ArchiveEntry> getZipFileEntries() {
         return zipFileEntries;
@@ -133,7 +144,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
     /**
      * Retrieve a <link>InputStream</link> returning the main file of this archive
-     * 
+     *
      * @return the main file as <link>InputStream</link>
      */
     @Override
@@ -143,7 +154,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
     /**
      * Returns a reader for the XML of the main file. Start document is skipped.
-     * 
+     *
      * @return reader, never <code>null</code>
      */
     @Override
@@ -199,5 +210,4 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
         if ( name == null )
             throw new IllegalArgumentException( "Name to detect the zip entry must not be null." );
     }
-
 }

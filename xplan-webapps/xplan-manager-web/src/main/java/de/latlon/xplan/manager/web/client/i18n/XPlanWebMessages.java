@@ -44,6 +44,14 @@ public interface XPlanWebMessages extends Messages {
 
     String validated();
 
+    String validationNoteNotValidated();
+
+    String validationNoteValid();
+
+    String validationNoteInvalid();
+
+    String validationNoteMultipleXPlanElements();
+
     String validationTitle();
 
     String mapPreview();

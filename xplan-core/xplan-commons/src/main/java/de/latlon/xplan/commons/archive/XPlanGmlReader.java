@@ -45,6 +45,8 @@ public class XPlanGmlReader {
 
     private String district;
 
+    private boolean hasMultipleXPlanElements = false;
+
     /**
      * Reads the XPlan GML, pareses required information and updates the planname.
      *
@@ -67,7 +69,7 @@ public class XPlanGmlReader {
         } finally {
             closeQuietly( reader );
         }
-        return new MainZipEntry( bos.toByteArray(), entry.getName(), version, type, ade, crs, district );
+        return new MainZipEntry( bos.toByteArray(), entry.getName(), version, type, ade, crs, district, hasMultipleXPlanElements );
     }
 
     /**
@@ -92,7 +94,7 @@ public class XPlanGmlReader {
         } finally {
             closeQuietly( reader );
         }
-        return new MainZipEntry( bos.toByteArray(), name, version, type, ade, crs, district );
+        return new MainZipEntry( bos.toByteArray(), name, version, type, ade, crs, district, hasMultipleXPlanElements );
     }
 
     private void copy( XMLStreamReader reader, XMLStreamWriter writer )
@@ -233,7 +235,7 @@ public class XPlanGmlReader {
                 type = currentType;
                 typeLocation = location;
             } else {
-                throwDuplicatedTypeException( location, currentType );
+                hasMultipleXPlanElements = true;
             }
         }
     }
@@ -266,13 +268,6 @@ public class XPlanGmlReader {
                              + "(srsName-Attribute): '%s' (Zeile: %d, Spalte: %d) und '%s' (Zeile: %d, Spalte: %d)",
                              crs.getName(), crsLocation.getLineNumber(), crsLocation.getColumnNumber(), currrentCrsName,
                              currentLocation.getLineNumber(), currentLocation.getColumnNumber() );
-        throw new IllegalArgumentException( msg );
-    }
-
-    private void throwDuplicatedTypeException( Location r, XPlanType currentType ) {
-        String msg = format( "Fehler: Dokument enthält mehr als ein XP_Plan-Element: '%s' (Zeile: %d, Spalte: %d) "
-                             + "und '%s' (Zeile: %d, Spalte: %d)", type, typeLocation.getLineNumber(),
-                             typeLocation.getColumnNumber(), currentType, r.getLineNumber(), r.getColumnNumber() );
         throw new IllegalArgumentException( msg );
     }
 
