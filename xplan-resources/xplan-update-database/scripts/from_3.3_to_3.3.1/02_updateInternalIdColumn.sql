@@ -3,3 +3,13 @@ UPDATE xplanmgr.plans SET internalid = xplan_internalid FROM xplansyn.xplan_lp_p
 UPDATE xplanmgr.plans SET internalid = xplan_internalid FROM xplansyn.xplan_fp_plan syn WHERE id = syn.xplan_mgr_planid;
 UPDATE xplanmgr.plans SET internalid = xplan_internalid FROM xplansyn.xplan_rp_plan syn WHERE id = syn.xplan_mgr_planid;
 UPDATE xplanmgr.plans SET internalid = xplan_internalid FROM xplansyn.xplan_so_plan syn WHERE id = syn.xplan_mgr_planid;
+UPDATE xplanmgr.plans SET internalid = xplan_internalid FROM xplansynpre.xplan_bp_plan syn WHERE id = syn.xplan_mgr_planid;
+UPDATE xplanmgr.plans SET internalid = xplan_internalid FROM xplansynpre.xplan_lp_plan syn WHERE id = syn.xplan_mgr_planid;
+UPDATE xplanmgr.plans SET internalid = xplan_internalid FROM xplansynpre.xplan_fp_plan syn WHERE id = syn.xplan_mgr_planid;
+UPDATE xplanmgr.plans SET internalid = xplan_internalid FROM xplansynpre.xplan_rp_plan syn WHERE id = syn.xplan_mgr_planid;
+UPDATE xplanmgr.plans SET internalid = xplan_internalid FROM xplansynpre.xplan_so_plan syn WHERE id = syn.xplan_mgr_planid;
+UPDATE xplanmgr.plans SET internalid = xplan_internalid FROM xplansynarchive.xplan_bp_plan syn WHERE id = syn.xplan_mgr_planid;
+UPDATE xplanmgr.plans SET internalid = xplan_internalid FROM xplansynarchive.xplan_lp_plan syn WHERE id = syn.xplan_mgr_planid;
+UPDATE xplanmgr.plans SET internalid = xplan_internalid FROM xplansynarchive.xplan_fp_plan syn WHERE id = syn.xplan_mgr_planid;
+UPDATE xplanmgr.plans SET internalid = xplan_internalid FROM xplansynarchive.xplan_rp_plan syn WHERE id = syn.xplan_mgr_planid;
+UPDATE xplanmgr.plans SET internalid = xplan_internalid FROM xplansynarchive.xplan_so_plan syn WHERE id = syn.xplan_mgr_planid;
