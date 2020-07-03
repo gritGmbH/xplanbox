@@ -109,6 +109,7 @@ public class UploadPanel extends DecoratorPanel {
     private void initUploadedPlanTableColumns() {
         addNameColumn( uploadedPlanTable );
         addValidationStatusColumn( uploadedPlanTable );
+        addValidationNoteColumn( uploadedPlanTable );
         addValidationColumn( uploadedPlanTable );
         addImportColumn( uploadedPlanTable );
         addRemoveColumn( uploadedPlanTable );
@@ -156,7 +157,9 @@ public class UploadPanel extends DecoratorPanel {
 
             @Override
             public String getCellStyleNames( Cell.Context context, XPlan object ) {
-                if ( object.isValidated() )
+                if ( object.isHasMultipleXPlanElements() )
+                    return "cellButton buttonNotValid";
+                else if ( object.isValidated() )
                     return "cellButton " + ( object.isValid() ? "buttonValid" : "buttonNotValid" );
                 else
                     return "cellButton buttonNotValidated";
@@ -165,13 +168,31 @@ public class UploadPanel extends DecoratorPanel {
         xPlanTable.addColumn( validatedColumn, messages.validated() );
     }
 
+    private void addValidationNoteColumn( CellTable<XPlan> xPlanTable ) {
+        TextCell validatedNoteCell = new TextCell();
+        Column<XPlan, String> validatedColumn = new Column<XPlan, String>( validatedNoteCell ) {
+            @Override
+            public String getValue( XPlan object ) {
+                if ( object.isHasMultipleXPlanElements() )
+                    return messages.validationNoteMultipleXPlanElements();
+                else if ( !object.isValidated() )
+                    return messages.validationNoteNotValidated();
+                else if ( object.isValid() )
+                    return messages.validationNoteValid();
+                else
+                    return messages.validationNoteInvalid();
+            }
+        };
+        xPlanTable.addColumn( validatedColumn );
+    }
+
     private void addImportColumn( CellTable<XPlan> xPlanTable ) {
         final DisengageableButtonCell importButtonCell = new DisengageableButtonCell();
         importButtonCell.setDisabled();
         Column<XPlan, String> importButtonColumn = new Column<XPlan, String>( importButtonCell ) {
             @Override
             public String getValue( XPlan object ) {
-                if ( object.isValid() )
+                if ( object.isValid() && !object.isHasMultipleXPlanElements() )
                     importButtonCell.setEnabled();
                 else
                     importButtonCell.setDisabled();

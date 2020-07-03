@@ -80,10 +80,10 @@ public class XPlanMgrValidationServiceImpl extends RemoteServiceServlet implemen
             updatePlanStatus( planToVerify, report );
             return new ValidationSummary( planToVerify.getId(), validationSettings.getValidationName() );
         } catch ( IOException | ReportGenerationException | ValidatorException e ) {
-            LOG.error( "An exception occured during validation", e );
+            LOG.error( "An exception occurred during validation", e );
             throw new ValidationException( e.getMessage() );
         } catch ( IllegalArgumentException e ) {
-            LOG.error( "An exception occured during validation", e );
+            LOG.error( "An exception occurred during validation", e );
             throw e;
         }
     }
@@ -97,6 +97,7 @@ public class XPlanMgrValidationServiceImpl extends RemoteServiceServlet implemen
     private void updatePlanStatus( XPlan planToVerify, ValidatorReport report ) {
         planToVerify.setValidated( true );
         planToVerify.setValid( report.isReportValid() );
+        planToVerify.setHasMultipleXPlanElements( report.hasMultipleXPlanElements() );
     }
 
 }

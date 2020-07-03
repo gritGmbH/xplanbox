@@ -25,10 +25,12 @@ public class MainZipEntry implements ZipEntryWithContent {
 
     private final String district;
 
+    private final boolean hasMultipleXPlanElements;
+
     private final byte[] content;
 
     public MainZipEntry( byte[] content, String name, XPlanVersion version, XPlanType type, XPlanAde ade, ICRS crs,
-                         String district ) {
+                         String district, boolean hasMultipleXPlanElements ) {
         this.content = content;
         this.name = name;
         this.version = version;
@@ -36,6 +38,7 @@ public class MainZipEntry implements ZipEntryWithContent {
         this.ade = ade;
         this.crs = crs;
         this.district = district;
+        this.hasMultipleXPlanElements = hasMultipleXPlanElements;
     }
 
     @Override
@@ -71,5 +74,9 @@ public class MainZipEntry implements ZipEntryWithContent {
 
     public XPlanVersion getVersion() {
         return version;
+    }
+
+    public boolean hasMultipleXPlanElements() {
+        return hasMultipleXPlanElements;
     }
 }

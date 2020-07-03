@@ -8,6 +8,7 @@
 ==== Erweiterungen
 
 ==== Fehlerbehebungen
+- (TT_10348) XPlanValidator akzeptiert XPlanGML mit mehreren XP_Plan-Elementen
 - (TT_10327) __reSynthesizer__-Tool entfernt internalId aus synthetisierten Schema
 - (TT_10320) Aufruf des __reSynthesizer__-Tool mit großen Planwerken für zu einem Fehler
 - (TT_10339, TT_10323) Verbesserung der Transformationsregeln von XPlanGML nach INSPIRE PLU
@@ -29,7 +30,7 @@
  - Verbesserung der Darstellung von Präsentationsobjekten
  - Verbesserung der Sachdatenabfrage im XPlanWMS (HTML)
  - Verbesserung der Performanz des XPlanInspirePluWFS
- - Verbesserung der Interoberabilität von XPlanWMS und XPlanSynWFS mit GIS-Clienten
+ - Verbesserung der Interoperabilität von XPlanWMS und XPlanSynWFS mit GIS-Clienten
 
 ==== Fehlerbehebungen
 
