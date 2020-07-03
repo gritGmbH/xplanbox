@@ -23,7 +23,7 @@ Referenzen:
 
 Sowohl für das XPlanManagerCLI, den XPlanManagerWeb als auch den XPlanValidator gelten
 Obergrenzen beim Import von XPlanArchiven. XPlanArchive (ZIP-Datei
-inklusive Anhänge) größer 50 MB und XPlanGML-Dateien größer 2 MB können die Systemstabilität
+inklusive Anhänge) größer als 50 MB und XPlanGML-Dateien größer als 2 MB können die Systemstabilität
 beeinträchtigen. Wenn XPlanArchive mit größeren Anhängen importiert
 werden sollen, so müssen Server-seitig entsprechende
 Systemvoraussetzungen erfüllt sein.
@@ -155,11 +155,11 @@ Nicht umgesetzt ist dagegen insbesondere die Auswertung der Attribute _art_ und 
 [[fehler-melden]]
 == Fehler melden
 
-Für den Fall, dass Sie einen Fehler in einer der xPlanBox Komponenten finden, schicken Sie bitte eine Email an das Support-Postfach:
-​support@deegree-enterprise.de​.
+Für den Fall, dass Sie einen Fehler in einer der xPlanBox Komponenten finden, schicken Sie bitte eine E-mail an das Support-Postfach:
+​support@lat-lon.de​.
 
 [[support]]
 == Support
 
-Professionellen Support per Telefon oder eMail bieten Ihnen die Entwickler von http://www.lat-lon.de[lat/lon] an.
-Ihre Supportanfragen schicken Sie bitte an: ​support@deegree-enterprise.de​.
+Professionellen Support per Telefon oder E-Mail bieten Ihnen die Entwickler von http://www.lat-lon.de[lat/lon] an.
+Ihre Supportanfragen schicken Sie bitte an: ​support@lat-lon.de​.

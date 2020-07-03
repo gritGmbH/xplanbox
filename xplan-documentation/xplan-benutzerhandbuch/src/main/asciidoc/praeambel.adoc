@@ -17,7 +17,7 @@ werden gerne entgegengenommen.
 Dieses Dokument ist mit AsciiDoc gesetzt. Es ist als
 Quellcode erhältlich und kann als HTML und PDF angeschaut bzw.
 bereitgestellt werden. Für die Bereitstellung des AsciiDoc Quellcode wenden
-Sie sich bitte an http://www.lat-lon.de[lat/lon] - per Email an
+Sie sich bitte an http://www.lat-lon.de[lat/lon] - per E-mail an
 info@lat-lon.de.
 
 [[autoren]]
@@ -25,6 +25,8 @@ info@lat-lon.de.
 
 Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Sebastian Goerke, Lyn Elisa Goltz,
 Lena Rippolz, Sabine Schmitz, Dirk Stenger, Carmen Tawalika, Jeronimo Wanhoff.
+
+Copyright (C) 2010 - 2020, lat/lon GmbH
 
 [[lizenz-des-dokuments]]
 === Lizenz des Dokuments
