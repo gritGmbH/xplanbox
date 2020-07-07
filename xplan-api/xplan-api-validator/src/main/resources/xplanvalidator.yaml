@@ -1,0 +1,199 @@
+swagger: "2.0"
+info:
+  description: "XPlanValidator REST API"
+  version: "0.0.1"
+  title: "XPlanValidator"
+  termsOfService: "http://xplanbox.lat-lon.de/terms/"
+  contact:
+    email: "info@lat-lon.de"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "xplanbox.lat-lon.de"
+basePath: "/v1"
+tags:
+- name: "validate"
+  description: "Validate XPlanGML documents"
+  externalDocs:
+    description: "xPlanBox"
+    url: "http://xplanbox.lat-lon.de"
+schemes:
+- "https"
+- "http"
+paths:
+  /validate:
+    post:
+      tags:
+      - "validate"
+      summary: "Upload XPlanGML or XPlanArchive"
+      description: "Upload XPlanGML document"
+      operationId: "upload"
+      consumes:
+      - "application/xml"
+      - "text/xml"
+      - "application/zip"
+      - "application/gml+xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      - "text/xml"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "XPlanGML or XPlanArchive"
+        required: true
+        schema:
+          $ref: "#/definitions/XPlanGML"
+      responses:
+        "200":
+          description: "successful upload"
+          schema:
+            $ref: "#/definitions/UploadReport"
+        "405":
+          description: "Invalid input"
+  /validate/{id}:
+    get:
+      tags:
+      - "validate"
+      summary: "Validate uploaded XPlanGML or XPlanArchive"
+      description: "Multiple"
+      operationId: "validate"
+      produces:
+      - "text/html"
+      - "application/xml"
+      - "text/xml"
+      - "application/json"
+      - "application/pdf"
+      - "application/zip"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Id of the validation"
+        required: true
+        type: "string"
+      - name: "name"
+        in: "query"
+        description: "Name of the validation"
+        required: false
+        type: "string"
+      - name: "skipGeometrisch"
+        in: "query"
+        description: "Geometrische Validierung ueberspringen"
+        required: false
+        type: "boolean"
+        default: "false"
+      - name: "skipSemantisch"
+        in: "query"
+        description: "Semantische Validierung ueberspringen"
+        required: false
+        type: "boolean"
+        default: "false"
+      - name: "skipFlaechenschluss"
+        in: "query"
+        description: "Ueberpruefung des Flaechenschluss ueberspringen"
+        required: false
+        type: "boolean"
+        default: "false"
+      - name: "skipGeltungsbereich"
+        in: "query"
+        description: "Ueberpruefung des Geltungsbereich ueberspringen"
+        required: false
+        type: "boolean"
+        default: "false"
+      responses:
+        "200":
+          description: "successful validation"
+          schema:
+            $ref: "#/definitions/ValidationReport"
+        "400":
+          description: "Invalid status value"
+  /report/{id}:
+    get:
+      tags:
+      - "validate"
+      summary: "Download report by id"
+      description: ""
+      operationId: "report"
+      produces:
+      - "text/html"
+      - "application/xml"
+      - "text/xml"
+      - "application/json"
+      - "application/pdf"
+      - "application/zip"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Id of the validation"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ValidationReport"
+        "400":
+          description: "Invalid tag value"
+
+definitions:
+  XPlanGML:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      petId:
+        type: "integer"
+        format: "int64"
+      quantity:
+        type: "integer"
+        format: "int32"
+      shipDate:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        description: "Order Status"
+        enum:
+        - "placed"
+        - "approved"
+        - "delivered"
+      complete:
+        type: "boolean"
+        default: false
+    xml:
+      name: "Order"
+  UploadReport:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    xml:
+      name: "Category"
+  ValidationReport:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      phone:
+        type: "string"
+      userStatus:
+        type: "integer"
+        format: "int32"
+        description: "User Status"
+    xml:
+      name: "User"
