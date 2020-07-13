@@ -3,11 +3,17 @@
   <artifactId>xplan-api-validator</artifactId>
   <packaging>war</packaging>
   <name>xplan-api-validator</name>
+
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
-    <artifactId>xplanbox</artifactId>
+    <artifactId>xplan-api</artifactId>
     <version>3.4-SNAPSHOT</version>
   </parent>
+
+  <properties>
+    <base.package.name>de.latlon.xplanbox</base.package.name>
+  </properties>
+
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
@@ -21,6 +27,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
+
         <executions>
           <execution>
             <goals>
@@ -46,9 +53,9 @@
             <configuration>
               <inputSpec>${project.basedir}/src/main/resources/xplanvalidator.yaml</inputSpec>
               <language>jaxrs-spec</language>
-              <packageName>${project.groupId}.validator.v1</packageName>
-              <modelPackage>${project.groupId}.validator.v1.model</modelPackage>
-              <apiPackage>${project.groupId}.validator.v1.api</apiPackage>
+              <packageName>${base.package.name}.api.validator.v1</packageName>
+              <modelPackage>${base.package.name}.api.validator.v1.model</modelPackage>
+              <apiPackage>${base.package.name}.api.validator.v1</apiPackage>
               <configOptions>
                 <sourceFolder>${project.build}/generated-sources/swagger</sourceFolder>
               </configOptions>
