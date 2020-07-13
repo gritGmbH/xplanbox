@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-api-validator</artifactId>
   <packaging>war</packaging>
@@ -21,45 +22,18 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <configuration>
-            <failOnMissingWebXml>false</failOnMissingWebXml>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-
         <executions>
           <execution>
             <goals>
               <goal>integration-test</goal>
               <goal>verify</goal>
             </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <!-- only needed for code generation
-      When using enums, import statements are missing for @JsonCreator and @JsonValue
-      see https://github.com/swagger-api/swagger-codegen/pull/7650
-      -->
-      <plugin>
-        <groupId>io.swagger.codegen.v3</groupId>
-        <artifactId>swagger-codegen-maven-plugin</artifactId>
-        <version>3.0.20</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <inputSpec>${project.basedir}/src/main/resources/xplanvalidator.yaml</inputSpec>
-              <language>jaxrs-spec</language>
-              <packageName>${base.package.name}.api.validator.v1</packageName>
-              <modelPackage>${base.package.name}.api.validator.v1.model</modelPackage>
-              <apiPackage>${base.package.name}.api.validator.v1</apiPackage>
-              <configOptions>
-                <sourceFolder>${project.build}/generated-sources/swagger</sourceFolder>
-              </configOptions>
-            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -124,10 +98,46 @@
     </dependency>
     <!-- Bean Validation API support -->
     <dependency>
-        <groupId>javax.validation</groupId>
-        <artifactId>validation-api</artifactId>
-        <version>1.1.0.Final</version>
-        <scope>provided</scope>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>1.1.0.Final</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>generate-swagger</id>
+      <build>
+        <plugins>
+          <!-- only needed for code generation
+          When using enums, import statements are missing for @JsonCreator and @JsonValue
+          see https://github.com/swagger-api/swagger-codegen/pull/7650
+          -->
+          <plugin>
+            <groupId>io.swagger.codegen.v3</groupId>
+            <artifactId>swagger-codegen-maven-plugin</artifactId>
+            <version>3.0.20</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+                <configuration>
+                  <inputSpec>${project.basedir}/src/main/resources/xplanvalidator.yaml</inputSpec>
+                  <language>jaxrs-spec</language>
+                  <packageName>${base.package.name}.api.validator.v2</packageName>
+                  <modelPackage>${base.package.name}.api.validator.v2.model</modelPackage>
+                  <apiPackage>${base.package.name}.api.validator.v2</apiPackage>
+                  <configOptions>
+                    <sourceFolder>${project.build}/generated-sources/swagger</sourceFolder>
+                  </configOptions>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
