@@ -1,4 +1,4 @@
-package de.latlon.xplanbox.api.validator.v1;
+package de.latlon.xplanbox.api.validator.v1.config;
 
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
@@ -16,6 +16,7 @@ import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
@@ -24,6 +25,7 @@ import java.nio.file.Path;
 import static java.nio.file.Files.createTempDirectory;
 
 @Configuration
+@ComponentScan(basePackages = { "de.latlon.xplanbox.api.validator.v1" })
 public class ApplicationContext {
 
     @Bean

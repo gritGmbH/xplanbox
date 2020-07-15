@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.validator.v1;
 
+import de.latlon.xplanbox.api.validator.v1.config.ApplicationContext;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.WebApplicationInitializer;
