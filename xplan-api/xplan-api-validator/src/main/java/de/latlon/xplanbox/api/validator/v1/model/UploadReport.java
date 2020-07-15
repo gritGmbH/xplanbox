@@ -1,45 +1,29 @@
 package de.latlon.xplanbox.api.validator.v1.model;
 
-import java.util.Objects;
+public class UploadReport {
 
+    private String id;
 
-public class UploadReport   {
+    private String fileName;
 
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public UploadReport( String id, String fileName ) {
+        this.id = id;
+        this.fileName = fileName;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public String getId() {
+        return id;
     }
-    UploadReport uploadReport = (UploadReport) o;
-    return true;
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash();
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class UploadReport {\n");
-    
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setId( String id ) {
+        this.id = id;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public void setFileName( String fileName ) {
+        this.fileName = fileName;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
 }

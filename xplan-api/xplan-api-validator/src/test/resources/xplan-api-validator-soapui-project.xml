@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="45582ef9-4bae-43d8-9226-a378e02ff0b5" activeEnvironment="Default" name="xplan-api-validator" resourceRoot="" soapui-version="5.5.0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:testSuite id="f143fae3-230d-4ab3-87b4-bff8302fa034" name="XPlanValidatorAPI">
+    <con:settings/>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="f4a8babc-e087-4e5a-9884-c9f5894880fd" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="OpenAPI" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="OpenAPI-JSON" id="eb52d356-8bc7-4f5c-8af3-72578808b330">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="5b1956ef-2d92-45a1-a37b-dca40705661c" name="OpenAPI-JSON" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/openapi.json</con:endpoint>
+          <con:request/>
+          <con:credentials>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:properties/>
+  </con:testSuite>
+  <con:properties>
+    <con:property>
+      <con:name>baseUrl</con:name>
+      <con:value>http://localhost:8080/xplan-api-validator</con:value>
+    </con:property>
+  </con:properties>
+  <con:wssContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+</con:soapui-project>
