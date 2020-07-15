@@ -2,7 +2,9 @@ package de.latlon.xplanbox.api.validator.v1.handler;
 
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
+import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.report.ValidatorReport;
+import de.latlon.xplan.validator.web.shared.ArtifactType;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationType;
@@ -15,9 +17,11 @@ import org.springframework.stereotype.Component;
 import javax.inject.Singleton;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -41,6 +45,9 @@ public class ValidationHandler {
 
     @Autowired
     private Path uploadFolder;
+
+    @Autowired
+    private ReportWriter reportWriter;
 
     public UploadReport upload( InputStream uploadedPlan, String fileName )
                             throws IOException {
@@ -67,7 +74,24 @@ public class ValidationHandler {
         settings.setValidationName( name );
         settings.setValidationTypes( asValidationTypes( skipGeometrisch, skipSemantisch ) );
         settings.setExtendedOptions( asValidationOptions( skipFlaechenschluss, skipGeltungsbereich ) );
-        return xPlanValidator.validateNotWriteReport( settings, plan.toFile(), name );
+        ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport( settings, plan.toFile(), name );
+
+        Path reportDirectory = uploadFolder.resolve( id );
+        reportWriter.writeArtefacts( validatorReport, reportDirectory.toFile() );
+
+        return validatorReport;
+    }
+
+    public Path writeReport( String id, String validationName )
+                            throws IOException {
+        List<ArtifactType> artifacts = Arrays.asList( ArtifactType.values() );
+        Path reportDirectory = uploadFolder.resolve( id );
+        Files.createDirectory( reportDirectory );
+        Path zipArchive = reportDirectory.resolve( id + ".zip" );
+        try (OutputStream zipOutput = Files.newOutputStream( zipArchive )) {
+            reportWriter.writeZipWithArtifacts( zipOutput, validationName, artifacts, reportDirectory.toFile() );
+        }
+        return zipArchive;
     }
 
     private List<ValidationType> asValidationTypes( boolean skipGeometrisch, boolean skipSemantisch ) {

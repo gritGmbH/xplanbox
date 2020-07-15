@@ -61,6 +61,7 @@
             <idleTimeout>60000</idleTimeout>
           </httpConnector>
         </configuration>
+        <!--
         <executions>
           <execution>
             <id>start-jetty</id>
@@ -81,6 +82,7 @@
             </goals>
           </execution>
         </executions>
+        -->
       </plugin>
     </plugins>
   </build>
