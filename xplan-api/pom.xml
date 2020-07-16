@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>xplan-api</artifactId>
     <packaging>pom</packaging>
-    <description>Modul zur Gruppierung der API</description>
+    <description>Modul zur Gruppierung der REST-API</description>
 
     <parent>
         <groupId>de.latlon.product.xplanbox</groupId>
@@ -13,6 +13,7 @@
 
     <modules>
         <module>xplan-api-validator</module>
+        <module>xplan-api-manager</module>
     </modules>
 
 </project>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>xplan-api-manager</artifactId>
+    <packaging>war</packaging>
+    <description>xplan-api-manager</description>
+    <parent>
+        <groupId>de.latlon.product.xplanbox</groupId>
+        <artifactId>xplan-api</artifactId>
+        <version>3.4-SNAPSHOT</version>
+    </parent>
+    <build>
+        <plugins>
+            <!-- only needed for code generation
+            When using enums, import statements are missing for @JsonCreator and @JsonValue
+            see https://github.com/swagger-api/swagger-codegen/pull/7650
+            -->
+            <plugin>
+                <groupId>io.swagger.codegen.v3</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>3.0.20</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/xplanmanager.yaml</inputSpec>
+                            <language>jaxrs-spec</language>
+                            <packageName>${base.package.name}.api.manager.v1</packageName>
+                            <modelPackage>${base.package.name}.api.manager.v1.model</modelPackage>
+                            <apiPackage>${base.package.name}.api.manager.v1</apiPackage>
+                            <configOptions>
+                                <sourceFolder>${project.build}/generated-sources/swagger</sourceFolder>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,174 @@
+swagger: "2.0"
+info:
+  description: "XPlanManager REST API"
+  version: "0.0.1"
+  title: "XPlanManager"
+  termsOfService: "http://xplanbox.lat-lon.de/terms/"
+  contact:
+    email: "info@lat-lon.de"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "xplanbox.lat-lon.de"
+basePath: "/v1"
+tags:
+  - name: "import"
+    description: "Import XPlanGML documents"
+    externalDocs:
+      description: "xPlanBox"
+      url: "http://xplanbox.lat-lon.de"
+schemes:
+  - "https"
+  - "http"
+paths:
+  /validate:
+    post:
+      tags:
+        - "validate"
+      summary: "Upload XPlanGML or XPlanArchive"
+      description: "Upload XPlanGML document"
+      operationId: "upload"
+      consumes:
+        - "application/xml"
+        - "text/xml"
+        - "application/zip"
+        - "application/gml+xml"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "XPlanGML or XPlanArchive"
+          required: true
+          schema:
+            $ref: "#/definitions/XPlanGML"
+      responses:
+        "200":
+          description: "successful upload"
+          schema:
+            $ref: "#/definitions/UploadReport"
+        "405":
+          description: "Invalid input"
+  /validate/{id}:
+    get:
+      tags:
+        - "validate"
+      summary: "Validate uploaded XPlanGML or XPlanArchive"
+      description: "Multiple"
+      operationId: "validate"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Id of the validation"
+          required: true
+          type: "string"
+        - name: "name"
+          in: "query"
+          description: "Name of the validation"
+          required: false
+          type: "string"
+        - name: "skipGeometrisch"
+          in: "query"
+          description: "Geometrische Validierung ueberspringen"
+          required: false
+          type: "boolean"
+          default: "false"
+        - name: "skipSemantisch"
+          in: "query"
+          description: "Semantische Validierung ueberspringen"
+          required: false
+          type: "boolean"
+          default: "false"
+        - name: "skipFlaechenschluss"
+          in: "query"
+          description: "Ueberpruefung des Flaechenschluss ueberspringen"
+          required: false
+          type: "boolean"
+          default: "false"
+        - name: "skipGeltungsbereich"
+          in: "query"
+          description: "Ueberpruefung des Geltungsbereich ueberspringen"
+          required: false
+          type: "boolean"
+          default: "false"
+      responses:
+        "200":
+          description: "successful validation"
+          schema:
+            $ref: "#/definitions/ValidationReport"
+        "400":
+          description: "Invalid status value"
+  /report/{id}:
+    get:
+      tags:
+        - "validate"
+      summary: "Download report by id"
+      description: ""
+      operationId: "report"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Id of the validation"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ValidationReport"
+        "400":
+          description: "Invalid tag value"
+  /import/{id}:
+    get:
+      operationId: "import"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Id of the validation"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ValidationReport"
+        "400":
+          description: "Invalid tag value"
+  /plan/{planId}:
+    post:
+      operationId: "update"
+      consumes:
+        - "application/xml"
+        - "text/xml"
+        - "application/zip"
+        - "application/gml+xml"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "planId"
+          in: "path"
+          description: "Id of a plan"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Status"
+        "400":
+          description: "Invalid tag value"
+definitions:
+  XPlanGML:
+    type: "object"
+  UploadReport:
+    type: "object"
+  ValidationReport:
+    type: "object"
+  Status:
+    type: boolean
