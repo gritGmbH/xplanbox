@@ -9,6 +9,9 @@
         <artifactId>xplan-api</artifactId>
         <version>3.4-SNAPSHOT</version>
     </parent>
+    <properties>
+        <base.package.name>de.latlon.xplanbox</base.package.name>
+    </properties>
     <build>
         <plugins>
             <!-- only needed for code generation
