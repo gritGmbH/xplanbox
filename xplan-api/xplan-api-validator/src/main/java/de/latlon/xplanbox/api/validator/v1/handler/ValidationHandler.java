@@ -77,6 +77,7 @@ public class ValidationHandler {
         ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport( settings, plan.toFile(), name );
 
         Path reportDirectory = uploadFolder.resolve( id );
+        Files.createDirectory( reportDirectory );
         reportWriter.writeArtefacts( validatorReport, reportDirectory.toFile() );
 
         return validatorReport;
@@ -86,7 +87,6 @@ public class ValidationHandler {
                             throws IOException {
         List<ArtifactType> artifacts = Arrays.asList( ArtifactType.values() );
         Path reportDirectory = uploadFolder.resolve( id );
-        Files.createDirectory( reportDirectory );
         Path zipArchive = reportDirectory.resolve( id + ".zip" );
         try (OutputStream zipOutput = Files.newOutputStream( zipArchive )) {
             reportWriter.writeZipWithArtifacts( zipOutput, validationName, artifacts, reportDirectory.toFile() );

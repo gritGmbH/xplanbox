@@ -38,7 +38,8 @@ public class ReportApi {
                             @Parameter(description = "Id of the validation")
                                                     String id )
                             throws IOException {
-        java.nio.file.Path report = validationHandler.writeReport( id, id );
+        String validationName = "ABC";
+        java.nio.file.Path report = validationHandler.writeReport( id, validationName );
         return Response.ok( FileUtils.readFileToByteArray( report.toFile() ) ).type( "application/zip" ).header(
                                 "Content-Disposition", "attachment; filename=\"" + id + ".zip\"" ).build();
     }

@@ -83,7 +83,8 @@ public class ValidateApi {
                             @Parameter(description = "Ueberpruefung des Geltungsbereich ueberspringen")
                                                     Boolean skipGeltungsbereich )
                             throws IOException, ValidatorException {
-        return validationHandler.validate( id, name, skipGeometrisch, skipSemantisch, skipFlaechenschluss,
+        String validationName = "ABC";
+        return validationHandler.validate( id, validationName, skipGeometrisch, skipSemantisch, skipFlaechenschluss,
                                            skipGeltungsbereich );
     }
 }
