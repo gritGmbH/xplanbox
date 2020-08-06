@@ -10,7 +10,7 @@ info:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 host: "xplanbox.lat-lon.de"
-basePath: "/api/v1"
+basePath: "/xvalidator/api/v1"
 tags:
   - name: "validate"
     description: "Validate XPlanGML documents"
@@ -124,6 +124,7 @@ paths:
 definitions:
   XPlanGML:
     type: "object"
+    # TODO TBD
   UploadReport:
     type: "object"
     properties:
@@ -136,3 +137,4 @@ definitions:
         example: https://xplanbox.lat-lon.de/xplan-validator-wms/services/wms?PLANWERK_MANAGERID=13
   ValidationReport:
     type: "object"
+    # TODO TBD
