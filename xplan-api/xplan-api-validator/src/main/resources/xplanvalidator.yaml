@@ -1,8 +1,8 @@
 swagger: "2.0"
 info:
+  title: "XPlanValidatorAPI"
   description: "XPlanValidator REST API"
   version: "0.0.1"
-  title: "XPlanValidator"
   termsOfService: "http://xplanbox.lat-lon.de/terms/"
   contact:
     email: "info@lat-lon.de"
@@ -10,135 +10,129 @@ info:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 host: "xplanbox.lat-lon.de"
-basePath: "/v1"
+basePath: "/api/v1"
 tags:
-- name: "validate"
-  description: "Validate XPlanGML documents"
-  externalDocs:
-    description: "xPlanBox"
-    url: "http://xplanbox.lat-lon.de"
+  - name: "validate"
+    description: "Validate XPlanGML documents"
+    externalDocs:
+      description: "xPlanBox"
+      url: "http://xplanbox.lat-lon.de"
 schemes:
-- "https"
-- "http"
+  - "https"
+  - "http"
 paths:
   /validate:
     post:
       tags:
-      - "validate"
+        - "validate"
       summary: "Upload XPlanGML or XPlanArchive"
-      description: "Upload XPlanGML document"
+      description: "Uploads XPlanGML or XPlanArchive file"
       operationId: "upload"
       consumes:
-      - "application/xml"
-      - "text/xml"
-      - "application/zip"
-      - "application/gml+xml"
+        - "multipart/form-data"
+        - "application/xml"
+        - "text/xml"
+        - "application/zip"
+        - "application/gml+xml"
       produces:
-      - "application/xml"
-      - "application/json"
-      - "text/xml"
+        - "application/json"
+        - "application/xml"
+        - "text/xml"
       parameters:
-      - in: "body"
-        name: "body"
-        description: "XPlanGML or XPlanArchive"
-        required: true
-        schema:
-          $ref: "#/definitions/XPlanGML"
+        - in: "formData"
+          name: "body"
+          description: "XPlanGML or XPlanArchive file to upload"
+          required: true
+          #TODO should use multipart upload with content type
+          type: file
+          #schema:
+          #  $ref: "#/definitions/XPlanGML"
+        - in: "header"
+          name: "X-Filename"
+          description: "Name of the file to be uploaded"
+          type: string
+          required: false
       responses:
         "200":
-          description: "successful upload"
+          description: "successful upload confirmed by session ID"
           schema:
             $ref: "#/definitions/UploadReport"
-        "405":
+        "406":
           description: "Invalid input"
-  /validate/{id}:
+        default:
+          description: "Unexpected error"
+  /validate/{sessionId}:
     get:
       tags:
-      - "validate"
+        - "validate"
       summary: "Validate uploaded XPlanGML or XPlanArchive"
-      description: "Multiple"
+      description: "Start validation using the given parameters"
       operationId: "validate"
       produces:
-      - "text/html"
-      - "application/xml"
-      - "text/xml"
-      - "application/json"
-      - "application/pdf"
-      - "application/zip"
+        - "application/json"
+        - "application/xml"
+        - "text/xml"
+        - "text/html"
+        - "application/pdf"
+        - "application/zip"
       parameters:
-      - name: "id"
-        in: "path"
-        description: "Id of the validation"
-        required: true
-        type: "string"
-      - name: "name"
-        in: "query"
-        description: "Name of the validation"
-        required: false
-        type: "string"
-      - name: "skipGeometrisch"
-        in: "query"
-        description: "Geometrische Validierung ueberspringen"
-        required: false
-        type: "boolean"
-        default: "false"
-      - name: "skipSemantisch"
-        in: "query"
-        description: "Semantische Validierung ueberspringen"
-        required: false
-        type: "boolean"
-        default: "false"
-      - name: "skipFlaechenschluss"
-        in: "query"
-        description: "Ueberpruefung des Flaechenschluss ueberspringen"
-        required: false
-        type: "boolean"
-        default: "false"
-      - name: "skipGeltungsbereich"
-        in: "query"
-        description: "Ueberpruefung des Geltungsbereich ueberspringen"
-        required: false
-        type: "boolean"
-        default: "false"
+        - name: "sessionId"
+          in: "path"
+          description: "Session ID of the validation"
+          required: true
+          type: "string"
+        - name: "name"
+          in: "query"
+          description: "Name of the validation"
+          required: false
+          type: "string"
+        - name: "skipGeometrisch"
+          in: "query"
+          description: "Geometrische Validierung ueberspringen"
+          required: false
+          type: "boolean"
+          default: "false"
+        - name: "skipSemantisch"
+          in: "query"
+          description: "Semantische Validierung ueberspringen"
+          required: false
+          type: "boolean"
+          default: "false"
+        - name: "skipFlaechenschluss"
+          in: "query"
+          description: "Ueberpruefung des Flaechenschluss ueberspringen"
+          required: false
+          type: "boolean"
+          default: "false"
+        - name: "skipGeltungsbereich"
+          in: "query"
+          description: "Ueberpruefung des Geltungsbereich ueberspringen"
+          required: false
+          type: "boolean"
+          default: "false"
       responses:
         "200":
           description: "successful validation"
           schema:
             $ref: "#/definitions/ValidationReport"
         "400":
-          description: "Invalid status value"
-  /report/{id}:
-    get:
-      tags:
-      - "validate"
-      summary: "Download report by id"
-      description: ""
-      operationId: "report"
-      produces:
-      - "text/html"
-      - "application/xml"
-      - "text/xml"
-      - "application/json"
-      - "application/pdf"
-      - "application/zip"
-      parameters:
-      - name: "id"
-        in: "path"
-        description: "Id of the validation"
-        required: true
-        type: "string"
-      responses:
-        "200":
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/ValidationReport"
-        "400":
-          description: "Invalid tag value"
-
+          description: "Invalid value for session ID"
+        "404":
+          description: "Session ID is invalid, not found"
+        default:
+          description: "Unexpected error"
 definitions:
   XPlanGML:
     type: "object"
   UploadReport:
     type: "object"
+    properties:
+      sessionId:
+        type: string
+        format: uuid
+        example: A4AFBBC4770232049A45C6F315D66236
+      wmsUrl:
+        type: string
+        example: https://xplanbox.lat-lon.de/xplan-validator-wms/services/wms?PLANWERK_MANAGERID=13
   ValidationReport:
     type: "object"

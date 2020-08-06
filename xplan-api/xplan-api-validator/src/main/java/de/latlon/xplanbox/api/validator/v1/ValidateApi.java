@@ -43,7 +43,7 @@ public class ValidateApi {
                             @ApiResponse(responseCode = "405", description = "Invalid input") })
     public UploadReport upload( InputStream plan )
                             throws IOException {
-        String fileName = "ABC";
+       final String fileName = "ABC"; //TODO
         return validationHandler.upload( plan, fileName );
     }
 
@@ -83,7 +83,7 @@ public class ValidateApi {
                             @Parameter(description = "Ueberpruefung des Geltungsbereich ueberspringen")
                                                     Boolean skipGeltungsbereich )
                             throws IOException, ValidatorException {
-        String validationName = "ABC";
+        final String validationName = "ABC"; //TODO how to pass this via HTTP?
         return validationHandler.validate( id, validationName, skipGeometrisch, skipSemantisch, skipFlaechenschluss,
                                            skipGeltungsbereich );
     }
