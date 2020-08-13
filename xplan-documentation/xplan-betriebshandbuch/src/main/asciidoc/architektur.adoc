@@ -15,11 +15,11 @@ Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 * XPlanValidatorWMS
 * XPlanRessourcen
 
-image:../images/Architektur_xPlanBox_einfach.png[Einfache Darstellung]
+image::Architektur_xPlanBox_einfach.png[Einfache Darstellung]
 
 Abbildung 1: Einfache Datenhaltung
 
-image:../images/Architektur_xPlanBox_komplex.png[Komplexe Darstellung]
+image::Architektur_xPlanBox_komplex.png[Komplexe Darstellung]
 
 Abbildung 2: Separate Datenhaltung
 

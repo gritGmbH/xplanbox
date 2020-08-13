@@ -20,7 +20,7 @@ wmsPreEndpoint=wmspre
 wmsArchiveEndpoint=wmsarchive
 ----
 
-Über die Schlüssel __wmsEndpoint__, _wmsPreEndpoint_ und
+Über die Schlüssel _wmsEndpoint_, _wmsPreEndpoint_ und
 _wmsArchiveEndpoint_ wird angegeben welcher XPlanWMS für die
 Kartenvorschau verwendet wird, wenn ein Plan 'In Aufstellung',
 'Festgestellt' oder 'Archiviert' ist. Wird nur eine
