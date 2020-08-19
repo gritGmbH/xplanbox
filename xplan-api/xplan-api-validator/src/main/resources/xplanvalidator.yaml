@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.1
+  version: 0.0.2
 servers:
   - url: https://xplanbox.lat-lon.de/xvalidator/api/v1
   - url: http://xplanbox.lat-lon.de/xvalidator/api/v1
@@ -30,55 +30,22 @@ paths:
         - name: X-Filename
           in: header
           description: Name of the file to be uploaded
+          example: File names such as xplan.gml, xplan.xml, xplan.zip
           schema:
             type: string
       requestBody:
         content:
-          multipart/form-data:
+          application/octet-stream:
             schema:
-              required:
-                - body
-              properties:
-                body:
                   type: string
-                  description: XPlanGML or XPlanArchive file to upload
                   format: binary
-          application/xml:
-            schema:
-              required:
-                - body
-              properties:
-                body:
-                  type: string
-                  description: XPlanGML or XPlanArchive file to upload
-                  format: binary
+              description: XPlanGML or XPlanArchive (application/zip) file to upload
           text/xml:
             schema:
-              required:
-                - body
-              properties:
-                body:
-                  type: string
-                  description: XPlanGML or XPlanArchive file to upload
-                  format: binary
-          application/zip:
-            schema:
-              required:
-                - body
-              properties:
-                body:
-                  type: string
-                  description: XPlanGML or XPlanArchive file to upload
-                  format: binary
+              $ref: '#/components/schemas/XPlanGML'
           application/gml+xml:
             schema:
-              required:
-                - body
-              properties:
-                body:
-                  type: string
-                  description: XPlanGML or XPlanArchive file to upload
-                  format: binary
+              $ref: '#/components/schemas/XPlanGML'
         required: true
       responses:
         200:
@@ -110,12 +77,14 @@ paths:
         - name: sessionId
           in: path
           description: Session ID of the validation
+          example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
           required: true
           schema:
             type: string
         - name: name
           in: query
           description: Name of the validation
+          example: 'xplan-1, Prüfbericht_Torstrasse_10, report#4223'
           schema:
             type: string
         - name: skipGeometrisch
@@ -176,7 +145,9 @@ paths:
 components:
   schemas:
     XPlanGML:
-      type: object
+      type: string
+      format: binary
+      description: 'XPlanGML to upload'
     UploadReport:
       type: object
       properties:
