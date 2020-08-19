@@ -16,9 +16,9 @@ include::praeambel.adoc[]
 
 include::ueberblick.adoc[]
 
-include::XPlanManager.adoc[]
-
 include::XPlanValidator.adoc[]
+
+include::XPlanManager.adoc[]
 
 include::XPlanTransform_CLI.adoc[]
 

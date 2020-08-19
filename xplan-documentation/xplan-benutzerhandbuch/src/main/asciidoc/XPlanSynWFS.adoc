@@ -2,7 +2,7 @@
 == XPlanSynWFS
 
 Der XPlanSynWFS dient der Abbildung des synthetisierten
-XPlanGML Anwendungsschemas (XPlanSynGML). Dieses stellt eine
+XPlanGML-Anwendungsschemas (XPlanSynGML). Dieses stellt eine
 vereinfachte und zusammenfassende Form der verschiedenen XPlanGML
 Versionen dar.
 
