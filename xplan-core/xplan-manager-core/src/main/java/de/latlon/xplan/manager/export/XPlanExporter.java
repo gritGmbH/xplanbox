@@ -114,7 +114,7 @@ public class XPlanExporter {
      * @throws NullPointerException
      *             if outputStream or contents is <code>null</code>
      * @throws XPlanExportException
-     *             if an error occured during export
+     *             if an error occurred during export
      */
     public void export( OutputStream outputStream, XPlanArchiveContent contents ) {
         long begin = System.currentTimeMillis();

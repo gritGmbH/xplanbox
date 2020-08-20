@@ -254,7 +254,7 @@ public class UpdaterFrom1_0To1_3_1 extends AbstractUpdater {
             conn.commit();
             LOG.info( "Update of table '{}' data finished!", tableName );
         } catch ( SQLException e ) {
-            LOG.error( "An exception occured during update of the '" + tableName + "' data", e );
+            LOG.error( "An exception occurred during update of the '" + tableName + "' data", e );
             rollback( conn );
         } finally {
             closeQuietly( stmt );

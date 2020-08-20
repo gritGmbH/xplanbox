@@ -66,7 +66,7 @@ public class XQuerySemanticValidator implements SemanticValidator {
         try {
             semanticValidatorConfiguration = retriever.retrieveConfiguration();
         } catch ( IOException e ) {
-            LOG.error( format( "Could not instantiate semantic validator. Reason: %s", e.getMessage() ) );
+            LOG.error( "Could not instantiate semantic validator. Reason: {}", e.getMessage() );
             throw new ValidatorException( "Could not create validator.", e );
         }
     }

@@ -48,7 +48,7 @@ public class DatabaseDataUpdater {
      *            a list of {@link UPDATE_VERSION}s to execute, never <code>null</code>
      * 
      * @throws Exception
-     *             if an error occured during update
+     *             if an error occurred during update
      */
     public void updateData( List<UPDATE_VERSION> versions )
                     throws Exception {

@@ -47,7 +47,7 @@ public class ManagerWebConfigurationServiceImpl extends RemoteServiceServlet imp
             logManagerWebConfiguration( configuration );
             return configuration;
         } catch ( ConfigurationException e ) {
-            LOG.error( format( "Error while retrieving configuration: %s", e.getMessage() ) );
+            LOG.error( "Error while retrieving configuration: {}", e.getMessage() );
             LOG.debug( "Exception: ", e );
             throw e;
         }
