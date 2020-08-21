@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.2
+  version: 0.0.3
 servers:
   - url: https://xplanbox.lat-lon.de/xmanager/api/v1
   - url: http://xplanbox.lat-lon.de/xmanager/api/v1
@@ -29,6 +29,18 @@ tags:
       description: xPlanBox
       url: http://xplanbox.lat-lon.de
 paths:
+  /:
+    get:
+      summary: OpenAPI document
+      description: Uploads XPlanGML or XPlanArchive file
+      operationId: api
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
   /validate:
     post:
       tags:
@@ -131,21 +143,13 @@ paths:
         default:
           description: Unexpected error
           content: {}
-  /import/{sessionId}:
-    put:
+  /plan:
+    post:
       tags:
         - manage
-      summary: Import the plan for the given session ID
-      description: Imports the plan for the given session ID
+      summary: Import the plan
+      description: Imports the plan
       operationId: import
-      parameters:
-        - name: sessionId
-          in: path
-          description: Session ID of the validation
-          example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
-          required: true
-          schema:
-            type: string
       responses:
         200:
           description: successful operation
@@ -286,37 +290,7 @@ paths:
         200:
           description: OK
           content: {}
-  /plan/{planId}/inspireplu:
-    post:
-      tags:
-        - manage
-      summary: Publish plan identified by the given plan id
-      description: Publishs plan identified by the given plan id
-      operationId: publish
-      parameters:
-        - name: planId
-          in: path
-          description: ID of the plan to be removed
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: successful operation
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ValidationReport'
-        400:
-          description: Invalid value for session ID
-          content: {}
-        404:
-          description: Session ID is invalid, not found
-          content: {}
-        default:
-          description: Unexpected error
-          content: {}
-  /config:
+  /info:
     get:
       summary: Show system and application configuration
       description: Returns the system and application configuration
@@ -350,12 +324,31 @@ components:
     SystemConfig:
       type: object
       properties:
+        version:
+          description: Version der xPlanBox
+          type: string
+          example: 'v3.4.0'
         crs:
+          description: Konfiguriertes CRS für Rasterdatenhaltung
           type: string
           example: 'epsg:2835'
         raster:
+          description: Typ der Rasterdatenhaltung
           type: string
           example: 'gdal or tiff'
-        version:
-          type: string
-          example: 'v3.4.0'
+        skipSemantisch:
+          description: Semantische Validierung bei Import ueberspringen
+          type: boolean
+          default: false
+        skipGeometrisch:
+          description: Geometrische Validierung bei Import ueberspringen
+          type: boolean
+          default: false
+        skipFlaechenschluss:
+          description: Ueberpruefung des Flaechenschluss bei Import ueberspringen
+          type: boolean
+          default: false
+        skipGeltungsbereich:
+          description: Ueberpruefung des Geltungsbereich bei Import ueberspringen
+          type: boolean
+          default: false  
