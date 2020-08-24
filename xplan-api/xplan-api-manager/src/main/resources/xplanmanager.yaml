@@ -13,11 +13,6 @@ servers:
   - url: https://xplanbox.lat-lon.de/xmanager/api/v1
   - url: http://xplanbox.lat-lon.de/xmanager/api/v1
 tags:
-  - name: validate
-    description: Validate XPlanGML documents
-    externalDocs:
-      description: xPlanBox
-      url: http://xplanbox.lat-lon.de
   - name: manage
     description: Manage XPlanGML documents
     externalDocs:
@@ -32,8 +27,8 @@ paths:
   /:
     get:
       summary: OpenAPI document
-      description: Uploads XPlanGML or XPlanArchive file
-      operationId: api
+      description: API documentation
+      operationId: openApi
       responses:
         200:
           description: successful operation
@@ -41,13 +36,13 @@ paths:
             application/json:
               schema:
                 type: object
-  /validate:
+  /plan:
     post:
       tags:
-        - validate
-      summary: Upload XPlanGML or XPlanArchive
-      description: Uploads XPlanGML or XPlanArchive file
-      operationId: upload
+        - manage
+      summary: Import the plan
+      description: Imports the plan
+      operationId: import
       parameters:
         - name: X-Filename
           in: header
@@ -61,108 +56,23 @@ paths:
             schema:
               type: string
               format: binary
-              description: XPlanGML or XPlanArchive (application/zip) file to upload
-          text/xml:
-            schema:
-              $ref: '#/components/schemas/XPlanGML'
-          application/gml+xml:
-            schema:
-              $ref: '#/components/schemas/XPlanGML'
+              description: XPlanArchive (application/zip) file to upload
         required: true
-      responses:
-        200:
-          description: successful upload confirmed by session ID
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UploadReport'
-        406:
-          description: Invalid input
-          content: {}
-        default:
-          description: Unexpected error
-          content: {}
-  /validate/{sessionId}:
-    get:
-      tags:
-        - validate
-      summary: Validate uploaded XPlanGML or XPlanArchive
-      description: Start validation using the given parameters
-      operationId: validate
-      parameters:
-        - name: sessionId
-          in: path
-          description: Session ID of the validation
-          example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: query
-          description: Name of the validation
-          example: 'xplan-1, Prüfbericht_Torstrasse_10, report#4223'
-          schema:
-            type: string
-        - name: skipGeometrisch
-          in: query
-          description: Geometrische Validierung ueberspringen
-          schema:
-            type: boolean
-            default: false
-        - name: skipSemantisch
-          in: query
-          description: Semantische Validierung ueberspringen
-          schema:
-            type: boolean
-            default: false
-        - name: skipFlaechenschluss
-          in: query
-          description: Ueberpruefung des Flaechenschluss ueberspringen
-          schema:
-            type: boolean
-            default: false
-        - name: skipGeltungsbereich
-          in: query
-          description: Ueberpruefung des Geltungsbereich ueberspringen
-          schema:
-            type: boolean
-            default: false
-      responses:
-        200:
-          description: successful validation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationReport'
-        400:
-          description: Invalid value for session ID
-          content: {}
-        404:
-          description: Session ID is invalid, not found
-          content: {}
-        default:
-          description: Unexpected error
-          content: {}
-  /plan:
-    post:
-      tags:
-        - manage
-      summary: Import the plan
-      description: Imports the plan
-      operationId: import
       responses:
         200:
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationReport'
+                $ref: '#/components/schemas/Status'
         400:
-          description: Invalid value for session ID
-          content: {}
-        404:
-          description: Session ID is invalid, not found
-          content: {}
+          description: Invalid input
+        405:
+          description: Invalid method
+        406:
+          description: Invalid content only ZIP with XPlanGML is accepted
+        415:
+          description: Unsupported Media Type, only ZIP is accepted
         default:
           description: Unexpected error
           content: {}
@@ -188,13 +98,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Status'
+                $ref: '#/components/schemas/PlanInfo'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Status'
+                $ref: '#/components/schemas/PlanInfo'
             application/zip:
               schema:
-                $ref: '#/components/schemas/Status'
+                $ref: '#/components/schemas/PlanInfo'
         400:
           description: Invalid tag value
           content: {}
@@ -269,7 +179,10 @@ paths:
       responses:
         200:
           description: OK
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanInfo'
         404:
           description: Invalid plan name, not found
           content: {}
@@ -289,7 +202,12 @@ paths:
       responses:
         200:
           description: OK
-          content: {}
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlanInfo'
   /info:
     get:
       summary: Show system and application configuration
@@ -304,51 +222,137 @@ paths:
                 $ref: '#/components/schemas/SystemConfig'
 components:
   schemas:
-    XPlanGML:
-      type: string
-      format: binary
-      description: 'XPlanGML to upload'
-    UploadReport:
+    PlanInfo:
       type: object
       properties:
-        sessionId:
+        id:
+          type: integer
+          example: 2
+        name:
           type: string
-          format: uuid
+          example: "Othmarschen3"
+        description:
+          type: string
+          example: "Beschreibung des BPlan"
+        type:
+          type: string
+          example: "BP_Plan"
+        additionalType:
+          type: string
+        version:
+          type: string
+          example: "XPLAN_51"
+        number:
+          type: string
+          example: "-"
+        internalId:
+          type: string
+          example: "12341"
+        gkz:
+          type: string
+          example: "02000000"
+        district:
+          type: string
+          example: "-"
+        raster:
+          type: boolean
+          example: true
+        legislationStatus:
+          type: string
+          example: "Satzung"
+        releaseDate:
+          type: string
+          format: date-time
+        importDate:
+          type: string
+          format: date-time
+        valid:
+          type: boolean
+          example: true
+        inspirePublished:
+          type: boolean
+          example: false
+        bbox:
+          type: object
+          properties:
+            minX:
+              type: integer
+              example: 9.880772
+            minY:
+              type: integer
+              example: 53.544973
+            maxX:
+              type: integer
+              example: 9.890302
+            maxY:
+              type: integer
+              example: 53.546704
+            crs:
+              type: string
+              example: epsg:4326
+        xplanMetadata:
+          type: object
+          properties:
+            planStatus:
+              type: string
+              example: "FESTGESTELLT"
+            startDateTime:
+              type: string
+              format: date-time
+            endDateTime:
+              type: string
+              format: date-time
+        hasMultipleXPlanElements:
+          type: boolean
+          example: false
         wmsUrl:
           type: string
-          example: https://xplanbox.lat-lon.de/xplan-validator-wms/services/wms?PLANWERK_MANAGERID=13
-    ValidationReport:
-      type: object
+          format: uri
+          example: https://xplanbox.lat-lon.de/xplan-wms/services/planwerkwms/planname/<PLANNAME>?
+        link:
+          type: string
+          format: uri
+          example: https://xplanbox.lat-lon.de/xmanager/api/v1/plan/123
     Status:
-      type: boolean
+      type: object
+      description: Status
+      properties:
+        status:
+          type: boolean
+        planId:
+          type: integer
+        link:
+          type: string
+          format: uri
+          example: https://xplanbox.lat-lon.de/xmanager/api/v1/plan/123
     SystemConfig:
       type: object
       properties:
         version:
-          description: Version der xPlanBox
+          description: 'Version der xPlanBox'
           type: string
           example: 'v3.4.0'
-        crs:
-          description: Konfiguriertes CRS für Rasterdatenhaltung
+        rasterCrs:
+          description: 'Konfiguriertes CRS für die Rasterdatenhaltung'
           type: string
-          example: 'epsg:2835'
-        raster:
-          description: Typ der Rasterdatenhaltung
+          example: 'epsg:28352'
+        rasterType:
+          description: 'Typ der Rasterdatenhaltung: gdal oder tiff'
           type: string
-          example: 'gdal or tiff'
+          example: 'gdal'
         skipSemantisch:
-          description: Semantische Validierung bei Import ueberspringen
+          description: 'Semantische Validierung bei Import ueberspringen'
           type: boolean
           default: false
         skipGeometrisch:
-          description: Geometrische Validierung bei Import ueberspringen
+          description: 'Geometrische Validierung bei Import ueberspringen'
           type: boolean
           default: false
         skipFlaechenschluss:
-          description: Ueberpruefung des Flaechenschluss bei Import ueberspringen
+          description: 'Ueberpruefung des Flaechenschluss bei Import ueberspringen'
           type: boolean
           default: false
         skipGeltungsbereich:
-          description: Ueberpruefung des Geltungsbereich bei Import ueberspringen
+          description: 'Ueberpruefung des Geltungsbereich bei Import ueberspringen'
           type: boolean
           default: false  

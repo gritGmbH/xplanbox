@@ -165,6 +165,7 @@ components:
             example: 'stelling.png'
         wmsUrl:
           type: string
+          format: uri
           example: https://xplanbox.lat-lon.de/xplan-validator-wms/services/wms?PLANWERK_MANAGERID=13
         validationResult:
           type: object
