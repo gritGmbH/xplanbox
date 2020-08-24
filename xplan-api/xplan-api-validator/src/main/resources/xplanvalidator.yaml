@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.2
+  version: 0.0.3
 servers:
   - url: https://xplanbox.lat-lon.de/xvalidator/api/v1
   - url: http://xplanbox.lat-lon.de/xvalidator/api/v1
@@ -19,66 +19,30 @@ tags:
       description: xPlanBox
       url: http://xplanbox.lat-lon.de
 paths:
+  /:
+    get:
+      summary: OpenAPI document
+      description: API documentation
+      operationId: openApi
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
   /validate:
     post:
       tags:
         - validate
-      summary: Upload XPlanGML or XPlanArchive
-      description: Uploads XPlanGML or XPlanArchive file
-      operationId: upload
+      summary: Validate XPlanGML or XPlanArchive
+      description: Validates XPlanGML or XPlanArchive file
+      operationId: validate
       parameters:
         - name: X-Filename
           in: header
           description: Name of the file to be uploaded
           example: File names such as xplan.gml, xplan.xml, xplan.zip
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/octet-stream:
-            schema:
-                  type: string
-                  format: binary
-              description: XPlanGML or XPlanArchive (application/zip) file to upload
-          text/xml:
-            schema:
-              $ref: '#/components/schemas/XPlanGML'
-          application/gml+xml:
-            schema:
-              $ref: '#/components/schemas/XPlanGML'
-        required: true
-      responses:
-        200:
-          description: successful upload confirmed by session ID
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UploadReport'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/UploadReport'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/UploadReport'
-        406:
-          description: Invalid input
-          content: {}
-        default:
-          description: Unexpected error
-          content: {}
-  /validate/{sessionId}:
-    get:
-      tags:
-        - validate
-      summary: Validate uploaded XPlanGML or XPlanArchive
-      description: Start validation using the given parameters
-      operationId: validate
-      parameters:
-        - name: sessionId
-          in: path
-          description: Session ID of the validation
-          example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
-          required: true
           schema:
             type: string
         - name: name
@@ -87,15 +51,15 @@ paths:
           example: 'xplan-1, Prüfbericht_Torstrasse_10, report#4223'
           schema:
             type: string
-        - name: skipGeometrisch
-          in: query
-          description: Geometrische Validierung ueberspringen
-          schema:
-            type: boolean
-            default: false
         - name: skipSemantisch
           in: query
           description: Semantische Validierung ueberspringen
+          schema:
+            type: boolean
+            default: false
+        - name: skipGeometrisch
+          in: query
+          description: Geometrische Validierung ueberspringen
           schema:
             type: boolean
             default: false
@@ -111,9 +75,23 @@ paths:
           schema:
             type: boolean
             default: false
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+              description: XPlanGML or XPlanArchive (application/zip) file to upload
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/XPlanGML'
+          application/gml+xml:
+            schema:
+              $ref: '#/components/schemas/XPlanGML'
+        required: true
       responses:
         200:
-          description: successful validation
+          description: ValidationReport
           content:
             application/json:
               schema:
@@ -129,33 +107,121 @@ paths:
                 $ref: '#/components/schemas/ValidationReport'
             application/pdf:
               schema:
-                $ref: '#/components/schemas/ValidationReport'
+                type: object
+                format: binary
             application/zip:
               schema:
-                $ref: '#/components/schemas/ValidationReport'
+                type: object
+                format: binary
         400:
-          description: Invalid value for session ID
-          content: {}
-        404:
-          description: Session ID is invalid, not found
-          content: {}
+          description: Invalid input
+        405:
+          description: Invalid method
+        406:
+          description: Invalid content only XPlanGML or ZIP with XPlanGML is accepted
+        415:
+          description: Unsupported Media Type, only XML or ZIP is accepted
         default:
           description: Unexpected error
-          content: {}
+  /info:
+    get:
+      summary: Show system and application configuration
+      description: Returns the system and application configuration
+      operationId: showConfig
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemConfig'
 components:
   schemas:
     XPlanGML:
       type: string
       format: binary
       description: 'XPlanGML to upload'
-    UploadReport:
+    ValidationReport:
       type: object
       properties:
-        sessionId:
+        filename:
           type: string
-          format: uuid
+          example: xplan52-test.gml
+        name:
+          type: string
+          example: xplan52-test
+        date:
+          type: string
+          format: date-time
+          example: '2020-08-24T15:06:36.662Z'
+        valid:
+          type: boolean
+          example: false
+        externalReferences:
+          type: array
+          items:
+            type: string
+            format: binary
+            example: 'stelling.png'
         wmsUrl:
           type: string
           example: https://xplanbox.lat-lon.de/xplan-validator-wms/services/wms?PLANWERK_MANAGERID=13
-    ValidationReport:
+        validationResult:
+          type: object
+          properties:
+            semantisch:
+              type: object
+              properties:
+                valid:
+                  type: boolean
+                  example: false
+                rules:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      isValid:
+                        type: boolean
+                      message:
+                        type: string
+            geometrisch:
+              type: object
+              properties:
+                valid:
+                  type: boolean
+                  example: false
+                errors:
+                  type: array
+                  items:
+                    type: string
+                warnings:
+                  type: array
+                  items:
+                    type: string
+            syntaktisch:
+              type: object
+              properties:
+                valid:
+                  type: boolean
+                  example: false
+                messages:
+                  type: array
+                  items:
+                    type: string
+    SystemConfig:
       type: object
+      properties:
+        version:
+          description: Version der xPlanBox
+          type: string
+          example: 'v3.4.0'
+        rulesMetadata:
+          properties:
+            version:
+              type: string
+              example: 0.9.14
+            source:
+              type: string
+              example: 'https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.9.14.zip'
