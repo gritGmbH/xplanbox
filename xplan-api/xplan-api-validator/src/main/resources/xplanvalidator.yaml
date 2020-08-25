@@ -166,6 +166,8 @@ components:
           type: string
           format: uri
           example: https://xplanbox.lat-lon.de/xplan-validator-wms/services/wms?PLANWERK_MANAGERID=13
+        rulesMetadata:
+          $ref: '#/components/schemas/RulesMetadata'
         validationResult:
           type: object
           properties:
@@ -218,11 +220,13 @@ components:
           type: string
           example: 'v3.4.0'
         rulesMetadata:
-          properties:
-            version:
-              type: string
-              example: 0.9.14
-            source:
-              type: string
-              format: uri
-              example: 'https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.9.14.zip'
+          $ref: '#/components/schemas/RulesMetadata'
+    RulesMetadata:
+      type: object
+      properties:
+        version:
+          type: string
+          example: 0.9.14
+        source:
+          type: string
+          example: 'https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.9.14.zip'
