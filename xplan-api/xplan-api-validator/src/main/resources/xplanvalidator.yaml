@@ -161,7 +161,6 @@ components:
           type: array
           items:
             type: string
-            format: binary
             example: 'stelling.png'
         wmsUrl:
           type: string
@@ -225,4 +224,5 @@ components:
               example: 0.9.14
             source:
               type: string
+              format: uri
               example: 'https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.9.14.zip'

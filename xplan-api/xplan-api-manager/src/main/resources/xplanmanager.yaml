@@ -251,9 +251,9 @@ components:
         gkz:
           type: string
           example: "02000000"
-        district:
+        gemeinde:
           type: string
-          example: "-"
+          example: "Gemeinde"
         raster:
           type: boolean
           example: true
@@ -302,17 +302,17 @@ components:
             endDateTime:
               type: string
               format: date-time
-        hasMultipleXPlanElements:
-          type: boolean
-          example: false
-        wmsUrl:
-          type: string
-          format: uri
-          example: https://xplanbox.lat-lon.de/xplan-wms/services/planwerkwms/planname/<PLANNAME>?
-        link:
-          type: string
-          format: uri
-          example: https://xplanbox.lat-lon.de/xmanager/api/v1/plan/123
+        links:
+          type: array
+          description: Links related to the resource such as XPlanWerkWMS or self link
+          items:
+            $ref: '#/components/schemas/Link'
+          example:
+            href: https://xplanbox.lat-lon.de/xplan-wms/services/planwerkwms/planname/<PLANNAME>?
+            rel: planwerkwms
+            type: image/png
+            hreflang: de
+            title: Othmarschen 3
     Status:
       type: object
       description: Status
@@ -325,6 +325,31 @@ components:
           type: string
           format: uri
           example: https://xplanbox.lat-lon.de/xmanager/api/v1/plan/123
+    Link:
+      type: object
+      description: Link to a resource related to the resource such as XPlanWerkWMS or the resource itself
+      required:
+        - href
+      properties:
+        href:
+          type: string
+          format: uri
+          example: https://xplanbox.lat-lon.de/xmanager/api/v1/plan/123
+        rel:
+          type: string
+          enum: [self,alternate,planwerkwms]
+          example: self
+        type:
+          type: string
+          example: application/json
+        hreflang:
+          type: string
+          example: en
+        title:
+          type: string
+          example: Othmarschen 3, Hamburg
+        length:
+          type: integer
     SystemConfig:
       type: object
       properties:
