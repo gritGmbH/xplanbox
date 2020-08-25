@@ -42,8 +42,6 @@ http://<host>:<port>/xplan-wms/services/wms?
 
 Die Adresse des XPlanWerkWMS ist abhängig von dem Planwerk das angefragt werden soll. Der Name des Plans wird im XPlanManager (s. <<xplanmanager-web>>) in der Ausflistung der Pläne angezeigt und wird in der URL für den Platzhalter <PLANNAME> angegeben. Der Platzhalter <PLANNAME> darf jedoch nur bestimmte Zeichen beinhalten: a-z, A-Z, 0-9, _ , - Nicht erlaubte Zeichen sind somit u.a.: &,( ).:; <LEERZEICHEN>, <CR> uvm. Der Planname wie er in der Ausflistung angegeben ist, muss um die nicht erlaubten Zeichen bereinigt werden. So wird aus dem Plannamen 'BPlan "Muster" (8)' der Platzhalter 'BPlanMuster8'.
 
-
-
 [[xplanwms-getcapabilities]]
 ===== GetCapabilities
 
@@ -170,7 +168,7 @@ Die Operation GetFeatureInfo ermöglicht die Ausgabe von
 Sachinformationen zu Planobjekten. In der HTML Ausgabe dieser
 Sachinformationen besteht neben der Ausgabe der entsprechenden
 Eigenschaften der Planobjekte auch die Möglichkeit, referenzierte
-Dokumente und Grafiken abzurufen.
+Dokumente und Grafiken über die Operation <<xplanwms-getattachement>> abzurufen.
 
 [[xplanwms-getlegendgraphic-1]]
 ==== GetLegendGraphic
@@ -178,6 +176,21 @@ Dokumente und Grafiken abzurufen.
 Mit der GetLegendGraphic Operation können Legendengrafiken zu allen
 Ebenen des XPlanWMS abgefragt werden. Dies ermöglicht das gezielte
 Abfragen von Legendengrafiken der Ebenen.
+
+[[xplanwms-getattachement]]
+==== GetAttachment
+
+Die beiden WMS-Dienste der xPlanBox unterstützen zusätzlich die Operation GetAttachment. Diese spezielle Erweiterung
+der Schnittstelle erlaubt den Zugriff auf die im XPlanGML referenzierten Anhänge.
+
+Die Operation unterstützt folgende Parameter:
+
+* featureID: Die GML-ID eines Features, z.B. XPLAN_XP_RASTERPLANBASIS_7b36b0ee-5139-4a55-afc0-01fec18e9f0a
+* filename: Der Dateiname der referenzierten Datei, z.B. Stellingen64.png
+
+----
+http://<host>:<port>/xplan-wms/getAttachment?featureID=XPLAN_XP_RASTERPLANBASIS_7b36b0ee-5139-4a55-afc0-01fec18e9f0a&filename=Stellingen64.png
+----
 
 [[xplanwms-koordinatenreferenzsysteme]]
 === Koordinatenreferenzsysteme
