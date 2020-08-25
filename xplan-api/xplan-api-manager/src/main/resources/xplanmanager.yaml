@@ -176,6 +176,7 @@ paths:
           required: true
           schema:
             type: string
+            pattern: '^[A-Za-z0-9_-]*$'
       responses:
         200:
           description: OK

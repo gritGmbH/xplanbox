@@ -188,6 +188,12 @@ components:
                         type: boolean
                       message:
                         type: string
+                      invalidFeatures:
+                        type: array
+                        items:
+                            type: string
+                            description: GML-ID
+                            example: GML_b4e47d29-d21c-42ab-85b7-b12ea57e89f2
             geometrisch:
               type: object
               properties:
