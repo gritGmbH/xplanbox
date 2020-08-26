@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.3
+  version: 0.0.4
 servers:
   - url: https://xplanbox.lat-lon.de/xvalidator/api/v1
   - url: http://xplanbox.lat-lon.de/xvalidator/api/v1
@@ -107,11 +107,11 @@ paths:
                 $ref: '#/components/schemas/ValidationReport'
             application/pdf:
               schema:
-                type: object
+                type: string
                 format: binary
             application/zip:
               schema:
-                type: object
+                type: string
                 format: binary
         400:
           description: Invalid input
@@ -218,15 +218,6 @@ components:
                   type: array
                   items:
                     type: string
-    SystemConfig:
-      type: object
-      properties:
-        version:
-          description: Version der xPlanBox
-          type: string
-          example: 'v3.4.0'
-        rulesMetadata:
-          $ref: '#/components/schemas/RulesMetadata'
     RulesMetadata:
       type: object
       properties:
@@ -236,3 +227,12 @@ components:
         source:
           type: string
           example: 'https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.9.14.zip'
+    SystemConfig:
+      type: object
+      properties:
+        version:
+          description: Version der xPlanBox
+          type: string
+          example: 'v3.4.0'
+        rulesMetadata:
+          $ref: '#/components/schemas/RulesMetadata'
