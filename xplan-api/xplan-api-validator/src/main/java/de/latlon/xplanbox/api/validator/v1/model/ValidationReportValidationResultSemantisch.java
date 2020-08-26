@@ -1,105 +1,96 @@
 package de.latlon.xplanbox.api.validator.v1.model;
 
-import de.latlon.xplanbox.api.validator.v2.model.ValidationReportValidationResultSemantischRules;
-import io.swagger.annotations.ApiModel;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
-import io.swagger.annotations.*;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-
-
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-26T09:59:16.298+02:00[Europe/Berlin]")
-public class ValidationReportValidationResultSemantisch   {
-  
-  private @Valid Boolean valid;
-  private @Valid List<ValidationReportValidationResultSemantischRules> rules = new ArrayList<ValidationReportValidationResultSemantischRules>();
+public class ValidationReportValidationResultSemantisch {
 
-  /**
-   **/
-  public ValidationReportValidationResultSemantisch valid(Boolean valid) {
-    this.valid = valid;
-    return this;
-  }
+    private @Valid Boolean valid;
 
-  
+    private @Valid List<ValidationReportValidationResultSemantischRules> rules = new ArrayList<ValidationReportValidationResultSemantischRules>();
 
-  
-  @ApiModelProperty(example = "false", value = "")
-  @JsonProperty("valid")
-  public Boolean getValid() {
-    return valid;
-  }
-
-  public void setValid(Boolean valid) {
-    this.valid = valid;
-  }/**
-   **/
-  public ValidationReportValidationResultSemantisch rules(List<ValidationReportValidationResultSemantischRules> rules) {
-    this.rules = rules;
-    return this;
-  }
-
-  
-
-  
-  @ApiModelProperty(value = "")
-  @JsonProperty("rules")
-  public List<ValidationReportValidationResultSemantischRules> getRules() {
-    return rules;
-  }
-
-  public void setRules(List<ValidationReportValidationResultSemantischRules> rules) {
-    this.rules = rules;
-  }
-
-  @Override
-  public boolean equals( Object o) {
-    if (this == o) {
-      return true;
+    /**
+     *
+     **/
+    public ValidationReportValidationResultSemantisch valid( Boolean valid ) {
+        this.valid = valid;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    @ApiModelProperty(example = "false", value = "")
+    @JsonProperty("valid")
+    public Boolean getValid() {
+        return valid;
     }
-    ValidationReportValidationResultSemantisch validationReportValidationResultSemantisch = (ValidationReportValidationResultSemantisch) o;
-    return Objects.equals(this.valid, validationReportValidationResultSemantisch.valid) &&
-        Objects.equals(this.rules, validationReportValidationResultSemantisch.rules);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(valid, rules);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ValidationReportValidationResultSemantisch {\n");
-    
-    sb.append("    valid: ").append(toIndentedString(valid)).append("\n");
-    sb.append("    rules: ").append(toIndentedString(rules)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString( Object o) {
-    if (o == null) {
-      return "null";
+    public void setValid( Boolean valid ) {
+        this.valid = valid;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    /**
+     *
+     **/
+    public ValidationReportValidationResultSemantisch rules(
+                            List<ValidationReportValidationResultSemantischRules> rules ) {
+        this.rules = rules;
+        return this;
+    }
+
+    @ApiModelProperty(value = "")
+    @JsonProperty("rules")
+    public List<ValidationReportValidationResultSemantischRules> getRules() {
+        return rules;
+    }
+
+    public void setRules( List<ValidationReportValidationResultSemantischRules> rules ) {
+        this.rules = rules;
+    }
+
+    @Override
+    public boolean equals( Object o ) {
+        if ( this == o ) {
+            return true;
+        }
+        if ( o == null || getClass() != o.getClass() ) {
+            return false;
+        }
+        ValidationReportValidationResultSemantisch validationReportValidationResultSemantisch = (ValidationReportValidationResultSemantisch) o;
+        return Objects.equals( this.valid, validationReportValidationResultSemantisch.valid ) && Objects.equals(
+                                this.rules, validationReportValidationResultSemantisch.rules );
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash( valid, rules );
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append( "class ValidationReportValidationResultSemantisch {\n" );
+
+        sb.append( "    valid: " ).append( toIndentedString( valid ) ).append( "\n" );
+        sb.append( "    rules: " ).append( toIndentedString( rules ) ).append( "\n" );
+        sb.append( "}" );
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString( Object o ) {
+        if ( o == null ) {
+            return "null";
+        }
+        return o.toString().replace( "\n", "\n    " );
+    }
 
 }
 
