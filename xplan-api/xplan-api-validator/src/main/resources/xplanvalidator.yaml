@@ -102,9 +102,6 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/ValidationReport'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/ValidationReport'
             application/pdf:
               schema:
                 type: string
@@ -113,6 +110,7 @@ paths:
               schema:
                 type: string
                 format: binary
+                description: Contains validation report in PDF, SHAPE, PNG file format
         400:
           description: Invalid input
         405:
@@ -191,9 +189,9 @@ components:
                       invalidFeatures:
                         type: array
                         items:
-                            type: string
-                            description: GML-ID
-                            example: GML_b4e47d29-d21c-42ab-85b7-b12ea57e89f2
+                          type: string
+                          description: GML-ID
+                          example: GML_b4e47d29-d21c-42ab-85b7-b12ea57e89f2
             geometrisch:
               type: object
               properties:
