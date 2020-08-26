@@ -112,7 +112,7 @@ paths:
         - name: planId
           in: path
           description: ID of the plan to be returned
-          example: '1, 2, 3, 4, 5,...'
+          example: '123'
           required: true
           schema:
             type: string
@@ -136,33 +136,6 @@ paths:
         404:
           description: Invalid plan ID, not found
           content: {}
-    put:
-      tags:
-        - manage
-      summary: Update plan identified by the given plan ID
-      description: Updates an existing plan identified by the given plan ID
-      operationId: update
-      parameters:
-        - name: planId
-          in: path
-          description: ID of the plan to be updated
-          example: '1, 2, 3, 4, 5,...'
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
-        400:
-          description: Invalid tag value
-          content: {}
-        404:
-          description: Invalid plan ID, not found
-          content: {}
     delete:
       tags:
         - manage
@@ -173,7 +146,7 @@ paths:
         - name: planId
           in: path
           description: ID of the plan to be removed
-          example: '1, 2, 3, 4, 5,...'
+          example: '123'
           required: true
           schema:
             type: string
@@ -198,7 +171,7 @@ paths:
         - name: planName
           in: path
           description: planName of the plan to be return
-          example: 'bplan_1234, fplan-23, rplan20200803'
+          example: 'bplan_123, fplan-123, rplan20200803'
           required: true
           schema:
             type: string
@@ -231,7 +204,7 @@ paths:
         - name: planName
           in: query
           description: The name of the plan to search for
-          example: 'bplan_1234, fplan-23, rplan20200803'
+          example: 'bplan_123, fplan-123, rplan20200803'
           schema:
             type: string
       responses:
@@ -262,7 +235,7 @@ components:
       properties:
         id:
           type: integer
-          example: 2
+          example: 123
         name:
           type: string
           example: "Othmarschen3"
