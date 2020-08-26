@@ -8,15 +8,14 @@ import de.latlon.xplan.validator.web.shared.ArtifactType;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationType;
-import de.latlon.xplanbox.api.validator.v1.model.UploadReport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Singleton;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,6 +26,9 @@ import java.util.UUID;
 
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_GELTUNGSBEREICH;
+import static de.latlon.xplan.validator.web.shared.ArtifactType.PDF;
+import static de.latlon.xplan.validator.web.shared.ArtifactType.PNG;
+import static de.latlon.xplan.validator.web.shared.ArtifactType.SHP;
 import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
 import static de.latlon.xplan.validator.web.shared.ValidationType.SEMANTIC;
 import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
@@ -49,49 +51,59 @@ public class ValidationHandler {
     @Autowired
     private ReportWriter reportWriter;
 
-    public UploadReport upload( InputStream uploadedPlan, String fileName )
-                            throws IOException {
-        String id = UUID.randomUUID().toString();
-        String suffix = parseSuffix( fileName );
-        Path targetFile = uploadFolder.resolve( id + suffix );
-        Files.copy( uploadedPlan, targetFile );
-        LOG.debug( "Plan was written to {}", targetFile );
-        return new UploadReport( id, fileName );
+    public ValidatorReport validate( File uploadedPlan, String validationName, boolean skipGeometrisch,
+                                     boolean skipSemantisch, boolean skipFlaechenschluss, boolean skipGeltungsbereich )
+                            throws IOException, ValidatorException {
+        LOG.debug( "Validate plan with validationName {}", validationName );
+        return validatePlan( uploadedPlan, validationName, skipGeometrisch, skipSemantisch, skipFlaechenschluss,
+                             skipGeltungsbereich );
     }
 
-    public ValidatorReport validate( String id, String name, boolean skipGeometrisch, boolean skipSemantisch,
-                                     boolean skipFlaechenschluss, boolean skipGeltungsbereich )
-                            throws IOException, ValidatorException {
-        Path plan = uploadFolder.resolve( id + ".xml" );
-        if ( !Files.exists( plan ) )
-            plan = uploadFolder.resolve( id + ".gml" );
-        if ( !Files.exists( plan ) )
-            plan = uploadFolder.resolve( id + ".zip" );
-        if ( !Files.exists( plan ) )
-            throw new IllegalArgumentException( "Could not find plan with id " + id );
+    public Path zipReports( ValidatorReport validatorReport )
+                            throws IOException {
+        Path workDir = createWorkDir();
+        String validationName = validatorReport.getValidationName();
+        LOG.debug( "Create zip report in directory {} with validationName {}", workDir, validationName );
 
+        reportWriter.writeArtefacts( validatorReport, workDir.toFile() );
+        List<ArtifactType> artifacts = Arrays.asList( PDF, SHP, PNG );
+
+        Path zipArchive = workDir.resolve( validationName + ".zip" );
+        try (OutputStream zipOutput = Files.newOutputStream( zipArchive )) {
+            reportWriter.writeZipWithArtifacts( zipOutput, validationName, artifacts, workDir.toFile() );
+        }
+        return zipArchive;
+    }
+
+    public File writePdfReport( ValidatorReport validatorReport )
+                            throws IOException {
+        Path workDir = createWorkDir();
+        String validationName = validatorReport.getValidationName();
+        LOG.debug( "Create pdf report in directory {} with validationName {}", workDir, validationName );
+
+        reportWriter.writeArtefacts( validatorReport, workDir.toFile() );
+        return reportWriter.retrieveArtifactFile( workDir.toFile(), validationName, PDF );
+    }
+
+    private ValidatorReport validatePlan( File uploadedPlan, String validationName, boolean skipGeometrisch,
+                                          boolean skipSemantisch, boolean skipFlaechenschluss,
+                                          boolean skipGeltungsbereich )
+                            throws ValidatorException, IOException {
         ValidationSettings settings = new ValidationSettings();
-        settings.setValidationName( name );
+        settings.setValidationName( validationName );
         settings.setValidationTypes( asValidationTypes( skipGeometrisch, skipSemantisch ) );
         settings.setExtendedOptions( asValidationOptions( skipFlaechenschluss, skipGeltungsbereich ) );
-        ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport( settings, plan.toFile(), name );
-
-        Path reportDirectory = uploadFolder.resolve( id );
-        Files.createDirectory( reportDirectory );
-        reportWriter.writeArtefacts( validatorReport, reportDirectory.toFile() );
-
+        ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport( settings, uploadedPlan,
+                                                                                 validationName );
         return validatorReport;
     }
 
-    public Path writeReport( String id, String validationName )
+    private Path createWorkDir()
                             throws IOException {
-        List<ArtifactType> artifacts = Arrays.asList( ArtifactType.values() );
-        Path reportDirectory = uploadFolder.resolve( id );
-        Path zipArchive = reportDirectory.resolve( id + ".zip" );
-        try (OutputStream zipOutput = Files.newOutputStream( zipArchive )) {
-            reportWriter.writeZipWithArtifacts( zipOutput, validationName, artifacts, reportDirectory.toFile() );
-        }
-        return zipArchive;
+        String id = UUID.randomUUID().toString();
+        Path workDir = uploadFolder.resolve( id );
+        Files.createDirectory( workDir );
+        return workDir;
     }
 
     private List<ValidationType> asValidationTypes( boolean skipGeometrisch, boolean skipSemantisch ) {
@@ -112,12 +124,4 @@ public class ValidationHandler {
             validationOptions.add( SKIP_GELTUNGSBEREICH );
         return validationOptions;
     }
-
-    private String parseSuffix( String fileName ) {
-        int suffixStart = fileName.lastIndexOf( "." );
-        if ( suffixStart < 0 )
-            return ".xml";
-        return fileName.substring( suffixStart );
-    }
-
 }

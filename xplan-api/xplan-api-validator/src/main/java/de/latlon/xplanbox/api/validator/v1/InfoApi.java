@@ -1,17 +1,15 @@
 package de.latlon.xplanbox.api.validator.v1;
 
 import de.latlon.xplanbox.api.validator.v1.model.SystemConfig;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-
-import io.swagger.annotations.*;
-
-import java.io.InputStream;
-import java.util.Map;
-import java.util.List;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
 
 @Path("/info")
 @Api(description = "the info API")

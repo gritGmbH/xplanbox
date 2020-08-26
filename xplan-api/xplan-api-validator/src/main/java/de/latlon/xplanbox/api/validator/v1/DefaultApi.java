@@ -1,16 +1,14 @@
 package de.latlon.xplanbox.api.validator.v1;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-
-import io.swagger.annotations.*;
-
-import java.io.InputStream;
-import java.util.Map;
-import java.util.List;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
 
 @Path("/")
 @Api(description = "the  API")
@@ -19,11 +17,9 @@ public class DefaultApi {
 
     @GET
     @Produces({ "application/json" })
-    @ApiOperation(value = "OpenAPI document", notes = "API documentation", response = Object.class, tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = Object.class)
-    })
+    @ApiOperation(value = "OpenAPI document", notes = "API documentation", response = Object.class, tags = {})
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "successful operation", response = Object.class) })
     public Response openApi() {
-        return Response.ok().entity("magic!").build();
+        return Response.ok().entity( "magic!" ).build();
     }
 }
