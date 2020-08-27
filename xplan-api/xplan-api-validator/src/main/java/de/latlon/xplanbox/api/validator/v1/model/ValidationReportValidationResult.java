@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.Valid;
 import java.util.Objects;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-26T09:59:16.298+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-27T12:32:04.497+02:00[Europe/Berlin]")
 public class ValidationReportValidationResult {
 
     private @Valid ValidationReportValidationResultSemantisch semantisch;
@@ -70,7 +70,7 @@ public class ValidationReportValidationResult {
     }
 
     @Override
-    public boolean equals( Object o ) {
+    public boolean equals( java.lang.Object o ) {
         if ( this == o ) {
             return true;
         }
@@ -104,7 +104,7 @@ public class ValidationReportValidationResult {
      * Convert the given object to string with each line indented by 4 spaces
      * (except the first line).
      */
-    private String toIndentedString( Object o ) {
+    private String toIndentedString( java.lang.Object o ) {
         if ( o == null ) {
             return "null";
         }

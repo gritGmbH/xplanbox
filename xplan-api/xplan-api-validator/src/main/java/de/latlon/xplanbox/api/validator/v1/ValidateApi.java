@@ -70,19 +70,19 @@ public class ValidateApi {
                                                       String name,
                               @QueryParam("skipSemantisch")
                               @DefaultValue("false")
-                              @ApiParam("Semantische Validierung ueberspringen")
+                              @ApiParam("skip semantische Validierung")
                                                       Boolean skipSemantisch,
                               @QueryParam("skipGeometrisch")
                               @DefaultValue("false")
-                              @ApiParam("Geometrische Validierung ueberspringen")
+                              @ApiParam("skip geometrische Validierung")
                                                       Boolean skipGeometrisch,
                               @QueryParam("skipFlaechenschluss")
                               @DefaultValue("false")
-                              @ApiParam("Ueberpruefung des Flaechenschluss ueberspringen")
+                              @ApiParam("skip Flaechenschluss Ueberpruefung")
                                                       Boolean skipFlaechenschluss,
                               @QueryParam("skipGeltungsbereich")
                               @DefaultValue("false")
-                              @ApiParam("Ueberpruefung des Geltungsbereich ueberspringen")
+                              @ApiParam("skip Geltungsbereich Ueberpruefung")
                                                       Boolean skipGeltungsbereich )
                             throws IOException, ValidatorException, URISyntaxException {
         MediaType mediaType = detectRequestedMediaType();

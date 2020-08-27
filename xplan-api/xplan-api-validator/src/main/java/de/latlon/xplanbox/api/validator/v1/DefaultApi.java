@@ -12,14 +12,16 @@ import javax.ws.rs.core.Response;
 
 @Path("/")
 @Api(description = "the  API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-26T09:59:16.298+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-27T12:32:04.497+02:00[Europe/Berlin]")
 public class DefaultApi {
 
     @GET
     @Produces({ "application/json" })
-    @ApiOperation(value = "OpenAPI document", notes = "API documentation", response = Object.class, tags = {})
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "successful operation", response = Object.class) })
+    @ApiOperation(value = "OpenAPI document", notes = "API documentation", response = Object.class, tags={  })
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "successful operation", response = Object.class)
+    })
     public Response openApi() {
-        return Response.ok().entity( "magic!" ).build();
+        return Response.ok().entity("magic!").build();
     }
 }

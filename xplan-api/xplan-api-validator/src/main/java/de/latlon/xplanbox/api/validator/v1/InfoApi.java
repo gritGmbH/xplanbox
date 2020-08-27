@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/info")
 @Api(description = "the info API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-26T09:59:16.298+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-27T12:32:04.497+02:00[Europe/Berlin]")
 public class InfoApi {
 
     @GET
