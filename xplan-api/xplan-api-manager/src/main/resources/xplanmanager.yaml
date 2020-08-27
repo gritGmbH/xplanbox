@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.4
+  version: 0.0.5
 servers:
   - url: https://xplanbox.lat-lon.de/xmanager/api/v1
   - url: http://xplanbox.lat-lon.de/xmanager/api/v1
@@ -52,41 +52,39 @@ paths:
             type: string
         - name: skipSemantisch
           in: query
-          description: Semantische Validierung ueberspringen
+          description: skip semantische Validierung
           schema:
             type: boolean
             default: false
         - name: skipGeometrisch
           in: query
-          description: Geometrische Validierung ueberspringen
+          description: skip geometrische Validierung
           schema:
             type: boolean
             default: false
         - name: skipFlaechenschluss
           in: query
-          description: Ueberpruefung des Flaechenschluss ueberspringen
+          description: skip Flaechenschluss Ueberpruefung
           schema:
             type: boolean
             default: false
         - name: skipGeltungsbereich
           in: query
-          description: Ueberpruefung des Geltungsbereich ueberspringen
+          description: skip Geltungsbereich Ueberpruefung
           schema:
             type: boolean
             default: false
         - name: internalId
           in: query
-          description: internalId or VerfahrensId
+          description: internalId links to VerfahrensId
           schema:
-            type: integer
-            format: int32
-            default: null
+            type: string
         - name: planStatus
           in: query
-          description: value of xplan:rechtsstand
+          description: target for data storage, overrides the default derived from xplan:rechtsstand
           schema:
-            enum: [1000,2000,2001,2002,2003,2004,2100,2200,2300,2400,3000,4000,4500,5000,6000,7000]
-            example: 3000
+            enum: [IN_AUFSTELLUNG,FESTGESTELLT,ARCHIVIERT]
+            example: FESTGESTELLT
       requestBody:
         content:
           application/octet-stream:
@@ -248,48 +246,21 @@ components:
       properties:
         id:
           type: integer
+          description: internal unique manager identifier, generated at import time
           example: 123
-        name:
-          type: string
-          example: "Othmarschen3"
-        description:
-          type: string
-          example: "Beschreibung des BPlan"
         type:
           type: string
           example: "BP_Plan"
-        additionalType:
-          type: string
         version:
           type: string
+          enum: [XPLAN_3,XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52]
           example: "XPLAN_51"
-        number:
-          type: string
-          example: "-"
-        internalId:
-          type: string
-          example: "12341"
-        gkz:
-          type: string
-          example: "02000000"
-        gemeinde:
-          type: string
-          example: "Gemeinde"
         raster:
           type: boolean
           example: true
-        legislationStatus:
-          type: string
-          example: "Satzung"
-        releaseDate:
-          type: string
-          format: date-time
         importDate:
           type: string
           format: date-time
-        valid:
-          type: boolean
-          example: true
         inspirePublished:
           type: boolean
           example: false
@@ -311,16 +282,33 @@ components:
             crs:
               type: string
               example: epsg:4326
-        xplanMetadata:
+        xplanModelData:
           type: object
+          description: attributes derived from XPlanGML data model
           properties:
-            planStatus:
+            name:
               type: string
-              example: "FESTGESTELLT"
-            startDateTime:
+              example: "Othmarschen3"
+            nummer:
               type: string
-              format: date-time
-            endDateTime:
+              example: "-"
+            internalId:
+              type: string
+              example: "12341"
+            beschreibung:
+              type: string
+              example: "Beschreibung des BPlan"
+            ags:
+              type: string
+              example: "02000000"
+            gemeindeName:
+              type: string
+              example: "Gemeindename"
+            rechtsstand:
+              description: translation of code list value of xplan:rechtsstand
+              type: string
+              example: "Satzung"
+            inkrafttretensDatum:
               type: string
               format: date-time
         links:
@@ -467,6 +455,12 @@ components:
           example: 'v3.4.0'
         rulesMetadata:
           $ref: '#/components/schemas/RulesMetadata'
+        supportedXPlanGmlVersions:
+          type: array
+          items:
+            type: string
+            enum: [XPLAN_3,XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52]
+            example: "XPLAN_51"
     ManagerSystemConfig:
       allOf:
         - $ref: '#/components/schemas/SystemConfig'

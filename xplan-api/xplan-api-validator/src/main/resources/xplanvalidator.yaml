@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.4
+  version: 0.0.5
 servers:
   - url: https://xplanbox.lat-lon.de/xvalidator/api/v1
   - url: http://xplanbox.lat-lon.de/xvalidator/api/v1
@@ -53,25 +53,25 @@ paths:
             type: string
         - name: skipSemantisch
           in: query
-          description: Semantische Validierung ueberspringen
+          description: skip semantische Validierung
           schema:
             type: boolean
             default: false
         - name: skipGeometrisch
           in: query
-          description: Geometrische Validierung ueberspringen
+          description: skip geometrische Validierung
           schema:
             type: boolean
             default: false
         - name: skipFlaechenschluss
           in: query
-          description: Ueberpruefung des Flaechenschluss ueberspringen
+          description: skip Flaechenschluss Ueberpruefung
           schema:
             type: boolean
             default: false
         - name: skipGeltungsbereich
           in: query
-          description: Ueberpruefung des Geltungsbereich ueberspringen
+          description: skip Geltungsbereich Ueberpruefung
           schema:
             type: boolean
             default: false
@@ -234,3 +234,9 @@ components:
           example: 'v3.4.0'
         rulesMetadata:
           $ref: '#/components/schemas/RulesMetadata'
+        supportedXPlanGmlVersions:
+          type: array
+          items:
+            type: string
+            enum: [XPLAN_3,XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52]
+            example: "XPLAN_51"
