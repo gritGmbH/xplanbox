@@ -14,5 +14,9 @@ RUN cd /root/ && unzip -q xplan-validator-web-*.war -d /usr/local/tomcat/webapps
 ADD target/xplan-validator-wms-*.war /root/
 RUN cd /root/ && unzip -q xplan-validator-wms-*.war -d /usr/local/tomcat/webapps/xplan-validator-wms
 
+# add xplan-api-validator
+ADD target/xplan-api-validator-*.war /root/
+RUN cd /root/ && unzip -q xplan-api-validator-*.war -d /usr/local/tomcat/webapps/xplan-api-validator
+
 # run tomcat
 CMD ["catalina.sh", "run"]
