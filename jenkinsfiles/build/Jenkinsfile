@@ -11,7 +11,7 @@ pipeline {
     stage('Preparation') {
       steps{
         deleteDir()
-        git credentialsId: 'latlon-CI-bitbucket', url: 'https://bitbucket.org/latlon/xplanbox.git', branch: ${BRANCH}
+        git credentialsId: 'latlon-CI-bitbucket', url: 'https://bitbucket.org/latlon/xplanbox.git', branch: '${BRANCH}'
         sh 'mvn --version'
       }
     }
@@ -28,7 +28,7 @@ pipeline {
     stage('Deploy') {
       when {
         anyOf {
-          branch ${BRANCH}
+          branch '${BRANCH}'
           environment name: 'DEPLOY_STEP', value: 'true'
         }
       }
