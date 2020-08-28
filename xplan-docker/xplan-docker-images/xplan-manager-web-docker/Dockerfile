@@ -40,5 +40,9 @@ RUN cd /root/ && unzip -q xplan-manager-cli-*.zip
 ADD target/xplan-transform-cli-*.zip /root/
 RUN cd /root/ && unzip -q xplan-transform-cli-*.zip
 
+# add xplan-api-manager
+ADD target/xplan-api-manager-*.war /root/
+RUN cd /root/ && unzip -q xplan-api-manager-*.war -d /usr/local/tomcat/webapps/xplan-api-manager
+
 # run tomcat
 CMD ["catalina.sh", "run"]
