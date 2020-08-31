@@ -8,7 +8,7 @@ import javax.ws.rs.ApplicationPath;
 /**
  * Application configuration for XPlanValidator REST API.
  * Example mapping for proxy mapping:
- * http://xplanbox.lat-lon.de/xvalidator/api/vi/ -> http://host:8080/xplan-api-validator/xvalidator/api/v1/
+ * http://xplanbox.lat-lon.de/xvalidator/api/v1/ -> http://host:8080/xplan-api-validator/xvalidator/api/v1/
  * Public address: http://xplanbox.lat-lon.de/xvalidator/
  * Internal address: http://host:8080/xplan-api-validator/xvalidator/
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
