@@ -20,13 +20,18 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 
 import static java.nio.file.Files.createTempDirectory;
+import static java.nio.file.Paths.get;
 
 @Configuration
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.validator.v1" })
 public class ApplicationContext {
+
+    private static final String RULES_DIRECTORY = "/rules";
 
     @Bean
     public Path uploadFolder()
@@ -77,6 +82,16 @@ public class ApplicationContext {
     @Bean
     public ReportWriter reportWriter() {
         return new ReportWriter();
+    }
+
+    @Bean
+    public Path rulesPath( ValidatorConfiguration validatorConfiguration )
+                            throws URISyntaxException {
+        Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
+        if ( validationRulesDirectory != null )
+            return validationRulesDirectory;
+        URI rulesPath = getClass().getResource( RULES_DIRECTORY ).toURI();
+        return get( rulesPath );
     }
 
 }
