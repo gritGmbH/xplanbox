@@ -2,6 +2,7 @@ package de.latlon.xplanbox.api.validator.v1;
 
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorReport;
+import de.latlon.xplan.validator.wms.MapPreviewManager;
 import de.latlon.xplanbox.api.validator.v1.handler.ValidationHandler;
 import de.latlon.xplanbox.api.validator.v1.model.ValidationReport;
 import io.swagger.annotations.Api;
@@ -103,8 +104,9 @@ public class ValidateApi {
                                     "Content-Disposition",
                                     "attachment; filename=\"" + validationName + ".pdf\"" ).build();
         }
+        URI wmsUrl = validationHandler.addToWms( body );
         ValidationReport validationReport = new ValidationReportBuilder().validatorReport( validatorReport ).filename(
-                                xFilename ).wmsUrl( new URI( "TODO" ) ).build();
+                                xFilename ).wmsUrl( wmsUrl ).build();
         return Response.ok( validationReport ).build();
     }
 

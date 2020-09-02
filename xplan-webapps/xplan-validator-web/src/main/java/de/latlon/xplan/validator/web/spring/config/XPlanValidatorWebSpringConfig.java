@@ -49,7 +49,7 @@ public class XPlanValidatorWebSpringConfig {
 
     private static final String RULES_DIRECTORY = "/rules";
 
-    public static final String XPLAN_GML_WMS_WORKSPACE = "xplan-validator-wms-workspace";
+    private static final String XPLAN_GML_WMS_WORKSPACE = "xplan-validator-wms-workspace";
 
     @Bean
     public SyntacticValidator syntacticValidator() {
