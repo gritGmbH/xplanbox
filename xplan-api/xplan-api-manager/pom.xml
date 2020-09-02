@@ -21,11 +21,46 @@
     <jackson.version>2.11.2</jackson.version>
   </properties>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>de.geowerkstatt-hamburg</groupId>
+                  <artifactId>xplanung</artifactId>
+                  <type>zip</type>
+                  <overWrite>true</overWrite>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
   <dependencies>
     <!-- xPlanBox -->
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
       <artifactId>xplan-manager-core</artifactId>
+    </dependency>
+    <!-- XPlanung -->
+    <dependency>
+      <groupId>de.geowerkstatt-hamburg</groupId>
+      <artifactId>xplanung</artifactId>
+      <type>zip</type>
     </dependency>
     <!-- Javax -->
     <dependency>
