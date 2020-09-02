@@ -1,18 +1,19 @@
 package de.latlon.xplanbox.api.validator.v1;
 
-import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.tags.Tag;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 
 import javax.ws.rs.ApplicationPath;
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -42,21 +43,26 @@ public class XPlanApiValidator extends ResourceConfig {
                                 new Contact().email( "info@lat-lon.de" ) ).license(
                                 new License().name( "Apache 2.0" ).url(
                                                         "http://www.apache.org/licenses/LICENSE-2.0.html" ) ) );
-        //openApi.servers(  );
+        openApi.servers( servers() );
         Tag tag = new Tag().name( "validate" ).description( "Validate XPlanGML documents" ).externalDocs(
                                 new ExternalDocumentation().description( "xPlanBox" ).url(
                                                         "http://xplanbox.lat-lon.de" ) );
         openApi.tags( Collections.singletonList( tag ) );
 
-        OpenApiResource openApiResource = new OpenApiResource();
+        DefaultApi openApiResource = new DefaultApi();
         SwaggerConfiguration oasConfig = new SwaggerConfiguration().openAPI( openApi ).prettyPrint(
                                 true ).resourcePackages(
-                                Stream.of( "de.latlon.xplanbox.api.validator.v1" ).collect(
-                                                        Collectors.toSet() ) );
+                                Stream.of( "de.latlon.xplanbox.api.validator.v1" ).collect( Collectors.toSet() ) );
 
         openApiResource.setOpenApiConfiguration( oasConfig );
         register( openApiResource );
         LOG.info( "XPlanApiValidator successfully initialized" );
+    }
+
+    private List<Server> servers() {
+        // TODO
+        Server server = new Server().url( "http://localhost:8081/xplan-api-validator/xvalidator/api/v1" );
+        return Collections.singletonList( server );
     }
 
 }
