@@ -294,6 +294,96 @@ Validate XPlanGML or XPlanArchive</con:description>
     </con:testCase>
     <con:properties/>
   </con:testSuite>
+  <con:testSuite id="9472cb1c-cefe-473d-ae66-d51e65516d44" name="XPlanValidatorAPI TestSuite">
+    <con:description>TestSuite generated for REST Service [XPlanValidatorAPI]</con:description>
+    <con:settings/>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="23760878-a48c-4203-bd69-aa10e4b7df1a" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/ TestCase" searchProperties="true">
+      <con:description>TestCase generated for REST Resource [/] located at [/]</con:description>
+      <con:settings/>
+      <con:testStep type="restrequest" name="Request 1" id="11cb1838-ef4e-4418-9bb6-1799e675c566">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/" methodName="openApi" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request 1" id="17005e5b-eacc-4780-bec7-796702b4e0f4" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8081/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/</con:originalUri>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:preemptive>false</con:preemptive>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="214a46ce-8ad0-462a-bbba-add679c7671e" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/info TestCase" searchProperties="true">
+      <con:description>TestCase generated for REST Resource [/info] located at [/info]</con:description>
+      <con:settings/>
+      <con:testStep type="restrequest" name="Request 1" id="44f7c5f2-80c1-48dd-9246-4bdb854336de">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/info" methodName="showConfig" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request 1" id="725ed17c-89ad-4483-98e0-fa0e57de83b5" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8081/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/info</con:originalUri>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="85d037a4-a7b1-4109-84a5-6102ac7aeea0" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/validate TestCase" searchProperties="true">
+      <con:description>TestCase generated for REST Resource [/validate] located at [/validate]</con:description>
+      <con:settings/>
+      <con:testStep type="restrequest" name="Request 1" id="0ebc453c-d1cb-4899-ad47-a320c5251fe0">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request 1" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8081/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:properties/>
+  </con:testSuite>
   <con:endpointStrategy xsi:type="con:DefaultEndpointStrategy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:endpoint mode="COMPLEMENT" username="xplanbox" password="xpl@n!secure9">https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
   </con:endpointStrategy>
