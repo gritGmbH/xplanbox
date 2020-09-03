@@ -102,9 +102,8 @@ notwendig, u.a. um die Vorgaben der INSPIRE-Richtlinien zu erfüllen.
 [[client]]
 ==== Client
 
-* CPU: 1 CPU mit mindestens 2,0-GHz-Prozessor
+* CPU: 2 CPU mit mindestens 2,0-GHz-Prozessor
 * Arbeitsspeicher: 4 GB RAM
 
 NOTE: Weitere Informationen zu den Systemvoraussetzungen bei den unterstützten
-Browsern: Microsoft Internet Explorer (10, 11), Mozilla Firefox: 36+,
-Google Chrome: 40+
+Browsern: Microsoft Internet Explorer (11.0+), Microsoft Edge (20+), Mozilla Firefox (80.0+), Google Chrome (85.0+)

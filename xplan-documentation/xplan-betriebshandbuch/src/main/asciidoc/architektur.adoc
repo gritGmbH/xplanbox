@@ -123,5 +123,5 @@ Bereitstellung importierter Pläne im INSPIRE Datenthema Planned Land Use (PLU).
 === XPlanRessourcen
 
 Die optionale Komponente XPlanRessourcen bietet eine
-Einstiegsseite zu den einzelnen Komponenten der XPlanBox und stellt
-verschiedene Dokumente bereit.
+Einstiegsseite zu den einzelnen Komponenten der xPlanBox und stellt
+Testdaten sowie die Dokumente mit den Konformitätsbedingungen des Standards XPlanung bereit.
