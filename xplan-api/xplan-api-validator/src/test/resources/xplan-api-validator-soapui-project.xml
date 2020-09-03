@@ -1,6 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:soapui-project id="45582ef9-4bae-43d8-9226-a378e02ff0b5" activeEnvironment="Default" name="xplan-api-validator" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
+  <con:interface xsi:type="con:RestService" id="85ec4fc3-149e-4a77-a566-194de2899fd3" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanValidatorAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:description>XPlanValidator REST API</con:description>
+    <con:settings/>
+    <con:definitionCache type="TEXT" rootPart=""/>
+    <con:endpoints/>
+    <con:resource name="/" path="/" id="67855cf1-a5d0-4312-b0d2-c4a15d490e6b">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="openApi" id="ff8f0d30-b792-4408-b397-3eb522d8e9db" method="GET">
+        <con:description>API documentation
+OpenAPI document</con:description>
+        <con:settings/>
+        <con:parameters/>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="17005e5b-eacc-4780-bec7-796702b4e0f4" mediaType="application/json">
+          <con:settings/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/info" path="/info" id="8c2a5a22-263c-4954-a138-b2f39086063c">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="showConfig" id="d1298dcc-4aa1-4a3d-8057-883491f0e131" method="GET">
+        <con:description>Returns the system and application configuration
+Show system and application configuration</con:description>
+        <con:settings/>
+        <con:parameters/>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="725ed17c-89ad-4483-98e0-fa0e57de83b5" mediaType="application/json">
+          <con:settings/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/validate" path="/validate" id="72e06547-cb09-483b-8431-f475bc290fbf">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="validate" id="e543b3ad-adcf-4b56-8926-f8d46ddcb8b4" method="POST">
+        <con:description>Validates XPlanGML or XPlanArchive file
+Validate XPlanGML or XPlanArchive</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter>
+            <con:name>X-Filename</con:name>
+            <con:style>HEADER</con:style>
+            <con:description>Name of the file to be uploaded</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>name</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>Name of the validation</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>skipSemantisch</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>skip semantische Validierung</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>skipGeometrisch</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>skip geometrische Validierung</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>skipFlaechenschluss</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>skip Flaechenschluss Ueberpruefung</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>skipGeltungsbereich</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>skip Geltungsbereich Ueberpruefung</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>405</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>406</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>415</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status/>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/json">
+          <con:settings/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+  </con:interface>
   <con:testSuite id="f143fae3-230d-4ab3-87b4-bff8302fa034" name="XPlanValidatorAPI">
     <con:settings/>
     <con:runType>SEQUENTIAL</con:runType>
