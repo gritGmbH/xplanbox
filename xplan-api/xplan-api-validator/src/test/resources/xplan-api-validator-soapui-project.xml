@@ -233,7 +233,7 @@ Validate XPlanGML or XPlanArchive</con:description>
     <con:description>TestSuite generated for REST Service [XPlanValidatorAPI]</con:description>
     <con:settings/>
     <con:runType>SEQUENTIAL</con:runType>
-    <con:testCase id="23760878-a48c-4203-bd69-aa10e4b7df1a" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/ TestCase" searchProperties="true">
+    <con:testCase id="23760878-a48c-4203-bd69-aa10e4b7df1a" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/ TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:description>TestCase generated for REST Resource [/] located at [/]</con:description>
       <con:settings/>
       <con:testStep type="restrequest" name="Request 1" id="11cb1838-ef4e-4418-9bb6-1799e675c566">
@@ -251,10 +251,10 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="80327e86-e48d-41dd-bd13-1ab070690a39" name="JsonPath Existence Match">
+            <con:assertion type="JsonPath Match" id="41304562-7812-4f95-87b1-17cf5354b417" name="openapi">
               <con:configuration>
                 <path>$.openapi</path>
-                <content>true</content>
+                <content>3.0.1</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -276,7 +276,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       </con:testStep>
       <con:properties/>
     </con:testCase>
-    <con:testCase id="214a46ce-8ad0-462a-bbba-add679c7671e" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/info TestCase" searchProperties="true">
+    <con:testCase id="214a46ce-8ad0-462a-bbba-add679c7671e" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/info TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:description>TestCase generated for REST Resource [/info] located at [/info]</con:description>
       <con:settings/>
       <con:testStep type="restrequest" name="Request 1" id="44f7c5f2-80c1-48dd-9246-4bdb854336de">
@@ -327,7 +327,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       </con:testStep>
       <con:properties/>
     </con:testCase>
-    <con:testCase id="85d037a4-a7b1-4109-84a5-6102ac7aeea0" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/validate TestCase" searchProperties="true">
+    <con:testCase id="85d037a4-a7b1-4109-84a5-6102ac7aeea0" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/validate TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:description>TestCase generated for REST Resource [/validate] located at [/validate]</con:description>
       <con:settings/>
       <con:testStep type="restrequest" name="No parameter" id="0ebc453c-d1cb-4899-ad47-a320c5251fe0">
