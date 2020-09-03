@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>xplan-manager-web-docker</artifactId>
+  <artifactId>xplan-api-manager-docker</artifactId>
   <packaging>pom</packaging>
-  <name>XPlanManager - Docker</name>
-  <description>Execution of XPlanManager with Docker is enabled.</description>
+  <name>XPlanManagerAPI - Docker</name>
+  <description>Execution of XPlanManagerAPI with Docker is enabled.</description>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
@@ -48,48 +48,9 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-manager-web</artifactId>
+      <artifactId>xplan-api-manager</artifactId>
       <version>${project.version}</version>
       <type>war</type>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-root</artifactId>
-      <version>${project.version}</version>
-      <type>war</type>
-      <classifier>default</classifier>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-benutzerhandbuch</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
-      <classifier>html</classifier>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-betriebshandbuch</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
-      <classifier>html</classifier>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-update-database</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-manager-cli</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-transform-cli</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
     </dependency>
   </dependencies>
 
