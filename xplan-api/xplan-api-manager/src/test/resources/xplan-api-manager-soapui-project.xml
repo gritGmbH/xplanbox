@@ -1,6 +1,251 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:soapui-project id="adcdfd3f-0f4e-4107-8d7e-086010676cb7" activeEnvironment="Default" name="xplan-api-manager" resourceRoot="" soapui-version="5.5.0" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
+  <con:interface xsi:type="con:RestService" id="91f12f7d-fc3a-44d4-b4a3-ece617357d35" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanManagerAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:description>XPlanManager REST API</con:description>
+    <con:settings/>
+    <con:definitionCache type="TEXT" rootPart=""/>
+    <con:endpoints/>
+    <con:resource name="/" path="/" id="eabf8210-dcec-43a4-ba83-08abc123b551">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="openApi" id="781e2799-2533-486c-b724-0e3be9f866ff" method="GET">
+        <con:description>API documentation
+OpenAPI document</con:description>
+        <con:settings/>
+        <con:parameters/>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="8b84c013-ed6a-4a76-a8a8-87f39c1807f3" mediaType="application/json">
+          <con:settings/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/info" path="/info" id="e6ee4dce-9560-4d06-91fc-728a4cbfeede">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="showConfig" id="ebdb43b4-de0a-4e4f-97d9-b83eab26b9d9" method="GET">
+        <con:description>Returns the system and application configuration
+Show system and application configuration</con:description>
+        <con:settings/>
+        <con:parameters/>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="11f40bd4-e546-4bcf-9ce6-404b4279d786" mediaType="application/json">
+          <con:settings/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/plan" path="/plan" id="08410fb9-0d4d-4a21-abdc-9fb562102dd6">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="import" id="c27aac35-4537-44de-80d1-a874c699e2b4" method="POST">
+        <con:description>Imports the plan
+Import the plan</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter>
+            <con:name>X-Filename</con:name>
+            <con:style>HEADER</con:style>
+            <con:description>Name of the file to be uploaded</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>skipSemantisch</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>skip semantische Validierung</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>skipGeometrisch</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>skip geometrische Validierung</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>skipFlaechenschluss</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>skip Flaechenschluss Ueberpruefung</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>skipGeltungsbereich</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>skip Geltungsbereich Ueberpruefung</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>internalId</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>internalId links to VerfahrensId</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>planStatus</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>target for data storage, overrides the default derived from xplan:rechtsstand</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>405</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>406</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>415</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status/>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/json">
+          <con:settings/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/plan/name/{planName}" path="/plan/name/{planName}" id="261a2cfe-6f77-4ae1-a943-ff53ad732c08">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="getByName" id="d54fdc4c-5e09-487e-8ba4-60e987149c6a" method="GET">
+        <con:description>Returns an existing plan identified by the given planName
+Get plan identified by the given planName</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>planName</con:name>
+            <con:style>TEMPLATE</con:style>
+            <con:description>planName of the plan to be return</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="25618c12-48a4-4be8-8a88-5826c061b358" mediaType="application/json">
+          <con:settings/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/plan/{planId}" path="/plan/{planId}" id="f4b0c767-cef5-4102-88d4-aa55587459e5">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="getById" id="1e733b3b-deaf-4006-9df3-c8c75d435429" method="GET">
+        <con:description>Returns an existing plan identified by the given plan ID
+Get plan identified by the given plan ID</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>planId</con:name>
+            <con:style>TEMPLATE</con:style>
+            <con:description>ID of the plan to be returned</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="f9bcc4d9-872e-472c-96b8-27484a6e67a3" mediaType="application/json">
+          <con:settings/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+      <con:method name="delete" id="788d4d29-adb1-4d14-89ca-32e1951c3477" method="DELETE">
+        <con:description>Deletes an existing plan identified by the given plan ID, limited to plans in status "in Aufstellung"
+Delete plan identified by the given plan ID</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>planId</con:name>
+            <con:style>TEMPLATE</con:style>
+            <con:description>ID of the plan to be removed</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>204</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="d1cd7d2d-f354-4a5a-9fa0-1137ede48dcd" mediaType="application/json">
+          <con:settings/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/plans" path="/plans" id="59d88747-7f29-4272-89b6-edec1d3f1841">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="findByName" id="63d9e1be-4e47-4aa1-a636-fef258951c90" method="GET">
+        <con:description>Returns a list of plans which match the search query
+Search for plan by name</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter>
+            <con:name>planName</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>The name of the plan to search for</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="653c7a59-0292-405d-8596-a225f505b1fb" mediaType="application/json">
+          <con:settings/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+  </con:interface>
   <con:properties/>
   <con:wssContainer/>
   <con:oAuth2ProfileContainer/>
