@@ -6,7 +6,7 @@
     <con:settings/>
     <con:definitionCache type="TEXT" rootPart=""/>
     <con:endpoints>
-      <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+      <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
       <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
     </con:endpoints>
     <con:resource name="/" path="/" id="eabf8210-dcec-43a4-ba83-08abc123b551">
@@ -31,7 +31,7 @@ OpenAPI document</con:description>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:request/>
           <con:originalUri>https://xplanbox.lat-lon.de/xmanager/api/v1/</con:originalUri>
           <con:credentials>
@@ -63,6 +63,12 @@ Show system and application configuration</con:description>
           <con:mediaType>application/json</con:mediaType>
           <con:status>200</con:status>
           <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
         </con:representation>
         <con:request name="Request 1" id="11f40bd4-e546-4bcf-9ce6-404b4279d786" mediaType="application/json">
           <con:settings/>
@@ -160,6 +166,12 @@ Import the plan</con:description>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
         <con:request name="Request 1" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
@@ -200,6 +212,18 @@ Get plan identified by the given planName</con:description>
           <con:mediaType>application/json</con:mediaType>
           <con:status>200</con:status>
           <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>text/html;charset=utf-8</con:mediaType>
+          <con:status>500</con:status>
+          <con:params/>
+          <con:element>html</con:element>
         </con:representation>
         <con:request name="Request 1" id="25618c12-48a4-4be8-8a88-5826c061b358" mediaType="application/json">
           <con:settings/>
@@ -248,6 +272,12 @@ Get plan identified by the given plan ID</con:description>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
         <con:request name="Request 1" id="f9bcc4d9-872e-472c-96b8-27484a6e67a3" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
@@ -295,6 +325,12 @@ Delete plan identified by the given plan ID</con:description>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
         <con:request name="Request 1" id="d1cd7d2d-f354-4a5a-9fa0-1137ede48dcd" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
@@ -331,6 +367,12 @@ Search for plan by name</con:description>
           <con:status>200</con:status>
           <con:params/>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
         <con:request name="Request 1" id="653c7a59-0292-405d-8596-a225f505b1fb" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
@@ -358,7 +400,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>https://xplanbox.lat-lon.de/xmanager/api/v1/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="a1670c9e-49b6-4a46-9dc2-cc12a19d2449" name="Valid HTTP Status Codes">
@@ -399,7 +441,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/info</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="4e3dd521-27bb-4e43-8f8b-93095165dc9f" name="Valid HTTP Status Codes">
@@ -431,7 +473,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
             <con:credentials>
@@ -458,14 +500,9 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/name/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="100aebee-9ded-41ab-9235-a885a59ce098" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -490,7 +527,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
             <con:credentials>
@@ -512,7 +549,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
             <con:credentials>
@@ -539,7 +576,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plans</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7c256da6-27a4-473d-8c2d-bf06f2bba366" name="Valid HTTP Status Codes">
