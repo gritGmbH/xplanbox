@@ -269,6 +269,29 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:endpoint>http://localhost:8081/xplan-api-validator/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/info</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="0cc46e02-cf98-4922-b9a0-70051141ecfd" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="04006561-4031-47bd-9cd2-fb1215076b2d" name="version">
+              <con:configuration>
+                <path>$.version</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="d1a2a299-a358-4dcb-b245-b5ce405449b0" name="supportedXPlanGmlVersions">
+              <con:configuration>
+                <path>$.supportedXPlanGmlVersions</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
