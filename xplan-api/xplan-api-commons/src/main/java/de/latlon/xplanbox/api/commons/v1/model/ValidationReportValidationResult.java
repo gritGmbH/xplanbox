@@ -6,7 +6,9 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.Valid;
 import java.util.Objects;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-27T12:32:04.497+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-27T12:32:04\n"
+                                                                                                            + "@XmlRootElement\n"
+                                                                                                            + "@XmlAccessorType(XmlAccessType.FIELD).497+02:00[Europe/Berlin]")
 public class ValidationReportValidationResult {
 
     private @Valid ValidationReportValidationResultSemantisch semantisch;
