@@ -303,6 +303,172 @@ Search for plan by name</con:description>
       </con:method>
     </con:resource>
   </con:interface>
+  <con:testSuite id="ae0d5def-8690-4dc0-ad4a-ca5fa4c2df24" name="XPlanManagerAPI TestSuite">
+    <con:description>TestSuite generated for REST Service [XPlanManagerAPI]</con:description>
+    <con:settings/>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="48d40a8f-be62-4af7-8832-85c982ee2148" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/ TestCase" searchProperties="true">
+      <con:description>TestCase generated for REST Resource [/] located at [/]</con:description>
+      <con:settings/>
+      <con:testStep type="restrequest" name="Request 1" id="fa4a9a33-86e7-4ff6-8de1-b3339d33672c">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/" methodName="openApi" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request 1" id="8b84c013-ed6a-4a76-a8a8-87f39c1807f3" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://xplanbox.lat-lon.de/xmanager/api/v1/</con:originalUri>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="eaa273e2-e395-4c3a-b3b0-4dcabb6498c1" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/info TestCase" searchProperties="true">
+      <con:description>TestCase generated for REST Resource [/info] located at [/info]</con:description>
+      <con:settings/>
+      <con:testStep type="restrequest" name="Request 1" id="1f36ff6b-b1a4-45aa-9677-b4ae9ad14479">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/info" methodName="showConfig" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request 1" id="11f40bd4-e546-4bcf-9ce6-404b4279d786" mediaType="application/json">
+            <con:settings/>
+            <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/info</con:originalUri>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="590e4313-3d64-4a15-ba7b-622018c5b711" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan TestCase" searchProperties="true">
+      <con:description>TestCase generated for REST Resource [/plan] located at [/plan]</con:description>
+      <con:settings/>
+      <con:testStep type="restrequest" name="Request 1" id="9cb528a1-3c3f-42a8-b664-542193661822">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request 1" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/json">
+            <con:settings/>
+            <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="c815d892-f080-42a7-b361-7059ccee0d5c" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/name/{planName} TestCase" searchProperties="true">
+      <con:description>TestCase generated for REST Resource [/plan/name/{planName}] located at [/plan/name/{planName}]</con:description>
+      <con:settings/>
+      <con:testStep type="restrequest" name="Request 1" id="c7b03bef-b0de-43e5-9baf-4d049f5f778f">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/name/{planName}" methodName="getByName" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request 1" id="25618c12-48a4-4be8-8a88-5826c061b358" mediaType="application/json">
+            <con:settings/>
+            <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/name/</con:originalUri>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="ffa0a9da-a0a7-45c5-8718-ca395f1ddf51" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/{planId} TestCase" searchProperties="true">
+      <con:description>TestCase generated for REST Resource [/plan/{planId}] located at [/plan/{planId}]</con:description>
+      <con:settings/>
+      <con:testStep type="restrequest" name="Request 1" id="40874807-7e0c-4ef9-87b9-dcdfeea321d4">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}" methodName="getById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request 1" id="f9bcc4d9-872e-472c-96b8-27484a6e67a3" mediaType="application/json">
+            <con:settings/>
+            <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Request 1 1" id="9096ca08-33d8-47a4-ba2d-2565f6163c1a">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}" methodName="delete" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request 1" id="d1cd7d2d-f354-4a5a-9fa0-1137ede48dcd" mediaType="application/json">
+            <con:settings/>
+            <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="cb6bcba1-07a4-4fe1-ade2-32d0a4414daa" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plans TestCase" searchProperties="true">
+      <con:description>TestCase generated for REST Resource [/plans] located at [/plans]</con:description>
+      <con:settings/>
+      <con:testStep type="restrequest" name="Request 1" id="474680bd-be66-43c1-b66b-8738ecf34fde">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plans" methodName="findByName" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request 1" id="653c7a59-0292-405d-8596-a225f505b1fb" mediaType="application/json">
+            <con:settings/>
+            <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plans</con:originalUri>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:properties/>
+  </con:testSuite>
   <con:endpointStrategy xsi:type="con:DefaultEndpointStrategy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:endpoint mode="COMPLEMENT" username="xplanbox" password="xpl@n!secure9">https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
   </con:endpointStrategy>
