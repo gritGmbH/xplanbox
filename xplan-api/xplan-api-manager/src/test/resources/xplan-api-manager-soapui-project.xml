@@ -5,7 +5,10 @@
     <con:description>XPlanManager REST API</con:description>
     <con:settings/>
     <con:definitionCache type="TEXT" rootPart=""/>
-    <con:endpoints/>
+    <con:endpoints>
+      <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+      <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
+    </con:endpoints>
     <con:resource name="/" path="/" id="eabf8210-dcec-43a4-ba83-08abc123b551">
       <con:settings/>
       <con:parameters/>
@@ -19,8 +22,26 @@ OpenAPI document</con:description>
           <con:status>200</con:status>
           <con:params/>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
         <con:request name="Request 1" id="8b84c013-ed6a-4a76-a8a8-87f39c1807f3" mediaType="application/json">
-          <con:settings/>
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
+          <con:originalUri>https://xplanbox.lat-lon.de/xmanager/api/v1/</con:originalUri>
+          <con:credentials>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
+            <con:domain xsi:nil="true"/>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -40,6 +61,12 @@ Show system and application configuration</con:description>
         </con:representation>
         <con:request name="Request 1" id="11f40bd4-e546-4bcf-9ce6-404b4279d786" mediaType="application/json">
           <con:settings/>
+          <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:credentials>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
+            <con:domain xsi:nil="true"/>
+          </con:credentials>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -120,6 +147,12 @@ Import the plan</con:description>
         </con:representation>
         <con:request name="Request 1" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/json">
           <con:settings/>
+          <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:credentials>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
+            <con:domain xsi:nil="true"/>
+          </con:credentials>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -150,6 +183,12 @@ Get plan identified by the given planName</con:description>
         </con:representation>
         <con:request name="Request 1" id="25618c12-48a4-4be8-8a88-5826c061b358" mediaType="application/json">
           <con:settings/>
+          <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:credentials>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
+            <con:domain xsi:nil="true"/>
+          </con:credentials>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -185,6 +224,12 @@ Get plan identified by the given plan ID</con:description>
         </con:representation>
         <con:request name="Request 1" id="f9bcc4d9-872e-472c-96b8-27484a6e67a3" mediaType="application/json">
           <con:settings/>
+          <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:credentials>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
+            <con:domain xsi:nil="true"/>
+          </con:credentials>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -216,6 +261,12 @@ Delete plan identified by the given plan ID</con:description>
         </con:representation>
         <con:request name="Request 1" id="d1cd7d2d-f354-4a5a-9fa0-1137ede48dcd" mediaType="application/json">
           <con:settings/>
+          <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:credentials>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
+            <con:domain xsi:nil="true"/>
+          </con:credentials>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -241,11 +292,20 @@ Search for plan by name</con:description>
         </con:representation>
         <con:request name="Request 1" id="653c7a59-0292-405d-8596-a225f505b1fb" mediaType="application/json">
           <con:settings/>
+          <con:endpoint>http://localhost:8082/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:credentials>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
+            <con:domain xsi:nil="true"/>
+          </con:credentials>
           <con:parameters/>
         </con:request>
       </con:method>
     </con:resource>
   </con:interface>
+  <con:endpointStrategy xsi:type="con:DefaultEndpointStrategy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:endpoint mode="COMPLEMENT" username="xplanbox" password="xpl@n!secure9">https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
+  </con:endpointStrategy>
   <con:properties/>
   <con:wssContainer/>
   <con:oAuth2ProfileContainer/>
