@@ -93,8 +93,10 @@ public class PlanApi {
     public Response delete(
                             @PathParam("planId")
                             @ApiParam("ID of the plan to be removed")
-                                                    String planId ) {
-        return Response.ok().entity( "magic!" ).build();
+                                                    String planId )
+                            throws Exception {
+        planHandler.deletePlan( planId );
+        return Response.noContent().build();
     }
 
     @GET

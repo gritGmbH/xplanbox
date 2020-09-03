@@ -15,6 +15,7 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.transformation.HaleXplan41ToXplan51Transformer;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
@@ -22,6 +23,7 @@ import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
+import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
@@ -84,28 +86,50 @@ public class ApplicationContext {
     }
 
     @Bean
-    public XPlanInsertManager xPlanInsertManager( CategoryMapper categoryMapper,
+    public XPlanDao xPlanDao( CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+                              ManagerConfiguration managerConfiguration ) {
+        return new XPlanDao( managerWorkspaceWrapper, categoryMapper, managerConfiguration );
+    }
+
+    @Bean
+    public ManagerWorkspaceWrapper managerWorkspaceWrapper( ManagerConfiguration managerConfiguration )
+                            throws WorkspaceException {
+        DeegreeWorkspace managerWorkspace = instantiateWorkspace( DEFAULT_XPLAN_MANAGER_WORKSPACE );
+        ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(
+                                managerWorkspace.getNewWorkspace(), managerConfiguration );
+        return managerWorkspaceWrapper;
+    }
+
+    @Bean
+    public XPlanRasterManager xPlanRasterManager( ManagerConfiguration managerConfiguration )
+                            throws WorkspaceException {
+        DeegreeWorkspaceWrapper wmsWorkspace = new DeegreeWorkspaceWrapper( DEFAULT_XPLANSYN_WMS_WORKSPACE );
+        WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper( wmsWorkspace.getWorkspaceInstance() );
+        return new XPlanRasterManager( wmsWorkspaceWrapper, managerConfiguration );
+    }
+
+    @Bean
+    public XPlanInsertManager xPlanInsertManager( XPlanDao xPlanDao, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+                                                  XPlanRasterManager xPlanRasterManager,
                                                   ManagerConfiguration managerConfiguration,
                                                   WorkspaceReloader workspaceReloader,
                                                   XPlanGmlTransformer xPlanGmlTransformer )
                             throws Exception {
-        DeegreeWorkspace managerWorkspace = instantiateWorkspace( DEFAULT_XPLAN_MANAGER_WORKSPACE );
-        DeegreeWorkspaceWrapper wmsWorkspace = new DeegreeWorkspaceWrapper( DEFAULT_XPLANSYN_WMS_WORKSPACE );
-        WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper( wmsWorkspace.getWorkspaceInstance() );
-
-        ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(
-                                managerWorkspace.getNewWorkspace(), managerConfiguration );
-        XPlanDao xplanDao = new XPlanDao( managerWorkspaceWrapper, categoryMapper, managerConfiguration );
-
         XPlanExporter xPlanExporter = new XPlanExporter( managerConfiguration );
-        XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( wmsWorkspaceWrapper, managerConfiguration );
 
         SortConfiguration sortConfiguration = createSortConfiguration( managerConfiguration );
         SortPropertyReader sortPropertyReader = new SortPropertyReader( sortConfiguration );
 
-        return new XPlanInsertManager( xPlanSynthesizer( managerConfiguration ), xPlanGmlTransformer, xplanDao,
+        return new XPlanInsertManager( xPlanSynthesizer( managerConfiguration ), xPlanGmlTransformer, xPlanDao,
                                        xPlanExporter, xPlanRasterManager, workspaceReloader, managerConfiguration,
                                        managerWorkspaceWrapper, sortPropertyReader );
+    }
+
+    @Bean
+    public XPlanDeleteManager xPlanDeleteManager( XPlanDao xPlanDao, WorkspaceReloader workspaceReloader,
+                                                  XPlanRasterManager xPlanRasterManager,
+                                                  ManagerConfiguration managerConfiguration ) {
+        return new XPlanDeleteManager( xPlanDao, xPlanRasterManager, workspaceReloader, managerConfiguration );
     }
 
     @Bean

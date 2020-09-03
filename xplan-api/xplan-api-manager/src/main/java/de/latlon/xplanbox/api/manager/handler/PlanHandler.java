@@ -2,6 +2,7 @@ package de.latlon.xplanbox.api.manager.handler;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -41,6 +42,9 @@ public class PlanHandler {
     @Autowired
     private XPlanInsertManager xPlanInsertManager;
 
+    @Autowired
+    private XPlanDeleteManager xPlanDeleteManager;
+
     public Status importPlan( File uploadedPlan, String validationName, ValidationSettings validationSettings,
                               String internalId, String planStatus )
                             throws Exception {
@@ -58,6 +62,11 @@ public class PlanHandler {
                                 validationName ).build();
         return new Status().planId( planId ).link( new URI( "TODO" ) ).validationReport( validationReport );
 
+    }
+
+    public void deletePlan( String planId )
+                            throws Exception {
+        xPlanDeleteManager.delete( planId );
     }
 
     private AdditionalPlanData createAdditionalPlanData( String planStatus )

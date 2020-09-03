@@ -27,6 +27,7 @@ import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
 import de.latlon.xplan.manager.jdbcconfig.JaxbJdbcConfigWriter;
 import de.latlon.xplan.manager.jdbcconfig.JdbcConfigWriter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanEditManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
@@ -120,6 +121,8 @@ public class XPlanManager {
     private final XPlanInsertManager xPlanInsertManager;
 
     private final XPlanEditManager xPlanEditManager;
+
+    private final XPlanDeleteManager xPlanDeleteManager;
 
     public XPlanManager() throws Exception {
         this( null, new XPlanArchiveCreator(), null, null );
@@ -217,6 +220,8 @@ public class XPlanManager {
         this.xPlanEditManager = new XPlanEditManager( xPlanSynthesizer, xPlanGmlTransformer, xplanDao, xPlanExporter,
                                                       xPlanRasterManager, workspaceReloader, managerConfiguration,
                                                       managerWorkspaceWrapper, sortPropertyReader );
+        this.xPlanDeleteManager = new XPlanDeleteManager( xplanDao, xPlanRasterManager, workspaceReloader,
+                                                          managerConfiguration );
     }
 
     public XPlanArchive analyzeArchive( String fileName )
@@ -544,13 +549,7 @@ public class XPlanManager {
      */
     public void delete( String planId, boolean removeWMSConfig, File workspaceFolder )
                     throws Exception {
-        xplanDao.deletePlan( planId );
-        xPlanRasterManager.removeRasterLayers( planId );
-        if ( removeWMSConfig ) {
-            new WmsWorkspaceManager( findWorkspaceDirectory( workspaceFolder ) ).deleteWmsWorkspaceFilesForId( planId );
-        }
-        reloadWorkspace();
-        LOG.info( "XPlan-Archiv " + planId + " wurde gelöscht" );
+        xPlanDeleteManager.delete( planId, removeWMSConfig, workspaceFolder );
     }
 
     /**
@@ -627,13 +626,6 @@ public class XPlanManager {
 
     private AppSchema getAppSchemaFromStore( XPlanArchive archive, PlanStatus planStatus ) {
         return managerWorkspaceWrapper.lookupStore( archive.getVersion(), archive.getAde(), planStatus ).getSchema();
-    }
-
-    private void reloadWorkspace() {
-        if ( workspaceReloader != null ) {
-            WorkspaceReloaderConfiguration configuration = managerConfiguration.getWorkspaceReloaderConfiguration();
-            workspaceReloader.reloadWorkspace( configuration );
-        }
     }
 
     private DeegreeWorkspace instantiateManagerWorkspace( File workspaceDir )
