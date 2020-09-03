@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.5
+  version: 0.1.0
 servers:
   - url: https://xplanbox.lat-lon.de/xmanager/api/v1
   - url: http://xplanbox.lat-lon.de/xmanager/api/v1
@@ -268,16 +268,16 @@ components:
           type: object
           properties:
             minX:
-              type: integer
+              type: number
               example: 9.880772
             minY:
-              type: integer
+              type: number
               example: 53.544973
             maxX:
-              type: integer
+              type: number
               example: 9.890302
             maxY:
-              type: integer
+              type: number
               example: 53.546704
             crs:
               type: string
@@ -295,9 +295,6 @@ components:
             internalId:
               type: string
               example: "12341"
-            beschreibung:
-              type: string
-              example: "Beschreibung des BPlan"
             ags:
               type: string
               example: "02000000"

@@ -1,4 +1,4 @@
-package de.latlon.xplanbox.api.validator.v1;
+package de.latlon.xplanbox.api.commons;
 
 import javax.ws.rs.core.MediaType;
 

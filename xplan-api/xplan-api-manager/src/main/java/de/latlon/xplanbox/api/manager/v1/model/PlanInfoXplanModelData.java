@@ -22,7 +22,6 @@ public class PlanInfoXplanModelData   {
   private @Valid String name;
   private @Valid String nummer;
   private @Valid String internalId;
-  private @Valid String beschreibung;
   private @Valid String ags;
   private @Valid String gemeindeName;
   private @Valid String rechtsstand;
@@ -82,24 +81,6 @@ public class PlanInfoXplanModelData   {
 
   public void setInternalId(String internalId) {
     this.internalId = internalId;
-  }/**
-   **/
-  public PlanInfoXplanModelData beschreibung(String beschreibung) {
-    this.beschreibung = beschreibung;
-    return this;
-  }
-
-  
-
-  
-  @ApiModelProperty(example = "Beschreibung des BPlan", value = "")
-  @JsonProperty("beschreibung")
-  public String getBeschreibung() {
-    return beschreibung;
-  }
-
-  public void setBeschreibung(String beschreibung) {
-    this.beschreibung = beschreibung;
   }/**
    **/
   public PlanInfoXplanModelData ags(String ags) {
@@ -187,7 +168,6 @@ public class PlanInfoXplanModelData   {
     return Objects.equals(this.name, planInfoXplanModelData.name) &&
         Objects.equals(this.nummer, planInfoXplanModelData.nummer) &&
         Objects.equals(this.internalId, planInfoXplanModelData.internalId) &&
-        Objects.equals(this.beschreibung, planInfoXplanModelData.beschreibung) &&
         Objects.equals(this.ags, planInfoXplanModelData.ags) &&
         Objects.equals(this.gemeindeName, planInfoXplanModelData.gemeindeName) &&
         Objects.equals(this.rechtsstand, planInfoXplanModelData.rechtsstand) &&
@@ -196,7 +176,7 @@ public class PlanInfoXplanModelData   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, nummer, internalId, beschreibung, ags, gemeindeName, rechtsstand, inkrafttretensDatum);
+    return Objects.hash(name, nummer, internalId, ags, gemeindeName, rechtsstand, inkrafttretensDatum);
   }
 
   @Override
@@ -207,7 +187,6 @@ public class PlanInfoXplanModelData   {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    nummer: ").append(toIndentedString(nummer)).append("\n");
     sb.append("    internalId: ").append(toIndentedString(internalId)).append("\n");
-    sb.append("    beschreibung: ").append(toIndentedString(beschreibung)).append("\n");
     sb.append("    ags: ").append(toIndentedString(ags)).append("\n");
     sb.append("    gemeindeName: ").append(toIndentedString(gemeindeName)).append("\n");
     sb.append("    rechtsstand: ").append(toIndentedString(rechtsstand)).append("\n");

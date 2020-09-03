@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.manager.v1.model;
 
+import de.latlon.xplanbox.api.commons.v1.model.VersionEnum;
 import de.latlon.xplanbox.api.manager.v1.model.Link;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfoBbox;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfoXplanModelData;
@@ -24,39 +25,6 @@ public class PlanInfo   {
   
   private @Valid Integer id;
   private @Valid String type;
-
-public enum VersionEnum {
-
-    _3(String.valueOf("XPLAN_3")), _40(String.valueOf("XPLAN_40")), _41(String.valueOf("XPLAN_41")), _50(String.valueOf("XPLAN_50")), _51(String.valueOf("XPLAN_51")), _52(String.valueOf("XPLAN_52"));
-
-
-    private String value;
-
-    VersionEnum (String v) {
-        value = v;
-    }
-
-    public String value() {
-        return value;
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-        return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static VersionEnum fromValue(String value) {
-        for (VersionEnum b : VersionEnum.values()) {
-            if (b.value.equals(value)) {
-                return b;
-            }
-        }
-        throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-}
-
   private @Valid VersionEnum version;
   private @Valid Boolean raster;
   private @Valid Date importDate;

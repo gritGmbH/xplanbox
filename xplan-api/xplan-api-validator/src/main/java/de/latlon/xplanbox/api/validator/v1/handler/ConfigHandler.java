@@ -5,6 +5,7 @@ import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfigu
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplanbox.api.commons.v1.model.RulesMetadata;
 import de.latlon.xplanbox.api.commons.v1.model.SystemConfig;
+import de.latlon.xplanbox.api.commons.v1.model.VersionEnum;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -41,11 +42,11 @@ public class ConfigHandler {
                                 rulesMetadata );
     }
 
-    private List<SystemConfig.SupportedXPlanGmlVersionsEnum> allSupportedVersions() {
+    private List<VersionEnum> allSupportedVersions() {
         return Arrays.stream( XPlanVersion.values() ).filter(
                                 xPlanVersion -> !XPlanVersion.XPLAN_SYN.equals( xPlanVersion ) ).map(
-                                xPlanVersion -> SystemConfig.SupportedXPlanGmlVersionsEnum.fromValue(
-                                                        xPlanVersion.name() ) ).collect( Collectors.toList() );
+                                xPlanVersion -> VersionEnum.fromValue( xPlanVersion.name() ) ).collect(
+                                Collectors.toList() );
     }
 
 }

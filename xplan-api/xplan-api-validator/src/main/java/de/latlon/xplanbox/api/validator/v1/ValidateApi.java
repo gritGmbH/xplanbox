@@ -34,10 +34,10 @@ import java.net.URISyntaxException;
 
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
-import static de.latlon.xplanbox.api.validator.v1.XPlanBoxMediaType.APPLICATION_PDF;
-import static de.latlon.xplanbox.api.validator.v1.XPlanBoxMediaType.APPLICATION_PDF_TYPE;
-import static de.latlon.xplanbox.api.validator.v1.XPlanBoxMediaType.APPLICATION_ZIP;
-import static de.latlon.xplanbox.api.validator.v1.XPlanBoxMediaType.APPLICATION_ZIP_TYPE;
+import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_PDF;
+import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_PDF_TYPE;
+import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
+import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP_TYPE;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
 import static javax.ws.rs.core.MediaType.TEXT_XML_TYPE;

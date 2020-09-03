@@ -1,6 +1,8 @@
 package de.latlon.xplanbox.api.manager.v1;
 
+import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
+import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
 import de.latlon.xplanbox.api.manager.handler.PlanHandler;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import de.latlon.xplanbox.api.manager.v1.model.Status;
@@ -23,11 +25,19 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.StreamingOutput;
+import javax.ws.rs.core.Variant;
 import java.io.File;
 
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
+import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
+import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP_TYPE;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
+import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
 
 @Path("/plan")
 @Api(description = "the plan API")
@@ -36,6 +46,9 @@ public class PlanApi {
 
     @Autowired
     private PlanHandler planHandler;
+
+    @Context
+    private Request request;
 
     @POST
     @Consumes({ "application/octet-stream" })
@@ -110,8 +123,17 @@ public class PlanApi {
     public Response getById(
                             @PathParam("planId")
                             @ApiParam("ID of the plan to be returned")
-                                                    String planId ) {
-        return Response.ok().entity( "magic!" ).build();
+                                                    String planId )
+                            throws Exception {
+        if ( isZipRequested() ) {
+            StreamingOutput plan = planHandler.exportPlan( planId );
+            return Response.ok( plan ).type( APPLICATION_ZIP ).header( "Content-Disposition",
+                                                                       "attachment; filename=\"" + planId
+                                                                       + ".zip\"" ).build();
+        }
+        XPlan planById = planHandler.findPlanById( planId );
+        PlanInfo planInfo = new PlanInfoBuilder( planById ).build();
+        return Response.ok().entity( planInfo ).build();
     }
 
     @GET
@@ -128,4 +150,14 @@ public class PlanApi {
                                                     String planName ) {
         return Response.ok().entity( "magic!" ).build();
     }
+
+    private boolean isZipRequested() {
+        Variant.VariantListBuilder acceptedMediaTypes = Variant.mediaTypes( APPLICATION_JSON_TYPE, APPLICATION_XML_TYPE,
+                                                                            APPLICATION_ZIP_TYPE );
+        Variant selectVariant = request.selectVariant( acceptedMediaTypes.build() );
+        if ( selectVariant != null )
+            return APPLICATION_ZIP_TYPE.equals( selectVariant );
+        return false;
+    }
+
 }
