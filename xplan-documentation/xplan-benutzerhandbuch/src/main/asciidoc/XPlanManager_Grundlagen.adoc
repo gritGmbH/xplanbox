@@ -109,7 +109,7 @@ gml:featureMember
   (oder) xplan:LP_RasterplanAenderung
   (oder) xplan:RP_RasterplanAenderung
     xplan:refScan (kann auch mehrfach vorkommen)
-      xplan:XP_ExterneReferenz (jeweils mit id Attribut)
+      xplan:XP_ExterneReferenz
         xplan:georefURL
         xplan:art
         xplan:referenzName
@@ -144,7 +144,7 @@ Rasterdateien werden im Feature Type XP_Rasterdarstellung referenziert:
 gml:featureMember
   xplan:XP_Rasterdarstellung
     xplan:refScan (kann auch mehrfach vorkommen)
-      xplan:XP_ExterneReferenz (jeweils mit id Attribut)
+      xplan:XP_ExterneReferenz
         xplan:georefURL
         xplan:art
         xplan:referenzName
@@ -167,17 +167,17 @@ Beispiel:
                 <xplan:referenzURL>rasterdatei.tif</xplan:referenzURL>
             </xplan:XP_ExterneReferenz>
         </xplan:refScan>
-    </xplan:XP_RasterplanBasis>
+    </xplan:XP_Rasterdarstellung>
 </gml:featureMember>
 ----
 
-In XPlanGML 5.1 und 5.2 ist diese Referenzierung als veraltet notiert. Stattdessen werden Rasterdateien über die von XP_Bereich abgeleiteten Feature Types referenziert (im folgendem Beispiel BP_Bereich):
+In XPlanGML 5.1 und 5.2 ist diese Referenzierung als veraltet notiert. Stattdessen werden Rasterdateien über die von XP_Bereich abgeleiteten Feature Types über das Element refScan referenziert (im folgendem Beispiel BP_Bereich):
 
 ----
 gml:featureMember
   xplan:BP_Bereich
     xplan:refScan (kann auch mehrfach vorkommen)
-      xplan:XP_ExterneReferenz (jeweils mit id Attribut)
+      xplan:XP_ExterneReferenz
         xplan:georefURL
         xplan:art
         xplan:referenzName
@@ -202,11 +202,13 @@ Beispiel:
             </xplan:XP_ExterneReferenz>
         </xplan:refScan>
         ...
-    </xplan:XP_RasterplanBasis>
+    </xplan:BP_Bereich>
 </gml:featureMember>
 ----
 
-Ab Version 6.0 wird nur noch die zweite Variante unterstützt.
+Ab Version 6.0 wird nur noch die zweite Variante über das Element refScan unterstützt.
+
+NOTE: Über die Editor-Funktion des XPlanManager können Rasterdaten über XP_RasterplanBasis oder über das Element refScan innerhalb eines von XP_Bereich abgeleiteten Feature Type angezeigt werden. Weitere Informationen dazu auch im Kapitel <<xplanmanager-web-editieren>>.
 
 [[voraussetzungen-fuer-die-rasterdaten]]
 ===== Voraussetzungen für die Rasterdaten

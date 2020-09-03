@@ -158,7 +158,7 @@ vorgenommen. Bei invaliden Dateien bekommt der Nutzer eine
 Entscheidungsoption wie mit diesen Daten umgegangen werden soll.
 Anschließend erfolgt die Aktualisierung der Daten.
 
-Im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> wurde bereits darauf hingewiesen, dass in den Versionen 5.1 und 5.2 zwei Varianten zur Referenzierung von Rasterdaten möglich sind. Beim Editieren von Plänen wird nur die alte Version unterstützt. Unabhängig ob im importierten Plan die neue oder alte Variante verwendet wurde, wird in dem editierten Plan immer die Referenzierung über den Feature Type XP_Rasterdarstellung erfolgen.
+Wie im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1 und 5.2 zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über den Feature Type XP_Rasterdarstellung unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
 
 NOTE: Die Editierfunktion steht nur für BPläne in den XPlanGML Versionen
 3.0, 4.1, 5.0, 5.1 und 5.2 zur Verfügung.
