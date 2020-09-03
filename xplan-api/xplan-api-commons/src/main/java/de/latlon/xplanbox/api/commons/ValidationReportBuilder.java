@@ -1,16 +1,16 @@
-package de.latlon.xplanbox.api.validator.v1;
+package de.latlon.xplanbox.api.commons;
 
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
-import de.latlon.xplanbox.api.validator.v1.model.RulesMetadata;
-import de.latlon.xplanbox.api.validator.v1.model.ValidationReport;
-import de.latlon.xplanbox.api.validator.v1.model.ValidationReportValidationResult;
-import de.latlon.xplanbox.api.validator.v1.model.ValidationReportValidationResultGeometrisch;
-import de.latlon.xplanbox.api.validator.v1.model.ValidationReportValidationResultSemantisch;
-import de.latlon.xplanbox.api.validator.v1.model.ValidationReportValidationResultSemantischRules;
-import de.latlon.xplanbox.api.validator.v1.model.ValidationReportValidationResultSyntaktisch;
+import de.latlon.xplanbox.api.commons.v1.model.RulesMetadata;
+import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
+import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResult;
+import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultGeometrisch;
+import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSemantisch;
+import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSemantischRules;
+import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSyntaktisch;
 
 import java.net.URI;
 import java.util.List;

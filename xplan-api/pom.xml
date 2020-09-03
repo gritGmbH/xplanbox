@@ -12,6 +12,7 @@
   </parent>
 
   <modules>
+    <module>xplan-api-commons</module>
     <module>xplan-api-validator</module>
     <module>xplan-api-manager</module>
   </modules>

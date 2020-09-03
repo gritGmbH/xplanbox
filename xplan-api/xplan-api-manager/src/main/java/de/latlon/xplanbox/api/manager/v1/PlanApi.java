@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.manager.v1;
 
+import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.manager.handler.PlanHandler;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import de.latlon.xplanbox.api.manager.v1.model.Status;
@@ -24,6 +25,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import java.io.File;
+
+import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
+import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
 
 @Path("/plan")
 @Api(description = "the plan API")
@@ -68,8 +72,15 @@ public class PlanApi {
                                                         String internalId,
                                 @QueryParam("planStatus")
                                 @ApiParam("target for data storage, overrides the default derived from xplan:rechtsstand")
-                                                        String planStatus ) {
-        return Response.ok().entity( "magic!" ).build();
+                                                        String planStatus )
+                            throws Exception {
+        String validationName = detectOrCreateValidationName( xFilename );
+        ValidationSettings validationSettings = createValidationSettings( validationName, skipGeometrisch,
+                                                                          skipSemantisch, skipFlaechenschluss,
+                                                                          skipGeltungsbereich );
+
+        Status status = planHandler.importPlan( body, validationName, validationSettings, internalId, planStatus );
+        return Response.ok().entity( status ).build();
     }
 
     @DELETE

@@ -11,9 +11,7 @@ import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ArtifactType;
-import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
-import de.latlon.xplan.validator.web.shared.ValidationType;
 import de.latlon.xplan.validator.wms.MapPreviewCreationException;
 import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import org.apache.http.client.utils.URIBuilder;
@@ -33,19 +31,13 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
-import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_GELTUNGSBEREICH;
 import static de.latlon.xplan.validator.web.shared.ArtifactType.PDF;
 import static de.latlon.xplan.validator.web.shared.ArtifactType.PNG;
 import static de.latlon.xplan.validator.web.shared.ArtifactType.SHP;
-import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
-import static de.latlon.xplan.validator.web.shared.ValidationType.SEMANTIC;
-import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -74,12 +66,10 @@ public class ValidationHandler {
     @Autowired
     private GeometricValidator geometricValidator;
 
-    public ValidatorReport validate( File uploadedPlan, String validationName, boolean skipGeometrisch,
-                                     boolean skipSemantisch, boolean skipFlaechenschluss, boolean skipGeltungsbereich )
+    public ValidatorReport validate( File uploadedPlan, String validationName, ValidationSettings validationSettings )
                             throws IOException, ValidatorException {
         LOG.debug( "Validate plan with validationName {}", validationName );
-        return validatePlan( uploadedPlan, validationName, skipGeometrisch, skipSemantisch, skipFlaechenschluss,
-                             skipGeltungsbereich );
+        return xPlanValidator.validateNotWriteReport( validationSettings, uploadedPlan, validationName );
     }
 
     public Path zipReports( ValidatorReport validatorReport )
@@ -147,19 +137,6 @@ public class ValidationHandler {
         }
     }
 
-    private ValidatorReport validatePlan( File uploadedPlan, String validationName, boolean skipGeometrisch,
-                                          boolean skipSemantisch, boolean skipFlaechenschluss,
-                                          boolean skipGeltungsbereich )
-                            throws ValidatorException, IOException {
-        ValidationSettings settings = new ValidationSettings();
-        settings.setValidationName( validationName );
-        settings.setValidationTypes( asValidationTypes( skipGeometrisch, skipSemantisch ) );
-        settings.setExtendedOptions( asValidationOptions( skipFlaechenschluss, skipGeltungsbereich ) );
-        ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport( settings, uploadedPlan,
-                                                                                 validationName );
-        return validatorReport;
-    }
-
     private Path createWorkDir()
                             throws IOException {
         String id = UUID.randomUUID().toString();
@@ -168,22 +145,4 @@ public class ValidationHandler {
         return workDir;
     }
 
-    private List<ValidationType> asValidationTypes( boolean skipGeometrisch, boolean skipSemantisch ) {
-        List<ValidationType> validationTypes = new ArrayList<>();
-        validationTypes.add( SYNTACTIC );
-        if ( !skipSemantisch )
-            validationTypes.add( SEMANTIC );
-        if ( !skipGeometrisch )
-            validationTypes.add( GEOMETRIC );
-        return validationTypes;
-    }
-
-    private List<ValidationOption> asValidationOptions( boolean skipFlaechenschluss, boolean skipGeltungsbereich ) {
-        List<ValidationOption> validationOptions = new ArrayList<>();
-        if ( skipFlaechenschluss )
-            validationOptions.add( SKIP_FLAECHENSCHLUSS );
-        if ( skipGeltungsbereich )
-            validationOptions.add( SKIP_GELTUNGSBEREICH );
-        return validationOptions;
-    }
 }

@@ -1,7 +1,7 @@
 package de.latlon.xplanbox.api.validator.v1;
 
 import de.latlon.xplanbox.api.validator.v1.handler.ConfigHandler;
-import de.latlon.xplanbox.api.validator.v1.model.SystemConfig;
+import de.latlon.xplanbox.api.commons.v1.model.SystemConfig;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

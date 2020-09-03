@@ -1,4 +1,4 @@
-package de.latlon.xplanbox.api.validator.v1.model;
+package de.latlon.xplanbox.api.commons.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;

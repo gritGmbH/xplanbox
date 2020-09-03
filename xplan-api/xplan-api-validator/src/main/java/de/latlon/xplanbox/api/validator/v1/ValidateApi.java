@@ -2,9 +2,10 @@ package de.latlon.xplanbox.api.validator.v1;
 
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorReport;
-import de.latlon.xplan.validator.wms.MapPreviewManager;
+import de.latlon.xplan.validator.web.shared.ValidationSettings;
+import de.latlon.xplanbox.api.commons.ValidationReportBuilder;
 import de.latlon.xplanbox.api.validator.v1.handler.ValidationHandler;
-import de.latlon.xplanbox.api.validator.v1.model.ValidationReport;
+import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -30,8 +31,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.UUID;
 
+import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
+import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
 import static de.latlon.xplanbox.api.validator.v1.XPlanBoxMediaType.APPLICATION_PDF;
 import static de.latlon.xplanbox.api.validator.v1.XPlanBoxMediaType.APPLICATION_PDF_TYPE;
 import static de.latlon.xplanbox.api.validator.v1.XPlanBoxMediaType.APPLICATION_ZIP;
@@ -89,9 +91,9 @@ public class ValidateApi {
         MediaType mediaType = detectRequestedMediaType();
 
         String validationName = detectOrCreateValidationName( xFilename, name );
-        ValidatorReport validatorReport = validationHandler.validate( body, validationName, skipSemantisch,
-                                                                      skipGeometrisch, skipFlaechenschluss,
-                                                                      skipGeltungsbereich );
+        ValidationSettings settings = createValidationSettings( validationName, skipGeometrisch, skipSemantisch,
+                                                                skipFlaechenschluss, skipGeltungsbereich );
+        ValidatorReport validatorReport = validationHandler.validate( body, validationName, settings );
         if ( APPLICATION_ZIP_TYPE.equals( mediaType ) ) {
             java.nio.file.Path report = validationHandler.zipReports( validatorReport );
             return Response.ok( FileUtils.readFileToByteArray( report.toFile() ) ).type( APPLICATION_ZIP ).header(
@@ -118,19 +120,6 @@ public class ValidateApi {
         if ( selectVariant == null )
             return APPLICATION_JSON_TYPE;
         return selectVariant.getMediaType();
-    }
-
-    private String detectOrCreateValidationName( String xFilename, String name ) {
-        if ( name != null )
-            return name;
-        if ( xFilename != null ) {
-
-            int suffixStart = xFilename.lastIndexOf( "." );
-            if ( suffixStart < 0 )
-                return xFilename;
-            return xFilename.substring( 0, suffixStart - 1 );
-        }
-        return UUID.randomUUID().toString();
     }
 
 }

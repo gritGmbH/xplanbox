@@ -179,6 +179,18 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>de.latlon.product.xplanbox</groupId>
+      <artifactId>xplan-api-commons</artifactId>
+      <version>3.4-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>de.latlon.product.xplanbox</groupId>
+      <artifactId>xplan-api-commons</artifactId>
+      <version>3.4-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
 
   <profiles>

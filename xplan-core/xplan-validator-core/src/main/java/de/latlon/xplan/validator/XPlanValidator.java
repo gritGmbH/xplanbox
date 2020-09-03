@@ -92,7 +92,7 @@ public class XPlanValidator {
      * @throws ReportGenerationException
      */
     public ValidatorReport validate( ValidationSettings validationSettings, File planArchive, String planName )
-                            throws ValidatorException, ParseException, IOException, ReportGenerationException {
+                            throws ValidatorException, IOException, ReportGenerationException {
         XPlanArchive archive = archiveCreator.createXPlanArchive( planArchive );
         ValidatorReport report = validate( validationSettings, archive, planName );
         writeReport( report );
@@ -117,8 +117,25 @@ public class XPlanValidator {
                                                    String planName )
                             throws ValidatorException, IOException {
         XPlanArchive archive = archiveCreator.createXPlanArchive( planArchive );
-        ValidatorReport validationReport = validate( validationSettings, archive, planName );
-        validationReport.setHasMultipleXPlanElements( archive.hasMultipleXPlanElements() );
+        return validateNotWriteReport( validationSettings, planName, archive );
+    }
+
+    /**
+     * Validate a plan archive, but does not write the report
+     *
+     * @param validationSettings
+     *                         to apply, never <code>null</code>
+     * @param planArchive
+     *                         to validate, never <code>null</code>
+     * @return <link>ValidatorReport</link>
+     * @throws ValidatorException
+     * @throws IOException
+     */
+    public ValidatorReport validateNotWriteReport( ValidationSettings validationSettings, String planName,
+                                                   XPlanArchive planArchive )
+                            throws ValidatorException {
+        ValidatorReport validationReport = validate( validationSettings, planArchive, planName );
+        validationReport.setHasMultipleXPlanElements( planArchive.hasMultipleXPlanElements() );
         return validationReport;
     }
 
