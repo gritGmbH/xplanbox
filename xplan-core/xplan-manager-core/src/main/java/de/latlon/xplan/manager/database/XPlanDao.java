@@ -461,6 +461,33 @@ public class XPlanDao {
         return null;
     }
 
+    public List<XPlan> getXPlanByName( String planName )
+                            throws Exception {
+        managerWorkspaceWrapper.ensureWorkspaceInitialized();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try ( Connection mgrConn = managerWorkspaceWrapper.openConnection() ) {
+            stmt = mgrConn.prepareStatement( "SELECT id, import_date, xp_version, xp_type, name, "
+                                             + "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
+                                             + "ade, sonst_plan_art, planstatus, rechtsstand, district, "
+                                             + "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid FROM xplanmgr.plans WHERE name =?" );
+            stmt.setString(1, planName );
+            rs = stmt.executeQuery();List<XPlan> xplanList = new ArrayList<>();
+            while ( rs.next() ) {
+                XPlan xPlan = retrieveXPlan( rs, false );
+                xplanList.add( xPlan );
+            }
+            return xplanList;
+        } catch ( Exception e ) {
+            throw new Exception(
+                                    "Interner-/Konfigurations-Fehler. Kann Plan nicht auflisten: " + e.getLocalizedMessage(),
+                                    e );
+        } finally {
+            closeQuietly( stmt, rs );
+        }
+    }
+
     /**
      * retrieves the id of the plan closest in future to the date passed
      *

@@ -139,7 +139,8 @@ public class PlanApi {
                                                                        + ".zip\"" ).build();
         }
         XPlan planById = planHandler.findPlanById( planId );
-        PlanInfo planInfo = new PlanInfoBuilder( planById, uriInfo ).wmsEndpoint(managerConfiguration.getwmsEndpoint()).build();
+        PlanInfo planInfo = new PlanInfoBuilder( planById, uriInfo ).wmsEndpoint(
+                                managerConfiguration.getwmsEndpoint() ).build();
         return Response.ok().entity( planInfo ).build();
     }
 
@@ -151,11 +152,23 @@ public class PlanApi {
     @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = PlanInfo.class),
                             @ApiResponse(code = 404, message = "Invalid plan name, not found", response = Void.class) })
     public Response getByName(
+                            @Context
+                                                    UriInfo uriInfo,
                             @PathParam("planName")
                             @Pattern(regexp = "^[A-Za-z0-9_-]*$")
                             @ApiParam("planName of the plan to be return")
-                                                    String planName ) {
-        return Response.ok().entity( "magic!" ).build();
+                                                    String planName )
+                            throws Exception {
+        XPlan xPlan = planHandler.findPlanByName( planName );
+        if ( isZipRequested() ) {
+            StreamingOutput plan = planHandler.exportPlan( xPlan.getId() );
+            return Response.ok( plan ).type( APPLICATION_ZIP ).header( "Content-Disposition",
+                                                                       "attachment; filename=\"" + planName
+                                                                       + ".zip\"" ).build();
+        }
+        PlanInfo planInfo = new PlanInfoBuilder( xPlan, uriInfo ).wmsEndpoint(
+                                managerConfiguration.getwmsEndpoint() ).build();
+        return Response.ok().entity( planInfo ).build();
     }
 
     private boolean isZipRequested() {

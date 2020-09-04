@@ -17,6 +17,7 @@ import de.latlon.xplanbox.api.commons.ValidationReportBuilder;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
+import de.latlon.xplanbox.api.manager.exception.InvalidPlanName;
 import de.latlon.xplanbox.api.manager.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.manager.v1.model.Status;
 import org.apache.commons.io.IOUtils;
@@ -105,6 +106,14 @@ public class PlanHandler {
                             throws Exception {
         int id = Integer.parseInt( planId );
         return findPlanById( id );
+    }
+
+    public XPlan findPlanByName( String planName )
+                            throws Exception {
+        List<XPlan> xPlans = xPlanDao.getXPlanByName( planName );
+        if ( xPlans.size() != 1 )
+            throw new InvalidPlanName( planName );
+        return xPlans.get( 0 );
     }
 
     private XPlan findPlanById( int id )
