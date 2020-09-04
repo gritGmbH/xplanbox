@@ -7,22 +7,41 @@ import de.latlon.xplanbox.api.manager.v1.model.Link;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfoBbox;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfoXplanModelData;
+import org.apache.http.client.utils.URIBuilder;
 
-import java.util.Collections;
+import javax.ws.rs.core.UriInfo;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
+
+import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.PLANWERKWMS;
+import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.SELF;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class PlanInfoBuilder {
 
-    private XPlan xPlan;
+    private final XPlan xPlan;
 
-    public PlanInfoBuilder( XPlan xPlan ) {
+    private final UriInfo uriInfo;
+
+    private String wmsEndpoint;
+
+    public PlanInfoBuilder( XPlan xPlan, UriInfo uriInfo ) {
         this.xPlan = xPlan;
+        this.uriInfo = uriInfo;
     }
 
-    public PlanInfo build() {
+    public PlanInfoBuilder wmsEndpoint( String wmsEndpoint ) {
+        this.wmsEndpoint = wmsEndpoint;
+        return this;
+    }
+
+    public PlanInfo build()
+                            throws URISyntaxException {
         return new PlanInfo().id( Integer.parseInt( xPlan.getId() ) ).importDate(
                                 xPlan.getImportDate() ).inspirePublished( xPlan.isInspirePublished() ).raster(
                                 xPlan.isRaster() ).version( version() ).bbox( bbox() ).links( links() ).type(
@@ -30,18 +49,36 @@ public class PlanInfoBuilder {
     }
 
     private PlanInfoXplanModelData xPlanModelData() {
-        return new PlanInfoXplanModelData().name( xPlan.getName() ).nummer(
-                                xPlan.getNumber() ).internalId( xPlan.getInternalId() ).inkrafttretensDatum(
-                                xPlan.getReleaseDate() ).rechtsstand( xPlan.getLegislationStatus() ).ags(
-                                xPlan.getGkz() ).gemeindeName( xPlan.getDistrict() );
+        return new PlanInfoXplanModelData().name( xPlan.getName() ).nummer( xPlan.getNumber() ).internalId(
+                                xPlan.getInternalId() ).inkrafttretensDatum( xPlan.getReleaseDate() ).rechtsstand(
+                                xPlan.getLegislationStatus() ).ags( xPlan.getGkz() ).gemeindeName(
+                                xPlan.getDistrict() );
     }
 
     private VersionEnum version() {
         return VersionEnum.fromValue( xPlan.getVersion() );
     }
 
-    private List<Link> links() {
-        return Collections.emptyList();
+    private List<Link> links()
+                            throws URISyntaxException {
+        List<Link> links = new ArrayList<>();
+        URI selfRef = uriInfo.getBaseUriBuilder().path( "plan" ).path( xPlan.getId() ).build();
+        Link selfLink = new Link().href( selfRef ).rel( SELF ).type( APPLICATION_JSON ).title( xPlan.getName() );
+        links.add( selfLink );
+        if ( wmsEndpoint != null ) {
+            String planname = xPlan.getName().replaceAll( "[^a-zA-Z0-9\\\\-_]", "" );
+            URIBuilder uriBuilder = new URIBuilder( wmsEndpoint );
+            List<String> pathSegments = uriBuilder.getPathSegments();
+            pathSegments.add( "services" );
+            pathSegments.add( detectService() );
+            pathSegments.add( "planname" );
+            pathSegments.add( planname );
+            uriBuilder.setPathSegments( pathSegments );
+            URI planwerkWmsRef = uriBuilder.build();
+            Link planwerkWmsLink = new Link().href( planwerkWmsRef ).rel( PLANWERKWMS ).title( xPlan.getName() );
+            links.add( planwerkWmsLink );
+        }
+        return links;
     }
 
     private PlanInfoBbox bbox() {
@@ -52,4 +89,14 @@ public class PlanInfoBuilder {
         return null;
     }
 
+    private String detectService() {
+        if ( xPlan.getXplanMetadata() != null )
+            switch ( xPlan.getXplanMetadata().getPlanStatus() ) {
+            case ARCHIVIERT:
+                return "planwerkwmsarchive";
+            case IN_AUFSTELLUNG:
+                return "planwerkwmspre";
+            }
+        return "planwerkwms";
+    }
 }

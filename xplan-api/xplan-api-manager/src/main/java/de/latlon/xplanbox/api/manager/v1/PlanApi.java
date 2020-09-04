@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.manager.v1;
 
+import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
@@ -29,6 +30,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
+import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Variant;
 import java.io.File;
 
@@ -46,6 +48,9 @@ public class PlanApi {
 
     @Autowired
     private PlanHandler planHandler;
+
+    @Context
+    private ManagerConfiguration managerConfiguration;
 
     @Context
     private Request request;
@@ -121,6 +126,8 @@ public class PlanApi {
                             @ApiResponse(code = 400, message = "Invalid tag value", response = Void.class),
                             @ApiResponse(code = 404, message = "Invalid plan ID, not found", response = Void.class) })
     public Response getById(
+                            @Context
+                                                    UriInfo uriInfo,
                             @PathParam("planId")
                             @ApiParam("ID of the plan to be returned")
                                                     String planId )
@@ -132,7 +139,7 @@ public class PlanApi {
                                                                        + ".zip\"" ).build();
         }
         XPlan planById = planHandler.findPlanById( planId );
-        PlanInfo planInfo = new PlanInfoBuilder( planById ).build();
+        PlanInfo planInfo = new PlanInfoBuilder( planById, uriInfo ).wmsEndpoint(managerConfiguration.getwmsEndpoint()).build();
         return Response.ok().entity( planInfo ).build();
     }
 

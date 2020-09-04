@@ -28,6 +28,7 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Singleton;
 import javax.ws.rs.core.StreamingOutput;
+import javax.ws.rs.core.UriInfo;
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
 import java.io.InputStream;
@@ -115,7 +116,7 @@ public class PlanHandler {
         return xPlanById;
     }
 
-    private URI createWmsUrl( XPlan id )
+    private URI createWmsUrl( XPlan xPlan )
                             throws URISyntaxException {
         String wmsEndpoint = managerConfiguration.getwmsEndpoint();
         if ( wmsEndpoint == null )
@@ -123,17 +124,17 @@ public class PlanHandler {
         URIBuilder uriBuilder = new URIBuilder( wmsEndpoint );
         List<String> pathSegments = uriBuilder.getPathSegments();
         pathSegments.add( "services" );
-        pathSegments.add( detectService( id ) );
+        pathSegments.add( detectService( xPlan ) );
         uriBuilder.setPathSegments( pathSegments );
-        uriBuilder.addParameter( "PLANWERK_MANAGERID", id.getId() );
+        uriBuilder.addParameter( "PLANWERK_MANAGERID", xPlan.getId() );
         uriBuilder.addParameter( "SERVICE", "WMS" );
         uriBuilder.addParameter( "REQUEST", "GetCapabilities" );
         return uriBuilder.build();
     }
 
-    private String detectService( XPlan id ) {
-        if ( id.getXplanMetadata() != null )
-            switch ( id.getXplanMetadata().getPlanStatus() ) {
+    private String detectService( XPlan xPlan ) {
+        if ( xPlan.getXplanMetadata() != null )
+            switch ( xPlan.getXplanMetadata().getPlanStatus() ) {
             case ARCHIVIERT:
                 return "wmsarchive";
             case IN_AUFSTELLUNG:
