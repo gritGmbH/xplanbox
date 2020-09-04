@@ -1,7 +1,5 @@
 package de.latlon.xplanbox.api.commons.exception;
 
-import de.latlon.xplanbox.api.commons.v1.model.XPlanApiExceptionReport;
-
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
@@ -14,8 +12,7 @@ public class XPlanApiExceptionMapper implements ExceptionMapper<XPlanApiExceptio
 
     @Override
     public Response toResponse( XPlanApiException exception ) {
-        XPlanApiExceptionReport exceptionReport = new XPlanApiExceptionReport( exception.getMessage() );
-        return Response.status( exception.getStatusCode() ).entity( exceptionReport ).build();
+        return Response.status( exception.getStatusCode() ).build();
     }
 
 }
