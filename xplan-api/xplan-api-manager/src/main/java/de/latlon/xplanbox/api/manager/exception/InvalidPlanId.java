@@ -11,7 +11,7 @@ public class InvalidPlanId extends XPlanApiException {
 
     private static final String EXCEPTION_MESSAGE = "Plan with ID %s is not known!";
 
-    public InvalidPlanId( String planId ) {
+    public InvalidPlanId( int planId ) {
         super( String.format( EXCEPTION_MESSAGE, planId ) );
     }
 

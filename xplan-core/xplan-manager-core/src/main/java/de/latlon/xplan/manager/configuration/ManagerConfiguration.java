@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -51,6 +50,8 @@ public class ManagerConfiguration {
 
     static final String DEFAULT_BBOX_IN_4326 = "defaultBboxIn4326";
 
+    static final String WMS_ENDPOINT = "wmsEndpoint";
+    
     static final String WORKSPACE_RELOAD_URLS = "workspaceReloadUrls";
 
     static final String WORKSPACE_RELOAD_USER = "workspaceReloadUser";
@@ -78,6 +79,8 @@ public class ManagerConfiguration {
     private boolean isSeperatedDataManagementActived = false;
 
     private boolean isExportOfReexportedActive = false;
+    
+    private String wmsEndpoint;
 
     private WorkspaceReloaderConfiguration workspaceReloaderConfiguration = new WorkspaceReloaderConfiguration();
 
@@ -149,6 +152,13 @@ public class ManagerConfiguration {
         return isSeperatedDataManagementActived;
     }
 
+    /**
+     * @return the configured WMS url, may be <code>null</code>
+     */
+    public String getwmsEndpoint() {
+        return this.wmsEndpoint;
+    }
+    
     /**
      * @return configuration for {@link de.latlon.xplan.manager.workspace.WorkspaceReloader}, never <code>null</code>
      */
@@ -238,6 +248,7 @@ public class ManagerConfiguration {
                 isSeperatedDataManagementActived = parseBoolean( loadProperties, ACTIVATE_SEPARATED_DATAMANAGEMENT,
                                                                  false );
                 isExportOfReexportedActive = parseBoolean( loadProperties, ACTIVATE_EXPORT_OF_REEXPORTED, false );
+                wmsEndpoint = loadProperties.getProperty( WMS_ENDPOINT );
                 workspaceReloaderConfiguration = parseWorkspaceReloaderConfiguration( loadProperties );
                 defaultBboxIn4326 = parseDefaultBboxIn4326( loadProperties );
                 internalIdRetrieverConfiguration = parseInternalIdRetrieverConfiguration( loadProperties );
