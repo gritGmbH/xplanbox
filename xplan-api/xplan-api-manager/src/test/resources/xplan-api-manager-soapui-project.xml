@@ -162,9 +162,19 @@ Import the plan</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>415</con:status>
+          <con:status>415 500 400</con:status>
           <con:params/>
           <con:element>html</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/octet-stream</con:mediaType>
+          <con:params/>
         </con:representation>
         <con:representation type="RESPONSE">
           <con:mediaType xsi:nil="true"/>
@@ -221,7 +231,7 @@ Get plan identified by the given planName</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>500</con:status>
+          <con:status>500 404</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -268,7 +278,7 @@ Get plan identified by the given plan ID</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>405</con:status>
+          <con:status>405 500 404</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -321,13 +331,25 @@ Delete plan identified by the given plan ID</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>405</con:status>
+          <con:status>405 500</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
         <con:representation type="RESPONSE">
           <con:mediaType xsi:nil="true"/>
           <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>204</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>204</con:status>
           <con:params/>
           <con:element>data</con:element>
         </con:representation>
@@ -469,22 +491,39 @@ Search for plan by name</con:description>
       <con:testStep type="restrequest" name="Request 1" id="9cb528a1-3c3f-42a8-b664-542193661822">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Request 1" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/json" postQueryString="false">
+          <con:restRequest name="Request 1" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
             <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
             <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
+            <con:attachment>
+              <con:name>Eidelstedt_4_V4.zip</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:size>16884</con:size>
+              <con:contentId>Eidelstedt_4_V4.zip</con:contentId>
+              <con:url>/home/stenger/git/xplanbox/xplan-tests/xplan-test-resources/src/main/resources/de/latlon/xplan/xplan41/Eidelstedt_4_V4.zip</con:url>
+              <con:data>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</con:data>
+              <con:id>da891b6b-1376-42f9-9036-5e6a85271aa9</con:id>
+            </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
-            <con:parameters/>
+            <con:parameters>
+              <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="skipSemantisch" value="true"/>
+            </con:parameters>
           </con:restRequest>
         </con:config>
       </con:testStep>
@@ -503,6 +542,11 @@ Search for plan by name</con:description>
             <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/name/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7af8bd28-cbdf-429d-adba-8fae4efb7ae5" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -511,7 +555,9 @@ Search for plan by name</con:description>
             </con:credentials>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
-            <con:parameters/>
+            <con:parameters>
+              <entry key="planName" value="Eidelstedt4" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
           </con:restRequest>
         </con:config>
       </con:testStep>
@@ -530,15 +576,24 @@ Search for plan by name</con:description>
             <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="89620a4b-f714-4db0-9115-1c1c4338e712" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:preemptive>true</con:preemptive>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
-            <con:parameters/>
+            <con:parameters>
+              <entry key="planId" value="1" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
           </con:restRequest>
         </con:config>
       </con:testStep>
@@ -552,6 +607,11 @@ Search for plan by name</con:description>
             <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="859dc093-1e4d-4794-bcc1-58695077093f" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -560,7 +620,9 @@ Search for plan by name</con:description>
             </con:credentials>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
-            <con:parameters/>
+            <con:parameters>
+              <entry key="planId" value="1" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
           </con:restRequest>
         </con:config>
       </con:testStep>
