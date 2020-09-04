@@ -6,6 +6,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.Valid;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.net.URI;
 import java.util.Objects;
 
@@ -14,6 +17,8 @@ import java.util.Objects;
  **/
 @ApiModel(description = "Status")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Status {
 
     private @Valid Integer planId;

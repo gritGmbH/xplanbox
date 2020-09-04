@@ -5,6 +5,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import io.swagger.annotations.*;
 import java.util.Objects;
@@ -17,6 +20,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
  **/
 @ApiModel(description = "attributes derived from XPlanGML data model")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class PlanInfoXplanModelData   {
   
   private @Valid String name;

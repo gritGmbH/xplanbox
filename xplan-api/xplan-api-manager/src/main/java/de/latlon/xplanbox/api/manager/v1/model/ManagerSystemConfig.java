@@ -7,11 +7,16 @@ import de.latlon.xplanbox.api.commons.v1.model.RulesMetadata;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.Valid;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ManagerSystemConfig {
 
     private @Valid String version;
