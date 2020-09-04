@@ -1,5 +1,6 @@
-package de.latlon.xplanbox.api.validator.v1;
+package de.latlon.xplanbox.api.validator;
 
+import de.latlon.xplanbox.api.validator.v1.DefaultApi;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -35,6 +36,8 @@ public class XPlanApiValidator extends ResourceConfig {
 
     public XPlanApiValidator() {
         super();
+        packages( "de.latlon.xplanbox.api.validator.config" );
+        packages( "de.latlon.xplanbox.api.validator.handler" );
         packages( "de.latlon.xplanbox.api.validator.v1" );
         OpenAPI openApi = new OpenAPI();
         openApi.setInfo( new Info().title( "XPlanValidatorAPI" ).version( "0.0.5" ).description(

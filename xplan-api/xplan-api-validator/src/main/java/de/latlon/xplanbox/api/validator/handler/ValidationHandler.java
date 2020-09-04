@@ -1,4 +1,4 @@
-package de.latlon.xplanbox.api.validator.v1.handler;
+package de.latlon.xplanbox.api.validator.handler;
 
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchive;

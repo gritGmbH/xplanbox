@@ -1,4 +1,4 @@
-package de.latlon.xplanbox.api.validator.v1.handler;
+package de.latlon.xplanbox.api.validator.handler;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;

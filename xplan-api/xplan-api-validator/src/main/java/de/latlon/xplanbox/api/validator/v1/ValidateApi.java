@@ -4,7 +4,7 @@ import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.ValidationReportBuilder;
-import de.latlon.xplanbox.api.validator.v1.handler.ValidationHandler;
+import de.latlon.xplanbox.api.validator.handler.ValidationHandler;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

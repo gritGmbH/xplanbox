@@ -1,7 +1,7 @@
 package de.latlon.xplanbox.api.validator.v1;
 
-import de.latlon.xplanbox.api.validator.v1.config.ApplicationContext;
-import de.latlon.xplanbox.api.validator.v1.config.TestContext;
+import de.latlon.xplanbox.api.validator.config.ApplicationContext;
+import de.latlon.xplanbox.api.validator.config.TestContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

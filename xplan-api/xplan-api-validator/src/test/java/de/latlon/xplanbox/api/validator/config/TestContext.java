@@ -1,7 +1,7 @@
-package de.latlon.xplanbox.api.validator.v1.config;
+package de.latlon.xplanbox.api.validator.config;
 
 import de.latlon.xplanbox.api.validator.v1.DefaultApi;
-import de.latlon.xplanbox.api.validator.v1.XPlanApiValidator;
+import de.latlon.xplanbox.api.validator.XPlanApiValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.glassfish.jersey.server.ResourceConfig;

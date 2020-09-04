@@ -1,4 +1,4 @@
-package de.latlon.xplanbox.api.validator.v1.config;
+package de.latlon.xplanbox.api.validator.config;
 
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
@@ -16,7 +16,6 @@ import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticVal
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
-import de.latlon.xplan.validator.wms.MapPreviewCreationException;
 import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.slf4j.Logger;
@@ -35,7 +34,7 @@ import static java.nio.file.Files.createTempDirectory;
 import static java.nio.file.Paths.get;
 
 @Configuration
-@ComponentScan(basePackages = { "de.latlon.xplanbox.api.validator.v1" })
+@ComponentScan(basePackages = { "de.latlon.xplanbox.api.validator" })
 public class ApplicationContext {
 
     private static final Logger LOG = LoggerFactory.getLogger( ApplicationContext.class );

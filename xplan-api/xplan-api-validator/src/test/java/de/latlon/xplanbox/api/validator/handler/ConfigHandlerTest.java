@@ -1,6 +1,6 @@
-package de.latlon.xplanbox.api.validator.v1.handler;
+package de.latlon.xplanbox.api.validator.handler;
 
-import de.latlon.xplanbox.api.validator.v1.config.ApplicationContext;
+import de.latlon.xplanbox.api.validator.config.ApplicationContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
