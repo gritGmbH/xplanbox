@@ -6,7 +6,7 @@
     <con:settings/>
     <con:definitionCache type="TEXT" rootPart=""/>
     <con:endpoints>
-      <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
+      <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
       <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
     </con:endpoints>
     <con:resource name="/" path="/" id="eabf8210-dcec-43a4-ba83-08abc123b551">
@@ -31,7 +31,7 @@ OpenAPI document</con:description>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:request/>
           <con:originalUri>https://xplanbox.lat-lon.de/xmanager/api/v1/</con:originalUri>
           <con:credentials>
@@ -400,7 +400,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>https://xplanbox.lat-lon.de/xmanager/api/v1/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="a1670c9e-49b6-4a46-9dc2-cc12a19d2449" name="Valid HTTP Status Codes">
@@ -441,7 +441,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/info</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="4e3dd521-27bb-4e43-8f8b-93095165dc9f" name="Valid HTTP Status Codes">
@@ -473,7 +473,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
             <con:credentials>
@@ -500,7 +500,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/name/</con:originalUri>
             <con:credentials>
@@ -527,7 +527,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
             <con:credentials>
@@ -549,7 +549,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
             <con:credentials>
@@ -576,7 +576,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plans</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7c256da6-27a4-473d-8c2d-bf06f2bba366" name="Valid HTTP Status Codes">
