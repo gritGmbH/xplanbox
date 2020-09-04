@@ -2,6 +2,7 @@ package de.latlon.xplanbox.api.manager.handler;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
@@ -20,18 +21,25 @@ import de.latlon.xplanbox.api.manager.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.manager.v1.model.Status;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.client.utils.URIBuilder;
+import org.deegree.cs.exceptions.UnknownCRSException;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Singleton;
 import javax.ws.rs.core.StreamingOutput;
+import javax.xml.stream.XMLStreamException;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
+import static de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils.parseXPlanFeatureCollection;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
+import static java.lang.Integer.parseInt;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
@@ -134,15 +142,39 @@ public class PlanHandler {
         return "wms";
     }
 
-    private AdditionalPlanData createAdditionalPlanData( XPlanArchive xPlanArchive, String planStatus )
-                            throws UnsupportedParameterValue {
+    private AdditionalPlanData createAdditionalPlanData( XPlanArchive xPlanArchive, String requestedPlanStatus )
+                            throws UnsupportedParameterValue, XMLStreamException, UnknownCRSException {
         AdditionalPlanData metadata = new AdditionalPlanData();
-        if ( planStatus != null )
+        PlanStatus planStatus;
+        if ( requestedPlanStatus == null ) {
+            PlanStatus planStatusFromPlan = determinePlanStatusByRechtsstand( xPlanArchive );
+            planStatus = PlanStatus.valueOf( planStatusFromPlan.name() );
+        } else {
             try {
-                metadata.setPlanStatus( PlanStatus.valueOf( planStatus ) );
+                planStatus = PlanStatus.valueOf( requestedPlanStatus );
             } catch ( IllegalArgumentException e ) {
-                throw new UnsupportedParameterValue( "planStatus", planStatus );
+                throw new UnsupportedParameterValue( "planStatus", requestedPlanStatus );
             }
+        }
+        metadata.setPlanStatus( planStatus );
         return metadata;
     }
+
+    private PlanStatus determinePlanStatusByRechtsstand( XPlanArchive xPlanArchive )
+                            throws XMLStreamException, UnknownCRSException {
+        XPlanFeatureCollection fc = parseXPlanFeatureCollection( xPlanArchive );
+        removeAllFeaturesExceptOfPlanFeature( fc );
+
+        String legislationStatus = retrieveLegislationStatus( fc.getFeatures(), fc.getType() );
+        if ( legislationStatus != null && !legislationStatus.isEmpty() ) {
+            try {
+                int rechtsstand = parseInt( legislationStatus );
+                return PlanStatus.findByLegislationStatusCode( rechtsstand );
+            } catch ( NumberFormatException e ) {
+                LOG.info( "Rechtsstand '{}' could not be parsed as integer.", legislationStatus );
+            }
+        }
+        return IN_AUFSTELLUNG;
+    }
+
 }
