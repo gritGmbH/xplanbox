@@ -84,7 +84,7 @@ Show system and application configuration</con:description>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8081/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+          <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
           <con:request/>
           <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/info</con:originalUri>
           <con:credentials>
@@ -215,17 +215,360 @@ Validate XPlanGML or XPlanArchive</con:description>
           <con:params/>
           <con:element>validationReport</con:element>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/xml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>validationReport</con:element>
+        </con:representation>
         <con:request name="Request 1" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/json" postQueryString="false">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8081/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+          <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
           <con:request/>
           <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -339,7 +682,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="No parameter" id="0ebc453c-d1cb-4899-ad47-a320c5251fe0">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Request 1" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+          <con:restRequest name="No parameter" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -373,7 +716,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
               <con:name>V4_1_ID_103.gml</con:name>
@@ -427,7 +773,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
               <con:name>V4_1_ID_103.gml</con:name>
@@ -483,7 +832,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
               <con:name>V4_1_ID_103.gml</con:name>
@@ -539,7 +891,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
               <con:name>V4_1_ID_103.gml</con:name>
@@ -595,7 +950,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
               <con:name>V4_1_ID_103.gml</con:name>
@@ -651,7 +1009,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
               <con:name>V4_1_ID_103.gml</con:name>
@@ -673,7 +1034,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="All parameters" id="4bf40571-36e5-44c1-9271-9245d71a6c88">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="All parameter" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+          <con:restRequest name="All parameters" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -725,7 +1086,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
               <con:name>V4_1_ID_103.gml</con:name>
@@ -751,7 +1115,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="Request body text/xml" id="1b00bcbb-d486-41bd-94fe-e7b01b97bae7">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Copy of No parameter" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="Request body text/xml" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -785,7 +1149,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
               <con:name>V4_1_ID_103.gml</con:name>
@@ -805,7 +1172,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="Request body application/gml+xml" id="45e98442-8006-4b42-a5c9-d4a4ed5b7288">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Media type application/gml+xml" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/gml+xml" postQueryString="false">
+          <con:restRequest name="Request body application/gml+xml" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/gml+xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -839,7 +1206,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
               <con:name>V4_1_ID_103.gml</con:name>
@@ -893,7 +1263,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
               <con:name>V4_1_ID_103.gml</con:name>
@@ -929,7 +1302,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
               <con:name>V4_1_ID_103.gml</con:name>
@@ -965,7 +1341,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
               <con:name>V4_1_ID_103.gml</con:name>
@@ -1008,7 +1387,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
               <con:name>V4_1_ID_103.gml</con:name>
@@ -1044,7 +1426,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
               <con:name>V4_1_ID_103.gml</con:name>
@@ -1066,7 +1451,7 @@ Validate XPlanGML or XPlanArchive</con:description>
     <con:properties/>
   </con:testSuite>
   <con:endpointStrategy xsi:type="con:DefaultEndpointStrategy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <con:endpoint mode="COMPLEMENT" username="xplanbox" password="xpl@n!secure9">https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
+    <con:endpoint mode="COMPLEMENT" username="xplanbox" password="xpl@n!secure9" domain="">https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
   </con:endpointStrategy>
   <con:properties>
     <con:property>
