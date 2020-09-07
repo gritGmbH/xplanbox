@@ -13,6 +13,8 @@ import org.deegree.geometry.SimpleGeometryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -51,7 +53,7 @@ public class ManagerConfiguration {
     static final String DEFAULT_BBOX_IN_4326 = "defaultBboxIn4326";
 
     static final String WMS_ENDPOINT = "wmsEndpoint";
-    
+
     static final String WORKSPACE_RELOAD_URLS = "workspaceReloadUrls";
 
     static final String WORKSPACE_RELOAD_USER = "workspaceReloadUser";
@@ -79,8 +81,8 @@ public class ManagerConfiguration {
     private boolean isSeperatedDataManagementActived = false;
 
     private boolean isExportOfReexportedActive = false;
-    
-    private String wmsEndpoint;
+
+    private URI wmsEndpoint;
 
     private WorkspaceReloaderConfiguration workspaceReloaderConfiguration = new WorkspaceReloaderConfiguration();
 
@@ -99,7 +101,7 @@ public class ManagerConfiguration {
     private CoupledResourceConfiguration coupledResourceConfiguration;
 
     public ManagerConfiguration( PropertiesLoader propertiesLoader )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         loadProperties( propertiesLoader );
         verifyConfiguration();
         logConfiguration();
@@ -155,10 +157,10 @@ public class ManagerConfiguration {
     /**
      * @return the configured WMS url, may be <code>null</code>
      */
-    public String getwmsEndpoint() {
+    public URI getWmsEndpoint() {
         return this.wmsEndpoint;
     }
-    
+
     /**
      * @return configuration for {@link de.latlon.xplan.manager.workspace.WorkspaceReloader}, never <code>null</code>
      */
@@ -230,7 +232,7 @@ public class ManagerConfiguration {
     }
 
     private void loadProperties( PropertiesLoader propertiesLoader )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         if ( propertiesLoader != null ) {
             Properties loadProperties = propertiesLoader.loadProperties( MANAGER_CONFIGURATION );
             if ( loadProperties != null ) {
@@ -248,7 +250,7 @@ public class ManagerConfiguration {
                 isSeperatedDataManagementActived = parseBoolean( loadProperties, ACTIVATE_SEPARATED_DATAMANAGEMENT,
                                                                  false );
                 isExportOfReexportedActive = parseBoolean( loadProperties, ACTIVATE_EXPORT_OF_REEXPORTED, false );
-                wmsEndpoint = loadProperties.getProperty( WMS_ENDPOINT );
+                wmsEndpoint = parseUri( loadProperties, WMS_ENDPOINT );
                 workspaceReloaderConfiguration = parseWorkspaceReloaderConfiguration( loadProperties );
                 defaultBboxIn4326 = parseDefaultBboxIn4326( loadProperties );
                 internalIdRetrieverConfiguration = parseInternalIdRetrieverConfiguration( loadProperties );
@@ -256,7 +258,8 @@ public class ManagerConfiguration {
                 parseSemanticConformityLinkConfiguration( loadProperties );
                 pathToHaleCli = loadProperties.getProperty( PATH_TO_HALE_CLI );
                 pathToHaleProjectDirectory = parsePathToHaleProjectDirectory( propertiesLoader );
-                coupledResourceConfiguration = CoupledResourceConfiguration.parseCoupledResourceConfiguration( propertiesLoader, loadProperties );
+                coupledResourceConfiguration = CoupledResourceConfiguration.parseCoupledResourceConfiguration(
+                                        propertiesLoader, loadProperties );
             }
             configDirectory = propertiesLoader.resolveDirectory( "synthesizer" );
         }
@@ -271,7 +274,7 @@ public class ManagerConfiguration {
             throw new IllegalArgumentException( "rasterLayerMaxScaleDenominator should not be a negative value" );
         if ( rasterLayerMinScaleDenominator >= rasterLayerMaxScaleDenominator )
             throw new IllegalArgumentException(
-                            "rasterLayerMinScaleDenominator must be less than rasterLayerMaxScaleDenominator" );
+                                    "rasterLayerMinScaleDenominator must be less than rasterLayerMaxScaleDenominator" );
     }
 
     private void logConfiguration() {
@@ -323,7 +326,7 @@ public class ManagerConfiguration {
     }
 
     private void parseCategories( String[] categoriesWithParts )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         for ( String categoryWithParts : categoriesWithParts ) {
             String categoryName = parseCategoryName( categoryWithParts );
             List<String> partsAsList = parseParts( categoryWithParts );
@@ -332,7 +335,7 @@ public class ManagerConfiguration {
     }
 
     private String parseCategoryName( String categoryWithParts )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         if ( categoryWithParts.contains( "(" ) ) {
             int indexOfCategoryEnd = categoryWithParts.indexOf( "(" );
             return categoryWithParts.substring( 0, indexOfCategoryEnd );
@@ -464,6 +467,18 @@ public class ManagerConfiguration {
         if ( property == null || "".equals( property ) )
             return defaultValue;
         return Boolean.parseBoolean( property );
+    }
+
+    private URI parseUri( Properties loadProperties, String propName )
+                            throws ConfigurationException {
+        String property = loadProperties.getProperty( propName );
+        if ( property == null || "".equals( property ) )
+            return null;
+        try {
+            return new URI( property );
+        } catch ( URISyntaxException e ) {
+            throw new ConfigurationException( "Could not parse property " + property + " as URI.", e );
+        }
     }
 
 }

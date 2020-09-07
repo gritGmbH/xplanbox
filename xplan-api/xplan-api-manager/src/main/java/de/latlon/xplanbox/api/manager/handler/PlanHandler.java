@@ -29,7 +29,6 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Singleton;
 import javax.ws.rs.core.StreamingOutput;
-import javax.ws.rs.core.UriInfo;
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
 import java.io.InputStream;
@@ -117,6 +116,18 @@ public class PlanHandler {
         return xPlans.get( 0 );
     }
 
+    public List<XPlan> findPlansByName( String planName )
+                            throws Exception {
+        return xPlanDao.getXPlanByName( planName );
+    }
+
+    public List<XPlan> findPlans( String planName )
+                            throws Exception {
+        if ( planName != null )
+            return xPlanDao.getXPlanByName( planName );
+        return xPlanDao.getXPlanList( false );
+    }
+
     private XPlan findPlanById( int id )
                             throws Exception {
         XPlan xPlanById = xPlanDao.getXPlanById( id );
@@ -128,7 +139,7 @@ public class PlanHandler {
 
     private URI createWmsUrl( XPlan xPlan )
                             throws URISyntaxException {
-        String wmsEndpoint = managerConfiguration.getwmsEndpoint();
+        URI wmsEndpoint = managerConfiguration.getWmsEndpoint();
         if ( wmsEndpoint == null )
             return null;
         URIBuilder uriBuilder = new URIBuilder( wmsEndpoint );

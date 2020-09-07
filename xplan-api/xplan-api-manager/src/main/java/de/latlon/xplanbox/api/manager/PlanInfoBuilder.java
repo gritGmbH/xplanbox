@@ -8,6 +8,7 @@ import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfoBbox;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfoXplanModelData;
 import org.apache.http.client.utils.URIBuilder;
+import org.jfree.util.Log;
 
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
@@ -30,7 +31,7 @@ public class PlanInfoBuilder {
 
     private final List<String> alternateMediaTypes = new ArrayList<>();
 
-    private String wmsEndpoint;
+    private URI wmsEndpoint;
 
     private String requestedMediaType;
 
@@ -39,7 +40,7 @@ public class PlanInfoBuilder {
         this.uriInfo = uriInfo;
     }
 
-    public PlanInfoBuilder wmsEndpoint( String wmsEndpoint ) {
+    public PlanInfoBuilder wmsEndpoint( URI wmsEndpoint ) {
         this.wmsEndpoint = wmsEndpoint;
         return this;
     }
@@ -55,8 +56,7 @@ public class PlanInfoBuilder {
         return this;
     }
 
-    public PlanInfo build()
-                            throws URISyntaxException {
+    public PlanInfo build() {
         return new PlanInfo().id( Integer.parseInt( xPlan.getId() ) ).importDate(
                                 xPlan.getImportDate() ).inspirePublished( xPlan.isInspirePublished() ).raster(
                                 xPlan.isRaster() ).version( version() ).bbox( bbox() ).links( links() ).type(
@@ -74,8 +74,7 @@ public class PlanInfoBuilder {
         return VersionEnum.fromValue( xPlan.getVersion() );
     }
 
-    private List<Link> links()
-                            throws URISyntaxException {
+    private List<Link> links() {
         List<Link> links = new ArrayList<>();
         URI selfRef = uriInfo.getBaseUriBuilder().path( "plan" ).path( xPlan.getId() ).build();
         Link selfLink = new Link().href( selfRef ).rel( SELF ).type( requestedMediaType ).title( xPlan.getName() );
@@ -88,6 +87,15 @@ public class PlanInfoBuilder {
         } );
 
         if ( wmsEndpoint != null ) {
+            Link planwerkWmsLink = createWmsEndpointUrl();
+            if ( planwerkWmsLink != null )
+                links.add( planwerkWmsLink );
+        }
+        return links;
+    }
+
+    private Link createWmsEndpointUrl() {
+        try {
             String planname = xPlan.getName().replaceAll( "[^a-zA-Z0-9\\\\-_]", "" );
             URIBuilder uriBuilder = new URIBuilder( wmsEndpoint );
             List<String> pathSegments = new ArrayList<>();
@@ -99,9 +107,11 @@ public class PlanInfoBuilder {
             uriBuilder.setPathSegments( pathSegments );
             URI planwerkWmsRef = uriBuilder.build();
             Link planwerkWmsLink = new Link().href( planwerkWmsRef ).rel( PLANWERKWMS ).title( xPlan.getName() );
-            links.add( planwerkWmsLink );
+            return planwerkWmsLink;
+        } catch ( URISyntaxException e ) {
+            Log.warn( "Could not build XPlanwerkWMS url: " + e.getMessage(), e );
         }
-        return links;
+        return null;
     }
 
     private PlanInfoBbox bbox() {

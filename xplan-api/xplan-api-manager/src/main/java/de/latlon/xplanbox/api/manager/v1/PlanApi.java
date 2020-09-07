@@ -158,7 +158,7 @@ public class PlanApi {
                             throws URISyntaxException {
         List<String> alternateMediaTypes = alternateMediaTypes( requestedMediaType );
         return new PlanInfoBuilder( planById, uriInfo ).wmsEndpoint(
-                                managerConfiguration.getwmsEndpoint() ).requestedMediaType(
+                                managerConfiguration.getWmsEndpoint() ).requestedMediaType(
                                 requestedMediaType.toString() ).alternateMediaType( alternateMediaTypes ).build();
     }
 
