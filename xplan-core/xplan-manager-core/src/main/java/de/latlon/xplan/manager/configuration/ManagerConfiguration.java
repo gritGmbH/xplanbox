@@ -100,6 +100,8 @@ public class ManagerConfiguration {
 
     private CoupledResourceConfiguration coupledResourceConfiguration;
 
+    private DefaultValidationConfiguration defaultValidationConfiguration;
+
     public ManagerConfiguration( PropertiesLoader propertiesLoader )
                             throws ConfigurationException {
         loadProperties( propertiesLoader );
@@ -231,6 +233,13 @@ public class ManagerConfiguration {
         return coupledResourceConfiguration;
     }
 
+    /**
+     * @return the default validation configuration, never <code>null</code>
+     */
+    public DefaultValidationConfiguration getDefaultValidationConfiguration() {
+        return defaultValidationConfiguration;
+    }
+
     private void loadProperties( PropertiesLoader propertiesLoader )
                             throws ConfigurationException {
         if ( propertiesLoader != null ) {
@@ -260,6 +269,7 @@ public class ManagerConfiguration {
                 pathToHaleProjectDirectory = parsePathToHaleProjectDirectory( propertiesLoader );
                 coupledResourceConfiguration = CoupledResourceConfiguration.parseCoupledResourceConfiguration(
                                         propertiesLoader, loadProperties );
+                defaultValidationConfiguration = parseDefaultValidationConfiguration( loadProperties );
             }
             configDirectory = propertiesLoader.resolveDirectory( "synthesizer" );
         }
@@ -449,6 +459,15 @@ public class ManagerConfiguration {
         if ( directoryExistsAndIsDirectory( haleProject ) )
             return haleProject;
         return null;
+    }
+
+    private DefaultValidationConfiguration parseDefaultValidationConfiguration( Properties loadProperties ) {
+        boolean skipSemantisch = parseBoolean( loadProperties, "skipSemantisch", false );
+        boolean skipGeometrisch = parseBoolean( loadProperties, "skipGeometrisch", false );
+        boolean skipFlaechenschluss = parseBoolean( loadProperties, "skipFlaechenschluss", false );
+        boolean skipGeltungsbereich = parseBoolean( loadProperties, "skipGeltungsbereich", false );
+        return new DefaultValidationConfiguration( skipSemantisch, skipGeometrisch, skipFlaechenschluss,
+                                                   skipGeltungsbereich );
     }
 
     private boolean directoryExistsAndIsDirectory( Path directory ) {

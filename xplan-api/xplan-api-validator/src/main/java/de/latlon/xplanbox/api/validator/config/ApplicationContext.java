@@ -17,6 +17,7 @@ import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.wms.ValidatorWmsManager;
+import de.latlon.xplanbox.api.commons.handler.SystemConfigHandler;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +43,12 @@ public class ApplicationContext {
     private static final String RULES_DIRECTORY = "/rules";
 
     private static final String XPLAN_GML_WMS_WORKSPACE = "xplan-validator-wms-workspace";
+
+    @Bean
+    public SystemConfigHandler systemConfigHandler(
+                            XQuerySemanticValidatorConfigurationRetriever configurationRetriever ) {
+        return new SystemConfigHandler( configurationRetriever );
+    }
 
     @Bean
     public Path uploadFolder()

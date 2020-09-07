@@ -38,6 +38,7 @@ import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticVal
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
+import de.latlon.xplanbox.api.commons.handler.SystemConfigHandler;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -62,6 +63,12 @@ public class ApplicationContext {
     private static final String RULES_DIRECTORY = "/rules";
 
     @Bean
+    public SystemConfigHandler systemConfigHandler(
+                            XQuerySemanticValidatorConfigurationRetriever configurationRetriever ) {
+        return new SystemConfigHandler( configurationRetriever );
+    }
+
+    @Bean
     public SyntacticValidator syntacticValidator() {
         return new SyntacticValidatorImpl();
     }
@@ -72,10 +79,17 @@ public class ApplicationContext {
     }
 
     @Bean
-    public SemanticValidator semanticValidator( ManagerConfiguration managerConfiguration, Path rulesPath )
+    public SemanticValidator semanticValidator( ManagerConfiguration managerConfiguration,
+                                                XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever )
                             throws URISyntaxException, ValidatorException {
-        return new XQuerySemanticValidator( new XQuerySemanticValidatorConfigurationRetriever( rulesPath ),
+        return new XQuerySemanticValidator( xQuerySemanticValidatorConfigurationRetriever,
                                             managerConfiguration.getSemanticConformityLinkConfiguration() );
+    }
+
+    @Bean
+    public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(
+                            Path rulesPath ) {
+        return new XQuerySemanticValidatorConfigurationRetriever( rulesPath );
     }
 
     @Bean

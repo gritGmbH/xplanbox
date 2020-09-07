@@ -1,9 +1,8 @@
 package de.latlon.xplanbox.api.manager.v1.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import de.latlon.xplanbox.api.commons.v1.model.RulesMetadata;
+import de.latlon.xplanbox.api.commons.v1.model.VersionEnum;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.Valid;
@@ -23,40 +22,7 @@ public class ManagerSystemConfig {
 
     private @Valid RulesMetadata rulesMetadata;
 
-    public enum SupportedXPlanGmlVersionsEnum {
-
-        _3( String.valueOf( "XPLAN_3" ) ), _40( String.valueOf( "XPLAN_40" ) ), _41(
-                                String.valueOf( "XPLAN_41" ) ), _50( String.valueOf( "XPLAN_50" ) ), _51(
-                                String.valueOf( "XPLAN_51" ) ), _52( String.valueOf( "XPLAN_52" ) );
-
-        private String value;
-
-        SupportedXPlanGmlVersionsEnum( String v ) {
-            value = v;
-        }
-
-        public String value() {
-            return value;
-        }
-
-        @Override
-        @JsonValue
-        public String toString() {
-            return String.valueOf( value );
-        }
-
-        @JsonCreator
-        public static SupportedXPlanGmlVersionsEnum fromValue( String value ) {
-            for ( SupportedXPlanGmlVersionsEnum b : SupportedXPlanGmlVersionsEnum.values() ) {
-                if ( b.value.equals( value ) ) {
-                    return b;
-                }
-            }
-            throw new IllegalArgumentException( "Unexpected value '" + value + "'" );
-        }
-    }
-
-    private @Valid List<SupportedXPlanGmlVersionsEnum> supportedXPlanGmlVersions = new ArrayList<SupportedXPlanGmlVersionsEnum>();
+    private @Valid List<VersionEnum> supportedXPlanGmlVersions = new ArrayList<VersionEnum>();
 
     private @Valid String rasterCrs;
 
@@ -109,19 +75,18 @@ public class ManagerSystemConfig {
     /**
      *
      **/
-    public ManagerSystemConfig supportedXPlanGmlVersions(
-                            List<SupportedXPlanGmlVersionsEnum> supportedXPlanGmlVersions ) {
+    public ManagerSystemConfig supportedXPlanGmlVersions( List<VersionEnum> supportedXPlanGmlVersions ) {
         this.supportedXPlanGmlVersions = supportedXPlanGmlVersions;
         return this;
     }
 
     @ApiModelProperty(value = "")
     @JsonProperty("supportedXPlanGmlVersions")
-    public List<SupportedXPlanGmlVersionsEnum> getSupportedXPlanGmlVersions() {
+    public List<VersionEnum> getSupportedXPlanGmlVersions() {
         return supportedXPlanGmlVersions;
     }
 
-    public void setSupportedXPlanGmlVersions( List<SupportedXPlanGmlVersionsEnum> supportedXPlanGmlVersions ) {
+    public void setSupportedXPlanGmlVersions( List<VersionEnum> supportedXPlanGmlVersions ) {
         this.supportedXPlanGmlVersions = supportedXPlanGmlVersions;
     }
 
