@@ -35,6 +35,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
@@ -131,7 +132,8 @@ public class PlanHandler {
         if ( wmsEndpoint == null )
             return null;
         URIBuilder uriBuilder = new URIBuilder( wmsEndpoint );
-        List<String> pathSegments = uriBuilder.getPathSegments();
+        List<String> pathSegments = new ArrayList<>();
+        pathSegments.addAll( uriBuilder.getPathSegments() );
         pathSegments.add( "services" );
         pathSegments.add( detectService( xPlan ) );
         uriBuilder.setPathSegments( pathSegments );

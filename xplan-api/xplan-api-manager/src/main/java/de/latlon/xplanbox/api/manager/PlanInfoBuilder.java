@@ -68,7 +68,8 @@ public class PlanInfoBuilder {
         if ( wmsEndpoint != null ) {
             String planname = xPlan.getName().replaceAll( "[^a-zA-Z0-9\\\\-_]", "" );
             URIBuilder uriBuilder = new URIBuilder( wmsEndpoint );
-            List<String> pathSegments = uriBuilder.getPathSegments();
+            List<String> pathSegments = new ArrayList<>();
+            pathSegments.addAll( uriBuilder.getPathSegments() );
             pathSegments.add( "services" );
             pathSegments.add( detectService() );
             pathSegments.add( "planname" );
