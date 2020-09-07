@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.manager.v1;
 
+import de.latlon.xplan.manager.configuration.DefaultValidationConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
@@ -60,9 +61,6 @@ public class PlanApi {
     @Context
     private ManagerConfiguration managerConfiguration;
 
-    @Context
-    private Request request;
-
     @POST
     @Consumes({ "application/octet-stream" })
     @Produces({ "application/json" })
@@ -101,10 +99,16 @@ public class PlanApi {
                                                         String planStatus )
                             throws Exception {
         String validationName = detectOrCreateValidationName( xFilename );
-        ValidationSettings validationSettings = createValidationSettings( validationName, skipGeometrisch,
-                                                                          skipSemantisch, skipFlaechenschluss,
-                                                                          skipGeltungsbereich );
-
+        DefaultValidationConfiguration validationConfig = managerConfiguration.getDefaultValidationConfiguration();
+        ValidationSettings validationSettings = createValidationSettings( validationName,
+                                                                          overwriteByRequest( skipGeometrisch,
+                                                                                              validationConfig.isSkipGeometrisch() ),
+                                                                          overwriteByRequest( skipSemantisch,
+                                                                                              validationConfig.isSkipSemantisch() ),
+                                                                          overwriteByRequest( skipFlaechenschluss,
+                                                                                              validationConfig.isSkipFlaechenschluss() ),
+                                                                          overwriteByRequest( skipGeltungsbereich,
+                                                                                              validationConfig.isSkipGeltungsbereich() ) );
         Status status = planHandler.importPlan( body, validationName, validationSettings, internalId, planStatus );
         return Response.ok().entity( status ).build();
     }
@@ -135,12 +139,14 @@ public class PlanApi {
                             @ApiResponse(code = 404, message = "Invalid plan ID, not found", response = Void.class) })
     public Response getById(
                             @Context
+                                                    Request request,
+                            @Context
                                                     UriInfo uriInfo,
                             @PathParam("planId")
                             @ApiParam("ID of the plan to be returned")
                                                     String planId )
                             throws Exception {
-        MediaType requestedMediaType = requestedMediaType();
+        MediaType requestedMediaType = requestedMediaType( request );
         if ( APPLICATION_ZIP_TYPE.equals( requestedMediaType ) ) {
             StreamingOutput plan = planHandler.exportPlan( planId );
             return Response.ok( plan ).type( APPLICATION_ZIP ).header( "Content-Disposition",
@@ -171,6 +177,8 @@ public class PlanApi {
                             @ApiResponse(code = 404, message = "Invalid plan name, not found", response = Void.class) })
     public Response getByName(
                             @Context
+                                                    Request request,
+                            @Context
                                                     UriInfo uriInfo,
                             @PathParam("planName")
                             @Pattern(regexp = "^[A-Za-z0-9_-]*$")
@@ -178,7 +186,7 @@ public class PlanApi {
                                                     String planName )
                             throws Exception {
         XPlan xPlan = planHandler.findPlanByName( planName );
-        MediaType requestedMediaType = requestedMediaType();
+        MediaType requestedMediaType = requestedMediaType( request );
         if ( APPLICATION_ZIP_TYPE.equals( requestedMediaType ) ) {
             StreamingOutput plan = planHandler.exportPlan( xPlan.getId() );
             return Response.ok( plan ).type( APPLICATION_ZIP ).header( "Content-Disposition",
@@ -189,7 +197,7 @@ public class PlanApi {
         return Response.ok().entity( planInfo ).build();
     }
 
-    private MediaType requestedMediaType() {
+    private MediaType requestedMediaType( Request request ) {
         Variant.VariantListBuilder acceptedMediaTypes = Variant.mediaTypes( MEDIA_TYPES_SEARCH );
         Variant selectVariant = request.selectVariant( acceptedMediaTypes.build() );
         if ( selectVariant == null )
@@ -200,6 +208,12 @@ public class PlanApi {
     private List<String> alternateMediaTypes( MediaType requestedMediaType ) {
         return Arrays.stream( MEDIA_TYPES_SEARCH ).filter( mediaType -> !mediaType.equals( requestedMediaType ) ).map(
                                 mediaType -> mediaType.toString() ).collect( Collectors.toList() );
+    }
+
+    private boolean overwriteByRequest( Boolean requested, boolean configured ) {
+        if ( requested != null )
+            return requested;
+        return configured;
     }
 
 }
