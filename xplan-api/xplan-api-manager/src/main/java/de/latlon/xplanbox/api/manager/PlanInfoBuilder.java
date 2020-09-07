@@ -15,9 +15,9 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.ALTERNATE;
 import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.PLANWERKWMS;
 import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.SELF;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -28,7 +28,11 @@ public class PlanInfoBuilder {
 
     private final UriInfo uriInfo;
 
+    private final List<String> alternateMediaTypes = new ArrayList<>();
+
     private String wmsEndpoint;
+
+    private String requestedMediaType;
 
     public PlanInfoBuilder( XPlan xPlan, UriInfo uriInfo ) {
         this.xPlan = xPlan;
@@ -37,6 +41,17 @@ public class PlanInfoBuilder {
 
     public PlanInfoBuilder wmsEndpoint( String wmsEndpoint ) {
         this.wmsEndpoint = wmsEndpoint;
+        return this;
+    }
+
+    public PlanInfoBuilder requestedMediaType( String requestedMediaType ) {
+        this.requestedMediaType = requestedMediaType;
+        return this;
+    }
+
+    public PlanInfoBuilder alternateMediaType( List<String> alternateMediaTypes ) {
+        if ( alternateMediaTypes != null )
+            this.alternateMediaTypes.addAll( alternateMediaTypes );
         return this;
     }
 
@@ -63,8 +78,15 @@ public class PlanInfoBuilder {
                             throws URISyntaxException {
         List<Link> links = new ArrayList<>();
         URI selfRef = uriInfo.getBaseUriBuilder().path( "plan" ).path( xPlan.getId() ).build();
-        Link selfLink = new Link().href( selfRef ).rel( SELF ).type( APPLICATION_JSON ).title( xPlan.getName() );
+        Link selfLink = new Link().href( selfRef ).rel( SELF ).type( requestedMediaType ).title( xPlan.getName() );
         links.add( selfLink );
+
+        alternateMediaTypes.forEach( mediaType -> {
+            Link alternateLink = new Link().href( selfRef ).rel( ALTERNATE ).type( mediaType ).
+                                    title( xPlan.getName() );
+            links.add( alternateLink );
+        } );
+
         if ( wmsEndpoint != null ) {
             String planname = xPlan.getName().replaceAll( "[^a-zA-Z0-9\\\\-_]", "" );
             URIBuilder uriBuilder = new URIBuilder( wmsEndpoint );
@@ -100,4 +122,5 @@ public class PlanInfoBuilder {
             }
         return "planwerkwms";
     }
+
 }

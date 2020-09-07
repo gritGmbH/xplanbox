@@ -27,12 +27,17 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Variant;
 import java.io.File;
+import java.net.URISyntaxException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
@@ -45,6 +50,9 @@ import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
 @Api(description = "the plan API")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
 public class PlanApi {
+
+    private final static MediaType[] MEDIA_TYPES_SEARCH = { APPLICATION_JSON_TYPE, APPLICATION_XML_TYPE,
+                                                            APPLICATION_ZIP_TYPE };
 
     @Autowired
     private PlanHandler planHandler;
@@ -132,16 +140,26 @@ public class PlanApi {
                             @ApiParam("ID of the plan to be returned")
                                                     String planId )
                             throws Exception {
-        if ( isZipRequested() ) {
+        MediaType requestedMediaType = requestedMediaType();
+        if ( APPLICATION_ZIP_TYPE.equals( requestedMediaType ) ) {
             StreamingOutput plan = planHandler.exportPlan( planId );
             return Response.ok( plan ).type( APPLICATION_ZIP ).header( "Content-Disposition",
                                                                        "attachment; filename=\"" + planId
                                                                        + ".zip\"" ).build();
         }
         XPlan planById = planHandler.findPlanById( planId );
-        PlanInfo planInfo = new PlanInfoBuilder( planById, uriInfo ).wmsEndpoint(
-                                managerConfiguration.getwmsEndpoint() ).build();
+        PlanInfo planInfo = createPlanInfo( uriInfo, requestedMediaType, planById );
         return Response.ok().entity( planInfo ).build();
+    }
+
+    private PlanInfo createPlanInfo(
+                            @Context
+                                                    UriInfo uriInfo, MediaType requestedMediaType, XPlan planById )
+                            throws URISyntaxException {
+        List<String> alternateMediaTypes = alternateMediaTypes( requestedMediaType );
+        return new PlanInfoBuilder( planById, uriInfo ).wmsEndpoint(
+                                managerConfiguration.getwmsEndpoint() ).requestedMediaType(
+                                requestedMediaType.toString() ).alternateMediaType( alternateMediaTypes ).build();
     }
 
     @GET
@@ -160,24 +178,28 @@ public class PlanApi {
                                                     String planName )
                             throws Exception {
         XPlan xPlan = planHandler.findPlanByName( planName );
-        if ( isZipRequested() ) {
+        MediaType requestedMediaType = requestedMediaType();
+        if ( APPLICATION_ZIP_TYPE.equals( requestedMediaType ) ) {
             StreamingOutput plan = planHandler.exportPlan( xPlan.getId() );
             return Response.ok( plan ).type( APPLICATION_ZIP ).header( "Content-Disposition",
                                                                        "attachment; filename=\"" + planName
                                                                        + ".zip\"" ).build();
         }
-        PlanInfo planInfo = new PlanInfoBuilder( xPlan, uriInfo ).wmsEndpoint(
-                                managerConfiguration.getwmsEndpoint() ).build();
+        PlanInfo planInfo = createPlanInfo( uriInfo, requestedMediaType, xPlan );
         return Response.ok().entity( planInfo ).build();
     }
 
-    private boolean isZipRequested() {
-        Variant.VariantListBuilder acceptedMediaTypes = Variant.mediaTypes( APPLICATION_JSON_TYPE, APPLICATION_XML_TYPE,
-                                                                            APPLICATION_ZIP_TYPE );
+    private MediaType requestedMediaType() {
+        Variant.VariantListBuilder acceptedMediaTypes = Variant.mediaTypes( MEDIA_TYPES_SEARCH );
         Variant selectVariant = request.selectVariant( acceptedMediaTypes.build() );
-        if ( selectVariant != null )
-            return APPLICATION_ZIP_TYPE.equals( selectVariant );
-        return false;
+        if ( selectVariant == null )
+            return APPLICATION_JSON_TYPE;
+        return selectVariant.getMediaType();
+    }
+
+    private List<String> alternateMediaTypes( MediaType requestedMediaType ) {
+        return Arrays.stream( MEDIA_TYPES_SEARCH ).filter( mediaType -> !mediaType.equals( requestedMediaType ) ).map(
+                                mediaType -> mediaType.toString() ).collect( Collectors.toList() );
     }
 
 }
