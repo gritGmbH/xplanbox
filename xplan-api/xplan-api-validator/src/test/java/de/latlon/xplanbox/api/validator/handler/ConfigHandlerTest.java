@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 @RunWith( SpringRunner.class )
@@ -17,7 +19,12 @@ public class ConfigHandlerTest {
     private ConfigHandler configHandler;
 
     @Test
-    public void verifyThatSystemConfigIsNotNull() {
+    public void verifyThat_SystemConfig_IsNotNull() {
         assertNotNull( configHandler );
+    }
+
+    @Test
+    public void verifyThat_SystemConfig_ContainsValidationRulesMetadata() throws IOException {
+        assertFalse( configHandler.describeSystem().getSupportedXPlanGmlVersions().isEmpty() );
     }
 }

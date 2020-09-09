@@ -109,6 +109,11 @@
       <groupId>de.latlon.product.xplanbox</groupId>
       <artifactId>xplan-validator-core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>de.latlon.product.xplanbox</groupId>
+      <artifactId>xplan-api-commons</artifactId>
+      <version>${project.version}</version>
+    </dependency>
     <!-- XPlanung -->
     <dependency>
       <groupId>de.geowerkstatt-hamburg</groupId>
@@ -223,10 +228,8 @@
       <artifactId>junit</artifactId>
     </dependency>
     <dependency>
-      <groupId>io.rest-assured</groupId>
-      <artifactId>rest-assured</artifactId>
-      <version>4.3.1</version>
-      <scope>test</scope>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.test-framework</groupId>
@@ -249,12 +252,6 @@
       <groupId>org.eclipse.jdt.core.compiler</groupId>
       <artifactId>ecj</artifactId>
       <version>4.4.2</version>
-    </dependency>
-    <dependency>
-      <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-api-commons</artifactId>
-      <version>3.4-SNAPSHOT</version>
-      <scope>compile</scope>
     </dependency>
   </dependencies>
 
