@@ -34,7 +34,7 @@ public class Status {
         return this;
     }
 
-    @Schema(format = "int32", example = "123")
+    @Schema(example = "123")
     @JsonProperty("planId")
     public Integer getPlanId() {
         return planId;

@@ -165,7 +165,7 @@ public class Link {
         return this;
     }
 
-    @Schema(format = "int32")
+    @Schema
     @JsonProperty("length")
     public Integer getLength() {
         return length;

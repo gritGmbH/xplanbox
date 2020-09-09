@@ -188,8 +188,8 @@ paths:
           in: query
           description: target for data storage, overrides the default derived from xplan:rechtsstand
           schema:
-            enum: [IN_AUFSTELLUNG,FESTGESTELLT,ARCHIVIERT]
             example: FESTGESTELLT
+            enum: [IN_AUFSTELLUNG,FESTGESTELLT,ARCHIVIERT]
       requestBody:
         content:
           application/octet-stream:

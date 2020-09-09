@@ -117,6 +117,5 @@ public class SystemConfig {
         }
         return o.toString().replace( "\n", "\n    " );
     }
-
 }
 

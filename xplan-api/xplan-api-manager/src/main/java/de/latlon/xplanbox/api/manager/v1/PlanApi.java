@@ -69,7 +69,7 @@ public class PlanApi {
                             @ApiResponse(responseCode = "400", description = "Invalid input"),
                             @ApiResponse(responseCode = "405", description = "Invalid method"),
                             @ApiResponse(responseCode = "406", description = "Invalid content only ZIP with XPlanGML is accepted"),
-                            @ApiResponse(responseCode = "415", description = "Unsupported Media Type, only ZIP is accepted") }, requestBody = @RequestBody(content = @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload", required = true))))
+                            @ApiResponse(responseCode = "415", description = "Unsupported Media Type, only ZIP is accepted") }, requestBody = @RequestBody(content = @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")), required = true))
     public Response callImport( @Valid File body,
                                 @HeaderParam("X-Filename")
                                 @Parameter(description = "Name of the file to be uploaded", example = "File names such as xplan.gml, xplan.xml, xplan.zip")
@@ -94,7 +94,9 @@ public class PlanApi {
                                 @Parameter(description = "internalId links to VerfahrensId")
                                                         String internalId,
                                 @QueryParam("planStatus")
-                                @Parameter(description = "target for data storage, overrides the default derived from xplan:rechtsstand")
+                                @Parameter(description = "target for data storage, overrides the default derived from xplan:rechtsstand", schema = @Schema(allowableValues = {
+                                                        "IN_AUFSTELLUNG", "FESTGESTELLT",
+                                                        "ARCHIVIERT" }, example = "FESTGESTELLT"))
                                                         String planStatus )
                             throws Exception {
         String validationName = detectOrCreateValidationName( xFilename );
@@ -133,7 +135,10 @@ public class PlanApi {
     @Produces({ "application/json", "application/xml", "application/zip" })
     @Operation(summary = "Get plan identified by the given plan ID", description = "Returns an existing plan identified by the given plan ID", tags = {
                             "manage", "search", }, responses = {
-                            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = PlanInfo.class))),
+                            @ApiResponse(responseCode = "200", description = "successful operation", content = {
+                                                    @Content(mediaType = "application/json", schema = @Schema(implementation = PlanInfo.class)),
+                                                    @Content(mediaType = "application/xml", schema = @Schema(implementation = PlanInfo.class)),
+                                                    @Content(mediaType = "application/zip", schema = @Schema(type = "string", format = "binary")) }),
                             @ApiResponse(responseCode = "400", description = "Invalid tag value"),
                             @ApiResponse(responseCode = "404", description = "Invalid plan ID, not found") })
     public Response getById(
@@ -161,9 +166,11 @@ public class PlanApi {
     @Path("/name/{planName}")
     @Produces({ "application/json", "application/xml", "application/zip" })
     @Operation(summary = "Get plan identified by the given planName", description = "Returns an existing plan identified by the given planName", tags = {
-                            "search" }, responses = {
-                            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = PlanInfo.class))),
-                            @ApiResponse(responseCode = "404", description = "Invalid plan name, not found") })
+                            "search" }, responses = { @ApiResponse(responseCode = "200", description = "OK", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = PlanInfo.class)),
+                            @Content(mediaType = "application/xml", schema = @Schema(implementation = PlanInfo.class)),
+                            @Content(mediaType = "application/zip", schema = @Schema(type = "string", format = "binary")) }),
+                                                      @ApiResponse(responseCode = "404", description = "Invalid plan name, not found") })
     public Response getByName(
                             @Context
                                                     Request request,

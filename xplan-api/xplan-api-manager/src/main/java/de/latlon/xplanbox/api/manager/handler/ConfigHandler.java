@@ -36,14 +36,14 @@ public class ConfigHandler {
         WorkspaceRasterLayerManager.RasterConfigurationType rasterType = managerConfiguration.getRasterConfigurationType();
         DefaultValidationConfiguration defaultValidationConfiguration = managerConfiguration.getDefaultValidationConfiguration();
 
-        return new ManagerSystemConfig().rulesMetadata(
-                                systemConfigHandler.getRulesMetadata() ).supportedXPlanGmlVersions(
-                                systemConfigHandler.allSupportedVersions() ).rasterCrs( rasterCrs ).rasterType(
+        return (ManagerSystemConfig) new ManagerSystemConfig().rasterCrs( rasterCrs ).rasterType(
                                 rasterType.name() ).skipSemantisch(
                                 defaultValidationConfiguration.isSkipSemantisch() ).skipGeometrisch(
                                 defaultValidationConfiguration.isSkipGeometrisch() ).skipFlaechenschluss(
                                 defaultValidationConfiguration.isSkipFlaechenschluss() ).skipGeltungsbereich(
-                                defaultValidationConfiguration.isSkipGeltungsbereich() );
+                                defaultValidationConfiguration.isSkipGeltungsbereich() ).rulesMetadata(
+                                systemConfigHandler.getRulesMetadata() ).supportedXPlanGmlVersions(
+                                systemConfigHandler.allSupportedVersions() );
     }
 
 }

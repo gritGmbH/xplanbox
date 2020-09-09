@@ -1,28 +1,20 @@
 package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import de.latlon.xplanbox.api.commons.v1.model.RulesMetadata;
-import de.latlon.xplanbox.api.commons.v1.model.VersionEnum;
+import de.latlon.xplanbox.api.commons.v1.model.SystemConfig;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Objects;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ManagerSystemConfig {
-
-    private @Valid String version;
-
-    private @Valid RulesMetadata rulesMetadata;
-
-    private @Valid List<VersionEnum> supportedXPlanGmlVersions = new ArrayList<VersionEnum>();
+public class ManagerSystemConfig extends SystemConfig {
 
     private @Valid String rasterCrs;
 
@@ -35,60 +27,6 @@ public class ManagerSystemConfig {
     private @Valid Boolean skipFlaechenschluss = false;
 
     private @Valid Boolean skipGeltungsbereich = false;
-
-    /**
-     * Version der xPlanBox
-     **/
-    public ManagerSystemConfig version( String version ) {
-        this.version = version;
-        return this;
-    }
-
-    @Schema(example = "v3.4.0", description = "Version der xPlanBox")
-    @JsonProperty("version")
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion( String version ) {
-        this.version = version;
-    }
-
-    /**
-     *
-     **/
-    public ManagerSystemConfig rulesMetadata( RulesMetadata rulesMetadata ) {
-        this.rulesMetadata = rulesMetadata;
-        return this;
-    }
-
-    @Schema(description = "")
-    @JsonProperty("rulesMetadata")
-    public RulesMetadata getRulesMetadata() {
-        return rulesMetadata;
-    }
-
-    public void setRulesMetadata( RulesMetadata rulesMetadata ) {
-        this.rulesMetadata = rulesMetadata;
-    }
-
-    /**
-     *
-     **/
-    public ManagerSystemConfig supportedXPlanGmlVersions( List<VersionEnum> supportedXPlanGmlVersions ) {
-        this.supportedXPlanGmlVersions = supportedXPlanGmlVersions;
-        return this;
-    }
-
-    @Schema(description = "")
-    @JsonProperty("supportedXPlanGmlVersions")
-    public List<VersionEnum> getSupportedXPlanGmlVersions() {
-        return supportedXPlanGmlVersions;
-    }
-
-    public void setSupportedXPlanGmlVersions( List<VersionEnum> supportedXPlanGmlVersions ) {
-        this.supportedXPlanGmlVersions = supportedXPlanGmlVersions;
-    }
 
     /**
      * Konfiguriertes CRS für die Rasterdatenhaltung
@@ -207,12 +145,9 @@ public class ManagerSystemConfig {
             return false;
         }
         ManagerSystemConfig managerSystemConfig = (ManagerSystemConfig) o;
-        return Objects.equals( this.version, managerSystemConfig.version ) && Objects.equals( this.rulesMetadata,
-                                                                                              managerSystemConfig.rulesMetadata )
-               && Objects.equals( this.supportedXPlanGmlVersions, managerSystemConfig.supportedXPlanGmlVersions )
-               && Objects.equals( this.rasterCrs, managerSystemConfig.rasterCrs ) && Objects.equals( this.rasterType,
-                                                                                                     managerSystemConfig.rasterType )
-               && Objects.equals( this.skipSemantisch, managerSystemConfig.skipSemantisch ) && Objects.equals(
+        return super.equals( o ) && Objects.equals( this.rasterCrs, managerSystemConfig.rasterCrs ) && Objects.equals(
+                                this.rasterType, managerSystemConfig.rasterType ) && Objects.equals(
+                                this.skipSemantisch, managerSystemConfig.skipSemantisch ) && Objects.equals(
                                 this.skipGeometrisch, managerSystemConfig.skipGeometrisch ) && Objects.equals(
                                 this.skipFlaechenschluss, managerSystemConfig.skipFlaechenschluss ) && Objects.equals(
                                 this.skipGeltungsbereich, managerSystemConfig.skipGeltungsbereich );
@@ -220,8 +155,9 @@ public class ManagerSystemConfig {
 
     @Override
     public int hashCode() {
-        return Objects.hash( version, rulesMetadata, supportedXPlanGmlVersions, rasterCrs, rasterType, skipSemantisch,
-                             skipGeometrisch, skipFlaechenschluss, skipGeltungsbereich );
+        return Arrays.hashCode( new int[] { super.hashCode(),
+                                            Objects.hash( rasterCrs, rasterType, skipSemantisch, skipGeometrisch,
+                                                          skipFlaechenschluss, skipGeltungsbereich ) } );
     }
 
     @Override
@@ -229,10 +165,10 @@ public class ManagerSystemConfig {
         StringBuilder sb = new StringBuilder();
         sb.append( "class ManagerSystemConfig {\n" );
 
-        sb.append( "    version: " ).append( toIndentedString( version ) ).append( "\n" );
-        sb.append( "    rulesMetadata: " ).append( toIndentedString( rulesMetadata ) ).append( "\n" );
-        sb.append( "    supportedXPlanGmlVersions: " ).append( toIndentedString( supportedXPlanGmlVersions ) ).append(
-                                "\n" );
+        sb.append( "    version: " ).append( toIndentedString( getVersion() ) ).append( "\n" );
+        sb.append( "    rulesMetadata: " ).append( toIndentedString( getRulesMetadata() ) ).append( "\n" );
+        sb.append( "    supportedXPlanGmlVersions: " ).append(
+                                toIndentedString( getSupportedXPlanGmlVersions() ) ).append( "\n" );
         sb.append( "    rasterCrs: " ).append( toIndentedString( rasterCrs ) ).append( "\n" );
         sb.append( "    rasterType: " ).append( toIndentedString( rasterType ) ).append( "\n" );
         sb.append( "    skipSemantisch: " ).append( toIndentedString( skipSemantisch ) ).append( "\n" );
