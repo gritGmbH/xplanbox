@@ -1,7 +1,7 @@
 package de.latlon.xplanbox.api.commons.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,11 +16,14 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ValidationReportValidationResultGeometrisch {
 
-    private @Valid Boolean valid;
+    private @Valid
+    Boolean valid;
 
-    private @Valid List<String> errors = new ArrayList<String>();
+    private @Valid
+    List<String> errors = new ArrayList<String>();
 
-    private @Valid List<String> warnings = new ArrayList<String>();
+    private @Valid
+    List<String> warnings = new ArrayList<String>();
 
     /**
      *
@@ -30,7 +33,7 @@ public class ValidationReportValidationResultGeometrisch {
         return this;
     }
 
-    @ApiModelProperty(example = "false", value = "")
+    @Schema(example = "false")
     @JsonProperty("valid")
     public Boolean getValid() {
         return valid;
@@ -48,7 +51,7 @@ public class ValidationReportValidationResultGeometrisch {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema
     @JsonProperty("errors")
     public List<String> getErrors() {
         return errors;
@@ -66,7 +69,7 @@ public class ValidationReportValidationResultGeometrisch {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema
     @JsonProperty("warnings")
     public List<String> getWarnings() {
         return warnings;

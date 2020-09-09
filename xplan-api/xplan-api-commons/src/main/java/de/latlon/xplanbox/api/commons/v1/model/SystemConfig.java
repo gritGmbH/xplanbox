@@ -1,9 +1,8 @@
 package de.latlon.xplanbox.api.commons.v1.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -13,11 +12,14 @@ import java.util.Objects;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-27T12:32:04.497+02:00[Europe/Berlin]")
 public class SystemConfig {
 
-    private @Valid String version;
+    private @Valid
+    String version;
 
-    private @Valid RulesMetadata rulesMetadata;
+    private @Valid
+    RulesMetadata rulesMetadata;
 
-    private @Valid List<VersionEnum> supportedXPlanGmlVersions = new ArrayList<VersionEnum>();
+    private @Valid
+    List<VersionEnum> supportedXPlanGmlVersions = new ArrayList<VersionEnum>();
 
     /**
      * Version der xPlanBox
@@ -27,7 +29,7 @@ public class SystemConfig {
         return this;
     }
 
-    @ApiModelProperty(example = "v3.4.0", value = "Version der xPlanBox")
+    @Schema(example = "v3.4.0", description = "Version der xPlanBox")
     @JsonProperty("version")
     public String getVersion() {
         return version;
@@ -45,7 +47,7 @@ public class SystemConfig {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema
     @JsonProperty("rulesMetadata")
     public RulesMetadata getRulesMetadata() {
         return rulesMetadata;
@@ -63,7 +65,7 @@ public class SystemConfig {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @ArraySchema(schema = @Schema(example = "XPLAN_51"))
     @JsonProperty("supportedXPlanGmlVersions")
     public List<VersionEnum> getSupportedXPlanGmlVersions() {
         return supportedXPlanGmlVersions;

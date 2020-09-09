@@ -1,7 +1,7 @@
 package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -32,7 +32,7 @@ public class PlanInfoBbox {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema(example = "9.880772")
     @JsonProperty("minX")
     public Double getMinX() {
         return minX;
@@ -50,7 +50,7 @@ public class PlanInfoBbox {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema(example = "53.544973")
     @JsonProperty("minY")
     public Double getMinY() {
         return minY;
@@ -68,7 +68,7 @@ public class PlanInfoBbox {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema(example = "9.890302")
     @JsonProperty("maxX")
     public Double getMaxX() {
         return maxX;
@@ -86,7 +86,7 @@ public class PlanInfoBbox {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema(example = "53.546704")
     @JsonProperty("maxY")
     public Double getMaxY() {
         return maxY;
@@ -104,7 +104,7 @@ public class PlanInfoBbox {
         return this;
     }
 
-    @ApiModelProperty(example = "epsg:4326", value = "")
+    @Schema(example = "epsg:4326")
     @JsonProperty("crs")
     public String getCrs() {
         return crs;

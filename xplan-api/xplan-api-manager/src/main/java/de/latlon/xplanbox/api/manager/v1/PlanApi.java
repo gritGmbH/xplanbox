@@ -8,15 +8,15 @@ import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
 import de.latlon.xplanbox.api.manager.handler.PlanHandler;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import de.latlon.xplanbox.api.manager.v1.model.Status;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -48,7 +48,6 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
 
 @Path("/plan")
-@Api(description = "the plan API")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
 public class PlanApi {
 
@@ -64,38 +63,38 @@ public class PlanApi {
     @POST
     @Consumes({ "application/octet-stream" })
     @Produces({ "application/json" })
-    @ApiOperation(value = "Import the plan", notes = "Imports the plan", response = Status.class, tags = { "manage", })
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "successful operation", response = Status.class),
-                            @ApiResponse(code = 400, message = "Invalid input", response = Void.class),
-                            @ApiResponse(code = 405, message = "Invalid method", response = Void.class),
-                            @ApiResponse(code = 406, message = "Invalid content only ZIP with XPlanGML is accepted", response = Void.class),
-                            @ApiResponse(code = 415, message = "Unsupported Media Type, only ZIP is accepted", response = Void.class),
-                            @ApiResponse(code = 200, message = "Unexpected error", response = Void.class) })
+    @Operation(operationId = "import", summary = "Import the plan", description = "Imports the plan", tags = {
+                            "manage", }, responses = {
+                            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Status.class))),
+                            @ApiResponse(responseCode = "400", description = "Invalid input"),
+                            @ApiResponse(responseCode = "405", description = "Invalid method"),
+                            @ApiResponse(responseCode = "406", description = "Invalid content only ZIP with XPlanGML is accepted"),
+                            @ApiResponse(responseCode = "415", description = "Unsupported Media Type, only ZIP is accepted") }, requestBody = @RequestBody(content = @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload", required = true))))
     public Response callImport( @Valid File body,
                                 @HeaderParam("X-Filename")
-                                @ApiParam("Name of the file to be uploaded")
+                                @Parameter(description = "Name of the file to be uploaded", example = "File names such as xplan.gml, xplan.xml, xplan.zip")
                                                         String xFilename,
                                 @QueryParam("skipSemantisch")
                                 @DefaultValue("false")
-                                @ApiParam("skip semantische Validierung")
+                                @Parameter(description = "skip semantische Validierung")
                                                         Boolean skipSemantisch,
                                 @QueryParam("skipGeometrisch")
                                 @DefaultValue("false")
-                                @ApiParam("skip geometrische Validierung")
+                                @Parameter(description = "skip geometrische Validierung")
                                                         Boolean skipGeometrisch,
                                 @QueryParam("skipFlaechenschluss")
                                 @DefaultValue("false")
-                                @ApiParam("skip Flaechenschluss Ueberpruefung")
+                                @Parameter(description = "skip Flaechenschluss Ueberpruefung")
                                                         Boolean skipFlaechenschluss,
                                 @QueryParam("skipGeltungsbereich")
                                 @DefaultValue("false")
-                                @ApiParam("skip Geltungsbereich Ueberpruefung")
+                                @Parameter(description = "skip Geltungsbereich Ueberpruefung")
                                                         Boolean skipGeltungsbereich,
                                 @QueryParam("internalId")
-                                @ApiParam("internalId links to VerfahrensId")
+                                @Parameter(description = "internalId links to VerfahrensId")
                                                         String internalId,
                                 @QueryParam("planStatus")
-                                @ApiParam("target for data storage, overrides the default derived from xplan:rechtsstand")
+                                @Parameter(description = "target for data storage, overrides the default derived from xplan:rechtsstand")
                                                         String planStatus )
                             throws Exception {
         String validationName = detectOrCreateValidationName( xFilename );
@@ -115,14 +114,14 @@ public class PlanApi {
 
     @DELETE
     @Path("/{planId}")
-    @ApiOperation(value = "Delete plan identified by the given plan ID", notes = "Deletes an existing plan identified by the given plan ID, limited to plans in status \"in Aufstellung\"", response = Void.class, tags = {
-                            "manage", })
-    @ApiResponses(value = { @ApiResponse(code = 204, message = "successful operation", response = Void.class),
-                            @ApiResponse(code = 400, message = "Invalid tag value", response = Void.class),
-                            @ApiResponse(code = 404, message = "Invalid plan ID, not found", response = Void.class) })
+    @Operation(summary = "Delete plan identified by the given plan ID", description = "Deletes an existing plan identified by the given plan ID, limited to plans in status \"in Aufstellung\"", tags = {
+                            "manage", }, responses = {
+                            @ApiResponse(responseCode = "204", description = "successful operation"),
+                            @ApiResponse(responseCode = "400", description = "Invalid tag value"),
+                            @ApiResponse(responseCode = "404", description = "Invalid plan ID, not found") })
     public Response delete(
                             @PathParam("planId")
-                            @ApiParam("ID of the plan to be removed")
+                            @Parameter(description = "ID of the plan to be removed", example = "123")
                                                     String planId )
                             throws Exception {
         planHandler.deletePlan( planId );
@@ -132,18 +131,18 @@ public class PlanApi {
     @GET
     @Path("/{planId}")
     @Produces({ "application/json", "application/xml", "application/zip" })
-    @ApiOperation(value = "Get plan identified by the given plan ID", notes = "Returns an existing plan identified by the given plan ID", response = PlanInfo.class, tags = {
-                            "manage", "search", })
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "successful operation", response = PlanInfo.class),
-                            @ApiResponse(code = 400, message = "Invalid tag value", response = Void.class),
-                            @ApiResponse(code = 404, message = "Invalid plan ID, not found", response = Void.class) })
+    @Operation(summary = "Get plan identified by the given plan ID", description = "Returns an existing plan identified by the given plan ID", tags = {
+                            "manage", "search", }, responses = {
+                            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = PlanInfo.class))),
+                            @ApiResponse(responseCode = "400", description = "Invalid tag value"),
+                            @ApiResponse(responseCode = "404", description = "Invalid plan ID, not found") })
     public Response getById(
                             @Context
                                                     Request request,
                             @Context
                                                     UriInfo uriInfo,
                             @PathParam("planId")
-                            @ApiParam("ID of the plan to be returned")
+                            @Parameter(description = "ID of the plan to be returned", example = "123")
                                                     String planId )
                             throws Exception {
         MediaType requestedMediaType = requestedMediaType( request );
@@ -158,31 +157,20 @@ public class PlanApi {
         return Response.ok().entity( planInfo ).build();
     }
 
-    private PlanInfo createPlanInfo(
-                            @Context
-                                                    UriInfo uriInfo, MediaType requestedMediaType, XPlan planById )
-                            throws URISyntaxException {
-        List<String> alternateMediaTypes = alternateMediaTypes( requestedMediaType );
-        return new PlanInfoBuilder( planById, uriInfo ).wmsEndpoint(
-                                managerConfiguration.getWmsEndpoint() ).requestedMediaType(
-                                requestedMediaType.toString() ).alternateMediaType( alternateMediaTypes ).build();
-    }
-
     @GET
     @Path("/name/{planName}")
     @Produces({ "application/json", "application/xml", "application/zip" })
-    @ApiOperation(value = "Get plan identified by the given planName", notes = "Returns an existing plan identified by the given planName", response = PlanInfo.class, tags = {
-                            "search" })
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = PlanInfo.class),
-                            @ApiResponse(code = 404, message = "Invalid plan name, not found", response = Void.class) })
+    @Operation(summary = "Get plan identified by the given planName", description = "Returns an existing plan identified by the given planName", tags = {
+                            "search" }, responses = {
+                            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = PlanInfo.class))),
+                            @ApiResponse(responseCode = "404", description = "Invalid plan name, not found") })
     public Response getByName(
                             @Context
                                                     Request request,
                             @Context
                                                     UriInfo uriInfo,
                             @PathParam("planName")
-                            @Pattern(regexp = "^[A-Za-z0-9_-]*$")
-                            @ApiParam("planName of the plan to be return")
+                            @Parameter(description = "planName of the plan to be return", example = "bplan_123, fplan-123, rplan20200803", schema = @Schema(pattern = "^[A-Za-z0-9_-]*$"))
                                                     String planName )
                             throws Exception {
         XPlan xPlan = planHandler.findPlanByName( planName );
@@ -195,6 +183,14 @@ public class PlanApi {
         }
         PlanInfo planInfo = createPlanInfo( uriInfo, requestedMediaType, xPlan );
         return Response.ok().entity( planInfo ).build();
+    }
+
+    private PlanInfo createPlanInfo( UriInfo uriInfo, MediaType requestedMediaType, XPlan planById )
+                            throws URISyntaxException {
+        List<String> alternateMediaTypes = alternateMediaTypes( requestedMediaType );
+        return new PlanInfoBuilder( planById, uriInfo ).wmsEndpoint(
+                                managerConfiguration.getWmsEndpoint() ).requestedMediaType(
+                                requestedMediaType.toString() ).alternateMediaType( alternateMediaTypes ).build();
     }
 
     private MediaType requestedMediaType( Request request ) {

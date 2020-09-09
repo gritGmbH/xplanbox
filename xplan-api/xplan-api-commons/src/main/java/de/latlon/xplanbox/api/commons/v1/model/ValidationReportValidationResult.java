@@ -1,7 +1,7 @@
 package de.latlon.xplanbox.api.commons.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
 import java.util.Objects;
@@ -25,7 +25,7 @@ public class ValidationReportValidationResult {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema
     @JsonProperty("semantisch")
     public ValidationReportValidationResultSemantisch getSemantisch() {
         return semantisch;
@@ -43,7 +43,7 @@ public class ValidationReportValidationResult {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema
     @JsonProperty("geometrisch")
     public ValidationReportValidationResultGeometrisch getGeometrisch() {
         return geometrisch;
@@ -61,7 +61,7 @@ public class ValidationReportValidationResult {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema
     @JsonProperty("syntaktisch")
     public ValidationReportValidationResultSyntaktisch getSyntaktisch() {
         return syntaktisch;

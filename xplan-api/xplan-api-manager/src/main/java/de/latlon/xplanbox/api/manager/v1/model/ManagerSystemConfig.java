@@ -3,7 +3,7 @@ package de.latlon.xplanbox.api.manager.v1.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.latlon.xplanbox.api.commons.v1.model.RulesMetadata;
 import de.latlon.xplanbox.api.commons.v1.model.VersionEnum;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -44,7 +44,7 @@ public class ManagerSystemConfig {
         return this;
     }
 
-    @ApiModelProperty(example = "v3.4.0", value = "Version der xPlanBox")
+    @Schema(example = "v3.4.0", description = "Version der xPlanBox")
     @JsonProperty("version")
     public String getVersion() {
         return version;
@@ -62,7 +62,7 @@ public class ManagerSystemConfig {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema(description = "")
     @JsonProperty("rulesMetadata")
     public RulesMetadata getRulesMetadata() {
         return rulesMetadata;
@@ -80,7 +80,7 @@ public class ManagerSystemConfig {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema(description = "")
     @JsonProperty("supportedXPlanGmlVersions")
     public List<VersionEnum> getSupportedXPlanGmlVersions() {
         return supportedXPlanGmlVersions;
@@ -98,7 +98,7 @@ public class ManagerSystemConfig {
         return this;
     }
 
-    @ApiModelProperty(example = "epsg:28352", value = "Konfiguriertes CRS für die Rasterdatenhaltung")
+    @Schema(example = "epsg:28352", description = "Konfiguriertes CRS für die Rasterdatenhaltung")
     @JsonProperty("rasterCrs")
     public String getRasterCrs() {
         return rasterCrs;
@@ -116,7 +116,7 @@ public class ManagerSystemConfig {
         return this;
     }
 
-    @ApiModelProperty(example = "gdal", value = "Typ der Rasterdatenhaltung: gdal oder tiff")
+    @Schema(example = "gdal", description = "Typ der Rasterdatenhaltung: gdal oder tiff")
     @JsonProperty("rasterType")
     public String getRasterType() {
         return rasterType;
@@ -134,7 +134,7 @@ public class ManagerSystemConfig {
         return this;
     }
 
-    @ApiModelProperty(value = "Semantische Validierung bei Import ueberspringen")
+    @Schema(description = "Semantische Validierung bei Import ueberspringen")
     @JsonProperty("skipSemantisch")
     public Boolean getSkipSemantisch() {
         return skipSemantisch;
@@ -152,7 +152,7 @@ public class ManagerSystemConfig {
         return this;
     }
 
-    @ApiModelProperty(value = "Geometrische Validierung bei Import ueberspringen")
+    @Schema(description = "Geometrische Validierung bei Import ueberspringen")
     @JsonProperty("skipGeometrisch")
     public Boolean getSkipGeometrisch() {
         return skipGeometrisch;
@@ -170,7 +170,7 @@ public class ManagerSystemConfig {
         return this;
     }
 
-    @ApiModelProperty(value = "Ueberpruefung des Flaechenschluss bei Import ueberspringen")
+    @Schema(description = "Ueberpruefung des Flaechenschluss bei Import ueberspringen")
     @JsonProperty("skipFlaechenschluss")
     public Boolean getSkipFlaechenschluss() {
         return skipFlaechenschluss;
@@ -188,7 +188,7 @@ public class ManagerSystemConfig {
         return this;
     }
 
-    @ApiModelProperty(value = "Ueberpruefung des Geltungsbereich bei Import ueberspringen")
+    @Schema(description = "Ueberpruefung des Geltungsbereich bei Import ueberspringen")
     @JsonProperty("skipGeltungsbereich")
     public Boolean getSkipGeltungsbereich() {
         return skipGeltungsbereich;

@@ -2,8 +2,7 @@ package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -15,7 +14,7 @@ import java.util.Objects;
 /**
  * Status
  **/
-@ApiModel(description = "Status")
+@Schema(description = "Status")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -35,7 +34,7 @@ public class Status {
         return this;
     }
 
-    @ApiModelProperty(example = "123", value = "")
+    @Schema(format = "int32", example = "123")
     @JsonProperty("planId")
     public Integer getPlanId() {
         return planId;
@@ -53,7 +52,7 @@ public class Status {
         return this;
     }
 
-    @ApiModelProperty(example = "https://xplanbox.lat-lon.de/xmanager/api/v1/plan/123", value = "")
+    @Schema(example = "https://xplanbox.lat-lon.de/xmanager/api/v1/plan/123")
     @JsonProperty("link")
     public URI getLink() {
         return link;
@@ -71,7 +70,7 @@ public class Status {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema
     @JsonProperty("validationReport")
     public ValidationReport getValidationReport() {
         return validationReport;

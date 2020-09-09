@@ -4,13 +4,14 @@ import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.ValidationReportBuilder;
-import de.latlon.xplanbox.api.validator.handler.ValidationHandler;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import de.latlon.xplanbox.api.validator.handler.ValidationHandler;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -38,12 +39,14 @@ import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_PDF;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_PDF_TYPE;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP_TYPE;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
+import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
+import static javax.ws.rs.core.MediaType.TEXT_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML_TYPE;
 
 @Path("/validate")
-@Api(description = "the validate API")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-26T09:59:16.298+02:00[Europe/Berlin]")
 public class ValidateApi {
 
@@ -56,36 +59,43 @@ public class ValidateApi {
     @POST
     @Consumes({ "application/octet-stream", "text/xml", "application/gml+xml" })
     @Produces({ "application/json", "application/xml", "text/xml", "application/pdf", "application/zip" })
-    @ApiOperation(value = "Validate XPlanGML or XPlanArchive", notes = "Validates XPlanGML or XPlanArchive file", response = ValidationReport.class, tags = {
-                            "validate" })
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "ValidationReport", response = ValidationReport.class),
-                            @ApiResponse(code = 400, message = "Invalid input", response = Void.class),
-                            @ApiResponse(code = 405, message = "Invalid method", response = Void.class),
-                            @ApiResponse(code = 406, message = "Invalid content only XPlanGML or ZIP with XPlanGML is accepted", response = Void.class),
-                            @ApiResponse(code = 415, message = "Unsupported Media Type, only XML or ZIP is accepted", response = Void.class),
-                            @ApiResponse(code = 200, message = "Unexpected error", response = Void.class) })
+    @Operation(summary = "Validate XPlanGML or XPlanArchive", description = "Validates XPlanGML or XPlanArchive file", tags = {
+                            "validate" }, responses = {
+                            @ApiResponse(responseCode = "200", description = "ValidationReport", content = {
+                                                    @Content(mediaType = APPLICATION_JSON, schema = @Schema(implementation = ValidationReport.class)),
+                                                    @Content(mediaType = APPLICATION_XML, schema = @Schema(implementation = ValidationReport.class)),
+                                                    @Content(mediaType = TEXT_XML, schema = @Schema(implementation = ValidationReport.class)),
+                                                    @Content(mediaType = APPLICATION_PDF, schema = @Schema(type = "string", format = "binary")),
+                                                    @Content(mediaType = APPLICATION_ZIP, schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload", implementation = Object.class)) }),
+                            @ApiResponse(responseCode = "400", description = "Invalid input"),
+                            @ApiResponse(responseCode = "405", description = "Invalid method"),
+                            @ApiResponse(responseCode = "406", description = "Invalid content only XPlanGML or ZIP with XPlanGML is accepted"),
+                            @ApiResponse(responseCode = "415", description = "Unsupported Media Type, only XML or ZIP is accepted") }, requestBody = @RequestBody(content = {
+                            @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload")),
+                            @Content(mediaType = "text/xml", schema = @Schema(type = "string", format = "binary", description = "XPlanGML to upload")),
+                            @Content(mediaType = "application/gml+xml", schema = @Schema(type = "string", format = "binary", description = "XPlanGML to upload")) }))
     public Response validate( @Valid File body,
                               @HeaderParam("X-Filename")
-                              @ApiParam("Name of the file to be uploaded")
+                              @Parameter(description = "Name of the file to be uploaded", example = "File names such as xplan.gml, xplan.xml, xplan.zip")
                                                       String xFilename,
                               @QueryParam("name")
-                              @ApiParam("Name of the validation")
+                              @Parameter(description = "Name of the validation", example = "xplan-1, Prüfbericht_Torstrasse_10, report#4223")
                                                       String name,
                               @QueryParam("skipSemantisch")
                               @DefaultValue("false")
-                              @ApiParam("skip semantische Validierung")
+                              @Parameter(description = "skip semantische Validierung")
                                                       Boolean skipSemantisch,
                               @QueryParam("skipGeometrisch")
                               @DefaultValue("false")
-                              @ApiParam("skip geometrische Validierung")
+                              @Parameter(description = "skip geometrische Validierung")
                                                       Boolean skipGeometrisch,
                               @QueryParam("skipFlaechenschluss")
                               @DefaultValue("false")
-                              @ApiParam("skip Flaechenschluss Ueberpruefung")
+                              @Parameter(description = "skip Flaechenschluss Ueberpruefung")
                                                       Boolean skipFlaechenschluss,
                               @QueryParam("skipGeltungsbereich")
                               @DefaultValue("false")
-                              @ApiParam("skip Geltungsbereich Ueberpruefung")
+                              @Parameter(description = "skip Geltungsbereich Ueberpruefung")
                                                       Boolean skipGeltungsbereich )
                             throws IOException, ValidatorException, URISyntaxException {
         MediaType mediaType = detectRequestedMediaType();

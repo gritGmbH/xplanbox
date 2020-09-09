@@ -1,7 +1,7 @@
 package de.latlon.xplanbox.api.commons.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -28,7 +28,7 @@ public class ValidationReportValidationResultSemantisch {
         return this;
     }
 
-    @ApiModelProperty(example = "false", value = "")
+    @Schema(example = "false")
     @JsonProperty("valid")
     public Boolean getValid() {
         return valid;
@@ -47,7 +47,7 @@ public class ValidationReportValidationResultSemantisch {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema
     @JsonProperty("rules")
     public List<ValidationReportValidationResultSemantischRules> getRules() {
         return rules;

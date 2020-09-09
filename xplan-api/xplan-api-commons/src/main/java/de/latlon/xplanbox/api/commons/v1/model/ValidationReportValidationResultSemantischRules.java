@@ -1,7 +1,8 @@
 package de.latlon.xplanbox.api.commons.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -11,13 +12,17 @@ import java.util.Objects;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-27T12:32:04.497+02:00[Europe/Berlin]")
 public class ValidationReportValidationResultSemantischRules {
 
-    private @Valid String name;
+    private @Valid
+    String name;
 
-    private @Valid Boolean isValid;
+    private @Valid
+    Boolean isValid;
 
-    private @Valid String message;
+    private @Valid
+    String message;
 
-    private @Valid List<String> invalidFeatures = new ArrayList<String>();
+    private @Valid
+    List<String> invalidFeatures = new ArrayList<String>();
 
     /**
      *
@@ -27,7 +32,7 @@ public class ValidationReportValidationResultSemantischRules {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema
     @JsonProperty("name")
     public String getName() {
         return name;
@@ -45,7 +50,7 @@ public class ValidationReportValidationResultSemantischRules {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema(description = "")
     @JsonProperty("isValid")
     public Boolean getIsValid() {
         return isValid;
@@ -63,7 +68,7 @@ public class ValidationReportValidationResultSemantischRules {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @Schema
     @JsonProperty("message")
     public String getMessage() {
         return message;
@@ -81,7 +86,7 @@ public class ValidationReportValidationResultSemantischRules {
         return this;
     }
 
-    @ApiModelProperty(value = "")
+    @ArraySchema(schema = @Schema(description = "GML-ID",example = "GML_b4e47d29-d21c-42ab-85b7-b12ea57e89f2"))
     @JsonProperty("invalidFeatures")
     public List<String> getInvalidFeatures() {
         return invalidFeatures;

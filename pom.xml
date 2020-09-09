@@ -448,6 +448,11 @@
       <!-- xplan-manager internal dependencies with version -->
       <dependency>
         <groupId>${project.groupId}</groupId>
+        <artifactId>xplan-api-commons</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
         <artifactId>xplan-test-resources</artifactId>
         <version>${project.version}</version>
       </dependency>

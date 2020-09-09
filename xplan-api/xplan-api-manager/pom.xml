@@ -55,6 +55,26 @@
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
       <artifactId>xplan-manager-core</artifactId>
+      <!--
+      <exclusions>
+        <exclusion>
+          <groupId>net.sourceforge.dynamicreports</groupId>
+          <artifactId>dynamicreports-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>net.sourceforge.dynamicreports</groupId>
+          <artifactId>dynamicreports-adhoc</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>net.sourceforge.dynamicreports</groupId>
+          <artifactId>dynamicreports-googlecharts</artifactId>
+        </exclusion>
+      </exclusions>
+      -->
+    </dependency>
+    <dependency>
+      <groupId>de.latlon.product.xplanbox</groupId>
+      <artifactId>xplan-api-commons</artifactId>
     </dependency>
     <!-- XPlanung -->
     <dependency>
@@ -121,11 +141,6 @@
       <artifactId>swagger-jaxrs2-servlet-initializer</artifactId>
       <version>${swagger.version}</version>
     </dependency>
-    <dependency>
-      <groupId>io.swagger.parser.v3</groupId>
-      <artifactId>swagger-parser</artifactId>
-      <version>2.0.21</version>
-    </dependency>
     <!-- jackson -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -183,18 +198,6 @@
           <groupId>org.beanshell</groupId>
         </exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-api-commons</artifactId>
-      <version>3.4-SNAPSHOT</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-api-commons</artifactId>
-      <version>3.4-SNAPSHOT</version>
-      <scope>compile</scope>
     </dependency>
   </dependencies>
 

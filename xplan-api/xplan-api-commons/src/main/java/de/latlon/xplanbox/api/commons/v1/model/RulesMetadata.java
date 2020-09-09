@@ -1,7 +1,7 @@
 package de.latlon.xplanbox.api.commons.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -28,7 +28,7 @@ public class RulesMetadata {
         return this;
     }
 
-    @ApiModelProperty(example = "0.9.14", value = "")
+    @Schema(example = "0.9.14")
     @JsonProperty("version")
     public String getVersion() {
         return version;
@@ -46,7 +46,7 @@ public class RulesMetadata {
         return this;
     }
 
-    @ApiModelProperty(example = "https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.9.14.zip", value = "")
+    @Schema(example = "https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.9.14.zip")
     @JsonProperty("source")
     public String getSource() {
         return source;

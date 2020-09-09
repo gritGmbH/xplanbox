@@ -5,11 +5,11 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
 import de.latlon.xplanbox.api.manager.handler.PlanHandler;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.GET;
@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("/plans")
-@Api(description = "the plans API")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
 public class PlansApi {
 
@@ -37,14 +36,14 @@ public class PlansApi {
 
     @GET
     @Produces({ "application/json" })
-    @ApiOperation(value = "Search for plan by name", notes = "Returns a list of plans which match the search query", response = PlanInfo.class, responseContainer = "List", tags = {
-                            "search" })
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = PlanInfo.class, responseContainer = "List") })
+    @Operation(summary = "Search for plan by name", description = "Returns a list of plans which match the search query", tags = {
+                            "search" }, responses = {
+                            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = PlanInfo.class))) })
     public Response findByName(
                             @Context
                                                     UriInfo uriInfo,
                             @QueryParam("planName")
-                            @ApiParam("The name of the plan to search for")
+                            @Parameter(description = "The name of the plan to search for", example = "bplan_123, fplan-123, rplan20200803")
                                                     String planName )
                             throws Exception {
         List<XPlan> plans = planHandler.findPlans( planName );

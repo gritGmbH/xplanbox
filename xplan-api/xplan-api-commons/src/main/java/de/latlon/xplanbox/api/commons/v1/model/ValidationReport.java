@@ -1,7 +1,8 @@
 package de.latlon.xplanbox.api.commons.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -38,7 +39,7 @@ public class ValidationReport   {
 
 
 
-  @ApiModelProperty(example = "xplan52-test.gml", value = "")
+  @Schema(example = "xplan52-test.gml")
   @JsonProperty("filename")
   public String getFilename() {
     return filename;
@@ -56,7 +57,7 @@ public class ValidationReport   {
 
 
 
-  @ApiModelProperty(example = "xplan52-test", value = "")
+  @Schema(example = "xplan52-test")
   @JsonProperty("name")
   public String getName() {
     return name;
@@ -74,7 +75,7 @@ public class ValidationReport   {
 
 
 
-  @ApiModelProperty(example = "2020-08-24T15:06:36.662Z", value = "")
+  @Schema(example = "2020-08-24T15:06:36.662Z")
   @JsonProperty("date")
   public Date getDate() {
     return date;
@@ -92,7 +93,7 @@ public class ValidationReport   {
 
 
 
-  @ApiModelProperty(example = "false", value = "")
+  @Schema(example = "false")
   @JsonProperty("valid")
   public Boolean getValid() {
     return valid;
@@ -108,9 +109,7 @@ public class ValidationReport   {
   }
 
 
-
-
-  @ApiModelProperty(value = "")
+  @ArraySchema(schema = @Schema(example = "stelling.png"))
   @JsonProperty("externalReferences")
   public List<String> getExternalReferences() {
     return externalReferences;
@@ -128,7 +127,7 @@ public class ValidationReport   {
 
 
 
-  @ApiModelProperty(example = "https://xplanbox.lat-lon.de/xplan-validator-wms/services/wms?PLANWERK_MANAGERID=13", value = "")
+  @Schema(example = "https://xplanbox.lat-lon.de/xplan-validator-wms/services/wms?PLANWERK_MANAGERID=13")
   @JsonProperty("wmsUrl")
   public URI getWmsUrl() {
     return wmsUrl;
@@ -146,7 +145,7 @@ public class ValidationReport   {
 
 
 
-  @ApiModelProperty(value = "")
+  @Schema
   @JsonProperty("rulesMetadata")
   public RulesMetadata getRulesMetadata() {
     return rulesMetadata;
@@ -164,7 +163,7 @@ public class ValidationReport   {
 
 
 
-  @ApiModelProperty(value = "")
+  @Schema
   @JsonProperty("validationResult")
   public ValidationReportValidationResult getValidationResult() {
     return validationResult;

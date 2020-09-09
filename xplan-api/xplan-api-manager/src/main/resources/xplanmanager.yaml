@@ -36,7 +36,112 @@ paths:
             application/json:
               schema:
                 type: object
-  /plan:
+  /info:
+    get:
+      summary: Show system and application configuration
+      description: Returns the system and application configuration
+      operationId: showConfig
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagerSystemConfig'}
+  /plan/{planId}:
+    get:
+      tags:
+        - manage
+        - search
+      summary: Get plan identified by the given plan ID
+      description: Returns an existing plan identified by the given plan ID
+      operationId: getById
+      parameters:
+        - name: planId
+          in: path
+          description: ID of the plan to be returned
+          required: true
+          schema:
+            type: string
+          example: '123'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanInfo'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PlanInfo'
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        400:
+          description: Invalid tag value
+          content: { }
+        404:
+          description: Invalid plan ID, not found
+          content: { }
+    delete:
+      tags:
+        - manage
+      summary: Delete plan identified by the given plan ID
+      description: 'Deletes an existing plan identified by the given plan ID, limited to plans in status "in Aufstellung"'
+      operationId: delete
+      parameters:
+        - name: planId
+          in: path
+          description: ID of the plan to be removed
+          required: true
+          schema:
+            type: string
+          example: '123'
+      responses:
+        204:
+          description: successful operation
+          content: { }
+        400:
+          description: Invalid tag value
+          content: { }
+        404:
+          description: Invalid plan ID, not found
+          content: { }
+  /plan/name/{planName}:
+    get:
+      tags:
+        - search
+      summary: Get plan identified by the given planName
+      description: Returns an existing plan identified by the given planName
+      operationId: getByName
+      parameters:
+        - name: planName
+          in: path
+          description: planName of the plan to be return
+          required: true
+          schema:
+            pattern: '^[A-Za-z0-9_-]*$'
+            type: string
+          example: 'bplan_123, fplan-123, rplan20200803'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanInfo'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PlanInfo'
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        404:
+          description: Invalid plan name, not found
+          content: {
+                      /plan:
     post:
       tags:
         - manage
@@ -47,9 +152,9 @@ paths:
         - name: X-Filename
           in: header
           description: Name of the file to be uploaded
-          example: File names such as xplan.gml, xplan.xml, xplan.zip
           schema:
             type: string
+          example: File names such as xplan.gml, xplan.xml, xplan.zip
         - name: skipSemantisch
           in: query
           description: skip semantische Validierung
@@ -90,8 +195,8 @@ paths:
           application/octet-stream:
             schema:
               type: string
-              format: binary
               description: XPlanArchive (application/zip) file to upload
+              format: binary
         required: true
       responses:
         200:
@@ -111,99 +216,6 @@ paths:
         default:
           description: Unexpected error
           content: {}
-  /plan/{planId}:
-    get:
-      tags:
-        - manage
-        - search
-      summary: Get plan identified by the given plan ID
-      description: Returns an existing plan identified by the given plan ID
-      operationId: getById
-      parameters:
-        - name: planId
-          in: path
-          description: ID of the plan to be returned
-          example: '123'
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PlanInfo'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/PlanInfo'
-            application/zip:
-              schema:
-                type: string
-                format: binary
-        400:
-          description: Invalid tag value
-          content: {}
-        404:
-          description: Invalid plan ID, not found
-          content: {}
-    delete:
-      tags:
-        - manage
-      summary: Delete plan identified by the given plan ID
-      description: 'Deletes an existing plan identified by the given plan ID, limited to plans in status "in Aufstellung"'
-      operationId: delete
-      parameters:
-        - name: planId
-          in: path
-          description: ID of the plan to be removed
-          example: '123'
-          required: true
-          schema:
-            type: string
-      responses:
-        204:
-          description: successful operation
-          content: {}
-        400:
-          description: Invalid tag value
-          content: {}
-        404:
-          description: Invalid plan ID, not found
-          content: {}
-  /plan/name/{planName}:
-    get:
-      tags:
-        - search
-      summary: Get plan identified by the given planName
-      description: Returns an existing plan identified by the given planName
-      operationId: getByName
-      parameters:
-        - name: planName
-          in: path
-          description: planName of the plan to be return
-          example: 'bplan_123, fplan-123, rplan20200803'
-          required: true
-          schema:
-            type: string
-            pattern: '^[A-Za-z0-9_-]*$'
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PlanInfo'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/PlanInfo'
-            application/zip:
-              schema:
-                type: string
-                format: binary
-        404:
-          description: Invalid plan name, not found
-          content: {}
   /plans:
     get:
       tags:
@@ -215,9 +227,9 @@ paths:
         - name: planName
           in: query
           description: The name of the plan to search for
-          example: 'bplan_123, fplan-123, rplan20200803'
           schema:
             type: string
+          example: 'bplan_123, fplan-123, rplan20200803'
       responses:
         200:
           description: OK
@@ -227,237 +239,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PlanInfo'
-  /info:
-    get:
-      summary: Show system and application configuration
-      description: Returns the system and application configuration
-      operationId: showConfig
-      responses:
-        200:
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ManagerSystemConfig'
 components:
   schemas:
-    PlanInfo:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: internal unique manager identifier, generated at import time
-          example: 123
-        type:
-          type: string
-          example: "BP_Plan"
-        version:
-          type: string
-          enum: [XPLAN_3,XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52]
-          example: "XPLAN_51"
-        raster:
-          type: boolean
-          example: true
-        importDate:
-          type: string
-          format: date-time
-        inspirePublished:
-          type: boolean
-          example: false
-        bbox:
-          type: object
-          properties:
-            minX:
-              type: number
-              example: 9.880772
-            minY:
-              type: number
-              example: 53.544973
-            maxX:
-              type: number
-              example: 9.890302
-            maxY:
-              type: number
-              example: 53.546704
-            crs:
-              type: string
-              example: epsg:4326
-        xplanModelData:
-          type: object
-          description: attributes derived from XPlanGML data model
-          properties:
-            name:
-              type: string
-              example: "Othmarschen3"
-            nummer:
-              type: string
-              example: "-"
-            internalId:
-              type: string
-              example: "12341"
-            ags:
-              type: string
-              example: "02000000"
-            gemeindeName:
-              type: string
-              example: "Gemeindename"
-            rechtsstand:
-              description: translation of code list value of xplan:rechtsstand
-              type: string
-              example: "Satzung"
-            inkrafttretensDatum:
-              type: string
-              format: date-time
-        links:
-          type: array
-          description: Links related to the resource such as XPlanWerkWMS or self link
-          items:
-            $ref: '#/components/schemas/Link'
-          example:
-            href: https://xplanbox.lat-lon.de/xplan-wms/services/planwerkwms/planname/<PLANNAME>?
-            rel: planwerkwms
-            type: image/png
-            hreflang: de
-            title: Othmarschen 3
-    Status:
-      description: Status
-      type: object
-      properties:
-        planId:
-          type: integer
-          example: '123'
-        link:
-          type: string
-          format: uri
-          example: https://xplanbox.lat-lon.de/xmanager/api/v1/plan/123
-        validationReport:
-          $ref: '#/components/schemas/ValidationReport'
-    Link:
-      type: object
-      description: Link to a resource related to the resource such as XPlanWerkWMS or the resource itself
-      required:
-        - href
-      properties:
-        href:
-          type: string
-          format: uri
-          example: https://xplanbox.lat-lon.de/xmanager/api/v1/plan/123
-        rel:
-          type: string
-          enum: [self,alternate,planwerkwms]
-          example: self
-        type:
-          type: string
-          example: application/json
-        hreflang:
-          type: string
-          example: en
-        title:
-          type: string
-          example: Othmarschen 3, Hamburg
-        length:
-          type: integer
-    ValidationReport:
-      type: object
-      properties:
-        filename:
-          type: string
-          example: xplan52-test.gml
-        name:
-          type: string
-          example: xplan52-test
-        date:
-          type: string
-          format: date-time
-          example: '2020-08-24T15:06:36.662Z'
-        valid:
-          type: boolean
-          example: false
-        externalReferences:
-          type: array
-          items:
-            type: string
-            example: 'stelling.png'
-        wmsUrl:
-          type: string
-          format: uri
-          example: https://xplanbox.lat-lon.de/xplan-validator-wms/services/wms?PLANWERK_MANAGERID=13
-        rulesMetadata:
-          $ref: '#/components/schemas/RulesMetadata'
-        validationResult:
-          type: object
-          properties:
-            semantisch:
-              type: object
-              properties:
-                valid:
-                  type: boolean
-                  example: false
-                rules:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                      isValid:
-                        type: boolean
-                      message:
-                        type: string
-                      invalidFeatures:
-                        type: array
-                        items:
-                          type: string
-                          description: GML-ID
-                          example: GML_b4e47d29-d21c-42ab-85b7-b12ea57e89f2
-            geometrisch:
-              type: object
-              properties:
-                valid:
-                  type: boolean
-                  example: false
-                errors:
-                  type: array
-                  items:
-                    type: string
-                warnings:
-                  type: array
-                  items:
-                    type: string
-            syntaktisch:
-              type: object
-              properties:
-                valid:
-                  type: boolean
-                  example: false
-                messages:
-                  type: array
-                  items:
-                    type: string
-    RulesMetadata:
-      type: object
-      properties:
-        version:
-          type: string
-          example: 0.9.14
-        source:
-          type: string
-          example: 'https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.9.14.zip'
-    SystemConfig:
-      type: object
-      properties:
-        version:
-          description: Version der xPlanBox
-          type: string
-          example: 'v3.4.0'
-        rulesMetadata:
-          $ref: '#/components/schemas/RulesMetadata'
-        supportedXPlanGmlVersions:
-          type: array
-          items:
-            type: string
-            enum: [XPLAN_3,XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52]
-            example: "XPLAN_51"
     ManagerSystemConfig:
       allOf:
         - $ref: '#/components/schemas/SystemConfig'
@@ -487,3 +270,234 @@ components:
               description: 'Ueberpruefung des Geltungsbereich bei Import ueberspringen'
               type: boolean
               default: false
+    RulesMetadata:
+      type: object
+      properties:
+        version:
+          type: string
+          example: 0.9.14
+        source:
+          type: string
+          example: 'https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.9.14.zip'
+    SystemConfig:
+      type: object
+      properties:
+        version:
+          type: string
+          description: Version der xPlanBox
+          example: 'v3.4.0'
+        rulesMetadata:
+          $ref: '#/components/schemas/RulesMetadata'
+        supportedXPlanGmlVersions:
+          type: array
+          items:
+            type: string
+            example: "XPLAN_51"
+            enum: [ XPLAN_3,XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52 ]
+    Link:
+      required:
+        - href
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+          example: https://xplanbox.lat-lon.de/xmanager/api/v1/plan/123
+        rel:
+          type: string
+          example: self
+          enum: [ self,alternate,planwerkwms ]
+        type:
+          type: string
+          example: application/json
+        hreflang:
+          type: string
+          example: en
+        title:
+          type: string
+          example: Othmarschen 3, Hamburg
+        length:
+          type: integer
+      description: Link to a resource related to the resource such as XPlanWerkWMS or the resource itself
+    PlanInfo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: internal unique manager identifier, generated at import time
+          example: 123
+        type:
+          type: string
+          example: "BP_Plan"
+        version:
+          type: string
+          example: "XPLAN_51"
+          enum: [XPLAN_3,XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52]
+        raster:
+          type: boolean
+          example: true
+        importDate:
+          type: string
+          format: date-time
+        inspirePublished:
+          type: boolean
+          example: false
+        bbox:
+          $ref: '#/components/schemas/PlanInfoBbox'
+        xplanModelData:
+          $ref: '#/components/schemas/PlanInfoXplanModelData'
+        links:
+          type: array
+          description: Links related to the resource such as XPlanWerkWMS or self link
+          example:
+            href: https://xplanbox.lat-lon.de/xplan-wms/services/planwerkwms/planname/<PLANNAME>?
+            rel: planwerkwms
+            type: image/png
+            hreflang: de
+            title: Othmarschen 3
+          items:
+            $ref: '#/components/schemas/Link'
+    PlanInfoBbox:
+      type: object
+      properties:
+        minX:
+          type: number
+          example: 9.880772
+        minY:
+          type: number
+          example: 53.544973
+        maxX:
+          type: number
+          example: 9.890302
+        maxY:
+          type: number
+          example: 53.546704
+        crs:
+          type: string
+          example: epsg:4326
+    PlanInfoXplanModelData:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Othmarschen3"
+        nummer:
+          type: string
+          example: "-"
+        internalId:
+          type: string
+          example: "12341"
+        ags:
+          type: string
+          example: "02000000"
+        gemeindeName:
+          type: string
+          example: "Gemeindename"
+        rechtsstand:
+          type: string
+          description: translation of code list value of xplan:rechtsstand
+          example: "Satzung"
+        inkrafttretensDatum:
+          type: string
+          format: date-time
+      description: attributes derived from XPlanGML data model
+    Status:
+      type: object
+      properties:
+        planId:
+          type: integer
+          example: '123'
+        link:
+          type: string
+          format: uri
+          example: https://xplanbox.lat-lon.de/xmanager/api/v1/plan/123
+        validationReport:
+          $ref: '#/components/schemas/ValidationReport'
+      description: Status
+    ValidationReport:
+      type: object
+      properties:
+        filename:
+          type: string
+          example: xplan52-test.gml
+        name:
+          type: string
+          example: xplan52-test
+        date:
+          type: string
+          format: date-time
+          example: '2020-08-24T15:06:36.662Z'
+        valid:
+          type: boolean
+          example: false
+        externalReferences:
+          type: array
+          items:
+            type: string
+            example: 'stelling.png'
+        wmsUrl:
+          type: string
+          format: uri
+          example: https://xplanbox.lat-lon.de/xplan-validator-wms/services/wms?PLANWERK_MANAGERID=13
+        rulesMetadata:
+          $ref: '#/components/schemas/RulesMetadata'
+        validationResult:
+          $ref: '#/components/schemas/ValidationReportValidationResult'
+    ValidationReportValidationResult:
+      type: object
+      properties:
+        semantisch:
+          $ref: '#/components/schemas/ValidationReportValidationResultSemantisch'
+        geometrisch:
+          $ref: '#/components/schemas/ValidationReportValidationResultGeometrisch'
+        syntaktisch:
+          $ref: '#/components/schemas/ValidationReportValidationResultSyntaktisch'
+    ValidationReportValidationResultGeometrisch:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          example: false
+        errors:
+          type: array
+          items:
+            type: string
+        warnings:
+          type: array
+          items:
+            type: string
+    ValidationReportValidationResultSemantisch:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          example: false
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationReportValidationResultSemantischRules'
+    ValidationReportValidationResultSemantischRules:
+      type: object
+      properties:
+        name:
+          type: string
+        isValid:
+          type: boolean
+        message:
+          type: string
+        invalidFeatures:
+          type: array
+          items:
+            type: string
+            description: GML-ID
+            example: GML_b4e47d29-d21c-42ab-85b7-b12ea57e89f2
+    ValidationReportValidationResultSyntaktisch:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          example: false
+        messages:
+          type: array
+          items:
+            type: string

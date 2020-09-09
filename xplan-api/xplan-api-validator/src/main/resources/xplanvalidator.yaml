@@ -31,6 +31,18 @@ paths:
             application/json:
               schema:
                 type: object
+  /info:
+    get:
+      summary: Show system and application configuration
+      description: Returns the system and application configuration
+      operationId: showConfig
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemConfig'
   /validate:
     post:
       tags:
@@ -42,15 +54,15 @@ paths:
         - name: X-Filename
           in: header
           description: Name of the file to be uploaded
-          example: File names such as xplan.gml, xplan.xml, xplan.zip
           schema:
             type: string
+          example: File names such as xplan.gml, xplan.xml, xplan.zip
         - name: name
           in: query
           description: Name of the validation
-          example: 'xplan-1, Prüfbericht_Torstrasse_10, report#4223'
           schema:
             type: string
+          example: 'xplan-1, Prüfbericht_Torstrasse_10, report#4223'
         - name: skipSemantisch
           in: query
           description: skip semantische Validierung
@@ -80,8 +92,8 @@ paths:
           application/octet-stream:
             schema:
               type: string
-              format: binary
               description: XPlanGML or XPlanArchive (application/zip) file to upload
+              format: binary
           text/xml:
             schema:
               $ref: '#/components/schemas/XPlanGML'
@@ -121,24 +133,36 @@ paths:
           description: Unsupported Media Type, only XML or ZIP is accepted
         default:
           description: Unexpected error
-  /info:
-    get:
-      summary: Show system and application configuration
-      description: Returns the system and application configuration
-      operationId: showConfig
-      responses:
-        200:
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SystemConfig'
 components:
   schemas:
     XPlanGML:
       type: string
       format: binary
       description: 'XPlanGML to upload'
+    RulesMetadata:
+      type: object
+      properties:
+        version:
+          type: string
+          example: 0.9.14
+        source:
+          type: string
+          example: 'https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.9.14.zip'
+    SystemConfig:
+      type: object
+      properties:
+        version:
+          type: string
+          description: Version der xPlanBox
+          example: 'v3.4.0'
+        rulesMetadata:
+          $ref: '#/components/schemas/RulesMetadata'
+        supportedXPlanGmlVersions:
+          type: array
+          items:
+            type: string
+            example: "XPLAN_51"
+            enum: [ XPLAN_3,XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52 ]
     ValidationReport:
       type: object
       properties:
@@ -167,76 +191,62 @@ components:
         rulesMetadata:
           $ref: '#/components/schemas/RulesMetadata'
         validationResult:
-          type: object
-          properties:
-            semantisch:
-              type: object
-              properties:
-                valid:
-                  type: boolean
-                  example: false
-                rules:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                      isValid:
-                        type: boolean
-                      message:
-                        type: string
-                      invalidFeatures:
-                        type: array
-                        items:
-                          type: string
-                          description: GML-ID
-                          example: GML_b4e47d29-d21c-42ab-85b7-b12ea57e89f2
-            geometrisch:
-              type: object
-              properties:
-                valid:
-                  type: boolean
-                  example: false
-                errors:
-                  type: array
-                  items:
-                    type: string
-                warnings:
-                  type: array
-                  items:
-                    type: string
-            syntaktisch:
-              type: object
-              properties:
-                valid:
-                  type: boolean
-                  example: false
-                messages:
-                  type: array
-                  items:
-                    type: string
-    RulesMetadata:
+          $ref: '#/components/schemas/ValidationReportValidationResult'
+    ValidationReportValidationResult:
       type: object
       properties:
-        version:
-          type: string
-          example: 0.9.14
-        source:
-          type: string
-          example: 'https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.9.14.zip'
-    SystemConfig:
+        semantisch:
+          $ref: '#/components/schemas/ValidationReportValidationResultSemantisch'
+        geometrisch:
+          $ref: '#/components/schemas/ValidationReportValidationResultGeometrisch'
+        syntaktisch:
+          $ref: '#/components/schemas/ValidationReportValidationResultSyntaktisch'
+    ValidationReportValidationResultGeometrisch:
       type: object
       properties:
-        version:
-          description: Version der xPlanBox
-          type: string
-          example: 'v3.4.0'
-        rulesMetadata:
-          $ref: '#/components/schemas/RulesMetadata'
-        supportedXPlanGmlVersions:
+        valid:
+          type: boolean
+          example: false
+        errors:
           type: array
           items:
             type: string
-            enum: [XPLAN_3,XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52]
-            example: "XPLAN_51"
+        warnings:
+          type: array
+          items:
+            type: string
+    ValidationReportValidationResultSemantisch:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          example: false
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationReportValidationResultSemantischRules'
+    ValidationReportValidationResultSemantischRules:
+      type: object
+      properties:
+        name:
+          type: string
+        isValid:
+          type: boolean
+        message:
+          type: string
+        invalidFeatures:
+          type: array
+          items:
+            type: string
+            description: GML-ID
+            example: GML_b4e47d29-d21c-42ab-85b7-b12ea57e89f2
+    ValidationReportValidationResultSyntaktisch:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          example: false
+        messages:
+          type: array
+          items:
+            type: string
