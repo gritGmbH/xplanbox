@@ -17,7 +17,7 @@ import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class ValidatorConverter {
+public final class ValidatorConverter {
 
     private ValidatorConverter() {
     }

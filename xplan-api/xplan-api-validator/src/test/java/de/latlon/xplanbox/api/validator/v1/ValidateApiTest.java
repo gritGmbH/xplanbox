@@ -41,7 +41,8 @@ public class ValidateApiTest extends JerseyTest {
     protected Application configure() {
         enable( TestProperties.LOG_TRAFFIC );
         final ResourceConfig resourceConfig = new ResourceConfig( ValidateApi.class );
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext( ApplicationContext.class );
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext( ApplicationContext.class,
+                TestContext.class );
         resourceConfig.property("contextConfig", context );
         return resourceConfig;
     }

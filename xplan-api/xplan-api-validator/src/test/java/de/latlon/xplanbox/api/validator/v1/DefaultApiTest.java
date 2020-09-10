@@ -2,6 +2,7 @@ package de.latlon.xplanbox.api.validator.v1;
 
 import de.latlon.xplanbox.api.validator.XPlanApiValidator;
 import de.latlon.xplanbox.api.validator.config.ApplicationContext;
+import de.latlon.xplanbox.api.validator.config.TestContext;
 import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
@@ -23,7 +24,8 @@ public class DefaultApiTest extends JerseyTest {
     protected Application configure() {
         enable( TestProperties.LOG_TRAFFIC );
         final ResourceConfig resourceConfig = new ResourceConfig( DefaultApi.class );
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext( ApplicationContext.class );
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext( ApplicationContext.class,
+                TestContext.class );
         resourceConfig.property("contextConfig", context );
         return resourceConfig;
     }

@@ -31,7 +31,7 @@ public class ConfigHandler {
 
     public ManagerSystemConfig describeManagerSystem()
                             throws IOException {
-        LOG.info( "Describe system" );
+        LOG.debug( "Generating manager config information" );
         String rasterCrs = managerConfiguration.getRasterConfigurationCrs();
         WorkspaceRasterLayerManager.RasterConfigurationType rasterType = managerConfiguration.getRasterConfigurationType();
         DefaultValidationConfiguration defaultValidationConfiguration = managerConfiguration.getDefaultValidationConfiguration();
