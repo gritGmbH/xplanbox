@@ -1453,16 +1453,7 @@ Validate XPlanGML or XPlanArchive</con:description>
   <con:endpointStrategy xsi:type="con:DefaultEndpointStrategy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:endpoint mode="COMPLEMENT" username="xplanbox" password="xpl@n!secure9" domain="">https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
   </con:endpointStrategy>
-  <con:properties>
-    <con:property>
-      <con:name>baseUrl</con:name>
-      <con:value>http://localhost:8081/xplan-api-validator</con:value>
-    </con:property>
-    <con:property>
-      <con:name>contextPath</con:name>
-      <con:value>xvalidator/api/v1</con:value>
-    </con:property>
-  </con:properties>
+  <con:properties></con:properties>
   <con:wssContainer/>
   <con:oAuth2ProfileContainer/>
   <con:oAuth1ProfileContainer/>
