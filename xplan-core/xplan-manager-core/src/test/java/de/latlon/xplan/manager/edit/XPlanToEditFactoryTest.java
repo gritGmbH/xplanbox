@@ -70,6 +70,7 @@ import java.util.List;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.DOKUMENT;
@@ -95,8 +96,25 @@ public class XPlanToEditFactoryTest {
     private XPlanToEditFactory factory = new XPlanToEditFactory();
 
     @Test
+    public void testCreateXPlanToEdit_XPlan51_refScan()
+                            throws Exception {
+        FeatureCollection featureCollection = readXPlanGml( XPLAN_51, "xplan51/V4_1_ID_103_refScan.gml" );
+
+        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
+
+        RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
+        List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
+
+        assertThat( rasterBasis.getFeatureId(), is( nullValue() ) );
+        assertThat( rasterReferences.size(), is( 1 ) );
+        assertThat( rasterReferences.get( 0 ).getReference(), is( "B-Plan_Klingmuehl_Heideweg_Karte.tif" ) );
+        assertThat( rasterReferences.get( 0 ).getGeoReference(), is( "B-Plan_Klingmuehl_Heideweg_Karte.tfw" ) );
+
+    }
+
+    @Test
     public void testCreateXPlanToEdit_XPlan50_BaseData_Changes()
-                    throws Exception {
+                            throws Exception {
         FeatureCollection featureCollection = readXPlanGml( XPLAN_50, "xplan50/BP2070.gml" );
 
         XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
@@ -120,7 +138,7 @@ public class XPlanToEditFactoryTest {
 
     @Test
     public void testCreateXPlanToEdit_XPlan41_BaseData_Changes()
-                    throws Exception {
+                            throws Exception {
         FeatureCollection featureCollection = readXPlanGml( XPLAN_41, "xplan41/Eidelstedt_4_V4-Blankenese.gml" );
 
         XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
@@ -157,7 +175,7 @@ public class XPlanToEditFactoryTest {
     @Test
     @Parameters({ "xplan41/V4_1_ID_103.gml, XPLAN_41", "xplan50/V4_1_ID_103.gml, XPLAN_50" })
     public void testCreateXPlanToEdit_References_Texts( String planResource, String xplanVersion )
-                    throws Exception {
+                            throws Exception {
         XPlanVersion version = XPlanVersion.valueOf( xplanVersion );
         FeatureCollection featureCollection = readXPlanGml( version, planResource );
 
@@ -231,7 +249,7 @@ public class XPlanToEditFactoryTest {
 
     @Test
     public void testCreateXPlanToEdit_XPlan3()
-                    throws Exception {
+                            throws Exception {
         FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "xplan30/Wuerdenhain.gml" );
 
         XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
@@ -316,7 +334,7 @@ public class XPlanToEditFactoryTest {
 
     @Test
     public void testCreateXPlanToEdit_ValidityPeriod()
-                    throws Exception {
+                            throws Exception {
         FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "xplan30/Wuerdenhain.gml" );
 
         Date startDateTime = asDate( "2002-01-01" );
@@ -331,7 +349,7 @@ public class XPlanToEditFactoryTest {
 
     @Test
     public void testCreateXPlanToEdit_ValidityPeriod_Missing()
-                    throws Exception {
+                            throws Exception {
         FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "xplan30/Wuerdenhain.gml" );
 
         XPlan xPlan = new XPlan();
@@ -358,7 +376,7 @@ public class XPlanToEditFactoryTest {
     }
 
     private FeatureCollection readXPlanGml( XPlanVersion xplanVersion, String plan )
-                    throws Exception {
+                            throws Exception {
         InputStream xplanGml = this.getClass().getResourceAsStream( plan );
         XMLStreamReader reader = XMLInputFactory.newInstance().createXMLStreamReader( xplanGml );
         XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper( reader, null );
@@ -372,7 +390,7 @@ public class XPlanToEditFactoryTest {
     }
 
     private Date asDate( String string )
-                    throws ParseException {
+                            throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "yyyy-MM-dd" );
         return simpleDateFormat.parse( string );
     }
