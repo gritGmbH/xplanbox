@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component;
 import javax.inject.Singleton;
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
@@ -66,10 +67,13 @@ public class ValidationHandler {
     @Autowired
     private GeometricValidator geometricValidator;
 
-    public ValidatorReport validate( File uploadedPlan, String validationName, ValidationSettings validationSettings )
-                            throws IOException, ValidatorException {
+    private XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+
+    public ValidatorReport validate( XPlanArchive archive, String validationName,
+                                     ValidationSettings validationSettings )
+                            throws ValidatorException {
         LOG.debug( "Validate plan with validationName {}", validationName );
-        return xPlanValidator.validateNotWriteReport( validationSettings, uploadedPlan, validationName );
+        return xPlanValidator.validateNotWriteReport( validationSettings, validationName, archive );
     }
 
     public Path zipReports( ValidatorReport validatorReport )
@@ -98,20 +102,27 @@ public class ValidationHandler {
         return reportWriter.retrieveArtifactFile( workDir.toFile(), validationName, PDF );
     }
 
-    public URI addToWms( File uploadedPlan ) {
+    public URI addToWms( XPlanArchive archive ) {
         try {
             if ( validatorWmsManager != null ) {
-
-                XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-                XPlanArchive archive = archiveCreator.createXPlanArchive( uploadedPlan );
                 XPlanFeatureCollection xPlanFeatureCollection = parseFeatures( archive );
                 int id = validatorWmsManager.insert( xPlanFeatureCollection );
                 return createWmsUrl( id );
             }
-        } catch ( MapPreviewCreationException | URISyntaxException | IOException e ) {
+        } catch ( MapPreviewCreationException | URISyntaxException e ) {
             LOG.error( "Plan could not be added to the XPlanValidatorWMS. Reason {}", e.getMessage(), e );
         }
         return null;
+    }
+
+    public XPlanArchive createArchiveFromZip( File uploadedPlan, String validationName )
+                            throws IOException {
+        return archiveCreator.createXPlanArchiveFromZip( validationName, new FileInputStream( uploadedPlan ) );
+    }
+
+    public XPlanArchive createArchiveFromGml( File uploadedPlan, String validationName )
+                            throws IOException {
+        return archiveCreator.createXPlanArchiveFromGml( validationName, new FileInputStream( uploadedPlan ) );
     }
 
     private URI createWmsUrl( int id )

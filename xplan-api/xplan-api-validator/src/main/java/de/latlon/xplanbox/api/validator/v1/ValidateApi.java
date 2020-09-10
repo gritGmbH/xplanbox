@@ -1,11 +1,13 @@
 package de.latlon.xplanbox.api.validator.v1;
 
+import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.ValidationReportBuilder;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.validator.handler.ValidationHandler;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -53,11 +55,8 @@ public class ValidateApi {
     @Autowired
     private ValidationHandler validationHandler;
 
-    @Context
-    Request request;
-
     @POST
-    @Consumes({ "application/octet-stream", "text/xml", "application/gml+xml" })
+    @Consumes({ "text/xml", "application/gml+xml" })
     @Produces({ "application/json", "application/xml", "text/xml", "application/pdf", "application/zip" })
     @Operation(summary = "Validate XPlanGML or XPlanArchive", description = "Validates XPlanGML or XPlanArchive file", tags = {
                             "validate" }, responses = {
@@ -74,36 +73,79 @@ public class ValidateApi {
                             @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload")),
                             @Content(mediaType = "text/xml", schema = @Schema(type = "string", format = "binary", description = "XPlanGML to upload")),
                             @Content(mediaType = "application/gml+xml", schema = @Schema(type = "string", format = "binary", description = "XPlanGML to upload")) }))
-    public Response validate( @Valid File body,
-                              @HeaderParam("X-Filename")
-                              @Parameter(description = "Name of the file to be uploaded", example = "File names such as xplan.gml, xplan.xml, xplan.zip")
-                                                      String xFilename,
-                              @QueryParam("name")
-                              @Parameter(description = "Name of the validation", example = "xplan-1, Prüfbericht_Torstrasse_10, report#4223")
-                                                      String name,
-                              @QueryParam("skipSemantisch")
-                              @DefaultValue("false")
-                              @Parameter(description = "skip semantische Validierung")
-                                                      Boolean skipSemantisch,
-                              @QueryParam("skipGeometrisch")
-                              @DefaultValue("false")
-                              @Parameter(description = "skip geometrische Validierung")
-                                                      Boolean skipGeometrisch,
-                              @QueryParam("skipFlaechenschluss")
-                              @DefaultValue("false")
-                              @Parameter(description = "skip Flaechenschluss Ueberpruefung")
-                                                      Boolean skipFlaechenschluss,
-                              @QueryParam("skipGeltungsbereich")
-                              @DefaultValue("false")
-                              @Parameter(description = "skip Geltungsbereich Ueberpruefung")
-                                                      Boolean skipGeltungsbereich )
+    public Response validate(
+                            @Context
+                                                    Request request, @Valid File body,
+                            @HeaderParam("X-Filename")
+                            @Parameter(description = "Name of the file to be uploaded", example = "File names such as xplan.gml, xplan.xml, xplan.zip")
+                                                    String xFilename,
+                            @QueryParam("name")
+                            @Parameter(description = "Name of the validation", example = "xplan-1, Prüfbericht_Torstrasse_10, report#4223")
+                                                    String name,
+                            @QueryParam("skipSemantisch")
+                            @DefaultValue("false")
+                            @Parameter(description = "skip semantische Validierung")
+                                                    Boolean skipSemantisch,
+                            @QueryParam("skipGeometrisch")
+                            @DefaultValue("false")
+                            @Parameter(description = "skip geometrische Validierung")
+                                                    Boolean skipGeometrisch,
+                            @QueryParam("skipFlaechenschluss")
+                            @DefaultValue("false")
+                            @Parameter(description = "skip Flaechenschluss Ueberpruefung")
+                                                    Boolean skipFlaechenschluss,
+                            @QueryParam("skipGeltungsbereich")
+                            @DefaultValue("false")
+                            @Parameter(description = "skip Geltungsbereich Ueberpruefung")
+                                                    Boolean skipGeltungsbereich )
                             throws IOException, ValidatorException, URISyntaxException {
-        MediaType mediaType = detectRequestedMediaType();
-
         String validationName = detectOrCreateValidationName( xFilename, name );
+        XPlanArchive archive = validationHandler.createArchiveFromGml( body, validationName );
+
+        return validate( request, xFilename, validationName, skipSemantisch, skipGeometrisch, skipFlaechenschluss,
+                         skipGeltungsbereich, archive );
+    }
+
+    @POST
+    @Consumes({ "application/octet-stream" })
+    @Produces({ "application/json", "application/xml", "text/xml", "application/pdf", "application/zip" })
+    @Hidden
+    public Response validateZip(
+                            @Context
+                                                    Request request, @Valid File body,
+                            @HeaderParam("X-Filename")
+                                                    String xFilename,
+                            @QueryParam("name")
+                                                    String name,
+                            @QueryParam("skipSemantisch")
+                            @DefaultValue("false")
+                                                    Boolean skipSemantisch,
+                            @QueryParam("skipGeometrisch")
+                            @DefaultValue("false")
+                                                    Boolean skipGeometrisch,
+                            @QueryParam("skipFlaechenschluss")
+                            @DefaultValue("false")
+                                                    Boolean skipFlaechenschluss,
+                            @QueryParam("skipGeltungsbereich")
+                            @DefaultValue("false")
+                                                    Boolean skipGeltungsbereich )
+                            throws IOException, ValidatorException, URISyntaxException {
+        String validationName = detectOrCreateValidationName( xFilename, name );
+        XPlanArchive archive = validationHandler.createArchiveFromZip( body, validationName );
+
+        return validate( request, xFilename, validationName, skipSemantisch, skipGeometrisch, skipFlaechenschluss,
+                         skipGeltungsbereich, archive );
+    }
+
+    private Response validate( Request request, String xFileName, String validationName, Boolean skipSemantisch,
+                               Boolean skipGeometrisch, Boolean skipFlaechenschluss, Boolean skipGeltungsbereich,
+                               XPlanArchive archive )
+                            throws ValidatorException, IOException {
+        MediaType mediaType = detectRequestedMediaType( request );
+
         ValidationSettings settings = createValidationSettings( validationName, skipGeometrisch, skipSemantisch,
                                                                 skipFlaechenschluss, skipGeltungsbereich );
-        ValidatorReport validatorReport = validationHandler.validate( body, validationName, settings );
+        ValidatorReport validatorReport = validationHandler.validate( archive, validationName, settings );
         if ( APPLICATION_ZIP_TYPE.equals( mediaType ) ) {
             java.nio.file.Path report = validationHandler.zipReports( validatorReport );
             return Response.ok( FileUtils.readFileToByteArray( report.toFile() ) ).type( APPLICATION_ZIP ).header(
@@ -116,13 +158,13 @@ public class ValidateApi {
                                     "Content-Disposition",
                                     "attachment; filename=\"" + validationName + ".pdf\"" ).build();
         }
-        URI wmsUrl = validationHandler.addToWms( body );
+        URI wmsUrl = validationHandler.addToWms( archive );
         ValidationReport validationReport = new ValidationReportBuilder().validatorReport( validatorReport ).filename(
-                                xFilename ).wmsUrl( wmsUrl ).build();
+                                xFileName ).wmsUrl( wmsUrl ).build();
         return Response.ok( validationReport ).build();
     }
 
-    private MediaType detectRequestedMediaType() {
+    private MediaType detectRequestedMediaType( Request request ) {
         Variant.VariantListBuilder acceptedMediaTypes = Variant.mediaTypes( APPLICATION_JSON_TYPE, APPLICATION_XML_TYPE,
                                                                             TEXT_XML_TYPE, APPLICATION_PDF_TYPE,
                                                                             APPLICATION_ZIP_TYPE );
