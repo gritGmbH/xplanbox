@@ -27,14 +27,15 @@ public final class ValidatorConverter {
     }
 
     public static String detectOrCreateValidationName( String xFilename, String name ) {
-        if ( name != null )
+        if ( name != null ) {
             return name;
+        }
         if ( xFilename != null ) {
 
             int suffixStart = xFilename.lastIndexOf( "." );
             if ( suffixStart < 0 )
                 return xFilename;
-            return xFilename.substring( 0, suffixStart - 1 );
+            return xFilename.substring( 0, suffixStart );
         }
         return UUID.randomUUID().toString();
     }
