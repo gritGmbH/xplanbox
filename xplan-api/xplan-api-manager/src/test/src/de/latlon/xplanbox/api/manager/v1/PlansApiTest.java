@@ -9,7 +9,9 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Response;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.junit.Assert.*;
 
 public class PlansApiTest extends JerseyTest {
@@ -25,6 +27,9 @@ public class PlansApiTest extends JerseyTest {
     }
 
     @Test
-    public void findByName() {
+    public void verifyThat_GetPlansByName_ReturnCorrectStatus() {
+        final Response response = target( "/plans" ).queryParam("planName", "bplan_41").request().
+                accept( APPLICATION_JSON ).get();
+        //TODO
     }
 }

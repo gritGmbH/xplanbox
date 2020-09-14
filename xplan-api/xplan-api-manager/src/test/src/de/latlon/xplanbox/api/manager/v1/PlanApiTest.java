@@ -19,6 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
@@ -35,46 +36,44 @@ public class PlanApiTest extends JerseyTest {
         return resourceConfig;
     }
 
-    @Test @Ignore
-    public void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() throws IOException, URISyntaxException {
+    @Test @Ignore("Unable to read zip input stream")
+    public void verifyThat_PostPlan_ReturnsCorrectStatusCodeForValidMediaType() throws IOException, URISyntaxException {
+        final String data = new String( Files.readAllBytes( Paths.get(
+                PlanApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) ) );
+        final Response response = target( "/plan" ).request().
+                accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_OCTET_STREAM ) );
+        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
+        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+        //TODO Unable to read zip input stream
+    }
+
+    @Test
+    public void verifyThat_PostPlan_ReturnsCorrectStatusCodeForInvalidMediaType() throws IOException, URISyntaxException {
         final String data = new String( Files.readAllBytes( Paths.get(
                 PlanApiTest.class.getResource( "/xplan.gml" ).toURI() ) ) );
         final Response response = target( "/plan" ).request().
                 accept( APPLICATION_JSON ).post( Entity.entity( data, TEXT_XML ) );
-        //TODO check for valid status code
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+        assertThat( response.getStatus(), is( Response.Status.UNSUPPORTED_MEDIA_TYPE.getStatusCode() ) );
     }
 
     @Test
-    public void callImport() {
+    public void verifyThat_DeletePlan_ReturnsCorrectStatus() {
+        final Response response = target( "/plan/123" ).request().
+                accept( APPLICATION_JSON ).delete();
+        //TODO
     }
 
     @Test
-    public void delete() {
+    public void verifyThat_GetPlanById_ReturnCorrectStatus() {
+        final Response response = target( "/plan/123" ).request().
+                accept( APPLICATION_JSON ).get();
+        //TODO
     }
 
     @Test
-    public void getById() {
-    }
-
-    @Test
-    public void getByName() {
-    }
-
-    @Test
-    public void testCallImport() {
-    }
-
-    @Test
-    public void testDelete() {
-    }
-
-    @Test
-    public void testGetById() {
-    }
-
-    @Test
-    public void testGetByName() {
+    public void verifyThat_GetPlanByName_ReturnsCorrectStatus() {
+        final Response response = target( "/plan/name/bplan_41" ).request().
+                accept( APPLICATION_JSON ).get();
+        //TODO
     }
 }
