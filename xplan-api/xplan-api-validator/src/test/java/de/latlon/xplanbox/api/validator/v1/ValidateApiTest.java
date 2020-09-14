@@ -60,12 +60,12 @@ public class ValidateApiTest extends JerseyTest {
 
     @Test
     public void verifyThat_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
-        final String data = new String( Files.readAllBytes( Paths.get(
-                ValidateApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) ) );
+        final byte[] data = Files.readAllBytes(
+                                Paths.get( ValidateApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
         final Response response  = target( "/validate" ).request().accept( APPLICATION_XML ).
                 post( Entity.entity( data, APPLICATION_OCTET_STREAM ) );
 
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_XML ) );
-        assertThat( response.getEntity().toString(), containsString( "valid" ) );
+        assertThat( response.readEntity( String.class ), containsString( "valid" ) );
     }
 }
