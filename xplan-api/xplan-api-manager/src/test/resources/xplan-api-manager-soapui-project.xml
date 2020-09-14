@@ -955,7 +955,7 @@ Search for plan by name</con:description>
       <con:testStep type="restrequest" name="getById" id="40874807-7e0c-4ef9-87b9-dcdfeea321d4">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}" methodName="getById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Request 1" id="f9bcc4d9-872e-472c-96b8-27484a6e67a3" mediaType="application/json">
+          <con:restRequest name="getById" id="f9bcc4d9-872e-472c-96b8-27484a6e67a3" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1065,11 +1065,12 @@ Search for plan by name</con:description>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="Simple Contains" id="6d15c303-6d52-43e9-acb1-19ce19d6f803" name="Contains">
+            <con:assertion type="GroovyScriptAssertion" id="cb568805-5d6b-4e57-b12a-e10dd41bb8f2" name="Response Header application/zip">
               <con:configuration>
-                <token>ZIP</token>
-                <ignoreCase>false</ignoreCase>
-                <useRegEx>false</useRegEx>
+                <scriptText>def expectedHeader = ['application/zip']
+def headers = messageExchange.response.responseHeaders
+def actualHeader = headers['Content-Type']
+assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -1155,11 +1156,11 @@ Search for plan by name</con:description>
     <con:properties>
       <con:property>
         <con:name>currentPlanIdImport</con:name>
-        <con:value>19</con:value>
+        <con:value>10</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipAll</con:name>
-        <con:value>20</con:value>
+        <con:value>11</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
