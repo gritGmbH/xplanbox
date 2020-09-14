@@ -123,20 +123,24 @@ public class ApplicationContext {
     }
 
     @Bean
-    public XPlanInsertManager xPlanInsertManager( XPlanDao xPlanDao, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+    public XPlanInsertManager xPlanInsertManager( XPlanDao xPlanDao, XPlanExporter xPlanExporter,
+                                                  ManagerWorkspaceWrapper managerWorkspaceWrapper,
                                                   XPlanRasterManager xPlanRasterManager,
                                                   ManagerConfiguration managerConfiguration,
                                                   WorkspaceReloader workspaceReloader,
                                                   XPlanGmlTransformer xPlanGmlTransformer )
                             throws Exception {
-        XPlanExporter xPlanExporter = new XPlanExporter( managerConfiguration );
-
         SortConfiguration sortConfiguration = createSortConfiguration( managerConfiguration );
         SortPropertyReader sortPropertyReader = new SortPropertyReader( sortConfiguration );
 
         return new XPlanInsertManager( xPlanSynthesizer( managerConfiguration ), xPlanGmlTransformer, xPlanDao,
                                        xPlanExporter, xPlanRasterManager, workspaceReloader, managerConfiguration,
                                        managerWorkspaceWrapper, sortPropertyReader );
+    }
+
+    @Bean
+    public XPlanExporter xPlanExporter( ManagerConfiguration managerConfiguration ) {
+        return new XPlanExporter( managerConfiguration );
     }
 
     @Bean

@@ -5,6 +5,8 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.export.XPlanArchiveContent;
+import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
@@ -69,6 +71,9 @@ public class PlanHandler {
     private XPlanDao xPlanDao;
 
     @Autowired
+    private XPlanExporter xPlanExporter;
+
+    @Autowired
     private ManagerConfiguration managerConfiguration;
 
     public Status importPlan( File uploadedPlan, String validationName, ValidationSettings validationSettings,
@@ -98,8 +103,8 @@ public class PlanHandler {
 
     public StreamingOutput exportPlan( String planId )
                             throws Exception {
-        InputStream inputStream = xPlanDao.retrieveXPlanArtefact( planId );
-        return outputStream -> IOUtils.copy( inputStream, outputStream );
+        XPlanArchiveContent archiveContent = xPlanDao.retrieveAllXPlanArtefacts( planId );
+        return outputStream -> xPlanExporter.export( outputStream, archiveContent );
     }
 
     public XPlan findPlanById( String planId )
