@@ -12,6 +12,7 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.*;
 
 public class PlansApiTest extends JerseyTest {
@@ -19,7 +20,7 @@ public class PlansApiTest extends JerseyTest {
     @Override
     protected Application configure() {
         enable( TestProperties.LOG_TRAFFIC );
-        final ResourceConfig resourceConfig = new ResourceConfig( PlanApi.class );
+        final ResourceConfig resourceConfig = new ResourceConfig( PlansApi.class );
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext( ApplicationContext.class,
                 TestContext.class );
         resourceConfig.property("contextConfig", context );
@@ -28,8 +29,8 @@ public class PlansApiTest extends JerseyTest {
 
     @Test
     public void verifyThat_GetPlansByName_ReturnCorrectStatus() {
-        final Response response = target( "/plans" ).queryParam("planName", "bplan_41").request().
-                accept( APPLICATION_JSON ).get();
-        //TODO
+        final String response = target( "/plans" ).queryParam("planName", "bplan_41").request().
+                accept( APPLICATION_JSON ).get(String.class);
+        assertThat(response, containsString("{\"id\":123,\"type\":\"B_PLAN\",\"version\":\"XPLAN_41\","));
     }
 }
