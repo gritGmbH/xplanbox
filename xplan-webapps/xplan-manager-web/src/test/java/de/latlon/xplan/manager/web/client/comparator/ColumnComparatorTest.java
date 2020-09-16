@@ -8,6 +8,7 @@ import java.util.Date;
 
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.IMPORTDATE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NAME;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.TYPE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -33,7 +34,7 @@ public class ColumnComparatorTest {
     public void setup() {
         plan1 = new XPlan( "name1", "1", "type1" );
         plan1Equal = new XPlan( "name1", "1", "type1" );
-        plan1Null = new XPlan( null, null, null );
+        plan1Null = new XPlan( "name2", "2", null );
         plan2 = new XPlan( "name2", "2", "type2" );
     }
 
@@ -67,7 +68,7 @@ public class ColumnComparatorTest {
     @Test
     public void testCompareWithNullShouldBeSmaller()
                             throws Exception {
-        ColumnComparator comparator = new ColumnComparator( NAME );
+        ColumnComparator comparator = new ColumnComparator( TYPE );
         int result = comparator.compare( plan1Null, plan1 );
 
         assertThat( result, is( -1 ) );
@@ -76,7 +77,7 @@ public class ColumnComparatorTest {
     @Test
     public void testCompareWithNullShouldBeGreater()
                             throws Exception {
-        ColumnComparator comparator = new ColumnComparator( NAME );
+        ColumnComparator comparator = new ColumnComparator( TYPE );
         int result = comparator.compare( plan1, plan1Null );
 
         assertThat( result, is( 1 ) );

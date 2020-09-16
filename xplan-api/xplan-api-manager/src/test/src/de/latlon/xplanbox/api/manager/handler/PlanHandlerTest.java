@@ -20,6 +20,7 @@ import java.util.List;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.*;
 
 @RunWith( SpringRunner.class )
@@ -47,10 +48,7 @@ public class PlanHandlerTest {
     @Test
     public void verifyThat_exportPlan() throws Exception {
         StreamingOutput planAsStream = planHandler.exportPlan("123");
-        //ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        //planAsStream.write(outputStream);
-        //String string = new String(outputStream.toByteArray(), "UTF-8");
-        //System.out.println(string);
+        assertThat(planAsStream, notNullValue());
     }
 
     @Test
@@ -68,7 +66,7 @@ public class PlanHandlerTest {
     @Test
     public void verifyThat_findPlansByName() throws Exception {
         List<XPlan> planList = planHandler.findPlansByName("bplan_41");
-        assertThat(planList, hasItem( new XPlan("bplan_41","123","B_PLAN")));
+        assertThat(planList, hasItem( new XPlan("bplan_41","123","B_PLAN", "XPLAN_41")));
     }
 
     @Test

@@ -5,6 +5,7 @@ import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
@@ -40,6 +41,7 @@ import java.util.List;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -88,14 +90,17 @@ public class TestContext {
     @Bean @Primary
     public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
                              ManagerConfiguration managerConfiguration ) throws Exception {
-        XPlanDao xplanDao = Mockito.mock ( XPlanDao.class );
-        XPlan mockPlan = new XPlan("bplan_41", "123", "B_PLAN");
-        mockPlan.setVersion("XPLAN_41");
+        XPlanDao xplanDao = Mockito.mock( XPlanDao.class );
+        XPlan mockPlan = new XPlan("bplan_41", "123", "B_PLAN", "XPLAN_41");
         when(xplanDao.getXPlanById(1)).thenReturn(mockPlan);
         when(xplanDao.getXPlanById(123)).thenReturn(mockPlan);
         List<XPlan> mockList = new ArrayList<>();
         mockList.add(mockPlan);
         when(xplanDao.getXPlanByName("bplan_41")).thenReturn(mockList);
+        when(xplanDao.getXPlanList(anyBoolean())).thenReturn(mockList);
+        XPlanArchiveContent mockArchive = Mockito.mock(XPlanArchiveContent.class);
+        when(xplanDao.retrieveAllXPlanArtefacts( anyString() )).thenReturn(mockArchive);
+
         return xplanDao;
     }
 
@@ -110,6 +115,12 @@ public class TestContext {
         XPlanInsertManager xplanInsertManager = Mockito.mock ( XPlanInsertManager.class );
         when(xplanInsertManager.importPlan(any(), any(), anyBoolean(), anyBoolean(), anyBoolean(), any(), anyString(), any() )).thenReturn(123);
         return xplanInsertManager;
+    }
+
+    @Bean @Primary
+    public XPlanExporter xPlanExporter( ManagerConfiguration managerConfiguration ) {
+        XPlanExporter xPlanExporter = Mockito.mock(XPlanExporter.class);
+        return xPlanExporter;
     }
 
     private final List<Object> createdMocks = new LinkedList<Object>();

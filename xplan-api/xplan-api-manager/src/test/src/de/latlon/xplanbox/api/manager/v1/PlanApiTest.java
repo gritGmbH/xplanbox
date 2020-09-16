@@ -36,15 +36,14 @@ public class PlanApiTest extends JerseyTest {
         return resourceConfig;
     }
 
-    @Test @Ignore("Unable to read zip input stream")
+    @Test
     public void verifyThat_PostPlan_ReturnsCorrectStatusCodeForValidMediaType() throws IOException, URISyntaxException {
-        final String data = new String( Files.readAllBytes( Paths.get(
-                PlanApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) ) );
+        final byte[] data = Files.readAllBytes( Paths.get(
+                PlanApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
         final Response response = target( "/plan" ).request().
                 accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_OCTET_STREAM ) );
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-        //TODO Unable to read zip input stream
     }
 
     @Test
