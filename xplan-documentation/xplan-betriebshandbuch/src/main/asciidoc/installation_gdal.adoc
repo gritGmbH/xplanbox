@@ -1,14 +1,13 @@
 [[installation-gdal]]
 === Installation und Konfiguration von GDAL
 
-Die xPlanBox unterstützt die Darstellung von Rasterdaten mittels
-GDAL-Integration. Es ist GDAL in der Version 2.4 erforderlich. Die GDAL Unterstützung ist optional, die Konfiguration im
-XPlanManager ist unter <<GDAL>> beschrieben.
+Die xPlanBox unterstützt die Darstellung von Rasterdaten über die GDAL-Bibliothek. Es ist GDAL in der Version 2.4 erforderlich.
+Die GDAL Unterstützung ist optional, die Konfiguration im XPlanManager ist im Abschnitt <<GDAL>> beschrieben.
 
-IMPORTANT: Der Zugriff auf die GDAL-Bibliothek erfolgt über JNI. Je JVM kann die
+IMPORTANT: Der Zugriff auf die GDAL-Bibliothek erfolgt über die Schnittstelle (Java Native Interface) JNI. Je JVM kann die
 GDAL-Bibliothek nur einmal geladen werden. Deswegen muss jede Webapp der
-xPlanBox, die GDAL verwendet (`xplan-wms` und `xplan-manager-web`) in
-getrennten Tomcat Instanzen deployt werden.
+xPlanBox, die GDAL verwendet (`xplan-wms` und `xplan-manager-web`), in einer
+separaten Tomcat Instanz installiert werden.
 
 [[installation-gdal-linux]]
 ==== Linux
@@ -57,6 +56,6 @@ müssen folgende Einstellungen vorgenommen werden:
 * Setzen der Variable `GDAL_DATA` mit der Referenz auf den Ordner, der
 Datei "gcs.csv" enthält, z. B.:
 `C:\Program Files (x86)\gdal\bin\gdal-data`
-* Der bestehenden Umgebungsvariable _PATH_ müssen zwei Pfade hinzugefügt
+* Zur Umgebungsvariable _PATH_ müssen zwei Pfade hinzugefügt
 werden (Annahme: Entpacktes Zip-Archiv von GISInternals wurde genutzt):
 `<GDAL-INSTALLATIONSORDNER>\bin;<GDAL-INSTALLATIONSORDNER>\bin\gdal\java`

@@ -110,13 +110,13 @@ Versionen dar.
 [[xplaninspirepluwms]]
 === XPlanInspirePluWMS
 
-Der XPlanInspirePluWms ist ein INSPIRE konformer View Service für die
+Der XPlanInspirePluWMS ist ein INSPIRE View Service für die
 Bereitstellung importierter Pläne im INSPIRE Datenthema Planned Land Use (PLU).
 
 [[xplaninspirepluwfs]]
 === XPlanInspirePluWFS
 
-Der XPlanInspirePluWms ist ein INSPIRE konformer Download Service für die
+Der XPlanInspirePluWFS ist ein INSPIRE Download Service für die
 Bereitstellung importierter Pläne im INSPIRE Datenthema Planned Land Use (PLU).
 
 [[xplanresources]]

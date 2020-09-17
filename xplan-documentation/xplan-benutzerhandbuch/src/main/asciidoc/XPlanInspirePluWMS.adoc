@@ -1,7 +1,8 @@
 [[xplaninspirepluwms]]
 == XPlanInspirePluWMS
 
-Der XPlanInspirePluWMS ist INSPIRE konformer View Service. Dieser bietet die Möglichkeit Visualisierungen von Plandaten sowie Sachinformationsabfragen zu einzelnen Planinhalten abzufragen.
+Der XPlanInspirePluWMS ist ein INSPIRE View Service zur Abfrage der Daten im INSPIRE Datenthema Planned Land Use (PLU). Der
+Dienst ermöglicht die Visualisierungen von Plandaten sowie Sachinformationsabfragen zu einzelnen Planinhalten.
 
 [[xplaninspirepluwms-benutzung-des-xplaninspirepluwms]]
 === Benutzung des XPlanInspirePluWMS
