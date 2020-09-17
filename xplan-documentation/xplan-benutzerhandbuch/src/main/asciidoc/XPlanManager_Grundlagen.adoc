@@ -217,11 +217,11 @@ NOTE: Über die Editor-Funktion des XPlanManager können Rasterdaten über XP_Ra
 Um Rasterdaten importieren und diese über den XPlanWMS-Ebene zur Verfügung
 stellen zu können, müssen die Daten folgende Anforderungen erfüllen.
 
-Die Unterstützung verschiedener Rasterdatentypen ist vom gesetzten
+Die Unterstützung verschiedener Rasterdatenformate ist vom gesetzten
 Raster-Konfigurationstyp abhängig.
 
 NOTE: *Wichtig*: Dies kann nur zentral für die xPlanBox konfiguriert und nicht durch den Nutzer geändert werden.
-Hinweise zur Konfiguration sind im Betriebshandbuch zu finden.**
+Hinweise zur Konfiguration sind im Betriebshandbuch zu finden.
 
 Unterschieden wird dabei zwischen den Konfigurationstypen _GeoTiff_ und
 __GDAL__:
@@ -229,28 +229,26 @@ __GDAL__:
 
 *GeoTiff* - Konfigurationstyp:
 
-  * Es werden ausschließlich Rasterdaten im GeoTiff Format unterstützt.
+  * Es werden ausschließlich Rasterdaten im https://www.ogc.org/standards/geotiff[GeoTiff] Format unterstützt.
 
 *GDAL* - Konfigurationstyp:
 
-  * Grundsätzlich können alle durch GDAL unterstützten
+  * Grundsätzlich können alle durch https://gdal.org[GDAL] unterstützten
   Rasterdatenformate auch durch deegree und somit dem XPlanManager
   verarbeitet werden.
   * Getestet wurden bisher nur die Formate GeoTiff und PNG.
 
 Folgende Voraussetzung werden an die einzelnen Formate gestellt:
 
-
 *GeoTiff*:
 
-  * GeoTiff-Dateien liegen als gekachelte BIGTIFF GeoTiff-Dateien vor.
+  * GeoTiff-Dateien liegen als gekachelte GeoTiff-Dateien vor.
   * GeoTiff-Dateien liegen in dem Koordinatenreferenzsystem vor, welches
   für den XPlanManager konfiguriert ist.
   * GeoTiff-Dateien enthalten ihre räumliche Ausdehnung als Metatags innerhalb der Datei.
   * Zur Optimierung der Antwortzeit beim Zugriff auf die GeoTiff-Dateien
   wird empfohlen, in den GeoTiff-Dateien Overlays mit niedriger
   Auflösung hinzuzufügen.
-
 
 *PNG*:
 

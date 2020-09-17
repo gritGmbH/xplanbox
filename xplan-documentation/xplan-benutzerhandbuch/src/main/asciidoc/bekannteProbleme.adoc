@@ -87,7 +87,7 @@ WFS-T 2.0.0 DELETE Aktion geschickt werden.
 
 === Darstellungsvorschriften für Raumordnungspläne
 
-Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständig. Durch den WMS werden die betroffenen Ebenen daher nur in der Standarddarstellung ausgegeben.
+Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständig. Durch den XPlanWMS werden die betroffenen Ebenen daher nur in der Standarddarstellung ausgegeben.
 
 === Darstellung von geometrischen Fehlern in einer Grafik und im Shapefile
 

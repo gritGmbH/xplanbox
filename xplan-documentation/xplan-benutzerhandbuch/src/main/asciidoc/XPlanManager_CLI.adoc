@@ -164,7 +164,7 @@ XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --crs EPSG:31467
 
 _–workspace_
 
-Sind mehrere Workspac Verzeichnisse vorhanden, so kann durch den
+Sind mehrere Workspace Verzeichnisse vorhanden, so kann durch den
 Zusatzparameter _–workspace_ das entsprechende Verzeichnis übergeben
 werden.
 
