@@ -121,15 +121,10 @@ public class PlanHandler {
         return xPlans.get( 0 );
     }
 
-    public List<XPlan> findPlansByName( String planName )
-                            throws Exception {
-        return xPlanDao.getXPlanByName( planName );
-    }
-
     public List<XPlan> findPlans( String planName )
                             throws Exception {
         if ( planName != null )
-            return xPlanDao.getXPlanByName( planName );
+            return xPlanDao.getXPlansLikeName( planName );
         return xPlanDao.getXPlanList( false );
     }
 

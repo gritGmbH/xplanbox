@@ -900,7 +900,7 @@ Search for plan by name</con:description>
     <con:testCase id="cb6bcba1-07a4-4fe1-ade2-32d0a4414daa" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plans TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:description>TestCase generated for REST Resource [/plans] located at [/plans]</con:description>
       <con:settings/>
-      <con:testStep type="restrequest" name="Request 1" id="474680bd-be66-43c1-b66b-8738ecf34fde">
+      <con:testStep type="restrequest" name="ExactMatch" id="474680bd-be66-43c1-b66b-8738ecf34fde">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plans" methodName="findByName" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="Request 1" id="653c7a59-0292-405d-8596-a225f505b1fb" mediaType="application/json">
@@ -943,6 +943,53 @@ Search for plan by name</con:description>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <entry key="planName" value="Eidelstedt 4" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="InExactMatch" id="57bff689-3253-4644-8977-b09480a6808d">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plans" methodName="findByName" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="InExactMatch" id="653c7a59-0292-405d-8596-a225f505b1fb" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plans</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7c256da6-27a4-473d-8c2d-bf06f2bba366" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="8a5449af-71b6-49e9-81c3-7ae4f704dec1" name="id">
+              <con:configuration>
+                <path>$..id[0]</path>
+                <content>${#TestSuite#currentPlanIdImport}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="4e49f759-7fd9-4f6c-951e-09cd193baaf4" name="type">
+              <con:configuration>
+                <path>$..type[0]</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planName" value="eidelstedt" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
