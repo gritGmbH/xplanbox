@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.1.0
+  version: 0.1.1
 servers:
   - url: https://xplanbox.lat-lon.de/xmanager/api/v1
   - url: http://xplanbox.lat-lon.de/xmanager/api/v1
@@ -47,7 +47,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ManagerSystemConfig'}
+                $ref: '#/components/schemas/ManagerSystemConfig'
   /plan/{planId}:
     get:
       tags:
@@ -78,9 +78,6 @@ paths:
               schema:
                 type: string
                 format: binary
-        400:
-          description: Invalid tag value
-          content: { }
         404:
           description: Invalid plan ID, not found
           content: { }
@@ -99,12 +96,15 @@ paths:
             type: string
           example: '123'
       responses:
-        204:
+        200:
           description: successful operation
-          content: { }
-        400:
-          description: Invalid tag value
-          content: { }
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusMessage'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/StatusMessage'
         404:
           description: Invalid plan ID, not found
           content: { }
@@ -140,8 +140,7 @@ paths:
                 format: binary
         404:
           description: Invalid plan name, not found
-          content: {
-                      /plan:
+  /plan:
     post:
       tags:
         - manage
@@ -199,7 +198,7 @@ paths:
               format: binary
         required: true
       responses:
-        200:
+        201:
           description: successful operation
           content:
             application/json:
@@ -241,6 +240,12 @@ paths:
                   $ref: '#/components/schemas/PlanInfo'
 components:
   schemas:
+    StatusMessage:
+      type: object
+      properties:
+        message:
+          type: string
+          example: 'Plan mit ID 123 entfernt'
     ManagerSystemConfig:
       allOf:
         - $ref: '#/components/schemas/SystemConfig'
