@@ -1,6 +1,6 @@
 package de.latlon.xplanbox.api.manager;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import de.latlon.xplanbox.api.commons.ObjectMapperContextResolver;
 import de.latlon.xplanbox.api.manager.v1.DefaultApi;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.models.ExternalDocumentation;
@@ -14,12 +14,8 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 
 import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.ext.ContextResolver;
-import javax.ws.rs.ext.Provider;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
-import java.util.TimeZone;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -70,28 +66,6 @@ public class RestApplication extends ResourceConfig {
         // TODO
         Server server = new Server().url( "http://localhost:8081/xplan-api-manager/xmanager/api/v1" );
         return Collections.singletonList( server );
-    }
-
-    @Provider
-    public class ObjectMapperContextResolver implements ContextResolver<ObjectMapper> {
-
-        private final ObjectMapper mapper;
-
-        public ObjectMapperContextResolver() {
-            this.mapper = createObjectMapper();
-        }
-
-        @Override
-        public ObjectMapper getContext( Class<?> type ) {
-            return mapper;
-        }
-
-        private ObjectMapper createObjectMapper() {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.setDateFormat( new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss.SSSZ" ) );
-            mapper.setTimeZone( TimeZone.getDefault() );
-            return mapper;
-        }
     }
 
 }

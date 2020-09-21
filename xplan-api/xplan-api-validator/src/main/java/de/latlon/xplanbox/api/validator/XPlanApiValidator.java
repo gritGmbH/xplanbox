@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.validator;
 
+import de.latlon.xplanbox.api.commons.ObjectMapperContextResolver;
 import de.latlon.xplanbox.api.validator.v1.DefaultApi;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.models.ExternalDocumentation;
@@ -36,6 +37,7 @@ public class XPlanApiValidator extends ResourceConfig {
 
     public XPlanApiValidator() {
         super();
+        register( new ObjectMapperContextResolver() );
         packages( "de.latlon.xplanbox.api.validator.config" );
         packages( "de.latlon.xplanbox.api.validator.handler" );
         packages( "de.latlon.xplanbox.api.validator.v1" );
