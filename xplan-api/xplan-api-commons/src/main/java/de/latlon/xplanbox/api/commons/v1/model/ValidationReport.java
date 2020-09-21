@@ -1,5 +1,7 @@
 package de.latlon.xplanbox.api.commons.v1.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -25,7 +27,7 @@ public class ValidationReport   {
   private @Valid Date date;
   private @Valid Boolean valid;
   private @Valid List<String> externalReferences = new ArrayList<String>();
-  private @Valid URI wmsUrl;
+  private @Valid @JsonInclude(Include.NON_NULL) URI wmsUrl;
   private @Valid RulesMetadata rulesMetadata;
   private @Valid ValidationReportValidationResult validationResult;
 
