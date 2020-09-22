@@ -71,6 +71,9 @@ public class ValidateApi {
                             @ApiResponse(responseCode = "406", description = "Invalid content only XPlanGML or ZIP with XPlanGML is accepted"),
                             @ApiResponse(responseCode = "415", description = "Unsupported Media Type, only XML or ZIP is accepted") }, requestBody = @RequestBody(content = {
                             @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload")),
+                            @Content(mediaType = "application/zip", schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload")),
+                            @Content(mediaType = "application/x-zip", schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload")),
+                            @Content(mediaType = "application/x-zip-compressed", schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload")),
                             @Content(mediaType = "text/xml", schema = @Schema(type = "string", format = "binary", description = "XPlanGML to upload")),
                             @Content(mediaType = "application/gml+xml", schema = @Schema(type = "string", format = "binary", description = "XPlanGML to upload")) }))
     public Response validate(
@@ -107,7 +110,7 @@ public class ValidateApi {
     }
 
     @POST
-    @Consumes({ "application/octet-stream" })
+    @Consumes({ "application/octet-stream", "application/zip", "application/x-zip", "application/x-zip-compressed" })
     @Produces({ "application/json", "application/xml", "text/xml", "application/pdf", "application/zip" })
     @Hidden
     public Response validateZip(
