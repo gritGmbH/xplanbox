@@ -5,6 +5,7 @@ import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.manager.config.ApplicationContext;
 import de.latlon.xplanbox.api.manager.config.TestContext;
 import de.latlon.xplanbox.api.manager.v1.model.Status;
+import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -40,9 +41,10 @@ public class PlanHandlerTest {
     }
 
     @Test
-    public void verifyThat_deletePlan_IsNotThrowingException() throws Exception {
-        planHandler.deletePlan("123");
-        //expected: no exception is thrown, nothing to do
+    public void verifyThat_deletePlan_IsNotThrowingException()
+                            throws Exception {
+        StatusMessage statusMessage = planHandler.deletePlan( "123" );
+        assertThat( statusMessage, is( notNullValue() ) );
     }
 
     @Test

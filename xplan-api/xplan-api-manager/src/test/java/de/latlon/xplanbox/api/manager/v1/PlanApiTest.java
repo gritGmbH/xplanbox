@@ -92,7 +92,8 @@ public class PlanApiTest extends JerseyTest {
     public void verifyThat_DeletePlan_ReturnsCorrectStatus() {
         final Response response = target( "/plan/123" ).request().
                 accept( APPLICATION_JSON ).delete();
-        //TODO
+        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
+        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
     }
 
     @Test
