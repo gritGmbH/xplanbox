@@ -41,7 +41,7 @@ public class RestApplication extends ResourceConfig {
         packages( "de.latlon.xplanbox.api.manager.v1" );
         packages( "de.latlon.xplanbox.api.commons.exception" );
         OpenAPI openApi = new OpenAPI();
-        openApi.setInfo( new Info().title( "XPlanManagerAPI" ).version( "0.1.0" ).description(
+        openApi.setInfo( new Info().title( "XPlanManagerAPI" ).version( "0.1.1" ).description(
                                 "XPlanManager REST API" ).termsOfService( "http://xplanbox.lat-lon.de/terms/" ).contact(
                                 new Contact().email( "info@lat-lon.de" ) ).license(
                                 new License().name( "Apache 2.0" ).url(

@@ -22,7 +22,7 @@ import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanName;
 import de.latlon.xplanbox.api.manager.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.manager.v1.model.Status;
-import org.apache.commons.io.IOUtils;
+import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import org.apache.http.client.utils.URIBuilder;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.slf4j.Logger;
@@ -33,7 +33,6 @@ import javax.inject.Singleton;
 import javax.ws.rs.core.StreamingOutput;
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
-import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -54,6 +53,8 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class PlanHandler {
 
     private static final Logger LOG = getLogger( PlanHandler.class );
+
+    private static final String DELETE_MSG = "Plan mit ID %s entfernt.";
 
     @Autowired
     private XPlanArchiveCreator archiveCreator;
@@ -96,9 +97,10 @@ public class PlanHandler {
         return new Status().planId( planId ).link( createWmsUrl( planById ) ).validationReport( validationReport );
     }
 
-    public void deletePlan( String planId )
+    public StatusMessage deletePlan( String planId )
                             throws Exception {
         xPlanDeleteManager.delete( planId );
+        return new StatusMessage().message( String.format( DELETE_MSG, planId ) );
     }
 
     public StreamingOutput exportPlan( String planId )

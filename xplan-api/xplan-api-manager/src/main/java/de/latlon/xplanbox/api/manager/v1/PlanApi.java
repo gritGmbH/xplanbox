@@ -9,6 +9,7 @@ import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
 import de.latlon.xplanbox.api.manager.handler.PlanHandler;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import de.latlon.xplanbox.api.manager.v1.model.Status;
+import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -36,6 +37,7 @@ import javax.ws.rs.core.StreamingOutput;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Variant;
 import java.io.File;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
@@ -66,12 +68,13 @@ public class PlanApi {
     @Produces({ "application/json" })
     @Operation(operationId = "import", summary = "Import the plan", description = "Imports the plan", tags = {
                             "manage", }, responses = {
-                            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Status.class))),
-                            @ApiResponse(responseCode = "400", description = "Invalid input",content = @Content(schema = @Schema(implementation = ValidationReport.class))),
+                            @ApiResponse(responseCode = "201", description = "successful operation", content = @Content(schema = @Schema(implementation = Status.class))),
+                            @ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(schema = @Schema(implementation = ValidationReport.class))),
                             @ApiResponse(responseCode = "405", description = "Invalid method"),
                             @ApiResponse(responseCode = "406", description = "Invalid content only ZIP with XPlanGML is accepted"),
                             @ApiResponse(responseCode = "415", description = "Unsupported Media Type, only ZIP is accepted") }, requestBody = @RequestBody(content = @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")), required = true))
-    public Response callImport( @Valid File body,
+    public Response callImport( @Context UriInfo uriInfo,
+                                @Valid File body,
                                 @HeaderParam("X-Filename")
                                 @Parameter(description = "Name of the file to be uploaded", example = "File names such as xplan.gml, xplan.xml, xplan.zip")
                                                         String xFilename,
@@ -112,23 +115,23 @@ public class PlanApi {
                                                                           overwriteByRequest( skipGeltungsbereich,
                                                                                               validationConfig.isSkipGeltungsbereich() ) );
         Status status = planHandler.importPlan( body, xFilename, validationSettings, internalId, planStatus );
-        return Response.ok().entity( status ).build();
+        URI selfRef = uriInfo.getBaseUriBuilder().path( "plan" ).path( status.getPlanId().toString() ).build();
+        return Response.created( selfRef ).entity( status ).build();
     }
 
     @DELETE
     @Path("/{planId}")
     @Operation(summary = "Delete plan identified by the given plan ID", description = "Deletes an existing plan identified by the given plan ID, limited to plans in status \"in Aufstellung\"", tags = {
                             "manage", }, responses = {
-                            @ApiResponse(responseCode = "204", description = "successful operation"),
-                            @ApiResponse(responseCode = "400", description = "Invalid tag value"),
+                            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = StatusMessage.class))),
                             @ApiResponse(responseCode = "404", description = "Invalid plan ID, not found") })
     public Response delete(
                             @PathParam("planId")
                             @Parameter(description = "ID of the plan to be removed", example = "123")
                                                     String planId )
                             throws Exception {
-        planHandler.deletePlan( planId );
-        return Response.noContent().build();
+        StatusMessage statusMessage = planHandler.deletePlan( planId );
+        return Response.ok().entity( statusMessage ).build();
     }
 
     @GET
@@ -140,7 +143,6 @@ public class PlanApi {
                                                     @Content(mediaType = "application/json", schema = @Schema(implementation = PlanInfo.class)),
                                                     @Content(mediaType = "application/xml", schema = @Schema(implementation = PlanInfo.class)),
                                                     @Content(mediaType = "application/zip", schema = @Schema(type = "string", format = "binary")) }),
-                            @ApiResponse(responseCode = "400", description = "Invalid tag value"),
                             @ApiResponse(responseCode = "404", description = "Invalid plan ID, not found") })
     public Response getById(
                             @Context

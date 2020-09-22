@@ -184,7 +184,7 @@ Import the plan</con:description>
         </con:representation>
         <con:representation type="RESPONSE">
           <con:mediaType>application/json</con:mediaType>
-          <con:status>200</con:status>
+          <con:status>200 201</con:status>
           <con:params/>
           <con:element xmlns:plan="http://localhost/xplan-api-manager/xmanager/api/v1/plan">plan:Response</con:element>
         </con:representation>
@@ -533,6 +533,22 @@ Delete plan identified by the given plan ID</con:description>
           <con:params/>
           <con:element>data</con:element>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/xml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>statusMessage</con:element>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/xml</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element xmlns:plan="http://localhost/xplan-api-manager/xmanager/api/v1/plan/">plan:Response</con:element>
+        </con:representation>
         <con:request name="Request 1" id="d1cd7d2d-f354-4a5a-9fa0-1137ede48dcd" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
@@ -680,7 +696,7 @@ Search for plan by name</con:description>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>200</codes>
+                <codes>201</codes>
               </con:configuration>
             </con:assertion>
             <con:assertion type="JsonPath Existence Match" id="c208d8a8-95ee-415e-aac9-acb660fd11e2" name="planId">
@@ -786,7 +802,7 @@ Search for plan by name</con:description>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>200</codes>
+                <codes>201</codes>
               </con:configuration>
             </con:assertion>
             <con:assertion type="JsonPath Existence Match" id="d5bc6c3e-6178-46f3-81c6-5d86e17fcc9c" name="planId">
@@ -1162,14 +1178,23 @@ assert expectedHeader == actualHeader</scriptText>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}" methodName="delete" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="Delete import" id="d1cd7d2d-f354-4a5a-9fa0-1137ede48dcd" mediaType="application/json" postQueryString="false">
             <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
             <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="859dc093-1e4d-4794-bcc1-58695077093f" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>204</codes>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="265e523e-b027-4418-ada5-9044a1a6e4b2" name="message">
+              <con:configuration>
+                <path>$..message</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -1193,14 +1218,23 @@ assert expectedHeader == actualHeader</scriptText>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}" methodName="delete" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="Delete skip all" id="d1cd7d2d-f354-4a5a-9fa0-1137ede48dcd" mediaType="application/json" postQueryString="false">
             <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/xml" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
             <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="859dc093-1e4d-4794-bcc1-58695077093f" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>204</codes>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="XPath Match" id="2ff910ac-05f7-4efd-9f3f-84d1cb658952" name="statusMessage">
+              <con:configuration>
+                <path>exists(statusMessage/message)</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -1224,11 +1258,11 @@ assert expectedHeader == actualHeader</scriptText>
     <con:properties>
       <con:property>
         <con:name>currentPlanIdImport</con:name>
-        <con:value>4</con:value>
+        <con:value>12</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipAll</con:name>
-        <con:value>5</con:value>
+        <con:value>13</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
