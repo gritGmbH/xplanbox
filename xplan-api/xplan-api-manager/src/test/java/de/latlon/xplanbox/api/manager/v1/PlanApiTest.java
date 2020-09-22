@@ -6,7 +6,6 @@ import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -100,7 +99,15 @@ public class PlanApiTest extends JerseyTest {
     public void verifyThat_GetPlanById_ReturnCorrectStatus() {
         final Response response = target( "/plan/123" ).request().
                 accept( APPLICATION_JSON ).get();
-        //TODO
+        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+    }
+
+    @Test
+    public void verifyThat_GetPlanById_ReturnCorrectFileContent() {
+        final Response response = target( "/plan/123" ).request().
+                accept( APPLICATION_ZIP ).get();
+        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_ZIP ) );
+
     }
 
     @Test

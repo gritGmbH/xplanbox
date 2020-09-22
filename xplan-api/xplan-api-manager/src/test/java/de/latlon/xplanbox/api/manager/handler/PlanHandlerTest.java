@@ -19,6 +19,7 @@ import java.io.File;
 import java.util.List;
 
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -45,6 +46,7 @@ public class PlanHandlerTest {
                             throws Exception {
         StatusMessage statusMessage = planHandler.deletePlan( "123" );
         assertThat( statusMessage, is( notNullValue() ) );
+        assertThat( statusMessage.getMessage(), containsString("123") );
     }
 
     @Test
