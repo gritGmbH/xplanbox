@@ -193,9 +193,16 @@ paths:
         content:
           application/octet-stream:
             schema:
-              type: string
-              description: XPlanArchive (application/zip) file to upload
-              format: binary
+              $ref: '#/components/schemas/XPlanArchive'
+          application/zip:
+            schema:
+              $ref: '#/components/schemas/XPlanArchive'
+          application/x-zip:
+            schema:
+              $ref: '#/components/schemas/XPlanArchive'
+          application/x-zip-compressed:
+            schema:
+              $ref: '#/components/schemas/XPlanArchive'
         required: true
       responses:
         201:
@@ -203,15 +210,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Status'
+                $ref: '#/components/schemas/PlanInfo'
         400:
           description: Invalid input
-        405:
-          description: Invalid method
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationReport'
         406:
           description: Invalid content only ZIP with XPlanGML is accepted
-        415:
-          description: Unsupported Media Type, only ZIP is accepted
         default:
           description: Unexpected error
           content: {}
@@ -406,19 +413,6 @@ components:
           type: string
           format: date-time
       description: attributes derived from XPlanGML data model
-    Status:
-      type: object
-      properties:
-        planId:
-          type: integer
-          example: '123'
-        link:
-          type: string
-          format: uri
-          example: https://xplanbox.lat-lon.de/xmanager/api/v1/plan/123
-        validationReport:
-          $ref: '#/components/schemas/ValidationReport'
-      description: Status
     ValidationReport:
       type: object
       properties:
@@ -506,3 +500,7 @@ components:
           type: array
           items:
             type: string
+    XPlanArchive:
+      type: string
+      description: XPlanArchive (application/zip) file to upload
+      format: binary
