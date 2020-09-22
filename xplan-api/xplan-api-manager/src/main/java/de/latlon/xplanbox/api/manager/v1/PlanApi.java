@@ -64,15 +64,13 @@ public class PlanApi {
     private ManagerConfiguration managerConfiguration;
 
     @POST
-    @Consumes({ "application/octet-stream" })
+    @Consumes({ "application/octet-stream", "application/zip", "application/x-zip", "application/x-zip-compressed" })
     @Produces({ "application/json" })
     @Operation(operationId = "import", summary = "Import the plan", description = "Imports the plan", tags = {
                             "manage", }, responses = {
                             @ApiResponse(responseCode = "201", description = "successful operation", content = @Content(schema = @Schema(implementation = Status.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(schema = @Schema(implementation = ValidationReport.class))),
-                            @ApiResponse(responseCode = "405", description = "Invalid method"),
-                            @ApiResponse(responseCode = "406", description = "Invalid content only ZIP with XPlanGML is accepted"),
-                            @ApiResponse(responseCode = "415", description = "Unsupported Media Type, only ZIP is accepted") }, requestBody = @RequestBody(content = @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")), required = true))
+                            @ApiResponse(responseCode = "406", description = "Invalid content only ZIP with XPlanGML is accepted") }, requestBody = @RequestBody(content = @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")), required = true))
     public Response callImport( @Context UriInfo uriInfo,
                                 @Valid File body,
                                 @HeaderParam("X-Filename")

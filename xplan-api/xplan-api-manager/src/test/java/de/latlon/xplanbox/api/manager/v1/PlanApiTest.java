@@ -18,6 +18,9 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP;
+import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP_COMPRESSED;
+import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
@@ -37,11 +40,41 @@ public class PlanApiTest extends JerseyTest {
     }
 
     @Test
-    public void verifyThat_PostPlan_ReturnsCorrectStatusCodeForValidMediaType() throws IOException, URISyntaxException {
+    public void verifyThat_PostPlanOctetStream_ReturnsCorrectStatusCodeForValidMediaType() throws IOException, URISyntaxException {
         final byte[] data = Files.readAllBytes( Paths.get(
-                PlanApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
+                                PlanApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
         final Response response = target( "/plan" ).request().
-                accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_OCTET_STREAM ) );
+                                accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_OCTET_STREAM ) );
+        assertThat( response.getStatus(), is( Response.Status.CREATED.getStatusCode() ) );
+        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+    }
+
+    @Test
+    public void verifyThat_PostPlanZip_ReturnsCorrectStatusCodeForValidMediaType() throws IOException, URISyntaxException {
+        final byte[] data = Files.readAllBytes( Paths.get(
+                                PlanApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
+        final Response response = target( "/plan" ).request().
+                                accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_ZIP ) );
+        assertThat( response.getStatus(), is( Response.Status.CREATED.getStatusCode() ) );
+        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+    }
+
+    @Test
+    public void verifyThat_PostPlanXZip_ReturnsCorrectStatusCodeForValidMediaType() throws IOException, URISyntaxException {
+        final byte[] data = Files.readAllBytes( Paths.get(
+                                PlanApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
+        final Response response = target( "/plan" ).request().
+                                accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_X_ZIP ) );
+        assertThat( response.getStatus(), is( Response.Status.CREATED.getStatusCode() ) );
+        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+    }
+
+    @Test
+    public void verifyThat_PostPlanXZipCompressed_ReturnsCorrectStatusCodeForValidMediaType() throws IOException, URISyntaxException {
+        final byte[] data = Files.readAllBytes( Paths.get(
+                                PlanApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
+        final Response response = target( "/plan" ).request().
+                                accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_X_ZIP_COMPRESSED ) );
         assertThat( response.getStatus(), is( Response.Status.CREATED.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
     }
