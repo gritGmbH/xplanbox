@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.1.0
+  version: 0.1.1
 servers:
   - url: https://xplanbox.lat-lon.de/xvalidator/api/v1
   - url: http://xplanbox.lat-lon.de/xvalidator/api/v1
@@ -91,9 +91,16 @@ paths:
         content:
           application/octet-stream:
             schema:
-              type: string
-              description: XPlanGML or XPlanArchive (application/zip) file to upload
-              format: binary
+              $ref: '#/components/schemas/XPlanArchive'
+          application/zip:
+            schema:
+              $ref: '#/components/schemas/XPlanArchive'
+          application/x-zip:
+            schema:
+              $ref: '#/components/schemas/XPlanArchive'
+          application/x-zip-compressed:
+            schema:
+              $ref: '#/components/schemas/XPlanArchive'
           text/xml:
             schema:
               $ref: '#/components/schemas/XPlanGML'
@@ -250,3 +257,7 @@ components:
           type: array
           items:
             type: string
+    XPlanArchive:
+      type: string
+      format: binary
+      description: XPlanArchive (application/zip) file to upload

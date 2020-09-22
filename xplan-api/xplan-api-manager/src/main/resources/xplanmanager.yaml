@@ -502,5 +502,5 @@ components:
             type: string
     XPlanArchive:
       type: string
-      description: XPlanArchive (application/zip) file to upload
       format: binary
+      description: XPlanArchive (application/zip) file to upload
