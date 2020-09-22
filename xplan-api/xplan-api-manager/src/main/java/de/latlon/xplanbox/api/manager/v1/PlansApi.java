@@ -7,6 +7,7 @@ import de.latlon.xplanbox.api.manager.handler.PlanHandler;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -38,7 +39,7 @@ public class PlansApi {
     @Produces({ "application/json" })
     @Operation(summary = "Search for plan by name", description = "Returns a list of plans which match the search query", tags = {
                             "search" }, responses = {
-                            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = PlanInfo.class))) })
+                            @ApiResponse(responseCode = "200", description = "OK", content = @Content(array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class)))) })
     public Response findByName(
                             @Context
                                                     UriInfo uriInfo,

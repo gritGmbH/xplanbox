@@ -70,36 +70,41 @@ public class PlanApi {
                             "manage", }, responses = {
                             @ApiResponse(responseCode = "201", description = "successful operation", content = @Content(schema = @Schema(implementation = Status.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(schema = @Schema(implementation = ValidationReport.class))),
-                            @ApiResponse(responseCode = "406", description = "Invalid content only ZIP with XPlanGML is accepted") }, requestBody = @RequestBody(content = @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")), required = true))
-    public Response callImport( @Context UriInfo uriInfo,
-                                @Valid File body,
-                                @HeaderParam("X-Filename")
-                                @Parameter(description = "Name of the file to be uploaded", example = "File names such as xplan.gml, xplan.xml, xplan.zip")
-                                                        String xFilename,
-                                @QueryParam("skipSemantisch")
-                                @DefaultValue("false")
-                                @Parameter(description = "skip semantische Validierung")
-                                                        Boolean skipSemantisch,
-                                @QueryParam("skipGeometrisch")
-                                @DefaultValue("false")
-                                @Parameter(description = "skip geometrische Validierung")
-                                                        Boolean skipGeometrisch,
-                                @QueryParam("skipFlaechenschluss")
-                                @DefaultValue("false")
-                                @Parameter(description = "skip Flaechenschluss Ueberpruefung")
-                                                        Boolean skipFlaechenschluss,
-                                @QueryParam("skipGeltungsbereich")
-                                @DefaultValue("false")
-                                @Parameter(description = "skip Geltungsbereich Ueberpruefung")
-                                                        Boolean skipGeltungsbereich,
-                                @QueryParam("internalId")
-                                @Parameter(description = "internalId links to VerfahrensId")
-                                                        String internalId,
-                                @QueryParam("planStatus")
-                                @Parameter(description = "target for data storage, overrides the default derived from xplan:rechtsstand", schema = @Schema(allowableValues = {
-                                                        "IN_AUFSTELLUNG", "FESTGESTELLT",
-                                                        "ARCHIVIERT" }, example = "FESTGESTELLT"))
-                                                        String planStatus )
+                            @ApiResponse(responseCode = "406", description = "Invalid content only ZIP with XPlanGML is accepted") }, requestBody = @RequestBody(content = {
+                            @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")),
+                            @Content(mediaType = "application/zip", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")),
+                            @Content(mediaType = "application/x-zip", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")),
+                            @Content(mediaType = "application/x-zip-compressed", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")) }, required = true))
+    public Response callImport(
+                            @Context
+                                                    UriInfo uriInfo, @Valid File body,
+                            @HeaderParam("X-Filename")
+                            @Parameter(description = "Name of the file to be uploaded", example = "File names such as xplan.gml, xplan.xml, xplan.zip")
+                                                    String xFilename,
+                            @QueryParam("skipSemantisch")
+                            @DefaultValue("false")
+                            @Parameter(description = "skip semantische Validierung")
+                                                    Boolean skipSemantisch,
+                            @QueryParam("skipGeometrisch")
+                            @DefaultValue("false")
+                            @Parameter(description = "skip geometrische Validierung")
+                                                    Boolean skipGeometrisch,
+                            @QueryParam("skipFlaechenschluss")
+                            @DefaultValue("false")
+                            @Parameter(description = "skip Flaechenschluss Ueberpruefung")
+                                                    Boolean skipFlaechenschluss,
+                            @QueryParam("skipGeltungsbereich")
+                            @DefaultValue("false")
+                            @Parameter(description = "skip Geltungsbereich Ueberpruefung")
+                                                    Boolean skipGeltungsbereich,
+                            @QueryParam("internalId")
+                            @Parameter(description = "internalId links to VerfahrensId")
+                                                    String internalId,
+                            @QueryParam("planStatus")
+                            @Parameter(description = "target for data storage, overrides the default derived from xplan:rechtsstand", schema = @Schema(allowableValues = {
+                                                    "IN_AUFSTELLUNG", "FESTGESTELLT",
+                                                    "ARCHIVIERT" }, example = "FESTGESTELLT"))
+                                                    String planStatus )
                             throws Exception {
         String validationName = detectOrCreateValidationName( xFilename );
         DefaultValidationConfiguration validationConfig = managerConfiguration.getDefaultValidationConfiguration();
@@ -119,6 +124,7 @@ public class PlanApi {
 
     @DELETE
     @Path("/{planId}")
+    @Produces({ "application/json", "application/xml" })
     @Operation(summary = "Delete plan identified by the given plan ID", description = "Deletes an existing plan identified by the given plan ID, limited to plans in status \"in Aufstellung\"", tags = {
                             "manage", }, responses = {
                             @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = StatusMessage.class))),

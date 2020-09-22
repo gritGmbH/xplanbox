@@ -219,9 +219,6 @@ paths:
                 $ref: '#/components/schemas/ValidationReport'
         406:
           description: Invalid content only ZIP with XPlanGML is accepted
-        default:
-          description: Unexpected error
-          content: {}
   /plans:
     get:
       tags:
@@ -247,12 +244,6 @@ paths:
                   $ref: '#/components/schemas/PlanInfo'
 components:
   schemas:
-    StatusMessage:
-      type: object
-      properties:
-        message:
-          type: string
-          example: 'Plan mit ID 123 entfernt'
     ManagerSystemConfig:
       allOf:
         - $ref: '#/components/schemas/SystemConfig'
@@ -291,6 +282,12 @@ components:
         source:
           type: string
           example: 'https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.9.14.zip'
+    StatusMessage:
+      type: object
+      properties:
+        message:
+          type: string
+          example: 'Plan mit ID 123 entfernt'
     SystemConfig:
       type: object
       properties:

@@ -14,6 +14,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 
 import javax.ws.rs.ApplicationPath;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,10 +48,8 @@ public class ApplicationPathConfig extends ResourceConfig {
                                 new License().name( "Apache 2.0" ).url(
                                                         "http://www.apache.org/licenses/LICENSE-2.0.html" ) ) );
         openApi.servers( servers() );
-        Tag tag = new Tag().name( "manage" ).description( "Manage XPlanGML documents" ).externalDocs(
-                                new ExternalDocumentation().description( "xPlanBox" ).url(
-                                                        "http://xplanbox.lat-lon.de" ) );
-        openApi.tags( Collections.singletonList( tag ) );
+        List<Tag> tags = createTags();
+        openApi.tags( tags );
 
         DefaultApi openApiResource = new DefaultApi();
         SwaggerConfiguration oasConfig = new SwaggerConfiguration().openAPI( openApi ).prettyPrint(
@@ -60,6 +59,17 @@ public class ApplicationPathConfig extends ResourceConfig {
         openApiResource.setOpenApiConfiguration( oasConfig );
         register( openApiResource );
         LOG.info( "XPlanApiValidator successfully initialized" );
+    }
+
+    private List<Tag> createTags() {
+        List<Tag> tags = new ArrayList<>();
+        tags.add( new Tag().name( "manage" ).description( "Manage XPlanGML documents" ).externalDocs(
+                                new ExternalDocumentation().description( "xPlanBox" ).url(
+                                                        "http://xplanbox.lat-lon.de" ) ) );
+        tags.add( new Tag().name( "search" ).description( "Search for XPlanGML documents" ).externalDocs(
+                                new ExternalDocumentation().description( "xPlanBox" ).url(
+                                                        "http://xplanbox.lat-lon.de" ) ) );
+        return tags;
     }
 
     private List<Server> servers() {
