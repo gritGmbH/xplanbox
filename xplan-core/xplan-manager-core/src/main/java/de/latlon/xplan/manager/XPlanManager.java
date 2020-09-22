@@ -226,7 +226,7 @@ public class XPlanManager {
 
     public XPlanArchive analyzeArchive( String fileName )
                     throws IOException {
-        LOG.info( "- Analyse des XPlan-Archivs ('" + fileName + "')..." );
+        LOG.info( "- Analyse des XPlanArchivs ('" + fileName + "')..." );
         XPlanArchive archive = archiveCreator.createXPlanArchive( new File( fileName ) );
         LOG.info( "OK. " + archive );
         return archive;
@@ -433,7 +433,7 @@ public class XPlanManager {
                     throws Exception {
         XPlanArchiveContent xplanContentsToExport = xplanDao.retrieveAllXPlanArtefacts( planId );
         xPlanExporter.export( outputStream, xplanContentsToExport );
-        LOG.info( "XPlan-Archiv " + planId + " wurde erfolgreich exportiert" );
+        LOG.info( "XPlanArchiv {} wurde erfolgreich exportiert", planId );
     }
 
     /**

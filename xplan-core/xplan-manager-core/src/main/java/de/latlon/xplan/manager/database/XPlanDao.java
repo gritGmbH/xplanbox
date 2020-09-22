@@ -1416,7 +1416,7 @@ public class XPlanDao {
             long elapsed = System.currentTimeMillis() - begin;
             LOG.info( "OK [" + elapsed + " ms]" );
         } catch ( SQLException e ) {
-            throw new Exception( "Fehler beim Aktualiseren der XPlan-Artefakte in DB: " + e.getLocalizedMessage(), e );
+            throw new Exception( "Fehler beim Aktualisieren der XPlan-Artefakte in DB: " + e.getLocalizedMessage(), e );
         }
     }
 

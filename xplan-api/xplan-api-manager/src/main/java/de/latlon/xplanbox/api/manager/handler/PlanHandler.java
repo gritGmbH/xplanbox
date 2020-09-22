@@ -80,6 +80,7 @@ public class PlanHandler {
     public Status importPlan( File uploadedPlan, String xFileName, ValidationSettings validationSettings,
                               String internalId, String planStatus )
                             throws Exception {
+        LOG.info( "Importing plan using validation settings '{}'", validationSettings );
         String validationName = validationSettings.getValidationName();
         XPlanArchive xPlanArchive = archiveCreator.createXPlanArchiveFromZip( uploadedPlan );
         ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport( validationSettings, validationName,
@@ -87,6 +88,7 @@ public class PlanHandler {
         if ( !validatorReport.isReportValid() ) {
             throw new InvalidPlan( validatorReport, xFileName );
         }
+        LOG.info( "Plan is valid. Importing plan into storage for '{}'", planStatus );
         AdditionalPlanData metadata = createAdditionalPlanData( xPlanArchive, planStatus );
         int planId = xPlanInsertManager.importPlan( xPlanArchive, null, false, false, true, null, internalId,
                                                     metadata );
@@ -94,29 +96,34 @@ public class PlanHandler {
         XPlan planById = findPlanById( planId );
         ValidationReport validationReport = new ValidationReportBuilder().validatorReport( validatorReport ).filename(
                                 validationName ).build();
+        LOG.info( "Plan with Id {} successfully imported", planById );
         return new Status().planId( planId ).link( createWmsUrl( planById ) ).validationReport( validationReport );
     }
 
     public StatusMessage deletePlan( String planId )
                             throws Exception {
+        LOG.info( "Deleting plan with Id {}", planId );
         xPlanDeleteManager.delete( planId );
         return new StatusMessage().message( String.format( DELETE_MSG, planId ) );
     }
 
     public StreamingOutput exportPlan( String planId )
                             throws Exception {
+        LOG.info( "Exporting plan with Id '{}'", planId );
         XPlanArchiveContent archiveContent = xPlanDao.retrieveAllXPlanArtefacts( planId );
         return outputStream -> xPlanExporter.export( outputStream, archiveContent );
     }
 
     public XPlan findPlanById( String planId )
                             throws Exception {
+        LOG.info( "Find plan by Id '{}'", planId );
         int id = Integer.parseInt( planId );
         return findPlanById( id );
     }
 
     public XPlan findPlanByName( String planName )
                             throws Exception {
+        LOG.info( "Find plan by name '{}'", planName );
         List<XPlan> xPlans = xPlanDao.getXPlanByName( planName );
         if ( xPlans.size() != 1 )
             throw new InvalidPlanName( planName );
@@ -125,6 +132,7 @@ public class PlanHandler {
 
     public List<XPlan> findPlans( String planName )
                             throws Exception {
+        LOG.info( "Search plan by name '{}'", planName );
         if ( planName != null )
             return xPlanDao.getXPlansLikeName( planName );
         return xPlanDao.getXPlanList( false );

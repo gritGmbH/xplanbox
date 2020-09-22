@@ -26,7 +26,7 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 
 /**
- * Kommandozeilen-Frontend zum Verwalten von XPlan-Archiven und zum Bearbeiten der Raster-Layer-Kategorien.
+ * Kommandozeilen-Frontend zum Verwalten von XPlanArchiven und zum Bearbeiten der Raster-Layer-Kategorien.
  * 
  * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
  * @see XPlanRasterManagerCLI
@@ -198,7 +198,7 @@ public class XPlanManagerCLI {
                 printUsage();
             }
         } catch ( Exception e ) {
-            endWithFatalError( "Import des XPlan-Archivs fehlgeschlagen. Fehlermeldung: " + e.getLocalizedMessage() );
+            endWithFatalError( "Import des XPlanArchivs fehlgeschlagen. Fehlermeldung: " + e.getLocalizedMessage() );
         }
     }
 

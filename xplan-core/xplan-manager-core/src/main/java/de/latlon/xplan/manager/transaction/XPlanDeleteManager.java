@@ -64,7 +64,7 @@ public class XPlanDeleteManager {
             new WmsWorkspaceManager( findWorkspaceDirectory( workspaceFolder ) ).deleteWmsWorkspaceFilesForId( planId );
         }
         reloadWorkspace();
-        LOG.info( "XPlan-Archiv " + planId + " wurde gelöscht" );
+        LOG.info( "XPlanArchiv mit Id {} wurde gelöscht", planId );
     }
 
     private void reloadWorkspace() {

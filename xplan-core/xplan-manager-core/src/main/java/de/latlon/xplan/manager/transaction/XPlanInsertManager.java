@@ -92,7 +92,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
                                     sortDate );
         startCreationOfDataServicesCoupling( planId, fc, crs );
         reloadWorkspace();
-        LOG.info( "XPlan-Archiv wurde erfolgreich importiert. Zugewiesene Id: " + planId );
+        LOG.info( "XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId );
         LOG.info( "OK." );
         return planId;
     }
