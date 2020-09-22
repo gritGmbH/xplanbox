@@ -15,4 +15,8 @@ public abstract class XPlanApiException extends Exception {
         return INTERNAL_SERVER_ERROR.getStatusCode();
     }
 
+    public Object getResponseEntity() {
+        return null;
+    }
+
 }

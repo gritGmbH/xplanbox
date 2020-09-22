@@ -194,6 +194,12 @@ Import the plan</con:description>
           <con:params/>
           <con:element>data</con:element>
         </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:element xmlns:plan="http://localhost/xplan-api-manager/xmanager/api/v1/plan">plan:Fault</con:element>
+        </con:representation>
         <con:request name="Request 1" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
@@ -368,6 +374,12 @@ Delete plan identified by the given plan ID</con:description>
         <con:representation type="RESPONSE">
           <con:mediaType xsi:nil="true"/>
           <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>204</con:status>
           <con:params/>
           <con:element>data</con:element>
         </con:representation>
@@ -715,7 +727,7 @@ Search for plan by name</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="Skip none" id="e889d8ec-d819-4e8b-8220-2f4963722d8e">
+      <con:testStep type="restrequest" name="Invalid Plan (Skip none)" id="e889d8ec-d819-4e8b-8220-2f4963722d8e">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="Skip none" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
@@ -728,6 +740,15 @@ Search for plan by name</con:description>
             <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a226cfa0-8b8e-4a88-bc0e-981e2d11821a" name="is invalid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -903,7 +924,7 @@ Search for plan by name</con:description>
       <con:testStep type="restrequest" name="ExactMatch" id="474680bd-be66-43c1-b66b-8738ecf34fde">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plans" methodName="findByName" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Request 1" id="653c7a59-0292-405d-8596-a225f505b1fb" mediaType="application/json">
+          <con:restRequest name="ExactMatch" id="653c7a59-0292-405d-8596-a225f505b1fb" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1203,11 +1224,11 @@ assert expectedHeader == actualHeader</scriptText>
     <con:properties>
       <con:property>
         <con:name>currentPlanIdImport</con:name>
-        <con:value>10</con:value>
+        <con:value>4</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipAll</con:name>
-        <con:value>11</con:value>
+        <con:value>5</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>

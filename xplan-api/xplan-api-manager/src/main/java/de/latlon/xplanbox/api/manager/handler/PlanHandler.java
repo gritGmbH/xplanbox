@@ -76,14 +76,15 @@ public class PlanHandler {
     @Autowired
     private ManagerConfiguration managerConfiguration;
 
-    public Status importPlan( File uploadedPlan, String validationName, ValidationSettings validationSettings,
+    public Status importPlan( File uploadedPlan, String xFileName, ValidationSettings validationSettings,
                               String internalId, String planStatus )
                             throws Exception {
+        String validationName = validationSettings.getValidationName();
         XPlanArchive xPlanArchive = archiveCreator.createXPlanArchiveFromZip( uploadedPlan );
         ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport( validationSettings, validationName,
                                                                                  xPlanArchive );
         if ( !validatorReport.isReportValid() ) {
-            throw new InvalidPlan();
+            throw new InvalidPlan( validatorReport, xFileName );
         }
         AdditionalPlanData metadata = createAdditionalPlanData( xPlanArchive, planStatus );
         int planId = xPlanInsertManager.importPlan( xPlanArchive, null, false, false, true, null, internalId,
@@ -93,7 +94,6 @@ public class PlanHandler {
         ValidationReport validationReport = new ValidationReportBuilder().validatorReport( validatorReport ).filename(
                                 validationName ).build();
         return new Status().planId( planId ).link( createWmsUrl( planById ) ).validationReport( validationReport );
-
     }
 
     public void deletePlan( String planId )

@@ -4,6 +4,7 @@ import de.latlon.xplan.manager.configuration.DefaultValidationConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
+import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
 import de.latlon.xplanbox.api.manager.handler.PlanHandler;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
@@ -66,7 +67,7 @@ public class PlanApi {
     @Operation(operationId = "import", summary = "Import the plan", description = "Imports the plan", tags = {
                             "manage", }, responses = {
                             @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Status.class))),
-                            @ApiResponse(responseCode = "400", description = "Invalid input"),
+                            @ApiResponse(responseCode = "400", description = "Invalid input",content = @Content(schema = @Schema(implementation = ValidationReport.class))),
                             @ApiResponse(responseCode = "405", description = "Invalid method"),
                             @ApiResponse(responseCode = "406", description = "Invalid content only ZIP with XPlanGML is accepted"),
                             @ApiResponse(responseCode = "415", description = "Unsupported Media Type, only ZIP is accepted") }, requestBody = @RequestBody(content = @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")), required = true))
@@ -110,7 +111,7 @@ public class PlanApi {
                                                                                               validationConfig.isSkipFlaechenschluss() ),
                                                                           overwriteByRequest( skipGeltungsbereich,
                                                                                               validationConfig.isSkipGeltungsbereich() ) );
-        Status status = planHandler.importPlan( body, validationName, validationSettings, internalId, planStatus );
+        Status status = planHandler.importPlan( body, xFilename, validationSettings, internalId, planStatus );
         return Response.ok().entity( status ).build();
     }
 
