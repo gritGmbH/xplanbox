@@ -64,19 +64,19 @@ public class PlanHandlerTest {
     }
 
     @Test
-    public void verifyThat_findPlansByName() throws Exception {
-        List<XPlan> planList = planHandler.findPlansByName("bplan_41");
+    public void verifyThat_findPlans() throws Exception {
+        List<XPlan> planList = planHandler.findPlans("bplan_41");
         assertThat(planList, hasItem( new XPlan("bplan_41","123","B_PLAN", "XPLAN_41")));
     }
 
     @Test
-    public void verifyThat_findPlansByName_ReturnsEmptyList() throws Exception {
-        List<XPlan> planList = planHandler.findPlansByName("xplan");
+    public void verifyThat_findPlans_ReturnsEmptyList() throws Exception {
+        List<XPlan> planList = planHandler.findPlans("xplan");
         assertThat(planList.size(), is(0));
     }
 
     @Test
-    public void verifyThat_findPlans() throws Exception {
+    public void verifyThat_findPlansWithNullName() throws Exception {
         List<XPlan> planList = planHandler.findPlans(null );
         assertThat(planList.isEmpty(), is(false));
     }

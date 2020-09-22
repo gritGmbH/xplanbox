@@ -42,7 +42,7 @@ public class PlanApiTest extends JerseyTest {
                 PlanApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
         final Response response = target( "/plan" ).request().
                 accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_OCTET_STREAM ) );
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
+        assertThat( response.getStatus(), is( Response.Status.CREATED.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
     }
 

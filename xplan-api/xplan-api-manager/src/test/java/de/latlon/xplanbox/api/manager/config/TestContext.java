@@ -97,6 +97,7 @@ public class TestContext {
         List<XPlan> mockList = new ArrayList<>();
         mockList.add(mockPlan);
         when(xplanDao.getXPlanByName("bplan_41")).thenReturn(mockList);
+        when(xplanDao.getXPlansLikeName("bplan_41")).thenReturn(mockList);
         when(xplanDao.getXPlanList(anyBoolean())).thenReturn(mockList);
         XPlanArchiveContent mockArchive = Mockito.mock(XPlanArchiveContent.class);
         when(xplanDao.retrieveAllXPlanArtefacts( anyString() )).thenReturn(mockArchive);
