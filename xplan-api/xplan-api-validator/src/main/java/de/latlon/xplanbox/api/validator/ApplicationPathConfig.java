@@ -1,7 +1,7 @@
-package de.latlon.xplanbox.api.manager;
+package de.latlon.xplanbox.api.validator;
 
 import de.latlon.xplanbox.api.commons.ObjectMapperContextResolver;
-import de.latlon.xplanbox.api.manager.v1.DefaultApi;
+import de.latlon.xplanbox.api.validator.v1.DefaultApi;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -22,32 +22,34 @@ import java.util.stream.Stream;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
- * Application configuration for XPlanManager REST API.
+ * Application configuration for XPlanValidator REST API.
  * Example mapping for proxy mapping:
- * http://xplanbox.lat-lon.de/xmanager/api/vi/ -> http://host:8080/xplan-api-validator/xmanager/api/v1/
- * Public address: http://xplanbox.lat-lon.de/xmanager/
- * Internal address: http://host:8080/xplan-api-validator/xmanager/
+ * http://xplanbox.lat-lon.de/xvalidator/api/v1/ -> http://host:8080/xplan-api-validator/xvalidator/api/v1/
+ * Public address: http://xplanbox.lat-lon.de/xvalidator/
+ * Internal address: http://host:8080/xplan-api-validator/xvalidator/
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-@ApplicationPath("/xmanager/api/v1")
-public class RestApplication extends ResourceConfig {
+@ApplicationPath("/xvalidator/api/v1")
+public class ApplicationPathConfig extends ResourceConfig {
 
-    private static final Logger LOG = getLogger( RestApplication.class );
+    private static final Logger LOG = getLogger( ApplicationPathConfig.class );
 
-    public RestApplication() {
+    public ApplicationPathConfig() {
         super();
         register( new ObjectMapperContextResolver() );
-        packages( "de.latlon.xplanbox.api.manager.v1" );
-        packages( "de.latlon.xplanbox.api.commons.exception" );
+        packages( "de.latlon.xplanbox.api.validator.config" );
+        packages( "de.latlon.xplanbox.api.validator.handler" );
+        packages( "de.latlon.xplanbox.api.validator.v1" );
         OpenAPI openApi = new OpenAPI();
-        openApi.setInfo( new Info().title( "XPlanManagerAPI" ).version( "0.1.1" ).description(
-                                "XPlanManager REST API" ).termsOfService( "http://xplanbox.lat-lon.de/terms/" ).contact(
+        openApi.setInfo( new Info().title( "XPlanValidatorAPI" ).version( "0.1.0" ).description(
+                                "XPlanValidator REST API" ).termsOfService(
+                                "http://xplanbox.lat-lon.de/terms/" ).contact(
                                 new Contact().email( "info@lat-lon.de" ) ).license(
                                 new License().name( "Apache 2.0" ).url(
                                                         "http://www.apache.org/licenses/LICENSE-2.0.html" ) ) );
         openApi.servers( servers() );
-        Tag tag = new Tag().name( "manage" ).description( "Manage XPlanGML documents" ).externalDocs(
+        Tag tag = new Tag().name( "validate" ).description( "Validate XPlanGML documents" ).externalDocs(
                                 new ExternalDocumentation().description( "xPlanBox" ).url(
                                                         "http://xplanbox.lat-lon.de" ) );
         openApi.tags( Collections.singletonList( tag ) );
@@ -55,7 +57,7 @@ public class RestApplication extends ResourceConfig {
         DefaultApi openApiResource = new DefaultApi();
         SwaggerConfiguration oasConfig = new SwaggerConfiguration().openAPI( openApi ).prettyPrint(
                                 true ).resourcePackages(
-                                Stream.of( "de.latlon.xplanbox.api.manager.v1" ).collect( Collectors.toSet() ) );
+                                Stream.of( "de.latlon.xplanbox.api.validator.v1" ).collect( Collectors.toSet() ) );
 
         openApiResource.setOpenApiConfiguration( oasConfig );
         register( openApiResource );
@@ -64,7 +66,7 @@ public class RestApplication extends ResourceConfig {
 
     private List<Server> servers() {
         // TODO
-        Server server = new Server().url( "http://localhost:8081/xplan-api-manager/xmanager/api/v1" );
+        Server server = new Server().url( "http://localhost:8081/xplan-api-validator/xvalidator/api/v1" );
         return Collections.singletonList( server );
     }
 
