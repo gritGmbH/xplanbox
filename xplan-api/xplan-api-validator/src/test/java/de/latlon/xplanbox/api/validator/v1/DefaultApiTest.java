@@ -1,6 +1,5 @@
 package de.latlon.xplanbox.api.validator.v1;
 
-import de.latlon.xplanbox.api.validator.XPlanApiValidator;
 import de.latlon.xplanbox.api.validator.config.ApplicationContext;
 import de.latlon.xplanbox.api.validator.config.TestContext;
 import org.apache.http.HttpHeaders;
