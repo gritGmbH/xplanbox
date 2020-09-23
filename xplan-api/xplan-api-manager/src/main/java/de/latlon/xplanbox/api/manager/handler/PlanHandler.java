@@ -15,6 +15,7 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
+import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanName;
@@ -30,6 +31,7 @@ import javax.inject.Singleton;
 import javax.ws.rs.core.StreamingOutput;
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -79,7 +81,7 @@ public class PlanHandler {
                             throws Exception {
         LOG.info( "Importing plan using validation settings '{}'", validationSettings );
         String validationName = validationSettings.getValidationName();
-        XPlanArchive xPlanArchive = archiveCreator.createXPlanArchiveFromZip( uploadedPlan );
+        XPlanArchive xPlanArchive = createArchive( uploadedPlan );
         ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport( validationSettings, validationName,
                                                                                  xPlanArchive );
         if ( !validatorReport.isReportValid() ) {
@@ -93,6 +95,15 @@ public class PlanHandler {
         XPlan planById = findPlanById( planId );
         LOG.info( "Plan with Id {} successfully imported", planById );
         return planById;
+    }
+
+    private XPlanArchive createArchive( File uploadedPlan )
+                            throws InvalidXPlanGmlOrArchive {
+        try {
+            return archiveCreator.createXPlanArchiveFromZip( uploadedPlan );
+        } catch ( Exception e ) {
+            throw new InvalidXPlanGmlOrArchive( "Could not read attached file as XPlanArchive", e );
+        }
     }
 
     public StatusMessage deletePlan( String planId )
