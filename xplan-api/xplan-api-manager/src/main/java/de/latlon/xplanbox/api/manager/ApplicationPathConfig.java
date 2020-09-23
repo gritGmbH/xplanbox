@@ -14,7 +14,9 @@ import io.swagger.v3.oas.models.tags.Tag;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 
+import javax.servlet.ServletContext;
 import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Context;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,7 +39,9 @@ public class ApplicationPathConfig extends ResourceConfig {
 
     private static final Logger LOG = getLogger( ApplicationPathConfig.class );
 
-    public ApplicationPathConfig() {
+    public ApplicationPathConfig(
+                            @Context
+                                                    ServletContext servletContext ) {
         super();
         register( new ObjectMapperContextResolver() );
         packages( "de.latlon.xplanbox.api.manager.v1" );
@@ -48,7 +52,7 @@ public class ApplicationPathConfig extends ResourceConfig {
                                 new Contact().email( "info@lat-lon.de" ) ).license(
                                 new License().name( "Apache 2.0" ).url(
                                                         "http://www.apache.org/licenses/LICENSE-2.0.html" ) ) );
-        openApi.servers( servers() );
+        openApi.servers( servers( servletContext ) );
         List<Tag> tags = createTags();
         openApi.tags( tags );
 
@@ -73,8 +77,9 @@ public class ApplicationPathConfig extends ResourceConfig {
         return tags;
     }
 
-    private List<Server> servers() {
-        Server server = new Server().url( "/xmanager/api/v1" );
+    private List<Server> servers( ServletContext servletContext ) {
+        String contextPath = servletContext.getContextPath();
+        Server server = new Server().url( contextPath + "/xmanager/api/v1" );
         return Collections.singletonList( server );
     }
 

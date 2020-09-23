@@ -11,6 +11,10 @@ public abstract class XPlanApiException extends Exception {
         super( message );
     }
 
+    public XPlanApiException( String message, Exception e ) {
+        super( message, e );
+    }
+
     public int getStatusCode() {
         return INTERNAL_SERVER_ERROR.getStatusCode();
     }

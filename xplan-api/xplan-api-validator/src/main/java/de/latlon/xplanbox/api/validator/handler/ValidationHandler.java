@@ -14,6 +14,7 @@ import de.latlon.xplan.validator.web.shared.ArtifactType;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.wms.MapPreviewCreationException;
 import de.latlon.xplan.validator.wms.ValidatorWmsManager;
+import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
 import org.apache.http.client.utils.URIBuilder;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.types.AppSchema;
@@ -116,13 +117,21 @@ public class ValidationHandler {
     }
 
     public XPlanArchive createArchiveFromZip( File uploadedPlan, String validationName )
-                            throws IOException {
-        return archiveCreator.createXPlanArchiveFromZip( validationName, new FileInputStream( uploadedPlan ) );
+                            throws InvalidXPlanGmlOrArchive {
+        try {
+            return archiveCreator.createXPlanArchiveFromZip( validationName, new FileInputStream( uploadedPlan ) );
+        } catch ( Exception e ) {
+            throw new InvalidXPlanGmlOrArchive( "Could not read attached file as XPlanArchive", e );
+        }
     }
 
     public XPlanArchive createArchiveFromGml( File uploadedPlan, String validationName )
-                            throws IOException {
-        return archiveCreator.createXPlanArchiveFromGml( validationName, new FileInputStream( uploadedPlan ) );
+                            throws InvalidXPlanGmlOrArchive {
+        try {
+            return archiveCreator.createXPlanArchiveFromGml( validationName, new FileInputStream( uploadedPlan ) );
+        } catch ( Exception e ) {
+            throw new InvalidXPlanGmlOrArchive( "Could not read attached file as XPlanGML", e );
+        }
     }
 
     private URI createWmsUrl( int id )

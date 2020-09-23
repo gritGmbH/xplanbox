@@ -4,6 +4,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
+import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
 import de.latlon.xplanbox.api.validator.config.ApplicationContext;
 import org.junit.Rule;
 import org.junit.Test;
@@ -41,7 +42,7 @@ public class ValidationHandlerTest {
 
     @Test
     public void verifyThat_FromZip_ArchiveCanBeCreated()
-                            throws IOException, URISyntaxException {
+                            throws URISyntaxException, InvalidXPlanGmlOrArchive {
         final File file = new File( ValidationHandlerTest.class.getResource( "/bplan_valid_41.zip" ).toURI() );
         XPlanArchive archive = validationHandler.createArchiveFromZip( file, "bplan_valid_41" );
         assertNotNull( archive );
@@ -49,15 +50,29 @@ public class ValidationHandlerTest {
 
     @Test
     public void verifyThat_FromGml_ArchiveCanBeCreated()
-                            throws IOException, URISyntaxException {
+                            throws URISyntaxException, InvalidXPlanGmlOrArchive {
         final File file = new File( ValidationHandlerTest.class.getResource( "/xplan.gml" ).toURI() );
         XPlanArchive archive = validationHandler.createArchiveFromGml( file, "bplan_valid_41" );
         assertNotNull( archive );
     }
 
+    @Test(expected = InvalidXPlanGmlOrArchive.class)
+    public void verifyThat_FromGml_ZipArchiveCanBeCreated()
+                            throws URISyntaxException, InvalidXPlanGmlOrArchive {
+        final File file = new File( ValidationHandlerTest.class.getResource( "/xplan.gml" ).toURI() );
+        validationHandler.createArchiveFromZip( file, "bplan_valid_41" );
+    }
+
+    @Test(expected = InvalidXPlanGmlOrArchive.class)
+    public void verifyThat_FromZip_GmlArchiveCanBeCreated()
+                            throws URISyntaxException, InvalidXPlanGmlOrArchive {
+        final File file = new File( ValidationHandlerTest.class.getResource( "/bplan_valid_41.zip" ).toURI() );
+        validationHandler.createArchiveFromGml( file, "bplan_valid_41" );
+    }
+
     @Test
     public void verifyThat_ValidPlan_ReturnsValidReport()
-                            throws IOException, ValidatorException, URISyntaxException {
+                            throws ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
         final File file = new File( ValidationHandlerTest.class.getResource( "/bplan_valid_41.zip" ).toURI() );
         final ValidationSettings settings = Mockito.mock( ValidationSettings.class );
 
@@ -88,7 +103,7 @@ public class ValidationHandlerTest {
 
     @Test
     public void verifyThat_PlanwerkWmsUrl_IsAddedToIncompleteValidationHandler_NullIsReturned()
-                            throws URISyntaxException, IOException {
+                            throws URISyntaxException, InvalidXPlanGmlOrArchive {
         final File file = new File( ValidationHandlerTest.class.getResource( "/xplan.gml" ).toURI() );
 
         XPlanArchive archive = validationHandler.createArchiveFromGml( file, "xplan" );

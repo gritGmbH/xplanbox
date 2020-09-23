@@ -5,6 +5,7 @@ import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.ValidationReportBuilder;
+import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.validator.handler.ValidationHandler;
 import io.swagger.v3.oas.annotations.Hidden;
@@ -67,7 +68,7 @@ public class ValidateApi {
                                                     @Content(mediaType = APPLICATION_PDF, schema = @Schema(type = "string", format = "binary")),
                                                     @Content(mediaType = APPLICATION_ZIP, schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload", implementation = Object.class)) }),
                             @ApiResponse(responseCode = "400", description = "Invalid input"),
-                            @ApiResponse(responseCode = "406", description = "Invalid content only XPlanGML or ZIP with XPlanGML is accepted")}, requestBody = @RequestBody(content = {
+                            @ApiResponse(responseCode = "406", description = "Invalid content only XPlanGML or ZIP with XPlanGML is accepted") }, requestBody = @RequestBody(content = {
                             @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload")),
                             @Content(mediaType = "application/zip", schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload")),
                             @Content(mediaType = "application/x-zip", schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload")),
@@ -99,7 +100,7 @@ public class ValidateApi {
                             @DefaultValue("false")
                             @Parameter(description = "skip Geltungsbereich Ueberpruefung")
                                                     Boolean skipGeltungsbereich )
-                            throws IOException, ValidatorException, URISyntaxException {
+                            throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
         String validationName = detectOrCreateValidationName( xFilename, name );
         XPlanArchive archive = validationHandler.createArchiveFromGml( body, validationName );
 
@@ -130,7 +131,7 @@ public class ValidateApi {
                             @QueryParam("skipGeltungsbereich")
                             @DefaultValue("false")
                                                     Boolean skipGeltungsbereich )
-                            throws IOException, ValidatorException, URISyntaxException {
+                            throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
         String validationName = detectOrCreateValidationName( xFilename, name );
         XPlanArchive archive = validationHandler.createArchiveFromZip( body, validationName );
 

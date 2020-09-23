@@ -12,7 +12,11 @@ public class XPlanApiExceptionMapper implements ExceptionMapper<XPlanApiExceptio
 
     @Override
     public Response toResponse( XPlanApiException exception ) {
-        return Response.status( exception.getStatusCode() ).entity( exception.getResponseEntity() ).build();
+        Response.ResponseBuilder status = Response.status( exception.getStatusCode() );
+        Object responseEntity = exception.getResponseEntity();
+        if ( responseEntity != null )
+            status.entity( responseEntity );
+        return status.build();
     }
 
 }
