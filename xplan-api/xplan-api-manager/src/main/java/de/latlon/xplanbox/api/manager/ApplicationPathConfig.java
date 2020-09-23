@@ -1,6 +1,7 @@
 package de.latlon.xplanbox.api.manager;
 
 import de.latlon.xplanbox.api.commons.ObjectMapperContextResolver;
+import de.latlon.xplanbox.api.commons.openapi.OpenApiFilter;
 import de.latlon.xplanbox.api.manager.v1.DefaultApi;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.models.ExternalDocumentation;
@@ -52,8 +53,8 @@ public class ApplicationPathConfig extends ResourceConfig {
         openApi.tags( tags );
 
         DefaultApi openApiResource = new DefaultApi();
-        SwaggerConfiguration oasConfig = new SwaggerConfiguration().openAPI( openApi ).prettyPrint(
-                                true ).resourcePackages(
+        SwaggerConfiguration oasConfig = new SwaggerConfiguration().openAPI( openApi ).filterClass(
+                                OpenApiFilter.class.getCanonicalName() ).prettyPrint( true ).resourcePackages(
                                 Stream.of( "de.latlon.xplanbox.api.manager.v1" ).collect( Collectors.toSet() ) );
 
         openApiResource.setOpenApiConfiguration( oasConfig );
@@ -73,8 +74,7 @@ public class ApplicationPathConfig extends ResourceConfig {
     }
 
     private List<Server> servers() {
-        // TODO
-        Server server = new Server().url( "http://localhost:8081/xplan-api-manager/xmanager/api/v1" );
+        Server server = new Server().url( "/xmanager/api/v1" );
         return Collections.singletonList( server );
     }
 
