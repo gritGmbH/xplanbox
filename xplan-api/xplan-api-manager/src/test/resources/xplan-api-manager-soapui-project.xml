@@ -699,22 +699,29 @@ Search for plan by name</con:description>
                 <codes>201</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="c208d8a8-95ee-415e-aac9-acb660fd11e2" name="planId">
+            <con:assertion type="JsonPath Existence Match" id="c208d8a8-95ee-415e-aac9-acb660fd11e2" name="id">
               <con:configuration>
-                <path>$.planId</path>
+                <path>$.id</path>
                 <content>true</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="308be031-7fff-48ca-890a-1256e0343a38" name="validationReport">
+            <con:assertion type="JsonPath Match" id="727c0fd3-5cab-490a-a799-0465207ecae1" name="name">
               <con:configuration>
-                <path>$.validationReport</path>
-                <content>true</content>
+                <path>$.xplanModelData.name</path>
+                <content>Eidelstedt 4</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="c03a14b6-5334-45f9-b067-fb81a2782304" name="has Location Header">
+              <con:configuration>
+                <scriptText>def headers = messageExchange.response.responseHeaders
+def actualHeader = headers['Location']
+assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -807,20 +814,27 @@ Search for plan by name</con:description>
             </con:assertion>
             <con:assertion type="JsonPath Existence Match" id="d5bc6c3e-6178-46f3-81c6-5d86e17fcc9c" name="planId">
               <con:configuration>
-                <path>$.planId</path>
+                <path>$.id</path>
                 <content>true</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="f9c991f7-9088-43c5-a0d3-3fc254655893" name="validationReport">
+            <con:assertion type="JsonPath Existence Match" id="e3868439-2abb-41cf-a858-9d7cbfb40e2a" name="has name">
               <con:configuration>
-                <path>$.validationReport</path>
+                <path>$.xplanModelData.name</path>
                 <content>true</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="58fc9d5f-195a-404b-8e72-7e706fb07d8f" name="has Location Header">
+              <con:configuration>
+                <scriptText>def headers = messageExchange.response.responseHeaders
+def actualHeader = headers['Location']
+assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -858,7 +872,7 @@ Search for plan by name</con:description>
             <con:name>planIdImport</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>Import</con:sourceStep>
-            <con:sourcePath>$.planId</con:sourcePath>
+            <con:sourcePath>$.id</con:sourcePath>
             <con:targetType>currentPlanIdImport</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:targetPath xsi:nil="true"/>
@@ -870,7 +884,7 @@ Search for plan by name</con:description>
             <con:name>planIdSkipAll</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>Skip all</con:sourceStep>
-            <con:sourcePath>$.planId</con:sourcePath>
+            <con:sourcePath>$.id</con:sourcePath>
             <con:targetType>currentPlanIdSkipAll</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:targetPath xsi:nil="true"/>
@@ -1258,11 +1272,11 @@ assert expectedHeader == actualHeader</scriptText>
     <con:properties>
       <con:property>
         <con:name>currentPlanIdImport</con:name>
-        <con:value>12</con:value>
+        <con:value>1</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipAll</con:name>
-        <con:value>13</con:value>
+        <con:value>2</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>

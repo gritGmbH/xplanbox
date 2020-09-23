@@ -15,13 +15,10 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
-import de.latlon.xplanbox.api.commons.ValidationReportBuilder;
-import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanName;
 import de.latlon.xplanbox.api.manager.exception.UnsupportedParameterValue;
-import de.latlon.xplanbox.api.manager.v1.model.Status;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import org.apache.http.client.utils.URIBuilder;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -77,8 +74,8 @@ public class PlanHandler {
     @Autowired
     private ManagerConfiguration managerConfiguration;
 
-    public Status importPlan( File uploadedPlan, String xFileName, ValidationSettings validationSettings,
-                              String internalId, String planStatus )
+    public XPlan importPlan( File uploadedPlan, String xFileName, ValidationSettings validationSettings,
+                             String internalId, String planStatus )
                             throws Exception {
         LOG.info( "Importing plan using validation settings '{}'", validationSettings );
         String validationName = validationSettings.getValidationName();
@@ -94,10 +91,8 @@ public class PlanHandler {
                                                     metadata );
 
         XPlan planById = findPlanById( planId );
-        ValidationReport validationReport = new ValidationReportBuilder().validatorReport( validatorReport ).filename(
-                                validationName ).build();
         LOG.info( "Plan with Id {} successfully imported", planById );
-        return new Status().planId( planId ).link( createWmsUrl( planById ) ).validationReport( validationReport );
+        return planById;
     }
 
     public StatusMessage deletePlan( String planId )

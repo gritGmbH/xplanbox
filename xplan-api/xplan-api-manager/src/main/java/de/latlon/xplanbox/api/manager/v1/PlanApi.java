@@ -7,8 +7,8 @@ import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
 import de.latlon.xplanbox.api.manager.handler.PlanHandler;
+import de.latlon.xplanbox.api.manager.v1.model.Link;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
-import de.latlon.xplanbox.api.manager.v1.model.Status;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -47,6 +47,7 @@ import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidation
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP_TYPE;
+import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.SELF;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
 
@@ -68,7 +69,7 @@ public class PlanApi {
     @Produces({ "application/json" })
     @Operation(operationId = "import", summary = "Import the plan", description = "Imports the plan", tags = {
                             "manage", }, responses = {
-                            @ApiResponse(responseCode = "201", description = "successful operation", content = @Content(schema = @Schema(implementation = Status.class))),
+                            @ApiResponse(responseCode = "201", description = "successful operation", content = @Content(schema = @Schema(implementation = PlanInfo.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(schema = @Schema(implementation = ValidationReport.class))),
                             @ApiResponse(responseCode = "406", description = "Invalid content only ZIP with XPlanGML is accepted") }, requestBody = @RequestBody(content = {
                             @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")),
@@ -76,6 +77,8 @@ public class PlanApi {
                             @Content(mediaType = "application/x-zip", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")),
                             @Content(mediaType = "application/x-zip-compressed", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")) }, required = true))
     public Response callImport(
+                            @Context
+                                                    Request request,
                             @Context
                                                     UriInfo uriInfo, @Valid File body,
                             @HeaderParam("X-Filename")
@@ -117,9 +120,10 @@ public class PlanApi {
                                                                                               validationConfig.isSkipFlaechenschluss() ),
                                                                           overwriteByRequest( skipGeltungsbereich,
                                                                                               validationConfig.isSkipGeltungsbereich() ) );
-        Status status = planHandler.importPlan( body, xFilename, validationSettings, internalId, planStatus );
-        URI selfRef = uriInfo.getBaseUriBuilder().path( "plan" ).path( status.getPlanId().toString() ).build();
-        return Response.created( selfRef ).entity( status ).build();
+        XPlan xPlan = planHandler.importPlan( body, xFilename, validationSettings, internalId, planStatus );
+        MediaType requestedMediaType = requestedMediaType( request );
+        PlanInfo planInfo = createPlanInfo( uriInfo, requestedMediaType, xPlan );
+        return Response.created( getSelfLink( planInfo ) ).entity( planInfo ).build();
     }
 
     @DELETE
@@ -205,6 +209,14 @@ public class PlanApi {
         return new PlanInfoBuilder( planById, uriInfo ).wmsEndpoint(
                                 managerConfiguration.getWmsEndpoint() ).requestedMediaType(
                                 requestedMediaType.toString() ).alternateMediaType( alternateMediaTypes ).build();
+    }
+
+    private URI getSelfLink( PlanInfo planInfo ) {
+        for ( Link link : planInfo.getLinks() ) {
+            if ( SELF.equals( link.getRel() ) )
+                return link.getHref();
+        }
+        return null;
     }
 
     private MediaType requestedMediaType( Request request ) {

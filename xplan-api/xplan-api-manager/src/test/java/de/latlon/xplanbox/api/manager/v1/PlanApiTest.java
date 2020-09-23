@@ -24,6 +24,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.*;
 
 public class PlanApiTest extends JerseyTest {
@@ -46,6 +47,7 @@ public class PlanApiTest extends JerseyTest {
                                 accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_OCTET_STREAM ) );
         assertThat( response.getStatus(), is( Response.Status.CREATED.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+        assertThat( response.getHeaderString( HttpHeaders.LOCATION ), is( notNullValue() ) );
     }
 
     @Test
@@ -56,6 +58,7 @@ public class PlanApiTest extends JerseyTest {
                                 accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_ZIP ) );
         assertThat( response.getStatus(), is( Response.Status.CREATED.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+        assertThat( response.getHeaderString( HttpHeaders.LOCATION ), is( notNullValue() ) );
     }
 
     @Test
@@ -66,6 +69,7 @@ public class PlanApiTest extends JerseyTest {
                                 accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_X_ZIP ) );
         assertThat( response.getStatus(), is( Response.Status.CREATED.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+        assertThat( response.getHeaderString( HttpHeaders.LOCATION ), is( notNullValue() ) );
     }
 
     @Test
@@ -76,6 +80,7 @@ public class PlanApiTest extends JerseyTest {
                                 accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_X_ZIP_COMPRESSED ) );
         assertThat( response.getStatus(), is( Response.Status.CREATED.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+        assertThat( response.getHeaderString( HttpHeaders.LOCATION ), is( notNullValue() ) );
     }
 
     @Test
