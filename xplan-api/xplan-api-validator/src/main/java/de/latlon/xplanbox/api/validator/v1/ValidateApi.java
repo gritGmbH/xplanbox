@@ -67,9 +67,7 @@ public class ValidateApi {
                                                     @Content(mediaType = APPLICATION_PDF, schema = @Schema(type = "string", format = "binary")),
                                                     @Content(mediaType = APPLICATION_ZIP, schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload", implementation = Object.class)) }),
                             @ApiResponse(responseCode = "400", description = "Invalid input"),
-                            @ApiResponse(responseCode = "405", description = "Invalid method"),
-                            @ApiResponse(responseCode = "406", description = "Invalid content only XPlanGML or ZIP with XPlanGML is accepted"),
-                            @ApiResponse(responseCode = "415", description = "Unsupported Media Type, only XML or ZIP is accepted") }, requestBody = @RequestBody(content = {
+                            @ApiResponse(responseCode = "406", description = "Invalid content only XPlanGML or ZIP with XPlanGML is accepted")}, requestBody = @RequestBody(content = {
                             @Content(mediaType = "application/octet-stream", schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload")),
                             @Content(mediaType = "application/zip", schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload")),
                             @Content(mediaType = "application/x-zip", schema = @Schema(type = "string", format = "binary", description = "XPlanGML or XPlanArchive (application/zip) file to upload")),

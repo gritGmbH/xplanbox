@@ -132,14 +132,8 @@ paths:
                 description: Contains validation report in PDF, SHAPE, PNG file format
         400:
           description: Invalid input
-        405:
-          description: Invalid method
         406:
           description: Invalid content only XPlanGML or ZIP with XPlanGML is accepted
-        415:
-          description: Unsupported Media Type, only XML or ZIP is accepted
-        default:
-          description: Unexpected error
 components:
   schemas:
     XPlanGML:
