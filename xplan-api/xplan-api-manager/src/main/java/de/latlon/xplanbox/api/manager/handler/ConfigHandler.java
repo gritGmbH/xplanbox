@@ -43,7 +43,12 @@ public class ConfigHandler {
                                 defaultValidationConfiguration.isSkipFlaechenschluss() ).skipGeltungsbereich(
                                 defaultValidationConfiguration.isSkipGeltungsbereich() ).rulesMetadata(
                                 systemConfigHandler.getRulesMetadata() ).supportedXPlanGmlVersions(
-                                systemConfigHandler.allSupportedVersions() );
+                                systemConfigHandler.allSupportedVersions() ).version( parseVersion() );
+    }
+
+    public String parseVersion() {
+        Package thisPackage = getClass().getPackage();
+        return thisPackage.getImplementationVersion();
     }
 
 }
