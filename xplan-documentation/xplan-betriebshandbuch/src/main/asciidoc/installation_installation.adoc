@@ -21,14 +21,17 @@ NOTE: Alle Konfigurationen müssen in dem selben Verzeichnis liegen.
 [[web-anwendungen]]
 ==== Web-Anwendungen
 
-Um das korrekte Zusammenarbeiten der verschiedenen im Abschnitt
+Um den Betrieb der verschiedenen im Abschnitt
 Systemarchitektur und Schnittstellen <architecture> beschriebenen
-Komponenten zu gewährleisten, wird eine Trennung der Dienste und
-Anwendungskomponenten empfohlen. Zwingend erforderlich ist dies beim
-Einsatz von GDAL (s. <<installation-gdal>>).
+Komponenten zu gewährleisten, wird eine Trennung der Dienste,
+Anwendungskomponenten und der REST-API empfohlen. Zwingend erforderlich ist die Trennung beim
+Einsatz von GDAL (s. <<installation-gdal>>). Dann müssen die Web-Anwendungen getrennt voneinander
+betrieben werden. Im Folgenden ist beschrieben, wie eine Installation der Komponenten auf drei Tomcat-Instanzen
+erfolgen kann. Werden drei Tomcat-Instanzen auf einem Server betrieben, so sind die
+Ressourcen des Servers wie in <<empfohlene-systemkonfiguration>> notwendig.
 
-Die folgenden WAR-Archive (s. <<installationskomponenten>>) müssen in das Verzeichnis
-der Tomcat-Instanz (__Dienste-Tomcat__, z. B. Port: 8080) kopiert
+Die folgenden WAR-Archive (s. <<installationskomponenten>>) müssen in das Verzeichnis `webapps`
+der Tomcat-Instanz (_Dienste-Tomcat_, z. B. Port: 8080) kopiert
 werden:
 
 * _xplan-wms.war_ (XPlanWMS und XPlanWerkWMS)
@@ -37,7 +40,7 @@ werden:
 * _xplan-inspireplu.war_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
 * _xplan-validator-wms.war_ (XPlanValidatorWMS)
 
-Die WAR-Archive der Anwendungskomponenten werden über eine
+Die WAR-Archive der Anwendungskomponenten XPlanManagerWeb und XPlanValidatorWeb werden über eine
 weitere Tomcat-Instanz (_Anwendungs-Tomcat_, z. B. Port: 8081)
 bereitgestellt:
 
@@ -45,7 +48,14 @@ bereitgestellt:
 * _xplan-validator-web.war_ (XPlanValidatorWeb)
 * _xplan-root.war_ (XPlanRessourcen)
 
-NOTE: Da die Komponente XPlanRessourcen eine Einstiegsseite bereit stellt, bietet es sich an, diese als ROOT-Webapp des Anwendungs-Tomcat zu installieren. Das war-Archiv xplan-root.war muss dafür im Verzeichnis ROOT entpackt werden.
+Die WAR-Archive der REST-API werden über eine weitere Tomcat-Instanz (_API-Tomcat_, z. B. Port: 8082)
+bereitgestellt:
+
+* _xplan-api-manager.war_ (XPlanManagerAPI)
+* _xplan-api-validator.war_ (XPlanValidatorAPI)
+
+
+NOTE: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet es sich an, diese als ROOT-Webapp des Anwendungs-Tomcat zu installieren. Das WAR-Archiv xplan-root.war muss dafür im Verzeichnis ROOT entpackt werden.
 
 [[kommandozeilen-anwendungen]]
 ==== Kommandozeilen-Anwendungen

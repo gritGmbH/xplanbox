@@ -11,12 +11,14 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
  * Web-Anwendungen und Web-Dienste (im Verzeichnis _webapps_)
  ** xplan-root-<VERSION>.war
  ** xplan-validator-web-<VERSION>.war
+ ** xplan-validator-wms-<VERSION>.war
+ ** xplan-api-validator-<VERSION>.war
  ** xplan-manager-web-<VERSION>.war
+ ** xplan-api-manager-<VERSION>.war
  ** xplansyn-wfs-<VERSION>.war
  ** xplan-wfs-<VERSION>.war
  ** xplan-wms-<VERSION>.war
  ** xplan-inspireplu-<VERSION>.war
- ** xplan-validator-wms-<VERSION>.war
 
  * Konfiguration (im Verzeichnis _configuration_)
  ** xplan-workspaces-<VERSION>-xplan-manager-workspace.zip

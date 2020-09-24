@@ -5,14 +5,15 @@ Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 
 * XPlanManagerCLI
 * XPlanManagerWeb
+* XPlanManagerAPI
 * XPlanValidatorCLI
-* XPlanValidatorWeb (inkl. XPlanValidatorWMS)
+* XPlanValidatorWeb inkl. XPlanValidatorWMS
+* XPlanValidatorAPI
 * XPlanWMS und XPlanWerkWMS
 * XPlanWFS
 * XPlanSynWFS
 * XPlanInspirePluWMS
 * XPlanInspirePluWFS
-* XPlanValidatorWMS
 * XPlanRessourcen
 
 image:../images/Architektur_xPlanBox_einfach.png[Einfache Darstellung]
@@ -28,22 +29,34 @@ Abbildung 2: Separate Datenhaltung
 
 Die Komponente XPlanManagerCLI ist ein Kommandozeilenwerkzeug, welches
 dem Fachadministrator der xPlanBox ermöglicht,
-die Datenhaltung zu kontrollieren.
+die Datenhaltung über das Terminal zu kontrollieren.
 
 [[xplanmanager-web]]
 === XPlanManagerWeb
 
 Die Komponente XPlanManagerWeb ist eine Web-Oberfläche, die dem
 Fachadministrator der xPlanBox ermöglicht,
-die Datenhaltung zu kontrollieren. Die Web-Oberfläche ist auf dem
-Kommandozeilenwerkzeug aufgebaut.
+die Datenhaltung über einen Browser zu kontrollieren.
+
+[[xplanmanager-api]]
+=== XPlanManagerAPI
+
+Die Komponente XPlanManagerAPI stellt eine REST-Schnittstelle bereit, über die
+die Datenhaltung kontrolliert werden kann.
 
 [[xplanvalidator-cli]]
 === XPlanValidatorCLI
 
 Die Komponente XPlanValidatorCLI ist ein Kommandozeilenwerkzeug,
 welches dem Fachadministrator der xPlanBox ermöglicht,
-XPlanGML-Instanzdokumente vor dem Import zu validieren.
+XPlanGML-Instanzdokumente über das Terminal zu validieren.
+
+[[xplanvalidator-web]]
+=== XPlanValidatorWeb
+
+Die Komponente XPlanValidatorWeb ist eine Web-Oberfläche, welche dem
+Fachadministrator der xPlanBox ermöglicht,
+XPlanGML-Instanzdokumente über den Browser zu validieren.
 
 [[xplantransform-cli]]
 === XPlanTransformCLI
@@ -52,14 +65,6 @@ Die Komponente XPlanTransformCLI ist ein Kommandozeilenwerkzeug,
 welches dem Fachadministrator der xPlanBox ermöglicht,
 bereits über den XPlanManagerWeb oder das XPlanManagerCLI
 importierte Pläne in eine aktuellere XPlanGML Version zu transformieren.
-
-[[xplanvalidator-web]]
-=== XPlanValidatorWeb
-
-Die Komponente XPlanValidatorWeb ist eine Web-Oberfläche, welche dem
-Fachadministrator der xPlanBox ermöglicht,
-XPlanGML-Instanzdokumente zu validieren. Der XPlanValidatorWeb ist auf dem
-Kommandozeilenwerkzeug aufgebaut.
 
 [[xplanvalidator-wms]]
 ==== XPlanValidatorWMS

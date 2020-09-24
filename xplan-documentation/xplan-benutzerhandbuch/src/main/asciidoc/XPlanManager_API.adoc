@@ -18,7 +18,7 @@ Die REST-API des XPlanManager stellt folgende Ressourcen bereit:
 
 Eine vollständige Beschreibung der HTTP Status-Codes und der unterstützten Formate (Encodings) für die jeweiligen Ressourcen sind in der Schnittstellenbeschreibung enthalten.
 
-NOTE: Die URL für die REST-API lautet: http://xplanbox.lat-lon.de/xplanmanager/api/v1
+NOTE: Die URL für die REST-API des XPlanManager setzt sich wie folgt zusammen: http://<host>:<port>/xplan-api-manager/api/v1/. Die URL für die xPlanBox-Demo lautet https://xplanbox.lat-lon.de/xmanager/api/v1/.
 
 NOTE: Die alte REST-API mit den Ressourcen `/xplanmgrweb/rest/manager/plans` und `/xplanmgrweb/rest/manager/plan/{planId}` wird durch die neue
 API komplett ersetzt und in einer zukünftigen Version der xPlanBox entfernt!
