@@ -1,5 +1,5 @@
 [[xplanvalidator-api]]
-=== XPlanValidator REST-API
+=== XPlanValidatorAPI
 
 Die REST-API des XPlanValidator ermöglicht es, die Funktionen des XPlanValidator über eine Web-API aufzurufen.
 Die REST-API des XPlanValidator stellt folgende Ressourcen bereit:

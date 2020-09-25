@@ -22,13 +22,13 @@ NOTE: Alle Konfigurationen müssen in dem selben Verzeichnis liegen.
 ==== Web-Anwendungen
 
 Um den Betrieb der verschiedenen im Abschnitt
-Systemarchitektur und Schnittstellen <architecture> beschriebenen
+<<architecture, Systemarchitektur und Schnittstellen>> beschriebenen
 Komponenten zu gewährleisten, wird eine Trennung der Dienste,
 Anwendungskomponenten und der REST-API empfohlen. Zwingend erforderlich ist die Trennung beim
 Einsatz von GDAL (s. <<installation-gdal>>). Dann müssen die Web-Anwendungen getrennt voneinander
 betrieben werden. Im Folgenden ist beschrieben, wie eine Installation der Komponenten auf drei Tomcat-Instanzen
-erfolgen kann. Werden drei Tomcat-Instanzen auf einem Server betrieben, so sind die
-Ressourcen des Servers wie in <<empfohlene-systemkonfiguration>> notwendig.
+erfolgen kann. Werden drei Tomcat-Instanzen auf einem Server betrieben, dann sollte der
+Server die im Kapitel <<empfohlene-systemkonfiguration>> beschriebenen Anforderungen erfüllen.
 
 Die folgenden WAR-Archive (s. <<installationskomponenten>>) müssen in das Verzeichnis `webapps`
 der Tomcat-Instanz (_Dienste-Tomcat_, z. B. Port: 8080) kopiert

@@ -1,5 +1,5 @@
-[[xplanmanager-cli]]
-=== XPlanManager REST-API
+[[xplanmanager-api]]
+=== XPlanManagerAPI
 
 Die REST-API des XPlanManager ermöglicht es, die Funktionen des XPlanManager über eine Web-API aufzurufen.
 Die REST-API des XPlanManager stellt folgende Ressourcen bereit:

@@ -3,18 +3,18 @@
 
 Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 
-* XPlanManagerCLI
-* XPlanManagerWeb
-* XPlanManagerAPI
-* XPlanValidatorCLI
-* XPlanValidatorWeb inkl. XPlanValidatorWMS
-* XPlanValidatorAPI
-* XPlanWMS und XPlanWerkWMS
-* XPlanWFS
-* XPlanSynWFS
-* XPlanInspirePluWMS
-* XPlanInspirePluWFS
-* XPlanRessourcen
+* <<xplanmanager-cli, XPlanManagerCLI>>
+* <<xplanmanager-web, XPlanManagerWeb>>
+* <<xplanmanager-api, XPlanManagerAPI>>
+* <<xplanvalidator-cli, XPlanValidatorCLI>>
+* <<xplanvalidator-web, XPlanValidatorWeb>> inkl. <<xplanvalidator-wms, XPlanValidatorWMS>>
+* <<xplanvalidator-api, XPlanValidatorAPI>>
+* <<xplanwms, XPlanWMS und XPlanWerkWMS>>
+* <<xplanwfs, XPlanWFS>>
+* <<xplansynwfs, XPlanSynWFS>>
+* <<xplaninspirepluwms, XPlanInspirePluWMS>>
+* <<xplaninspirepluwfs, XPlanInspirePluWFS>>
+* <<xplanresources, XPlanRessourcen>>
 
 image:../images/Architektur_xPlanBox_einfach.png[Einfache Darstellung]
 
