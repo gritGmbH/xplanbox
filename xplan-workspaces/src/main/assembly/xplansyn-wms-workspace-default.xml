@@ -63,6 +63,11 @@
         <include>de.latlon.product.xplanbox:xplan-schemas</include>
       </includes>
       <unpack>true</unpack>
+      <unpackOptions>
+        <includes>
+          <include>appschemas/XPlanGML_Syn/**</include>
+        </includes>
+      </unpackOptions>
       <outputDirectory>/</outputDirectory>
     </dependencySet>
   </dependencySets>
