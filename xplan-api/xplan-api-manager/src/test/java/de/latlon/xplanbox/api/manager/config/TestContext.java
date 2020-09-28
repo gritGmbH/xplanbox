@@ -4,6 +4,7 @@ import com.google.common.io.Files;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
+import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
@@ -35,14 +36,16 @@ import org.springframework.context.annotation.Profile;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
-import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.isA;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -87,6 +90,16 @@ public class TestContext {
         return new XPlanRasterManager( wmsWorkspaceWrapper, managerConfiguration );
     }
 
+    /**
+     * Returns for plan with ID 1 and 123 a valid XPlanArchive (with XPlanGML 4.1 plan)
+     * for plan with ID 42 returns an exception.
+     *
+     * @param categoryMapper not in use
+     * @param managerWorkspaceWrapper not in use
+     * @param managerConfiguration not in use
+     * @return mock object
+     * @throws Exception in any case of trouble
+     */
     @Bean @Primary
     public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
                              ManagerConfiguration managerConfiguration ) throws Exception {
@@ -101,7 +114,7 @@ public class TestContext {
         when(xplanDao.getXPlanList(anyBoolean())).thenReturn(mockList);
         XPlanArchiveContent mockArchive = Mockito.mock(XPlanArchiveContent.class);
         when(xplanDao.retrieveAllXPlanArtefacts( anyString() )).thenReturn(mockArchive);
-
+        when(xplanDao.retrieveAllXPlanArtefacts( "42" )).thenThrow( new PlanNotFoundException(42));
         return xplanDao;
     }
 
@@ -121,6 +134,7 @@ public class TestContext {
     @Bean @Primary
     public XPlanExporter xPlanExporter( ManagerConfiguration managerConfiguration ) {
         XPlanExporter xPlanExporter = Mockito.mock(XPlanExporter.class);
+        doNothing().when(xPlanExporter).export(isA(OutputStream.class), isA(XPlanArchiveContent.class));
         return xPlanExporter;
     }
 

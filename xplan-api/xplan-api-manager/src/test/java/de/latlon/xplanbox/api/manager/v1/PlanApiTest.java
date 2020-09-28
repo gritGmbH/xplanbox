@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.manager.v1;
 
+import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
 import de.latlon.xplanbox.api.manager.config.ApplicationContext;
 import de.latlon.xplanbox.api.manager.config.TestContext;
 import org.apache.http.HttpHeaders;
@@ -33,6 +34,7 @@ public class PlanApiTest extends JerseyTest {
     protected Application configure() {
         enable( TestProperties.LOG_TRAFFIC );
         final ResourceConfig resourceConfig = new ResourceConfig( PlanApi.class );
+        resourceConfig.register( XPlanApiExceptionMapper.class );
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext( ApplicationContext.class,
                 TestContext.class );
         resourceConfig.property("contextConfig", context );
@@ -101,24 +103,31 @@ public class PlanApiTest extends JerseyTest {
     }
 
     @Test
-    public void verifyThat_GetPlanById_ReturnCorrectStatus() {
+    public void verifyThat_GetPlanById_ReturnsCorrectStatus() {
         final Response response = target( "/plan/123" ).request().
                 accept( APPLICATION_JSON ).get();
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
     }
 
     @Test
-    public void verifyThat_GetPlanById_ReturnCorrectFileContent() {
+    public void verifyThat_GetPlanById_ReturnsCorrectFileContent() {
         final Response response = target( "/plan/123" ).request().
                 accept( APPLICATION_ZIP ).get();
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_ZIP ) );
+        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
+    }
 
+    @Test
+    public void verifyThat_GetPlanById_ReturnsCorrectStatusCodeForWrongId() {
+        final Response response = target( "/plan/42" ).request().
+                accept( APPLICATION_ZIP ).get();
+        assertThat( response.getStatus(), is( Response.Status.NOT_FOUND.getStatusCode() ) );
     }
 
     @Test
     public void verifyThat_GetPlanByName_ReturnsCorrectStatus() {
         final Response response = target( "/plan/name/bplan_41" ).request().
                 accept( APPLICATION_JSON ).get();
-        //TODO
+        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
     }
 }

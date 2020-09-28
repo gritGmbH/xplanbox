@@ -1,9 +1,11 @@
 package de.latlon.xplanbox.api.manager.handler;
 
+import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.manager.config.ApplicationContext;
 import de.latlon.xplanbox.api.manager.config.TestContext;
+import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,10 +54,21 @@ public class PlanHandlerTest {
         assertThat(planAsStream, notNullValue());
     }
 
+    @Test( expected = InvalidPlanId.class )
+    public void verifyThat_exportPlan_WithWrongIdThrowsException() throws Exception {
+        StreamingOutput planAsStream = planHandler.exportPlan("42");
+        assertThat(planAsStream, notNullValue());
+    }
+
     @Test
     public void verifyThat_findPlanById() throws Exception {
         XPlan plan = planHandler.findPlanById("123");
         assertThat(plan.getId(), is("123"));
+    }
+
+    @Test(expected = InvalidPlanId.class)
+    public void verifyThat_findPlanById_WithWrongIdFails() throws Exception {
+        XPlan plan = planHandler.findPlanById("42");
     }
 
     @Test
