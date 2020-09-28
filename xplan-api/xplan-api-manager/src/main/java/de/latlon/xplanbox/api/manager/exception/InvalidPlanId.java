@@ -15,6 +15,10 @@ public class InvalidPlanId extends XPlanApiException {
         super( String.format( EXCEPTION_MESSAGE, planId ) );
     }
 
+    public InvalidPlanId( String planId ) {
+        super( String.format( EXCEPTION_MESSAGE, planId ) );
+    }
+
     @Override
     public int getStatusCode() {
         return NOT_FOUND.getStatusCode();

@@ -520,14 +520,16 @@ public class XPlanDao {
         int id = getXPlanIdAsInt( planId );
         try {
             Connection conn = managerWorkspaceWrapper.openConnection();
+            XPlanMetadata xPlanMetadata = selectXPlanMetadata( planId );
             PreparedStatement stmt = conn.prepareStatement(
                             "SELECT filename,data FROM xplanmgr.artefacts WHERE plan=? ORDER BY num" );
             stmt.setInt( 1, id );
             ResultSet rs = stmt.executeQuery();
             XPlanArtefactIterator artefacts = new DatabaseXPlanArtefactIterator( conn, stmt, rs );
-            XPlanMetadata xPlanMetadata = selectXPlanMetadata( planId );
             FeatureCollection fc = restoreFeatureCollection( id, xPlanMetadata );
             return new XPlanArchiveContent( fc, artefacts, xPlanMetadata.version );
+        } catch ( PlanNotFoundException pe ) {
+            throw pe;
         } catch ( Exception e ) {
             LOG.error( "Plan could not be exported!", e );
             throw new XPlanExportException(
@@ -914,12 +916,14 @@ public class XPlanDao {
             stmt.setInt( 1, id );
             rs = stmt.executeQuery();
             if ( !rs.next() ) {
-                throw new Exception( "Kein XPlan mit Id " + id + " vorhanden." );
+                throw new PlanNotFoundException( id );
             }
             XPlanVersion version = XPlanVersion.valueOf( rs.getString( 1 ) );
             XPlanAde ade = retrieveNsmAde( version, rs.getString( 2 ) );
             PlanStatus planStatus = retrievePlanStatus( rs.getString( 3 ) );
             return new XPlanMetadata( version, ade, planStatus );
+        } catch ( PlanNotFoundException pe ) {
+            throw pe;
         } catch ( Exception e ) {
             throw new Exception( "Interner-/Konfigurations-Fehler. Kann XPlan-Informationen nicht aus DB lesen: "
                                  + e.getLocalizedMessage(), e );

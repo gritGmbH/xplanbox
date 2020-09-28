@@ -4,6 +4,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
@@ -115,9 +116,13 @@ public class PlanHandler {
 
     public StreamingOutput exportPlan( String planId )
                             throws Exception {
-        LOG.info( "Exporting plan with Id '{}'", planId );
-        XPlanArchiveContent archiveContent = xPlanDao.retrieveAllXPlanArtefacts( planId );
-        return outputStream -> xPlanExporter.export( outputStream, archiveContent );
+        try {
+            LOG.info( "Exporting plan with Id '{}'", planId );
+            XPlanArchiveContent archiveContent = xPlanDao.retrieveAllXPlanArtefacts( planId );
+            return outputStream -> xPlanExporter.export( outputStream, archiveContent );
+        } catch ( PlanNotFoundException e ) {
+            throw new InvalidPlanId( planId );
+        }
     }
 
     public XPlan findPlanById( String planId )
