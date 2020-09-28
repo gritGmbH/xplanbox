@@ -73,8 +73,10 @@ public class GeometricValidatorImpl implements GeometricValidator {
                                                                                               result.errors,
                                                                                               result.badGeometries, crs,
                                                                                               result.isValid() );
-            XPlanFeatureCollection features = new XPlanFeatureCollectionBuilder( result.xPlanFeatures,
-                                                                              archive.getType() ).build();
+            XPlanFeatureCollection features = result.xPlanFeatures == null || result.xPlanFeatures.size() < 1 ?
+                                              null :
+                                              new XPlanFeatureCollectionBuilder( result.xPlanFeatures,
+                                                                                 archive.getType() ).build();
             return new GemetricValidatorParsingResult(features, validationResult);
         } catch ( XMLStreamException | UnknownCRSException e ) {
             LOG.trace( "Geometric validation failed!", e );
