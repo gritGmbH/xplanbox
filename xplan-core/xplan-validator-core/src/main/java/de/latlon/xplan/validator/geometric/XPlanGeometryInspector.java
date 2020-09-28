@@ -166,18 +166,6 @@ class XPlanGeometryInspector implements GeometryInspector {
         return points;
     }
 
-    Curve checkOrientation( Curve geom, Curve inspected ) {
-        if ( linearizer.linearize( geom, crit ).getAsLineString().getControlPoints().size() >= 4 && geom.isClosed() ) {
-            LinearRing jTSRing = getJTSLinearRing( geom );
-            if ( !CGAlgorithms.isCCW( jTSRing.getCoordinates() ) ) {
-                String msg = createMessage( "2.2.2.1: Geschlossene Kurve verwendet falsche Laufrichtung (CW)." );
-                warnings.add( msg );
-                inspected = GeometryFixer.invertOrientation( geom );
-            }
-        }
-        return inspected;
-    }
-
     private Curve checkSegmentContinuity( Curve geom ) {
         Point lastSegmentEndPoint = null;
         int segmentIdx = 0;
@@ -454,7 +442,6 @@ class XPlanGeometryInspector implements GeometryInspector {
         switch ( inspected.getCurveType() ) {
         case Curve:
         case LineString: {
-            inspected = checkOrientation( geom, inspected );
             break;
         }
         case Ring: {

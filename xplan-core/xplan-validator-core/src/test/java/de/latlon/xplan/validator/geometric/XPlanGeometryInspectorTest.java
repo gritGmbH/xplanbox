@@ -49,13 +49,6 @@ import de.latlon.xplan.validator.web.shared.ValidationOption;
 public class XPlanGeometryInspectorTest {
 
     @Test
-    public void testInspectLineStringShouldNotIgnoreOrientationOnNoOption() {
-        XPlanGeometryInspector inspector = mockInspectorWithOptions( noOption() );
-        inspector.inspect( mockLineString() );
-        verify( inspector, times( 1 ) ).checkOrientation( any( Curve.class ), any( Curve.class ) );
-    }
-
-    @Test
     public void testInspectRingShouldNotIgnoreSelfIntersectionOnNoOption() {
         XPlanGeometryInspector inspector = mockInspectorWithOptions( noOption() );
         inspector.inspect( mockRing() );
