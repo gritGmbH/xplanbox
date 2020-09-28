@@ -9,7 +9,6 @@ import de.latlon.xplan.validator.geometric.inspector.GeltungsbereichInspector;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
-import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 import org.deegree.commons.tom.ReferenceResolvingException;
 import org.deegree.commons.tom.gml.GMLReference;
@@ -19,7 +18,6 @@ import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.Geometry;
 import org.deegree.geometry.GeometryFactory;
 import org.deegree.gml.GMLStreamReader;
 import org.deegree.gml.GMLVersion;
@@ -76,7 +74,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
             XPlanFeatureCollection features = new XPlanFeatureCollectionBuilder( result.xPlanFeatures,
                                                                               archive.getType() ).build();
             return new GemetricValidatorParsingResult(features, validationResult);
-        } catch ( XMLStreamException | UnknownCRSException e ) {
+        } catch ( XMLStreamException e ) {
             LOG.trace( "Geometric validation failed!", e );
             throw new ValidatorException(
                                     "Geometrische Validierung wurde aufgrund von schwerwiegenden Fehlern abgebrochen",
@@ -95,7 +93,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 
     private ParserAndValidatorResult retrieveFeatureCollection( XPlanArchive archive, ICRS crs, boolean force,
                                                                 AppSchema schema, List<ValidationOption> voOptions )
-                            throws XMLStreamException, UnknownCRSException {
+                            throws XMLStreamException {
         ParserAndValidatorResult result = readAndValidateArchive( archive, crs, schema, voOptions );
         logResult( force, result );
         return result;
@@ -103,12 +101,12 @@ public class GeometricValidatorImpl implements GeometricValidator {
 
     private ParserAndValidatorResult readAndValidateArchive( XPlanArchive archive, ICRS crs, AppSchema schema,
                                                              List<ValidationOption> voOptions )
-                            throws XMLStreamException, UnknownCRSException {
+                            throws XMLStreamException {
         ParserAndValidatorResult result = new ParserAndValidatorResult();
         XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper( archive.getMainFileXmlReader(), null );
         long begin = System.currentTimeMillis();
         LOG.info( "- Einlesen der Features (+ Geometrievalidierung)..." );
-        XPlanGeometryInspector geometryInspector = new XPlanGeometryInspector( xmlStream, EPSILON, voOptions );
+        XPlanGeometryInspector geometryInspector = new XPlanGeometryInspector( xmlStream );
         List<GeometricFeatureInspector> featureInspectors = createInspectors( voOptions );
         GMLStreamReader gmlStream = createGmlStreamReader( archive, crs, schema, xmlStream, geometryInspector,
                                                            featureInspectors );

@@ -130,12 +130,4 @@ public class GeometricValidatorImplTest {
         return voOptions;
     }
 
-    private List<ValidationOption> createInvalidVoOptions() {
-        List<ValidationOption> voOptions = new ArrayList<ValidationOption>();
-        voOptions.add( new ValidationOption( "invalid" ) );
-        voOptions.add( SKIP_FLAECHENSCHLUSS );
-        voOptions.add( SKIP_GELTUNGSBEREICH );
-        return voOptions;
-    }
-
 }
