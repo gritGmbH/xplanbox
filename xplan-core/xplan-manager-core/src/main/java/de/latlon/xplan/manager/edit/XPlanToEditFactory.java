@@ -74,9 +74,9 @@ import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.getByCode;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSPLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
 
 /**
  * Factory to parse {@link XPlanToEdit}.
@@ -93,9 +93,9 @@ public class XPlanToEditFactory {
      * Parses an {@link XPlanToEdit} from the passed {@link FeatureCollection}.
      *
      * @param xPlan
-     *                 used to extract some metadata, may be <code>null</code>
+     *                         used to extract some metadata, may be <code>null</code>
      * @param featureCollection
-     *                 to parse the editable values from, never <code>null</code>
+     *                         to parse the editable values from, never <code>null</code>
      * @return the xPlanToEdit, never <code>null</code>
      */
     public XPlanToEdit createXPlanToEdit( XPlan xPlan, FeatureCollection featureCollection ) {
@@ -153,11 +153,11 @@ public class XPlanToEditFactory {
             } else if ( "wurdeGeaendertVon".equals( propertyName ) ) {
                 parseChange( property, xPlanToEdit, CHANGED_BY );
             } else if ( "refBegruendung".equals( propertyName ) ) {
-                parseReference( property, xPlanToEdit, REASON );
+                parseReference( property, xPlanToEdit, BEGRUENDUNG );
             } else if ( "refRechtsplan".equals( propertyName ) ) {
-                parseReference( property, xPlanToEdit, LEGISLATION_PLAN );
+                parseReference( property, xPlanToEdit, RECHTSPLAN );
             } else if ( "refGruenordnungsplan".equals( propertyName ) ) {
-                parseReference( property, xPlanToEdit, GREEN_STRUCTURES_PLAN );
+                parseReference( property, xPlanToEdit, GRUENORDNUNGSPLAN );
             } else if ( "externeReferenz".equals( propertyName ) ) {
                 parseExterneReference( property, xPlanToEdit );
             } else if ( "texte".equals( propertyName ) ) {
@@ -352,7 +352,7 @@ public class XPlanToEditFactory {
                 GenericXMLElement childProperty = (GenericXMLElement) child;
                 if ( "typ".equals( childProperty.getName().getLocalPart() ) ) {
                     String type = asString( childProperty.getValue() );
-                    return ReferenceType.getByXPlan50Type( type );
+                    return ReferenceType.getBySpezExterneReferenceType( type );
                 }
             }
         }
@@ -416,7 +416,7 @@ public class XPlanToEditFactory {
         if ( value instanceof PrimitiveValue ) {
             BaseType baseType = ( (PrimitiveValue) value ).getType().getBaseType();
             if ( BaseType.TIME.equals( baseType ) || BaseType.DATE.equals( baseType ) || BaseType.DATE_TIME.equals(
-                            baseType ) )
+                                    baseType ) )
                 return ( (Temporal) ( (PrimitiveValue) value ).getValue() ).getDate();
         }
         return null;

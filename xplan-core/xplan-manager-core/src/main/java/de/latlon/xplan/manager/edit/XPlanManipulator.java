@@ -88,9 +88,9 @@ import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSPLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
 
 /**
  * Modifies the {@link FeatureCollection} representing an XPlanGML.
@@ -297,13 +297,12 @@ public class XPlanManipulator {
     private void modifyReferences( GmlDocumentIdContext context, XPlanVersion version, Feature feature,
                                    XPlanToEdit changes, AppSchema schema, List<Feature> featuresToAdd ) {
         if ( XPLAN_41.equals( version ) || XPLAN_3.equals( version ) ) {
-            modifyReferences( context, version, feature, schema, "refRechtsplan", changes.getReferences(),
-                              LEGISLATION_PLAN, featuresToAdd );
-            modifyReferences( context, version, feature, schema, "refBegruendung", changes.getReferences(), REASON,
+            modifyReferences( context, version, feature, schema, "refRechtsplan", changes.getReferences(), RECHTSPLAN, featuresToAdd );
+            modifyReferences( context, version, feature, schema, "refBegruendung", changes.getReferences(), BEGRUENDUNG,
                               featuresToAdd );
             if ( XPLAN_41.equals( version ) )
                 modifyReferences( context, version, feature, schema, "refGruenordnungsplan", changes.getReferences(),
-                                  GREEN_STRUCTURES_PLAN, featuresToAdd );
+                                  GRUENORDNUNGSPLAN, featuresToAdd );
         } else if ( XPLAN_50.equals( version ) || XPLAN_51.equals( version ) || XPLAN_52.equals( version ) ) {
             modifyReferences_XPlan50( context, version, feature, changes, schema, featuresToAdd );
         }
@@ -316,10 +315,11 @@ public class XPlanManipulator {
         List<Property> properties = new ArrayList<>();
         FeatureType featureType = feature.getType();
         for ( Reference reference : changes.getReferences() ) {
-            String spezExterneReferenzTyp = reference.getType().getXplan50Type();
+            int spezExterneReferenzTyp = reference.getType().getSpezExterneReferenceType();
             Feature refFeature = createAndAddExterneReferenz( context, version, schema, namespaceUri, reference,
                                                               featureType, properties, propName,
-                                                              "XP_SpezExterneReferenz", spezExterneReferenzTyp );
+                                                              "XP_SpezExterneReferenz",
+                                                              Integer.toString( spezExterneReferenzTyp ) );
             if ( refFeature != null )
                 featuresToAdd.add( refFeature );
         }

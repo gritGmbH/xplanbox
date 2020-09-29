@@ -56,16 +56,36 @@ import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.PLANMIT
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BESCHLUSS;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BESCHREIBUNG;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.DURCHFUEHRUNGSVERTRAG;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.ERLAEUTERUNG;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.ERSCHLIESSUNGSVERTRAG;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUNDSTUECKSVERZEICHNIS;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.INFORMELL;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.KARTE;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.KOORDINATENLISTE;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGENDE;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.METADATENPLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.PFLANZLISTE;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.PLANGRUNDLAGE;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSPLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSVERBINDLICH;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.SATZUNG;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.STAEDTEBAULICHERVERTRAG;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.UMWELTBERICHT;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.UMWELTBEZOGENESTELLUNGNAHMEN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.VERORDNUNG;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.VORHABENUNDERSCHLIESSUNGSPLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.ZUSAMMENFASSENDEERKLAERUNG;
 
 /**
  * Provides access to type code (mapping between code and value)
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class TypeCodelistProvider {
@@ -76,11 +96,11 @@ public class TypeCodelistProvider {
 
     /**
      * @param enumClass
-     *            the enumeration the value is part of, never <code>null</code>
+     *                         the enumeration the value is part of, never <code>null</code>
      * @param enumValue
-     *            the value to retrieve the item for, may be <code>null</code>
+     *                         the value to retrieve the item for, may be <code>null</code>
      * @return the item value of the {@link Code} where the code value equals the enumValue, if no codelist and/or code
-     *         could be found enumValue.name() is returned
+     * could be found enumValue.name() is returned
      */
     public <T extends Enum<T>> String translate( Class<T> enumClass, T enumValue ) {
         if ( enumValue == null )
@@ -97,10 +117,9 @@ public class TypeCodelistProvider {
 
     /**
      * @param enumClass
-     *            the enumeration to retrieve as {@link Code}s
-     * @return
+     *                         the enumeration to retrieve as {@link Code}s
      * @return a list of {@link Code}s or an empty list. of no codelist is available for the passed enumeration, never
-     *         <code>null</code>
+     * <code>null</code>
      */
     public <T extends Enum<T>> List<Code> retrieveItems( Class<T> enumClass ) {
         if ( TYPECODES.containsKey( enumClass ) )
@@ -127,9 +146,32 @@ public class TypeCodelistProvider {
 
     private static void addReferenceType( HashMap<Class<?>, List<Code>> typeCode ) {
         List<Code> codes = new ArrayList<Code>();
-        codes.add( new Code( GREEN_STRUCTURES_PLAN.name(), MESSAGES.ReferenceType_GREEN_STRUCTURES_PLAN() ) );
-        codes.add( new Code( LEGISLATION_PLAN.name(), MESSAGES.ReferenceType_LEGISLATION_PLAN() ) );
-        codes.add( new Code( REASON.name(), MESSAGES.ReferenceType_REASON() ) );
+        codes.add( new Code( BESCHREIBUNG.name(), MESSAGES.ReferenceType_BESCHREIBUNG() ) );
+        codes.add( new Code( BEGRUENDUNG.name(), MESSAGES.ReferenceType_BEGRUENDUNG() ) );
+        codes.add( new Code( LEGENDE.name(), MESSAGES.ReferenceType_LEGENDE() ) );
+        codes.add( new Code( RECHTSPLAN.name(), MESSAGES.ReferenceType_RECHTSPLAN() ) );
+        codes.add( new Code( PLANGRUNDLAGE.name(), MESSAGES.ReferenceType_PLANGRUNDLAGE() ) );
+        codes.add( new Code( UMWELTBERICHT.name(), MESSAGES.ReferenceType_UMWELTBERICHT() ) );
+        codes.add( new Code( SATZUNG.name(), MESSAGES.ReferenceType_SATZUNG() ) );
+        codes.add( new Code( VERORDNUNG.name(), MESSAGES.ReferenceType_VERORDNUNG() ) );
+        codes.add( new Code( KARTE.name(), MESSAGES.ReferenceType_KARTE() ) );
+        codes.add( new Code( ERLAEUTERUNG.name(), MESSAGES.ReferenceType_ERLAEUTERUNG() ) );
+        codes.add( new Code( ZUSAMMENFASSENDEERKLAERUNG.name(), MESSAGES.ReferenceType_ZUSAMMENFASSENDEERKLAERUNG() ) );
+        codes.add( new Code( KOORDINATENLISTE.name(), MESSAGES.ReferenceType_KOORDINATENLISTE() ) );
+        codes.add( new Code( GRUNDSTUECKSVERZEICHNIS.name(), MESSAGES.ReferenceType_GRUNDSTUECKSVERZEICHNIS() ) );
+        codes.add( new Code( PFLANZLISTE.name(), MESSAGES.ReferenceType_PFLANZLISTE() ) );
+        codes.add( new Code( GRUENORDNUNGSPLAN.name(), MESSAGES.ReferenceType_GRUENORDNUNGSPLAN() ) );
+        codes.add( new Code( ERSCHLIESSUNGSVERTRAG.name(), MESSAGES.ReferenceType_ERSCHLIESSUNGSVERTRAG() ) );
+        codes.add( new Code( DURCHFUEHRUNGSVERTRAG.name(), MESSAGES.ReferenceType_DURCHFUEHRUNGSVERTRAG() ) );
+        codes.add( new Code( STAEDTEBAULICHERVERTRAG.name(), MESSAGES.ReferenceType_STAEDTEBAULICHERVERTRAG() ) );
+        codes.add( new Code( UMWELTBEZOGENESTELLUNGNAHMEN.name(),
+                             MESSAGES.ReferenceType_UMWELTBEZOGENESTELLUNGNAHMEN() ) );
+        codes.add( new Code( BESCHLUSS.name(), MESSAGES.ReferenceType_BESCHLUSS() ) );
+        codes.add( new Code( VORHABENUNDERSCHLIESSUNGSPLAN.name(),
+                             MESSAGES.ReferenceType_VORHABENUNDERSCHLIESSUNGSPLAN() ) );
+        codes.add( new Code( METADATENPLAN.name(), MESSAGES.ReferenceType_METADATENPLAN() ) );
+        codes.add( new Code( RECHTSVERBINDLICH.name(), MESSAGES.ReferenceType_RECHTSVERBINDLICH() ) );
+        codes.add( new Code( INFORMELL.name(), MESSAGES.ReferenceType_INFORMELL() ) );
         typeCode.put( ReferenceType.class, codes );
     }
 
