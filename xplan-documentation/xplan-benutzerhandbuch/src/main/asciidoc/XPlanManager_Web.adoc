@@ -142,9 +142,21 @@ erfolgt ist, wird überschrieben.
 
 *Referenzen*
 
-* refBegruendung
-* refRechtsplan
-* refGruenordnungsplan
+Abhängig von der XPlan GML Version können folgende Referenzen editiert werden:
+
+XPlan GML 3.0:
+
+ * refBegruendung
+
+XPlan GML 4.1:
+
+ * refBegruendung
+ * refRechtsplan
+ * refGruenordnungsplan
+
+XPlan GML 5.x:
+
+ * alle verfügbaren Typen (Element typ) von XP_SpezExterneReferenz
 
 *Rasterbasis*
 
