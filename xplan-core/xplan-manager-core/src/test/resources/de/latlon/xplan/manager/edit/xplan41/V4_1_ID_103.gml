@@ -5921,6 +5921,7 @@
       <xplan:refGruenordnungsplan>
         <xplan:XP_ExterneReferenz>
           <xplan:georefURL>B-Plan_Klingmuehl_Heideweg_Gruen.pgw</xplan:georefURL>
+          <xplan:referenzName>B-Plan_Klingmuehl_Heideweg_Gruen</xplan:referenzName>
           <xplan:referenzURL>B-Plan_Klingmuehl_Heideweg_Gruen.png</xplan:referenzURL>
         </xplan:XP_ExterneReferenz>
       </xplan:refGruenordnungsplan>

@@ -178,16 +178,19 @@ public class XPlanToEditFactoryTest {
         Reference firstReference = references.get( 0 );
         assertThat( firstReference.getGeoReference(), is( nullValue() ) );
         assertThat( firstReference.getReference(), is( "B-Plan_Klingmuehl_Heideweg_Leg.pdf" ) );
+        assertThat( firstReference.getReferenzName(), is( "B-Plan_Klingmuehl_Heideweg_Leg" ) );
         assertThat( firstReference.getType(), is( BEGRUENDUNG ) );
 
         Reference secondReference = references.get( 1 );
         assertThat( secondReference.getGeoReference(), is( nullValue() ) );
         assertThat( secondReference.getReference(), is( "B-Plan_Klingmuehl_Heideweg.tif" ) );
+        assertThat( secondReference.getReferenzName(), is( "B-Plan_Klingmuehl_Heideweg" ) );
         assertThat( secondReference.getType(), is( RECHTSPLAN ) );
 
         Reference thirdReference = references.get( 2 );
         assertThat( thirdReference.getGeoReference(), is( "B-Plan_Klingmuehl_Heideweg_Gruen.pgw" ) );
         assertThat( thirdReference.getReference(), is( "B-Plan_Klingmuehl_Heideweg_Gruen.png" ) );
+        assertThat( thirdReference.getReferenzName(), is( "B-Plan_Klingmuehl_Heideweg_Gruen" ) );
         assertThat( thirdReference.getType(), is( GRUENORDNUNGSPLAN ) );
 
         List<Text> texts = xPlanToEdit.getTexts();
@@ -270,11 +273,13 @@ public class XPlanToEditFactoryTest {
         Reference firstReference = references.get( 0 );
         assertThat( firstReference.getGeoReference(), is( "Klarstellungssatzung_Haida_Begruendung.tfw" ) );
         assertThat( firstReference.getReference(), is( "Klarstellungssatzung_Haida_Begruendung.tif" ) );
+        assertThat( firstReference.getReferenzName(), is( "Klarstellungssatzung_Haida_Begruendung" ) );
         assertThat( firstReference.getType(), is( BEGRUENDUNG ) );
 
         Reference secondReference = references.get( 1 );
         assertThat( secondReference.getGeoReference(), is( nullValue() ) );
         assertThat( secondReference.getReference(), is( "Klarstellungssatzung_Haida_Rechtsplan.tif" ) );
+        assertThat( secondReference.getReferenzName(), is( "Klarstellungssatzung_Haida_Rechtsplan" ) );
         assertThat( secondReference.getType(), is( RECHTSPLAN ) );
 
         List<Text> texts = xPlanToEdit.getTexts();

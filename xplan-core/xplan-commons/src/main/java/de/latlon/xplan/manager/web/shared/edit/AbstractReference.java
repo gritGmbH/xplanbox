@@ -35,32 +35,81 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.shared.edit;
 
+import java.util.Date;
+
 /**
  * TODO add class documentation here
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public abstract class AbstractReference {
 
+    private String geoReference;
+
+    private MimeTypes georefMimeType;
+
+    private ExterneReferenzArt art;
+
+    private String informationssystemURL;
+
     private String reference;
 
-    private String geoReference;
+    private MimeTypes referenzMimeType;
+
+    private String referenzName;
+
+    private String beschreibung;
+
+    private Date datum;
 
     public AbstractReference() {
     }
 
     /**
      * @param reference
-     *            reference, may be <code>null</code>
+     *                         may be <code>null</code>
      * @param geoReference
-     *            reference, may be <code>null</code>
+     *                         may be <code>null</code>
      */
     public AbstractReference( String reference, String geoReference ) {
         this.reference = reference;
         this.geoReference = geoReference;
+    }
+
+    /**
+     * @param reference
+     *                         may be <code>null</code>
+     * @param geoReference
+     *                         may be <code>null</code>
+     * @param georefMimeType
+     *                         may be <code>null</code>
+     * @param art
+     *                         may be <code>null</code>
+     * @param informationssystemURL
+     *                         may be <code>null</code>
+     * @param referenzName
+     *                         may be <code>null</code>
+     * @param referenzMimeType
+     *                         may be <code>null</code>
+     * @param beschreibung
+     *                         may be <code>null</code>
+     * @param datum
+     *                         may be <code>null</code>
+     */
+    public AbstractReference( String reference, String geoReference, MimeTypes georefMimeType, ExterneReferenzArt art,
+                              String informationssystemURL, String referenzName, MimeTypes referenzMimeType,
+                              String beschreibung, Date datum ) {
+        this.reference = reference;
+        this.geoReference = geoReference;
+        this.georefMimeType = georefMimeType;
+        this.art = art;
+        this.informationssystemURL = informationssystemURL;
+        this.referenzName = referenzName;
+        this.referenzMimeType = referenzMimeType;
+        this.beschreibung = beschreibung;
+        this.datum = datum;
     }
 
     /**
@@ -72,7 +121,7 @@ public abstract class AbstractReference {
 
     /**
      * @param reference
-     *            the reference to set, may be <code>null</code>
+     *                         the reference to set, may be <code>null</code>
      */
     public void setReference( String reference ) {
         this.reference = reference;
@@ -87,15 +136,122 @@ public abstract class AbstractReference {
 
     /**
      * @param geoReference
-     *            the geoReference to set, may be <code>null</code>
+     *                         the geoReference to set, may be <code>null</code>
      */
     public void setGeoReference( String geoReference ) {
         this.geoReference = geoReference;
     }
 
-    @Override
-    public String toString() {
-        return "reference=" + reference + ", geoReference=" + geoReference;
+    /**
+     * @return the mime type of the georeference, may be <code>null</code>
+     */
+    public MimeTypes getGeorefMimeType() {
+        return georefMimeType;
     }
 
+    /**
+     * @param georefMimeType
+     *                         the mime type of the georeference, may be <code>null</code>
+     */
+    public void setGeorefMimeType( MimeTypes georefMimeType ) {
+        this.georefMimeType = georefMimeType;
+    }
+
+    /**
+     * @return the type of this reference, may be <code>null</code>
+     */
+    public ExterneReferenzArt getArt() {
+        return art;
+    }
+
+    /**
+     * @param art
+     *                         the type of this reference, may be <code>null</code>
+     */
+    public void setArt( ExterneReferenzArt art ) {
+        this.art = art;
+    }
+
+    /**
+     * @return the url, may be <code>null</code>
+     */
+    public String getInformationssystemURL() {
+        return informationssystemURL;
+    }
+
+    /**
+     * @param informationssystemURL
+     *                         the url, may be <code>null</code>
+     */
+    public void setInformationssystemURL( String informationssystemURL ) {
+        this.informationssystemURL = informationssystemURL;
+    }
+
+    /**
+     * @return the name of the reference, may be <code>null</code>
+     */
+    public String getReferenzName() {
+        return referenzName;
+    }
+
+    /**
+     * @param referenzName
+     *                         the name of the reference, may be <code>null</code>
+     */
+    public void setReferenzName( String referenzName ) {
+        this.referenzName = referenzName;
+    }
+
+    /**
+     * @return the mime type of the reference, may be <code>null</code>
+     */
+    public MimeTypes getReferenzMimeType() {
+        return referenzMimeType;
+    }
+
+    /**
+     * @param referenzMimeType
+     *                         the mime type of the reference, may be <code>null</code>
+     */
+    public void setReferenzMimeType( MimeTypes referenzMimeType ) {
+        this.referenzMimeType = referenzMimeType;
+    }
+
+    /**
+     * @return the description, may be <code>null</code>
+     */
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    /**
+     * @param beschreibung
+     *                         the description, may be <code>null</code>
+     */
+    public void setBeschreibung( String beschreibung ) {
+        this.beschreibung = beschreibung;
+    }
+
+    /**
+     * @return the date, may be <code>null</code>
+     */
+    public Date getDatum() {
+        return datum;
+    }
+
+    /**
+     * @param datum
+     *                         the date, may be <code>null</code>
+     */
+    public void setDatum( Date datum ) {
+        this.datum = datum;
+    }
+
+    @Override
+    public String toString() {
+        return "AbstractReference{" + "geoReference='" + geoReference + '\'' + ", georefMimeType=" + georefMimeType
+               + ", art=" + art + ", informationssystemURL='" + informationssystemURL + '\'' + ", reference='"
+               + reference + '\'' + ", referenzMimeType=" + referenzMimeType + ", referenzName='" + referenzName + '\''
+               + ", beschreibung='" + beschreibung + '\'' + ", datum=" + datum + '}';
+    }
 }
