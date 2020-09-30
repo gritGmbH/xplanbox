@@ -256,6 +256,7 @@ public class XPlanManipulator {
                 featuresToRemove.add( oldRasterBasisFeature );
                 referencesToRemove.add( previouslyReferencedRasterBasisFeatureId );
             }
+            removeProperties( feature, new QName( namespaceUri, "refScan" ) );
         } else {
             String gmlid = rasterBasis.getFeatureId();
             if ( gmlid != null ) {
@@ -271,6 +272,7 @@ public class XPlanManipulator {
             createAndAddRasterBasisFeature( context, version, planToEdit, schema, namespaceUri, rasterBasis, gmlid,
                                             featuresToAdd, featuresToRemove );
             addOrReplaceProperties( version, feature, propName, properties );
+            removeProperties( feature, new QName( namespaceUri, "refScan" ) );
         }
     }
 
