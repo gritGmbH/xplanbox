@@ -57,6 +57,8 @@ public interface ValidatorWebCommonsMessages extends Messages {
 
     String startValidationButton();
 
+    String cancelValidationButton();
+
     String uploadFinishedNextButton();
 
     String uploadFinishedCancelButton();
