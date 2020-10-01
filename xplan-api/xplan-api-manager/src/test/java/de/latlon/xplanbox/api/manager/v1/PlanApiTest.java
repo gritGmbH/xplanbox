@@ -8,26 +8,19 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
 import org.junit.Test;
-import org.slf4j.Logger;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.w3c.dom.Document;
-import org.xmlmatchers.transform.StringResult;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
+import static com.jayway.jsonpath.matchers.JsonPathMatchers.isJson;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP_COMPRESSED;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
@@ -35,17 +28,14 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.*;
-import static org.slf4j.LoggerFactory.getLogger;
+import static org.junit.Assert.assertThat;
 import static org.xmlmatchers.XmlMatchers.hasXPath;
 import static org.xmlmatchers.transform.XmlConverters.the;
 
 public class PlanApiTest extends JerseyTest {
 
-    private static final Logger LOG = getLogger( PlanApiTest.class );
 
     @Override
     protected Application configure() {
@@ -120,27 +110,35 @@ public class PlanApiTest extends JerseyTest {
     }
 
     @Test
-    public void verifyThat_GetPlanById_ReturnsCorrectStatus() {
+    public void verifyThat_GetPlanById_AsJson_ReturnsCorrectStatusAndContent() {
         final Response response = target( "/plan/123" ).request().
-                accept( APPLICATION_JSON ).get();
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
-
-    @Test
-    public void verifyThat_GetPlanById_ReturnsPlanInfoInXml() throws Exception {
-        final Response response = target( "/plan/123" ).request().
-                accept( APPLICATION_XML ).get();
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_XML ) );
-        assertThat( the( asXml((ByteArrayInputStream) response.getEntity() ) ),
-                hasXPath("/planInfo/version", containsString("XPLAN_41") ) );
-    }
-
-    @Test
-    public void verifyThat_GetPlanById_ReturnsCorrectFileContent() {
-        final Response response = target( "/plan/123" ).request().
-                accept( APPLICATION_ZIP ).get();
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_ZIP ) );
+                                accept( APPLICATION_JSON ).get();
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
+        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+
+        String responseBody = response.readEntity( String.class );
+
+        assertThat( responseBody, isJson() );
+        assertThat( responseBody, hasJsonPath( "$.version", is( XPLAN_41.name() ) ) );
+    }
+
+    @Test
+    public void verifyThat_GetPlanById_AsXml_ReturnsCorrectStatusAndContent() {
+        final Response response = target( "/plan/123" ).request().
+                                accept( APPLICATION_XML ).get();
+        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
+        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_XML ) );
+
+        String responseBody = response.readEntity( String.class );
+        assertThat( the( responseBody ), hasXPath( "/planInfo/version", is( XPLAN_41.name() ) ) );
+    }
+
+    @Test
+    public void verifyThat_GetPlanById_AsZip_ReturnsCorrectStatusAndContent() {
+        final Response response = target( "/plan/123" ).request().
+                                accept( APPLICATION_ZIP ).get();
+        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
+        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_ZIP ) );
     }
 
     @Test
@@ -155,18 +153,5 @@ public class PlanApiTest extends JerseyTest {
         final Response response = target( "/plan/name/bplan_41" ).request().
                 accept( APPLICATION_JSON ).get();
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
-
-    private DOMSource asXml(ByteArrayInputStream stream) throws Exception {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true);
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.parse(stream);
-        Transformer transformer = TransformerFactory.newInstance().newTransformer();
-        StreamResult result = new StringResult();
-        DOMSource domSource = new DOMSource(document);
-        transformer.transform(domSource, result);
-        LOG.trace(result.toString());
-        return domSource;
     }
 }
