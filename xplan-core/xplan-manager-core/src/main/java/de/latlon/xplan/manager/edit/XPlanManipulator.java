@@ -216,9 +216,9 @@ public class XPlanManipulator {
         List<Property> properties = new ArrayList<Property>();
         for ( Text text : texts ) {
             String gmlid = text.getFeatureId();
+            Feature oldTextFeature = null;
             if ( gmlid != null ) {
-                QName textFeatureTypeName = getTextAbschnittName( version, namespaceUri );
-                Feature oldTextFeature = detectFeatureById( planToEdit, textFeatureTypeName, gmlid );
+                oldTextFeature = detectFeatureById( planToEdit, gmlid );
                 if ( oldTextFeature != null )
                     featuresToRemove.add( oldTextFeature );
             } else {
@@ -226,13 +226,11 @@ public class XPlanManipulator {
             }
             Property linkProp = createPropertyWithHrefAttribute( context, feature.getType(), propName, gmlid );
             addProperty( properties, linkProp );
-            createAndAddTextFeature( context, version, schema, namespaceUri, text, gmlid, featuresToAdd );
+            createAndAddTextFeature( context, version, schema, namespaceUri, text, gmlid, featuresToAdd, oldTextFeature );
         }
         for ( String previouslyReferencedTextFeatureId : previouslyReferencedTextFeatureIds ) {
             if ( isNotLongerReferenced( texts, previouslyReferencedTextFeatureId ) ) {
-                QName textFeatureTypeName = getTextAbschnittName( version, namespaceUri );
-                Feature oldTextFeature = detectFeatureById( planToEdit, textFeatureTypeName,
-                                                            previouslyReferencedTextFeatureId );
+                Feature oldTextFeature = detectFeatureById( planToEdit, previouslyReferencedTextFeatureId );
                 if ( oldTextFeature != null ) {
                     featuresToRemove.add( oldTextFeature );
                     referencesToRemove.add( previouslyReferencedTextFeatureId );
@@ -258,6 +256,7 @@ public class XPlanManipulator {
                 featuresToRemove.add( oldRasterBasisFeature );
                 referencesToRemove.add( previouslyReferencedRasterBasisFeatureId );
             }
+            removeProperties( feature, new QName( namespaceUri, "refScan" ) );
         } else {
             String gmlid = rasterBasis.getFeatureId();
             if ( gmlid != null ) {
@@ -273,6 +272,7 @@ public class XPlanManipulator {
             createAndAddRasterBasisFeature( context, version, planToEdit, schema, namespaceUri, rasterBasis, gmlid,
                                             featuresToAdd, featuresToRemove );
             addOrReplaceProperties( version, feature, propName, properties );
+            removeProperties( feature, new QName( namespaceUri, "refScan" ) );
         }
     }
 
@@ -284,11 +284,16 @@ public class XPlanManipulator {
         return true;
     }
 
+    private Feature detectFeatureById( FeatureCollection planToEdit, String featureId ) {
+        return detectFeatureById( planToEdit, null, featureId );
+    }
+
     private Feature detectFeatureById( FeatureCollection planToEdit, QName featureTypeName, String featureId ) {
         if ( featureId == null )
             return null;
         for ( Feature feature : planToEdit ) {
-            if ( featureTypeName.equals( feature.getName() ) && featureId.equals( feature.getId() ) )
+            if ( featureId.equals( feature.getId() ) && ( featureTypeName == null || featureTypeName.equals(
+                                    feature.getName() ) ) )
                 return feature;
         }
         return null;
@@ -390,8 +395,9 @@ public class XPlanManipulator {
     }
 
     private void createAndAddTextFeature( GmlDocumentIdContext context, XPlanVersion version, AppSchema schema,
-                                          String namespaceUri, Text text, String gmlid, List<Feature> featuresToAdd ) {
-        QName textFeatureTypeName = getTextAbschnittName( version, namespaceUri );
+                                          String namespaceUri, Text text, String gmlid, List<Feature> featuresToAdd,
+                                          Feature oldTextFeature ) {
+        QName textFeatureTypeName = getTextAbschnittName( version, namespaceUri, oldTextFeature );
         FeatureType textFeatureType = schema.getFeatureType( textFeatureTypeName );
         List<Property> props = new ArrayList<Property>();
         addProperty( props, createKeyProperty( namespaceUri, text.getKey() ) );
@@ -820,7 +826,9 @@ public class XPlanManipulator {
         return index;
     }
 
-    private QName getTextAbschnittName( XPlanVersion version, String namespaceUri ) {
+    private QName getTextAbschnittName( XPlanVersion version, String namespaceUri, Feature oldTextFeature ) {
+        if ( oldTextFeature != null )
+            return oldTextFeature.getName();
         if ( XPLAN_50.equals( version ) || XPLAN_51.equals( version ) || XPLAN_52.equals( version ) )
             return new QName( namespaceUri, "BP_TextAbschnitt" );
         return new QName( namespaceUri, "XP_TextAbschnitt" );
