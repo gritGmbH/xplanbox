@@ -15,6 +15,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -108,10 +109,41 @@ public class GeometricValidatorImplTest {
         assertThat( numberOfErrors, is( 12 ) );
     }
 
+    @Test
+    public void testValidateGeometryWithInteriorRing_ValidOrientation()
+                            throws Exception {
+        XPlanArchive archive = getTestArchive( getClass().getResourceAsStream( "geometryOrientationValid.gml" ) );
+        GeometricValidatorResult report = (GeometricValidatorResult) validateGeometryAndReturnReport( archive, SKIP_OPTIONS );
+
+        assertThat( report.isValid(), is( true ) );
+        assertThat( report.getErrors().size(), is( 0 ) );
+        assertThat( report.getWarnings().size(), is( 0 ) );
+        assertThat( report.getBadGeometries().size(), is( 0 ) );
+    }
+
+    @Test
+    public void testValidateGeometryWithInteriorRing_InvalidOrientation()
+                            throws Exception {
+        XPlanArchive archive = getTestArchive( getClass().getResourceAsStream( "geometryOrientationInvalid.gml" ) );
+        GeometricValidatorResult report = (GeometricValidatorResult) validateGeometryAndReturnReport( archive, SKIP_OPTIONS );
+
+        assertThat( report.isValid(), is( true ) );
+        assertThat( report.getErrors().size(), is( 0 ) );
+        assertThat( report.getWarnings().size(), is( 2 ) );
+        assertThat( report.getBadGeometries().size(), is( 0 ) );
+    }
+
+
     private XPlanArchive getTestArchive( String name )
                             throws IOException {
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
         return archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
+    }
+
+    private XPlanArchive getTestArchive( InputStream inputStream )
+                            throws IOException {
+        XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+        return archiveCreator.createXPlanArchiveFromGml( "test", inputStream );
     }
 
     private ValidatorResult validateGeometryAndReturnReport( XPlanArchive archive, List<ValidationOption> voOptions )
@@ -125,14 +157,6 @@ public class GeometricValidatorImplTest {
 
     private List<ValidationOption> createValidVoOptions() {
         List<ValidationOption> voOptions = new ArrayList<>();
-        voOptions.add( SKIP_FLAECHENSCHLUSS );
-        voOptions.add( SKIP_GELTUNGSBEREICH );
-        return voOptions;
-    }
-
-    private List<ValidationOption> createInvalidVoOptions() {
-        List<ValidationOption> voOptions = new ArrayList<ValidationOption>();
-        voOptions.add( new ValidationOption( "invalid" ) );
         voOptions.add( SKIP_FLAECHENSCHLUSS );
         voOptions.add( SKIP_GELTUNGSBEREICH );
         return voOptions;
