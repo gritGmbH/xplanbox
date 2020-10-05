@@ -77,7 +77,7 @@ public class GeometricValidatorImplTest {
 
         assertThat( report.isValid(), is( false ) );
         assertThat( numberOfErrors, is( 1 ) );
-        assertThat( numberOfWarnings, is( 8 ) );
+        assertThat( numberOfWarnings, is( 0 ) );
         assertThat( numberOfBadGeometries, is( 0 ) );
     }
 
