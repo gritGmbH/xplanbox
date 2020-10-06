@@ -408,8 +408,9 @@ public class XPlanManipulator {
         Feature refFeature = createAndAddExterneReferenz( context, version, schema, namespaceUri, text, textFeatureType,
                                                           props, refPropName, "XP_ExterneReferenz", null );
 
-        if ( XPLAN_50.equals( version ) || XPLAN_51.equals( version ) || XPLAN_52.equals( version ) ) {
-            addProperty( props, createLegalNatureProperty( namespaceUri, text.getLegalNatureCode() ) );
+        if ( text.getRechtscharakter() != null && ( XPLAN_50.equals( version ) || XPLAN_51.equals( version )
+                                                    || XPLAN_52.equals( version ) ) ) {
+            addProperty( props, createRechtscharakterProperty( namespaceUri, text.getRechtscharakter().getCode() ) );
         }
         if ( props.isEmpty() )
             return;
@@ -588,7 +589,7 @@ public class XPlanManipulator {
 
         List<TypedObjectNode> subElementChilds = new ArrayList<TypedObjectNode>();
         add( subElementChilds, createPlanNameProperty( namespaceUri, change.getPlanName() ) );
-        add( subElementChilds, createLegalNatureProperty( namespaceUri, change.getLegalNatureCode() ) );
+        add( subElementChilds, createRechtscharakterProperty( namespaceUri, change.getLegalNatureCode() ) );
         add( subElementChilds, createNumberProperty( namespaceUri, change.getNumber() ) );
         if ( subElementChilds.isEmpty() )
             return null;
@@ -606,7 +607,7 @@ public class XPlanManipulator {
         return createProperty( propName, value, 1, 1 );
     }
 
-    private GenericProperty createLegalNatureProperty( String namespaceUri, int value ) {
+    private GenericProperty createRechtscharakterProperty( String namespaceUri, int value ) {
         QName propName = new QName( namespaceUri, "rechtscharakter" );
         return createProperty( propName, value, 1, 1 );
     }
