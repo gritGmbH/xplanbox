@@ -48,9 +48,9 @@ import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.Text;
+import de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType;
 import de.latlon.xplan.manager.web.shared.edit.ValidityPeriod;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
-import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.datetime.Temporal;
 import org.deegree.commons.tom.genericxml.GenericXMLElement;
@@ -281,6 +281,8 @@ public class XPlanToEditFactory {
                     text.setText( asString( propValue ) );
                 } else if ( "refText".equals( propName ) ) {
                     parseReference( prop.getChildren(), text );
+                } else if ( "rechtscharakter".equals( propName ) ) {
+                    text.setRechtscharakter( TextRechtscharacterType.fromCode( asInteger( propValue ) ) );
                 }
             }
             xPlanToEdit.addText( text );
