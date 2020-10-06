@@ -74,6 +74,12 @@ class UploadFinishedDialogBox extends DialogBox {
             @Override
             public void onClick( ClickEvent event ) {
                 UploadFinishedDialogBox.this.hide();
+                ClickHandler cancelHandler = new ClickHandler() {
+                    @Override
+                    public void onClick( ClickEvent clickEvent ) {
+                        xPlanValidatorWeb.resetPanelToUpload();
+                    }
+                };
                 ValidatorOptionsDialog xPlanValidatorSettings = new ValidatorOptionsDialog( new ReportDownloadFinishedListener() {
                     @Override
                     public void downloadFinished( FinishStatus finishStatus ) {
@@ -81,7 +87,7 @@ class UploadFinishedDialogBox extends DialogBox {
                             xPlanValidatorWeb.resetPanelToUpload();
                     }
 
-                }, fileName, true );
+                }, fileName, true, cancelHandler );
                 xPlanValidatorWeb.setPanel( xPlanValidatorSettings );
             }
         };

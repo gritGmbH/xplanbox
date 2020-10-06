@@ -38,7 +38,6 @@ import com.google.gwt.view.client.CellPreviewEvent;
 import com.google.gwt.view.client.CellPreviewEvent.Handler;
 import com.google.gwt.view.client.ListDataProvider;
 
-import de.latlon.xplan.commons.web.CloseableDialogBox;
 import de.latlon.xplan.commons.web.DisengageableButtonCell;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
@@ -136,9 +135,10 @@ public class UploadPanel extends DecoratorPanel {
         };
         validatedColumn.setFieldUpdater( new FieldUpdater<XPlan, String>() {
             public void update( int index, XPlan object, String value ) {
-                final CloseableDialogBox dialog = new CloseableDialogBox( messages.validationTitle() );
+                final DialogBox dialog = new DialogBox( );
+                dialog.setText( messages.validationTitle() );
                 ValidatorOptionsDialog validatorOptions = createValidatorOptions( dialog );
-                dialog.setContent( validatorOptions );
+                dialog.add( validatorOptions );
                 dialog.show();
             }
 
@@ -240,7 +240,7 @@ public class UploadPanel extends DecoratorPanel {
         xPlanTable.addColumn( removeButtonColumn );
     }
 
-    private ValidatorOptionsDialog createValidatorOptions( final CloseableDialogBox dialog ) {
+    private ValidatorOptionsDialog createValidatorOptions( final DialogBox dialog ) {
         ReportDownloadFinishedListener reportDownloadFinishedListener = new ReportDownloadFinishedListener() {
             @Override
             public void downloadFinished( FinishStatus finishStatus ) {
@@ -249,8 +249,14 @@ public class UploadPanel extends DecoratorPanel {
                     dialog.hide();
             }
         };
+        ClickHandler cancelHandler = new ClickHandler() {
+            @Override
+            public void onClick( ClickEvent clickEvent ) {
+                dialog.hide();
+            }
+        };
         return new ValidatorOptionsDialog( reportDownloadFinishedListener, messages.reportCloseButtonTitle(),
-                        messages.reportNextButtonTitle(), getFilename( upload ) );
+                        messages.reportNextButtonTitle(), getFilename( upload ), cancelHandler );
     }
 
     private Widget createUploadWidget() {
