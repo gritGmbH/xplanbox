@@ -180,8 +180,7 @@ public class PlanApi {
     @Produces({ "application/json", "application/xml" })
     @Operation(summary = "Get plan identified by the given planName", description = "Returns a list of plans which match exactly the given planName", tags = {
                             "search" }, responses = { @ApiResponse(responseCode = "200", description = "OK", content = {
-                            @Content(mediaType = "application/json", schema = @Schema(implementation = PlanInfo.class)),
-                            @Content(mediaType = "application/xml", array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class))) }),
+                            @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class))) }),
                                                       @ApiResponse(responseCode = "404", description = "Invalid plan name, plan not found") })
     public Response getByName(
                             @Context
