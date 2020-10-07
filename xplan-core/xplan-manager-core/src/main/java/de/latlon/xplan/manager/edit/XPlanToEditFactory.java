@@ -48,6 +48,7 @@ import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.Text;
+import de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType;
 import de.latlon.xplan.manager.web.shared.edit.ValidityPeriod;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -168,13 +169,22 @@ public class XPlanToEditFactory {
     }
 
     private void parseBPBereich( Feature feature, XPlanToEdit xPlanToEdit ) {
-        LOG.debug( "Parse propertiese from BP_Plan" );
+        LOG.debug( "Parse properties from BP_Bereich" );
         for ( Property property : feature.getProperties() ) {
             String propertyName = property.getName().getLocalPart();
             if ( "rasterBasis".equals( propertyName ) ) {
                 parseRasterBasis( property, xPlanToEdit );
+            } else if ( "refScan".equals( propertyName ) ) {
+                parseRasterBasisRefScan( xPlanToEdit, property );
             }
         }
+    }
+
+    private void parseRasterBasisRefScan( XPlanToEdit xPlanToEdit, Property property ) {
+        RasterBasis rasterBasis = new RasterBasis();
+        RasterReference rasterReference = parseRasterReference( property, SCAN );
+        rasterBasis.addRasterReference( rasterReference );
+        xPlanToEdit.setRasterBasis( rasterBasis );
     }
 
     private void parseRasterBasis( Property property, XPlanToEdit xPlanToEdit ) {
@@ -272,6 +282,8 @@ public class XPlanToEditFactory {
                     text.setText( asString( propValue ) );
                 } else if ( "refText".equals( propName ) ) {
                     parseReference( prop.getChildren(), text );
+                } else if ( "rechtscharakter".equals( propName ) ) {
+                    text.setRechtscharakter( TextRechtscharacterType.fromCode( asInteger( propValue ) ) );
                 }
             }
             xPlanToEdit.addText( text );

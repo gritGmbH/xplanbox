@@ -67,6 +67,18 @@ public interface CodelistMessages extends Messages {
 
     String RasterReferenceType_TEXT();
 
+    String TextAbschnitt_Festsetzung();
+
+    String TextAbschnitt_Hinweis();
+
+    String TextAbschnitt_Kennzeichnung();
+
+    String TextAbschnitt_NachrichtlicheUebernahme();
+
+    String TextAbschnitt_Vermerk();
+
+    String TextAbschnitt_Unbekannt();
+
     String XP_ExterneReferenzArt_Dokument();
 
     String XP_ExterneReferenzArt_PlanMitGeoreferenz();

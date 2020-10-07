@@ -42,6 +42,7 @@ import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
 import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
+import de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -80,6 +81,12 @@ import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.UMWELTBEZOGE
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.VERORDNUNG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.VORHABENUNDERSCHLIESSUNGSPLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.ZUSAMMENFASSENDEERKLAERUNG;
+import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.FESTSETZUNG;
+import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.HINWEIS;
+import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.KENNZEICHNUNG;
+import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.NACHRICHTLICHEUEBERNAHME;
+import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.UNBEKANNT;
+import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.VERMERK;
 
 /**
  * Provides access to type code (mapping between code and value)
@@ -134,6 +141,7 @@ public class TypeCodelistProvider {
         addRasterReferenceType( typeCode );
         addExterneReferenzArtType( typeCode );
         addMimeTypesType( typeCode );
+        addTextRechtscharakterType( typeCode );
         return typeCode;
     }
 
@@ -196,6 +204,17 @@ public class TypeCodelistProvider {
         codes.add( new Code( DOKUMENT.name(), MESSAGES.XP_ExterneReferenzArt_Dokument() ) );
         codes.add( new Code( PLANMITGEOREFERENZ.name(), MESSAGES.XP_ExterneReferenzArt_PlanMitGeoreferenz() ) );
         typeCode.put( ExterneReferenzArt.class, codes );
+    }
+
+    private static void addTextRechtscharakterType( HashMap<Class<?>, List<Code>> typeCode ) {
+        List<Code> codes = new ArrayList<Code>();
+        codes.add( new Code( FESTSETZUNG.name(), MESSAGES.TextAbschnitt_Festsetzung() ) );
+        codes.add( new Code( HINWEIS.name(), MESSAGES.TextAbschnitt_Hinweis() ) );
+        codes.add( new Code( KENNZEICHNUNG.name(), MESSAGES.TextAbschnitt_Kennzeichnung() ) );
+        codes.add( new Code( NACHRICHTLICHEUEBERNAHME.name(), MESSAGES.TextAbschnitt_NachrichtlicheUebernahme() ) );
+        codes.add( new Code( VERMERK.name(), MESSAGES.TextAbschnitt_Vermerk() ) );
+        codes.add( new Code( UNBEKANNT.name(), MESSAGES.TextAbschnitt_Unbekannt() ) );
+        typeCode.put( TextRechtscharacterType.class, codes );
     }
 
 }

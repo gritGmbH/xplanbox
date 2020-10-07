@@ -64,6 +64,8 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
 
     private static final String ERROR_MSG_INVALID_GELTUNGSBEREICH = "2.2.1.1: Der Geltungsbereich des Plans ist geometrisch nicht valide. Betroffen ist das Feature mit der gml id %s. Die Pruefung der Flaechenschlussbedingung kann nicht durchgeführt werden.";
 
+    private static final String ERROR_MSG_FAILURE_GELTUNGSBEREICH = "2.2.1.1: Der Geltungsbereich des Plans ist geometrisch nicht valide. Betroffen ist das Feature mit der gml id %s. Die Pruefung der Flaechenschlussbedingung kann nicht durchgeführt werden. Ursache: %s";
+
     private static final String ERROR_MSG_GELTUNGSBEREICH_BUFFER = "2.2.1.1: Der Geltungsbereich des Plans konnte nicht verwendet werden. Betroffen ist das Feature mit der gml id %s. Die Pruefung der Flaechenschlussbedingung kann nicht durchgeführt werden.";
 
     private com.vividsolutions.jts.geom.Geometry geltungsbereich;
@@ -85,18 +87,25 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
         }
         if ( isGeltungsbereichFeature( feature ) ) {
             Geometry originalGeltungsbereich = (Geometry) feature.getGeometryProperties().get( 0 ).getValue();
-            if ( !( (AbstractDefaultGeometry) originalGeltungsbereich ).getJTSGeometry().isValid() ) {
-                invalidGeltungsbereich = new BadGeometry( originalGeltungsbereich,
-                                                          String.format( ERROR_MSG_INVALID_GELTUNGSBEREICH,
-                                                                         feature.getId() ) );
-            } else {
-                this.geltungsbereich = createJtsGeltungsbereichWithBuffer(
-                                        (AbstractDefaultGeometry) originalGeltungsbereich );
-                if ( this.geltungsbereich == null ) {
+            try {
+                com.vividsolutions.jts.geom.Geometry jtsGeometry = ( (AbstractDefaultGeometry) originalGeltungsbereich ).getJTSGeometry();
+                if ( !jtsGeometry.isValid() ) {
                     invalidGeltungsbereich = new BadGeometry( originalGeltungsbereich,
-                                                              String.format( ERROR_MSG_GELTUNGSBEREICH_BUFFER,
+                                                              String.format( ERROR_MSG_INVALID_GELTUNGSBEREICH,
                                                                              feature.getId() ) );
+                } else {
+                    this.geltungsbereich = createJtsGeltungsbereichWithBuffer(
+                                            (AbstractDefaultGeometry) originalGeltungsbereich );
+                    if ( this.geltungsbereich == null ) {
+                        invalidGeltungsbereich = new BadGeometry( originalGeltungsbereich,
+                                                                  String.format( ERROR_MSG_GELTUNGSBEREICH_BUFFER,
+                                                                                 feature.getId() ) );
+                    }
                 }
+            } catch ( Exception e ) {
+                invalidGeltungsbereich = new BadGeometry( originalGeltungsbereich,
+                                                          String.format( ERROR_MSG_FAILURE_GELTUNGSBEREICH,
+                                                                         feature.getId(), e.getMessage() ) );
             }
         }
         return feature;

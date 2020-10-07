@@ -9,10 +9,9 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FormPanel;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RadioButton;
+import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import de.latlon.xplan.validator.web.client.report.ReportDialog;
@@ -79,8 +78,10 @@ public class ValidatorOptionsDialog extends FormPanel {
      * @param reportDownloadFinishedListener
      *                         informed when the validation report dialog is closed or next is clicked, never <code>null</code>
      */
-    public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener, String fileName, boolean showMapPreview ) {
-        this( reportDownloadFinishedListener, messages.reportButtonCloseTitle(), messages.reportButtonNextTitle(), fileName );
+    public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener, String fileName,
+                                   boolean showMapPreview, ClickHandler cancelHandler ) {
+        this( reportDownloadFinishedListener, messages.reportButtonCloseTitle(), messages.reportButtonNextTitle(),
+              fileName, cancelHandler );
         this.showMapPreview = showMapPreview;
     }
 
@@ -90,19 +91,20 @@ public class ValidatorOptionsDialog extends FormPanel {
      * @param reportCloseButtonTitle
      *                         title of the close button in the report dialog
      * @param reportNextButtonTitle
-     *                         title of the next button in the report dialog
+     * @param cancelHandler
      */
     public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener,
-                                   String reportCloseButtonTitle, String reportNextButtonTitle, String fileName ) {
+                                   String reportCloseButtonTitle, String reportNextButtonTitle, String fileName,
+                                   ClickHandler cancelHandler ) {
         this.reportDownloadFinishedListener = reportDownloadFinishedListener;
         this.reportCloseButtonTitle = reportCloseButtonTitle;
         this.reportNextButtonTitle = reportNextButtonTitle;
         initFormFields( fileName );
-        initSettingsForm();
+        initSettingsForm( cancelHandler );
         this.setStyleName( "valOptionsForm" );
     }
 
-    private void initSettingsForm() {
+    private void initSettingsForm( ClickHandler cancelHandler ) {
         VerticalPanel mainPanel = new VerticalPanel();
         mainPanel.setSpacing( 5 );
         mainPanel.setStyleName( "valOptionsPanel" );
@@ -117,7 +119,7 @@ public class ValidatorOptionsDialog extends FormPanel {
         mainPanel.add( skipFlaechenschluss );
         mainPanel.add( skipGeltungsbereich );
         mainPanel.add( validationTypeSyn );
-        mainPanel.add( createValidationStartButton() );
+        mainPanel.add( createButtonsPanel( cancelHandler ) );
         add( mainPanel );
     }
 
@@ -145,6 +147,14 @@ public class ValidatorOptionsDialog extends FormPanel {
         return label;
     }
 
+    private Panel createButtonsPanel( ClickHandler cancelHandler ) {
+        HorizontalPanel buttonBar = new HorizontalPanel();
+        buttonBar.setSpacing( 20 );
+        buttonBar.add( createValidationStartButton() );
+        buttonBar.add( createValidateCancelButton( cancelHandler ) );
+        return buttonBar;
+    }
+
     private Button createValidationStartButton() {
         return new Button( messages.startValidationButton(), new ClickHandler() {
             public void onClick( ClickEvent event ) {
@@ -154,6 +164,10 @@ public class ValidatorOptionsDialog extends FormPanel {
                 }
             }
         } );
+    }
+
+    private Button createValidateCancelButton( ClickHandler cancelHandler ) {
+        return new Button( messages.cancelValidationButton(), cancelHandler );
     }
 
     private List<ValidationType> retrieveValidationTypes() {
@@ -200,8 +214,7 @@ public class ValidatorOptionsDialog extends FormPanel {
             @Override
             public void onSuccess( ValidationSummary validationSummary ) {
                 hideValidatingDialogBox();
-                reportDialog.init( validationSummary, reportCloseButtonTitle,
-                                                              reportNextButtonTitle, showMapPreview );
+                reportDialog.init( validationSummary, reportCloseButtonTitle, reportNextButtonTitle, showMapPreview );
                 reportDialog.addReportDownloadFinishedListener( reportDownloadFinishedListener );
                 reportDialog.show();
             }

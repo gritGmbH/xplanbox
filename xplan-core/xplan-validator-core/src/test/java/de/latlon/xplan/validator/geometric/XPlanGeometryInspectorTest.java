@@ -1,7 +1,22 @@
 package de.latlon.xplan.validator.geometric;
 
+import de.latlon.xplan.validator.geometric.report.BadGeometry;
+import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
+import org.deegree.geometry.Geometry;
+import org.deegree.geometry.primitive.Curve;
+import org.deegree.geometry.primitive.Polygon;
+import org.deegree.geometry.primitive.Ring;
+import org.deegree.geometry.primitive.patches.PolygonPatch;
+import org.deegree.gml.GMLInputFactory;
+import org.deegree.gml.GMLVersion;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import java.net.URL;
+import java.util.Collections;
+import java.util.List;
+
 import static org.deegree.geometry.Geometry.GeometryType.PRIMITIVE_GEOMETRY;
-import static org.deegree.geometry.primitive.Curve.CurveType.LineString;
 import static org.deegree.geometry.primitive.Curve.CurveType.Ring;
 import static org.deegree.geometry.primitive.GeometricPrimitive.PrimitiveType.Curve;
 import static org.deegree.geometry.primitive.GeometricPrimitive.PrimitiveType.Surface;
@@ -14,34 +29,13 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
-import org.deegree.geometry.Geometry;
-import org.deegree.geometry.primitive.Curve;
-import org.deegree.geometry.primitive.LineString;
-import org.deegree.geometry.primitive.Polygon;
-import org.deegree.geometry.primitive.Ring;
-import org.deegree.geometry.primitive.patches.PolygonPatch;
-import org.deegree.gml.GMLInputFactory;
-import org.deegree.gml.GMLVersion;
-import org.junit.Test;
-import org.mockito.Mockito;
-
-import de.latlon.xplan.validator.geometric.report.BadGeometry;
-import de.latlon.xplan.validator.web.shared.ValidationOption;
-
 /**
  * Tests for <link>XPlanGeometryInspector</link>
- * 
+ *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
@@ -49,30 +43,23 @@ import de.latlon.xplan.validator.web.shared.ValidationOption;
 public class XPlanGeometryInspectorTest {
 
     @Test
-    public void testInspectLineStringShouldNotIgnoreOrientationOnNoOption() {
-        XPlanGeometryInspector inspector = mockInspectorWithOptions( noOption() );
-        inspector.inspect( mockLineString() );
-        verify( inspector, times( 1 ) ).checkOrientation( any( Curve.class ), any( Curve.class ) );
-    }
-
-    @Test
-    public void testInspectRingShouldNotIgnoreSelfIntersectionOnNoOption() {
-        XPlanGeometryInspector inspector = mockInspectorWithOptions( noOption() );
+    public void testInspectRing_ShouldTestSelfIntersection() {
+        XPlanGeometryInspector inspector = mockInspector();
         inspector.inspect( mockRing() );
         verify( inspector, times( 1 ) ).checkSelfIntersection( any( Ring.class ) );
     }
 
     @Test
-    public void testInspectPolygonPatchShouldNotIgnoreSelfIntersectionOnNoOption() {
-        XPlanGeometryInspector inspector = mockInspectorWithOptions( noOption() );
+    public void testInspectPolygonPatch_ShouldTestSelfIntersection() {
+        XPlanGeometryInspector inspector = mockInspector();
         inspector.inspect( mockPolygon() );
         verify( inspector, times( 1 ) ).checkSelfIntersection( any( PolygonPatch.class ) );
-        verify( inspector, times( 1 )  ).checkRingOrientations( any( PolygonPatch.class ) );
+        verify( inspector, times( 1 ) ).checkRingOrientations( any( PolygonPatch.class ) );
     }
 
     @Test
-    public void testInspectPolygonPatchShouldNotIgnoreOrientationOnNoOption() {
-        XPlanGeometryInspector inspector = mockInspectorWithOptions( noOption() );
+    public void testInspectPolygonPatch_ShouldTestOrientation() {
+        XPlanGeometryInspector inspector = mockInspector();
         inspector.inspect( mockPolygon() );
         verify( inspector, times( 1 ) ).checkRingOrientations( any( PolygonPatch.class ) );
     }
@@ -115,39 +102,25 @@ public class XPlanGeometryInspectorTest {
     private Geometry createSelfIntersectingRing()
                             throws Exception {
         URL url = XPlanGeometryInspectorTest.class.getResource( "selfIntersectingRing.gml" );
-        return ( (Polygon) GMLInputFactory.createGMLStreamReader( GMLVersion.GML_30, url ).readGeometry() ).getExteriorRing();
+        return ( (Polygon) GMLInputFactory.createGMLStreamReader( GMLVersion.GML_30,
+                                                                  url ).readGeometry() ).getExteriorRing();
     }
 
-    private LineString mockLineString() {
-        LineString lsMock = mock( LineString.class );
-        when( lsMock.getGeometryType() ).thenReturn( PRIMITIVE_GEOMETRY );
-        when( lsMock.getPrimitiveType() ).thenReturn( Curve );
-        when( lsMock.getCurveType() ).thenReturn( LineString );
-        return lsMock;
-    }
-
-    private XPlanGeometryInspector mockInspectorWithOptions( List<ValidationOption> voOptions ) {
+    private XPlanGeometryInspector mockInspector() {
         XPlanGeometryInspector inspector = mock( XPlanGeometryInspector.class );
         doAnswer( returnsFirstArg() ).when( inspector ).checkClosed( any( Ring.class ) );
         doAnswer( returnsFirstArg() ).when( inspector ).checkRingOrientations( any( PolygonPatch.class ) );
         doAnswer( returnsFirstArg() ).when( inspector ).createMessage( anyString() );
         when( inspector.inspect( any( Curve.class ) ) ).thenCallRealMethod();
-        when( inspector.getVoOptions() ).thenReturn( voOptions );
         return inspector;
     }
 
     private XPlanGeometryInspector createInspectorWithMockedStream() {
-        double epsilon = 0.1;
-        List<ValidationOption> voOptions = Collections.emptyList();
         XMLStreamReaderWrapper mockXmlStream = mock( XMLStreamReaderWrapper.class );
-        XPlanGeometryInspector inspector = new XPlanGeometryInspector( mockXmlStream, epsilon, voOptions );
+        XPlanGeometryInspector inspector = new XPlanGeometryInspector( mockXmlStream );
         XPlanGeometryInspector spiedInspector = Mockito.spy( inspector );
         doAnswer( returnsFirstArg() ).when( spiedInspector ).createMessage( Mockito.anyString() );
         return spiedInspector;
-    }
-
-    private List<ValidationOption> noOption() {
-        return Collections.emptyList();
     }
 
 }
