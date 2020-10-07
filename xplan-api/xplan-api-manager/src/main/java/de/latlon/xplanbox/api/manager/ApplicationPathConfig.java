@@ -45,6 +45,7 @@ public class ApplicationPathConfig extends ResourceConfig {
         super();
         register( new ObjectMapperContextResolver() );
         packages( "de.latlon.xplanbox.api.manager.v1" );
+        packages( "de.latlon.xplanbox.api.manager.exception" );
         packages( "de.latlon.xplanbox.api.commons.exception" );
         OpenAPI openApi = new OpenAPI();
         openApi.setInfo( new Info().title( "XPlanManagerAPI" ).version( "0.1.2" ).description(
