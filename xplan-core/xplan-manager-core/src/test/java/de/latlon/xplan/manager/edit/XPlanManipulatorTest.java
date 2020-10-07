@@ -88,9 +88,9 @@ import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.IMAGE_PNG;
 import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.TEXT_HTML;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSPLAN;
 import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.HINWEIS;
 import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.VERMERK;
 import static org.hamcrest.CoreMatchers.is;
@@ -271,9 +271,9 @@ public class XPlanManipulatorTest {
         FeatureCollection featureCollection = readXPlanGml( version, planResource, schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
-        editedXplan.getReferences().add( new Reference( "ref1", "georef1", GREEN_STRUCTURES_PLAN ) );
-        editedXplan.getReferences().add( new Reference( "ref2", "georef2", LEGISLATION_PLAN ) );
-        editedXplan.getReferences().add( new Reference( "ref3", "georef3", REASON ) );
+        editedXplan.getReferences().add( new Reference( "ref1", "georef1", GRUENORDNUNGSPLAN ) );
+        editedXplan.getReferences().add( new Reference( "ref2", "georef2", RECHTSPLAN ) );
+        editedXplan.getReferences().add( new Reference( "ref3", "georef3", BEGRUENDUNG ) );
 
         planManipulator.modifyXPlan( featureCollection, editedXplan, version, BP_Plan, schema );
 
@@ -290,10 +290,10 @@ public class XPlanManipulatorTest {
         FeatureCollection featureCollection = readXPlanGml( version, "xplan41/Eidelstedt_4_V4-Blankenese.gml", schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
-        Reference reference1 = new Reference( "ref1", "georef1", GREEN_STRUCTURES_PLAN );
+        Reference reference1 = new Reference( "ref1", "georef1", GRUENORDNUNGSPLAN );
         editedXplan.getReferences().add( reference1 );
-        editedXplan.getReferences().add( new Reference( "ref2", "georef2", LEGISLATION_PLAN ) );
-        editedXplan.getReferences().add( new Reference( "ref3", "georef3", REASON ) );
+        editedXplan.getReferences().add( new Reference( "ref2", "georef2", RECHTSPLAN ) );
+        editedXplan.getReferences().add( new Reference( "ref3", "georef3", BEGRUENDUNG ) );
 
         planManipulator.modifyXPlan( featureCollection, editedXplan, version, BP_Plan, schema );
 
@@ -706,9 +706,9 @@ public class XPlanManipulatorTest {
         FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "xplan30/Wuerdenhain.gml", schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
-        Reference refRechtsplan = new Reference( "ref2", "georef2", LEGISLATION_PLAN );
-        Reference refBegruendung = new Reference( "ref3", "georef3", REASON );
-        Reference refGruenordnung = new Reference( "ref1", "georef1", GREEN_STRUCTURES_PLAN );
+        Reference refRechtsplan = new Reference( "ref2", "georef2", RECHTSPLAN );
+        Reference refBegruendung = new Reference( "ref3", "georef3", BEGRUENDUNG );
+        Reference refGruenordnung = new Reference( "ref1", "georef1", GRUENORDNUNGSPLAN );
         editedXplan.getReferences().add( refRechtsplan );
         editedXplan.getReferences().add( refBegruendung );
         editedXplan.getReferences().add( refGruenordnung );

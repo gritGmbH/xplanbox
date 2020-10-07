@@ -5,7 +5,6 @@ import com.google.gwt.i18n.client.Messages;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public interface CodelistMessages extends Messages {
@@ -14,11 +13,53 @@ public interface CodelistMessages extends Messages {
 
     String ChangeType_CHANGES();
 
-    String ReferenceType_GREEN_STRUCTURES_PLAN();
+    String ReferenceType_BESCHREIBUNG();
 
-    String ReferenceType_LEGISLATION_PLAN();
+    String ReferenceType_BEGRUENDUNG();
 
-    String ReferenceType_REASON();
+    String ReferenceType_LEGENDE();
+
+    String ReferenceType_RECHTSPLAN();
+
+    String ReferenceType_PLANGRUNDLAGE();
+
+    String ReferenceType_UMWELTBERICHT();
+
+    String ReferenceType_SATZUNG();
+
+    String ReferenceType_VERORDNUNG();
+
+    String ReferenceType_KARTE();
+
+    String ReferenceType_ERLAEUTERUNG();
+
+    String ReferenceType_ZUSAMMENFASSENDEERKLAERUNG();
+
+    String ReferenceType_KOORDINATENLISTE();
+
+    String ReferenceType_GRUNDSTUECKSVERZEICHNIS();
+
+    String ReferenceType_PFLANZLISTE();
+
+    String ReferenceType_GRUENORDNUNGSPLAN();
+
+    String ReferenceType_ERSCHLIESSUNGSVERTRAG();
+
+    String ReferenceType_DURCHFUEHRUNGSVERTRAG();
+
+    String ReferenceType_STAEDTEBAULICHERVERTRAG();
+
+    String ReferenceType_UMWELTBEZOGENESTELLUNGNAHMEN();
+
+    String ReferenceType_BESCHLUSS();
+
+    String ReferenceType_VORHABENUNDERSCHLIESSUNGSPLAN();
+
+    String ReferenceType_METADATENPLAN();
+
+    String ReferenceType_RECHTSVERBINDLICH();
+
+    String ReferenceType_INFORMELL();
 
     String RasterReferenceType_LEGEND();
 
