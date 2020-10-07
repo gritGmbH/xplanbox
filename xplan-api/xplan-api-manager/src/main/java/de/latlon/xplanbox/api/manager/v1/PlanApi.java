@@ -12,6 +12,7 @@ import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -48,6 +49,7 @@ import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateVa
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP_TYPE;
 import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.SELF;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
 
@@ -129,10 +131,10 @@ public class PlanApi {
     @DELETE
     @Path("/{planId}")
     @Produces({ "application/json", "application/xml" })
-    @Operation(summary = "Delete plan identified by the given plan ID", description = "Deletes an existing plan identified by the given plan ID, limited to plans in status \"in Aufstellung\"", tags = {
+    @Operation(summary = "Delete plan identified by the given plan ID", description = "Deletes an existing plan identified by the given plan ID", tags = {
                             "manage", }, responses = {
                             @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = StatusMessage.class))),
-                            @ApiResponse(responseCode = "404", description = "Invalid plan ID, not found") })
+                            @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
     public Response delete(
                             @PathParam("planId")
                             @Parameter(description = "ID of the plan to be removed", example = "123")
@@ -151,7 +153,7 @@ public class PlanApi {
                                                     @Content(mediaType = "application/json", schema = @Schema(implementation = PlanInfo.class)),
                                                     @Content(mediaType = "application/xml", schema = @Schema(implementation = PlanInfo.class)),
                                                     @Content(mediaType = "application/zip", schema = @Schema(type = "string", format = "binary")) }),
-                            @ApiResponse(responseCode = "404", description = "Invalid plan ID, not found") })
+                            @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
     public Response getById(
                             @Context
                                                     Request request,
@@ -175,32 +177,28 @@ public class PlanApi {
 
     @GET
     @Path("/name/{planName}")
-    @Produces({ "application/json", "application/xml", "application/zip" })
-    @Operation(summary = "Get plan identified by the given planName", description = "Returns an existing plan identified by the given planName", tags = {
+    @Produces({ "application/json", "application/xml" })
+    @Operation(summary = "Get plan identified by the given planName", description = "Returns a list of plans which match exactly the given planName", tags = {
                             "search" }, responses = { @ApiResponse(responseCode = "200", description = "OK", content = {
                             @Content(mediaType = "application/json", schema = @Schema(implementation = PlanInfo.class)),
-                            @Content(mediaType = "application/xml", schema = @Schema(implementation = PlanInfo.class)),
-                            @Content(mediaType = "application/zip", schema = @Schema(type = "string", format = "binary")) }),
-                                                      @ApiResponse(responseCode = "404", description = "Invalid plan name, not found") })
+                            @Content(mediaType = "application/xml", array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class))) }),
+                                                      @ApiResponse(responseCode = "404", description = "Invalid plan name, plan not found") })
     public Response getByName(
                             @Context
                                                     Request request,
                             @Context
                                                     UriInfo uriInfo,
                             @PathParam("planName")
-                            @Parameter(description = "planName of the plan to be return", example = "bplan_123, fplan-123, rplan20200803", schema = @Schema(pattern = "^[A-Za-z0-9_-]*$"))
+                            @Parameter(description = "planName of the plan to be returned", example = "bplan_123, fplan-123, rplan20200803", schema = @Schema(pattern = "^[A-Za-z0-9_-]*$"))
                                                     String planName )
                             throws Exception {
-        XPlan xPlan = planHandler.findPlanByName( planName );
-        MediaType requestedMediaType = requestedMediaType( request );
-        if ( APPLICATION_ZIP_TYPE.equals( requestedMediaType ) ) {
-            StreamingOutput plan = planHandler.exportPlan( xPlan.getId() );
-            return Response.ok( plan ).type( APPLICATION_ZIP ).header( "Content-Disposition",
-                                                                       "attachment; filename=\"" + planName
-                                                                       + ".zip\"" ).build();
-        }
-        PlanInfo planInfo = createPlanInfo( uriInfo, requestedMediaType, xPlan );
-        return Response.ok().entity( planInfo ).build();
+        List<XPlan> plans = planHandler.findPlansByName( planName );
+        List<PlanInfo> planInfos = plans.stream().map( xPlan -> {
+            return new PlanInfoBuilder( xPlan, uriInfo ).wmsEndpoint(
+                                    managerConfiguration.getWmsEndpoint() ).requestedMediaType(
+                                    APPLICATION_JSON ).build();
+        } ).collect( Collectors.toList() );
+        return Response.ok().entity( planInfos ).build();
     }
 
     private PlanInfo createPlanInfo( UriInfo uriInfo, MediaType requestedMediaType, XPlan planById )

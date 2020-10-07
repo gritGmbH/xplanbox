@@ -19,7 +19,6 @@ import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
-import de.latlon.xplanbox.api.manager.exception.InvalidPlanName;
 import de.latlon.xplanbox.api.manager.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import org.apache.http.client.utils.URIBuilder;
@@ -32,7 +31,6 @@ import javax.inject.Singleton;
 import javax.ws.rs.core.StreamingOutput;
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -132,13 +130,10 @@ public class PlanHandler {
         return findPlanById( id );
     }
 
-    public XPlan findPlanByName( String planName )
+    public List<XPlan> findPlansByName( String planName )
                             throws Exception {
         LOG.info( "Find plan by name '{}'", planName );
-        List<XPlan> xPlans = xPlanDao.getXPlanByName( planName );
-        if ( xPlans.size() != 1 )
-            throw new InvalidPlanName( planName );
-        return xPlans.get( 0 );
+        return xPlanDao.getXPlanByName( planName );
     }
 
     public List<XPlan> findPlans( String planName )

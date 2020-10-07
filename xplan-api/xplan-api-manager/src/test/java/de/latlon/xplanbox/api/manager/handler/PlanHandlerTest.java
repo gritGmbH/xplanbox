@@ -1,6 +1,5 @@
 package de.latlon.xplanbox.api.manager.handler;
 
-import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.manager.config.ApplicationContext;
@@ -73,8 +72,9 @@ public class PlanHandlerTest {
 
     @Test
     public void verifyThat_findPlanByName() throws Exception {
-        XPlan plan = planHandler.findPlanByName("bplan_41");
-        assertThat(plan.getId(), is("123"));
+        List<XPlan> plans = planHandler.findPlansByName( "bplan_41" );
+        assertThat( plans.size(), is( 1 ) );
+        assertThat( plans.get( 0 ).getId(), is( "123" ) );
     }
 
     @Test

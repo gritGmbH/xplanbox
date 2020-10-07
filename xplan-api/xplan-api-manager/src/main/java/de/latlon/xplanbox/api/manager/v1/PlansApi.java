@@ -37,7 +37,7 @@ public class PlansApi {
 
     @GET
     @Produces({ "application/json" })
-    @Operation(summary = "Search for plan by name", description = "Returns a list of plans which match the search query", tags = {
+    @Operation(summary = "Search for plan by name", description = "Returns a list of plans where the plan name contains the query string case insensitve", tags = {
                             "search" }, responses = {
                             @ApiResponse(responseCode = "200", description = "OK", content = @Content(array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class)))) })
     public Response findByName(
