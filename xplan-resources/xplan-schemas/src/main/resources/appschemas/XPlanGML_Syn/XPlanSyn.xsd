@@ -4680,6 +4680,7 @@
             <element name="versionBauGBText" minOccurs="0" type="string" />
             <element name="versionSonstRechtsgrundlageDatum" minOccurs="0" type="date" />
             <element name="versionSonstRechtsgrundlageText" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

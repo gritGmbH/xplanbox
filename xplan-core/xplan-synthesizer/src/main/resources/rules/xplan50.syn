@@ -1691,6 +1691,7 @@ BP_Plan/traegerbeteiligungsStartDatum=latest(xpath('xplan:traegerbeteiligungsSta
 BP_Plan/traegerbeteiligungsEndDatum=latest(xpath('xplan:traegerbeteiligungsEndDatum'))
 BP_Plan/gruenordnungsplan=xpath('xplan:gruenordnungsplan')
 BP_Plan/ausfertigungsDatum=xpath('xplan:ausfertigungsDatum')
+BP_Plan/externeReferenz=xplanFlatten(xpath('xplan:externeReferenz'))
 BP_RegelungVergnuegungsstaetten/gmlId=xpath('@gml:id')
 BP_RegelungVergnuegungsstaetten/gmlName=xplanGmlName()
 BP_RegelungVergnuegungsstaetten/gmlDescription=xplanGmlDescription()

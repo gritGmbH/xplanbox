@@ -39,7 +39,7 @@
             <tr>
                 <td colspan="2" style="border: solid white 0px;"><strong>Weiterführende Informationen/Links:</strong></td>
             </tr>
-            <?property raster*,ref*:makeitalink>
+            <?property raster*,ref*,externeReferenz:makeitalink>
         </table>
     </td>
 </tr>
