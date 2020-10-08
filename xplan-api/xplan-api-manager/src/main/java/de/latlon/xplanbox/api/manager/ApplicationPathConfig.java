@@ -2,6 +2,7 @@ package de.latlon.xplanbox.api.manager;
 
 import de.latlon.xplanbox.api.commons.ObjectMapperContextResolver;
 import de.latlon.xplanbox.api.commons.openapi.OpenApiFilter;
+import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
 import de.latlon.xplanbox.api.manager.v1.DefaultApi;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.models.ExternalDocumentation;
@@ -39,9 +40,13 @@ public class ApplicationPathConfig extends ResourceConfig {
 
     private static final Logger LOG = getLogger( ApplicationPathConfig.class );
 
+    public static final String APP_PATH = "xmanager/api/v1";
+
     public ApplicationPathConfig(
                             @Context
-                                                    ServletContext servletContext ) {
+                                                    ServletContext servletContext,
+                            @Context
+                                                    ManagerApiConfiguration managerApiConfiguration ) {
         super();
         register( new ObjectMapperContextResolver() );
         packages( "de.latlon.xplanbox.api.manager.v1" );
@@ -53,7 +58,7 @@ public class ApplicationPathConfig extends ResourceConfig {
                                 new Contact().email( "info@lat-lon.de" ) ).license(
                                 new License().name( "Apache 2.0" ).url(
                                                         "http://www.apache.org/licenses/LICENSE-2.0.html" ) ) );
-        openApi.servers( servers( servletContext ) );
+        openApi.servers( servers( servletContext, managerApiConfiguration ) );
         List<Tag> tags = createTags();
         openApi.tags( tags );
 
@@ -78,10 +83,24 @@ public class ApplicationPathConfig extends ResourceConfig {
         return tags;
     }
 
-    private List<Server> servers( ServletContext servletContext ) {
-        String contextPath = servletContext.getContextPath();
-        Server server = new Server().url( contextPath + "/xmanager/api/v1" );
+    private List<Server> servers( ServletContext servletContext, ManagerApiConfiguration managerApiConfiguration ) {
+        String serverUrl = getServerUrl( servletContext, managerApiConfiguration );
+        Server server = new Server().url( serverUrl );
         return Collections.singletonList( server );
+    }
+
+    private String getServerUrl( ServletContext servletContext, ManagerApiConfiguration managerApiConfiguration ) {
+        StringBuilder serverUrl = new StringBuilder();
+        if ( managerApiConfiguration != null && managerApiConfiguration.getApiEndpoint() != null ) {
+            String apiEndpoint = managerApiConfiguration.getApiEndpoint().toString();
+            serverUrl.append( apiEndpoint );
+        } else {
+            serverUrl.append( servletContext.getContextPath() );
+        }
+        if ( !serverUrl.toString().endsWith( "/" ) )
+            serverUrl.append( "/" );
+        serverUrl.append( APP_PATH );
+        return serverUrl.toString();
     }
 
 }

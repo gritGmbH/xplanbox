@@ -52,8 +52,6 @@ public class ManagerConfiguration {
 
     static final String DEFAULT_BBOX_IN_4326 = "defaultBboxIn4326";
 
-    static final String WMS_ENDPOINT = "wmsEndpoint";
-
     static final String WORKSPACE_RELOAD_URLS = "workspaceReloadUrls";
 
     static final String WORKSPACE_RELOAD_USER = "workspaceReloadUser";
@@ -82,8 +80,6 @@ public class ManagerConfiguration {
 
     private boolean isExportOfReexportedActive = false;
 
-    private URI wmsEndpoint;
-
     private WorkspaceReloaderConfiguration workspaceReloaderConfiguration = new WorkspaceReloaderConfiguration();
 
     private Envelope defaultBboxIn4326 = null;
@@ -100,7 +96,6 @@ public class ManagerConfiguration {
 
     private CoupledResourceConfiguration coupledResourceConfiguration;
 
-    private DefaultValidationConfiguration defaultValidationConfiguration;
 
     public ManagerConfiguration( PropertiesLoader propertiesLoader )
                             throws ConfigurationException {
@@ -154,13 +149,6 @@ public class ManagerConfiguration {
      */
     public boolean isSeperatedDataManagementActived() {
         return isSeperatedDataManagementActived;
-    }
-
-    /**
-     * @return the configured WMS url, may be <code>null</code>
-     */
-    public URI getWmsEndpoint() {
-        return this.wmsEndpoint;
     }
 
     /**
@@ -233,13 +221,6 @@ public class ManagerConfiguration {
         return coupledResourceConfiguration;
     }
 
-    /**
-     * @return the default validation configuration, never <code>null</code>
-     */
-    public DefaultValidationConfiguration getDefaultValidationConfiguration() {
-        return defaultValidationConfiguration;
-    }
-
     private void loadProperties( PropertiesLoader propertiesLoader )
                             throws ConfigurationException {
         if ( propertiesLoader != null ) {
@@ -259,7 +240,6 @@ public class ManagerConfiguration {
                 isSeperatedDataManagementActived = parseBoolean( loadProperties, ACTIVATE_SEPARATED_DATAMANAGEMENT,
                                                                  false );
                 isExportOfReexportedActive = parseBoolean( loadProperties, ACTIVATE_EXPORT_OF_REEXPORTED, false );
-                wmsEndpoint = parseUri( loadProperties, WMS_ENDPOINT );
                 workspaceReloaderConfiguration = parseWorkspaceReloaderConfiguration( loadProperties );
                 defaultBboxIn4326 = parseDefaultBboxIn4326( loadProperties );
                 internalIdRetrieverConfiguration = parseInternalIdRetrieverConfiguration( loadProperties );
@@ -269,7 +249,6 @@ public class ManagerConfiguration {
                 pathToHaleProjectDirectory = parsePathToHaleProjectDirectory( propertiesLoader );
                 coupledResourceConfiguration = CoupledResourceConfiguration.parseCoupledResourceConfiguration(
                                         propertiesLoader, loadProperties );
-                defaultValidationConfiguration = parseDefaultValidationConfiguration( loadProperties );
             }
             configDirectory = propertiesLoader.resolveDirectory( "synthesizer" );
         }
@@ -461,15 +440,6 @@ public class ManagerConfiguration {
         return null;
     }
 
-    private DefaultValidationConfiguration parseDefaultValidationConfiguration( Properties loadProperties ) {
-        boolean skipSemantisch = parseBoolean( loadProperties, "skipSemantisch", false );
-        boolean skipGeometrisch = parseBoolean( loadProperties, "skipGeometrisch", false );
-        boolean skipFlaechenschluss = parseBoolean( loadProperties, "skipFlaechenschluss", false );
-        boolean skipGeltungsbereich = parseBoolean( loadProperties, "skipGeltungsbereich", false );
-        return new DefaultValidationConfiguration( skipSemantisch, skipGeometrisch, skipFlaechenschluss,
-                                                   skipGeltungsbereich );
-    }
-
     private boolean directoryExistsAndIsDirectory( Path directory ) {
         return directory != null && Files.exists( directory ) && Files.isDirectory( directory );
     }
@@ -486,18 +456,6 @@ public class ManagerConfiguration {
         if ( property == null || "".equals( property ) )
             return defaultValue;
         return Boolean.parseBoolean( property );
-    }
-
-    private URI parseUri( Properties loadProperties, String propName )
-                            throws ConfigurationException {
-        String property = loadProperties.getProperty( propName );
-        if ( property == null || "".equals( property ) )
-            return null;
-        try {
-            return new URI( property );
-        } catch ( URISyntaxException e ) {
-            throw new ConfigurationException( "Could not parse property " + property + " as URI.", e );
-        }
     }
 
 }

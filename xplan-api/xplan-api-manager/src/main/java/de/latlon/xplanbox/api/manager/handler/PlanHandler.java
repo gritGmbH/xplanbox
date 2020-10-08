@@ -3,7 +3,6 @@ package de.latlon.xplanbox.api.manager.handler;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
@@ -17,6 +16,7 @@ import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
+import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.manager.exception.UnsupportedParameterValue;
@@ -71,9 +71,6 @@ public class PlanHandler {
 
     @Autowired
     private XPlanExporter xPlanExporter;
-
-    @Autowired
-    private ManagerConfiguration managerConfiguration;
 
     public XPlan importPlan( File uploadedPlan, String xFileName, ValidationSettings validationSettings,
                              String internalId, String planStatus )
@@ -151,34 +148,6 @@ public class PlanHandler {
             throw new InvalidPlanId( id );
         }
         return xPlanById;
-    }
-
-    private URI createWmsUrl( XPlan xPlan )
-                            throws URISyntaxException {
-        URI wmsEndpoint = managerConfiguration.getWmsEndpoint();
-        if ( wmsEndpoint == null )
-            return null;
-        URIBuilder uriBuilder = new URIBuilder( wmsEndpoint );
-        List<String> pathSegments = new ArrayList<>();
-        pathSegments.addAll( uriBuilder.getPathSegments() );
-        pathSegments.add( "services" );
-        pathSegments.add( detectService( xPlan ) );
-        uriBuilder.setPathSegments( pathSegments );
-        uriBuilder.addParameter( "PLANWERK_MANAGERID", xPlan.getId() );
-        uriBuilder.addParameter( "SERVICE", "WMS" );
-        uriBuilder.addParameter( "REQUEST", "GetCapabilities" );
-        return uriBuilder.build();
-    }
-
-    private String detectService( XPlan xPlan ) {
-        if ( xPlan.getXplanMetadata() != null )
-            switch ( xPlan.getXplanMetadata().getPlanStatus() ) {
-            case ARCHIVIERT:
-                return "wmsarchive";
-            case IN_AUFSTELLUNG:
-                return "wmspre";
-            }
-        return "wms";
     }
 
     private AdditionalPlanData createAdditionalPlanData( XPlanArchive xPlanArchive, String requestedPlanStatus )

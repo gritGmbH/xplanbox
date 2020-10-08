@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.validator.config;
 
+import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
@@ -78,10 +79,21 @@ public class ApplicationContext {
     }
 
     @Bean
-    public ValidatorConfiguration validatorConfiguration()
+    public PropertiesLoader validatorPropertiesLoader() {
+        return new SystemPropertyPropertiesLoader( ValidatorConfiguration.class );
+    }
+
+    @Bean
+    public ValidatorConfiguration validatorConfiguration( PropertiesLoader validatorPropertiesLoader )
                             throws IOException, ConfigurationException {
         ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
-        return validatorConfigurationParser.parse( new SystemPropertyPropertiesLoader( ValidatorConfiguration.class ) );
+        return validatorConfigurationParser.parse( validatorPropertiesLoader );
+    }
+
+    @Bean
+    public ValidatorApiConfiguration validatorApiConfiguration( PropertiesLoader validatorPropertiesLoader )
+                            throws ConfigurationException {
+        return new ValidatorApiConfiguration( validatorPropertiesLoader );
     }
 
     @Bean

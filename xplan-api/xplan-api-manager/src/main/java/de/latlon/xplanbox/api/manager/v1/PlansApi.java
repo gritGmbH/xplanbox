@@ -1,8 +1,8 @@
 package de.latlon.xplanbox.api.manager.v1;
 
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
+import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
 import de.latlon.xplanbox.api.manager.handler.PlanHandler;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,7 +33,7 @@ public class PlansApi {
     private PlanHandler planHandler;
 
     @Context
-    private ManagerConfiguration managerConfiguration;
+    private ManagerApiConfiguration managerApiConfiguration;
 
     @GET
     @Produces({ "application/json" })
@@ -50,7 +50,7 @@ public class PlansApi {
         List<XPlan> plans = planHandler.findPlans( planName );
         List<PlanInfo> planInfos = plans.stream().map( xPlan -> {
             return new PlanInfoBuilder( xPlan, uriInfo ).wmsEndpoint(
-                                    managerConfiguration.getWmsEndpoint() ).requestedMediaType(
+                                    managerApiConfiguration.getWmsEndpoint() ).requestedMediaType(
                                     APPLICATION_JSON ).build();
         } ).collect( Collectors.toList() );
         return Response.ok().entity( planInfos ).build();

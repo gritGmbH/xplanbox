@@ -1,9 +1,10 @@
 package de.latlon.xplanbox.api.manager.handler;
 
-import de.latlon.xplan.manager.configuration.DefaultValidationConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager;
 import de.latlon.xplanbox.api.commons.handler.SystemConfigHandler;
+import de.latlon.xplanbox.api.manager.config.DefaultValidationConfiguration;
+import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
 import de.latlon.xplanbox.api.manager.v1.model.ManagerSystemConfig;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,15 @@ public class ConfigHandler {
     @Autowired
     private ManagerConfiguration managerConfiguration;
 
+    @Autowired
+    private ManagerApiConfiguration managerApiConfiguration;
+
     public ManagerSystemConfig describeManagerSystem()
                             throws IOException {
         LOG.debug( "Generating manager config information" );
         String rasterCrs = managerConfiguration.getRasterConfigurationCrs();
         WorkspaceRasterLayerManager.RasterConfigurationType rasterType = managerConfiguration.getRasterConfigurationType();
-        DefaultValidationConfiguration defaultValidationConfiguration = managerConfiguration.getDefaultValidationConfiguration();
+        DefaultValidationConfiguration defaultValidationConfiguration = managerApiConfiguration.getDefaultValidationConfiguration();
 
         return (ManagerSystemConfig) new ManagerSystemConfig().rasterCrs( rasterCrs ).rasterType(
                                 rasterType.name() ).skipSemantisch(

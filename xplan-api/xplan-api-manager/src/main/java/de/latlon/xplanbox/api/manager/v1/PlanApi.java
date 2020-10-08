@@ -1,11 +1,11 @@
 package de.latlon.xplanbox.api.manager.v1;
 
-import de.latlon.xplan.manager.configuration.DefaultValidationConfiguration;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
+import de.latlon.xplanbox.api.manager.config.DefaultValidationConfiguration;
+import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
 import de.latlon.xplanbox.api.manager.handler.PlanHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Link;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
@@ -64,7 +64,7 @@ public class PlanApi {
     private PlanHandler planHandler;
 
     @Context
-    private ManagerConfiguration managerConfiguration;
+    private ManagerApiConfiguration managerApiConfiguration;
 
     @POST
     @Consumes({ "application/octet-stream", "application/zip", "application/x-zip", "application/x-zip-compressed" })
@@ -112,7 +112,7 @@ public class PlanApi {
                                                     String planStatus )
                             throws Exception {
         String validationName = detectOrCreateValidationName( xFilename );
-        DefaultValidationConfiguration validationConfig = managerConfiguration.getDefaultValidationConfiguration();
+        DefaultValidationConfiguration validationConfig = managerApiConfiguration.getDefaultValidationConfiguration();
         ValidationSettings validationSettings = createValidationSettings( validationName,
                                                                           overwriteByRequest( skipGeometrisch,
                                                                                               validationConfig.isSkipGeometrisch() ),
@@ -194,7 +194,7 @@ public class PlanApi {
         List<XPlan> plans = planHandler.findPlansByName( planName );
         List<PlanInfo> planInfos = plans.stream().map( xPlan -> {
             return new PlanInfoBuilder( xPlan, uriInfo ).wmsEndpoint(
-                                    managerConfiguration.getWmsEndpoint() ).requestedMediaType(
+                                    managerApiConfiguration.getWmsEndpoint() ).requestedMediaType(
                                     APPLICATION_JSON ).build();
         } ).collect( Collectors.toList() );
         return Response.ok().entity( planInfos ).build();
@@ -204,7 +204,7 @@ public class PlanApi {
                             throws URISyntaxException {
         List<String> alternateMediaTypes = alternateMediaTypes( requestedMediaType );
         return new PlanInfoBuilder( planById, uriInfo ).wmsEndpoint(
-                                managerConfiguration.getWmsEndpoint() ).requestedMediaType(
+                                managerApiConfiguration.getWmsEndpoint() ).requestedMediaType(
                                 requestedMediaType.toString() ).alternateMediaType( alternateMediaTypes ).build();
     }
 

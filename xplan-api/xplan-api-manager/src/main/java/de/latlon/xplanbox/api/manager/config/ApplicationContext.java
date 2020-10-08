@@ -186,6 +186,12 @@ public class ApplicationContext {
     }
 
     @Bean
+    public ManagerApiConfiguration managerApiConfiguration( PropertiesLoader managerPropertiesLoader )
+                            throws ConfigurationException {
+        return new ManagerApiConfiguration( managerPropertiesLoader );
+    }
+
+    @Bean
     public WorkspaceReloader workspaceReloader() {
         return new WorkspaceReloader();
     }

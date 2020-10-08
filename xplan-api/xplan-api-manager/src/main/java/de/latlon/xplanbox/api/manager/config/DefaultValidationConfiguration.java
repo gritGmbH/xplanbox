@@ -1,4 +1,4 @@
-package de.latlon.xplan.manager.configuration;
+package de.latlon.xplanbox.api.manager.config;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -12,6 +12,13 @@ public class DefaultValidationConfiguration {
     private final boolean skipFlaechenschluss;
 
     private final boolean skipGeltungsbereich;
+
+    /**
+     * Default validation configuration. Nothing is skipped.
+     */
+    public DefaultValidationConfiguration() {
+        this( false, false, false, false );
+    }
 
     /**
      * @param skipSemantisch
