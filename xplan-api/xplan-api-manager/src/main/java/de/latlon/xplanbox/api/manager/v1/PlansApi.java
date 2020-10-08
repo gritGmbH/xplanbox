@@ -50,7 +50,7 @@ public class PlansApi {
         List<XPlan> plans = planHandler.findPlans( planName );
         List<PlanInfo> planInfos = plans.stream().map( xPlan -> {
             return new PlanInfoBuilder( xPlan, uriInfo ).wmsEndpoint(
-                                    managerApiConfiguration.getWmsEndpoint() ).requestedMediaType(
+                                    managerApiConfiguration.getWmsUrl() ).requestedMediaType(
                                     APPLICATION_JSON ).build();
         } ).collect( Collectors.toList() );
         return Response.ok().entity( planInfos ).build();

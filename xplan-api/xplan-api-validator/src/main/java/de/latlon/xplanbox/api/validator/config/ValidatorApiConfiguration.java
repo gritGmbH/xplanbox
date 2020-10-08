@@ -18,9 +18,9 @@ public class ValidatorApiConfiguration {
 
     private static final String VALIDATOR_API_CONFIGURATION_PROPERTIES = "validatorApiConfiguration.properties";
 
-    private static final String API_ENDPOINT = "apiEndpoint";
+    private static final String API_URL = "apiUrl";
 
-    private URI apiEndpoint;
+    private URI apiUrl;
 
     public ValidatorApiConfiguration( PropertiesLoader propertiesLoader )
                             throws ConfigurationException {
@@ -31,8 +31,8 @@ public class ValidatorApiConfiguration {
     /**
      * @return the configured api url, may be <code>null</code>
      */
-    public URI getApiEndpoint() {
-        return apiEndpoint;
+    public URI getApiUrl() {
+        return apiUrl;
     }
 
     private void loadProperties( PropertiesLoader propertiesLoader )
@@ -40,7 +40,7 @@ public class ValidatorApiConfiguration {
         if ( propertiesLoader != null ) {
             Properties loadProperties = propertiesLoader.loadProperties( VALIDATOR_API_CONFIGURATION_PROPERTIES );
             if ( loadProperties != null ) {
-                apiEndpoint = parseUri( loadProperties, API_ENDPOINT );
+                apiUrl = parseUri( loadProperties, API_URL );
             }
         }
     }
@@ -49,7 +49,7 @@ public class ValidatorApiConfiguration {
         LOG.info( "-------------------------------------------" );
         LOG.info( "Configuration of the XPlanValidatorApi:" );
         LOG.info( "-------------------------------------------" );
-        LOG.info( "  API Endpoint: {}", apiEndpoint );
+        LOG.info( "  API URL: {}", apiUrl );
         LOG.info( "-------------------------------------------" );
     }
 

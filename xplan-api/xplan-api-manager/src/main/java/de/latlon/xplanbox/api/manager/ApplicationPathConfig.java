@@ -91,8 +91,8 @@ public class ApplicationPathConfig extends ResourceConfig {
 
     private String getServerUrl( ServletContext servletContext, ManagerApiConfiguration managerApiConfiguration ) {
         StringBuilder serverUrl = new StringBuilder();
-        if ( managerApiConfiguration != null && managerApiConfiguration.getApiEndpoint() != null ) {
-            String apiEndpoint = managerApiConfiguration.getApiEndpoint().toString();
+        if ( managerApiConfiguration != null && managerApiConfiguration.getApiUrl() != null ) {
+            String apiEndpoint = managerApiConfiguration.getApiUrl().toString();
             serverUrl.append( apiEndpoint );
         } else {
             serverUrl.append( servletContext.getContextPath() );

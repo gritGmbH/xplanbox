@@ -18,13 +18,13 @@ public class ManagerApiConfiguration {
 
     private static final String MANAGER_API_CONFIGURATION_PROPERTIES = "managerApiConfiguration.properties";
 
-    private static final String API_ENDPOINT = "apiEndpoint";
+    private static final String API_URL = "apiUrl";
 
-    private static final String WMS_ENDPOINT = "wmsEndpoint";
+    private static final String WMS_URL = "wmsUrl";
 
-    private URI apiEndpoint;
+    private URI apiUrl;
 
-    private URI wmsEndpoint;
+    private URI wmsUrl;
 
     private DefaultValidationConfiguration defaultValidationConfiguration;
 
@@ -37,15 +37,15 @@ public class ManagerApiConfiguration {
     /**
      * @return the configured api url, may be <code>null</code>
      */
-    public URI getApiEndpoint() {
-        return apiEndpoint;
+    public URI getApiUrl() {
+        return apiUrl;
     }
 
     /**
      * @return the configured WMS url, may be <code>null</code>
      */
-    public URI getWmsEndpoint() {
-        return this.wmsEndpoint;
+    public URI getWmsUrl() {
+        return this.wmsUrl;
     }
 
     /**
@@ -60,8 +60,8 @@ public class ManagerApiConfiguration {
         if ( propertiesLoader != null ) {
             Properties loadProperties = propertiesLoader.loadProperties( MANAGER_API_CONFIGURATION_PROPERTIES );
             if ( loadProperties != null ) {
-                apiEndpoint = parseUri( loadProperties, API_ENDPOINT );
-                wmsEndpoint = parseUri( loadProperties, WMS_ENDPOINT );
+                apiUrl = parseUri( loadProperties, API_URL );
+                wmsUrl = parseUri( loadProperties, WMS_URL );
                 defaultValidationConfiguration = parseDefaultValidationConfiguration( loadProperties );
             } else {
                 defaultValidationConfiguration = new DefaultValidationConfiguration();
@@ -75,8 +75,8 @@ public class ManagerApiConfiguration {
         LOG.info( "-------------------------------------------" );
         LOG.info( "Configuration of the XPlanManagerApi:" );
         LOG.info( "-------------------------------------------" );
-        LOG.info( "  API Endpoint: {}", apiEndpoint );
-        LOG.info( "  WMS Endpoint: {}", wmsEndpoint );
+        LOG.info( "  API URL: {}", apiUrl );
+        LOG.info( "  WMS URL: {}", wmsUrl );
         LOG.info( "-------------------------------------------" );
         LOG.info( "  default validation configuration" );
         LOG.info( "   - skip semantisch: {}", defaultValidationConfiguration.isSkipSemantisch() );

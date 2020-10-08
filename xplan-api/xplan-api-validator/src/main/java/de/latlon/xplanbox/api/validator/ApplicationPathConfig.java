@@ -82,8 +82,8 @@ public class ApplicationPathConfig extends ResourceConfig {
 
     private String getServerUrl( ServletContext servletContext, ValidatorApiConfiguration validatorApiConfiguration ) {
         StringBuilder serverUrl = new StringBuilder();
-        if ( validatorApiConfiguration != null && validatorApiConfiguration.getApiEndpoint() != null ) {
-            String apiEndpoint = validatorApiConfiguration.getApiEndpoint().toString();
+        if ( validatorApiConfiguration != null && validatorApiConfiguration.getApiUrl() != null ) {
+            String apiEndpoint = validatorApiConfiguration.getApiUrl().toString();
             serverUrl.append( apiEndpoint );
         } else {
             serverUrl.append( servletContext.getContextPath() );

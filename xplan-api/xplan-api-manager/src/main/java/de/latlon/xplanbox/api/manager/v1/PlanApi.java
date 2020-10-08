@@ -194,7 +194,7 @@ public class PlanApi {
         List<XPlan> plans = planHandler.findPlansByName( planName );
         List<PlanInfo> planInfos = plans.stream().map( xPlan -> {
             return new PlanInfoBuilder( xPlan, uriInfo ).wmsEndpoint(
-                                    managerApiConfiguration.getWmsEndpoint() ).requestedMediaType(
+                                    managerApiConfiguration.getWmsUrl() ).requestedMediaType(
                                     APPLICATION_JSON ).build();
         } ).collect( Collectors.toList() );
         return Response.ok().entity( planInfos ).build();
@@ -204,7 +204,7 @@ public class PlanApi {
                             throws URISyntaxException {
         List<String> alternateMediaTypes = alternateMediaTypes( requestedMediaType );
         return new PlanInfoBuilder( planById, uriInfo ).wmsEndpoint(
-                                managerApiConfiguration.getWmsEndpoint() ).requestedMediaType(
+                                managerApiConfiguration.getWmsUrl() ).requestedMediaType(
                                 requestedMediaType.toString() ).alternateMediaType( alternateMediaTypes ).build();
     }
 
