@@ -4371,6 +4371,7 @@ CREATE TABLE xplansynpre.xplan_bp_plan (
 	xplan_versionbaugbtext text,
 	xplan_versionsonstrechtsgrundlagedatum date,
 	xplan_versionsonstrechtsgrundlagetext text,
+	xplan_externereferenz text,
     CONSTRAINT xplan_bp_plan_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_plan','xplan_raeumlichergeltungsbereich','0','GEOMETRY', 2);

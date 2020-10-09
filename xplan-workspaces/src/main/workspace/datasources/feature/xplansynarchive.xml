@@ -4440,6 +4440,7 @@
     <Primitive path="xplan:versionBauGBText" mapping="xplan_versionbaugbtext" />
     <Primitive path="xplan:versionSonstRechtsgrundlageDatum" mapping="xplan_versionsonstrechtsgrundlagedatum" />
     <Primitive path="xplan:versionSonstRechtsgrundlageText" mapping="xplan_versionsonstrechtsgrundlagetext" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_RasterplanAenderung" table="xplansynarchive.xplan_bp_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_BP_RASTERPLANAENDERUNG_">
