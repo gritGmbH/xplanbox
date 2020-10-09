@@ -325,5 +325,5 @@ Mit der Version 3.4 der xPlanBox sind einige Fehlerbehebungen und Erweiterungen 
 Für die Aktualisierung auf die Version 3.4 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Datenbank:
-** Ausführen der Skripte im Verzeichnis _from_3.3_to_3.4_ im Modul xplan-update-database.
+** Ausführen der Skripte im Verzeichnis _from_3.3.2_to_3.4_ im Modul xplan-update-database.
 ** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul xplan-update-database zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten.
