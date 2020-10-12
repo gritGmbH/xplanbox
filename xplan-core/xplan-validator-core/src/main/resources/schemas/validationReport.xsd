@@ -84,6 +84,7 @@
     <xs:sequence>
       <xs:element type="xs:string" name="name"/>
       <xs:element type="xs:string" name="id"/>
+      <xs:element type="xs:string" name="version"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="RulesMetadataType">
