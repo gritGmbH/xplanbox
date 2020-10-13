@@ -107,7 +107,7 @@ public class XplanFlattenPropertyTest {
         Feature feature = getTestFeature( features, "BP_Plan_1" );
         XplanFlattenProperty expr = new XplanFlattenProperty( new Xpath( "xplan:texte" ) );
         PrimitiveValue value = expr.evaluate( feature, features );
-        assertEquals( "[text1 | Das ist Textabschnitt No 1 (Keine gesetzliche Grundlage)][text2 | Das ist Textabschnitt No 2 (Gesetzliche Grundlage: BGB)]",
+        assertEquals( "[text1 | Das ist Textabschnitt No 1][text2 | Das ist Textabschnitt No 2 (Gesetzliche Grundlage: BGB)]",
                       value.toString() );
     }
 
@@ -137,7 +137,7 @@ public class XplanFlattenPropertyTest {
         Feature feature = getTestFeature( features, "BP_Plan_1" );
         XplanFlattenProperty expr = new XplanFlattenProperty( new Xpath( "xplan:texte" ) );
         PrimitiveValue value = expr.evaluate( feature, features );
-        assertEquals( "[text1 | Das ist Textabschnitt No 1 (Keine gesetzliche Grundlage)][text2 | Das ist Textabschnitt No 2 (Gesetzliche Grundlage: BGB)]",
+        assertEquals( "[text1 | Das ist Textabschnitt No 1][text2 | Das ist Textabschnitt No 2 (Gesetzliche Grundlage: BGB)]",
                       value.toString() );
     }
 
