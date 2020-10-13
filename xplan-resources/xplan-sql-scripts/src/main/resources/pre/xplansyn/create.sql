@@ -8291,6 +8291,7 @@ CREATE TABLE xplansynpre.xplan_fp_plan (
 	xplan_versionbaugbtext text,
 	xplan_versionsonstrechtsgrundlagedatum date,
 	xplan_versionsonstrechtsgrundlagetext text,
+	xplan_externereferenz text,
     CONSTRAINT xplan_fp_plan_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_fp_plan','xplan_raeumlichergeltungsbereich','0','GEOMETRY', 2);
@@ -10464,6 +10465,7 @@ CREATE TABLE xplansynpre.xplan_lp_plan (
     xplan_sonstplanart text,
     xplan_sonstplanartcode text,
     xplan_technischerplanersteller text,
+	xplan_externereferenz text,
     CONSTRAINT xplan_lp_plan_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_lp_plan','xplan_raeumlichergeltungsbereich','0','GEOMETRY', 2);
@@ -16401,6 +16403,7 @@ CREATE TABLE xplansynpre.xplan_so_plan (
 	xplan_versionbaugbtext text,
 	xplan_versionsonstrechtsgrundlagedatum date,
 	xplan_versionsonstrechtsgrundlagetext text,
+	xplan_externereferenz text,
     CONSTRAINT xplan_so_plan_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_so_plan','xplan_raeumlichergeltungsbereich','0','GEOMETRY', 2);
