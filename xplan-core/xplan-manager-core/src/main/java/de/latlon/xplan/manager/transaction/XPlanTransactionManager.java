@@ -1,14 +1,11 @@
 package de.latlon.xplan.manager.transaction;
 
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
@@ -20,14 +17,11 @@ import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadataBuilder;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
-import de.latlon.xplan.manager.transformation.TransformationResult;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
-import de.latlon.xplan.validator.report.ValidatorResult;
-import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -40,13 +34,13 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
 import java.util.UUID;
 
@@ -126,27 +120,6 @@ public abstract class XPlanTransactionManager {
         return synFc;
     }
 
-    protected XPlanFeatureCollection createXPlanFeatureCollection( TransformationResult transformationResult,
-                                                                   XPlanType type, XPlanAde ade )
-                    throws Exception {
-        byte[] resultAsBytes = transformationResult.getTransformationResult();
-        XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
-        try ( InputStream inputStream = new ByteArrayInputStream( resultAsBytes ) ) {
-            AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema( resultVersion, ade );
-            return XPlanFeatureCollectionUtils.parseXPlanFeatureCollection( inputStream, type, resultVersion,
-                                                                            appSchema );
-        }
-    }
-
-    protected ValidatorResult validateSyntactically( TransformationResult transformationResult, XPlanAde ade )
-                    throws IOException {
-        byte[] transformedPlan = transformationResult.getTransformationResult();
-        try ( InputStream is = new ByteArrayInputStream( transformedPlan ) ) {
-            XPlanVersion version = transformationResult.getVersionOfTheResult();
-            return new SyntacticValidatorImpl().validateSyntax( is, version, ade );
-        }
-    }
-
     protected List<String> createRasterConfiguration( XPlanArchiveContentAccess archive, XPlanFeatureCollection fc,
                                                       int planId, XPlanType type, PlanStatus planStatus,
                                                       PlanStatus newPlanStatus, Date sortDate )
@@ -175,7 +148,7 @@ public abstract class XPlanTransactionManager {
         }
     }
 
-    protected FeatureCollection renewFeatureCollection( XPlanVersion version, XPlanType type, AppSchema appSchema,
+    protected FeatureCollection renewFeatureCollection( XPlanVersion version, AppSchema appSchema,
                                                         FeatureCollection modifiedFeatures )
                     throws Exception {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
