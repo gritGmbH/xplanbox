@@ -11,7 +11,7 @@ Folgende Konfigurationen können für die XPlanManagerAPI vorgenommen werden:
 
 ==== API URL
 
-URL der XPlanManagerAPI, die im OpenAPI Dokument ausgegeben wird.
+URL der XPlanManagerAPI, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration muss vorgenommen werden, andernfalls kann die Schnittstelle nicht verwendet werden und es kommt bereits beim Deployment der Webapp zu einem Fehler.
 Beispiel:
 
 ----
