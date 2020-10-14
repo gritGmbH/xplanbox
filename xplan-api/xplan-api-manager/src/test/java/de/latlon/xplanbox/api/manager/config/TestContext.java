@@ -37,6 +37,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -67,6 +69,16 @@ public class TestContext {
         jerseyConfig.register( InfoApi.class );
         jerseyConfig.register( DefaultApi.class );
         return jerseyConfig;
+    }
+
+    @Bean
+    @Primary
+    public ManagerApiConfiguration managerApiConfiguration()
+                            throws URISyntaxException {
+        ManagerApiConfiguration managerApiConfiguration = Mockito.mock( ManagerApiConfiguration.class );
+        when( managerApiConfiguration.getApiUrl() ).thenReturn( new URI( "http://localhost:8080/xplan-api-manager" ) );
+        when( managerApiConfiguration.getDefaultValidationConfiguration() ).thenReturn( new DefaultValidationConfiguration() );
+        return managerApiConfiguration;
     }
 
     @Bean @Primary

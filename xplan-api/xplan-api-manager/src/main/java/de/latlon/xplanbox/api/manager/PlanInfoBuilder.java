@@ -3,6 +3,7 @@ package de.latlon.xplanbox.api.manager;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import de.latlon.xplanbox.api.commons.v1.model.VersionEnum;
+import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
 import de.latlon.xplanbox.api.manager.v1.model.Link;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfoBbox;
@@ -10,10 +11,10 @@ import de.latlon.xplanbox.api.manager.v1.model.PlanInfoXplanModelData;
 import org.apache.http.client.utils.URIBuilder;
 import org.jfree.util.Log;
 
-import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.ALTERNATE;
@@ -27,26 +28,19 @@ public class PlanInfoBuilder {
 
     private final XPlan xPlan;
 
-    private final UriInfo uriInfo;
+    private final ManagerApiConfiguration managerApiConfiguration;
 
     private final List<String> alternateMediaTypes = new ArrayList<>();
 
-    private URI wmsEndpoint;
+    private String selfMediaType;
 
-    private String requestedMediaType;
-
-    public PlanInfoBuilder( XPlan xPlan, UriInfo uriInfo ) {
+    public PlanInfoBuilder( XPlan xPlan, ManagerApiConfiguration managerApiConfiguration ) {
         this.xPlan = xPlan;
-        this.uriInfo = uriInfo;
+        this.managerApiConfiguration = managerApiConfiguration;
     }
 
-    public PlanInfoBuilder wmsEndpoint( URI wmsEndpoint ) {
-        this.wmsEndpoint = wmsEndpoint;
-        return this;
-    }
-
-    public PlanInfoBuilder requestedMediaType( String requestedMediaType ) {
-        this.requestedMediaType = requestedMediaType;
+    public PlanInfoBuilder selfMediaType( String selfMediaType ) {
+        this.selfMediaType = selfMediaType;
         return this;
     }
 
@@ -76,17 +70,19 @@ public class PlanInfoBuilder {
 
     private List<Link> links() {
         List<Link> links = new ArrayList<>();
-        URI selfRef = uriInfo.getBaseUriBuilder().path( "plan" ).path( xPlan.getId() ).build();
-        Link selfLink = new Link().href( selfRef ).rel( SELF ).type( requestedMediaType ).title( xPlan.getName() );
-        links.add( selfLink );
+        URI selfRef = createSelfRef();
+        if ( selfRef != null ) {
+            Link selfLink = new Link().href( selfRef ).rel( SELF ).type( selfMediaType ).title( xPlan.getName() );
+            links.add( selfLink );
 
-        alternateMediaTypes.forEach( mediaType -> {
-            Link alternateLink = new Link().href( selfRef ).rel( ALTERNATE ).type( mediaType ).
-                                    title( xPlan.getName() );
-            links.add( alternateLink );
-        } );
+            alternateMediaTypes.forEach( mediaType -> {
+                Link alternateLink = new Link().href( selfRef ).rel( ALTERNATE ).type( mediaType ).
+                                        title( xPlan.getName() );
+                links.add( alternateLink );
+            } );
+        }
 
-        if ( wmsEndpoint != null ) {
+        if ( managerApiConfiguration.getWmsUrl() != null ) {
             Link planwerkWmsLink = createWmsEndpointUrl();
             if ( planwerkWmsLink != null )
                 links.add( planwerkWmsLink );
@@ -94,10 +90,25 @@ public class PlanInfoBuilder {
         return links;
     }
 
+    private URI createSelfRef() {
+        URIBuilder uriBuilder = new URIBuilder( managerApiConfiguration.getApiUrl() );
+        List<String> pathSegments = new ArrayList<>();
+        pathSegments.addAll( Arrays.asList( ApplicationPathConfig.APP_PATH.split( "/" ) ) );
+        pathSegments.add( "plan" );
+        pathSegments.add( xPlan.getId() );
+        uriBuilder.setPathSegments( pathSegments );
+        try {
+            return uriBuilder.build();
+        } catch ( URISyntaxException e ) {
+            Log.warn( "Could not create self reference: " + e.getMessage(), e );
+        }
+        return null;
+    }
+
     private Link createWmsEndpointUrl() {
         try {
             String planname = xPlan.getName().replaceAll( "[^a-zA-Z0-9\\\\-_]", "" );
-            URIBuilder uriBuilder = new URIBuilder( wmsEndpoint );
+            URIBuilder uriBuilder = new URIBuilder( managerApiConfiguration.getWmsUrl() );
             List<String> pathSegments = new ArrayList<>();
             pathSegments.addAll( uriBuilder.getPathSegments() );
             pathSegments.add( "services" );

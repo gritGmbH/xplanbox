@@ -19,7 +19,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,17 +40,13 @@ public class PlansApi {
                             "search" }, responses = {
                             @ApiResponse(responseCode = "200", description = "OK", content = @Content(array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class)))) })
     public Response findByName(
-                            @Context
-                                                    UriInfo uriInfo,
                             @QueryParam("planName")
                             @Parameter(description = "The name of the plan to search for", example = "bplan_123, fplan-123, rplan20200803")
                                                     String planName )
                             throws Exception {
         List<XPlan> plans = planHandler.findPlans( planName );
         List<PlanInfo> planInfos = plans.stream().map( xPlan -> {
-            return new PlanInfoBuilder( xPlan, uriInfo ).wmsEndpoint(
-                                    managerApiConfiguration.getWmsUrl() ).requestedMediaType(
-                                    APPLICATION_JSON ).build();
+            return new PlanInfoBuilder( xPlan, managerApiConfiguration ).selfMediaType( APPLICATION_JSON ).build();
         } ).collect( Collectors.toList() );
         return Response.ok().entity( planInfos ).build();
     }

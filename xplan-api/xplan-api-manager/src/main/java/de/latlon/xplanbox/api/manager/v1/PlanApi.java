@@ -35,7 +35,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
-import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Variant;
 import java.io.File;
 import java.net.URI;
@@ -51,7 +50,9 @@ import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP_T
 import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.SELF;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
+import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
+import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 @Path("/plan")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
@@ -80,9 +81,7 @@ public class PlanApi {
                             @Content(mediaType = "application/x-zip-compressed", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")) }, required = true))
     public Response callImport(
                             @Context
-                                                    Request request,
-                            @Context
-                                                    UriInfo uriInfo, @Valid File body,
+                                                    Request request, @Valid File body,
                             @HeaderParam("X-Filename")
                             @Parameter(description = "Name of the file to be uploaded", example = "File names such as xplan.gml, xplan.xml, xplan.zip")
                                                     String xFilename,
@@ -124,7 +123,7 @@ public class PlanApi {
                                                                                               validationConfig.isSkipGeltungsbereich() ) );
         XPlan xPlan = planHandler.importPlan( body, xFilename, validationSettings, internalId, planStatus );
         MediaType requestedMediaType = requestedMediaType( request );
-        PlanInfo planInfo = createPlanInfo( uriInfo, requestedMediaType, xPlan );
+        PlanInfo planInfo = createPlanInfo( requestedMediaType, xPlan );
         return Response.created( getSelfLink( planInfo ) ).entity( planInfo ).build();
     }
 
@@ -157,8 +156,6 @@ public class PlanApi {
     public Response getById(
                             @Context
                                                     Request request,
-                            @Context
-                                                    UriInfo uriInfo,
                             @PathParam("planId")
                             @Parameter(description = "ID of the plan to be returned", example = "123")
                                                     String planId )
@@ -171,7 +168,7 @@ public class PlanApi {
                                                                        + ".zip\"" ).build();
         }
         XPlan planById = planHandler.findPlanById( planId );
-        PlanInfo planInfo = createPlanInfo( uriInfo, requestedMediaType, planById );
+        PlanInfo planInfo = createPlanInfo( requestedMediaType, planById );
         return Response.ok().entity( planInfo ).build();
     }
 
@@ -185,26 +182,24 @@ public class PlanApi {
     public Response getByName(
                             @Context
                                                     Request request,
-                            @Context
-                                                    UriInfo uriInfo,
                             @PathParam("planName")
                             @Parameter(description = "planName of the plan to be returned", example = "bplan_123, fplan-123, rplan20200803", schema = @Schema(pattern = "^[A-Za-z0-9_-]*$"))
                                                     String planName )
                             throws Exception {
         List<XPlan> plans = planHandler.findPlansByName( planName );
         List<PlanInfo> planInfos = plans.stream().map( xPlan -> {
-            return new PlanInfoBuilder( xPlan, uriInfo ).wmsEndpoint(
-                                    managerApiConfiguration.getWmsUrl() ).requestedMediaType(
-                                    APPLICATION_JSON ).build();
+            return new PlanInfoBuilder( xPlan, managerApiConfiguration )
+                                    .selfMediaType( APPLICATION_JSON )
+                                    .alternateMediaType( Arrays.asList( APPLICATION_XML, APPLICATION_ZIP ) )
+                                    .build();
         } ).collect( Collectors.toList() );
         return Response.ok().entity( planInfos ).build();
     }
 
-    private PlanInfo createPlanInfo( UriInfo uriInfo, MediaType requestedMediaType, XPlan planById )
+    private PlanInfo createPlanInfo( MediaType requestedMediaType, XPlan planById )
                             throws URISyntaxException {
         List<String> alternateMediaTypes = alternateMediaTypes( requestedMediaType );
-        return new PlanInfoBuilder( planById, uriInfo ).wmsEndpoint(
-                                managerApiConfiguration.getWmsUrl() ).requestedMediaType(
+        return new PlanInfoBuilder( planById, managerApiConfiguration ).selfMediaType(
                                 requestedMediaType.toString() ).alternateMediaType( alternateMediaTypes ).build();
     }
 

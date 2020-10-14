@@ -31,6 +31,7 @@ public class ManagerApiConfiguration {
     public ManagerApiConfiguration( PropertiesLoader propertiesLoader )
                             throws ConfigurationException {
         loadProperties( propertiesLoader );
+        validateProperties();
         logProperties();
     }
 
@@ -69,6 +70,13 @@ public class ManagerApiConfiguration {
         } else {
             defaultValidationConfiguration = new DefaultValidationConfiguration();
         }
+    }
+
+    private void validateProperties()
+                            throws ConfigurationException {
+        if ( apiUrl == null )
+            throw new ConfigurationException(
+                                    "The configuration option 'apiUrl' in the managerApiConfiguration.properties is required" );
     }
 
     private void logProperties() {
