@@ -2,7 +2,7 @@ package de.latlon.xplan.planwerkwms;
 
 import org.deegree.commons.xml.jaxb.JAXBUtils;
 import org.deegree.services.OWS;
-import org.deegree.services.planwerk.jaxb.Planwerk;
+import de.latlon.xplan.planwerkwms.jaxb.Planwerk;
 import org.deegree.workspace.ResourceBuilder;
 import org.deegree.workspace.ResourceInitException;
 import org.deegree.workspace.ResourceLocation;
