@@ -61,15 +61,20 @@ public class XPlan implements Serializable, Comparable<XPlan> {
     private boolean hasMultipleXPlanElements;
 
     public XPlan() {
-        this.name = "N/A";
-        this.id = "-";
-        this.type = "NO TYPE";
+        this( "N/A", "-", "NO TYPE" );
     }
 
     public XPlan( String name, String id, String type ) {
+        if (name == null || name.isEmpty()) throw new IllegalArgumentException("Name must not be null or empty");
         this.name = name;
+        if (id == null || id.isEmpty()) throw new IllegalArgumentException("Id must not be null or empty");
         this.id = id;
         this.type = type;
+    }
+
+    public XPlan( String name, String id, String type, String version ) {
+        this( name, id, type );
+        this.version = version;
     }
 
     public String getName() {
@@ -248,4 +253,32 @@ public class XPlan implements Serializable, Comparable<XPlan> {
         return ( o == null || o.name == null ) ? -1 : -o.name.compareTo( name );
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        XPlan xPlan = (XPlan) o;
+
+        if (!id.equals(xPlan.id)) return false;
+        return name.equals(xPlan.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + id.hashCode();
+        result = 31 * result + type.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "XPlan[" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", type='" + type + '\'' +
+                ", version='" + version + '\'' +
+                ']';
+    }
 }

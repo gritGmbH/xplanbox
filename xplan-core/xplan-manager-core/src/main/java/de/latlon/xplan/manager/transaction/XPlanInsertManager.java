@@ -71,10 +71,11 @@ public class XPlanInsertManager extends XPlanTransactionManager {
      * @param xPlanMetadata
      *                 containing some metadata about the xplan, never <code>null</code>
      * @throws Exception
+     * @return the id of the plan, never <code>null</code>
      */
-    public void importPlan( XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
-                            boolean makeRasterConfig, File workspaceFolder, String internalId,
-                            AdditionalPlanData xPlanMetadata )
+    public int importPlan( XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
+                           boolean makeRasterConfig, File workspaceFolder, String internalId,
+                           AdditionalPlanData xPlanMetadata )
                     throws Exception {
         LOG.info( "- Importiere Plan " + archive );
         ICRS crs = CrsUtils.determineActiveCrs( defaultCRS, archive, LOG );
@@ -91,8 +92,9 @@ public class XPlanInsertManager extends XPlanTransactionManager {
                                     sortDate );
         startCreationOfDataServicesCoupling( planId, fc, crs );
         reloadWorkspace();
-        LOG.info( "XPlan-Archiv wurde erfolgreich importiert. Zugewiesene Id: " + planId );
+        LOG.info( "XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId );
         LOG.info( "OK." );
+        return planId;
     }
 
     private XPlanFeatureCollection readAndValidateMainDocument( XPlanArchive archive, ICRS crs, boolean force,

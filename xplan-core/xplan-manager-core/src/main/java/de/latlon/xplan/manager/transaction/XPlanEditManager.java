@@ -116,7 +116,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
             Date sortDate = sortPropertyReader.readSortDate( type, version, modifiedFeatures );
             xplanDao.update( oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, xPlanToEdit, sortDate,
                              uploadedArtefacts, removedRefs );
-            LOG.info( "XPlan-GML wurde erfolgreich editiert. ID: {}", planId );
+            LOG.info( "XPlanGML wurde erfolgreich editiert. ID: {}", planId );
 
             startCreationIfPlanNameHasChanged( planId, type, modifiedPlanFc, oldPlanName, oldDescription );
 

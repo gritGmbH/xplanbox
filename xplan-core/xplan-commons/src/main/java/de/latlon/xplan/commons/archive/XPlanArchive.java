@@ -201,7 +201,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
             if ( MAIN_FILE.equals( zipEntry.getName() ) )
                 return zipEntry;
         }
-        String msg = format( "%s ist kein gültiges XPlan-Archiv (enthält keine Datei mit Namen '%s').", this.name,
+        String msg = format( "%s ist kein gültiges XPlanArchiv (enthält keine Datei mit Namen '%s').", this.name,
                              MAIN_FILE );
         throw new IllegalArgumentException( msg );
     }

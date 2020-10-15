@@ -24,7 +24,7 @@ public final class XPlanVersionUtils {
 
     private static final Map<XPlanVersion, NamespaceBindings> versionToNsContext = new HashMap<XPlanVersion, NamespaceBindings>();
 
-    private static final String UNKNOWN_NAMESPACE = "Kann XPlan Version der Datei XPlan-GML-Datei nicht bestimmen. Unbekannter Namespace '%s'.";
+    private static final String UNKNOWN_NAMESPACE = "Kann Version der XPlanGML-Datei nicht bestimmen. Unbekannter Namespace '%s'.";
 
     static {
         for ( XPlanVersion version : XPlanVersion.values() ) {
@@ -55,7 +55,7 @@ public final class XPlanVersionUtils {
         try {
             namespaceURI = element.getNamespaceURI();
         } catch ( Exception e ) {
-            String msg = "Kann kein XML-Wurzelelement in Datei XPlan-GML-Datei bestimmen. Keine XML Datei!?";
+            String msg = "Kann kein XML-Wurzelelement in XPlanGML-Datei bestimmen. Keine XML-Datei!?";
             throw new IllegalArgumentException( msg );
         }
         return determineBaseVersion( namespaceURI );

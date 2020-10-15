@@ -27,6 +27,8 @@ include::konfiguration-manager.adoc[]
 
 include::konfiguration/validator/main.adoc[]
 
+include::konfiguration/rest-api/main.adoc[]
+
 include::aktualisierung.adoc[]
 
 include::weiterfuehrendeInformationen.adoc[]

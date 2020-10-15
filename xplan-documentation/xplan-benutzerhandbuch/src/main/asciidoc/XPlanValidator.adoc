@@ -9,3 +9,5 @@ include::XPlanValidator-Einleitung.adoc[]
 include::XPlanValidator_Web.adoc[]
 
 include::XPlanValidator_CLI.adoc[]
+
+include::XPlanValidator_API.adoc[]

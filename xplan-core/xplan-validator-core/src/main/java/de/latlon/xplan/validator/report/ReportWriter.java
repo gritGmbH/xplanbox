@@ -213,7 +213,7 @@ public class ReportWriter {
         }
     }
 
-    private File retrieveArtifactFile( File sourceDirectory, String validationName, ArtifactType artifactType ) {
+    public File retrieveArtifactFile( File sourceDirectory, String validationName, ArtifactType artifactType ) {
         String suffix = artifactType.name().toLowerCase();
         return new File( sourceDirectory, validationName + "." + suffix );
     }

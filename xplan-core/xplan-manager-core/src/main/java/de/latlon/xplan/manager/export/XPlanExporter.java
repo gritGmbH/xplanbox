@@ -118,7 +118,7 @@ public class XPlanExporter {
      */
     public void export( OutputStream outputStream, XPlanArchiveContent contents ) {
         long begin = System.currentTimeMillis();
-        exportAll( outputStream, contents );
+        writeContentToStream( outputStream, contents );
         long elapsed = System.currentTimeMillis() - begin;
         LOG.info( "OK [" + elapsed + " ms]" );
     }
@@ -141,12 +141,12 @@ public class XPlanExporter {
         createReexported( outputStream, version, fc, comment );
     }
 
-    private void exportAll( OutputStream outputStream, XPlanArchiveContent contents ) {
+    private void writeContentToStream( OutputStream outputStream, XPlanArchiveContent contents ) {
         try {
             ZipOutputStream zipOS = new ZipOutputStream( outputStream );
-            List<String> exportedArtefactFileNames = exportArtefacts( contents, zipOS );
+            List<String> exportedArtefactFileNames = writeArchiveContentToStream( zipOS, contents );
             if ( isExportOfReexportedActive() )
-                exportReexported( contents, zipOS, exportedArtefactFileNames );
+                exportReexported( zipOS, contents, exportedArtefactFileNames );
             zipOS.close();
         } catch ( XPlanExportException e ) {
             throw e;
@@ -156,20 +156,20 @@ public class XPlanExporter {
         }
     }
 
-    private List<String> exportArtefacts( XPlanArchiveContent contents, ZipOutputStream zipOS )
+    private List<String> writeArchiveContentToStream( ZipOutputStream zipOS, XPlanArchiveContent contents )
                     throws Exception {
         List<String> exportedArtefactFileNames = new ArrayList<String>();
         XPlanArtefactIterator artefacts = contents.getArtefacts();
         while ( artefacts.hasNext() ) {
             XPlanArtefact artefact = artefacts.next();
-            exportArtefact( zipOS, artefact );
+            writeArtefactToStream( zipOS, artefact );
             exportedArtefactFileNames.add( artefact.getFileName() );
         }
         artefacts.close();
         return exportedArtefactFileNames;
     }
 
-    private void exportArtefact( ZipOutputStream zos, XPlanArtefact artefact ) {
+    private void writeArtefactToStream( ZipOutputStream zos, XPlanArtefact artefact ) {
         String fileName = artefact.getFileName();
         LOG.info( "- Schreibe Artefakt '" + fileName + "'..." );
         try {
@@ -190,7 +190,7 @@ public class XPlanExporter {
         }
     }
 
-    private void exportReexported( XPlanArchiveContent contents, ZipOutputStream zipOS,
+    private void exportReexported( ZipOutputStream zipOS, XPlanArchiveContent contents,
                                    List<String> exportedArtefactFileNames ) {
         String reexportedFileName = createReexportedFileName( exportedArtefactFileNames );
         LOG.info( "- Schreibe reexported '{}'...", reexportedFileName );
@@ -211,7 +211,7 @@ public class XPlanExporter {
     private ByteArrayOutputStream createReexported( XPlanVersion version, FeatureCollection fc )
                     throws FactoryConfigurationError, XMLStreamException, UnknownCRSException, TransformationException {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        String comment = "Generiert von deegree XPlan-Manager, " + DATEFORMAT.format( new Date() );
+        String comment = "Generiert von XPlanManager, " + DATEFORMAT.format( new Date() );
         createReexported( bos, version, fc, comment );
         return bos;
     }
@@ -292,7 +292,7 @@ public class XPlanExporter {
             try {
                 return Integer.parseInt( mid );
             } catch ( NumberFormatException e ) {
-                LOG.trace( "{} is not parseable as integer", mid );
+                LOG.trace( "Error: {} is not parsable as integer. Returning 0", mid );
             }
         }
         return 0;
