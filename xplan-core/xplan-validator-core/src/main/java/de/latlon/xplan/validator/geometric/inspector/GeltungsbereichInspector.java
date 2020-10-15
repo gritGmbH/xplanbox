@@ -6,6 +6,12 @@ import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
+import org.deegree.geometry.multi.MultiGeometry;
+import org.deegree.geometry.multi.MultiPolygon;
+import org.deegree.geometry.primitive.GeometricPrimitive;
+import org.deegree.geometry.primitive.Polygon;
+import org.deegree.geometry.primitive.Ring;
+import org.deegree.geometry.primitive.Surface;
 import org.deegree.geometry.standard.AbstractDefaultGeometry;
 import org.deegree.gml.feature.FeatureInspectionException;
 import org.deegree.gml.reference.FeatureReference;
@@ -38,6 +44,8 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
     private static final List<String> GEHOERT_ZU_BEREICH_PROPNAMES = new ArrayList<>();
 
     private static final String ERROR_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt nicht im Geltungsbereich des Bereichs/Plans.";
+
+    private static final String SCHNITTPUNKT_MSG = "2.2.3.1: Schnittpunkt mit der Geometrie des Objekts mit der gml id %s mit dem Geltungsbereich des Bereichs/Plans.";
 
     private static final String ERROR_MSG_INVALID_CHECK = "2.2.3.1: Der Geltungsbereich des Objekts mit der gml id %s konnte nicht überprüft werden. Wahrscheinlich liegt eine invalide Geometrie vor.";
 
@@ -104,6 +112,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
                         String error = String.format( ERROR_MSG, f.getId() );
                         BadGeometry badGeometry = new BadGeometry( getOriginalGeometry( f ), error );
                         badGeometries.add( badGeometry );
+                        addIntersectionsWithGeltungsbereich( badGeometries, geltungsbereichFeature, f );
                     }
                 } catch ( InvalidGeometryException e ) {
                     String error = String.format( ERROR_MSG_INVALID_CHECK, f.getId() );
@@ -129,6 +138,47 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
                 return bereich;
         }
         return planFeature;
+    }
+
+    private void addIntersectionsWithGeltungsbereich( List<BadGeometry> badGeometries,
+                                                      Feature geltungsbereichFeature, Feature feature ) {
+        AbstractDefaultGeometry originalGeometry = getOriginalGeometry( feature );
+
+        List<Ring> exteriorRings = extractExteriorRingFromGeltungsbereich( geltungsbereichFeature );
+        exteriorRings.forEach( exteriorRing -> {
+            org.deegree.geometry.Geometry geomOutsideGeltungsbereich = exteriorRing.getIntersection( originalGeometry );
+            if ( geomOutsideGeltungsbereich != null ) {
+                geomOutsideGeltungsbereich.setId( feature.getId() + "_SchnittpunktGeltungsbereich" );
+                String error = String.format( SCHNITTPUNKT_MSG, feature.getId() );
+                BadGeometry original = new BadGeometry( geomOutsideGeltungsbereich, error );
+                badGeometries.add( original );
+            }
+        } );
+    }
+
+    private List<Ring> extractExteriorRingFromGeltungsbereich( Feature geltungsbereichFeature ) {
+        AbstractDefaultGeometry geltungsbereichGeometry = getOriginalGeometry( geltungsbereichFeature );
+        switch ( geltungsbereichGeometry.getGeometryType() ) {
+        case PRIMITIVE_GEOMETRY:
+            GeometricPrimitive geltungsbereichPrimitive = (GeometricPrimitive) geltungsbereichGeometry;
+            if ( GeometricPrimitive.PrimitiveType.Surface == geltungsbereichPrimitive.getPrimitiveType() ) {
+                Surface surface = (Surface) geltungsbereichPrimitive;
+                if ( Surface.SurfaceType.Polygon == surface.getSurfaceType() ) {
+                    Polygon polygon = (Polygon) surface;
+                    return Collections.singletonList( polygon.getExteriorRing() );
+                }
+            }
+            break;
+        case MULTI_GEOMETRY:
+            MultiGeometry multiGeometry = (MultiGeometry) geltungsbereichGeometry;
+            if ( MultiGeometry.MultiGeometryType.MULTI_POLYGON == multiGeometry.getMultiGeometryType() ) {
+                MultiPolygon multiPolygon = (MultiPolygon) multiGeometry;
+                return multiPolygon.stream().map( p -> p.getExteriorRing() ).collect( Collectors.toList() );
+
+            }
+            break;
+        }
+        return Collections.emptyList();
     }
 
     private boolean isInsideGeom( Feature feature, Geometry geltungsbereich )

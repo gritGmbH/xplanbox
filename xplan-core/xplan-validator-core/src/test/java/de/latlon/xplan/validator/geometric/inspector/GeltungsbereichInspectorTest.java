@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -46,6 +47,8 @@ public class GeltungsbereichInspectorTest {
 
         List<BadGeometry> errors = geltungsbereichInspector.checkGeometricRule();
         assertThat( errors.size(), is( 1 ) );
+
+        assertThat( errors.get( 0 ).getGeometry(), is( notNullValue() ) );
     }
 
     @Test
@@ -56,6 +59,23 @@ public class GeltungsbereichInspectorTest {
 
         List<BadGeometry> errors = geltungsbereichInspector.checkGeometricRule();
         assertThat( errors.size(), is( 1 ) );
+
+        assertThat( errors.get( 0 ).getGeometry(), is( notNullValue() ) );
+    }
+
+    @Test
+    public void testCheck_invalid_withLine()
+                            throws Exception {
+        XPlanArchive archive = getTestArchive( "xplan52/BP2070.zip" );
+        GeltungsbereichInspector geltungsbereichInspector = readFeatures( archive );
+
+        List<BadGeometry> errors = geltungsbereichInspector.checkGeometricRule();
+        assertThat( errors.size(), is( 4 ) );
+
+        assertThat( errors.get( 0 ).getGeometry(), is( notNullValue() ) );
+        assertThat( errors.get( 1 ).getGeometry(), is( notNullValue() ) );
+        assertThat( errors.get( 2 ).getGeometry(), is( notNullValue() ) );
+        assertThat( errors.get( 3 ).getGeometry(), is( notNullValue() ) );
     }
 
     @Test
