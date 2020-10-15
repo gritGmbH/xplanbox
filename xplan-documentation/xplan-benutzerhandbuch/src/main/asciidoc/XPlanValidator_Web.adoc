@@ -196,7 +196,7 @@ Die ausgegebene GML-ID gibt Ihnen einen Hinweis, welches Element in der XPlanGML
 
 *6) Syntaktische Validierung – valide*
 
-Eine valide geometrische Prüfung wird wie folgt angezeigt.
+Eine valide syntaktische Prüfung wird wie folgt angezeigt.
 
 [.bordered]
 image::validator/Validierung_syntaktisch-valide.png[Validerungsoptionen]

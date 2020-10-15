@@ -65,7 +65,9 @@ public class FeatureCollectionUtils {
         gmlStream.setGeometryFactory( new GeometryFactory() );
         gmlStream.setApplicationSchema( appSchema );
         gmlStream.setSkipBrokenGeometries( true );
-        return (FeatureCollection) gmlStream.readFeature();
+        FeatureCollection features = gmlStream.readFeatureCollection();
+        gmlStream.getIdContext().resolveLocalRefs();
+        return features;
     }
 
     /**

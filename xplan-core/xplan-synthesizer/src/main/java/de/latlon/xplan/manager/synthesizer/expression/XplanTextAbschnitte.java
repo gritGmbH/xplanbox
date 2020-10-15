@@ -59,9 +59,7 @@ public class XplanTextAbschnitte implements Expression {
             textAbschnittText.append( text );
         }
 
-        if ( gesetzlicheGrundlage == null ) {
-            textAbschnittText.append( " (Keine gesetzliche Grundlage)" );
-        } else {
+        if ( gesetzlicheGrundlage != null ) {
             gesetzlicheGrundlage = replaceDelimiter( gesetzlicheGrundlage );
             textAbschnittText.append( " (Gesetzliche Grundlage: " ).append( gesetzlicheGrundlage ).append( ")" );
         }
