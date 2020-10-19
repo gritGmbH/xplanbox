@@ -86,4 +86,4 @@ Zusätzlich sollte die xPlanBox wie folgt konfiguriert sein:
 . die deegree REST-Schnittstelle ist durch Benutzername und Kennwort abgesichert (Datei _web.xml_ und _tomcat-users.xml_ im Tomcat-Konfigurationsverzeichnis, siehe Kapitel <<dienste-tomcat>>).
 . der Zugriff auf die deegree webservice console ist auf IP-Adressbereiche bzw. Domänen eingeschränkt (Datei _context.xml_ innerhalb der Webanwendungen).
 . beide Tomcat-Instanzen werden hinter einem Proxy (z. B. Apache httpd) betrieben (Datei _server.xml_ im Tomcat-Konfigurationsverzeichnis).
-. der Zugriff auf den XPlanManagerWeb ist durch Benutzername und Kennwort abgesichert (siehe Kapitel <<ldap_security>>).
+. der Zugriff auf den XPlanManagerWeb ist durch Benutzername und Kennwort abgesichert (siehe Kapitel <<security>>).

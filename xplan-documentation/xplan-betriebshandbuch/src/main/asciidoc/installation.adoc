@@ -1,7 +1,7 @@
 [[installation]]
 == Installation der Komponenten
 
-In den nachfolgenden Kapiteln wird die Installation der einzelnen Komponenten erläutert. Alternativ zur der hier beschriebenen Installation kann die Installation auch mit den bereitgestellten Docker Images erfolgen. Dies ist im Abschnitt <<installation-docker>> beschrieben.
+In den nachfolgenden Kapiteln wird die Installation der einzelnen Komponenten erläutert. Alternativ zu der hier beschriebenen Installation kann die Installation auch mit den bereitgestellten Docker Images erfolgen. Dies ist im Abschnitt <<installation-docker>> beschrieben.
 
 
 include::installation_ueberblick.adoc[]

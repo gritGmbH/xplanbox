@@ -2,7 +2,8 @@
 :encoding: utf-8
 :docinfo: shared,private-head
 :toc-title: Inhaltsverzeichnis
-
+:imagesdir: images
+:title-logo-image: images/logo_latlon.png
 
 = Benutzerhandbuch für den XPlanValidator
 

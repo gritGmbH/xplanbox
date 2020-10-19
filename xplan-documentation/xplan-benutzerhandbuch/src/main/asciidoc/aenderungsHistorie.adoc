@@ -119,7 +119,7 @@
  - (#1256) Tooltipp für Gültigkeitszeitraum funktioniert nur auf erster Seite
  - (#1461) Umlaute im AD-Passwort ermöglichen
  - (#1543) Konformitätsbedingungen bzgl. Flächenschluss überprüfen
- - (#1054) XPlanManagerCLI: DDEEGREE_WORKSPACE_ROOT wird nicht ausgewertet
+ - (#1054) XPlanManagerCLI: DEEGREE_WORKSPACE_ROOT wird nicht ausgewertet
  - (TT_10004) Syntaktischer Fehler wird vom Validator nicht korrekt erkannt
  - (TT_10003) Ergebnisse von StoredQuery im XPlanSynWFS
  - (TT_10004) Fehler beim Schreiben des SHP-Files behoben

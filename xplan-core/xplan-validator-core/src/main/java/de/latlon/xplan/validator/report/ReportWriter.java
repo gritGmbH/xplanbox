@@ -154,7 +154,7 @@ public class ReportWriter {
                 String errorlogContent = String.join( "\n", failures );
                 IOUtils.write( errorlogContent, fos );
             } catch ( IOException e ) {
-                LOG.error( "Could not wtite error.log", e );
+                LOG.error( "Could not write error.log", e );
             }
         }
     }

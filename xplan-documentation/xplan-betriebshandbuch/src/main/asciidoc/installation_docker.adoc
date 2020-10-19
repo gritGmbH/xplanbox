@@ -8,15 +8,14 @@ Alternativ zur Installation, wie sie im Kapitel <<installation>> beschrieben ist
 Die folgenden beiden Grafiken geben einen Überblick über die im Folgenden näher beschriebenen Komponenten und Schnittstellen:
 
 .XPlanValidator
-image:../images/docker-spezifikation-validator.png[]
+image::docker-spezifikation-validator.png[]
 
 .XPlanManager
-image:../images/docker-spezifikation-manager.png[]
+image::docker-spezifikation-manager.png[]
 
 *Erläuterungen:*
  * Grau: Docker Container; Orange: Docker Volume
  * r: lesender Zugriff, rw: schreibender Zugriff
-
 
 Die xPlanBox besteht aus verschiedenen Komponenten, die z.T. auf verschiedene Docker Images bzw. Docker Container aufgeteilt werden. Dies sind konkret: 
 
@@ -57,7 +56,7 @@ Daneben sind zur Speicherung der Daten und Konfigurationen folgende Volumes zu n
  * *xplan-inspireplu-workspaces*
  ** Konfiguration der Workspaces der *XPlanInspirePluDienste*.
 
-Für das gemeinsam genutzte Volume *xplan-workspaces* wird empfohlen, ein Shared-Storage als Named Volume anzulegen. Generell wird die Nutzung von Named Volumes für alle Volumes emfohlen.
+Für das gemeinsam genutzte Volume *xplan-workspaces* wird empfohlen, ein Shared-Storage als Named Volume anzulegen. Generell wird die Nutzung von Named Volumes für alle Volumes empfohlen.
 
 === Docker Images
 
@@ -247,4 +246,4 @@ Innerhalb des Volumes müssen folgende Dateien/Artefakte abgelegt werden:
 
 === Konfiguration
 
-Die im Folgenden beschriebene Konfigration gilt auch bei der Installation über Docker. Die Konfigrationsdaten befinden sich in den jeweiligen Volumes.
+Die im Folgenden beschriebene Konfiguration gilt auch bei der Installation über Docker. Die Konfigurationsdaten befinden sich in den jeweiligen Volumes.

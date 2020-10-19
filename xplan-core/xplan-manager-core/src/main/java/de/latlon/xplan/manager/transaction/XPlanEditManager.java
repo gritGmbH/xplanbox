@@ -87,7 +87,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
             FeatureCollection featuresToModify = originalPlanFC.getFeatures();
             ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan( featuresToModify );
             planModifier.modifyXPlan( featuresToModify, xPlanToEdit, version, type, appSchema );
-            FeatureCollection modifiedFeatures = renewFeatureCollection( version, type, appSchema, featuresToModify );
+            FeatureCollection modifiedFeatures = renewFeatureCollection( version, appSchema, featuresToModify );
             ExternalReferenceInfo externalReferencesModified = new ExternalReferenceScanner().scan( modifiedFeatures );
 
             byte[] xPlanGml = createXPlanGml( version, modifiedFeatures );

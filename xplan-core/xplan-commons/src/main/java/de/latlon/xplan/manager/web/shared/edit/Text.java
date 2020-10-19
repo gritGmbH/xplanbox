@@ -52,7 +52,7 @@ public class Text extends AbstractReference {
 
     private String text;
 
-    private int legalNatureCode = -1;
+    private TextRechtscharacterType rechtscharakter;
 
     public Text() {
     }
@@ -100,17 +100,17 @@ public class Text extends AbstractReference {
      *                 reference, may be <code>null</code>
      * @param geoReference
      *                 geoReference, may be <code>null</code>
-     * @param legalNatureCode
-     *                 legalNatureCode, may be <code>null</code>
+     * @param rechtscharakter
+     *                 rechtscharakter, may be <code>null</code>
      */
-    public Text( String featureId, String key, String basis, String text, int legalNatureCode, String reference,
+    public Text( String featureId, String key, String basis, String text, TextRechtscharacterType rechtscharakter, String reference,
                  String geoReference ) {
         super( reference, geoReference );
         this.featureId = featureId;
         this.key = key;
         this.basis = basis;
         this.text = text;
-        this.legalNatureCode = legalNatureCode;
+        this.rechtscharakter = rechtscharakter;
     }
 
     /**
@@ -174,24 +174,24 @@ public class Text extends AbstractReference {
     }
 
     /**
-     * @return the legalNature, may be <code>null</code>
+     * @return the rechtscharakter, may be <code>null</code>
      */
-    public int getLegalNatureCode() {
-        return legalNatureCode;
+    public TextRechtscharacterType getRechtscharakter() {
+        return rechtscharakter;
     }
 
     /**
-     * @param legalNatureCode
-     *                 the legalNature to set, may be <code>null</code>
+     * @param rechtscharakter
+     *                 the rechtscharakter to set, may be <code>null</code>
      */
-    public void setLegalNatureCode( int legalNatureCode ) {
-        this.legalNatureCode = legalNatureCode;
+    public void setRechtscharakter( TextRechtscharacterType rechtscharakter ) {
+        this.rechtscharakter = rechtscharakter;
     }
 
     @Override
     public String toString() {
         return "Text [featureId=" + featureId + ", key=" + key + ", basis=" + basis + ", text=" + text
-               + ", legalNatureCode= " + legalNatureCode + "]";
+               + ", rechtscharakter= " + rechtscharakter + "]";
     }
 
 }

@@ -1,9 +1,11 @@
 package de.latlon.xplan.validator.geometric;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
+import com.vividsolutions.jts.algorithm.CGAlgorithms;
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.LineString;
+import com.vividsolutions.jts.geom.LinearRing;
+import com.vividsolutions.jts.geom.Polygon;
+import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.GeometryFactory;
@@ -30,14 +32,9 @@ import org.deegree.geometry.validation.GeometryFixer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.vividsolutions.jts.algorithm.CGAlgorithms;
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.LineString;
-import com.vividsolutions.jts.geom.LinearRing;
-import com.vividsolutions.jts.geom.Polygon;
-
-import de.latlon.xplan.validator.geometric.report.BadGeometry;
-import de.latlon.xplan.validator.web.shared.ValidationOption;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Validiert die aus XPlan-Dokumenten geparsten Geometrien und prüft sie auf topologische Korrektheit / Randbedingungen.
@@ -55,7 +52,7 @@ import de.latlon.xplan.validator.web.shared.ValidationOption;
  * <li>Polygon/PolygonPatch: Keine Berührung innere Ringe / innere Ringe (Fehler)</li>
  * <li>Polygon/PolygonPatch: Schnittmenge der von zwei inneren Ringen gebildeten Flächen ist leer (Fehler)</li>
  * </p>
- * 
+ *
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider</a>
  * @author last edited by: $Author: schneider $
  * @version $Revision: 1154 $, $Date: 2010-03-02 13:23:14 +0100 (Di, 02 Mrz 2010) $
@@ -72,33 +69,23 @@ class XPlanGeometryInspector implements GeometryInspector {
 
     private final XMLStreamReaderWrapper xmlStream;
 
-    private final List<String> errors = new ArrayList<String>();
+    private final List<String> errors = new ArrayList<>();
 
-    private final List<String> warnings = new ArrayList<String>();
+    private final List<String> warnings = new ArrayList<>();
 
     private final List<BadGeometry> badGeometries = new ArrayList<>();
 
     private BadGeometry lastBadGeometry;
 
-    private final double epsilon;
-
-    private final List<ValidationOption> voOptions;
-
-    public XPlanGeometryInspector( XMLStreamReaderWrapper xmlStream, double epsilon, List<ValidationOption> voOptions ) {
-        this.epsilon = epsilon;
-        this.voOptions = voOptions;
+    public XPlanGeometryInspector( XMLStreamReaderWrapper xmlStream ) {
         this.xmlStream = xmlStream;
-        crit = new MaxErrorCriterion( 1.0, 500 );
-        linearizer = new CurveLinearizer( new GeometryFactory() );
-        jtsFactory = new com.vividsolutions.jts.geom.GeometryFactory();
+        this.crit = new MaxErrorCriterion( 1.0, 500 );
+        this.linearizer = new CurveLinearizer( new GeometryFactory() );
+        this.jtsFactory = new com.vividsolutions.jts.geom.GeometryFactory();
     }
 
     public List<String> getErrors() {
         return errors;
-    }
-
-    public List<ValidationOption> getVoOptions() {
-        return voOptions;
     }
 
     public List<String> getWarnings() {
@@ -164,18 +151,6 @@ class XPlanGeometryInspector implements GeometryInspector {
             createError( msg );
         }
         return points;
-    }
-
-    Curve checkOrientation( Curve geom, Curve inspected ) {
-        if ( linearizer.linearize( geom, crit ).getAsLineString().getControlPoints().size() >= 4 && geom.isClosed() ) {
-            LinearRing jTSRing = getJTSLinearRing( geom );
-            if ( !CGAlgorithms.isCCW( jTSRing.getCoordinates() ) ) {
-                String msg = createMessage( "2.2.2.1: Geschlossene Kurve verwendet falsche Laufrichtung (CW)." );
-                warnings.add( msg );
-                inspected = GeometryFixer.invertOrientation( geom );
-            }
-        }
-        return inspected;
     }
 
     private Curve checkSegmentContinuity( Curve geom ) {
@@ -359,7 +334,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 
     /**
      * Returns a JTS geometry for the given {@link Curve} (which is linearized first).
-     * 
+     *
      * @param curve
      *            {@link Curve} that consists of {@link LineStringSegment} and {@link Arc} segments only
      * @return linear JTS curve geometry
@@ -379,21 +354,9 @@ class XPlanGeometryInspector implements GeometryInspector {
         return jtsFactory.createLineString( coordinates.toArray( new Coordinate[coordinates.size()] ) );
     }
 
-    private LinearRing getJTSLinearRing( Curve curve ) {
-
-        Curve linearizedCurve = linearizer.linearize( curve, crit );
-        List<Coordinate> coordinates = new LinkedList<Coordinate>();
-        for ( CurveSegment segment : linearizedCurve.getCurveSegments() ) {
-            for ( Point point : ( (LineStringSegment) segment ).getControlPoints() ) {
-                coordinates.add( new Coordinate( point.get0(), point.get1() ) );
-            }
-        }
-        return jtsFactory.createLinearRing( coordinates.toArray( new Coordinate[coordinates.size()] ) );
-    }
-
     /**
      * Returns a JTS geometry for the given {@link Ring} (which is linearized first).
-     * 
+     *
      * @param ring
      *            {@link Ring} that consists of {@link LineStringSegment}, {@link Arc} and {@link Circle} segments only
      * @return linear JTS ring geometry, null if no
@@ -454,7 +417,6 @@ class XPlanGeometryInspector implements GeometryInspector {
         switch ( inspected.getCurveType() ) {
         case Curve:
         case LineString: {
-            inspected = checkOrientation( geom, inspected );
             break;
         }
         case Ring: {

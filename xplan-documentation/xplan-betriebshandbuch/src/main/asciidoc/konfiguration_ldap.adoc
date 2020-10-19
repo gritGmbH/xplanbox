@@ -3,7 +3,7 @@
 
 Der Zugriff auf die Komponente XPlanManagerWeb kann mittels Spring Security über BASIC-Authentication abgesichert werden.
 
-Dabei stehen drei verschiendene Konfigurationsvarianten zur Verfügung:
+Dabei stehen drei verschiedene Konfigurationsvarianten zur Verfügung:
 
 1. Datei-basierte Benutzerverwaltung (siehe <<simple_security>>)
 2. Datenbank-basierte Benutzerverwaltung (siehe <<database_security>>)

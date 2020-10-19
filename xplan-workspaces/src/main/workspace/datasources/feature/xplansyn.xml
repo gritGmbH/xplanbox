@@ -4440,6 +4440,7 @@
     <Primitive path="xplan:versionBauGBText" mapping="xplan_versionbaugbtext" />
     <Primitive path="xplan:versionSonstRechtsgrundlageDatum" mapping="xplan_versionsonstrechtsgrundlagedatum" />
     <Primitive path="xplan:versionSonstRechtsgrundlageText" mapping="xplan_versionsonstrechtsgrundlagetext" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_RasterplanAenderung" table="xplansyn.xplan_bp_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_BP_RASTERPLANAENDERUNG_">
@@ -8413,12 +8414,13 @@
     <Primitive path="xplan:refErlaeuterung" mapping="xplan_referlaeuterung" />
     <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
     <Primitive path="xplan:planaufstellendeGemeinde" mapping="xplan_planaufstellendegemeinde" />
-	<Primitive path="xplan:versionBauNVODatum" mapping="xplan_versionbaunvodatum" />
-	<Primitive path="xplan:versionBauNVOText" mapping="xplan_versionbaunvotext" />
-	<Primitive path="xplan:versionBauGBDatum" mapping="xplan_versionbaugbdatum" />
-	<Primitive path="xplan:versionBauGBText" mapping="xplan_versionbaugbtext" />
-	<Primitive path="xplan:versionSonstRechtsgrundlageDatum" mapping="xplan_versionsonstrechtsgrundlagedatum" />
-	<Primitive path="xplan:versionSonstRechtsgrundlageText" mapping="xplan_versionsonstrechtsgrundlagetext" />
+    <Primitive path="xplan:versionBauNVODatum" mapping="xplan_versionbaunvodatum" />
+    <Primitive path="xplan:versionBauNVOText" mapping="xplan_versionbaunvotext" />
+    <Primitive path="xplan:versionBauGBDatum" mapping="xplan_versionbaugbdatum" />
+    <Primitive path="xplan:versionBauGBText" mapping="xplan_versionbaugbtext" />
+    <Primitive path="xplan:versionSonstRechtsgrundlageDatum" mapping="xplan_versionsonstrechtsgrundlagedatum" />
+    <Primitive path="xplan:versionSonstRechtsgrundlageText" mapping="xplan_versionsonstrechtsgrundlagetext" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_PrivilegiertesVorhaben" table="xplansyn.xplan_fp_privilegiertesvorhaben">
     <FIDMapping prefix="XPLAN_FP_PRIVILEGIERTESVORHABEN_">
@@ -10637,6 +10639,7 @@
     <Primitive path="xplan:sonstPlanArt" mapping="xplan_sonstplanart" />
     <Primitive path="xplan:sonstPlanArtCode" mapping="xplan_sonstplanartcode" />
     <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:LP_PlanerischeVertiefung" table="xplansyn.xplan_lp_planerischevertiefung">
     <FIDMapping prefix="XPLAN_LP_PLANERISCHEVERTIEFUNG_">
@@ -16704,6 +16707,7 @@
     <Primitive path="xplan:versionBauGBText" mapping="xplan_versionbaugbtext" />
     <Primitive path="xplan:versionSonstRechtsgrundlageDatum" mapping="xplan_versionsonstrechtsgrundlagedatum" />
     <Primitive path="xplan:versionSonstRechtsgrundlageText" mapping="xplan_versionsonstrechtsgrundlagetext" />
+    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:SO_RasterplanAenderung" table="xplansyn.xplan_so_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_SO_RASTERPLANAENDERUNG_">

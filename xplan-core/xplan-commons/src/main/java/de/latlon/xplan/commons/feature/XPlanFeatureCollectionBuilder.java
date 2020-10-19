@@ -37,7 +37,7 @@ import static org.deegree.cs.CRSUtils.EPSG_4326;
  */
 public class XPlanFeatureCollectionBuilder {
 
-    private final Logger log = LoggerFactory.getLogger( XPlanFeatureCollectionBuilder.class );
+    private final Logger LOG = LoggerFactory.getLogger( XPlanFeatureCollectionBuilder.class );
 
     public static final String BP_RELEASE_DATE_PROP_NAME = "inkrafttretensDatum";
 
@@ -160,7 +160,7 @@ public class XPlanFeatureCollectionBuilder {
                 return geometryTransformer.transform( envelope );
             }
         } catch ( IllegalArgumentException | UnknownCRSException | TransformationException e ) {
-            log.error( "Could not create transformed envelope! Reason: " + e.getMessage() );
+            LOG.error( "Could not create transformed envelope! Reason: " + e.getMessage(), e );
         }
         return null;
     }

@@ -51,13 +51,14 @@ Für mehr Details siehe Kapitel <<automatischer-workspace-reload>>
 *Anpassungen in der Datei html.gfi:*
 
 Damit die Links auf Dokumente in der GetFeatureInfo Ausgabe
-funktionsfähig ist, muss eine Anpassung der URL in der Datei _html.gfi_
-erfolgen.
+funktionsfähig sind, muss eine Anpassung der URL in der Datei _html.gfi_
+erfolgen. Die URL in dem zweiten Tabellenelement muss auf die öffentliche URL des XPlanWMS verweisen, der die
+Anhänge aus dem XPlanArchiv über die Operation GetAttachment bereitstellt.
 
 ----
 <?template makeitalink>
 <tr>
   <td <?odd:maybegray>><?name:map propname></td>
-  <td <?odd:maybegray>><?link:http://<host>:<port>/<service>:Dokument herunterladen></td>
+  <td <?odd:maybegray>><a target="_blank" href="http://<host>:<port>/xplan-wms<?value>">Dokument herunterladen</a></td>
 </tr>
 ----

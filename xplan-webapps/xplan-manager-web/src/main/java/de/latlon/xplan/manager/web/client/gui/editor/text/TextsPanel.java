@@ -36,6 +36,9 @@
 package de.latlon.xplan.manager.web.client.gui.editor.text;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_50;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_52;
 
 import java.util.List;
 
@@ -54,7 +57,11 @@ import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.AbstractEditorSubPanelWithTable;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.SavedHandler;
+import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
+import de.latlon.xplan.manager.web.shared.edit.Reference;
+import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.Text;
+import de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType;
 
 /**
  * Panel for texts.
@@ -80,10 +87,13 @@ public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
         addKeyColumn( textsList );
         addBasisColumn( textsList );
         addTextColumn( textsList );
-        addReferenceColumn( textsList );
         // #3305 - georeference is not needed.
         // if ( !XPLAN_3.equals( version ) )
         // addGeoReferenceColumn( textsList );
+        if ( XPLAN_50.equals( version ) || XPLAN_51.equals( version ) || XPLAN_52.equals( version ) ) {
+            addRechtscharakterColumn( textsList );
+        }
+        addReferenceColumn( textsList );
 
         TextHeader actionHeader = new TextHeader( MESSAGES.actions() );
         addEditColumn( textsList, actionHeader );
@@ -161,6 +171,17 @@ public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
         };
         referenceColumn.setCellStyleNames( "editTextsColumn referenceColumn" );
         table.addColumn( referenceColumn, MESSAGES.editCaptionTextsReference() );
+    }
+
+    private void addRechtscharakterColumn (CellTable<Text> table ){
+        TextColumn<Text> textColumn = new TextColumn<Text>() {
+            @Override
+            public String getValue( Text textData ) {
+                return TYPE_CODELIST_PROVIDER.translate( TextRechtscharacterType.class, textData.getRechtscharakter() );
+            }
+        };
+        textColumn.setCellStyleNames( "editTextsColumn rechtscharakterColumn" );
+        table.addColumn( textColumn, MESSAGES.editCaptionReferencesType() );
     }
 
     // #3305 - georeference is not needed.

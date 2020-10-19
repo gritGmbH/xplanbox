@@ -113,7 +113,8 @@ public class XPlanValidatorWebSpringConfig {
             ValidatorWmsManager validatorWmsManager = createValidatorWmsManager();
             return new MapPreviewManager( validatorWmsManager, geometricValidator, validatorWmsEndpoint );
         } catch ( IOException | IllegalArgumentException | MapPreviewCreationException e ) {
-            LOG.error( "Could not initialise ValidatorWmsManager. WMS resources cannot be created" );
+            LOG.error( "Could not initialise ValidatorWmsManager. WMS resources cannot be created. Reason: {}",
+                    e.getMessage(), e );
         }
         return null;
     }

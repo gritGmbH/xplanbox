@@ -35,15 +35,9 @@
 ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.client.gui.editor.reference;
 
-import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
-import static java.util.Collections.singletonList;
-
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
-
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBoxWithRasterUpload;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
@@ -52,12 +46,16 @@ import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
+
 /**
  * Dialog to edit an existing or create a new {@link Reference}
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
@@ -108,9 +106,12 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
     }
 
     private TypeCodeListBox<ReferenceType> createRefType( EditVersion version ) {
-        if ( XPLAN_3.equals( version ) )
-            return new TypeCodeListBox<ReferenceType>( ReferenceType.class, singletonList( GREEN_STRUCTURES_PLAN ) );
-        return new TypeCodeListBox<ReferenceType>( ReferenceType.class );
+        List<ReferenceType> supportedReferenceTypes = new ArrayList<ReferenceType>();
+        for ( ReferenceType referenceType : ReferenceType.values() ) {
+            if ( referenceType.isXPlanVersionSupported( version.name() ) )
+                supportedReferenceTypes.add( referenceType );
+        }
+        return new TypeCodeListBox<ReferenceType>( ReferenceType.class, supportedReferenceTypes );
     }
 
 }

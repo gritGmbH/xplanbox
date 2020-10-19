@@ -4,11 +4,14 @@ pipeline {
     maven 'maven361'
     jdk 'openjdk8'
   }
+  parameters {
+    string(defaultValue: "master", description: 'Set git branch', name: 'BRANCH')
+  }
   stages {
     stage('Preparation') {
       steps{
         deleteDir()
-        git credentialsId: 'latlon-CI-bitbucket', url: 'https://bitbucket.org/latlon/xplanbox.git'
+        git credentialsId: 'latlon-CI-bitbucket', url: 'https://bitbucket.org/latlon/xplanbox.git', branch: '${BRANCH}'
         sh 'mvn --version'
       }
     }
@@ -25,7 +28,7 @@ pipeline {
     stage('Deploy') {
       when {
         anyOf {
-          branch 'master'
+          branch '${BRANCH}'
           environment name: 'DEPLOY_STEP', value: 'true'
         }
       }

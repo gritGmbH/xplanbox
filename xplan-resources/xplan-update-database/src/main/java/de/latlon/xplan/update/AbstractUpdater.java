@@ -66,7 +66,7 @@ public abstract class AbstractUpdater {
      * @param conn
      *            open database connection, is not closed in this methode, never <code>null</code>
      * @throws Exception
-     *             if an exception occured during update
+     *             if an exception occurred during update
      */
     public abstract void update( Connection conn )
                     throws Exception;

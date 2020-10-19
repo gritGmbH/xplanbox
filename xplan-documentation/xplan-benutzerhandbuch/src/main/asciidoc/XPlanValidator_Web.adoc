@@ -16,7 +16,7 @@ Vom XPlanValidator werden folgende Dateiformate akzeptiert:
 * XML-Dateien (Dateiendung `.xml`)
 
 [.bordered]
-image::../images/validator//Hochladen.png[Hochladen]
+image::validator/Hochladen.png[Hochladen]
 
 [NOTE]
 ====
@@ -41,7 +41,7 @@ Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der Validier
 Wenn Sie einen Plan hochgeladen haben, steht im Feld „Bezeichnung für den Report“ der Name der Datei ohne Endung.
 
 [.bordered]
-image::../images/validator/Validierungsoptionen.png[Validierungsoptionen]
+image::validator/Validierungsoptionen.png[Validierungsoptionen]
 
 Sie können der aktuellen Validierung, falls notwendig, einen eigenen Namen geben. Dieser erscheint ausschließlich auf dem Validierungsbericht.
 
@@ -51,17 +51,17 @@ Vermeiden Sie auch hier, Umlaute, Sonderzeichen und/oder Leerzeichen.
 ====
 
 [.bordered]
-image::../images/validator/Validierungsoptionen_bezeichnung.png[Validerungsoptionen]
+image::validator/Validierungsoptionen_bezeichnung.png[Validerungsoptionen]
 
 In Ihrem Validierungsbericht später wird Ihre Bezeichnung wie folgt dargestellt:
 
 [.bordered]
-image::../images/validator/Validierungsbericht.png[Validierungsbericht]
+image::validator/Validierungsbericht.png[Validierungsbericht]
 
 Wählen Sie nun unter folgenden Validierungstypen:
 
 [.bordered]
-image::../images/validator/Validierungstypen.png[Validierungstypen]
+image::validator/Validierungstypen.png[Validierungstypen]
 
 Standardmäßig sind alle Validierungstypen selektiert.
 
@@ -133,7 +133,7 @@ Die syntaktische Validierung ist die Voraussetzung für die semantische und geom
 
 Bei der syntaktischen Validierung wird die Struktur der XPlanGML-Datei geprüft. Eine syntaktisch valide XPlanGML-Datei muss sowohl den Anforderungen der Wohlgeformtheit von XML entsprechen als auch die vom XPlanGML-Schema definierten Regeln erfüllen.
 
-Die Validierung kann über den Button image:../images/validator/BT_ValidierungStarten.png[] gestartet werden.
+Die Validierung kann über den Button image:validator/BT_ValidierungStarten.png[] gestartet werden.
 
 ===== Schritt 3 – Validierungsergebnis und Validierungsbericht
 
@@ -144,7 +144,7 @@ Die Validierung kann über den Button image:../images/validator/BT_ValidierungSt
 Der Kopf des Validierungsberichts gibt Ihnen einen Überblick über die formalen Informationen.
 
 [.bordered]
-image::../images/validator/Validierungsbericht_2.png[Validierungsbericht]
+image::validator/Validierungsbericht_2.png[Validierungsbericht]
 
 Externe Referenzen zeigen an, ob Rasterdaten in Form von PNG und PGW Dateien vorhanden sind.
 
@@ -153,7 +153,7 @@ Externe Referenzen zeigen an, ob Rasterdaten in Form von PNG und PGW Dateien vor
 Eine valide semantische Prüfung wird Ihnen wie folgt angezeigt.
 
 [.bordered]
-image::../images/validator/Validierung_semantisch-valide.png[Validerung semantisch valide]
+image::validator/Validierung_semantisch-valide.png[Validerung semantisch valide]
 
 Die Anzahl der ausgeführten Validierungsregeln variiert in Abhängigkeit der Version der GML-Datei.
 
@@ -164,19 +164,19 @@ Am Beispiel der nachfolgenden Abbildung sehen Sie welche Konformitätsbedingung 
 Die ausgegebene GML-ID gibt Ihnen einen Hinweis, welches Element in der XPlanGML-Datei davon betroffen ist.
 
 [.bordered]
-image::../images/validator/Validierung_semantisch-nicht-valide.png[Validerung semantisch nicht valide]
+image::validator/Validierung_semantisch-nicht-valide.png[Validerung semantisch nicht valide]
 
 *4) Geometrische Validierung – valide*
 
 Eine valide geometrische Prüfung wird wie folgt angezeigt.
 
 [.bordered]
-image::../images/validator/Validierung_geometrisch-valide.png[Validerung geometrisch valide]
+image::validator/Validierung_geometrisch-valide.png[Validerung geometrisch valide]
 
 Eine geometrische Validierung kann valide sein, aber dennoch Warnungen enthalten.
 
 [.bordered]
-image::../images/validator/Validierung_geometrisch-warnung.png[Validerung geometrisch Warnungen]
+image::validator/Validierung_geometrisch-warnung.png[Validerung geometrisch Warnungen]
 
 Warnungen werden angezeigt, wenn bei Polygonen
 
@@ -190,34 +190,34 @@ aufweist.
 Am Beispiel der nachfolgenden Abbildung sehen Sie, welche Validierungsregeln nicht erfüllt sind.
 
 [.bordered]
-image::../images/validator/Validierung_geometrisch-nicht-valide.png[Validerung geometrisch nicht valide]
+image::validator/Validierung_geometrisch-nicht-valide.png[Validerung geometrisch nicht valide]
 
 Die ausgegebene GML-ID gibt Ihnen einen Hinweis, welches Element in der XPlanGML-Datei davon betroffen ist.
 
 *6) Syntaktische Validierung – valide*
 
-Eine valide geometrische Prüfung wird wie folgt angezeigt.
+Eine valide syntaktische Prüfung wird wie folgt angezeigt.
 
 [.bordered]
-image::../images/validator/Validierung_syntaktisch-valide.png[Validerungsoptionen]
+image::validator/Validierung_syntaktisch-valide.png[Validerungsoptionen]
 
 *7) Syntaktische Validierung – nicht valide*
 
 [.bordered]
-image::../images/validator/Validierung_syntaktisch-nicht-valide.png[Validerung syntaktisch valide]
+image::validator/Validierung_syntaktisch-nicht-valide.png[Validerung syntaktisch valide]
 
 Wenn die syntaktische Validierung nicht valide ist, werden die semantische und die geometrische Validierung nicht durchgeführt und es ist auch keine Kartenvorschau vorhanden.
 
 [.bordered]
-image::../images/validator/Validierung_syntaktisch-nicht-valide-andere.png[Validerung syntaktisch valide]
+image::validator/Validierung_syntaktisch-nicht-valide-andere.png[Validerung syntaktisch valide]
 
 [.bordered]
-image::../images/validator/Kartenvorschau-nicht-verfuegbar.png[Kartenvorschau nicht verfügbar]
+image::validator/Kartenvorschau-nicht-verfuegbar.png[Kartenvorschau nicht verfügbar]
 
 ====== Der Validierungsbericht
 
 [.bordered]
-image::../images/validator/Validierungsbericht_download.png[Validierungsbericht Download]
+image::validator/Validierungsbericht_download.png[Validierungsbericht Download]
 
 Der Validierungsbericht kann in den Formaten:
 
@@ -233,12 +233,12 @@ Alle Ergebnisdateien, selektierte Reports und Geometriefehler,  werden in einer 
 
 ====== Kartenvorschau
 
-Über den Button image:../images/validator/BT_KartenvorschauOeffnen.png[] wechseln Sie zur Kartenansicht des Plans. Hier kann eine visuelle Überprüfung des Plans vorgenommen werden.
+Über den Button image:validator/BT_KartenvorschauOeffnen.png[] wechseln Sie zur Kartenansicht des Plans. Hier kann eine visuelle Überprüfung des Plans vorgenommen werden.
 
 Der Plan wird zentriert in der Kartenvorschau angezeigt.
 
 [.bordered]
-image::../images/validator/Kartenvorschau.png[]
+image::validator/Kartenvorschau.png[]
 
 [NOTE]
 ====
@@ -251,6 +251,6 @@ Angehängte Rasterpläne werden beispielsweise nicht dargestellt.
 
 ====== Navigation:
 
-Mit image:../images/validator/BT_Zurueck.png[] können Sie die Validierungsoptionen verändern.
+Mit image:validator/BT_Zurueck.png[] können Sie die Validierungsoptionen verändern.
 
-Mit image:../images/validator/BT_WeiterenPlan.png[]  kehren Sie zur Startseite zurück und können einen neuen oder geänderten Plan hochladen.
+Mit image:validator/BT_WeiterenPlan.png[]  kehren Sie zur Startseite zurück und können einen neuen oder geänderten Plan hochladen.

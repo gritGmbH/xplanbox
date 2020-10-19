@@ -117,7 +117,7 @@ public class UpdaterFromPre1_0To1_0 extends AbstractUpdater {
             conn.commit();
             LOG.info( "Update of xplan3 data finished!" );
         } catch ( SQLException e ) {
-            LOG.error( "An exception occured during update of the xplan3 data", e );
+            LOG.error( "An exception occurred during update of the xplan3 data", e );
             rollback( conn );
         } finally {
             closeQuietly( stmt );

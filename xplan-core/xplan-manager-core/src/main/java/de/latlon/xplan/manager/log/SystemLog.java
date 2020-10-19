@@ -74,7 +74,7 @@ public class SystemLog {
             Transformer transformer = transformerFactory.newTransformer();
             LOG.info( "    - " + transformer.getClass() );
         } catch ( TransformerConfigurationException e ) {
-            LOG.warn( "An error occured during creating a transformer instance, this may cause some "
+            LOG.warn( "An error occurred during creating a transformer instance, this may cause some "
                       + "problems during execution of the CLI." );
         }
     }

@@ -35,19 +35,20 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.edit;
 
-import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
+import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.ChangeType;
 import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
+import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
-import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.Text;
+import de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType;
 import de.latlon.xplan.manager.web.shared.edit.ValidityPeriod;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -64,6 +65,7 @@ import org.deegree.gml.reference.FeatureReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.namespace.QName;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -74,9 +76,9 @@ import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.getByCode;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.LEGISLATION_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSPLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
 
 /**
  * Factory to parse {@link XPlanToEdit}.
@@ -93,9 +95,9 @@ public class XPlanToEditFactory {
      * Parses an {@link XPlanToEdit} from the passed {@link FeatureCollection}.
      *
      * @param xPlan
-     *                 used to extract some metadata, may be <code>null</code>
+     *                         used to extract some metadata, may be <code>null</code>
      * @param featureCollection
-     *                 to parse the editable values from, never <code>null</code>
+     *                         to parse the editable values from, never <code>null</code>
      * @return the xPlanToEdit, never <code>null</code>
      */
     public XPlanToEdit createXPlanToEdit( XPlan xPlan, FeatureCollection featureCollection ) {
@@ -125,7 +127,7 @@ public class XPlanToEditFactory {
     }
 
     private void parseBPPlan( Feature feature, XPlanToEdit xPlanToEdit ) {
-        LOG.debug( "Parse propertiese from BP_Plan" );
+        LOG.debug( "Parse properties from BP_Plan" );
         BaseData baseData = xPlanToEdit.getBaseData();
         for ( Property property : feature.getProperties() ) {
             String propertyName = property.getName().getLocalPart();
@@ -153,11 +155,11 @@ public class XPlanToEditFactory {
             } else if ( "wurdeGeaendertVon".equals( propertyName ) ) {
                 parseChange( property, xPlanToEdit, CHANGED_BY );
             } else if ( "refBegruendung".equals( propertyName ) ) {
-                parseReference( property, xPlanToEdit, REASON );
+                parseReference( property, xPlanToEdit, BEGRUENDUNG );
             } else if ( "refRechtsplan".equals( propertyName ) ) {
-                parseReference( property, xPlanToEdit, LEGISLATION_PLAN );
+                parseReference( property, xPlanToEdit, RECHTSPLAN );
             } else if ( "refGruenordnungsplan".equals( propertyName ) ) {
-                parseReference( property, xPlanToEdit, GREEN_STRUCTURES_PLAN );
+                parseReference( property, xPlanToEdit, GRUENORDNUNGSPLAN );
             } else if ( "externeReferenz".equals( propertyName ) ) {
                 parseExterneReference( property, xPlanToEdit );
             } else if ( "texte".equals( propertyName ) ) {
@@ -167,13 +169,22 @@ public class XPlanToEditFactory {
     }
 
     private void parseBPBereich( Feature feature, XPlanToEdit xPlanToEdit ) {
-        LOG.debug( "Parse propertiese from BP_Plan" );
+        LOG.debug( "Parse properties from BP_Bereich" );
         for ( Property property : feature.getProperties() ) {
             String propertyName = property.getName().getLocalPart();
             if ( "rasterBasis".equals( propertyName ) ) {
                 parseRasterBasis( property, xPlanToEdit );
+            } else if ( "refScan".equals( propertyName ) ) {
+                parseRasterBasisRefScan( xPlanToEdit, property );
             }
         }
+    }
+
+    private void parseRasterBasisRefScan( XPlanToEdit xPlanToEdit, Property property ) {
+        RasterBasis rasterBasis = new RasterBasis();
+        RasterReference rasterReference = parseRasterReference( property, SCAN );
+        rasterBasis.addRasterReference( rasterReference );
+        xPlanToEdit.setRasterBasis( rasterBasis );
     }
 
     private void parseRasterBasis( Property property, XPlanToEdit xPlanToEdit ) {
@@ -271,6 +282,8 @@ public class XPlanToEditFactory {
                     text.setText( asString( propValue ) );
                 } else if ( "refText".equals( propName ) ) {
                     parseReference( prop.getChildren(), text );
+                } else if ( "rechtscharakter".equals( propName ) ) {
+                    text.setRechtscharakter( TextRechtscharacterType.fromCode( asInteger( propValue ) ) );
                 }
             }
             xPlanToEdit.addText( text );
@@ -310,6 +323,12 @@ public class XPlanToEditFactory {
         }
     }
 
+    private void parseExterneReference( Property property, XPlanToEdit xPlanToEdit ) {
+        ReferenceType referenceType = detectType( property );
+        if ( referenceType != null )
+            parseReference( property, xPlanToEdit, referenceType );
+    }
+
     private void parseReference( Property property, XPlanToEdit xPlanToEdit, ReferenceType referenceType ) {
         List<TypedObjectNode> children = property.getChildren();
         if ( children.size() == 1 && children.get( 0 ) instanceof GenericXMLElement ) {
@@ -328,10 +347,50 @@ public class XPlanToEditFactory {
         }
     }
 
-    private void parseExterneReference( Property property, XPlanToEdit xPlanToEdit ) {
-        ReferenceType referenceType = detectType( property );
-        if ( referenceType != null )
-            parseReference( property, xPlanToEdit, referenceType );
+    private String parseReference( List<TypedObjectNode> children, AbstractReference reference ) {
+        if ( children.get( 0 ) instanceof GenericXMLElement ) {
+            GenericXMLElement genericXmlElement = (GenericXMLElement) children.get( 0 );
+            parseReferenceProperties( genericXmlElement.getChildren(), reference );
+        } else if ( children.get( 0 ) instanceof FeatureReference ) {
+            Feature referencedObject = ( (FeatureReference) children.get( 0 ) ).getReferencedObject();
+            parseReferenceProperties( referencedObject.getProperties(), reference );
+            return referencedObject.getId();
+        }
+        return null;
+    }
+
+    private void parseReferenceProperties( List<? extends TypedObjectNode> children, AbstractReference reference ) {
+        for ( TypedObjectNode child : children ) {
+            if ( child instanceof GenericXMLElement ) {
+                GenericXMLElement childProperty = (GenericXMLElement) child;
+                parseReferenceProperty( reference, childProperty.getName(), childProperty.getValue() );
+            } else if ( child instanceof SimpleProperty ) {
+                SimpleProperty childProperty = (SimpleProperty) child;
+                parseReferenceProperty( reference, childProperty.getName(), childProperty.getValue() );
+            }
+        }
+    }
+
+    private void parseReferenceProperty( AbstractReference reference, QName name, PrimitiveValue value ) {
+        if ( "georefURL".equals( name.getLocalPart() ) ) {
+            reference.setGeoReference( asString( value ) );
+        } else if ( "georefMimeType".equals( name.getLocalPart() ) ) {
+            reference.setGeorefMimeType( getByCode( asString( value ) ) );
+        } else if ( "art".equals( name.getLocalPart() ) ) {
+            reference.setArt( ExterneReferenzArt.getByCode( asString( value ) ) );
+        } else if ( "informationssystemURL".equals( name.getLocalPart() ) ) {
+            reference.setInformationssystemURL( asString( value ) );
+        } else if ( "referenzName".equals( name.getLocalPart() ) ) {
+            reference.setReferenzName( asString( value ) );
+        } else if ( "referenzURL".equals( name.getLocalPart() ) ) {
+            reference.setReference( asString( value ) );
+        } else if ( "referenzMimeType".equals( name.getLocalPart() ) ) {
+            reference.setReferenzMimeType( getByCode( asString( value ) ) );
+        } else if ( "beschreibung".equals( name.getLocalPart() ) ) {
+            reference.setBeschreibung( asString( value ) );
+        } else if ( "datum".equals( name.getLocalPart() ) ) {
+            reference.setDatum( asDate( value ) );
+        }
     }
 
     private ReferenceType detectType( Property property ) {
@@ -352,43 +411,11 @@ public class XPlanToEditFactory {
                 GenericXMLElement childProperty = (GenericXMLElement) child;
                 if ( "typ".equals( childProperty.getName().getLocalPart() ) ) {
                     String type = asString( childProperty.getValue() );
-                    return ReferenceType.getByXPlan50Type( type );
+                    return ReferenceType.getBySpezExterneReferenceType( type );
                 }
             }
         }
         return null;
-    }
-
-    private String parseReference( List<TypedObjectNode> children, AbstractReference reference ) {
-        if ( children.get( 0 ) instanceof GenericXMLElement ) {
-            GenericXMLElement genericXmlElement = (GenericXMLElement) children.get( 0 );
-            parseReferenceProperties( genericXmlElement.getChildren(), reference );
-        } else if ( children.get( 0 ) instanceof FeatureReference ) {
-            Feature referencedObject = ( (FeatureReference) children.get( 0 ) ).getReferencedObject();
-            parseReferenceProperties( referencedObject.getProperties(), reference );
-            return referencedObject.getId();
-        }
-        return null;
-    }
-
-    private void parseReferenceProperties( List<? extends TypedObjectNode> children, AbstractReference reference ) {
-        for ( TypedObjectNode child : children ) {
-            if ( child instanceof GenericXMLElement ) {
-                GenericXMLElement childProperty = (GenericXMLElement) child;
-                if ( "referenzURL".equals( childProperty.getName().getLocalPart() ) ) {
-                    reference.setReference( asString( childProperty.getValue() ) );
-                } else if ( "georefURL".equals( childProperty.getName().getLocalPart() ) ) {
-                    reference.setGeoReference( asString( childProperty.getValue() ) );
-                }
-            } else if ( child instanceof SimpleProperty ) {
-                SimpleProperty childProperty = (SimpleProperty) child;
-                if ( "referenzURL".equals( childProperty.getName().getLocalPart() ) ) {
-                    reference.setReference( asString( childProperty.getValue() ) );
-                } else if ( "georefURL".equals( childProperty.getName().getLocalPart() ) ) {
-                    reference.setGeoReference( asString( childProperty.getValue() ) );
-                }
-            }
-        }
     }
 
     private String asString( TypedObjectNode value ) {
@@ -416,7 +443,7 @@ public class XPlanToEditFactory {
         if ( value instanceof PrimitiveValue ) {
             BaseType baseType = ( (PrimitiveValue) value ).getType().getBaseType();
             if ( BaseType.TIME.equals( baseType ) || BaseType.DATE.equals( baseType ) || BaseType.DATE_TIME.equals(
-                            baseType ) )
+                                    baseType ) )
                 return ( (Temporal) ( (PrimitiveValue) value ).getValue() ).getDate();
         }
         return null;

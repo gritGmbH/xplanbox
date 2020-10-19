@@ -16,11 +16,11 @@ Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 * <<xplaninspirepluwfs, XPlanInspirePluWFS>>
 * <<xplanresources, XPlanRessourcen>>
 
-image:../images/Architektur_xPlanBox_einfach.png[Einfache Darstellung]
+image::Architektur_xPlanBox_einfach.png[Einfache Darstellung]
 
 Abbildung 1: Einfache Datenhaltung
 
-image:../images/Architektur_xPlanBox_komplex.png[Komplexe Darstellung]
+image::Architektur_xPlanBox_komplex.png[Komplexe Darstellung]
 
 Abbildung 2: Separate Datenhaltung
 
@@ -108,25 +108,25 @@ basierender Dienst zur Abfrage von Vektordaten.
 === XPlanSynWFS
 
 Der XPlanSynWFS dient der Abbildung des synthetisierten
-XPlanung GML Anwendungsschemas (XPlanSynGML). Dieses stellt eine
+XPlanGML-Anwendungsschemas (XPlanSynGML). Dieses stellt eine
 vereinfachte und zusammenfassende Form der verschiedenen XPlanGML
 Versionen dar.
 
 [[xplaninspirepluwms]]
 === XPlanInspirePluWMS
 
-Der XPlanInspirePluWms ist ein INSPIRE konformer View Service für die
+Der XPlanInspirePluWMS ist ein INSPIRE View Service für die
 Bereitstellung importierter Pläne im INSPIRE Datenthema Planned Land Use (PLU).
 
 [[xplaninspirepluwfs]]
 === XPlanInspirePluWFS
 
-Der XPlanInspirePluWms ist ein INSPIRE konformer Download Service für die
+Der XPlanInspirePluWFS ist ein INSPIRE Download Service für die
 Bereitstellung importierter Pläne im INSPIRE Datenthema Planned Land Use (PLU).
 
 [[xplanresources]]
 === XPlanRessourcen
 
 Die optionale Komponente XPlanRessourcen bietet eine
-Einstiegsseite zu den einzelnen Komponenten der XPlanBox und stellt
-verschiedene Dokumente bereit.
+Einstiegsseite zu den einzelnen Komponenten der xPlanBox und stellt
+Testdaten sowie die Dokumente mit den Konformitätsbedingungen des Standards XPlanung bereit.

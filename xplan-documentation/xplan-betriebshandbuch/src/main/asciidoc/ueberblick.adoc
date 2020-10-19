@@ -22,7 +22,7 @@ JRE 1.8]) unterstützt.
 NOTE: Empfohlen wird Oracle JDK 1.8_202+.
 
 NOTE: Empfohlen wird die Nutzung eines der folgenden Betriebssysteme: Debian 10 (Buster),
-Ubuntu 19.04 (Disco Dingo), SLES 12 SP5, CentOS 7.x, Windows Server 2012 R2.
+Ubuntu 20.04 (Focal Fossa).
 
 NOTE: Das Gebietsschema des Betriebssystems ("Locale") sollte auf deutsch
 konfiguriert sein, da einzelne Fehlerbeschreibungen in dieser Sprache
@@ -53,7 +53,7 @@ NOTE: Empfohlen wird PostgreSQL 11+ mit PostGIS 2.5+.
 
 === GDAL
 
-Optional kann die Installation von GDAL erforderlich sein. Liegen Teil-Vektorielle Pläne mit Rasterdaten in anderen Formaten als GeoTiff vor, die mit der xPlanBox verwaltet werden sollen, ist der Einsatz von GDAL erforderlich. Liegen die Rasterdaten dagegen nur im GeoTiff-Format vor, wird GDAL nicht benötig.
+Optional kann die Installation der https://gdal.org/[GDAL-Bibliothek] erforderlich sein. Liegen Teil-Vektorielle Pläne mit Rasterdaten in anderen Formaten als GeoTiff vor, die mit der xPlanBox verwaltet werden sollen, ist der Einsatz von GDAL erforderlich. Liegen die Rasterdaten dagegen nur im GeoTiff-Format vor, wird GDAL nicht benötigt.
 Weitere Informationen zur Installation von GDAL befinden sich im Abschnitt <<installation-gdal>>.
 
 === HALE CLI
@@ -102,9 +102,8 @@ notwendig, u.a. um die Vorgaben der INSPIRE-Richtlinien zu erfüllen.
 [[client]]
 ==== Client
 
-* CPU: 1 CPU mit mindestens 2,0-GHz-Prozessor
+* CPU: 2 CPU mit mindestens 2,0-GHz-Prozessor
 * Arbeitsspeicher: 4 GB RAM
 
 NOTE: Weitere Informationen zu den Systemvoraussetzungen bei den unterstützten
-Browsern: Microsoft Internet Explorer (10, 11), Mozilla Firefox: 36+,
-Google Chrome: 40+
+Browsern: Microsoft Internet Explorer (11.0+), Microsoft Edge (20+), Mozilla Firefox (80.0+), Google Chrome (85.0+)

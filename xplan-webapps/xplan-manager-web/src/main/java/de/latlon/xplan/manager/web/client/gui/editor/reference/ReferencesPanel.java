@@ -37,8 +37,8 @@ package de.latlon.xplan.manager.web.client.gui.editor.reference;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GREEN_STRUCTURES_PLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.REASON;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
 
 import java.util.List;
 
@@ -176,13 +176,13 @@ public class ReferencesPanel extends AbstractEditorSubPanelWithTable<Reference> 
     }
 
     private boolean validateNewReferenceInContextOfAll( Reference newReference, List<Reference> references ) {
-        if ( GREEN_STRUCTURES_PLAN.equals( newReference.getType() )
-             && alreadyExists( references, GREEN_STRUCTURES_PLAN ) ) {
+        if ( GRUENORDNUNGSPLAN.equals( newReference.getType() )
+             && alreadyExists( references, GRUENORDNUNGSPLAN ) ) {
             Window.alert( MESSAGES.editCaptionReferencesGreenStructursReferenceAlreadyExists() );
             return false;
         }
-        if ( XPLAN_3.equals( version ) && REASON.equals( newReference.getType() )
-             && alreadyExists( references, REASON ) ) {
+        if ( XPLAN_3.equals( version ) && BEGRUENDUNG.equals( newReference.getType() )
+             && alreadyExists( references, BEGRUENDUNG ) ) {
             Window.alert( MESSAGES.editCaptionReferencesReasonReferenceAlreadyExists() );
             return false;
         }

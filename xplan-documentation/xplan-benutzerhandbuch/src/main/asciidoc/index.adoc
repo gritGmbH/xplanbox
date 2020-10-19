@@ -5,6 +5,8 @@
 :numbered:
 :toc-title: Inhaltsverzeichnis
 :docinfo: shared,private-head
+:imagesdir: images
+:title-logo-image: images/logo_latlon.png
 
 = Benutzerhandbuch für die xPlanBox
 
@@ -14,9 +16,9 @@ include::praeambel.adoc[]
 
 include::ueberblick.adoc[]
 
-include::XPlanManager.adoc[]
-
 include::XPlanValidator.adoc[]
+
+include::XPlanManager.adoc[]
 
 include::XPlanTransform_CLI.adoc[]
 

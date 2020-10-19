@@ -81,7 +81,7 @@ Raster-Operationen:
 [[xplanmanager-cli-auflistung]]
 ===== Auflistung
 
-Der _-list_ Parameter gibt die Liste der geladenen Pläne aus.
+Der _-list_ Parameter gibt die Liste der geladenen Pläne aus. Durch die Angabe der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ kann der Pfad zum Workspace der xPlanBox gesetzt werden.
 
 Aufruf:
 
@@ -99,7 +99,8 @@ Id: 8, Version: XPLAN_3, Typ: BP_Plan, Name: Bebauungsplan 2135, Nummer: 2135, G
 Id: 9, Version: XPLAN_3, Typ: BP_Plan, Name: Bebauungsplan LA 22, Nummer: LA 22, GKZ: 1234567, Features: 146, Importiert: 2010-02-18 18:01:41.563
 Id: 10, Version: XPLAN_3, Typ: RP_Plan, Name: Regionalplanbeispiel Bereich Siedlungsstruktur, Nummer: Siedlungsstruktur 1, Features: 282, Importiert: 2010-02-18 18:02:25.616
 Id: 11, Version: XPLAN_3, Typ: LP_Plan, Name: Landschaftsplan 16 Gemeinde XYZ", Nummer: 16, Features: 1659, Importiert: 2010-02-18 18:03:22.091
-Id: 12, Version: XPLAN_3, Typ: BP_Plan, Name: Bebauungsplan LA 22, Nummer: LA 22, GKZ: 02000000, Features: 1350, Importiert: 2010-02-18 21:16:06.753 Anzahl Pläne: 11
+Id: 12, Version: XPLAN_3, Typ: BP_Plan, Name: Bebauungsplan LA 22, Nummer: LA 22, GKZ: 02000000, Features: 1350, Importiert: 2010-02-18 21:16:06.753
+Anzahl Pläne: 11
 ----
 
 [[import]]
@@ -163,7 +164,7 @@ XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --crs EPSG:31467
 
 _–workspace_
 
-Sind mehrere Workspac Verzeichnisse vorhanden, so kann durch den
+Sind mehrere Workspace Verzeichnisse vorhanden, so kann durch den
 Zusatzparameter _–workspace_ das entsprechende Verzeichnis übergeben
 werden.
 
