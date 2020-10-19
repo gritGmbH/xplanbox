@@ -92,6 +92,8 @@ public class ReportUtils {
     }
 
     public static String asLabel( XPlanVersion version ) {
+        if ( version == null )
+            return "unbekannt";
         switch ( version ) {
         case XPLAN_3:
             return "3";
