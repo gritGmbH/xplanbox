@@ -166,7 +166,6 @@
     <dependency>
       <groupId>jakarta.validation</groupId>
       <artifactId>jakarta.validation-api</artifactId>
-      <scope>provided</scope>
     </dependency>
     <!-- spring -->
     <dependency>
