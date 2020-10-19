@@ -25,6 +25,13 @@
             </goals>
           </execution>
         </executions>
+        <dependencies>
+          <dependency>
+          <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
+          <version>1.4.01</version>
+        </dependency>
+        </dependencies>
         <configuration>
           <sources>
             <source>${project.basedir}/src/main/resources/META-INF/schemas/services/planwerkwms/1.0/planwerk_configuration.xsd</source>
