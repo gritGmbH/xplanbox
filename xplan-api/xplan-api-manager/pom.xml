@@ -14,7 +14,7 @@
   <properties>
     <base.package.name>de.latlon.xplanbox</base.package.name>
     <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
-    <javax.ws.rs-api.version>2.1</javax.ws.rs-api.version>
+    <jakarta.ws.rs-api.version>2.1.2</jakarta.ws.rs-api.version>
     <jersey.version>2.31</jersey.version>
     <swagger.version>2.1.4</swagger.version>
     <swagger-ui.version>3.17.0</swagger-ui.version>
@@ -90,9 +90,9 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>javax.ws.rs</groupId>
-      <artifactId>javax.ws.rs-api</artifactId>
-      <version>${javax.ws.rs-api.version}</version>
+      <groupId>jakarta.ws.rs</groupId>
+      <artifactId>jakarta.ws.rs-api</artifactId>
+      <version>${jakarta.ws.rs-api.version}</version>
     </dependency>
     <!-- Jersey -->
     <dependency>
@@ -164,9 +164,8 @@
     </dependency>
     <!-- Bean Validation API support -->
     <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <version>1.1.0.Final</version>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
       <scope>provided</scope>
     </dependency>
     <!-- spring -->
