@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.commons;
 
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
@@ -11,10 +12,13 @@ import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultG
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSemantisch;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSemantischRules;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSyntaktisch;
+import de.latlon.xplanbox.api.commons.v1.model.VersionEnum;
 
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static de.latlon.xplanbox.api.commons.v1.model.VersionEnum.fromXPlanVersion;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -45,7 +49,8 @@ public class ValidationReportBuilder {
     public ValidationReport build() {
         ValidationReport validationReport = new ValidationReport();
         if ( validatorReport != null ) {
-            validationReport.date( validatorReport.getDate() ).name( validatorReport.getValidationName() ).valid(
+            validationReport.date( validatorReport.getDate() ).name( validatorReport.getValidationName() ).version(
+                                    fromXPlanVersion( validatorReport.getXPlanVersion() ) ).valid(
                                     validatorReport.isReportValid() ).filename( filename ).externalReferences(
                                     externalReferences() ).wmsUrl( wmsUrl ).rulesMetadata(
                                     rulesMetadata() ).validationResult( createValidationResult() );

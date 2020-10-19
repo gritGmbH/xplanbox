@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.1.1
+  version: 0.1.2
 servers:
   - url: https://xplanbox.lat-lon.de/xvalidator/api/v1
   - url: http://xplanbox.lat-lon.de/xvalidator/api/v1
@@ -173,6 +173,10 @@ components:
         name:
           type: string
           example: xplan52-test
+        version:
+          type: string
+          example: "XPLAN_51"
+          enum: [ XPLAN_3,XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52 ]
         date:
           type: string
           format: date-time
