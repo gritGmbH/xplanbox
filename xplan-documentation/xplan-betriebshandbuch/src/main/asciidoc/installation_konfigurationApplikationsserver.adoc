@@ -13,12 +13,13 @@ Im Anwendungs-Tomcat muss folgende Konfigurationen vorgenommen werden:
 
 Für den XPlanManagerWeb muss die Variable _XPLANBOX_CONFIG_ als Java
 Property gesetzt werden. Das mit Hilfe dieser Variable referenzierte
-Verzeichnis muss die Konfiguration des XPlanManagerWeb enthalten (es
-handelt sich um die Dateien managerConfiguration.properties und
-managerWebConfiguration.properties). Wurde der Anleitung in Abschnitt
-<<anwendung-installieren>> gefolgt, befindet sich das
-Verzeichnis mit dem Namen _manager-configuration_ im Verzeichnis
-_.deegree_ im Home-Verzeichnis des Nutzers.
+Verzeichnis muss die Konfiguration des XPlanManagerWeb und XPlanValidatorWeb enthalten (es
+handelt sich um die Dateien managerConfiguration.properties,
+managerWebConfiguration.properties und validatorConfiguration.properties).
+Wurde der Anleitung in Abschnitt <<anwendung-installieren>> gefolgt, befindet sich das
+Verzeichnis mit dem Namen _xplan-manager-config_ im Verzeichnis
+_.deegree_ im Home-Verzeichnis des Nutzers. Wird ausschließlich der XPlanValidatorWeb installiert,
+heißt das Verzeichnis _xplan-validator-config_.
 
 [[anwendungs-tomcat-linux]]
 ===== Linux
