@@ -29,7 +29,7 @@ include::kategorien.adoc[]
 
 include::sortierung.adoc[]
 
-include::datenhaltung.adoc[]
+//include::datenhaltung.adoc[]
 
 include::workspacereload.adoc[]
 
