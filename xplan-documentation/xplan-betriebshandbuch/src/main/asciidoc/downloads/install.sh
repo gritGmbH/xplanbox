@@ -34,7 +34,8 @@ function cleanconfig () {
   rm -rf ${DEEGEE_DIR}/xplan-wfs-workspace
   rm -rf ${DEEGEE_DIR}/xplansyn-wfs-workspace
   rm -rf ${DEEGEE_DIR}/xplansyn-wms-workspace
-  rm -rf ${DEEGEE_DIR}/manager-configuration
+  rm -rf ${DEEGEE_DIR}/xplan-manager-config
+  rm -rf ${DEEGEE_DIR}/xplan-validator-config
 }
 
 # Main function to be called in execution

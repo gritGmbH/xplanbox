@@ -31,10 +31,10 @@ _setenv.sh_ angelegt werden.
 In dieser Datei erfolgt das Setzen der Variable _XPLANBOX_CONFIG_ durch das Hinzufügen von:
 
 ----
-export JAVA_OPTS=’-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/manager-configuration’
+export JAVA_OPTS=’-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/xplan-manager-config’
 ----
 
-Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, muss die Variable *-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/manager-configuration* in die bestehenden JAVA_OPTS integriert werden.
+Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, muss die Variable *-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/xplan-manager-config* in die bestehenden JAVA_OPTS integriert werden.
 
 [[anwendungs-tomcat-windows]]
 ===== Windows
@@ -43,10 +43,10 @@ Für das Setzen der Variable _XPLANBOX_CONFIG_ sowie muss zunächst eine neue Da
 im Verzeichnis _<tomcat-root>/bin_ angelegt werden. Dort wird die Variable wie folgt hinzugefügt:
 
 ----
-export JAVA_OPTS=’-DXPLANBOX_CONFIG=C:\.deegree\manager-configuration’
+export JAVA_OPTS=’-DXPLANBOX_CONFIG=C:\.deegree\xplan-manager-config’
 ----
 
-Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, muss die Variable *-DXPLANBOX_CONFIG=C:\.deegree\manager-configuration* in die bestehenden JAVA_OPTS integriert werden.
+Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, muss die Variable *-DXPLANBOX_CONFIG=C:\.deegree\xplan-manager-config* in die bestehenden JAVA_OPTS integriert werden.
 
 NOTE: Der Anwendungs-Tomcat muss mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch setzen der Umgebungsvariable: _export JAVA_OPTS=’-Xmx4096m’_ erfolgen.
