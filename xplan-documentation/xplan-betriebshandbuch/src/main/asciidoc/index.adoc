@@ -19,11 +19,11 @@ include::ueberblick.adoc[]
 
 include::architektur.adoc[]
 
-include::installation.adoc[]
+include::installation/main.adoc[]
 
-include::installation_docker.adoc[]
+include::installation/installation_docker.adoc[]
 
-include::konfiguration-manager.adoc[]
+include::konfiguration/manager/main.adoc[]
 
 include::konfiguration/validator/main.adoc[]
 
