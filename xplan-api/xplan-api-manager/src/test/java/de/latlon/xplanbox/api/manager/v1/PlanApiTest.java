@@ -3,6 +3,7 @@ package de.latlon.xplanbox.api.manager.v1;
 import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
 import de.latlon.xplanbox.api.manager.config.ApplicationContext;
 import de.latlon.xplanbox.api.manager.config.TestContext;
+import de.latlon.xplanbox.api.manager.v1.model.PlanStatusEnum;
 import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
@@ -24,6 +25,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP_COMPRESSED;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
+import static de.latlon.xplanbox.api.manager.v1.model.PlanStatusEnum.FESTGESTELLT;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
@@ -120,6 +122,7 @@ public class PlanApiTest extends JerseyTest {
 
         assertThat( responseBody, isJson() );
         assertThat( responseBody, hasJsonPath( "$.version", is( XPLAN_41.name() ) ) );
+        assertThat( responseBody, hasJsonPath( "$.planStatus", is( FESTGESTELLT.name() ) ) );
     }
 
     @Test
@@ -131,6 +134,7 @@ public class PlanApiTest extends JerseyTest {
 
         String responseBody = response.readEntity( String.class );
         assertThat( the( responseBody ), hasXPath( "/planInfo/version", is( XPLAN_41.name() ) ) );
+        assertThat( the( responseBody ), hasXPath( "/planInfo/planStatus", is( FESTGESTELLT.name() ) ) );
     }
 
     @Test

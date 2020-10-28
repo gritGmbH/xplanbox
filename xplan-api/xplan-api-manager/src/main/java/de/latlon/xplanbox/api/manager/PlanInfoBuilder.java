@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.manager;
 
+import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import de.latlon.xplanbox.api.commons.v1.model.VersionEnum;
@@ -8,6 +9,7 @@ import de.latlon.xplanbox.api.manager.v1.model.Link;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfoBbox;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfoXplanModelData;
+import de.latlon.xplanbox.api.manager.v1.model.PlanStatusEnum;
 import org.apache.http.client.utils.URIBuilder;
 import org.jfree.util.Log;
 
@@ -53,7 +55,7 @@ public class PlanInfoBuilder {
     public PlanInfo build() {
         return new PlanInfo().id( Integer.parseInt( xPlan.getId() ) ).importDate(
                                 xPlan.getImportDate() ).inspirePublished( xPlan.isInspirePublished() ).raster(
-                                xPlan.isRaster() ).version( version() ).bbox( bbox() ).links( links() ).type(
+                                xPlan.isRaster() ).version( version() ).planStatus( planStatus() ).bbox( bbox() ).links( links() ).type(
                                 xPlan.getType() ).xplanModelData( xPlanModelData() );
     }
 
@@ -62,6 +64,14 @@ public class PlanInfoBuilder {
                                 xPlan.getInternalId() ).inkrafttretensDatum( xPlan.getReleaseDate() ).rechtsstand(
                                 xPlan.getLegislationStatus() ).ags( xPlan.getGkz() ).gemeindeName(
                                 xPlan.getDistrict() );
+    }
+
+    private PlanStatusEnum planStatus() {
+        if(xPlan.getXplanMetadata() != null && xPlan.getXplanMetadata().getPlanStatus() != null){
+            PlanStatus planStatus = xPlan.getXplanMetadata().getPlanStatus();
+            return PlanStatusEnum.valueOf( planStatus.name() );
+        }
+        return null;
     }
 
     private VersionEnum version() {

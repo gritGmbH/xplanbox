@@ -24,6 +24,8 @@ public class PlanInfo {
 
     private @Valid VersionEnum version;
 
+    private @Valid PlanStatusEnum planStatus;
+
     private @Valid Boolean raster;
 
     private @Valid Date importDate;
@@ -88,6 +90,24 @@ public class PlanInfo {
 
     public void setVersion( VersionEnum version ) {
         this.version = version;
+    }
+
+    /**
+     *
+     **/
+    public PlanInfo planStatus( PlanStatusEnum planStatus ) {
+        this.planStatus = planStatus;
+        return this;
+    }
+
+    @Schema(example = "Festgestellt")
+    @JsonProperty("planStatus")
+    public PlanStatusEnum getplanStatus() {
+        return planStatus;
+    }
+
+    public void setplanStatus( PlanStatusEnum planStatus ) {
+        this.planStatus = planStatus;
     }
 
     /**

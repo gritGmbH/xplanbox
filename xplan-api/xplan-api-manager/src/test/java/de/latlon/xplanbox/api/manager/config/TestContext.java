@@ -10,6 +10,8 @@ import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
+import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
@@ -43,6 +45,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyString;
@@ -117,6 +120,7 @@ public class TestContext {
                              ManagerConfiguration managerConfiguration ) throws Exception {
         XPlanDao xplanDao = Mockito.mock( XPlanDao.class );
         XPlan mockPlan = new XPlan("bplan_41", "123", "B_PLAN", "XPLAN_41");
+        mockPlan.setXplanMetadata( new AdditionalPlanData( FESTGESTELLT ) );
         when(xplanDao.getXPlanById(1)).thenReturn(mockPlan);
         when(xplanDao.getXPlanById(123)).thenReturn(mockPlan);
         List<XPlan> mockList = new ArrayList<>();

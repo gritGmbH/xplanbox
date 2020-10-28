@@ -337,6 +337,10 @@ components:
           type: string
           example: "XPLAN_51"
           enum: [XPLAN_3,XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52]
+        planStatus:
+          type: string
+          example: "FESTGESTELLT"
+          enum: [IN_AUFSTELLUNG,FESTGESTELLT,ARCHIVIERT]
         raster:
           type: boolean
           example: true
