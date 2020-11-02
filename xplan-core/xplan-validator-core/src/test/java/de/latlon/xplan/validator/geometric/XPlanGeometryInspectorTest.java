@@ -7,6 +7,7 @@ import org.deegree.geometry.primitive.Polygon;
 import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.patches.PolygonPatch;
 import org.deegree.gml.GMLInputFactory;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -62,6 +63,31 @@ public class XPlanGeometryInspectorTest {
         assertThat( badGeometries.size(), is( 1 ) );
         String id = badGeometries.get( 0 ).getGeometry().getId();
         assertThat( id, is( nullValue() ) );
+    }
+
+    @Test
+    public void testInspect_MultiSurface()
+                            throws Exception {
+        Geometry geometryToInspect = readGeometry( "multiSurface.gml" );
+        XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+        inspector.inspect( geometryToInspect );
+
+        List<BadGeometry> badGeometries = inspector.getBadGeometries();
+        assertThat( badGeometries.size(), is( 0 ) );
+    }
+
+    @Ignore("Requires invalid MultiSurface")
+    @Test
+    public void testInspect_InvalidMultiSurface()
+                            throws Exception {
+        Geometry geometryToInspect = readGeometry( "multiSurface-invalid.gml" );
+        XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+        inspector.inspect( geometryToInspect );
+
+        List<BadGeometry> badGeometries = inspector.getBadGeometries();
+        assertThat( badGeometries.size(), is( 1 ) );
+        String id = badGeometries.get( 0 ).getGeometry().getId();
+        assertThat( id, is( "GML_c73710ad-5e75-42ba-9b9c-932427ad5de3" ) );
     }
 
     private Geometry readGeometry( String geometryFile )

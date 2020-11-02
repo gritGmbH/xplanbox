@@ -14,6 +14,10 @@ import org.deegree.geometry.GeometryInspector;
 import org.deegree.geometry.linearization.CurveLinearizer;
 import org.deegree.geometry.linearization.LinearizationCriterion;
 import org.deegree.geometry.linearization.MaxErrorCriterion;
+import org.deegree.geometry.multi.MultiCurve;
+import org.deegree.geometry.multi.MultiGeometry;
+import org.deegree.geometry.multi.MultiPoint;
+import org.deegree.geometry.multi.MultiSurface;
 import org.deegree.geometry.points.Points;
 import org.deegree.geometry.primitive.Curve;
 import org.deegree.geometry.primitive.GeometricPrimitive;
@@ -35,6 +39,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Validiert die aus XPlan-Dokumenten geparsten Geometrien und prüft sie auf topologische Korrektheit / Randbedingungen.
@@ -108,6 +113,10 @@ class XPlanGeometryInspector implements GeometryInspector {
                 inspected = inspect( (GeometricPrimitive) inspected );
                 break;
             }
+            case MULTI_GEOMETRY: {
+                inspected = inspect( (MultiGeometry) inspected );
+                break;
+            }
             case COMPOSITE_GEOMETRY: {
                 String msg = createMessage( String.format( UNSUPPORTED_GEOMETRY_TYPE, "Composites" ) );
                 createError( msg );
@@ -123,6 +132,48 @@ class XPlanGeometryInspector implements GeometryInspector {
         addLastBadGeometry( inspected );
 
         return inspected;
+    }
+
+    private MultiGeometry inspect( MultiGeometry geom )
+                            throws GeometryInspectionException {
+        switch ( geom.getMultiGeometryType() ) {
+        case MULTI_POINT: {
+            return inspect( (MultiPoint) geom );
+        }
+        case MULTI_CURVE: {
+            return inspect( (MultiCurve) geom );
+        }
+        case MULTI_SURFACE: {
+            return inspect( (MultiSurface) geom );
+        }
+        }
+        return geom;
+    }
+
+    private MultiPoint inspect( MultiPoint geom )
+                            throws GeometryInspectionException {
+        List<Point> inspected = geom.stream().map( point -> inspect( point ) ).collect( Collectors.toList() );
+        return new GeometryFactory().createMultiPoint( geom.getId(), geom.getCoordinateSystem(), inspected );
+    }
+
+    private MultiCurve inspect( MultiCurve geom )
+                            throws GeometryInspectionException {
+        List<Curve> inspected = new ArrayList<>();
+        for ( Object curve : geom ) {
+            Curve inspectedCurve = inspect( (Curve) curve );
+            inspected.add( inspectedCurve );
+        }
+        return new GeometryFactory().createMultiCurve( geom.getId(), geom.getCoordinateSystem(), inspected );
+    }
+
+    private MultiSurface inspect( MultiSurface geom )
+                            throws GeometryInspectionException {
+        List<Surface> inspected = new ArrayList<>();
+        for ( Object curve : geom ) {
+            Surface inspectedCurve = inspect( (Surface) curve );
+            inspected.add( inspectedCurve );
+        }
+        return new GeometryFactory().createMultiSurface( geom.getId(), geom.getCoordinateSystem(), inspected );
     }
 
     @Override
@@ -218,6 +269,7 @@ class XPlanGeometryInspector implements GeometryInspector {
                 return new DefaultPolygon( geom.getId(), geom.getCoordinateSystem(), geom.getPrecision(),
                                            inspectedPatch.getExteriorRing(), inspectedPatch.getInteriorRings() );
             }
+            break;
         }
         default:
             String msg = createMessage( String.format( UNSUPPORTED_GEOMETRY_TYPE, geom.getSurfaceType().name() ) );
