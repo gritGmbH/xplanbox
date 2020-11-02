@@ -18,6 +18,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.ALTERNATE;
 import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.PLANWERKWMS;
@@ -101,12 +102,18 @@ public class PlanInfoBuilder {
     }
 
     private URI createSelfRef() {
-        URIBuilder uriBuilder = new URIBuilder( managerApiConfiguration.getApiUrl() );
+        URI apiUrl = managerApiConfiguration.getApiUrl();
+        URIBuilder uriBuilder = new URIBuilder( apiUrl );
+
         List<String> pathSegments = new ArrayList<>();
+        if ( apiUrl.getPath() != null && !apiUrl.getPath().isEmpty() )
+            pathSegments.addAll( Arrays.asList( apiUrl.getPath().split( "/" ) ) );
         pathSegments.addAll( Arrays.asList( ApplicationPathConfig.APP_PATH.split( "/" ) ) );
         pathSegments.add( "plan" );
         pathSegments.add( xPlan.getId() );
-        uriBuilder.setPathSegments( pathSegments );
+        uriBuilder.setPathSegments( pathSegments.stream().filter(
+                                pathSegment -> pathSegment != null && !pathSegment.isEmpty() ).collect(
+                                Collectors.toList() ) );
         try {
             return uriBuilder.build();
         } catch ( URISyntaxException e ) {

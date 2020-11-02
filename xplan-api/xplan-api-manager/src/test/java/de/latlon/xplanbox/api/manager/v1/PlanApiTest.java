@@ -3,7 +3,6 @@ package de.latlon.xplanbox.api.manager.v1;
 import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
 import de.latlon.xplanbox.api.manager.config.ApplicationContext;
 import de.latlon.xplanbox.api.manager.config.TestContext;
-import de.latlon.xplanbox.api.manager.v1.model.PlanStatusEnum;
 import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
@@ -123,6 +122,8 @@ public class PlanApiTest extends JerseyTest {
         assertThat( responseBody, isJson() );
         assertThat( responseBody, hasJsonPath( "$.version", is( XPLAN_41.name() ) ) );
         assertThat( responseBody, hasJsonPath( "$.planStatus", is( FESTGESTELLT.name() ) ) );
+        assertThat( responseBody,
+                    hasJsonPath( "$.links[?(@.rel=='self' && @.href=='http:\\/\\/localhost:8080\\/xplan-api-manager\\/xmanager\\/api\\/v1\\/plan\\/123')]" ) );
     }
 
     @Test
@@ -135,6 +136,8 @@ public class PlanApiTest extends JerseyTest {
         String responseBody = response.readEntity( String.class );
         assertThat( the( responseBody ), hasXPath( "/planInfo/version", is( XPLAN_41.name() ) ) );
         assertThat( the( responseBody ), hasXPath( "/planInfo/planStatus", is( FESTGESTELLT.name() ) ) );
+        assertThat( the( responseBody ), hasXPath( "/planInfo/links[rel='SELF']/href",
+                                                   is( "http://localhost:8080/xplan-api-manager/xmanager/api/v1/plan/123" ) ) );
     }
 
     @Test
