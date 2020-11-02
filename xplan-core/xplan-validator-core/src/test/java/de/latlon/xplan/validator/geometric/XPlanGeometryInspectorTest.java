@@ -54,7 +54,7 @@ public class XPlanGeometryInspectorTest {
     @Test
     public void testInspect_RingWithInvalidGeometryWithout_IdShouldBeAddedAsBadGeometry()
                             throws Exception {
-        Geometry geometryToInspect = ( (Polygon) readGeometry( "selfIntersectingRing.gml" ) ).getExteriorRing();
+        Geometry geometryToInspect =readGeometry( "selfIntersectingRing.gml" );
 
         XPlanGeometryInspector inspector = createInspectorWithMockedStream();
         inspector.inspect( geometryToInspect );
@@ -62,7 +62,7 @@ public class XPlanGeometryInspectorTest {
         List<BadGeometry> badGeometries = inspector.getBadGeometries();
         assertThat( badGeometries.size(), is( 1 ) );
         String id = badGeometries.get( 0 ).getGeometry().getId();
-        assertThat( id, is( nullValue() ) );
+        assertThat( id, is( "GML_ID_67697" ) );
     }
 
     @Test
