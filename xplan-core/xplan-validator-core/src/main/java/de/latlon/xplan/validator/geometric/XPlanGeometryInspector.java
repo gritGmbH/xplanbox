@@ -61,6 +61,8 @@ class XPlanGeometryInspector implements GeometryInspector {
 
     private static final Logger LOG = LoggerFactory.getLogger( XPlanGeometryInspector.class );
 
+    private static final String UNSUPPORTED_GEOMETRY_TYPE = "%s sind laut XPlanGML-Schema nicht erlaubt.";
+
     private final com.vividsolutions.jts.geom.GeometryFactory jtsFactory;
 
     private final LinearizationCriterion crit;
@@ -98,7 +100,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 
     @Override
     public Geometry inspect( Geometry geom )
-                    throws GeometryInspectionException {
+                            throws GeometryInspectionException {
         Geometry inspected = geom;
         try {
             switch ( inspected.getGeometryType() ) {
@@ -107,7 +109,7 @@ class XPlanGeometryInspector implements GeometryInspector {
                 break;
             }
             case COMPOSITE_GEOMETRY: {
-                String msg = createMessage( "Composites k\u00f6nnen lt. XPlanGML-Schema nicht auftreten." );
+                String msg = createMessage( String.format( UNSUPPORTED_GEOMETRY_TYPE, "Composites" ) );
                 createError( msg );
             }
             default:
@@ -125,32 +127,109 @@ class XPlanGeometryInspector implements GeometryInspector {
 
     @Override
     public CurveSegment inspect( CurveSegment segment )
-                    throws GeometryInspectionException {
+                            throws GeometryInspectionException {
         return segment;
     }
 
     @Override
     public SurfacePatch inspect( SurfacePatch patch )
-                    throws GeometryInspectionException {
-        SurfacePatch inspected = patch;
-        if ( !( patch instanceof PolygonPatch ) ) {
-            String msg = createMessage( "Nicht-planare Patches d\u00fcrfen gem\u00e4\u00df XPlanGML-Schema nicht auftreten." );
-            createError( msg );
-        } else {
-            inspected = inspect( (PolygonPatch) patch );
+                            throws GeometryInspectionException {
+        if ( patch instanceof PolygonPatch ) {
+            return inspect( (PolygonPatch) patch );
         }
-        return inspected;
+        String msg = createMessage( String.format( UNSUPPORTED_GEOMETRY_TYPE, "Nicht-planare Patches" ) );
+        createError( msg );
+        return patch;
     }
 
     @Override
     public Points inspect( Points points )
-                    throws GeometryInspectionException {
+                            throws GeometryInspectionException {
         if ( points.getDimension() != 2 ) {
-            String msg = createMessage( String.format( "Punkteliste mit ung\u00fcltiger Dimensionalit\u00e4t (%d). Nur 2D Koordinaten sind erlaubt.",
-                                                       points.getDimension() ) );
+            String msg = createMessage(
+                                    String.format( "Punkteliste mit ung\u00fcltiger Dimensionalit\u00e4t (%d). Nur 2D Koordinaten sind erlaubt.",
+                                                   points.getDimension() ) );
             createError( msg );
         }
         return points;
+    }
+
+    private GeometricPrimitive inspect( GeometricPrimitive geom )
+                            throws GeometryInspectionException {
+        switch ( geom.getPrimitiveType() ) {
+        case Point: {
+            return inspect( (Point) geom );
+        }
+        case Curve: {
+            return inspect( (Curve) geom );
+        }
+        case Surface: {
+            return inspect( (Surface) geom );
+        }
+        default:
+            String msg = createMessage( String.format( UNSUPPORTED_GEOMETRY_TYPE, geom.getPrimitiveType().name() ) );
+            createError( msg );
+        }
+        return geom;
+    }
+
+    private Point inspect( Point point ) {
+        if ( point.getCoordinateDimension() != 2 ) {
+            String msg = createMessage(
+                                    String.format( "Punkt (=%s) mit ung\u00fcltiger Dimensionalit\u00e4t (%d). Nur 2D Koordinaten sind erlaubt.",
+                                                   point, point.getCoordinateDimension() ) );
+            createError( msg );
+        }
+        return point;
+    }
+
+    private Curve inspect( Curve geom )
+                            throws GeometryInspectionException {
+        Curve inspected = checkSegmentContinuity( geom );
+        switch ( inspected.getCurveType() ) {
+        case Curve:
+        case LineString: {
+            break;
+        }
+        case Ring: {
+            inspected = checkClosed( (Ring) inspected );
+            checkSelfIntersection( (Ring) inspected );
+            break;
+        }
+        default:
+            String msg = createMessage( String.format( UNSUPPORTED_GEOMETRY_TYPE, inspected.getCurveType().name() ) );
+            createError( msg );
+        }
+        return inspected;
+    }
+
+    private Surface inspect( Surface geom )
+                            throws GeometryInspectionException {
+        switch ( geom.getSurfaceType() ) {
+        case Surface: {
+            // nothing to do (all patches have been checked already)
+            break;
+        }
+        case Polygon: {
+            org.deegree.geometry.primitive.Polygon polygon = (org.deegree.geometry.primitive.Polygon) geom;
+            PolygonPatch firstOriginalPatch = polygon.getPatches().get( 0 );
+            PolygonPatch inspectedPatch = inspect( firstOriginalPatch );
+            if ( inspectedPatch != firstOriginalPatch ) {
+                return new DefaultPolygon( geom.getId(), geom.getCoordinateSystem(), geom.getPrecision(),
+                                           inspectedPatch.getExteriorRing(), inspectedPatch.getInteriorRings() );
+            }
+        }
+        default:
+            String msg = createMessage( String.format( UNSUPPORTED_GEOMETRY_TYPE, geom.getSurfaceType().name() ) );
+            createError( msg );
+        }
+        return geom;
+    }
+
+    private PolygonPatch inspect( PolygonPatch patch ) {
+        PolygonPatch inspected = checkRingOrientations( patch );
+        checkSelfIntersection( inspected );
+        return inspected;
     }
 
     private Curve checkSegmentContinuity( Curve geom ) {
@@ -159,7 +238,8 @@ class XPlanGeometryInspector implements GeometryInspector {
         for ( CurveSegment segment : geom.getCurveSegments() ) {
             Point startPoint = segment.getStartPoint();
             if ( lastSegmentEndPoint != null ) {
-                if ( startPoint.get0() != lastSegmentEndPoint.get0() || startPoint.get1() != lastSegmentEndPoint.get1() ) {
+                if ( startPoint.get0() != lastSegmentEndPoint.get0()
+                     || startPoint.get1() != lastSegmentEndPoint.get1() ) {
                     String msg = createMessage( String.format( "L\u00fccke zwischen Kurvensegment %d und %d: %s != %s",
                                                                segmentIdx, segmentIdx++, lastSegmentEndPoint,
                                                                startPoint ) );
@@ -201,8 +281,8 @@ class XPlanGeometryInspector implements GeometryInspector {
             Polygon exteriorJTSRingAsPolygon = jtsFactory.createPolygon( exteriorJTSRing, null );
 
             List<Ring> interiorRings = inspected.getInteriorRings();
-            List<LinearRing> interiorJTSRings = new ArrayList<LinearRing>( interiorRings.size() );
-            List<Polygon> interiorJTSRingsAsPolygons = new ArrayList<Polygon>( interiorRings.size() );
+            List<LinearRing> interiorJTSRings = new ArrayList<>( interiorRings.size() );
+            List<Polygon> interiorJTSRingsAsPolygons = new ArrayList<>( interiorRings.size() );
             for ( Ring interiorRing : interiorRings ) {
                 LinearRing interiorJTSRing = getJTSRing( interiorRing );
                 interiorJTSRings.add( interiorJTSRing );
@@ -214,18 +294,21 @@ class XPlanGeometryInspector implements GeometryInspector {
                 LinearRing interiorJTSRing = interiorJTSRings.get( ringIdx );
                 interiorJTSRingsAsPolygons.get( ringIdx );
                 if ( exteriorJTSRing.touches( interiorJTSRing ) ) {
-                    String msg = createMessage( String.format( "2.2.2.1: \u00c4u\u00dferer Ring ber\u00fchrt den inneren Ring mit Index %d.",
-                                                               ringIdx ) );
+                    String msg = createMessage(
+                                            String.format( "2.2.2.1: \u00c4u\u00dferer Ring ber\u00fchrt den inneren Ring mit Index %d.",
+                                                           ringIdx ) );
                     createError( msg );
                 }
                 if ( exteriorJTSRing.intersects( interiorJTSRing ) ) {
-                    String msg = createMessage( String.format( "2.2.2.1: \u00c4u\u00dferer Ring schneidet den inneren Ring mit Index %d.",
-                                                               ringIdx ) );
+                    String msg = createMessage(
+                                            String.format( "2.2.2.1: \u00c4u\u00dferer Ring schneidet den inneren Ring mit Index %d.",
+                                                           ringIdx ) );
                     createError( msg );
                 }
                 if ( !interiorJTSRing.within( exteriorJTSRingAsPolygon ) ) {
-                    String msg = createMessage( String.format( "2.2.2.1: Innerer Ring mit Index %d befindet sich nicht innerhalb des \u00e4u\u00dferen Rings.",
-                                                               ringIdx ) );
+                    String msg = createMessage(
+                                            String.format( "2.2.2.1: Innerer Ring mit Index %d befindet sich nicht innerhalb des \u00e4u\u00dferen Rings.",
+                                                           ringIdx ) );
                     createError( msg );
                 }
             }
@@ -241,24 +324,28 @@ class XPlanGeometryInspector implements GeometryInspector {
                     LinearRing interior2JTSRing = interiorJTSRings.get( ring2Idx );
                     Polygon interior2JTSRingAsPolygon = interiorJTSRingsAsPolygons.get( ring2Idx );
                     if ( interior1JTSRing.touches( interior2JTSRing ) ) {
-                        String msg = createMessage( String.format( "2.2.2.1: Der innere Ring %d ber\u00fchrt den inneren Ring mit Index %d.",
-                                                                   ring1Idx, ring2Idx ) );
+                        String msg = createMessage(
+                                                String.format( "2.2.2.1: Der innere Ring %d ber\u00fchrt den inneren Ring mit Index %d.",
+                                                               ring1Idx, ring2Idx ) );
                         createError( msg );
                     }
                     if ( interior1JTSRing.intersects( interior2JTSRing ) ) {
                         LOG.debug( "Interior intersects interior." );
-                        String msg = createMessage( String.format( "2.2.2.1: Der innere Ring %d schneidet den inneren Ring mit Index %d.",
-                                                                   ring1Idx, ring2Idx ) );
+                        String msg = createMessage(
+                                                String.format( "2.2.2.1: Der innere Ring %d schneidet den inneren Ring mit Index %d.",
+                                                               ring1Idx, ring2Idx ) );
                         createError( msg );
                     }
                     if ( interior1JTSRing.within( interior2JTSRingAsPolygon ) ) {
-                        String msg = createMessage( String.format( "2.2.2.1: Der innere Ring %d liegt innerhalb des inneren Rings mit Index %d.",
-                                                                   ring1Idx, ring2Idx ) );
+                        String msg = createMessage(
+                                                String.format( "2.2.2.1: Der innere Ring %d liegt innerhalb des inneren Rings mit Index %d.",
+                                                               ring1Idx, ring2Idx ) );
                         createError( msg );
                     }
                     if ( interior2JTSRing.within( interior1JTSRingAsPolygon ) ) {
-                        String msg = createMessage( String.format( "2.2.2.1: Der innere Ring %d liegt innerhalb des inneren Rings mit Index %d.",
-                                                                   ring2Idx, ring1Idx ) );
+                        String msg = createMessage(
+                                                String.format( "2.2.2.1: Der innere Ring %d liegt innerhalb des inneren Rings mit Index %d.",
+                                                               ring2Idx, ring1Idx ) );
                         createError( msg );
                     }
                 }
@@ -294,7 +381,7 @@ class XPlanGeometryInspector implements GeometryInspector {
             needsRebuild = true;
         }
 
-        List<Ring> interiorRings = new ArrayList<Ring>( patch.getInteriorRings().size() );
+        List<Ring> interiorRings = new ArrayList<>( patch.getInteriorRings().size() );
         for ( Ring interiorRing : patch.getInteriorRings() ) {
             Ring newInteriorRings = checkInnerRing( interiorRing );
             interiorRings.add( newInteriorRings );
@@ -336,11 +423,11 @@ class XPlanGeometryInspector implements GeometryInspector {
      * Returns a JTS geometry for the given {@link Curve} (which is linearized first).
      *
      * @param curve
-     *            {@link Curve} that consists of {@link LineStringSegment} and {@link Arc} segments only
+     *                         {@link Curve} that consists of {@link LineStringSegment} and {@link Arc} segments only
      * @return linear JTS curve geometry
      * @throws IllegalArgumentException
-     *             if the given input ring contains other segment types than {@link LineStringSegment}, {@link Arc} and
-     *             {@link Circle}
+     *                         if the given input ring contains other segment types than {@link LineStringSegment}, {@link Arc} and
+     *                         {@link Circle}
      */
     private LineString getJTSLineString( Curve curve ) {
 
@@ -358,11 +445,11 @@ class XPlanGeometryInspector implements GeometryInspector {
      * Returns a JTS geometry for the given {@link Ring} (which is linearized first).
      *
      * @param ring
-     *            {@link Ring} that consists of {@link LineStringSegment}, {@link Arc} and {@link Circle} segments only
+     *                         {@link Ring} that consists of {@link LineStringSegment}, {@link Arc} and {@link Circle} segments only
      * @return linear JTS ring geometry, null if no
      * @throws IllegalArgumentException
-     *             if the given input ring contains other segment types than {@link LineStringSegment}, {@link Arc} and
-     *             {@link Circle}
+     *                         if the given input ring contains other segment types than {@link LineStringSegment}, {@link Arc} and
+     *                         {@link Circle}
      */
     private LinearRing getJTSRing( Ring ring ) {
 
@@ -376,107 +463,6 @@ class XPlanGeometryInspector implements GeometryInspector {
             }
         }
         return jtsFactory.createLinearRing( coordinates.toArray( new Coordinate[coordinates.size()] ) );
-    }
-
-    private GeometricPrimitive inspect( GeometricPrimitive geom )
-                    throws GeometryInspectionException {
-
-        GeometricPrimitive inspected = geom;
-        switch ( geom.getPrimitiveType() ) {
-        case Point: {
-            Point point = (Point) inspected;
-            if ( point.getCoordinateDimension() != 2 ) {
-                String msg = createMessage( String.format( "Punkt (=%s) mit ung\u00fcltiger Dimensionalit\u00e4t (%d). Nur 2D Koordinaten sind erlaubt.",
-                                                           geom, point.getCoordinateDimension() ) );
-                createError( msg );
-            }
-            break;
-        }
-        case Curve: {
-            inspected = inspect( (Curve) inspected );
-            break;
-        }
-        case Surface: {
-            inspected = inspect( (Surface) inspected );
-            break;
-        }
-        case Solid: {
-            String msg = createMessage( "Solids d\u00fcrfen gem\u00e4\u00df XPlanGML-Schema nicht auftreten." );
-            createError( msg );
-        }
-        default:
-            // nothing to do (unknown geometry)
-        }
-        return inspected;
-    }
-
-    private Curve inspect( Curve geom )
-                    throws GeometryInspectionException {
-
-        Curve inspected = checkSegmentContinuity( geom );
-        switch ( inspected.getCurveType() ) {
-        case Curve:
-        case LineString: {
-            break;
-        }
-        case Ring: {
-            inspected = checkClosed( (Ring) inspected );
-            checkSelfIntersection( (Ring) inspected );
-            break;
-        }
-        case OrientableCurve:
-        case CompositeCurve: {
-            String msg = createMessage( inspected.getCurveType().name()
-                                        + " darf gem\u00e4\u00df XPlanGML-Schema nicht auftreten." );
-            createError( msg );
-            break;
-        }
-        default:
-            // nothing to do (unknown geometry)
-        }
-        return inspected;
-    }
-
-    private Surface inspect( Surface geom )
-                    throws GeometryInspectionException {
-
-        Surface inspected = geom;
-        switch ( geom.getSurfaceType() ) {
-        case Surface: {
-            // nothing to do (all patches have been checked already)
-            inspected = geom;
-            break;
-        }
-        case Polygon: {
-            PolygonPatch patch = inspect( ( (org.deegree.geometry.primitive.Polygon) geom ).getPatches().get( 0 ) );
-            if ( patch != ( (org.deegree.geometry.primitive.Polygon) geom ).getPatches().get( 0 ) ) {
-                inspected = new DefaultPolygon( geom.getId(), geom.getCoordinateSystem(), geom.getPrecision(),
-                                patch.getExteriorRing(), patch.getInteriorRings() );
-            } else {
-                inspected = geom;
-            }
-            break;
-        }
-        case CompositeSurface:
-        case OrientableSurface:
-        case PolyhedralSurface:
-        case Tin:
-        case TriangulatedSurface: {
-            String msg = createMessage( inspected.getSurfaceType().name()
-                                        + " darf gem\u00e4\u00df XPlanGML-Schema nicht auftreten." );
-            createError( msg );
-            break;
-        }
-        default:
-            // nothing to do (unknown geometry)
-        }
-        return inspected;
-    }
-
-    private PolygonPatch inspect( PolygonPatch patch ) {
-        PolygonPatch inspected = checkRingOrientations( patch );
-        checkSelfIntersection( inspected );
-        return inspected;
     }
 
     private void addLastBadGeometry( Geometry inspected ) {

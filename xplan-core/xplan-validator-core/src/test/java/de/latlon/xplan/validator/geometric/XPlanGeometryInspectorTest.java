@@ -3,35 +3,26 @@ package de.latlon.xplan.validator.geometric;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.geometry.Geometry;
-import org.deegree.geometry.primitive.Curve;
 import org.deegree.geometry.primitive.Polygon;
 import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.patches.PolygonPatch;
 import org.deegree.gml.GMLInputFactory;
-import org.deegree.gml.GMLVersion;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.net.URL;
-import java.util.Collections;
 import java.util.List;
 
-import static org.deegree.geometry.Geometry.GeometryType.PRIMITIVE_GEOMETRY;
-import static org.deegree.geometry.primitive.Curve.CurveType.Ring;
-import static org.deegree.geometry.primitive.GeometricPrimitive.PrimitiveType.Curve;
-import static org.deegree.geometry.primitive.GeometricPrimitive.PrimitiveType.Surface;
-import static org.deegree.geometry.primitive.Surface.SurfaceType.Polygon;
+import static org.deegree.gml.GMLVersion.GML_32;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  * Tests for <link>XPlanGeometryInspector</link>
@@ -43,31 +34,27 @@ import static org.mockito.Mockito.when;
 public class XPlanGeometryInspectorTest {
 
     @Test
-    public void testInspectRing_ShouldTestSelfIntersection() {
-        XPlanGeometryInspector inspector = mockInspector();
-        inspector.inspect( mockRing() );
+    public void testInspect_Ring_ShouldTestSelfIntersection()
+                            throws Exception {
+        XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+        inspector.inspect( readGeometry( "curve.gml" ) );
         verify( inspector, times( 1 ) ).checkSelfIntersection( any( Ring.class ) );
     }
 
     @Test
-    public void testInspectPolygonPatch_ShouldTestSelfIntersection() {
-        XPlanGeometryInspector inspector = mockInspector();
-        inspector.inspect( mockPolygon() );
+    public void testInspect_PolygonPatch_ShouldTestSelfIntersectionAndOrientation()
+                            throws Exception {
+        XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+        inspector.inspect( readGeometry( "surface.gml" ) );
         verify( inspector, times( 1 ) ).checkSelfIntersection( any( PolygonPatch.class ) );
         verify( inspector, times( 1 ) ).checkRingOrientations( any( PolygonPatch.class ) );
     }
 
     @Test
-    public void testInspectPolygonPatch_ShouldTestOrientation() {
-        XPlanGeometryInspector inspector = mockInspector();
-        inspector.inspect( mockPolygon() );
-        verify( inspector, times( 1 ) ).checkRingOrientations( any( PolygonPatch.class ) );
-    }
-
-    @Test
-    public void testInspectRingWithInvalidGeometryWithoutIdShouldBeAddedAsBadGeometry()
+    public void testInspect_RingWithInvalidGeometryWithout_IdShouldBeAddedAsBadGeometry()
                             throws Exception {
-        Geometry geometryToInspect = createSelfIntersectingRing();
+        Geometry geometryToInspect = ( (Polygon) readGeometry( "selfIntersectingRing.gml" ) ).getExteriorRing();
+
         XPlanGeometryInspector inspector = createInspectorWithMockedStream();
         inspector.inspect( geometryToInspect );
 
@@ -77,42 +64,10 @@ public class XPlanGeometryInspectorTest {
         assertThat( id, is( nullValue() ) );
     }
 
-    private Polygon mockPolygon() {
-        Polygon polygonPatch = mock( Polygon.class );
-        Mockito.when( polygonPatch.getGeometryType() ).thenReturn( PRIMITIVE_GEOMETRY );
-        when( polygonPatch.getPrimitiveType() ).thenReturn( Surface );
-        when( polygonPatch.getSurfaceType() ).thenReturn( Polygon );
-        when( polygonPatch.getPatches() ).thenReturn( Collections.singletonList( mockPolygonPatch() ) );
-        return polygonPatch;
-
-    }
-
-    private PolygonPatch mockPolygonPatch() {
-        return mock( PolygonPatch.class );
-    }
-
-    private Ring mockRing() {
-        Ring mockRing = mock( Ring.class );
-        when( mockRing.getGeometryType() ).thenReturn( PRIMITIVE_GEOMETRY );
-        when( mockRing.getPrimitiveType() ).thenReturn( Curve );
-        when( mockRing.getCurveType() ).thenReturn( Ring );
-        return mockRing;
-    }
-
-    private Geometry createSelfIntersectingRing()
+    private Geometry readGeometry( String geometryFile )
                             throws Exception {
-        URL url = XPlanGeometryInspectorTest.class.getResource( "selfIntersectingRing.gml" );
-        return ( (Polygon) GMLInputFactory.createGMLStreamReader( GMLVersion.GML_30,
-                                                                  url ).readGeometry() ).getExteriorRing();
-    }
-
-    private XPlanGeometryInspector mockInspector() {
-        XPlanGeometryInspector inspector = mock( XPlanGeometryInspector.class );
-        doAnswer( returnsFirstArg() ).when( inspector ).checkClosed( any( Ring.class ) );
-        doAnswer( returnsFirstArg() ).when( inspector ).checkRingOrientations( any( PolygonPatch.class ) );
-        doAnswer( returnsFirstArg() ).when( inspector ).createMessage( anyString() );
-        when( inspector.inspect( any( Curve.class ) ) ).thenCallRealMethod();
-        return inspector;
+        URL url = XPlanGeometryInspectorTest.class.getResource( geometryFile );
+        return GMLInputFactory.createGMLStreamReader( GML_32, url ).readGeometry();
     }
 
     private XPlanGeometryInspector createInspectorWithMockedStream() {
