@@ -5,8 +5,11 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.operation.overlay.OverlayOp;
+import com.vividsolutions.jts.operation.overlay.snap.SnapIfNeededOverlayOp;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
+import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.GeometryFactory;
 import org.deegree.geometry.GeometryInspectionException;
@@ -30,6 +33,8 @@ import org.deegree.geometry.primitive.segments.Arc;
 import org.deegree.geometry.primitive.segments.Circle;
 import org.deegree.geometry.primitive.segments.CurveSegment;
 import org.deegree.geometry.primitive.segments.LineStringSegment;
+import org.deegree.geometry.standard.AbstractDefaultGeometry;
+import org.deegree.geometry.standard.primitive.DefaultPoint;
 import org.deegree.geometry.standard.primitive.DefaultPolygon;
 import org.deegree.geometry.standard.surfacepatches.DefaultPolygonPatch;
 import org.deegree.geometry.validation.GeometryFixer;
@@ -65,6 +70,8 @@ import java.util.stream.Collectors;
 class XPlanGeometryInspector implements GeometryInspector {
 
     private static final Logger LOG = LoggerFactory.getLogger( XPlanGeometryInspector.class );
+
+    private static final AbstractDefaultGeometry DEFAULT_GEOM = new DefaultPoint( null, null, null, new double[] { 0.0, 0.0 } );
 
     private static final String UNSUPPORTED_GEOMETRY_TYPE = "%s sind laut XPlanGML-Schema nicht erlaubt.";
 
@@ -304,15 +311,6 @@ class XPlanGeometryInspector implements GeometryInspector {
         return geom;
     }
 
-    void checkSelfIntersection( Ring ring ) {
-        LineString jtsLineString = getJTSLineString( ring );
-        boolean selfIntersection = !jtsLineString.isSimple();
-        if ( selfIntersection ) {
-            String msg = createMessage( "2.2.2.1: Selbst\u00fcberschneidung." );
-            createError( msg );
-        }
-    }
-
     Ring checkClosed( Ring ring ) {
         Point startPoint = ring.getStartPoint();
         Point endPoint = ring.getEndPoint();
@@ -324,6 +322,16 @@ class XPlanGeometryInspector implements GeometryInspector {
             createError( msg );
         }
         return ring;
+    }
+
+    void checkSelfIntersection( Ring ring ) {
+        LineString jtsLineString = getJTSLineString( ring );
+        boolean selfIntersection = !jtsLineString.isSimple();
+        if ( selfIntersection ) {
+            String msg = createMessage( "2.2.2.1: Selbst\u00fcberschneidung." );
+            createError( msg );
+            calculateIntersectionsAndAddError( ring, jtsLineString );
+        }
     }
 
     void checkSelfIntersection( PolygonPatch inspected ) {
@@ -350,12 +358,21 @@ class XPlanGeometryInspector implements GeometryInspector {
                                             String.format( "2.2.2.1: \u00c4u\u00dferer Ring ber\u00fchrt den inneren Ring mit Index %d.",
                                                            ringIdx ) );
                     createError( msg );
+                    String intersectionMsg = String.format(
+                                            "Ber\u00fchrung(en) des \u00c4u\u00dferer Ring mit dem inneren Ring mit Index %d.",
+                                            ringIdx );
+                    calculateIntersectionAndAddError( exteriorJTSRing, interiorJTSRing, exteriorRing.getCoordinateSystem(),
+                                                      intersectionMsg );
                 }
                 if ( exteriorJTSRing.intersects( interiorJTSRing ) ) {
                     String msg = createMessage(
                                             String.format( "2.2.2.1: \u00c4u\u00dferer Ring schneidet den inneren Ring mit Index %d.",
                                                            ringIdx ) );
                     createError( msg );
+                    String intersectionMsg = String.format(
+                                            "Schnittpunkt(e) des \u00c4u\u00dferer Ring mit dem inneren Ring mit Index %d.",
+                                            ringIdx );
+                    calculateIntersectionAndAddError( exteriorJTSRing, interiorJTSRing, exteriorRing.getCoordinateSystem(), intersectionMsg );
                 }
                 if ( !interiorJTSRing.within( exteriorJTSRingAsPolygon ) ) {
                     String msg = createMessage(
@@ -405,6 +422,44 @@ class XPlanGeometryInspector implements GeometryInspector {
         } catch ( Exception e ) {
             String msg = createMessage( "Validierung der Oberfl\u00e4chen-Topologie fehlgeschlagen (Folgefehler!?)." );
             getErrors().add( msg ); // don't use cm errors - mocking!
+        }
+    }
+
+    private void calculateIntersectionAndAddError( LinearRing exteriorJTSRing, LinearRing interiorJTSRing, ICRS crs,
+                                                   String msg ) {
+        com.vividsolutions.jts.geom.Geometry intersection = exteriorJTSRing.intersection( interiorJTSRing );
+        AbstractDefaultGeometry intersectionGeom = DEFAULT_GEOM.createFromJTS( intersection, crs );
+        badGeometries.add( new BadGeometry( intersectionGeom, msg ) );
+    }
+
+    private void calculateIntersectionsAndAddError( Ring ring, LineString jtsLineString ) {
+        Coordinate start = null;
+        Coordinate end;
+        LineString last = null;
+        LineString actual;
+        for ( Coordinate coordinate : jtsLineString.getCoordinates() ) {
+            if ( start == null ) {
+                start = coordinate;
+                continue;
+            }
+            end = coordinate;
+            if ( last == null ) {
+                last = jtsFactory.createLineString( new Coordinate[] { start, end } );
+                continue;
+            }
+            actual = jtsFactory.createLineString( new Coordinate[] { start, end } );
+
+            com.vividsolutions.jts.geom.Geometry intersection = last.intersection( actual );
+            intersection = intersection.difference( jtsFactory.createPoint( start ) );
+            if ( !intersection.isEmpty() ) {
+                AbstractDefaultGeometry intersectionGeom = DEFAULT_GEOM.createFromJTS( intersection,
+                                                                                       ring.getCoordinateSystem() );
+                String intersectionMsg = "Geomerie der Selbst\u00fcberschneidung";
+                badGeometries.add( new BadGeometry( intersectionGeom, intersectionMsg ) );
+            }
+
+            start = end;
+            last = actual;
         }
     }
 
