@@ -2,7 +2,7 @@ package de.latlon.xplan.planwerkwms;
 
 import org.deegree.services.OWS;
 import org.deegree.services.OWSProvider;
-import org.deegree.services.planwerk.jaxb.Planwerk;
+import de.latlon.xplan.planwerkwms.jaxb.Planwerk;
 import org.deegree.services.wms.controller.WMSController;
 import org.deegree.services.wms.controller.WmsMetadata;
 import org.deegree.workspace.ResourceBuilder;

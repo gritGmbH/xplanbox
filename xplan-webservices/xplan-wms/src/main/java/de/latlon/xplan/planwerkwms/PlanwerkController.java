@@ -16,7 +16,7 @@ import org.deegree.services.jaxb.metadata.DeegreeServicesMetadataType;
 import org.deegree.services.jaxb.wms.DeegreeWMS;
 import org.deegree.services.metadata.OWSMetadataProvider;
 import org.deegree.services.metadata.provider.OWSMetadataProviderProvider;
-import org.deegree.services.planwerk.jaxb.Planwerk;
+import de.latlon.xplan.planwerkwms.jaxb.Planwerk;
 import org.deegree.services.wms.controller.WMSController;
 import org.deegree.services.wms.controller.capabilities.theme.DefaultMetadataMerger;
 import org.deegree.services.wms.controller.capabilities.theme.MetadataMerger;

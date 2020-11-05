@@ -11,7 +11,7 @@ import org.deegree.commons.ows.metadata.ServiceProvider;
 import org.deegree.commons.ows.metadata.layer.ExternalIdentifier;
 import org.deegree.commons.tom.ows.LanguageString;
 import org.deegree.services.metadata.OWSMetadataProvider;
-import org.deegree.services.planwerk.jaxb.Planwerk;
+import de.latlon.xplan.planwerkwms.jaxb.Planwerk;
 import org.deegree.workspace.Resource;
 import org.deegree.workspace.ResourceMetadata;
 import org.slf4j.Logger;

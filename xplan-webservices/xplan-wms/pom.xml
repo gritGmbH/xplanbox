@@ -14,23 +14,31 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.jvnet.jaxb2.maven2</groupId>
-        <artifactId>maven-jaxb2-plugin</artifactId>
-        <version>0.14.0</version>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jaxb2-maven-plugin</artifactId>
+        <version>2.5.0</version>
         <executions>
           <execution>
+            <id>xjc</id>
             <goals>
-              <goal>generate</goal>
+              <goal>xjc</goal>
             </goals>
-            <configuration>
-              <schemaIncludes>
-                <include>**/*xsd</include>
-              </schemaIncludes>
-              <schemaDirectory>src/main/resources/META-INF/schemas/</schemaDirectory>
-              <episode>true</episode>
-            </configuration>
           </execution>
         </executions>
+        <dependencies>
+          <dependency>
+          <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
+          <version>1.4.01</version>
+        </dependency>
+        </dependencies>
+        <configuration>
+          <sources>
+            <source>${project.basedir}/src/main/resources/META-INF/schemas/services/planwerkwms/1.0/planwerk_configuration.xsd</source>
+          </sources>
+          <outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
+          <packageName>de.latlon.xplan.planwerkwms.jaxb</packageName>
+        </configuration>
       </plugin>
     </plugins>
   </build>
