@@ -3,8 +3,8 @@
   xmlns:xplan="http://www.deegree.org/xplanung/1/0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
-  <Name>transparent</Name>
-  <FeatureTypeName>xplan:FP_PrivilegiertesVorhaben</FeatureTypeName>
+  <Name>vollflaechig</Name>
+  <FeatureTypeName>xplan:FP_PriviligiertesVorhaben</FeatureTypeName>
   <!-- Fläche flaechenschluss true -->
   <Rule>
     <Name>fp_privvorh</Name>
@@ -32,11 +32,11 @@
       </Geometry>
       <Fill>
         <SvgParameter name="fill">#ff0070</SvgParameter>
-        <SvgParameter name="fill-opacity">0</SvgParameter>
+        <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
-        <SvgParameter name="stroke-opacity">0</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
         <SvgParameter name="stroke-width">1.0</SvgParameter>
         <SvgParameter name="stroke-dasharray">1</SvgParameter>
       </Stroke>
@@ -78,7 +78,7 @@
       </Fill>
       <Stroke>
         <SvgParameter name="stroke">#ff0070</SvgParameter>
-        <SvgParameter name="stroke-opacity">0</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
         <SvgParameter name="stroke-width">
           4.0
         </SvgParameter>
@@ -107,7 +107,7 @@
       </Geometry>
       <Stroke>
         <SvgParameter name="stroke">#ff0070</SvgParameter>
-        <SvgParameter name="stroke-opacity">0</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
         <SvgParameter name="stroke-width">10.0</SvgParameter>
         <SvgParameter name="stroke-dasharray">1</SvgParameter>
       </Stroke>
@@ -136,12 +136,11 @@
           <WellKnownName>circle</WellKnownName>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
+            <SvgParameter name="fill-opacity">1.0</SvgParameter>
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
             <SvgParameter name="stroke-width">0.5</SvgParameter>
-            <SvgParameter name="stroke-opacity">0</SvgParameter>
           </Stroke>
         </Mark>
         <Size>30</Size>
