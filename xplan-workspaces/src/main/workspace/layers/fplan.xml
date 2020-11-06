@@ -2778,7 +2778,7 @@
     </SortBy>
     <l:Name>fp_privvorh</l:Name>
     <d:Title>FP: Privilegiertes Vorhaben</d:Title>
-    <d:Abstract>FP_PriveligiertesVorhaben</d:Abstract>
+    <d:Abstract>FP_PrivilegiertesVorhaben</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_privvorh</l:StyleStoreId>
