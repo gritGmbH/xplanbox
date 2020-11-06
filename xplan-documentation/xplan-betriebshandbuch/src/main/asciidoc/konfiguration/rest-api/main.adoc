@@ -1,0 +1,59 @@
+[[konfiguration-rest-api]]
+== Konfiguration der REST-Schnittstellen
+
+[[konfiguration-manager-api]]
+=== XPlanManagerAPI
+
+Die Konfiguration der XPlanManagerAPI erfolgt in der Datei _<XPLANBOX_CONFIG>/managerApiConfiguration.properties_.
+Außerdem gelten die im Abschnitt <<konfiguration-manager>> beschriebenen Konfigurationsoptionen, die in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ festgelegt werden.
+
+Folgende Konfigurationen können für die XPlanManagerAPI vorgenommen werden:
+
+==== API URL
+
+URL der XPlanManagerAPI, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration muss vorgenommen werden, andernfalls kann die Schnittstelle nicht verwendet werden und es kommt bereits beim Deployment der Webapp zu einem Fehler.
+Beispiel:
+
+----
+apiUrl=http://xplanbox.lat-lon.de
+----
+
+==== WMS URL
+
+URL des XPlanwerkWMS, über den einzelne Pläne über die ManagerID angefragt werden können.
+Beispiel:
+
+----
+wmsUrl=http://xplanbox.lat-lon.de/xplan-wms
+----
+
+==== Standard-Validierungseinstellungen
+
+Mit diesen Einstellungen kann das Validierungslevel konfiguriert werden, das beim Import eines Plans angewendet wird.
+Standardmäßig müssen alle Tests (syntaktisch, semantisch und geometrisch) bestanden werden.
+Mit dieser Option kann z.B. festgelegt werden, dass Pläne die Prüfung auf den Geltungsbereich nicht bestehen müssen um diesen zu importieren.
+Unabhängig von dieser Konfiguration muss die syntaktische Validierung in jedem Fall bestanden werden, ebenso werden Pläne mit schwerwiegenden geometrischen Fehlern grundsätzlich abgelehnt.
+Beispiel:
+
+----
+skipSemantisch=false
+skipGeometrisch=false
+skipFlaechenschluss=false
+skipGeltungsbereich=true
+----
+
+[[konfiguration-validator-api]]
+=== XPlanValidatorAPI
+
+Die Konfiguration der XPlanValidatorAPI erfolgt in der Datei _<XPLANBOX_CONFIG>/validatorApiConfiguration.properties_.
+Außerdem gelten die im Abschnitt <<konfiguration-validator>> beschriebenen Konfigurationsoptionen, die in der Datei _<XPLANBOX_CONFIG>/validatorConfiguration.properties_ festgelegt werden.
+Folgende Konfiguration kann für die XPlanValidatorAPI vorgenommen werden:
+
+==== API URL
+
+URL der XPlanManagerAPI, die im OpenAPI Dokument ausgegeben wird.
+Beispiel:
+
+----
+apiUrl=http://xplanbox.lat-lon.de
+----

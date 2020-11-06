@@ -53,6 +53,20 @@ public class XPlanArchiveCreator {
     }
 
     /**
+     * Creates a new {@link XPlanArchive} instance from the given file.
+     *
+     * @param file
+     *                         XPlan archive (ZIP-file), must not be <code>null</code>
+     * @throws IllegalArgumentException
+     *                         if the file can not be read or is obviously invalid
+     */
+    public XPlanArchive createXPlanArchiveFromZip( File file )
+                            throws IOException {
+        String fileName = file.getName();
+        return createXPlanArchiveFromZip( fileName, new FileInputStream( file ) );
+    }
+
+    /**
      * @param name
      *                 never <code>null</code>
      * @param inputStream

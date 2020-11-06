@@ -22,8 +22,8 @@ aus dem Kapitel Installation über ein Installations-Skript (s. <<Installations-
 [[austausch-der-web-archive]]
 === Austausch der Web-Archive
 
-Es müssen die bereit gestellten Web-Archive in das Webapps-Verzeichnis
-des jeweiligen Tomcats kopiert werden:
+Es müssen die bereitgestellten Web-Archive in das Verzeichnis `webapps`
+der jeweiligen Tomcat-Instanz kopiert werden:
 
 ----
 cp ${WORK_DIR}/web/xplan-manager-web.war <CATALINA_HOME>/webapps/

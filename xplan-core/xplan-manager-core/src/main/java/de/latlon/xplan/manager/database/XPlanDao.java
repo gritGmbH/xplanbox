@@ -2,12 +2,12 @@ package de.latlon.xplan.manager.database;
 
 import com.vividsolutions.jts.io.ParseException;
 import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.export.DatabaseXPlanArtefactIterator;
@@ -17,9 +17,9 @@ import de.latlon.xplan.manager.export.XPlanExportException;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import org.apache.commons.io.IOUtils;
 import org.deegree.commons.utils.Pair;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -461,6 +461,19 @@ public class XPlanDao {
         return null;
     }
 
+    public List<XPlan> getXPlanByName( String planName )
+                            throws Exception {
+        String whereClause = "name = ?";
+        return getXPlansWithNameFilter( planName, whereClause );
+    }
+
+    public List<XPlan> getXPlansLikeName( String planName )
+                            throws Exception {
+        String whereClause = "LOWER(name) LIKE ?";
+        String planNameLike = "%" + planName.toLowerCase() + "%";
+        return getXPlansWithNameFilter( planNameLike, whereClause );
+    }
+
     /**
      * retrieves the id of the plan closest in future to the date passed
      *
@@ -507,14 +520,16 @@ public class XPlanDao {
         int id = getXPlanIdAsInt( planId );
         try {
             Connection conn = managerWorkspaceWrapper.openConnection();
+            XPlanMetadata xPlanMetadata = selectXPlanMetadata( planId );
             PreparedStatement stmt = conn.prepareStatement(
                             "SELECT filename,data FROM xplanmgr.artefacts WHERE plan=? ORDER BY num" );
             stmt.setInt( 1, id );
             ResultSet rs = stmt.executeQuery();
             XPlanArtefactIterator artefacts = new DatabaseXPlanArtefactIterator( conn, stmt, rs );
-            XPlanMetadata xPlanMetadata = selectXPlanMetadata( planId );
             FeatureCollection fc = restoreFeatureCollection( id, xPlanMetadata );
             return new XPlanArchiveContent( fc, artefacts, xPlanMetadata.version );
+        } catch ( PlanNotFoundException pe ) {
+            throw pe;
         } catch ( Exception e ) {
             LOG.error( "Plan could not be exported!", e );
             throw new XPlanExportException(
@@ -715,6 +730,33 @@ public class XPlanDao {
         return false;
     }
 
+    private List<XPlan> getXPlansWithNameFilter( String planName, String whereClause )
+                            throws Exception {
+        managerWorkspaceWrapper.ensureWorkspaceInitialized();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try ( Connection mgrConn = managerWorkspaceWrapper.openConnection() ) {
+            stmt = mgrConn.prepareStatement( "SELECT id, import_date, xp_version, xp_type, name, "
+                                             + "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
+                                             + "ade, sonst_plan_art, planstatus, rechtsstand, district, "
+                                             + "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid FROM xplanmgr.plans WHERE " + whereClause );
+            stmt.setString( 1, planName );
+            rs = stmt.executeQuery();List<XPlan> xplanList = new ArrayList<>();
+            while ( rs.next() ) {
+                XPlan xPlan = retrieveXPlan( rs, false );
+                xplanList.add( xPlan );
+            }
+            return xplanList;
+        } catch ( Exception e ) {
+            throw new Exception(
+                                    "Interner-/Konfigurations-Fehler. Kann Plan nicht auflisten: " + e.getLocalizedMessage(),
+                                    e );
+        } finally {
+            closeQuietly( stmt, rs );
+        }
+    }
+
     private void updateSortPropertyInSynSchema( Date sortDate, XPlan plan, Connection conn )
                     throws Exception {
         String selectSchemaAndColumnsToModify =
@@ -874,12 +916,14 @@ public class XPlanDao {
             stmt.setInt( 1, id );
             rs = stmt.executeQuery();
             if ( !rs.next() ) {
-                throw new Exception( "Kein XPlan mit Id " + id + " vorhanden." );
+                throw new PlanNotFoundException( id );
             }
             XPlanVersion version = XPlanVersion.valueOf( rs.getString( 1 ) );
             XPlanAde ade = retrieveNsmAde( version, rs.getString( 2 ) );
             PlanStatus planStatus = retrievePlanStatus( rs.getString( 3 ) );
             return new XPlanMetadata( version, ade, planStatus );
+        } catch ( PlanNotFoundException pe ) {
+            throw pe;
         } catch ( Exception e ) {
             throw new Exception( "Interner-/Konfigurations-Fehler. Kann XPlan-Informationen nicht aus DB lesen: "
                                  + e.getLocalizedMessage(), e );
@@ -1376,7 +1420,7 @@ public class XPlanDao {
             long elapsed = System.currentTimeMillis() - begin;
             LOG.info( "OK [" + elapsed + " ms]" );
         } catch ( SQLException e ) {
-            throw new Exception( "Fehler beim Aktualiseren der XPlan-Artefakte in DB: " + e.getLocalizedMessage(), e );
+            throw new Exception( "Fehler beim Aktualisieren der XPlan-Artefakte in DB: " + e.getLocalizedMessage(), e );
         }
     }
 

@@ -63,6 +63,15 @@ public class AdditionalPlanData implements Serializable {
     }
 
     /**
+     * @param planStatus
+     *            the status of the plan, may be <code>null</code>. The plan status decides about the feature store the
+     *            plan is stored in, if <code>null</code> the default feature store should is used.
+     */
+    public AdditionalPlanData( PlanStatus planStatus ) {
+        this.planStatus = planStatus;
+    }
+
+    /**
      * @param startDateTime
      *            beginning of the validity period, may be <code>null</code>
      * @param endDateTime
