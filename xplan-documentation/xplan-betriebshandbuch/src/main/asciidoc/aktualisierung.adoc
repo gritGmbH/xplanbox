@@ -301,7 +301,7 @@ Tomcats ($\{catalina.base}/logs) gelogged wird. Das Java Property _xplan.logdir_
 
 Wenn die neuen Features <<kartenvorschau-validator>> und <<semantische-validierungsregeln-validiator>> im XPlanValidatorWeb genutzt werden sollen, sind folgende Anpassungen nötig:
 
- * Workspace __xplan-inspireplu-workspace__ und Konfiguration __xplan-validator-config__ entpacken und installieren (siehe <<konfiguration>>).
+ * Workspace __xplan-validator-wms-workspace__ und Konfiguration __xplan-validator-config__ entpacken und installieren (siehe <<konfiguration>>).
  * Installation der _xplan-validator-wms.war_ Webanwendung (s. <<web-anwendungen>>). Achtung: Anschließend muss der _xplan-validator-wms-workspace_ initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt über die webapps.properties-Datei plus Neustart der Webanwendung geschehen.
  * XPlanValidatorWeb gemäß <<konfiguration-validator>> konfigurieren.
 
