@@ -51,7 +51,7 @@ public class GeometricValidatorImplTest {
         int numberOfErrors = ( (GeometricValidatorResult) report ).getErrors().size();
 
         assertThat( report.isValid(), is( false ) );
-        assertThat( numberOfErrors, is( 5 ) );
+        assertThat( numberOfErrors, is( 10 ) );
     }
 
     @Test
@@ -63,7 +63,7 @@ public class GeometricValidatorImplTest {
         int numberOfErrors = ( (GeometricValidatorResult) report ).getErrors().size();
 
         assertThat( report.isValid(), is( false ) );
-        assertThat( numberOfErrors, is( 6 ) );
+        assertThat( numberOfErrors, is(11 ) );
     }
 
     @Test

@@ -1,12 +1,14 @@
 package de.latlon.xplan.validator.geometric;
 
 import com.vividsolutions.jts.algorithm.CGAlgorithms;
+import com.vividsolutions.jts.algorithm.LineIntersector;
+import com.vividsolutions.jts.algorithm.RobustLineIntersector;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.Polygon;
-import com.vividsolutions.jts.operation.overlay.OverlayOp;
-import com.vividsolutions.jts.operation.overlay.snap.SnapIfNeededOverlayOp;
+import com.vividsolutions.jts.geomgraph.GeometryGraph;
+import com.vividsolutions.jts.geomgraph.Node;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -433,33 +435,19 @@ class XPlanGeometryInspector implements GeometryInspector {
     }
 
     private void calculateIntersectionsAndAddError( Ring ring, LineString jtsLineString ) {
-        Coordinate start = null;
-        Coordinate end;
-        LineString last = null;
-        LineString actual;
-        for ( Coordinate coordinate : jtsLineString.getCoordinates() ) {
-            if ( start == null ) {
-                start = coordinate;
-                continue;
-            }
-            end = coordinate;
-            if ( last == null ) {
-                last = jtsFactory.createLineString( new Coordinate[] { start, end } );
-                continue;
-            }
-            actual = jtsFactory.createLineString( new Coordinate[] { start, end } );
-
-            com.vividsolutions.jts.geom.Geometry intersection = last.intersection( actual );
-            intersection = intersection.difference( jtsFactory.createPoint( start ) );
-            if ( !intersection.isEmpty() ) {
-                AbstractDefaultGeometry intersectionGeom = DEFAULT_GEOM.createFromJTS( intersection,
-                                                                                       ring.getCoordinateSystem() );
+        GeometryGraph graph = new GeometryGraph( 0, jtsLineString );
+        LineIntersector lineIntersector = new RobustLineIntersector();
+        graph.computeSelfNodes( lineIntersector, true );
+        int intersectionIndex = 1;
+        for ( Object node : graph.getNodes() ) {
+            Coordinate coordinate = ( (Node) node ).getCoordinate();
+            if ( !coordinate.equals( jtsLineString.getStartPoint().getCoordinate() ) ) {
+                String intersectionId = ring.getId() + "_intersection_" + intersectionIndex++;
+                Point intersectionGeom = new GeometryFactory().createPoint( intersectionId, coordinate.x, coordinate.y,
+                                                                            coordinate.z, ring.getCoordinateSystem() );
                 String intersectionMsg = "Geomerie der Selbst\u00fcberschneidung";
                 badGeometries.add( new BadGeometry( intersectionGeom, intersectionMsg ) );
             }
-
-            start = end;
-            last = actual;
         }
     }
 
