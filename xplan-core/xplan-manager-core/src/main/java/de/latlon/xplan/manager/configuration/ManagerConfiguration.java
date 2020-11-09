@@ -271,7 +271,7 @@ public class ManagerConfiguration {
         LOG.info( "Configuration of the XPlanManager:" );
         LOG.info( "-------------------------------------------" );
         LOG.info( "  directory containing the synthesizer configuration: {}",
-                  Files.exists( synthesizerConfigDirectory ) ? synthesizerConfigDirectory : "not configured");
+                  synthesizerConfigDirectory != null && Files.exists( synthesizerConfigDirectory ) ? synthesizerConfigDirectory : "not configured");
         LOG.info( "-------------------------------------------" );
         LOG.info( "  raster configuration" );
         LOG.info( "   - crs: {}", rasterConfigurationCrs );
