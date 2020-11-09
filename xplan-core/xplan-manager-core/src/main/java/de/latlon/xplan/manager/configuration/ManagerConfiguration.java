@@ -88,7 +88,7 @@ public class ManagerConfiguration {
 
     private SemanticConformityLinkConfiguration semanticConformityLinkConfiguration = new SemanticConformityLinkConfiguration();
 
-    private Path configDirectory;
+    private Path synthesizerConfigDirectory;
 
     private String pathToHaleCli;
 
@@ -194,10 +194,10 @@ public class ManagerConfiguration {
     }
 
     /**
-     * @return the directory containing the configuration, may be <code>null</code>
+     * @return the directory containing the synthesizer configuration, may be <code>null</code>
      */
-    public Path getConfigurationDirectory() {
-        return configDirectory;
+    public Path getSynthesizerConfigurationDirectory() {
+        return synthesizerConfigDirectory;
     }
 
     /**
@@ -250,7 +250,7 @@ public class ManagerConfiguration {
                 coupledResourceConfiguration = CoupledResourceConfiguration.parseCoupledResourceConfiguration(
                                         propertiesLoader, loadProperties );
             }
-            configDirectory = propertiesLoader.resolveDirectory( "synthesizer" );
+            synthesizerConfigDirectory = propertiesLoader.resolveDirectory( "synthesizer" );
         }
     }
 
@@ -270,7 +270,8 @@ public class ManagerConfiguration {
         LOG.info( "-------------------------------------------" );
         LOG.info( "Configuration of the XPlanManager:" );
         LOG.info( "-------------------------------------------" );
-        LOG.info( "  directory containing the configuration: {}", configDirectory );
+        LOG.info( "  directory containing the synthesizer configuration: {}",
+                  Files.exists( synthesizerConfigDirectory ) ? synthesizerConfigDirectory : "not configured");
         LOG.info( "-------------------------------------------" );
         LOG.info( "  raster configuration" );
         LOG.info( "   - crs: {}", rasterConfigurationCrs );

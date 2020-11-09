@@ -247,7 +247,7 @@ public class ApplicationContext {
 
     private XPlanSynthesizer xPlanSynthesizer( ManagerConfiguration managerConfiguration ) {
         if ( managerConfiguration != null )
-            return new XPlanSynthesizer( managerConfiguration.getConfigurationDirectory() );
+            return new XPlanSynthesizer( managerConfiguration.getSynthesizerConfigurationDirectory() );
         return new XPlanSynthesizer();
     }
 

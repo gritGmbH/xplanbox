@@ -677,7 +677,7 @@ public class XPlanManager {
 
     private XPlanSynthesizer createXPlanSynthesizer( ManagerConfiguration managerConfiguration ) {
         if ( managerConfiguration != null )
-            return new XPlanSynthesizer( managerConfiguration.getConfigurationDirectory() );
+            return new XPlanSynthesizer( managerConfiguration.getSynthesizerConfigurationDirectory() );
         return new XPlanSynthesizer();
     }
 

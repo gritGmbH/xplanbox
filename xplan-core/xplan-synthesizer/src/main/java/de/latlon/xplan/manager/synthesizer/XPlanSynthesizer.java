@@ -74,7 +74,7 @@ public class XPlanSynthesizer {
 
     /**
      * @param rulesDirectory
-     *            the directory containing additional rules overwritting the internal rules, may be <code>null</code>
+     *            the directory containing additional rules overwriting the internal rules, may be <code>null</code>
      */
     public XPlanSynthesizer( Path rulesDirectory ) {
         this.rulesDirectory = rulesDirectory;
