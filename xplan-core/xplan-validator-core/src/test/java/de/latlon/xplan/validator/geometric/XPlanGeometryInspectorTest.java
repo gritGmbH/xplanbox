@@ -27,7 +27,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 /**
- * Tests for <link>XPlanGeometryInspector</link>
+ * Tests for <link>XPlanGeometryInspector</link>.
  *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @author last edited by: $Author: erben $
@@ -53,7 +53,7 @@ public class XPlanGeometryInspectorTest {
     }
 
     @Test
-    public void testInspect_RingWithInvalidGeometryWithout_IdShouldBeAddedAsBadGeometry()
+    public void testInspect_RingWithSelfIntersection()
                             throws Exception {
         Geometry geometryToInspect = readGeometry( "selfIntersectingRing.gml" );
 
@@ -67,9 +67,9 @@ public class XPlanGeometryInspectorTest {
     }
 
     @Test
-    public void testInspect_PolygonWithInvalidGeometryWithout_IdShouldBeAddedAsBadGeometry()
+    public void testInspect_RingWithTwoSelfIntersetions()
                             throws Exception {
-        Geometry geometryToInspect = readGeometry( "selfIntersectingPolygon-2intersections.gml" );
+        Geometry geometryToInspect = readGeometry( "selfIntersectingRIng-2intersections.gml" );
         XPlanGeometryInspector inspector = createInspectorWithMockedStream();
         inspector.inspect( geometryToInspect );
 

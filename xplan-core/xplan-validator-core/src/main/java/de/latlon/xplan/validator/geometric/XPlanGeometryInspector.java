@@ -73,7 +73,8 @@ class XPlanGeometryInspector implements GeometryInspector {
 
     private static final Logger LOG = LoggerFactory.getLogger( XPlanGeometryInspector.class );
 
-    private static final AbstractDefaultGeometry DEFAULT_GEOM = new DefaultPoint( null, null, null, new double[] { 0.0, 0.0 } );
+    private static final AbstractDefaultGeometry DEFAULT_GEOM = new DefaultPoint( null, null, null,
+                                                                                  new double[] { 0.0, 0.0 } );
 
     private static final String UNSUPPORTED_GEOMETRY_TYPE = "%s sind laut XPlanGML-Schema nicht erlaubt.";
 
@@ -143,6 +144,35 @@ class XPlanGeometryInspector implements GeometryInspector {
         return inspected;
     }
 
+    @Override
+    public CurveSegment inspect( CurveSegment segment )
+                            throws GeometryInspectionException {
+        return segment;
+    }
+
+    @Override
+    public SurfacePatch inspect( SurfacePatch patch )
+                            throws GeometryInspectionException {
+        if ( patch instanceof PolygonPatch ) {
+            return inspect( (PolygonPatch) patch );
+        }
+        String msg = createMessage( String.format( UNSUPPORTED_GEOMETRY_TYPE, "Nicht-planare Patches" ) );
+        createError( msg );
+        return patch;
+    }
+
+    @Override
+    public Points inspect( Points points )
+                            throws GeometryInspectionException {
+        if ( points.getDimension() != 2 ) {
+            String msg = createMessage(
+                                    String.format( "Punkteliste mit ung\u00fcltiger Dimensionalit\u00e4t (%d). Nur 2D Koordinaten sind erlaubt.",
+                                                   points.getDimension() ) );
+            createError( msg );
+        }
+        return points;
+    }
+
     private MultiGeometry inspect( MultiGeometry geom )
                             throws GeometryInspectionException {
         switch ( geom.getMultiGeometryType() ) {
@@ -183,35 +213,6 @@ class XPlanGeometryInspector implements GeometryInspector {
             inspected.add( inspectedCurve );
         }
         return new GeometryFactory().createMultiSurface( geom.getId(), geom.getCoordinateSystem(), inspected );
-    }
-
-    @Override
-    public CurveSegment inspect( CurveSegment segment )
-                            throws GeometryInspectionException {
-        return segment;
-    }
-
-    @Override
-    public SurfacePatch inspect( SurfacePatch patch )
-                            throws GeometryInspectionException {
-        if ( patch instanceof PolygonPatch ) {
-            return inspect( (PolygonPatch) patch );
-        }
-        String msg = createMessage( String.format( UNSUPPORTED_GEOMETRY_TYPE, "Nicht-planare Patches" ) );
-        createError( msg );
-        return patch;
-    }
-
-    @Override
-    public Points inspect( Points points )
-                            throws GeometryInspectionException {
-        if ( points.getDimension() != 2 ) {
-            String msg = createMessage(
-                                    String.format( "Punkteliste mit ung\u00fcltiger Dimensionalit\u00e4t (%d). Nur 2D Koordinaten sind erlaubt.",
-                                                   points.getDimension() ) );
-            createError( msg );
-        }
-        return points;
     }
 
     private GeometricPrimitive inspect( GeometricPrimitive geom )
@@ -363,8 +364,8 @@ class XPlanGeometryInspector implements GeometryInspector {
                     String intersectionMsg = String.format(
                                             "Ber\u00fchrung(en) des \u00c4u\u00dferer Ring mit dem inneren Ring mit Index %d.",
                                             ringIdx );
-                    calculateIntersectionAndAddError( exteriorJTSRing, interiorJTSRing, exteriorRing.getCoordinateSystem(),
-                                                      intersectionMsg );
+                    calculateIntersectionAndAddError( exteriorJTSRing, interiorJTSRing,
+                                                      exteriorRing.getCoordinateSystem(), intersectionMsg );
                 }
                 if ( exteriorJTSRing.intersects( interiorJTSRing ) ) {
                     String msg = createMessage(
@@ -374,7 +375,8 @@ class XPlanGeometryInspector implements GeometryInspector {
                     String intersectionMsg = String.format(
                                             "Schnittpunkt(e) des \u00c4u\u00dferer Ring mit dem inneren Ring mit Index %d.",
                                             ringIdx );
-                    calculateIntersectionAndAddError( exteriorJTSRing, interiorJTSRing, exteriorRing.getCoordinateSystem(), intersectionMsg );
+                    calculateIntersectionAndAddError( exteriorJTSRing, interiorJTSRing,
+                                                      exteriorRing.getCoordinateSystem(), intersectionMsg );
                 }
                 if ( !interiorJTSRing.within( exteriorJTSRingAsPolygon ) ) {
                     String msg = createMessage(
