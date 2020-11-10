@@ -9,13 +9,14 @@ In diesem Repository werden alle Ressourcen zur xPlanBox Produktversion verwalte
 
 |xPlanBox Version |Auslieferung                   |REST API | 
 |:--------------- |:----------------------------- |:------- |
-| xPlanBox 3.4    | **deegree Enterprise 2020.2** | - |
-| xPlanBox 3.5    | Testversion für LGV mit REST-API (Paket 1) | v1 |
-| xPlanBox 3.5.1  | Testversion für LGV mit Validator Erweiterungen (Paket 2 - Teil 1) | v1 | 
-| xPlanBox 3.6    | Testversion für LGV mit XPlanGML 5.3 (Paket 2 - Teil 2) | v1 | 
-| xPlanBox 4.0    | **deegree Enterprise 2021.1** | v1(*) |
+| xPlanBox 3.4-S  | Testversion für LGV mit REST-API (Paket 1) | v1 |
+| xPlanBox 4.0    | **deegree Enterprise 2020.2** | v1 |
+| xPlanBox 4.1    | Testversion für LGV mit Validator Erweiterungen (Paket 2 - Teil 1) | v1 | 
+| xPlanBox 4.2    | Testversion für LGV mit XPlanGML 5.3 (Paket 2 - Teil 2) | v1 | 
+| xPlanBox 5.0    | **deegree Enterprise 2021.1** | v1(*) |
 
 (*) nach Bedarf evt. zusätzlich v2
+(S) SNAPSHOT
  
 ## umgesetzt
 
