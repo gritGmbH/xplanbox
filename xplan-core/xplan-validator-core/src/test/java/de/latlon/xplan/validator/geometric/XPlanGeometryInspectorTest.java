@@ -67,6 +67,24 @@ public class XPlanGeometryInspectorTest {
     }
 
     @Test
+    public void testInspect_RingWithDuplicateControlPoint()
+                            throws Exception {
+        Geometry geometryToInspect = readGeometry( "duplicateControlPointRing.gml" );
+
+        XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+        inspector.inspect( geometryToInspect );
+
+        List<BadGeometry> badGeometries = inspector.getBadGeometries();
+        assertThat( badGeometries.size(), is( 2 ) );
+
+        Geometry duplicateControlPoint1 = badGeometries.get( 0 ).getGeometry();
+        assertThat( duplicateControlPoint1.getId(), is( "GML_doppelterStuetzpunkt_doppelterStuetzpunkt_1" ) );
+
+        Geometry geometry = badGeometries.get( 1 ).getGeometry();
+        assertThat( geometry.getId(), is( "GML_doppelterStuetzpunkt" ) );
+    }
+
+    @Test
     public void testInspect_RingWithTwoSelfIntersetions()
                             throws Exception {
         Geometry geometryToInspect = readGeometry( "selfIntersectingRIng-2intersections.gml" );

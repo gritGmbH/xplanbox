@@ -46,7 +46,12 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
+
+import static org.deegree.geometry.primitive.segments.CurveSegment.CurveSegmentType.LINE_STRING_SEGMENT;
 
 /**
  * Validiert die aus XPlan-Dokumenten geparsten Geometrien und prüft sie auf topologische Korrektheit / Randbedingungen.
@@ -255,6 +260,7 @@ class XPlanGeometryInspector implements GeometryInspector {
         case Ring: {
             inspected = checkClosed( (Ring) inspected );
             checkSelfIntersection( (Ring) inspected );
+            checkDuplicateControlPoints( (Ring) inspected );
             break;
         }
         default:
@@ -334,6 +340,15 @@ class XPlanGeometryInspector implements GeometryInspector {
             String msg = createMessage( "2.2.2.1: Selbst\u00fcberschneidung." );
             createError( msg );
             calculateIntersectionsAndAddError( ring, jtsLineString );
+        }
+    }
+
+    void checkDuplicateControlPoints( Ring ring ) {
+        LineString jtsLineString = getJTSLineString( ring );
+        boolean hasDuplicateControlPoints = calculateDuplicateControlPointsAndAddErrors( ring, jtsLineString );
+        if ( hasDuplicateControlPoints ) {
+            String msg = createMessage( "2.2.2.1: Identische St\u00fctzpunkte." );
+            createError( msg );
         }
     }
 
@@ -453,6 +468,38 @@ class XPlanGeometryInspector implements GeometryInspector {
         }
     }
 
+    private boolean calculateDuplicateControlPointsAndAddErrors( Ring ring, LineString jtsLineString ) {
+        AtomicBoolean hasDuplicateControlPoints = new AtomicBoolean( false );
+        AtomicInteger duplicateControlPointIndex = new AtomicInteger( 1 );
+
+        List<CurveSegment> curveSegments = ring.getCurveSegments();
+        curveSegments.stream()
+                     .filter( curveSegment -> LINE_STRING_SEGMENT.equals( curveSegment.getSegmentType() ) )
+                     .forEach( curveSegment -> {
+            Points controlPoints = ( (LineStringSegment) curveSegment ).getControlPoints();
+            AtomicReference<Point> previous = new AtomicReference( null );
+            controlPoints.forEach( cp -> {
+                if ( previous.get() == null ) {
+                    previous.set( cp );
+                } else {
+                    if ( cp.equals( previous.get() ) ) {
+                        hasDuplicateControlPoints.set( true );
+                        String duplicateControlPointId = ring.getId() + "_doppelterStuetzpunkt_"
+                                                         + duplicateControlPointIndex.getAndIncrement();
+                        Point duplicateControlPointGeom = new GeometryFactory().createPoint( duplicateControlPointId,
+                                                                                             cp.get0(), cp.get1(),
+                                                                                             cp.get2(),
+                                                                                             ring.getCoordinateSystem() );
+                        String duplicateControlPointMsg = "Doppelter St\u00fctzpunkte";
+                        badGeometries.add( new BadGeometry( duplicateControlPointGeom, duplicateControlPointMsg ) );
+                    }
+                    previous.set( cp );
+                }
+            } );
+        } );
+        return hasDuplicateControlPoints.get();
+    }
+
     String createMessage( String msg ) {
         String elementName = xmlStream.getName().getLocalPart();
         int lineNumber = xmlStream.getLocation().getLineNumber();
@@ -527,9 +574,8 @@ class XPlanGeometryInspector implements GeometryInspector {
      *                         {@link Circle}
      */
     private LineString getJTSLineString( Curve curve ) {
-
         Curve linearizedCurve = linearizer.linearize( curve, crit );
-        List<Coordinate> coordinates = new LinkedList<Coordinate>();
+        List<Coordinate> coordinates = new LinkedList<>();
         for ( CurveSegment segment : linearizedCurve.getCurveSegments() ) {
             for ( Point point : ( (LineStringSegment) segment ).getControlPoints() ) {
                 coordinates.add( new Coordinate( point.get0(), point.get1() ) );
