@@ -119,7 +119,6 @@ public class XPlanGeometryInspectorTest {
         assertThat( badGeometries.size(), is( 0 ) );
     }
 
-    @Ignore("Requires invalid MultiSurface")
     @Test
     public void testInspect_InvalidMultiSurface()
                             throws Exception {
@@ -128,9 +127,11 @@ public class XPlanGeometryInspectorTest {
         inspector.inspect( geometryToInspect );
 
         List<BadGeometry> badGeometries = inspector.getBadGeometries();
-        assertThat( badGeometries.size(), is( 1 ) );
-        String id = badGeometries.get( 0 ).getGeometry().getId();
-        assertThat( id, is( "GML_c73710ad-5e75-42ba-9b9c-932427ad5de3" ) );
+        assertThat( badGeometries.size(), is( 2 ) );
+        Geometry intersection = badGeometries.get( 0 ).getGeometry();
+        assertThat( intersection.getId(), is( "GML_48d90d78-aa4a-44cc-939b-3562757993c6_intersection_1" ) );
+        Geometry geometry = badGeometries.get( 1 ).getGeometry();
+        assertThat( geometry.getId(), is( "GML_48d90d78-aa4a-44cc-939b-3562757993c6" ) );
     }
 
     private Geometry readGeometry( String geometryFile )

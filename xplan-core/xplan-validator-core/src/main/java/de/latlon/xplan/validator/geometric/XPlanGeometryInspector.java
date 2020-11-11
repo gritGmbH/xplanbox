@@ -19,9 +19,7 @@ import org.deegree.geometry.GeometryInspector;
 import org.deegree.geometry.linearization.CurveLinearizer;
 import org.deegree.geometry.linearization.LinearizationCriterion;
 import org.deegree.geometry.linearization.MaxErrorCriterion;
-import org.deegree.geometry.multi.MultiCurve;
 import org.deegree.geometry.multi.MultiGeometry;
-import org.deegree.geometry.multi.MultiPoint;
 import org.deegree.geometry.multi.MultiSurface;
 import org.deegree.geometry.points.Points;
 import org.deegree.geometry.primitive.Curve;
@@ -49,7 +47,6 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
 
 import static org.deegree.geometry.primitive.segments.CurveSegment.CurveSegmentType.LINE_STRING_SEGMENT;
 
@@ -181,43 +178,22 @@ class XPlanGeometryInspector implements GeometryInspector {
     private MultiGeometry inspect( MultiGeometry geom )
                             throws GeometryInspectionException {
         switch ( geom.getMultiGeometryType() ) {
-        case MULTI_POINT: {
-            return inspect( (MultiPoint) geom );
-        }
-        case MULTI_CURVE: {
-            return inspect( (MultiCurve) geom );
-        }
-        case MULTI_SURFACE: {
-            return inspect( (MultiSurface) geom );
-        }
+        case MULTI_POINT:
+        case MULTI_CURVE:
+            break;
+        case MULTI_SURFACE:
+            inspect( (MultiSurface) geom );
         }
         return geom;
     }
 
-    private MultiPoint inspect( MultiPoint geom )
+    private void inspect( MultiSurface geom )
                             throws GeometryInspectionException {
-        List<Point> inspected = geom.stream().map( point -> inspect( point ) ).collect( Collectors.toList() );
-        return new GeometryFactory().createMultiPoint( geom.getId(), geom.getCoordinateSystem(), inspected );
-    }
-
-    private MultiCurve inspect( MultiCurve geom )
-                            throws GeometryInspectionException {
-        List<Curve> inspected = new ArrayList<>();
-        for ( Object curve : geom ) {
-            Curve inspectedCurve = inspect( (Curve) curve );
-            inspected.add( inspectedCurve );
+        boolean hasSelfIntersection = checkSelfIntersection( geom );
+        if ( hasSelfIntersection ) {
+            String msg = createMessage( "2.2.2.1: Selbst\u00fcberschneidung zwischen MulitPolygonen." );
+            createError( msg );
         }
-        return new GeometryFactory().createMultiCurve( geom.getId(), geom.getCoordinateSystem(), inspected );
-    }
-
-    private MultiSurface inspect( MultiSurface geom )
-                            throws GeometryInspectionException {
-        List<Surface> inspected = new ArrayList<>();
-        for ( Object curve : geom ) {
-            Surface inspectedCurve = inspect( (Surface) curve );
-            inspected.add( inspectedCurve );
-        }
-        return new GeometryFactory().createMultiSurface( geom.getId(), geom.getCoordinateSystem(), inspected );
     }
 
     private GeometricPrimitive inspect( GeometricPrimitive geom )
@@ -333,6 +309,27 @@ class XPlanGeometryInspector implements GeometryInspector {
         return ring;
     }
 
+    private boolean checkSelfIntersection( MultiSurface geom ) {
+        boolean hasSelfIntersection = false;
+        List<Object> surfaces = new ArrayList<>( geom );
+        int intersectionIndex = 1;
+        for ( Object curve1 : geom ) {
+            surfaces.remove( curve1 );
+            Surface surface1 = (Surface) curve1;
+            for ( Object curve2 : surfaces ) {
+                Surface surface2 = inspect( (Surface) curve2 );
+                Geometry intersection = surface1.getIntersection( surface2 );
+                if ( intersection != null ) {
+                    hasSelfIntersection = true;
+                    intersection.setId( geom.getId() + "_intersection_" + intersectionIndex++ );
+                    String intersectionMultiGeomMsg = "Geometrie der Selbst\u00fcberschneidung zwischen MulitPolygonen";
+                    badGeometries.add( new BadGeometry( intersection, intersectionMultiGeomMsg ) );
+                }
+            }
+        }
+        return hasSelfIntersection;
+    }
+
     void checkSelfIntersection( Ring ring ) {
         LineString jtsLineString = getJTSLineString( ring );
         boolean selfIntersection = !jtsLineString.isSimple();
@@ -344,8 +341,7 @@ class XPlanGeometryInspector implements GeometryInspector {
     }
 
     void checkDuplicateControlPoints( Ring ring ) {
-        LineString jtsLineString = getJTSLineString( ring );
-        boolean hasDuplicateControlPoints = calculateDuplicateControlPointsAndAddErrors( ring, jtsLineString );
+        boolean hasDuplicateControlPoints = calculateDuplicateControlPointsAndAddErrors( ring );
         if ( hasDuplicateControlPoints ) {
             String msg = createMessage( "2.2.2.1: Identische St\u00fctzpunkte." );
             createError( msg );
@@ -468,7 +464,7 @@ class XPlanGeometryInspector implements GeometryInspector {
         }
     }
 
-    private boolean calculateDuplicateControlPointsAndAddErrors( Ring ring, LineString jtsLineString ) {
+    private boolean calculateDuplicateControlPointsAndAddErrors( Ring ring ) {
         AtomicBoolean hasDuplicateControlPoints = new AtomicBoolean( false );
         AtomicInteger duplicateControlPointIndex = new AtomicInteger( 1 );
 
