@@ -6,7 +6,7 @@
 === Version 4.0 (deegree Enterprise 2020.2)
 
 ==== Erweiterungen
-- REST Schnittstelle zum validieren und importierten von XPLan GML (XPlanManagerAPI und XPlanValidatorAPI)
+- REST-Schnittstelle zum Validieren und Importierten von XPlanGML (XPlanManagerAPI und XPlanValidatorAPI)
 
 ==== Fehlerbehebungen
 - (TT_10393, TT_10376, TT_10382) Verbesserung des Editierens von TextAbschnitten und externen Referenzen und der Ausgabe im GFI

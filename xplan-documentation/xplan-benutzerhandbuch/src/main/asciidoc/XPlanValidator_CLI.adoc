@@ -19,9 +19,9 @@ Konfigurationsdatei __validatorConfiguration.properties__, welche
 genutzt werden kann, um generelle Konfigurationen an dem
 Kommandozeilentool durchzuführen.
 
-Falls der Parameter _–managerconfiguration_ während eines Aufrufs des
+Falls der Parameter `–managerconfiguration` während eines Aufrufs des
 Kommandozeilentools nicht mitgegeben wird, nutzt das Tool die unter
-_etc_ abgelegte Datei. Wenn der Parameter mitgegeben wird, muss sich die
+_etc/_ abgelegte Datei. Wenn der Parameter mitgegeben wird, muss sich die
 Konfigurationsdatei in dem referenzierten Verzeichnis befinden.
 
 Über _validationReportDirectory=<directory>_ kann konfiguriert werden,
@@ -31,7 +31,7 @@ des Tools generiert werden, abgespeichert werden sollen.
 [[xplanvalidator-cli-auswahl-planarchiv]]
 ===== Auswahl XPlanArchiv
 
-Über den Parameter _-validate <planarchiv>_ kann der Pfad zum XPlanArchiv
+Über den Parameter `-validate <planarchiv>` kann der Pfad zum XPlanArchiv
  auswählt werden, welcher validiert werden soll. Die Angabe
 des Parameters ist obligatorisch.
 
@@ -44,7 +44,7 @@ XPlanValidator -validate Plan.zip
 [[xplanvalidator-cli-bezeichnung-der-validierung]]
 ===== Bezeichnung für den Report
 
-Über den Parameter _-name <bezeichnung>_ kann eine Bezeichnung für den generierten
+Über den Parameter `-name <bezeichnung>` kann eine Bezeichnung für den generierten
 Report vergeben werden. Die Angabe des Parameters ist optional.
 Fehlt dieser Parameter wird der Name des XPlanArchivs verwendet.
 
@@ -119,8 +119,8 @@ XPlanValidator -validate Plan.zip -vo skip-flaechenschluss -vo skip-geltungsbere
 
 Zuordnung der Werte:
 
-  * skip-flaechenschluss -> Goemetrische Überprüfung der Flächenschlussbedingung (2.2.1.1) überspringen [ja]
-  * skip-geltungsbereich -> Goemetrische Überprüfung des Geltungsbereich (2.2.3.1) überspringen [ja]
+  * skip-flaechenschluss -> Geometrische Überprüfung der Flächenschlussbedingung (2.2.1.1) überspringen [ja]
+  * skip-geltungsbereich -> Geometrische Überprüfung des Geltungsbereich (2.2.3.1) überspringen [ja]
 
 [[xplanvalidator-cli-validierungsergebnis]]
 ===== Validierungsergebnis

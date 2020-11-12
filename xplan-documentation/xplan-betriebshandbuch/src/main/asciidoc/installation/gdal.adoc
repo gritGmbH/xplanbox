@@ -48,7 +48,7 @@ dem Befehl `cl` abgefragt oder über die Windows Systemsteuerung angezeigt werde
 Dieses Zip-Archiv kann an einem beliebigen Ort entpackt werden.
 
 Unter
-`Systemsteuerung->System und Sicherheit->System->Erweiterte Systemeinstellungen->Erweitert->Umgebungsvariablen`
+_Systemsteuerung->System und Sicherheit->System->Erweiterte Systemeinstellungen->Erweitert->Umgebungsvariablen_
 müssen folgende Einstellungen vorgenommen werden:
 
 * Setzen der Variable `JAVA_HOME` mit der Referenz zur Java Installation

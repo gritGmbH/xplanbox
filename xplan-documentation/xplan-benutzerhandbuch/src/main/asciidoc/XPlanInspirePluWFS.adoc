@@ -70,7 +70,7 @@ Die Operation DescribeFeatureType gibt Informationen zur Struktur der einzelnen 
 
 === Response Paging
 
-Der XPlanInspirePluWFs ist so konfiguriert, dass maximal 100 Instanzen des angefragten FeatureTypes zurückgegeben werden. Um alle Instanzen abzufragen muss daher das vom WFS unterstützte Response Paging verwendet werden: die Parameter COUNT und STARTINDEX ermögichen das "blättern" im Gesamtdatenbestand. Mit COUNT wird die Anzahl der maximal zurückgegeben Instanzen vorgegeben, mit STARTINDEX der Index der ersten Instanz (beginnend bei 1) die zurückgegeben werden soll. Beispiele (Beschreibung von <GET_FEATURE_REQUEST> s. oben):
+Der XPlanInspirePluWFs ist so konfiguriert, dass maximal 100 Instanzen des angefragten FeatureTypes zurückgegeben werden. Um alle Instanzen abzufragen muss daher das vom WFS unterstützte Response Paging verwendet werden: die Parameter COUNT und STARTINDEX ermöglichen das "Blättern" im Gesamtdatenbestand. Mit COUNT wird die Anzahl der maximal zurückgegeben Instanzen vorgegeben, mit STARTINDEX der Index der ersten Instanz (beginnend bei 1) die zurückgegeben werden soll. Beispiele (Beschreibung von <GET_FEATURE_REQUEST> s. oben):
 
 "Seite 1":
 
