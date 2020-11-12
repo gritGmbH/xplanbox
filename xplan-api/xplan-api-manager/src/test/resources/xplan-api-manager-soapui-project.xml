@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="adcdfd3f-0f4e-4107-8d7e-086010676cb7" activeEnvironment="Default" name="xplan-api-manager" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="adcdfd3f-0f4e-4107-8d7e-086010676cb7" activeEnvironment="Default" name="xplan-api-manager" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:interface xsi:type="con:RestService" id="91f12f7d-fc3a-44d4-b4a3-ece617357d35" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanManagerAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:description>XPlanManager REST API</con:description>
@@ -31,12 +31,12 @@ OpenAPI document</con:description>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
           <con:request/>
           <con:originalUri>https://xplanbox.lat-lon.de/xmanager/api/v1/</con:originalUri>
           <con:credentials>
-            <con:username xsi:nil="true"/>
-            <con:password xsi:nil="true"/>
+            <con:username>xplanbox</con:username>
+            <con:password>xpl@n!secure9</con:password>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -72,10 +72,10 @@ Show system and application configuration</con:description>
         </con:representation>
         <con:request name="Request 1" id="11f40bd4-e546-4bcf-9ce6-404b4279d786" mediaType="application/json">
           <con:settings/>
-          <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
-            <con:password xsi:nil="true"/>
+            <con:username>xplanbox</con:username>
+            <con:password>xpl@n!secure9</con:password>
             <con:domain xsi:nil="true"/>
           </con:credentials>
           <con:parameters/>
@@ -202,10 +202,10 @@ Import the plan</con:description>
         </con:representation>
         <con:request name="Request 1" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/json">
           <con:settings/>
-          <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
-            <con:password xsi:nil="true"/>
+            <con:username>xplanbox</con:username>
+            <con:password>xpl@n!secure9</con:password>
             <con:domain xsi:nil="true"/>
           </con:credentials>
           <con:parameters/>
@@ -255,10 +255,10 @@ Get plan identified by the given planName</con:description>
         </con:representation>
         <con:request name="Request 1" id="25618c12-48a4-4be8-8a88-5826c061b358" mediaType="application/json">
           <con:settings/>
-          <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
-            <con:password xsi:nil="true"/>
+            <con:username>xplanbox</con:username>
+            <con:password>xpl@n!secure9</con:password>
             <con:domain xsi:nil="true"/>
           </con:credentials>
           <con:parameters/>
@@ -326,10 +326,10 @@ Get plan identified by the given plan ID</con:description>
         </con:representation>
         <con:request name="Request 1" id="f9bcc4d9-872e-472c-96b8-27484a6e67a3" mediaType="application/json">
           <con:settings/>
-          <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
-            <con:password xsi:nil="true"/>
+            <con:username>xplanbox</con:username>
+            <con:password>xpl@n!secure9</con:password>
             <con:domain xsi:nil="true"/>
           </con:credentials>
           <con:parameters/>
@@ -551,10 +551,10 @@ Delete plan identified by the given plan ID</con:description>
         </con:representation>
         <con:request name="Request 1" id="d1cd7d2d-f354-4a5a-9fa0-1137ede48dcd" mediaType="application/json">
           <con:settings/>
-          <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
-            <con:password xsi:nil="true"/>
+            <con:username>xplanbox</con:username>
+            <con:password>xpl@n!secure9</con:password>
             <con:domain xsi:nil="true"/>
           </con:credentials>
           <con:parameters/>
@@ -593,10 +593,10 @@ Search for plan by name</con:description>
         </con:representation>
         <con:request name="Request 1" id="653c7a59-0292-405d-8596-a225f505b1fb" mediaType="application/json">
           <con:settings/>
-          <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
-            <con:password xsi:nil="true"/>
+            <con:username>xplanbox</con:username>
+            <con:password>xpl@n!secure9</con:password>
             <con:domain xsi:nil="true"/>
           </con:credentials>
           <con:parameters/>
@@ -618,7 +618,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>https://xplanbox.lat-lon.de/xmanager/api/v1/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="a1670c9e-49b6-4a46-9dc2-cc12a19d2449" name="Valid HTTP Status Codes">
@@ -636,8 +636,8 @@ Search for plan by name</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
@@ -659,7 +659,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/info</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="4e3dd521-27bb-4e43-8f8b-93095165dc9f" name="Valid HTTP Status Codes">
@@ -677,8 +677,8 @@ Search for plan by name</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
@@ -700,7 +700,7 @@ Search for plan by name</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
@@ -734,8 +734,8 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -766,7 +766,7 @@ assert actualHeader != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
@@ -784,8 +784,8 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -813,7 +813,7 @@ assert actualHeader != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
@@ -847,8 +847,8 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -910,7 +910,7 @@ assert actualHeader != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
@@ -919,8 +919,8 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -956,7 +956,7 @@ assert actualHeader != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/name/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7af8bd28-cbdf-429d-adba-8fae4efb7ae5" name="Valid HTTP Status Codes">
@@ -983,8 +983,8 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
@@ -1008,7 +1008,7 @@ assert actualHeader != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plans</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7c256da6-27a4-473d-8c2d-bf06f2bba366" name="Valid HTTP Status Codes">
@@ -1035,8 +1035,8 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
@@ -1055,7 +1055,7 @@ assert actualHeader != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plans</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7c256da6-27a4-473d-8c2d-bf06f2bba366" name="Valid HTTP Status Codes">
@@ -1082,8 +1082,8 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
@@ -1107,7 +1107,7 @@ assert actualHeader != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="89620a4b-f714-4db0-9115-1c1c4338e712" name="Valid HTTP Status Codes">
@@ -1134,8 +1134,8 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
               <con:preemptive>true</con:preemptive>
@@ -1156,7 +1156,7 @@ assert actualHeader != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/xml" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="89620a4b-f714-4db0-9115-1c1c4338e712" name="Valid HTTP Status Codes">
@@ -1183,8 +1183,8 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
               <con:preemptive>true</con:preemptive>
@@ -1205,7 +1205,7 @@ assert actualHeader != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/zip" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="89620a4b-f714-4db0-9115-1c1c4338e712" name="Valid HTTP Status Codes">
@@ -1222,8 +1222,8 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
               <con:preemptive>true</con:preemptive>
@@ -1244,7 +1244,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="859dc093-1e4d-4794-bcc1-58695077093f" name="Valid HTTP Status Codes">
@@ -1262,8 +1262,8 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
               <con:preemptive>true</con:preemptive>
@@ -1284,7 +1284,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/xml" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xmanager/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="859dc093-1e4d-4794-bcc1-58695077093f" name="Valid HTTP Status Codes">
@@ -1302,8 +1302,8 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
               <con:preemptive>true</con:preemptive>
@@ -1322,11 +1322,11 @@ assert expectedHeader == actualHeader</scriptText>
     <con:properties>
       <con:property>
         <con:name>currentPlanIdImport</con:name>
-        <con:value>1</con:value>
+        <con:value>19</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipAll</con:name>
-        <con:value>2</con:value>
+        <con:value>20</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
