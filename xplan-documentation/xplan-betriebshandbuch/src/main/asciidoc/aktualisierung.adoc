@@ -73,7 +73,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 2.8              |                                                                    | ja
 | 3.0              | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)
 | 3.3              | ja (<<aktualisierung-auf-die-version-3.3-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.3-der-xplanbox, Details>>)
-| 3.4              | ja (<<aktualisierung-auf-die-version-3.4-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.4-der-xplanbox, Details>>)
+| 4.0              | ja (<<aktualisierung-auf-die-version-4.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-4.0-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -318,13 +318,17 @@ Für die Aktualisierung auf die Version 3.3.1 sind folgende Schritte auszuführe
 ** Ausführen der Skripte im Verzeichnis _from_3.3_to_3.3.1_ im Modul xplan-update-database. Die Tabelle _xplanmgr.plans_ wurde um die Spalte _internalid_ erweitert.
 ** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul xplan-update-database zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der __reSynthesizer__ wurde so angepasst, dass die _xplanmgr.plans.internalid_ bei Ausführung in in die synthetisierte FeatureCollection übernommen wird.
 
-[[aktualisierung-auf-die-version-3.4-der-xplanbox]]
-=== Aktualisierung auf die Version 3.4 der xPlanBox
+[[aktualisierung-auf-die-version-4.0-der-xplanbox]]
+=== Aktualisierung auf die Version 4.0 der xPlanBox
 
-Mit der Version 3.4 der xPlanBox sind einige Fehlerbehebungen und Erweiterungen vorgenommen worden.
+Mit der Version 4.0 der xPlanBox sind einige Fehlerbehebungen und Erweiterungen vorgenommen worden. Weiterhin sind die REST Schnittstellen XPlanManagerAPI und XPlanValidatorAPI neu hinzugekommen.
 
-Für die Aktualisierung auf die Version 3.4 sind folgende Schritte auszuführen:
+Für die Aktualisierung auf die Version 4.0 sind folgende Schritte auszuführen:
 
+* Ist der Patch 3.3.1 *nicht* installiert, müssen die Aktualisierungsschritte aus <<aktualisierung-auf-die-version-3.3.1-der-xplanbox>> zuerst ausgeführt werden (die Ausführung des Kommandozeilentools __reSynthesizer__ ist nicht erforderlich).
+* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 * Aktualisierung der Datenbank:
-** Ausführen der Skripte im Verzeichnis _from_3.3.2_to_3.4_ im Modul xplan-update-database.
+** Ausführen der Skripte im Verzeichnis _from_3.3_to_4.0_ im Modul xplan-update-database.
 ** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul xplan-update-database zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten.
+
+Die Installation der XPlanManagerAPI und XPlanValidatorAPI ist im Abschnitt <<web-anwendungen>> und die Konfiguration unter <<konfiguration-rest-api>> beschrieben.
