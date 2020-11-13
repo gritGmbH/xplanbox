@@ -38,7 +38,7 @@ import org.deegree.workspace.standard.AbstractResourceProvider;
  */
 public class PlanwerkMetadata extends AbstractResourceMetadata<OWS> {
 
-    private static final String CONFIG_JAXB_PACKAGE = "org.deegree.services.planwerk.jaxb";
+    protected static final String CONFIG_JAXB_PACKAGE = "de.latlon.xplan.planwerkwms.jaxb";
 
     public PlanwerkMetadata( Workspace workspace, ResourceLocation<OWS> location,
                              AbstractResourceProvider<OWS> provider ) {

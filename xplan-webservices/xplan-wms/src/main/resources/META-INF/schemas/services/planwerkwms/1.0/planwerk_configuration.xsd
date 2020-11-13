@@ -7,7 +7,7 @@
   <annotation>
     <appinfo>
       <jaxb:schemaBindings>
-        <jaxb:package name="org.deegree.services.planwerk.jaxb"/>
+        <jaxb:package name="de.latlon.xplan.planwerkwms.jaxb"/>
       </jaxb:schemaBindings>
     </appinfo>
   </annotation>

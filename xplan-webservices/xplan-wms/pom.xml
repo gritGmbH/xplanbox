@@ -73,6 +73,12 @@
       <artifactId>axiom-api</artifactId>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.3.6</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
 </project>
