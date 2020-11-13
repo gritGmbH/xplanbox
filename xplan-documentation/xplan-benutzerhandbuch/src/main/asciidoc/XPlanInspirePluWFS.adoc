@@ -83,4 +83,4 @@ Der XPlanInspirePluWFs ist so konfiguriert, dass maximal 100 Instanzen des angef
 <GET_FEATURE_REQUEST>&COUNT=10&STARTINDEX=11
 ----
 
-Über die Attribute @next und @previous im GetFeatureReponse werden die URLs der nächsten bzw. vorherigen "Seite" bereits ausgegeben.
+Über die Attribute @next und @previous im GetFeatureResponse werden die URLs der nächsten bzw. vorherigen "Seite" bereits ausgegeben.
