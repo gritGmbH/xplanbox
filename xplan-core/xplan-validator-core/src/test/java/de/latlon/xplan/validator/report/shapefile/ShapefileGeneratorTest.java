@@ -68,9 +68,9 @@ public class ShapefileGeneratorTest {
         ShapefileGenerator shapefileGenerator = new ShapefileGenerator();
         shapefileGenerator.generateReport( validatorReport, "testShapeGenerator", directoryToCreateShapes );
 
-        assertThat( directoryToCreateShapes, containsFile( ".shp", 2 ) );
-        assertThat( directoryToCreateShapes, containsFile( ".shx", 2 ) );
-        assertThat( directoryToCreateShapes, containsFile( ".dbf", 2 ) );
+        assertThat( directoryToCreateShapes, containsFile( ".shp", 4 ) );
+        assertThat( directoryToCreateShapes, containsFile( ".shx", 4 ) );
+        assertThat( directoryToCreateShapes, containsFile( ".dbf", 4 ) );
     }
 
     @Test

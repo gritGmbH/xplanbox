@@ -46,7 +46,7 @@ public abstract class GeometricValidatorAbstractTest {
     @Test
     public void testRetrieveGeometricallyValidXPlanFeaturesWithNullInternalIdShouldNotFail()
                     throws Exception {
-        XPlanArchive archive = getTestArchive( "xplan41/BP2070.zip" );
+        XPlanArchive archive = getTestArchive( "xplan41/Eidelstedt_4_V4.zip" );
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( XPLAN_41, null );
         createGeometricValidator().retrieveGeometricallyValidXPlanFeatures( archive, archive.getCrs(), schema, false,
                                                                             null );

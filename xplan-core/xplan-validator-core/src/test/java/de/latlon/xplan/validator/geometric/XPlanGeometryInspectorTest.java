@@ -24,38 +24,31 @@ package de.latlon.xplan.validator.geometric;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.geometry.Geometry;
-import org.deegree.geometry.primitive.Curve;
-import org.deegree.geometry.primitive.Polygon;
+import org.deegree.geometry.primitive.LineString;
+import org.deegree.geometry.primitive.Point;
 import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.patches.PolygonPatch;
 import org.deegree.gml.GMLInputFactory;
-import org.deegree.gml.GMLVersion;
+import org.hamcrest.CoreMatchers;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.net.URL;
-import java.util.Collections;
 import java.util.List;
 
-import static org.deegree.geometry.Geometry.GeometryType.PRIMITIVE_GEOMETRY;
-import static org.deegree.geometry.primitive.Curve.CurveType.Ring;
-import static org.deegree.geometry.primitive.GeometricPrimitive.PrimitiveType.Curve;
-import static org.deegree.geometry.primitive.GeometricPrimitive.PrimitiveType.Surface;
-import static org.deegree.geometry.primitive.Surface.SurfaceType.Polygon;
+import static org.deegree.gml.GMLVersion.GML_32;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
- * Tests for <link>XPlanGeometryInspector</link>
+ * Tests for <link>XPlanGeometryInspector</link>.
  *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @author last edited by: $Author: erben $
@@ -64,76 +57,108 @@ import static org.mockito.Mockito.when;
 public class XPlanGeometryInspectorTest {
 
     @Test
-    public void testInspectRing_ShouldTestSelfIntersection() {
-        XPlanGeometryInspector inspector = mockInspector();
-        inspector.inspect( mockRing() );
+    public void testInspect_Ring_ShouldTestSelfIntersection()
+                            throws Exception {
+        XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+        inspector.inspect( readGeometry( "curve.gml" ) );
         verify( inspector, times( 1 ) ).checkSelfIntersection( any( Ring.class ) );
     }
 
     @Test
-    public void testInspectPolygonPatch_ShouldTestSelfIntersection() {
-        XPlanGeometryInspector inspector = mockInspector();
-        inspector.inspect( mockPolygon() );
+    public void testInspect_PolygonPatch_ShouldTestSelfIntersectionAndOrientation()
+                            throws Exception {
+        XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+        inspector.inspect( readGeometry( "surface.gml" ) );
         verify( inspector, times( 1 ) ).checkSelfIntersection( any( PolygonPatch.class ) );
         verify( inspector, times( 1 ) ).checkRingOrientations( any( PolygonPatch.class ) );
     }
 
     @Test
-    public void testInspectPolygonPatch_ShouldTestOrientation() {
-        XPlanGeometryInspector inspector = mockInspector();
-        inspector.inspect( mockPolygon() );
-        verify( inspector, times( 1 ) ).checkRingOrientations( any( PolygonPatch.class ) );
-    }
-
-    @Test
-    public void testInspectRingWithInvalidGeometryWithoutIdShouldBeAddedAsBadGeometry()
+    public void testInspect_RingWithSelfIntersection()
                             throws Exception {
-        Geometry geometryToInspect = createSelfIntersectingRing();
+        Geometry geometryToInspect = readGeometry( "selfIntersectingRing.gml" );
+
         XPlanGeometryInspector inspector = createInspectorWithMockedStream();
         inspector.inspect( geometryToInspect );
 
         List<BadGeometry> badGeometries = inspector.getBadGeometries();
-        assertThat( badGeometries.size(), is( 1 ) );
-        String id = badGeometries.get( 0 ).getGeometry().getId();
-        assertThat( id, is( nullValue() ) );
+        assertThat( badGeometries.size(), is( 2 ) );
+        assertThat( badGeometries.get( 0 ).getGeometry().getId(), is( "GML_ID_67697_intersection_1" ) );
+        assertThat( badGeometries.get( 1 ).getGeometry().getId(), is( "GML_ID_67697" ) );
     }
 
-    private Polygon mockPolygon() {
-        Polygon polygonPatch = mock( Polygon.class );
-        Mockito.when( polygonPatch.getGeometryType() ).thenReturn( PRIMITIVE_GEOMETRY );
-        when( polygonPatch.getPrimitiveType() ).thenReturn( Surface );
-        when( polygonPatch.getSurfaceType() ).thenReturn( Polygon );
-        when( polygonPatch.getPatches() ).thenReturn( Collections.singletonList( mockPolygonPatch() ) );
-        return polygonPatch;
-
-    }
-
-    private PolygonPatch mockPolygonPatch() {
-        return mock( PolygonPatch.class );
-    }
-
-    private Ring mockRing() {
-        Ring mockRing = mock( Ring.class );
-        when( mockRing.getGeometryType() ).thenReturn( PRIMITIVE_GEOMETRY );
-        when( mockRing.getPrimitiveType() ).thenReturn( Curve );
-        when( mockRing.getCurveType() ).thenReturn( Ring );
-        return mockRing;
-    }
-
-    private Geometry createSelfIntersectingRing()
+    @Test
+    public void testInspect_RingWithDuplicateControlPoint()
                             throws Exception {
-        URL url = XPlanGeometryInspectorTest.class.getResource( "selfIntersectingRing.gml" );
-        return ( (Polygon) GMLInputFactory.createGMLStreamReader( GMLVersion.GML_30,
-                                                                  url ).readGeometry() ).getExteriorRing();
+        Geometry geometryToInspect = readGeometry( "duplicateControlPointRing.gml" );
+
+        XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+        inspector.inspect( geometryToInspect );
+
+        List<BadGeometry> badGeometries = inspector.getBadGeometries();
+        assertThat( badGeometries.size(), is( 2 ) );
+
+        Geometry duplicateControlPoint1 = badGeometries.get( 0 ).getGeometry();
+        assertThat( duplicateControlPoint1.getId(), is( "GML_doppelterStuetzpunkt_doppelterStuetzpunkt_1" ) );
+
+        Geometry geometry = badGeometries.get( 1 ).getGeometry();
+        assertThat( geometry.getId(), is( "GML_doppelterStuetzpunkt" ) );
     }
 
-    private XPlanGeometryInspector mockInspector() {
-        XPlanGeometryInspector inspector = mock( XPlanGeometryInspector.class );
-        doAnswer( returnsFirstArg() ).when( inspector ).checkClosed( any( Ring.class ) );
-        doAnswer( returnsFirstArg() ).when( inspector ).checkRingOrientations( any( PolygonPatch.class ) );
-        doAnswer( returnsFirstArg() ).when( inspector ).createMessage( anyString() );
-        when( inspector.inspect( any( Curve.class ) ) ).thenCallRealMethod();
-        return inspector;
+    @Test
+    public void testInspect_RingWithTwoSelfIntersetions()
+                            throws Exception {
+        Geometry geometryToInspect = readGeometry( "selfIntersectingRIng-2intersections.gml" );
+        XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+        inspector.inspect( geometryToInspect );
+
+        List<BadGeometry> badGeometries = inspector.getBadGeometries();
+        assertThat( badGeometries.size(), is( 3 ) );
+
+        Geometry intersection1 = badGeometries.get( 0 ).getGeometry();
+        assertThat( intersection1.getId(), is( "Gml_8AB9C0E6-69DB-4855-A32C-CD9BBC95ABED_intersection_1" ) );
+        assertThat( ( (Point) intersection1 ).get0(), is( 583028.4653110565 ) );
+        assertThat( ( (Point) intersection1 ).get1(), is( 3581555.9624473285 ) );
+
+        Geometry intersection2 = badGeometries.get( 1 ).getGeometry();
+        assertThat( intersection2.getId(), is( "Gml_8AB9C0E6-69DB-4855-A32C-CD9BBC95ABED_intersection_2" ) );
+        assertThat( ( (Point) intersection2 ).get0(), is( 583192.1906790873 ) );
+        assertThat( ( (Point) intersection2 ).get1(), is( 5920635.179921611 ) );
+
+        Geometry geometry = badGeometries.get( 2 ).getGeometry();
+        assertThat( geometry.getId(), is( "Gml_8AB9C0E6-69DB-4855-A32C-CD9BBC95ABED" ) );
+    }
+
+    @Test
+    public void testInspect_MultiSurface()
+                            throws Exception {
+        Geometry geometryToInspect = readGeometry( "multiSurface.gml" );
+        XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+        inspector.inspect( geometryToInspect );
+
+        List<BadGeometry> badGeometries = inspector.getBadGeometries();
+        assertThat( badGeometries.size(), is( 0 ) );
+    }
+
+    @Test
+    public void testInspect_InvalidMultiSurface()
+                            throws Exception {
+        Geometry geometryToInspect = readGeometry( "multiSurface-invalid.gml" );
+        XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+        inspector.inspect( geometryToInspect );
+
+        List<BadGeometry> badGeometries = inspector.getBadGeometries();
+        assertThat( badGeometries.size(), is( 2 ) );
+        Geometry intersection = badGeometries.get( 0 ).getGeometry();
+        assertThat( intersection.getId(), is( "GML_48d90d78-aa4a-44cc-939b-3562757993c6_intersection_1" ) );
+        Geometry geometry = badGeometries.get( 1 ).getGeometry();
+        assertThat( geometry.getId(), is( "GML_48d90d78-aa4a-44cc-939b-3562757993c6" ) );
+    }
+
+    private Geometry readGeometry( String geometryFile )
+                            throws Exception {
+        URL url = XPlanGeometryInspectorTest.class.getResource( geometryFile );
+        return GMLInputFactory.createGMLStreamReader( GML_32, url ).readGeometry();
     }
 
     private XPlanGeometryInspector createInspectorWithMockedStream() {

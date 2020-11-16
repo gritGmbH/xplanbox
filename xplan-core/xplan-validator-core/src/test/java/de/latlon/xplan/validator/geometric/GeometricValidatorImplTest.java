@@ -72,7 +72,7 @@ public class GeometricValidatorImplTest {
         int numberOfErrors = ( (GeometricValidatorResult) report ).getErrors().size();
 
         assertThat( report.isValid(), is( false ) );
-        assertThat( numberOfErrors, is( 5 ) );
+        assertThat( numberOfErrors, is( 10 ) );
     }
 
     @Test
@@ -84,7 +84,7 @@ public class GeometricValidatorImplTest {
         int numberOfErrors = ( (GeometricValidatorResult) report ).getErrors().size();
 
         assertThat( report.isValid(), is( false ) );
-        assertThat( numberOfErrors, is( 6 ) );
+        assertThat( numberOfErrors, is(11 ) );
     }
 
     @Test
@@ -111,8 +111,8 @@ public class GeometricValidatorImplTest {
         GeometricValidatorResult geometricReport = (GeometricValidatorResult) report;
         int numberOfErrors = geometricReport.getErrors().size();
 
-        assertThat( report.isValid(), is( true ) );
-        assertThat( numberOfErrors, is( 0 ) );
+        assertThat( report.isValid(), is( false ) );
+        assertThat( numberOfErrors, is( 6 ) );
     }
 
     @Ignore("TODO: test plan is required (with only few features)")
