@@ -43,6 +43,7 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ValidationReport   {
 
+  private @Valid VersionEnum version;
   private @Valid String filename;
   private @Valid String name;
   private @Valid Date date;
@@ -88,6 +89,24 @@ public class ValidationReport   {
 
   public void setName(String name) {
     this.name = name;
+  }/**
+   **/
+  public ValidationReport version(VersionEnum version) {
+    this.version = version;
+    return this;
+  }
+
+
+
+
+  @Schema(example = "XPLAN_51")
+  @JsonProperty("version")
+  public VersionEnum getVersion() {
+    return version;
+  }
+
+  public void setVersion(VersionEnum version) {
+    this.version = version;
   }/**
    **/
   public ValidationReport date(Date date) {
@@ -207,6 +226,7 @@ public class ValidationReport   {
     ValidationReport validationReport = (ValidationReport) o;
     return Objects.equals(this.filename, validationReport.filename) &&
         Objects.equals(this.name, validationReport.name) &&
+        Objects.equals(this.version, validationReport.version) &&
         Objects.equals(this.date, validationReport.date) &&
         Objects.equals(this.valid, validationReport.valid) &&
         Objects.equals(this.externalReferences, validationReport.externalReferences) &&
@@ -217,7 +237,7 @@ public class ValidationReport   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(filename, name, date, valid, externalReferences, wmsUrl, rulesMetadata, validationResult);
+    return Objects.hash(filename, name, version, date, valid, externalReferences, wmsUrl, rulesMetadata, validationResult);
   }
 
   @Override
@@ -227,6 +247,7 @@ public class ValidationReport   {
 
     sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("    valid: ").append(toIndentedString(valid)).append("\n");
     sb.append("    externalReferences: ").append(toIndentedString(externalReferences)).append("\n");

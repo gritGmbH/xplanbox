@@ -189,6 +189,7 @@ public class XPlanValidator {
         report.setValidationName( validationSettings.getValidationName() );
         report.setPlanName( planName );
         report.setDate( new Date() );
+        report.setXPlanVersion( archive.getVersion() );
 
         List<ValidationType> validationType = getValidationType( validationSettings );
         validateSyntactic( archive, report );

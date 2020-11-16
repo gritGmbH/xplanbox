@@ -21,6 +21,8 @@
  */
 package de.latlon.xplan.validator.report;
 
+import de.latlon.xplan.commons.XPlanVersion;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -109,4 +111,28 @@ public class ReportUtils {
                  || file.getName().endsWith( ".aih" ) || file.getName().endsWith( ".ain" )
                  || file.getName().endsWith( ".shp.xml" ) || file.getName().endsWith( ".cpg" ) );
     }
+
+    public static String asLabel( XPlanVersion version ) {
+        if ( version == null )
+            return "unbekannt";
+        switch ( version ) {
+        case XPLAN_3:
+            return "3";
+        case XPLAN_40:
+            return "4.0";
+        case XPLAN_41:
+            return "4.1";
+        case XPLAN_50:
+            return "5.0";
+        case XPLAN_51:
+            return "5.1";
+        case XPLAN_52:
+            return "5.2";
+        case XPLAN_SYN:
+            return "1.0";
+        default:
+            return null;
+        }
+    }
+
 }

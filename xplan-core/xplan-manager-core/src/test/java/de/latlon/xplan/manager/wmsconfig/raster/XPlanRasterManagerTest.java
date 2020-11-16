@@ -73,6 +73,7 @@ import java.util.Collections;
 import java.util.List;
 
 import de.latlon.xplan.commons.archive.ZipEntryWithContent;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
@@ -91,6 +92,7 @@ import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.Rast
  *
  * @version $Revision: $, $Date: $
  */
+@Ignore
 public class XPlanRasterManagerTest {
 
     private static final String CONFIGURED_CRS = "epsg:4326";

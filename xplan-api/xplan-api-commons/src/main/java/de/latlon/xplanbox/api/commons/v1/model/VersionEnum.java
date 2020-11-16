@@ -23,6 +23,7 @@ package de.latlon.xplanbox.api.commons.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import de.latlon.xplan.commons.XPlanVersion;
 
 public enum VersionEnum {
 
@@ -62,5 +63,23 @@ public enum VersionEnum {
             }
         }
         throw new IllegalArgumentException( "Unexpected value '" + value + "'" );
+    }
+
+    /**
+     * @param xPlanVersion
+     *                         may be <code>null</code>
+     * @return the XPlanVersion as VersionEnum, <code>null</code> if xPlanVersion was null
+     * @throws IllegalArgumentException
+     *                         if the passed xPlanVersion could not be converted to a VersionEnum
+     */
+    public static VersionEnum fromXPlanVersion( XPlanVersion xPlanVersion ) {
+        if ( xPlanVersion == null )
+            return null;
+        for ( VersionEnum b : VersionEnum.values() ) {
+            if ( b.value.equals( xPlanVersion.name() ) ) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException( "Unexpected XPlanVersion '" + xPlanVersion + "'" );
     }
 }

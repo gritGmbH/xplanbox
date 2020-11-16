@@ -22,8 +22,8 @@
 package de.latlon.xplan.validator.report.xml;
 
 import static de.latlon.xplan.validator.report.ReportUtils.createValidLabel;
+import static de.latlon.xplan.validator.report.ReportUtils.asLabel;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -112,6 +112,7 @@ public class JaxbConverter {
         ObjectFactory objectFactory = new ObjectFactory();
         PlanType pt = objectFactory.createPlanType();
         pt.setName( report.getPlanName() );
+        pt.setVersion( asLabel( report.getXPlanVersion() ) );
         return pt;
     }
 
@@ -197,7 +198,7 @@ public class JaxbConverter {
         val.setSyn( synType );
     }
 
-    private static Calendar toCalendar( Date date ) {
+    private Calendar toCalendar( Date date ) {
         if ( date == null )
             return null;
         Calendar cal = Calendar.getInstance();

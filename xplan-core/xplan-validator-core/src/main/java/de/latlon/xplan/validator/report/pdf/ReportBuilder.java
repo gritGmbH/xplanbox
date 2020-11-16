@@ -21,6 +21,7 @@
  */
 package de.latlon.xplan.validator.report.pdf;
 
+import static de.latlon.xplan.validator.report.ReportUtils.asLabel;
 import static de.latlon.xplan.validator.report.ReportUtils.createValidLabel;
 import static de.latlon.xplan.validator.report.pdf.Templates.bold14LeftStyle;
 import static de.latlon.xplan.validator.report.pdf.Templates.createFooter;
@@ -188,17 +189,6 @@ class ReportBuilder {
         return verticalList;
     }
 
-    private ComponentBuilder<?, ?> appendRulesMetadataVersion( SemanticValidatorResult semanticValidatorResult ) {
-        int noOfRules  = semanticValidatorResult.getRules().size();
-        String text = String.format( " %s Validierungsregeln überprüft", noOfRules );
-        return addTextString( text );
-    }
-    private ComponentBuilder<?, ?> appendRulesMetadataSource( SemanticValidatorResult semanticValidatorResult ) {
-        int noOfRules  = semanticValidatorResult.getRules().size();
-        String text = String.format( " %s Validierungsregeln überprüft", noOfRules );
-        return addTextString( text );
-    }
-
     private ComponentBuilder<?, ?> appendNumberOfRules( SemanticValidatorResult semanticValidatorResult ) {
         int noOfRules  = semanticValidatorResult.getRules().size();
         String text = String.format( " %s Validierungsregeln überprüft", noOfRules );
@@ -305,6 +295,7 @@ class ReportBuilder {
         params.put( "planName", report.getPlanName() );
         params.put( "valResult", isValid );
         params.put( "date", report.getDate() );
+        params.put( "version", asLabel( report.getXPlanVersion() ) );
         return params;
     }
 

@@ -62,9 +62,9 @@ public class HtmlReportGeneratorTest {
 
         htmlReportGenerator.generateHtmlReport( createValidatorReportWithSemanticFailures(), html );
 
-        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]/p/ul/li[1]", containsString( "2 Validierungsregeln" ) ) );
-        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]/p/ul/li[2]", containsString( "1 Validierungsregeln nicht" ) ) );
-        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]/p/ul/li[3]", containsString( "1 Validierungsregeln" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[6]/p/ul/li[1]", containsString( "2 Validierungsregeln" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[6]/p/ul/li[2]", containsString( "1 Validierungsregeln nicht" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[6]/p/ul/li[3]", containsString( "1 Validierungsregeln" ) ) );
     }
 
     @Test
@@ -86,7 +86,7 @@ public class HtmlReportGeneratorTest {
 
         htmlReportGenerator.generateHtmlReport( createValidatorReportWithGeometricWarnings(), html );
 
-        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]/p[2]", containsString( "1 Warnungen" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[6]/p[2]", containsString( "1 Warnungen" ) ) );
     }
 
     @Test
@@ -97,9 +97,9 @@ public class HtmlReportGeneratorTest {
 
         htmlReportGenerator.generateHtmlReport( createValidatorReportWithAllTypes(), html );
 
-        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]", containsString( "semantischen" ) ) );
-        assertThat( the( html.toString() ), hasXPath( "/html/body/p[6]", containsString( "geometrischen" ) ) );
-        assertThat( the( html.toString() ), hasXPath( "/html/body/p[7]", containsString( "syntaktischen" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[6]", containsString( "semantischen" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[7]", containsString( "geometrischen" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[8]", containsString( "syntaktischen" ) ) );
     }
 
     @Test(expected = IllegalArgumentException.class)

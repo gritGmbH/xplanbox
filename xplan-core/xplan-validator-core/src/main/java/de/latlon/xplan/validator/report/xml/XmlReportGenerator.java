@@ -54,7 +54,6 @@ public class XmlReportGenerator {
           throws ReportGenerationException {
         checkParameters( report, os );
 
-        ObjectFactory objectFactory = new ObjectFactory();
         ValidationReport validationReport = jaxbConverter.convertValidationReport( report );
         marshal( os, validationReport );
     }
