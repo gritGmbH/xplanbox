@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Planwerk xmlns="http://www.lat-lon.de/services/planwerk">
+    <PlanwerkWms>wmspre</PlanwerkWms>
+    <Name>Bergedorf1101Aend</Name>
+    <Envelope>POLYGON((10.200002 53.481203,10.200002 53.485425,10.205868 53.485425,10.205868 53.481203,10.200002 53.481203))</Envelope>
+    <ManagerId>1</ManagerId>
+</Planwerk>

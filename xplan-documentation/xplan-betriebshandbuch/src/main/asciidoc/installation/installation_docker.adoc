@@ -150,7 +150,7 @@ Folgende Punkte sind zu beachten:
  ** xplan-wfs
  ** xplansyn-wfs
  * Das Volume _xplan-workspaces_ (s. <<volumexplanworkspaces>>) muss als Verzeichnis _/root/.deegree_ eingebunden werden.
- * Die deegree REST API kann mit folgenden Credentials genutzt werden: deegree/deegree
+ * Die deegree REST-API kann mit folgenden Credentials genutzt werden: deegree/deegree
 
 Bei Freigabe des Ports 8080 auf 8083 sind die XPlanDienste über folgende URLs erreichbar:
 
@@ -177,7 +177,7 @@ Folgende Punkte sind zu beachten:
  * Der Port 8080 des Tomcats aus dem Container muss nach außen freigegeben werden (-p 8084:8080).
  * Der Kontextname der Webanwendung ist xplan-inspireplu
  * Das Volume _xplan-inspireplu-workspaces_ (s. <<volumexplaninspirepluworkspaces>>) muss als Verzeichnis _/root/.deegree_ eingebunden werden.
- * Die deegree REST API kann mit folgenden Credentials genutzt werden: deegree/deegree
+ * Die deegree REST-API kann mit folgenden Credentials genutzt werden: deegree/deegree
 
 Bei Freigabe des Ports 8080 auf 8084 sind die XPlanDienste über folgende URLs erreichbar: 
  * http://localhost:8084/xplan-inspireplu/

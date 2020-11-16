@@ -21,9 +21,10 @@ Betriebsmodus_ beschrieben.
 Mit dem XPlanManagerCLI werden auch die Verbindungsdetails im XPlanMangerWorkspace anhand der übergebenden Parameter gesetzt, so dass der XPlanManager nach Ausführung ohne manuelle Anpassungen auf die Datenbank zugreifen kann.
 Dagegen müssen die Datenbank Verbindung in den XPlanDiensten manuell angepasst werden. Betroffen sind folgende Dateien:
 
- * _.deegree/xplansyn-wms-workspace/jdbc/xplan.xml_
- * _.deegree/xplan-wms-workspace/jdbc/xplan.xml_
- * _.deegree/xplan-wfs-workspace/jdbc/xplan.xml_
+* _.deegree/xplan-manager-workspace/jdbc/xplan.xml_
+* _.deegree/xplan-wfs-workspace/jdbc/xplan.xml_
+* _.deegree/xplansyn-wfs-workspace/jdbc/xplan.xml_
+* _.deegree/xplansyn-wms-workspace/jdbc/xplan.xml_
 
 Dabei kann auf zwei verschiedene Arten vorgegangen werden:
 
@@ -38,10 +39,10 @@ Alternativ zum Aufsetzen über das XPlanManagerCLI kann die Datenbank auch manue
  * Installation der PostGIS-Erweiterung für die neue Datenbank.
  * SQL-Create-Skript _create.sql_ aus dem Verzeichnis _xplan-manager-workspace/sql_ in der neu angelegten Datenbank ausführen.
  * Anpassen der Datenbank-Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace:
- ** _.deegree/xplansyn-wms-workspace/jdbc/xplan.xml_
- ** _.deegree/xplan-wms-workspace/jdbc/xplan.xml_
- ** _.deegree/xplan-wfs-workspace/jdbc/xplan.xml_
  ** _.deegree/xplan-manager-workspace/jdbc/xplan.xml_
+ ** _.deegree/xplan-wfs-workspace/jdbc/xplan.xml_
+ ** _.deegree/xplansyn-wfs-workspace/jdbc/xplan.xml_
+ ** _.deegree/xplansyn-wms-workspace/jdbc/xplan.xml_
 
 [[aufsetzen-plu-db-schema]]
 ==== Manuelles Aufsetzen der Datenbank für die Bereitstellung von INSPIRE PLU

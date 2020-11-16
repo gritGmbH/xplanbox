@@ -13,12 +13,15 @@ Im Anwendungs-Tomcat muss folgende Konfigurationen vorgenommen werden:
 
 Für den XPlanManagerWeb muss die Variable _XPLANBOX_CONFIG_ als Java
 Property gesetzt werden. Das mit Hilfe dieser Variable referenzierte
-Verzeichnis muss die Konfiguration des XPlanManagerWeb enthalten (es
-handelt sich um die Dateien managerConfiguration.properties und
-managerWebConfiguration.properties). Wurde der Anleitung in Abschnitt
-<<anwendung-installieren>> gefolgt, befindet sich das
-Verzeichnis mit dem Namen _manager-configuration_ im Verzeichnis
-_.deegree_ im Home-Verzeichnis des Nutzers.
+Verzeichnis muss die Konfiguration des XPlanManagerWeb und XPlanValidatorWeb enthalten (es
+handelt sich um die Dateien managerConfiguration.properties,
+managerWebConfiguration.properties und validatorConfiguration.properties).
+Wurde der Anleitung in Abschnitt <<anwendung-installieren>> gefolgt, befindet sich das
+Verzeichnis mit dem Namen _xplan-manager-config_ im Verzeichnis
+_.deegree_ im Home-Verzeichnis des Nutzers. Wird ausschließlich der XPlanValidatorWeb installiert,
+heißt das Verzeichnis _xplan-validator-config_.
+
+Wurden die Workspaces nicht im Verzeichnis _.deegree_ des Home-Verzeichnis abgelegt, ist das Setzen der Umgebunsvariable _DEEGREE_WORKSPACE_ROOT_ erforderlich.
 
 [[anwendungs-tomcat-linux]]
 ===== Linux
@@ -27,25 +30,25 @@ Für die Konfiguration der oben genannten Punkte muss zunächst im
 Verzeichnis _<tomcat-root>/bin_ eine neue Datei mit dem Namen
 _setenv.sh_ angelegt werden.
 
-In dieser Datei erfolgt das Setzen der Variable _XPLANBOX_CONFIG_ durch das Hinzufügen von:
+In dieser Datei erfolgt das Setzen der Variable _XPLANBOX_CONFIG_ und ggf. von _DEEGREE_WORKSPACE_ROOT_ durch das Hinzufügen von:
 
 ----
-export JAVA_OPTS=’-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/manager-configuration’
+export JAVA_OPTS=’-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=/pfad/zu/den/workspaces’
 ----
 
-Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, muss die Variable *-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/manager-configuration* in die bestehenden JAVA_OPTS integriert werden.
+Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, muss die Variable *-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/xplan-manager-config* und ggf. *-DDEEGREE_WORKSPACE_ROOT=/pfad/zu/den/workspaces* in die bestehenden JAVA_OPTS integriert werden.
 
 [[anwendungs-tomcat-windows]]
 ===== Windows
 
 Für das Setzen der Variable _XPLANBOX_CONFIG_ sowie muss zunächst eine neue Datei mit dem Namen _setenv.bat_
-im Verzeichnis _<tomcat-root>/bin_ angelegt werden. Dort wird die Variable wie folgt hinzugefügt:
+im Verzeichnis _<tomcat-root>/bin_ angelegt werden. Dort wird diese Variable, sowie _DEEGREE_WORKSPACE_ROOT_ wie folgt hinzugefügt:
 
 ----
-export JAVA_OPTS=’-DXPLANBOX_CONFIG=C:\.deegree\manager-configuration’
+export JAVA_OPTS=’-DXPLANBOX_CONFIG=C:\.deegree\xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=C:\pfad\zu\den\workspaces’
 ----
 
-Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, muss die Variable *-DXPLANBOX_CONFIG=C:\.deegree\manager-configuration* in die bestehenden JAVA_OPTS integriert werden.
+Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, muss die Variable *-DXPLANBOX_CONFIG=C:\.deegree\xplan-manager-config* und ggf. *-DDEEGREE_WORKSPACE_ROOT=C:\pfad\zu\den\workspaces* in die bestehenden JAVA_OPTS integriert werden.
 
 NOTE: Der Anwendungs-Tomcat muss mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch setzen der Umgebungsvariable: _export JAVA_OPTS=’-Xmx4096m’_ erfolgen.

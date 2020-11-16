@@ -14,7 +14,7 @@ Verzeichnis _.deegree_ im Home-Verzeichnis (s. <<vorbereitung-der-installation>>
 * _xplan-validator-wms-workspace_
 * _xplan-manager-workspace_
 * _xplan-manager-config_
-* _xplan-validator-config_
+* _xplan-validator-config_ (nur erforderlich, wenn ausschließlich der XPlanValidator installiert werden soll)
 
 NOTE: Alle Konfigurationen müssen in dem selben Verzeichnis liegen.
 

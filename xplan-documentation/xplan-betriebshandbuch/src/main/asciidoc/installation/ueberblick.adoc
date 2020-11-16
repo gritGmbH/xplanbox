@@ -1,0 +1,54 @@
+[[installationskomponenten]]
+=== Überblick der Installationskomponenten
+
+Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefereinheit darstellen:
+
+ * Kommandozeilenwerkzeuge (im Verzeichnis _software_)
+ ** xplan-manager-cli-<VERSION>.zip
+ ** xplan-validator-cli-<VERSION>.zip
+ ** xplan-update-database-<VERSION>.zip
+
+ * Web-Anwendungen und Web-Dienste (im Verzeichnis _webapps_) und zugehörige Konfigurationen (im Verzeichnis _configuration_)
+
+[%header,cols=2*]
+|===
+|Web-Anwendung/Dienst
+|Konfigurationen
+
+|xplan-root-<VERSION>.war
+|-
+
+|xplan-validator-web-<VERSION>.war
+|xplan-validator-config-<VERSION.zip
+
+|xplan-manager-web-<VERSION>.war
+|xplan-manager-config-<VERSION.zip und xplan-workspaces-<VERSION>-xplan-manager-workspace.zip
+
+|xplan-api-validator-<VERSION>.war
+|xplan-validator-config-<VERSION.zip
+
+|xplan-api-manager-<VERSION>.war
+|xplan-manager-config-<VERSION.zip und xplan-workspaces-<VERSION>-xplan-manager-workspace.zip
+
+|xplansyn-wfs-<VERSION>.war
+|xplan-workspaces-<VERSION>-xplansyn-wfs-workspace.zip
+
+|xplan-wfs-<VERSION>.war
+|xplan-workspaces-<VERSION>-xplan-wfs-workspace.zip
+
+|xplan-wms-<VERSION>.war
+|xplan-workspaces-<VERSION>-xplansyn-wms-workspace.zip
+
+|xplan-inspireplu-<VERSION>.war
+|xplan-workspaces-<VERSION>-xplan-inspireplu-workspace.zip
+
+|xplan-validator-wms-<VERSION>.war
+|xplan-workspaces-<VERSION>-xplan-validator-wms-workspace.zip
+|===
+
+ * Dokumentation (im Verzeichnis _documentation/manuals_)
+ ** xPlanBox-Benutzerhandbuch.pdf
+ ** xPlanBox-Benutzerhandbuch (html Version)
+
+Bitte kontaktieren Sie http://www.lat-lon.de[lat/lon GmbH], per E-mail an info@lat-lon.de, wenn
+Installationskomponenten fehlen.

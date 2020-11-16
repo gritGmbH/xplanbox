@@ -2,18 +2,32 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
-[[Aenderungshistorie-3.3.1]]
-=== Version 3.3.1
+[[Aenderungshistorie-4.0]]
+=== Version 4.0 (deegree Enterprise 2020.2)
 
 ==== Erweiterungen
+- REST-Schnittstelle zum Validieren und Importierten von XPlanGML (XPlanManagerAPI und XPlanValidatorAPI)
 
 ==== Fehlerbehebungen
+- (TT_10393, TT_10376, TT_10382) Verbesserung des Editierens von TextAbschnitten und externen Referenzen und der Ausgabe im GFI
+- (TT_10378) Editieren von Rasterdaten referenziert über XP_Bereich.refScan
+- (TT_10392) Gesetzliche Grundlage aus GFI zu TextAbschnitt entfernen
+- (TT_10377, TT_10354, TT_10353) Fehler in der semantischen Validierung behoben und semantischen Validierung erweitert
+- (TT_10382) Verbesserung der Behandlung unerwarteter Fehler im XPlanValidator
+- (TT_10366) Fehlerhafte Warnung über falsche Laufrichtungen bei interior Rings entfernt
+- (TT_10382) Prüfung geschlossener Linien auf Laufrichtung verhindert
+- (TT_10356) Verbesserung der Fehlermeldung im XPlanValidator, wenn ein Polygon nicht geschlossen ist
+- (TT_10355) Zeichenvorschrift für urbanes Gebiet hinzugefügt
+- (TT_10323) Verbesserung der Transformationsregeln von XPlanGML 4.1 nach XPlanGML 5.1
 - (TT_10348) XPlanValidator akzeptiert XPlanGML mit mehreren XP_Plan-Elementen
 - (TT_10327) __reSynthesizer__-Tool entfernt internalId aus synthetisierten Schema
 - (TT_10320) Aufruf des __reSynthesizer__-Tool mit großen Planwerken für zu einem Fehler
 - (TT_10339, TT_10323) Verbesserung der Transformationsregeln von XPlanGML nach INSPIRE PLU
 - (TT_10332, TT_10324) Verbesserung des Loggings
-- Verbesserung des Betriebs- und Benutzerhandbuchs
+- Ausgabe von Anhängen in v5.2 BP_Plan/externeReferenz/XP_SpezExterneReferenz ermöglicht
+- Umstrukturierung des XPlanWMS Workspaces
+- Aktualisierung von externen Abhängigkeiten
+- Allgemeine Verbesserungen von Benutzer- und Betriebshandbuch Dokumentation
 
 [[Aenderungshistorie-3.3]]
 === Version 3.3 (deegree Enterprise 2020.1)

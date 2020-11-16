@@ -1,5 +1,27 @@
+/*-
+ * #%L
+ * xplan-api-manager - xplan-api-manager
+ * %%
+ * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 2.1 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * #L%
+ */
 package de.latlon.xplanbox.api.manager;
 
+import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import de.latlon.xplanbox.api.commons.v1.model.VersionEnum;
@@ -8,6 +30,7 @@ import de.latlon.xplanbox.api.manager.v1.model.Link;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfoBbox;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfoXplanModelData;
+import de.latlon.xplanbox.api.manager.v1.model.PlanStatusEnum;
 import org.apache.http.client.utils.URIBuilder;
 import org.jfree.util.Log;
 
@@ -16,6 +39,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.ALTERNATE;
 import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.PLANWERKWMS;
@@ -53,7 +77,7 @@ public class PlanInfoBuilder {
     public PlanInfo build() {
         return new PlanInfo().id( Integer.parseInt( xPlan.getId() ) ).importDate(
                                 xPlan.getImportDate() ).inspirePublished( xPlan.isInspirePublished() ).raster(
-                                xPlan.isRaster() ).version( version() ).bbox( bbox() ).links( links() ).type(
+                                xPlan.isRaster() ).version( version() ).planStatus( planStatus() ).bbox( bbox() ).links( links() ).type(
                                 xPlan.getType() ).xplanModelData( xPlanModelData() );
     }
 
@@ -62,6 +86,14 @@ public class PlanInfoBuilder {
                                 xPlan.getInternalId() ).inkrafttretensDatum( xPlan.getReleaseDate() ).rechtsstand(
                                 xPlan.getLegislationStatus() ).ags( xPlan.getGkz() ).gemeindeName(
                                 xPlan.getDistrict() );
+    }
+
+    private PlanStatusEnum planStatus() {
+        if(xPlan.getXplanMetadata() != null && xPlan.getXplanMetadata().getPlanStatus() != null){
+            PlanStatus planStatus = xPlan.getXplanMetadata().getPlanStatus();
+            return PlanStatusEnum.valueOf( planStatus.name() );
+        }
+        return null;
     }
 
     private VersionEnum version() {
@@ -91,12 +123,18 @@ public class PlanInfoBuilder {
     }
 
     private URI createSelfRef() {
-        URIBuilder uriBuilder = new URIBuilder( managerApiConfiguration.getApiUrl() );
+        URI apiUrl = managerApiConfiguration.getApiUrl();
+        URIBuilder uriBuilder = new URIBuilder( apiUrl );
+
         List<String> pathSegments = new ArrayList<>();
+        if ( apiUrl.getPath() != null && !apiUrl.getPath().isEmpty() )
+            pathSegments.addAll( Arrays.asList( apiUrl.getPath().split( "/" ) ) );
         pathSegments.addAll( Arrays.asList( ApplicationPathConfig.APP_PATH.split( "/" ) ) );
         pathSegments.add( "plan" );
         pathSegments.add( xPlan.getId() );
-        uriBuilder.setPathSegments( pathSegments );
+        uriBuilder.setPathSegments( pathSegments.stream().filter(
+                                pathSegment -> pathSegment != null && !pathSegment.isEmpty() ).collect(
+                                Collectors.toList() ) );
         try {
             return uriBuilder.build();
         } catch ( URISyntaxException e ) {

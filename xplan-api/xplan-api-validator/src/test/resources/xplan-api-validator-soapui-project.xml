@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="45582ef9-4bae-43d8-9226-a378e02ff0b5" activeEnvironment="Default" name="xplan-api-validator" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="45582ef9-4bae-43d8-9226-a378e02ff0b5" activeEnvironment="Default" name="xplan-api-validator" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:interface xsi:type="con:RestService" id="85ec4fc3-149e-4a77-a566-194de2899fd3" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanValidatorAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:description>XPlanValidator REST API</con:description>
@@ -38,13 +38,13 @@ OpenAPI document</con:description>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+          <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
           <con:request/>
           <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/</con:originalUri>
           <con:credentials>
-            <con:username xsi:nil="true"/>
-            <con:password xsi:nil="true"/>
-            <con:domain xsi:nil="true"/>
+            <con:username>xplanbox</con:username>
+            <con:password>xpl@n!secure9</con:password>
+            <con:domain/>
             <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
             <con:preemptive>false</con:preemptive>
             <con:authType>No Authorization</con:authType>
@@ -84,13 +84,13 @@ Show system and application configuration</con:description>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+          <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
           <con:request/>
           <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/info</con:originalUri>
           <con:credentials>
-            <con:username xsi:nil="true"/>
-            <con:password xsi:nil="true"/>
-            <con:domain xsi:nil="true"/>
+            <con:username>xplanbox</con:username>
+            <con:password>xpl@n!secure9</con:password>
+            <con:domain/>
             <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -565,13 +565,13 @@ Validate XPlanGML or XPlanArchive</con:description>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+          <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
           <con:request/>
           <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
           <con:credentials>
-            <con:username xsi:nil="true"/>
-            <con:password xsi:nil="true"/>
-            <con:domain xsi:nil="true"/>
+            <con:username>xplanbox</con:username>
+            <con:password>xpl@n!secure9</con:password>
+            <con:domain/>
             <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -596,7 +596,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="f3ba4686-3a8b-4dc9-8e96-9bc351221c5a" name="Valid HTTP Status Codes">
@@ -614,9 +614,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
               <con:preemptive>false</con:preemptive>
               <con:authType>No Authorization</con:authType>
@@ -639,7 +639,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/info</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="0cc46e02-cf98-4922-b9a0-70051141ecfd" name="Valid HTTP Status Codes">
@@ -666,9 +666,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
@@ -690,7 +690,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -717,9 +717,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -747,7 +747,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -774,9 +774,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -806,7 +806,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -833,9 +833,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -865,7 +865,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -892,9 +892,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -924,7 +924,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -951,9 +951,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -983,7 +983,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -1010,9 +1010,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -1042,7 +1042,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -1087,9 +1087,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -1123,7 +1123,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -1150,9 +1150,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -1180,7 +1180,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -1207,9 +1207,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -1237,7 +1237,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -1264,9 +1264,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -1289,11 +1289,11 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="Request body application/zip but text/xml" id="8e15b574-4b91-4e98-8f73-4b7f5098b500">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Request body application/zip but text/html" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="Request body application/zip but text/xml" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -1302,9 +1302,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -1331,7 +1331,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -1358,9 +1358,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -1388,7 +1388,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/xml" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -1397,9 +1397,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -1427,7 +1427,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="text/xml" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -1436,9 +1436,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -1466,7 +1466,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/pdf" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -1482,9 +1482,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>
@@ -1512,7 +1512,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/zip" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
@@ -1521,9 +1521,9 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
+              <con:username>xplanbox</con:username>
+              <con:password>xpl@n!secure9</con:password>
+              <con:domain/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
               <con:preemptive>true</con:preemptive>

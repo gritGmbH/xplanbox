@@ -1,3 +1,24 @@
+/*-
+ * #%L
+ * xplan-api-manager - xplan-api-manager
+ * %%
+ * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 2.1 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * #L%
+ */
 package de.latlon.xplanbox.api.manager.config;
 
 import com.google.common.io.Files;
@@ -10,6 +31,8 @@ import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
+import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
@@ -43,6 +66,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyString;
@@ -117,6 +141,7 @@ public class TestContext {
                              ManagerConfiguration managerConfiguration ) throws Exception {
         XPlanDao xplanDao = Mockito.mock( XPlanDao.class );
         XPlan mockPlan = new XPlan("bplan_41", "123", "B_PLAN", "XPLAN_41");
+        mockPlan.setXplanMetadata( new AdditionalPlanData( FESTGESTELLT ) );
         when(xplanDao.getXPlanById(1)).thenReturn(mockPlan);
         when(xplanDao.getXPlanById(123)).thenReturn(mockPlan);
         List<XPlan> mockList = new ArrayList<>();

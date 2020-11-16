@@ -1,3 +1,24 @@
+/*-
+ * #%L
+ * xplan-api-manager - xplan-api-manager
+ * %%
+ * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 2.1 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * #L%
+ */
 package de.latlon.xplanbox.api.manager.v1;
 
 import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
@@ -24,6 +45,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP_COMPRESSED;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
+import static de.latlon.xplanbox.api.manager.v1.model.PlanStatusEnum.FESTGESTELLT;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
@@ -120,6 +142,9 @@ public class PlanApiTest extends JerseyTest {
 
         assertThat( responseBody, isJson() );
         assertThat( responseBody, hasJsonPath( "$.version", is( XPLAN_41.name() ) ) );
+        assertThat( responseBody, hasJsonPath( "$.planStatus", is( FESTGESTELLT.name() ) ) );
+        assertThat( responseBody,
+                    hasJsonPath( "$.links[?(@.rel=='self' && @.href=='http:\\/\\/localhost:8080\\/xplan-api-manager\\/xmanager\\/api\\/v1\\/plan\\/123')]" ) );
     }
 
     @Test
@@ -131,6 +156,9 @@ public class PlanApiTest extends JerseyTest {
 
         String responseBody = response.readEntity( String.class );
         assertThat( the( responseBody ), hasXPath( "/planInfo/version", is( XPLAN_41.name() ) ) );
+        assertThat( the( responseBody ), hasXPath( "/planInfo/planStatus", is( FESTGESTELLT.name() ) ) );
+        assertThat( the( responseBody ), hasXPath( "/planInfo/links[rel='SELF']/href",
+                                                   is( "http://localhost:8080/xplan-api-manager/xmanager/api/v1/plan/123" ) ) );
     }
 
     @Test

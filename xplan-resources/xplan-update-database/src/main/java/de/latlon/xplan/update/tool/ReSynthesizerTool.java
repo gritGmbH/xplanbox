@@ -1,3 +1,24 @@
+/*-
+ * #%L
+ * xplan-update-database - update of database
+ * %%
+ * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 2.1 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * #L%
+ */
 package de.latlon.xplan.update.tool;
 
 import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
@@ -119,7 +140,7 @@ public class ReSynthesizerTool {
 
         Option opt = new Option( "w", OPT_WORKSPACE_NAME, true,
                                  "Default: xplan-manager-workspace. Name of the manager workspace pointing to the database to update "
-                                 + "(must be located in the deegree workspace directory, usually .deegree)" );
+                                 + "(Must be located in the deegree workspace directory, usually .deegree in the user home directory. If the workspaces is not located there, the system property DEEGREE_WORKSPACE_ROOT=/path/to/directory/containg/workspace must be set.)" );
         opt.setRequired( false );
         opts.addOption( opt );
 

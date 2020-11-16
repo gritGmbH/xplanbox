@@ -4,7 +4,14 @@
   <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplanbox</artifactId>
   <packaging>pom</packaging>
-  <version>3.4-SNAPSHOT</version>
+  <version>4.1-SNAPSHOT</version>
+  <description>xPlanBox</description>
+  <inceptionYear>2008</inceptionYear>
+  <url>https://xplanbox.lat-lon.de</url>
+  <organization>
+    <url>https://www.lat-lon.de</url>
+    <name>lat/lon GmbH, Bonn, Germany</name>
+  </organization>
 
   <properties>
     <java.version>1.8</java.version>
