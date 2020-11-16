@@ -1,3 +1,24 @@
+/*-
+ * #%L
+ * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
+ * %%
+ * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 2.1 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * #L%
+ */
 package de.latlon.xplan.commons.util;
 
 import de.latlon.xplan.commons.XPlanAde;
@@ -24,7 +45,7 @@ public final class XPlanVersionUtils {
 
     private static final Map<XPlanVersion, NamespaceBindings> versionToNsContext = new HashMap<XPlanVersion, NamespaceBindings>();
 
-    private static final String UNKNOWN_NAMESPACE = "Kann XPlan Version der Datei XPlan-GML-Datei nicht bestimmen. Unbekannter Namespace '%s'.";
+    private static final String UNKNOWN_NAMESPACE = "Kann Version der XPlanGML-Datei nicht bestimmen. Unbekannter Namespace '%s'.";
 
     static {
         for ( XPlanVersion version : XPlanVersion.values() ) {
@@ -55,7 +76,7 @@ public final class XPlanVersionUtils {
         try {
             namespaceURI = element.getNamespaceURI();
         } catch ( Exception e ) {
-            String msg = "Kann kein XML-Wurzelelement in Datei XPlan-GML-Datei bestimmen. Keine XML Datei!?";
+            String msg = "Kann kein XML-Wurzelelement in XPlanGML-Datei bestimmen. Keine XML-Datei!?";
             throw new IllegalArgumentException( msg );
         }
         return determineBaseVersion( namespaceURI );

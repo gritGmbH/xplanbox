@@ -1,4 +1,24 @@
-//$HeadURL$
+/*-
+ * #%L
+ * xplan-manager-core - XPlan Manager Core Komponente
+ * %%
+ * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 2.1 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * #L%
+ */
 /*----------------------------------------------------------------------------
  This file is part of deegree, http://deegree.org/
  Copyright (C) 2001-2014 by:
@@ -53,6 +73,7 @@ import java.util.Collections;
 import java.util.List;
 
 import de.latlon.xplan.commons.archive.ZipEntryWithContent;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
@@ -71,6 +92,7 @@ import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.Rast
  *
  * @version $Revision: $, $Date: $
  */
+@Ignore
 public class XPlanRasterManagerTest {
 
     private static final String CONFIGURED_CRS = "epsg:4326";

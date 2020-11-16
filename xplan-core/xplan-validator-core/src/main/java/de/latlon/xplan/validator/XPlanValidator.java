@@ -1,3 +1,24 @@
+/*-
+ * #%L
+ * xplan-validator-core - XPlan Validator Core Komponente
+ * %%
+ * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 2.1 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * #L%
+ */
 package de.latlon.xplan.validator;
 
 import de.latlon.xplan.commons.XPlanSchemas;
@@ -92,7 +113,7 @@ public class XPlanValidator {
      * @throws ReportGenerationException
      */
     public ValidatorReport validate( ValidationSettings validationSettings, File planArchive, String planName )
-                            throws ValidatorException, ParseException, IOException, ReportGenerationException {
+                            throws ValidatorException, IOException, ReportGenerationException {
         XPlanArchive archive = archiveCreator.createXPlanArchive( planArchive );
         ValidatorReport report = validate( validationSettings, archive, planName );
         writeReport( report );
@@ -117,8 +138,25 @@ public class XPlanValidator {
                                                    String planName )
                             throws ValidatorException, IOException {
         XPlanArchive archive = archiveCreator.createXPlanArchive( planArchive );
-        ValidatorReport validationReport = validate( validationSettings, archive, planName );
-        validationReport.setHasMultipleXPlanElements( archive.hasMultipleXPlanElements() );
+        return validateNotWriteReport( validationSettings, planName, archive );
+    }
+
+    /**
+     * Validate a plan archive, but does not write the report
+     *
+     * @param validationSettings
+     *                         to apply, never <code>null</code>
+     * @param planArchive
+     *                         to validate, never <code>null</code>
+     * @return <link>ValidatorReport</link>
+     * @throws ValidatorException
+     * @throws IOException
+     */
+    public ValidatorReport validateNotWriteReport( ValidationSettings validationSettings, String planName,
+                                                   XPlanArchive planArchive )
+                            throws ValidatorException {
+        ValidatorReport validationReport = validate( validationSettings, planArchive, planName );
+        validationReport.setHasMultipleXPlanElements( planArchive.hasMultipleXPlanElements() );
         return validationReport;
     }
 
@@ -151,6 +189,7 @@ public class XPlanValidator {
         report.setValidationName( validationSettings.getValidationName() );
         report.setPlanName( planName );
         report.setDate( new Date() );
+        report.setXPlanVersion( archive.getVersion() );
 
         List<ValidationType> validationType = getValidationType( validationSettings );
         validateSyntactic( archive, report );

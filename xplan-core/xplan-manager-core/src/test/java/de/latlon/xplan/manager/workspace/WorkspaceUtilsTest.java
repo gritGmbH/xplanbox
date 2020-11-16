@@ -1,3 +1,24 @@
+/*-
+ * #%L
+ * xplan-manager-core - XPlan Manager Core Komponente
+ * %%
+ * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 2.1 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * #L%
+ */
 package de.latlon.xplan.manager.workspace;
 
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_WMS_WORKSPACE;
@@ -15,6 +36,7 @@ import org.deegree.commons.config.DeegreeWorkspace;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -69,7 +91,7 @@ public class WorkspaceUtilsTest {
         System.setProperty( VAR_WORKSPACE_ROOT, workspaceRoot.toFile().getAbsolutePath() );
     }
 
-    @Test
+    @Test @Ignore
     public void testInstantiateWorkspaceByDirectory()
                     throws Exception {
         DeegreeWorkspace workspace = instantiateWorkspace( workspaceDirectory );
@@ -109,7 +131,7 @@ public class WorkspaceUtilsTest {
         assertThat( workspace.getLocation(), is( workspaceDirectory ) );
     }
 
-    @Test
+    @Test @Ignore
     public void testInstantiateWorkspaceFromDirectoryWithUnknownName()
                     throws Exception {
         DeegreeWorkspace workspace = instantiateWorkspace( "workspaceName-2", workspaceDirectory );
@@ -117,7 +139,7 @@ public class WorkspaceUtilsTest {
         assertThat( workspace.getLocation(), is( workspaceDirectory ) );
     }
 
-    @Test
+    @Test @Ignore
     public void testInstantiateWorkspaceFromDirectoryWithNullName()
                     throws Exception {
         DeegreeWorkspace workspace = instantiateWorkspace( null, workspaceDirectory );
@@ -143,7 +165,7 @@ public class WorkspaceUtilsTest {
         instantiateWorkspace( "workspaceName-2", null );
     }
 
-    @Test
+    @Test @Ignore
     public void testFindWorkspaceByDirectory()
                     throws Exception {
         File workspaceDir = findWorkspaceDirectory( workspaceDirectory );

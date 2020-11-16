@@ -10,7 +10,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-docker-images</artifactId>
-    <version>3.4-SNAPSHOT</version>
+    <version>4.1-SNAPSHOT</version>
   </parent>
 
   <build>
@@ -33,10 +33,6 @@
                       <fileSet>
                         <directory>${project.build.directory}</directory>
                         <outputDirectory>.</outputDirectory>
-                        <includes>
-                          <include>xplan-validator-web-${project.version}.war</include>
-                          <include>xplan-wms-${project.version}.war</include>
-                        </includes>
                       </fileSet>
                     </fileSets>
                   </inline>

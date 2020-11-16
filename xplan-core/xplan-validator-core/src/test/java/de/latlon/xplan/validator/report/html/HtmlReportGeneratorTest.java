@@ -1,3 +1,24 @@
+/*-
+ * #%L
+ * xplan-validator-core - XPlan Validator Core Komponente
+ * %%
+ * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 2.1 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * #L%
+ */
 package de.latlon.xplan.validator.report.html;
 
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
@@ -41,9 +62,9 @@ public class HtmlReportGeneratorTest {
 
         htmlReportGenerator.generateHtmlReport( createValidatorReportWithSemanticFailures(), html );
 
-        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]/p/ul/li[1]", containsString( "2 Validierungsregeln" ) ) );
-        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]/p/ul/li[2]", containsString( "1 Validierungsregeln nicht" ) ) );
-        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]/p/ul/li[3]", containsString( "1 Validierungsregeln" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[6]/p/ul/li[1]", containsString( "2 Validierungsregeln" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[6]/p/ul/li[2]", containsString( "1 Validierungsregeln nicht" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[6]/p/ul/li[3]", containsString( "1 Validierungsregeln" ) ) );
     }
 
     @Test
@@ -65,7 +86,7 @@ public class HtmlReportGeneratorTest {
 
         htmlReportGenerator.generateHtmlReport( createValidatorReportWithGeometricWarnings(), html );
 
-        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]/p[2]", containsString( "1 Warnungen" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[6]/p[2]", containsString( "1 Warnungen" ) ) );
     }
 
     @Test
@@ -76,9 +97,9 @@ public class HtmlReportGeneratorTest {
 
         htmlReportGenerator.generateHtmlReport( createValidatorReportWithAllTypes(), html );
 
-        assertThat( the( html.toString() ), hasXPath( "/html/body/p[5]", containsString( "semantischen" ) ) );
-        assertThat( the( html.toString() ), hasXPath( "/html/body/p[6]", containsString( "geometrischen" ) ) );
-        assertThat( the( html.toString() ), hasXPath( "/html/body/p[7]", containsString( "syntaktischen" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[6]", containsString( "semantischen" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[7]", containsString( "geometrischen" ) ) );
+        assertThat( the( html.toString() ), hasXPath( "/html/body/p[8]", containsString( "syntaktischen" ) ) );
     }
 
     @Test(expected = IllegalArgumentException.class)

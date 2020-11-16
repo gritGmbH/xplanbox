@@ -1,3 +1,24 @@
+/*-
+ * #%L
+ * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
+ * %%
+ * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 2.1 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * #L%
+ */
 package de.latlon.xplan.manager.web.shared;
 
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
@@ -61,15 +82,20 @@ public class XPlan implements Serializable, Comparable<XPlan> {
     private boolean hasMultipleXPlanElements;
 
     public XPlan() {
-        this.name = "N/A";
-        this.id = "-";
-        this.type = "NO TYPE";
+        this( "N/A", "-", "NO TYPE" );
     }
 
     public XPlan( String name, String id, String type ) {
+        if (name == null || name.isEmpty()) throw new IllegalArgumentException("Name must not be null or empty");
         this.name = name;
+        if (id == null || id.isEmpty()) throw new IllegalArgumentException("Id must not be null or empty");
         this.id = id;
         this.type = type;
+    }
+
+    public XPlan( String name, String id, String type, String version ) {
+        this( name, id, type );
+        this.version = version;
     }
 
     public String getName() {
@@ -248,4 +274,32 @@ public class XPlan implements Serializable, Comparable<XPlan> {
         return ( o == null || o.name == null ) ? -1 : -o.name.compareTo( name );
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        XPlan xPlan = (XPlan) o;
+
+        if (!id.equals(xPlan.id)) return false;
+        return name.equals(xPlan.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + id.hashCode();
+        result = 31 * result + type.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "XPlan[" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", type='" + type + '\'' +
+                ", version='" + version + '\'' +
+                ']';
+    }
 }

@@ -55,6 +55,11 @@
                         <xsl:value-of select="ValidationReport/Plan/name"/>
                     </b>
                 </p>
+              <p>XPlanGML Version:
+                <b>
+                  <xsl:value-of select="ValidationReport/Plan/version"/>
+                </b>
+              </p>
                 <p>Datum:
                     <b>
                         <xsl:call-template name="format-date">

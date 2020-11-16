@@ -1,3 +1,24 @@
+/*-
+ * #%L
+ * xplan-manager-core - XPlan Manager Core Komponente
+ * %%
+ * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 2.1 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * #L%
+ */
 package de.latlon.xplan.manager.configuration;
 
 import de.latlon.xplan.commons.XPlanType;
@@ -13,9 +34,10 @@ import org.deegree.geometry.SimpleGeometryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -87,7 +109,7 @@ public class ManagerConfiguration {
 
     private SemanticConformityLinkConfiguration semanticConformityLinkConfiguration = new SemanticConformityLinkConfiguration();
 
-    private Path configDirectory;
+    private Path synthesizerConfigDirectory;
 
     private String pathToHaleCli;
 
@@ -95,8 +117,9 @@ public class ManagerConfiguration {
 
     private CoupledResourceConfiguration coupledResourceConfiguration;
 
+
     public ManagerConfiguration( PropertiesLoader propertiesLoader )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         loadProperties( propertiesLoader );
         verifyConfiguration();
         logConfiguration();
@@ -192,10 +215,10 @@ public class ManagerConfiguration {
     }
 
     /**
-     * @return the directory containing the configuration, may be <code>null</code>
+     * @return the directory containing the synthesizer configuration, may be <code>null</code>
      */
-    public Path getConfigurationDirectory() {
-        return configDirectory;
+    public Path getSynthesizerConfigurationDirectory() {
+        return synthesizerConfigDirectory;
     }
 
     /**
@@ -220,7 +243,7 @@ public class ManagerConfiguration {
     }
 
     private void loadProperties( PropertiesLoader propertiesLoader )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         if ( propertiesLoader != null ) {
             Properties loadProperties = propertiesLoader.loadProperties( MANAGER_CONFIGURATION );
             if ( loadProperties != null ) {
@@ -245,9 +268,10 @@ public class ManagerConfiguration {
                 parseSemanticConformityLinkConfiguration( loadProperties );
                 pathToHaleCli = loadProperties.getProperty( PATH_TO_HALE_CLI );
                 pathToHaleProjectDirectory = parsePathToHaleProjectDirectory( propertiesLoader );
-                coupledResourceConfiguration = CoupledResourceConfiguration.parseCoupledResourceConfiguration( propertiesLoader, loadProperties );
+                coupledResourceConfiguration = CoupledResourceConfiguration.parseCoupledResourceConfiguration(
+                                        propertiesLoader, loadProperties );
             }
-            configDirectory = propertiesLoader.resolveDirectory( "synthesizer" );
+            synthesizerConfigDirectory = propertiesLoader.resolveDirectory( "synthesizer" );
         }
     }
 
@@ -260,14 +284,15 @@ public class ManagerConfiguration {
             throw new IllegalArgumentException( "rasterLayerMaxScaleDenominator should not be a negative value" );
         if ( rasterLayerMinScaleDenominator >= rasterLayerMaxScaleDenominator )
             throw new IllegalArgumentException(
-                            "rasterLayerMinScaleDenominator must be less than rasterLayerMaxScaleDenominator" );
+                                    "rasterLayerMinScaleDenominator must be less than rasterLayerMaxScaleDenominator" );
     }
 
     private void logConfiguration() {
         LOG.info( "-------------------------------------------" );
         LOG.info( "Configuration of the XPlanManager:" );
         LOG.info( "-------------------------------------------" );
-        LOG.info( "  directory containing the configuration: {}", configDirectory );
+        LOG.info( "  directory containing the synthesizer configuration: {}",
+                  synthesizerConfigDirectory != null && Files.exists( synthesizerConfigDirectory ) ? synthesizerConfigDirectory : "not configured");
         LOG.info( "-------------------------------------------" );
         LOG.info( "  raster configuration" );
         LOG.info( "   - crs: {}", rasterConfigurationCrs );
@@ -312,7 +337,7 @@ public class ManagerConfiguration {
     }
 
     private void parseCategories( String[] categoriesWithParts )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         for ( String categoryWithParts : categoriesWithParts ) {
             String categoryName = parseCategoryName( categoryWithParts );
             List<String> partsAsList = parseParts( categoryWithParts );
@@ -321,7 +346,7 @@ public class ManagerConfiguration {
     }
 
     private String parseCategoryName( String categoryWithParts )
-                    throws ConfigurationException {
+                            throws ConfigurationException {
         if ( categoryWithParts.contains( "(" ) ) {
             int indexOfCategoryEnd = categoryWithParts.indexOf( "(" );
             return categoryWithParts.substring( 0, indexOfCategoryEnd );

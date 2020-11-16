@@ -1,7 +1,7 @@
 [[konfiguration-der-datenbank]]
 === Konfiguration der Datenbank
 
-Wie in Abschitt _Systemüberblick_ beschrieben, ist mindestens die
+Wie in Abschnitt _Systemüberblick_ beschrieben, ist mindestens die
 Installation von PostgreSQL 9.4 mit der Erweiterung PostGIS 2.3
 erforderlich.
 

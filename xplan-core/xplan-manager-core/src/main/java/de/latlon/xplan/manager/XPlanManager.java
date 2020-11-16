@@ -1,3 +1,24 @@
+/*-
+ * #%L
+ * xplan-manager-core - XPlan Manager Core Komponente
+ * %%
+ * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 2.1 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * #L%
+ */
 package de.latlon.xplan.manager;
 
 import de.latlon.xplan.commons.XPlanAde;
@@ -27,6 +48,7 @@ import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
 import de.latlon.xplan.manager.jdbcconfig.JaxbJdbcConfigWriter;
 import de.latlon.xplan.manager.jdbcconfig.JdbcConfigWriter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanEditManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
@@ -120,6 +142,8 @@ public class XPlanManager {
     private final XPlanInsertManager xPlanInsertManager;
 
     private final XPlanEditManager xPlanEditManager;
+
+    private final XPlanDeleteManager xPlanDeleteManager;
 
     public XPlanManager() throws Exception {
         this( null, new XPlanArchiveCreator(), null, null );
@@ -217,11 +241,13 @@ public class XPlanManager {
         this.xPlanEditManager = new XPlanEditManager( xPlanSynthesizer, xPlanGmlTransformer, xplanDao, xPlanExporter,
                                                       xPlanRasterManager, workspaceReloader, managerConfiguration,
                                                       managerWorkspaceWrapper, sortPropertyReader );
+        this.xPlanDeleteManager = new XPlanDeleteManager( xplanDao, xPlanRasterManager, workspaceReloader,
+                                                          managerConfiguration );
     }
 
     public XPlanArchive analyzeArchive( String fileName )
                     throws IOException {
-        LOG.info( "- Analyse des XPlan-Archivs ('" + fileName + "')..." );
+        LOG.info( "- Analyse des XPlanArchivs ('" + fileName + "')..." );
         XPlanArchive archive = archiveCreator.createXPlanArchive( new File( fileName ) );
         LOG.info( "OK. " + archive );
         return archive;
@@ -428,7 +454,7 @@ public class XPlanManager {
                     throws Exception {
         XPlanArchiveContent xplanContentsToExport = xplanDao.retrieveAllXPlanArtefacts( planId );
         xPlanExporter.export( outputStream, xplanContentsToExport );
-        LOG.info( "XPlan-Archiv " + planId + " wurde erfolgreich exportiert" );
+        LOG.info( "XPlanArchiv {} wurde erfolgreich exportiert", planId );
     }
 
     /**
@@ -544,13 +570,7 @@ public class XPlanManager {
      */
     public void delete( String planId, boolean removeWMSConfig, File workspaceFolder )
                     throws Exception {
-        xplanDao.deletePlan( planId );
-        xPlanRasterManager.removeRasterLayers( planId );
-        if ( removeWMSConfig ) {
-            new WmsWorkspaceManager( findWorkspaceDirectory( workspaceFolder ) ).deleteWmsWorkspaceFilesForId( planId );
-        }
-        reloadWorkspace();
-        LOG.info( "XPlan-Archiv " + planId + " wurde gelöscht" );
+        xPlanDeleteManager.delete( planId, removeWMSConfig, workspaceFolder );
     }
 
     /**
@@ -629,13 +649,6 @@ public class XPlanManager {
         return managerWorkspaceWrapper.lookupStore( archive.getVersion(), archive.getAde(), planStatus ).getSchema();
     }
 
-    private void reloadWorkspace() {
-        if ( workspaceReloader != null ) {
-            WorkspaceReloaderConfiguration configuration = managerConfiguration.getWorkspaceReloaderConfiguration();
-            workspaceReloader.reloadWorkspace( configuration );
-        }
-    }
-
     private DeegreeWorkspace instantiateManagerWorkspace( File workspaceDir )
                     throws Exception {
         if ( workspaceDir != null )
@@ -685,7 +698,7 @@ public class XPlanManager {
 
     private XPlanSynthesizer createXPlanSynthesizer( ManagerConfiguration managerConfiguration ) {
         if ( managerConfiguration != null )
-            return new XPlanSynthesizer( managerConfiguration.getConfigurationDirectory() );
+            return new XPlanSynthesizer( managerConfiguration.getSynthesizerConfigurationDirectory() );
         return new XPlanSynthesizer();
     }
 

@@ -259,8 +259,8 @@ Folgende Voraussetzung werden an die einzelnen Formate gestellt:
   den XPlanManager konfiguriert ist.
   * PNG-Dateien enthalten ihre räumliche Ausdehnung in einer
   ausgelagerten pgw-Datei (PNG World File).
-  * Wenn das Kommandozeilentool XPlanManagerCLI verwendet wird, muss in
-  einer aux.xml-Datei das Koordinatenreferenzsystem der PNGs definiert
-  sein. Für den XPlanManagerWeb ist dies keine Voraussetzung, der
-  Nutzer kann beim Import der Daten das Koordinatenreferenzsystem der
-  PNG-Datei bestätigen.
+  * Wenn das Kommandozeilentool __XPlanManagerCLI__ verwendet wird, muss in
+  einer aux.xml-Datei das Koordinatenreferenzsystem der PNG-Datei definiert
+  sein. Für den XPlanManagerWeb ist dies keine Voraussetzung, da der
+  Nutzer beim Import der Daten das Koordinatenreferenzsystem der
+  PNG-Datei über einen Dialog bestätigen kann.

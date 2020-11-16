@@ -22,8 +22,8 @@ aus dem Kapitel Installation über ein Installations-Skript (s. <<Installations-
 [[austausch-der-web-archive]]
 === Austausch der Web-Archive
 
-Es müssen die bereit gestellten Web-Archive in das Webapps-Verzeichnis
-des jeweiligen Tomcats kopiert werden:
+Es müssen die bereitgestellten Web-Archive in das Verzeichnis `webapps`
+der jeweiligen Tomcat-Instanz kopiert werden:
 
 ----
 cp ${WORK_DIR}/web/xplan-manager-web.war <CATALINA_HOME>/webapps/
@@ -73,7 +73,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 2.8              |                                                                    | ja
 | 3.0              | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)
 | 3.3              | ja (<<aktualisierung-auf-die-version-3.3-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.3-der-xplanbox, Details>>)
-| 3.4              | ja (<<aktualisierung-auf-die-version-3.4-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.4-der-xplanbox, Details>>)
+| 4.0              | ja (<<aktualisierung-auf-die-version-4.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-4.0-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -187,13 +187,13 @@ Für den Fall, dass dies nicht notwendig ist, muss lediglich die Datenbank neu a
 Mehr Details hierzu finden Sie im Kapitel <<konfiguration-der-datenbank>>.
 
 Die Datenbankschemas jeder Version befinden sich im
-xplan-manager-workspace im Ordner sql und für jedes Schema gibt es dort
+_xplan-manager-workspace_ im Ordner _sql/_ und für jedes Schema gibt es dort
 einen eigenen Unterordner. Neu hinzugekommene Schemas können direkt auf
 der Datenbank ausgeführt werden und stehen danach für die Anwendung
 bereit. Bei Änderungen in einem Schema müssen diese durch in ein
 Update-Skript überführt und damit an der Datenbank durchgeführt werden.
 Für einige Aktualisierungen sind Aktualisierungsskripte im Modul
-xplan-update-database verfügbar.
+_xplan-update-database_ verfügbar.
 
 NOTE: Es gibt sowohl SQL-Update-Skripte als auch Liquibase-Skripte, die mit
 der Software http://www.liquibase.org/[Liquibase] ausgeführt werden
@@ -209,10 +209,10 @@ Achtung: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits
 Für den Fall, dass dies nicht notwendig ist, muss lediglich die Datenbank neu aufgesetzt werden.
 Dieser Schritt sollte bereits während der Anwendung des Kapitels <<aktualisierung-der-schemas>> durchgeführt worden sein.
 
-Im Modul xplan-update-database wird das Programm databaseUpdate für die
+Im Modul _xplan-update-database_ wird das Programm __databaseUpdate__ für die
 Datenaktualisierung bestimmter xPlanBox-Versionen bereitgestellt. Eine
 Liste der für die Datenaktualisierung unterstützten Versionen wird beim
-Programmaufruf mit dem Parameter –help angezeigt.
+Programmaufruf mit dem Parameter `–help` angezeigt.
 
 [[datenaktualisierung-auf-die-version-2.0-sowie-2.2-der-xplanbox]]
 ==== Datenaktualisierung auf die Version 2.0 sowie 2.2 der xPlanBox
@@ -250,7 +250,7 @@ Falls die neue Funktionalität nicht genutzt werden soll, müssen die Änderunge
 === Aktualisierung auf die Version 2.8 der xPlanBox
 
 * Aktualisierung der Datenbank:
- ** Ausführen der Skripte im Verzeichnis _from_2.7_to_2.8_ im Modul xplan-update-database
+ ** Ausführen der Skripte im Verzeichnis _from_2.7_to_2.8_ im Modul _xplan-update-database_
 
 [[aktualisierung-auf-die-version-3.0-der-xplanbox]]
 === Aktualisierung auf die Version 3.0 der xPlanBox
@@ -267,12 +267,12 @@ Mit der Version 3.0 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen 
 *** _fix/xplan51/create.sql_
 *** _pre/xplan51/create.sql_
 *** _archive/xplan51/create.sql_
-** Ausführen der Skripte im Verzeichnis _from_2.8_to_3.0_ im Modul xplan-update-database in der vorgegebenen Reihenfolge
+** Ausführen der Skripte im Verzeichnis _from_2.8_to_3.0_ im Modul _xplan-update-database_ in der vorgegebenen Reihenfolge
 * Wurde bisher GDAL verwendet (s. <<konfiguration-hale>>) ist die Aktualisierung von GDAL auf die Version 2.4 erforderlich (s. auch <<installation-gdal>>).
 
-Mit der Version 3.0 der xPlanBox können mehrere Ortsteilnamen im XPlanGML auch durch Kommata separiert angegeben werden. Damit diese wie erwartet einem Bezirk zugeordnet werden können (s. Hinweis unter <<ortsteile>>), muss eine Aktualisierung der in der Datenbank gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __districtUpdate__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
+Mit der Version 3.0 der xPlanBox können mehrere Ortsteilnamen im XPlanGML auch durch Kommata separiert angegeben werden. Damit diese wie erwartet einem Bezirk zugeordnet werden können (s. Hinweis unter <<ortsteile>>), muss eine Aktualisierung der in der Datenbank gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __districtUpdate__ zur Verfügung. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
-Weiterhin ist mit der Version 3.0 der xPlanBox die Abbildung von Kreisbögen im XPlanSynWFS und XPlanWMS verbessert worden. Um bereits importierte Pläne mit Kreisbögen in der verbesserten Abbildung abgeben zu können, muss eine Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __reSynthesizer__ zur Verfügung. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
+Weiterhin ist mit der Version 3.0 der xPlanBox die Abbildung von Kreisbögen im XPlanSynWFS und XPlanWMS verbessert worden. Um bereits importierte Pläne mit Kreisbögen in der verbesserten Abbildung abgeben zu können, muss eine Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten erfolgen. Im Modul xplan-update-database steht dafür das Programm __reSynthesizer__ zur Verfügung. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
 Des Weiteren muss die HALE CLI auf Version 3.4.0 (siehe <<installation-hale-cli>>) und GDAL auf Version 2.4 (siehe <<installation-gdal>>) aktualisiert werden.
 
@@ -285,7 +285,7 @@ Sollen für alle oder einzelne bereits importierten Pläne die Service-Metadaten
 Mit der Version 3.3 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen vorgenommen worden. Darunter auch die Unterstützung von XPlanGML 5.2 und die Entfernung der Unterstützung von XPlanGML 2.0.
 Für die Aktualisierung auf die Version 3.3 sind folgende Schritte auszuführen:
 
-* Die Umgebungsvariable _MANAGER_WEB_ wurde nach _XPLANBOX_CONFIG_ umbenannt. _MANAGER_WEB_ kann derzeit noch verwendet werden, die Unterstützung wird jedoch in einer zukünftigen Version der xPlanBox entfernt. Hinweise zu der Umgebungsvariablen _XPLANBOX_CONFIG_ finden sich im Abschnitt <<anwendungs-tomcat>>. Sind im Anwendungs-Tomcat sowohl der XPlanManagerWeb als auch der XPlanValidatorWeb installiert, müssen alle Konfigurationsdateien aus xplan-validator-config und xplan-manager-config in einem Verzeichnis zusammengeführt werden, auf das die Umgebungsvariable _XPLANBOX_CONFIG_ verweist.
+* Die Umgebungsvariable _MANAGER_WEB_ wurde nach _XPLANBOX_CONFIG_ umbenannt. _MANAGER_WEB_ kann derzeit noch verwendet werden, die Unterstützung wird jedoch in einer zukünftigen Version der xPlanBox entfernt. Hinweise zu der Umgebungsvariablen _XPLANBOX_CONFIG_ finden sich im Abschnitt <<anwendungs-tomcat>>. Sind im Anwendungs-Tomcat sowohl der XPlanManagerWeb als auch der XPlanValidatorWeb installiert, müssen alle Konfigurationsdateien aus _xplan-validator-config/_ und _xplan-manager-config/_ in einem Verzeichnis zusammengeführt werden, auf das die Umgebungsvariable _XPLANBOX_CONFIG_ verweist.
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 ** Im xplansyn-wms-workspace ist mit dieser Version eine Dummy-Konfiguration eines GDALRasterLayers hinzugekommen. Diese muss bei der Aktualisierung nicht übernommen werden (Hintergründe: <<GDAL>>).
 * Aktualisierung der Datenbank:
@@ -294,15 +294,15 @@ Für die Aktualisierung auf die Version 3.3 sind folgende Schritte auszuführen:
 *** _pre/xplan52/create.sql_
 *** _archive/xplan52/create.sql_
 *** _inspireplu/05_create_inspireplu_view.sql_
-** Ausführen der Skripte im Verzeichnis _from_3.0_to_3.3_ im Modul xplan-update-database in der vorgegebenen Reihenfolge
-** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul xplan-update-database zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit --help liefert Hinweise zur Verwendung.
+** Ausführen der Skripte im Verzeichnis _from_3.0_to_3.3_ im Modul _xplan-update-database_ in der vorgegebenen Reihenfolge
+** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 * Anpassungen im Logging führen dazu, dass standardmäßig in das Log-Verzeichnis des
 Tomcats ($\{catalina.base}/logs) gelogged wird. Das Java Property _xplan.logdir_ wird nicht mehr ausgewertet und kann entfernt werden.
 
 Wenn die neuen Features <<kartenvorschau-validator>> und <<semantische-validierungsregeln-validiator>> im XPlanValidatorWeb genutzt werden sollen, sind folgende Anpassungen nötig:
 
- * Workspace __xplan-inspireplu-workspace__ und Konfiguration __xplan-validator-config__ entpacken und installieren (siehe <<konfiguration>>).
- * Installation der _xplan-validator-wms.war_ Webanwendung (s. <<web-anwendungen>>). Achtung: Anschließend muss der _xplan-validator-wms-workspace_ initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt über die webapps.properties-Datei plus Neustart der Webanwendung geschehen.
+ * Workspace __xplan-validator-wms-workspace__ und Konfiguration __xplan-validator-config__ entpacken und installieren (siehe <<konfiguration>>).
+ * Installation der _xplan-validator-wms.war_ Webanwendung (s. <<web-anwendungen>>). Achtung: Anschließend muss der _xplan-validator-wms-workspace_ initialisiert werden. Dies kann beispielsweise über die deegree Console oder durch Anpassung der Datei _webapps.properties_ mit anschliessendem Neustart der Webanwendung erfolgen.
  * XPlanValidatorWeb gemäß <<konfiguration-validator>> konfigurieren.
 
 [[aktualisierung-auf-die-version-3.3.1-der-xplanbox]]
@@ -315,16 +315,20 @@ Für die Aktualisierung auf die Version 3.3.1 sind folgende Schritte auszuführe
 * Aktualisierung der INSPIRE PLU Transformation (HALE Alignements)
 ** Aktualisierung der Dateien _xplanGml41-inspirePlu.halex.alignment.xml_ und _xplanGml41-inspirePlu.halex_ im Verzeichnis _xplan-manager-config_ (s. <<teilweise-aktualisierung>>). Für die Aktualisierung der Daten im INSPIRE PLU Schema ist eine erneute Ausführung der Transformation notwendig.
 * Aktualisierung der Datenbank:
-** Ausführen der Skripte im Verzeichnis _from_3.3_to_3.3.1_ im Modul xplan-update-database. Die Tabelle _xplanmgr.plans_ wurde um die Spalte _internalid_ erweitert.
-** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul xplan-update-database zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der __reSynthesizer__ wurde so angepasst, dass die _xplanmgr.plans.internalid_ bei Ausführung in in die synthetisierte FeatureCollection übernommen wird.
+** Ausführen der Skripte im Verzeichnis _from_3.3_to_3.3.1_ im Modul _xplan-update-database_. Die Tabelle _xplanmgr.plans_ wurde um die Spalte _internalid_ erweitert.
+** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der __reSynthesizer__ wurde so angepasst, dass die _xplanmgr.plans.internalid_ bei Ausführung in in die synthetisierte FeatureCollection übernommen wird.
 
-[[aktualisierung-auf-die-version-3.4-der-xplanbox]]
-=== Aktualisierung auf die Version 3.4 der xPlanBox
+[[aktualisierung-auf-die-version-4.0-der-xplanbox]]
+=== Aktualisierung auf die Version 4.0 der xPlanBox
 
-Mit der Version 3.4 der xPlanBox sind einige Fehlerbehebungen und Erweiterungen vorgenommen worden.
+Mit der Version 4.0 der xPlanBox sind einige Fehlerbehebungen und Erweiterungen vorgenommen worden. Weiterhin sind die REST-Schnittstellen XPlanManagerAPI und XPlanValidatorAPI neu hinzugekommen.
 
-Für die Aktualisierung auf die Version 3.4 sind folgende Schritte auszuführen:
+Für die Aktualisierung auf die Version 4.0 sind folgende Schritte auszuführen:
 
+* Ist der Patch 3.3.1 *nicht* installiert, müssen die Aktualisierungsschritte aus <<aktualisierung-auf-die-version-3.3.1-der-xplanbox>> zuerst ausgeführt werden (die Ausführung des Kommandozeilentools __reSynthesizer__ ist nicht erforderlich).
+* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 * Aktualisierung der Datenbank:
-** Ausführen der Skripte im Verzeichnis _from_3.3.2_to_3.4_ im Modul xplan-update-database.
-** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul xplan-update-database zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten.
+** Ausführen der Skripte im Verzeichnis _from_3.3_to_4.0_ im Modul _xplan-update-database_.
+** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten.
+
+Die Installation der XPlanManagerAPI und XPlanValidatorAPI ist im Abschnitt <<web-anwendungen>> und die Konfiguration unter <<konfiguration-rest-api>> beschrieben.

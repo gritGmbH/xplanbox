@@ -1,3 +1,24 @@
+/*-
+ * #%L
+ * xplan-manager-web - Webanwendung des XPlan Managers
+ * %%
+ * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 2.1 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * #L%
+ */
 package de.latlon.xplan.manager.web.client.comparator;
 
 import de.latlon.xplan.manager.web.shared.XPlan;
@@ -8,6 +29,7 @@ import java.util.Date;
 
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.IMPORTDATE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NAME;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.TYPE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -33,7 +55,7 @@ public class ColumnComparatorTest {
     public void setup() {
         plan1 = new XPlan( "name1", "1", "type1" );
         plan1Equal = new XPlan( "name1", "1", "type1" );
-        plan1Null = new XPlan( null, null, null );
+        plan1Null = new XPlan( "name2", "2", null );
         plan2 = new XPlan( "name2", "2", "type2" );
     }
 
@@ -67,7 +89,7 @@ public class ColumnComparatorTest {
     @Test
     public void testCompareWithNullShouldBeSmaller()
                             throws Exception {
-        ColumnComparator comparator = new ColumnComparator( NAME );
+        ColumnComparator comparator = new ColumnComparator( TYPE );
         int result = comparator.compare( plan1Null, plan1 );
 
         assertThat( result, is( -1 ) );
@@ -76,7 +98,7 @@ public class ColumnComparatorTest {
     @Test
     public void testCompareWithNullShouldBeGreater()
                             throws Exception {
-        ColumnComparator comparator = new ColumnComparator( NAME );
+        ColumnComparator comparator = new ColumnComparator( TYPE );
         int result = comparator.compare( plan1, plan1Null );
 
         assertThat( result, is( 1 ) );
