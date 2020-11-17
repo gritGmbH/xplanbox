@@ -6,9 +6,13 @@ import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
+import org.deegree.geometry.GeometryFactory;
 import org.deegree.geometry.multi.MultiGeometry;
 import org.deegree.geometry.multi.MultiPolygon;
+import org.deegree.geometry.multi.MultiSurface;
+import org.deegree.geometry.points.Points;
 import org.deegree.geometry.primitive.GeometricPrimitive;
+import org.deegree.geometry.primitive.LinearRing;
 import org.deegree.geometry.primitive.Polygon;
 import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.Surface;
@@ -174,7 +178,18 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
             if ( MultiGeometry.MultiGeometryType.MULTI_POLYGON == multiGeometry.getMultiGeometryType() ) {
                 MultiPolygon multiPolygon = (MultiPolygon) multiGeometry;
                 return multiPolygon.stream().map( p -> p.getExteriorRing() ).collect( Collectors.toList() );
-
+            } else if ( MultiGeometry.MultiGeometryType.MULTI_SURFACE == multiGeometry.getMultiGeometryType() ) {
+                MultiSurface multiSurface = (MultiSurface) multiGeometry;
+                List<Ring> exteriorRings = new ArrayList<>();
+                for ( Object surfaceObject : multiSurface ) {
+                    Surface surface = (Surface) surfaceObject;
+                    if ( Surface.SurfaceType.Polygon == surface.getSurfaceType()){
+                        exteriorRings.add( ( (Polygon) surface ).getExteriorRing() );
+                    } else {
+                        LOG.warn( "Other geometry types than Polygons in a MultiSurface are currently not validated." );
+                    }
+                }
+                return exteriorRings;
             }
             break;
         }
