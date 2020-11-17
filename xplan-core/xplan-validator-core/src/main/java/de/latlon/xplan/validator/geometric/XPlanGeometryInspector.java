@@ -79,6 +79,7 @@ import static org.deegree.geometry.primitive.segments.CurveSegment.CurveSegmentT
  * <li>Generische Kurve/LineString: falls geschlossen, Laufrichtung CCW (Warnung, wird korrigiert)</li>
  * <li>Ring: Geschlossenheit (Warnung/Fehler, wird korrigiert wenn Abstand Startpunkt zu Endpunkt kleiner als Epsilon)</li>
  * <li>Ring: Keine Selbstüberschneidung (Fehler)</li>
+ * <li>Ring: Keine doppelten Stützpunkte (Fehler)</li>
  * <li>Polygon/PolygonPatch: Äußerer Ring, Orientierung CCW (Warnung, wird korrigiert).</li>
  * <li>Polygon/PolygonPatch: Innere Ringe, Orientierung CW (Warnung, wird korrigiert).</li>
  * <li>Polygon/PolygonPatch: Keine Berührung äußerer Ring / innere Ringe (Fehler)</li>
@@ -86,6 +87,8 @@ import static org.deegree.geometry.primitive.segments.CurveSegment.CurveSegmentT
  * <li>Polygon/PolygonPatch: Innere Ringe liegen innerhalb der vom äußeren Ring umschlossenen Fläche (Fehler)</li>
  * <li>Polygon/PolygonPatch: Keine Berührung innere Ringe / innere Ringe (Fehler)</li>
  * <li>Polygon/PolygonPatch: Schnittmenge der von zwei inneren Ringen gebildeten Flächen ist leer (Fehler)</li>
+ * <li>MultiPolygon: Keine Berührung zwischen einzelnen Polygonen (Fehler)</li>
+ * <li>MultiPolygon: Kein Schnitt zwischen einzelnen Polygonen (Fehler)</li>
  * </p>
  *
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider</a>
