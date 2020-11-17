@@ -43,7 +43,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private static final List<String> GEHOERT_ZU_BEREICH_PROPNAMES = new ArrayList<>();
 
-    private static final String ERROR_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt nicht im Geltungsbereich des Bereichs/Plans.";
+    private static final String ERROR_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt nicht vollständig im Geltungsbereich des Bereichs/Plans.";
 
     private static final String SCHNITTPUNKT_MSG = "2.2.3.1: Schnittpunkt mit der Geometrie des Objekts mit der gml id %s mit dem Geltungsbereich des Bereichs/Plans.";
 
