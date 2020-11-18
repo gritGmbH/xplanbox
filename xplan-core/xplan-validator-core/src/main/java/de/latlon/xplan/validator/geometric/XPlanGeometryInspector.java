@@ -481,7 +481,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 
     private void addLastBadGeometry( Geometry inspected ) {
         if ( lastBadGeometry != null ) {
-            lastBadGeometry.setGeometry( inspected );
+            lastBadGeometry.setOriginalGeometry( inspected );
             badGeometries.add( lastBadGeometry );
             lastBadGeometry = null;
         }

@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import org.deegree.geometry.Envelope;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.primitive.GeometricPrimitive;
@@ -104,27 +103,41 @@ public class BadGeometryImgGenerator {
                                       RenderContext ctx ) {
         Renderer renderer = ctx.getVectorRenderer();
         for ( BadGeometry badGeometry : badGeometries ) {
-            try{
-                GeometricPrimitive geom = (GeometricPrimitive) badGeometry.getGeometry();
-                switch ( geom.getPrimitiveType() ) {
-                case Point:
-                    renderer.render( defaultPointStyle, geom );
-                    break;
-                case Curve:
-                    renderer.render( defaultLineStyle, geom );
-                    break;
-                case Surface:
-                    renderer.render( defaultPolygonStyle, geom );
-                    break;
-                case Solid:
-                    break;
-                default:
-                    LOG.warn( "Geometry type " + geom.getPrimitiveType() + " is not supported to be rendered in png." );
-                }
-            } catch ( Exception e ){
-                LOG.warn( "Geometry is broken (could not be rendered): " +  e.getMessage() );
-                LOG.trace( "Geometry is broken (could not be rendered).", e );
+            renderGeometry( defaultPointStyle, defaultLineStyle, defaultPolygonStyle, renderer,
+                            badGeometry.getOriginalGeometry() );
+            badGeometry.getMarkerGeometries().values().forEach(
+                                    g -> renderGeometry( defaultPointStyle, defaultLineStyle, defaultPolygonStyle,
+                                                         renderer, g ) );
+        }
+    }
+
+    private void renderGeometry( PointStyling defaultPointStyle, LineStyling defaultLineStyle,
+                                 PolygonStyling defaultPolygonStyle, Renderer renderer, Geometry geom ) {
+        try {
+            if ( !Geometry.GeometryType.PRIMITIVE_GEOMETRY.equals( geom.getGeometryType() ) ) {
+                LOG.warn( "Geometry is not primitive, rendering of non primitive geometries in png is currently not supported " );
+                return;
             }
+            GeometricPrimitive primitiveGeom = (GeometricPrimitive) geom;
+            switch ( primitiveGeom.getPrimitiveType() ) {
+            case Point:
+                renderer.render( defaultPointStyle, geom );
+                break;
+            case Curve:
+                renderer.render( defaultLineStyle, geom );
+                break;
+            case Surface:
+                renderer.render( defaultPolygonStyle, geom );
+                break;
+            case Solid:
+                break;
+            default:
+                LOG.warn( "Geometry type " + primitiveGeom.getPrimitiveType()
+                          + " is not supported to be rendered in png." );
+            }
+        } catch ( Exception e ) {
+            LOG.warn( "Geometry is broken (could not be rendered): " + e.getMessage() );
+            LOG.trace( "Geometry is broken (could not be rendered).", e );
         }
     }
 
@@ -188,10 +201,10 @@ public class BadGeometryImgGenerator {
 
     private Envelope calculateBoundingBoxOfBadGeometries( List<BadGeometry> badGeometries ) {
         // the envelope has to be bigger than the geometry, otherwise an exception will occur
-        Envelope boundingBox = badGeometries.get( 0 ).getGeometry().getEnvelope();
+        Envelope boundingBox = badGeometries.get( 0 ).getOriginalGeometry().getEnvelope();
         for ( BadGeometry badGeometry : badGeometries ) {
             try {
-                Geometry geom = badGeometry.getGeometry();
+                Geometry geom = badGeometry.getOriginalGeometry();
                 Envelope envelope = geom.getEnvelope();
                 boundingBox = boundingBox.merge(envelope);
             } catch ( Exception e ){

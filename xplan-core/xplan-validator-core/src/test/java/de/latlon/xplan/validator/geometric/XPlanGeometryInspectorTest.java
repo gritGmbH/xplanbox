@@ -73,7 +73,7 @@ public class XPlanGeometryInspectorTest {
 
         List<BadGeometry> badGeometries = inspector.getBadGeometries();
         assertThat( badGeometries.size(), is( 1 ) );
-        String id = badGeometries.get( 0 ).getGeometry().getId();
+        String id = badGeometries.get( 0 ).getOriginalGeometry().getId();
         assertThat( id, is( nullValue() ) );
     }
 

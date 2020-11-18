@@ -6,7 +6,6 @@ import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.types.AppSchema;
@@ -18,7 +17,6 @@ import org.junit.Test;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -34,8 +32,8 @@ public class FlaechenschlussInspectorTest {
         XPlanArchive archive = getTestArchive( "xplan51/V4_1_ID_103.zip" );
         FlaechenschlussInspector flaechenschlussInspector = readFeatures( archive );
 
-        List<BadGeometry> flaechenschlussErrors = flaechenschlussInspector.checkGeometricRule();
-        assertThat( flaechenschlussErrors.size(), is( 0 ) );
+        boolean isValid = flaechenschlussInspector.checkGeometricRule();
+        assertThat( isValid, is( true ) );
     }
 
     @Test
@@ -44,8 +42,8 @@ public class FlaechenschlussInspectorTest {
         XPlanArchive archive = getTestArchive( "xplan51/V4_1_ID_103_wirksamkeit.zip" );
         FlaechenschlussInspector flaechenschlussInspector = readFeatures( archive );
 
-        List<BadGeometry> flaechenschlussErrors = flaechenschlussInspector.checkGeometricRule();
-        assertThat( flaechenschlussErrors.size(), is( 0 ) );
+        boolean isValid = flaechenschlussInspector.checkGeometricRule();
+        assertThat( isValid, is( true ) );
     }
 
     @Test
@@ -54,8 +52,8 @@ public class FlaechenschlussInspectorTest {
         XPlanArchive archive = getTestArchive( "xplan51/V4_1_ID_103_kein-flaechenschluss.zip" );
         FlaechenschlussInspector flaechenschlussInspector = readFeatures( archive );
 
-        List<BadGeometry> flaechenschlussErrors = flaechenschlussInspector.checkGeometricRule();
-        assertThat( flaechenschlussErrors.size(), is( 1 ) );
+        boolean isValid = flaechenschlussInspector.checkGeometricRule();
+        assertThat( isValid, is( false ) );
     }
 
     private FlaechenschlussInspector readFeatures( XPlanArchive archive )

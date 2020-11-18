@@ -6,13 +6,10 @@ import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
-import org.deegree.geometry.GeometryFactory;
 import org.deegree.geometry.multi.MultiGeometry;
 import org.deegree.geometry.multi.MultiPolygon;
 import org.deegree.geometry.multi.MultiSurface;
-import org.deegree.geometry.points.Points;
 import org.deegree.geometry.primitive.GeometricPrimitive;
-import org.deegree.geometry.primitive.LinearRing;
 import org.deegree.geometry.primitive.Polygon;
 import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.Surface;
@@ -66,6 +63,10 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private Map<String, List<Feature>> bereichIdToFeatureGeoms = new HashMap<>();
 
+    private List<BadGeometry> badGeometries = new ArrayList<>();
+
+    private List<String> errors = new ArrayList<>();
+
     static {
         GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuBereich" );
         GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuBereich" );
@@ -96,17 +97,15 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
     }
 
     @Override
-    public List<BadGeometry> checkGeometricRule() {
+    public boolean checkGeometricRule() {
         List<String> featureIdOfInvalidFeatures = new ArrayList<>();
-        List<BadGeometry> badGeometries = new ArrayList<>();
         for ( Map.Entry<String, List<Feature>> bereichIdToGeoms : bereichIdToFeatureGeoms.entrySet() ) {
             Feature geltungsbereichFeature = retrieveGeltungsbereichFeature( bereichIdToGeoms.getKey() );
             Geometry geltungsbereich = getGeometry( geltungsbereichFeature );
             if ( !geltungsbereich.isValid() ) {
-                BadGeometry error = new BadGeometry( getOriginalGeometry( geltungsbereichFeature ),
-                                                     String.format( ERROR_MSG_INVALID_GELTUNGSBEREICH,
-                                                                    geltungsbereichFeature.getId() ) );
-                return Collections.singletonList( error );
+                String error = String.format( ERROR_MSG_INVALID_GELTUNGSBEREICH, geltungsbereichFeature.getId() );
+                addErrorAndBadGeometry( error, getOriginalGeometry( geltungsbereichFeature ) );
+                return false;
             }
             Geometry geltungsbereichWithBuffer = geltungsbereich.buffer( TOLERANCE_METRE );
             bereichIdToGeoms.getValue().forEach( f -> {
@@ -114,14 +113,12 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
                     if ( !isInsideGeom( f, geltungsbereichWithBuffer ) ) {
                         featureIdOfInvalidFeatures.add( f.getId() );
                         String error = String.format( ERROR_MSG, f.getId() );
-                        BadGeometry badGeometry = new BadGeometry( getOriginalGeometry( f ), error );
-                        badGeometries.add( badGeometry );
-                        addIntersectionsWithGeltungsbereich( badGeometries, geltungsbereichFeature, f );
+                        BadGeometry badGeometry = addErrorAndBadGeometry( error, getOriginalGeometry( f ) );
+                        addIntersectionsWithGeltungsbereich( badGeometry, geltungsbereichFeature, f );
                     }
                 } catch ( InvalidGeometryException e ) {
                     String error = String.format( ERROR_MSG_INVALID_CHECK, f.getId() );
-                    BadGeometry badCheckGeom = new BadGeometry( getOriginalGeometry( f ), error );
-                    badGeometries.add( badCheckGeom );
+                    addErrorAndBadGeometry( error, getOriginalGeometry( f ) );
                 }
             } );
         }
@@ -131,6 +128,16 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
             LOG.info( "Features outside geltungsbereich:\n {}",
                       featureIdOfInvalidFeatures.stream().collect( Collectors.joining( "\n" ) ) );
         }
+        return errors.isEmpty();
+    }
+
+    @Override
+    public List<String> getErrors() {
+        return errors;
+    }
+
+    @Override
+    public List<BadGeometry> getBadGeometries() {
         return badGeometries;
     }
 
@@ -144,7 +151,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
         return planFeature;
     }
 
-    private void addIntersectionsWithGeltungsbereich( List<BadGeometry> badGeometries,
+    private void addIntersectionsWithGeltungsbereich( BadGeometry badGeometry,
                                                       Feature geltungsbereichFeature, Feature feature ) {
         AbstractDefaultGeometry originalGeometry = getOriginalGeometry( feature );
 
@@ -154,8 +161,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
             if ( geomOutsideGeltungsbereich != null ) {
                 geomOutsideGeltungsbereich.setId( feature.getId() + "_SchnittpunktGeltungsbereich" );
                 String error = String.format( SCHNITTPUNKT_MSG, feature.getId() );
-                BadGeometry original = new BadGeometry( geomOutsideGeltungsbereich, error );
-                badGeometries.add( original );
+                badGeometry.addMarkerGeometry( error, geomOutsideGeltungsbereich );
             }
         } );
     }
@@ -257,4 +263,12 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
             return (AbstractDefaultGeometry) geometryProperties.get( 0 ).getValue();
         return null;
     }
+
+    private BadGeometry addErrorAndBadGeometry( String error, AbstractDefaultGeometry geometry ) {
+        errors.add( error );
+        BadGeometry badGeometry = new BadGeometry( geometry, error );
+        badGeometries.add( badGeometry );
+        return badGeometry;
+    }
+
 }

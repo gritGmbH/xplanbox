@@ -10,6 +10,19 @@ import java.util.List;
  */
 public interface GeometricFeatureInspector extends FeatureInspector {
 
-    List<BadGeometry> checkGeometricRule();
+    /**
+     * @return <code>true</code> if no errors was found, <code>false</code> otherwise
+     */
+    boolean checkGeometricRule();
+
+    /**
+     * @return all errors found, max be empty but never <code>null</code>
+     */
+    List<String> getErrors();
+
+    /**
+     * @return the BadGeoemtries, max be empty but never <code>null</code>
+     */
+    List<BadGeometry> getBadGeometries();
 
 }

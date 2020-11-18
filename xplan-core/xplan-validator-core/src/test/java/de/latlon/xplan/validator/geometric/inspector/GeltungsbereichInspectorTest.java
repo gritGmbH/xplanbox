@@ -18,7 +18,6 @@ import org.junit.Test;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -35,8 +34,10 @@ public class GeltungsbereichInspectorTest {
         XPlanArchive archive = getTestArchive( "xplan51/V4_1_ID_103_geltungsbereich-erfuellt.zip" );
         GeltungsbereichInspector geltungsbereichInspector = readFeatures( archive );
 
-        List<BadGeometry> errors = geltungsbereichInspector.checkGeometricRule();
-        assertThat( errors.size(), is( 0 ) );
+        boolean isValid = geltungsbereichInspector.checkGeometricRule();
+        assertThat( isValid, is( true ) );
+        assertThat( geltungsbereichInspector.getErrors().size(), is( 0 ) );
+        assertThat( geltungsbereichInspector.getBadGeometries().size(), is( 0 ) );
     }
 
     @Test
@@ -45,10 +46,12 @@ public class GeltungsbereichInspectorTest {
         XPlanArchive archive = getTestArchive( "xplan51/V4_1_ID_103.zip" );
         GeltungsbereichInspector geltungsbereichInspector = readFeatures( archive );
 
-        List<BadGeometry> errors = geltungsbereichInspector.checkGeometricRule();
-        assertThat( errors.size(), is( 1 ) );
+        boolean isValid = geltungsbereichInspector.checkGeometricRule();
+        assertThat( isValid, is( false ) );
+        assertThat( geltungsbereichInspector.getErrors().size(), is( 1 ) );
+        assertThat( geltungsbereichInspector.getBadGeometries().size(), is( 1 ) );
 
-        assertThat( errors.get( 0 ).getGeometry(), is( notNullValue() ) );
+        assertThat( geltungsbereichInspector.getBadGeometries().get( 0 ).getOriginalGeometry(), is( notNullValue() ) );
     }
 
     @Test
@@ -57,10 +60,12 @@ public class GeltungsbereichInspectorTest {
         XPlanArchive archive = getTestArchive( "xplan41/V4_1_ID_103.zip" );
         GeltungsbereichInspector geltungsbereichInspector = readFeatures( archive );
 
-        List<BadGeometry> errors = geltungsbereichInspector.checkGeometricRule();
-        assertThat( errors.size(), is( 1 ) );
+        boolean isValid = geltungsbereichInspector.checkGeometricRule();
+        assertThat( isValid, is( false ) );
+        assertThat( geltungsbereichInspector.getErrors().size(), is( 1 ) );
+        assertThat( geltungsbereichInspector.getBadGeometries().size(), is( 1 ) );
 
-        assertThat( errors.get( 0 ).getGeometry(), is( notNullValue() ) );
+        assertThat( geltungsbereichInspector.getBadGeometries().get( 0 ).getOriginalGeometry(), is( notNullValue() ) );
     }
 
     @Test
@@ -69,13 +74,18 @@ public class GeltungsbereichInspectorTest {
         XPlanArchive archive = getTestArchive( "xplan52/BP2070.zip" );
         GeltungsbereichInspector geltungsbereichInspector = readFeatures( archive );
 
-        List<BadGeometry> errors = geltungsbereichInspector.checkGeometricRule();
-        assertThat( errors.size(), is( 4 ) );
+        boolean isValid = geltungsbereichInspector.checkGeometricRule();
+        assertThat( isValid, is( false ) );
+        assertThat( geltungsbereichInspector.getErrors().size(), is( 2 ) );
+        assertThat( geltungsbereichInspector.getBadGeometries().size(), is( 2 ) );
 
-        assertThat( errors.get( 0 ).getGeometry(), is( notNullValue() ) );
-        assertThat( errors.get( 1 ).getGeometry(), is( notNullValue() ) );
-        assertThat( errors.get( 2 ).getGeometry(), is( notNullValue() ) );
-        assertThat( errors.get( 3 ).getGeometry(), is( notNullValue() ) );
+        BadGeometry badGeometry1 = geltungsbereichInspector.getBadGeometries().get( 0 );
+        assertThat( badGeometry1.getOriginalGeometry(), is( notNullValue() ) );
+        assertThat( badGeometry1.getMarkerGeometries().size(), is( 1 ) );
+
+        BadGeometry badGeometry2 = geltungsbereichInspector.getBadGeometries().get( 1 );
+        assertThat( badGeometry2.getOriginalGeometry(), is( notNullValue() ) );
+        assertThat( badGeometry2.getMarkerGeometries().size(), is( 1 ) );
     }
 
     @Test
@@ -84,8 +94,8 @@ public class GeltungsbereichInspectorTest {
         XPlanArchive archive = getTestArchive( "xplan51/V4_1_ID_103_withtolerance.zip" );
         GeltungsbereichInspector geltungsbereichInspector = readFeatures( archive );
 
-        List<BadGeometry> errors = geltungsbereichInspector.checkGeometricRule();
-        assertThat( errors.size(), is( 0 ) );
+        boolean isValid = geltungsbereichInspector.checkGeometricRule();
+        assertThat( isValid, is( true ) );
     }
 
     private GeltungsbereichInspector readFeatures( XPlanArchive archive )
