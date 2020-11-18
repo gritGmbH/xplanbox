@@ -19,16 +19,16 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
 |-
 
 |xplan-validator-web-<VERSION>.war
-|xplan-validator-config-<VERSION.zip
+|xplan-validator-config-<VERSION>.zip
 
 |xplan-manager-web-<VERSION>.war
-|xplan-manager-config-<VERSION.zip und xplan-workspaces-<VERSION>-xplan-manager-workspace.zip
+|xplan-manager-config-<VERSION>.zip und xplan-workspaces-<VERSION>-xplan-manager-workspace.zip
 
 |xplan-api-validator-<VERSION>.war
-|xplan-validator-config-<VERSION.zip
+|xplan-validator-config-<VERSION>.zip
 
 |xplan-api-manager-<VERSION>.war
-|xplan-manager-config-<VERSION.zip und xplan-workspaces-<VERSION>-xplan-manager-workspace.zip
+|xplan-manager-config-<VERSION>.zip und xplan-workspaces-<VERSION>-xplan-manager-workspace.zip
 
 |xplansyn-wfs-<VERSION>.war
 |xplan-workspaces-<VERSION>-xplansyn-wfs-workspace.zip
@@ -48,7 +48,7 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
 
  * Dokumentation (im Verzeichnis _documentation/manuals_)
  ** xPlanBox-Benutzerhandbuch.pdf
- ** xPlanBox-Benutzerhandbuch (html Version)
+ ** xPlanBox-Benutzerhandbuch (HTML-Format)
 
 Bitte kontaktieren Sie http://www.lat-lon.de[lat/lon GmbH], per E-mail an info@lat-lon.de, wenn
 Installationskomponenten fehlen.
