@@ -6,7 +6,6 @@ import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
-import org.deegree.geometry.GeometryFactory;
 import org.deegree.geometry.multi.MultiGeometry;
 import org.deegree.geometry.multi.MultiPolygon;
 import org.deegree.geometry.multi.MultiSurface;
@@ -48,6 +47,8 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
     private static final String ERROR_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt nicht vollstaendig im Geltungsbereich des Bereichs/Plans.";
 
     private static final String SCHNITTPUNKT_MSG = "2.2.3.1: Schnittpunkt mit der Geometrie des Objekts mit der gml id %s mit dem Geltungsbereich des Bereichs/Plans.";
+
+    private static final String OUTOFGELTUNGSBEREICH_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt vollstaendig ausserhalb des Geltungsbereichs des Bereichs/Plans.";
 
     private static final String ERROR_MSG_INVALID_CHECK = "2.2.3.1: Der Geltungsbereich des Objekts mit der gml id %s konnte nicht überprüft werden. Wahrscheinlich liegt eine invalide Geometrie vor.";
 
@@ -154,15 +155,21 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private void addIntersectionsWithGeltungsbereich( BadGeometry badGeometry, Feature geltungsbereichFeature,
                                                       Feature feature ) {
-        List<? extends org.deegree.geometry.Geometry> featureGeometries = extractExteriorRingOrPrimitive(
-                                getOriginalGeometry( feature ) );
-        List<? extends org.deegree.geometry.Geometry> exteriorRings = extractExteriorRingOrPrimitive(
-                                getOriginalGeometry( geltungsbereichFeature ) );
+        AbstractDefaultGeometry featureGeometry = getOriginalGeometry( feature );
+        AbstractDefaultGeometry geltungsbereichGeometry = getOriginalGeometry( geltungsbereichFeature );
+        if ( geltungsbereichGeometry.isDisjoint( featureGeometry ) ) {
+            String error = String.format( OUTOFGELTUNGSBEREICH_MSG, feature.getId() );
+            badGeometry.addMarkerGeometry( error, featureGeometry );
+        }
 
+        List<? extends org.deegree.geometry.Geometry> featureGeometries = extractExteriorRingOrPrimitive(
+                                featureGeometry );
+        List<? extends org.deegree.geometry.Geometry> exteriorRings = extractExteriorRingOrPrimitive(
+                                geltungsbereichGeometry );
         exteriorRings.forEach( exteriorRing -> {
-            featureGeometries.forEach( featureGeometry -> {
+            featureGeometries.forEach( featureGeom -> {
                 org.deegree.geometry.Geometry geomOutsideGeltungsbereich = exteriorRing.getIntersection(
-                                        featureGeometry );
+                                        featureGeom );
                 if ( geomOutsideGeltungsbereich != null ) {
                     geomOutsideGeltungsbereich.setId( feature.getId() + "_SchnittpunktGeltungsbereich" );
                     String error = String.format( SCHNITTPUNKT_MSG, feature.getId() );
