@@ -137,7 +137,8 @@ public class ReportWriterTest {
         ICRS crs = lookup( "epsg:4326" );
         String uomURI = "m";
         Measure measure = new Measure( BigDecimal.TEN, uomURI );
-        badGeometries.add( new BadGeometry( new GeometryFactory().createPoint( "id", 20, 10, crs ).getBuffer( measure ) ) );
+        badGeometries.add( new BadGeometry( new GeometryFactory().createPoint( "id", 20, 10, crs ).getBuffer( measure ),
+                                            "Fehler" ) );
         GeometricValidatorResult result = new GeometricValidatorResult( Collections.<String> emptyList(),
                                                                         Collections.<String> emptyList(),
                                                                         badGeometries, crs, false );

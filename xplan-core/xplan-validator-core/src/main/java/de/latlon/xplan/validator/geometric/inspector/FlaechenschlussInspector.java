@@ -95,6 +95,8 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
 
     private final Date now = new Date( new java.util.Date(), null );
 
+    private final List<BadGeometry> flaechenschlussErrors = new ArrayList<>();
+
     private BadGeometry invalidGeltungsbereich;
 
     @Override
@@ -141,19 +143,20 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
      * @return <code>true</code> if the Flaechenschlussbedingung is satisfied, <code>false</code> otherwise
      */
     @Override
-    public List<BadGeometry> checkGeometricRule() {
+    public boolean checkGeometricRule() {
         if ( invalidGeltungsbereich != null )
-            return Collections.singletonList( invalidGeltungsbereich );
+            return false;
 
         controlPoints.stream().forEach( cp -> checkForIdenticalControlPoint( cp ) );
         List<ControlPoint> controlPointsWithInvalidFlaechenschluss = controlPoints.stream().filter(
                                 cp -> !isPartOfGeltungsbereich( cp.getPoint() )
                                       && !cp.hasIdenticalControlPoint() ).collect( Collectors.toList() );
 
-        List<BadGeometry> flaechenschlussErrors = controlPointsWithInvalidFlaechenschluss.stream().map( cp -> {
+        controlPointsWithInvalidFlaechenschluss.stream().forEach( cp -> {
             String error = String.format( ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint() );
-            return new BadGeometry( cp.getPoint(), error );
-        } ).collect( Collectors.toList() );
+            BadGeometry badGeometry = new BadGeometry( cp.getPoint(), error );
+            flaechenschlussErrors.add( badGeometry );
+        } );
         if ( flaechenschlussErrors.isEmpty() ) {
             LOG.info( "No features with invalid flaechenschluss" );
         } else {
@@ -162,6 +165,21 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
                                               cp -> cp.getFeatureGmlId() + ": " + cp.getPoint() ).collect(
                                               Collectors.joining( "\n" ) ) );
         }
+        return flaechenschlussErrors.isEmpty();
+    }
+
+    @Override
+    public List<String> getErrors() {
+        if ( invalidGeltungsbereich != null )
+            return invalidGeltungsbereich.getErrors();
+        return flaechenschlussErrors.stream().map( e -> e.getErrors() ).flatMap( List::stream ).collect(
+                                Collectors.toList() );
+    }
+
+    @Override
+    public List<BadGeometry> getBadGeometries() {
+        if ( invalidGeltungsbereich != null )
+            return Collections.singletonList( invalidGeltungsbereich );
         return flaechenschlussErrors;
     }
 

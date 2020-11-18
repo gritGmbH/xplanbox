@@ -161,11 +161,11 @@ public class GeometricValidatorImpl implements GeometricValidator {
     }
 
     private void checkAndAddRules( GeometricFeatureInspector fi, ParserAndValidatorResult result ) {
-        List<BadGeometry> errors = fi.checkGeometricRule();
-        errors.stream().forEach( error -> {
-            result.addErrors( error.getErrors() );
-        } );
-        result.addBadGeometries( errors );
+        boolean isValid = fi.checkGeometricRule();
+        if ( !isValid ) {
+            result.addErrors( fi.getErrors() );
+            result.addBadGeometries( fi.getBadGeometries() );
+        }
     }
 
     private List<GeometricFeatureInspector> createInspectors( List<ValidationOption> voOptions ) {

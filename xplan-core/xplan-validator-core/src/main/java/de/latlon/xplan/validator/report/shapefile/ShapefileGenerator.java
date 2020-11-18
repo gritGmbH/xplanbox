@@ -116,24 +116,33 @@ public class ShapefileGenerator {
     private void addGeometriesToShapefileBuilder( List<BadGeometry> badGeometries,
                                                   Map<Geometries, ShapefileBuilder> geomType2Builders ) {
         for ( BadGeometry badGeometry : badGeometries ) {
-            Geometry geom = badGeometry.getGeometry();
-            if ( geom instanceof AbstractDefaultGeometry ) {
-                try {
-                    AbstractDefaultGeometry defaultGeometry = (AbstractDefaultGeometry) geom;
-                    com.vividsolutions.jts.geom.Geometry jtsGeom = defaultGeometry.getJTSGeometry();
+            Geometry geom = badGeometry.getOriginalGeometry();
+            addGeometryToShapefileBuilder( geomType2Builders, badGeometry, geom );
+            badGeometry.getMarkerGeometries().values().forEach(
+                                    g -> addGeometryToShapefileBuilder( geomType2Builders, badGeometry, g ) );
+        }
+    }
 
-                    Geometries geomType = Geometries.get(jtsGeom);
-                    if (geomType2Builders.containsKey(geomType)) {
-                        geomType2Builders.get(geomType).addGeometry(jtsGeom, defaultGeometry.getId(),
-                                badGeometry.getErrorsSingleString());
-                    }
-                } catch ( Exception e ) {
-                    LOG.warn( "Geometry is broken (could not be written in shapefile): " +  e.getMessage() );
-                    LOG.trace( "Geometry is broken (could not be written in shapefile).", e );
+    private void addGeometryToShapefileBuilder( Map<Geometries, ShapefileBuilder> geomType2Builders,
+                                                BadGeometry badGeometry, Geometry geom ) {
+        if ( geom instanceof AbstractDefaultGeometry ) {
+            try {
+                AbstractDefaultGeometry defaultGeometry = (AbstractDefaultGeometry) geom;
+                com.vividsolutions.jts.geom.Geometry jtsGeom = defaultGeometry.getJTSGeometry();
+
+                Geometries geomType = Geometries.get( jtsGeom );
+                if ( geomType2Builders.containsKey( geomType ) ) {
+                    geomType2Builders.get( geomType ).addGeometry( jtsGeom, defaultGeometry.getId(),
+                                                                   badGeometry.getErrorsSingleString() );
+                } else {
+                    LOG.warn( "Geometry type " + geomType + " is not supported to be rendered in shp." );
                 }
-            } else {
-                LOG.info( "Geometrie '" + geom.getId() + "' kann nicht in Shapefile geschrieben werden." );
+            } catch ( Exception e ) {
+                LOG.warn( "Geometry is broken (could not be written in shapefile): " +  e.getMessage() );
+                LOG.trace( "Geometry is broken (could not be written in shapefile).", e );
             }
+        } else {
+            LOG.info( "Geometrie '" + geom.getId() + "' kann nicht in Shapefile geschrieben werden." );
         }
     }
 

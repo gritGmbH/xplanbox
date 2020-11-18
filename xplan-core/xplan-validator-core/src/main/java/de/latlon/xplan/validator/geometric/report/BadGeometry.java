@@ -22,7 +22,9 @@
 package de.latlon.xplan.validator.geometric.report;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.deegree.geometry.Geometry;
 
@@ -34,28 +36,26 @@ import org.deegree.geometry.Geometry;
 
 public class BadGeometry {
 
-    Geometry geometry;
+    private Geometry originalGeometry;
 
     private final List<String> errors = new ArrayList<>();
+
+    private final Map<String, Geometry> markerGeometries = new HashMap<>();
 
     public BadGeometry() {
     }
 
-    public BadGeometry( Geometry geometry ) {
-        this.geometry = geometry;
-    }
-
-    public BadGeometry( Geometry geometry, String error ) {
-        this.geometry = geometry;
+    public BadGeometry( Geometry originalGeometry, String error ) {
+        this.originalGeometry = originalGeometry;
         addError( error );
     }
 
-    public void setGeometry( Geometry geometry ) {
-        this.geometry = geometry;
+    public void setOriginalGeometry( Geometry originalGeometry ) {
+        this.originalGeometry = originalGeometry;
     }
 
-    public Geometry getGeometry() {
-        return geometry;
+    public Geometry getOriginalGeometry() {
+        return originalGeometry;
     }
 
     public List<String> getErrors() {
@@ -74,4 +74,13 @@ public class BadGeometry {
     public void addError( String err ) {
         errors.add( err );
     }
+
+    public Map<String, Geometry> getMarkerGeometries() {
+        return markerGeometries;
+    }
+
+    public void addMarkerGeometry( String error, Geometry markerGeometry ) {
+        markerGeometries.put( error, markerGeometry );
+    }
+
 }

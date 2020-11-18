@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -24,13 +24,10 @@ package de.latlon.xplan.validator.geometric;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.geometry.Geometry;
-import org.deegree.geometry.primitive.LineString;
 import org.deegree.geometry.primitive.Point;
 import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.patches.PolygonPatch;
 import org.deegree.gml.GMLInputFactory;
-import org.hamcrest.CoreMatchers;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -83,8 +80,8 @@ public class XPlanGeometryInspectorTest {
 
         List<BadGeometry> badGeometries = inspector.getBadGeometries();
         assertThat( badGeometries.size(), is( 2 ) );
-        assertThat( badGeometries.get( 0 ).getGeometry().getId(), is( "GML_ID_67697_intersection_1" ) );
-        assertThat( badGeometries.get( 1 ).getGeometry().getId(), is( "GML_ID_67697" ) );
+        assertThat( badGeometries.get( 0 ).getOriginalGeometry().getId(), is( "GML_ID_67697_intersection_1" ) );
+        assertThat( badGeometries.get( 1 ).getOriginalGeometry().getId(), is( "GML_ID_67697" ) );
     }
 
     @Test
@@ -98,10 +95,10 @@ public class XPlanGeometryInspectorTest {
         List<BadGeometry> badGeometries = inspector.getBadGeometries();
         assertThat( badGeometries.size(), is( 2 ) );
 
-        Geometry duplicateControlPoint1 = badGeometries.get( 0 ).getGeometry();
+        Geometry duplicateControlPoint1 = badGeometries.get( 0 ).getOriginalGeometry();
         assertThat( duplicateControlPoint1.getId(), is( "GML_doppelterStuetzpunkt_doppelterStuetzpunkt_1" ) );
 
-        Geometry geometry = badGeometries.get( 1 ).getGeometry();
+        Geometry geometry = badGeometries.get( 1 ).getOriginalGeometry();
         assertThat( geometry.getId(), is( "GML_doppelterStuetzpunkt" ) );
     }
 
@@ -115,17 +112,17 @@ public class XPlanGeometryInspectorTest {
         List<BadGeometry> badGeometries = inspector.getBadGeometries();
         assertThat( badGeometries.size(), is( 3 ) );
 
-        Geometry intersection1 = badGeometries.get( 0 ).getGeometry();
+        Geometry intersection1 = badGeometries.get( 0 ).getOriginalGeometry();
         assertThat( intersection1.getId(), is( "Gml_8AB9C0E6-69DB-4855-A32C-CD9BBC95ABED_intersection_1" ) );
         assertThat( ( (Point) intersection1 ).get0(), is( 583028.4653110565 ) );
         assertThat( ( (Point) intersection1 ).get1(), is( 3581555.9624473285 ) );
 
-        Geometry intersection2 = badGeometries.get( 1 ).getGeometry();
+        Geometry intersection2 = badGeometries.get( 1 ).getOriginalGeometry();
         assertThat( intersection2.getId(), is( "Gml_8AB9C0E6-69DB-4855-A32C-CD9BBC95ABED_intersection_2" ) );
         assertThat( ( (Point) intersection2 ).get0(), is( 583192.1906790873 ) );
         assertThat( ( (Point) intersection2 ).get1(), is( 5920635.179921611 ) );
 
-        Geometry geometry = badGeometries.get( 2 ).getGeometry();
+        Geometry geometry = badGeometries.get( 2 ).getOriginalGeometry();
         assertThat( geometry.getId(), is( "Gml_8AB9C0E6-69DB-4855-A32C-CD9BBC95ABED" ) );
     }
 
@@ -149,9 +146,9 @@ public class XPlanGeometryInspectorTest {
 
         List<BadGeometry> badGeometries = inspector.getBadGeometries();
         assertThat( badGeometries.size(), is( 2 ) );
-        Geometry intersection = badGeometries.get( 0 ).getGeometry();
+        Geometry intersection = badGeometries.get( 0 ).getOriginalGeometry();
         assertThat( intersection.getId(), is( "GML_48d90d78-aa4a-44cc-939b-3562757993c6_intersection_1" ) );
-        Geometry geometry = badGeometries.get( 1 ).getGeometry();
+        Geometry geometry = badGeometries.get( 1 ).getOriginalGeometry();
         assertThat( geometry.getId(), is( "GML_48d90d78-aa4a-44cc-939b-3562757993c6" ) );
     }
 
