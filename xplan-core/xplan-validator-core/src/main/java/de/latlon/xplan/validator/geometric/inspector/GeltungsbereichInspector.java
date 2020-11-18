@@ -6,6 +6,7 @@ import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
+import org.deegree.geometry.GeometryFactory;
 import org.deegree.geometry.multi.MultiGeometry;
 import org.deegree.geometry.multi.MultiPolygon;
 import org.deegree.geometry.multi.MultiSurface;
@@ -151,54 +152,70 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
         return planFeature;
     }
 
-    private void addIntersectionsWithGeltungsbereich( BadGeometry badGeometry,
-                                                      Feature geltungsbereichFeature, Feature feature ) {
-        AbstractDefaultGeometry originalGeometry = getOriginalGeometry( feature );
+    private void addIntersectionsWithGeltungsbereich( BadGeometry badGeometry, Feature geltungsbereichFeature,
+                                                      Feature feature ) {
+        List<? extends org.deegree.geometry.Geometry> featureGeometries = extractExteriorRingOrPrimitive(
+                                getOriginalGeometry( feature ) );
+        List<? extends org.deegree.geometry.Geometry> exteriorRings = extractExteriorRingOrPrimitive(
+                                getOriginalGeometry( geltungsbereichFeature ) );
 
-        List<Ring> exteriorRings = extractExteriorRingFromGeltungsbereich( geltungsbereichFeature );
         exteriorRings.forEach( exteriorRing -> {
-            org.deegree.geometry.Geometry geomOutsideGeltungsbereich = exteriorRing.getIntersection( originalGeometry );
-            if ( geomOutsideGeltungsbereich != null ) {
-                geomOutsideGeltungsbereich.setId( feature.getId() + "_SchnittpunktGeltungsbereich" );
-                String error = String.format( SCHNITTPUNKT_MSG, feature.getId() );
-                badGeometry.addMarkerGeometry( error, geomOutsideGeltungsbereich );
-            }
+            featureGeometries.forEach( featureGeometry -> {
+                org.deegree.geometry.Geometry geomOutsideGeltungsbereich = exteriorRing.getIntersection(
+                                        featureGeometry );
+                if ( geomOutsideGeltungsbereich != null ) {
+                    geomOutsideGeltungsbereich.setId( feature.getId() + "_SchnittpunktGeltungsbereich" );
+                    String error = String.format( SCHNITTPUNKT_MSG, feature.getId() );
+                    badGeometry.addMarkerGeometry( error, geomOutsideGeltungsbereich );
+                }
+            } );
         } );
     }
 
-    private List<Ring> extractExteriorRingFromGeltungsbereich( Feature geltungsbereichFeature ) {
-        AbstractDefaultGeometry geltungsbereichGeometry = getOriginalGeometry( geltungsbereichFeature );
-        switch ( geltungsbereichGeometry.getGeometryType() ) {
+    private List<? extends org.deegree.geometry.Geometry> extractExteriorRingOrPrimitive( AbstractDefaultGeometry geometry ) {
+        switch ( geometry.getGeometryType() ) {
         case PRIMITIVE_GEOMETRY:
-            GeometricPrimitive geltungsbereichPrimitive = (GeometricPrimitive) geltungsbereichGeometry;
-            if ( GeometricPrimitive.PrimitiveType.Surface == geltungsbereichPrimitive.getPrimitiveType() ) {
-                Surface surface = (Surface) geltungsbereichPrimitive;
-                if ( Surface.SurfaceType.Polygon == surface.getSurfaceType() ) {
-                    Polygon polygon = (Polygon) surface;
-                    return Collections.singletonList( polygon.getExteriorRing() );
-                }
-            }
-            break;
+            org.deegree.geometry.Geometry primitive = extractExteriorRingOrPrimitive( (GeometricPrimitive) geometry );
+            return Collections.singletonList( primitive );
         case MULTI_GEOMETRY:
-            MultiGeometry multiGeometry = (MultiGeometry) geltungsbereichGeometry;
-            if ( MultiGeometry.MultiGeometryType.MULTI_POLYGON == multiGeometry.getMultiGeometryType() ) {
-                MultiPolygon multiPolygon = (MultiPolygon) multiGeometry;
-                return multiPolygon.stream().map( p -> p.getExteriorRing() ).collect( Collectors.toList() );
-            } else if ( MultiGeometry.MultiGeometryType.MULTI_SURFACE == multiGeometry.getMultiGeometryType() ) {
-                MultiSurface multiSurface = (MultiSurface) multiGeometry;
-                List<Ring> exteriorRings = new ArrayList<>();
-                for ( Object surfaceObject : multiSurface ) {
-                    Surface surface = (Surface) surfaceObject;
-                    if ( Surface.SurfaceType.Polygon == surface.getSurfaceType()){
-                        exteriorRings.add( ( (Polygon) surface ).getExteriorRing() );
-                    } else {
-                        LOG.warn( "Other geometry types than Polygons in a MultiSurface are currently not validated." );
-                    }
-                }
-                return exteriorRings;
-            }
-            break;
+            return extractExteriorRingOrPrimitive( (MultiGeometry) geometry );
         }
+        return Collections.singletonList( geometry );
+    }
+
+    private org.deegree.geometry.Geometry extractExteriorRingOrPrimitive( GeometricPrimitive geometry ) {
+        switch ( geometry.getPrimitiveType() ) {
+        case Surface:
+            Surface surface = (Surface) geometry;
+            switch ( surface.getSurfaceType() ) {
+            case Polygon:
+                Polygon polygon = (Polygon) surface;
+                return polygon.getExteriorRing();
+            }
+        }
+        return geometry;
+    }
+
+    private List<Ring> extractExteriorRingOrPrimitive( MultiGeometry geometry ) {
+        switch ( geometry.getMultiGeometryType() ) {
+        case MULTI_POLYGON:
+            MultiPolygon multiPolygon = (MultiPolygon) geometry;
+            return multiPolygon.stream().map( p -> p.getExteriorRing() ).collect( Collectors.toList() );
+        case MULTI_SURFACE:
+            MultiSurface multiSurface = (MultiSurface) geometry;
+            List<Ring> exteriorRingsSurface = new ArrayList<>();
+            for ( Object surfaceObject : multiSurface ) {
+                Surface surface = (Surface) surfaceObject;
+                if ( Surface.SurfaceType.Polygon == surface.getSurfaceType() ) {
+                    exteriorRingsSurface.add( ( (Polygon) surface ).getExteriorRing() );
+                } else {
+                    LOG.warn( "Intersection with other geometry types than Polygons in a MultiSurface are currently not supported." );
+                }
+            }
+            return exteriorRingsSurface;
+        }
+        LOG.warn( "Intersection with geometries of typ {} are currently not supported.",
+                  geometry.getMultiGeometryType() );
         return Collections.emptyList();
     }
 
