@@ -176,27 +176,23 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private void addIntersectionsWithGeltungsbereich( BadGeometry badGeometry, Feature geltungsbereichFeature,
                                                       Feature feature ) {
-        AbstractDefaultGeometry featureGeometry = getOriginalGeometry( feature );
-        AbstractDefaultGeometry geltungsbereichGeometry = getOriginalGeometry( geltungsbereichFeature );
-        if ( geltungsbereichGeometry.isDisjoint( featureGeometry ) ) {
+        AbstractDefaultGeometry featureGeom = getOriginalGeometry( feature );
+        AbstractDefaultGeometry geltungsbereichGeom = getOriginalGeometry( geltungsbereichFeature );
+        if ( geltungsbereichGeom.isDisjoint( featureGeom ) ) {
             String error = String.format( OUTOFGELTUNGSBEREICH_MSG, feature.getId() );
-            badGeometry.addMarkerGeometry( error, featureGeometry );
+            badGeometry.addMarkerGeometry( error, featureGeom );
         }
 
-        List<? extends org.deegree.geometry.Geometry> featureGeometries = extractExteriorRingOrPrimitive(
-                                featureGeometry );
-        List<? extends org.deegree.geometry.Geometry> exteriorRings = extractExteriorRingOrPrimitive(
-                                geltungsbereichGeometry );
-        exteriorRings.forEach( exteriorRing -> {
-            featureGeometries.forEach( featureGeom -> {
-                org.deegree.geometry.Geometry geomOutsideGeltungsbereich = exteriorRing.getIntersection(
-                                        featureGeom );
-                if ( geomOutsideGeltungsbereich != null ) {
-                    geomOutsideGeltungsbereich.setId( feature.getId() + "_SchnittpunktGeltungsbereich" );
-                    String error = String.format( SCHNITTPUNKT_MSG, feature.getId() );
-                    badGeometry.addMarkerGeometry( error, geomOutsideGeltungsbereich );
-                }
-            } );
+        List<? extends org.deegree.geometry.Geometry> featureGeoms = extractExteriorRingOrPrimitive(
+                                featureGeom );
+        featureGeoms.forEach( currentFeatureGeom -> {
+            org.deegree.geometry.Geometry geomOutsideGeltungsbereich = currentFeatureGeom.getDifference(
+                                    geltungsbereichGeom );
+            if ( geomOutsideGeltungsbereich != null ) {
+                geomOutsideGeltungsbereich.setId( feature.getId() + "_OutsideGeltungsbereich" );
+                String error = String.format( SCHNITTPUNKT_MSG, feature.getId() );
+                badGeometry.addMarkerGeometry( error, geomOutsideGeltungsbereich );
+            }
         } );
     }
 
