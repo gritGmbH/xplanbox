@@ -73,7 +73,7 @@ public class ApplicationPathConfig extends ResourceConfig {
         packages( "de.latlon.xplanbox.api.validator.v1" );
         packages( "de.latlon.xplanbox.api.commons.exception" );
         OpenAPI openApi = new OpenAPI();
-        openApi.setInfo( new Info().title( "XPlanValidatorAPI" ).version( "0.1.1" ).description(
+        openApi.setInfo( new Info().title( "XPlanValidatorAPI" ).version( "1.0.0" ).description(
                                 "XPlanValidator REST API" ).termsOfService(
                                 "http://xplanbox.lat-lon.de/terms/" ).contact(
                                 new Contact().email( "info@lat-lon.de" ) ).license(
