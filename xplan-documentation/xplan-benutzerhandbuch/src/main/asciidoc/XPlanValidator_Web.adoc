@@ -250,7 +250,7 @@ image::validator/Kartenvorschau.png[]
 Der Plan steht in der Kartenansicht nur für eine begrenzte Zeitspanne (ca. 5 Minuten) zur Verfügung, anschließend ist nur noch die Hintergrundkarte zu sehen.
 
 Die Kartenvorschau visualisiert ausschließlich die Geometrien aus der XPlanGML-Datei.
-Angehängte Rasterpläne werden beispielsweise nicht dargestellt.
+Angehängte Rasterpläne werden nicht dargestellt.
 ====
 
 
