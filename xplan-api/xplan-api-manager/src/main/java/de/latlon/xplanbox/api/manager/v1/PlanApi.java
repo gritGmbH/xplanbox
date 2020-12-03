@@ -73,7 +73,6 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
-import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 @Path("/plan")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
@@ -81,6 +80,8 @@ public class PlanApi {
 
     private final static MediaType[] MEDIA_TYPES_SEARCH = { APPLICATION_JSON_TYPE, APPLICATION_XML_TYPE,
                                                             APPLICATION_ZIP_TYPE };
+
+    private static final boolean WITH_GEOMETRISCH_VALIDATION = false;
 
     @Autowired
     private PlanHandler planHandler;
@@ -110,10 +111,6 @@ public class PlanApi {
                             @DefaultValue("false")
                             @Parameter(description = "skip semantische Validierung")
                                                     Boolean skipSemantisch,
-                            @QueryParam("skipGeometrisch")
-                            @DefaultValue("false")
-                            @Parameter(description = "skip geometrische Validierung")
-                                                    Boolean skipGeometrisch,
                             @QueryParam("skipFlaechenschluss")
                             @DefaultValue("false")
                             @Parameter(description = "skip Flaechenschluss Ueberpruefung")
@@ -133,9 +130,7 @@ public class PlanApi {
                             throws Exception {
         String validationName = detectOrCreateValidationName( xFilename );
         DefaultValidationConfiguration validationConfig = managerApiConfiguration.getDefaultValidationConfiguration();
-        ValidationSettings validationSettings = createValidationSettings( validationName,
-                                                                          overwriteByRequest( skipGeometrisch,
-                                                                                              validationConfig.isSkipGeometrisch() ),
+        ValidationSettings validationSettings = createValidationSettings( validationName, WITH_GEOMETRISCH_VALIDATION,
                                                                           overwriteByRequest( skipSemantisch,
                                                                                               validationConfig.isSkipSemantisch() ),
                                                                           overwriteByRequest( skipFlaechenschluss,

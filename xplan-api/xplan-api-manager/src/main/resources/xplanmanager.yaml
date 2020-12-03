@@ -155,12 +155,6 @@ paths:
           schema:
             type: boolean
             default: false
-        - name: skipGeometrisch
-          in: query
-          description: skip geometrische Validierung
-          schema:
-            type: boolean
-            default: false
         - name: skipFlaechenschluss
           in: query
           description: skip Flaechenschluss Ueberpruefung
