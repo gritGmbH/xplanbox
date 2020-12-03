@@ -277,7 +277,7 @@ public class UploadPanel extends DecoratorPanel {
             }
         };
         return new ValidatorOptionsDialog( reportDownloadFinishedListener, messages.reportCloseButtonTitle(),
-                        messages.reportNextButtonTitle(), getFilename( upload ), cancelHandler );
+                        messages.reportNextButtonTitle(), getFilename( upload ), cancelHandler, false );
     }
 
     private Widget createUploadWidget() {

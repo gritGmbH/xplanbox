@@ -98,11 +98,19 @@ public class ValidatorOptionsDialog extends FormPanel {
     /**
      * @param reportDownloadFinishedListener
      *                         informed when the validation report dialog is closed or next is clicked, never <code>null</code>
+     * @param fileName
+     *                         name of the file to validate, may be <code>null</code>
+     * @param showMapPreview
+     *                         <code>true</code> if map preview is enabled, <code>false</code> otherwise
+     * @param cancelHandler
+     *                         triggered when options dialog is canceled, never <code>null</code>
+     * @param enabledGeomValidation
+     *                         <code>true</code> if the geometrische validation can be activated/deactivated, <code>false</code> otherwise
      */
     public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener, String fileName,
-                                   boolean showMapPreview, ClickHandler cancelHandler ) {
+                                   boolean showMapPreview, ClickHandler cancelHandler, boolean enabledGeomValidation ) {
         this( reportDownloadFinishedListener, messages.reportButtonCloseTitle(), messages.reportButtonNextTitle(),
-              fileName, cancelHandler );
+              fileName, cancelHandler, enabledGeomValidation );
         this.showMapPreview = showMapPreview;
     }
 
@@ -112,15 +120,21 @@ public class ValidatorOptionsDialog extends FormPanel {
      * @param reportCloseButtonTitle
      *                         title of the close button in the report dialog
      * @param reportNextButtonTitle
+     *                         title of the next button in the report dialog
+     * @param fileName
+     *                         name of the file to validate, may be <code>null</code>
      * @param cancelHandler
+     *                         triggered when options dialog is canceled, never <code>null</code>
+     * @param enabledGeomValidation
+     *                         <code>true</code> if the geometrische validation can be activated/deactivated, <code>false</code> otherwise
      */
     public ValidatorOptionsDialog( ReportDownloadFinishedListener reportDownloadFinishedListener,
                                    String reportCloseButtonTitle, String reportNextButtonTitle, String fileName,
-                                   ClickHandler cancelHandler ) {
+                                   ClickHandler cancelHandler, boolean enabledGeomValidation ) {
         this.reportDownloadFinishedListener = reportDownloadFinishedListener;
         this.reportCloseButtonTitle = reportCloseButtonTitle;
         this.reportNextButtonTitle = reportNextButtonTitle;
-        initFormFields( fileName );
+        initFormFields( fileName, enabledGeomValidation );
         initSettingsForm( cancelHandler );
         this.setStyleName( "valOptionsForm" );
     }
@@ -144,12 +158,13 @@ public class ValidatorOptionsDialog extends FormPanel {
         add( mainPanel );
     }
 
-    private void initFormFields( String fileName ) {
+    private void initFormFields( String fileName, boolean enabledGeomValidation ) {
         validationName.setText( fileName != null && !fileName.isEmpty() ? fileName : messages.defaultRunName() );
         validationName.setWidth( "400px" );
         validationTypeSyn.setEnabled( false );
         validationTypeSyn.setValue( true );
         validationTypeSem.setValue( true );
+        validationTypeGeom.setEnabled( enabledGeomValidation );
         validationTypeGeom.setValue( true );
 
         skipFlaechenschluss.setStyleName( "valOption" );
