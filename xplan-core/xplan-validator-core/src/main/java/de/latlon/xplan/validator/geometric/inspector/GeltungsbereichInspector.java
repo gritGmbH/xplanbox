@@ -70,7 +70,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private static final String ERROR_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt nicht vollstaendig im Geltungsbereich des Bereichs/Plans. Schnittpunkte mit dem Umring des Geltungsbereich: %s";
 
-    private static final String SCHNITTPUNKT_MSG = "2.2.3.1: Schnittpunkt mit der Geometrie des Objekts mit der gml id %s mit dem Geltungsbereich des Bereichs/Plans.";
+    private static final String SCHNITTPUNKT_MSG = "2.2.3.1: Geometrie des Objekts mit der gml id %s der ausserhalb des Geltungsbereich des Bereichs/Plans liegt.";
 
     private static final String OUTOFGELTUNGSBEREICH_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt vollstaendig ausserhalb des Geltungsbereichs des Bereichs/Plans.";
 
@@ -141,7 +141,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
                         String points = calculateIntersectionPoints( geltungsbereichFeature, f );
                         String error = String.format( ERROR_MSG, f.getId(), points );
                         BadGeometry badGeometry = addErrorAndBadGeometry( error, getOriginalGeometry( f ) );
-                        addIntersectionsWithGeltungsbereich( badGeometry, geltungsbereichFeature, f );
+                        addGeometryOutsideGeltungsbereich( badGeometry, geltungsbereichFeature, f );
                     }
                 } catch ( InvalidGeometryException e ) {
                     String error = String.format( ERROR_MSG_INVALID_CHECK, f.getId() );
@@ -206,7 +206,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
             points.addAll( ( (MultiPoint) featureGeom ).stream().map( this::pointAsReadableString ).collect(
                                     Collectors.toList() ) );
         } else {
-            points.add( "Ausgabe nicht m\u00f6glich." );
+            points.add( "Ausgabe nicht moeglich." );
         }
     }
 
@@ -221,7 +221,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
                 addIntersectionPoints( points, (org.deegree.geometry.Geometry) geom );
             }
         } else {
-            points.add( "Ausgabe nicht m\u00f6glich." );
+            points.add( "Ausgabe nicht moeglich." );
         }
     }
 
@@ -230,8 +230,8 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
                                 Double::toString ).collect( Collectors.joining( ",", "(", ")" ) );
     }
 
-    private void addIntersectionsWithGeltungsbereich( BadGeometry badGeometry, Feature geltungsbereichFeature,
-                                                      Feature feature ) {
+    private void addGeometryOutsideGeltungsbereich( BadGeometry badGeometry, Feature geltungsbereichFeature,
+                                                    Feature feature ) {
         AbstractDefaultGeometry featureGeom = getOriginalGeometry( feature );
         AbstractDefaultGeometry geltungsbereichGeom = getOriginalGeometry( geltungsbereichFeature );
         if ( geltungsbereichGeom.isDisjoint( featureGeom ) ) {

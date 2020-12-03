@@ -67,7 +67,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -551,7 +550,7 @@ class XPlanGeometryInspector implements GeometryInspector {
         case COMPOSITE_GEOMETRY:
             return compositeAsReadableString( (CompositeGeometry) geom );
         }
-        return "Ausgabe nicht m\u00f6glich.";
+        return "Ausgabe nicht moeglich.";
     }
 
     private String primitiveAsReadableString( GeometricPrimitive geom ) {
@@ -561,7 +560,7 @@ class XPlanGeometryInspector implements GeometryInspector {
         case Curve:
             return "Startpunkt: " + ( (Curve) geom ).getStartPoint() + "Endpunkt: " + ( (Curve) geom ).getEndPoint();
         }
-        return "Ausgabe nicht m\u00f6glich.";
+        return "Ausgabe nicht moeglich.";
     }
 
     private String pointAsReadableString( Point geom ) {
