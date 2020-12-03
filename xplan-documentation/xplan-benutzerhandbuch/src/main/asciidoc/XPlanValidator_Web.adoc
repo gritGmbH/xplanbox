@@ -98,11 +98,12 @@ Der Ausschluss von gemischter Geometrie ist bereits durch das GML-Profil abgedec
 Die Regel "8.1.7.1 Die Einschränkung auf Punktgeometrie" bezieht sich auf LP_Punktobjekt. Dabei handelt es sich um eine abstrakte Klasse, für die es keine abgeleiteten Klassen gibt.
 ====
 
+[[xplanvalidator-web-geometrisch]]
 *2) Geometrische Validierung (optional)*
 
 Bei der geometrischen Validierung wird die Korrektheit der Geometrien überprüft. XPlanung bezieht sich auf das https://www.ogc.org/standards/sfa[Simple Feature Model des OGC]. Räumliche Objekte werden hier als Punkte, Linien oder Flächen mit speziellen geometrischen Eigenschaften modellhaft abgebildet. Als Fehler werden z. B. sich überschneidende Polygone identifiziert.
 
-Folgende Prüfungen werden in Abhängigkeit vom Geometrietyp durchgeführt:
+Folgende Prüfungen werden in Abhängigkeit vom Geometrietyp durchgeführt, es handelt sich um die Basis-Geometrischen Prüfungen:
 
  * Punkte: Prüfung auf 2D-Koordinaten
  * Linien: Segment-Kontinuität
@@ -251,6 +252,8 @@ Der Plan steht in der Kartenansicht nur für eine begrenzte Zeitspanne (ca. 5 Mi
 
 Die Kartenvorschau visualisiert ausschließlich die Geometrien aus der XPlanGML-Datei.
 Angehängte Rasterpläne werden nicht dargestellt.
+
+Bei Plänen, die geometrisch nicht valide sind, kann es zu Problemen bei der Darstellung in der Kartenvorschau kommen.
 ====
 
 
