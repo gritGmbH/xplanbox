@@ -70,7 +70,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private static final String ERROR_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt nicht vollstaendig im Geltungsbereich des Bereichs/Plans. Schnittpunkte mit dem Umring des Geltungsbereich: %s";
 
-    private static final String SCHNITTPUNKT_MSG = "2.2.3.1: Geometrie des Objekts mit der gml id %s der ausserhalb des Geltungsbereich des Bereichs/Plans liegt.";
+    private static final String SCHNITTPUNKT_MSG = "2.2.3.1: Geometrie des Objekts mit der gml id %s, die ausserhalb des Geltungsbereichs des Bereichs/Plans liegt.";
 
     private static final String OUTOFGELTUNGSBEREICH_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt vollstaendig ausserhalb des Geltungsbereichs des Bereichs/Plans.";
 
