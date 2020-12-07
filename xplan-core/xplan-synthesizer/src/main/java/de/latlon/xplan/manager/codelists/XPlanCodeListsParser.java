@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.codelists;
 
 import org.deegree.gml.GMLInputFactory;
 import org.deegree.gml.GMLStreamReader;
+import org.deegree.gml.GMLVersion;
 import org.deegree.gml.dictionary.Definition;
 import org.deegree.gml.dictionary.Dictionary;
 
@@ -34,7 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static org.deegree.gml.GMLVersion.GML_30;
+import static org.deegree.gml.GMLVersion.GML_32;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -43,7 +44,7 @@ public class XPlanCodeListsParser {
 
     /**
      * Erzeugt eine neue {@link XPlanCodeLists} Instanz, die durch das Einlesen des spezifizierten GML Dictionaries
-     * initialisiert wird. Die Codeliste muss in GML 3.0 vorliegen.
+     * initialisiert wird. Die Codeliste muss in GML 3.2 vorliegen.
      *
      * @param codeListUrl
      * @throws XMLStreamException
@@ -52,7 +53,22 @@ public class XPlanCodeListsParser {
      */
     public XPlanCodeLists parseCodelists( URL codeListUrl )
                             throws XMLStreamException, FactoryConfigurationError, IOException {
-        GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader( GML_30, codeListUrl );
+        return parseCodelists( codeListUrl, GML_32 );
+    }
+
+    /**
+     * Erzeugt eine neue {@link XPlanCodeLists} Instanz, die durch das Einlesen des spezifizierten GML Dictionaries
+     * initialisiert wird. Die Codeliste muss in der uebergebenen GML Version vorliegen.
+     *
+     * @param codeListUrl
+     * @param gmlVersion gml version of the dictionary, never <code>null</code>
+     * @throws XMLStreamException
+     * @throws FactoryConfigurationError
+     * @throws IOException
+     */
+    public XPlanCodeLists parseCodelists( URL codeListUrl, GMLVersion gmlVersion )
+                            throws XMLStreamException, FactoryConfigurationError, IOException {
+        GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader( gmlVersion, codeListUrl );
         Dictionary codeLists = gmlStream.readDictionary();
         gmlStream.close();
 

@@ -55,12 +55,14 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.codelists;
 
+import static org.deegree.gml.GMLVersion.GML_30;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.net.URL;
 import java.util.Map;
 
+import org.deegree.gml.GMLVersion;
 import org.junit.Test;
 
 import de.latlon.xplan.commons.XPlanVersion;
@@ -92,7 +94,7 @@ public class XPlanCodeListsTest {
     public void testParseOld()
                             throws Exception {
         URL codeListFile = XPlanCodeListsTest.class.getResource( "../synthesizer/XP_BesondereArtDerBaulNutzung.xml" );
-        XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists( codeListFile );
+        XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists( codeListFile, GML_30 );
 
         Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
         assertThat( codesToDescriptions.size(), is( 1 ) );
@@ -103,7 +105,7 @@ public class XPlanCodeListsTest {
     public void testParseNew()
                             throws Exception {
         URL codeListFile = XPlanCodeListsTest.class.getResource( "../synthesizer/xplan_XP_BesondereArtDerBaulNutzung.xml" );
-        XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists( codeListFile );
+        XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists( codeListFile, GML_30 );
 
         Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
         assertThat( codesToDescriptions.size(), is( 1 ) );
