@@ -214,22 +214,11 @@ public class XPlanSynthesizer {
     }
 
     private String detectRulesFileName( XPlanVersion version ) {
-        switch ( version ) {
-        case XPLAN_3:
-            return "xplan3.syn";
-        case XPLAN_40:
-            return "xplan40.syn";
-        case XPLAN_41:
-            return "xplan41.syn";
-        case XPLAN_50:
-            return "xplan50.syn";
-        case XPLAN_51:
-            return "xplan51.syn";
-        case XPLAN_52:
-            return "xplan52.syn";
-        default:
+        String synRulesFileName = version.getSynRulesFileName();
+        if ( synRulesFileName == null ) {
             throw new IllegalArgumentException( "Could not find rules file for XPlan version " + version );
         }
+        return synRulesFileName;
     }
 
     private Feature synthesize( Feature feature, FeatureCollection features ) {
