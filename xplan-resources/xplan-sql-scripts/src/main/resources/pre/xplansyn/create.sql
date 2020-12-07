@@ -1216,6 +1216,8 @@ CREATE TABLE xplansynpre.xplan_bp_baugebietsteilflaeche (
     xplan_dachgestaltung text,
     xplan_vf numeric,
     xplan_vfuom text,
+    xplan_mingrwohneinheit numeric,
+    xplan_mingrwohneinheituom text,
     CONSTRAINT xplan_bp_baugebietsteilflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_baugebietsteilflaeche','xplan_position','0','GEOMETRY', 2);
@@ -1519,6 +1521,8 @@ CREATE TABLE xplansynpre.xplan_bp_besonderernutzungszweckflaeche (
     xplan_bebauungsartcode text,
     xplan_abweichendebauweise text,
     xplan_abweichendebauweisecode text,
+    xplan_mingrwohneinheit numeric,
+    xplan_mingrwohneinheituom text,
     CONSTRAINT xplan_bp_besonderernutzungszweckflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_besonderernutzungszweckflaeche','xplan_position','0','GEOMETRY', 2);
@@ -2702,6 +2706,8 @@ CREATE TABLE xplansynpre.xplan_bp_gemeinbedarfsflaeche (
 	xplan_bebauungsart text,
 	xplan_bebauungsartcode text,
     xplan_dachgestaltung text,
+    xplan_mingrwohneinheit numeric,
+    xplan_mingrwohneinheituom text,
     CONSTRAINT xplan_bp_gemeinbedarfsflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_gemeinbedarfsflaeche','xplan_position','0','GEOMETRY', 2);
@@ -3238,6 +3244,8 @@ CREATE TABLE xplansynpre.xplan_bp_gruenflaeche (
     xplan_zu_ausn integer,
     xplan_zugunstenvon text,
     xplan_z_staffel integer,
+    xplan_mingrwohneinheit numeric,
+    xplan_mingrwohneinheituom text,
     CONSTRAINT xplan_bp_gruenflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_gruenflaeche','xplan_position','0','GEOMETRY', 2);
@@ -4372,6 +4380,10 @@ CREATE TABLE xplansynpre.xplan_bp_plan (
 	xplan_versionsonstrechtsgrundlagedatum date,
 	xplan_versionsonstrechtsgrundlagetext text,
 	xplan_externereferenz text,
+	xplan_veraenderungssperrebeschlussdatum date,
+	xplan_veraenderungssperreenddatum date,
+	xplan_verlaengerungveraenderungssperre text,
+	xplan_verlaengerungVeraenderungssperrecode text,
     CONSTRAINT xplan_bp_plan_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_plan','xplan_raeumlichergeltungsbereich','0','GEOMETRY', 2);
@@ -4777,6 +4789,14 @@ CREATE TABLE xplansynpre.xplan_bp_sichtflaeche (
     xplan_wirdausgeglichendurchspemassnahme text,
     xplan_wirdausgeglichendurchspeflaeche text,
     xplan_flaechenschluss text,
+    xplan_art text,
+    xplan_artcode text,
+    xplan_knotenpunkt text,
+    xplan_knotenpunktcode text,
+    xplan_geschwindigkeit numeric,
+    xplan_geschwindigkeituom text,
+    xplan_schenkellaenge numeric,
+    xplan_schenkellaengeuom text,
     CONSTRAINT xplan_bp_sichtflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_sichtflaeche','xplan_position','0','GEOMETRY', 2);
@@ -5058,6 +5078,8 @@ CREATE TABLE xplansynpre.xplan_bp_spielsportanlagenflaeche (
     xplan_zu_ausn integer,
     xplan_zugunstenvon text,
     xplan_z_staffel integer,
+    xplan_mingrwohneinheit numeric,
+    xplan_mingrwohneinheituom text,
     CONSTRAINT xplan_bp_spielsportanlagenflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_spielsportanlagenflaeche','xplan_position','0','GEOMETRY', 2);
@@ -5192,6 +5214,8 @@ CREATE TABLE xplansynpre.xplan_bp_strassenverkehrsflaeche (
     xplan_zu integer,
     xplan_zu_ausn integer,
     xplan_z_staffel integer,
+    xplan_mingrwohneinheit numeric,
+    xplan_mingrwohneinheituom text,
     CONSTRAINT xplan_bp_strassenverkehrsflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_strassenverkehrsflaeche','xplan_position','0','GEOMETRY', 2);
@@ -5698,6 +5722,8 @@ CREATE TABLE xplansynpre.xplan_bp_ueberbaubaregrundstuecksflaeche (
     xplan_dachgestaltung text,
     xplan_vf numeric,
     xplan_vfuom text,
+    xplan_mingrwohneinheit numeric,
+    xplan_mingrwohneinheituom text,
     CONSTRAINT xplan_bp_ueberbaubaregrundstuecksflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_ueberbaubaregrundstuecksflaeche','xplan_position','0','GEOMETRY', 2);
@@ -5907,6 +5933,8 @@ CREATE TABLE xplansynpre.xplan_bp_verentsorgung (
     xplan_zu_ausn integer,
     xplan_zugunstenvon text,
     xplan_z_staffel integer,
+    xplan_mingrwohneinheit numeric,
+    xplan_mingrwohneinheituom text,
     CONSTRAINT xplan_bp_verentsorgung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_verentsorgung','xplan_position','0','GEOMETRY', 2);
@@ -6102,6 +6130,8 @@ CREATE TABLE xplansynpre.xplan_bp_veraenderungssperre (
     xplan_verlaengerung text,
     xplan_verlaengerungcode text,
     xplan_refbeschluss text,
+    xplan_veraenderungssperrebeschlussdatum date,
+    xplan_veraenderungssperrestartdatum date,
     CONSTRAINT xplan_bp_veraenderungssperre_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_veraenderungssperre','xplan_position','0','GEOMETRY', 2);
@@ -6241,6 +6271,8 @@ CREATE TABLE xplansynpre.xplan_bp_verkehrsflaechebesondererzweckbestimmung (
     xplan_zu_ausn integer,
     xplan_z_staffel integer,
     xplan_zugunstenvon text,
+    xplan_mingrwohneinheit numeric,
+    xplan_mingrwohneinheituom text,
     CONSTRAINT xplan_bp_verkehrsflaechebesondererzweckbestimmung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_verkehrsflaechebesondererzweckbestimmung','xplan_position','0','GEOMETRY', 2);
@@ -6848,6 +6880,10 @@ CREATE TABLE xplansynpre.xplan_fp_anpassungklimawandel (
     xplan_flussrichtung text,
     xplan_nordwinkel text,
     xplan_nordwinkelUOM text,
+    xplan_massnahme text,
+    xplan_massnahmecode text,
+    xplan_detailmassnahme text,
+    xplan_detailmassnahmecode text,
     CONSTRAINT xplan_fp_anpassungklimawandel_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_fp_anpassungklimawandel','xplan_position','0','GEOMETRY', 2);
@@ -7183,6 +7219,8 @@ CREATE TABLE xplansynpre.xplan_fp_bebauungsflaeche (
     xplan_wirddargestelltdurch text,
     xplan_gehoertzufp_bereich text,
     xplan_wirdausgeglichendurchspe text,
+    xplan_detailliertesondernutzung text,
+    xplan_detailliertesondernutzungcode text,
     CONSTRAINT xplan_fp_bebauungsflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_fp_bebauungsflaeche','xplan_position','0','GEOMETRY', 2);
