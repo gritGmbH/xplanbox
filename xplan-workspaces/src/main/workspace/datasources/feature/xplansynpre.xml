@@ -6223,7 +6223,7 @@
     <Primitive path="xplan:verlaengerung" mapping="xplan_verlaengerung" />
     <Primitive path="xplan:verlaengerungCode" mapping="xplan_verlaengerungcode" />
     <Primitive path="xplan:refBeschluss" mapping="xplan_refbeschluss" />
-    <Primitive path="xplan:veraenderungssperreBeschlussDatum" mapping="xplan_veraenderungssperrestartdatum" />
+    <Primitive path="xplan:veraenderungssperreBeschlussDatum" mapping="xplan_veraenderungssperrebeschlussdatum" />
     <Primitive path="xplan:veraenderungssperreStartDatum" mapping="xplan_veraenderungssperrestartdatum" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_VerkehrsflaecheBesondererZweckbestimmung" table="xplansynpre.xplan_bp_verkehrsflaechebesondererzweckbestimmung">
@@ -6880,6 +6880,7 @@
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung" />
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_AbgrabungsFlaeche" table="xplansynpre.xplan_fp_abgrabungsflaeche">
     <FIDMapping prefix="XPLAN_FP_ABGRABUNGSFLAECHE_">
@@ -6988,6 +6989,7 @@
     <Primitive path="xplan:massnahmeCode" mapping="xplan_massnahmecode" />
     <Primitive path="xplan:detailMassnahme" mapping="xplan_detailmassnahme" />
     <Primitive path="xplan:detailMassnahmeCode" mapping="xplan_detailmassnahmecode" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Aufschuettung" table="xplansynpre.xplan_fp_aufschuettung">
     <FIDMapping prefix="XPLAN_FP_AUFSCHUETTUNG_">
@@ -7039,6 +7041,7 @@
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:aufschuettungsmaterial" mapping="xplan_aufschuettungsmaterial" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_AufschuettungsFlaeche" table="xplansynpre.xplan_fp_aufschuettungsflaeche">
     <FIDMapping prefix="XPLAN_FP_AUFSCHUETTUNGSFLAECHE_">
@@ -7164,6 +7167,7 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
     <Primitive path="xplan:weitereMassnahme1" mapping="xplan_weiteremassnahme1" />
     <Primitive path="xplan:weitereMassnahme2" mapping="xplan_weiteremassnahme2" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Bahnverkehr" table="xplansynpre.xplan_fp_bahnverkehr">
     <FIDMapping prefix="XPLAN_FP_BAHNVERKEHR_">
@@ -7331,6 +7335,7 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
     <Primitive path="xplan:detaillierteSondernutzung" mapping="xplan_detailliertesondernutzung" />
     <Primitive path="xplan:detaillierteSondernutzungCode" mapping="xplan_detailliertesondernutzungcode" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Bereich" table="xplansynpre.xplan_fp_bereich">
     <FIDMapping prefix="XPLAN_FP_BEREICH_">
@@ -7421,6 +7426,7 @@
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel" />
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkelUOM" />
     <Primitive path="xplan:abbaugut" mapping="xplan_abbaugut" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_BodenschaetzeFlaeche" table="xplansynpre.xplan_fp_bodenschaetzeflaeche">
     <FIDMapping prefix="XPLAN_FP_BODENSCHAETZEFLAECHE_">
@@ -7717,6 +7723,7 @@
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_GenerischesObjekt" table="xplansynpre.xplan_fp_generischesobjekt">
     <FIDMapping prefix="XPLAN_FP_GENERISCHESOBJEKT_">
@@ -7784,6 +7791,7 @@
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Gewaesser" table="xplansynpre.xplan_fp_gewaesser">
     <FIDMapping prefix="XPLAN_FP_GEWAESSER_">
@@ -7847,6 +7855,7 @@
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Grabungsschutzgebiet" table="xplansynpre.xplan_fp_grabungsschutzgebiet">
     <FIDMapping prefix="XPLAN_FP_GRABUNGSSCHUTZGEBIET_">
@@ -7982,6 +7991,7 @@
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_KeineZentrAbwasserBeseitigungFlaeche" table="xplansynpre.xplan_fp_keinezentrabwasserbeseitigungflaeche">
     <FIDMapping prefix="XPLAN_FP_KEINEZENTRABWASSERBESEITIGUNGFLAECHE_">
@@ -8038,6 +8048,7 @@
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Kennzeichnung" table="xplansynpre.xplan_fp_kennzeichnung">
     <FIDMapping prefix="XPLAN_FP_KENNZEICHNUNG_">
@@ -8103,6 +8114,7 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
     <Primitive path="xplan:istVerdachtsflaeche" mapping="xplan_istverdachtsflaeche" />
     <Primitive path="xplan:nummer" mapping="xplan_nummer" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Laermschutzbereich" table="xplansynpre.xplan_fp_laermschutzbereich">
     <FIDMapping prefix="XPLAN_FP_LAERMSCHUTZBEREICH_">
@@ -8193,6 +8205,7 @@
     <Primitive path="xplan:zweckbestimmungCode" mapping="xplan_zweckbestimmungcode" />
     <Primitive path="xplan:detaillierteZweckbestimmung" mapping="xplan_detailliertezweckbestimmung" />
     <Primitive path="xplan:detaillierteZweckbestimmungCode" mapping="xplan_detailliertezweckbestimmungcode" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_LandwirtschaftsFlaeche" table="xplansynpre.xplan_fp_landwirtschaftsflaeche">
     <FIDMapping prefix="XPLAN_FP_LANDWIRTSCHAFTSFLAECHE_">
@@ -8265,6 +8278,7 @@
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Luftverkehr" table="xplansynpre.xplan_fp_luftverkehr">
     <FIDMapping prefix="XPLAN_FP_LUFTVERKEHR_">
@@ -8372,6 +8386,7 @@
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Plan" table="xplansynpre.xplan_fp_plan">
     <FIDMapping prefix="XPLAN_FP_PLAN_">
@@ -8516,6 +8531,7 @@
     <Primitive path="xplan:weitereZweckbestimmung2" mapping="xplan_weiterezweckbestimmung2" />
     <Primitive path="xplan:weitereZweckbestimmung2Code" mapping="xplan_weiterezweckbestimmung2code" />
     <Primitive path="xplan:vorhaben" mapping="xplan_vorhaben" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_PriviligiertesVorhaben" table="xplansynpre.xplan_fp_priviligiertesvorhaben">
     <FIDMapping prefix="XPLAN_FP_PRIVILIGIERTESVORHABEN_">
@@ -8690,6 +8706,7 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
     <Primitive path="xplan:weitereMassnahme1" mapping="xplan_weiteremassnahme1" />
     <Primitive path="xplan:weitereMassnahme2" mapping="xplan_weiteremassnahme2" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Schutzgebiet" table="xplansynpre.xplan_fp_schutzgebiet">
     <FIDMapping prefix="XPLAN_FP_SCHUTZGEBIET_">
@@ -8813,6 +8830,7 @@
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Strassenverkehr" table="xplansynpre.xplan_fp_strassenverkehr">
     <FIDMapping prefix="XPLAN_FP_STRASSENVERKEHR_">
@@ -8881,6 +8899,7 @@
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_TextAbschnitt" table="xplansynpre.xplan_fp_textabschnitt">
     <FIDMapping prefix="XPLAN_FP_TEXTABSCHNITT_">
@@ -8950,6 +8969,7 @@
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_UnverbindlicheVormerkung" table="xplansynpre.xplan_fp_unverbindlichevormerkung">
     <FIDMapping prefix="XPLAN_FP_UNVERBINDLICHEVORMERKUNG_">
@@ -9001,6 +9021,7 @@
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_VerEntsorgung" table="xplansynpre.xplan_fp_verentsorgung">
     <FIDMapping prefix="XPLAN_FP_VERENTSORGUNG_">
@@ -9087,6 +9108,7 @@
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
     <Primitive path="xplan:zugunstenVon" mapping="xplan_zugunstenvon" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_VorbHochwSchutz" table="xplansynpre.xplan_fp_vorbhochwschutz">
     <FIDMapping prefix="XPLAN_FP_VORBHOCHWSCHUTZ_">
@@ -9195,6 +9217,7 @@
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_WaldFlaeche" table="xplansynpre.xplan_fp_waldflaeche">
     <FIDMapping prefix="XPLAN_FP_WALDFLAECHE_">
@@ -9267,6 +9290,7 @@
     <Primitive path="xplan:eigentumsartCode" mapping="xplan_eigentumsartcode" />
     <Primitive path="xplan:betreten" mapping="xplan_betreten" />
     <Primitive path="xplan:betretenCode" mapping="xplan_betretencode" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_Wasserrecht" table="xplansynpre.xplan_fp_wasserrecht">
     <FIDMapping prefix="XPLAN_FP_WASSERRECHT_">
@@ -9381,6 +9405,7 @@
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich" />
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:FP_ZentralerVersorgungsbereich" table="xplansynpre.xplan_fp_zentralerversorgungsbereich">
     <FIDMapping prefix="XPLAN_FP_ZENTRALERVERSORGUNGSBEREICH_">
@@ -9430,6 +9455,7 @@
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss" />
     <Primitive path="xplan:auspraegung" mapping="xplan_auspraegung" />
     <Primitive path="xplan:auspraegungCode" mapping="xplan_auspraegungcode" />
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:LP_Abgrenzung" table="xplansynpre.xplan_lp_abgrenzung">
     <FIDMapping prefix="XPLAN_LP_ABGRENZUNG_">

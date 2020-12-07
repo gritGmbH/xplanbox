@@ -7248,6 +7248,7 @@
             <element name="nordwinkel" minOccurs="0" type="string" />
             <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -7364,6 +7365,7 @@
             <element name="massnahmeCode" minOccurs="0" type="string" />
             <element name="detailMassnahme" minOccurs="0" type="string" />
             <element name="detailMassnahmeCode" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -7419,6 +7421,7 @@
             <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="aufschuettungsmaterial" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -7552,6 +7555,7 @@
             <element name="weitereMassnahme1" minOccurs="0" type="string" />
             <element name="weitereMassnahme2" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -7731,6 +7735,7 @@
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="detaillierteSondernutzung" minOccurs="0" type="string" />
             <element name="detaillierteSondernutzungCode" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -7829,6 +7834,7 @@
             <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="abbaugut" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8145,6 +8151,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8216,6 +8223,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8283,6 +8291,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8426,6 +8435,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8486,6 +8496,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8555,6 +8566,7 @@
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="istVerdachtsflaeche" minOccurs="0" type="string" />
             <element name="nummer" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8653,6 +8665,7 @@
             <element name="zweckbestimmungCode" minOccurs="0" type="string" />
             <element name="detaillierteZweckbestimmung" minOccurs="0" type="string" />
             <element name="detaillierteZweckbestimmungCode" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8729,6 +8742,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8844,6 +8858,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8996,6 +9011,7 @@
             <element name="weitereZweckbestimmung2Code" minOccurs="0" type="string" />
             <element name="vorhaben" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9182,6 +9198,7 @@
             <element name="weitereMassnahme1" minOccurs="0" type="string" />
             <element name="weitereMassnahme2" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9313,6 +9330,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9385,6 +9403,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9462,6 +9481,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9517,6 +9537,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9607,6 +9628,7 @@
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="zugunstenVon" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9723,6 +9745,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9799,6 +9822,7 @@
             <element name="eigentumsartCode" minOccurs="0" type="string" />
             <element name="betreten" minOccurs="0" type="string" />
             <element name="betretenCode" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9921,6 +9945,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9974,6 +9999,7 @@
             <element name="auspraegung" minOccurs="0" type="string" />
             <element name="auspraegungCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
