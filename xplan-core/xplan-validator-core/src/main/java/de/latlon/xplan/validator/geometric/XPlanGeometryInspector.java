@@ -356,16 +356,27 @@ class XPlanGeometryInspector implements GeometryInspector {
             Surface surface1 = (Surface) curve1;
             for ( Object curve2 : surfaces ) {
                 Surface surface2 = inspect( (Surface) curve2 );
-                Geometry intersection = surface1.getIntersection( surface2 );
+                Geometry intersection = calculateSelfIntersection( surface1, surface2 );
                 if ( intersection != null ) {
                     selfIntersections.add( intersection );
                     intersection.setId( geom.getId() + "_intersection_" + intersectionIndex++ );
-                    String intersectionMultiGeomMsg = "Geometrie der Selbst\u00fcberschneidung zwischen MulitPolygonen";
+                    String intersectionMultiGeomMsg = "Geometrie der Selbst\u00fcberschneidung zwischen MulttPolygonen";
                     badGeometries.add( new BadGeometry( intersection, intersectionMultiGeomMsg ) );
                 }
             }
         }
         return selfIntersections;
+    }
+
+    private Geometry calculateSelfIntersection( Surface surface1, Surface surface2 ) {
+        if ( Surface.SurfaceType.Polygon.equals( surface1.getSurfaceType() ) && Surface.SurfaceType.Polygon.equals(
+                                surface2.getSurfaceType() ) ) {
+            org.deegree.geometry.primitive.Polygon polygon1 = (org.deegree.geometry.primitive.Polygon) surface1;
+            org.deegree.geometry.primitive.Polygon polygon2 = (org.deegree.geometry.primitive.Polygon) surface2;
+            return polygon1.getExteriorRing().getIntersection( polygon2.getExteriorRing() );
+
+        }
+        return surface1.getIntersection( surface2 );
     }
 
     void checkSelfIntersection( Ring ring ) {
