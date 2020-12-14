@@ -175,26 +175,6 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
         return planFeature;
     }
 
-    private String calculateIntersectionPoints( Feature geltungsbereichFeature, Feature feature ) {
-        List<String> points = new ArrayList<>();
-        AbstractDefaultGeometry featureGeom = getOriginalGeometry( feature );
-        AbstractDefaultGeometry geltungsbereichGeom = getOriginalGeometry( geltungsbereichFeature );
-        if ( geltungsbereichGeom.isDisjoint( featureGeom ) ) {
-            addPointOutsideGeltungsbereich( points, featureGeom );
-        } else {
-            List<? extends org.deegree.geometry.Geometry> featureGeoms = extractExteriorRingOrPrimitive( featureGeom );
-            List<? extends org.deegree.geometry.Geometry> geltungsbereichGeoms = extractExteriorRingOrPrimitive(
-                                    geltungsbereichGeom );
-            geltungsbereichGeoms.forEach( currentGeltungsbereichGeom -> {
-                featureGeoms.forEach( currentFeatureGeom -> {
-                    org.deegree.geometry.Geometry intersection = currentFeatureGeom.getIntersection(
-                                            currentGeltungsbereichGeom );
-                    addIntersectionPoints( points, intersection );
-                } );
-            } );
-        }
-        return points.stream().collect( Collectors.joining( "," ) );
-    }
 
     private void addPointOutsideGeltungsbereich( List<String> points, org.deegree.geometry.Geometry featureGeom ) {
         if ( featureGeom instanceof Point ) {
@@ -222,18 +202,44 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
         }
     }
 
-    private void addInvalidGeometry( Feature geltungsbereichFeature, Feature feature ) {
+    private void addInvalidGeometry( Feature geltungsbereichFeature, Feature feature )
+                            throws InvalidGeometryException {
         AbstractDefaultGeometry featureGeom = getOriginalGeometry( feature );
         AbstractDefaultGeometry geltungsbereichGeom = getOriginalGeometry( geltungsbereichFeature );
-        String points = calculateIntersectionPoints( geltungsbereichFeature, feature );
-        if ( geltungsbereichGeom.isDisjoint( featureGeom ) ) {
-            String error = String.format( OUTOFGELTUNGSBEREICH_MSG, feature.getId(), points );
-            addErrorAndBadGeometry( error, getOriginalGeometry( feature ) );
-        } else {
-            String error = String.format( ERROR_MSG, feature.getId(), points );
-            BadGeometry badGeometry = addErrorAndBadGeometry( error, getOriginalGeometry( feature ) );
-            addGeometryOutsideGeltungsbereich( feature.getId(), featureGeom, geltungsbereichGeom, badGeometry );
+        try {
+            String points = calculateIntersectionPoints( geltungsbereichFeature, feature );
+            if ( geltungsbereichGeom.isDisjoint( featureGeom ) ) {
+                String error = String.format( OUTOFGELTUNGSBEREICH_MSG, feature.getId(), points );
+                addErrorAndBadGeometry( error, getOriginalGeometry( feature ) );
+            } else {
+                String error = String.format( ERROR_MSG, feature.getId(), points );
+                BadGeometry badGeometry = addErrorAndBadGeometry( error, getOriginalGeometry( feature ) );
+                addGeometryOutsideGeltungsbereich( feature.getId(), featureGeom, geltungsbereichGeom, badGeometry );
+            }
+        } catch ( TopologyException | IllegalArgumentException e ) {
+            throw new InvalidGeometryException( e );
         }
+    }
+
+    private String calculateIntersectionPoints( Feature geltungsbereichFeature, Feature feature ) {
+        List<String> points = new ArrayList<>();
+        AbstractDefaultGeometry featureGeom = getOriginalGeometry( feature );
+        AbstractDefaultGeometry geltungsbereichGeom = getOriginalGeometry( geltungsbereichFeature );
+        if ( geltungsbereichGeom.isDisjoint( featureGeom ) ) {
+            addPointOutsideGeltungsbereich( points, featureGeom );
+        } else {
+            List<? extends org.deegree.geometry.Geometry> featureGeoms = extractExteriorRingOrPrimitive( featureGeom );
+            List<? extends org.deegree.geometry.Geometry> geltungsbereichGeoms = extractExteriorRingOrPrimitive(
+                                    geltungsbereichGeom );
+            geltungsbereichGeoms.forEach( currentGeltungsbereichGeom -> {
+                featureGeoms.forEach( currentFeatureGeom -> {
+                    org.deegree.geometry.Geometry intersection = currentFeatureGeom.getIntersection(
+                                            currentGeltungsbereichGeom );
+                    addIntersectionPoints( points, intersection );
+                } );
+            } );
+        }
+        return points.stream().collect( Collectors.joining( "," ) );
     }
 
     private void addGeometryOutsideGeltungsbereich( String featureId, AbstractDefaultGeometry featureGeom,
