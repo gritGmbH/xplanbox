@@ -138,10 +138,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
                 try {
                     if ( !isInsideGeom( f, geltungsbereichWithBuffer ) ) {
                         featureIdOfInvalidFeatures.add( f.getId() );
-                        String points = calculateIntersectionPoints( geltungsbereichFeature, f );
-                        String error = String.format( ERROR_MSG, f.getId(), points );
-                        BadGeometry badGeometry = addErrorAndBadGeometry( error, getOriginalGeometry( f ) );
-                        addGeometryOutsideGeltungsbereich( badGeometry, geltungsbereichFeature, f );
+                        addInvalidGeometry( geltungsbereichFeature, f );
                     }
                 } catch ( InvalidGeometryException e ) {
                     String error = String.format( ERROR_MSG_INVALID_CHECK, f.getId() );
@@ -225,27 +222,30 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
         }
     }
 
-    private String pointAsReadableString( Point p ) {
-        return Arrays.stream( p.getAsArray() ).filter( value -> !Double.isNaN( value ) ).mapToObj(
-                                Double::toString ).collect( Collectors.joining( ",", "(", ")" ) );
-    }
-
-    private void addGeometryOutsideGeltungsbereich( BadGeometry badGeometry, Feature geltungsbereichFeature,
-                                                    Feature feature ) {
+    private void addInvalidGeometry( Feature geltungsbereichFeature, Feature feature ) {
         AbstractDefaultGeometry featureGeom = getOriginalGeometry( feature );
         AbstractDefaultGeometry geltungsbereichGeom = getOriginalGeometry( geltungsbereichFeature );
+        String points = calculateIntersectionPoints( geltungsbereichFeature, feature );
         if ( geltungsbereichGeom.isDisjoint( featureGeom ) ) {
-            String error = String.format( OUTOFGELTUNGSBEREICH_MSG, feature.getId() );
-            badGeometry.addMarkerGeometry( error, featureGeom );
+            String error = String.format( OUTOFGELTUNGSBEREICH_MSG, feature.getId(), points );
+            addErrorAndBadGeometry( error, getOriginalGeometry( feature ) );
+        } else {
+            String error = String.format( ERROR_MSG, feature.getId(), points );
+            BadGeometry badGeometry = addErrorAndBadGeometry( error, getOriginalGeometry( feature ) );
+            addGeometryOutsideGeltungsbereich( feature.getId(), featureGeom, geltungsbereichGeom, badGeometry );
         }
+    }
 
+    private void addGeometryOutsideGeltungsbereich( String featureId, AbstractDefaultGeometry featureGeom,
+                                                    AbstractDefaultGeometry geltungsbereichGeom,
+                                                    BadGeometry badGeometry ) {
         List<? extends org.deegree.geometry.Geometry> featureGeoms = extractExteriorRingOrPrimitive( featureGeom );
         featureGeoms.forEach( currentFeatureGeom -> {
             org.deegree.geometry.Geometry geomOutsideGeltungsbereich = currentFeatureGeom.getDifference(
                                     geltungsbereichGeom );
             if ( geomOutsideGeltungsbereich != null ) {
-                geomOutsideGeltungsbereich.setId( feature.getId() + "_OutsideGeltungsbereich" );
-                String error = String.format( SCHNITTPUNKT_MSG, feature.getId() );
+                geomOutsideGeltungsbereich.setId( featureId + "_OutsideGeltungsbereich" );
+                String error = String.format( SCHNITTPUNKT_MSG, featureId );
                 badGeometry.addMarkerGeometry( error, geomOutsideGeltungsbereich );
             }
         } );
@@ -366,6 +366,11 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
         BadGeometry badGeometry = new BadGeometry( geometry, error );
         badGeometries.add( badGeometry );
         return badGeometry;
+    }
+
+    private String pointAsReadableString( Point p ) {
+        return Arrays.stream( p.getAsArray() ).filter( value -> !Double.isNaN( value ) ).mapToObj(
+                                Double::toString ).collect( Collectors.joining( ",", "(", ")" ) );
     }
 
 }
