@@ -94,6 +94,11 @@
       <Layer>so_grenze</Layer>
     </Theme>
     <Theme>
+      <Identifier>so_gelaendemorphologie</Identifier>
+      <d:Title>SO: Geländemorphologie</d:Title>
+      <Layer>so_gelaendemorphologie</Layer>
+    </Theme>
+    <Theme>
       <Identifier>so_bereich</Identifier>
       <d:Title>SO: Bereich</d:Title>
       <Layer>so_bereich</Layer>

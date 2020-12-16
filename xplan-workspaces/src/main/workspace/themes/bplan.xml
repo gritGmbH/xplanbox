@@ -105,6 +105,12 @@
       <Layer>bp_verentsorgungsfl</Layer>
     </Theme>
     <Theme>
+      <Identifier>bp_zentralerversorgungsbereich</Identifier>
+      <d:Title>BP: Zentraler Versorgungsbereich</d:Title>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_zentralerversorgungsbereich</Layer>
+    </Theme>
+    <Theme>
       <Identifier>bp_lwfl</Identifier>
       <d:Title>BP: Landwirtschaftsfläche</d:Title>
       <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
@@ -539,6 +545,12 @@
       <d:Title>BP: Sichtflaeche</d:Title>
       <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>bp_sichtflaeche</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_flaecheohnefestsetzung</Identifier>
+      <d:Title>BP: Fläche ohne Festsetzung</d:Title>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_flaecheohnefestsetzung</Layer>
     </Theme>
     <Theme>
       <Identifier>bp_symbole</Identifier>

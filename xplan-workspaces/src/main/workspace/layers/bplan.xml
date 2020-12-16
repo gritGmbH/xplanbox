@@ -2795,6 +2795,52 @@
         </SortProperty>
       </SortBy>
     </SortBy>
+    <l:Name>bp_flaecheohnefestsetzung</l:Name>
+    <d:Title>BP: FlaecheOhneFestsetzung</d:Title>
+    <d:Abstract>BP_FlaecheOhneFestsetzung</d:Abstract>
+    <s:CRS>${vectorCrs}</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>default/bp/bp_flaecheohnefestsetzung</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/bp/bp_flaecheohnefestsetzung_trans</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>invisible</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc">
+        <SortProperty>
+          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
     <l:Name>bp_foerderfl</l:Name>
     <d:Title>BP: Förderungsfläche</d:Title>
     <d:Abstract>BP_FoerderungsFlaeche</d:Abstract>
@@ -5161,6 +5207,52 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>transparent/bp/bp_wegerecht_trans</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>invisible</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc">
+        <SortProperty>
+          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>bp_zentralerversorgungsbereich</l:Name>
+    <d:Title>BP: ZentralerVersorgungsbereich</d:Title>
+    <d:Abstract>BP_ZentralerVersorgungsbereich</d:Abstract>
+    <s:CRS>${vectorCrs}</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>default/bp/bp_zentralerversorgungsbereich</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/bp/bp_zentralerversorgungsbereich_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
