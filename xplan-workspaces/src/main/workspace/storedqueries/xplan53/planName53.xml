@@ -3,7 +3,7 @@
                            xmlns:xplan53="http://www.xplanung.de/xplangml/5/3">
   <wfs:Title>planName</wfs:Title>
   <wfs:Abstract>Es koennen vollstaendige XPlanGML Plaene anhand des Plannamens heruntergeladen werden.</wfs:Abstract>
-  <wfs:Parameter name="planName" type="xsd:string">
+  <wfs:Parameter xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="planName" type="xsd:string">
     <Abstract>planName (Mandatory)</Abstract>
   </wfs:Parameter>
   <wfs:QueryExpressionText returnFeatureTypes="${deegreewfs:ServedFeatureTypes}"

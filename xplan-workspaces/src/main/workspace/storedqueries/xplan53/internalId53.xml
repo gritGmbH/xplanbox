@@ -4,7 +4,7 @@
                            xmlns:xplan53="http://www.xplanung.de/xplangml/5/3">
   <wfs:Title>internalId</wfs:Title>
   <wfs:Abstract>Es koennen vollstaendige XPlanGML Plaene anhand der InternalId heruntergeladen werden.</wfs:Abstract>
-  <wfs:Parameter name="internalId" type="xsd:string">
+  <wfs:Parameter xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="internalId" type="xsd:string">
     <Abstract>internalId (Mandatory)</Abstract>
   </wfs:Parameter>
   <wfs:QueryExpressionText returnFeatureTypes="${deegreewfs:ServedFeatureTypes}"
