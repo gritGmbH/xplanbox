@@ -764,6 +764,8 @@ public class PlanListPanel extends DecoratorPanel {
             return "5.1";
         if ( "XPLAN_52".equalsIgnoreCase( version ) )
             return "5.2";
+        if ( "XPLAN_53".equalsIgnoreCase( version ) )
+            return "5.3";
         return version;
     }
 
