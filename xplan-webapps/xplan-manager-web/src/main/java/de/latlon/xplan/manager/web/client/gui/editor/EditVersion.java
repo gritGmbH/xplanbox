@@ -65,6 +65,6 @@ package de.latlon.xplan.manager.web.client.gui.editor;
  */
 public enum EditVersion {
 
-    XPLAN_3, XPLAN_41, XPLAN_50, XPLAN_51, XPLAN_52
+    XPLAN_3, XPLAN_41, XPLAN_50, XPLAN_51, XPLAN_52, XPLAN_53
 
 }

@@ -70,6 +70,7 @@ import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_52;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_53;
 
 /**
  * Dialog to edit an existing or create a new {@link Text}
@@ -183,7 +184,8 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
     }
 
     private boolean isXPlanVersion5X() {
-        return XPLAN_50.equals( version ) || XPLAN_51.equals( version ) || XPLAN_52.equals( version );
+        return XPLAN_50.equals( version ) || XPLAN_51.equals( version ) || XPLAN_52.equals( version )
+               || XPLAN_53.equals( version );
     }
 
 }
