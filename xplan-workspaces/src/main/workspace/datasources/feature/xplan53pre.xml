@@ -3,7 +3,7 @@
                  xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.4.0/sql.xsd">
     <JDBCConnId>xplan</JDBCConnId>
     <StorageCRS srid="-1" dim="2D">${vectorCrs}</StorageCRS>
-    <GMLSchema>../../appschemas/XPlanGML_5_2/XPlanung-Operationen.xsd</GMLSchema>
+    <GMLSchema>../../appschemas/XPlanGML_5_3/XPlanung-Operationen.xsd</GMLSchema>
     <BLOBMapping>
         <BlobTable>xplan53pre.gml_objects</BlobTable>
         <FeatureTypeTable>xplan53pre.feature_types</FeatureTypeTable>
