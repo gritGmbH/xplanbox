@@ -1,1 +1,1 @@
-BP_BaugebietsTeilFlaeche/besondereArtDerBaulNutzung=xplanExternalCodeLookup(xpath('xplan:besondereArtDerBaulNutzung'), 'xplan_XP_BesondereArtDerBaulNutzung.xml')
+BP_BaugebietsTeilFlaeche/besondereArtDerBaulNutzung=xplanExternalCodeLookup(xpath('xplan:besondereArtDerBaulNutzung'), 'XP_BesondereArtDerBaulNutzung-XPlan4.xml')

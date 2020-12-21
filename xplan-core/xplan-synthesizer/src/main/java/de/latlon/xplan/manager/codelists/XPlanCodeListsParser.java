@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -21,6 +21,7 @@
  */
 package de.latlon.xplan.manager.codelists;
 
+import org.deegree.commons.tom.ows.CodeType;
 import org.deegree.gml.GMLInputFactory;
 import org.deegree.gml.GMLStreamReader;
 import org.deegree.gml.GMLVersion;
@@ -61,7 +62,8 @@ public class XPlanCodeListsParser {
      * initialisiert wird. Die Codeliste muss in der uebergebenen GML Version vorliegen.
      *
      * @param codeListUrl
-     * @param gmlVersion gml version of the dictionary, never <code>null</code>
+     * @param gmlVersion
+     *                         gml version of the dictionary, never <code>null</code>
      * @throws XMLStreamException
      * @throws FactoryConfigurationError
      * @throws IOException
@@ -71,7 +73,10 @@ public class XPlanCodeListsParser {
         GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader( gmlVersion, codeListUrl );
         Dictionary codeLists = gmlStream.readDictionary();
         gmlStream.close();
+        return parseGmlCodelist( codeListUrl, codeLists );
+    }
 
+    private XPlanCodeLists parseGmlCodelist( URL codeListUrl, Dictionary codeLists ) {
         Map<String, Map<String, String>> codeListIdToMapping = new TreeMap<>();
         Map<String, Map<String, String>> codeListIdToReverseMapping = new TreeMap<>();
         if ( !codeLists.isEmpty() ) {
@@ -112,7 +117,12 @@ public class XPlanCodeListsParser {
                                   Map<String, Map<String, String>> codeListIdToMapping,
                                   Map<String, Map<String, String>> codeListIdToReverseMapping ) {
         if ( def.getNames().length == 1 ) {
-            if ( def.getDescription() != null ) {
+            if ( codeIsPartOfIdentifier( codeListId, def ) ) {
+                String codeWithCodelistId = def.getGMLProperties().getIdentifier().getCode();
+                String code = codeWithCodelistId.substring( codeWithCodelistId.indexOf( ":" ) + 1 );
+                String description = def.getNames()[0].getCode();
+                addCodeAndDescription( codeListId, code, description, codeListIdToMapping, codeListIdToReverseMapping );
+            } else if ( def.getDescription() != null ) {
                 String description = def.getDescription().getString();
                 if ( def.getNames() == null || def.getNames().length != 1 ) {
                     String msg = "CodeList '" + codeListId + "' in Dictionary '" + codeListUrl
@@ -152,6 +162,11 @@ public class XPlanCodeListsParser {
         }
         codeToDesc.put( code, description );
         descToCode.put( description, code );
+    }
+
+    private boolean codeIsPartOfIdentifier( String codeListId, Definition def ) {
+        CodeType identifier = def.getGMLProperties().getIdentifier();
+        return identifier != null && identifier.getCode().startsWith( codeListId );
     }
 
 }
