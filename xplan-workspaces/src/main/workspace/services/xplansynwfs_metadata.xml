@@ -7,6 +7,8 @@
     <Abstract>Dieser WFS Dienst stellt versionsübergreifende auf dem Standard XPlanung basierende FeatureTypes bereit.</Abstract>
     <Keywords>
       <Keyword>XPlanung</Keyword>
+      <Keyword>XPlanGML 5.3</Keyword>
+      <Keyword>XPlanGML 5.2</Keyword>
       <Keyword>XPlanGML 5.1</Keyword>
       <Keyword>XPlanGML 5.0</Keyword>
       <Keyword>XPlanGML 4.1</Keyword>
