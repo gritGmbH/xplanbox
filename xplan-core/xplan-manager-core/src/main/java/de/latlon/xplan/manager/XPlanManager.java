@@ -416,7 +416,7 @@ public class XPlanManager {
         XPlanFeatureCollection fc = parseXPlanFeatureCollection( archive );
         String planName = fc.getPlanName();
         boolean planWithSameNameAndStatusExists = xplanDao.checkIfPlanWithSameNameAndStatusExists( planName, status );
-        LOG.info( "OK, Plan mit Namen {} und Status {} existiert: {}", planName, status,
+        LOG.info( "OK, Plan mit Namen '{}' und Status '{}' existiert: {}", planName, status,
                   planWithSameNameAndStatusExists );
         return new PlanNameWithStatusResult( planName, status, planWithSameNameAndStatusExists );
     }
