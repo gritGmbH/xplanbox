@@ -79,9 +79,10 @@ public class XPlanGeometryInspectorTest {
         inspector.inspect( geometryToInspect );
 
         List<BadGeometry> badGeometries = inspector.getBadGeometries();
-        assertThat( badGeometries.size(), is( 2 ) );
+        assertThat( badGeometries.size(), is( 3 ) );
         assertThat( badGeometries.get( 0 ).getOriginalGeometry().getId(), is( "GML_ID_67697_intersection_1" ) );
-        assertThat( badGeometries.get( 1 ).getOriginalGeometry().getId(), is( "GML_ID_67697" ) );
+        assertThat( badGeometries.get( 1 ).getOriginalGeometry().getId(), is( "GML_ID_67697_intersection_2" ) );
+        assertThat( badGeometries.get( 2 ).getOriginalGeometry().getId(), is( "GML_ID_67697" ) );
     }
 
     @Test
@@ -114,13 +115,13 @@ public class XPlanGeometryInspectorTest {
 
         Geometry intersection1 = badGeometries.get( 0 ).getOriginalGeometry();
         assertThat( intersection1.getId(), is( "Gml_8AB9C0E6-69DB-4855-A32C-CD9BBC95ABED_intersection_1" ) );
-        assertThat( ( (Point) intersection1 ).get0(), is( 583028.4653110565 ) );
-        assertThat( ( (Point) intersection1 ).get1(), is( 3581555.9624473285 ) );
+        assertThat( ( (Point) intersection1 ).get0(), is( 583192.1906790873 ) );
+        assertThat( ( (Point) intersection1 ).get1(), is( 5920635.179921611 ) );
 
         Geometry intersection2 = badGeometries.get( 1 ).getOriginalGeometry();
         assertThat( intersection2.getId(), is( "Gml_8AB9C0E6-69DB-4855-A32C-CD9BBC95ABED_intersection_2" ) );
-        assertThat( ( (Point) intersection2 ).get0(), is( 583192.1906790873 ) );
-        assertThat( ( (Point) intersection2 ).get1(), is( 5920635.179921611 ) );
+        assertThat( ( (Point) intersection2 ).get0(), is( 583028.4653110565 ) );
+        assertThat( ( (Point) intersection2 ).get1(), is( 3581555.9624473285 ) );
 
         Geometry geometry = badGeometries.get( 2 ).getOriginalGeometry();
         assertThat( geometry.getId(), is( "Gml_8AB9C0E6-69DB-4855-A32C-CD9BBC95ABED" ) );

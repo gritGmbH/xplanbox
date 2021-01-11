@@ -28,6 +28,9 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.geomgraph.Edge;
+import com.vividsolutions.jts.geomgraph.EdgeIntersection;
+import com.vividsolutions.jts.geomgraph.EdgeIntersectionList;
 import com.vividsolutions.jts.geomgraph.GeometryGraph;
 import com.vividsolutions.jts.geomgraph.Node;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
@@ -65,8 +68,10 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -351,16 +356,27 @@ class XPlanGeometryInspector implements GeometryInspector {
             Surface surface1 = (Surface) curve1;
             for ( Object curve2 : surfaces ) {
                 Surface surface2 = inspect( (Surface) curve2 );
-                Geometry intersection = surface1.getIntersection( surface2 );
+                Geometry intersection = calculateSelfIntersection( surface1, surface2 );
                 if ( intersection != null ) {
                     selfIntersections.add( intersection );
                     intersection.setId( geom.getId() + "_intersection_" + intersectionIndex++ );
-                    String intersectionMultiGeomMsg = "Geometrie der Selbst\u00fcberschneidung zwischen MulitPolygonen";
+                    String intersectionMultiGeomMsg = "Geometrie der Selbst\u00fcberschneidung zwischen MulttPolygonen";
                     badGeometries.add( new BadGeometry( intersection, intersectionMultiGeomMsg ) );
                 }
             }
         }
         return selfIntersections;
+    }
+
+    private Geometry calculateSelfIntersection( Surface surface1, Surface surface2 ) {
+        if ( Surface.SurfaceType.Polygon.equals( surface1.getSurfaceType() ) && Surface.SurfaceType.Polygon.equals(
+                                surface2.getSurfaceType() ) ) {
+            org.deegree.geometry.primitive.Polygon polygon1 = (org.deegree.geometry.primitive.Polygon) surface1;
+            org.deegree.geometry.primitive.Polygon polygon2 = (org.deegree.geometry.primitive.Polygon) surface2;
+            return polygon1.getExteriorRing().getIntersection( polygon2.getExteriorRing() );
+
+        }
+        return surface1.getIntersection( surface2 );
     }
 
     void checkSelfIntersection( Ring ring ) {
@@ -490,16 +506,27 @@ class XPlanGeometryInspector implements GeometryInspector {
         GeometryGraph graph = new GeometryGraph( 0, jtsLineString );
         LineIntersector lineIntersector = new RobustLineIntersector();
         graph.computeSelfNodes( lineIntersector, true );
-        int intersectionIndex = 1;
-        for ( Object node : graph.getNodes() ) {
-            Coordinate coordinate = ( (Node) node ).getCoordinate();
-            if ( !coordinate.equals( jtsLineString.getStartPoint().getCoordinate() ) ) {
-                String intersectionId = ring.getId() + "_intersection_" + intersectionIndex++;
-                Point intersectionGeom = new GeometryFactory().createPoint( intersectionId, coordinate.x, coordinate.y,
-                                                                            coordinate.z, ring.getCoordinateSystem() );
-                String intersectionMsg = "Geomerie der Selbst\u00fcberschneidung";
-                badGeometries.add( new BadGeometry( intersectionGeom, intersectionMsg ) );
-                selfInterSectionPoints.add( intersectionGeom );
+        List<Coordinate> selfInterSectionCoords = new ArrayList<>();
+        Iterator edgeIterator = graph.getEdgeIterator();
+        while ( edgeIterator.hasNext() ) {
+            Edge edge = (Edge) edgeIterator.next();
+            int maxSegmentIndex = edge.getMaximumSegmentIndex();
+            Iterator edgeIntersections = edge.getEdgeIntersectionList().iterator();
+            while ( edgeIntersections.hasNext() ) {
+                EdgeIntersection intersection = (EdgeIntersection) edgeIntersections.next();
+                if ( !intersection.isEndPoint( maxSegmentIndex ) ) {
+                    Coordinate coordinate = intersection.getCoordinate();
+                    if ( !selfInterSectionCoords.contains( coordinate ) ) {
+                        selfInterSectionCoords.add( coordinate );
+                        String intersectionId = ring.getId() + "_intersection_" + selfInterSectionCoords.size();
+                        Point intersectionGeom = new GeometryFactory().createPoint( intersectionId, coordinate.x,
+                                                                                    coordinate.y, coordinate.z,
+                                                                                    ring.getCoordinateSystem() );
+                        String intersectionMsg = "Geomerie der Selbst\u00fcberschneidung";
+                        badGeometries.add( new BadGeometry( intersectionGeom, intersectionMsg ) );
+                        selfInterSectionPoints.add( intersectionGeom );
+                    }
+                }
             }
         }
         return selfInterSectionPoints;
