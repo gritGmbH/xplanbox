@@ -1,10 +1,6 @@
 [[konfiguration-der-datenbank]]
 === Konfiguration der Datenbank
 
-Wie in Abschnitt <<systemueberblick>> beschrieben, ist mindestens die
-Installation von PostgreSQL 9.5 mit der Erweiterung PostGIS 2.4
-erforderlich.
-
 Das Anlegen der Datenbank kann entweder über das XPlanManagerCLI oder manuell erfolgen. Beide Varianten sind in den folgenden Abschnitten beschrieben.
 
 ==== Aufsetzen der Datenbank über das XPlanManagerCLI
