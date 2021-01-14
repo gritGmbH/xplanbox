@@ -33,7 +33,7 @@ zeigen, in dem sich die Datei libgdaljni.so befindet.
 
 GDAL 2.4 für Windows kann bei http://www.gisinternals.com/[GISInternals]
 heruntergeladen werden. Die aktuelle Version befindet sich
-unter "Stable Versions". Die Architektur der GDAL-Bibliothek (32bit
+unter "Stable Releases". Die Architektur der GDAL-Bibliothek (32bit
 oder 64bit) muss der Architektur von Java und dem Betriebssystem
 http://windows.microsoft.com/de-de/windows/32-bit-and-64-bit-windows[Windows]
 entsprechen. Bei den Downloads sollten die kompilierten Binaries in
