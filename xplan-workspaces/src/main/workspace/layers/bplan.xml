@@ -2800,10 +2800,10 @@
     <d:Abstract>BP_FlaecheOhneFestsetzung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_flaecheohnefestsetzung</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_flaecheohnefestsetzung_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp/bp_flaecheohnefestsetzung_trans</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_flaecheohnefestsetzung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>

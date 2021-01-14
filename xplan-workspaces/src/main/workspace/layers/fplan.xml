@@ -1309,10 +1309,10 @@
     <d:Abstract>FP_DarstellungNachLandesrecht</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>default/fp/fp_darstellungnachlandesrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_darstellungnachlandesrecht_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_darstellungnachlandesrecht_trans</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_darstellungnachlandesrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1355,10 +1355,10 @@
     <d:Abstract>FP_FlaecheOhneDarstellung</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>default/fp/fp_flaecheohnedarstellung</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_flaecheohnedarstellung_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_flaecheohnedarstellung_trans</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_flaecheohnedarstellung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
