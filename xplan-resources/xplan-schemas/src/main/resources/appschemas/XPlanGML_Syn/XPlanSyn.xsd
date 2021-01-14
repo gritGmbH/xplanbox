@@ -1298,8 +1298,8 @@
             <element name="dachgestaltung" minOccurs="0" type="string" />
             <element name="VF" minOccurs="0" type="string" />
             <element name="VFUOM" minOccurs="0" type="double" />
-            <element name="MinGRWohneinheit" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheitUOM" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -1623,8 +1623,8 @@
             <element name="bebauungsArtCode" minOccurs="0" type="string" />
             <element name="abweichendeBauweise" minOccurs="0" type="string" />
             <element name="abweichendeBauweiseCode" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheit" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheitUOM" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -2948,8 +2948,8 @@
             <element name="bebauungsArt" minOccurs="0" type="string" />
             <element name="bebauungsArtCode" minOccurs="0" type="string" />
             <element name="dachgestaltung" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheit" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheitUOM" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -3522,8 +3522,8 @@
             <element name="zugunstenVon" minOccurs="0" type="string" />
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheit" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheitUOM" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -5491,8 +5491,8 @@
             <element name="zugunstenVon" minOccurs="0" type="string" />
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheit" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheitUOM" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -5632,8 +5632,8 @@
             <element name="ZU_Ausn" minOccurs="0" type="integer" />
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheit" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheitUOM" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -6176,8 +6176,8 @@
             <element name="dachgestaltung" minOccurs="0" type="string" />
             <element name="VF" minOccurs="0" type="string" />
             <element name="VFUOM" minOccurs="0" type="double" />
-            <element name="MinGRWohneinheit" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheitUOM" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -6397,8 +6397,8 @@
             <element name="zugunstenVon" minOccurs="0" type="string" />
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheit" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheitUOM" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -6755,8 +6755,8 @@
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="zugunstenVon" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheit" minOccurs="0" type="string" />
-            <element name="MinGRWohneinheitUOM" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
