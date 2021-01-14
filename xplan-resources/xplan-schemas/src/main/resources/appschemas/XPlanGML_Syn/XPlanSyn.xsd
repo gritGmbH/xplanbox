@@ -18531,7 +18531,7 @@
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="dientZurDarstellungVon" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="index" minOccurs="0" type="integer" />
+            <element name="index" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -18644,7 +18644,7 @@
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="dientZurDarstellungVon" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="index" minOccurs="0" type="integer" />
+            <element name="index" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -18681,7 +18681,7 @@
             <element name="anchorY" minOccurs="0" type="decimal" />
             <element name="hat" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="index" minOccurs="0" type="integer" />
+            <element name="index" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -18705,7 +18705,7 @@
             <element name="stylesheetIdCode" minOccurs="0" type="string" />
             <element name="darstellungsprioritaet" minOccurs="0" type="integer" />
             <element name="art" minOccurs="0" type="string" />
-            <element name="index" minOccurs="0" type="integer" />
+            <element name="index" minOccurs="0" type="string" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="dientZurDarstellungVon" minOccurs="0" type="string" />
             <element name="schriftinhalt" minOccurs="0" type="string" />
@@ -18753,7 +18753,7 @@
             <element name="drehwinkel" minOccurs="0" type="double" />
             <element name="drehwinkelUOM" minOccurs="0" type="string" />
             <element name="skalierung" minOccurs="0" type="decimal" />
-            <element name="index" minOccurs="0" type="integer" />
+            <element name="index" minOccurs="0" type="string" />
             <element name="hat" minOccurs="0" type="string" />
           </sequence>
         </extension>
@@ -18793,7 +18793,7 @@
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="drehwinkel" minOccurs="0" type="double" />
             <element name="drehwinkelUOM" minOccurs="0" type="string" />
-            <element name="index" minOccurs="0" type="integer" />
+            <element name="index" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -18819,7 +18819,7 @@
             <element name="art" minOccurs="0" type="string" />
             <element name="gehoertZuBereich" minOccurs="0" type="string" />
             <element name="dientZurDarstellungVon" minOccurs="0" type="string" />
-            <element name="index" minOccurs="0" type="integer" />
+            <element name="index" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
