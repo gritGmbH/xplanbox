@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:FP_AnpassungKlimawandel</FeatureTypeName>
   <!-- Fläche -->
@@ -12,12 +12,30 @@
       <Title>FP: AnpassungKlimawandel</Title>
     </Description>
     <ogc:Filter>
-      <ogc:PropertyIsEqualTo>
-        <ogc:Function name="IsSurface">
-          <ogc:PropertyName>xplan:position</ogc:PropertyName>
-        </ogc:Function>
-        <ogc:Literal>true</ogc:Literal>
-      </ogc:PropertyIsEqualTo>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsSurface">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:Or>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+              <ogc:Literal>1000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+              <ogc:Literal>10000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+              <ogc:Literal>10001</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Or>
+        </ogc:Not>
+      </ogc:And>
     </ogc:Filter>
     <PolygonSymbolizer uom="meter">
       <Geometry>
@@ -93,5 +111,54 @@
         <Size>10</Size>
       </Graphic>
     </PointSymbolizer>
+  </Rule>
+  <!-- ErhaltPrivGruen -->
+  <!-- Fläche -->
+  <Rule>
+    <Name>fp_anpassklimaw</Name>
+    <Description>
+      <Title>FP: AnpassungKlimawandel</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsSurface">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+            <ogc:Literal>1000</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+            <ogc:Literal>10000</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+            <ogc:Literal>10001</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Or>
+      </ogc:And>
+    </ogc:Filter>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <GraphicFill>
+          <Graphic>
+            <ExternalGraphic>
+              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                              xlink:href="../../symbols/anpassungklimawandel-erhalt.png" />
+              <Format>image/png</Format>
+            </ExternalGraphic>
+            <Size>15</Size>
+          </Graphic>
+        </GraphicFill>
+      </Fill>
+    </PolygonSymbolizer>
   </Rule>
 </FeatureTypeStyle>
