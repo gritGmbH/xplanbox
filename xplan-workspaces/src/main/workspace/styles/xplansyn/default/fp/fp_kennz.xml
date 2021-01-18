@@ -24,6 +24,12 @@
           <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+            <ogc:Literal>true</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Not>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
@@ -72,6 +78,12 @@
           <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+            <ogc:Literal>true</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Not>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
@@ -120,6 +132,12 @@
           <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+            <ogc:Literal>true</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Not>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
@@ -168,6 +186,12 @@
           <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+            <ogc:Literal>true</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Not>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
@@ -225,6 +249,12 @@
           <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>5000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+            <ogc:Literal>true</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Not>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
@@ -279,6 +309,12 @@
           <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>6000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+            <ogc:Literal>true</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Not>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
@@ -328,6 +364,12 @@
           <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>7000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+            <ogc:Literal>true</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Not>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
@@ -363,6 +405,12 @@
           <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>9999</ogc:Literal>
         </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+            <ogc:Literal>true</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Not>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
@@ -849,5 +897,41 @@
         <Size>60</Size>
       </Graphic>
     </PointSymbolizer>
+  </Rule>
+  <!-- vonGenehmigungAusgenommen -->
+  <Rule>
+    <Name>VonGenehmigungAusgenommen</Name>
+    <Description>
+      <Title>FP: VonGenehmigungAusgenommen</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsSurface">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill">#FFFFFF</SvgParameter>
+        <SvgParameter name="fill-opacity">1.0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">1.0</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
   </Rule>
 </FeatureTypeStyle>
