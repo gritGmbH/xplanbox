@@ -17,12 +17,17 @@
           <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -55,12 +60,17 @@
           <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -93,12 +103,17 @@
           <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -131,12 +146,17 @@
           <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -168,12 +188,17 @@
           <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>9999</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -209,12 +234,17 @@
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -248,12 +278,17 @@
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -287,12 +322,17 @@
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>1200</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -326,12 +366,17 @@
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>1300</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -365,12 +410,17 @@
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>1400</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -404,12 +454,17 @@
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>1500</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -443,12 +498,17 @@
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>1600</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -482,12 +542,17 @@
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>1700</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -521,12 +586,17 @@
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>1800</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -560,12 +630,17 @@
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -605,12 +680,17 @@
             <ogc:Literal>2100</ogc:Literal>
           </ogc:PropertyIsEqualTo>
         </ogc:Or>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -645,12 +725,17 @@
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>9999</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>

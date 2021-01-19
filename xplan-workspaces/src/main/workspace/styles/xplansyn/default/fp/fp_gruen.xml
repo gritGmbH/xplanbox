@@ -24,12 +24,17 @@
           </ogc:Function>
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -67,12 +72,17 @@
           </ogc:Function>
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
@@ -109,12 +119,17 @@
           </ogc:Function>
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-        <ogc:Not>
-          <ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-            <ogc:Literal>true</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Not>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
