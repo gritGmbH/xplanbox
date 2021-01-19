@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="45582ef9-4bae-43d8-9226-a378e02ff0b5" activeEnvironment="Default" name="xplan-api-validator" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="45582ef9-4bae-43d8-9226-a378e02ff0b5" activeEnvironment="Default" name="xplan-api-validator" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:interface xsi:type="con:RestService" id="85ec4fc3-149e-4a77-a566-194de2899fd3" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanValidatorAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:description>XPlanValidator REST API</con:description>
@@ -944,7 +944,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="0a3750ed-207e-40f8-a4c9-2d50e525f2b1" name="geometrisch">
               <con:configuration>
                 <path>$..geometrisch</path>
-                <content>[{"valid":false,"errors":["2.2.3.1: Das Objekt mit der gml id FEATURE_dc61f364-f67c-4e0f-846c-fb8da12644fe liegt nicht im Geltungsbereich des Bereichs/Plans."],"warnings":[]}]</content>
+                <content>[{"valid":false,"errors":["2.2.3.1: Das Objekt mit der gml id FEATURE_dc61f364-f67c-4e0f-846c-fb8da12644fe liegt vollstaendig ausserhalb des Geltungsbereichs des Bereichs/Plans."],"warnings":[]}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>

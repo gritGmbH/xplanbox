@@ -117,14 +117,14 @@ public class ShapefileGenerator {
                                                   Map<Geometries, ShapefileBuilder> geomType2Builders ) {
         for ( BadGeometry badGeometry : badGeometries ) {
             Geometry geom = badGeometry.getOriginalGeometry();
-            addGeometryToShapefileBuilder( geomType2Builders, badGeometry, geom );
-            badGeometry.getMarkerGeometries().values().forEach(
-                                    g -> addGeometryToShapefileBuilder( geomType2Builders, badGeometry, g ) );
+            addGeometryToShapefileBuilder( geomType2Builders, badGeometry.getErrorsSingleString(), geom );
+            badGeometry.getMarkerGeometries().entrySet().forEach(
+                                    g -> addGeometryToShapefileBuilder( geomType2Builders, g.getKey(), g.getValue() ) );
         }
     }
 
     private void addGeometryToShapefileBuilder( Map<Geometries, ShapefileBuilder> geomType2Builders,
-                                                BadGeometry badGeometry, Geometry geom ) {
+                                                String message, Geometry geom ) {
         if ( geom instanceof AbstractDefaultGeometry ) {
             try {
                 AbstractDefaultGeometry defaultGeometry = (AbstractDefaultGeometry) geom;
@@ -132,8 +132,7 @@ public class ShapefileGenerator {
 
                 Geometries geomType = Geometries.get( jtsGeom );
                 if ( geomType2Builders.containsKey( geomType ) ) {
-                    geomType2Builders.get( geomType ).addGeometry( jtsGeom, defaultGeometry.getId(),
-                                                                   badGeometry.getErrorsSingleString() );
+                    geomType2Builders.get( geomType ).addGeometry( jtsGeom, defaultGeometry.getId(), message );
                 } else {
                     LOG.warn( "Geometry type " + geomType + " is not supported to be rendered in shp." );
                 }

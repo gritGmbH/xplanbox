@@ -2,14 +2,14 @@
 === Konfiguration der Applikationsserver
 
 Wie im Abschnitt <<anwendung-installieren>> beschrieben,
-werden für den Betrieb aller Komponenten der xPlanBox zwei Tomcat-Instanzen empfohlen,
-der _Dienste-Tomcat_ sowie __Anwendungs-Tomcat__. Im Folgenden wird die
-Konfiguration beider Tomcat-Instanzen beschrieben.
+werden für den Betrieb aller Komponenten der xPlanBox getrennte Tomcat-Instanzen empfohlen,
+der _Dienste-Tomcat_, _Anwendungs-Tomcat_ und _API-Tomcat_. Im Folgenden wird die
+Konfiguration der Tomcat-Instanzen beschrieben.
 
 [[anwendungs-tomcat]]
 ==== Anwendungs-Tomcat
 
-Im Anwendungs-Tomcat muss folgende Konfigurationen vorgenommen werden:
+Im _Anwendungs-Tomcat_ muss folgende Konfigurationen vorgenommen werden:
 
 Für den XPlanManagerWeb muss die Variable _XPLANBOX_CONFIG_ als Java
 Property gesetzt werden. Das mit Hilfe dieser Variable referenzierte
@@ -36,7 +36,7 @@ In dieser Datei erfolgt das Setzen der Variable _XPLANBOX_CONFIG_ und ggf. von _
 export JAVA_OPTS=’-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=/pfad/zu/den/workspaces’
 ----
 
-Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, muss die Variable *-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/xplan-manager-config* und ggf. *-DDEEGREE_WORKSPACE_ROOT=/pfad/zu/den/workspaces* in die bestehenden JAVA_OPTS integriert werden.
+Falls es bereits einen Export von `JAVA_OPTS` in dieser Datei gibt, muss die Variable *-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/xplan-manager-config* und ggf. *-DDEEGREE_WORKSPACE_ROOT=/pfad/zu/den/workspaces* in die bestehenden `JAVA_OPTS integriert werden.
 
 [[anwendungs-tomcat-windows]]
 ===== Windows
@@ -48,9 +48,9 @@ im Verzeichnis _<tomcat-root>/bin_ angelegt werden. Dort wird diese Variable, so
 export JAVA_OPTS=’-DXPLANBOX_CONFIG=C:\.deegree\xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=C:\pfad\zu\den\workspaces’
 ----
 
-Falls es bereits einen Export von JAVA_OPTS in dieser Datei gibt, muss die Variable *-DXPLANBOX_CONFIG=C:\.deegree\xplan-manager-config* und ggf. *-DDEEGREE_WORKSPACE_ROOT=C:\pfad\zu\den\workspaces* in die bestehenden JAVA_OPTS integriert werden.
+Falls es bereits einen Export von `JAVA_OPTS` in dieser Datei gibt, muss die Variable *-DXPLANBOX_CONFIG=C:\.deegree\xplan-manager-config* und ggf. *-DDEEGREE_WORKSPACE_ROOT=C:\pfad\zu\den\workspaces* in die bestehenden `JAVA_OPTS` integriert werden.
 
-NOTE: Der Anwendungs-Tomcat muss mindestens über 4GB Arbeitsspeicher verfügen,
+NOTE: Der _Anwendungs-Tomcat_ muss mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch setzen der Umgebungsvariable: _export JAVA_OPTS=’-Xmx4096m’_ erfolgen.
 
 [[dienste-tomcat]]
@@ -75,7 +75,7 @@ NOTE: Der Nutzername und das Passwort müssen in die
 managerConfiguration.properties eingetragen werden (s. Kapitel
 <<automatischer-workspace-reload>>.
 
-NOTE: Der Dienste-Tomcat muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
+NOTE: Der _Dienste-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch setzen der Umgebungsvariable: _exportJAVA_OPTS=’-Xmx4096m’_ erfolgen.
 
 ==== Absicherung des Tomcat und der Webanwendungen
@@ -88,5 +88,5 @@ Zusätzlich sollte die xPlanBox wie folgt konfiguriert sein:
 . die deegree webservice console für die drei Dienste-Konfigurationen _xplan-wms_, _xplan_wfs_ und _xplansyn-wfs_ im _Dienste-Tomcat_ ist durch ein Kennwort geschützt (Datei _console.pw_ im deegree Workspace).
 . die deegree REST-Schnittstelle ist durch Benutzername und Kennwort abgesichert (Datei _web.xml_ und _tomcat-users.xml_ im Tomcat-Konfigurationsverzeichnis, siehe Kapitel <<dienste-tomcat>>).
 . der Zugriff auf die deegree webservice console ist auf IP-Adressbereiche bzw. Domänen eingeschränkt (Datei _context.xml_ innerhalb der Webanwendungen).
-. beide Tomcat-Instanzen werden hinter einem Proxy (z. B. Apache httpd) betrieben (Datei _server.xml_ im Tomcat-Konfigurationsverzeichnis).
+. die Tomcat-Instanzen werden hinter einem Proxy (z. B. Apache httpd) betrieben (Datei _server.xml_ im Tomcat-Konfigurationsverzeichnis).
 . der Zugriff auf den XPlanManagerWeb ist durch Benutzername und Kennwort abgesichert (siehe Kapitel <<security>>).

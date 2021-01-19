@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -28,6 +28,9 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.geomgraph.Edge;
+import com.vividsolutions.jts.geomgraph.EdgeIntersection;
+import com.vividsolutions.jts.geomgraph.EdgeIntersectionList;
 import com.vividsolutions.jts.geomgraph.GeometryGraph;
 import com.vividsolutions.jts.geomgraph.Node;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
@@ -37,6 +40,7 @@ import org.deegree.geometry.Geometry;
 import org.deegree.geometry.GeometryFactory;
 import org.deegree.geometry.GeometryInspectionException;
 import org.deegree.geometry.GeometryInspector;
+import org.deegree.geometry.composite.CompositeGeometry;
 import org.deegree.geometry.linearization.CurveLinearizer;
 import org.deegree.geometry.linearization.LinearizationCriterion;
 import org.deegree.geometry.linearization.MaxErrorCriterion;
@@ -63,11 +67,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 import static org.deegree.geometry.primitive.segments.CurveSegment.CurveSegmentType.LINE_STRING_SEGMENT;
 
@@ -103,6 +110,12 @@ class XPlanGeometryInspector implements GeometryInspector {
                                                                                   new double[] { 0.0, 0.0 } );
 
     private static final String UNSUPPORTED_GEOMETRY_TYPE = "%s sind laut XPlanGML-Schema nicht erlaubt.";
+
+    private static final String INVALID_MSG_IDENTISCHESTUETZPUNKTE = "2.2.2.1: Identische St\u00fctzpunkte: %s.";
+
+    private static final String INVALID_MSG_SELBSTUEBERSCHNEIDUNG = "2.2.2.1: Selbst\u00fcberschneidung an folgenden Punkten: %s.";
+
+    private static final String INVALID_MSG_SELBSTUEBERSCHNEIDUNG_MULTIPOLYGON = "2.2.2.1: Selbst\u00fcberschneidung zwischen MulitPolygonen an folgenden Punkten: %s";
 
     private final com.vividsolutions.jts.geom.GeometryFactory jtsFactory;
 
@@ -213,9 +226,10 @@ class XPlanGeometryInspector implements GeometryInspector {
 
     private void inspect( MultiSurface geom )
                             throws GeometryInspectionException {
-        boolean hasSelfIntersection = checkSelfIntersection( geom );
-        if ( hasSelfIntersection ) {
-            String msg = createMessage( "2.2.2.1: Selbst\u00fcberschneidung zwischen MulitPolygonen." );
+        List<Geometry> selfIntersections = calulateSelfIntersection( geom );
+        if ( !selfIntersections.isEmpty() ) {
+            String msg = createMessage( String.format( INVALID_MSG_SELBSTUEBERSCHNEIDUNG_MULTIPOLYGON,
+                                                       geometriesAsReadableString( selfIntersections ) ) );
             createError( msg );
         }
     }
@@ -333,8 +347,8 @@ class XPlanGeometryInspector implements GeometryInspector {
         return ring;
     }
 
-    private boolean checkSelfIntersection( MultiSurface geom ) {
-        boolean hasSelfIntersection = false;
+    private List<Geometry> calulateSelfIntersection( MultiSurface geom ) {
+        List<Geometry> selfIntersections = new ArrayList<>();
         List<Object> surfaces = new ArrayList<>( geom );
         int intersectionIndex = 1;
         for ( Object curve1 : geom ) {
@@ -342,32 +356,48 @@ class XPlanGeometryInspector implements GeometryInspector {
             Surface surface1 = (Surface) curve1;
             for ( Object curve2 : surfaces ) {
                 Surface surface2 = inspect( (Surface) curve2 );
-                Geometry intersection = surface1.getIntersection( surface2 );
+                Geometry intersection = calculateSelfIntersection( surface1, surface2 );
                 if ( intersection != null ) {
-                    hasSelfIntersection = true;
+                    selfIntersections.add( intersection );
                     intersection.setId( geom.getId() + "_intersection_" + intersectionIndex++ );
-                    String intersectionMultiGeomMsg = "Geometrie der Selbst\u00fcberschneidung zwischen MulitPolygonen";
+                    String intersectionMultiGeomMsg = "Geometrie der Selbst\u00fcberschneidung zwischen MulttPolygonen";
                     badGeometries.add( new BadGeometry( intersection, intersectionMultiGeomMsg ) );
                 }
             }
         }
-        return hasSelfIntersection;
+        return selfIntersections;
+    }
+
+    private Geometry calculateSelfIntersection( Surface surface1, Surface surface2 ) {
+        if ( Surface.SurfaceType.Polygon.equals( surface1.getSurfaceType() ) && Surface.SurfaceType.Polygon.equals(
+                                surface2.getSurfaceType() ) ) {
+            org.deegree.geometry.primitive.Polygon polygon1 = (org.deegree.geometry.primitive.Polygon) surface1;
+            org.deegree.geometry.primitive.Polygon polygon2 = (org.deegree.geometry.primitive.Polygon) surface2;
+            return polygon1.getExteriorRing().getIntersection( polygon2.getExteriorRing() );
+
+        }
+        return surface1.getIntersection( surface2 );
     }
 
     void checkSelfIntersection( Ring ring ) {
         LineString jtsLineString = getJTSLineString( ring );
         boolean selfIntersection = !jtsLineString.isSimple();
         if ( selfIntersection ) {
-            String msg = createMessage( "2.2.2.1: Selbst\u00fcberschneidung." );
+            List<Point> points = calculateIntersectionsAndAddError( ring, jtsLineString );
+            String msg = createMessage( String.format( INVALID_MSG_SELBSTUEBERSCHNEIDUNG,
+                                                       points.stream().map( this::pointAsReadableString ).collect(
+                                                                               Collectors.joining( "," ) ) ) );
             createError( msg );
-            calculateIntersectionsAndAddError( ring, jtsLineString );
         }
     }
 
     void checkDuplicateControlPoints( Ring ring ) {
-        boolean hasDuplicateControlPoints = calculateDuplicateControlPointsAndAddErrors( ring );
-        if ( hasDuplicateControlPoints ) {
-            String msg = createMessage( "2.2.2.1: Identische St\u00fctzpunkte." );
+        List<Point> duplicateControlPoints = calculateDuplicateControlPointsAndAddErrors( ring );
+        if ( !duplicateControlPoints.isEmpty() ) {
+            String msg = createMessage( String.format( INVALID_MSG_IDENTISCHESTUETZPUNKTE,
+                                                       duplicateControlPoints.stream().map(
+                                                                               this::pointAsReadableString ).collect(
+                                                                               Collectors.joining( "," ) ) ) );
             createError( msg );
         }
     }
@@ -471,25 +501,39 @@ class XPlanGeometryInspector implements GeometryInspector {
         badGeometries.add( new BadGeometry( intersectionGeom, msg ) );
     }
 
-    private void calculateIntersectionsAndAddError( Ring ring, LineString jtsLineString ) {
+    private List<Point> calculateIntersectionsAndAddError( Ring ring, LineString jtsLineString ) {
+        List<Point> selfInterSectionPoints = new ArrayList<>();
         GeometryGraph graph = new GeometryGraph( 0, jtsLineString );
         LineIntersector lineIntersector = new RobustLineIntersector();
         graph.computeSelfNodes( lineIntersector, true );
-        int intersectionIndex = 1;
-        for ( Object node : graph.getNodes() ) {
-            Coordinate coordinate = ( (Node) node ).getCoordinate();
-            if ( !coordinate.equals( jtsLineString.getStartPoint().getCoordinate() ) ) {
-                String intersectionId = ring.getId() + "_intersection_" + intersectionIndex++;
-                Point intersectionGeom = new GeometryFactory().createPoint( intersectionId, coordinate.x, coordinate.y,
-                                                                            coordinate.z, ring.getCoordinateSystem() );
-                String intersectionMsg = "Geomerie der Selbst\u00fcberschneidung";
-                badGeometries.add( new BadGeometry( intersectionGeom, intersectionMsg ) );
+        List<Coordinate> selfInterSectionCoords = new ArrayList<>();
+        Iterator edgeIterator = graph.getEdgeIterator();
+        while ( edgeIterator.hasNext() ) {
+            Edge edge = (Edge) edgeIterator.next();
+            int maxSegmentIndex = edge.getMaximumSegmentIndex();
+            Iterator edgeIntersections = edge.getEdgeIntersectionList().iterator();
+            while ( edgeIntersections.hasNext() ) {
+                EdgeIntersection intersection = (EdgeIntersection) edgeIntersections.next();
+                if ( !intersection.isEndPoint( maxSegmentIndex ) ) {
+                    Coordinate coordinate = intersection.getCoordinate();
+                    if ( !selfInterSectionCoords.contains( coordinate ) ) {
+                        selfInterSectionCoords.add( coordinate );
+                        String intersectionId = ring.getId() + "_intersection_" + selfInterSectionCoords.size();
+                        Point intersectionGeom = new GeometryFactory().createPoint( intersectionId, coordinate.x,
+                                                                                    coordinate.y, coordinate.z,
+                                                                                    ring.getCoordinateSystem() );
+                        String intersectionMsg = "Geomerie der Selbst\u00fcberschneidung";
+                        badGeometries.add( new BadGeometry( intersectionGeom, intersectionMsg ) );
+                        selfInterSectionPoints.add( intersectionGeom );
+                    }
+                }
             }
         }
+        return selfInterSectionPoints;
     }
 
-    private boolean calculateDuplicateControlPointsAndAddErrors( Ring ring ) {
-        AtomicBoolean hasDuplicateControlPoints = new AtomicBoolean( false );
+    private List<Point> calculateDuplicateControlPointsAndAddErrors( Ring ring ) {
+        List<Point> duplicateControlPoints = new ArrayList<>();
         AtomicInteger duplicateControlPointIndex = new AtomicInteger( 1 );
 
         List<CurveSegment> curveSegments = ring.getCurveSegments();
@@ -503,7 +547,6 @@ class XPlanGeometryInspector implements GeometryInspector {
                     previous.set( cp );
                 } else {
                     if ( cp.equals( previous.get() ) ) {
-                        hasDuplicateControlPoints.set( true );
                         String duplicateControlPointId = ring.getId() + "_doppelterStuetzpunkt_"
                                                          + duplicateControlPointIndex.getAndIncrement();
                         Point duplicateControlPointGeom = new GeometryFactory().createPoint( duplicateControlPointId,
@@ -512,12 +555,64 @@ class XPlanGeometryInspector implements GeometryInspector {
                                                                                              ring.getCoordinateSystem() );
                         String duplicateControlPointMsg = "Doppelter St\u00fctzpunkte";
                         badGeometries.add( new BadGeometry( duplicateControlPointGeom, duplicateControlPointMsg ) );
+                        duplicateControlPoints.add( duplicateControlPointGeom );
                     }
                     previous.set( cp );
                 }
             } );
         } );
-        return hasDuplicateControlPoints.get();
+        return duplicateControlPoints;
+    }
+
+    private String geometriesAsReadableString( List<Geometry> selfIntersections ) {
+        return selfIntersections.stream().map( this::geometryAsReadableString ).collect( Collectors.joining( "," ) );
+    }
+
+    private String geometryAsReadableString( Geometry geom ) {
+        switch ( geom.getGeometryType() ) {
+        case PRIMITIVE_GEOMETRY:
+            return primitiveAsReadableString( (GeometricPrimitive) geom );
+        case MULTI_GEOMETRY:
+            return multipleAsReadableString( (MultiGeometry) geom );
+        case COMPOSITE_GEOMETRY:
+            return compositeAsReadableString( (CompositeGeometry) geom );
+        }
+        return "Ausgabe nicht moeglich.";
+    }
+
+    private String primitiveAsReadableString( GeometricPrimitive geom ) {
+        switch ( geom.getPrimitiveType() ) {
+        case Point:
+            return pointAsReadableString( (Point) geom );
+        case Curve:
+            return "Startpunkt: " + ( (Curve) geom ).getStartPoint() + "Endpunkt: " + ( (Curve) geom ).getEndPoint();
+        }
+        return "Ausgabe nicht moeglich.";
+    }
+
+    private String pointAsReadableString( Point geom ) {
+        return Arrays.stream( geom.getAsArray() ).filter( value -> !Double.isNaN( value ) ).mapToObj(
+                                Double::toString ).collect( Collectors.joining( ",", "(", ")" ) );
+    }
+
+    private String multipleAsReadableString( MultiGeometry geom ) {
+        StringBuilder sb = new StringBuilder();
+        geom.stream().forEach( g -> {
+            if ( sb.length() > 0 )
+                sb.append( ", " );
+            sb.append( geometryAsReadableString( (Geometry) g ) );
+        } );
+        return sb.toString();
+    }
+
+    private String compositeAsReadableString( CompositeGeometry geom ) {
+        StringBuilder sb = new StringBuilder();
+        geom.stream().forEach( g -> {
+            if ( sb.length() > 0 )
+                sb.append( ", " );
+            sb.append( geometryAsReadableString( (Geometry) g ) );
+        } );
+        return sb.toString();
     }
 
     String createMessage( String msg ) {
