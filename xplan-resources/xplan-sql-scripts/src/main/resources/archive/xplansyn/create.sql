@@ -2334,6 +2334,7 @@ CREATE TABLE xplansynarchive.xplan_bp_flaecheohnefestsetzung (
     xplan_begruendungabschnitte text,
     xplan_gliederung1 text,
     xplan_gliederung2 text,
+    xplan_aufschrift text,
     xplan_ebene integer,
     xplan_rechtsverbindlich text,
     xplan_hatgenerattribut text,
