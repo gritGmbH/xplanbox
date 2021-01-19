@@ -128,6 +128,8 @@ public class ReportUtils {
             return "5.1";
         case XPLAN_52:
             return "5.2";
+        case XPLAN_53:
+            return "5.3";
         case XPLAN_SYN:
             return "1.0";
         default:
