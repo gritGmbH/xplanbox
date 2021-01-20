@@ -316,7 +316,7 @@ Für die Aktualisierung auf die Version 3.3.1 sind folgende Schritte auszuführe
 ** Aktualisierung der Dateien _xplanGml41-inspirePlu.halex.alignment.xml_ und _xplanGml41-inspirePlu.halex_ im Verzeichnis _xplan-manager-config_ (s. <<teilweise-aktualisierung>>). Für die Aktualisierung der Daten im INSPIRE PLU Schema ist eine erneute Ausführung der Transformation notwendig.
 * Aktualisierung der Datenbank:
 ** Ausführen der Skripte im Verzeichnis _from_3.3_to_3.3.1_ im Modul _xplan-update-database_. Die Tabelle _xplanmgr.plans_ wurde um die Spalte _internalid_ erweitert.
-** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der __reSynthesizer__ wurde so angepasst, dass die _xplanmgr.plans.internalid_ bei Ausführung in in die synthetisierte FeatureCollection übernommen wird.
+** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der __reSynthesizer__ wurde so angepasst, dass die _xplanmgr.plans.internalid_ bei Ausführung in die synthetisierte FeatureCollection übernommen wird.
 
 [[aktualisierung-auf-die-version-4.0-der-xplanbox]]
 === Aktualisierung auf die Version 4.0 der xPlanBox
