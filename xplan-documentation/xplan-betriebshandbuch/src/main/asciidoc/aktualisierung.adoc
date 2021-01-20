@@ -74,6 +74,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 3.0              | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.0-der-xplanbox, Details>>)
 | 3.3              | ja (<<aktualisierung-auf-die-version-3.3-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-3.3-der-xplanbox, Details>>)
 | 4.0              | ja (<<aktualisierung-auf-die-version-4.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-4.0-der-xplanbox, Details>>)
+| 4.2              | ja (<<aktualisierung-auf-die-version-4.2-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-4.2-der-xplanbox, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |====================================
 
@@ -332,3 +333,18 @@ Für die Aktualisierung auf die Version 4.0 sind folgende Schritte auszuführen:
 ** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten.
 
 Die Installation der XPlanManagerAPI und XPlanValidatorAPI ist im Abschnitt <<web-anwendungen>> und die Konfiguration unter <<konfiguration-rest-api>> beschrieben.
+
+[[aktualisierung-auf-die-version-4.2-der-xplanbox]]
+=== Aktualisierung auf die Version 4.2 der xPlanBox
+
+Mit der Version 4.1 der xPlanBox wird die Version XPlanGML 5.3 unterstützt. Weiterhin sind einige Verbesserungen am XPlanValidator vorgenommen worden.
+Für die Aktualisierung auf die Version 4.2 sind folgende Schritte auszuführen:
+
+* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+* Aktualisierung der Datenbank:
+** Ausführen der Skripte für die Erstellung der Datenhaltung für 5.3 aus dem Modul _xplan-manager-workspace_:
+*** _fix/xplan53/create.sql_
+*** _pre/xplan53/create.sql_
+*** _archive/xplan53/create.sql_
+** Ausführen der Skripte im Verzeichnis _from_4.0_to_4.2_ im Modul _xplan-update-database_ in der vorgegebenen Reihenfolge
+** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
