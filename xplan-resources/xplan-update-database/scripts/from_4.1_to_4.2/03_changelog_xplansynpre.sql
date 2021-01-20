@@ -366,23 +366,11 @@ ALTER TABLE xplansynpre.xplan_bp_baugebietsteilflaeche ADD xplan_mingrwohneinhei
 
 INSERT INTO xplansynpre.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1611152091326-69', 'lyn (generated)', 'changelog_xplansynpre.xml', NOW(), 69, '8:4f47487c37e083f8fd4f12b80733ed34', 'addColumn tableName=xplan_bp_baugebietsteilflaeche', '', 'EXECUTED', NULL, NULL, '3.6.2', '1152192461');
 
--- Changeset changelog_xplansynpre.xml::1611152091326-70::lyn (generated)
-CREATE INDEX spatial_idx_318 ON xplansynpre.xplan_bp_flaecheohnefestsetzung USING GIST (xplan_position);
-
 INSERT INTO xplansynpre.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1611152091326-70', 'lyn (generated)', 'changelog_xplansynpre.xml', NOW(), 70, '8:89656ce67ea2be0f705d925f6f5a7f5c', 'createIndex indexName=spatial_idx_318, tableName=xplan_bp_flaecheohnefestsetzung', '', 'EXECUTED', NULL, NULL, '3.6.2', '1152192461');
-
--- Changeset changelog_xplansynpre.xml::1611152091326-71::lyn (generated)
-CREATE INDEX spatial_idx_319 ON xplansynpre.xplan_bp_zentralerversorgungsbereich USING GIST (xplan_position);
 
 INSERT INTO xplansynpre.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1611152091326-71', 'lyn (generated)', 'changelog_xplansynpre.xml', NOW(), 71, '8:38ec7639de12c2e198a7f79dfb10d2db', 'createIndex indexName=spatial_idx_319, tableName=xplan_bp_zentralerversorgungsbereich', '', 'EXECUTED', NULL, NULL, '3.6.2', '1152192461');
 
--- Changeset changelog_xplansynpre.xml::1611152091326-72::lyn (generated)
-CREATE INDEX spatial_idx_320 ON xplansynpre.xplan_fp_darstellungnachlandesrecht USING GIST (xplan_position);
-
 INSERT INTO xplansynpre.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1611152091326-72', 'lyn (generated)', 'changelog_xplansynpre.xml', NOW(), 72, '8:b9921894e5da074aaebfeeea80d3c725', 'createIndex indexName=spatial_idx_320, tableName=xplan_fp_darstellungnachlandesrecht', '', 'EXECUTED', NULL, NULL, '3.6.2', '1152192461');
-
--- Changeset changelog_xplansynpre.xml::1611152091326-73::lyn (generated)
-CREATE INDEX spatial_idx_322 ON xplansynpre.xplan_so_gelaendemorphologie USING GIST (xplan_position);
 
 INSERT INTO xplansynpre.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1611152091326-73', 'lyn (generated)', 'changelog_xplansynpre.xml', NOW(), 73, '8:8303ccea83958d36ff840f4fff81ed80', 'createIndex indexName=spatial_idx_322, tableName=xplan_so_gelaendemorphologie', '', 'EXECUTED', NULL, NULL, '3.6.2', '1152192461');
 
