@@ -8466,7 +8466,7 @@ CREATE TABLE xplansynarchive.xplan_fp_flaecheohnedarstellung (
     CONSTRAINT xplan_fp_flaecheohnedarstellung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_fp_flaecheohnedarstellung','xplan_position','0','GEOMETRY', 2);
-CREATE INDEX spatial_idx_320 ON xplan_fp_flaecheohnedarstellung USING GIST ( xplan_position  );
+CREATE INDEX spatial_idx_324 ON xplan_fp_flaecheohnedarstellung USING GIST ( xplan_position  );
 CREATE TABLE xplansynarchive.xplan_fp_plan (
     attr_gml_id text,
     xplan_gmlid text,
