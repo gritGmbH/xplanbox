@@ -1781,7 +1781,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C02faab91-bfc7-4ac2-87ec-3512188620eb" priority="normal">
         <source>
@@ -2444,7 +2444,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C4a9d102d-c24a-4e4f-9150-7ea2c3323718" priority="normal">
         <source>
@@ -2491,7 +2491,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C2ad584ab-eaee-467e-8592-806a79776e93" priority="normal">
         <source>
@@ -2762,7 +2762,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Ce05a97d9-06dd-415e-95a9-84bcb8167e47" priority="normal">
         <source>
@@ -2777,7 +2777,7 @@
         </target>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf44c7414-ef3b-4a88-ae54-f5fadfd082e1" priority="normal">
         <source>
