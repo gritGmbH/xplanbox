@@ -107,7 +107,8 @@ public class ReSynthesizerTool {
         Workspace workspace = initWorkspace( workspaceName );
         ManagerConfiguration managerConfiguration = createManagerConfiguration( configurationDirectory );
         XPlanDao xplanDao = createXplanDao( workspace, managerConfiguration );
-        XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
+        XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(
+                                managerConfiguration.getSynthesizerConfigurationDirectory() );
         SortPropertyReader sortPropertyReader = new SortPropertyReader( managerConfiguration.getSortConfiguration() );
         return new ReSynthesizer( xplanDao, xPlanSynthesizer, sortPropertyReader );
     }
