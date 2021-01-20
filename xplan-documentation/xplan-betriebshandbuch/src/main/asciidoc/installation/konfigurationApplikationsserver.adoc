@@ -76,7 +76,7 @@ managerConfiguration.properties eingetragen werden (s. Kapitel
 <<automatischer-workspace-reload>>.
 
 NOTE: Der _Dienste-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
-dies kann durch setzen der Umgebungsvariable: _exportJAVA_OPTS=’-Xmx4096m’_ erfolgen.
+dies kann durch setzen der Umgebungsvariable: _export JAVA_OPTS=’-Xmx4096m’_ erfolgen.
 
 ==== Absicherung des Tomcat und der Webanwendungen
 

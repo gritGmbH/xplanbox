@@ -27,7 +27,7 @@ Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Dirk Stenger,
 Sebastian Goerke, Lyn Elisa Goltz, Carmen Tawalika, Jeronimo Wanhoff,
 Lena Rippolz.
 
-Copyright (C) 2010 - 2020, lat/lon GmbH
+Copyright (C) 2010 - 2021, lat/lon GmbH
 
 [[lizenz]]
 === Lizenz
