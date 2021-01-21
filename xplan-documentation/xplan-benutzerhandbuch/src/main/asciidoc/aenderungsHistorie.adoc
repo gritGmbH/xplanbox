@@ -2,6 +2,23 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
+[[Aenderungshistorie-4.2]]
+=== Version 4.2
+
+==== Erweiterungen
+- Unterstützung für XPlanGML 5.3 in allen Komponenten der xPlanBox
+
+==== Fehlerbehebungen
+
+
+[[Aenderungshistorie-4.1]]
+=== Version 4.1
+
+==== Erweiterungen
+- Verbesserungen des XPlanValidator
+
+==== Fehlerbehebungen
+
 [[Aenderungshistorie-4.0]]
 === Version 4.0 (deegree Enterprise 2020.2)
 
