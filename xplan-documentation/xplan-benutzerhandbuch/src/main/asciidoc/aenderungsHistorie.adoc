@@ -9,15 +9,26 @@
 - Unterstützung für XPlanGML 5.3 in allen Komponenten der xPlanBox
 
 ==== Fehlerbehebungen
-
+- (TT_10430) Verbesserung der Aktualisierungsanleitung im Betriebshandbuch
+- (TT_10422) Behebung eines Fehlers bei StoredQuery Anfragen, die zu unvollständigen Antworten führen können
+- (TT_10429) Ergänzen der Keywords im XPlanSynWFS für die Version 5.2
+- Version der REST API auf 1.0 aktualisiert
 
 [[Aenderungshistorie-4.1]]
 === Version 4.1
 
 ==== Erweiterungen
-- Verbesserungen des XPlanValidator
+- Verbesserungen des XPlanValidator:
+
+  * Anzeige der XPlanGML Version im Validierungsbericht
+  * Angabe der fehlerhaften Koordinate bei einem Geltungsbereichfehler
+  * Geometrische Validierung von Multigeometrien
+  * Ausgabe der Koordinate(n) des/der Schnittpunkt(e) bei einer Selbstüberschneidung
 
 ==== Fehlerbehebungen
+- (TT_10420) Beibehalten der Übersetzungen externer Codelisten beim Ausführen des reSynthesizer
+- (TT_10405) Entfernen desdoppelten Koordinatensystems EPSG:25832 aus den Konfigurationen des XPlanWMS
+- (TT_10402) Ausgabe doppelten Stützpunkte durch den XPlanValidator
 
 [[Aenderungshistorie-4.0]]
 === Version 4.0 (deegree Enterprise 2020.2)
