@@ -862,6 +862,122 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C6d11c486-8c86-4624-b676-a6c6bcd36b63" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="raeumlicherGeltungsbereich" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="extent" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C5828cfa5-2a65-4812-9ce6-8afa30348619" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="raeumlicherGeltungsbereich" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="extent" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C95e1f5c5-64bd-4ee2-aa59-397adaa89bb5" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="raeumlicherGeltungsbereich" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="extent" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurfacePatch"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd8211f19-4021-465c-9ff8-ff4927ec2ab6" priority="normal">
+        <source>
+            <property>
+                <type name="BP_PlanType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="raeumlicherGeltungsbereich" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="extent" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurfacePatch"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C59fccb26-1c3b-4786-98dc-f971d815289c" priority="normal">
         <source>
             <property>
@@ -4528,6 +4644,314 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C25fee773-0ebc-4416-a4de-0e9ee9a41572" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C797d80c9-c8a3-4559-8a3e-cfd35ea7a086" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C0b93bb2d-ee9a-4f78-aecd-8051a53e62d8" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C0834d683-0135-4a59-97e5-9b675b27d783" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C4c4fec12-366f-4dbe-be1c-c4e0ea43d426" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cefb956c3-52ea-4479-b2bd-ea00243e1fa5" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C02e6843d-e1a1-4e8d-8222-29986c47a452" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurfacePatch"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C18f983f4-f998-4edc-abdf-05834c63cc33" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurfacePatch"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C701a208f-bb88-478c-ac69-a6adfd189b70" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C6dcb7c1e-56eb-4f18-a5d1-9fd80b5f50be" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C7929e8c0-95f7-4cd7-89f7-0a0790fe6c25" priority="normal">
         <source>
             <property>
@@ -4849,6 +5273,116 @@
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
                 <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
                 <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C5e07d3f5-64ee-4109-b9ed-a9d3533467d8" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C7ed9436d-fd1a-43e4-a8a7-79814c188983" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd5715a59-35ae-41ec-a85c-e2ea3e31dd64" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurfacePatch"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C73d1a65f-db92-42c8-8fa0-d1dcd424ede3" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurfacePatch"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
         <parameter value="false" name="copyGeometries"/>
@@ -11000,6 +11534,34 @@ if ( typ == '1000' ) {
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cfc11856d-18bf-44fe-ad81-bb5fe496835b" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C3f94817b-333a-4b0c-8424-252c8c5a8225" priority="normal">
         <source>
             <property>
@@ -11008,6 +11570,34 @@ if ( typ == '1000' ) {
                 </type>
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
                 <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C904feaa3-f808-4241-b0cd-fd39ecf0cd3b" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenschlussobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
                 <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </source>
@@ -11050,6 +11640,34 @@ if ( typ == '1000' ) {
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C34af0ea2-432f-4b8f-a973-028d56931ced" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Polygon" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cec3b9810-d6d3-43ff-9022-6778867d9a1e" priority="normal">
         <source>
             <property>
@@ -11075,6 +11693,34 @@ if ( typ == '1000' ) {
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbae30480-9f43-4879-a04c-d99d251fb9c4" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C545f40ff-0fe5-4d4e-92ba-36accacba055" priority="normal">
         <source>
             <property>
@@ -11083,6 +11729,34 @@ if ( typ == '1000' ) {
                 </type>
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
                 <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cfb3b234a-63e8-4ebf-ae30-072ae9c9a6bc" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenschlussobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
                 <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </source>
@@ -11125,6 +11799,34 @@ if ( typ == '1000' ) {
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C29601975-8168-46d4-800d-956d60f04dbe" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbec7f9c2-d6c0-4f0f-b65c-1d04626d9e2a" priority="normal">
         <source>
             <property>
@@ -11144,6 +11846,406 @@ if ( typ == '1000' ) {
                 <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
                 <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
                 <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C6bc69afc-1fdc-423d-97cb-eb3b7687d549" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd0c9682e-af91-4a0f-aebd-f91fd9547011" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C78316487-7596-4962-b68b-18ca85494055" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenschlussobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C70da6e67-4e9f-4e50-aeac-2cb30648fd95" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenschlussobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd26bf3d5-46e5-48f7-b691-cae4f484a658" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca43018c6-7fcf-47d1-82c1-b467c38e78de" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C4da423dc-0bce-48c2-9322-4f87a59602b9" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurfacePatch"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd66f7b7f-6cf6-4f7e-a21e-523fd75ee39f" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurfacePatch"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C593753e3-55bb-4d61-a6d2-4d2046ec8dab" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenschlussobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurfacePatch"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cdc361bf8-1fb2-4783-99cc-c50185b912c6" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenschlussobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurfacePatch"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C740bbdef-a3d2-44db-bd1b-9b7b883df335" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurfacePatch"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbc19e90d-8812-4c2e-9226-39fb7f665a0e" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/patches"/>
+                <child name="patches" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurfacePatch"/>
+                <child name="PolygonPatch" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C34b8360c-8efc-4eb8-952b-bbf7e09e1913" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
         <parameter value="false" name="copyGeometries"/>
@@ -11175,6 +12277,34 @@ if ( typ == '1000' ) {
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C64072f10-422c-43b3-a975-c8ffc4303e65" priority="normal">
+        <source>
+            <property>
+                <type name="BP_FlaechenschlussobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C64122498-fab7-4280-a5b0-789a30a79e54" priority="normal">
         <source>
             <property>
@@ -11183,6 +12313,34 @@ if ( typ == '1000' ) {
                 </type>
                 <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
                 <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
+                <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="false" name="copyGeometries"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cb19ecef7-3972-4e60-9e57-bc85f61f2531" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/0">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+                <child name="position" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="MultiSurface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="surfaceMember" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractSurface"/>
                 <child name="TriangulatedSurface" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </source>
