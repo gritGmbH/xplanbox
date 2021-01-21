@@ -6731,7 +6731,7 @@ CREATE TABLE xplansynarchive.xplan_bp_zentralerversorgungsbereich (
     CONSTRAINT xplan_bp_zentralerversorgungsbereich_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_zentralerversorgungsbereich','xplan_position','0','GEOMETRY', 2);
-CREATE INDEX spatial_idx_319 ON xplan_bp_zentralerversorgungsbereich USING GIST ( xplan_position  );
+CREATE INDEX spatial_idx_327 ON xplan_bp_zentralerversorgungsbereich USING GIST ( xplan_position  );
 CREATE TABLE xplansynarchive.xplan_bp_zusatzkontingentlaerm (
     attr_gml_id text,
     xplan_gmlid text,
