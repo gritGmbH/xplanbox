@@ -274,6 +274,18 @@
       <Layer>fp_vorbehaltefl</Layer>
     </Theme>
     <Theme>
+      <Identifier>fp_darstellungnachlandesrecht</Identifier>
+      <d:Title>FP: Darstellung nach Landesrecht</d:Title>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>fp_darstellungnachlandesrecht</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>fp_flaecheohnedarstellung</Identifier>
+      <d:Title>FP: Fläche ohne Darstellung</d:Title>
+      <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>fp_flaecheohnedarstellung</Layer>
+    </Theme>
+    <Theme>
       <Identifier>fp_beschriftung</Identifier>
       <d:Title>FP: Beschriftung</d:Title>
       <s:CRS>${vectorCrs} EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>

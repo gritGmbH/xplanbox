@@ -78,7 +78,8 @@ public enum PlanStatus {
     public static PlanStatus findByLegislationStatusCode( int legislationStatusCode ) {
         if ( legislationStatusCode < 0 || legislationStatusCode == 3000 || legislationStatusCode == 4000 )
             return FESTGESTELLT;
-        if ( legislationStatusCode == 4500 || legislationStatusCode == 5000 )
+        if ( legislationStatusCode == 4500 || legislationStatusCode == 5000 || legislationStatusCode == 50000
+             || legislationStatusCode == 50001 )
             return ARCHIVIERT;
         return IN_AUFSTELLUNG;
     }

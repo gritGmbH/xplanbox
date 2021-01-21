@@ -108,7 +108,7 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest{
     @Test
     public void testSynthesize_ConfigDirectoryWithRule()
                             throws Exception {
-        Path configDirectory = createTmpDirectoryAndCopyRuleFile( "xplan41.syn", "XP_BesondereArtDerBaulNutzung.xml" );
+        Path configDirectory = createTmpDirectoryAndCopyRuleFile( "xplan41.syn", "XP_BesondereArtDerBaulNutzung-XPlan3.xml" );
         XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer( configDirectory );
 
         XPlanArchive archive = getTestArchive( "xplan41/LA22.zip" );
@@ -134,7 +134,7 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest{
     public void testSynthesize_Synthesize_Enumeration_XP_BesondereArtDerBaulNutzung()
                             throws Exception {
         Path configDirectory = createTmpDirectoryAndCopyRuleFile( "xplan41_XP_BesondereArtDerBaulNutzung.syn",
-                                                                  "xplan_XP_BesondereArtDerBaulNutzung.xml" );
+                                                                  "XP_BesondereArtDerBaulNutzung-XPlan4.xml" );
         XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer( configDirectory );
 
         XPlanArchive archive = getTestArchive( "xplan41/LA22.zip" );
@@ -151,7 +151,7 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest{
     public void testSynthesize_Synthesize_Codelist_BP_DetailArtDerBaulNutzung()
                             throws Exception {
         Path configDirectory = createTmpDirectoryAndCopyRuleFile( "xplan41_BP_DetailArtDerBaulNutzung.syn",
-                                                                  "xplan_BP_DetailArtDerBaulNutzung.xml" );
+                                                                  "BP_DetailArtDerBaulNutzung.xml" );
         XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer( configDirectory );
 
         XPlanArchive archive = getTestArchive( "xplan41/BP2070-detailierteArtDerBaulNutzung.zip" );

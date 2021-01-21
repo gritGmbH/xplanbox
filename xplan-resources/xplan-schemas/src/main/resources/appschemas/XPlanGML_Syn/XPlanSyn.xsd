@@ -1298,6 +1298,8 @@
             <element name="dachgestaltung" minOccurs="0" type="string" />
             <element name="VF" minOccurs="0" type="string" />
             <element name="VFUOM" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -1621,6 +1623,8 @@
             <element name="bebauungsArtCode" minOccurs="0" type="string" />
             <element name="abweichendeBauweise" minOccurs="0" type="string" />
             <element name="abweichendeBauweiseCode" minOccurs="0" type="string" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -2477,6 +2481,60 @@
       </complexContent>
     </complexType>
   </element>
+  <element name="BP_FlaecheOhneFestsetzung" substitutionGroup="gml:AbstractFeature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="textAbschnitte" minOccurs="0" type="string" />
+            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="rechtsverbindlich" minOccurs="0" type="string" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
   <element name="BP_FoerderungsFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
@@ -2890,6 +2948,8 @@
             <element name="bebauungsArt" minOccurs="0" type="string" />
             <element name="bebauungsArtCode" minOccurs="0" type="string" />
             <element name="dachgestaltung" minOccurs="0" type="string" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -3462,6 +3522,8 @@
             <element name="zugunstenVon" minOccurs="0" type="string" />
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -4681,6 +4743,10 @@
             <element name="versionSonstRechtsgrundlageDatum" minOccurs="0" type="date" />
             <element name="versionSonstRechtsgrundlageText" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="veraenderungssperreBeschlussDatum" minOccurs="0" type="date" />
+            <element name="veraenderungssperreEndDatum" minOccurs="0" type="date" />
+            <element name="verlaengerungVeraenderungssperre" minOccurs="0" type="string" />
+            <element name="verlaengerungVeraenderungssperreCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -5121,6 +5187,14 @@
             <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="art" minOccurs="0" type="string" />
+            <element name="artCode" minOccurs="0" type="string" />
+            <element name="knotenpunkt" minOccurs="0" type="string" />
+            <element name="knotenpunktCode" minOccurs="0" type="string" />
+            <element name="geschwindigkeit" minOccurs="0" type="double" />
+            <element name="geschwindigkeitUOM" minOccurs="0" type="string" />
+            <element name="schenkellaenge" minOccurs="0" type="double" />
+            <element name="schenkellaengeUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -5417,6 +5491,8 @@
             <element name="zugunstenVon" minOccurs="0" type="string" />
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -5556,6 +5632,8 @@
             <element name="ZU_Ausn" minOccurs="0" type="integer" />
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -6098,6 +6176,8 @@
             <element name="dachgestaltung" minOccurs="0" type="string" />
             <element name="VF" minOccurs="0" type="string" />
             <element name="VFUOM" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -6317,6 +6397,8 @@
             <element name="zugunstenVon" minOccurs="0" type="string" />
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -6527,6 +6609,8 @@
             <element name="verlaengerungCode" minOccurs="0" type="string" />
             <element name="refBeschluss" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="veraenderungssperreBeschlussDatum" minOccurs="0" type="date" />
+            <element name="veraenderungssperreStartDatum" minOccurs="0" type="date" />
           </sequence>
         </extension>
       </complexContent>
@@ -6671,6 +6755,8 @@
             <element name="Z_Staffel" minOccurs="0" type="integer" />
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="zugunstenVon" minOccurs="0" type="string" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -7058,6 +7144,60 @@
       </complexContent>
     </complexType>
   </element>
+  <element name="BP_ZentralerVersorgungsbereich" substitutionGroup="gml:AbstractFeature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="textAbschnitte" minOccurs="0" type="string" />
+            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="rechtsverbindlich" minOccurs="0" type="string" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
   <element name="BP_ZusatzkontingentLaerm" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
@@ -7216,6 +7356,7 @@
             <element name="nordwinkel" minOccurs="0" type="string" />
             <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -7328,6 +7469,11 @@
             <element name="nordwinkel" minOccurs="0" type="string" />
             <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="massnahme" minOccurs="0" type="string" />
+            <element name="massnahmeCode" minOccurs="0" type="string" />
+            <element name="detailMassnahme" minOccurs="0" type="string" />
+            <element name="detailMassnahmeCode" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -7383,6 +7529,7 @@
             <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="aufschuettungsmaterial" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -7516,6 +7663,7 @@
             <element name="weitereMassnahme1" minOccurs="0" type="string" />
             <element name="weitereMassnahme2" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -7693,6 +7841,9 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="detaillierteSondernutzung" minOccurs="0" type="string" />
+            <element name="detaillierteSondernutzungCode" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -7791,6 +7942,7 @@
             <element name="nordwinkelUOM" minOccurs="0" type="string" />
             <element name="abbaugut" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -7850,6 +8002,64 @@
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+  <element name="FP_DarstellungNachLandesrecht" substitutionGroup="gml:AbstractFeature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="textAbschnitte" minOccurs="0" type="string" />
+            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="rechtsverbindlich" minOccurs="0" type="string" />
+            <element name="informell" minOccurs="0" type="string" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="spezifischePraegung" minOccurs="0" type="string" />
+            <element name="spezifischePraegungCode" minOccurs="0" type="string" />
+            <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
+            <element name="detailZweckbestimmung" minOccurs="0" type="string" />
+            <element name="detailZweckbestimmungCode" minOccurs="0" type="string" />
+            <element name="kurzbeschreibung" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8107,6 +8317,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8178,6 +8389,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8245,6 +8457,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8388,6 +8601,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8448,6 +8662,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8517,6 +8732,7 @@
             <element name="aufschrift" minOccurs="0" type="string" />
             <element name="istVerdachtsflaeche" minOccurs="0" type="string" />
             <element name="nummer" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8615,6 +8831,7 @@
             <element name="zweckbestimmungCode" minOccurs="0" type="string" />
             <element name="detaillierteZweckbestimmung" minOccurs="0" type="string" />
             <element name="detaillierteZweckbestimmungCode" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8691,6 +8908,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8806,6 +9024,58 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+  <element name="FP_FlaecheOhneDarstellung" substitutionGroup="gml:AbstractFeature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="textAbschnitte" minOccurs="0" type="string" />
+            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="rechtsverbindlich" minOccurs="0" type="string" />
+            <element name="informell" minOccurs="0" type="string" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="spezifischePraegung" minOccurs="0" type="string" />
+            <element name="spezifischePraegungCode" minOccurs="0" type="string" />
+            <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -8958,6 +9228,7 @@
             <element name="weitereZweckbestimmung2Code" minOccurs="0" type="string" />
             <element name="vorhaben" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9144,6 +9415,7 @@
             <element name="weitereMassnahme1" minOccurs="0" type="string" />
             <element name="weitereMassnahme2" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9275,6 +9547,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9347,6 +9620,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9424,6 +9698,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9479,6 +9754,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9569,6 +9845,7 @@
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="zugunstenVon" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9685,6 +9962,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9761,6 +10039,7 @@
             <element name="eigentumsartCode" minOccurs="0" type="string" />
             <element name="betreten" minOccurs="0" type="string" />
             <element name="betretenCode" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9883,6 +10162,7 @@
             <element name="gehoertZuFP_Bereich" minOccurs="0" type="string" />
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -9936,6 +10216,7 @@
             <element name="auspraegung" minOccurs="0" type="string" />
             <element name="auspraegungCode" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -17595,6 +17876,60 @@
             <element name="durchfuehrungEndDatum" minOccurs="0" type="date" />
             <element name="traegerMassnahme" minOccurs="0" type="string" />
             <element name="aufschrift" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+  <element name="SO_Gelaendemorphologie" substitutionGroup="gml:AbstractFeature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="textAbschnitte" minOccurs="0" type="string" />
+            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="sonstRechtscharakter" minOccurs="0" type="string" />
+            <element name="sonstRechtscharakterCode" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="flussrichtung" minOccurs="0" type="string" />
+            <element name="nordwinkel" minOccurs="0" type="string" />
+            <element name="nordwinkelUOM" minOccurs="0" type="string" />
+            <element name="artDerFestlegung" minOccurs="0" type="string" />
+            <element name="artDerFestlegungCode" minOccurs="0" type="string" />
+            <element name="detailArtDerFestlegung" minOccurs="0" type="string" />
+            <element name="detailArtDerFestlegungCode" minOccurs="0" type="string" />
+            <element name="name" minOccurs="0" type="string" />
+            <element name="nummer" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>

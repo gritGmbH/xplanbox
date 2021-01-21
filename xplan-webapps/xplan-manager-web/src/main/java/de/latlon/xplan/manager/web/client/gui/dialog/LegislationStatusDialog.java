@@ -120,7 +120,8 @@ public class LegislationStatusDialog extends WizardDialogBox {
                 legislationStatusListBox.addItem( MESSAGES.legislationStatusDialogFestgestelltSelectedOption() );
                 legislationStatusListBox.addItem( MESSAGES.legislationStatusDialogInAufstellungOption() );
                 legislationStatusListBox.addItem( MESSAGES.legislationStatusDialogArchiviertOption() );
-            } else if ( legislationStatusCode == 4500 || legislationStatusCode == 5000 ) {
+            } else if ( legislationStatusCode == 4500 || legislationStatusCode == 5000 || legislationStatusCode == 50000
+                        || legislationStatusCode == 50001 ) {
                 legislationStatusListBox.addItem( MESSAGES.legislationStatusDialogFestgestelltOption() );
                 legislationStatusListBox.addItem( MESSAGES.legislationStatusDialogInAufstellungOption() );
                 legislationStatusListBox.addItem( MESSAGES.legislationStatusDialogArchiviertSelectedOption() );

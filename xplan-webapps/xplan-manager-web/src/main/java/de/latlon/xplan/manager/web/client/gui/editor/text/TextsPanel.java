@@ -55,13 +55,6 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.client.gui.editor.text;
 
-import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_50;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_52;
-
-import java.util.List;
-
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -73,15 +66,19 @@ import com.google.gwt.user.cellview.client.TextHeader;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-
 import de.latlon.xplan.manager.web.client.gui.editor.AbstractEditorSubPanelWithTable;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.SavedHandler;
-import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
-import de.latlon.xplan.manager.web.shared.edit.Reference;
-import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.Text;
 import de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType;
+
+import java.util.List;
+
+import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_50;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_52;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_53;
 
 /**
  * Panel for texts.
@@ -110,7 +107,8 @@ public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
         // #3305 - georeference is not needed.
         // if ( !XPLAN_3.equals( version ) )
         // addGeoReferenceColumn( textsList );
-        if ( XPLAN_50.equals( version ) || XPLAN_51.equals( version ) || XPLAN_52.equals( version ) ) {
+        if ( XPLAN_50.equals( version ) || XPLAN_51.equals( version ) || XPLAN_52.equals( version ) || XPLAN_53.equals(
+                                version ) ) {
             addRechtscharakterColumn( textsList );
         }
         addReferenceColumn( textsList );

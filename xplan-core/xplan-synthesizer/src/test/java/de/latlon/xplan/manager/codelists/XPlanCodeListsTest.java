@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -55,15 +55,15 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.codelists;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import de.latlon.xplan.commons.XPlanVersion;
+import org.junit.Test;
 
 import java.net.URL;
 import java.util.Map;
 
-import org.junit.Test;
-
-import de.latlon.xplan.commons.XPlanVersion;
+import static org.deegree.gml.GMLVersion.GML_30;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -89,10 +89,19 @@ public class XPlanCodeListsTest {
     }
 
     @Test
-    public void testParseOld()
+    public void testGetDescription_XPlan53() {
+        XPlanVersion version = XPlanVersion.XPLAN_53;
+        XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get( version );
+        String legislationStatusTranslation = xPlanCodeLists.getDescription( "BP_Rechtsstand", "4000" );
+
+        assertThat( legislationStatusTranslation, is( "InkraftGetreten" ) );
+    }
+
+    @Test
+    public void testParseXPlan3()
                             throws Exception {
-        URL codeListFile = XPlanCodeListsTest.class.getResource( "../synthesizer/XP_BesondereArtDerBaulNutzung.xml" );
-        XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists( codeListFile );
+        URL codeListFile = XPlanCodeListsTest.class.getResource( "../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan3.xml" );
+        XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists( codeListFile, GML_30 );
 
         Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
         assertThat( codesToDescriptions.size(), is( 1 ) );
@@ -100,14 +109,27 @@ public class XPlanCodeListsTest {
     }
 
     @Test
-    public void testParseNew()
+    public void testParseXPlan4()
                             throws Exception {
-        URL codeListFile = XPlanCodeListsTest.class.getResource( "../synthesizer/xplan_XP_BesondereArtDerBaulNutzung.xml" );
-        XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists( codeListFile );
+        URL codeListFile = XPlanCodeListsTest.class.getResource(
+                                "../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan4.xml" );
+        XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists( codeListFile, GML_30 );
 
         Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
         assertThat( codesToDescriptions.size(), is( 1 ) );
         assertThat( codesToDescriptions.values().iterator().next().size(), is( 3 ) );
+    }
+
+    @Test
+    public void testParseXPlan5()
+                            throws Exception {
+        URL codeListFile = XPlanCodeListsTest.class.getResource(
+                                "../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan5.xml" );
+        XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists( codeListFile );
+
+        Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
+        assertThat( codesToDescriptions.size(), is( 1 ) );
+        assertThat( codesToDescriptions.values().iterator().next().size(), is( 15 ) );
     }
 
 }

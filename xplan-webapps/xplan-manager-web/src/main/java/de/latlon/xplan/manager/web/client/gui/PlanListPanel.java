@@ -741,14 +741,16 @@ public class PlanListPanel extends DecoratorPanel {
                || "XPLAN_41".equals( xPlan.getVersion() )
                || "XPLAN_50".equals( xPlan.getVersion() )
                || "XPLAN_51".equals( xPlan.getVersion() )
-               || "XPLAN_52".equals( xPlan.getVersion() );
+               || "XPLAN_52".equals( xPlan.getVersion() )
+               || "XPLAN_53".equals( xPlan.getVersion() );
     }
 
     private boolean isVersionSupportedByInpirePlu( XPlan xPlan ) {
         return "XPLAN_41".equals( xPlan.getVersion() )
                || "XPLAN_50".equals( xPlan.getVersion() )
                || "XPLAN_51".equals( xPlan.getVersion() )
-               || "XPLAN_52".equals( xPlan.getVersion() );
+               || "XPLAN_52".equals( xPlan.getVersion() )
+               || "XPLAN_53".equals( xPlan.getVersion() );
     }
 
     private String translateVersion( String version ) {
@@ -764,6 +766,8 @@ public class PlanListPanel extends DecoratorPanel {
             return "5.1";
         if ( "XPLAN_52".equalsIgnoreCase( version ) )
             return "5.2";
+        if ( "XPLAN_53".equalsIgnoreCase( version ) )
+            return "5.3";
         return version;
     }
 

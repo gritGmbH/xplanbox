@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -355,4 +355,70 @@ public interface CodelistMessages extends Messages {
     String XPLAN_52_XP_RechtscharakterPlanaenderung_1100_Ergaenzung();
 
     String XPLAN_52_XP_RechtscharakterPlanaenderung_2000_Aufhebung();
+
+    String XPLAN_53_BP_PlanArt_1000_BPlan();
+
+    String XPLAN_53_BP_PlanArt_10000_EinfacherBPlan();
+
+    String XPLAN_53_BP_PlanArt_10001_QualifizierterBPlan();
+
+    String XPLAN_53_BP_PlanArt_3000_VorhabenbezogenerBPlan();
+
+    String XPLAN_53_BP_PlanArt_3001_VorhabenUndErschliessungsplan();
+
+    String XPLAN_53_BP_PlanArt_4000_InnenbereichsSatzung();
+
+    String XPLAN_53_BP_PlanArt_40000_KlarstellungsSatzung();
+
+    String XPLAN_53_BP_PlanArt_40001_EntwicklungsSatzung();
+
+    String XPLAN_53_BP_PlanArt_40002_ErgaenzungsSatzung();
+
+    String XPLAN_53_BP_PlanArt_5000_AussenbereichsSatzung();
+
+    String XPLAN_53_BP_PlanArt_7000_OertlicheBauvorschrift();
+
+    String XPLAN_53_BP_PlanArt_9999_Sonstiges();
+
+    String XPLAN_53_BP_Rechtsstand_1000_Aufstellungsbeschluss();
+
+    String XPLAN_53_BP_Rechtsstand_2000_Entwurf();
+
+    String XPLAN_53_BP_Rechtsstand_2100_FruehzeitigeBehoerdenBeteiligung();
+
+    String XPLAN_53_BP_Rechtsstand_2200_FruehzeitigeOeffentlichkeitsBeteiligung();
+
+    String XPLAN_53_BP_Rechtsstand_2300_BehoerdenBeteiligung();
+
+    String XPLAN_53_BP_Rechtsstand_2400_OeffentlicheAuslegung();
+
+    String XPLAN_53_BP_Rechtsstand_3000_Satzung();
+
+    String XPLAN_53_BP_Rechtsstand_4000_InkraftGetreten();
+
+    String XPLAN_53_BP_Rechtsstand_4500_TeilweiseUntergegangen();
+
+    String XPLAN_53_BP_Rechtsstand_5000_Untergegangen();
+
+    String XPLAN_53_BP_Rechtsstand_50000_Aufgehoben();
+
+    String XPLAN_53_BP_Rechtsstand_50001_AusserKraft();
+
+    String XPLAN_53_BP_Verfahren_1000_Normal();
+
+    String XPLAN_53_BP_Verfahren_2000_Parag13();
+
+    String XPLAN_53_BP_Verfahren_3000_Parag13a();
+
+    String XPLAN_53_BP_Verfahren_4000_Parag13b();
+
+    String XPLAN_53_XP_RechtscharakterPlanaenderung_1000_Aenderung();
+
+    String XPLAN_53_XP_RechtscharakterPlanaenderung_1100_Ergaenzung();
+
+    String XPLAN_53_XP_RechtscharakterPlanaenderung_2000_Aufhebung();
+
+    String XPLAN_53_XP_RechtscharakterPlanaenderung_20000_Aufhebungsverfahren();
+
+    String XPLAN_53_XP_RechtscharakterPlanaenderung_20001_Ueberplanung();
 }

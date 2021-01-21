@@ -85,6 +85,7 @@ public class ExternalReferenceScanner {
         case XPLAN_50:
         case XPLAN_51:
         case XPLAN_52:
+        case XPLAN_53:
             scanXplan5( fc );
             break;
         default:
