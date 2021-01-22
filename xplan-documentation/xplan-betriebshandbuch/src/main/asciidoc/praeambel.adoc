@@ -61,7 +61,7 @@ sofern diese verfügbar sind. Näheres regelt der EVB-IT Pflegevertrag.
 
 Die Binärprogramme der xPlanBox werden von lat/lon hergestellt und stehen unter einem
 besonderen Nutzungsvorbehalt. Vertragspartner erhalten ein nicht dauerhaftes, nicht ausschließliches und
-nicht übertragbares Nutzungsrecht an den Binärprogrammen der xPlanBox.
+nicht übertragbares Nutzungsrecht an den Binärprogrammen der xPlanBox. Näheres regelt der EVB-IT Pflegevertrag.
 
 [[lizenz-des-dokuments]]
 === Lizenz des Dokuments

@@ -1,3 +1,4 @@
+[[konfiguration-manager]]
 == Konfiguration des XPlanManagerWeb
 
 In den nachfolgenden Kapiteln wird die Konfiguration des XPlanManagerWeb erläutert:

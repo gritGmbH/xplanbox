@@ -7,7 +7,7 @@ Die GDAL Unterstützung ist optional, die Konfiguration im XPlanManager ist im A
 IMPORTANT: Der Zugriff auf die GDAL-Bibliothek erfolgt über die Schnittstelle (Java Native Interface) JNI. Je JVM kann die
 GDAL-Bibliothek nur einmal geladen werden. Deswegen muss jede Webapp der
 xPlanBox, die GDAL verwendet (`xplan-wms` und `xplan-manager-web`), in einer
-separaten Tomcat Instanz installiert werden.
+separaten Tomcat-Instanz installiert werden.
 
 [[installation-gdal-linux]]
 ==== Linux

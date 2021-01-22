@@ -3,12 +3,12 @@
 
 Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 
-* <<xplanmanager-cli, XPlanManagerCLI>>
 * <<xplanmanager-web, XPlanManagerWeb>>
 * <<xplanmanager-api, XPlanManagerAPI>>
-* <<xplanvalidator-cli, XPlanValidatorCLI>>
+* <<xplanmanager-cli, XPlanManagerCLI>>
 * <<xplanvalidator-web, XPlanValidatorWeb>> inkl. <<xplanvalidator-wms, XPlanValidatorWMS>>
 * <<xplanvalidator-api, XPlanValidatorAPI>>
+* <<xplanvalidator-cli, XPlanValidatorCLI>>
 * <<xplanwms, XPlanWMS und XPlanWerkWMS>>
 * <<xplanwfs, XPlanWFS>>
 * <<xplansynwfs, XPlanSynWFS>>
@@ -24,13 +24,6 @@ image::Architektur_xPlanBox_komplex.png[Komplexe Darstellung]
 
 Abbildung 2: Separate Datenhaltung
 
-[[xplanmanager-cli]]
-=== XPlanManagerCLI
-
-Die Komponente XPlanManagerCLI ist ein Kommandozeilenwerkzeug, welches
-dem Fachadministrator der xPlanBox ermöglicht,
-die Datenhaltung über das Terminal zu kontrollieren.
-
 [[xplanmanager-web]]
 === XPlanManagerWeb
 
@@ -44,12 +37,12 @@ die Datenhaltung über einen Browser zu kontrollieren.
 Die Komponente XPlanManagerAPI stellt eine REST-Schnittstelle bereit, über die
 die Datenhaltung kontrolliert werden kann.
 
-[[xplanvalidator-cli]]
-=== XPlanValidatorCLI
+[[xplanmanager-cli]]
+=== XPlanManagerCLI
 
-Die Komponente XPlanValidatorCLI ist ein Kommandozeilenwerkzeug,
-welches dem Fachadministrator der xPlanBox ermöglicht,
-XPlanGML-Instanzdokumente über das Terminal zu validieren.
+Die Komponente XPlanManagerCLI ist ein Kommandozeilenwerkzeug, welches
+dem Fachadministrator der xPlanBox ermöglicht,
+die Datenhaltung über das Terminal zu kontrollieren.
 
 [[xplanvalidator-web]]
 === XPlanValidatorWeb
@@ -57,6 +50,18 @@ XPlanGML-Instanzdokumente über das Terminal zu validieren.
 Die Komponente XPlanValidatorWeb ist eine Web-Oberfläche, welche dem
 Fachadministrator der xPlanBox ermöglicht,
 XPlanGML-Instanzdokumente über den Browser zu validieren.
+
+[[xplanvalidator-api]]
+=== XPlanValidatorAPI
+
+Die Komponente XPlanValidatorAPI stellt eine REST-Schnittstelle bereit, über die XPlanGML-Instanzdokumente validiert werden kann.
+
+[[xplanvalidator-cli]]
+=== XPlanValidatorCLI
+
+Die Komponente XPlanValidatorCLI ist ein Kommandozeilenwerkzeug,
+welches dem Fachadministrator der xPlanBox ermöglicht,
+XPlanGML-Instanzdokumente über das Terminal zu validieren.
 
 [[xplantransform-cli]]
 === XPlanTransformCLI
