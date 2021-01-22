@@ -14,9 +14,9 @@
   <DisableResponseBuffering>true</DisableResponseBuffering>
 
   <QueryCRS>${vectorCrs}</QueryCRS>
+  <QueryCRS>EPSG:25832</QueryCRS>
   <QueryCRS>EPSG:25833</QueryCRS>
   <QueryCRS>EPSG:325833</QueryCRS>
-  <QueryCRS>EPSG:25832</QueryCRS>
   <QueryCRS>EPSG:31466</QueryCRS>
   <QueryCRS>EPSG:31467</QueryCRS>
   <QueryCRS>EPSG:31468</QueryCRS>
