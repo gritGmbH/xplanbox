@@ -361,12 +361,13 @@ Die Installation der XPlanManagerAPI und XPlanValidatorAPI ist im Abschnitt <<we
 === Aktualisierung auf die Version 4.1 der xPlanBox
 
 Für die Aktualisierung auf die Version 4.1 sind folgende Schritte auszuführen:
+
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 
 [[aktualisierung-auf-die-version-4.2-der-xplanbox]]
 === Aktualisierung auf die Version 4.2 der xPlanBox
 
-Mit der Version 4.1 der xPlanBox wird die Version XPlanGML 5.3 unterstützt. Weiterhin sind einige Verbesserungen am XPlanValidator vorgenommen worden.
+Mit der Version 4.2 der xPlanBox wird die Version XPlanGML 5.3 unterstützt. Weiterhin sind einige Verbesserungen am XPlanValidator vorgenommen worden.
 Für die Aktualisierung auf die Version 4.2 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
