@@ -229,7 +229,7 @@ Dieser Schritt sollte bereits während der Anwendung des Kapitels <<aktualisieru
 Im Modul _xplan-update-database_ wird das Programm __databaseUpdate__ für die
 Datenaktualisierung bestimmter xPlanBox-Versionen bereitgestellt. Eine
 Liste der für die Datenaktualisierung unterstützten Versionen wird beim
-Programmaufruf mit dem Parameter `–help` angezeigt.
+Programmaufruf mit dem Parameter `help` angezeigt.
 
 [[datenaktualisierung-auf-die-version-2.0-sowie-2.2-der-xplanbox]]
 ==== Datenaktualisierung auf die Version 2.0 sowie 2.2 der xPlanBox

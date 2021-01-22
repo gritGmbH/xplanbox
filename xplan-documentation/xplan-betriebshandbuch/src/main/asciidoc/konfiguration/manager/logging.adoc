@@ -5,11 +5,9 @@ Die Anwendungen XPlanManagerWeb, XPlanManagerCLI, XPlanValidatorWeb
 und XPlanValidatorCLI und alle XPlanDienste schreiben Log-Ausgaben standardmäßig nach
 Standard-Out. Für die Web-Anwendungen und die Webservices ist dies die Logging-Datei des
 Java Applikationsserver (Tomcat: catalina.out) und bei den CLI-Anwendungen die Konsole.
-Nach Standard-Out werden nur Warnungen und Fehler geschrieben.
+Nach Standard-Out werden Informationen, Warnungen und Fehler geschrieben.
 
-Zusätzlich wird ein erweitertes Log für alle Anwendungen und Dienste in eine entsprechend der
-Anwendung, bzw. des Dienstes (z.B. xplan-wms.log) benannten Datei in das Log-Verzeichnis des
-Tomcats ($\{catalina.base}/logs/xplan-manager-web.log) geschrieben.
+Zusätzlich wird eine Log-Datei für alle Anwendungen und Dienste in einer entsprechenden benannten Datei im  Log-Verzeichnis des Tomcats _$\{catalina.base}/logs/xplan-manager-web.log_ geschrieben.
 
 [width="88%",cols="35%,65%",options="header",]
 |============================================================
@@ -20,5 +18,5 @@ Tomcats ($\{catalina.base}/logs/xplan-manager-web.log) geschrieben.
 |XPlanValidatorCLI |./xplan-validator-cli.log
 |XPlanWMS |$\{catalina.base}/logs/xplan-wms.log
 |XPlanWFS |$\{catalina.base}/logs/xplan-wfs.log
-|XPlanWSynFS |$\{catalina.base}/logs/xplansyn-wfs.log
+|XPlanSynWFS |$\{catalina.base}/logs/xplansyn-wfs.log
 |============================================================

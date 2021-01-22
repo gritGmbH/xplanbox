@@ -2,8 +2,8 @@
 
 include::XPlanManager_Grundlagen.adoc[]
 
-include::XPlanManager_CLI.adoc[]
-
 include::XPlanManager_Web.adoc[]
 
 include::XPlanManager_API.adoc[]
+
+include::XPlanManager_CLI.adoc[]

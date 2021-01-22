@@ -19,7 +19,7 @@ Konfigurationsdatei __validatorConfiguration.properties__, welche
 genutzt werden kann, um generelle Konfigurationen an dem
 Kommandozeilentool durchzuführen.
 
-Falls der Parameter `–managerconfiguration` während eines Aufrufs des
+Falls der Parameter _managerconfiguration_ während eines Aufrufs des
 Kommandozeilentools nicht mitgegeben wird, nutzt das Tool die unter
 _etc/_ abgelegte Datei. Wenn der Parameter mitgegeben wird, muss sich die
 Konfigurationsdatei in dem referenzierten Verzeichnis befinden.
@@ -31,7 +31,7 @@ des Tools generiert werden, abgespeichert werden sollen.
 [[xplanvalidator-cli-auswahl-planarchiv]]
 ===== Auswahl XPlanArchiv
 
-Über den Parameter `-validate <planarchiv>` kann der Pfad zum XPlanArchiv
+Über den Parameter `validate <planarchiv>` kann der Pfad zum XPlanArchiv
  auswählt werden, welcher validiert werden soll. Die Angabe
 des Parameters ist obligatorisch.
 
@@ -44,7 +44,7 @@ XPlanValidator -validate Plan.zip
 [[xplanvalidator-cli-bezeichnung-der-validierung]]
 ===== Bezeichnung für den Report
 
-Über den Parameter `-name <bezeichnung>` kann eine Bezeichnung für den generierten
+Über den Parameter `name <bezeichnung>` kann eine Bezeichnung für den generierten
 Report vergeben werden. Die Angabe des Parameters ist optional.
 Fehlt dieser Parameter wird der Name des XPlanArchivs verwendet.
 
@@ -73,7 +73,7 @@ Zuordnung der Werte:
 * geometric = Geometrisch
 * semantic = Semantisch
 
-Wird kein _-vtype_ Parameter gewählt, werden alle Validierungsarten
+Wird kein _vtype_ Parameter gewählt, werden alle Validierungsarten
 durchgeführt.
 
 Ausgabe:

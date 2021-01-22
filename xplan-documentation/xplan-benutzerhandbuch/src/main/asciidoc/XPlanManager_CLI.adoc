@@ -24,7 +24,7 @@ Konfigurationsdatei __managerConfiguration.properties__, welche genutzt
 werden kann, um generelle Konfigurationen an dem Kommandozeilentool
 durchzuführen.
 
-Falls der Parameter `–managerconfiguration` während eines Aufrufs des
+Falls der Parameter `managerconfiguration` während eines Aufrufs des
 Kommandozeilentools nicht mitgegeben wird, nutzt das Tool die unter
 _etc_ abgelegte Datei. Wenn der Parameter mitgegeben wird, muss sich die
 Konfigurationsdatei in dem referenzierten Verzeichnis befinden.
@@ -43,7 +43,7 @@ Bounding-Box genutzt, welche die gesamte Welt abdeckt.
 ===== Hilfe
 
 Die Hilfe mit den Angaben zu den möglichen Eingabeparametern lässt sich
-mit dem Parameter `-help` ausgeben.
+mit dem Parameter `help` ausgeben.
 
 Aufruf:
 
@@ -81,7 +81,7 @@ Raster-Operationen:
 [[xplanmanager-cli-auflistung]]
 ===== Auflistung
 
-Der Parameter `-list` gibt die Liste der geladenen Pläne aus. Durch die Angabe der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ kann der Pfad zum Workspace der xPlanBox gesetzt werden.
+Der Parameter `list` gibt die Liste der geladenen Pläne aus. Durch die Angabe der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ kann der Pfad zum Workspace der xPlanBox gesetzt werden.
 
 Aufruf:
 
@@ -106,7 +106,7 @@ Anzahl Pläne: 11
 [[import]]
 ===== Import
 
-Ein Import kann durch Angabe des Parameters `-import` gefolgt vom Pfad
+Ein Import kann durch Angabe des Parameters `import` gefolgt vom Pfad
 zum XPlanArchiv angestoßen werden. Bei dem Import können
 XPlanGML-Vektordaten und XPlanGML-Rasterdaten ohne zusätzlichen
 Parameter in die Datenbasis geladen werden.
@@ -122,7 +122,7 @@ Korrektheitsüberprüfungen statt. Dies betrifft u.a. Schemavalidität,
 Geometrievalidität, Korrektheit von Links, Angabe von
 Koordinatenreferenzsystemen, u.v.m.
 
-Folgende Zusatzparameter können mit angegeben werden, um z. B. fehlende
+Folgende Parameter können mit angegeben werden, um z. B. fehlende
 Informationen anzugeben.
 
 ----
@@ -134,13 +134,13 @@ Informationen anzugeben.
 
 Bitte beachten Sie die korrekte Reihenfolge der Parameterangabe.
 
-_–force_
+_-force_
 
 Enthält das XPlanGML-Instanzdokument Geometriefehler o.ä., ist es
 dringend angeraten, diese vor einem Import zu bereinigen. Unter
 Inkaufnahme von unerwartetem Diensteverhalten ist es dennoch möglich,
 den Import eines Planes zu erzwingen. Das Erzwingen eines Imports
-erfolgt mit dem Zusatzparameter `–force`.
+erfolgt mit dem Parameter `force`.
 
 NOTE: Bitte beachten Sie, dass dabei vorhandene Geometriefehler o.ä.
 übernommen werden und der importierte Plan dadurch fehlerhaft ist. Die
@@ -154,7 +154,7 @@ XPlanManager -import --force ../Input-Planverzeichnis/Infrastruktur.zip
 _–crs_
 
 Fehlt die Angabe des Koordinatenreferenzsystem in den Daten, so kann
-diese mit dem Parameter `–crs` übergeben werden.
+diese mit dem Parameter `crs` übergeben werden.
 
 Beispiel Aufruf:
 
@@ -165,7 +165,7 @@ XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --crs EPSG:31467
 _–workspace_
 
 Sind mehrere Workspace Verzeichnisse vorhanden, so kann durch den
-Zusatzparameter `–workspace` das entsprechende Verzeichnis übergeben
+Parameter `workspace` das entsprechende Verzeichnis übergeben
 werden.
 
 ----
@@ -175,7 +175,7 @@ XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --workspace ~/.d
 _–managerconfiguration_
 
 Sind mehrere Konfigurationen für den XPlanManager vorhanden, so kann durch den
-Zusatzparameter `–managerconfiguration` die entsprechende Konfiguration
+Parameter `managerconfiguration` die entsprechende Konfiguration
 übergeben werden.
 
 ----
@@ -305,8 +305,8 @@ XPlanManager -movelayer <bplan|rplan|fplan|lplan> <layername> <categoryname>
 [[xplanmanager-cli-export]]
 ===== Export
 
-Der Export eines Planes erfolgt unter Angabe des Parameters `-export`
-gefolgt von der PlanID (diese kann zuvor mit dem Parameter `-list` herausgefunden werden)
+Der Export eines Planes erfolgt unter Angabe des Parameters `export`
+gefolgt von der PlanID (diese kann zuvor mit dem Parameter `list` herausgefunden werden)
 und dem Ausgabeverzeichnis.
 
 Beispiel Aufruf:
@@ -325,8 +325,8 @@ Plan 9 wurde nach 'xplan-exported-9.zip' exportiert.
 [[xplanmanager-cli-loeschen]]
 ===== Löschen
 
-Beim Löschen wird dem Parameter `-delete` die PlanID (diese kann zuvor mit
-`-list` herausgefunden werden) übergeben.
+Beim Löschen wird dem Parameter `delete` die PlanID (diese kann zuvor mit
+`list` herausgefunden werden) übergeben.
 
 Beispiel Aufruf:
 
@@ -365,7 +365,7 @@ Aktualisierung des Sortierfeldes für die Visualisierung:
   Mit dem XPlanManagerCLI können die Werte der Sortierfelder in der
   Datenbank anhand einer bestehenden managerConfiguration.properties
   Datei aktualisiert werden. Der Aufruf kann ohne Parameter oder mit dem
-  optionalen Parameter `–managerconfiguration` erfolgen. Details zu
+  optionalen Parameter `managerconfiguration` erfolgen. Details zu
   diesem Parameter sind im Abschnitt
   Konfiguration über Datei <_anchor-manager-cli-managerConfigFile> zu
   finden.
@@ -388,7 +388,7 @@ Bounding-Box während der Konfigurationserzeugung für einen neuen
 Services genutzt werden soll (für weitere Details siehe _Konfiguration
 über Datei_ weiter oben).
 
-Folgende Zusatzparameter können mit angegeben werden:
+Folgende Parameter können mit angegeben werden:
 
 ----
 --force

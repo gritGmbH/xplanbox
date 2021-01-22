@@ -27,8 +27,8 @@
 
 ==== Fehlerbehebungen
 - (TT_10420) Beibehalten der Übersetzungen externer Codelisten beim Ausführen des reSynthesizer
-- (TT_10405) Entfernen desdoppelten Koordinatensystems EPSG:25832 aus den Konfigurationen des XPlanWMS
-- (TT_10402) Ausgabe doppelten Stützpunkte durch den XPlanValidator
+- (TT_10405) Entfernen des doppelten Koordinatensystems EPSG:25832 aus den Konfigurationen des XPlanWMS
+- (TT_10402) Ausgabe doppelter Stützpunkte durch den XPlanValidator
 
 [[Aenderungshistorie-4.0]]
 === Version 4.0 (deegree Enterprise 2020.2)

@@ -11,8 +11,8 @@ Versionen dar.
 
 Die folgende Tabelle fasst die vom XPlanSynWFS unterstützten Operationen
 zusammen. Der XPlanSynWFS unterstützt den Zugriff über die OGC WFS
-Protokollversionen 1.1.0 und 2.0.0. Dabei ist es möglich, Anfragen per
-HTTP GET und POST über einen beliebigen Webbrowser an den Dienst zu
+Protokollversionen 1.1.0 und 2.0.0. Dabei ist es möglich Anfragen per
+HTTP GET (KVP) und POST (XML) an den Dienst zu
 senden. Ebenfalls ist die Einbindung in WFS Client Anwendungen möglich,
 die die o.g. Versionen für OGC WFS Dienste unterstützen.
 
@@ -22,6 +22,8 @@ die die o.g. Versionen für OGC WFS Dienste unterstützen.
 |GetCapabilities |Abfrage der Fähigkeiten des Dienstes
 |GetFeature |Abfrage von Planobjekten
 |DescribeFeatureType |Abfrage der Struktur von Objektarten
+|ListStoredQueries |Abfrage der verfügbaren StoredQueries
+|DescribeStoredQueries |Beschreibung einer StoredQuery
 |=========================================================
 
 [[xplansynwfs-adresse-des-dienstes]]
@@ -29,38 +31,6 @@ die die o.g. Versionen für OGC WFS Dienste unterstützen.
 
 ----
 http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?
-----
-
-[[xplansynwfs-beispielanfragen]]
-==== Beispielanfragen
-
-
-[[xplansynwfs-getcapabilities]]
-===== GetCapabilities
-
-----
-http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetCapabilities&Service=WFS&Version=1.1.0
-----
-
-[[xplansynwfs-getfeature]]
-===== GetFeature
-
-----
-http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetFeature&Service=WFS&Version=1.1.0&typename=xplan:BP_Bereich
-----
-
-[[xplansynwfs-describefeaturetype]]
-===== DescribeFeatureType
-
-----
-http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=DescribeFeatureType&Service=WFS&Version=1.1.0
-----
-
-[[xplansynwfs-liststoredqueries]]
-===== ListStoredQueries
-
-----
-http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=ListStoredQueries&Service=WFS&Version=2.0.0
 ----
 
 [[xplansynwfs-inhalte-des-datendienstes]]
@@ -72,7 +42,7 @@ http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=ListStoredQueries
 Das folgende Kapitel beschreibt die Operationen, die mit dem XPlanSynWFS
 durchführbar sind.
 
-[[xplansynwfs-getcapabilities-1]]
+[[xplansynwfs-getcapabilities]]
 ==== GetCapabilities
 
 Die GetCapabilities Abfrage dient der Auskunft über die Fähigkeiten des
@@ -80,7 +50,11 @@ WFS Dienstes. Dabei handelt es sich beispielsweise um Informationen zum
 Dienstbetreiber, zu den unterstützten Operationen sowie den durch den
 WFS angebotenen Objektarten.
 
-[[xplansynwfs-getfeature-1]]
+----
+http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetCapabilities&Service=WFS&Version=1.1.0
+----
+
+[[xplansynwfs-getfeature]]
 ==== GetFeature
 
 Die Operation GetFeature stellt die Kernfunktionalität des XPlanSynWFS
@@ -88,18 +62,30 @@ dar. Die Operation ermöglicht es, die angebotenen Ebene zu den
 Planinhalten mit GIS Clients zu nutzen, die die Schnittstellen WFS 1.1.0
 bzw. WFS 2.0.0 unterstützen.
 
-[[xplansynwfs-describefeaturetype-1]]
+----
+http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetFeature&Service=WFS&Version=1.1.0&typename=xplan:BP_Bereich
+----
+
+[[xplansynwfs-describefeaturetype]]
 ==== DescribeFeatureType
 
 Die Operation DescribeFeatureType gibt Informationen zur Struktur der
 einzelnen Feature Types wieder.
 
-[[xplansynwfs-liststoredqueries-1]]
+----
+http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=DescribeFeatureType&Service=WFS&Version=1.1.0
+----
+
+[[xplansynwfs-liststoredqueries]]
 ==== ListStoredQueries
 
 Die Operation ListStoredQueries gibt Informationen über die verfügbaren
 StoredQueries zurück. Diese Operation steht nur in der Protokollversion
 2.0.0 zur Verfügung.
+
+----
+http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=ListStoredQueries&Service=WFS&Version=2.0.0
+----
 
 === StoredQueries
 
@@ -138,8 +124,8 @@ http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetFeature&servic
 Der XPlanSynWFS unterstützt die folgenden
 Koordinatenreferenzsysteme:
 
-* EPSG:25833
 * EPSG:25832
+* EPSG:25833
 * EPSG:325833
 * EPSG:31466
 * EPSG:31467
