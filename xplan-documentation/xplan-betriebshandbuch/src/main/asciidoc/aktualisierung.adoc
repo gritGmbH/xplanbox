@@ -128,6 +128,7 @@ cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION
 
 Folgende Ordner des neuen xplansyn-wms-workspace müssen in die bestehende Installation integriert werden:
 
+* appschemas
 * datasources/feature
 * layers
 * services
