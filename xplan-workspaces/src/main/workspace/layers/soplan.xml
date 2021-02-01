@@ -492,10 +492,10 @@
     <d:Abstract>SO_Gelaendemorphologie</d:Abstract>
     <s:CRS>${vectorCrs}</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/so/so_gelaendemorphologie_trans</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_gelaendemorphologie</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_gelaendemorphologie</l:StyleStoreId>
+      <l:StyleStoreId>transparent/so/so_gelaendemorphologie_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
