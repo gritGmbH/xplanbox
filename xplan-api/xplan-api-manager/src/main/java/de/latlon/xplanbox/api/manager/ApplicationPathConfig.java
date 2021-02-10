@@ -74,13 +74,15 @@ public class ApplicationPathConfig extends ResourceConfig {
         packages( "de.latlon.xplanbox.api.manager.exception" );
         packages( "de.latlon.xplanbox.api.commons.exception" );
         OpenAPI openApi = new OpenAPI();
-        openApi.setInfo( new Info().title( "XPlanManagerAPI" ).version( "1.0.0" ).description(
-                                "XPlanManager REST API" ).termsOfService( "http://xplanbox.lat-lon.de/terms/" ).contact(
-                                new Contact().email( "info@lat-lon.de" ) ).license(
-                                new License().name( "Apache 2.0" ).url(
-                                                        "http://www.apache.org/licenses/LICENSE-2.0.html" ) ) );
+        openApi.setInfo( new Info().title( "XPlanManagerAPI" )
+                                   .version( "1.0.0" )
+                                   .description( "XPlanManager REST API" )
+                                   .termsOfService( getTermsOfService( managerApiConfiguration ) )
+                                   .license(new License().name( "Apache 2.0" )
+                                                         .url( "http://www.apache.org/licenses/LICENSE-2.0.html" ) ) );
+        addContact(openApi, managerApiConfiguration);
         openApi.servers( servers( servletContext, managerApiConfiguration ) );
-        List<Tag> tags = createTags();
+        List<Tag> tags = createTags(managerApiConfiguration);
         openApi.tags( tags );
 
         DefaultApi openApiResource = new DefaultApi();
@@ -93,15 +95,31 @@ public class ApplicationPathConfig extends ResourceConfig {
         LOG.info( "XPlanApiValidator successfully initialized" );
     }
 
-    private List<Tag> createTags() {
+    private List<Tag> createTags(
+                    ManagerApiConfiguration managerApiConfiguration ) {
         List<Tag> tags = new ArrayList<>();
-        tags.add( new Tag().name( "manage" ).description( "Manage XPlanGML documents" ).externalDocs(
-                                new ExternalDocumentation().description( "xPlanBox" ).url(
-                                                        "http://xplanbox.lat-lon.de" ) ) );
-        tags.add( new Tag().name( "search" ).description( "Search for XPlanGML documents" ).externalDocs(
-                                new ExternalDocumentation().description( "xPlanBox" ).url(
-                                                        "http://xplanbox.lat-lon.de" ) ) );
+        Tag manageTag = new Tag().name( "manage" )
+                                 .description( "Manage XPlanGML documents" );
+        if ( managerApiConfiguration != null && managerApiConfiguration.getDocumentationUrl() != null ) {
+            manageTag.externalDocs( new ExternalDocumentation().description( "xPlanBox" )
+                                                               .url( managerApiConfiguration.getDocumentationUrl() ) );
+        }
+        Tag searchTag = new Tag().name( "search" )
+                                 .description( "Search for XPlanGML documents" );
+        if ( managerApiConfiguration != null && managerApiConfiguration.getDocumentationUrl() != null ) {
+            searchTag.externalDocs( new ExternalDocumentation().description( "xPlanBox" )
+                                                               .url( managerApiConfiguration.getDocumentationUrl() ) );
+        }
+        tags.add( manageTag );
+        tags.add( searchTag );
         return tags;
+    }
+
+    private void addContact( OpenAPI openApi, ManagerApiConfiguration managerApiConfiguration ) {
+        if ( managerApiConfiguration != null && managerApiConfiguration.getContactEMailAdress() != null ) {
+            String contactEMailAdress = managerApiConfiguration.getContactEMailAdress();
+            openApi.getInfo().setContact( new Contact().email( contactEMailAdress ) );
+        }
     }
 
     private List<Server> servers( ServletContext servletContext, ManagerApiConfiguration managerApiConfiguration ) {
@@ -124,4 +142,10 @@ public class ApplicationPathConfig extends ResourceConfig {
         return serverUrl.toString();
     }
 
+    private String getTermsOfService(
+                    ManagerApiConfiguration managerApiConfiguration ) {
+        if ( managerApiConfiguration != null )
+            return managerApiConfiguration.getTermsOfServiceUrl();
+        return null;
+    }
 }

@@ -24,8 +24,6 @@ package de.latlon.xplan.validator.geometric.inspector;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.TopologyException;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
-import org.deegree.commons.tom.TypedObjectNode;
-import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
 import org.deegree.geometry.composite.CompositeGeometry;
 import org.deegree.geometry.multi.MultiGeometry;
@@ -39,11 +37,9 @@ import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.Surface;
 import org.deegree.geometry.standard.AbstractDefaultGeometry;
 import org.deegree.gml.feature.FeatureInspectionException;
-import org.deegree.gml.reference.FeatureReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.namespace.QName;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -66,8 +62,6 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private static final Logger LOG = LoggerFactory.getLogger( GeltungsbereichInspector.class );
 
-    private static final List<String> GEHOERT_ZU_BEREICH_PROPNAMES = new ArrayList<>();
-
     private static final String ERROR_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt nicht vollstaendig im Geltungsbereich des Bereichs/Plans. Schnittpunkte mit dem Umring des Geltungsbereich: %s";
 
     private static final String SCHNITTPUNKT_MSG = "2.2.3.1: Geometrie des Objekts mit der gml id %s, die ausserhalb des Geltungsbereichs des Bereichs/Plans liegt.";
@@ -77,9 +71,6 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
     private static final String ERROR_MSG_INVALID_CHECK = "2.2.3.1: Der Geltungsbereich des Objekts mit der gml id %s konnte nicht überprüft werden. Wahrscheinlich liegt eine invalide Geometrie vor.";
 
     private static final String ERROR_MSG_INVALID_GELTUNGSBEREICH = "2.2.3.1: Der Geltungsbereich des Plans ist geometrisch nicht valide. Betroffen ist das Feature mit der gml id %s. Die Pruefung des Geltungsbereichs kann nicht durchgeführt werden.";
-
-    private static final List<String> PRAESENTATIONSOBJEKTE = Arrays.asList( "XP_FPO", "XP_LPO", "XP_LTO", "XP_PPO",
-                                                                             "XP_PTO", "XP_TPO" );
 
     public static final double TOLERANCE_METRE = 0.001;
 
@@ -93,26 +84,18 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private List<String> errors = new ArrayList<>();
 
-    static {
-        GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuBereich" );
-        GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuBereich" );
-        GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuBP_Bereich" );
-        GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuLP_Bereich" );
-        GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuFP_Bereich" );
-        GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuRP_Bereich" );
-        GEHOERT_ZU_BEREICH_PROPNAMES.add( "gehoertZuSO_Bereich" );
-    }
+    private GeltungsbereichFeatureAnalyser featureAnalyser = new GeltungsbereichFeatureAnalyser();
 
     @Override
     public Feature inspect( Feature feature )
                             throws FeatureInspectionException {
 
-        if ( isPlanFeature( feature ) ) {
+        if ( featureAnalyser.isPlanFeature( feature ) ) {
             planFeature = feature;
-        } else if ( isBereichFeature( feature ) ) {
+        } else if ( featureAnalyser.isBereichFeature( feature ) ) {
             bereichFeatures.put( feature.getId(), feature );
-        } else if ( !isPraesentationsobjekt( feature ) ) {
-            String gehortZuBereich = getGehortZuBereichId( feature );
+        } else if ( !featureAnalyser.isAllowedToBeOutside( feature ) ) {
+            String gehortZuBereich = featureAnalyser.getGehortZuBereichId( feature );
             if ( gehortZuBereich != null ) {
                 if ( !bereichIdToFeatureGeoms.containsKey( gehortZuBereich ) )
                     bereichIdToFeatureGeoms.put( gehortZuBereich, new ArrayList<>() );
@@ -127,10 +110,10 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
         List<String> featureIdOfInvalidFeatures = new ArrayList<>();
         for ( Map.Entry<String, List<Feature>> bereichIdToGeoms : bereichIdToFeatureGeoms.entrySet() ) {
             Feature geltungsbereichFeature = retrieveGeltungsbereichFeature( bereichIdToGeoms.getKey() );
-            Geometry geltungsbereich = getGeometry( geltungsbereichFeature );
+            Geometry geltungsbereich = featureAnalyser.getJtsGeometry( geltungsbereichFeature );
             if ( !geltungsbereich.isValid() ) {
                 String error = String.format( ERROR_MSG_INVALID_GELTUNGSBEREICH, geltungsbereichFeature.getId() );
-                addErrorAndBadGeometry( error, getOriginalGeometry( geltungsbereichFeature ) );
+                addErrorAndBadGeometry( error, featureAnalyser.getOriginalGeometry( geltungsbereichFeature ) );
                 return false;
             }
             Geometry geltungsbereichWithBuffer = geltungsbereich.buffer( TOLERANCE_METRE );
@@ -142,7 +125,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
                     }
                 } catch ( InvalidGeometryException e ) {
                     String error = String.format( ERROR_MSG_INVALID_CHECK, f.getId() );
-                    addErrorAndBadGeometry( error, getOriginalGeometry( f ) );
+                    addErrorAndBadGeometry( error, featureAnalyser.getOriginalGeometry( f ) );
                 }
             } );
         }
@@ -168,13 +151,12 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
     private Feature retrieveGeltungsbereichFeature( String bereichId ) {
         if ( bereichFeatures.containsKey( bereichId ) && bereichFeatures.get( bereichId ) != null ) {
             Feature bereich = bereichFeatures.get( bereichId );
-            AbstractDefaultGeometry bereichGeom = getOriginalGeometry( bereich );
+            AbstractDefaultGeometry bereichGeom = featureAnalyser.getOriginalGeometry( bereich );
             if ( bereichGeom != null )
                 return bereich;
         }
         return planFeature;
     }
-
 
     private void addPointOutsideGeltungsbereich( List<String> points, org.deegree.geometry.Geometry featureGeom ) {
         if ( featureGeom instanceof Point ) {
@@ -204,16 +186,17 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private void addInvalidGeometry( Feature geltungsbereichFeature, Feature feature )
                             throws InvalidGeometryException {
-        AbstractDefaultGeometry featureGeom = getOriginalGeometry( feature );
-        AbstractDefaultGeometry geltungsbereichGeom = getOriginalGeometry( geltungsbereichFeature );
+        AbstractDefaultGeometry featureGeom = featureAnalyser.getOriginalGeometry( feature );
+        AbstractDefaultGeometry geltungsbereichGeom = featureAnalyser.getOriginalGeometry( geltungsbereichFeature );
         try {
             String points = calculateIntersectionPoints( geltungsbereichFeature, feature );
             if ( geltungsbereichGeom.isDisjoint( featureGeom ) ) {
                 String error = String.format( OUTOFGELTUNGSBEREICH_MSG, feature.getId(), points );
-                addErrorAndBadGeometry( error, getOriginalGeometry( feature ) );
+                addErrorAndBadGeometry( error, featureAnalyser.getOriginalGeometry( feature ) );
             } else {
                 String error = String.format( ERROR_MSG, feature.getId(), points );
-                BadGeometry badGeometry = addErrorAndBadGeometry( error, getOriginalGeometry( feature ) );
+                BadGeometry badGeometry = addErrorAndBadGeometry( error,
+                                                                  featureAnalyser.getOriginalGeometry( feature ) );
                 addGeometryOutsideGeltungsbereich( feature.getId(), featureGeom, geltungsbereichGeom, badGeometry );
             }
         } catch ( TopologyException | IllegalArgumentException e ) {
@@ -223,8 +206,8 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
     private String calculateIntersectionPoints( Feature geltungsbereichFeature, Feature feature ) {
         List<String> points = new ArrayList<>();
-        AbstractDefaultGeometry featureGeom = getOriginalGeometry( feature );
-        AbstractDefaultGeometry geltungsbereichGeom = getOriginalGeometry( geltungsbereichFeature );
+        AbstractDefaultGeometry featureGeom = featureAnalyser.getOriginalGeometry( feature );
+        AbstractDefaultGeometry geltungsbereichGeom = featureAnalyser.getOriginalGeometry( geltungsbereichFeature );
         if ( geltungsbereichGeom.isDisjoint( featureGeom ) ) {
             addPointOutsideGeltungsbereich( points, featureGeom );
         } else {
@@ -308,7 +291,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
     private boolean isInsideGeom( Feature feature, Geometry geltungsbereich )
                             throws InvalidGeometryException {
         try {
-            Geometry geometry = getGeometry( feature );
+            Geometry geometry = featureAnalyser.getJtsGeometry( feature );
             if ( geometry == null ) {
                 throw new InvalidGeometryException( "Geometry of feature with ID " + feature.getId()
                                                     + " could not be parsed (or is empty)" );
@@ -317,54 +300,6 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
         } catch ( TopologyException | IllegalArgumentException e ) {
             throw new InvalidGeometryException( e );
         }
-    }
-
-    private boolean isPlanFeature( Feature feature ) {
-        return feature.getName().getLocalPart().endsWith( "_Plan" );
-    }
-
-    private boolean isBereichFeature( Feature feature ) {
-        return feature.getName().getLocalPart().endsWith( "_Bereich" );
-    }
-
-    private boolean isPraesentationsobjekt( Feature feature ) {
-        String featureLocalName = feature.getName().getLocalPart();
-        return PRAESENTATIONSOBJEKTE.contains( featureLocalName );
-    }
-
-    private String getGehortZuBereichId( Feature feature ) {
-        for ( String propName : GEHOERT_ZU_BEREICH_PROPNAMES ) {
-            String gehortZuBereichId = getGehortZuBereichId( feature, propName );
-            if ( gehortZuBereichId != null )
-                return gehortZuBereichId;
-        }
-        return null;
-    }
-
-    private String getGehortZuBereichId( Feature feature, String propName ) {
-        QName qName = new QName( feature.getName().getNamespaceURI(), propName );
-        List<Property> properties = feature.getProperties( qName );
-        if ( properties == null || properties.isEmpty() )
-            return null;
-        Property property = properties.get( 0 );
-        TypedObjectNode value = property.getValue();
-        if ( value instanceof FeatureReference )
-            return ( (FeatureReference) value ).getURI().substring( 1 );
-        return value.toString().substring( 1 );
-    }
-
-    private Geometry getGeometry( Feature feature ) {
-        AbstractDefaultGeometry originalGeometry = getOriginalGeometry( feature );
-        if ( originalGeometry != null )
-            return originalGeometry.getJTSGeometry();
-        return null;
-    }
-
-    private AbstractDefaultGeometry getOriginalGeometry( Feature feature ) {
-        List<Property> geometryProperties = feature.getGeometryProperties();
-        if ( !geometryProperties.isEmpty() )
-            return (AbstractDefaultGeometry) geometryProperties.get( 0 ).getValue();
-        return null;
     }
 
     private BadGeometry addErrorAndBadGeometry( String error, AbstractDefaultGeometry geometry ) {
