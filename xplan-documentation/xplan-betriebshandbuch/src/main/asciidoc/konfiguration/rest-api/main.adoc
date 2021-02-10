@@ -18,6 +18,33 @@ Beispiel:
 apiUrl=http://xplanbox.lat-lon.de
 ----
 
+==== Kontakt E-Mail Adresse
+
+E-Mail Adresse des Kontakts, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
+Beispiel:
+
+----
+contactEMailAdress=info@lat-lon.de
+----
+
+==== URL zu den "Terms of Service"
+
+URL zu den "Terms of Services", die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
+Beispiel:
+
+----
+termsOfServiceUrl=
+----
+
+==== URL zur Dokumentation der xPLanBox
+
+URL zur Dokumentation, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
+Beispiel:
+
+----
+documentationUrl=
+----
+
 ==== WMS URL
 
 URL des XPlanwerkWMS, über den einzelne Pläne über die ManagerID angefragt werden können.
@@ -56,4 +83,31 @@ Beispiel:
 
 ----
 apiUrl=http://xplanbox.lat-lon.de
+----
+
+==== Kontakt E-Mail Adresse
+
+E-Mail Adresse des Kontakts, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
+Beispiel:
+
+----
+contactEMailAdress=info@lat-lon.de
+----
+
+==== URL zu den "Terms of Service"
+
+URL zu den "Terms of Services", die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
+Beispiel:
+
+----
+termsOfServiceUrl=
+----
+
+==== URL zur Dokumentation der xPLanBox
+
+URL zur Dokumentation, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
+Beispiel:
+
+----
+documentationUrl=
 ----
