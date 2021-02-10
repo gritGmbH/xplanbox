@@ -62,7 +62,7 @@ NOTE: Empfohlen wird PostgreSQL 11+ mit PostGIS 2.5+.
 Optional kann die Installation der https://gdal.org/[GDAL-Bibliothek] erforderlich sein. Liegen Teil-Vektorielle Pläne mit Rasterdaten in anderen Formaten als GeoTiff vor, die mit der xPlanBox verwaltet werden sollen, ist der Einsatz von GDAL erforderlich. Liegen die Rasterdaten dagegen nur im GeoTiff-Format vor, wird GDAL nicht benötigt.
 Weitere Informationen zur Installation von GDAL befinden sich im Abschnitt <<installation-gdal>>.
 
-NOTE: Erforderlich ist GDAL 2.4+.
+NOTE: Erforderlich ist GDAL 3.0.
 
 === HALE CLI
 
