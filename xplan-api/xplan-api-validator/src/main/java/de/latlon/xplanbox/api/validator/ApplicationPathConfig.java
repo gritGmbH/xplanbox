@@ -73,26 +73,45 @@ public class ApplicationPathConfig extends ResourceConfig {
         packages( "de.latlon.xplanbox.api.validator.v1" );
         packages( "de.latlon.xplanbox.api.commons.exception" );
         OpenAPI openApi = new OpenAPI();
-        openApi.setInfo( new Info().title( "XPlanValidatorAPI" ).version( "1.0.0" ).description(
-                                "XPlanValidator REST API" ).termsOfService(
-                                "http://xplanbox.lat-lon.de/terms/" ).contact(
-                                new Contact().email( "info@lat-lon.de" ) ).license(
-                                new License().name( "Apache 2.0" ).url(
-                                                        "http://www.apache.org/licenses/LICENSE-2.0.html" ) ) );
+        openApi.setInfo( new Info().title( "XPlanValidatorAPI" )
+                                   .version( "1.0.0" )
+                                   .description( "XPlanValidator REST API" )
+                                   .termsOfService( getTermsOfService( validatorApiConfiguration ) )
+                                   .license( new License().name( "Apache 2.0" )
+                                                          .url( "http://www.apache.org/licenses/LICENSE-2.0.html" ) ) );
+        addContact(openApi, validatorApiConfiguration);
         openApi.servers( servers( servletContext, validatorApiConfiguration ) );
-        Tag tag = new Tag().name( "validate" ).description( "Validate XPlanGML documents" ).externalDocs(
-                                new ExternalDocumentation().description( "xPlanBox" ).url(
-                                                        "http://xplanbox.lat-lon.de" ) );
+        Tag tag = createTag( validatorApiConfiguration );
         openApi.tags( Collections.singletonList( tag ) );
 
         DefaultApi openApiResource = new DefaultApi();
-        SwaggerConfiguration oasConfig = new SwaggerConfiguration().openAPI( openApi ).filterClass(
-                                OpenApiFilter.class.getCanonicalName() ).prettyPrint( true ).resourcePackages(
-                                Stream.of( "de.latlon.xplanbox.api.validator.v1" ).collect( Collectors.toSet() ) );
+        SwaggerConfiguration oasConfig = new SwaggerConfiguration()
+                        .openAPI( openApi )
+                        .filterClass(OpenApiFilter.class.getCanonicalName() )
+                        .prettyPrint( true )
+                        .resourcePackages( Stream.of( "de.latlon.xplanbox.api.validator.v1" ).collect(
+                                        Collectors.toSet() ) );
 
         openApiResource.setOpenApiConfiguration( oasConfig );
         register( openApiResource );
         LOG.info( "XPlanApiValidator successfully initialized" );
+    }
+
+    private Tag createTag( ValidatorApiConfiguration validatorApiConfiguration ) {
+        Tag tag = new Tag().name( "validate" )
+                           .description( "Validate XPlanGML documents" );
+        if ( validatorApiConfiguration != null && validatorApiConfiguration.getDocumentationUrl() != null ) {
+            tag.externalDocs( new ExternalDocumentation().description( "xPlanBox" )
+                                                         .url( validatorApiConfiguration.getDocumentationUrl() ) );
+        }
+        return tag;
+    }
+
+    private void addContact( OpenAPI openApi, ValidatorApiConfiguration validatorApiConfiguration ) {
+        if ( validatorApiConfiguration != null && validatorApiConfiguration.getContactEMailAdress() != null ) {
+            String contactEMailAdress = validatorApiConfiguration.getContactEMailAdress();
+            openApi.getInfo().setContact( new Contact().email( contactEMailAdress ) );
+        }
     }
 
     private List<Server> servers( ServletContext servletContext, ValidatorApiConfiguration validatorApiConfiguration ) {
@@ -113,6 +132,13 @@ public class ApplicationPathConfig extends ResourceConfig {
             serverUrl.append( "/" );
         serverUrl.append( APP_PATH );
         return serverUrl.toString();
+    }
+
+    private String getTermsOfService(
+                    ValidatorApiConfiguration validatorApiConfiguration ) {
+        if ( validatorApiConfiguration != null )
+            return validatorApiConfiguration.getTermsOfServiceUrl();
+        return null;
     }
 
 }
