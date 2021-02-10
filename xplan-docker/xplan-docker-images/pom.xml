@@ -55,7 +55,7 @@
   </build>
 
   <modules>
-    <module>buster-tomcat9-jdk8</module>
+    <module>focal-jdk8-tomcat9-gdal30</module>
     <module>xplan-api-manager-docker</module>
     <module>xplan-api-validator-docker</module>
     <module>xplan-db-docker</module>

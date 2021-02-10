@@ -1,4 +1,4 @@
-FROM xplanbox/buster-tomcat9-jdk8:latest
+FROM xplanbox/focal-jdk8-tomcat9-gdal30:latest
 
 MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
@@ -6,9 +6,6 @@ MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 # set environment variables
 ENV JAVA_OPTS="-Xmx8192m -DXPLANBOX_CONFIG=/root/xplan-manager-config/"
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
-
-# install gdal plus jni
-RUN apt-get update && apt-get -y install libgdal-java
 
 # add xplan-manager-web
 ADD target/xplan-manager-web-*.war /root/
