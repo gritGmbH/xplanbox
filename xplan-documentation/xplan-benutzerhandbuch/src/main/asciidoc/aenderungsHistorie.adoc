@@ -7,6 +7,8 @@
 
 ==== Erweiterungen
 - Unterstützung für XPlanGML 5.3 in allen Komponenten der xPlanBox
+- (TT_10407) Unterstützung für GDAL 3.0 (GDAL 2 wird nicht mehr unterstützt)
+- Konfigurationsmöglichkeiten der REST API erweitern
 
 ==== Fehlerbehebungen
 - (TT_10430) Verbesserung der Aktualisierungsanleitung im Betriebshandbuch
