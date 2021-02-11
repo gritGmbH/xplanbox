@@ -379,3 +379,5 @@ Für die Aktualisierung auf die Version 4.2 sind folgende Schritte auszuführen:
 *** _archive/xplan53/create.sql_
 ** Ausführen der Skripte im Verzeichnis _from_4.0_to_4.2_ im Modul _xplan-update-database_ in der vorgegebenen Reihenfolge
 ** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+
+Des Weiteren muss GDAL auf Version 3.0 aktualisiert werden (siehe <<installation-gdal>>). GDAL 2 wird nicht mehr unterstützt.

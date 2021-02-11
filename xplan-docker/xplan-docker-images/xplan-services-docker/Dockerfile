@@ -1,4 +1,4 @@
-FROM xplanbox/buster-tomcat9-jdk8:latest
+FROM xplanbox/focal-jdk8-tomcat9-gdal30:latest
 
 MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
@@ -6,13 +6,6 @@ MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 # set environment variables
 ENV JAVA_OPTS="-Xmx8192m"
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
-
-# install java
-#RUN apt-get -y remove openjdk-8-jre-headless
-#RUN apt-get update && apt-get -y install openjdk-8-jre
-
-# install gdal plus jni
-RUN apt-get update && apt-get -y install libgdal-java
 
 # configure tomcat
 ADD tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml

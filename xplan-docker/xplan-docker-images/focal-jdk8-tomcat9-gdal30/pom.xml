@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>buster-tomcat9-jdk8</artifactId>
+  <artifactId>focal-jdk8-tomcat9-gdal30</artifactId>
   <packaging>pom</packaging>
-  <name>buster-tomcat9-jdk8</name>
+  <name>focal-jdk8-tomcat9-gdal30</name>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
