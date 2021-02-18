@@ -37,6 +37,9 @@ Bestandteil der xPlanBox ist. Der Quellcode von deegree ist
 urheberrechtlich geschützt und wird unter der http://www.gnu.org/licenses/lgpl-2.1.html[GNU
 Lesser General Public License (LGPL), version 2.1] veröffentlicht.
 
+Die Komponenten der xPlanBox sind urheberrechtlich geschützt. +
+Copyright (C) 2010 - 2021, lat/lon GmbH, Bonn.
+
 [[softwareüberlassung]]
 ==== Softwareüberlassung
 
@@ -47,7 +50,7 @@ Abschluss eines EVB-IT Pflegevertrags.
 [[gewährleistung]]
 ==== Gewährleistung
 
-Für deegree gelten die Haftungs- und Gewährleistungsausschlüsse wie in der der LGPL benannt.
+Für deegree gelten die Haftungs- und Gewährleistungsausschlüsse wie in der LGPL benannt.
 Die Firma lat/lon GmbH übernimmt keine Gewähr zur Freiheit der Software deegree
 bezüglich von Funktions- oder Sachmängeln. Die Gewährleistung der Firma
 lat/lon GmbH bei Überlassung der Binärprogramme der xPlanBox  erstreckt sich auf die
@@ -61,7 +64,7 @@ sofern diese verfügbar sind. Näheres regelt der EVB-IT Pflegevertrag.
 
 Die Binärprogramme der xPlanBox werden von lat/lon hergestellt und stehen unter einem
 besonderen Nutzungsvorbehalt. Vertragspartner erhalten ein nicht dauerhaftes, nicht ausschließliches und
-nicht übertragbares Nutzungsrecht an den Binärprogrammen der xPlanBox. Näheres regelt der EVB-IT Pflegevertrag.
+nicht übertragbares Nutzungsrecht an den Binärprogrammen der xPlanBox. Näheres regelt der EVB-IT Pflegevertrag.
 
 [[lizenz-des-dokuments]]
 === Lizenz des Dokuments
