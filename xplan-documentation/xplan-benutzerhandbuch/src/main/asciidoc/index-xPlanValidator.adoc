@@ -40,7 +40,7 @@ info@lat-lon.de.
 
 == Lizenzen und Anerkennung der Rechte Dritter
 
-Zum Lieferumfang der xPlanBox gehören Bibliotheken und andere Softwareprogrammen von Drittanbietern. Dabei handelt es sich um Open-Source Software, die im Rahmen der Bestimmungen der
+Zum Lieferumfang der xPlanBox gehören Bibliotheken und andere Softwareprogramme von Drittanbietern. Dabei handelt es sich um Open-Source Software, die im Rahmen der Bestimmungen der
 
 - Apache Software License, Version 2.0
 - Bouncy Castle Licence
