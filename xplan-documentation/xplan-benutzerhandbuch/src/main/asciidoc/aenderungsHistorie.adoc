@@ -69,7 +69,7 @@
  - Integration einer Kartenvorschau im XPlanValidator
  - Unterstützung für XPlanGML Version 2.0 aus der xPlanBox entfernen
  - Diverse Verbesserungen im XPlanValidator
-   * Angabe der GML Id bei semantischen Fehlern (ab XPlan GML 5.0)
+   * Angabe der GML Id bei semantischen Fehlern (ab XPlanGML 5.0)
    * Verbesserung der geometrischen Validierung
  - Verbesserung der Darstellung von Präsentationsobjekten
  - Verbesserung der Sachdatenabfrage im XPlanWMS (HTML)
