@@ -19,7 +19,8 @@ In diesem Repository werden alle Ressourcen zur xPlanBox Produktversion verwalte
 
 |xPlanBox Version |Auslieferung   | REST API  | Datum       |  Milestone
 |:--------------- |:------------- | :-------- |:----------- |:---------------
-| 4.1             | -             | v1        | 20 Jan 2021 | - (Testversion für LGV mit Validator Erweiterungen / Paket 2 - Teil 1)
+| 4.2             | -             | v1        | 18 Feb 2021 | - (Testversion für LGV mit Validator Erweiterungen / Paket 2 - Teil 2)
+| 4.1             | -             | v1        | 20 Jan 2021 | - (Testversion für LGV mit Validator Erweiterungen / Paket 2 - Teil 1 - Auslieferung ist nicht erfolgt)
 | 4.0             | dEE 2020.2    | v1        | 13 Nov 2020 | https://github.com/deegree-enterprise/xplanbox/milestone/7
 | 3.3             | dEE 2020.1    | -         | 21 Apr 2020 | https://github.com/deegree-enterprise/xplanbox/milestone/6
 | 3.0             | dEE 2019.1    | -         | 4 Nov 2019  | https://github.com/deegree-enterprise/xplanbox/milestone/5 
