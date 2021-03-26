@@ -80,6 +80,5 @@ Installations-Skript (s. <<Installations-Skript, Anhang>>) ausgeführt werden:
 sh ${WORK_DIR}/install.sh
 ----
 
-Installationswerkzeuge und -skripte werden ohne Gewähr bereitgestellt.
-Für professionelle Unterstützung wenden Sie sich bitte an die
-http://www.lat-lon.de[lat/lon GmbH].
+NOTE: Das Installationsskript wird ohne Gewähr bereitgestellt! Dieses Skript kann als Vorlage für eine Installationsroutine verwendet werden.
+Für professionelle Unterstützung wenden Sie sich bitte an die https://www.lat-lon.de[lat/lon GmbH].

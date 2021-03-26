@@ -97,33 +97,31 @@ NOTE: Alle Konfigurationsänderungen in _xplan-manager-config_ und _xplan-valdia
 ==== Vollständige Aktualisierung des Workspaces
 
 Es müssen die bereitgestellten Konfigurationsdateien in das Verzeichnis
-_.deegree_ kopiert werden. Diese ersetzen die bereits vorhandenen:
+_.deegree/_ kopiert werden. Diese ersetzen die bereits vorhandenen:
 
 ----
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wms-workspace-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
+cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace-${ENV}.zip
+cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace-${ENV}.zip
+cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace-${ENV}.zip
+cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wms-workspace-${ENV}.zip
+cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace-${ENV}.zip
+cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-${ENV}.zip
+cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
 ----
-
-Bei einer vollständigen Aktualisierung kann auch das Installationsskript aus dem Kapitel <<installation-über-ein-install-skript, Installation über ein Installations-Skript>> (s. <<Installations-Skript, Anhang>>) verwendet werden.
 
 [[teilweise-aktualisierung]]
 ==== Teilweise Aktualisierung des Workspaces
 
 Es müssen die bereit gestellten Konfigurationsdateien mit Ausnahme des xplansyn-wms-workspace in das Verzeichnis
-_.deegree_ kopiert werden. Diese ersetzen die bereits vorhanden:
+_.deegree/_ kopiert werden. Diese ersetzen die bereits vorhanden:
 
 ----
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-${ENV}.zip
-cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
+cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace-${ENV}.zip
+cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace-${ENV}.zip
+cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace-${ENV}.zip
+cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace-${ENV}.zip
+cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-${ENV}.zip
+cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
 ----
 
 Folgende Ordner des neuen xplansyn-wms-workspace müssen in die bestehende Installation integriert werden:

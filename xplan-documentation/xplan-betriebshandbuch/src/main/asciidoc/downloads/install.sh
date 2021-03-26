@@ -3,9 +3,9 @@
 # CONFIGURATION
 #Die Version und ggf. die Pfade muessen vor dem Ausfuehren des Skriptes angepasst werden
 VERSION=2.2.1
-DEEGEE_DIR=~/.deegree
 TOMCAT_SERVICES_ROOT=~/tomcat7-services
 TOMCAT_APPLICATIONS_ROOT=~/tomcat7-applications
+DEEGREE_DIR=~/.deegree
 
 # No change!
 WORK_DIR=`pwd`
@@ -30,12 +30,12 @@ function cleantomcat () {
 }
 
 function cleanconfig () {
-  rm -rf ${DEEGEE_DIR}/xplan-manager-workspace
-  rm -rf ${DEEGEE_DIR}/xplan-wfs-workspace
-  rm -rf ${DEEGEE_DIR}/xplansyn-wfs-workspace
-  rm -rf ${DEEGEE_DIR}/xplansyn-wms-workspace
-  rm -rf ${DEEGEE_DIR}/xplan-manager-config
-  rm -rf ${DEEGEE_DIR}/xplan-validator-config
+  rm -rf ${DEEGREE_DIR}/xplan-manager-workspace
+  rm -rf ${DEEGREE_DIR}/xplan-wfs-workspace
+  rm -rf ${DEEGREE_DIR}/xplansyn-wfs-workspace
+  rm -rf ${DEEGREE_DIR}/xplansyn-wms-workspace
+  rm -rf ${DEEGREE_DIR}/xplan-manager-config
+  rm -rf ${DEEGREE_DIR}/xplan-validator-config
 }
 
 # Main function to be called in execution
@@ -61,11 +61,11 @@ function unzipdocumentationtotomcat () {
 }
 
 function installconfiguration () {
-  cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-workspace-${VERSION}.zip
-  cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-wfs-workspace-${VERSION}.zip
-  cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplansyn-wfs-workspace-${VERSION}.zip
-  cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplansyn-wms-workspace-${VERSION}.zip
-  cd ${DEEGEE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}.zip
+  cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-workspace-${VERSION}.zip
+  cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-wfs-workspace-${VERSION}.zip
+  cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplansyn-wfs-workspace-${VERSION}.zip
+  cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplansyn-wms-workspace-${VERSION}.zip
+  cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}.zip
 }
 
 function unzipclis () {
