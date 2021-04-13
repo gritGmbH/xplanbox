@@ -15,6 +15,7 @@ Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 * <<xplaninspirepluwms, XPlanInspirePluWMS>>
 * <<xplaninspirepluwfs, XPlanInspirePluWFS>>
 * <<xplanresources, XPlanRessourcen>>
+* <<xplandb, XPlanDB>>
 
 image::Architektur_xPlanBox_einfach.png[Einfache Darstellung]
 
@@ -107,7 +108,7 @@ NOTE: Gleiches gilt für den XPlanWerkWMS, XPlanWFS und XPlanSynWFS
 
 Der XPlanWFS ist ein auf dem Standard Web Feature Service
 (Version 1.1.0 und 2.0.0) des Open Geospatial Consortium (OGC)
-basierender Dienst zur Abfrage von Vektordaten.
+basierender Dienst zur Abfrage von Vektordaten und stellt Endpunkte für jede XPlanGML-Version bereit.
 
 [[xplansynwfs]]
 === XPlanSynWFS
@@ -135,3 +136,8 @@ Bereitstellung importierter Pläne im INSPIRE Datenthema Planned Land Use (PLU).
 Die optionale Komponente XPlanRessourcen bietet eine
 Einstiegsseite zu den einzelnen Komponenten der xPlanBox und stellt
 Testdaten sowie die Dokumente mit den Konformitätsbedingungen des Standards XPlanung bereit.
+
+[[xplandb]]
+=== XPlanDB
+
+Die Komponente stellt die zentrale Datenhaltungskomponente für die alle Komponenten der xPlanBox bereit und wird durch eine PostgreSQL/PostGIS DB realisiert.
