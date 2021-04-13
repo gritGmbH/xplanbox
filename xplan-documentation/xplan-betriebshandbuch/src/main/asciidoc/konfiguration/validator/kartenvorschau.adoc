@@ -11,7 +11,7 @@ validatorWmsEndpoint=http://<host>:<port>>/xplan-validator-wms/services/wms
 
 Um die Hintergrundkarte der Kartenvorschau anzupassen, ist die Anpassung einer Datei im _xplan-validator-web.war_ erforderlich.
 
-Der Inhalt der anzupassende Datei link:./downloads/services-internet.template.json[services-internet.template.json] ist im folgenden dargestellt:
+Der Inhalt der anzupassende Datei link:./downloads/services-internet.template.json[services-internet.template.json] ist im Folgenden dargestellt:
 
 ----
 include::../../downloads/services-internet.template.json[]

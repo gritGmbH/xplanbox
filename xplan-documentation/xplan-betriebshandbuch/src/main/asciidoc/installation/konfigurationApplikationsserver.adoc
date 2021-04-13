@@ -14,20 +14,20 @@ Im _Anwendungs-Tomcat_ muss folgende Konfigurationen vorgenommen werden:
 Für den XPlanManagerWeb muss die Variable _XPLANBOX_CONFIG_ als Java
 Property gesetzt werden. Das mit Hilfe dieser Variable referenzierte
 Verzeichnis muss die Konfiguration des XPlanManagerWeb und XPlanValidatorWeb enthalten (es
-handelt sich um die Dateien managerConfiguration.properties,
-managerWebConfiguration.properties und validatorConfiguration.properties).
+handelt sich um die Dateien _managerConfiguration.properties_,
+_managerWebConfiguration.properties_ und _validatorConfiguration.properties_).
 Wurde der Anleitung in Abschnitt <<anwendung-installieren>> gefolgt, befindet sich das
 Verzeichnis mit dem Namen _xplan-manager-config_ im Verzeichnis
 _.deegree_ im Home-Verzeichnis des Nutzers. Wird ausschließlich der XPlanValidatorWeb installiert,
 heißt das Verzeichnis _xplan-validator-config_.
 
-Wurden die Workspaces nicht im Verzeichnis _.deegree_ des Home-Verzeichnis abgelegt, ist das Setzen der Umgebunsvariable _DEEGREE_WORKSPACE_ROOT_ erforderlich.
+Wurden die Workspaces nicht im Verzeichnis _.deegree_ des Home-Verzeichnis abgelegt, ist das Setzen der Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ erforderlich.
 
 [[anwendungs-tomcat-linux]]
 ===== Linux
 
 Für die Konfiguration der oben genannten Punkte muss zunächst im
-Verzeichnis _<tomcat-root>/bin_ eine neue Datei mit dem Namen
+Verzeichnis _<CATALINA_HOME>/bin_ der Instanz _Anwendungs-Tomcat_ eine neue Datei mit dem Namen
 _setenv.sh_ angelegt werden.
 
 In dieser Datei erfolgt das Setzen der Variable _XPLANBOX_CONFIG_ und ggf. von _DEEGREE_WORKSPACE_ROOT_ durch das Hinzufügen von:
@@ -42,7 +42,7 @@ Falls es bereits einen Export von `JAVA_OPTS` in dieser Datei gibt, muss die Var
 ===== Windows
 
 Für das Setzen der Variable _XPLANBOX_CONFIG_ sowie muss zunächst eine neue Datei mit dem Namen _setenv.bat_
-im Verzeichnis _<tomcat-root>/bin_ angelegt werden. Dort wird diese Variable, sowie _DEEGREE_WORKSPACE_ROOT_ wie folgt hinzugefügt:
+im Verzeichnis _<CATALINA_HOME>/bin_ der Instanz _Anwendungs-Tomcat_ angelegt werden. Dort wird diese Variable, sowie _DEEGREE_WORKSPACE_ROOT_ wie folgt hinzugefügt:
 
 ----
 export JAVA_OPTS=’-DXPLANBOX_CONFIG=C:\.deegree\xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=C:\pfad\zu\den\workspaces’
@@ -62,7 +62,7 @@ Ansonsten ist ein manueller Workspace-Reload nötig, um die neu
 importieren bzw. gelöschten Rasterpläne im XPlanWMS darzustellen bzw. zu
 entfernen.
 
-Dafür müssen in der Datei _<tomcat-root>/conf/tomcat-users.xml_ folgende
+Dafür müssen in der Datei _<CATALINA_HOME>/conf/tomcat-users.xml_ der Instanz _Dienste-Tomcat_ folgende
 Zeilen hinzugefügt werden:
 
 ----
@@ -72,7 +72,7 @@ Zeilen hinzugefügt werden:
 Weitere Informationen zur https://tomcat.apache.org/tomcat-8.5-doc/realm-howto.html[Konfiguration von Benutzern] ist in der Dokumentation von Apache Tomcat zu finden.
 
 NOTE: Der Nutzername und das Passwort müssen in die
-managerConfiguration.properties eingetragen werden (s. Kapitel
+_managerConfiguration.properties_ eingetragen werden (s. Kapitel
 <<automatischer-workspace-reload>>.
 
 NOTE: Der _Dienste-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,

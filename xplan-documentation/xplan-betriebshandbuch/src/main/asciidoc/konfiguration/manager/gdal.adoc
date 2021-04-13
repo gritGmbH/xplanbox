@@ -1,8 +1,8 @@
-[[GDAL]]
+[[konfiguration-gdal]]
 === GDAL
 
 Die GDAL Unterstützung erfordert die Installation von GDAL, diese ist im
-Abschnitt Installation <<Installation und Konfiguration von GDAL>> beschrieben.
+Abschnitt Installation <<installation-gdal>> beschrieben.
 
 Um die GDAL Unterstützung zu aktivieren, muss die
 GDAL-Hauptkonfiguration erzeugt werden. Dazu wird im Root-Ordner des

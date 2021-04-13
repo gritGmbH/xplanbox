@@ -2,7 +2,7 @@
 === Konfiguration der automatisierten Erstellung von Service-Metadatensätzen
 
 Die xPlanBox bietet die Möglichkeit einen Service-Metadatensatz für einen Plan bzw. den dazugehörigen XPlanWerkWMS automatisiert zu erstellen. Voraussetzung dafür ist, dass für den Plan bereits ein Datensatz-Metadatensatz in einen Metadatenkatalog (CSW) vorhanden ist.
-Um diese Funktion zu aktivieren, muss die Konfiguration in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ angepasst werden. Im folgenden der relevante Abschnitt:
+Um diese Funktion zu aktivieren, muss die Konfiguration in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ angepasst werden. Im Folgenden der relevante Abschnitt:
 
 ---------
 #Daten-Dienste-Kopplung

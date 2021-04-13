@@ -49,7 +49,7 @@ Es müssen alle Tomcat-Instanzen neu gestartet werden. Der Neustart muss nach de
 [[austausch-der-commandline-tools]]
 === Austausch der Commandline-Tools
 
-Es müssen die bereit gestellten Zip-Archive für die Kommandozeilen-Tools
+Es müssen die bereit gestellten ZIP-Archive für die Kommandozeilen-Tools
 entpackt werden:
 
 ----
@@ -310,7 +310,7 @@ Für die Aktualisierung auf die Version 3.3 sind folgende Schritte auszuführen:
 
 * Die Umgebungsvariable _MANAGER_WEB_ wurde nach _XPLANBOX_CONFIG_ umbenannt. _MANAGER_WEB_ kann derzeit noch verwendet werden, die Unterstützung wird jedoch in einer zukünftigen Version der xPlanBox entfernt. Hinweise zu der Umgebungsvariablen _XPLANBOX_CONFIG_ finden sich im Abschnitt <<anwendungs-tomcat>>. Sind im Anwendungs-Tomcat sowohl der XPlanManagerWeb als auch der XPlanValidatorWeb installiert, müssen alle Konfigurationsdateien aus _xplan-validator-config/_ und _xplan-manager-config/_ in einem Verzeichnis zusammengeführt werden, auf das die Umgebungsvariable _XPLANBOX_CONFIG_ verweist.
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
-** Im xplansyn-wms-workspace ist mit dieser Version eine Dummy-Konfiguration eines GDALRasterLayers hinzugekommen. Diese muss bei der Aktualisierung nicht übernommen werden (Hintergründe: <<GDAL>>).
+** Im xplansyn-wms-workspace ist mit dieser Version eine Dummy-Konfiguration eines GDALRasterLayers hinzugekommen. Diese muss bei der Aktualisierung nicht übernommen werden (Hintergründe: <<konfiguration-gdal>>).
 * Aktualisierung der Datenbank:
 ** Ausführen der Skripte für die Erstellung der Datenhaltung für 5.2 aus dem Modul _xplan-manager-workspace_:
 *** _fix/xplan52/create.sql_

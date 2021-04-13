@@ -4,7 +4,7 @@
 [[konfiguration]]
 ==== Konfiguration
 
-Die __zip__-Archive mit den Konfigurationen (s. <<installationskomponenten>>) müssen in das
+Die ZIP-Archive mit den Konfigurationen (s. <<installationskomponenten>>) müssen in das
 Verzeichnis _.deegree_ im Home-Verzeichnis (s. <<vorbereitung-der-installation>>) des Nutzers kopiert und entpackt werden:
 
 * _xplan-wfs-workspace_
@@ -16,7 +16,7 @@ Verzeichnis _.deegree_ im Home-Verzeichnis (s. <<vorbereitung-der-installation>>
 * _xplan-manager-config_
 * _xplan-validator-config_ (nur erforderlich, wenn ausschließlich der XPlanValidator installiert werden soll)
 
-NOTE: Alle Konfigurationen müssen in dem selben Verzeichnis liegen.
+NOTE: Die Konfigurationen müssen alle unterhalb des selben Basis-Verzeichnisses liegen.
 
 [[web-anwendungen]]
 ==== Web-Anwendungen
@@ -26,9 +26,7 @@ Um den Betrieb der verschiedenen im Abschnitt
 Komponenten zu gewährleisten, wird eine Trennung der Dienste,
 Anwendungskomponenten und der REST-API empfohlen. Zwingend erforderlich ist die Trennung beim
 Einsatz von GDAL (s. <<installation-gdal>>). Dann müssen die Web-Anwendungen getrennt voneinander
-betrieben werden. Im Folgenden ist beschrieben, wie eine Installation der Komponenten auf drei Tomcat-Instanzen
-erfolgen kann. Werden drei Tomcat-Instanzen auf einem Server betrieben, dann sollte der
-Server die im Kapitel <<empfohlene-systemkonfiguration>> beschriebenen Anforderungen erfüllen.
+betrieben werden. Im Folgenden ist beschrieben, wie eine Installation der Komponenten auf drei Tomcat-Instanzen erfolgen kann. Werden drei Tomcat-Instanzen auf einem Server betrieben, dann sollte der Server die im Kapitel <<empfohlene-systemkonfiguration>> beschriebenen Anforderungen erfüllen.
 
 Die folgenden WAR-Archive (s. <<installationskomponenten>>) müssen in das Verzeichnis `webapps`
 der Tomcat-Instanz (_Dienste-Tomcat_, z. B. Port: 8080) kopiert
@@ -55,7 +53,7 @@ bereitgestellt:
 * _xplan-api-validator.war_ (XPlanValidatorAPI)
 
 
-NOTE: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet es sich an, diese als ROOT-Webapp des Anwendungs-Tomcat zu installieren. Das WAR-Archiv xplan-root.war muss dafür im Verzeichnis ROOT entpackt werden.
+NOTE: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet es sich an, diese als ROOT-Webapp des Anwendungs-Tomcat zu installieren. Das WAR-Archiv _xplan-root.war_ muss dafür im Verzeichnis _ROOT_ entpackt werden.
 
 [[kommandozeilen-anwendungen]]
 ==== Kommandozeilen-Anwendungen
@@ -80,5 +78,4 @@ Installations-Skript (s. <<Installations-Skript, Anhang>>) ausgeführt werden:
 sh ${WORK_DIR}/install.sh
 ----
 
-NOTE: Das Installationsskript wird ohne Gewähr bereitgestellt! Dieses Skript kann als Vorlage für eine Installationsroutine verwendet werden.
-Für professionelle Unterstützung wenden Sie sich bitte an die https://www.lat-lon.de[lat/lon GmbH].
+NOTE: Das Installationsskript wird ohne Gewähr bereitgestellt! Dieses Skript kann als Vorlage für eine Installationsroutine verwendet werden. Für professionelle Unterstützung wenden Sie sich bitte an die https://www.lat-lon.de[lat/lon GmbH].

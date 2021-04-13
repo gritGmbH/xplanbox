@@ -2,19 +2,118 @@
 [[Installations-Skript]]
 == Installations-Skript
 
-Im folgenden befindet sich das Installations-Skript, welches für das Ablegen bzw. für den Austausch der Web-Archive sowie das Ablegen bzw. die Aktualisierung der betroffenen Konfigurationsdateien benutzt werden kann:
+Zur Unterstützung bei der Installation kann für das Ablegen bzw. für den Austausch der Web-Archive sowie die Aktualisierung der betroffenen Konfigurationsdateien das folgende Skript genutzt werden. Dieses muss je nach Umgebung und eingesetzten Software-Versionen noch angepasst werden:
 
 link:./downloads/install.sh[Installations-Skript]
 
 ----
 include::downloads/install.sh[]
 ----
+== Vereinfachte Aktualisierungsanleitung
+
+Im Folgenden wird für _Dienste-Tomcat_, _Anwendungs-Tomcat_ und _API-Tomcat_ jeweils das Verzeichnis _<CATALINA_HOME>_ der entsprechenden Tomcat-Instanz vorausgesetzt und angewendet.
+Alle Tomcat-Instanzen müssen vor der Aktualisierung gestoppt werden.
+
+=== Aktualisierung der Webanwendungen
+
+Kopieren der folgenden Dateien nach _Dienste-Tomcat/webapps_:
+
+* _xplan-wms.war_
+* _xplan-wfs.war_
+* _xplansyn-wfs.war_
+* _xplan-inspireplu.war_
+* _xplan-validator-wms.war_
+
+Kopieren der folgenden Dateien nach _Anwendungs-Tomcat/webapps_:
+
+* _xplan-manager-web.war_
+* _xplan-validator-web.war_
+* _xplan-root.war_
+
+Kopieren der folgenden Dateien nach _API-Tomcat/webapps_:
+
+* _xplan-api-manager.war_
+* _xplan-api-validator.war_
+
+=== Konfiguration der Webanwendung übertragen
+
+Folgende Dateien für XPlanManager sichern und zurückspielen, bzw. vergleichen und anpassen:
+
+* _Anwendungs-Tomcat/webapps/xplan-manager-web/index.html_ anpassen
+* _Anwendungs-Tomcat/webapps/xplan-manager-web/XPlanManager.jpg_ kopieren
+* _Anwendungs-Tomcat/webapps/xplan-manager-web/XPlanMgrWeb.css_ kopieren
+* _Anwendungs-Tomcat/webapps/xplan-manager-web/WEB-INF/web.xml_ anpassen der LDAP- oder Datenbank-Konfiguration
+* _Anwendungs-Tomcat/webapps/xplan-manager-web/WEB-INF/classes/security.properties_ anpassen
+* _Anwendungs-Tomcat/webapps/xplan-manager-web/WEB-INF/classes/security-configuration.xml_ kopieren
+
+Folgende Dateien für XPlanValidator sichern und zurückspielen, bzw. vergleichen und anpassen:
+
+* _Anwendungs-Tomcat/webapps/xplan-manager-web/xplan-validator-web/index.html_ anpassen
+* _Anwendungs-Tomcat/webapps/xplan-manager-web/xplan-validator-web/XPlanValidator.jpg_ kopieren
+* _Anwendungs-Tomcat/webapps/xplan-manager-web/xplan-validator-web/XPlanValidatorWeb.css_ kopieren
+* _Anwendungs-Tomcat/webapps/xplan-manager-web/xplan-validator-web/masterportal/config_ kopieren
+* _Anwendungs-Tomcat/webapps/xplan-manager-web/xplan-validator-web/masterportal/config.json_ kopieren
+* _Anwendungs-Tomcat/webapps/xplan-manager-web/xplan-validator-web/masterportal/template/config.template.json_ kopieren
+* _Anwendungs-Tomcat/webapps/xplan-manager-web/xplan-validator-web/masterportal/template/services-internet.template.json_ kopieren
+
+=== Konfiguration aus deegree workspaces übertragen
+
+Die Zuordnung der Anwendungskomponenten zu den jeweiligen Konfigurationen ist im Kapitel <<installationskomponenten, Installationskomponenten>> und <<konfiguration>> beschrieben.
+
+Als Basisverzeichnis wird _<XPLANBOX_CONFIG>_ vorausgesetzt.
+
+Vorbereitung:
+
+1. Alle deegree workspace Verzeichnisse aus _<XPLANBOX_CONFIG>_ sichern
+1. Neue deegree workspaces ZIP-Dateien entpacken und in die jeweiligen Verzeichnisse kopieren
+1. Die Dateien _console.pw_ und _webapps.properties_ aus _<XPLANBOX_CONFIG>_ zurückkopieren
+
+Konfiguration im Verzeichnis _<XPLANBOX_CONFIG>/manager-configuration_ aktualisieren:
+
+* _managerApiConfiguration.properties, managerConfiguration.properties, managerWebConfiguration und validatorConfiguration.properties_ anpassen
+* _<XPLANBOX_CONFIG>/manager-configuration/synthesizer kopieren
+
+Konfiguration im Verzeichnis _<XPLANBOX_CONFIG>/xplan-validator-config_ aktualisieren:
+
+* _<XPLANBOX_CONFIG>/xplan-validator-config/validatorConfiguration.properties_ kopieren
+
+Konfiguration im Verzeichnis _<XPLANBOX_CONFIG>/xplan-manager-workspace_ aktualisieren:
+
+* _<XPLANBOX_CONFIG>/xplan-manager-workspace/jdbc_ kopieren
+
+Konfiguration im Verzeichnis _<XPLANBOX_CONFIG>/xplansyn-wfs-workspace_ aktualisieren:
+
+* _<XPLANBOX_CONFIG>/xplansyn-wfs-workspace/jdbc_ kopieren
+* _<XPLANBOX_CONFIG>/xplansyn-wfs-workspace/services/xplansynwfs.xml_ kopieren
+
+Konfiguration im Verzeichnis _<XPLANBOX_CONFIG>/xplansyn-wms-workspace_ aktualisieren:
+
+* _<XPLANBOX_CONFIG>/xplansyn-wms-workspace\jdbc_ kopieren
+* _<XPLANBOX_CONFIG>/xplansyn-wms-workspace\gdal.ignore_ kopieren und in _gdal.xml_ umbenennen, wenn GDAL genutzt wird (siehe <<installation-gdal>> und <<konfiguration-gdal>>)
+* _<XPLANBOX_CONFIG>/xplansyn-wms-workspace\services\html.gfi_
+* _<XPLANBOX_CONFIG>/xplansyn-wms-workspace\data_ zurückkopieren
+* _<XPLANBOX_CONFIG>/xplansyn-wms-workspace\datasources\tile_ zurückkopieren
+* _<XPLANBOX_CONFIG>/xplansyn-wms-workspace\layers_ alle Layer die mit einer Nummer anfangen zurückkopieren
+* _<XPLANBOX_CONFIG>/xplansyn-wms-workspace\themes\bplanarchiveraster.xml, bplanpreraster.xml und bplanraster.xml_ zurückkopieren
+
+Konfiguration im Verzeichnis _<XPLANBOX_CONFIG>/xplan-wfs-workspace_ aktualisieren:
+
+* _<XPLANBOX_CONFIG>/xplan-wfs-workspace\jdbc_ kopieren
+
+Konfiguration im Verzeichnis _<XPLANBOX_CONFIG>/xplan-inspireplu-workspace_ aktualisieren:
+
+* _<XPLANBOX_CONFIG>/xplan-inspireplu-workspace\jdbc_ kopieren
+
+=== Aktualisierung der Datenbank
+
+* <<aktualisierung-der-schemas, Aktualisierung des Datenbankschemas>>
+* <<aktualisierung-der-daten, Aktualisierung der Daten>>
 
 [appendix]
 [[bbox_cache.properties]]
 == bbox_cache.properties Konfiguration
 
-Im folgenden befindet sich eine vollständige bbox_cache.properties. Diese ist vorkonfiguriert auf ganz Deutschland:
+Im Folgenden befindet sich eine vollständige _bbox_cache.properties_. Diese ist vorkonfiguriert auf ganz Deutschland:
 
 link:./downloads/bbox_cache.properties[bbox_cache.properties]
 
