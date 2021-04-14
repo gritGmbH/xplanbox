@@ -11,8 +11,7 @@ in dem die Datei entpackt wurde keine Rolle. Ist diese entpackt, kann
 die Datenbankerzeugung mittels des XPlanmangerCLIs durchgeführt werden.
 Informationen zu den Befehlen und der Erzeugung der Datenbank finden
 sich im Abschnitt XPlanManagerCLI im XPlanBenutzerhandbuch. Die
-erforderlichen Informationen sind im Abschnitt _Alternativer
-Betriebsmodus_ beschrieben.
+erforderlichen Informationen sind im Abschnitt <<xplanmanager-cli-alternativer-betriebsmodus>> beschrieben.
 
 Mit dem XPlanManagerCLI werden auch die Verbindungsdetails im XPlanManagerWorkspace anhand der übergebenden Parameter gesetzt, so dass der XPlanManager nach Ausführung ohne manuelle Anpassungen auf die Datenbank zugreifen kann.
 Dagegen müssen die Datenbank Verbindung in den XPlanDiensten manuell angepasst werden. Betroffen sind folgende Dateien:

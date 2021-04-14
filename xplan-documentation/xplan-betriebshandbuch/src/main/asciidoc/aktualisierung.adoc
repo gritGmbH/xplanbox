@@ -248,13 +248,6 @@ _XPlanManagerCLI_ im XPlanBenutzerhandbuch. Die erforderliche
 Konfiguration ist im Abschnitt _Konfiguration_ -> _Sortierung der Daten
 in der Visualisierung_ in dieser Dokumentation beschrieben.
 
-=== Troubleshooting
-
-Bei unerwartetem Verhalten der xPlanBox nach der Aktualisierung können folgende Punkte helfen:
-
- * Löschen des Work-Verzeichnis des Tomcats. Der Tomcat muss zuvor gestoppt und anschließend neu gestartet werden.
- * Löschen des Browser-Caches
-
 [[aktualisierung-auf-die-version-2.7-der-xplanbox]]
 === Aktualisierung auf die Version 2.7 der xPlanBox
 
@@ -379,3 +372,10 @@ Für die Aktualisierung auf die Version 4.2 sind folgende Schritte auszuführen:
 ** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
 Des Weiteren muss GDAL auf Version 3.0 aktualisiert werden (siehe <<installation-gdal>>). GDAL 2 wird nicht mehr unterstützt.
+
+=== Troubleshooting
+
+Bei unerwartetem Verhalten der xPlanBox nach der Aktualisierung können folgende Punkte helfen:
+
+* Löschen des Work-Verzeichnis des Tomcats. Der Tomcat muss zuvor gestoppt und anschließend neu gestartet werden.
+* Löschen des Browser-Caches

@@ -4,9 +4,7 @@
 [[internet-explorer]]
 === Internet Explorer
 
-Beim Importieren (Hochladen) von XPlanArchiven über den XPlanManagerWeb mit Microsoft Internet Explorer 9/10/11 kann
-es vorkommen, dass das XPlanArchiv für die Dauer der Sitzung im Windows Dateisystem
-blockiert wird.
+Beim Importieren (Hochladen) von XPlanArchiven über den XPlanManagerWeb mit Microsoft Internet Explorer 9/10/11 kann es vorkommen, dass das XPlanArchiv für die Dauer der Sitzung im Windows Dateisystem blockiert wird.
 
 Der Fehler ist Microsoft bekannt und es wird folgender Workaround empfohlen:
 
@@ -22,19 +20,14 @@ Referenzen:
 === Kapazitätsbezogene Einschränkungen
 
 Sowohl für das XPlanManagerCLI, den XPlanManagerWeb als auch den XPlanValidator gelten
-Obergrenzen beim Import von XPlanArchiven. XPlanArchive (ZIP-Datei
-inklusive Anhänge) größer als 50 MB und XPlanGML-Dateien größer als 2 MB können die Systemstabilität
-beeinträchtigen. Wenn XPlanArchive mit größeren Anhängen importiert
-werden sollen, so müssen Server-seitig entsprechende
-Systemvoraussetzungen erfüllt sein.
+Obergrenzen beim Import von XPlanArchiven. XPlanArchive (ZIP-Datei inklusive Anhänge) größer als 50 MB und XPlanGML-Dateien größer als 2 MB können die Systemstabilität beeinträchtigen. Wenn XPlanArchive mit größeren Anhängen importiert werden sollen, so müssen Server-seitig entsprechende Systemvoraussetzungen erfüllt sein.
 
 Für die Bereitstellung von mehr als 500 XPlanArchiven über die Dienste
 XPlanWMS, XPlanWFS oder XPlanSynWFS müssen Server-seitig ebenfalls entsprechende
 Systemvoraussetzungen erfüllt sein. Das Antwortzeitverhalten der Dienste ist von den verfügbaren
 System-Ressourcen abhängig.
 
-Weitere Informationen zu den Systemanforderungen der xPlanBox finden Sie im
-Betriebshandbuch.
+Weitere Informationen zu den Systemanforderungen der xPlanBox finden Sie im Betriebshandbuch.
 
 [[xplanbox---durch-kartenvorschau-generierter-getmap-request]]
 === xPlanBox - Durch Kartenvorschau generierter GetMap-Request
@@ -155,8 +148,7 @@ Nicht umgesetzt ist dagegen insbesondere die Auswertung der Attribute _art_ und 
 [[fehler-melden]]
 == Fehler melden
 
-Für den Fall, dass Sie einen Fehler in einer der xPlanBox Komponenten finden, schicken Sie bitte eine E-mail an das Support-Postfach:
-​support@lat-lon.de​.
+Für den Fall, dass Sie einen Fehler in einer der xPlanBox Komponenten finden, schicken Sie bitte eine E-mail an das Support-Postfach: ​support@lat-lon.de​ oder Sie öffnen ein Ticket unter https://bitbucket.org/latlon/xplanbox-ep/issues.
 
 [[support]]
 == Support

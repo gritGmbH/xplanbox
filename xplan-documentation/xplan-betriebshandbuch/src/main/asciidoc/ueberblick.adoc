@@ -14,8 +14,7 @@ diesem Kapitel beschriebenen Voraussetzungen erfüllt werden.
 [[betriebssystem]]
 === Betriebssystem
 
-Als Betriebssystem kann ein beliebiges 64-bit Betriebssystem verwendet
-werden.
+Als Betriebssystem kann ein beliebiges 64-bit Betriebssystem verwendet werden.
 
 NOTE: Empfohlen wird die Nutzung eines der folgenden Betriebssysteme: Debian 10 (Buster) oder
 Ubuntu 20.04 LTS (Focal Fossa).
@@ -40,11 +39,9 @@ NOTE: Empfohlen wird OpenJDK 1.8.0_272+.
 === Java Applikationsserver
 
 Als Applikationsserver wird Apache Tomcat empfohlen.
-Das Installationsarchiv findet sich bei der
-https://tomcat.apache.org[Apache Foundation]. Diese Dokumentation bezieht
-sich grundsätzlich auf den Apache Tomcat. Um eine spätere Trennung der
-Dienste (Web-Anwendungen) zu gewährleisten, wird die Konfiguration von mehreren
-Tomcat-Instanzen empfohlen.
+Das Installationsarchiv findet sich bei der https://tomcat.apache.org[Apache Foundation]. Diese Dokumentation bezieht sich grundsätzlich auf den Apache Tomcat.
+
+Um eine spätere Trennung der Dienste (Web-Anwendungen) zu gewährleisten, wird die Konfiguration von mehreren Tomcat-Instanzen empfohlen (siehe Kapitel <<web-anwendungen>>).
 
 NOTE: Die minimale Anforderung an den Applikationsserver ist das Java EE 6 Web
 Profil. Empfohlen wird Apache Tomcat Version 8.5.59+ oder 9.0.39+.
@@ -88,12 +85,7 @@ Minimum 500 GB)
 
 NOTE: Die Anwendung xPlanBox benötigt min. 800 MB Festplattenspeicherplatz.
 Wachsende Daten über die Laufzeit sind die Datenhaltung für die Pläne
-inkl. der Anhänge und die Systemlogdateien. Zu der Kapazitätsnutzung der
-xPlanBox können folgende Abschätzung gegeben werden: Größe eines
-XPlanArchivs (inkl. der Anhänge) * Anzahl der XPlanArchive * 2. Wenn also
-100 Pläne mit einer durchschnittlichen Größe von 10 MB inkl. der Anhänge
-importiert werden sollen, dann sind ca. 2 GB Festplattenspeicherplatz
-notwendig.
+inkl. der Anhänge und die Systemlogdateien. Zur Kapazitätsplanung kann folgende Abschätzung gegeben werden: Der Festplattenspeicherplatz für die Daten ist erforderlich auf dem Server mit der <<XPlanDB>> und der Tomcat-Instanz mit dem <<XPlanManager>>. Folgende Formel kann bei der   Kapazitätsplanung zur Hilfe gezogen werden: _Größe eines XPlanArchivs (inkl. der Anhänge) * Anzahl der XPlanArchive * 2_. Wenn also zum Beispiel 100 Pläne mit einer durchschnittlichen Größe von 50 MB inkl. der Anhänge importiert werden sollen, dann sind ca. 10 GB Festplattenspeicherplatz je Server notwendig.
 
 [[empfohlene-systemkonfiguration]]
 ===== Empfohlene Systemkonfiguration
