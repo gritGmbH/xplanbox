@@ -1,4 +1,4 @@
-FROM tomcat:9-jre8
+FROM tomcat:9-jdk8
 
 MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
