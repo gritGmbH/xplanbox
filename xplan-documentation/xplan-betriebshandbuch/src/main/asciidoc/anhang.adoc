@@ -1,14 +1,4 @@
 [appendix]
-[[Installations-Skript]]
-== Installations-Skript
-
-Zur Unterstützung bei der Installation kann für das Ablegen bzw. für den Austausch der Web-Archive sowie die Aktualisierung der betroffenen Konfigurationsdateien das folgende Skript genutzt werden. Dieses muss je nach Umgebung und eingesetzten Software-Versionen noch angepasst werden:
-
-link:./downloads/install.sh[Installations-Skript]
-
-----
-include::downloads/install.sh[]
-----
 == Vereinfachte Aktualisierungsanleitung
 
 Im Folgenden wird für _Dienste-Tomcat_, _Anwendungs-Tomcat_ und _API-Tomcat_ jeweils das Verzeichnis _<CATALINA_HOME>_ der entsprechenden Tomcat-Instanz vorausgesetzt und angewendet.

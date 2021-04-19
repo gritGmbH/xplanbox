@@ -63,15 +63,3 @@ Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an belie
 ==== Dokumentation
 
 Das XPlanBenutzerhandbuch (s. <<installationskomponenten>>) zu den verschiedenen Komponenten liegt in den Formaten HTML und PDF vor.
-
-[[installation-über-ein-install-skript]]
-==== Installation über ein Install-Skript
-
-Das Ablegen der Web-Archive sowie der Konfigurationsdateien kann auf Linux-Umgebungen auch über das angehängte
-Installations-Skript (s. <<Installations-Skript, Anhang>>) ausgeführt werden:
-
-----
-sh ${WORK_DIR}/install.sh
-----
-
-NOTE: Das Installationsskript wird ohne Gewähr bereitgestellt! Dieses Skript kann als Vorlage für eine Installationsroutine verwendet werden. Für professionelle Unterstützung wenden Sie sich bitte an die https://www.lat-lon.de[lat/lon GmbH].
