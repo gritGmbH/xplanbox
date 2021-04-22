@@ -12,7 +12,7 @@ Die REST-API des XPlanManager stellt folgende Ressourcen bereit:
 |`/plan/{planId}` |`GET` |Abfrage der Daten zu einem XPlanArchiv über PlanID
 |`/plan/{planId}` |`DELETE` |Löschen eines XPlanArchivs
 |`/plan/name/{planName}` |`GET` |Abfrage der Daten zu einem XPlanArchiv über den Plannamen
-|`/plans/` |`GET` |Suche nach XPlanArchiven über den Plannamen
+|`/plans?planName={name}` |`GET` |Suche nach XPlanArchiven über den Plannamen
 |`/info` |`GET` |Informationen zur Software und Konfiguration
 |===
 
