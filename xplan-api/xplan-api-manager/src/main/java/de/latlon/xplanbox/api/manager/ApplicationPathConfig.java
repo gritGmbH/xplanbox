@@ -92,7 +92,7 @@ public class ApplicationPathConfig extends ResourceConfig {
 
         openApiResource.setOpenApiConfiguration( oasConfig );
         register( openApiResource );
-        LOG.info( "XPlanApiValidator successfully initialized" );
+        LOG.info( "XPlanApiManager successfully initialized" );
     }
 
     private List<Tag> createTags(
