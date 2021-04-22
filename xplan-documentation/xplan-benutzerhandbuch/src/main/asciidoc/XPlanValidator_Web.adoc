@@ -47,13 +47,13 @@ Sie können der aktuellen Validierung, falls notwendig, einen eigenen Namen gebe
 
 [NOTE]
 ====
-Vermeiden Sie auch hier, Umlaute, Sonderzeichen und/oder Leerzeichen.
+Vermeiden Sie auch hier Umlaute, Sonderzeichen und/oder Leerzeichen.
 ====
 
 [.bordered]
 image::validator/Validierungsoptionen_bezeichnung.png[Validerungsoptionen]
 
-In Ihrem Validierungsbericht später wird Ihre Bezeichnung wie folgt dargestellt:
+In Ihrem Validierungsbericht wird Ihre Bezeichnung wie folgt dargestellt:
 
 [.bordered]
 image::validator/Validierungsbericht.png[Validierungsbericht]
@@ -121,7 +121,7 @@ Folgende Prüfungen werden in Abhängigkeit vom Geometrietyp durchgeführt, es h
  * MultiPolygone:
   ** Keine Berührung zwischen einzelnen Polygonen
   ** Kein Schnitt zwischen einzelnen Polygonen
-  ** alle für Polygone geltenen Prüfungen für jedes einzelne Polygon
+  ** alle für Polygone geltenden Prüfungen für jedes einzelne Polygon
 
 
 Nutzung der Optionen
