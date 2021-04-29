@@ -4,7 +4,7 @@ MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
 # set environment variables
-ENV JAVA_OPTS="-Xmx8192m"
+ENV JAVA_OPTS="-Xmx8192m -Djava.security.manager -Djava.security.policy=/usr/local/tomcat/conf/catalina.policy"
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
 # configure tomcat
