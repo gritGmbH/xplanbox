@@ -259,7 +259,7 @@ grant codeBase "file:${catalina.home}/webapps/host-manager/-" {
 // grant codeBase "war:file:${catalina.base}/webapps/examples.war*/WEB-INF/lib/foo.jar" {
 // };
 
-grant  codeBase "file:${catalina.base}/webapps/deegree-webservices/-" {
+grant  codeBase "file:${catalina.base}/webapps/-" {
 
     permission java.lang.RuntimePermission "accessClassInPackage.com.sun.xml.internal.bind.v2.runtime.reflect";
     permission java.lang.RuntimePermission "getClassLoader";
@@ -346,22 +346,20 @@ grant  codeBase "file:${catalina.base}/webapps/deegree-webservices/-" {
 
     permission java.net.SocketPermission "*:80-", "connect,resolve,listen,accept";
 
-    permission java.io.FilePermission "file:${catalina.base}/webapps/deegree-webservices/WEB-INF/-", "read,write,delete,execute";
+    permission java.io.FilePermission "file:${catalina.base}/webapps/xplan-wfs/WEB-INF/-", "read,write,delete,execute";
+    permission java.io.FilePermission "file:${catalina.base}/webapps/xplan-wms/WEB-INF/-", "read,write,delete,execute";
+    permission java.io.FilePermission "file:${catalina.base}/webapps/xplansyn-wfs/WEB-INF/-", "read,write,delete,execute";
     permission java.io.FilePermission "${catalina.base}/-", "read,write,delete,execute";
     permission java.io.FilePermission "${catalina.base}/logs/-", "read,write,delete";
     permission java.io.FilePermission "${catalina.base}/logs/", "read,write,delete";
-    permission java.io.FilePermission "/var/log/tomcat8/-", "read,write,delete";
-    permission java.io.FilePermission "/var/log/tomcat8/", "read,write,delete";
+    permission java.io.FilePermission "/usr/local/tomcat/-", "read,write,delete";
+    permission java.io.FilePermission "/usr/local/tomcat/", "read,write,delete";
     permission java.io.FilePermission "${java.io.tmpdir}/", "read,write,delete,execute";
     permission java.io.FilePermission "${java.io.tmpdir}/-", "read,write,delete,execute";
-    permission java.io.FilePermission "/var/lib/tomcat8/.deegree/-", "read,write,delete";
-    permission java.io.FilePermission "/var/lib/tomcat8/.deegree/", "read,write,delete";
-    permission java.io.FilePermission "/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/-", "read";
-    permission java.io.FilePermission "/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/", "read";
-    permission java.io.FilePermission "/usr/share/deegree-libraries/-", "read";
-    permission java.io.FilePermission "/usr/share/deegree-libraries/", "read";
-    permission java.io.FilePermission "/var/lib/tomcat8/-", "read";
-    permission java.io.FilePermission "/var/lib/tomcat8/", "read";
+    permission java.io.FilePermission "/root/.deegree/-", "read,write,delete";
+    permission java.io.FilePermission "/root/.deegree/", "read,write,delete";
+    permission java.io.FilePermission "/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/-", "read";
+    permission java.io.FilePermission "/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/", "read";
     permission java.io.FilePermission "/usr/share/java/-", "read";
     permission java.io.FilePermission "/usr/share/java/", "read";
 };
