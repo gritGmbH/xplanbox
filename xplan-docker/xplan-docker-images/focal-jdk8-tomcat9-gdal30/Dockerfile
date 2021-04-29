@@ -18,7 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt -y install openjdk-8-jdk
 
 # install tomcat
 RUN mkdir /usr/local/tomcat
-RUN wget https://mirror.netcologne.de/apache.org/tomcat/tomcat-9/v9.0.43/bin/apache-tomcat-9.0.43.tar.gz -O /tmp/tomcat.tar.gz
+RUN wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.45/bin/apache-tomcat-9.0.45.tar.gz -O /tmp/tomcat.tar.gz
 RUN cd /tmp && tar xvfz tomcat.tar.gz
 RUN cp -Rv /tmp/apache-tomcat-9.0.43/* /usr/local/tomcat/
 EXPOSE 8080
