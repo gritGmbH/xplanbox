@@ -365,4 +365,7 @@ grant  codeBase "file:${catalina.base}/webapps/-" {
     permission java.io.FilePermission "/usr/share/java/", "read";
     permission java.io.FilePermission "/hale/bin/hale/-", "read,execute";
     permission java.io.FilePermission "/hale/bin/hale/", "read,execute";
+    permission java.io.FilePermission "net/sf/jasperreports/fonts/-", "read";
+    permission java.io.FilePermission "net/sf/jasperreports/fonts/", "read";
+    permission java.io.FilePermission "fonts.xml", "read";
 };
