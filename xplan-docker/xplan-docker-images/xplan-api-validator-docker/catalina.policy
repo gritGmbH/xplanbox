@@ -347,18 +347,17 @@ grant  codeBase "file:${catalina.base}/webapps/-" {
 
     permission java.net.SocketPermission "*:80-", "connect,resolve,listen,accept";
 
-    permission java.io.FilePermission "file:${catalina.base}/webapps/xplan-api-validator/WEB-INF/-", "read,write,delete,execute";
-    permission java.io.FilePermission "${catalina.base}/-", "read,write,delete,execute";
+    permission java.io.FilePermission "${catalina.base}/webapps/xplan-api-validator/WEB-INF/-", "read";
     permission java.io.FilePermission "${catalina.base}/logs/-", "read,write,delete";
     permission java.io.FilePermission "${catalina.base}/logs/", "read,write,delete";
-    permission java.io.FilePermission "/usr/local/tomcat/-", "read,write,delete";
-    permission java.io.FilePermission "/usr/local/tomcat/", "read,write,delete";
-    permission java.io.FilePermission "${java.io.tmpdir}/", "read,write,delete,execute";
+    permission java.io.FilePermission "/usr/local/tomcat/-", "read";
+    permission java.io.FilePermission "/usr/local/tomcat/", "read";
     permission java.io.FilePermission "${java.io.tmpdir}/-", "read,write,delete,execute";
+    permission java.io.FilePermission "${java.io.tmpdir}/", "read,write,delete,execute";
     permission java.io.FilePermission "/root/.deegree/-", "read,write,delete";
     permission java.io.FilePermission "/root/.deegree/", "read,write,delete";
-    permission java.io.FilePermission "/root/xplan-validator-config/-", "read,write,delete";
-    permission java.io.FilePermission "/root/xplan-validator-config/", "read,write,delete";
+    permission java.io.FilePermission "/root/xplan-validator-config/-", "read";
+    permission java.io.FilePermission "/root/xplan-validator-config/", "read";
     permission java.io.FilePermission "/usr/local/openjdk-8/jre/lib/-", "read";
     permission java.io.FilePermission "/usr/local/openjdk-8/jre/lib/", "read";
     permission java.io.FilePermission "/usr/share/java/-", "read";
