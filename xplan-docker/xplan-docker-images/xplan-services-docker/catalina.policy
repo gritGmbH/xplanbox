@@ -347,12 +347,14 @@ grant  codeBase "file:${catalina.base}/webapps/-" {
 
     permission java.net.SocketPermission "*:80-", "connect,resolve,listen,accept";
 
-    permission java.io.FilePermission "${catalina.base}/webapps/xplan-wfs/WEB-INF/-", "read";
-    permission java.io.FilePermission "${catalina.base}/webapps/xplan-wms/WEB-INF/-", "read";
-    permission java.io.FilePermission "${catalina.base}/webapps/xplansyn-wfs/WEB-INF/-", "read";
+    permission java.io.FilePermission "${catalina.base}/webapps/xplan-wfs/-", "read";
+    permission java.io.FilePermission "${catalina.base}/webapps/xplan-wms/-", "read";
+    permission java.io.FilePermission "${catalina.base}/webapps/xplansyn-wfs/-", "read";
     permission java.io.FilePermission "${catalina.base}/logs/-", "read,write,delete";
+    permission java.io.FilePermission "${catalina.base}/lib/-", "read";
     permission java.io.FilePermission "${java.io.tmpdir}/-", "read,write,delete,execute";
     permission java.io.FilePermission "/root/.deegree/-", "read,write,delete";
+    permission java.io.FilePermission "/root/.deegree/", "read,write,delete";
     permission java.io.FilePermission "/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/-", "read";
     permission java.io.FilePermission "/usr/share/java/-", "read";
 };
