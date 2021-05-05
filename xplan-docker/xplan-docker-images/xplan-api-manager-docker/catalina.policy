@@ -349,22 +349,13 @@ grant  codeBase "file:${catalina.base}/webapps/-" {
 
     permission java.io.FilePermission "${catalina.base}/webapps/xplan-api-manager/WEB-INF/-", "read";
     permission java.io.FilePermission "${catalina.base}/logs/-", "read,write,delete";
-    permission java.io.FilePermission "${catalina.base}/logs/", "read,write,delete";
-    permission java.io.FilePermission "/usr/local/tomcat/-", "read";
-    permission java.io.FilePermission "/usr/local/tomcat/", "read";
     permission java.io.FilePermission "${java.io.tmpdir}/-", "read,write,delete,execute";
-    permission java.io.FilePermission "${java.io.tmpdir}/", "read,write,delete,execute";
     permission java.io.FilePermission "/root/.deegree/-", "read,write,delete";
-    permission java.io.FilePermission "/root/.deegree/", "read,write,delete";
     permission java.io.FilePermission "/root/xplan-manager-config/-", "read";
     permission java.io.FilePermission "/root/xplan-manager-config/", "read";
     permission java.io.FilePermission "/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/-", "read";
-    permission java.io.FilePermission "/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/", "read";
     permission java.io.FilePermission "/usr/share/java/-", "read";
-    permission java.io.FilePermission "/usr/share/java/", "read";
     permission java.io.FilePermission "/hale/bin/hale/-", "read,execute";
-    permission java.io.FilePermission "/hale/bin/hale/", "read,execute";
     permission java.io.FilePermission "net/sf/jasperreports/fonts/-", "read";
-    permission java.io.FilePermission "net/sf/jasperreports/fonts/", "read";
     permission java.io.FilePermission "fonts.xml", "read";
 };
