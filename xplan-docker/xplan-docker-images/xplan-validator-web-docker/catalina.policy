@@ -355,8 +355,7 @@ grant  codeBase "file:${catalina.base}/webapps/-" {
     permission java.io.FilePermission "/root/.deegree/", "read,write,delete";
     permission java.io.FilePermission "/root/xplan-validator-config/-", "read";
     permission java.io.FilePermission "/root/xplan-validator-config/", "read";
-    permission java.io.FilePermission "/usr/local/openjdk-8/jre/lib/-", "read";
-    permission java.io.FilePermission "/usr/share/java/-", "read";
+    permission java.io.FilePermission "${java.home}/-", "read";
     permission java.io.FilePermission "net/sf/jasperreports/fonts/-", "read";
     permission java.io.FilePermission "fonts.xml", "read";
     permission java.io.FilePermission "${catalina.base}/webapps/xplan-validator-web/masterportal/-", "read,write";
