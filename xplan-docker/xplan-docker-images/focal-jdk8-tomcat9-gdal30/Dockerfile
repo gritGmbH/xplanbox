@@ -24,4 +24,4 @@ RUN cp -Rv /tmp/apache-tomcat-9.0.45/* /usr/local/tomcat/
 EXPOSE 8080
 
 # install gdal plus jni
-RUN apt -y install libgdal-java
+RUN apt update && apt -y install libgdal-java
