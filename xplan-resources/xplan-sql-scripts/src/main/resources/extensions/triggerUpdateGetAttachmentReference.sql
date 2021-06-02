@@ -1,7 +1,7 @@
 DO
 $do$
   DECLARE
-    u text = 'http://localhost:8083/xplan-wms';
+    u text = 'https://xplanbox.lat-lon.de/xplan-wms';
     i record;
   BEGIN
   FOR i IN SELECT table_schema, table_name, column_name FROM information_schema.columns WHERE table_schema like 'xplansyn%' AND table_name  like 'xplan_%' AND (column_name = 'xplan_externereferenz' OR column_name LIKE 'xplan_raster%' OR column_name LIKE 'xplan_ref%')
