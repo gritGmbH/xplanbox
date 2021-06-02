@@ -46,14 +46,14 @@ Für mehr Details siehe Kapitel <<automatischer-workspace-reload>>
 [[fuer-den-xplanwms]]
 ==== Für den XPlanWMS:
 
-* _html.gfi_ (im Verzeichnis _.deegree/xplansyn-wms-workspace_ unter __services__)
+* _html.gfi_ (im Verzeichnis _.deegree/xplansyn-wms-workspace/services_)
 
 *Anpassungen in der Datei html.gfi:*
 
 Damit die Links auf Dokumente in der GetFeatureInfo Ausgabe
 funktionsfähig sind, muss eine Anpassung der URL in der Datei _html.gfi_
-erfolgen. Die URL in dem zweiten Tabellenelement muss auf die öffentliche URL des XPlanWMS verweisen, der die
-Anhänge aus dem XPlanArchiv über die Operation GetAttachment bereitstellt.
+erfolgen. Die URL in dem zweiten Tabellenelement muss auf die öffentliche URL des XPlanWMS geändert werden, über die die
+Anhänge aus dem XPlanArchiv über die Operation GetAttachment des XPlanWMS bereitstellt werden.
 
 ----
 <?template makeitalink>

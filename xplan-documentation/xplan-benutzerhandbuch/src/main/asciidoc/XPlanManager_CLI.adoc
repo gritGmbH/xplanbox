@@ -26,7 +26,7 @@ durchzuführen.
 
 Falls der Parameter `managerconfiguration` während eines Aufrufs des
 Kommandozeilentools nicht mitgegeben wird, nutzt das Tool die unter
-_etc_ abgelegte Datei. Wenn der Parameter mitgegeben wird, muss sich die
+_etc/_ abgelegte Datei. Wenn der Parameter mitgegeben wird, muss sich die
 Konfigurationsdatei in dem referenzierten Verzeichnis befinden.
 
 So kann über das Property _defaultBboxIn4326_ für den 'Alternativen
@@ -185,7 +185,7 @@ XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --managerconfigu
 Beispiel Ausgabe für erfolgreichen Import
 
 ----
-Analyse des XPlan-Archivs
+Analyse des XPlanArchivs
 ('../../resources/testdata/XPlanGML_3_0/Infrastruktur.zip')...OK.
 - Analyse des Dokuments...OK [1167 ms]: XPLAN_3, RP_Plan, EPSG:31466
 - Schema-Validierung...OK [5135 ms]
@@ -240,7 +240,7 @@ OK [1591 ms]
 Rasterscans:
  - B-Plan_Klingmuehl_Heideweg_Karte.tif
 WMS Konfiguration für Id 79 nach /home/user/.deegree/xplansyn-wms-workspace geschrieben.
-XPlan-Archiv wurde erfolgreich importiert. Zugewiesene Id: 79
+XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: 79
 ----
 
 Passt das CRS nicht mit dem CRS der Rasterdatenhaltung überein, so
@@ -347,13 +347,13 @@ Plan 1 wurde gelöscht.
 [[xplanmanager-cli-alternativer-betriebsmodus]]
 ===== Alternativer Betriebsmodus
 
-Alternativ zum normalen Import von Plänen bietet der XPlanManagerCLI die
+Alternativ zum normalen Import von Plänen bietet das XPlanManagerCLI die
 Möglichkeit, für jeden Plan eigene WMS Konfigurationen zu verwalten,
 sodass planspezifische WMS Dienste möglich sind. Dazu gibt es insgesamt
 3 verschiedene Optionen für den XPlanManagerCLI.
 
 Datenbank erzeugen:
-  Mit dem XPlanManager kann die Datenhaltung für Xplan-Archive erzeugt
+  Mit dem XPlanManagerCLI kann die Datenhaltung erzeugt
   werden. Der XPlanManager wird beim Erzeugen der Datenhaltung auf diese
   neue Datenbank eingestellt.
 

@@ -8,10 +8,13 @@ Das Anlegen der Datenbank kann entweder über das XPlanManagerCLI oder manuell e
 Für die Konfiguration der Datenbank-Anbindung muss die
 __xplan-manager-cli__-Datei entpackt sein. Dabei spielt das Verzeichnis
 in dem die Datei entpackt wurde keine Rolle. Ist diese entpackt, kann
-die Datenbankerzeugung mittels des XPlanmangerCLIs durchgeführt werden.
-Informationen zu den Befehlen und der Erzeugung der Datenbank finden
-sich im Abschnitt XPlanManagerCLI im XPlanBenutzerhandbuch. Die
-erforderlichen Informationen sind im Abschnitt <<xplanmanager-cli-alternativer-betriebsmodus>> beschrieben.
+die Datenbankerzeugung mittels des XPlanManagerCLI durchgeführt werden:
+
+----
+XPlanManager -createdb 'xplanbox' jdbc:postgresql://localhost:5432 -u postgres -p postgres
+----
+
+Informationen zu den Befehlen und der Erzeugung der Datenbank finden sich im Abschnitt XPlanManagerCLI im XPlanBenutzerhandbuch. Die erforderlichen Informationen sind im Abschnitt "Alternativer Betriebsmodus" beschrieben.
 
 Mit dem XPlanManagerCLI werden auch die Verbindungsdetails im XPlanManagerWorkspace anhand der übergebenden Parameter gesetzt, so dass der XPlanManager nach Ausführung ohne manuelle Anpassungen auf die Datenbank zugreifen kann.
 Dagegen müssen die Datenbank Verbindung in den XPlanDiensten manuell angepasst werden. Betroffen sind folgende Dateien:
