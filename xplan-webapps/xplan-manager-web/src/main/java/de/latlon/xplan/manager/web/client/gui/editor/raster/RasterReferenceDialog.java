@@ -117,19 +117,17 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
     private final RasterReference originalRasterReference;
 
-    public RasterReferenceDialog( EditVersion version, boolean enableSelectionOfText ) {
-        this( version, enableSelectionOfText, null, MESSAGES.editCaptionRasterBasisDialogNew() );
+    public RasterReferenceDialog( EditVersion version ) {
+        this( version, null, MESSAGES.editCaptionRasterBasisDialogNew() );
     }
 
-    public RasterReferenceDialog( EditVersion version, boolean enableSelectionOfText,
-                                  RasterReference rasterReference ) {
-        this( version, enableSelectionOfText, rasterReference, MESSAGES.editCaptionRasterBasisDialogEdit() );
+    public RasterReferenceDialog( EditVersion version, RasterReference rasterReference ) {
+        this( version, rasterReference, MESSAGES.editCaptionRasterBasisDialogEdit() );
     }
 
-    private RasterReferenceDialog( EditVersion version, boolean disableSelectionOfText, RasterReference rasterReference,
-                                   String title ) {
+    private RasterReferenceDialog( EditVersion version, RasterReference rasterReference, String title ) {
         super( version, title );
-        this.refType = createRefType( disableSelectionOfText );
+        this.refType = createRefType();
         this.refMimeType = createMimeTypeType( version );
         this.georefMimeType = createMimeTypeType( version );
         this.artType = new TypeCodeListBox<ExterneReferenzArt>( ExterneReferenzArt.class, true );
@@ -246,12 +244,8 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
         }
     }
 
-    private TypeCodeListBox<RasterReferenceType> createRefType( boolean disableSelectionOfText ) {
+    private TypeCodeListBox<RasterReferenceType> createRefType() {
         TypeCodeListBox<RasterReferenceType> codeListBox;
-        if ( disableSelectionOfText ) {
-            codeListBox = new TypeCodeListBox<RasterReferenceType>( RasterReferenceType.class, singletonList( TEXT ) );
-            return codeListBox;
-        }
         codeListBox = new TypeCodeListBox<RasterReferenceType>( RasterReferenceType.class );
         codeListBox.selectItem( RasterReferenceType.SCAN );
         return codeListBox;

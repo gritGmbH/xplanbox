@@ -78,6 +78,10 @@ public interface CodelistMessages extends Messages {
 
     String ReferenceType_METADATENPLAN();
 
+    String ReferenceType_GENEHMIGUNG();
+
+    String ReferenceType_BEKANNTMACHUNG();
+
     String ReferenceType_RECHTSVERBINDLICH();
 
     String ReferenceType_INFORMELL();

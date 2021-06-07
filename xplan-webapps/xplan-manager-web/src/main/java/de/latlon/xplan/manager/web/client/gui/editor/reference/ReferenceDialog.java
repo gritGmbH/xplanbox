@@ -126,12 +126,12 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
     }
 
     private TypeCodeListBox<ReferenceType> createRefType( EditVersion version ) {
-        List<ReferenceType> supportedReferenceTypes = new ArrayList<ReferenceType>();
+        List<ReferenceType> unsupportedReferenceTypes = new ArrayList<ReferenceType>();
         for ( ReferenceType referenceType : ReferenceType.values() ) {
-            if ( referenceType.isXPlanVersionSupported( version.name() ) )
-                supportedReferenceTypes.add( referenceType );
+            if ( !referenceType.isXPlanVersionSupported( version.name() ) )
+                unsupportedReferenceTypes.add( referenceType );
         }
-        return new TypeCodeListBox<ReferenceType>( ReferenceType.class, supportedReferenceTypes );
+        return new TypeCodeListBox<ReferenceType>( ReferenceType.class, unsupportedReferenceTypes, false );
     }
 
 }

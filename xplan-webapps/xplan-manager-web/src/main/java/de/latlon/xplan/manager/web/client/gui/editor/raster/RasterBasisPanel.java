@@ -212,8 +212,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
     private Button createNewButton() {
         Button newButton = new Button( MESSAGES.editCaptionNewRasterBasis(), new ClickHandler() {
             public void onClick( ClickEvent event ) {
-                boolean containsText = containsRasterReferenceOfType( TEXT );
-                final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog( version, containsText );
+                final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog( version );
                 rasterReferenceDialog.addSaveHandler( new SavedHandler() {
                     @Override
                     public void changesSaved() {
@@ -241,9 +240,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
         };
         editButtonColumn.setFieldUpdater( new FieldUpdater<RasterReference, String>() {
             public void update( final int index, final RasterReference rasterReference, String value ) {
-                boolean containsText = containsRasterReferenceOfType( TEXT );
-                final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog( version, containsText,
-                                                                                               rasterReference );
+                final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog( version, rasterReference );
                 rasterReferenceDialog.addSaveHandler( new SavedHandler() {
                     @Override
                     public void changesSaved() {
