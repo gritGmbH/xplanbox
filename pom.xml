@@ -27,9 +27,9 @@
     <slf4j.version>1.7.30</slf4j.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.version>4.3.27.RELEASE</spring.version>
-    <spring.security.version>4.2.17.RELEASE</spring.security.version>
-    <jackson.version>2.9.10</jackson.version>
+    <spring.version>4.3.30.RELEASE</spring.version>
+    <spring.security.version>4.2.20.RELEASE</spring.security.version>
+    <jackson.version>2.11.4</jackson.version>
     <skip.unit.tests>false</skip.unit.tests>
   </properties>
 
@@ -728,7 +728,7 @@
       <!-- Spring Framework -->
       <dependency>
         <groupId>org.springframework</groupId>
-        <artifactId>spring-expression</artifactId>
+        <artifactId>spring-beans</artifactId>
         <version>${spring.version}</version>
       </dependency>
       <dependency>
@@ -739,6 +739,16 @@
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-expression</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
         <version>${spring.version}</version>
       </dependency>
       <dependency>
@@ -756,11 +766,6 @@
         <artifactId>spring-test</artifactId>
         <version>${spring.version}</version>
         <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-aop</artifactId>
-        <version>${spring.version}</version>
       </dependency>
       <!-- Spring Security -->
       <dependency>
@@ -828,6 +833,11 @@
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-jaxrs-json-provider</artifactId>
         <version>${jackson.version}</version>
       </dependency>
       <dependency>
