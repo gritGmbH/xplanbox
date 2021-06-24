@@ -78,11 +78,13 @@ import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEKANNTMACHUNG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BESCHLUSS;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BESCHREIBUNG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.DURCHFUEHRUNGSVERTRAG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.ERLAEUTERUNG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.ERSCHLIESSUNGSVERTRAG;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GENEHMIGUNG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUNDSTUECKSVERZEICHNIS;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.INFORMELL;
@@ -198,6 +200,8 @@ public class TypeCodelistProvider {
         codes.add( new Code( VORHABENUNDERSCHLIESSUNGSPLAN.name(),
                              MESSAGES.ReferenceType_VORHABENUNDERSCHLIESSUNGSPLAN() ) );
         codes.add( new Code( METADATENPLAN.name(), MESSAGES.ReferenceType_METADATENPLAN() ) );
+        codes.add( new Code( GENEHMIGUNG.name(), MESSAGES.ReferenceType_GENEHMIGUNG() ) );
+        codes.add( new Code( BEKANNTMACHUNG.name(), MESSAGES.ReferenceType_BEKANNTMACHUNG() ) );
         codes.add( new Code( RECHTSVERBINDLICH.name(), MESSAGES.ReferenceType_RECHTSVERBINDLICH() ) );
         codes.add( new Code( INFORMELL.name(), MESSAGES.ReferenceType_INFORMELL() ) );
         typeCode.put( ReferenceType.class, codes );

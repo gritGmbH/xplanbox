@@ -107,7 +107,7 @@ public class TypeCodeListBox<T extends Enum<T>> extends ListBox {
      *            list of enums to exclude from {@link ListBox}, may be empty but never <code>null</code>
      */
     public TypeCodeListBox( Class<T> enumClass, List<T> disabledEnumEntries ) {
-        this( enumClass, Collections.<T>emptyList(), true );
+        this( enumClass, disabledEnumEntries, true );
     }
 
     /**
