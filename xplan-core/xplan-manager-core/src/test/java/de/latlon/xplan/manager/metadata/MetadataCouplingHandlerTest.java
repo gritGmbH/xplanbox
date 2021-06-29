@@ -32,16 +32,15 @@ import org.deegree.cs.persistence.CRSManager;
 import org.deegree.geometry.Envelope;
 import org.deegree.geometry.SimpleGeometryFactory;
 import org.junit.Test;
-import org.xmlmatchers.namespace.SimpleNamespaceContext;
-import org.xmlmatchers.transform.XmlConverters;
+import org.xmlunit.matchers.HasXPathMatcher;
 
-import javax.xml.namespace.NamespaceContext;
-import javax.xml.transform.Source;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -52,7 +51,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.xmlmatchers.XmlMatchers.hasXPath;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -76,7 +74,8 @@ public class MetadataCouplingHandlerTest {
         assertThat( numberOfCreatedRecords( directoryToStoreMetadata ), is( 1l ) );
 
         assertThat( theRecordIn( directoryToStoreMetadata ),
-                    hasXPath( "//gmd:MD_Metadata/gmd:dateStamp/gco:Date", nsContext() ) );
+                    HasXPathMatcher.hasXPath( "//gmd:MD_Metadata/gmd:dateStamp/gco:Date" ).withNamespaceContext(
+                                    nsContext() ) );
 
         verify( xPlanDao, times( 1 ) ).insertOrReplacePlanWerkWmsMetadata( eq( planId ), eq( planName ), anyString(),
                                                                            anyString(), anyString() );
@@ -105,11 +104,11 @@ public class MetadataCouplingHandlerTest {
         return Files.list( directoryToStoreMetadata ).count();
     }
 
-    private Source theRecordIn( Path createdMetadataRecords )
+    private String theRecordIn( Path createdMetadataRecords )
                     throws IOException {
         Path metadataRecord = Files.list( createdMetadataRecords ).findFirst().get();
         byte[] bytes = Files.readAllBytes( metadataRecord );
-        return XmlConverters.the( new String( bytes ) );
+        return new String( bytes );
     }
 
     private PlanwerkServiceMetadata mockPlanwerkServiceMetadata( String planName )
@@ -154,10 +153,10 @@ public class MetadataCouplingHandlerTest {
         return metadataConfigDirectory;
     }
 
-    private NamespaceContext nsContext() {
-        SimpleNamespaceContext nsContext = new SimpleNamespaceContext();
-        nsContext.bind( "gmd", "http://www.isotc211.org/2005/gmd" );
-        nsContext.bind( "gco", "http://www.isotc211.org/2005/gco" );
+    private Map<String, String> nsContext() {
+        Map<String, String> nsContext = new HashMap<>();
+        nsContext.put( "gmd", "http://www.isotc211.org/2005/gmd" );
+        nsContext.put( "gco", "http://www.isotc211.org/2005/gco" );
         return nsContext;
     }
 

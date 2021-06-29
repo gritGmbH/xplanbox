@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -27,6 +27,8 @@ import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.junit.Test;
+import org.xmlunit.matchers.EvaluateXPathMatcher;
+import org.xmlunit.matchers.HasXPathMatcher;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Collections;
@@ -35,9 +37,6 @@ import java.util.List;
 import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.SYNTAX_ERRORS;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.xmlmatchers.XmlMatchers.hasXPath;
-import static org.xmlmatchers.transform.XmlConverters.the;
-import static org.xmlmatchers.xpath.XpathReturnType.returningANumber;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -58,9 +57,9 @@ public class XmlReportGeneratorTest {
         xmlReportGenerator.generateXmlReport( createValidatorReport(), os );
         String xml = os.toString();
 
-        assertThat( the( xml ), hasXPath( "/ValidationReport/name", equalTo( VALIDATION_NAME ) ) );
-        assertThat( the( xml ), hasXPath( "/ValidationReport/Plan/name", equalTo( PLAN_NAME ) ) );
-        assertThat( the( xml ), hasXPath( "/ValidationReport/Validation" ) );
+        assertThat( xml , EvaluateXPathMatcher.hasXPath( "/ValidationReport/name", equalTo( VALIDATION_NAME ) ) );
+        assertThat( xml , EvaluateXPathMatcher.hasXPath( "/ValidationReport/Plan/name", equalTo( PLAN_NAME ) ) );
+        assertThat( xml , HasXPathMatcher.hasXPath( "/ValidationReport/Validation" ) );
     }
 
     @Test
@@ -71,7 +70,7 @@ public class XmlReportGeneratorTest {
         xmlReportGenerator.generateXmlReport( createValidatorReportWithSyntacticDetailHint(), os );
         String xml = os.toString();
 
-        assertThat( the( xml ), hasXPath( "/ValidationReport/Validation/Syn/details", equalTo( "detailsHint" ) ) );
+        assertThat( xml, EvaluateXPathMatcher.hasXPath( "/ValidationReport/Validation/Syn/details", equalTo( "detailsHint" ) ) );
     }
 
     @Test
@@ -82,34 +81,40 @@ public class XmlReportGeneratorTest {
         xmlReportGenerator.generateXmlReport( createValidatorReportWithSemanticFailures(), os );
         String xml = os.toString();
 
-        assertThat( the( xml ), hasXPath( "/ValidationReport/Validation/Sem/result", equalTo( "nicht valide" ) ) );
-        assertThat( the( xml ), hasXPath( "count(/ValidationReport/Validation/Sem/Rules/Rule)", returningANumber(),
-                                               equalTo( 2d ) ) );
-        assertThat( the( xml ),
-                    hasXPath( "/ValidationReport/Validation/Sem/Rules/Rule[1]/name", equalTo( "1.1" ) ) );
-        assertThat( the( xml ),
-                    hasXPath( "/ValidationReport/Validation/Sem/Rules/Rule[2]/name", equalTo( "1.2" ) ) );
+        assertThat( xml, EvaluateXPathMatcher.hasXPath( "/ValidationReport/Validation/Sem/result",
+                                                        equalTo( "nicht valide" ) ) );
+        assertThat( xml, EvaluateXPathMatcher.hasXPath( "count(/ValidationReport/Validation/Sem/Rules/Rule)",
+                                                        equalTo( "2" ) ) );
+        assertThat( xml,
+                    EvaluateXPathMatcher.hasXPath( "/ValidationReport/Validation/Sem/Rules/Rule[1]/name",
+                                                   equalTo( "1.1" ) ) );
+        assertThat( xml,
+                    EvaluateXPathMatcher.hasXPath( "/ValidationReport/Validation/Sem/Rules/Rule[2]/name",
+                                                   equalTo( "1.2" ) ) );
     }
 
     @Test
     public void testGenerateXmlReport_OrderOfValidations()
-                            throws Exception {
+                    throws Exception {
         XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         xmlReportGenerator.generateXmlReport( createValidatorReportWithAllTypes(), os );
         String xml = os.toString();
 
-        assertThat( the( xml ), hasXPath( "/ValidationReport/Validation/Sem" ) );
-        assertThat( the( xml ), hasXPath( "/ValidationReport/Validation/*[local-name()= 'Sem']" ) );
-        assertThat( the( xml ),
-                    hasXPath( "count(/ValidationReport/Validation/*[local-name()= 'Sem']/preceding-sibling::*)+1.",
-                              returningANumber(), equalTo( 1d ) ) );
-        assertThat( the( xml ),
-                    hasXPath( "count(/ValidationReport/Validation/*[local-name()= 'Geom']/preceding-sibling::*)+1.",
-                              returningANumber(), equalTo( 2d ) ) );
-        assertThat( the( xml ),
-                    hasXPath( "count(/ValidationReport/Validation/*[local-name()= 'Syn']/preceding-sibling::*)+1.",
-                              returningANumber(), equalTo( 3d ) ) );
+        assertThat( xml, HasXPathMatcher.hasXPath( "/ValidationReport/Validation/Sem" ) );
+        assertThat( xml, HasXPathMatcher.hasXPath( "/ValidationReport/Validation/*[local-name()= 'Sem']" ) );
+        assertThat( xml,
+                    EvaluateXPathMatcher.hasXPath(
+                                    "count(/ValidationReport/Validation/*[local-name()= 'Sem']/preceding-sibling::*)+1.",
+                                    equalTo( "1" ) ) );
+        assertThat( xml,
+                    EvaluateXPathMatcher.hasXPath(
+                                    "count(/ValidationReport/Validation/*[local-name()= 'Geom']/preceding-sibling::*)+1.",
+                                    equalTo( "2" ) ) );
+        assertThat( xml,
+                    EvaluateXPathMatcher.hasXPath(
+                                    "count(/ValidationReport/Validation/*[local-name()= 'Syn']/preceding-sibling::*)+1.",
+                                    equalTo( "3" ) ) );
     }
 
 

@@ -53,8 +53,7 @@ import static javax.ws.rs.core.MediaType.TEXT_XML;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
-import static org.xmlmatchers.XmlMatchers.hasXPath;
-import static org.xmlmatchers.transform.XmlConverters.the;
+import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 
 public class PlanApiTest extends JerseyTest {
 
@@ -155,10 +154,10 @@ public class PlanApiTest extends JerseyTest {
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_XML ) );
 
         String responseBody = response.readEntity( String.class );
-        assertThat( the( responseBody ), hasXPath( "/planInfo/version", is( XPLAN_41.name() ) ) );
-        assertThat( the( responseBody ), hasXPath( "/planInfo/planStatus", is( FESTGESTELLT.name() ) ) );
-        assertThat( the( responseBody ), hasXPath( "/planInfo/links[rel='SELF']/href",
-                                                   is( "http://localhost:8080/xplan-api-manager/xmanager/api/v1/plan/123" ) ) );
+        assertThat( responseBody, hasXPath( "/planInfo/version", is( XPLAN_41.name() ) ) );
+        assertThat( responseBody, hasXPath( "/planInfo/planStatus", is( FESTGESTELLT.name() ) ) );
+        assertThat( responseBody, hasXPath( "/planInfo/links[rel='SELF']/href",
+                                            is( "http://localhost:8080/xplan-api-manager/xmanager/api/v1/plan/123" ) ) );
     }
 
     @Test
