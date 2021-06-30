@@ -91,6 +91,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.DOKUMENT;
@@ -121,6 +122,8 @@ public class XPlanToEditFactoryTest {
         FeatureCollection featureCollection = readXPlanGml( XPLAN_51, "xplan51/V4_1_ID_103_refScan.gml" );
 
         XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
+
+        assertThat( xPlanToEdit.isHasBereich(), is( true ) );
 
         RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
         List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
@@ -277,6 +280,8 @@ public class XPlanToEditFactoryTest {
 
         XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
 
+        assertThat( xPlanToEdit.isHasBereich(), is( true ) );
+
         BaseData baseData = xPlanToEdit.getBaseData();
         assertThat( baseData.getPlanName(), is( "Klarstellungs-u..." ) );
         assertThat( baseData.getDescription(), is( "BPlan Wuerdenhain" ) );
@@ -383,6 +388,16 @@ public class XPlanToEditFactoryTest {
 
         assertThat( validityPeriod.getStart(), is( nullValue() ) );
         assertThat( validityPeriod.getEnd(), is( nullValue() ) );
+    }
+
+    @Test
+    public void testCreateXPlanToEdit_XPlan53_withoutBereich()
+                    throws Exception {
+        FeatureCollection featureCollection = readXPlanGml( XPLAN_53, "xplan53/BPlan_ohneBereich.gml" );
+
+        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
+
+        assertThat( xPlanToEdit.isHasBereich(), is( false ) );
     }
 
     private RasterReference getByType( List<RasterReference> rasterBasisReferences, RasterReferenceType type ) {
