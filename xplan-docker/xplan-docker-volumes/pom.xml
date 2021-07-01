@@ -40,35 +40,35 @@
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplansyn-wms-workspace-default</classifier>
+      <classifier>xplansyn-wms-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplansyn-wfs-workspace-default</classifier>
+      <classifier>xplansyn-wfs-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplan-wfs-workspace-default</classifier>
+      <classifier>xplan-wfs-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplan-validator-wms-workspace-default</classifier>
+      <classifier>xplan-validator-wms-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplan-manager-workspace-default</classifier>
+      <classifier>xplan-manager-workspace</classifier>
     </dependency>
     <!--xplan-manager-config-->
     <dependency>
@@ -91,7 +91,7 @@
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplan-inspireplu-workspace-default</classifier>
+      <classifier>xplan-inspireplu-workspace</classifier>
     </dependency>
   </dependencies>
 </project>
