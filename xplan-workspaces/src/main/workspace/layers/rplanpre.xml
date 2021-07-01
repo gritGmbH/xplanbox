@@ -15,7 +15,7 @@
     <l:Name>rp_plan</l:Name>
     <d:Title>RP: Plan</d:Title>
     <d:Abstract>RP_Plan</d:Abstract>
-    <s:CRS>${vectorCrs}</s:CRS>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/rp/rp_plan_trans</l:StyleStoreId>
     </l:StyleRef>

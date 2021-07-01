@@ -9,9 +9,9 @@
 
     <!-- Configuration of DataSource properties -->
     <Property name="driverClassName" value="org.postgresql.Driver"/>
-    <Property name="url" value="${inspireplu.jdbc.url}"/>
-    <Property name="username" value="${inspireplu.jdbc.user}"/>
-    <Property name="password" value="${inspireplu.jdbc.password}"/>
+    <Property name="url" value="jdbc:postgresql://localhost:5432/inspireplu"/>
+    <Property name="username" value="xplanbox"/>
+    <Property name="password" value="xplanbox"/>
     <Property name="initialSize" value="1"/>
     <Property name="maxActive" value="10"/>
     <Property name="maxIdle" value="1"/>

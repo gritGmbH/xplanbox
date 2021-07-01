@@ -12,7 +12,7 @@
       <UUIDGenerator/>
     </FIDMapping>
     <Geometry path="extent" mapping="extent" type="Point">
-      <StorageCRS srid="-1" dim="2D">${vectorCrs}</StorageCRS>
+      <StorageCRS srid="-1" dim="2D">EPSG:25832</StorageCRS>
     </Geometry>
     <Primitive path="inspireid" mapping="inspireid" type="string"/>
     <Primitive path="levelofspatialplan" mapping="levelofspatialplan" type="string"/>
@@ -32,7 +32,7 @@
       <UUIDGenerator/>
     </FIDMapping>
     <Geometry path="geometry" mapping="geometry" type="Point">
-      <StorageCRS srid="-1" dim="2D">${vectorCrs}</StorageCRS>
+      <StorageCRS srid="-1" dim="2D">EPSG:25832</StorageCRS>
     </Geometry>
     <Primitive path="inspireid" mapping="inspireid" type="string"/>
     <Primitive path="regulationnature" mapping="regulationnature" type="string"/>
@@ -55,7 +55,7 @@
       <UUIDGenerator/>
     </FIDMapping>
     <Geometry path="geometry" mapping="geometry" type="Point">
-      <StorageCRS srid="-1" dim="2D">${vectorCrs}</StorageCRS>
+      <StorageCRS srid="-1" dim="2D">EPSG:25832</StorageCRS>
     </Geometry>
     <Primitive path="hilucs" mapping="hilucs" type="string"/>
     <Primitive path="inspireid" mapping="inspireid" type="string"/>

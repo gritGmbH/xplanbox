@@ -2,7 +2,7 @@
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" configVersion="3.4.0"
                  xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.4.0/sql.xsd">
   <JDBCConnId>xplan</JDBCConnId>
-  <StorageCRS srid="-1" dim="2D">${vectorCrs}</StorageCRS>
+  <StorageCRS srid="-1" dim="2D">EPSG:25832</StorageCRS>
   <GMLSchema>../../appschemas/XPlanGML_4_0/XPlanung-Operationen.xsd</GMLSchema>
   <BLOBMapping>
     <BlobTable>xplan40.gml_objects</BlobTable>
