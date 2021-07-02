@@ -5,7 +5,7 @@
     <Identifier>BP_Planraster</Identifier>
     <d:Title>BPlan Raster</d:Title>
     <d:Abstract>Rasterdaten BPlan</d:Abstract>
-    <s:CRS>${rasterCrs}</s:CRS>
+    <s:CRS>EPSG:25832</s:CRS>
     <Theme>
       <Identifier>bplanraster_sortiert</Identifier>
       <d:Title>BPlan Raster Theme</d:Title>

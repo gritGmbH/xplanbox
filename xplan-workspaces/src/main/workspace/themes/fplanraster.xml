@@ -5,7 +5,7 @@
     <Identifier>FP_Planraster</Identifier>
     <d:Title>FPlan Raster</d:Title>
     <d:Abstract>Rasterdaten FPlan</d:Abstract>
-    <s:CRS>${rasterCrs}</s:CRS>
+    <s:CRS>EPSG:25832</s:CRS>
     <Theme>
       <Identifier>fplanraster_sortiert</Identifier>
       <d:Title>FPlan Raster Theme</d:Title>

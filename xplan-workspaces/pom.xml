@@ -25,29 +25,9 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <filters>
-                <filter>${project.basedir}/src/main/filter/filter.properties</filter>
-              </filters>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
               <descriptors>
                 <descriptor>${project.basedir}/src/main/assembly/xplan-inspireplu-workspace.xml</descriptor>
-              </descriptors>
-              <appendAssemblyId>true</appendAssemblyId>
-            </configuration>
-          </execution>
-          <execution>
-            <id>xplan-inspireplu-workspace-default</id>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <filters>
-                <filter>${project.basedir}/src/main/filter/filter-default.properties</filter>
-              </filters>
-              <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
-              <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/xplan-inspireplu-workspace-default.xml</descriptor>
               </descriptors>
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>
@@ -60,29 +40,9 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <filters>
-                <filter>${project.basedir}/src/main/filter/filter.properties</filter>
-              </filters>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
               <descriptors>
                 <descriptor>${project.basedir}/src/main/assembly/xplan-manager-workspace.xml</descriptor>
-              </descriptors>
-              <appendAssemblyId>true</appendAssemblyId>
-            </configuration>
-          </execution>
-          <execution>
-            <id>xplan-manager-workspace-default</id>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <filters>
-                <filter>${project.basedir}/src/main/filter/filter-default.properties</filter>
-              </filters>
-              <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
-              <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/xplan-manager-workspace-default.xml</descriptor>
               </descriptors>
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>
@@ -95,29 +55,9 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <filters>
-                <filter>${project.basedir}/src/main/filter/filter.properties</filter>
-              </filters>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
               <descriptors>
                 <descriptor>${project.basedir}/src/main/assembly/xplan-validator-wms-workspace.xml</descriptor>
-              </descriptors>
-              <appendAssemblyId>true</appendAssemblyId>
-            </configuration>
-          </execution>
-          <execution>
-            <id>xplan-validator-wms-workspace-default</id>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <filters>
-                <filter>${project.basedir}/src/main/filter/filter-default.properties</filter>
-              </filters>
-              <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
-              <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/xplan-validator-wms-workspace-default.xml</descriptor>
               </descriptors>
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>
@@ -130,29 +70,9 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <filters>
-                <filter>${project.basedir}/src/main/filter/filter.properties</filter>
-              </filters>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
               <descriptors>
                 <descriptor>${project.basedir}/src/main/assembly/xplan-wfs-workspace.xml</descriptor>
-              </descriptors>
-              <appendAssemblyId>true</appendAssemblyId>
-            </configuration>
-          </execution>
-          <execution>
-            <id>xplan-wfs-workspace-default</id>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <filters>
-                <filter>${project.basedir}/src/main/filter/filter-default.properties</filter>
-              </filters>
-              <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
-              <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/xplan-wfs-workspace-default.xml</descriptor>
               </descriptors>
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>
@@ -165,29 +85,9 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <filters>
-                <filter>${project.basedir}/src/main/filter/filter.properties</filter>
-              </filters>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
               <descriptors>
                 <descriptor>${project.basedir}/src/main/assembly/xplansyn-wfs-workspace.xml</descriptor>
-              </descriptors>
-              <appendAssemblyId>true</appendAssemblyId>
-            </configuration>
-          </execution>
-          <execution>
-            <id>xplansyn-wfs-workspace-default</id>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <filters>
-                <filter>${project.basedir}/src/main/filter/filter-default.properties</filter>
-              </filters>
-              <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
-              <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/xplansyn-wfs-workspace-default.xml</descriptor>
               </descriptors>
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>
@@ -200,29 +100,9 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <filters>
-                <filter>${project.basedir}/src/main/filter/filter.properties</filter>
-              </filters>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
               <descriptors>
                 <descriptor>${project.basedir}/src/main/assembly/xplansyn-wms-workspace.xml</descriptor>
-              </descriptors>
-              <appendAssemblyId>true</appendAssemblyId>
-            </configuration>
-          </execution>
-          <execution>
-            <id>xplansyn-wms-workspace-default</id>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <filters>
-                <filter>${project.basedir}/src/main/filter/filter-default.properties</filter>
-              </filters>
-              <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
-              <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/xplansyn-wms-workspace-default.xml</descriptor>
               </descriptors>
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>

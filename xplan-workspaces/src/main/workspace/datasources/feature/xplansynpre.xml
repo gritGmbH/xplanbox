@@ -2,7 +2,7 @@
                  xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.4.0/sql.xsd"
                  xmlns:xplan="http://www.deegree.org/xplanung/1/0">
   <JDBCConnId>xplan</JDBCConnId>
-  <StorageCRS srid="-1" dim="2D">${vectorCrs}</StorageCRS>
+  <StorageCRS srid="-1" dim="2D">EPSG:25832</StorageCRS>
   <GMLSchema>../../appschemas/XPlanGML_Syn/XPlanSyn.xsd</GMLSchema>
   <FeatureTypeMapping name="xplan:BP_AbgrabungsFlaeche" table="xplansynpre.xplan_bp_abgrabungsflaeche">
     <FIDMapping prefix="XPLAN_BP_ABGRABUNGSFLAECHE_">

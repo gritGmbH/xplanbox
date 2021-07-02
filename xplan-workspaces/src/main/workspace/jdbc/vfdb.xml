@@ -8,9 +8,9 @@
 
   <!-- Configuration of DataSource properties -->
   <Property name="driverClassName" value="org.postgresql.Driver"/>
-  <Property name="url" value="${vfdb.jdbc.url}"/>
-  <Property name="username" value="${vfdb.jdbc.user}"/>
-  <Property name="password" value="${vfdb.jdbc.password}"/>
+  <Property name="url" value=""/>
+  <Property name="username" value=""/>
+  <Property name="password" value=""/>
   <Property name="initialSize" value="1"/>
   <Property name="maxActive" value="10"/>
   <Property name="maxIdle" value="1"/>

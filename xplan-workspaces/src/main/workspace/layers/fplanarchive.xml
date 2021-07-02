@@ -15,7 +15,7 @@
     <l:Name>fp_plan</l:Name>
     <d:Title>FP: Plan</d:Title>
     <d:Abstract>FP_Plan</d:Abstract>
-    <s:CRS>${vectorCrs}</s:CRS>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/fp/fp_plan_trans</l:StyleStoreId>
     </l:StyleRef>
@@ -2808,7 +2808,7 @@
     <l:Name>fp_privvorh</l:Name>
     <d:Title>FP: Privilegiertes Vorhaben</d:Title>
     <d:Abstract>FP_PrivilegiertesVorhaben</d:Abstract>
-    <s:CRS>${vectorCrs}</s:CRS>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/fp/fp_privvorh_trans</l:StyleStoreId>
     </l:StyleRef>

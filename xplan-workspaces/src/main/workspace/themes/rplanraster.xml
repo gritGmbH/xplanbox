@@ -5,7 +5,7 @@
     <Identifier>RP_Planraster</Identifier>
     <d:Title>RPlan Raster</d:Title>
     <d:Abstract>Rasterdaten RPlan</d:Abstract>
-    <s:CRS>${rasterCrs}</s:CRS>
+    <s:CRS>EPSG:25832</s:CRS>
     <Theme>
       <Identifier>rplanraster_sortiert</Identifier>
       <d:Title>RPlan Raster Theme</d:Title>

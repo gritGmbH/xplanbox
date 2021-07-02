@@ -5,7 +5,7 @@
     <Identifier>LP_Planraster</Identifier>
     <d:Title>LPlan Raster</d:Title>
     <d:Abstract>Rasterdaten LPlan</d:Abstract>
-    <s:CRS>${rasterCrs}</s:CRS>
+    <s:CRS>EPSG:25832</s:CRS>
     <Theme>
       <Identifier>lplanraster_sortiert</Identifier>
       <d:Title>LPlan Raster Theme</d:Title>

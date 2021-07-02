@@ -11,7 +11,7 @@
     <dependencySet>
       <outputDirectory>/xplan-workspaces/xplansyn-wms-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplansyn-wms-workspace-default</include>
+        <include>${project.groupId}:xplan-workspaces::xplansyn-wms-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
@@ -19,7 +19,7 @@
     <dependencySet>
       <outputDirectory>/xplan-workspaces/xplansyn-wfs-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplansyn-wfs-workspace-default</include>
+        <include>${project.groupId}:xplan-workspaces::xplansyn-wfs-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
@@ -27,7 +27,7 @@
     <dependencySet>
       <outputDirectory>/xplan-workspaces/xplan-wfs-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplan-wfs-workspace-default</include>
+        <include>${project.groupId}:xplan-workspaces::xplan-wfs-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
@@ -35,7 +35,7 @@
     <dependencySet>
       <outputDirectory>/xplan-workspaces/xplan-manager-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplan-manager-workspace-default</include>
+        <include>${project.groupId}:xplan-workspaces::xplan-manager-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
@@ -62,7 +62,7 @@
     <dependencySet>
       <outputDirectory>/xplan-inspireplu-workspaces/xplan-inspireplu-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplan-inspireplu-workspace-default</include>
+        <include>${project.groupId}:xplan-workspaces::xplan-inspireplu-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
@@ -71,7 +71,7 @@
     <dependencySet>
       <outputDirectory>/xplan-validator-workspaces/xplan-validator-wms-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplan-validator-wms-workspace-default</include>
+        <include>${project.groupId}:xplan-workspaces::xplan-validator-wms-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
