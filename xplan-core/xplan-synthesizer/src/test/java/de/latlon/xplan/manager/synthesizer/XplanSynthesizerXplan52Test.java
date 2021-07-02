@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -30,13 +30,10 @@ import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.xmlmatchers.XmlMatchers.hasXPath;
-import static org.xmlmatchers.transform.XmlConverters.the;
-import static org.xmlmatchers.xpath.XpathReturnType.returningANumber;
+import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -58,9 +55,9 @@ public class XplanSynthesizerXplan52Test extends AbstractXplanSynthesizerTest {
         assertThat( numberOfSynFeatures, is( numberOfOriginalFeatures ) );
         String synGml = writeSynFeatureCollection( synFeatureCollection );
 
-        assertThat( the( synGml ),
-                    hasXPath( "count(//xplansyn:rechtscharakter[text() = ''])", nsContext(), returningANumber(),
-                              is( 0d ) ) );
+        assertThat( synGml,
+                    hasXPath( "count(//xplansyn:rechtscharakter[text() = ''])", is( "0" ) ).withNamespaceContext(
+                                    nsContext() ) );
     }
 
     @Override

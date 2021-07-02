@@ -21,7 +21,6 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import org.deegree.commons.xml.NamespaceBindings;
 import org.deegree.commons.xml.stax.IndentingXMLStreamWriter;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -31,10 +30,11 @@ import org.deegree.gml.GMLStreamWriter;
 import org.deegree.gml.GMLVersion;
 import org.junit.Test;
 
-import javax.xml.namespace.NamespaceContext;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamWriter;
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
@@ -43,9 +43,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
-import static org.xmlmatchers.XmlMatchers.hasXPath;
-import static org.xmlmatchers.transform.XmlConverters.the;
-import static org.xmlmatchers.xpath.XpathReturnType.returningANumber;
+import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 
 public class XplanGeometryTest {
 
@@ -80,13 +78,13 @@ public class XplanGeometryTest {
         String geom = writeGMLGeometry( value );
 
         String xPath = "count(/gml:Polygon/gml:exterior/gml:Ring/gml:curveMember/gml:Curve/gml:segments/gml:LineStringSegment[@interpolation='linear'])";
-        assertThat( the( geom ), hasXPath( xPath, nsContxt(), returningANumber(), is( 6d ) ) );
+        assertThat( geom, hasXPath( xPath, is( "6" ) ).withNamespaceContext( nsContext() ) );
 
     }
 
-    private NamespaceContext nsContxt() {
-        NamespaceBindings nsContext = new NamespaceBindings();
-        nsContext.addNamespace( "gml", GMLVersion.GML_32.getNamespace() );
+    private Map<String, String> nsContext() {
+        Map<String, String> nsContext = new HashMap<>();
+        nsContext.put( "gml", GMLVersion.GML_32.getNamespace() );
         return nsContext;
     }
 

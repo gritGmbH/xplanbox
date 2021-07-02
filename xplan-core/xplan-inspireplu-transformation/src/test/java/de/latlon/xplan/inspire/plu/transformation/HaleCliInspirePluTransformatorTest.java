@@ -21,30 +21,27 @@
  */
 package de.latlon.xplan.inspire.plu.transformation;
 
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.inspire.plu.transformation.hale.HaleCliInspirePluTransformator;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.xmlmatchers.XmlMatchers;
-import org.xmlmatchers.namespace.SimpleNamespaceContext;
-import org.xmlmatchers.transform.XmlConverters;
-import org.xmlmatchers.validation.SchemaFactory;
+import org.xmlunit.builder.Input;
+import org.xmlunit.matchers.HasXPathMatcher;
+import org.xmlunit.matchers.ValidationMatcher;
 
-import javax.xml.namespace.NamespaceContext;
-import javax.xml.transform.Source;
-import javax.xml.validation.Schema;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
-import static org.xmlmatchers.XmlMatchers.hasXPath;
+import static org.xmlunit.builder.Input.fromURI;
+import static org.xmlunit.matchers.ValidationMatcher.valid;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -66,11 +63,13 @@ public class HaleCliInspirePluTransformatorTest {
         Path inspirePlu = transformator.transformToPlu( Paths.get( testResource ), XPLAN_41 );
 
         assertThat( inspirePlu, notNullValue() );
-        assertThat( the( inspirePlu ), hasXPath( "//plu:SpatialPlan", nsContext() ) );
-        assertThat( the( inspirePlu ), XmlMatchers.conformsTo( schema() ) );
+        assertThat( the( inspirePlu ),
+                    HasXPathMatcher.hasXPath( "//plu:SpatialPlan" ).withNamespaceContext( nsContext() ) );
+        assertThat( the( inspirePlu ), valid(
+                        fromURI( "http://inspire.ec.europa.eu/schemas/plu/4.0/PlannedLandUse.xsd" ) ) );
     }
 
-    private Source the( Path path )
+    private String the( Path path )
                     throws Exception {
         InputStream is = new FileInputStream( path.toFile() );
         BufferedReader buf = new BufferedReader( new InputStreamReader( is ) );
@@ -81,19 +80,13 @@ public class HaleCliInspirePluTransformatorTest {
             sb.append( line ).append( "\n" );
             line = buf.readLine();
         }
-        return XmlConverters.the( sb.toString() );
+        return sb.toString();
     }
 
-    private NamespaceContext nsContext() {
-        SimpleNamespaceContext nsContext = new SimpleNamespaceContext();
-        nsContext = nsContext.withBinding( "plu", "http://inspire.ec.europa.eu/schemas/plu/4.0" );
+    private Map<String, String> nsContext() {
+        Map<String, String> nsContext = new HashMap<>();
+        nsContext.put( "plu", "http://inspire.ec.europa.eu/schemas/plu/4.0" );
         return nsContext;
-    }
-
-    private Schema schema()
-                    throws Exception {
-        URL schemaUrl = new URL( "http://inspire.ec.europa.eu/schemas/plu/4.0/PlannedLandUse.xsd" );
-        return SchemaFactory.w3cXmlSchemaFrom( schemaUrl );
     }
 
 }

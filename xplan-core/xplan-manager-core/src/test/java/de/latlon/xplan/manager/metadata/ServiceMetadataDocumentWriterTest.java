@@ -23,16 +23,15 @@ package de.latlon.xplan.manager.metadata;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
-import org.xmlmatchers.namespace.SimpleNamespaceContext;
 
-import javax.xml.namespace.NamespaceContext;
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.xmlmatchers.XmlMatchers.hasXPath;
-import static org.xmlmatchers.transform.XmlConverters.the;
+import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -56,27 +55,29 @@ public class ServiceMetadataDocumentWriterTest {
         ServiceMetadataDocumentWriter serviceMetadataDocumentWriter = new ServiceMetadataDocumentWriter( template );
         serviceMetadataDocumentWriter.writeServiceMetadataDocument( properties(), serviceMetadataInstance );
 
-        assertThat( the( serviceMetadataInstance.toString() ),
-                    hasXPath( "//gmd:MD_Metadata/gmd:dateStamp/gco:Date", nsContext(), is( DATE ) ) );
+        assertThat( serviceMetadataInstance.toString(),
+                    hasXPath( "//gmd:MD_Metadata/gmd:dateStamp/gco:Date", is( DATE ) ).withNamespaceContext(
+                                    nsContext() ) );
 
-        assertThat( the( serviceMetadataInstance.toString() ),
-                    hasXPath( "//gmd:MD_Metadata/gmd:hierarchyLevel/gmd:MD_ScopeCode", nsContext(), is( TYPE ) ) );
+        assertThat( serviceMetadataInstance.toString(),
+                    hasXPath( "//gmd:MD_Metadata/gmd:hierarchyLevel/gmd:MD_ScopeCode",
+                              is( TYPE ) ).withNamespaceContext( nsContext() ) );
 
-        assertThat( the( serviceMetadataInstance.toString() ),
-                    hasXPath( "//gmd:MD_Metadata/gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue", nsContext(),
-                              is( TYPE ) ) );
+        assertThat( serviceMetadataInstance.toString(),
+                    hasXPath( "//gmd:MD_Metadata/gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue",
+                              is( TYPE ) ).withNamespaceContext( nsContext() ) );
 
-        assertThat( the( serviceMetadataInstance.toString() ),
-                    hasXPath( "//gmd:MD_Metadata/gmd:hierarchyLevelName/gco:CharacterString", nsContext(),
-                              is( TYPE ) ) );
+        assertThat( serviceMetadataInstance.toString(),
+                    hasXPath( "//gmd:MD_Metadata/gmd:hierarchyLevelName/gco:CharacterString",
+                              is( TYPE ) ).withNamespaceContext( nsContext() ) );
 
-        assertThat( the( serviceMetadataInstance.toString() ),
-                    hasXPath( "//gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString", nsContext(),
-                              is( "NOVALUE" ) ) );
+        assertThat( serviceMetadataInstance.toString(),
+                    hasXPath( "//gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString",
+                              is( "NOVALUE" ) ).withNamespaceContext( nsContext() ) );
 
-        assertThat( the( serviceMetadataInstance.toString() ),
+        assertThat( serviceMetadataInstance.toString(),
                     hasXPath( "//gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString",
-                              nsContext(), is( "WMS Bebauungsplan " + TITLE ) ) );
+                              is( "WMS Bebauungsplan " + TITLE ) ).withNamespaceContext( nsContext() ) );
     }
 
     private Properties properties() {
@@ -87,11 +88,11 @@ public class ServiceMetadataDocumentWriterTest {
         return properties;
     }
 
-    private NamespaceContext nsContext() {
-        SimpleNamespaceContext nsContext = new SimpleNamespaceContext();
-        nsContext.bind( "gmd", "http://www.isotc211.org/2005/gmd" );
-        nsContext.bind( "gco", "http://www.isotc211.org/2005/gco" );
-        nsContext.bind( "srv", "http://www.isotc211.org/2005/srv" );
+    private Map<String, String> nsContext() {
+        Map<String, String> nsContext = new HashMap<>();
+        nsContext.put( "gmd", "http://www.isotc211.org/2005/gmd" );
+        nsContext.put( "gco", "http://www.isotc211.org/2005/gco" );
+        nsContext.put( "srv", "http://www.isotc211.org/2005/srv" );
         return nsContext;
     }
 

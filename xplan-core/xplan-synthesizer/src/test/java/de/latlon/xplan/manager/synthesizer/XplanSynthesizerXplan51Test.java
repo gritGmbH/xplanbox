@@ -21,24 +21,19 @@
  */
 package de.latlon.xplan.manager.synthesizer;
 
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.xmlmatchers.transform.XmlConverters;
-
-import java.nio.file.Path;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.xmlmatchers.XmlMatchers.hasXPath;
-import static org.xmlmatchers.transform.XmlConverters.the;
-import static org.xmlmatchers.xpath.XpathReturnType.returningANumber;
+import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -61,9 +56,9 @@ public class XplanSynthesizerXplan51Test extends AbstractXplanSynthesizerTest {
         assertThat( numberOfSynFeatures, is( numberOfOriginalFeatures ) );
         String synGml = writeSynFeatureCollection( synFeatureCollection );
 
-        assertThat( the( synGml ),
-                    hasXPath( "count(//xplansyn:rechtscharakter[text() = ''])", nsContext(), returningANumber(),
-                              is( 0d ) ) );
+        assertThat( synGml,
+                    hasXPath( "count(//xplansyn:rechtscharakter[text() = ''])", is( "0" ) ).withNamespaceContext(
+                                    nsContext() ) );
     }
 
     @Override

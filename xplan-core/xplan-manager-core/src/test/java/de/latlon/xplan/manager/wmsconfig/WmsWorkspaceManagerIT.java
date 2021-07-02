@@ -21,28 +21,9 @@
  */
 package de.latlon.xplan.manager.wmsconfig;
 
-import static java.util.Arrays.asList;
-import static org.apache.commons.io.FileUtils.readFileToString;
-import static org.deegree.commons.config.DeegreeWorkspace.getInstance;
-import static org.deegree.cs.CRSUtils.EPSG_4326;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.xmlmatchers.XmlMatchers.hasXPath;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import javax.xml.namespace.NamespaceContext;
-import javax.xml.transform.Source;
-
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.geometry.Envelope;
@@ -56,12 +37,28 @@ import org.deegree.workspace.ResourceStates.ResourceState;
 import org.deegree.workspace.standard.DefaultResourceIdentifier;
 import org.junit.Before;
 import org.junit.Test;
-import org.xmlmatchers.namespace.SimpleNamespaceContext;
-import org.xmlmatchers.transform.XmlConverters;
 
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import javax.xml.transform.Source;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static java.util.Arrays.asList;
+import static org.apache.commons.io.FileUtils.readFileToString;
+import static org.deegree.commons.config.DeegreeWorkspace.getInstance;
+import static org.deegree.cs.CRSUtils.EPSG_4326;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -117,11 +114,12 @@ public class WmsWorkspaceManagerIT {
         assertThatWorkspaceIsInstantiable();
 
         assertThat( xml( SERVICES, "wms_999.xml" ),
-                    hasXPath( "count(//wms:deegreeWMS/wms:ServiceConfiguration/wms:ThemeId)", nsBindings(),
-                              equalTo( "1" ) ) );
+                    hasXPath( "count(//wms:deegreeWMS/wms:ServiceConfiguration/wms:ThemeId)",
+                              equalTo( "1" ) ).withNamespaceContext( nsContext() ) );
 
         assertThat( xml( SERVICES, "wms_999.xml" ), hasXPath( "//wms:deegreeWMS/wms:ServiceConfiguration/wms:ThemeId",
-                                                              nsBindings(), equalTo( "bplan_999_vector" ) ) );
+                                                              equalTo( "bplan_999_vector" ) ).withNamespaceContext(
+                        nsContext() ) );
     }
 
     @Test
@@ -151,16 +149,16 @@ public class WmsWorkspaceManagerIT {
         assertThatWorkspaceIsInstantiable();
 
         assertThat( xml( SERVICES, "wms_999.xml" ),
-                    hasXPath( "count(//wms:deegreeWMS/wms:ServiceConfiguration/wms:ThemeId)", nsBindings(),
-                              equalTo( "2" ) ) );
+                    hasXPath( "count(//wms:deegreeWMS/wms:ServiceConfiguration/wms:ThemeId)",
+                              equalTo( "2" ) ).withNamespaceContext( nsContext() ) );
 
         assertThat( xml( SERVICES, "wms_999.xml" ),
-                    hasXPath( "//wms:deegreeWMS/wms:ServiceConfiguration/wms:ThemeId[1]", nsBindings(),
-                              equalTo( "bplan_999_vector" ) ) );
+                    hasXPath( "//wms:deegreeWMS/wms:ServiceConfiguration/wms:ThemeId[1]",
+                              equalTo( "bplan_999_vector" ) ).withNamespaceContext( nsContext() ) );
 
         assertThat( xml( SERVICES, "wms_999.xml" ),
-                    hasXPath( "//wms:deegreeWMS/wms:ServiceConfiguration/wms:ThemeId[2]", nsBindings(),
-                              equalTo( "bplan_999_raster" ) ) );
+                    hasXPath( "//wms:deegreeWMS/wms:ServiceConfiguration/wms:ThemeId[2]",
+                              equalTo( "bplan_999_raster" ) ).withNamespaceContext( nsContext() ) );
     }
 
     @Test
@@ -173,10 +171,12 @@ public class WmsWorkspaceManagerIT {
         assertThatWorkspaceIsInstantiable();
 
         assertThat( xml( THEMES, "bplan_999_raster.xml" ),
-                    hasXPath( "count(//th:Themes/th:Theme/th:Theme/th:Layer)", nsBindings(), equalTo( "1" ) ) );
+                    hasXPath( "count(//th:Themes/th:Theme/th:Theme/th:Layer)", equalTo( "1" ) ).withNamespaceContext(
+                                    nsContext() ) );
 
         assertThat( xml( THEMES, "bplan_999_raster.xml" ),
-                    hasXPath( "//th:Themes/th:Theme/th:Theme/th:Layer", nsBindings(), equalTo( SINGLE_RASTER_ID ) ) );
+                    hasXPath( "//th:Themes/th:Theme/th:Theme/th:Layer",
+                              equalTo( SINGLE_RASTER_ID ) ).withNamespaceContext( nsContext() ) );
     }
 
     @Test
@@ -189,13 +189,16 @@ public class WmsWorkspaceManagerIT {
         assertThatWorkspaceIsInstantiable();
 
         assertThat( xml( THEMES, "bplan_999_raster.xml" ),
-                    hasXPath( "count(//th:Themes/th:Theme/th:Theme/th:Layer)", nsBindings(), equalTo( "2" ) ) );
+                    hasXPath( "count(//th:Themes/th:Theme/th:Theme/th:Layer)", equalTo( "2" ) ).withNamespaceContext(
+                                    nsContext() ) );
 
         assertThat( xml( THEMES, "bplan_999_raster.xml" ), hasXPath( "//th:Themes/th:Theme/th:Theme/th:Layer[1]",
-                                                                     nsBindings(), equalTo( SINGLE_RASTER_ID ) ) );
+                                                                     equalTo( SINGLE_RASTER_ID ) ).withNamespaceContext(
+                        nsContext() ) );
 
         assertThat( xml( THEMES, "bplan_999_raster.xml" ), hasXPath( "//th:Themes/th:Theme/th:Theme/th:Layer[2]",
-                                                                     nsBindings(), equalTo( SECOND_RASTER_ID ) ) );
+                                                                     equalTo( SECOND_RASTER_ID ) ).withNamespaceContext(
+                        nsContext() ) );
     }
 
     @Test
@@ -242,16 +245,20 @@ public class WmsWorkspaceManagerIT {
         assertThatWorkspaceIsInstantiable();
 
         assertThat( xml( LAYERS, "bplan_999_vector.xml" ),
-                    hasXPath( "count(//f:FeatureLayer/s:Envelope/s:LowerCorner)", nsBindings(), equalTo( "113" ) ) );
+                    hasXPath( "count(//f:FeatureLayer/s:Envelope/s:LowerCorner)",
+                              equalTo( "113" ) ).withNamespaceContext( nsContext() ) );
 
         assertThat( xml( LAYERS, "bplan_999_vector.xml" ),
-                    hasXPath( "count(//f:FeatureLayer/s:Envelope/s:UpperCorner)", nsBindings(), equalTo( "113" ) ) );
+                    hasXPath( "count(//f:FeatureLayer/s:Envelope/s:UpperCorner)",
+                              equalTo( "113" ) ).withNamespaceContext( nsContext() ) );
 
         assertThat( xml( LAYERS, "bplan_999_vector.xml" ),
-                    hasXPath( "//f:FeatureLayer/s:Envelope/s:LowerCorner", nsBindings(), equalTo( "1.0 2.0" ) ) );
+                    hasXPath( "//f:FeatureLayer/s:Envelope/s:LowerCorner", equalTo( "1.0 2.0" ) ).withNamespaceContext(
+                                    nsContext() ) );
 
         assertThat( xml( LAYERS, "bplan_999_vector.xml" ),
-                    hasXPath( "//f:FeatureLayer/s:Envelope/s:UpperCorner", nsBindings(), equalTo( "3.0 4.0" ) ) );
+                    hasXPath( "//f:FeatureLayer/s:Envelope/s:UpperCorner", equalTo( "3.0 4.0" ) ).withNamespaceContext(
+                                    nsContext() ) );
     }
 
     @Test
@@ -266,16 +273,20 @@ public class WmsWorkspaceManagerIT {
         assertThatWorkspaceIsInstantiable();
 
         assertThat( xml( LAYERS, "bplan_999_vector.xml" ),
-                    hasXPath( "count(//f:FeatureLayer/s:Envelope/s:LowerCorner)", nsBindings(), equalTo( "113" ) ) );
+                    hasXPath( "count(//f:FeatureLayer/s:Envelope/s:LowerCorner)",
+                              equalTo( "113" ) ).withNamespaceContext( nsContext() ) );
 
         assertThat( xml( LAYERS, "bplan_999_vector.xml" ),
-                    hasXPath( "count(//f:FeatureLayer/s:Envelope/s:UpperCorner)", nsBindings(), equalTo( "113" ) ) );
+                    hasXPath( "count(//f:FeatureLayer/s:Envelope/s:UpperCorner)",
+                              equalTo( "113" ) ).withNamespaceContext( nsContext() ) );
 
         assertThat( xml( LAYERS, "bplan_999_vector.xml" ),
-                    hasXPath( "//f:FeatureLayer/s:Envelope/s:LowerCorner", nsBindings(), equalTo( "1.0 2.0" ) ) );
+                    hasXPath( "//f:FeatureLayer/s:Envelope/s:LowerCorner", equalTo( "1.0 2.0" ) ).withNamespaceContext(
+                                    nsContext() ) );
 
         assertThat( xml( LAYERS, "bplan_999_vector.xml" ),
-                    hasXPath( "//f:FeatureLayer/s:Envelope/s:UpperCorner", nsBindings(), equalTo( "3.0 4.0" ) ) );
+                    hasXPath( "//f:FeatureLayer/s:Envelope/s:UpperCorner", equalTo( "3.0 4.0" ) ).withNamespaceContext(
+                                    nsContext() ) );
     }
 
     @Test
@@ -288,16 +299,20 @@ public class WmsWorkspaceManagerIT {
         assertThatWorkspaceIsInstantiable();
 
         assertThat( xml( LAYERS, "bplan_999_vector.xml" ),
-                    hasXPath( "count(//f:FeatureLayer/s:Envelope/s:LowerCorner)", nsBindings(), equalTo( "113" ) ) );
+                    hasXPath( "count(//f:FeatureLayer/s:Envelope/s:LowerCorner)",
+                              equalTo( "113" ) ).withNamespaceContext( nsContext() ) );
 
         assertThat( xml( LAYERS, "bplan_999_vector.xml" ),
-                    hasXPath( "count(//f:FeatureLayer/s:Envelope/s:UpperCorner)", nsBindings(), equalTo( "113" ) ) );
+                    hasXPath( "count(//f:FeatureLayer/s:Envelope/s:UpperCorner)",
+                              equalTo( "113" ) ).withNamespaceContext( nsContext() ) );
 
         assertThat( xml( LAYERS, "bplan_999_vector.xml" ),
-                    hasXPath( "//f:FeatureLayer/s:Envelope/s:LowerCorner", nsBindings(), equalTo( "-180 -90" ) ) );
+                    hasXPath( "//f:FeatureLayer/s:Envelope/s:LowerCorner", equalTo( "-180 -90" ) ).withNamespaceContext(
+                                    nsContext() ) );
 
         assertThat( xml( LAYERS, "bplan_999_vector.xml" ),
-                    hasXPath( "//f:FeatureLayer/s:Envelope/s:UpperCorner", nsBindings(), equalTo( "180 90" ) ) );
+                    hasXPath( "//f:FeatureLayer/s:Envelope/s:UpperCorner", equalTo( "180 90" ) ).withNamespaceContext(
+                                    nsContext() ) );
     }
 
     private XPlanArchive createArchive()
@@ -315,23 +330,23 @@ public class WmsWorkspaceManagerIT {
         return new ArrayList<String>( Arrays.asList( SINGLE_RASTER_ID, SECOND_RASTER_ID ) );
     }
 
-    private NamespaceContext nsBindings() {
-        SimpleNamespaceContext simpleNamespaceContext = new SimpleNamespaceContext();
-        simpleNamespaceContext.withBinding( "wms", "http://www.deegree.org/services/wms" );
-        simpleNamespaceContext.withBinding( "th", "http://www.deegree.org/themes/standard" );
-        simpleNamespaceContext.withBinding( "f", "http://www.deegree.org/layers/feature" );
-        simpleNamespaceContext.withBinding( "s", "http://www.deegree.org/metadata/spatial" );
-        return simpleNamespaceContext;
+    private Map<String, String> nsContext() {
+        Map<String, String> nsContext = new HashMap<>();
+        nsContext.put( "wms", "http://www.deegree.org/services/wms" );
+        nsContext.put( "th", "http://www.deegree.org/themes/standard" );
+        nsContext.put( "f", "http://www.deegree.org/layers/feature" );
+        nsContext.put( "s", "http://www.deegree.org/metadata/spatial" );
+        return nsContext;
     }
+
 
     private File file( String subDirectory, String name ) {
         return workspaceDirectory.resolve( subDirectory ).resolve( name ).toFile();
     }
 
-    private Source xml( String subDirectory, String name )
+    private String xml( String subDirectory, String name )
                     throws IOException {
-        String xml = readFileToString( file( subDirectory, name ) );
-        return XmlConverters.xml( xml );
+        return readFileToString( file( subDirectory, name ) );
     }
 
     private List<String> filesInDirectory( String subDirectory ) {

@@ -55,17 +55,21 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.export;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static de.latlon.xplan.manager.export.XPlanExporter.MAIN_FILE_REEXPORTED_PREFIX;
-import static de.latlon.xplan.manager.export.XPlanExporter.MAIN_FILE_REEXPORTED_SUFFIX;
-import static org.apache.commons.io.IOUtils.copyLarge;
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.xmlmatchers.XmlMatchers.conformsTo;
-import static org.xmlmatchers.transform.XmlConverters.the;
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
+import org.deegree.cs.coordinatesystems.ICRS;
+import org.deegree.cs.persistence.CRSManager;
+import org.deegree.feature.FeatureCollection;
+import org.deegree.feature.types.AppSchema;
+import org.junit.Test;
+import org.xmlunit.builder.Input;
+import org.xmlunit.matchers.ValidationMatcher;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -77,23 +81,15 @@ import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import javax.xml.validation.Schema;
-
-import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.cs.persistence.CRSManager;
-import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
-import org.junit.Test;
-import org.xmlmatchers.validation.SchemaFactory;
-
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.manager.export.XPlanExporter.MAIN_FILE_REEXPORTED_PREFIX;
+import static de.latlon.xplan.manager.export.XPlanExporter.MAIN_FILE_REEXPORTED_SUFFIX;
+import static org.apache.commons.io.IOUtils.copyLarge;
+import static org.hamcrest.CoreMatchers.hasItems;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -240,10 +236,9 @@ public class XPlanExporterTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         planExporter.export( outputStream, XPLAN_41, featureCollection, null );
 
-        Schema schema = SchemaFactory.w3cXmlSchemaFrom( XPLAN_41.getSchemaUrl() );
         String exportedPlan = new String( outputStream.toByteArray() );
 
-        assertThat( the( exportedPlan ), conformsTo( schema ) );
+        assertThat( exportedPlan, ValidationMatcher.valid( Input.fromURI( XPLAN_41.getSchemaUrl().toURI() ) ) );
     }
 
     private XPlanArchiveContent createContents( XPlanArtefactIterator artefacts )
