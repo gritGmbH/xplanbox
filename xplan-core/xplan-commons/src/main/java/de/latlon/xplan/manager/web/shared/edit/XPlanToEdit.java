@@ -80,6 +80,8 @@ public class XPlanToEdit {
 
     private RasterBasis rasterBasis;
 
+    private boolean hasBereich = false;
+
     public XPlanToEdit() {
     }
 
@@ -96,15 +98,18 @@ public class XPlanToEdit {
      *            may be <code>null</code>
      * @param rasterBasis
      *            may be <code>null</code>
+     * @param hasBereich
+     *            <code>true</code> if the plan has a BP_Bereich, <code>false</code> otherwise
      */
     public XPlanToEdit( BaseData baseData, ValidityPeriod validityPeriod, List<Change> changes, List<Text> texts,
-                        List<Reference> references, RasterBasis rasterBasis ) {
+                        List<Reference> references, RasterBasis rasterBasis, boolean hasBereich ) {
         this.baseData = baseData;
         this.validityPeriod = validityPeriod;
         this.changes = changes;
         this.texts = texts;
         this.references = references;
         this.rasterBasis = rasterBasis;
+        this.hasBereich = hasBereich;
     }
 
     /**
@@ -234,10 +239,25 @@ public class XPlanToEdit {
         this.rasterBasis = rasterBasis;
     }
 
+    /**
+     * @return <code>true</code> if the plan has a BP_Bereich, <code>false</code> otherwise
+     */
+    public boolean isHasBereich() {
+        return hasBereich;
+    }
+
+    /**
+     * @param hasBereich
+     *                 <code>true</code> if the plan has a BP_Bereich, <code>false</code> otherwise
+     */
+    public void setHasBereich( boolean hasBereich ) {
+        this.hasBereich = hasBereich;
+    }
+
     @Override
     public String toString() {
         return "XPlanToEdit [baseData=" + baseData + ", validityPeriod=" + validityPeriod + ", changes=" + changes
-               + ", texts=" + texts + ", references=" + references + ", rasterBasis=" + rasterBasis + "]";
+               + ", texts=" + texts + ", references=" + references + ", rasterBasis=" + rasterBasis + ", hasBereich="
+               + hasBereich + "]";
     }
-
 }

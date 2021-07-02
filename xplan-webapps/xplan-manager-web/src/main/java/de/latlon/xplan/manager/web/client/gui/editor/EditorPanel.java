@@ -138,7 +138,7 @@ public class EditorPanel extends DecoratorPanel {
         changesPanel.setValues( xPlantoEdit.getChanges() );
         textsPanel.setValues( xPlantoEdit.getTexts() );
         referencesPanel.setValues( xPlantoEdit.getReferences() );
-        rasterBasisPanel.setRasterBasis( xPlantoEdit.getRasterBasis() );
+        rasterBasisPanel.setRasterBasis( xPlantoEdit );
     }
 
     private FormPanel createForm() {

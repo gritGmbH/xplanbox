@@ -64,8 +64,8 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.cellview.client.TextHeader;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.AbstractEditorSubPanelWithTable;
@@ -77,6 +77,7 @@ import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
+import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 
 import java.util.Collections;
 import java.util.List;
@@ -85,7 +86,6 @@ import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
 import static de.latlon.xplan.manager.web.client.gui.StyleNames.EDITOR_VALIDATION_ERROR;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
 
 /**
  * Panel for raster basis.
@@ -104,7 +104,6 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 
     public RasterBasisPanel( EditVersion version ) {
         super( version, MESSAGES.editCaptionRasterBasis() );
-        add( createGui() );
     }
 
     @Override
@@ -125,10 +124,15 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
         return validate();
     }
 
-    public void setRasterBasis( RasterBasis rasterBasis ) {
-        this.rasterBasis = rasterBasis;
-        List<RasterReference> rasterBasisReferences = collectRasterReferences( rasterBasis );
-        setValues( rasterBasisReferences );
+    public void setRasterBasis( XPlanToEdit xPlanToEdit ) {
+        if ( xPlanToEdit.isHasBereich() ) {
+            add( createGui() );
+            this.rasterBasis = xPlanToEdit.getRasterBasis();
+            List<RasterReference> rasterBasisReferences = collectRasterReferences( this.rasterBasis );
+            setValues( rasterBasisReferences );
+        } else {
+            add( createDisabledHint() );
+        }
     }
 
     public RasterBasis retrieveRasterBasis() {
@@ -152,6 +156,14 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
         addStyleName( EDITOR_VALIDATION_ERROR );
         setTitle( MESSAGES.editCaptionRasterBasisInvalid() );
         return false;
+    }
+
+    private Widget createDisabledHint() {
+        VerticalPanel panel = new VerticalPanel();
+        panel.setSpacing( 5 );
+        panel.setHorizontalAlignment( ALIGN_CENTER );
+        panel.add( new Label( MESSAGES.editCaptionRasterBasisDisabled() ) );
+        return panel;
     }
 
     private Widget createGui() {

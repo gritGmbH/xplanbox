@@ -164,6 +164,8 @@ XPlanGML 5.x:
 
 * rasterbasis
 
+Die Rasterbasis kann nur editiert werden, wenn ein Plan ein Objekt vom Typ BP_Bereich besitzt. Ist dies nicht der Fall, wird ein entsprechender Hinweis in der Editieroberfläche angegeben. Die Angabe einer Rasterbasis kann in diesem Fall nicht erfolgen.
+
 Werden Referenzen entfernt oder verändert, so werden die nicht mehr
 referenzierten Dateien aus der Datenhaltung entfernt. Änderungen führen zu
 einer Aktualisierung der XPlanWMS-Konfiguration. Klickt der Nutzer auf

@@ -129,6 +129,7 @@ public class XPlanToEditFactory {
             if ( "BP_Plan".equals( nameOfFeature ) ) {
                 parseBPPlan( feature, xPlanToEdit );
             } else if ( "BP_Bereich".equals( nameOfFeature ) ) {
+                xPlanToEdit.setHasBereich( true );
                 parseBPBereich( feature, xPlanToEdit );
             }
         }
