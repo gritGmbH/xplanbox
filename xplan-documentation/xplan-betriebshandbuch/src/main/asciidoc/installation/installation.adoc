@@ -5,7 +5,7 @@
 ==== Konfiguration
 
 Die ZIP-Archive mit den Konfigurationen (s. <<installationskomponenten>>) müssen in das
-Verzeichnis _.deegree_ im Home-Verzeichnis (s. <<vorbereitung-der-installation>>) des Nutzers kopiert und entpackt werden:
+Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ (Vorgabewert ist das _.deegree_ im Home-Verzeichnis des Nutzers, s. <<vorbereitung-der-installation>>) kopiert und entpackt werden:
 
 * _xplan-wfs-workspace_
 * _xplansyn-wfs-workspace_
@@ -16,7 +16,7 @@ Verzeichnis _.deegree_ im Home-Verzeichnis (s. <<vorbereitung-der-installation>>
 * _xplan-manager-config_
 * _xplan-validator-config_ (nur erforderlich, wenn ausschließlich der XPlanValidator installiert werden soll)
 
-NOTE: Die Konfigurationen müssen alle unterhalb des selben Basis-Verzeichnisses liegen.
+NOTE: Die Konfigurationen müssen alle unterhalb desselben Basis-Verzeichnisses liegen.
 
 [[web-anwendungen]]
 ==== Web-Anwendungen

@@ -21,7 +21,7 @@ Verzeichnis mit dem Namen _xplan-manager-config_ im Verzeichnis
 _.deegree_ im Home-Verzeichnis des Nutzers. Wird ausschließlich der XPlanValidatorWeb installiert,
 heißt das Verzeichnis _xplan-validator-config_.
 
-Wurden die Workspaces nicht im Verzeichnis _.deegree_ des Home-Verzeichnis abgelegt, ist das Setzen der Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ erforderlich.
+NOTE: Wurden die Workspaces nicht im Verzeichnis _.deegree_ des Home-Verzeichnis abgelegt, ist das Setzen der Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ erforderlich.
 
 [[anwendungs-tomcat-linux]]
 ===== Linux
@@ -80,12 +80,11 @@ dies kann durch setzen der Umgebungsvariable: _export JAVA_OPTS=’-Xmx4096m’_
 
 ==== Absicherung des Tomcat und der Webanwendungen
 
-Wenn die xPlanBox in einer produktiven Umgebung betrieben wird, sollte der Apache Tomcat abgesichert werden. Dazu sind die
-allgemeinen Empfehlungen aus der https://tomcat.apache.org/tomcat-8.5-doc/security-howto.html[Dokumentation von Apache Tomcat zum Thema Sicherheit] zu beachten.
+Wenn die xPlanBox in einer produktiven Umgebung betrieben wird, sollte der Apache Tomcat abgesichert werden. Dazu sind die allgemeinen Empfehlungen aus der https://tomcat.apache.org/tomcat-8.5-doc/security-howto.html[Dokumentation von Apache Tomcat zum Thema Sicherheit] zu beachten.
 
 Zusätzlich sollte die xPlanBox wie folgt konfiguriert sein:
 
-. die deegree webservice console für die drei Dienste-Konfigurationen _xplan-wms_, _xplan_wfs_ und _xplansyn-wfs_ im _Dienste-Tomcat_ ist durch ein Kennwort geschützt (Datei _console.pw_ im deegree Workspace).
+. die deegree webservice console für die Dienste _xplan-wms_, _xplan-wfs_, _xplansyn-wfs_ und _xplan-inspireplu_ im _Dienste-Tomcat_ ist durch ein Kennwort geschützt (Datei _console.pw_ im deegree Workspace).
 . die deegree REST-Schnittstelle ist durch Benutzername und Kennwort abgesichert (Datei _web.xml_ und _tomcat-users.xml_ im Tomcat-Konfigurationsverzeichnis, siehe Kapitel <<dienste-tomcat>>).
 . der Zugriff auf die deegree webservice console ist auf IP-Adressbereiche bzw. Domänen eingeschränkt (Datei _context.xml_ innerhalb der Webanwendungen).
 . die Tomcat-Instanzen werden hinter einem Proxy (z. B. Apache httpd) betrieben (Datei _server.xml_ im Tomcat-Konfigurationsverzeichnis).
