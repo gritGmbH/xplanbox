@@ -378,4 +378,4 @@ Des Weiteren muss GDAL auf Version 3.0 aktualisiert werden (siehe <<installation
 Bei unerwartetem Verhalten der xPlanBox nach der Aktualisierung können folgende Punkte helfen:
 
 * Löschen des Work-Verzeichnis des Tomcats. Der Tomcat muss zuvor gestoppt und anschließend neu gestartet werden.
-* Löschen des Browser-Caches
+* Löschen des Browser-Caches.
