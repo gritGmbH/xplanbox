@@ -4,8 +4,11 @@ MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
 # set environment variables
-ENV JAVA_OPTS="-Xmx8192m -DXPLANBOX_CONFIG=/root/xplan-manager-config/"
+ENV CATALINA_OPTS="-Xmx8192m -DXPLANBOX_CONFIG=/root/xplan-manager-config/ -Djava.security.manager -Djava.security.policy=/usr/local/tomcat/conf/catalina.policy"
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
+
+# configure tomcat
+ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
 
 # add xplan-manager-web
 ADD target/xplan-manager-web-*.war /root/
