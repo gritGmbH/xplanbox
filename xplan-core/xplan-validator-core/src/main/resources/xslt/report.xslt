@@ -142,7 +142,11 @@
     <xsl:template match="RulesMetadata">
       <div>Informationen zu den Regeln:</div>
       <p>Version: <xsl:value-of select="version"/></p>
-      <p>Quelle: <xsl:value-of select="source"/></p>
+      <p>Quelle:
+        <xsl:call-template name="tokenize">
+          <xsl:with-param name="string" select="normalize-space(source)"/>
+        </xsl:call-template>
+      </p>
     </xsl:template>
 
     <xsl:template match="Rules">
@@ -254,7 +258,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:choose>
-          <xsl:when test="starts-with($string,'http://')">
+          <xsl:when test="starts-with($string,'http')">
             <xsl:element name="a">
               <xsl:attribute name="href"><xsl:value-of select="$string"></xsl:value-of> </xsl:attribute>
               <xsl:attribute name="target">_blank</xsl:attribute>
