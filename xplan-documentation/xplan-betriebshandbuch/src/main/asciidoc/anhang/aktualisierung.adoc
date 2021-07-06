@@ -3,9 +3,15 @@
 
 Im Folgenden wird für _Dienste-Tomcat_, _Anwendungs-Tomcat_ und _API-Tomcat_ jeweils das Verzeichnis _<CATALINA_HOME>_ der entsprechenden Tomcat-Instanz vorausgesetzt und angewendet (siehe Kapitel <<konfiguration-der-applikationsserver>>).
 
+Als Basisverzeichnis werden _<DEEGREE_WORKSPACE_ROOT>_, _<XPLANBOX_CONFIG>_ und temporär zur Ablage das Verzeichnis _<BACKUP_CONFIG>_ (z.B. _/home/user/tmp_) vorausgesetzt.
+
 Alle Tomcat-Instanzen müssen vor der Aktualisierung gestoppt werden!
 
-=== A1: Aktualisierung der Webanwendungen
+=== Aktualisierung der Webanwendungen
+
+Vorbereitung:
+
+1. Alle war-Dateien bzw. die entpackten Verzeichnisse aus _Dienste-Tomcat/webapps/_, _Anwendungs-Tomcat/webapps/_, _API-Tomcat/webapps/_ sichern und im Verzeichnis _<BACKUP_CONFIG>_ ablegen.
 
 Kopieren der folgenden Dateien nach _Dienste-Tomcat/webapps/_:
 
@@ -26,9 +32,9 @@ Kopieren der folgenden Dateien nach _API-Tomcat/webapps/_:
 * _xplan-api-manager.war_
 * _xplan-api-validator.war_
 
-==== A2 Konfiguration der Webanwendung übertragen
+==== Konfiguration der Webanwendung übertragen
 
-Folgende Dateien für XPlanManager sichern und zurückspielen, bzw. vergleichen und anpassen:
+Folgende Dateien für XPlanManager aus _<BACKUP_CONFIG>_ zurückspielen, bzw. vergleichen und anpassen:
 
 * _Anwendungs-Tomcat/webapps/xplan-manager-web/index.html_ anpassen
 * _Anwendungs-Tomcat/webapps/xplan-manager-web/XPlanManager.jpg_ kopieren
@@ -51,11 +57,9 @@ Folgende Dateien für XPlanValidator sichern und zurückspielen, bzw. vergleiche
 
 Die Zuordnung der Anwendungskomponenten zu den jeweiligen Konfigurationen ist im Kapitel <<installationskomponenten, Installationskomponenten>> und <<konfiguration>> beschrieben.
 
-Als Basisverzeichnis wird _<DEEGREE_WORKSPACE_ROOT>_ und temporär zur Ablage das Verzeichnis _<BACKUP_CONFIG>_ (z.B. _/home/user/tmp_) vorausgesetzt.
-
 Vorbereitung:
 
-1. Alle deegree Workspace Verzeichnisse aus _<DEEGREE_WORKSPACE_ROOT>_ und _<XPLANBOX_CONFIG>_ sichern und im Verzeichnis _<BACKUP_CONFIG> ablegen.
+1. Alle deegree Workspace Verzeichnisse aus _<DEEGREE_WORKSPACE_ROOT>_ und _<XPLANBOX_CONFIG>_ sichern und im Verzeichnis _<BACKUP_CONFIG>_ ablegen.
 2. Neue deegree Workspaces ZIP-Dateien entpacken und in die jeweiligen Verzeichnisse unterhalb von _<DEEGREE_WORKSPACE_ROOT>_ kopieren.
 3. Die Dateien _console.pw_ und _webapps.properties_ aus _<BACKUP_CONFIG>_ zurückkopieren.
 
