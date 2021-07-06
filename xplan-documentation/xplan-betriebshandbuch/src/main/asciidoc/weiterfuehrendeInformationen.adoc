@@ -47,17 +47,17 @@ Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschema und di
 | <<xplanwfs>>/_wfs53_
 | BLOB
 | `xplansyn`
-| <<xplanwfs>>/_xplansynwfs_, <<xplanwms>>/_wms_
+| <<xplansynwfs>>/_xplansynwfs_, <<xplanwms>>/_wms_
 | Relational
 | `inspireplu`
 | <<xplaninspirepluwfs>>/_downloadservice_, <<xplaninspirepluwms>>/_viewservice_
 | Relational
 | `xplanmgr`
-| <<xplanmanager-web>>, <<xplanmanager-api>>, <<xplanmanager-cli>>
+| <<xplanmanager-web>>, <<xplanmanager-api>>, <<xplanmanager-cli>>, <<xplanwms, XPlanWerkWMS>>
 | Relational
 |===
 
-Bei separater Datenhaltung existiert für alle in Aufstellung befindlichen Pläne zusätzlich ein Datenbankschema mit der Namenskonvention `xplan*pre` und den Endpoints <<xplanwfs>>,_wfs*pre_ sowie für die archivierten Pläne mit `xplan*archive` und den Endpoints <<xplanwfs>>,_wfs*archive_.
+Bei separater Datenhaltung existiert für alle in Aufstellung befindlichen Pläne zusätzlich ein Datenbankschema mit der Namenskonvention `xplan*pre` und den Endpoints <<xplanwfs>>/_wfs*pre_ sowie für die archivierten Pläne mit `xplan*archive` und den Endpoints <<xplanwfs>>/_wfs*archive_.
 
 Die Datenbankstruktur für die Schema `xplan*` wird im Anhang <<appendix_xplandb>> beschrieben.
 
