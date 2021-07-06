@@ -2,6 +2,21 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
+[[Aenderungshistorie-4.2.1]]
+=== Version 4.2.1
+
+==== Erweiterungen
+- (TT_10410) Erweiterung des Betriebshandbuchs um Datenbankschema der XPlanDB
+
+==== Fehlerbehebungen
+- (TT_10435) Korrektur der REST-API URL im Benutzerhandbuch
+- (TT_10405) Doppelte CRS Angaben in XPlanWMS entfernt
+- (TT_10458, TT_10465) Korrektur von Validierungsregeln (Aktualisierung auf v0.9.19)
+- Editieren von Referenzen in 5.3 unvollständig
+- Links zu Konformitätsregeln aktualisiert
+- Editieren von Rasterbasis deaktiveren wenn ein BP_Plan kein BP_Bereich referenziert
+- Fehlerbehebungen und Erweiterungen der Docker Images
+
 [[Aenderungshistorie-4.2]]
 === Version 4.2
 
@@ -9,17 +24,12 @@
 - Unterstützung für XPlanGML 5.3 in allen Komponenten der xPlanBox
 - (TT_10407) Unterstützung für GDAL 3.0 (GDAL 2 wird nicht mehr unterstützt)
 - Konfigurationsmöglichkeiten der REST API erweitern
-- (TT_10410) Erweiterung des Betriebshandbuchs um Datenbankschema der XPlanDB
 
 ==== Fehlerbehebungen
 - (TT_10430) Verbesserung der Aktualisierungsanleitung im Betriebshandbuch
-- (TT_10435) Korrektur der REST-API URL im Benutzerhandbuch
 - (TT_10422) Behebung eines Fehlers bei StoredQuery Anfragen, die zu unvollständigen Antworten führen können
 - (TT_10429) Ergänzen der Keywords im XPlanSynWFS für die Version 5.2
-- (TT_10405) Doppelte CRS Angaben in XPlanWMS entfernt
-- (TT_10458, TT_10465) Korrektur von Validierungsregeln (Aktualisierung auf v0.9.19)
 - Version der REST API auf 1.0 aktualisiert
-- Links zu Konformitätsregeln aktualisiert
 
 [[Aenderungshistorie-4.1]]
 === Version 4.1
