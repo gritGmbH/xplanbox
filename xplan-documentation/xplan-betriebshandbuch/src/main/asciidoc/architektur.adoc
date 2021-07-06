@@ -77,7 +77,7 @@ XPlanGML-Instanzdokumente über das Terminal zu validieren.
 Die Komponente XPlanTransformCLI ist ein Kommandozeilenwerkzeug,
 welches dem Fachadministrator der xPlanBox ermöglicht,
 bereits über den XPlanManagerWeb oder das XPlanManagerCLI
-importierte Pläne in eine aktuellere XPlanGML Version zu transformieren und in der <<XPlanDB>> zu speichern.
+importierte Pläne in eine aktuellere XPlanGML Version zu transformieren und in der <<xplandb>> zu speichern.
 
 [[xplanwms]]
 === XPlanWMS und XPlanWerkWMS
@@ -86,13 +86,13 @@ Der XPlanWMS und XPlanWerkWMS sind auf dem Standard Web Map Service
 (Version 1.1.1 und 1.3.0) des Open Geospatial Consortium (OGC)
 basierende Kartendienste. Diese bieten die Möglichkeit,
 Visualisierungen von Plandaten sowie Sachinformationsabfragen zu
-einzelnen Planinhalten abzufragen. Um diese Plandaten zu visualisieren
-bzw. Sachinformationen abzufragen ist es möglich, sowohl eine einfache
+einzelnen Planinhalten abzufragen. Um Plandaten zu visualisieren
+bzw. Sachinformationen abzufragen, ist es möglich, sowohl eine einfache
 (siehe Abbildung 1) als auch eine separate Datenhaltung (siehe Abbildung
 2) zu nutzen, in der die Plandaten hinterlegt sind. Dabei wird bei
 einer separaten Datenhaltung (Unterteilung in: In Aufstellung, Festgestellt, Archiviert)
 durch die Auswahl des Planstatus, die dazugehörige Datenhaltung und
-somit der entsprechende XPlanWMS-Endpoint angesprochen. Der XPlanWMS greift auf dasselbe Datenbankschema wie der <<XPlanSynWFS>> in der <<XPlanDB>> zu. Rasterdaten werden im Workspace-Verzeichnis des XPlanWMS hinterlegt. Im Anhang <<appendix_xplanwms-workspace>> ist die Verzeichnisstruktur des Workspace dokumentiert.
+somit der entsprechende XPlanWMS-Endpoint angesprochen. Der XPlanWMS greift auf dasselbe Datenbankschema wie der <<xplansynwfs>> in der <<xplandb>> zu. Rasterdaten werden im Workspace-Verzeichnis des XPlanWMS hinterlegt. Im Anhang <<appendix_xplanwms-workspace>> ist die Verzeichnisstruktur des Workspace dokumentiert.
 
 Während der XPlanWMS planübergreifend arbeitet, beschränkt sich der
 XPlanWerkWMS auf einzelne Planwerke.
@@ -122,7 +122,7 @@ NOTE: Gleiches gilt für den XPlanWerkWMS, XPlanWFS und XPlanSynWFS
 
 Der XPlanWFS ist ein auf dem Standard Web Feature Service
 (Version 1.1.0 und 2.0.0) des Open Geospatial Consortium (OGC)
-basierender Dienst zur Abfrage von Vektordaten und stellt Endpunkte für jede XPlanGML-Version bereit. Zu jeder unterstützten XPlanGML-Version stellt die xPlanBox einen XPlanWFS-Endpoint bereit. Jeder Dienst greift auf das zu der XPlanGML-Version passende Datenbankschema in der <<XPlanDB>> zu.
+basierender Dienst zur Abfrage von Vektordaten und stellt Endpunkte für jede XPlanGML-Version bereit. Zu jeder unterstützten XPlanGML-Version stellt die xPlanBox einen XPlanWFS-Endpoint bereit. Jeder Dienst greift auf das zu der XPlanGML-Version passende Datenbankschema in der <<xplandb>> zu. Die Zuordnung der einzelnen Endpunkte zu den Datenbankschemata ist im Kapitel <<datenzugriff-xplandb>> dokumentiert.
 
 [[xplansynwfs]]
 === XPlanSynWFS
@@ -130,7 +130,7 @@ basierender Dienst zur Abfrage von Vektordaten und stellt Endpunkte für jede XP
 Der XPlanSynWFS dient der Abbildung des synthetisierten
 XPlanGML-Anwendungsschemas (XPlanSynGML). Dieses stellt eine
 vereinfachte und zusammenfassende Form der verschiedenen XPlanGML
-Versionen dar. Der XPlanSynWFS greift auf das synthetisierte Datenbankschema in der <<XPlanDB>> zu.
+Versionen dar. Der XPlanSynWFS greift auf das synthetisierte Datenbankschema in der <<xplandb>> zu.
 
 [[xplaninspirepluwms]]
 === XPlanInspirePluWMS
@@ -155,48 +155,3 @@ Testdaten sowie die Dokumente mit den Konformitätsbedingungen des Standards XPl
 === XPlanDB
 
 Die Komponente stellt die zentrale Datenhaltungskomponente für die alle Komponenten der xPlanBox bereit und wird durch eine PostgreSQL/PostGIS DB realisiert. Die Einrichtung der Datenbank ist im Kapitel <<konfiguration-der-datenbank>> und die Datenbankstruktur im Anhang <<appendix_xplandb>> beschrieben.
-
-==== Übersicht der Datenbankschema
-
-Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschema und die auf diese Schema zugreifenden Komponenten am Beispiel der festgestellten Pläne bei separater Datenhaltung.
-
-[width="100%",cols="30%,50%,20%",options="header"]
-|===
-| Datenbankschema
-| Komponente/Endpoint
-| Mapping-Typ
-| `xplan3`
-| <<xplanwfs>>/_wfs30_
-| BLOB
-| `xplan40`
-| <<xplanwfs>>/_wfs40_
-| BLOB
-| `xplan41`
-| <<xplanwfs>>/_wfs41_
-| BLOB
-| `xplan50`
-| <<xplanwfs>>/_wfs50_
-| BLOB
-| `xplan51`
-| <<xplanwfs>>/_wfs51_
-| BLOB
-| `xplan52`
-| <<xplanwfs>>/_wfs52_
-| BLOB
-| `xplan53`
-| <<xplanwfs>>/_wfs53_
-| BLOB
-| `xplansyn`
-| <<xplanwfs>>/_xplansynwfs_, <<xplanwms>>/_wms_
-| Relational
-| `inspireplu`
-| <<xplaninspirepluwfs>>/_downloadservice_, <<xplaninspirepluwms>>/_viewservice_
-| Relational
-| `xplanmgr`
-| <<xplanmanager-web>>, <<xplanmanager-api>>, <<xplanmanager-cli>>
-| Relational
-|===
-
-Bei separater Datenhaltung existiert für alle in Aufstellung befindlichen Pläne zusätzlich ein Datenbankschema mit der Namenskonvention `xplan*pre` und den Endpoints <<xplanwfs>>,_wfs*pre_ sowie für die archivierten Pläne mit `xplan*archive` und den Endpoints <<xplanwfs>>,_wfs*archive_.
-
-Die Datenbankstruktur für die Schema `xplan*` wird im Anhang <<appendix_xplandb>> beschrieben.
