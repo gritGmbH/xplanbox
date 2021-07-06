@@ -3,21 +3,19 @@
 
 Das Anlegen der Datenbank kann entweder über das XPlanManagerCLI oder manuell erfolgen. Beide Varianten sind in den folgenden Abschnitten beschrieben.
 
-==== Aufsetzen der Datenbank über das XPlanManagerCLI
+==== Initiales Aufsetzen der Datenbank über das XPlanManagerCLI
 
 Für die Konfiguration der Datenbank-Anbindung muss die
-__xplan-manager-cli__-Datei entpackt sein. Dabei spielt das Verzeichnis
-in dem die Datei entpackt wurde keine Rolle. Ist diese entpackt, kann
-die Datenbankerzeugung mittels des XPlanManagerCLI durchgeführt werden:
+__xplan-manager-cli__-Datei entpackt sein. Dabei spielt das Verzeichnis, in dem die Datei entpackt wurde, keine Rolle. Ist diese entpackt, kann die Datenbankerzeugung mittels des XPlanManagerCLI durchgeführt werden:
 
 ----
 XPlanManager -createdb 'xplanbox' jdbc:postgresql://localhost:5432 -u postgres -p postgres
 ----
 
-Informationen zu den Befehlen und der Erzeugung der Datenbank finden sich im Abschnitt XPlanManagerCLI im XPlanBenutzerhandbuch. Die erforderlichen Informationen sind im Abschnitt "Alternativer Betriebsmodus" beschrieben.
+NOTE: Informationen zu den Befehlen und der Erzeugung der Datenbank finden sich im Abschnitt XPlanManagerCLI im XPlanBenutzerhandbuch. Die erforderlichen Informationen sind im Abschnitt "Alternativer Betriebsmodus" beschrieben.
 
-Mit dem XPlanManagerCLI werden auch die Verbindungsdetails im XPlanManagerWorkspace anhand der übergebenden Parameter gesetzt, so dass der XPlanManager nach Ausführung ohne manuelle Anpassungen auf die Datenbank zugreifen kann.
-Dagegen müssen die Datenbank Verbindung in den XPlanDiensten manuell angepasst werden. Betroffen sind folgende Dateien:
+Mit dem XPlanManagerCLI werden auch die Werte für die Datenbankverbindung im XPlanManagerWorkspace anhand der übergebenden Parameter gesetzt, so dass der XPlanManager nach Ausführung ohne manuelle Anpassungen auf die Datenbank zugreifen kann.
+Die Datenbankverbindungen in den XPlanDiensten müssen jedoch manuell angepasst werden. Betroffen sind folgende Dateien:
 
 * _.deegree/xplan-manager-workspace/jdbc/xplan.xml_
 * _.deegree/xplan-wfs-workspace/jdbc/xplan.xml_
@@ -31,7 +29,7 @@ Dabei kann auf zwei verschiedene Arten vorgegangen werden:
 
 ==== Manuelles Aufsetzen der Datenbank
 
-Alternativ zum Aufsetzen über das XPlanManagerCLI kann die Datenbank auch manuell ausgeführt werden. Dafür müssen die folgende Schritte ausgeführt werden:
+Alternativ zum Aufsetzen über das XPlanManagerCLI kann die Datenbank auch manuell ausgeführt werden. Dafür müssen die folgenden Schritte ausgeführt werden:
 
  * Anlegen einer neuen Datenbank.
  * Installation der PostGIS-Erweiterung für die neue Datenbank.
@@ -45,7 +43,7 @@ Alternativ zum Aufsetzen über das XPlanManagerCLI kann die Datenbank auch manue
 [[aufsetzen-plu-db-schema]]
 ==== Manuelles Aufsetzen der Datenbank für die Bereitstellung von INSPIRE PLU
 
-Für die Bereitstellung von Plänen, die vom XPlanManager verwaltet werden, als INSPIRE PLU konforme Datensätze ist eine weitere Datenbank erforderlich. Diese kann aktuell nur manuell aufgesetzt werden. Es müssen die folgende Schritte ausgeführt werden:
+Für die Bereitstellung von Plänen, die vom XPlanManager verwaltet werden, als INSPIRE PLU konforme Datensätze ist eine weitere Datenbank erforderlich. Diese kann aktuell nur manuell aufgesetzt werden. Es müssen die folgenden Schritte ausgeführt werden:
 
  * Anlegen einer neuen Datenbank.
  * Installation der PostGIS-Erweiterung für die neue Datenbank.
@@ -66,4 +64,4 @@ In den __xplan.xml__-Datei werden die ConnectionsPools für den Zugriff auf die 
 
 Da die Anzahl der zugelassenen Verbindungen des Datenbankservers begrenzt sein kann, ist es abhängig von der Installation der xPlanBox, der Anzahl der Nutzer und gegebenenfalls weiterer Faktoren sinnvoll, die vordefinierten Werte an die Installationsumgebung anzupassen.
 
-Alternativ zur Konfiguration von ConnectionsPools für den Zugriff auf die Datenbank kann auch eine JNDI DataSource konfiguriert werden. Details hierzu befinden sich im Handbuch von deegree.
+Alternativ zur Konfiguration von ConnectionsPools für den Zugriff auf die Datenbank kann auch eine JNDI DataSource konfiguriert werden. Details hierzu befinden sich im Handbuch von https://download.deegree.org/documentation/current/html/#anchor-configuration-jdbc[deegree webservices].

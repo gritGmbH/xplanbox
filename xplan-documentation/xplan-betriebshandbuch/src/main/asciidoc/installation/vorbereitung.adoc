@@ -3,5 +3,5 @@
 
 Die folgende Installationsanleitung setzt voraus, dass die im Abschnitt <<systemueberblick>> beschriebenen Komponenten, soweit erforderlich, installiert sind.
 
-Weiterhin ist vorbereitend das Anlegen eines Verzeichnisses mit dem Namen _.deegree_ im Home-Verzeichnis erforderlich, wenn dieses nicht bereits existiert. Falls ein anderes Verzeichnis verwendet werden soll, muss die Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ gesetzt werden (s. Abschnitt <<anwendungs-tomcat>>).
+Weiterhin ist vorbereitend das Anlegen eines Verzeichnisses mit dem Namen _.deegree_ im Home-Verzeichnis erforderlich, wenn dieses nicht bereits existiert. Falls ein anderes Verzeichnis verwendet werden soll, muss die Umgebungsvariable `DEEGREE_WORKSPACE_ROOT` gesetzt werden (s. Abschnitt <<anwendungs-tomcat>>).
 Dem Betriebssystembenutzer, mit dem der Tomcat gestartet wird, müssen Lese- und Schreibrechte für dieses Verzeichnis eingeräumt werden.
