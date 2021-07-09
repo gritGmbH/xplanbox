@@ -350,6 +350,8 @@ grant  codeBase "file:${catalina.base}/webapps/-" {
     permission java.io.FilePermission "${catalina.base}/webapps/xplan-validator-web/-", "read";
     permission java.io.FilePermission "${catalina.base}/logs/-", "read,write,delete";
     permission java.io.FilePermission "${catalina.base}/lib/-", "read";
+    permission java.io.FilePermission "${catalina.base}/temp/-", "read,write,delete,execute";
+    permission java.io.FilePermission "${catalina.base}/temp/", "read,write,delete,execute";
     permission java.io.FilePermission "${java.io.tmpdir}/-", "read,write,delete,execute";
     permission java.io.FilePermission "/root/.deegree/-", "read,write,delete";
     permission java.io.FilePermission "/root/.deegree/", "read,write,delete";
