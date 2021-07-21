@@ -2,5 +2,5 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
         targetNamespace="http://inspire.ec.europa.eu/schemas/plu/4.0"
         version="4.0">
-  <include schemaLocation="http://inspire.ec.europa.eu/schemas/plu/4.0/PlannedLandUse.xsd" />
+  <include schemaLocation="https://inspire.ec.europa.eu/schemas/plu/4.0/PlannedLandUse.xsd" />
 </schema>
