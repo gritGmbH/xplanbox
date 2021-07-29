@@ -14,7 +14,12 @@ NOTE: Als Desktop-Client wird https://qgis.org/[QGIS] empfohlen. Als WebGIS-Clie
 [[datenzugriff-xplandb]]
 === Zugriff auf Daten der XPlanDB
 
-Über die <<xplanmanager-api, REST-API des XPlanManager>> und den <<xplanwfs>> kann jedes importierte XPlanGML-Instanzdokument abgerufen werden. Je nach Version des XPlanGML-Instanzdokuments und Planstatus wird dieses aus der <<xplandb>> ausgelesen, wobei folgende Beispiele den Zugriff auf das XML-Dokument in der Tabelle `DATENBANK_SCHEMA.GML_OBJECTS.BINARY_OBJECT` verdeutlichen sollen: für einen rechtskräftigen Plan mit Planstatus "festgestellt" in der Version 5.1 erfolgt der Abruf aus `XPLAN51.GML_OBJECTS.BINARY_OBJECT` über den XPlanWFS Endpoint _wfs51_. Für einen in Aufstellung befindlichen Plan in der Version 5.3 der Abruf aus `XPLAN53PRE.GML_OBJECTS.BINARY_OBJECT` über den XPlanWFS Endpoint _wfs53pre_. Änderungen, die über den XPlanManager vorgenommen werden, werden in den Instanz-Dokumenten in der XPlanDB gespeichert. Die Datenbankschemata der XPlanDB sind im Anhang unter <<appendix_xplandb>> zu finden. Der Ablageort der Rasterdaten aus einem XPlanArchiv wird im Anhang unter <<appendix_xplanwms-workspace>> näher beschrieben.
+Über die <<xplanmanager-api, REST-API des XPlanManager>> und den <<xplanwfs>> kann jedes importierte XPlanGML-Instanzdokument abgerufen werden. Je nach Version des XPlanGML-Instanzdokuments und Planstatus wird dieses aus der <<xplandb>> ausgelesen, wobei folgende Beispiele den Zugriff auf das XML-Dokument in der Tabelle `<DATENBANK_SCHEMA>.GML_OBJECTS.BINARY_OBJECT` verdeutlichen sollen:
+
+- für einen rechtskräftigen Plan mit Planstatus "festgestellt" in der Version 5.1 erfolgt der Abruf aus `XPLAN51.GML_OBJECTS.BINARY_OBJECT` über den XPlanWFS Endpoint _wfs51_.
+- für einen in Aufstellung befindlichen Plan in der Version 5.3 erfolgt der Abruf aus `XPLAN53PRE.GML_OBJECTS.BINARY_OBJECT` über den XPlanWFS Endpoint _wfs53pre_.
+
+Änderungen, die über den XPlanManager vorgenommen werden, werden in den Instanz-Dokumenten in der XPlanDB gespeichert. Die Datenbankschemata der XPlanDB sind im Anhang unter <<appendix_xplandb>> zu finden. Der Ablageort der Rasterdaten aus einem XPlanArchiv wird im Anhang unter <<appendix_xplanwms-workspace>> näher beschrieben.
 
 ==== Übersicht der Datenbankschema
 
@@ -45,16 +50,16 @@ Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschema und di
 | BLOB
 | `xplan53`
 | <<xplanwfs>>/_wfs53_
-| BLOB
+| BLOB <<appendix_xplandb_xplan53,(Schema)>>
 | `xplansyn`
 | <<xplansynwfs>>/_xplansynwfs_, <<xplanwms>>/_wms_
-| Relational
+| Relational <<appendix_xplandb_xplansyn,(Schema)>>
 | `inspireplu`
 | <<xplaninspirepluwfs>>/_downloadservice_, <<xplaninspirepluwms>>/_viewservice_
 | Relational
 | `xplanmgr`
 | <<xplanmanager-web>>, <<xplanmanager-api>>, <<xplanmanager-cli>>, <<xplanwms, XPlanWerkWMS>>
-| Relational
+| Relational <<appendix_xplandb_xplanmgr,(Schema)>>
 |===
 
 Bei separater Datenhaltung existiert für alle in Aufstellung befindlichen Pläne zusätzlich ein Datenbankschema mit der Namenskonvention `xplan*pre` und den Endpoints <<xplanwfs>>/_wfs*pre_ sowie für die archivierten Pläne mit `xplan*archive` und den Endpoints <<xplanwfs>>/_wfs*archive_.

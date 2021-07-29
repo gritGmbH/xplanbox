@@ -17,13 +17,11 @@ Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 * <<xplanresources, XPlanRessourcen>>
 * <<xplandb, XPlanDB>>
 
+.Einfache Datenhaltung der XPlanDB
 image::Architektur_xPlanBox_einfach.png[Einfache Darstellung]
 
-Abbildung 1: Einfache Datenhaltung
-
+.Separate Datenhaltung der XPlanDB - getrennt nach Planstatus
 image::Architektur_xPlanBox_komplex.png[Komplexe Darstellung]
-
-Abbildung 2: Separate Datenhaltung
 
 [[xplanmanager-web]]
 === XPlanManagerWeb

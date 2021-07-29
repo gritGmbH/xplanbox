@@ -7,10 +7,10 @@ Alternativ zur Installation, wie sie im Kapitel <<installation>> beschrieben ist
 
 Die folgenden beiden Grafiken geben einen Überblick über die im Folgenden näher beschriebenen Komponenten und Schnittstellen:
 
-.XPlanValidator
+.Docker Container und Volumes für den XPlanValidator
 image::docker-spezifikation-validator.png[]
 
-.XPlanManager
+.Docker Container und Volumes für den XPlanManager
 image::docker-spezifikation-manager.png[]
 
 *Erläuterungen:*
