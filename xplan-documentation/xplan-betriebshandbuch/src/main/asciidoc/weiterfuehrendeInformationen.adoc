@@ -23,9 +23,9 @@ NOTE: Als Desktop-Client wird https://qgis.org/[QGIS] empfohlen. Als WebGIS-Clie
 
 ==== Übersicht der Datenbankschema
 
-Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschema und die auf diese Schema zugreifenden Komponenten am Beispiel der festgestellten Pläne bei separater Datenhaltung.
+Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschema und die auf diese Schema zugreifenden Komponenten am Beispiel der festgestellten Pläne bei <<systemarchitektur-und-schnittstellen,separater Datenhaltung>>.
 
-[width="100%",cols="30%,50%,20%",options="header"]
+[width="100%",cols="25%,50%,25%",options="header"]
 |===
 | Datenbankschema
 | Komponente/Endpoint

@@ -26,7 +26,7 @@ IMPORTANT: Wird eine ältere XPlanGML-Version abgekündigt oder eine neue XPlanG
 
 Die folgenden Diagramme zeigen die Tabellenstruktur für ausgewählte Fachdatenobjekte (abgeleitete Feature Types aus den XPlanGML-Schema) aus dem Schema `xplansyn`.
 
-.Datenbankschema 'xplansyn' - BPlan (Ausschnitt 1 - PB_Baugebiet)
+.Datenbankschema 'xplansyn' - BPlan (Ausschnitt 1 - BP_Baugebiet)
 image::xplandb_xplansyn_bplan1.png[Schema xplansyn - BPlan (Ausschnitt 1 - PB_Baugebiet)]
 
 .Datenbankschema 'xplansyn' - BPlan (Ausschnitt 2 - BP_Bereich)
