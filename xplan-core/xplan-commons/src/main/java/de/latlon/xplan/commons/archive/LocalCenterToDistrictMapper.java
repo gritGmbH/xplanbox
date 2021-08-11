@@ -25,8 +25,6 @@ package de.latlon.xplan.commons.archive;
  * Maps local centers to districts.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public interface LocalCenterToDistrictMapper {

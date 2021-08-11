@@ -63,8 +63,6 @@ import de.latlon.xplan.commons.XPlanVersion;
  * Encapsulates the contents of a xplan archive to export.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class XPlanArchiveContent {

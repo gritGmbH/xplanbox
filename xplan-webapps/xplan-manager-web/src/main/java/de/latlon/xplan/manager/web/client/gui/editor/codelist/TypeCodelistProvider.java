@@ -114,7 +114,6 @@ import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.VE
  * Provides access to type code (mapping between code and value)
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 public class TypeCodelistProvider {

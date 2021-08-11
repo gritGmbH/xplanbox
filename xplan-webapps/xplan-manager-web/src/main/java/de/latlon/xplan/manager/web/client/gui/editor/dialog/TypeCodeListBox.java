@@ -68,8 +68,6 @@ import de.latlon.xplan.manager.web.client.gui.editor.codelist.TypeCodelistProvid
  * A {@link ListBox} encapsulating values from an enumeration.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class TypeCodeListBox<T extends Enum<T>> extends ListBox {

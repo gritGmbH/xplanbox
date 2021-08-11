@@ -28,8 +28,6 @@ import java.io.OutputStream;
  * Writes jdbc connection configuration files for deegree.
  * 
  * @author Florian Bingel
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public interface JdbcConfigWriter {

@@ -62,8 +62,6 @@ import java.util.Date;
  * Contains some more information about a xplan, which are not stored in the plan.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class AdditionalPlanData implements Serializable {

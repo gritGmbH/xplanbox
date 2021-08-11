@@ -61,8 +61,6 @@ import com.google.gwt.event.shared.GwtEvent;
  * Indicates that the editing was canceled by the user.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class EditorCanceledEvent extends GwtEvent<EditorCanceledEventHandler> {

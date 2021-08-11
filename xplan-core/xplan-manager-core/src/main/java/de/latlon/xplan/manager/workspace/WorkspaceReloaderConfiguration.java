@@ -29,8 +29,6 @@ import java.util.List;
  * Container object for {@link WorkspaceReloader} configuration.
  * 
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- * 
  * @version $Revision: $, $Date: $
  */
 public class WorkspaceReloaderConfiguration {

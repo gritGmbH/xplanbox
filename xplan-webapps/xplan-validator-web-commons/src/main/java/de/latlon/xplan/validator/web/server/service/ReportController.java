@@ -44,8 +44,6 @@ import static org.springframework.http.MediaType.TEXT_HTML_VALUE;
  * REST-Interface providing report artefacts
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 @Controller

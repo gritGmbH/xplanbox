@@ -33,7 +33,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * Tests the application context - sees if it loads
  * 
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
  */
 

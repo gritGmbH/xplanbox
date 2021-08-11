@@ -58,8 +58,6 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
  * GUI component containing the search filter of the plan list.
  * 
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- * 
  * @version $Revision: $, $Date: $
  */
 public class SearchFilterPanel extends AbstractFilterPanel implements ResetableFilterPanel {

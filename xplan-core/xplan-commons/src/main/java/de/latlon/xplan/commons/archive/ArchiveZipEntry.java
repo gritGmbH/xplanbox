@@ -61,8 +61,6 @@ import java.util.zip.ZipEntry;
  * An {@link ArchiveEntry} encapsulating an {@link ZipEntry}.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ArchiveZipEntry implements ArchiveEntry {

@@ -62,8 +62,6 @@ import java.util.Iterator;
  * Iterator interface, iterating over {@link XPlanArtefact}s.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public interface XPlanArtefactIterator extends Iterator<XPlanArtefact>, Closeable {

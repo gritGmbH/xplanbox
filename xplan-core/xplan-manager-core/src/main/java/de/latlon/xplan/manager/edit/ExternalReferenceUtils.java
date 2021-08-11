@@ -73,8 +73,6 @@ import net.sf.saxon.functions.Empty;
  * Creates/Extracts {@link ExternalReferenceInfo} which are newly or not longer referenced.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ExternalReferenceUtils {

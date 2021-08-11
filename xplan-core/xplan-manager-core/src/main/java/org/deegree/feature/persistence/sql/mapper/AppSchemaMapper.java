@@ -93,7 +93,6 @@ import org.slf4j.LoggerFactory;
  * Creates {@link MappedAppSchema} instances from {@link AppSchema}s by inferring a canonical database mapping.
  *
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider</a>
- * @author last edited by: $Author$
  * @version $Revision$, $Date$
  */
 class AppSchemaMapper {

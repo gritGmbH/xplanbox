@@ -62,7 +62,6 @@ import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 public class MapPreviewDialog extends DialogBox {

@@ -49,8 +49,6 @@ import de.latlon.xplan.manager.web.spring.security.DistrictGrantedAuthority;
  * Tests for {@link de.latlon.xplan.manager.web.server.service.rest.SecurityController}.
  * 
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- * 
  * @version $Revision: $, $Date: $
  */
 public class SecurityControllerTest {

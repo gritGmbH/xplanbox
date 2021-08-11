@@ -25,8 +25,6 @@ package de.latlon.xplan.validator.web.client.report;
  * Indicates that the user finished the report download.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public interface ReportDownloadFinishedListener {

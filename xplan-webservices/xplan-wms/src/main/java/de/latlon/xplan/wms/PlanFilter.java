@@ -75,8 +75,6 @@ import org.slf4j.LoggerFactory;
  * Filter implementation to modify the incoming request to a GetMap request.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class PlanFilter implements Filter {

@@ -41,8 +41,6 @@ import de.latlon.xplan.validator.web.shared.ValidationException;
  * Access to plan archive from session and filesystem
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ManagerPlanArchiveManager {

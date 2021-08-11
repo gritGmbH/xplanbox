@@ -33,7 +33,6 @@ import java.util.Date;
  * A validation report contains all ValidationResults of one Validation
  *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
  */
 public class ValidatorReport {

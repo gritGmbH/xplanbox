@@ -34,8 +34,6 @@ import org.junit.Test;
  * Tests for {@link WorkspaceReloader}.
  *
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- *
  * @version $Revision: $, $Date: $
  */
 public class WorkspaceReloaderTest {

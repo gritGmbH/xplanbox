@@ -77,8 +77,6 @@ import de.latlon.xplan.manager.web.spring.security.DistrictGrantedAuthority;
  * Manages authorization aspects of the current user.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class AuthorizationManager {

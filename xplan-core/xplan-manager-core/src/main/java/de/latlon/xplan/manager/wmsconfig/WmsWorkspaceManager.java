@@ -55,8 +55,6 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
  * Creates/deletes configuration files in the xplansyn-wms-workspace or a passed workspace.
  * 
  * @author Florian Bingel
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class WmsWorkspaceManager {

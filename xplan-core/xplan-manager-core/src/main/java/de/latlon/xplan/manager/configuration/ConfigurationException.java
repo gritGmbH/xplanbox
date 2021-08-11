@@ -59,8 +59,6 @@ package de.latlon.xplan.manager.configuration;
  * Indicates an invalid configuration.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ConfigurationException extends Exception {

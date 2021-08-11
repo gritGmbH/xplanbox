@@ -63,8 +63,6 @@ import org.deegree.theme.persistence.standard.jaxb.Themes;
  * Encapsulates the required configuration from the WMS workspace.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class WmsThemesConfig {

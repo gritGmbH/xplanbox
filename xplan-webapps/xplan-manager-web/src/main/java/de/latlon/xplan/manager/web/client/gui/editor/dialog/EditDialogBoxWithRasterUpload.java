@@ -73,8 +73,6 @@ import java.util.List;
  * select a reference and geo reference.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public abstract class EditDialogBoxWithRasterUpload extends EditDialogBox implements Validable {

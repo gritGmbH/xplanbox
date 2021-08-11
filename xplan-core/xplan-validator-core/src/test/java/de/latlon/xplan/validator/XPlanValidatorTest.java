@@ -84,7 +84,6 @@ import static org.mockito.Mockito.verifyZeroInteractions;
  * Tests for <link>XPlanValidator</link>
  *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })

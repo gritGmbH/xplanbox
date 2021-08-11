@@ -73,8 +73,6 @@ import org.slf4j.LoggerFactory;
  * Call {@link XPlanArtefactIterator#close()) if working with the result set is finished!
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class DatabaseXPlanArtefactIterator implements XPlanArtefactIterator {

@@ -73,8 +73,6 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
  * Controller controlling the main views (like plan list with upload and edit views).
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ViewController {

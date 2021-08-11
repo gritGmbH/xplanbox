@@ -34,8 +34,6 @@ import de.latlon.xplan.manager.web.shared.XPlan;
  * Checks if the requesting user has the permission to the archive with the district.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class DistrictPermission implements Permission {

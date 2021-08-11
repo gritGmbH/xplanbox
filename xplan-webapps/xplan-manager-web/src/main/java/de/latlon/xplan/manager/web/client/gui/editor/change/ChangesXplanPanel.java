@@ -82,7 +82,6 @@ import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistTyp
  * Subpanel to edit changes of XPlan version 4.1
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 public class ChangesXplanPanel extends AbstractEditorSubPanelWithTable<Change> {

@@ -59,8 +59,6 @@ package de.latlon.xplan.manager.web.shared.edit;
  * Encapsulates a change of a plan.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class Change {

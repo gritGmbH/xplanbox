@@ -75,8 +75,6 @@ import de.latlon.xplan.manager.web.shared.edit.ChangeType;
  * Dialog to edit an existing or create a new {@link Change} of XPlan version 3.0.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ChangesXplan30Dialog extends EditDialogBox implements Validable {

@@ -97,8 +97,6 @@ import de.latlon.xplan.manager.configuration.ManagerConfiguration;
  * Exports the content of a plan as zip archive.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class XPlanExporter {

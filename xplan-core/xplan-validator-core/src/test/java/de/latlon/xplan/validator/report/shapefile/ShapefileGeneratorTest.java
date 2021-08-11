@@ -50,8 +50,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
- * @author bingel
- * @author last edited by: $Author: lyn $
+ * @author Florian Bingel
  * @version $Revision: $, $Date: $
  */
 public class ShapefileGeneratorTest {

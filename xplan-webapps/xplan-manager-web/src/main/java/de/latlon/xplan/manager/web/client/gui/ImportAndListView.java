@@ -65,8 +65,6 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
  * Summarizes the PlanListPanel and UploadPanel in one view.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ImportAndListView extends VerticalPanel {

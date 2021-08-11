@@ -40,8 +40,6 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
  * GUI component containing the plan status filter of the plan list.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class PlanStatusFilterPanel extends AbstractFilterPanel implements ResetableFilterPanel {

@@ -59,8 +59,6 @@ package de.latlon.xplan.manager.web.shared;
  * Encapsulates results of the raster evaluation.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class RasterEvaluationResult {

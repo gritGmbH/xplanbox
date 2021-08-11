@@ -88,8 +88,6 @@ import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.Rast
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- *
  * @version $Revision: $, $Date: $
  */
 @Ignore

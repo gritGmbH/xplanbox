@@ -99,7 +99,6 @@ import static org.deegree.geometry.primitive.segments.CurveSegment.CurveSegmentT
  * </p>
  *
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider</a>
- * @author last edited by: $Author: schneider $
  * @version $Revision: 1154 $, $Date: 2010-03-02 13:23:14 +0100 (Di, 02 Mrz 2010) $
  */
 class XPlanGeometryInspector implements GeometryInspector {

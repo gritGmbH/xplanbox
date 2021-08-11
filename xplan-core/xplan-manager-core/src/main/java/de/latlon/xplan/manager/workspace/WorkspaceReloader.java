@@ -35,8 +35,6 @@ import org.slf4j.LoggerFactory;
  * Reloads a workspace via HTTP.
  * 
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- * 
  * @version $Revision: $, $Date: $
  */
 public class WorkspaceReloader {

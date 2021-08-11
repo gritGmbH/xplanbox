@@ -64,8 +64,6 @@ import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
  * Indicates that the editing was started by the user.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class EditorStartedEvent extends GwtEvent<EditorStartedEventHandler> {

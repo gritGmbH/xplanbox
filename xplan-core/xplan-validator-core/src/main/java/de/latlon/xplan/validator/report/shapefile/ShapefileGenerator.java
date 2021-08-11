@@ -42,7 +42,7 @@ import de.latlon.xplan.validator.report.ValidatorReport;
 /**
  * Creates shape files containing the bad geometries from a {@link ValidatorReport}
  * 
- * @author Bingel
+ * @author Florian Bingel
  * @version $Revision: $, $Date: $
  */
 public class ShapefileGenerator {

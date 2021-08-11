@@ -53,7 +53,6 @@ import static java.nio.file.Files.newInputStream;
  * Retrieves XQuery configurations from file system
  *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
  */
 public class XQuerySemanticValidatorConfigurationRetriever implements SemanticValidatorConfigurationRetriever {

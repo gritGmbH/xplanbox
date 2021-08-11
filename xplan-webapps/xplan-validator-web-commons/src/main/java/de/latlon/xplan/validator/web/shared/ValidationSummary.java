@@ -27,8 +27,6 @@ import java.io.Serializable;
  * Summarized informations about the validated plan
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ValidationSummary implements Serializable {

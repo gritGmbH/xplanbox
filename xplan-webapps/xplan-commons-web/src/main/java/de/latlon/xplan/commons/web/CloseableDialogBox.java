@@ -36,8 +36,6 @@ import de.latlon.xplan.commons.web.i18n.XPlanMessages;
  * Extends the {@link DialogBox} with a button to close the dialog
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class CloseableDialogBox extends DialogBox {

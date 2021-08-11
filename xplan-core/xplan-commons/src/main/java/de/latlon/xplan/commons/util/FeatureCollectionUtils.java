@@ -53,8 +53,6 @@ import java.util.UUID;
  * Contains utilities for deegree {@link org.deegree.feature.FeatureCollection}s.
  * 
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- * 
  * @version $Revision: $, $Date: $
  */
 public class FeatureCollectionUtils {

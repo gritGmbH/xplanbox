@@ -32,7 +32,6 @@ import java.util.Date;
  * @author Florian Bingel
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
- * @author last edited by: $Author: stenger $
  * @version $Revision: $, $Date: $
  */
 public class XPlan implements Serializable, Comparable<XPlan> {

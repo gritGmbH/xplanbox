@@ -25,8 +25,6 @@ package de.latlon.xplan.manager.web.spring.security;
  * Enum for active directory roles.
  * 
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- * 
  * @version $Revision: $, $Date: $
  */
 public enum XPlanAuthorizationRole {

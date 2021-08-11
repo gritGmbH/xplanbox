@@ -52,7 +52,6 @@ import static org.deegree.cs.CRSUtils.EPSG_4326;
  * Provides access to the manager configuration.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 public class ManagerConfiguration {

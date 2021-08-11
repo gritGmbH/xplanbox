@@ -27,8 +27,6 @@ import de.latlon.xplan.manager.web.shared.XPlan;
  * Common interface for all filters, checking if a plan is visible or not.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public interface PlanFilter {

@@ -41,8 +41,6 @@ import static org.mockito.Mockito.when;
  * Tests for {@link ValidatorConfigurationParser}.
  * 
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ValidatorConfigurationParserTest {

@@ -37,8 +37,6 @@ import org.slf4j.LoggerFactory;
  * Retrieves a configuration from a specified path.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ConfigurationDirectoryPropertiesLoader extends AbstractPropertiesLoader {

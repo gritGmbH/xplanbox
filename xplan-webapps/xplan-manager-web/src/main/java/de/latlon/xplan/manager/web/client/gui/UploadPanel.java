@@ -71,7 +71,6 @@ import de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListene
  * 
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
  * @version $Revision: $, $Date: $
  */
 public class UploadPanel extends DecoratorPanel {

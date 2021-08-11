@@ -83,8 +83,6 @@ import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 @Ignore("Fix me: xplan-manager-workspace required")

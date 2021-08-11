@@ -32,7 +32,7 @@ import de.latlon.xplan.validator.report.ReportUtils.SkipCode;
 /**
  * contains the validator result of the geometric validator
  * 
- * @author bingel
+ * @author Florian Bingel
  */
 
 public class GeometricValidatorResult extends ValidatorResult {

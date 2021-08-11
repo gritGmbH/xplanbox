@@ -61,8 +61,6 @@ import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
  * Represents a key for a codelist, combined out of the version and codelistType.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 class CodelistKey {

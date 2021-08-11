@@ -43,8 +43,7 @@ import org.slf4j.LoggerFactory;
  * Encapsulates the internal or external code lists for one XPlan schema.
  *
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider</a>
- * @author last edited by: $Author: rubach $
- * @version $Revision: 940 $, $Date: 2010-02-11 15:24:52 +0100 (Do, 11 Feb 2010) $
+ * @version 1.0, Date: 2010-02-11
  */
 public class XPlanCodeLists {
 

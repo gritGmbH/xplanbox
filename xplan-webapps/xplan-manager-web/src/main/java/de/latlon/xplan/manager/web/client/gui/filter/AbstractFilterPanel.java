@@ -30,8 +30,6 @@ import de.latlon.xplan.manager.web.client.filter.PlanFilter;
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author <a href="mailto:goltz@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- * 
  * @version $Revision: $, $Date: $
  */
 public abstract class AbstractFilterPanel extends SimplePanel implements FilterProvider {

@@ -38,8 +38,6 @@ import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
  * Expression for retrieving the textual description for an external XPlan 2.0 / 3.0 code.
  * 
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider</a>
- * @author last edited by: $Author: schneider $
- * 
  * @version $Revision: 1074 $, $Date: 2010-02-19 17:07:26 +0100 (Fr, 19 Feb 2010) $
  */
 public class Xplan2CodeLookupExt implements Expression {

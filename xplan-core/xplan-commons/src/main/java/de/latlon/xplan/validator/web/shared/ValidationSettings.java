@@ -28,8 +28,6 @@ import java.util.List;
  * Encapsulates all settings made for a validation run.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ValidationSettings implements Serializable {

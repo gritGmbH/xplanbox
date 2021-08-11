@@ -49,7 +49,6 @@ import de.latlon.xplan.validator.web.shared.ArtifactType;
  * Generates an archive the {@link ValidatorReport} as XMl, HTML and PDF
  * 
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 public class ReportWriter {

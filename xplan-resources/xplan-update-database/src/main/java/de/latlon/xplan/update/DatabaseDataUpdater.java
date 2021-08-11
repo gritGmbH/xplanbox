@@ -37,8 +37,6 @@ import static de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION.FROM_PRE
  * Updates the data in the tables xplanmgr.plans and xplan3.gml_object. Schema must be up to date already.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class DatabaseDataUpdater {

@@ -39,7 +39,6 @@ import de.latlon.xplan.validator.web.shared.ValidationOption;
  * Validates <link>XPlanArchives</link> geometrically
  * 
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
  */
 public interface GeometricValidator {

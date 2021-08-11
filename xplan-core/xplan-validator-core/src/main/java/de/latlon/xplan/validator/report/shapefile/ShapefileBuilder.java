@@ -52,9 +52,7 @@ import de.latlon.xplan.validator.report.ReportGenerationException;
 /**
  * Creates Shapefiles of different Types
  * 
- * @author bingel
- * @author last edited by: $Author: lyn $
- * 
+ * @author Florian Bingel
  * @version $Revision: $, $Date: $
  */
 class ShapefileBuilder {

@@ -34,8 +34,6 @@ import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getReleaseD
  * Checks if the plan contains a property matching the given search string.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class FreeTextFilter implements PlanFilter {

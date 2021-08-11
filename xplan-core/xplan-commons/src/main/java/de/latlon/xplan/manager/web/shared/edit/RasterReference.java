@@ -61,7 +61,6 @@ import java.util.Date;
  * Encapsulate a raster reference (refScan, refLegend, refText).
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 public class RasterReference extends AbstractReference {

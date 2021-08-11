@@ -25,7 +25,6 @@ package de.latlon.xplan.manager.web.shared;
  * Enumeration for easy differentiating of xplan status.
  * 
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
  * @version $Revision: $, $Date: $
  */
 public enum PlanStatus {

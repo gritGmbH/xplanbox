@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * contains the validator result of the rules of the semantic validation
  *
- * @author bingel
+ * @author Florian Bingel
  */
 public class RuleResult implements Comparable {
 

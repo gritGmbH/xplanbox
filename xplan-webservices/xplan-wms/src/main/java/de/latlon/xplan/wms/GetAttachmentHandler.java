@@ -48,10 +48,7 @@ import org.slf4j.LoggerFactory;
  * (xml, picture, pdf, etc.) of an XPlan.
  * 
  * @author <a href="mailto:ionita@lat-lon.de">Andrei Ionita</a>
- * 
- * @author last edited by: $Author: ionita $
- * 
- * @version $Revision: 883 $, $Date: 2010-02-01 15:55:53 +0100 (Mon, 01 Feb 2010) $
+ * @version 1.0, Date: 2010-02-01
  * 
  */
 public class GetAttachmentHandler extends HttpServlet {

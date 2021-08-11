@@ -34,8 +34,6 @@ import org.springframework.security.core.Authentication;
  * Evaluates if an authentication with {@link DistrictGrantedAuthority} has permission to a XPlanArchive.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ManagerPermissionEvaluator implements PermissionEvaluator {

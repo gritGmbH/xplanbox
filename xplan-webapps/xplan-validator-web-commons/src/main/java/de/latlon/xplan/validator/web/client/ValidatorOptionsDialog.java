@@ -58,7 +58,6 @@ import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
  * Encapsulates a view with the settings for a validation run and a button to start the validation run.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 public class ValidatorOptionsDialog extends FormPanel {

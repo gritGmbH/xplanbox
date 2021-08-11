@@ -30,7 +30,6 @@ import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
  * 
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 public interface ManagerWebConfigurationServiceAsync {

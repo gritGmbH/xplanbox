@@ -61,8 +61,6 @@ import java.util.Date;
  * Encapsulates the base data of a plan.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class BaseData {

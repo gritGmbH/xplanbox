@@ -49,8 +49,6 @@ import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
  * Extends the {@link DialogBox} with a button to close the dialog and a button to save the content.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public abstract class EditDialogBox extends DialogBox {

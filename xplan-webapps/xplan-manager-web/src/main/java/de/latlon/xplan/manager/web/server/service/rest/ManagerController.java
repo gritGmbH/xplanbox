@@ -83,8 +83,6 @@ import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
  * REST-Interface for plan management.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 @Controller

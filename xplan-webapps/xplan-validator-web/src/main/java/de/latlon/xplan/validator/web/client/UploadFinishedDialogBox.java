@@ -40,7 +40,6 @@ import de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListene
  * Extends the {@link DialogBox} with a button to close the dialog
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 class UploadFinishedDialogBox extends DialogBox {

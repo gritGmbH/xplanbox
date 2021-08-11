@@ -59,8 +59,6 @@ package de.latlon.xplan.manager.web.client.gui.editor.codelist;
  * Discriminates between different codelists.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public enum CodelistType {

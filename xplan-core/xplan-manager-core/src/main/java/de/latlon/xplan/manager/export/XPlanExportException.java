@@ -59,8 +59,6 @@ package de.latlon.xplan.manager.export;
  * Indicates an error during export of plans.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class XPlanExportException extends RuntimeException {

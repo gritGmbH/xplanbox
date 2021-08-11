@@ -53,8 +53,6 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
  * Tests for {@link FeatureCollectionUtils}.
  * 
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- * 
  * @version $Revision: $, $Date: $
  */
 public class FeatureCollectionUtilsTest {

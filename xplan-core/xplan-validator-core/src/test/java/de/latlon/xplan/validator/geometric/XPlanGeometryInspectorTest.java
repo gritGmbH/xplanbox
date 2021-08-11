@@ -48,7 +48,6 @@ import static org.mockito.Mockito.verify;
  * Tests for <link>XPlanGeometryInspector</link>.
  *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
  */
 public class XPlanGeometryInspectorTest {

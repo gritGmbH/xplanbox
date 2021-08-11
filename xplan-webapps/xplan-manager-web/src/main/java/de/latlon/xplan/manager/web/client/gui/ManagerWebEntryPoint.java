@@ -45,7 +45,6 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
  * @author Florian Bingel
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
- * @author last edited by: $Author: stenger $
  * @version $Revision: $, $Date: $
  */
 public class ManagerWebEntryPoint implements EntryPoint {

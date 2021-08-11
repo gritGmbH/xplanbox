@@ -80,7 +80,6 @@ import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistTyp
  * Provides access to code list items (mapping between code and value)
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 public class CodelistProvider {

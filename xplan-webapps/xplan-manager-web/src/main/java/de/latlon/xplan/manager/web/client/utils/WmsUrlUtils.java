@@ -66,8 +66,6 @@ import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
  * Contains some useful methods to create WMS urls.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- *
  * @version $Revision: $, $Date: $
  */
 public class WmsUrlUtils {

@@ -70,8 +70,6 @@ import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
  * Dialog to set the validity period of a plan.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ValidityPeriodDialog extends WizardDialogBox implements Validable {

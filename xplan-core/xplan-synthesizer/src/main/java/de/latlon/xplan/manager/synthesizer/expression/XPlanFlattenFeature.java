@@ -66,7 +66,6 @@ import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
  * </p>
  * 
  * @author <a href="mailto:ionita@lat-lon.de">Andrei Ionita</a>
- * @author last edited by: $Author: ionita $
  * @version $Revision: 1242 $, $Date: 2010-05-25 20:15:58 +0200 (Di, 25 Mai 2010) $
  */
 public class XPlanFlattenFeature implements Expression {

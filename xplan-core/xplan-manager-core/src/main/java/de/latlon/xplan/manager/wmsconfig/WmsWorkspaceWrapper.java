@@ -78,8 +78,6 @@ import de.latlon.xplan.manager.configuration.ConfigurationException;
  * Wraps a wms workspace and provides some useful methods.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class WmsWorkspaceWrapper {

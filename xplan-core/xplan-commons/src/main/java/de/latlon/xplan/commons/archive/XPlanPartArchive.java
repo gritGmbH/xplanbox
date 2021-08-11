@@ -71,8 +71,6 @@ import org.slf4j.LoggerFactory;
  * Encapsulates an archive from a directory.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class XPlanPartArchive implements XPlanArchiveContentAccess {

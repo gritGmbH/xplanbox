@@ -59,8 +59,6 @@ package de.latlon.xplan.manager.web.client.gui.dialog;
  * Handler indicating that next is submitted.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public interface NextSubmittedHandler {

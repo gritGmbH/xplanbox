@@ -25,7 +25,7 @@ import com.google.gwt.i18n.client.Messages;
 import com.google.gwt.safehtml.shared.SafeHtml;
 
 /**
- * @author erben
+ * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  */
 public interface XPlanWebMessages extends Messages {
 

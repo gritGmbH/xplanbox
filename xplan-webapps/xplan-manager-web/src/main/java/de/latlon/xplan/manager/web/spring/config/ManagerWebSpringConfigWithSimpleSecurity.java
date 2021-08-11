@@ -30,8 +30,6 @@ import org.springframework.context.annotation.ImportResource;
  * configuration. The security configuration can be configured in security-simple.xml.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- *
  * @version $Revision: $, $Date: $
  */
 @Configuration

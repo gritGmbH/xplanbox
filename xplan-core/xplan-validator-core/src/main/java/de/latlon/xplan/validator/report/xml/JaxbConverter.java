@@ -56,7 +56,6 @@ import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
  * Converts the internal used {@link ValidatorReport} instances to jaxb
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 public class JaxbConverter {

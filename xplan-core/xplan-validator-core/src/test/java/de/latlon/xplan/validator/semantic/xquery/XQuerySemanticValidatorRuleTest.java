@@ -45,7 +45,6 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
  * Tests for <link>XQuerySemanticValidatorRule</link>
  * 
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
  */
 public class XQuerySemanticValidatorRuleTest {

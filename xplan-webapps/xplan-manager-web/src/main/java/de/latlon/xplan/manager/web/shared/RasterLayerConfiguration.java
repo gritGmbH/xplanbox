@@ -27,7 +27,6 @@ import java.io.Serializable;
  * Encapsulates a map preview configuration
  *
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
- * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
  */
 public class RasterLayerConfiguration implements Serializable {

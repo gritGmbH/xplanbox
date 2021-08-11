@@ -35,7 +35,6 @@ import static java.util.Collections.unmodifiableList;
  * Encapsulates a configuration for the semantic validator
  *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
  */
 public class SemanticValidatorConfiguration {

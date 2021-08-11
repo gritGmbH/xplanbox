@@ -37,8 +37,6 @@ import static java.lang.String.format;
  * Utility class containing convenience methods regarding {@link XPlanVersion} and {@link XPlanAde}.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- *
  * @version $Revision: $, $Date: $
  */
 public final class XPlanVersionUtils {

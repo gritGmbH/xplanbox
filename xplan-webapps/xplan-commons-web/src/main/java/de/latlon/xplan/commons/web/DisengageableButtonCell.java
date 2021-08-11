@@ -29,8 +29,6 @@ import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
  * Simple {@link ButtonCell} which can be disabled.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class DisengageableButtonCell extends com.google.gwt.cell.client.ButtonCell {

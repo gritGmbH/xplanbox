@@ -59,8 +59,6 @@ package de.latlon.xplan.commons.archive;
  * Encapsulates one file into an Archive.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public interface ArchiveEntry {

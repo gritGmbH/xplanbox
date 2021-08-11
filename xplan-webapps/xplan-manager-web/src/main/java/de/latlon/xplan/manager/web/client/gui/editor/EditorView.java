@@ -64,8 +64,6 @@ import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
  * Encapsulated the view of the editor.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class EditorView extends VerticalPanel {

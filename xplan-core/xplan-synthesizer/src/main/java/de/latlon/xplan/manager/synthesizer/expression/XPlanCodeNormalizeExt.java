@@ -39,7 +39,6 @@ import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToA
  * </p>
  *
  * @author <a href="mailto:ionita@lat-lon.de">Andrei Ionita</a>
- * @author last edited by: $Author: schneider $
  * @version $Revision: 1028 $, $Date: 2010-02-18 15:48:22 +0100 (Do, 18 Feb 2010) $
  */
 public class XPlanCodeNormalizeExt implements Expression {

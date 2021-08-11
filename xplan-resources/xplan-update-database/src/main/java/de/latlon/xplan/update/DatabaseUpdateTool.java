@@ -53,8 +53,6 @@ import de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION;
  * Main entry point to update xplan data in databases. Schema must be updated already.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class DatabaseUpdateTool {

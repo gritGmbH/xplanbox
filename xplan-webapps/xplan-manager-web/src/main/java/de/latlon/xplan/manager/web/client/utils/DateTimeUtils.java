@@ -33,8 +33,6 @@ import com.google.gwt.user.datepicker.client.DateBox;
  * Creates specific {@link com.google.gwt.i18n.client.DateTimeFormat}s.
  * 
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- * 
  * @version $Revision: $, $Date: $
  */
 public class DateTimeUtils {

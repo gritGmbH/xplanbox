@@ -30,8 +30,6 @@ import de.latlon.xplan.manager.web.shared.XPlan;
  * Checks if the plan is assigned to the category or not.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class CategoryFilter implements PlanFilter {

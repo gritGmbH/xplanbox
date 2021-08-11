@@ -34,8 +34,6 @@ import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
  * Compares different columns (name, id, type, additional type, legislation status, release date, import date and ade).
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ColumnComparator implements Comparator<XPlan> {

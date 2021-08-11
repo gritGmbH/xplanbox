@@ -76,7 +76,6 @@ import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_53
  * Dialog to edit an existing or create a new {@link Text}
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 public class TextDialog extends EditDialogBoxWithRasterUpload {

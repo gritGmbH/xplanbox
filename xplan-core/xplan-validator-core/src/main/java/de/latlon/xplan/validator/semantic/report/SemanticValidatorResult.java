@@ -33,7 +33,7 @@ import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 /**
  * contains the validator result of the semantic validator
  *
- * @author bingel
+ * @author Florian Bingel
  */
 public class SemanticValidatorResult extends ValidatorResult {
 

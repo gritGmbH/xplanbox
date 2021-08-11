@@ -44,8 +44,6 @@ import de.latlon.xplan.manager.configuration.InternalIdRetrieverConfiguration;
  * Tests for {@link de.latlon.xplan.manager.internalid.InternalIdRetriever}.
  *
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- * 
  * @version $Revision: $, $Date: $
  */
 public class InternalIdRetrieverTest {

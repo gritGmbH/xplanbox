@@ -32,8 +32,6 @@ import de.latlon.xplan.validator.web.shared.ArtifactType;
  * Provides report artefacts
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public interface ReportProvider {

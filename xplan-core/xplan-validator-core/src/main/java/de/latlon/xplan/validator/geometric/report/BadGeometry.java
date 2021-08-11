@@ -31,7 +31,7 @@ import org.deegree.geometry.Geometry;
 /**
  * contains a defect geometry and its error-Strings
  *
- * @author bingel
+ * @author Florian Bingel
  */
 
 public class BadGeometry {

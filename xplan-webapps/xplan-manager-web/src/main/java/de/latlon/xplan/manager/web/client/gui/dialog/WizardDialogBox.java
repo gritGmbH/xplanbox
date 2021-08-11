@@ -74,8 +74,6 @@ import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
  * Dialog with next and cancel button which can be used in an wizard.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public abstract class WizardDialogBox extends DialogBox {

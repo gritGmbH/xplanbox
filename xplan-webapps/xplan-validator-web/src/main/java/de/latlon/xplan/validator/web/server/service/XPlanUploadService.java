@@ -47,7 +47,6 @@ import de.latlon.xplan.manager.web.shared.XPlan;
  * Stores an uploaded zip file into a tmp directory
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 @SuppressWarnings("serial")

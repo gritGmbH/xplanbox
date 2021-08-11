@@ -54,8 +54,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
 /**
- * @author bingel
- * @author last edited by: $Author: lyn $
+ * @author Florian Bingel
  * @version $Revision: $, $Date: $
  */
 public class BadGeometryImgGeneratorTest {

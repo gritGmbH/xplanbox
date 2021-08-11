@@ -59,8 +59,6 @@ package de.latlon.xplan.manager.web.shared.edit;
  * Used to discriminate raster refernce types.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public enum RasterReferenceType {

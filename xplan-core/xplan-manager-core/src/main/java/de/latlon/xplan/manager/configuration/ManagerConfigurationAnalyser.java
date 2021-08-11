@@ -65,8 +65,6 @@ import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
  * Checks the configuration of XPlanManager.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ManagerConfigurationAnalyser {

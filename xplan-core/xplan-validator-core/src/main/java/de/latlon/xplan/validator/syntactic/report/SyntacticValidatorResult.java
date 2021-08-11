@@ -29,7 +29,7 @@ import de.latlon.xplan.validator.report.ValidatorResult;
 /**
  * contains the validator result of the syntactic validator
  *
- * @author bingel
+ * @author Florian Bingel
  */
 public class SyntacticValidatorResult extends ValidatorResult {
 

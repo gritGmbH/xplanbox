@@ -29,7 +29,6 @@ import java.util.zip.ZipEntry;
  * ZipEntry implementation where each entry allows access to the content.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 public class ArtefactEntry extends ArchiveZipEntry implements ZipEntryWithContent {

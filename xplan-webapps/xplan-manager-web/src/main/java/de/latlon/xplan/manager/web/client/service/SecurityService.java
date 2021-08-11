@@ -38,8 +38,6 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
  * REST interface for security functions.
  * 
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- * 
  * @version $Revision: $, $Date: $
  */
 public interface SecurityService extends RestService {

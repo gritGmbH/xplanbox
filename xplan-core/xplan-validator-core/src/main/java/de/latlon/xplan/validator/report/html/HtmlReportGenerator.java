@@ -38,7 +38,6 @@ import java.io.*;
  * Utility methods for generating reports
  *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
  */
 public class HtmlReportGenerator {

@@ -48,7 +48,6 @@ import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
  * before usage
  * 
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
  */
 public class XQuerySemanticValidator implements SemanticValidator {

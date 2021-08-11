@@ -47,7 +47,6 @@ import de.latlon.xplan.commons.web.CloseableDialogBox;
  * Entry point of the validation, containing the file upload and a button to navigate to the options view.
  * 
  * @author <a href="mailto:wilden@lat-lon.de">Johannes Wilden</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 public class XPlanValidatorWeb implements EntryPoint {

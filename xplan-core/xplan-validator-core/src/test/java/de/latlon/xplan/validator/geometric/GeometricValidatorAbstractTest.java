@@ -37,8 +37,6 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
  * Abstract tests for {@link de.latlon.xplan.validator.geometric.GeometricValidator}.
  * 
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- * 
  * @version $Revision: $, $Date: $
  */
 public abstract class GeometricValidatorAbstractTest {

@@ -55,8 +55,6 @@ import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class ReportWriterTest {

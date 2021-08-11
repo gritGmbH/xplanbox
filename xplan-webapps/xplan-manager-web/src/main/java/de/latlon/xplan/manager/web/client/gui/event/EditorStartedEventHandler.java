@@ -59,8 +59,6 @@ package de.latlon.xplan.manager.web.client.gui.event;
  * EventHandler for {@link EditorStartedEventHandler}s.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public interface EditorStartedEventHandler extends com.google.gwt.event.shared.EventHandler {

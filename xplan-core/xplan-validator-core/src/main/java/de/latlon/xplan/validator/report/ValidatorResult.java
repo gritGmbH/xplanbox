@@ -27,7 +27,6 @@ import de.latlon.xplan.validator.report.ReportUtils.SkipCode;
  * Encapsulates a single validation result.
  *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
  */
 public abstract class ValidatorResult {

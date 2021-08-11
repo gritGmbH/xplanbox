@@ -53,8 +53,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Creates a PNG showing bad geometries from a {@link ValidatorReport}
  *
- * @author bingel
- * @version $Revision: $, $Date: $
+ * @author Florian Bingel
  */
 public class BadGeometryImgGenerator {
 

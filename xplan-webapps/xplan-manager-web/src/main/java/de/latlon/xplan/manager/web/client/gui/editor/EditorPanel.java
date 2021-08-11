@@ -96,7 +96,6 @@ import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.get
  * Main Editor Panel with different fieldsets and buttons to submit and cancel.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 public class EditorPanel extends DecoratorPanel {

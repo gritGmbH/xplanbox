@@ -55,8 +55,7 @@ import de.latlon.xplan.manager.synthesizer.expression.XplanTextAbschnitte;
  * in the context of a feature.
  * 
  * @author <a href="mailto:ionita@lat-lon.de">Andrei Ionita</a>
- * @author last edited by: $Author: ionita $
- * @version $Revision: 1242 $, $Date: 2010-05-25 20:15:58 +0200 (Di, 25 Mai 2010) $
+ * @version 1.0, Date: 2010-05-25
  */
 class RuleParser {
 

@@ -12,8 +12,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * Integration tests for Active Directory authentication.
  * 
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @author last edited by: $Author: stenger $
- * 
  * @version $Revision: $, $Date: $
  */
 public class AdAuthenticationIT {

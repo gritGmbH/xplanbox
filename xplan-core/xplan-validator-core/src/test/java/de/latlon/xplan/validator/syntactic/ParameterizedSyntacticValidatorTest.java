@@ -38,7 +38,6 @@ import static org.junit.Assert.assertTrue;
  * Tests for <link>SyntacticValidatorImpl</link>
  *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @author last edited by: $Author: erben $
  * @version $Revision: $, $Date: $
  */
 @RunWith(Parameterized.class)

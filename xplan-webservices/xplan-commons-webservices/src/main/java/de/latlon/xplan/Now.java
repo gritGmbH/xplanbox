@@ -78,8 +78,6 @@ import org.deegree.workspace.Workspace;
  * Provides a simple function retuning the current date and time.
  * 
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
- * 
  * @version $Revision: $, $Date: $
  */
 public class Now implements FunctionProvider {

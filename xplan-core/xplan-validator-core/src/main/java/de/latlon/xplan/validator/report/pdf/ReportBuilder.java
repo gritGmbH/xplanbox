@@ -65,7 +65,6 @@ import net.sf.jasperreports.engine.JasperReport;
  * Encapsulates a {@link JasperReportBuilder} building a validation report
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @author last edited by: $Author: lyn $
  * @version $Revision: $, $Date: $
  */
 class ReportBuilder {
