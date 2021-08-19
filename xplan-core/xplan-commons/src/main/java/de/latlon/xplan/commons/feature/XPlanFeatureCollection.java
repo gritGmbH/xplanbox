@@ -122,7 +122,7 @@ public class XPlanFeatureCollection {
      * Returns BBOX of feature collection in EPSG:4326.
      *
      * @return BBOX in EPSG:4326, may be <code>null</code> if the feature collection does not contain any geometry
-     * properties/envelope informations or the bounding box could not be transformed to EPSG:4326
+     * properties/envelope information or the bounding box could not be transformed to EPSG:4326
      */
     public Envelope getBboxIn4326() {
         return bboxIn4326;

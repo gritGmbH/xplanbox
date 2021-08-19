@@ -28,7 +28,7 @@ import de.latlon.xplanbox.api.commons.v1.model.VersionEnum;
 import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
 import de.latlon.xplanbox.api.manager.v1.model.Link;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
-import de.latlon.xplanbox.api.manager.v1.model.PlanInfoBbox;
+import de.latlon.xplanbox.api.commons.v1.model.PlanInfoBbox;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfoXplanModelData;
 import de.latlon.xplanbox.api.manager.v1.model.PlanStatusEnum;
 import org.apache.http.client.utils.URIBuilder;
