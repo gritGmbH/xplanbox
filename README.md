@@ -1,7 +1,7 @@
 # xPlanBox (Produktversion)
 In diesem Repository werden alle Ressourcen zur xPlanBox Produktversion verwaltet. Alle technischen Issues wie Aufgaben oder Fehler werden im GitHub Issue Tracker gepflegt:
 
-* [Offene Issues](https://github.com/deegree-enterprise/xplanbox/issues?issue%20is%3Aopen)
+* [Offene Issues](https://github.com/lat-lon/xplanbox/issues?issue%20is%3Aopen)
 
 ## Versionen
 
