@@ -102,7 +102,7 @@ public class WmsUrlUtils {
         if ( servicesIndex < 0 )
             return null;
         wmsUrl = wmsUrl.substring( 0, servicesIndex );
-        String planname = name.replaceAll( "[^a-zA-Z0-9\\\\-_]", "" );
+        String planname = name.replaceAll( "[^a-zA-Z0-9\\-_]", "" );
         StringBuilder planwerkWmsUrl = new StringBuilder();
         planwerkWmsUrl.append( wmsUrl );
         planwerkWmsUrl.append( "services/" );

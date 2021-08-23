@@ -145,7 +145,7 @@ public class PlanInfoBuilder {
 
     private Link createWmsEndpointUrl() {
         try {
-            String planname = xPlan.getName().replaceAll( "[^a-zA-Z0-9\\\\-_]", "" );
+            String planname = xPlan.getName().replaceAll( "[^a-zA-Z0-9\\-_]", "" );
             URIBuilder uriBuilder = new URIBuilder( managerApiConfiguration.getWmsUrl() );
             List<String> pathSegments = new ArrayList<>();
             pathSegments.addAll( uriBuilder.getPathSegments() );
