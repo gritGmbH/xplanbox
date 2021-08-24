@@ -71,10 +71,17 @@ public class PlanwerkReader {
             PreparedStatement ps = null;
             ResultSet rs = null;
             try {
-                String sql = "SELECT name, array_agg(id), ST_AsText(ST_Envelope(ST_Union(bbox))), array_remove(array_agg(DISTINCT title), NULL), array_remove(array_agg(DISTINCT resourceidentifier), NULL), array_remove(array_agg(DISTINCT datametadataurl), NULL), array_remove(array_agg(DISTINCT servicemetadataurl), NULL) from xplanmgr.plans LEFT JOIN xplanmgr.planwerkwmsmetadata ON id = plan WHERE regexp_replace(name, '[^a-zA-Z0-9\\-_]', '', 'g' ) = ? AND planstatus = ? GROUP BY name";
+                String sql = "SELECT name, array_agg(id), ST_AsText(ST_Envelope(ST_Union(bbox))), array_remove(array_agg(DISTINCT title), NULL), array_remove(array_agg(DISTINCT resourceidentifier), NULL), array_remove(array_agg(DISTINCT datametadataurl), NULL), array_remove(array_agg(DISTINCT servicemetadataurl), NULL) "
+                             + "FROM xplanmgr.plans "
+                             + "LEFT JOIN xplanmgr.planwerkwmsmetadata ON id = plan "
+                             + "WHERE (name = ? OR (NOT EXISTS (SELECT 1 FROM xplanmgr.plans LEFT JOIN xplanmgr.planwerkwmsmetadata ON id = plan WHERE name = ? ) AND regexp_replace(name, '[^a-zA-Z0-9\\-_]', '', 'g' ) = ?)) "
+                             + "AND planstatus = ? "
+                             + "GROUP BY name";
                 ps = conn.prepareStatement( sql );
                 ps.setString( 1, name );
-                ps.setString( 2, planStatus );
+                ps.setString( 2, name );
+                ps.setString( 3, name );
+                ps.setString( 4, planStatus );
                 rs = ps.executeQuery();
                 if ( rs.next() ) {
                     return createPlanwerk( rs );
