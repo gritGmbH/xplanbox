@@ -31,6 +31,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -85,10 +87,16 @@ public class PlanwerkServiceMetadataBuilderTest {
         assertThat( planwerkServiceMetadata.getDescription(), is( description ) );
         assertThat( planwerkServiceMetadata.getEnvelope(), is( envelope ) );
         assertThat( planwerkServiceMetadata.getPlanwerkWmsGetCapabilitiesUrl(), is( planWerkBaseUrl
-                                                                                    + "/services/planwerkwms/planname/testmitleer?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities" ) );
+                                                                                    + "/services/planwerkwms/planname/"
+                                                                                    + URLEncoder.encode( planName,
+                                                                                                         StandardCharsets.UTF_8.toString() )
+                                                                                    + "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities" ) );
 
         String getMapUrl = planwerkServiceMetadata.getPlanwerkWmsGetMapUrl();
-        assertThat( getMapUrl, startsWith( planWerkBaseUrl + "/services/planwerkwms/planname/testmitleer?" ) );
+        assertThat( getMapUrl, startsWith( planWerkBaseUrl + "/services/planwerkwms/planname/"
+                                           + URLEncoder.encode( planName,
+                                                                StandardCharsets.UTF_8.toString() )
+                                           + "?" ) );
         assertThat( getMapUrl, containsString( "LAYERS=" + layer ) );
         assertThat( getMapUrl, containsString( "STYLES=" + style ) );
         assertThat( getMapUrl, containsString( "WIDTH=" + configuration.getPlanWerkWmsGetMapWidth() ) );
