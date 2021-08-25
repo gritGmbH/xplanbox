@@ -34,8 +34,11 @@ import de.latlon.xplanbox.api.manager.v1.model.PlanStatusEnum;
 import org.apache.http.client.utils.URIBuilder;
 import org.jfree.util.Log;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -145,7 +148,7 @@ public class PlanInfoBuilder {
 
     private Link createWmsEndpointUrl() {
         try {
-            String planname = xPlan.getName().replaceAll( "[^a-zA-Z0-9\\\\-_]", "" );
+            String planname = URLEncoder.encode( xPlan.getName(), StandardCharsets.UTF_8.toString() );
             URIBuilder uriBuilder = new URIBuilder( managerApiConfiguration.getWmsUrl() );
             List<String> pathSegments = new ArrayList<>();
             pathSegments.addAll( uriBuilder.getPathSegments() );
@@ -157,7 +160,7 @@ public class PlanInfoBuilder {
             URI planwerkWmsRef = uriBuilder.build();
             Link planwerkWmsLink = new Link().href( planwerkWmsRef ).rel( PLANWERKWMS ).title( xPlan.getName() );
             return planwerkWmsLink;
-        } catch ( URISyntaxException e ) {
+        } catch ( URISyntaxException | UnsupportedEncodingException e ) {
             Log.warn( "Could not build XPlanwerkWMS url: " + e.getMessage(), e );
         }
         return null;

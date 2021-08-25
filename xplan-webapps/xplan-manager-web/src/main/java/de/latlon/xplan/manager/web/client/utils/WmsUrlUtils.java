@@ -59,6 +59,10 @@ import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import org.gwtopenmaps.openlayers.client.Bounds;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 
@@ -95,14 +99,13 @@ public class WmsUrlUtils {
         return wmsUrl + "/" + endpointToAdd + "?";
     }
 
-    public static String createPlanwerkWmsUrl( String name, MapPreviewConfiguration configuration,
-                                               PlanStatus planStatus ) {
+    public static String createPlanwerkWmsUrl( String planname, MapPreviewConfiguration configuration,
+                                               PlanStatus planStatus )  {
         String wmsUrl = determineWmsUrl( null, configuration );
         int servicesIndex = wmsUrl.lastIndexOf( "services" );
         if ( servicesIndex < 0 )
             return null;
         wmsUrl = wmsUrl.substring( 0, servicesIndex );
-        String planname = name.replaceAll( "[^a-zA-Z0-9\\\\-_]", "" );
         StringBuilder planwerkWmsUrl = new StringBuilder();
         planwerkWmsUrl.append( wmsUrl );
         planwerkWmsUrl.append( "services/" );

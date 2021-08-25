@@ -244,7 +244,7 @@ public class WmsUrlUtilsTest {
         String planwerkWmsUrl = WmsUrlUtils.createPlanwerkWmsUrl( "Plan Name 10 mit /", mockConfiguration( wmsBaseUrl ),
                                                                   FESTGESTELLT );
 
-        assertThat( planwerkWmsUrl, is( "http://localhost:8080/xplan-wms/services/planwerkwms/planname/PlanName10mit?request=GetCapabilities&service=WMS&version=1.3.0" ) );
+        assertThat( planwerkWmsUrl, is( "http://localhost:8080/xplan-wms/services/planwerkwms/planname/Plan Name 10 mit /?request=GetCapabilities&service=WMS&version=1.3.0" ) );
     }
 
     @Test
@@ -254,7 +254,7 @@ public class WmsUrlUtilsTest {
         String planwerkWmsUrl = WmsUrlUtils.createPlanwerkWmsUrl( "Plan Name 10 mit /", mockConfiguration( wmsBaseUrl ),
                                                                   IN_AUFSTELLUNG );
 
-        assertThat( planwerkWmsUrl, is( "http://xplanservices.xplanbox.de/xplan-wms/services/planwerkwmspre/planname/PlanName10mit?request=GetCapabilities&service=WMS&version=1.3.0" ) );
+        assertThat( planwerkWmsUrl, is( "http://xplanservices.xplanbox.de/xplan-wms/services/planwerkwmspre/planname/Plan Name 10 mit /?request=GetCapabilities&service=WMS&version=1.3.0" ) );
     }
 
 

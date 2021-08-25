@@ -25,6 +25,7 @@ import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.createPlanwer
 import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.createUrl;
 import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.determineWmsUrl;
 
+import com.google.gwt.http.client.URL;
 import org.gwtopenmaps.openlayers.client.Bounds;
 import org.gwtopenmaps.openlayers.client.LonLat;
 import org.gwtopenmaps.openlayers.client.Map;
@@ -56,6 +57,10 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterLayerConfiguration;
 import de.latlon.xplan.manager.web.shared.VectorLayerConfiguration;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 /**
  * PopUp window containing the preview of the plan as openlayers map.
@@ -285,7 +290,7 @@ public class MapPreviewDialog extends DialogBox {
         return new ClickHandler() {
             @Override
             public void onClick( ClickEvent event ) {
-                String url = createPlanwerkWmsUrl( planName, configuration, planStatus );
+                String url = createPlanwerkWmsUrl( URL.encode( planName ), configuration, planStatus );
                 Window.open( url, "_blank", "" );
             }
         };

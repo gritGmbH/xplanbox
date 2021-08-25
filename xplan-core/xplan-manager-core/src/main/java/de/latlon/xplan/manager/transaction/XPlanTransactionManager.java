@@ -55,6 +55,7 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -188,20 +189,25 @@ public abstract class XPlanTransactionManager {
         CoupledResourceConfiguration coupledResourceConfiguration = this.managerConfiguration.getCoupledResourceConfiguration();
         if ( coupledResourceConfiguration != null ) {
             LOG.info( "Start creation of the data services coupling." );
-            PlanwerkServiceMetadata planwerkServiceMetadata = createPlanwerkServiceMetadata( featureCollection, crs,
-                                                                                             coupledResourceConfiguration );
-            String planName = featureCollection.getPlanName();
-            DataServicesCouplingRunnable runnable = new DataServicesCouplingRunnable( planId, planName,
-                                                                                      planwerkServiceMetadata );
-            Thread thread = new Thread( runnable );
-            thread.start();
+            try {
+                PlanwerkServiceMetadata planwerkServiceMetadata = createPlanwerkServiceMetadata( featureCollection, crs,
+                                                                                                 coupledResourceConfiguration );
+                String planName = featureCollection.getPlanName();
+                DataServicesCouplingRunnable runnable = new DataServicesCouplingRunnable( planId, planName,
+                                                                                          planwerkServiceMetadata );
+                Thread thread = new Thread( runnable );
+                thread.start();
+            } catch ( UnsupportedEncodingException e ) {
+                LOG.warn( "Creation of data services coupling failed. URL could not be created." );
+            }
         } else {
             LOG.info( "Creation of data services coupling is disabled." );
         }
     }
 
     private PlanwerkServiceMetadata createPlanwerkServiceMetadata( XPlanFeatureCollection featureCollection, ICRS crs,
-                                                                   CoupledResourceConfiguration coupledResourceConfiguration ) {
+                                                                   CoupledResourceConfiguration coupledResourceConfiguration )
+                    throws UnsupportedEncodingException {
         String title = featureCollection.getPlanName();
         String description = retrieveDescription( featureCollection.getFeatures(), featureCollection.getType() );
         Envelope envelope = featureCollection.getBboxIn4326();

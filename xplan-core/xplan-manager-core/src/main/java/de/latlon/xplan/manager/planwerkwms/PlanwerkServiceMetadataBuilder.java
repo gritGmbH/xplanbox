@@ -33,6 +33,10 @@ import org.deegree.geometry.primitive.Point;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 /**
  * Encapsulates metadata describing the Planwerk WMS of a plan.
  */
@@ -44,9 +48,7 @@ public class PlanwerkServiceMetadataBuilder {
 
     private final XPlanType planType;
 
-    private final String title;
-
-    private final String normalizedPlanName;
+    private final String planName;
 
     private final String description;
 
@@ -55,41 +57,43 @@ public class PlanwerkServiceMetadataBuilder {
     private final CoupledResourceConfiguration coupledResourceConfiguration;
 
     public PlanwerkServiceMetadataBuilder( XPlanType planType, String planName, String description, Envelope envelope,
-                                           CoupledResourceConfiguration coupledResourceConfiguration ) {
+                                           CoupledResourceConfiguration coupledResourceConfiguration )  {
         this.planType = planType;
-        this.title = planName;
-        this.normalizedPlanName = normalizedPlanName( planName );
+        this.planName = planName;
         this.description = description;
         this.envelope = envelope;
         this.coupledResourceConfiguration = coupledResourceConfiguration;
     }
 
-    public PlanwerkServiceMetadata build( ICRS crs ) {
+    public PlanwerkServiceMetadata build( ICRS crs )
+                    throws UnsupportedEncodingException {
         String planWerkWmsBaseUrl = coupledResourceConfiguration.getPlanWerkWmsBaseUrl();
         String planwerkWmsGetCapabilitiesUrl = createPlanWerkWmsGetCapabilitiesUrl( planWerkWmsBaseUrl );
         String planwerkWmsGetMapUrl = createPlanWerkWmsGetMapUrl( planWerkWmsBaseUrl, crs );
-        return new PlanwerkServiceMetadata( title, description, envelope, planwerkWmsGetCapabilitiesUrl,
+        return new PlanwerkServiceMetadata( planName, description, envelope, planwerkWmsGetCapabilitiesUrl,
                                             planwerkWmsGetMapUrl );
     }
 
-    private String createPlanWerkWmsGetCapabilitiesUrl( String planWerkWmsBaseUrl ) {
+    private String createPlanWerkWmsGetCapabilitiesUrl( String planWerkWmsBaseUrl )
+                    throws UnsupportedEncodingException {
         StringBuilder url = new StringBuilder();
         url.append( planWerkWmsBaseUrl );
         if ( !planWerkWmsBaseUrl.endsWith( "/" ) )
             url.append( "/" );
         url.append( "services/planwerkwms/planname/" );
-        url.append( normalizedPlanName );
+        url.append( URLEncoder.encode( planName, StandardCharsets.UTF_8.toString() ) );
         url.append( "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities" );
         return url.toString();
     }
 
-    private String createPlanWerkWmsGetMapUrl( String planWerkWmsBaseUrl, ICRS crs ) {
+    private String createPlanWerkWmsGetMapUrl( String planWerkWmsBaseUrl, ICRS crs )
+                    throws UnsupportedEncodingException {
         StringBuilder url = new StringBuilder();
         url.append( planWerkWmsBaseUrl );
         if ( !planWerkWmsBaseUrl.endsWith( "/" ) )
             url.append( "/" );
         url.append( "services/planwerkwms/planname/" );
-        url.append( normalizedPlanName );
+        url.append( URLEncoder.encode( planName, StandardCharsets.UTF_8.toString() ) );
         url.append( "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap" );
         url.append( "&LAYERS=" ).append( coupledResourceConfiguration.getLayerByType( planType ) );
         url.append( "&STYLES=" ).append( coupledResourceConfiguration.getStyleByType( planType ) );
@@ -146,14 +150,6 @@ public class PlanwerkServiceMetadataBuilder {
             envelope = GEOMETRY_FACTORY.createEnvelope( minX, minY, maxX, maxY, envelope.getCoordinateSystem() );
         }
         return envelope;
-    }
-
-    private String normalizedPlanName( String planName ) {
-        if ( !planName.matches( "^[a-zA-Z0-9\\-_]*$" ) ) {
-            LOG.info( "Remove other characters than a-z, A-Z, -, _ from the plan name" );
-            return planName.replaceAll( "[^a-zA-Z0-9\\-_]", "" );
-        }
-        return planName;
     }
 
 }
