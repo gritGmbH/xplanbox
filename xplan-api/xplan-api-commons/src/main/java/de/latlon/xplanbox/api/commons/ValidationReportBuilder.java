@@ -26,6 +26,7 @@ import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
+import de.latlon.xplanbox.api.commons.v1.model.PlanInfoBbox;
 import de.latlon.xplanbox.api.commons.v1.model.RulesMetadata;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResult;
@@ -34,6 +35,7 @@ import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultS
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSemantischRules;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSyntaktisch;
 import de.latlon.xplanbox.api.commons.v1.model.VersionEnum;
+import org.deegree.geometry.Envelope;
 
 import java.net.URI;
 import java.util.List;
@@ -71,12 +73,22 @@ public class ValidationReportBuilder {
         ValidationReport validationReport = new ValidationReport();
         if ( validatorReport != null ) {
             validationReport.date( validatorReport.getDate() ).name( validatorReport.getValidationName() ).version(
-                                    fromXPlanVersion( validatorReport.getXPlanVersion() ) ).valid(
-                                    validatorReport.isReportValid() ).filename( filename ).externalReferences(
-                                    externalReferences() ).wmsUrl( wmsUrl ).rulesMetadata(
-                                    rulesMetadata() ).validationResult( createValidationResult() );
+                            fromXPlanVersion( validatorReport.getXPlanVersion() ) ).valid(
+                            validatorReport.isReportValid() ).bbox(
+                            asBBox( validatorReport.getBBoxIn4326() ) ).filename( filename ).externalReferences(
+                            externalReferences() ).wmsUrl( wmsUrl ).rulesMetadata( rulesMetadata() ).validationResult(
+                            createValidationResult() );
         }
         return validationReport;
+    }
+
+    private PlanInfoBbox asBBox( Envelope bbox ) {
+        if ( bbox != null ) {
+            return new PlanInfoBbox().maxX( bbox.getMax().get0() ).maxY( bbox.getMax().get1() ).minX(
+                            bbox.getMin().get0() ).minY( bbox.getMin().get1() ).crs(
+                            bbox.getCoordinateSystem().getName() );
+        }
+        return null;
     }
 
     private List<String> externalReferences() {

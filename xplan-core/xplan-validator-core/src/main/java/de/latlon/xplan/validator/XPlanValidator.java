@@ -297,6 +297,7 @@ public class XPlanValidator {
     private void parseReferences( XPlanArchive archive, ValidatorReport report,
                                   GemetricValidatorParsingResult featuresAndResult ) {
         XPlanFeatureCollection featureCollection = parseFeatures( featuresAndResult, archive );
+        report.setBBoxIn4326( featureCollection.getBboxIn4326() );
         parseAndAddExternalReferences( report, featureCollection );
     }
 

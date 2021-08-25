@@ -46,6 +46,7 @@ public class ValidationReport   {
   private @Valid VersionEnum version;
   private @Valid String filename;
   private @Valid String name;
+  private @Valid PlanInfoBbox bbox;
   private @Valid Date date;
   private @Valid Boolean valid;
   private @Valid List<String> externalReferences = new ArrayList<String>();
@@ -109,6 +110,22 @@ public class ValidationReport   {
     this.version = version;
   }/**
    **/
+
+  public ValidationReport bbox( PlanInfoBbox bbox ) {
+    this.bbox = bbox;
+    return this;
+  }
+
+  @Schema
+  @JsonProperty("bbox")
+  public PlanInfoBbox getBbox() {
+    return bbox;
+  }
+
+  public void setBbox( PlanInfoBbox bbox ) {
+    this.bbox = bbox;
+  }
+
   public ValidationReport date(Date date) {
     this.date = date;
     return this;
@@ -227,6 +244,7 @@ public class ValidationReport   {
     return Objects.equals(this.filename, validationReport.filename) &&
         Objects.equals(this.name, validationReport.name) &&
         Objects.equals(this.version, validationReport.version) &&
+        Objects.equals( this.bbox, validationReport.bbox ) &&
         Objects.equals(this.date, validationReport.date) &&
         Objects.equals(this.valid, validationReport.valid) &&
         Objects.equals(this.externalReferences, validationReport.externalReferences) &&
@@ -237,7 +255,8 @@ public class ValidationReport   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(filename, name, version, date, valid, externalReferences, wmsUrl, rulesMetadata, validationResult);
+    return Objects.hash( filename, name, version, bbox, date, valid, externalReferences, wmsUrl, rulesMetadata,
+                         validationResult );
   }
 
   @Override
@@ -248,6 +267,7 @@ public class ValidationReport   {
     sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("    bbox: " ).append( toIndentedString( bbox ) ).append( "\n" );
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("    valid: ").append(toIndentedString(valid)).append("\n");
     sb.append("    externalReferences: ").append(toIndentedString(externalReferences)).append("\n");

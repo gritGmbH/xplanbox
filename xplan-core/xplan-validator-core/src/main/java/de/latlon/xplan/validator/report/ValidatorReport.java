@@ -26,6 +26,7 @@ import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
+import org.deegree.geometry.Envelope;
 
 import java.util.Date;
 
@@ -52,6 +53,8 @@ public class ValidatorReport {
     private Date date;
 
     private XPlanVersion xPlanVersion;
+
+    private Envelope bboxIn4326;
 
     public ValidatorReport() {
     }
@@ -173,6 +176,21 @@ public class ValidatorReport {
     public void setXPlanVersion( XPlanVersion xPlanVersion ) {
         this.xPlanVersion = xPlanVersion;
     }
+
+    /**
+     * @param bboxIn4326 bbox of the plan in EPSG:4326, may be <code>null</code>
+     */
+    public void setBBoxIn4326( Envelope bboxIn4326 ) {
+        this.bboxIn4326 = bboxIn4326;
+    }
+
+    /**
+     * @return the bbox of the plan in EPSG:4326, may be <code>null</code> if unknown
+     */
+    public Envelope getBBoxIn4326() {
+        return this.bboxIn4326;
+    }
+
     /**
      * @param hasMultipleXPlanElements
      *                         <code>true</code> if the XPLanArchive contains multiple XPlanElements, <code>false</code> otherwise
@@ -218,5 +236,4 @@ public class ValidatorReport {
     public boolean hasMultipleXPlanElements() {
         return this.hasMultipleXPlanElements;
     }
-
 }
