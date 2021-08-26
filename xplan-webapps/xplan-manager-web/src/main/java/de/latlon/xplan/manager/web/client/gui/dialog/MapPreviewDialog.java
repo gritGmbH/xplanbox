@@ -290,7 +290,8 @@ public class MapPreviewDialog extends DialogBox {
         return new ClickHandler() {
             @Override
             public void onClick( ClickEvent event ) {
-                String url = createPlanwerkWmsUrl( URL.encode( planName ), configuration, planStatus );
+                String normalizedPlanName = planName.replace( "/", "" );
+                String url = createPlanwerkWmsUrl( URL.encode( normalizedPlanName ), configuration, planStatus );
                 Window.open( url, "_blank", "" );
             }
         };

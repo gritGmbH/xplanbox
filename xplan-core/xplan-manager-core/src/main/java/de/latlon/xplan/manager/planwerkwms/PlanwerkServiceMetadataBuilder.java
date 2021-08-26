@@ -81,7 +81,7 @@ public class PlanwerkServiceMetadataBuilder {
         if ( !planWerkWmsBaseUrl.endsWith( "/" ) )
             url.append( "/" );
         url.append( "services/planwerkwms/planname/" );
-        url.append( URLEncoder.encode( planName, StandardCharsets.UTF_8.toString() ) );
+        url.append( createPlanNamePathSegment() );
         url.append( "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities" );
         return url.toString();
     }
@@ -93,7 +93,7 @@ public class PlanwerkServiceMetadataBuilder {
         if ( !planWerkWmsBaseUrl.endsWith( "/" ) )
             url.append( "/" );
         url.append( "services/planwerkwms/planname/" );
-        url.append( URLEncoder.encode( planName, StandardCharsets.UTF_8.toString() ) );
+        url.append( createPlanNamePathSegment() );
         url.append( "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap" );
         url.append( "&LAYERS=" ).append( coupledResourceConfiguration.getLayerByType( planType ) );
         url.append( "&STYLES=" ).append( coupledResourceConfiguration.getStyleByType( planType ) );
@@ -150,6 +150,12 @@ public class PlanwerkServiceMetadataBuilder {
             envelope = GEOMETRY_FACTORY.createEnvelope( minX, minY, maxX, maxY, envelope.getCoordinateSystem() );
         }
         return envelope;
+    }
+
+    private String createPlanNamePathSegment()
+                    throws UnsupportedEncodingException {
+        String normalizedPlanName = planName.replace( "/", "" );
+        return URLEncoder.encode( normalizedPlanName, StandardCharsets.UTF_8.toString() );
     }
 
 }

@@ -148,19 +148,18 @@ public class PlanInfoBuilder {
 
     private Link createWmsEndpointUrl() {
         try {
-            String planname = URLEncoder.encode( xPlan.getName(), StandardCharsets.UTF_8.toString() );
             URIBuilder uriBuilder = new URIBuilder( managerApiConfiguration.getWmsUrl() );
             List<String> pathSegments = new ArrayList<>();
             pathSegments.addAll( uriBuilder.getPathSegments() );
             pathSegments.add( "services" );
             pathSegments.add( detectService() );
             pathSegments.add( "planname" );
-            pathSegments.add( planname );
+            pathSegments.add( xPlan.getName().replace( "/", "" ) );
             uriBuilder.setPathSegments( pathSegments );
             URI planwerkWmsRef = uriBuilder.build();
             Link planwerkWmsLink = new Link().href( planwerkWmsRef ).rel( PLANWERKWMS ).title( xPlan.getName() );
             return planwerkWmsLink;
-        } catch ( URISyntaxException | UnsupportedEncodingException e ) {
+        } catch ( URISyntaxException e ) {
             Log.warn( "Could not build XPlanwerkWMS url: " + e.getMessage(), e );
         }
         return null;

@@ -101,7 +101,7 @@ public class PlanwerkFilter implements Filter {
         String planName = serviceId.substring( serviceId.lastIndexOf( "/" ) + 1, serviceId.length() );
         Plan plan = planwerkReader.retrieveAvailablePlanwerke( workspace, planName, planStatus );
         if ( plan == null ) {
-            LOG.info( "Plan with name " + planName + "is not available from database" );
+            LOG.info( "Plan with name " + planName + " is not available from database" );
             return;
         }
 

@@ -28,6 +28,9 @@ import org.deegree.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -71,16 +74,17 @@ public class PlanwerkReader {
             PreparedStatement ps = null;
             ResultSet rs = null;
             try {
+                String decodedName = URLDecoder.decode( name, StandardCharsets.UTF_8.toString() );
                 String sql = "SELECT name, array_agg(id), ST_AsText(ST_Envelope(ST_Union(bbox))), array_remove(array_agg(DISTINCT title), NULL), array_remove(array_agg(DISTINCT resourceidentifier), NULL), array_remove(array_agg(DISTINCT datametadataurl), NULL), array_remove(array_agg(DISTINCT servicemetadataurl), NULL) "
                              + "FROM xplanmgr.plans "
                              + "LEFT JOIN xplanmgr.planwerkwmsmetadata ON id = plan "
-                             + "WHERE (name = ? OR (NOT EXISTS (SELECT 1 FROM xplanmgr.plans LEFT JOIN xplanmgr.planwerkwmsmetadata ON id = plan WHERE name = ? ) AND regexp_replace(name, '[^a-zA-Z0-9\\-_]', '', 'g' ) = ?)) "
+                             + "WHERE (replace(name, '/','') = ? OR (NOT EXISTS (SELECT 1 FROM xplanmgr.plans LEFT JOIN xplanmgr.planwerkwmsmetadata ON id = plan WHERE replace(name, '/','') = ? ) AND regexp_replace(name, '[^a-zA-Z0-9\\-_]', '', 'g' ) = ?)) "
                              + "AND planstatus = ? "
                              + "GROUP BY name";
                 ps = conn.prepareStatement( sql );
-                ps.setString( 1, name );
-                ps.setString( 2, name );
-                ps.setString( 3, name );
+                ps.setString( 1, decodedName );
+                ps.setString( 2, decodedName );
+                ps.setString( 3, decodedName );
                 ps.setString( 4, planStatus );
                 rs = ps.executeQuery();
                 if ( rs.next() ) {
@@ -88,6 +92,8 @@ public class PlanwerkReader {
                 }
             } catch ( SQLException e ) {
                 throw new IllegalArgumentException( "Planwerke could not be requested", e );
+            } catch ( UnsupportedEncodingException e ) {
+                throw new IllegalArgumentException( "Name could not be decoded", e );
             } finally {
                 JDBCUtils.close( rs, ps, conn, LOG );
             }
