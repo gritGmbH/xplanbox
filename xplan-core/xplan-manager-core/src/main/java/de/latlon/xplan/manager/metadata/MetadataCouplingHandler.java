@@ -33,10 +33,6 @@ import org.slf4j.LoggerFactory;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DecimalFormat;
@@ -177,9 +173,8 @@ public class MetadataCouplingHandler {
         }
     }
 
-    private String createFileName( int planId, String planName, LocalDateTime now )
-                    throws UnsupportedEncodingException {
-        String normalizedPlanName = URLEncoder.encode( planName, StandardCharsets.UTF_8.toString() );
+    private String createFileName( int planId, String planName, LocalDateTime now ) {
+        String normalizedPlanName = planName.replaceAll( "[^a-zA-Z0-9\\-_]", "" );
         return planId + "_" + normalizedPlanName + "_" + now.format( DATE_TIME_FILE_FORMAT ) + ".xml";
     }
 
