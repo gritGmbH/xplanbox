@@ -93,6 +93,8 @@ public class ColumnComparator implements Comparator<XPlan> {
             return compareString( firstPlanStatus, secondPlanStatus );
         case ADE:
             return compareString( first.getAde(), second.getAde() );
+        case VERSION:
+            return compareString( first.getVersion(), second.getVersion() );
         }
         return IS_SMALLER;
     }
