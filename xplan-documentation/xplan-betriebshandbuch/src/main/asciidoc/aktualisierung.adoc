@@ -39,7 +39,7 @@ cp ${WORK_DIR}/web/xplan-wfs.war <CATALINA_HOME>/webapps/
 cp ${WORK_DIR}/web/xplan-wms.war <CATALINA_HOME>/webapps/
 ----
 
-NOTE: Falls die Hintergrundkarte der Kartenvorschau im XPlanValidatorWeb angepasst wurde, müssen die Änderungen in der Datei _services-internet.template.json_ manuell in die neue Webapp xplan-validator-web übertragen werden (s. <<kartenvorschau-validator>>).
+NOTE: Falls die Hintergrundkarte der Kartenvorschau im XPlanValidatorWeb angepasst wurde, müssen die Änderungen in der Datei _services-internet.template.json_ manuell in die neue Webapp _xplan-validator-web_ übertragen werden (s. <<kartenvorschau-validator>>).
 
 [[neustart-der-tomcats]]
 === Neustart der Tomcats
@@ -83,7 +83,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 4.0              | ja (<<aktualisierung-auf-die-version-4.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-4.0-der-xplanbox, Details>>)
 | 4.1              | ja (<<aktualisierung-auf-die-version-4.1-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-4.1-der-xplanbox, Details>>)
 | 4.2              | ja (<<aktualisierung-auf-die-version-4.2-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-4.2-der-xplanbox, Details>>)
-| 4.2.1            | ja (<<aktualisierung-auf-die-version-4.2.1-der-xplanbox, Details>>)  |
+| 4.3              | ja (<<aktualisierung-auf-die-version-4.3-der-xplanbox, Details>>)  |
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |===
 
@@ -132,7 +132,7 @@ Folgende Ordner des neuen xplansyn-wms-workspace müssen in die bestehende Insta
 * layers
 * services
 * styles
-* themes (Wichtig: Nicht die Dateien, die auf raster.xml enden, ersetzen)
+* themes (*Wichtig*: Nicht die Dateien, die auf _raster.xml_ enden, ersetzen)
 
 [[aktualisierung-des-wms-workspaces-auf-die-version-2.0-der-xplanbox]]
 ===== Aktualisierung des WMS-Workspaces auf die Version 2.0 der xPlanBox
@@ -371,15 +371,17 @@ Für die Aktualisierung auf die Version 4.2 sind folgende Schritte auszuführen:
 *** _archive/xplan53/create.sql_
 ** Ausführen der Skripte im Verzeichnis _from_4.0_to_4.2_ im Modul _xplan-update-database_ in der vorgegebenen Reihenfolge
 ** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** Des Weiteren muss GDAL auf Version 3.0 aktualisiert werden (siehe <<installation-gdal>>).
 
-Des Weiteren muss GDAL auf Version 3.0 aktualisiert werden (siehe <<installation-gdal>>). GDAL 2 wird nicht mehr unterstützt.
+NOTE:  GDAL 2 wird nicht mehr unterstützt.
 
-[[aktualisierung-auf-die-version-4.2.1-der-xplanbox]]
-=== Aktualisierung auf die Version 4.2.1 der xPlanBox
+[[aktualisierung-auf-die-version-4.3-der-xplanbox]]
+=== Aktualisierung auf die Version 4.3 der xPlanBox
 
-Für die Aktualisierung auf die Version 4.1 sind folgende Schritte auszuführen:
+Für die Aktualisierung auf die Version 4.3 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+* Ausführen des Kommandozeilenwerkzeug _serviceMetadatRecordCreator_ im Modul _xplan-update-database_ zur Aktualisierung der generierten Metadatensätze, da sich die URL des XPlanWerkWMS geändert hat. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
 === Troubleshooting
 
