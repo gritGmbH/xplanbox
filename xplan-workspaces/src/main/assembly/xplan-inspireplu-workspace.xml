@@ -22,6 +22,19 @@
         <include>styles/*</include>
         <include>themes/inspireplu.xml</include>
       </includes>
+      <excludes>
+        <exclude>services/downloadservice_metadata.xml</exclude>
+        <exclude>services/viewservice_metadata.xml</exclude>
+      </excludes>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace</directory>
+      <outputDirectory>.</outputDirectory>
+      <filtered>true</filtered>
+      <includes>
+        <include>services/downloadservice_metadata.xml</include>
+        <include>services/viewservice_metadata.xml</include>
+      </includes>
     </fileSet>
     <fileSet>
       <directory>${basedir}/src/main/workspace/datasources/feature/bbox_cache-inspireplu</directory>

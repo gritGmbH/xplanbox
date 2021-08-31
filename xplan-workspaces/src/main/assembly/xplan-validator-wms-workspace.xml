@@ -18,6 +18,7 @@
       </includes>
       <excludes>
         <exclude>appschemas/*</exclude>
+        <exclude>wms_metadata.xml</exclude>
       </excludes>
       <outputDirectory>.</outputDirectory>
       <filtered>false</filtered>
@@ -26,6 +27,14 @@
       <directory>${basedir}/src/main/workspace/datasources/feature/xplansyn-memory</directory>
       <outputDirectory>datasources/feature/</outputDirectory>
       <filtered>false</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/services/validator-wms</directory>
+      <outputDirectory>services/</outputDirectory>
+      <filtered>true</filtered>
+      <includes>
+        <include>wms_metadata.xml</include>
+      </includes>
     </fileSet>
     <fileSet>
       <directory>${basedir}/src/main/workspace/services/validator-wms</directory>

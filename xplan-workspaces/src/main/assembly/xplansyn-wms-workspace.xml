@@ -32,9 +32,22 @@
       </includes>
       <excludes>
         <exclude>appschemas/*</exclude>
+        <exclude>services/wms_metadata.xml</exclude>
+        <exclude>services/wmspre_metadata.xml</exclude>
+        <exclude>services/wmsarchive_metadata.xml</exclude>
       </excludes>
       <outputDirectory>.</outputDirectory>
       <filtered>false</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace</directory>
+      <includes>
+        <include>services/wms_metadata.xml</include>
+        <include>services/wmspre_metadata.xml</include>
+        <include>services/wmsarchive_metadata.xml</include>
+      </includes>
+      <outputDirectory>.</outputDirectory>
+      <filtered>true</filtered>
     </fileSet>
     <fileSet>
       <directory>${basedir}/src/main/workspace/datasources/feature/bbox_cache-xplansyn</directory>

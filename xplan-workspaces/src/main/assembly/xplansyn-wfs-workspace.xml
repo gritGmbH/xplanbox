@@ -16,9 +16,22 @@
       </includes>
       <excludes>
         <exclude>appschemas/*</exclude>
+        <exclude>services/xplansynwfs_metadata.xml</exclude>
+        <exclude>services/xplansynwfspre_metadata.xml</exclude>
+        <exclude>services/xplansynwfsarchive_metadata.xml</exclude>
       </excludes>
       <outputDirectory>.</outputDirectory>
       <filtered>false</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace</directory>
+      <includes>
+        <include>services/xplansynwfs_metadata.xml</include>
+        <include>services/xplansynwfspre_metadata.xml</include>
+        <include>services/xplansynwfsarchive_metadata.xml</include>
+      </includes>
+      <outputDirectory>.</outputDirectory>
+      <filtered>true</filtered>
     </fileSet>
     <fileSet>
       <directory>${basedir}/src/main/workspace/datasources/feature/bbox_cache-xplansyn</directory>
