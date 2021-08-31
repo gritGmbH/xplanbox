@@ -1,11 +1,7 @@
 [[xplanwms]]
 == XPlanWMS und XPlanWerkWMS
 
-Der XPlanWMS und XPlanWerkWMS basieren auf der Open Source Software http://www.deegree.org[deegree] und sind zu dem Standard Web Map Service
-(Version 1.1.1 und 1.3.0) des Open Geospatial Consortium (OGC)
-konforme Kartendienste. Diese bieten die Möglichkeit Visualisierungen
-von Plandaten sowie Sachinformationsabfragen zu einzelnen Planinhalten
-abzufragen.
+Der XPlanWMS und XPlanWerkWMS basieren auf der Open Source Software http://www.deegree.org[deegree] und sind zu dem Standard Web Map Service (Version 1.1.1 und 1.3.0) des Open Geospatial Consortium (OGC) konforme Kartendienste. Diese bieten die Möglichkeit Visualisierungen von Plandaten sowie Sachinformationsabfragen zu einzelnen Planinhalten abzufragen.
 
 Während der XPlanWMS die Inhalte planübergreifend dargestellt, visualisiert der XPlanWerkWMS genau ein einzelnes Planwerk. Der XPlanWMS stellt genau einen Endpunkt mit allen Planwerken bereit, der XPlanWerkWMS je einen Endpunkt pro importiertem Plan.
 
@@ -104,9 +100,9 @@ Bei der GetMap Operation gibt es die Möglichkeit zwischen zwei
 verschieden Styles zu wechseln, die die Darstellung der Inhalte des
 Kartendienstes beeinflussen. Dabei liegen alle Zeichenvorschriften
 (Styles) für alle Ebenen des XPlanWMS in transparenter und in
-vollflaechiger Form vor. Bei GetMap Operationen kann mittels des
+vollflächiger Form vor. Bei GetMap Operationen kann mittels des
 Style-Parameter zwischen beiden Darstellungen gewechselt werden. Im
-WMS-Endpoint ist als default Style die vollflaechige Darstellung
+WMS-Endpoint ist als default Style die vollflächige Darstellung
 eingestellt, im WMSpre-Endpoint und im WMSarchive-Endpoint hingegen die
 transparente. Wenn der transparente Style ausgewählt wird, sind
 lediglich die Planumringe sichtbar.
