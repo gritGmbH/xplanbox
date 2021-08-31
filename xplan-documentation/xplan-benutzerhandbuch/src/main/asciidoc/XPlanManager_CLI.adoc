@@ -417,7 +417,7 @@ Arbeitspeicher verfügt, dann kann dieser über die Umgebungsvariable
 _JAVA_OPTS_ unter Linux wie folgt erhöht werden:
 
 ----
-export JAVA_OPTS="-Xmx4096m"
+export JAVA_OPTS='-Xmx4096m'
 ----
 
 Weitere Informationen zur Konfiguration des Servers im Kapitel

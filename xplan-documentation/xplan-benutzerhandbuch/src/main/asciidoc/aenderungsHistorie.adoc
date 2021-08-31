@@ -2,19 +2,21 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
-[[Aenderungshistorie-4.2.1]]
-=== Version 4.2.1
+[[Aenderungshistorie-4.3]]
+=== Version 4.3
 
 ==== Erweiterungen
-- (TT_10410) Erweiterung des Betriebshandbuchs um Datenbankschema der XPlanDB
+- (TT_10410) Erweiterung des Betriebshandbuchs um das Datenbankschema der XPlanDB
+- (TT_10495) URL des XPlanwerkWMS unterstützt nun auch eine Auswahl von Sonderzeichen
+- (TT_10491) XPlanValidatorAPI um Ausgabe der BBox in Validierungsergebnis erweitert
 
 ==== Fehlerbehebungen
 - (TT_10435) Korrektur der REST-API URL im Benutzerhandbuch
 - (TT_10405) Doppelte CRS Angaben in XPlanWMS entfernt
 - (TT_10458, TT_10465) Korrektur von Validierungsregeln (Aktualisierung auf v0.9.19)
-- Editieren von Referenzen in 5.3 unvollständig
+- Editieren von Referenzen in XPlanGML 5.3 vervollständigt
 - Links zu Konformitätsregeln aktualisiert
-- Editieren von Rasterbasis deaktiveren wenn ein BP_Plan kein BP_Bereich referenziert
+- Editieren von Rasterbasis Daten im XPlanManagerWeb deaktiviert, wenn ein BP_Plan kein BP_Bereich referenziert
 - Fehlerbehebungen und Erweiterungen der Docker Images
 
 [[Aenderungshistorie-4.2]]

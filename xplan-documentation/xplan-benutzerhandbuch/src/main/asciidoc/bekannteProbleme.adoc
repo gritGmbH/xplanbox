@@ -19,23 +19,18 @@ Referenzen:
 [[kapazitaetsbezogene-einschraenkungen]]
 === Kapazitätsbezogene Einschränkungen
 
-Sowohl für das XPlanManagerCLI, den XPlanManagerWeb als auch den XPlanValidator gelten
-Obergrenzen beim Import von XPlanArchiven. XPlanArchive (ZIP-Datei inklusive Anhänge) größer als 50 MB und XPlanGML-Dateien größer als 2 MB können die Systemstabilität beeinträchtigen. Wenn XPlanArchive mit größeren Anhängen importiert werden sollen, so müssen Server-seitig entsprechende Systemvoraussetzungen erfüllt sein.
+Sowohl für das XPlanManagerCLI, den XPlanManagerWeb als auch den XPlanValidator gelten Obergrenzen beim Import von XPlanArchiven. XPlanArchive (ZIP-Datei inklusive Anhänge) größer als 50 MB und XPlanGML-Dateien größer als 2 MB können die Systemstabilität beeinträchtigen. Wenn XPlanArchive mit größeren Anhängen importiert werden sollen, so müssen Server-seitig entsprechende Systemvoraussetzungen erfüllt sein.
 
 Für die Bereitstellung von mehr als 500 XPlanArchiven über die Dienste
 XPlanWMS, XPlanWFS oder XPlanSynWFS müssen Server-seitig ebenfalls entsprechende
-Systemvoraussetzungen erfüllt sein. Das Antwortzeitverhalten der Dienste ist von den verfügbaren
-System-Ressourcen abhängig.
+Systemvoraussetzungen erfüllt sein. Das Antwortzeitverhalten der Dienste ist von den verfügbaren System-Ressourcen abhängig.
 
 Weitere Informationen zu den Systemanforderungen der xPlanBox finden Sie im Betriebshandbuch.
 
 [[xplanbox---durch-kartenvorschau-generierter-getmap-request]]
 === xPlanBox - Durch Kartenvorschau generierter GetMap-Request
 
-Der durch den Button "Plan im neuen Fenster öffnen", welcher sich im
-unteren Teil der Kartenvorschau befindet, generierte GetMap-Request gibt
-im Fall, dass noch kein Rasterplan in das System importiert wurde,
-folgende Meldung aus:
+Der durch den Button "Plan im neuen Fenster öffnen" unterhalb der Kartenvorschau im XPlanManagerWeb generierte WMS GetMap-Request gibt im Fall, dass noch kein Rasterplan in das System importiert wurde, folgende erwartete Meldung aus:
 
 ----
 Style default is not defined for layer *P_Planraster
@@ -45,10 +40,9 @@ Dieses Verhalten resultiert daraus, dass der Raster-Layer wegen
 fehlender Rasterpläne noch nicht von dem WMS angeboten wird.
 
 Wenn die URL dennoch genutzt werden soll, muss der Layer [*]P_Planraster
-manuell aus der Request URL entfernt werden (Wert des Parameters
-"LAYERS").
+manuell aus der Request URL entfernt werden (Wert des Parameters "LAYERS").
 
-Dies gilt für jeden Plan-Typ einzeln: Für die URL für BPläne muss z. B.
+Dies gilt für jeden einzeln Plan-Typ: Für die URL für BPläne muss z. B.
 mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens
 ein FPlan mit Rasterdaten.
 
@@ -60,7 +54,7 @@ Zusätzlich muss sichergestellt sein, dass im Java Classpath des Prozesses, der 
 Falls diese Voraussetzungen nicht erfüllt werden, können die erzeugten deegree Konfigurationsdateien für Layer und Themes leere XML Namespace Attribute in Form von xmlns="" aufweisen.
 Diese Konfigurationsdateien können nicht von deegree geparst werden.
 
-Wenn die die leeren XML Namespace Attribute manuell entfernt werden, ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
+Wenn die leeren XML Namespace Attribute manuell entfernt werden, ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
 
 === Transformation in das INSPIRE Planned Land Use Datenschema
 
@@ -75,8 +69,7 @@ Zielschema INSPIRE PLU transformiert werden.
 Aktuell kann über den XPlanManager ein XPlanArchiv nur aus der XPlanDB-Datenhaltung entfernt werden. Wird ein Plan von XPlanGML nach INSPIRE PLU transformiert und in die InspirePLUDB-Datenhaltung
 übertragen, kann dieser Datensatz nicht mehr über den XPlanManager aus der InspirePLUDB-Datenhaltung entfernt werden.
 
-Eine Umgehung ist das Löschen des Datensatz aus der InspirePLUDB-Datenhaltung über die WFS-T Schnittstelle des InspirePLUWFS. Zum Löschen eines oder mehrerer Datensätze muss an den InspirePLUWFS eine
-WFS-T 2.0.0 DELETE Aktion geschickt werden.
+Eine Umgehung ist das Löschen des Datensatzes aus der InspirePLUDB-Datenhaltung über die WFS-T Schnittstelle des InspirePLUWFS. Zum Löschen eines oder mehrerer Datensätze muss an den InspirePLUWFS eine WFS-T 2.0.0 DELETE Aktion geschickt werden.
 
 === Darstellungsvorschriften für Raumordnungspläne
 
@@ -84,7 +77,7 @@ Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständi
 
 === Darstellung von geometrischen Fehlern in einer Grafik und im Shapefile
 
-Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) ausgegeben, Multigeometrien werden nicht dargestellt. Die Grafik und das Shapefile enthalten die fehlerhaften Geomtrien nur, wenn diese nicht zu fehlerhaft sind um gerendert zu werden.
+Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) ausgegeben, Multigeometrien werden nicht dargestellt. Die Grafik und das Shapefile enthalten die fehlerhaften Geometrien nur, wenn diese nicht zu fehlerhaft sind, um gerendert zu werden.
 
 === Umsetzung von Präsentationsobjekte
 

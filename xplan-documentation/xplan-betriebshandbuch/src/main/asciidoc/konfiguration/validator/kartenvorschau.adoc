@@ -1,7 +1,7 @@
 [[kartenvorschau-validator]]
 === Kartenvorschau im XPlanValidatorWeb
 
-Die nachfolgenden Konfiguration muss in der Datei _<XPLANBOX_CONFIG>/validatorConfiguration.properties_ angepasst werden.
+Die nachfolgende Konfiguration muss in der Datei _<XPLANBOX_CONFIG>/validatorConfiguration.properties_ angepasst werden.
 
 Um die Kartenvorschau im XPlanValidatorWeb zu aktivieren, muss die URL des XPlanValidatorWMS konfiguriert werden:
 
