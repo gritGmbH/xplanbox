@@ -9,6 +9,9 @@
 *.iml
 *.iws
 
+# VS Code
+*.factorypath
+
 # Netbeans
 nbactions.xml
 
