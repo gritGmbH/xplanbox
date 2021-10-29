@@ -4,7 +4,7 @@ info:
   description: XPlanManager REST API
   termsOfService: ''
   contact:
-    email: ''
+    email: 'info@lat-lon.de'
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -166,25 +166,40 @@ paths:
                 $ref: '#/components/schemas/StatusMessage'
         '404':
           description: Invalid plan ID, plan not found
-    put:
+  /plan/{planId}/basisdaten/:
+    get:
       tags:
-        - manage
+        - manage    
       summary: Updates the plan identified by the given plan ID
       description: Updates an existing plan identified by the given plan ID
-      operationId: update
+      operationId: updatePlandata
       parameters:
         - name: planId
           in: path
-          description: ID of the plan to be updated
+          description: planId of the plan to be returned
           required: true
           schema:
             type: string
-          example: 123
+          example: 123  
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object    
+    put:
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
       requestBody:
-        description: changes to be applied
-        content:
+        content:  
           application/json:
-            schema:
+            schema: 
               $ref: '#/components/schemas/PlanUpdate'
       responses:
         '200':
@@ -192,15 +207,355 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PlanInfo'
-        '400':
-          description: Invalid input
+                type: object    
+  /plan/{planId}/dokument/:
+    get:
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationReport'
-        '406':
-          description: Invalid content, format is not accepted or planart or version is not supported
+                type: object
+    post:
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:  
+          application/pdf:
+            schema: 
+              type: string
+              format: binary
+          multipart/form-data:
+            schema: 
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+            encoding:
+              files:
+                contentType: application/pdf, application/msword, application/odt
+                headers:
+                  X-Filename: 
+                    description: Name der Datei
+                    schema:
+                      type: string
+                  X-MimeType: 
+                    description: Typ der Datei
+                    schema:
+                      type: string    
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /plan/{planId}/dokument/{id}:
+    get:
+      parameters: 
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: id of the GML element to be returned
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/pdf:
+              schema: 
+                type: string
+                format: binary
+    put:
+      parameters: 
+        - name: planId
+          in: path
+          description: planId of the plan to be updated
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: id of the GML element to be updated
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema: 
+                type: object
+    delete: 
+      parameters: 
+        - name: planId
+          in: path
+          description: planId of the plan to be deleted
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: id of the GML element to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema: 
+                type: object
+  /plan/{planId}/text/:
+    get:
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema: 
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema: 
+            type: string
+      requestBody:
+        content:  
+          application/pdf:
+            schema: 
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /plan/{planId}/text/{id}:
+    get:
+      parameters: 
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: id of the GML element to be returned
+          required: true  
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/pdf:
+              schema: 
+                type: string
+                format: binary
+    put:
+      parameters: 
+        - name: planId
+          in: path
+          description: planId of the plan to be updated
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: id of the GML element to be updated
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema: 
+                type: object
+    delete: 
+      parameters: 
+        - name: planId
+          in: path
+          description: planId of the plan to be deleted
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: id of the GML element to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema: 
+                type: object  
+  /plan/{planId}/rasterbasis:
+    get:
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:  
+          multipart/form-data:
+            schema: 
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+            encoding:
+              files:
+                contentType: image/tiff, image/png
+                headers:
+                  X-Filename: 
+                    description: Name der Datei
+                    schema:
+                      type: string
+                  X-MimeType: 
+                    description: Typ der Datei
+                    schema:
+                      type: string  
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /plan/{planId}/rasterbasis/{id}:
+    get:
+      parameters: 
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: id of the GML element to be returned
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            image/tiff:
+              schema: 
+                type: string
+                format: binary
+            image/png:
+              schema: 
+                type: string
+                format: binary    
+    put:
+      parameters: 
+        - name: planId
+          in: path
+          description: planId of the plan to be updated
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: id of the GML element to be updated
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema: 
+                type: object
+    delete: 
+      parameters: 
+        - name: planId
+          in: path
+          description: planId of the plan to be deleted
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: id of the GML element to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema: 
+                type: object  
   /info:
     get:
       summary: Show system and application configuration
@@ -585,3 +940,17 @@ components:
           $ref: '#/components/schemas/Dokumente'
         rasterbasis:
           $ref: '#/components/schemas/Rasterbasis'
+    Dokumente:
+      type: array
+      items:
+        $ref: '#/components/schemas/Datei'
+    Datei:
+      type: object
+    Zeitraum:
+      type: object
+    Aenderungen:
+      type: object
+    Texte:
+      type: object
+    Rasterbasis:
+      type: object
