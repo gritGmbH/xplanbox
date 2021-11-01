@@ -168,15 +168,11 @@ paths:
           description: Invalid plan ID, plan not found
   /plan/{planId}/basisdaten/:
     get:
-      tags:
-        - manage    
-      summary: Updates the plan identified by the given plan ID
-      description: Updates an existing plan identified by the given plan ID
-      operationId: updatePlandata
+      operationId: getBasisdaten
       parameters:
         - name: planId
           in: path
-          description: planId of the plan to be returned
+          description: planId of the plan basisdaten to be returned
           required: true
           schema:
             type: string
@@ -187,8 +183,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object    
+                $ref: '#/components/schemas/Basisdaten'
     put:
+      operationId: putBasisdaten
       parameters:
         - name: planId
           in: path
@@ -200,16 +197,17 @@ paths:
         content:  
           application/json:
             schema: 
-              $ref: '#/components/schemas/PlanUpdate'
+              $ref: '#/components/schemas/Basisdaten'
       responses:
         '200':
           description: successful operation
           content:
             application/json:
               schema:
-                type: object    
+                $ref: '#/components/schemas/Basisdaten'
   /plan/{planId}/dokument/:
     get:
+      operationId: getDokumente
       parameters:
         - name: planId
           in: path
@@ -223,8 +221,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Dateien'
     post:
+      operationId: addDokumente
       parameters:
         - name: planId
           in: path
@@ -234,10 +233,6 @@ paths:
             type: string
       requestBody:
         content:  
-          application/pdf:
-            schema: 
-              type: string
-              format: binary
           multipart/form-data:
             schema: 
               type: object
@@ -265,9 +260,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Dateien'
   /plan/{planId}/dokument/{id}:
     get:
+      operationId: getDokumentById
       parameters: 
         - name: planId
           in: path
@@ -290,6 +286,7 @@ paths:
                 type: string
                 format: binary
     put:
+      operationId: addDokumentById
       parameters: 
         - name: planId
           in: path
@@ -303,13 +300,19 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        content: 
+          application/pdf:
+            schema:
+              type: string
+              format: binary
       responses:
         '200':
           description: successful operation
           content:
             application/json:
               schema: 
-                type: object
+                $ref: '#/components/schemas/Dateien'
     delete: 
       parameters: 
         - name: planId
@@ -330,9 +333,10 @@ paths:
           content:
             application/json:
               schema: 
-                type: object
+                $ref: '#/components/schemas/Dateien'
   /plan/{planId}/text/:
     get:
+      operationId: getTexte
       parameters:
         - name: planId
           in: path
@@ -346,8 +350,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Dateien'
     post:
+      operationId: addTexte
       parameters:
         - name: planId
           in: path
@@ -357,19 +362,37 @@ paths:
             type: string
       requestBody:
         content:  
-          application/pdf:
+          multipart/form-data:
             schema: 
-              type: string
-              format: binary
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+            encoding:
+              files:
+                contentType: application/pdf, application/msword, application/odt
+                headers:
+                  X-Filename: 
+                    description: Name der Datei
+                    schema:
+                      type: string
+                  X-MimeType: 
+                    description: Typ der Datei
+                    schema:
+                      type: string    
       responses:
         '200':
           description: successful operation
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Dateien'
   /plan/{planId}/text/{id}:
     get:
+      operationId: getTextById
       parameters: 
         - name: planId
           in: path
@@ -380,7 +403,7 @@ paths:
         - name: id
           in: path
           description: id of the GML element to be returned
-          required: true  
+          required: true
           schema:
             type: string
       responses:
@@ -392,6 +415,7 @@ paths:
                 type: string
                 format: binary
     put:
+      operationId: addTextById
       parameters: 
         - name: planId
           in: path
@@ -405,14 +429,21 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        content: 
+          application/pdf:
+            schema:
+              type: string
+              format: binary
       responses:
         '200':
           description: successful operation
           content:
             application/json:
               schema: 
-                type: object
+                $ref: '#/components/schemas/Dateien'
     delete: 
+      operationId: deleteTextById
       parameters: 
         - name: planId
           in: path
@@ -432,9 +463,10 @@ paths:
           content:
             application/json:
               schema: 
-                type: object  
+                $ref: '#/components/schemas/Dateien'  
   /plan/{planId}/rasterbasis:
     get:
+      operationId: getRasterBasis
       parameters:
         - name: planId
           in: path
@@ -448,8 +480,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Dateien'
     post:
+      operationId: addRasterBasis
       parameters:
         - name: planId
           in: path
@@ -486,9 +519,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Dateien'
   /plan/{planId}/rasterbasis/{id}:
     get:
+      operationId: getRasterbasisById
       parameters: 
         - name: planId
           in: path
@@ -528,6 +562,29 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        content:  
+          multipart/form-data:
+            schema: 
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+            encoding:
+              files:
+                contentType: image/tiff, image/png
+                headers:
+                  X-Filename: 
+                    description: Name der Datei
+                    schema:
+                      type: string
+                  X-MimeType: 
+                    description: Typ der Datei
+                    schema:
+                      type: string       
       responses:
         '200':
           description: successful operation
@@ -937,15 +994,23 @@ components:
         texte:
           $ref: '#/components/schemas/Texte'
         dokumente:
-          $ref: '#/components/schemas/Dokumente'
+          $ref: '#/components/schemas/Dateien'
         rasterbasis:
           $ref: '#/components/schemas/Rasterbasis'
-    Dokumente:
+    Basisdaten:
+      type: object
+    Dateien:
       type: array
       items:
         $ref: '#/components/schemas/Datei'
     Datei:
       type: object
+      properties:
+        id:
+          type: string
+          description: GML Id of the file 
+        X-Filename:
+          type: string
     Zeitraum:
       type: object
     Aenderungen:
