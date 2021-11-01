@@ -58,6 +58,7 @@ package de.latlon.xplan.manager.edit;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.export.XPlanExporter;
+import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
@@ -116,6 +117,8 @@ import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.VE
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 
 /**
@@ -320,12 +323,11 @@ public class XPlanManipulatorTest {
     }
 
     @Test
-    @Parameters({ "xplan51/V4_1_ID_103.gml, XPLAN_51", "xplan50/V4_1_ID_103.gml, XPLAN_50" })
-    public void testModifyXPlan_RasterReferences( String planResource, String xplanVersion )
+    public void testModifyXPlan_RasterReferences()
                     throws Exception {
-        XPlanVersion version = XPlanVersion.valueOf( xplanVersion );
+        XPlanVersion version = XPLAN_50;
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, null );
-        FeatureCollection featureCollection = readXPlanGml( version, planResource, schema );
+        FeatureCollection featureCollection = readXPlanGml( version, "xplan50/V4_1_ID_103.gml", schema );
 
         XPlanToEdit editedXplan = createSimpleXPlan();
         RasterReference rasterBasisReference = new RasterReference( "ref1", "georef1", SCAN, IMAGE_PNG,
@@ -538,7 +540,7 @@ public class XPlanManipulatorTest {
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( XPLAN_41, null );
         FeatureCollection featureCollection = readXPlanGml( XPLAN_41, "xplan41/V4_1_ID_103_references.gml", schema );
 
-        XPlanToEdit editedXplan = factory.createXPlanToEdit( null, featureCollection );
+        XPlanToEdit editedXplan = factory.createXPlanToEdit( mockXPlan( XPLAN_41 ), featureCollection );
         editedXplan.getBaseData().setDescription( "newDescription" );
 
         planManipulator.modifyXPlan( featureCollection, editedXplan, XPLAN_41, BP_Plan, schema );
@@ -552,7 +554,7 @@ public class XPlanManipulatorTest {
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( XPLAN_41, null );
         FeatureCollection featureCollection = readXPlanGml( XPLAN_41, "xplan41/V4_1_ID_103_texts.gml", schema );
 
-        XPlanToEdit editedXplan = factory.createXPlanToEdit( null, featureCollection );
+        XPlanToEdit editedXplan = factory.createXPlanToEdit( mockXPlan( XPLAN_41 ), featureCollection );
         retrieveText( editedXplan, "FEATURE_0453f54f-620f-40d7-8c1b-d842c6291a6b" ).setText( "newText1" );
         retrieveText( editedXplan, "FEATURE_0453f54f-620f-40d7-8c1b-d842c6291a6c" ).setText( "newText2" );
 
@@ -583,7 +585,7 @@ public class XPlanManipulatorTest {
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( XPLAN_41, null );
         FeatureCollection featureCollection = readXPlanGml( XPLAN_41, "xplan41/V4_1_ID_103_texts.gml", schema );
 
-        XPlanToEdit editedXplan = factory.createXPlanToEdit( null, featureCollection );
+        XPlanToEdit editedXplan = factory.createXPlanToEdit( mockXPlan( XPLAN_41 ), featureCollection );
         editedXplan.getTexts().remove( retrieveText( editedXplan, "FEATURE_0453f54f-620f-40d7-8c1b-d842c6291a6b" ) );
 
         planManipulator.modifyXPlan( featureCollection, editedXplan, XPLAN_41, BP_Plan, schema );
@@ -606,7 +608,7 @@ public class XPlanManipulatorTest {
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( XPLAN_41, null );
         FeatureCollection featureCollection = readXPlanGml( XPLAN_41, "xplan41/V4_1_ID_103_texts.gml", schema );
 
-        XPlanToEdit editedXplan = factory.createXPlanToEdit( null, featureCollection );
+        XPlanToEdit editedXplan = factory.createXPlanToEdit( mockXPlan( XPLAN_41 ), featureCollection );
         Text newText = new Text( null, "key", "basis", "text", "reference", "geoReference" );
         editedXplan.getTexts().add( newText );
 
@@ -860,7 +862,7 @@ public class XPlanManipulatorTest {
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( XPLAN_3, null );
         FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "xplan30/Wuerdenhain_texts.gml", schema );
 
-        XPlanToEdit editedXplan = factory.createXPlanToEdit( null, featureCollection );
+        XPlanToEdit editedXplan = factory.createXPlanToEdit( mockXPlan( XPLAN_3 ), featureCollection );
         retrieveText( editedXplan, "GML_05BD3F6F-70E4-4921-9399-42E5FBDFB6B4" ).setText( "newText1" );
         retrieveText( editedXplan, "GML_B78C5C2F-D80E-4E88-9F21-20233701DB89" ).setText( "newText2" );
 
@@ -891,7 +893,7 @@ public class XPlanManipulatorTest {
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( XPLAN_3, null );
         FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "xplan30/Wuerdenhain_texts.gml", schema );
 
-        XPlanToEdit editedXplan = factory.createXPlanToEdit( null, featureCollection );
+        XPlanToEdit editedXplan = factory.createXPlanToEdit( mockXPlan( XPLAN_3 ), featureCollection );
         editedXplan.getTexts().remove( retrieveText( editedXplan, "GML_05BD3F6F-70E4-4921-9399-42E5FBDFB6B4" ) );
 
         planManipulator.modifyXPlan( featureCollection, editedXplan, XPLAN_3, BP_Plan, schema );
@@ -914,7 +916,7 @@ public class XPlanManipulatorTest {
         AppSchema schema = XPlanSchemas.getInstance().getAppSchema( XPLAN_3, null );
         FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "xplan30/Wuerdenhain_texts.gml", schema );
 
-        XPlanToEdit editedXplan = factory.createXPlanToEdit( null, featureCollection );
+        XPlanToEdit editedXplan = factory.createXPlanToEdit( mockXPlan( XPLAN_3 ), featureCollection );
         Text newText = new Text( null, "key", "basis", "text", "reference", "geoReference" );
         editedXplan.getTexts().add( newText );
 
@@ -932,6 +934,64 @@ public class XPlanManipulatorTest {
                     hasFeatureWithId( XPLAN_3, "XP_TextAbschnitt", "GML_05BD3F6F-70E4-4921-9399-42E5FBDFB6B4" ) );
 
         assertThatPlanIsSchemaValid( featureCollection, XPLAN_3 );
+    }
+
+    @Test
+    public void testModifyXPlan_RasterBasis_refScan( )
+                    throws Exception {
+        XPlanVersion version = XPlanVersion.XPLAN_51;
+        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, null );
+        FeatureCollection featureCollection = readXPlanGml( version, "xplan51/V4_1_ID_103.gml", schema );
+
+        XPlanToEdit editedXplan = createSimpleXPlan();
+        RasterReference rasterBasisReference = new RasterReference( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6",
+                                                                    "B-Plan_Klingmuehl_Heideweg_Karte.png",
+                                                                    "B-Plan_Klingmuehl_Heideweg_Karte.tfw", SCAN, null,
+                                                                    PLANMITGEOREFERENZ, null,
+                                                                    "B-Plan_Klingmuehl_Heideweg_Karte", null, null,
+                                                                    null );
+
+        RasterBasis rasterBasis = new RasterBasis( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6" );
+        rasterBasis.addRasterReference( rasterBasisReference );
+        editedXplan.setRasterBasis( rasterBasis );
+
+        planManipulator.modifyXPlan( featureCollection, editedXplan, version, BP_Plan, schema );
+
+        String exportedPlan = exportPlan( featureCollection, version );
+System.out.println( exportedPlan );
+        assertThat( exportedPlan,
+                    hasXPath( "count(//xp:BP_Bereich/xp:rasterBasis)",
+                              is( "0" ) ).withNamespaceContext( nsContext( version ) ) );
+        assertThat( exportedPlan,
+                    hasXPath( "count(//xp:XP_Rasterdarstellung)",
+                              is( "0" ) ).withNamespaceContext( nsContext( version ) ) );
+        assertThat( exportedPlan,
+                    hasXPath( "count(//xp:BP_Bereich/xp:refScan)",
+                              is( "1" ) ).withNamespaceContext( nsContext( version ) ) );
+    }
+
+    @Test
+    public void testModifyXPlan_RasterBasis_refScan_remove( )
+                    throws Exception {
+        XPlanVersion version = XPlanVersion.XPLAN_51;
+        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, null );
+        FeatureCollection featureCollection = readXPlanGml( version, "xplan51/V4_1_ID_103.gml", schema );
+
+        XPlanToEdit editedXplan = createSimpleXPlan();
+
+        planManipulator.modifyXPlan( featureCollection, editedXplan, version, BP_Plan, schema );
+
+        String exportedPlan = exportPlan( featureCollection, version );
+
+        assertThat( exportedPlan,
+                    hasXPath( "count(//xp:BP_Bereich/xp:rasterBasis)",
+                              is( "0" ) ).withNamespaceContext( nsContext( version ) ) );
+        assertThat( exportedPlan,
+                    hasXPath( "count(//xp:BP_Bereich/xp:refScan)",
+                              is( "0" ) ).withNamespaceContext( nsContext( version ) ) );
+        assertThat( exportedPlan,
+                    hasXPath( "count(//xp:XP_Rasterdarstellung)",
+                              is( "0" ) ).withNamespaceContext( nsContext( version ) ) );
     }
 
     private XPlanToEdit createSimpleXPlan() {
@@ -1234,6 +1294,12 @@ public class XPlanManipulatorTest {
                 return text;
         }
         return null;
+    }
+
+    private XPlan mockXPlan( XPlanVersion version ) {
+        XPlan mock = mock( XPlan.class );
+        when( mock.getVersion() ).thenReturn( version.toString() );
+        return mock;
     }
 
     private Date asDate( String string )

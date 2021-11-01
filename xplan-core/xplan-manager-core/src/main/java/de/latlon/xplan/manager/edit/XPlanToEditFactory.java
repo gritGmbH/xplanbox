@@ -55,6 +55,7 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.edit;
 
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
@@ -90,6 +91,9 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.getByCode;
@@ -129,7 +133,7 @@ public class XPlanToEditFactory {
                 parseBPPlan( feature, xPlanToEdit );
             } else if ( "BP_Bereich".equals( nameOfFeature ) ) {
                 xPlanToEdit.setHasBereich( true );
-                parseBPBereich( feature, xPlanToEdit );
+                parseBPBereich( feature, xPlanToEdit, xPlan.getVersion() );
             }
         }
         setValidityPeriod( xPlan, xPlanToEdit );
@@ -188,12 +192,12 @@ public class XPlanToEditFactory {
         }
     }
 
-    private void parseBPBereich( Feature feature, XPlanToEdit xPlanToEdit ) {
+    private void parseBPBereich( Feature feature, XPlanToEdit xPlanToEdit, String version ) {
         LOG.debug( "Parse properties from BP_Bereich" );
         for ( Property property : feature.getProperties() ) {
             String propertyName = property.getName().getLocalPart();
             if ( "rasterBasis".equals( propertyName ) ) {
-                parseRasterBasis( property, xPlanToEdit );
+                parseRasterBasis( property, xPlanToEdit, version );
             } else if ( "refScan".equals( propertyName ) ) {
                 parseRasterBasisRefScan( xPlanToEdit, property );
             }
@@ -207,15 +211,16 @@ public class XPlanToEditFactory {
         xPlanToEdit.setRasterBasis( rasterBasis );
     }
 
-    private void parseRasterBasis( Property property, XPlanToEdit xPlanToEdit ) {
+    private void parseRasterBasis( Property property, XPlanToEdit xPlanToEdit, String version ) {
         TypedObjectNode propertyValue = property.getValue();
         if ( propertyValue instanceof FeatureReference ) {
-            RasterBasis rasterBasis = parseRasterWithReferences( propertyValue );
+            RasterBasis rasterBasis = parseRasterWithReferences( propertyValue, xPlanToEdit, version );
             xPlanToEdit.setRasterBasis( rasterBasis );
         }
     }
 
-    private RasterBasis parseRasterWithReferences( TypedObjectNode propertyValue ) {
+    private RasterBasis parseRasterWithReferences( TypedObjectNode propertyValue,
+                                                   XPlanToEdit xPlanToEdit, String version ) {
         Feature referencedObject = ( (FeatureReference) propertyValue ).getReferencedObject();
         String featureId = referencedObject.getId();
         RasterBasis rasterPlanChange = new RasterBasis( featureId );
@@ -223,16 +228,39 @@ public class XPlanToEditFactory {
             String propName = prop.getName().getLocalPart();
             if ( "refLegende".equals( propName ) ) {
                 RasterReference rasterReference = parseRasterReference( prop, LEGEND );
-                rasterPlanChange.addRasterReference( rasterReference );
+                if ( isXPlan51OrHigher( version ) ) {
+                    Reference reference = new Reference( rasterReference.getReference(),rasterReference.getGeoReference(), ReferenceType.LEGENDE );
+                    copyReference( rasterReference, reference );
+                    xPlanToEdit.addReference( reference );
+                } else {
+                    rasterPlanChange.addRasterReference( rasterReference );
+                }
             } else if ( "refScan".equals( propName ) ) {
                 RasterReference rasterReference = parseRasterReference( prop, SCAN );
                 rasterPlanChange.addRasterReference( rasterReference );
             } else if ( "refText".equals( propName ) ) {
                 RasterReference rasterReference = parseRasterReference( prop, TEXT );
-                rasterPlanChange.addRasterReference( rasterReference );
+                if ( isXPlan51OrHigher( version ) ) {
+                    Text text = new Text( null, rasterReference.getReference() );
+                    copyReference( rasterReference, text );
+                    xPlanToEdit.addText( text );
+                } else {
+                    rasterPlanChange.addRasterReference( rasterReference );
+                }
             }
         }
         return rasterPlanChange;
+    }
+
+    private void copyReference( RasterReference rasterReference, AbstractReference reference ) {
+        reference.setGeorefMimeType( rasterReference.getGeorefMimeType() );
+        reference.setGeoReference( rasterReference.getGeoReference() );
+        reference.setReferenzMimeType( rasterReference.getReferenzMimeType() );
+        reference.setArt( rasterReference.getArt() );
+        reference.setReferenzName( rasterReference.getReferenzName() );
+        reference.setBeschreibung( rasterReference.getBeschreibung() );
+        reference.setDatum( rasterReference.getDatum() );
+        reference.setInformationssystemURL( rasterReference.getInformationssystemURL() );
     }
 
     private RasterReference parseRasterReference( Property prop, RasterReferenceType rasterReferenceType ) {
@@ -467,6 +495,11 @@ public class XPlanToEditFactory {
                 return ( (Temporal) ( (PrimitiveValue) value ).getValue() ).getDate();
         }
         return null;
+    }
+
+    private boolean isXPlan51OrHigher( String xPlanVersion ) {
+        XPlanVersion version = XPlanVersion.valueOf( xPlanVersion );
+        return XPLAN_51.equals( version ) || XPLAN_52.equals( version ) || XPLAN_53.equals( version );
     }
 
 }

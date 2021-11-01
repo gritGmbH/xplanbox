@@ -107,6 +107,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -121,7 +123,7 @@ public class XPlanToEditFactoryTest {
                             throws Exception {
         FeatureCollection featureCollection = readXPlanGml( XPLAN_51, "xplan51/V4_1_ID_103_refScan.gml" );
 
-        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
+        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( mockXPlan( XPLAN_51 ), featureCollection );
 
         assertThat( xPlanToEdit.isHasBereich(), is( true ) );
 
@@ -136,11 +138,32 @@ public class XPlanToEditFactoryTest {
     }
 
     @Test
+    public void testCreateXPlanToEdit_XPlan51_rasterdarstellung()
+                    throws Exception {
+        FeatureCollection featureCollection = readXPlanGml( XPLAN_51, "xplan51/V4_1_ID_103.gml" );
+
+        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( mockXPlan( XPLAN_51 ), featureCollection );
+
+        assertThat( xPlanToEdit.isHasBereich(), is( true ) );
+
+        RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
+        List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
+
+        assertThat( rasterBasis.getFeatureId(), is( "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6") );
+        assertThat( rasterReferences.size(), is( 1 ) );
+        assertThat( rasterReferences.get( 0 ).getReference(), is( "B-Plan_Klingmuehl_Heideweg_Karte.tif" ) );
+        assertThat( rasterReferences.get( 0 ).getGeoReference(), is( "B-Plan_Klingmuehl_Heideweg_Karte.tfw" ) );
+
+        assertThat( xPlanToEdit.getTexts().size(), is( 2 ) );
+        assertThat( xPlanToEdit.getReferences().size(), is( 4 ) );
+    }
+
+    @Test
     public void testCreateXPlanToEdit_XPlan50_BaseData_Changes()
                             throws Exception {
         FeatureCollection featureCollection = readXPlanGml( XPLAN_50, "xplan50/BP2070.gml" );
 
-        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
+        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( mockXPlan( XPLAN_50 ), featureCollection );
 
         BaseData baseData = xPlanToEdit.getBaseData();
         assertThat( baseData.getPlanName(), is( "BP2070" ) );
@@ -164,7 +187,7 @@ public class XPlanToEditFactoryTest {
                             throws Exception {
         FeatureCollection featureCollection = readXPlanGml( XPLAN_41, "xplan41/Eidelstedt_4_V4-Blankenese.gml" );
 
-        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
+        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( mockXPlan( XPLAN_41 ), featureCollection );
 
         BaseData baseData = xPlanToEdit.getBaseData();
         assertThat( baseData.getPlanName(), is( "Eidelstedt 4" ) );
@@ -202,7 +225,7 @@ public class XPlanToEditFactoryTest {
         XPlanVersion version = XPlanVersion.valueOf( xplanVersion );
         FeatureCollection featureCollection = readXPlanGml( version, planResource );
 
-        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
+        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( mockXPlan( version ), featureCollection );
 
         BaseData baseData = xPlanToEdit.getBaseData();
         assertThat( baseData.getPlanName(), is( "\"Heideweg\"" ) );
@@ -278,7 +301,7 @@ public class XPlanToEditFactoryTest {
                             throws Exception {
         FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "xplan30/Wuerdenhain.gml" );
 
-        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
+        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( mockXPlan( XPLAN_3 ), featureCollection );
 
         assertThat( xPlanToEdit.isHasBereich(), is( true ) );
 
@@ -369,7 +392,7 @@ public class XPlanToEditFactoryTest {
 
         Date startDateTime = asDate( "2002-01-01" );
         Date endDateTime = asDate( "2010-01-01" );
-        XPlan xPlan = createXPlan( startDateTime, endDateTime );
+        XPlan xPlan = mockXPlan( XPLAN_3, startDateTime, endDateTime );
         XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( xPlan, featureCollection );
         ValidityPeriod validityPeriod = xPlanToEdit.getValidityPeriod();
 
@@ -382,7 +405,7 @@ public class XPlanToEditFactoryTest {
                             throws Exception {
         FeatureCollection featureCollection = readXPlanGml( XPLAN_3, "xplan30/Wuerdenhain.gml" );
 
-        XPlan xPlan = new XPlan();
+        XPlan xPlan = mockXPlan( XPLAN_3 );
         XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( xPlan, featureCollection );
         ValidityPeriod validityPeriod = xPlanToEdit.getValidityPeriod();
 
@@ -395,7 +418,7 @@ public class XPlanToEditFactoryTest {
                     throws Exception {
         FeatureCollection featureCollection = readXPlanGml( XPLAN_53, "xplan53/BPlan_ohneBereich.gml" );
 
-        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( null, featureCollection );
+        XPlanToEdit xPlanToEdit = factory.createXPlanToEdit( mockXPlan( XPLAN_53 ), featureCollection );
 
         assertThat( xPlanToEdit.isHasBereich(), is( false ) );
     }
@@ -406,13 +429,6 @@ public class XPlanToEditFactoryTest {
                 return rasterReference;
         }
         return null;
-    }
-
-    private XPlan createXPlan( Date startDateTime, Date endDateTime ) {
-        XPlan xPlan = new XPlan();
-        AdditionalPlanData xplanMetadata = new AdditionalPlanData( startDateTime, endDateTime );
-        xPlan.setXplanMetadata( xplanMetadata );
-        return xPlan;
     }
 
     private FeatureCollection readXPlanGml( XPlanVersion xplanVersion, String plan )
@@ -435,4 +451,17 @@ public class XPlanToEditFactoryTest {
         return simpleDateFormat.parse( string );
     }
 
+    private XPlan mockXPlan( XPlanVersion version ) {
+        XPlan mock = mock( XPlan.class );
+        when( mock.getVersion() ).thenReturn( version.toString() );
+        return mock;
+    }
+
+    private XPlan mockXPlan( XPlanVersion version, Date startDateTime, Date endDateTime ) {
+        AdditionalPlanData xplanMetadata = new AdditionalPlanData( startDateTime, endDateTime );
+        XPlan mock = mock( XPlan.class );
+        when( mock.getVersion() ).thenReturn( version.toString() );
+        when( mock.getXplanMetadata() ).thenReturn( xplanMetadata );
+        return mock;
+    }
 }
