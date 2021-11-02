@@ -168,6 +168,8 @@ paths:
           description: Invalid plan ID, plan not found
   /plan/{planId}/basisdaten/:
     get:
+      tags:
+        - edit
       operationId: getBasisdaten
       parameters:
         - name: planId
@@ -176,7 +178,7 @@ paths:
           required: true
           schema:
             type: string
-          example: 123  
+          example: 123
       responses:
         '200':
           description: successful operation
@@ -185,7 +187,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Basisdaten'
     put:
-      operationId: putBasisdaten
+      tags:
+        - edit
+      operationId: replaceBasisdaten
       parameters:
         - name: planId
           in: path
@@ -194,9 +198,9 @@ paths:
           schema:
             type: string
       requestBody:
-        content:  
+        content:
           application/json:
-            schema: 
+            schema:
               $ref: '#/components/schemas/Basisdaten'
       responses:
         '200':
@@ -205,8 +209,96 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Basisdaten'
+  /plan/{planId}/aenderung/:
+    get:
+      tags:
+        - edit
+      operationId: getAenderung
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan basisdaten to be returned
+          required: true
+          schema:
+            type: string
+          example: 123
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aenderungen'
+    put:
+      tags:
+        - edit
+      operationId: replaceAenderung
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Aenderungen'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aenderungen'
+  /plan/{planId}/gueltigkeit/:
+    get:
+      tags:
+        - edit
+      operationId: getGueltigkeit
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan basisdaten to be returned
+          required: true
+          schema:
+            type: string
+          example: 123
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Zeitraum'
+    put:
+      tags:
+        - edit
+      operationId: replaceGueltigkeit
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Zeitraum'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Zeitraum'
   /plan/{planId}/dokument/:
     get:
+      tags:
+        - edit
       operationId: getDokumente
       parameters:
         - name: planId
@@ -221,9 +313,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Dateien'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dokument'
     post:
-      operationId: addDokumente
+      tags:
+        - edit
+      operationId: addDokument
       parameters:
         - name: planId
           in: path
@@ -232,39 +328,34 @@ paths:
           schema:
             type: string
       requestBody:
-        content:  
+        content:
           multipart/form-data:
-            schema: 
+            schema:
               type: object
               properties:
-                files:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
+                dokumentmodel:
+                  $ref: '#/components/schemas/Dokument'
+                datei:
+                  type: string
+                  format: binary
             encoding:
-              files:
+              dokumentmodel:
+                contentType: application/json
+              datei:
                 contentType: application/pdf, application/msword, application/odt
-                headers:
-                  X-Filename: 
-                    description: Name der Datei
-                    schema:
-                      type: string
-                  X-MimeType: 
-                    description: Typ der Datei
-                    schema:
-                      type: string    
       responses:
         '200':
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Dateien'
+                $ref: '#/components/schemas/Dokument'
   /plan/{planId}/dokument/{id}:
     get:
+      tags:
+        - edit
       operationId: getDokumentById
-      parameters: 
+      parameters:
         - name: planId
           in: path
           description: planId of the plan to be returned
@@ -282,15 +373,17 @@ paths:
           description: successful operation
           content:
             application/pdf:
-              schema: 
+              schema:
                 type: string
                 format: binary
     put:
-      operationId: addDokumentById
-      parameters: 
+      tags:
+        - edit
+      operationId: replaceDokumentById
+      parameters:
         - name: planId
           in: path
-          description: planId of the plan to be updated
+          description: planId of the plan to be returned
           required: true
           schema:
             type: string
@@ -301,7 +394,7 @@ paths:
           schema:
             type: string
       requestBody:
-        content: 
+        content:
           application/pdf:
             schema:
               type: string
@@ -311,10 +404,13 @@ paths:
           description: successful operation
           content:
             application/json:
-              schema: 
-                $ref: '#/components/schemas/Dateien'
-    delete: 
-      parameters: 
+              schema:
+                $ref: '#/components/schemas/Dokument'
+    delete:
+      tags:
+        - edit
+      operationId: deleteDokumentById
+      parameters:
         - name: planId
           in: path
           description: planId of the plan to be deleted
@@ -332,17 +428,19 @@ paths:
           description: successful operation
           content:
             application/json:
-              schema: 
-                $ref: '#/components/schemas/Dateien'
+              schema:
+                $ref: '#/components/schemas/Dokument'
   /plan/{planId}/text/:
     get:
+      tags:
+        - edit
       operationId: getTexte
       parameters:
         - name: planId
           in: path
           description: planId of the plan to be returned
           required: true
-          schema: 
+          schema:
             type: string
       responses:
         '200':
@@ -350,50 +448,49 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Dateien'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Text'
     post:
-      operationId: addTexte
+      tags:
+        - edit
+      operationId: addText
       parameters:
         - name: planId
           in: path
           description: planId of the plan to be returned
           required: true
-          schema: 
+          schema:
             type: string
       requestBody:
-        content:  
+        content:
           multipart/form-data:
-            schema: 
+            schema:
               type: object
               properties:
-                files:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
+                textmodel:
+                  $ref: '#/components/schemas/Text'
+                datei:
+                  type: string
+                  format: binary
             encoding:
-              files:
+              textmodel:
+                contentType: application/json
+              datei:
                 contentType: application/pdf, application/msword, application/odt
-                headers:
-                  X-Filename: 
-                    description: Name der Datei
-                    schema:
-                      type: string
-                  X-MimeType: 
-                    description: Typ der Datei
-                    schema:
-                      type: string    
       responses:
         '200':
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Dateien'
+                $ref: '#/components/schemas/Text'
   /plan/{planId}/text/{id}:
     get:
+      tags:
+        - edit
       operationId: getTextById
-      parameters: 
+      parameters:
         - name: planId
           in: path
           description: planId of the plan to be returned
@@ -410,13 +507,14 @@ paths:
         '200':
           description: successful operation
           content:
-            application/pdf:
-              schema: 
-                type: string
-                format: binary
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Text'
     put:
-      operationId: addTextById
-      parameters: 
+      tags:
+        - edit
+      operationId: replaceTextById
+      parameters:
         - name: planId
           in: path
           description: planId of the plan to be updated
@@ -430,21 +528,26 @@ paths:
           schema:
             type: string
       requestBody:
-        content: 
+        content:
           application/pdf:
             schema:
               type: string
               format: binary
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Text'
       responses:
         '200':
           description: successful operation
           content:
             application/json:
-              schema: 
-                $ref: '#/components/schemas/Dateien'
-    delete: 
+              schema:
+                $ref: '#/components/schemas/Text'
+    delete:
+      tags:
+        - edit
       operationId: deleteTextById
-      parameters: 
+      parameters:
         - name: planId
           in: path
           description: planId of the plan to be deleted
@@ -462,10 +565,12 @@ paths:
           description: successful operation
           content:
             application/json:
-              schema: 
-                $ref: '#/components/schemas/Dateien'  
+              schema:
+                $ref: '#/components/schemas/Text'
   /plan/{planId}/rasterbasis:
     get:
+      tags:
+        - edit
       operationId: getRasterBasis
       parameters:
         - name: planId
@@ -480,8 +585,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Dateien'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rasterbasis'
     post:
+      tags:
+        - edit
       operationId: addRasterBasis
       parameters:
         - name: planId
@@ -491,39 +600,39 @@ paths:
           schema:
             type: string
       requestBody:
-        content:  
+        content:
           multipart/form-data:
-            schema: 
+            schema:
               type: object
               properties:
-                files:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
+                rasterbasismodel:
+                  $ref: '#/components/schemas/Rasterbasis'
+                rasterdatei:
+                  type: string
+                  format: binary
+                georeferenzdatei:
+                  type: string
+                  format: binary
             encoding:
-              files:
+              rasterbasismodel:
+                contentType: application/json
+              rasterdatei:
                 contentType: image/tiff, image/png
-                headers:
-                  X-Filename: 
-                    description: Name der Datei
-                    schema:
-                      type: string
-                  X-MimeType: 
-                    description: Typ der Datei
-                    schema:
-                      type: string  
+              georeferenzdatei:
+                contentType: text/plain
       responses:
         '200':
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Dateien'
+                $ref: '#/components/schemas/Rasterbasis'
   /plan/{planId}/rasterbasis/{id}:
     get:
+      tags:
+        - edit
       operationId: getRasterbasisById
-      parameters: 
+      parameters:
         - name: planId
           in: path
           description: planId of the plan to be returned
@@ -540,16 +649,14 @@ paths:
         '200':
           description: successful operation
           content:
-            image/tiff:
-              schema: 
-                type: string
-                format: binary
-            image/png:
-              schema: 
-                type: string
-                format: binary    
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rasterbasis'
     put:
-      parameters: 
+      tags:
+        - edit
+      operationId: replaceRasterbasisById
+      parameters:
         - name: planId
           in: path
           description: planId of the plan to be updated
@@ -563,37 +670,34 @@ paths:
           schema:
             type: string
       requestBody:
-        content:  
+        content:
           multipart/form-data:
-            schema: 
+            schema:
               type: object
               properties:
-                files:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
+                rasterdatei:
+                  type: string
+                  format: binary
+                georeferenzdatei:
+                  type: string
+                  format: binary
             encoding:
-              files:
+              rasterdatei:
                 contentType: image/tiff, image/png
-                headers:
-                  X-Filename: 
-                    description: Name der Datei
-                    schema:
-                      type: string
-                  X-MimeType: 
-                    description: Typ der Datei
-                    schema:
-                      type: string       
+              georeferenzdatei:
+                contentType: text/plain
       responses:
         '200':
           description: successful operation
           content:
             application/json:
-              schema: 
-                type: object
-    delete: 
-      parameters: 
+              schema:
+                $ref: '#/components/schemas/Rasterbasis'
+    delete:
+      tags:
+        - edit
+      operationId: deleteRasterbasisById
+      parameters:
         - name: planId
           in: path
           description: planId of the plan to be deleted
@@ -611,8 +715,8 @@ paths:
           description: successful operation
           content:
             application/json:
-              schema: 
-                type: object  
+              schema:
+                $ref: '#/components/schemas/Rasterbasis'
   /info:
     get:
       summary: Show system and application configuration
@@ -982,40 +1086,15 @@ components:
           type: array
           items:
             type: string
-    PlanUpdate:
-      type: object
-      properties:
-        basisdaten:
-          $ref: '#/components/schemas/PlanInfoXplanModelData'
-        gueltigkeitszeitraum:
-          $ref: '#/components/schemas/Zeitraum'
-        aenderungen:
-          $ref: '#/components/schemas/Aenderungen'
-        texte:
-          $ref: '#/components/schemas/Texte'
-        dokumente:
-          $ref: '#/components/schemas/Dateien'
-        rasterbasis:
-          $ref: '#/components/schemas/Rasterbasis'
     Basisdaten:
       type: object
-    Dateien:
-      type: array
-      items:
-        $ref: '#/components/schemas/Datei'
-    Datei:
-      type: object
-      properties:
-        id:
-          type: string
-          description: GML Id of the file 
-        X-Filename:
-          type: string
     Zeitraum:
       type: object
     Aenderungen:
       type: object
-    Texte:
+    Text:
+      type: object
+    Dokument:
       type: object
     Rasterbasis:
       type: object
