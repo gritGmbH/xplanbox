@@ -1088,13 +1088,93 @@ components:
             type: string
     Basisdaten:
       type: object
+      properties:
+        name:
+          type: string
+        beschreibung:
+          type: string
+        planArt:
+          type: string
+        sonstPlanArt:
+          type: string
+        verfahren:
+          type: string
+        rechtsstand:
+          type: string
+        rechtsverordnungsDatum:
+          type: string
+        technHerstellDatum:
+          type: string
+        untergangsDatum:
+          type: string
     Zeitraum:
       type: object
+      properties:
+        start:
+          type: string
+        ende:
+          type: string
     Aenderungen:
       type: object
+      properties:
+        aendert:
+          type: array
+          items:
+            $ref: '#/components/schemas/Aenderung'
+        wurdeGeaendertVon:
+          type: array
+          items:
+            $ref: '#/components/schemas/Aenderung'
+    Aenderung:
+      type: object
+      properties:
+        planName:
+          type: string
+        rechtscharakter:
+          type: string
+        nummer:
+          type: string
     Text:
       type: object
+      properties:
+        schluessel:
+          type: string
+        gesetzlicheGrundlage:
+          type: string
+        text:
+          type: string
+        refText:
+          $ref: '#/components/schemas/Referenz'
+        rechtscharakter:
+          type: string
     Dokument:
-      type: object
+      allOf:
+        - $ref: '#/components/schemas/Referenz'
+        - type: object
+          properties:
+            typ:
+              type: string
     Rasterbasis:
+      allOf:
+        - $ref: '#/components/schemas/Referenz'
+    Referenz:
       type: object
+      properties:
+        georefURL:
+          type: string
+        georefMimeType:
+          type: string
+        art:
+          type: string
+        informationssystemURL:
+          type: string
+        referenzName:
+          type: string
+        referenzURL:
+          type: string
+        referenzMimeType:
+          type: string
+        beschreibung:
+          type: string
+        datum:
+          type: string
