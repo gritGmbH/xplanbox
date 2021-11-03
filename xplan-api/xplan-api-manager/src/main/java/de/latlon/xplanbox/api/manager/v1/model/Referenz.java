@@ -3,6 +3,7 @@ package de.latlon.xplanbox.api.manager.v1.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.Objects;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
@@ -24,7 +25,7 @@ public class Referenz {
 
     private @Valid String beschreibung;
 
-    private @Valid String datum;
+    private @Valid Date datum;
 
     /**
      *
@@ -165,17 +166,17 @@ public class Referenz {
     /**
      *
      **/
-    public Referenz datum( String datum ) {
+    public Referenz datum( Date datum ) {
         this.datum = datum;
         return this;
     }
 
     @JsonProperty("datum")
-    public String getDatum() {
+    public Date getDatum() {
         return datum;
     }
 
-    public void setDatum( String datum ) {
+    public void setDatum( Date datum ) {
         this.datum = datum;
     }
 

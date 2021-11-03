@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
 import java.util.Objects;
 
 @XmlRootElement
@@ -13,41 +14,41 @@ import java.util.Objects;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
 public class Zeitraum {
 
-    private @Valid String start;
+    private @Valid Date start;
 
-    private @Valid String ende;
+    private @Valid Date ende;
 
     /**
      *
      **/
-    public Zeitraum start( String start ) {
+    public Zeitraum start( Date start ) {
         this.start = start;
         return this;
     }
 
     @JsonProperty("start")
-    public String getStart() {
+    public Date getStart() {
         return start;
     }
 
-    public void setStart( String start ) {
+    public void setStart( Date start ) {
         this.start = start;
     }
 
     /**
      *
      **/
-    public Zeitraum ende( String ende ) {
+    public Zeitraum ende( Date ende ) {
         this.ende = ende;
         return this;
     }
 
     @JsonProperty("ende")
-    public String getEnde() {
+    public Date getEnde() {
         return ende;
     }
 
-    public void setEnde( String ende ) {
+    public void setEnde( Date ende ) {
         this.ende = ende;
     }
 

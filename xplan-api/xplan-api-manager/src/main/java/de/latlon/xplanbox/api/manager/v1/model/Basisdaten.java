@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
 import java.util.Objects;
 
 @XmlRootElement
@@ -25,11 +26,11 @@ public class Basisdaten {
 
     private @Valid String rechtsstand;
 
-    private @Valid String rechtsverordnungsDatum;
+    private @Valid Date rechtsverordnungsDatum;
 
-    private @Valid String technHerstellDatum;
+    private @Valid Date technHerstellDatum;
 
-    private @Valid String untergangsDatum;
+    private @Valid Date untergangsDatum;
 
     /**
      *
@@ -136,51 +137,51 @@ public class Basisdaten {
     /**
      *
      **/
-    public Basisdaten rechtsverordnungsDatum( String rechtsverordnungsDatum ) {
+    public Basisdaten rechtsverordnungsDatum( Date rechtsverordnungsDatum ) {
         this.rechtsverordnungsDatum = rechtsverordnungsDatum;
         return this;
     }
 
     @JsonProperty("rechtsverordnungsDatum")
-    public String getRechtsverordnungsDatum() {
+    public Date getRechtsverordnungsDatum() {
         return rechtsverordnungsDatum;
     }
 
-    public void setRechtsverordnungsDatum( String rechtsverordnungsDatum ) {
+    public void setRechtsverordnungsDatum( Date rechtsverordnungsDatum ) {
         this.rechtsverordnungsDatum = rechtsverordnungsDatum;
     }
 
     /**
      *
      **/
-    public Basisdaten technHerstellDatum( String technHerstellDatum ) {
+    public Basisdaten technHerstellDatum( Date technHerstellDatum ) {
         this.technHerstellDatum = technHerstellDatum;
         return this;
     }
 
     @JsonProperty("technHerstellDatum")
-    public String getTechnHerstellDatum() {
+    public Date getTechnHerstellDatum() {
         return technHerstellDatum;
     }
 
-    public void setTechnHerstellDatum( String technHerstellDatum ) {
+    public void setTechnHerstellDatum( Date technHerstellDatum ) {
         this.technHerstellDatum = technHerstellDatum;
     }
 
     /**
      *
      **/
-    public Basisdaten untergangsDatum( String untergangsDatum ) {
+    public Basisdaten untergangsDatum( Date untergangsDatum ) {
         this.untergangsDatum = untergangsDatum;
         return this;
     }
 
     @JsonProperty("untergangsDatum")
-    public String getUntergangsDatum() {
+    public Date getUntergangsDatum() {
         return untergangsDatum;
     }
 
-    public void setUntergangsDatum( String untergangsDatum ) {
+    public void setUntergangsDatum( Date untergangsDatum ) {
         this.untergangsDatum = untergangsDatum;
     }
 

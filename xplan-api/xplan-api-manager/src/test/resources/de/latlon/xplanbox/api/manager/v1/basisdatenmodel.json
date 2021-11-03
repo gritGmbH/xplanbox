@@ -5,7 +5,7 @@
   "sonstPlanArt": "string",
   "verfahren": "string",
   "rechtsstand": "string",
-  "rechtsverordnungsDatum": "string",
-  "technHerstellDatum": "string",
-  "untergangsDatum": "string"
+  "rechtsverordnungsDatum": "2021-08-31T14:19:35.752+0000",
+  "technHerstellDatum": "2021-08-31T14:19:35.752+0000",
+  "untergangsDatum": "2021-08-31T14:19:35.752+0000"
 }
