@@ -30,7 +30,16 @@ public class Rasterbasis extends Referenz {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append( "class Rasterbasis {\n" );
-        sb.append( "    " ).append( toIndentedString( super.toString() ) ).append( "\n" );
+        sb.append( "    georefURL: " ).append( toIndentedString( getGeorefURL() ) ).append( "\n" );
+        sb.append( "    georefMimeType: " ).append( toIndentedString( getGeorefMimeType() ) ).append( "\n" );
+        sb.append( "    art: " ).append( toIndentedString( getArt() ) ).append( "\n" );
+        sb.append( "    informationssystemURL: " ).append( toIndentedString( getInformationssystemURL() ) ).append(
+                        "\n" );
+        sb.append( "    referenzName: " ).append( toIndentedString( getReferenzName() ) ).append( "\n" );
+        sb.append( "    referenzURL: " ).append( toIndentedString( getReferenzURL() ) ).append( "\n" );
+        sb.append( "    referenzMimeType: " ).append( toIndentedString( getReferenzMimeType() ) ).append( "\n" );
+        sb.append( "    beschreibung: " ).append( toIndentedString( getBeschreibung() ) ).append( "\n" );
+        sb.append( "    datum: " ).append( toIndentedString( getDatum() ) ).append( "\n" );
         sb.append( "}" );
         return sb.toString();
     }
