@@ -1,0 +1,12 @@
+{
+  "georefURL": "string",
+  "georefMimeType": "string",
+  "art": "string",
+  "informationssystemURL": "string",
+  "referenzName": "string",
+  "referenzURL": "string",
+  "referenzMimeType": "string",
+  "beschreibung": "string",
+  "datum": "string",
+  "typ": "string"
+}
