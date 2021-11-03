@@ -1,0 +1,11 @@
+{
+  "name": "string",
+  "beschreibung": "string",
+  "planArt": "string",
+  "sonstPlanArt": "string",
+  "verfahren": "string",
+  "rechtsstand": "string",
+  "rechtsverordnungsDatum": "string",
+  "technHerstellDatum": "string",
+  "untergangsDatum": "string"
+}
