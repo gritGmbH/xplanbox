@@ -40,7 +40,10 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.hamcrest.CoreMatchers.is;
@@ -87,7 +90,33 @@ public class PlanDokumentApiTest extends JerseyTest {
                                                         .post( Entity.entity( multipart, multipart.getMediaType() ) );
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+    }
 
+    @Test
+    public void verifyThat_getDokumentById_returnsCorrectStatusCodeForValidMediaType() {
+        Response response = target( "/plan/1/dokument/1" ).request( APPLICATION_JSON ).get();
+
+        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
+        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+    }
+
+    @Test
+    public void verifyThat_replaceDokumentById_returnsCorrectStatusCodeForValidMediaType()
+                    throws URISyntaxException, IOException {
+        final byte[] data = Files.readAllBytes( Paths.get(
+                        getClass().getResource( "datei.pdf" ).toURI() ) );
+        Response response = target( "/plan/1/dokument/1" ).request()
+                                                          .put( Entity.entity( data, "application/pdf" ) );
+        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
+        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+    }
+
+    @Test
+    public void verifyThat_deleteDokumentById_returnsCorrectStatusCodeForValidMediaType() {
+        Response response = target( "/plan/1/dokument/1" ).request( APPLICATION_JSON ).delete();
+
+        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
+        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
     }
 
     private FileDataBodyPart createFileDataBodyPart( String name, String resource, MediaType mediaType )

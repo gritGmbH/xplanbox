@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import javax.validation.Valid;
@@ -37,7 +36,7 @@ public class PlanDokumentApi {
     @Operation(operationId = "getDokumente", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Dokument.class)))) })
     public List<Dokument> getDokumente(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId ) {
+                    @PathParam("planId") @Parameter(description = "planId of the plan to return dokumente") String planId ) {
         ArrayList<Dokument> dokumente = new ArrayList<>();
         dokumente.add( new Dokument() );
         return dokumente;
@@ -47,12 +46,14 @@ public class PlanDokumentApi {
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
     @Operation(operationId = "addDokument", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))) }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = @Encoding(name = "files", contentType = "application/pdf, application/msword, application/odt"))))
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))) }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
+                    @Encoding(name = "dokumentmodel", contentType = "application/json"),
+                    @Encoding(name = "datei", contentType = "application/pdf, application/msword, application/odt") })))
     public Dokument addDokument( @PathParam("planId")
-                                  @Parameter(description = "ID of the plan to add dokumente", example = "123")
-                                                  String planId,
-                                  @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
-                                  @FormDataParam("datei") FormDataBodyPart datei ) {
+                                 @Parameter(description = "ID of the plan to add dokumente", example = "123")
+                                                 String planId,
+                                 @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
+                                 @FormDataParam("datei") FormDataBodyPart datei ) {
         return dokumentmodel.getValueAs( Dokument.class );
     }
 
@@ -62,8 +63,8 @@ public class PlanDokumentApi {
     @Operation(operationId = "getDokumentById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))) })
     public Dokument getDokumentById(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId,
-                    @PathParam("id") @Parameter(description = "id of the GML element to be returned") String id ) {
+                    @PathParam("planId") @Parameter(description = "planId of the plan to get dokument") String planId,
+                    @PathParam("id") @Parameter(description = "id of the dokument to be returned") String id ) {
         return new Dokument();
     }
 
@@ -75,8 +76,8 @@ public class PlanDokumentApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class)))
     })
     public Dokument replaceDokumentById(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be updated", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the GML element to be updated") String id,
+                    @PathParam("planId") @Parameter(description = "planId of the plan to replace dokument", example = "123") String planId,
+                    @PathParam("id") @Parameter(description = "id of the dokument to be updated") String id,
                     @Valid File datei ) {
         return new Dokument();
     }
@@ -87,8 +88,8 @@ public class PlanDokumentApi {
     @Operation(operationId = "deleteDokumentById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))) })
     public Dokument deleteDokumentById(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be deleted") String planId,
-                    @PathParam("id") @Parameter(description = "id of the GML element to be deleted") String id ) {
+                    @PathParam("planId") @Parameter(description = "planId of the plan to delete dokument") String planId,
+                    @PathParam("id") @Parameter(description = "id of the dokument to be deleted") String id ) {
         return new Dokument();
     }
 }
