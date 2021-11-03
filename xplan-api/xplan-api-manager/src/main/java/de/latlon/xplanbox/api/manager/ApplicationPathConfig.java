@@ -33,6 +33,9 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.tags.Tag;
+import org.glassfish.jersey.media.multipart.MultiPart;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
+import org.glassfish.jersey.media.multipart.internal.MultiPartReaderClientSide;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 
@@ -73,6 +76,7 @@ public class ApplicationPathConfig extends ResourceConfig {
         packages( "de.latlon.xplanbox.api.manager.v1" );
         packages( "de.latlon.xplanbox.api.manager.exception" );
         packages( "de.latlon.xplanbox.api.commons.exception" );
+        packages("org.glassfish.jersey.examples.multipart");
         OpenAPI openApi = new OpenAPI();
         openApi.setInfo( new Info().title( "XPlanManagerAPI" )
                                    .version( "1.0.0" )
@@ -92,6 +96,7 @@ public class ApplicationPathConfig extends ResourceConfig {
 
         openApiResource.setOpenApiConfiguration( oasConfig );
         register( openApiResource );
+        register( MultiPartFeature.class );
         LOG.info( "XPlanApiManager successfully initialized" );
     }
 
