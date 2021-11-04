@@ -1,6 +1,7 @@
 package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import de.latlon.xplan.manager.web.shared.edit.BaseData;
 
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -31,6 +32,33 @@ public class Basisdaten {
     private @Valid Date technHerstellDatum;
 
     private @Valid Date untergangsDatum;
+
+    public static Basisdaten fromBaseData( BaseData baseData ) {
+        return new Basisdaten().name( baseData.getPlanName() ).beschreibung( baseData.getDescription() ).planArt(
+                        baseData.getPlanTypeCode() > 0 ?
+                        Integer.toString( baseData.getPlanTypeCode() ) :
+                        null ).sonstPlanArt( baseData.getOtherPlanTypeCode() > 0 ?
+                                             Integer.toString( baseData.getOtherPlanTypeCode() ) :
+                                             null ).verfahren( baseData.getMethodCode() > 0 ?
+                                                               Integer.toString( baseData.getMethodCode() ) :
+                                                               null ).rechtsstand(
+                        baseData.getLegislationStatusCode() > 0 ?
+                        Integer.toString( baseData.getLegislationStatusCode() ) :
+                        null ).rechtsverordnungsDatum( baseData.getRegulationDate() ).technHerstellDatum(
+                        baseData.getCreationDate() ).untergangsDatum( baseData.getLossDate() );
+    }
+
+    public BaseData toBaseData() {
+        return new BaseData( name, beschreibung, technHerstellDatum, untergangsDatum, asInt( planArt ),
+                             asInt( sonstPlanArt ), asInt( verfahren ), asInt( rechtsstand ),
+                             rechtsverordnungsDatum );
+    }
+
+    private int asInt( String code ) {
+        if ( code == null )
+            return -1;
+        return Integer.valueOf( code );
+    }
 
     /**
      *

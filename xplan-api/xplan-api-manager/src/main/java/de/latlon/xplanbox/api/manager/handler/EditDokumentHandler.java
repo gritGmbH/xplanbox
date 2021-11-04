@@ -1,14 +1,10 @@
 package de.latlon.xplanbox.api.manager.handler;
 
-import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplanbox.api.manager.exception.InvalidDokumentId;
-import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.manager.v1.model.Dokument;
-import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Singleton;
@@ -17,8 +13,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.slf4j.LoggerFactory.getLogger;
-
 /**
  * Handles editing of Dokumente.
  *
@@ -26,12 +20,7 @@ import static org.slf4j.LoggerFactory.getLogger;
  */
 @Component
 @Singleton
-public class EditDokumentHandler {
-
-    private static final Logger LOG = getLogger( EditDokumentHandler.class );
-
-    @Autowired
-    private XPlanManager manager;
+public class EditDokumentHandler extends EditHandler {
 
     /**
      * @param planId
@@ -154,22 +143,6 @@ public class EditDokumentHandler {
             throw new InvalidDokumentId( planId, dokumentId );
         }
         return dokumenteWithId.get( 0 );
-    }
-
-    public XPlan findPlanById( String planId )
-                    throws Exception {
-        LOG.info( "Find plan by Id '{}'", planId );
-        int id = Integer.parseInt( planId );
-        return findPlanById( id );
-    }
-
-    private XPlan findPlanById( int id )
-                    throws Exception {
-        XPlan xPlanById = manager.getXPlanById( id );
-        if ( xPlanById == null ) {
-            throw new InvalidPlanId( id );
-        }
-        return xPlanById;
     }
 
     private static String createDokumentId( Reference reference ) {

@@ -41,7 +41,7 @@ public class PlanBasisdatenApiTest extends JerseyTest {
 
     @Test
     public void verifyThat_getBasisdaten_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/1/basisdaten" ).request( APPLICATION_JSON ).get();
+        Response response = target( "/plan/2/basisdaten" ).request( APPLICATION_JSON ).get();
 
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
@@ -52,7 +52,7 @@ public class PlanBasisdatenApiTest extends JerseyTest {
                     throws URISyntaxException, IOException {
         final byte[] data = Files.readAllBytes( Paths.get( getClass().getResource( "basisdatenmodel.json" ).toURI() ) );
 
-        Response response = target( "/plan/1/basisdaten" ).request()
+        Response response = target( "/plan/2/basisdaten" ).request()
                                                          .put( Entity.entity( data, APPLICATION_JSON_TYPE ) );
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
