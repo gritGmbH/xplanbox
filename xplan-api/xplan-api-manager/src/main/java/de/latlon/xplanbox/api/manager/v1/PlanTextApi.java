@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.manager.v1;
 
+import de.latlon.xplanbox.api.manager.handler.EditTextHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Text;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -11,6 +12,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -20,7 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -29,15 +31,17 @@ import java.util.List;
 @Path("/plan/{planId}/text")
 public class PlanTextApi {
 
+    @Autowired
+    private EditTextHandler editTextHandler;
+
     @GET
     @Produces({ "application/json" })
     @Operation(operationId = "getTexte", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Text.class)))) })
     public List<Text> getTexte(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId ) {
-        ArrayList<Text> texte = new ArrayList<>();
-        texte.add( new Text() );
-        return texte;
+                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId )
+                    throws Exception {
+        return editTextHandler.retrieveTexte( planId );
     }
 
     @POST
@@ -51,8 +55,10 @@ public class PlanTextApi {
                          @Parameter(description = "ID of the plan to add dokumente", example = "123")
                                          String planId,
                          @FormDataParam("textmodel") FormDataBodyPart textmodel,
-                         @FormDataParam("datei") FormDataBodyPart datei ) {
-        return textmodel.getValueAs( Text.class );
+                         @FormDataParam("datei") File file )
+                    throws Exception {
+        Text text = textmodel.getValueAs( Text.class );
+        return editTextHandler.addText( planId, text, file );
     }
 
     @GET
@@ -62,8 +68,9 @@ public class PlanTextApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))) })
     public Text getTextById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId,
-                    @PathParam("id") @Parameter(description = "id of the GML element to be returned") String id ) {
-        return new Text();
+                    @PathParam("id") @Parameter(description = "id of the GML element to be returned") String id )
+                    throws Exception {
+        return editTextHandler.retrieveText( planId, id );
     }
 
     @PUT
@@ -78,11 +85,10 @@ public class PlanTextApi {
                     @PathParam("planId") @Parameter(description = "planId of the plan to be updated", example = "123") String planId,
                     @PathParam("id") @Parameter(description = "id of the GML element to be updated") String id,
                     @FormDataParam("textmodel") FormDataBodyPart textmodel,
-                    @FormDataParam("datei") FormDataBodyPart datei ) {
-        if ( textmodel != null ) {
-            return textmodel.getValueAs( Text.class );
-        }
-        return new Text();
+                    @FormDataParam("datei") File file )
+                    throws Exception {
+        Text text = textmodel.getValueAs( Text.class );
+        return editTextHandler.replaceText( planId, id, text, file );
     }
 
     @DELETE
@@ -92,7 +98,8 @@ public class PlanTextApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))) })
     public Text deleteTextById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be deleted") String planId,
-                    @PathParam("id") @Parameter(description = "id of the GML element to be deleted") String id ) {
-        return new Text();
+                    @PathParam("id") @Parameter(description = "id of the GML element to be deleted") String id )
+                    throws Exception {
+        return editTextHandler.deleteText( planId, id );
     }
 }

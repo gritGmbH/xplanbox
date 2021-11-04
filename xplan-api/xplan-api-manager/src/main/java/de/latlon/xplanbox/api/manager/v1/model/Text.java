@@ -1,6 +1,9 @@
 package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
+import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
+import de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType;
 
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,6 +16,8 @@ import java.util.Objects;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
 public class Text {
 
+    private String id;
+
     private @Valid String schluessel;
 
     private @Valid String gesetzlicheGrundlage;
@@ -21,7 +26,58 @@ public class Text {
 
     private @Valid Referenz refText;
 
-    private @Valid String rechtscharakter;
+    private @Valid int rechtscharakter;
+
+    public static Text fromText( String textId, de.latlon.xplan.manager.web.shared.edit.Text oldText ) {
+        Referenz referenz = new Referenz().art(
+                        oldText.getArt() != null ? oldText.getArt().getCode() : null ).beschreibung(
+                        oldText.getBeschreibung() ).datum( oldText.getDatum() ).georefMimeType(
+                        oldText.getGeorefMimeType() != null ?
+                        oldText.getGeorefMimeType().getCode() :
+                        null ).georefURL( oldText.getGeoReference() ).informationssystemURL(
+                        oldText.getInformationssystemURL() ).referenzMimeType(
+                        oldText.getReferenzMimeType() != null ?
+                        oldText.getReferenzMimeType().getCode() :
+                        null ).referenzURL( oldText.getReference() ).referenzName( oldText.getReferenzName() );
+        Text text = new Text().id( textId ).schluessel( oldText.getKey() ).gesetzlicheGrundlage(
+                        oldText.getBasis() ).rechtscharakter(
+                        oldText.getRechtscharakter() != null ? oldText.getRechtscharakter().getCode() : -1 ).refText(
+                        referenz );
+        return text;
+    }
+
+    public de.latlon.xplan.manager.web.shared.edit.Text toText() {
+        de.latlon.xplan.manager.web.shared.edit.Text oldText = new de.latlon.xplan.manager.web.shared.edit.Text();
+        oldText.setKey( schluessel );
+        oldText.setBasis( gesetzlicheGrundlage );
+        oldText.setText( text );
+        oldText.setRechtscharakter( TextRechtscharacterType.fromCode( rechtscharakter ) );
+        if ( refText != null ) {
+            oldText.setReference( refText.getReferenzURL() );
+            oldText.setReferenzMimeType( MimeTypes.getByCode( refText.getReferenzMimeType() ) );
+            oldText.setGeoReference( refText.getGeorefMimeType() );
+            oldText.setGeorefMimeType( MimeTypes.getByCode( refText.getGeorefMimeType() ) );
+            oldText.setArt( ExterneReferenzArt.getByCode( refText.getArt() ) );
+            oldText.setBeschreibung( refText.getBeschreibung() );
+            oldText.setDatum( refText.getDatum() );
+            oldText.setInformationssystemURL( refText.getInformationssystemURL() );
+        }
+        return oldText;
+    }
+
+    public Text id( String id ) {
+        this.id = id;
+        return this;
+    }
+
+    @JsonProperty("id")
+    public String getId() {
+        return id;
+    }
+
+    public void setId( String id ) {
+        this.id = id;
+    }
 
     /**
      *
@@ -94,17 +150,17 @@ public class Text {
     /**
      *
      **/
-    public Text rechtscharakter( String rechtscharakter ) {
+    public Text rechtscharakter( int rechtscharakter ) {
         this.rechtscharakter = rechtscharakter;
         return this;
     }
 
     @JsonProperty("rechtscharakter")
-    public String getRechtscharakter() {
+    public int getRechtscharakter() {
         return rechtscharakter;
     }
 
-    public void setRechtscharakter( String rechtscharakter ) {
+    public void setRechtscharakter( int rechtscharakter ) {
         this.rechtscharakter = rechtscharakter;
     }
 

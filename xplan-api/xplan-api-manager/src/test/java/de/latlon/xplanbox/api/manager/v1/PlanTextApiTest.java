@@ -68,7 +68,7 @@ public class PlanTextApiTest extends JerseyTest {
 
     @Test
     public void verifyThat_getTexte_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/1/text" ).request( APPLICATION_JSON ).get();
+        Response response = target( "/plan/2/text" ).request( APPLICATION_JSON ).get();
 
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
@@ -83,7 +83,7 @@ public class PlanTextApiTest extends JerseyTest {
         FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart()
                         .bodyPart( filePart ).bodyPart( textmodel );
 
-        Response response = target( "/plan/1/text" ).request()
+        Response response = target( "/plan/2/text" ).request()
                                                     .post( Entity.entity( multipart, multipart.getMediaType() ) );
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
@@ -92,7 +92,7 @@ public class PlanTextApiTest extends JerseyTest {
 
     @Test
     public void verifyThat_getTextById_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/1/text/1" ).request( APPLICATION_JSON ).get();
+        Response response = target( "/plan/2/text/FEATURE_0f870967-bd6f-4367-9150-8a255f0290ad" ).request( APPLICATION_JSON ).get();
 
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
@@ -107,7 +107,7 @@ public class PlanTextApiTest extends JerseyTest {
         FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart()
                         .bodyPart( filePart ).bodyPart( textmodel );
 
-        Response response = target( "/plan/1/text/1" ).request()
+        Response response = target( "/plan/2/text/FEATURE_0f870967-bd6f-4367-9150-8a255f0290ad" ).request()
                                                       .put( Entity.entity( multipart, multipart.getMediaType() ) );
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
@@ -115,7 +115,7 @@ public class PlanTextApiTest extends JerseyTest {
 
     @Test
     public void verifyThat_deleteTextById_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/1/text/1" ).request( APPLICATION_JSON ).delete();
+        Response response = target( "/plan/2/text/FEATURE_0f870967-bd6f-4367-9150-8a255f0290ad" ).request( APPLICATION_JSON ).delete();
 
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
