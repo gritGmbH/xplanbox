@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.manager.v1;
 
+import de.latlon.xplanbox.api.manager.handler.EditGueltigkeitHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Zeitraum;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -7,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
@@ -22,13 +24,17 @@ import javax.ws.rs.Produces;
 @Path("/plan/{planId}/gueltigkeit")
 public class PlanGueltigkeitApi {
 
+    @Autowired
+    private EditGueltigkeitHandler editGueltigkeitHandler;
+
     @GET
     @Produces({ "application/json" })
     @Operation(operationId = "getGueltigkeit", tags = { "edit", }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Zeitraum.class))) })
     public Zeitraum getGueltigkeit(
-                    @PathParam("planId") @Parameter(description = "planId of the plan basisdaten to be returned") String planId ) {
-        return new Zeitraum();
+                    @PathParam("planId") @Parameter(description = "planId of the plan basisdaten to be returned") String planId )
+                    throws Exception {
+        return editGueltigkeitHandler.retrieveGueltigkeit( planId );
     }
 
     @PUT
@@ -39,8 +45,9 @@ public class PlanGueltigkeitApi {
                     @Content(mediaType = "application/json", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")) }))
     public Zeitraum replaceGueltigkeit(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId,
-                    @Valid Zeitraum zeitraum ) {
-        return zeitraum;
+                    @Valid Zeitraum zeitraum )
+                    throws Exception {
+        return editGueltigkeitHandler.replaceGueltigkeit( planId, zeitraum );
     }
 
 }

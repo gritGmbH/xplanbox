@@ -1,6 +1,7 @@
 package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import de.latlon.xplan.manager.web.shared.edit.ValidityPeriod;
 
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -17,6 +18,14 @@ public class Zeitraum {
     private @Valid Date start;
 
     private @Valid Date ende;
+
+    public static Zeitraum fromValidityPeriod( ValidityPeriod validityPeriod ) {
+        return new Zeitraum().start( validityPeriod.getStart() ).ende( validityPeriod.getEnd() );
+    }
+
+    public ValidityPeriod toValidityPeriod() {
+        return new ValidityPeriod( start, ende );
+    }
 
     /**
      *
@@ -91,6 +100,5 @@ public class Zeitraum {
         }
         return o.toString().replace( "\n", "\n    " );
     }
-
 }
 

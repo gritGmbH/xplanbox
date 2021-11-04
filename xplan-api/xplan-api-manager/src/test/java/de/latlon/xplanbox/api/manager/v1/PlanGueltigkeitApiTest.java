@@ -41,7 +41,7 @@ public class PlanGueltigkeitApiTest extends JerseyTest {
 
     @Test
     public void verifyThat_getGueltigkeit_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/1/gueltigkeit" ).request( APPLICATION_JSON ).get();
+        Response response = target( "/plan/2/gueltigkeit" ).request( APPLICATION_JSON ).get();
 
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
@@ -52,7 +52,7 @@ public class PlanGueltigkeitApiTest extends JerseyTest {
                     throws URISyntaxException, IOException {
         final byte[] data = Files.readAllBytes( Paths.get( getClass().getResource( "gueltigkeit.json" ).toURI() ) );
 
-        Response response = target( "/plan/1/gueltigkeit" ).request()
+        Response response = target( "/plan/2/gueltigkeit" ).request()
                                                            .put( Entity.entity( data, APPLICATION_JSON_TYPE ) );
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
