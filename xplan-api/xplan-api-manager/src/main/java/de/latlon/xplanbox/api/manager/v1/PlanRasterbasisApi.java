@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.manager.v1;
 
+import de.latlon.xplanbox.api.manager.handler.EditRasterbasisHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Rasterbasis;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -11,6 +12,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -20,7 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -29,15 +31,17 @@ import java.util.List;
 @Path("/plan/{planId}/rasterbasis")
 public class PlanRasterbasisApi {
 
+    @Autowired
+    private EditRasterbasisHandler editRasterbasisHandler;
+
     @GET
     @Produces({ "application/json" })
     @Operation(operationId = "getRasterBasis", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Rasterbasis.class)))) })
     public List<Rasterbasis> getRasterBasis(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId ) {
-        ArrayList<Rasterbasis> rasterbases = new ArrayList<>();
-        rasterbases.add( new Rasterbasis() );
-        return rasterbases;
+                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId )
+                    throws Exception {
+        return editRasterbasisHandler.retrieveRasterbasis( planId );
     }
 
     @POST
@@ -51,8 +55,11 @@ public class PlanRasterbasisApi {
                                        @Parameter(description = "ID of the plan to add dokumente", example = "123")
                                                        String planId,
                                        @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
-                                       @FormDataParam("datei") FormDataBodyPart datei ) {
-        return rasterbasismodel.getValueAs( Rasterbasis.class );
+                                       @FormDataParam("rasterdatei") File rasterdatei,
+                                       @FormDataParam("georeferenzdatei") File georeferenzdatei )
+                    throws Exception {
+        Rasterbasis rasterbasis = rasterbasismodel.getValueAs( Rasterbasis.class );
+        return editRasterbasisHandler.addRasterbasis( planId, rasterbasis, rasterdatei, georeferenzdatei );
     }
 
     @GET
@@ -62,8 +69,9 @@ public class PlanRasterbasisApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))) })
     public Rasterbasis getRasterbasisById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId,
-                    @PathParam("id") @Parameter(description = "id of the GML element to be returned") String id ) {
-        return new Rasterbasis();
+                    @PathParam("id") @Parameter(description = "id of the GML element to be returned") String id )
+                    throws Exception {
+        return editRasterbasisHandler.retrieveRasterbasis( planId, id );
     }
 
     @PUT
@@ -79,12 +87,11 @@ public class PlanRasterbasisApi {
                     @PathParam("planId") @Parameter(description = "planId of the plan to be updated", example = "123") String planId,
                     @PathParam("id") @Parameter(description = "id of the GML element to be updated") String id,
                     @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
-                    @FormDataParam("rasterdatei") FormDataBodyPart rasterdatei,
-                    @FormDataParam("georeferenzdatei") FormDataBodyPart georeferenzdatei ) {
-        if ( rasterbasismodel != null ) {
-            return rasterbasismodel.getValueAs( Rasterbasis.class );
-        }
-        return new Rasterbasis();
+                    @FormDataParam("rasterdatei") File rasterdatei,
+                    @FormDataParam("georeferenzdatei") File georeferenzdatei )
+                    throws Exception {
+        Rasterbasis rasterbasis = rasterbasismodel.getValueAs( Rasterbasis.class );
+        return editRasterbasisHandler.replaceRasterbasis( planId, id, rasterbasis, rasterdatei, georeferenzdatei );
     }
 
     @DELETE
@@ -94,8 +101,9 @@ public class PlanRasterbasisApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))) })
     public Rasterbasis deleteRasterbasisById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be deleted") String planId,
-                    @PathParam("id") @Parameter(description = "id of the GML element to be deleted") String id ) {
-        return new Rasterbasis();
+                    @PathParam("id") @Parameter(description = "id of the GML element to be deleted") String id )
+                    throws Exception {
+        return editRasterbasisHandler.deleteRasterbasis( planId, id );
     }
 
 }

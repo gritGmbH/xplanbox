@@ -70,7 +70,7 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 
     @Test
     public void verifyThat_getRasterbasise_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/1/rasterbasis" ).request( APPLICATION_JSON ).get();
+        Response response = target( "/plan/2/rasterbasis" ).request( APPLICATION_JSON ).get();
 
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
@@ -87,7 +87,7 @@ public class PlanRasterbasisApiTest extends JerseyTest {
         FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart()
                         .bodyPart( rasterbasismodel ).bodyPart( rasterFilePart ).bodyPart( geoRefFilePart );
 
-        Response response = target( "/plan/1/rasterbasis" ).request()
+        Response response = target( "/plan/2/rasterbasis" ).request()
                                                            .post( Entity.entity( multipart,
                                                                                  multipart.getMediaType() ) );
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
@@ -97,7 +97,8 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 
     @Test
     public void verifyThat_getRasterbasisById_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/1/rasterbasis/1" ).request( APPLICATION_JSON ).get();
+        Response response = target( "/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif" ).request(
+                        APPLICATION_JSON ).get();
 
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
@@ -114,16 +115,18 @@ public class PlanRasterbasisApiTest extends JerseyTest {
         FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart()
                         .bodyPart( rasterbasismodel ).bodyPart( rasterFilePart ).bodyPart( geoRefFilePart );
 
-        Response response = target( "/plan/1/rasterbasis/1" ).request()
-                                                             .put( Entity.entity( multipart,
-                                                                                  multipart.getMediaType() ) );
+        Response response = target( "/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif" ).request()
+                                                                                                        .put( Entity.entity(
+                                                                                                                        multipart,
+                                                                                                                        multipart.getMediaType() ) );
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
     }
 
     @Test
     public void verifyThat_deleteRasterbasisById_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/1/rasterbasis/1" ).request( APPLICATION_JSON ).delete();
+        Response response = target( "/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif" ).request(
+                        APPLICATION_JSON ).delete();
 
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );

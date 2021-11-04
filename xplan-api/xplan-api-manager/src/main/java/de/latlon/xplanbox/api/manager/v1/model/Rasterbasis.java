@@ -1,14 +1,66 @@
 package de.latlon.xplanbox.api.manager.v1.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
+import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
+import de.latlon.xplan.manager.web.shared.edit.RasterReference;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
+
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
 public class Rasterbasis extends Referenz {
+
+    private String id;
+
+    public static Rasterbasis fromRasterReference( String rasterbasisId, RasterReference rasterReference ) {
+        Rasterbasis rasterbasis = new Rasterbasis().id( rasterbasisId );
+        rasterbasis.art( rasterReference.getArt() != null ? rasterReference.getArt().getCode() : null ).beschreibung(
+                        rasterReference.getBeschreibung() ).datum( rasterReference.getDatum() ).georefMimeType(
+                        rasterReference.getGeorefMimeType() != null ?
+                        rasterReference.getGeorefMimeType().getCode() :
+                        null ).georefURL( rasterReference.getGeoReference() ).informationssystemURL(
+                        rasterReference.getInformationssystemURL() ).referenzMimeType(
+                        rasterReference.getReferenzMimeType() != null ?
+                        rasterReference.getReferenzMimeType().getCode() :
+                        null ).referenzURL( rasterReference.getReference() ).referenzName(
+                        rasterReference.getReferenzName() );
+        return rasterbasis;
+    }
+
+    public RasterReference toRasterReference() {
+        RasterReference rasterReference = new RasterReference();
+        rasterReference.setType( SCAN );
+        rasterReference.setReference( getReferenzURL() );
+        rasterReference.setReferenzMimeType( MimeTypes.getByCode( getReferenzMimeType() ) );
+        rasterReference.setGeoReference( getGeorefURL() );
+        rasterReference.setGeorefMimeType( MimeTypes.getByCode( getGeorefMimeType() ) );
+        rasterReference.setArt( ExterneReferenzArt.getByCode( getArt() ) );
+        rasterReference.setBeschreibung( getBeschreibung() );
+        rasterReference.setDatum( getDatum() );
+        rasterReference.setInformationssystemURL( getInformationssystemURL() );
+        return rasterReference;
+    }
+
+    public Rasterbasis id( String id ) {
+        this.id = id;
+        return this;
+    }
+
+    @JsonProperty("id")
+    public String getId() {
+        return id;
+    }
+
+    public void setId( String id ) {
+        this.id = id;
+    }
 
     @Override
     public boolean equals( Object o ) {
@@ -54,6 +106,5 @@ public class Rasterbasis extends Referenz {
         }
         return o.toString().replace( "\n", "\n    " );
     }
-
 }
 
