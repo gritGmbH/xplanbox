@@ -69,7 +69,7 @@ public class PlanRasterbasisApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))) })
     public Rasterbasis getRasterbasisById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId,
-                    @PathParam("id") @Parameter(description = "id of the GML element to be returned") String id )
+                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be returned (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed") String id )
                     throws Exception {
         return editRasterbasisHandler.retrieveRasterbasis( planId, id );
     }
@@ -85,7 +85,7 @@ public class PlanRasterbasisApi {
                     @Encoding(name = "georeferenzdatei", contentType = "text/plain") })))
     public Rasterbasis replaceRasterbasisById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be updated", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the GML element to be updated") String id,
+                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be updated (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed") String id,
                     @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
                     @FormDataParam("rasterdatei") File rasterdatei,
                     @FormDataParam("georeferenzdatei") File georeferenzdatei )
@@ -101,7 +101,7 @@ public class PlanRasterbasisApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))) })
     public Rasterbasis deleteRasterbasisById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be deleted") String planId,
-                    @PathParam("id") @Parameter(description = "id of the GML element to be deleted") String id )
+                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be deleted (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed") String id )
                     throws Exception {
         return editRasterbasisHandler.deleteRasterbasis( planId, id );
     }

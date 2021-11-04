@@ -68,7 +68,7 @@ public class PlanTextApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))) })
     public Text getTextById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId,
-                    @PathParam("id") @Parameter(description = "id of the GML element to be returned") String id )
+                    @PathParam("id") @Parameter(description = "id of the Text to be returned (GML Id of the feature)") String id )
                     throws Exception {
         return editTextHandler.retrieveText( planId, id );
     }
@@ -83,7 +83,7 @@ public class PlanTextApi {
                     @Encoding(name = "datei", contentType = "application/pdf, application/msword, application/odt") })))
     public Text replaceTextById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be updated", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the GML element to be updated") String id,
+                    @PathParam("id") @Parameter(description = "id of the Text to be updated (GML Id of the feature)") String id,
                     @FormDataParam("textmodel") FormDataBodyPart textmodel,
                     @FormDataParam("datei") File file )
                     throws Exception {
@@ -98,7 +98,7 @@ public class PlanTextApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))) })
     public Text deleteTextById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be deleted") String planId,
-                    @PathParam("id") @Parameter(description = "id of the GML element to be deleted") String id )
+                    @PathParam("id") @Parameter(description = "id of the Text to be deleted (GML Id of the feature)") String id )
                     throws Exception {
         return editTextHandler.deleteText( planId, id );
     }
