@@ -42,8 +42,6 @@ import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.hamcrest.CoreMatchers.is;
@@ -71,7 +69,7 @@ public class PlanDokumentApiTest extends JerseyTest {
 
     @Test
     public void verifyThat_getDokumente_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/1/dokument" ).request( APPLICATION_JSON ).get();
+        Response response = target( "/plan/2/dokument" ).request( APPLICATION_JSON ).get();
 
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
@@ -86,7 +84,7 @@ public class PlanDokumentApiTest extends JerseyTest {
         FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart()
                         .bodyPart( filePart ).bodyPart( dokumentmodel );
 
-        Response response = target( "/plan/1/dokument" ).request()
+        Response response = target( "/plan/2/dokument" ).request()
                                                         .post( Entity.entity( multipart, multipart.getMediaType() ) );
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
@@ -94,7 +92,9 @@ public class PlanDokumentApiTest extends JerseyTest {
 
     @Test
     public void verifyThat_getDokumentById_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/1/dokument/1" ).request( APPLICATION_JSON ).get();
+        Response response = target(
+                        "/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf" ).request(
+                        APPLICATION_JSON ).get();
 
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
@@ -102,18 +102,24 @@ public class PlanDokumentApiTest extends JerseyTest {
 
     @Test
     public void verifyThat_replaceDokumentById_returnsCorrectStatusCodeForValidMediaType()
-                    throws URISyntaxException, IOException {
-        final byte[] data = Files.readAllBytes( Paths.get(
-                        getClass().getResource( "datei.pdf" ).toURI() ) );
-        Response response = target( "/plan/1/dokument/1" ).request()
-                                                          .put( Entity.entity( data, "application/pdf" ) );
+                    throws URISyntaxException {
+        FileDataBodyPart dokumentmodel = createFileDataBodyPart( "dokumentmodel", "dokumentmodel.json",
+                                                                 MediaType.APPLICATION_JSON_TYPE );
+        FileDataBodyPart filePart = createFileDataBodyPart( "datei", "datei.pdf", null );
+        FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart()
+                        .bodyPart( filePart ).bodyPart( dokumentmodel );
+
+        Response response = target( "/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf" ).request()
+                                                        .put( Entity.entity( multipart, multipart.getMediaType() ) );
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
     }
 
     @Test
     public void verifyThat_deleteDokumentById_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/1/dokument/1" ).request( APPLICATION_JSON ).delete();
+        Response response = target(
+                        "/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf" ).request(
+                        APPLICATION_JSON ).delete();
 
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );

@@ -22,7 +22,12 @@
 package de.latlon.xplanbox.api.manager.config;
 
 import com.google.common.io.Files;
+import de.latlon.xplan.commons.XPlanAde;
+import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
 import de.latlon.xplan.manager.CategoryMapper;
+import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.PlanNotFoundException;
@@ -44,6 +49,7 @@ import de.latlon.xplanbox.api.manager.v1.InfoApi;
 import de.latlon.xplanbox.api.manager.v1.PlanApi;
 import de.latlon.xplanbox.api.manager.v1.PlansApi;
 import org.deegree.commons.config.DeegreeWorkspace;
+import org.deegree.feature.persistence.FeatureStore;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.mockito.Mockito;
 import org.mockito.internal.listeners.CollectCreatedMocks;
@@ -58,7 +64,6 @@ import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-
 import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -66,12 +71,16 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -97,6 +106,18 @@ public class TestContext {
 
     @Bean
     @Primary
+    public XPlanManager xPlanManager( XPlanArchiveCreator archiveCreator,
+                                      ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
+                                      InspirePluTransformator inspirePluTransformator,
+                                      XPlanGmlTransformer xPlanGmlTransformer,
+                                      ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDao xPlanDao )
+                    throws Exception {
+        return new XPlanManager( archiveCreator, managerConfiguration, workspaceReloader,
+                                 inspirePluTransformator, xPlanGmlTransformer, managerWorkspaceWrapper, xPlanDao );
+    }
+
+    @Bean
+    @Primary
     public ManagerApiConfiguration managerApiConfiguration()
                             throws URISyntaxException {
         ManagerApiConfiguration managerApiConfiguration = Mockito.mock( ManagerApiConfiguration.class );
@@ -105,12 +126,21 @@ public class TestContext {
         return managerApiConfiguration;
     }
 
-    @Bean @Primary
-    public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration )
-            throws WorkspaceException {
-        DeegreeWorkspace managerWorkspace = Mockito.mock( DeegreeWorkspace.class );
-        ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(
-                managerWorkspace.getNewWorkspace(), managerConfiguration );
+    @Bean
+    @Primary
+    public ManagerWorkspaceWrapper managerWorkspaceWrapper()
+                    throws WorkspaceException {
+        ManagerWorkspaceWrapper managerWorkspaceWrapper = Mockito.mock( ManagerWorkspaceWrapper.class );
+        FeatureStore featureStore41 = mock( FeatureStore.class );
+        when( featureStore41.getSchema() ).thenReturn(
+                        XPlanSchemas.getInstance().getAppSchema( XPLAN_41, null ) );
+        FeatureStore featureStore51 = mock( FeatureStore.class );
+        when( featureStore51.getSchema() ).thenReturn(
+                        XPlanSchemas.getInstance().getAppSchema( XPLAN_51, null ) );
+        when( managerWorkspaceWrapper.lookupStore( eq( XPLAN_41 ), any( XPlanAde.class ),
+                                                   any( PlanStatus.class ) ) ).thenReturn( featureStore41 );
+        when( managerWorkspaceWrapper.lookupStore( eq( XPLAN_51 ), any( XPlanAde.class ),
+                                                   any( PlanStatus.class ) ) ).thenReturn( featureStore51 );
         return managerWorkspaceWrapper;
     }
 
@@ -140,12 +170,18 @@ public class TestContext {
     public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
                              ManagerConfiguration managerConfiguration ) throws Exception {
         XPlanDao xplanDao = Mockito.mock( XPlanDao.class );
-        XPlan mockPlan = new XPlan("bplan_41", "123", "B_PLAN", "XPLAN_41");
-        mockPlan.setXplanMetadata( new AdditionalPlanData( FESTGESTELLT ) );
-        when(xplanDao.getXPlanById(1)).thenReturn(mockPlan);
-        when(xplanDao.getXPlanById(123)).thenReturn(mockPlan);
+        XPlan mockPlan41 = new XPlan("bplan_51", "123", "BP_Plan", "XPLAN_41");
+        XPlan mockPlan51 = new XPlan("bplan_41", "2", "BP_Plan", "XPLAN_51");
+        mockPlan41.setXplanMetadata( new AdditionalPlanData( FESTGESTELLT ) );
+        mockPlan51.setXplanMetadata( new AdditionalPlanData( FESTGESTELLT ) );
+        when(xplanDao.getXPlanById(1)).thenReturn(mockPlan41);
+        when(xplanDao.getXPlanById(123)).thenReturn(mockPlan41);
+        when(xplanDao.getXPlanById(2)).thenReturn(mockPlan51);
+        when( xplanDao.retrieveXPlanArtefact( "2" ) ).thenReturn(
+                        getClass().getResourceAsStream( "/xplan51.gml" ) ).thenReturn(
+                        getClass().getResourceAsStream( "/xplan51.gml" ) );
         List<XPlan> mockList = new ArrayList<>();
-        mockList.add(mockPlan);
+        mockList.add(mockPlan41);
         when(xplanDao.getXPlanByName("bplan_41")).thenReturn(mockList);
         when(xplanDao.getXPlansLikeName("bplan_41")).thenReturn(mockList);
         when(xplanDao.getXPlanList(anyBoolean())).thenReturn(mockList);

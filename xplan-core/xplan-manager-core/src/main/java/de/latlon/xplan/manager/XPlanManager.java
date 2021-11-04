@@ -190,6 +190,33 @@ public class XPlanManager {
     }
 
     /**
+     * TODO: NUR FÜR TESTZWECKE!
+     *
+     * @param archiveCreator
+     *                 archive creator
+     * @param managerConfiguration
+     *                 manager configuration, may be <code>null</code>
+     * @param workspaceReloader
+     *                 reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
+     * @param inspirePluTransformator
+     *                 transforms XPlanGML to INSPIRE PLU, may be <code>null</code>
+     * @param xPlanGmlTransformer
+     *                 transforms between different versions of XPlanGML, may be <code>null</code>
+     * @param managerWorkspaceWrapper never <code>null</code>
+     * @param  xplanDao never <code>null</code>
+     * @throws Exception
+     */
+    public XPlanManager( XPlanArchiveCreator archiveCreator,
+                         ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
+                         InspirePluTransformator inspirePluTransformator, XPlanGmlTransformer xPlanGmlTransformer,
+                         ManagerWorkspaceWrapper managerWorkspaceWrapper,
+                         XPlanDao xplanDao )
+                    throws Exception {
+        this( archiveCreator, managerConfiguration, null, null, workspaceReloader,
+              inspirePluTransformator, xPlanGmlTransformer, managerWorkspaceWrapper, xplanDao );
+    }
+
+    /**
      * @param categoryMapper
      *                 category mapper
      * @param archiveCreator
@@ -217,6 +244,60 @@ public class XPlanManager {
         this.managerWorkspaceWrapper = new ManagerWorkspaceWrapper( this.managerWorkspace.getNewWorkspace(),
                                                                     managerConfiguration );
         this.xplanDao = new XPlanDao( this.managerWorkspaceWrapper, categoryMapper, managerConfiguration );
+        this.workspaceReloader = workspaceReloader;
+
+        DeegreeWorkspaceWrapper wmsWorkspace = createWmsWorkspaceWrapper( wmsWorkspaceDir );
+        WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper( wmsWorkspace.getWorkspaceInstance() );
+        ManagerConfigurationAnalyser managerConfigurationAnalyser = new ManagerConfigurationAnalyser(
+                        managerConfiguration, wmsWorkspaceWrapper );
+        managerConfigurationAnalyser.checkConfiguration();
+        this.xPlanRasterManager = new XPlanRasterManager( wmsWorkspaceWrapper, managerConfiguration );
+        SortConfiguration sortConfiguration = createSortConfiguration( managerConfiguration );
+        this.sortPropertyReader = new SortPropertyReader( sortConfiguration );
+        this.sortPropertyUpdater = new SortPropertyUpdater( sortPropertyReader, xplanDao, xPlanRasterManager );
+        this.xPlanExporter = new XPlanExporter( managerConfiguration );
+        XPlanSynthesizer xPlanSynthesizer = createXPlanSynthesizer( managerConfiguration );
+        if ( inspirePluTransformator != null )
+            this.inspirePluPublisher = new InspirePluPublisher( xplanDao, inspirePluTransformator );
+        else
+            this.inspirePluPublisher = null;
+        this.xPlanInsertManager = new XPlanInsertManager( xPlanSynthesizer, xPlanGmlTransformer, xplanDao,
+                                                          xPlanExporter, xPlanRasterManager, workspaceReloader,
+                                                          managerConfiguration, managerWorkspaceWrapper,
+                                                          sortPropertyReader );
+        this.xPlanEditManager = new XPlanEditManager( xPlanSynthesizer, xPlanGmlTransformer, xplanDao, xPlanExporter,
+                                                      xPlanRasterManager, workspaceReloader, managerConfiguration,
+                                                      managerWorkspaceWrapper, sortPropertyReader );
+        this.xPlanDeleteManager = new XPlanDeleteManager( xplanDao, xPlanRasterManager, workspaceReloader,
+                                                          managerConfiguration );
+    }
+
+    /**
+     * @param archiveCreator
+     *                 archive creator
+     * @param managerConfiguration
+     *                 manager configuration, may be <code>null</code>
+     * @param workspaceDir
+     *                 workspace directory
+     * @param workspaceReloader
+     *                 reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
+     * @param inspirePluTransformator
+     *                 transforms XPlanGML to INSPIRE PLU, may be <code>null</code>
+     * @param xPlanGmlTransformer
+     *                 transforms between different versions of XPlanGML, may be <code>null</code>
+     * @param  xPlanDao never <code>null</code>
+     * @throws Exception
+     */
+    private XPlanManager( XPlanArchiveCreator archiveCreator,
+                         ManagerConfiguration managerConfiguration, File workspaceDir, File wmsWorkspaceDir,
+                         WorkspaceReloader workspaceReloader, InspirePluTransformator inspirePluTransformator,
+                         XPlanGmlTransformer xPlanGmlTransformer, ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDao xPlanDao )
+                    throws Exception {
+        this.archiveCreator = archiveCreator;
+        this.managerConfiguration = managerConfiguration;
+        this.managerWorkspace = instantiateManagerWorkspace( workspaceDir );
+        this.managerWorkspaceWrapper = managerWorkspaceWrapper;
+        this.xplanDao = xPlanDao;
         this.workspaceReloader = workspaceReloader;
 
         DeegreeWorkspaceWrapper wmsWorkspace = createWmsWorkspaceWrapper( wmsWorkspaceDir );

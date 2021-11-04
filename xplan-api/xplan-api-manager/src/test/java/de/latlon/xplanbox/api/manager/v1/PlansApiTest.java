@@ -52,6 +52,6 @@ public class PlansApiTest extends JerseyTest {
     public void verifyThat_GetPlansByName_ReturnCorrectStatus() {
         final String response = target( "/plans" ).queryParam("planName", "bplan_41").request().
                 accept( APPLICATION_JSON ).get(String.class);
-        assertThat(response, containsString("{\"id\":123,\"type\":\"B_PLAN\",\"version\":\"XPLAN_41\","));
+        assertThat(response, containsString("{\"id\":123,\"type\":\"BP_Plan\",\"version\":\"XPLAN_41\","));
     }
 }

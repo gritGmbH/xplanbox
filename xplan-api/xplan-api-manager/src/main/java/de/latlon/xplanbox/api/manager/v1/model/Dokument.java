@@ -1,6 +1,10 @@
 package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
+import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
+import de.latlon.xplan.manager.web.shared.edit.Reference;
+import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
 
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,7 +17,50 @@ import java.util.Objects;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
 public class Dokument extends Referenz {
 
+    private String id;
+
     private @Valid String typ;
+
+    public static Dokument fromReference( String dokumentId, Reference reference ) {
+        Dokument dokument = new Dokument().id( dokumentId );
+        dokument.art( reference.getArt() != null ? reference.getArt().getCode() : null ).beschreibung(
+                        reference.getBeschreibung() ).datum( reference.getDatum() ).georefMimeType(
+                        reference.getGeorefMimeType() != null ?
+                        reference.getGeorefMimeType().getCode() :
+                        null ).georefURL( reference.getGeoReference() ).informationssystemURL(
+                        reference.getInformationssystemURL() ).referenzMimeType(
+                        reference.getReferenzMimeType() != null ?
+                        reference.getReferenzMimeType().getCode() :
+                        null ).referenzURL( reference.getReference() ).referenzName( reference.getReferenzName() );
+        return dokument;
+    }
+
+    public static Reference toReference( Dokument dokumentModel ) {
+        ReferenceType type = ReferenceType.getBySpezExterneReferenceType(
+                        dokumentModel.getTyp() );
+        Reference reference = new Reference( dokumentModel.getReferenzURL(), dokumentModel.getGeorefURL(), type );
+        reference.setReferenzMimeType( MimeTypes.getByCode( dokumentModel.getReferenzMimeType() ) );
+        reference.setGeorefMimeType( MimeTypes.getByCode( dokumentModel.getGeorefMimeType() ) );
+        reference.setArt( ExterneReferenzArt.getByCode( dokumentModel.getArt() ) );
+        reference.setBeschreibung( dokumentModel.getBeschreibung() );
+        reference.setDatum( dokumentModel.getDatum() );
+        reference.setInformationssystemURL( dokumentModel.getInformationssystemURL() );
+        return reference;
+    }
+
+    public Dokument id( String id ) {
+        this.id = id;
+        return this;
+    }
+
+    @JsonProperty("id")
+    public String getId() {
+        return id;
+    }
+
+    public void setId( String id ) {
+        this.id = id;
+    }
 
     /**
      *
