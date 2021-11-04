@@ -1,6 +1,7 @@
 package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import de.latlon.xplan.manager.web.shared.edit.Change;
 
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -9,6 +10,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
+import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -18,6 +23,39 @@ public class Aenderungen {
     private @Valid List<Aenderung> aendert = new ArrayList<Aenderung>();
 
     private @Valid List<Aenderung> wurdeGeaendertVon = new ArrayList<Aenderung>();
+
+    public static Aenderungen fromChanges( List<Change> changes ) {
+        Aenderungen aenderungen = new Aenderungen();
+        aenderungen.aendert( changes.stream().filter( change -> CHANGES.equals( change.getType() ) ).map(
+                        c -> new Aenderung().nummer( c.getNumber() ).planName( c.getPlanName() ).rechtscharakter(
+                                        asString( c.getLegalNatureCode() ) ) ).collect( Collectors.toList() ) );
+        aenderungen.wurdeGeaendertVon( changes.stream().filter( change -> CHANGED_BY.equals( change.getType() ) ).map(
+                        c -> new Aenderung() ).collect( Collectors.toList() ) );
+        return aenderungen;
+    }
+
+    public List<Change> toChanges() {
+        List<Change> changes = new ArrayList<>();
+        changes.addAll( aendert.stream().map(
+                        a -> new Change( a.getPlanName(), asInt( a.getNummer() ), a.getNummer(), CHANGES ) ).collect(
+                        Collectors.toList() ) );
+        changes.addAll( wurdeGeaendertVon.stream().map(
+                        a -> new Change( a.getPlanName(), asInt( a.getNummer() ), a.getNummer(), CHANGED_BY ) ).collect(
+                        Collectors.toList() ) );
+        return changes;
+    }
+
+    private static String asString( int code ) {
+        return code > 0 ?
+               Integer.toString( code ) :
+               null;
+    }
+
+    private int asInt( String code ) {
+        if ( code == null )
+            return -1;
+        return Integer.valueOf( code );
+    }
 
     /**
      *
@@ -92,6 +130,5 @@ public class Aenderungen {
         }
         return o.toString().replace( "\n", "\n    " );
     }
-
 }
 

@@ -31,7 +31,7 @@ public class PlanAenderungApiTest extends JerseyTest {
     @Override
     protected Application configure() {
         enable( TestProperties.LOG_TRAFFIC );
-        final ResourceConfig resourceConfig = new ResourceConfig( PlanAenderungApi.class );
+        final ResourceConfig resourceConfig = new ResourceConfig( PlanAenderungenApi.class );
         resourceConfig.register( XPlanApiExceptionMapper.class );
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext( ApplicationContext.class,
                                                                                              TestContext.class );
@@ -41,7 +41,7 @@ public class PlanAenderungApiTest extends JerseyTest {
 
     @Test
     public void verifyThat_getAenderung_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/1/aenderung" ).request( APPLICATION_JSON ).get();
+        Response response = target( "/plan/2/aenderungen" ).request( APPLICATION_JSON ).get();
 
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
@@ -52,7 +52,7 @@ public class PlanAenderungApiTest extends JerseyTest {
                     throws URISyntaxException, IOException {
         final byte[] data = Files.readAllBytes( Paths.get( getClass().getResource( "aenderungen.json" ).toURI() ) );
 
-        Response response = target( "/plan/1/aenderung" ).request()
+        Response response = target( "/plan/2/aenderungen" ).request()
                                                          .put( Entity.entity( data, APPLICATION_JSON_TYPE ) );
         assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
         assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
