@@ -7,6 +7,8 @@ import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
 
 import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -19,7 +21,9 @@ public class Dokument extends Referenz {
 
     private String id;
 
-    private @Valid String typ;
+    @DecimalMin("1000")
+    @DecimalMax("99999")
+    private @Valid Integer typ;
 
     public static Dokument fromReference( String dokumentId, Reference reference ) {
         Dokument dokument = new Dokument().id( dokumentId );
@@ -36,8 +40,7 @@ public class Dokument extends Referenz {
     }
 
     public static Reference toReference( Dokument dokumentModel ) {
-        ReferenceType type = ReferenceType.getBySpezExterneReferenceType(
-                        dokumentModel.getTyp() );
+        ReferenceType type = ReferenceType.getBySpezExterneReferenceType( dokumentModel.getTyp() );
         Reference reference = new Reference( dokumentModel.getReferenzURL(), dokumentModel.getGeorefURL(), type );
         reference.setReferenzMimeType( MimeTypes.getByCode( dokumentModel.getReferenzMimeType() ) );
         reference.setGeorefMimeType( MimeTypes.getByCode( dokumentModel.getGeorefMimeType() ) );
@@ -65,17 +68,20 @@ public class Dokument extends Referenz {
     /**
      *
      **/
-    public Dokument typ( String typ ) {
-        this.typ = typ;
+    public Dokument typ( int typ ) {
+        if ( typ > 0 )
+            this.typ = typ;
+        else
+            this.typ = null;
         return this;
     }
 
     @JsonProperty("typ")
-    public String getTyp() {
+    public Integer getTyp() {
         return typ;
     }
 
-    public void setTyp( String typ ) {
+    public void setTyp( Integer typ ) {
         this.typ = typ;
     }
 

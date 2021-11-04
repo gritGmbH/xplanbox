@@ -3,6 +3,8 @@ package de.latlon.xplanbox.api.manager.v1.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -15,7 +17,9 @@ public class Aenderung {
 
     private @Valid String planName;
 
-    private @Valid String rechtscharakter;
+    @DecimalMin("1000")
+    @DecimalMax("99999")
+    private @Valid Integer rechtscharakter;
 
     private @Valid String nummer;
 
@@ -39,17 +43,20 @@ public class Aenderung {
     /**
      *
      **/
-    public Aenderung rechtscharakter( String rechtscharakter ) {
-        this.rechtscharakter = rechtscharakter;
+    public Aenderung rechtscharakter( int rechtscharakter ) {
+        if ( rechtscharakter > 0 )
+            this.rechtscharakter = rechtscharakter;
+        else
+            this.rechtscharakter = null;
         return this;
     }
 
     @JsonProperty("rechtscharakter")
-    public String getRechtscharakter() {
+    public Integer getRechtscharakter() {
         return rechtscharakter;
     }
 
-    public void setRechtscharakter( String rechtscharakter ) {
+    public void setRechtscharakter( Integer rechtscharakter ) {
         this.rechtscharakter = rechtscharakter;
     }
 

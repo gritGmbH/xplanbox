@@ -12,7 +12,7 @@ public class InvalidDokumentId extends XPlanApiException {
     private static final String EXCEPTION_MESSAGE = "Dokument with ID %s of Plan with ID %s is not known or Plan with ID %s contains multiple Dokumente with the same id!";
 
     public InvalidDokumentId( String planId, String resourceId ) {
-        super( String.format( EXCEPTION_MESSAGE, planId, resourceId ) );
+        super( String.format( EXCEPTION_MESSAGE, planId, resourceId, planId ) );
     }
 
     @Override

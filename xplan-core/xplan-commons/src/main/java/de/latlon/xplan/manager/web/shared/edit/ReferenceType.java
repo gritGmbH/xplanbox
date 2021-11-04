@@ -98,6 +98,10 @@ public enum ReferenceType {
         if ( type == null )
             return null;
         int typeAsInt = Integer.parseInt( type.trim() );
+        return getBySpezExterneReferenceType( typeAsInt );
+    }
+
+    public static ReferenceType getBySpezExterneReferenceType( int typeAsInt ) {
         for ( ReferenceType referenceType : values() ) {
             if ( referenceType.spezExterneRefType == typeAsInt )
                 return referenceType;

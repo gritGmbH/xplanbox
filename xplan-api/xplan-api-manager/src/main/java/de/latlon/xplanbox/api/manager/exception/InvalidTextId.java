@@ -12,7 +12,7 @@ public class InvalidTextId extends XPlanApiException {
     private static final String EXCEPTION_MESSAGE = "Text with ID %s of Plan with ID %s is not known or Plan with ID %s contains multiple Text with the same id!";
 
     public InvalidTextId( String planId, String resourceId ) {
-        super( String.format( EXCEPTION_MESSAGE, planId, resourceId ) );
+        super( String.format( EXCEPTION_MESSAGE, planId, resourceId, planId ) );
     }
 
     @Override

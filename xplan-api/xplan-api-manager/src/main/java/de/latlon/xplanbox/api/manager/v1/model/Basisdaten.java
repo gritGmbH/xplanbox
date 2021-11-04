@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
 
 import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -19,13 +21,21 @@ public class Basisdaten {
 
     private @Valid String beschreibung;
 
-    private @Valid String planArt;
+    @DecimalMin("1000")
+    @DecimalMax("99999")
+    private @Valid Integer planArt;
 
-    private @Valid String sonstPlanArt;
+    @DecimalMin("1000")
+    @DecimalMax("99999")
+    private @Valid Integer sonstPlanArt;
 
-    private @Valid String verfahren;
+    @DecimalMin("1000")
+    @DecimalMax("99999")
+    private @Valid Integer verfahren;
 
-    private @Valid String rechtsstand;
+    @DecimalMin("1000")
+    @DecimalMax("99999")
+    private @Valid Integer rechtsstand;
 
     private @Valid Date rechtsverordnungsDatum;
 
@@ -35,16 +45,10 @@ public class Basisdaten {
 
     public static Basisdaten fromBaseData( BaseData baseData ) {
         return new Basisdaten().name( baseData.getPlanName() ).beschreibung( baseData.getDescription() ).planArt(
-                        baseData.getPlanTypeCode() > 0 ?
-                        Integer.toString( baseData.getPlanTypeCode() ) :
-                        null ).sonstPlanArt( baseData.getOtherPlanTypeCode() > 0 ?
-                                             Integer.toString( baseData.getOtherPlanTypeCode() ) :
-                                             null ).verfahren( baseData.getMethodCode() > 0 ?
-                                                               Integer.toString( baseData.getMethodCode() ) :
-                                                               null ).rechtsstand(
-                        baseData.getLegislationStatusCode() > 0 ?
-                        Integer.toString( baseData.getLegislationStatusCode() ) :
-                        null ).rechtsverordnungsDatum( baseData.getRegulationDate() ).technHerstellDatum(
+                        baseData.getPlanTypeCode() ).sonstPlanArt( baseData.getOtherPlanTypeCode() ).verfahren(
+                        baseData.getMethodCode() ).rechtsstand(
+                        baseData.getLegislationStatusCode() ).rechtsverordnungsDatum(
+                        baseData.getRegulationDate() ).technHerstellDatum(
                         baseData.getCreationDate() ).untergangsDatum( baseData.getLossDate() );
     }
 
@@ -54,10 +58,10 @@ public class Basisdaten {
                              rechtsverordnungsDatum );
     }
 
-    private int asInt( String code ) {
+    private int asInt( Integer code ) {
         if ( code == null )
             return -1;
-        return Integer.valueOf( code );
+        return code;
     }
 
     /**
@@ -97,68 +101,80 @@ public class Basisdaten {
     /**
      *
      **/
-    public Basisdaten planArt( String planArt ) {
-        this.planArt = planArt;
+    public Basisdaten planArt( int planArt ) {
+        if ( planArt > 0 )
+            this.planArt = planArt;
+        else
+            this.planArt = null;
         return this;
     }
 
     @JsonProperty("planArt")
-    public String getPlanArt() {
+    public Integer getPlanArt() {
         return planArt;
     }
 
-    public void setPlanArt( String planArt ) {
+    public void setPlanArt( Integer planArt ) {
         this.planArt = planArt;
     }
 
     /**
      *
      **/
-    public Basisdaten sonstPlanArt( String sonstPlanArt ) {
-        this.sonstPlanArt = sonstPlanArt;
+    public Basisdaten sonstPlanArt( int sonstPlanArt ) {
+        if ( sonstPlanArt > 0 )
+            this.sonstPlanArt = sonstPlanArt;
+        else
+            this.sonstPlanArt = null;
         return this;
     }
 
     @JsonProperty("sonstPlanArt")
-    public String getSonstPlanArt() {
+    public Integer getSonstPlanArt() {
         return sonstPlanArt;
     }
 
-    public void setSonstPlanArt( String sonstPlanArt ) {
+    public void setSonstPlanArt( Integer sonstPlanArt ) {
         this.sonstPlanArt = sonstPlanArt;
     }
 
     /**
      *
      **/
-    public Basisdaten verfahren( String verfahren ) {
-        this.verfahren = verfahren;
+    public Basisdaten verfahren( int verfahren ) {
+        if ( verfahren > 0 )
+            this.verfahren = verfahren;
+        else
+            this.verfahren = null;
         return this;
     }
 
     @JsonProperty("verfahren")
-    public String getVerfahren() {
+    public Integer getVerfahren() {
         return verfahren;
     }
 
-    public void setVerfahren( String verfahren ) {
+    public void setVerfahren( Integer verfahren ) {
         this.verfahren = verfahren;
     }
 
     /**
      *
      **/
-    public Basisdaten rechtsstand( String rechtsstand ) {
-        this.rechtsstand = rechtsstand;
+    public Basisdaten rechtsstand( int rechtsstand ) {
+        if ( rechtsstand > 0 )
+            this.rechtsstand = rechtsstand;
+        else
+            this.rechtsstand = null;
         return this;
     }
 
     @JsonProperty("rechtsstand")
-    public String getRechtsstand() {
+    public Integer getRechtsstand() {
         return rechtsstand;
     }
 
-    public void setRechtsstand( String rechtsstand ) {
+    public void setRechtsstand( Integer rechtsstand ) {
         this.rechtsstand = rechtsstand;
     }
 

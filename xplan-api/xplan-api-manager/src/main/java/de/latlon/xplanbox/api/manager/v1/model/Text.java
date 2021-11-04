@@ -6,6 +6,8 @@ import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
 import de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType;
 
 import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -26,7 +28,9 @@ public class Text {
 
     private @Valid Referenz refText;
 
-    private @Valid int rechtscharakter;
+    @DecimalMin("1000")
+    @DecimalMax("99999")
+    private @Valid Integer rechtscharakter;
 
     public static Text fromText( String textId, de.latlon.xplan.manager.web.shared.edit.Text oldText ) {
         Referenz referenz = new Referenz().art(
@@ -151,16 +155,19 @@ public class Text {
      *
      **/
     public Text rechtscharakter( int rechtscharakter ) {
-        this.rechtscharakter = rechtscharakter;
+        if ( rechtscharakter > 0 )
+            this.rechtscharakter = rechtscharakter;
+        else
+            this.rechtscharakter = null;
         return this;
     }
 
     @JsonProperty("rechtscharakter")
-    public int getRechtscharakter() {
+    public Integer getRechtscharakter() {
         return rechtscharakter;
     }
 
-    public void setRechtscharakter( int rechtscharakter ) {
+    public void setRechtscharakter( Integer rechtscharakter ) {
         this.rechtscharakter = rechtscharakter;
     }
 

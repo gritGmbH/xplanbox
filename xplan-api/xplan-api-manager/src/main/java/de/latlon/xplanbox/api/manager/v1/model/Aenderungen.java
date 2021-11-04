@@ -28,7 +28,7 @@ public class Aenderungen {
         Aenderungen aenderungen = new Aenderungen();
         aenderungen.aendert( changes.stream().filter( change -> CHANGES.equals( change.getType() ) ).map(
                         c -> new Aenderung().nummer( c.getNumber() ).planName( c.getPlanName() ).rechtscharakter(
-                                        asString( c.getLegalNatureCode() ) ) ).collect( Collectors.toList() ) );
+                                        c.getLegalNatureCode() ) ).collect( Collectors.toList() ) );
         aenderungen.wurdeGeaendertVon( changes.stream().filter( change -> CHANGED_BY.equals( change.getType() ) ).map(
                         c -> new Aenderung() ).collect( Collectors.toList() ) );
         return aenderungen;
@@ -37,24 +37,20 @@ public class Aenderungen {
     public List<Change> toChanges() {
         List<Change> changes = new ArrayList<>();
         changes.addAll( aendert.stream().map(
-                        a -> new Change( a.getPlanName(), asInt( a.getNummer() ), a.getNummer(), CHANGES ) ).collect(
+                        a -> new Change( a.getPlanName(), asInt( a.getRechtscharakter() ), a.getNummer(),
+                                         CHANGES ) ).collect(
                         Collectors.toList() ) );
         changes.addAll( wurdeGeaendertVon.stream().map(
-                        a -> new Change( a.getPlanName(), asInt( a.getNummer() ), a.getNummer(), CHANGED_BY ) ).collect(
+                        a -> new Change( a.getPlanName(), asInt( a.getRechtscharakter() ), a.getNummer(),
+                                         CHANGED_BY ) ).collect(
                         Collectors.toList() ) );
         return changes;
     }
 
-    private static String asString( int code ) {
-        return code > 0 ?
-               Integer.toString( code ) :
-               null;
-    }
-
-    private int asInt( String code ) {
+    private int asInt( Integer code ) {
         if ( code == null )
             return -1;
-        return Integer.valueOf( code );
+        return code;
     }
 
     /**
