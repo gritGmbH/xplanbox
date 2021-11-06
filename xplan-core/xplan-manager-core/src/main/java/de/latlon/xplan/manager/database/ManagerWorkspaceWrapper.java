@@ -133,4 +133,8 @@ public class ManagerWorkspaceWrapper {
         return sfs;
     }
 
+    public Workspace getWorkspace() {return this.managerWorkspace;}
+
+    public ManagerConfiguration getConfiguration() {return this.managerConfiguration;}
+
 }
