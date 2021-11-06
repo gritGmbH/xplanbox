@@ -730,13 +730,6 @@ public class XPlanManager {
         return managerWorkspaceWrapper.lookupStore( archive.getVersion(), archive.getAde(), planStatus ).getSchema();
     }
 
-    private DeegreeWorkspace instantiateManagerWorkspace( File workspaceDir )
-                    throws Exception {
-        if ( workspaceDir != null )
-            return instantiateWorkspace( workspaceDir );
-        return instantiateWorkspace( DEFAULT_XPLAN_MANAGER_WORKSPACE );
-    }
-
     private String translateLegislationStatusCode( XPlanVersion version, XPlanType type, int legislationStatusCode ) {
         XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get( version );
         String codeListId = findCodeListId( type );
