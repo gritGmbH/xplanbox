@@ -35,8 +35,10 @@ import java.net.URI;
 import java.util.Objects;
 
 /**
- * Link to a resource related to the resource such as XPlanWerkWMS or the resource itself
- **/
+ * Datatype for Link. A Link to a resource related to the resource such as XPlanWerkWMS or the resource itself.
+ *
+ * @since 4.0
+ */
 @Schema(description = "Link to a resource related to the resource such as XPlanWerkWMS or the resource itself")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
 @XmlRootElement

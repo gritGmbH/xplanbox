@@ -85,8 +85,9 @@ import static org.mockito.Mockito.when;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
+ * Creates mock objects for XPlanManager and underlying objects for in-memory unit tests.
  * Indented to register the JAX-RS resources within Spring Application Context.
- * TODO Resources not configured automatically. Using JerseyTest instead.
+ * Resources not configured automatically. Using Jersey <code>ResourceConfig</code> with profile <code>jaxrs</code> instead.
  */
 @Configuration
 public class TestContext {
@@ -116,8 +117,7 @@ public class TestContext {
                                  inspirePluTransformator, xPlanGmlTransformer, managerWorkspaceWrapper, xPlanDao );
     }
 
-    @Bean
-    @Primary
+    @Bean @Primary
     public ManagerApiConfiguration managerApiConfiguration()
                             throws URISyntaxException {
         ManagerApiConfiguration managerApiConfiguration = Mockito.mock( ManagerApiConfiguration.class );
@@ -126,8 +126,7 @@ public class TestContext {
         return managerApiConfiguration;
     }
 
-    @Bean
-    @Primary
+    @Bean @Primary
     public ManagerWorkspaceWrapper managerWorkspaceWrapper()
                     throws WorkspaceException {
         ManagerWorkspaceWrapper managerWorkspaceWrapper = Mockito.mock( ManagerWorkspaceWrapper.class );
@@ -149,23 +148,13 @@ public class TestContext {
             throws WorkspaceException {
         DeegreeWorkspace deegreeWorkspace = Mockito.mock ( DeegreeWorkspace.class );
         DeegreeWorkspaceWrapper wmsWorkspace = Mockito.mock( DeegreeWorkspaceWrapper.class );
-        when( wmsWorkspace.getWorkspaceInstance() ).thenReturn( deegreeWorkspace );
+        when(wmsWorkspace.getWorkspaceInstance()).thenReturn( deegreeWorkspace );
         when(deegreeWorkspace.getLocation()).thenReturn(Files.createTempDir().getAbsoluteFile());
 
         WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper( wmsWorkspace.getWorkspaceInstance() );
         return new XPlanRasterManager( wmsWorkspaceWrapper, managerConfiguration );
     }
 
-    /**
-     * Returns for plan with ID 1 and 123 a valid XPlanArchive (with XPlanGML 4.1 plan)
-     * for plan with ID 42 returns an exception.
-     *
-     * @param categoryMapper not in use
-     * @param managerWorkspaceWrapper not in use
-     * @param managerConfiguration not in use
-     * @return mock object
-     * @throws Exception in any case of trouble
-     */
     @Bean @Primary
     public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
                              ManagerConfiguration managerConfiguration ) throws Exception {

@@ -6,6 +6,11 @@ import javax.validation.Valid;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Datatype for Referenz.
+ *
+ * @since 4.4
+ */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
 public class Referenz {
 

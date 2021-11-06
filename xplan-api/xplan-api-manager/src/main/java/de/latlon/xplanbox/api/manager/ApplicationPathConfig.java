@@ -53,9 +53,9 @@ import static org.slf4j.LoggerFactory.getLogger;
 /**
  * Application configuration for XPlanManager REST API.
  * Example mapping for proxy mapping:
- * http://xplanbox.lat-lon.de/xmanager/api/vi/ -> http://host:8080/xplan-api-validator/xmanager/api/v1/
- * Public address: http://xplanbox.lat-lon.de/xmanager/
- * Internal address: http://host:8080/xplan-api-validator/xmanager/
+ * http://xplanbox.lat-lon.de/xmanager/api/vi/ -> http://host:8080/xplan-api-manager/xmanager/api/v1/
+ * Public address: http://xplanbox.lat-lon.de/xmanager/api/v1
+ * Internal address: http://host:8080/xplan-api-manager/xmanager/api/v1
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
@@ -76,10 +76,10 @@ public class ApplicationPathConfig extends ResourceConfig {
         packages( "de.latlon.xplanbox.api.manager.v1" );
         packages( "de.latlon.xplanbox.api.manager.exception" );
         packages( "de.latlon.xplanbox.api.commons.exception" );
-        packages("org.glassfish.jersey.examples.multipart");
+        packages( "org.glassfish.jersey.examples.multipart" );
         OpenAPI openApi = new OpenAPI();
         openApi.setInfo( new Info().title( "XPlanManagerAPI" )
-                                   .version( "1.0.0" )
+                                   .version( "1.1.0" )
                                    .description( "XPlanManager REST API" )
                                    .termsOfService( getTermsOfService( managerApiConfiguration ) )
                                    .license(new License().name( "Apache 2.0" )
@@ -122,8 +122,8 @@ public class ApplicationPathConfig extends ResourceConfig {
 
     private void addContact( OpenAPI openApi, ManagerApiConfiguration managerApiConfiguration ) {
         if ( managerApiConfiguration != null && managerApiConfiguration.getContactEMailAdress() != null ) {
-            String contactEMailAdress = managerApiConfiguration.getContactEMailAdress();
-            openApi.getInfo().setContact( new Contact().email( contactEMailAdress ) );
+            String contactEMailAddress = managerApiConfiguration.getContactEMailAdress();
+            openApi.getInfo().setContact( new Contact().email( contactEMailAddress ) );
         }
     }
 

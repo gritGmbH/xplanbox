@@ -14,6 +14,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
+/**
+ * Datatype for Dokument.
+ *
+ * @since 4.4
+ */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")

@@ -15,6 +15,11 @@ import java.util.stream.Collectors;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 
+/**
+ * Datatype for Aenderungen.
+ *
+ * @since 4.4
+ */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")

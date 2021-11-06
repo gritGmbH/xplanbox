@@ -26,7 +26,10 @@ import java.io.File;
 import java.util.List;
 
 /**
+ * Controller class for handling access to the rasterbasis resource of a plan.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @since 4.4
  */
 @Path("/plan/{planId}/rasterbasis")
 public class PlanRasterbasisApi {

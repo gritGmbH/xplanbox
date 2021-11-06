@@ -35,6 +35,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Datatype for PlanInfo.
+ *
+ * @since 4.0
+ */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)

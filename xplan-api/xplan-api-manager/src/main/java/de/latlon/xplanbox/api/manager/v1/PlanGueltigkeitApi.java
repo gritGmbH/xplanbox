@@ -19,7 +19,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
+ * Controller class for handling access to the gueltigkeit resource of a plan.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @since 4.4
  */
 @Path("/plan/{planId}/gueltigkeit")
 public class PlanGueltigkeitApi {
