@@ -51,7 +51,6 @@ import de.latlon.xplanbox.api.manager.v1.PlansApi;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.feature.persistence.FeatureStore;
 import org.glassfish.jersey.server.ResourceConfig;
-import org.mockito.Mockito;
 import org.mockito.internal.listeners.CollectCreatedMocks;
 import org.mockito.internal.progress.MockingProgress;
 import org.mockito.internal.progress.ThreadSafeMockingProgress;
@@ -120,7 +119,7 @@ public class TestContext {
     @Bean @Primary
     public ManagerApiConfiguration managerApiConfiguration()
                             throws URISyntaxException {
-        ManagerApiConfiguration managerApiConfiguration = Mockito.mock( ManagerApiConfiguration.class );
+        ManagerApiConfiguration managerApiConfiguration = mock( ManagerApiConfiguration.class );
         when( managerApiConfiguration.getApiUrl() ).thenReturn( new URI( "http://localhost:8080/xplan-api-manager" ) );
         when( managerApiConfiguration.getDefaultValidationConfiguration() ).thenReturn( new DefaultValidationConfiguration() );
         return managerApiConfiguration;
@@ -129,7 +128,7 @@ public class TestContext {
     @Bean @Primary
     public ManagerWorkspaceWrapper managerWorkspaceWrapper()
                     throws WorkspaceException {
-        ManagerWorkspaceWrapper managerWorkspaceWrapper = Mockito.mock( ManagerWorkspaceWrapper.class );
+        ManagerWorkspaceWrapper managerWorkspaceWrapper = mock( ManagerWorkspaceWrapper.class );
         FeatureStore featureStore41 = mock( FeatureStore.class );
         when( featureStore41.getSchema() ).thenReturn(
                         XPlanSchemas.getInstance().getAppSchema( XPLAN_41, null ) );
@@ -146,8 +145,8 @@ public class TestContext {
     @Bean @Primary
     public XPlanRasterManager xPlanRasterManager(ManagerConfiguration managerConfiguration )
             throws WorkspaceException {
-        DeegreeWorkspace deegreeWorkspace = Mockito.mock ( DeegreeWorkspace.class );
-        DeegreeWorkspaceWrapper wmsWorkspace = Mockito.mock( DeegreeWorkspaceWrapper.class );
+        DeegreeWorkspace deegreeWorkspace = mock ( DeegreeWorkspace.class );
+        DeegreeWorkspaceWrapper wmsWorkspace = mock( DeegreeWorkspaceWrapper.class );
         when(wmsWorkspace.getWorkspaceInstance()).thenReturn( deegreeWorkspace );
         when(deegreeWorkspace.getLocation()).thenReturn(Files.createTempDir().getAbsoluteFile());
 
@@ -158,7 +157,7 @@ public class TestContext {
     @Bean @Primary
     public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
                              ManagerConfiguration managerConfiguration ) throws Exception {
-        XPlanDao xplanDao = Mockito.mock( XPlanDao.class );
+        XPlanDao xplanDao = mock( XPlanDao.class );
         XPlan mockPlan41 = new XPlan("bplan_51", "123", "BP_Plan", "XPLAN_41");
         XPlan mockPlan51 = new XPlan("bplan_41", "2", "BP_Plan", "XPLAN_51");
         mockPlan41.setXplanMetadata( new AdditionalPlanData( FESTGESTELLT ) );
@@ -174,7 +173,7 @@ public class TestContext {
         when(xplanDao.getXPlanByName("bplan_41")).thenReturn(mockList);
         when(xplanDao.getXPlansLikeName("bplan_41")).thenReturn(mockList);
         when(xplanDao.getXPlanList(anyBoolean())).thenReturn(mockList);
-        XPlanArchiveContent mockArchive = Mockito.mock(XPlanArchiveContent.class);
+        XPlanArchiveContent mockArchive = mock(XPlanArchiveContent.class);
         when(xplanDao.retrieveAllXPlanArtefacts( anyString() )).thenReturn(mockArchive);
         when(xplanDao.retrieveAllXPlanArtefacts( "42" )).thenThrow( new PlanNotFoundException(42));
         return xplanDao;
@@ -188,14 +187,14 @@ public class TestContext {
                                                  WorkspaceReloader workspaceReloader,
                                                  XPlanGmlTransformer xPlanGmlTransformer )
             throws Exception {
-        XPlanInsertManager xplanInsertManager = Mockito.mock ( XPlanInsertManager.class );
+        XPlanInsertManager xplanInsertManager = mock ( XPlanInsertManager.class );
         when(xplanInsertManager.importPlan(any(), any(), anyBoolean(), anyBoolean(), anyBoolean(), any(), anyString(), any() )).thenReturn(123);
         return xplanInsertManager;
     }
 
     @Bean @Primary
     public XPlanExporter xPlanExporter( ManagerConfiguration managerConfiguration ) {
-        XPlanExporter xPlanExporter = Mockito.mock(XPlanExporter.class);
+        XPlanExporter xPlanExporter = mock(XPlanExporter.class);
         doNothing().when(xPlanExporter).export(isA(OutputStream.class), isA(XPlanArchiveContent.class));
         return xPlanExporter;
     }
