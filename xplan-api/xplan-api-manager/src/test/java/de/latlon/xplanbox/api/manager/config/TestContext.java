@@ -187,14 +187,14 @@ public class TestContext {
                                                  WorkspaceReloader workspaceReloader,
                                                  XPlanGmlTransformer xPlanGmlTransformer )
             throws Exception {
-        XPlanInsertManager xplanInsertManager = Mockito.mock ( XPlanInsertManager.class );
+        XPlanInsertManager xplanInsertManager = mock ( XPlanInsertManager.class );
         when(xplanInsertManager.importPlan(any(), any(), anyBoolean(), anyBoolean(), anyBoolean(), any(), anyString(), any() )).thenReturn(123);
         return xplanInsertManager;
     }
 
     @Bean @Primary
     public XPlanExporter xPlanExporter( ManagerConfiguration managerConfiguration ) {
-        XPlanExporter xPlanExporter = Mockito.mock(XPlanExporter.class);
+        XPlanExporter xPlanExporter = mock(XPlanExporter.class);
         doNothing().when(xPlanExporter).export(isA(OutputStream.class), isA(XPlanArchiveContent.class));
         return xPlanExporter;
     }
