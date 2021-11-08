@@ -67,11 +67,18 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.List;
 
+import de.latlon.xplan.commons.configuration.SortConfiguration;
+import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
+import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.workspace.WorkspaceUtils;
 import org.apache.commons.io.IOUtils;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.deegree.commons.config.DeegreeWorkspace;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -83,31 +90,27 @@ import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @version $Revision: $, $Date: $
+ * @version 1.0
  */
-@Ignore("Fix me: xplan-manager-workspace required")
 public class XPlanManagerTest {
 
-    private static File workspaceDirectory;
+    private File managerWorkspaceDirectory;
+    private File wmsWorkspaceDirectory;
 
-    @BeforeClass
-    public static void createTestWorkspace()
-                    throws IOException {
-        workspaceDirectory = copyManagerWorkspace();
+    @Before
+    public void createWorkspaceFiles() throws IOException {
+        managerWorkspaceDirectory = Files.createTempDirectory("manager").toFile();
+        wmsWorkspaceDirectory = Files.createTempDirectory("wms").toFile();
+        File themesDir = new File(managerWorkspaceDirectory, "themes");
+        Files.createDirectory(themesDir.toPath());
+        File file = new File(themesDir, "bplanraster.xml");
+        file.createNewFile();
+        //TODO build minimal temp workspace
     }
 
-    @AfterClass
-    public static void deleteTestWorkspace()
-                    throws IOException {
-        workspaceDirectory.delete();
-    }
-
-    private static File copyManagerWorkspace()
-                    throws IOException {
-        // InputStream managerWorkspaceDatasources = XPlanManagerTest.class.getResourceAsStream(
-        // "/xplan-manager-workspace" );
-        // TODO
-        return null;
+    @After
+    public void deleteWorkspace() {
+        managerWorkspaceDirectory.delete();
     }
 
     @Test
@@ -140,17 +143,25 @@ public class XPlanManagerTest {
 
     private XPlanManager createXPlanManager()
                     throws Exception {
-        CategoryMapper categoryMapper = mock( CategoryMapper.class );
+        XPlanDao xPlanDao = mock( XPlanDao.class );
         XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
         ManagerConfiguration managerConfiguration = mockManagerConfig();
-        return new XPlanManager( categoryMapper, archiveCreator, managerConfiguration,
-                        workspaceDirectory.getAbsoluteFile(), null, null, null, null );
+        DeegreeWorkspace managerWorkspace = WorkspaceUtils.instantiateManagerWorkspace(managerWorkspaceDirectory.getAbsoluteFile());
+        ManagerWorkspaceWrapper managerWorkspaceWrapper = mock( ManagerWorkspaceWrapper.class );
+        when( managerWorkspaceWrapper.getConfiguration() ).thenReturn( managerConfiguration );
+        DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(wmsWorkspaceDirectory.getAbsoluteFile());
+        WmsWorkspaceWrapper wmsWorkspaceWrapper = mock( WmsWorkspaceWrapper.class );
+        when( wmsWorkspaceWrapper.getLocation() ).thenReturn( wmsWorkspaceDirectory.getAbsoluteFile() );
+        return new XPlanManager( xPlanDao, archiveCreator, managerWorkspaceWrapper,
+                        null, null, null,
+                         wmsWorkspaceWrapper );
     }
 
     private ManagerConfiguration mockManagerConfig() {
         ManagerConfiguration mockedConfiguration = mock( ManagerConfiguration.class );
         when( mockedConfiguration.getRasterConfigurationType() ).thenReturn( gdal );
         when( mockedConfiguration.getRasterConfigurationCrs() ).thenReturn( "epsg:4326" );
+        when( mockedConfiguration.getSortConfiguration() ).thenReturn( new SortConfiguration() );
         return mockedConfiguration;
     }
 

@@ -129,6 +129,13 @@ public class WorkspaceUtils {
         return instantiateWorkspace( DEFAULT_XPLAN_MANAGER_WORKSPACE );
     }
 
+    public static DeegreeWorkspace instantiateWmsWorkspace( File workspaceDir )
+            throws Exception {
+        if ( workspaceDir != null )
+            return instantiateWorkspace( workspaceDir );
+        return instantiateWorkspace( DEFAULT_XPLANSYN_WMS_WORKSPACE );
+    }
+
     private static DeegreeWorkspace instantiateWorkspaceByNameAndDir( File workspaceDir, String workspaceName )
                     throws WorkspaceException {
         LOG.info( "get workspace instance with name {} from deegree.home or {} ", workspaceName, workspaceDir );

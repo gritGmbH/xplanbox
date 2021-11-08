@@ -25,6 +25,7 @@ import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
+import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.db.ConnectionProvider;
 import org.deegree.db.ConnectionProviderProvider;
 import org.deegree.feature.persistence.FeatureStore;
@@ -54,11 +55,11 @@ public class ManagerWorkspaceWrapper {
 
     private static final String ARCHIVE_SUFFIX = "archive";
 
-    private Workspace managerWorkspace;
+    private DeegreeWorkspace managerWorkspace;
 
     private ManagerConfiguration managerConfiguration;
 
-    public ManagerWorkspaceWrapper( Workspace managerWorkspace, ManagerConfiguration managerConfiguration ) {
+    public ManagerWorkspaceWrapper( DeegreeWorkspace managerWorkspace, ManagerConfiguration managerConfiguration ) {
         this.managerWorkspace = managerWorkspace;
         this.managerConfiguration = managerConfiguration;
     }
@@ -68,11 +69,11 @@ public class ManagerWorkspaceWrapper {
      */
     public void ensureWorkspaceInitialized() {
         try {
-            managerWorkspace.getResource( ConnectionProviderProvider.class, JDBC_POOL_ID );
+            managerWorkspace.getNewWorkspace().getResource( ConnectionProviderProvider.class, JDBC_POOL_ID );
         } catch ( Exception e ) {
             long begin = System.currentTimeMillis();
             LOG.info( "- Initialisiere Feature Stores..." );
-            managerWorkspace.initAll();
+            managerWorkspace.getNewWorkspace().initAll();
             long elapsed = System.currentTimeMillis() - begin;
             LOG.info( "OK [" + elapsed + " ms]" );
         }
@@ -85,7 +86,7 @@ public class ManagerWorkspaceWrapper {
      */
     public Connection openConnection() {
         ensureWorkspaceInitialized();
-        ConnectionProvider resource = managerWorkspace.getResource( ConnectionProviderProvider.class, JDBC_POOL_ID );
+        ConnectionProvider resource = managerWorkspace.getNewWorkspace().getResource( ConnectionProviderProvider.class, JDBC_POOL_ID );
         return resource.getConnection();
     }
 
@@ -125,7 +126,7 @@ public class ManagerWorkspaceWrapper {
 
     private FeatureStore lookupStore( String id ) {
         ensureWorkspaceInitialized();
-        FeatureStore sfs = managerWorkspace.getResource( FeatureStoreProvider.class, id );
+        FeatureStore sfs = managerWorkspace.getNewWorkspace().getResource( FeatureStoreProvider.class, id );
         if ( sfs == null ) {
             LOG.debug( "Feature Store '" + id + "' is not available" );
             throw new IllegalArgumentException( "Wrong FeatureStore Id " + id );
@@ -133,7 +134,7 @@ public class ManagerWorkspaceWrapper {
         return sfs;
     }
 
-    public Workspace getWorkspace() {return this.managerWorkspace;}
+    public DeegreeWorkspace getWorkspace() {return this.managerWorkspace;}
 
     public ManagerConfiguration getConfiguration() {return this.managerConfiguration;}
 

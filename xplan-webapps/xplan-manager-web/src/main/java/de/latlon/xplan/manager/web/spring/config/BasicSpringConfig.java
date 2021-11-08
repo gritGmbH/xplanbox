@@ -29,11 +29,15 @@ import de.latlon.xplan.inspire.plu.transformation.hale.HaleCliInspirePluTransfor
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
+import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.transformation.HaleXplan41ToXplan51Transformer;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.server.service.ManagerReportProvider;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
+import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
@@ -49,6 +53,7 @@ import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.web.server.service.ReportProvider;
+import org.deegree.commons.config.DeegreeWorkspace;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -58,6 +63,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 
+import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLAN_MANAGER_WORKSPACE;
+import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
 import static java.nio.file.Paths.get;
 
 /**
@@ -95,13 +102,15 @@ public class BasicSpringConfig {
     }
 
     @Bean
-    public XPlanManager xPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
-                                      ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
+    public XPlanManager xPlanManager( XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
+                                      ManagerWorkspaceWrapper managerWorkspaceWrapper,
+                                      WorkspaceReloader workspaceReloader,
                                       InspirePluTransformator inspirePluTransformator,
-                                      XPlanGmlTransformer xPlanGmlTransformer )
+                                      XPlanGmlTransformer xPlanGmlTransformer,
+                                      WmsWorkspaceWrapper wmsWorkspaceWrapper)
                     throws Exception {
-        return new XPlanManager( categoryMapper, archiveCreator, managerConfiguration, workspaceReloader,
-                                 inspirePluTransformator, xPlanGmlTransformer );
+        return new XPlanManager( xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
+                                 inspirePluTransformator, xPlanGmlTransformer, wmsWorkspaceWrapper );
     }
 
     @Bean
@@ -147,6 +156,15 @@ public class BasicSpringConfig {
     public ManagerConfiguration managerConfiguration(PropertiesLoader managerPropertiesLoader)
                     throws ConfigurationException {
         return new ManagerConfiguration( managerPropertiesLoader );
+    }
+
+    @Bean
+    public ManagerWorkspaceWrapper managerWorkspaceWrapper( ManagerConfiguration managerConfiguration )
+            throws WorkspaceException {
+        DeegreeWorkspace managerWorkspace = instantiateWorkspace( DEFAULT_XPLAN_MANAGER_WORKSPACE );
+        ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(
+                managerWorkspace, managerConfiguration );
+        return managerWorkspaceWrapper;
     }
 
     @Bean

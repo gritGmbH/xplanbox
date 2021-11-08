@@ -30,11 +30,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
+import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.log.SystemLog;
+import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.workspace.WorkspaceUtils;
+import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
-import org.deegree.feature.persistence.FeatureStoreException;
 
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
@@ -58,9 +62,8 @@ public class XPlanManagerCLI {
     /**
      * Usage
      * 
-     * @param args
-     * @throws Exception
-     * @throws FeatureStoreException
+     * @param args command line arguments
+     * @throws Exception in case of errors
      */
     public static void main( String[] args )
                     throws Exception {
@@ -121,8 +124,14 @@ public class XPlanManagerCLI {
             CategoryMapper categoryMapper = new CategoryMapper( managerConfiguration );
             XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator( categoryMapper );
             WorkspaceReloader workspaceReloader = new WorkspaceReloader();
-            return new XPlanManager( categoryMapper, archiveCreator, managerConfiguration, workspaceReloader, null,
-                                     null );
+            DeegreeWorkspace managerWorkspace = WorkspaceUtils.instantiateManagerWorkspace( null );
+            ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper( managerWorkspace,
+                    managerConfiguration );
+            DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace( null );
+            WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper( wmsWorkspace );
+            XPlanDao xplanDao = new XPlanDao( managerWorkspaceWrapper, categoryMapper, managerConfiguration );
+            return new XPlanManager( xplanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null,
+                                     null, wmsWorkspaceWrapper);
         } catch ( Exception e ) {
             endWithFatalError( e.getMessage() );
         }
@@ -389,7 +398,7 @@ public class XPlanManagerCLI {
     /**
      * TODO refactoring required: change modifier to private, resolve usage by using types
      * 
-     * @param msg
+     * @param msg message
      */
     @Deprecated
     private static void endWithFatalError( String msg ) {

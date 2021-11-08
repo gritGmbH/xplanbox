@@ -25,9 +25,11 @@ import com.google.common.io.Files;
 import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.XPlanManager;
+import de.latlon.xplan.manager.configuration.InternalIdRetrieverConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.PlanNotFoundException;
@@ -63,6 +65,8 @@ import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.io.File;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -73,6 +77,7 @@ import java.util.List;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
+import static de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType.gdal;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyString;
@@ -104,16 +109,14 @@ public class TestContext {
         return jerseyConfig;
     }
 
-    @Bean
-    @Primary
-    public XPlanManager xPlanManager( XPlanArchiveCreator archiveCreator,
-                                      ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
+    @Bean @Primary
+    public XPlanManager xPlanManager( XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
+                                      ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
                                       InspirePluTransformator inspirePluTransformator,
-                                      XPlanGmlTransformer xPlanGmlTransformer,
-                                      ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDao xPlanDao )
+                                      XPlanGmlTransformer xPlanGmlTransformer, WmsWorkspaceWrapper wmsWorkspaceWrapper )
                     throws Exception {
-        return new XPlanManager( archiveCreator, managerConfiguration, workspaceReloader,
-                                 inspirePluTransformator, xPlanGmlTransformer, managerWorkspaceWrapper, xPlanDao );
+        return new XPlanManager( xPlanDao, archiveCreator, managerWorkspaceWrapper , workspaceReloader,
+                                 inspirePluTransformator, xPlanGmlTransformer, wmsWorkspaceWrapper );
     }
 
     @Bean @Primary
@@ -126,7 +129,7 @@ public class TestContext {
     }
 
     @Bean @Primary
-    public ManagerWorkspaceWrapper managerWorkspaceWrapper()
+    public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
                     throws WorkspaceException {
         ManagerWorkspaceWrapper managerWorkspaceWrapper = mock( ManagerWorkspaceWrapper.class );
         FeatureStore featureStore41 = mock( FeatureStore.class );
@@ -139,19 +142,45 @@ public class TestContext {
                                                    any( PlanStatus.class ) ) ).thenReturn( featureStore41 );
         when( managerWorkspaceWrapper.lookupStore( eq( XPLAN_51 ), any( XPlanAde.class ),
                                                    any( PlanStatus.class ) ) ).thenReturn( featureStore51 );
+        when( managerWorkspaceWrapper.getConfiguration() ).thenReturn( managerConfiguration() );
         return managerWorkspaceWrapper;
     }
 
     @Bean @Primary
-    public XPlanRasterManager xPlanRasterManager(ManagerConfiguration managerConfiguration )
-            throws WorkspaceException {
-        DeegreeWorkspace deegreeWorkspace = mock ( DeegreeWorkspace.class );
+    public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
+                                                 ManagerConfiguration managerConfiguration ) throws WorkspaceException {
+        return new XPlanRasterManager( wmsWorkspaceWrapper, managerConfiguration );
+    }
+
+    @Bean @Primary
+    public WmsWorkspaceWrapper wmsWorkspaceWrapper() throws WorkspaceException, IOException, URISyntaxException {
+        DeegreeWorkspace deegreeWorkspace = mock( DeegreeWorkspace.class );
         DeegreeWorkspaceWrapper wmsWorkspace = mock( DeegreeWorkspaceWrapper.class );
         when(wmsWorkspace.getWorkspaceInstance()).thenReturn( deegreeWorkspace );
-        when(deegreeWorkspace.getLocation()).thenReturn(Files.createTempDir().getAbsoluteFile());
+        File tempWorkspaceDir = Files.createTempDir().getAbsoluteFile();
+        initWorkspace( tempWorkspaceDir );
+        when(deegreeWorkspace.getLocation()).thenReturn( tempWorkspaceDir );
+        return new WmsWorkspaceWrapper(wmsWorkspace.getWorkspaceInstance());
+    }
 
-        WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper( wmsWorkspace.getWorkspaceInstance() );
-        return new XPlanRasterManager( wmsWorkspaceWrapper, managerConfiguration );
+    private void initWorkspace(File dir) throws IOException, URISyntaxException {
+        File themesDir = new File(dir, "themes");
+        java.nio.file.Files.createDirectory(themesDir.toPath());
+        Files.copy(new File(getClass().getResource("/bplanraster.xml").toURI()), new File(themesDir, "bplanraster.xml"));
+        Files.copy(new File(getClass().getResource("/bplanraster.xml").toURI()), new File(themesDir, "bplanpreraster.xml"));
+        Files.copy(new File(getClass().getResource("/bplanraster.xml").toURI()), new File(themesDir, "bplanarchiveraster.xml"));
+        Files.copy(new File(getClass().getResource("/fplanraster.xml").toURI()), new File(themesDir, "fplanraster.xml"));
+        Files.copy(new File(getClass().getResource("/fplanraster.xml").toURI()), new File(themesDir, "fplanpreraster.xml"));
+        Files.copy(new File(getClass().getResource("/fplanraster.xml").toURI()), new File(themesDir, "fplanarchiveraster.xml"));
+        Files.copy(new File(getClass().getResource("/rplanraster.xml").toURI()), new File(themesDir, "rplanraster.xml"));
+        Files.copy(new File(getClass().getResource("/rplanraster.xml").toURI()), new File(themesDir, "rplanpreraster.xml"));
+        Files.copy(new File(getClass().getResource("/rplanraster.xml").toURI()), new File(themesDir, "rplanarchiveraster.xml"));
+        Files.copy(new File(getClass().getResource("/lplanraster.xml").toURI()), new File(themesDir, "lplanraster.xml"));
+        Files.copy(new File(getClass().getResource("/lplanraster.xml").toURI()), new File(themesDir, "lplanpreraster.xml"));
+        Files.copy(new File(getClass().getResource("/lplanraster.xml").toURI()), new File(themesDir, "lplanarchiveraster.xml"));
+        Files.copy(new File(getClass().getResource("/soplanraster.xml").toURI()), new File(themesDir, "soplanraster.xml"));
+        Files.copy(new File(getClass().getResource("/soplanraster.xml").toURI()), new File(themesDir, "soplanpreraster.xml"));
+        Files.copy(new File(getClass().getResource("/soplanraster.xml").toURI()), new File(themesDir, "soplanarchiveraster.xml"));
     }
 
     @Bean @Primary
@@ -165,7 +194,7 @@ public class TestContext {
         when(xplanDao.getXPlanById(1)).thenReturn(mockPlan41);
         when(xplanDao.getXPlanById(123)).thenReturn(mockPlan41);
         when(xplanDao.getXPlanById(2)).thenReturn(mockPlan51);
-        when( xplanDao.retrieveXPlanArtefact( "2" ) ).thenReturn(
+        when(xplanDao.retrieveXPlanArtefact( "2" )).thenReturn(
                         getClass().getResourceAsStream( "/xplan51.gml" ) ).thenReturn(
                         getClass().getResourceAsStream( "/xplan51.gml" ) );
         List<XPlan> mockList = new ArrayList<>();
@@ -187,7 +216,7 @@ public class TestContext {
                                                  WorkspaceReloader workspaceReloader,
                                                  XPlanGmlTransformer xPlanGmlTransformer )
             throws Exception {
-        XPlanInsertManager xplanInsertManager = mock ( XPlanInsertManager.class );
+        XPlanInsertManager xplanInsertManager = mock( XPlanInsertManager.class );
         when(xplanInsertManager.importPlan(any(), any(), anyBoolean(), anyBoolean(), anyBoolean(), any(), anyString(), any() )).thenReturn(123);
         return xplanInsertManager;
     }
@@ -197,6 +226,23 @@ public class TestContext {
         XPlanExporter xPlanExporter = mock(XPlanExporter.class);
         doNothing().when(xPlanExporter).export(isA(OutputStream.class), isA(XPlanArchiveContent.class));
         return xPlanExporter;
+    }
+
+    @Bean @Primary
+    public ManagerConfiguration managerConfiguration() {
+        ManagerConfiguration mockedConfiguration = mock( ManagerConfiguration.class );
+        when( mockedConfiguration.getRasterConfigurationType() ).thenReturn( gdal );
+        when( mockedConfiguration.getRasterConfigurationCrs() ).thenReturn( "EPSG:25832" );
+        when( mockedConfiguration.getSortConfiguration() ).thenReturn( new SortConfiguration() );
+        when( mockedConfiguration.getInternalIdRetrieverConfiguration() ).thenReturn( new InternalIdRetrieverConfiguration() );
+        return mockedConfiguration;
+    }
+
+    @Bean @Primary
+    public WorkspaceReloader workspaceReloader() {
+        WorkspaceReloader workspaceReloader = mock( WorkspaceReloader.class );
+        when( workspaceReloader.reloadWorkspace( any() )).thenReturn( true );
+        return workspaceReloader;
     }
 
     private final List<Object> createdMocks = new LinkedList<Object>();

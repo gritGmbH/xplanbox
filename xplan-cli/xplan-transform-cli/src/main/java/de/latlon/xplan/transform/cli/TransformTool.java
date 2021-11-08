@@ -170,13 +170,13 @@ public class TransformTool {
         return TYPE.valueOf( type.toUpperCase() );
     }
 
-    private static Workspace initWorkspace( String workspaceName )
+    private static DeegreeWorkspace initWorkspace( String workspaceName )
                     throws ResourceInitException {
         DeegreeWorkspace workspace = DeegreeWorkspace.getInstance( workspaceName );
         File location = workspace.getLocation();
         LOG.info( "Initialise Workspace " + location );
         workspace.initAll();
-        return workspace.getNewWorkspace();
+        return workspace;
     }
 
     private static XPlanDao createXplanDao( String workspaceName, ManagerConfiguration managerConfiguration )
@@ -191,14 +191,14 @@ public class TransformTool {
                                                                           String configurationDirectory )
                     throws ResourceInitException, ConfigurationException {
         ManagerConfiguration managerConfiguration = createManagerConfiguration( configurationDirectory );
-        Workspace workspace = initWorkspace( workspaceName );
+        DeegreeWorkspace workspace = initWorkspace( workspaceName );
         return new ManagerWorkspaceWrapper( workspace, managerConfiguration );
     }
 
     private static ManagerWorkspaceWrapper createManagerWorkspaceWrapper( String workspaceName,
                                                                           ManagerConfiguration managerConfiguration )
                     throws ResourceInitException {
-        Workspace workspace = initWorkspace( workspaceName );
+        DeegreeWorkspace workspace = initWorkspace( workspaceName );
         return new ManagerWorkspaceWrapper( workspace, managerConfiguration );
     }
 

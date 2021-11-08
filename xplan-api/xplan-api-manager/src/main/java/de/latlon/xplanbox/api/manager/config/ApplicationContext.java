@@ -82,13 +82,13 @@ public class ApplicationContext {
     private static final String RULES_DIRECTORY = "/rules";
 
     @Bean
-    public XPlanManager xPlanManager( CategoryMapper categoryMapper, XPlanArchiveCreator archiveCreator,
-                                      ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
+    public XPlanManager xPlanManager( XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
+                                      ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
                                       InspirePluTransformator inspirePluTransformator,
-                                      XPlanGmlTransformer xPlanGmlTransformer )
+                                      XPlanGmlTransformer xPlanGmlTransformer, WmsWorkspaceWrapper wmsWorkspaceWrapper )
                     throws Exception {
-        return new XPlanManager( categoryMapper, archiveCreator, managerConfiguration, workspaceReloader,
-                                 inspirePluTransformator, xPlanGmlTransformer );
+        return new XPlanManager( xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
+                                 inspirePluTransformator, xPlanGmlTransformer, wmsWorkspaceWrapper );
     }
 
     @Bean
@@ -139,15 +139,22 @@ public class ApplicationContext {
                     throws WorkspaceException {
         DeegreeWorkspace managerWorkspace = instantiateWorkspace( DEFAULT_XPLAN_MANAGER_WORKSPACE );
         ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(
-                        managerWorkspace.getNewWorkspace(), managerConfiguration );
+                        managerWorkspace, managerConfiguration );
         return managerWorkspaceWrapper;
     }
 
     @Bean
-    public XPlanRasterManager xPlanRasterManager( ManagerConfiguration managerConfiguration )
-                    throws WorkspaceException {
+    public WmsWorkspaceWrapper wmsWorkspaceWrapper()
+            throws WorkspaceException {
         DeegreeWorkspaceWrapper wmsWorkspace = new DeegreeWorkspaceWrapper( DEFAULT_XPLANSYN_WMS_WORKSPACE );
         WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper( wmsWorkspace.getWorkspaceInstance() );
+        return wmsWorkspaceWrapper;
+    }
+
+    @Bean
+    public XPlanRasterManager xPlanRasterManager( WmsWorkspaceWrapper wmsWorkspaceWrapper,
+                                                  ManagerConfiguration managerConfiguration )
+                    throws WorkspaceException {
         return new XPlanRasterManager( wmsWorkspaceWrapper, managerConfiguration );
     }
 
