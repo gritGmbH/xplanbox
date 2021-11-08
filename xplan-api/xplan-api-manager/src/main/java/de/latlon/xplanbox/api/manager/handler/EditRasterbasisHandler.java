@@ -172,7 +172,12 @@ public class EditRasterbasisHandler extends EditHandler {
     private static String createRasterBasisId( RasterReference rasterReference ) {
         if ( rasterReference.getFeatureId() != null )
             return rasterReference.getFeatureId();
-        String id = rasterReference.getReferenzName() + "-" + rasterReference.getReference();
-        return id.replaceAll( "[^a-zA-Z0-9\\-_]", "" );
+        StringBuilder id = new StringBuilder();
+        if ( rasterReference.getReferenzName() != null )
+            id.append( rasterReference.getReferenzName() );
+        id.append( '-' );
+        if ( rasterReference.getReference() != null )
+            id.append( rasterReference.getReference() );
+        return id.toString().replaceAll( "[^a-zA-Z0-9\\-_]", "" );
     }
 }

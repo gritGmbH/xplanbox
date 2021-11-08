@@ -1,10 +1,12 @@
 package de.latlon.xplanbox.api.manager.handler;
 
 import de.latlon.xplan.manager.web.shared.XPlan;
+import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplanbox.api.manager.exception.InvalidDokumentId;
 import de.latlon.xplanbox.api.manager.v1.model.Dokument;
+import de.latlon.xplanbox.api.manager.v1.model.Referenz;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Singleton;
@@ -146,7 +148,12 @@ public class EditDokumentHandler extends EditHandler {
     }
 
     private static String createDokumentId( Reference reference ) {
-        String id = reference.getReferenzName() + "-" + reference.getReference();
-        return id.replaceAll( "[^a-zA-Z0-9\\-_]", "" );
+        StringBuilder id = new StringBuilder();
+        if ( reference.getReferenzName() != null )
+            id.append( reference.getReferenzName() );
+        id.append( '-' );
+        if ( reference.getReference() != null )
+            id.append( reference.getReference() );
+        return id.toString().replaceAll( "[^a-zA-Z0-9\\-_]", "" );
     }
 }
