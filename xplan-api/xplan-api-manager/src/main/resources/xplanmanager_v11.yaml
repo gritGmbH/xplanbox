@@ -23,6 +23,312 @@ tags:
       description: xPlanBox
       url: ''
 paths:
+  /plan/{planId}/aenderung/:
+    get:
+      tags:
+        - edit
+      operationId: getAenderung
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan basisdaten to be returned
+          required: true
+          schema:
+            type: string
+          example: 123
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aenderungen'
+    put:
+      tags:
+        - edit
+      operationId: replaceAenderung
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Aenderungen'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aenderungen'
+  /plan/{planId}/text/:
+    get:
+      tags:
+        - edit
+      operationId: getTexte
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Text'
+    post:
+      tags:
+        - edit
+      operationId: addText
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                textmodel:
+                  $ref: '#/components/schemas/Text'
+                datei:
+                  type: string
+                  format: binary
+            encoding:
+              textmodel:
+                contentType: application/json
+              datei:
+                contentType: application/pdf, application/msword, application/odt
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Text'
+  /plans:
+    get:
+      tags:
+        - search
+      summary: Search for plan by name
+      description: Returns a list of plans where the plan name contains the query string case insensitve
+      operationId: findByName
+      parameters:
+        - name: planName
+          in: query
+          description: The name of the plan to search for
+          schema:
+            type: string
+          example: bplan_123, fplan-123, rplan20200803
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlanInfo'
+  /plan/{planId}/gueltigkeit/:
+    get:
+      tags:
+        - edit
+      operationId: getGueltigkeit
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan basisdaten to be returned
+          required: true
+          schema:
+            type: string
+          example: 123
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Zeitraum'
+    put:
+      tags:
+        - edit
+      operationId: replaceGueltigkeit
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Zeitraum'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Zeitraum'
+  /plan/{planId}/rasterbasis:
+    get:
+      tags:
+        - edit
+      operationId: getRasterBasis
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rasterbasis'
+    post:
+      tags:
+        - edit
+      operationId: addRasterBasis
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                rasterbasismodel:
+                  $ref: '#/components/schemas/Rasterbasis'
+                rasterdatei:
+                  type: string
+                  format: binary
+                georeferenzdatei:
+                  type: string
+                  format: binary
+            encoding:
+              rasterbasismodel:
+                contentType: application/json
+              rasterdatei:
+                contentType: image/tiff, image/png
+              georeferenzdatei:
+                contentType: text/plain
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rasterbasis'
+  /plan/{planId}/text/{id}:
+    get:
+      tags:
+        - edit
+      operationId: getTextById
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: id of the GML element to be returned
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Text'
+    put:
+      tags:
+        - edit
+      operationId: replaceTextById
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be updated
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: id of the GML element to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/pdf:
+            schema:
+              type: string
+              format: binary
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Text'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Text'
+    delete:
+      tags:
+        - edit
+      operationId: deleteTextById
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be deleted
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: id of the GML element to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Text'
   /plan:
     post:
       tags:
@@ -108,6 +414,104 @@ paths:
                 $ref: '#/components/schemas/ValidationReport'
         '406':
           description: Invalid content only ZIP with XPlanGML is accepted
+  /plan/{planId}/basisdaten/:
+    get:
+      tags:
+        - edit
+      operationId: getBasisdaten
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan basisdaten to be returned
+          required: true
+          schema:
+            type: string
+          example: 123
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basisdaten'
+    put:
+      tags:
+        - edit
+      operationId: replaceBasisdaten
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Basisdaten'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basisdaten'
+  /plan/{planId}/dokument/:
+    get:
+      tags:
+        - edit
+      operationId: getDokumente
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dokument'
+    post:
+      tags:
+        - edit
+      operationId: addDokument
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                dokumentmodel:
+                  $ref: '#/components/schemas/Dokument'
+                datei:
+                  type: string
+                  format: binary
+            encoding:
+              dokumentmodel:
+                contentType: application/json
+              datei:
+                contentType: application/pdf, application/msword, application/odt
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dokument'
   /plan/{planId}:
     get:
       tags:
@@ -166,467 +570,45 @@ paths:
                 $ref: '#/components/schemas/StatusMessage'
         '404':
           description: Invalid plan ID, plan not found
-  /plan/{planId}/basisdaten/:
+  /info:
+    get:
+      summary: Show system and application configuration
+      description: Returns the system and application configuration
+      operationId: showConfig
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagerSystemConfig'
+  /plan/name/{planName}:
     get:
       tags:
-        - edit
-      operationId: getBasisdaten
+        - search
+      summary: Get plan identified by the given planName
+      description: Returns a list of plans which match exactly the given planName
+      operationId: getByName
       parameters:
-        - name: planId
+        - name: planName
           in: path
-          description: planId of the plan basisdaten to be returned
+          description: planName of the plan to be returned
           required: true
           schema:
+            pattern: ^[A-Za-z0-9_-]*$
             type: string
-          example: 123
+          example: bplan_123, fplan-123, rplan20200803
       responses:
         '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Basisdaten'
-    put:
-      tags:
-        - edit
-      operationId: replaceBasisdaten
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be returned
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Basisdaten'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Basisdaten'
-  /plan/{planId}/aenderung/:
-    get:
-      tags:
-        - edit
-      operationId: getAenderung
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan basisdaten to be returned
-          required: true
-          schema:
-            type: string
-          example: 123
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Aenderungen'
-    put:
-      tags:
-        - edit
-      operationId: replaceAenderung
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be returned
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Aenderungen'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Aenderungen'
-  /plan/{planId}/gueltigkeit/:
-    get:
-      tags:
-        - edit
-      operationId: getGueltigkeit
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan basisdaten to be returned
-          required: true
-          schema:
-            type: string
-          example: 123
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Zeitraum'
-    put:
-      tags:
-        - edit
-      operationId: replaceGueltigkeit
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be returned
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Zeitraum'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Zeitraum'
-  /plan/{planId}/dokument/:
-    get:
-      tags:
-        - edit
-      operationId: getDokumente
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be returned
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: successful operation
+          description: OK
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Dokument'
-    post:
-      tags:
-        - edit
-      operationId: addDokument
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be returned
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                dokumentmodel:
-                  $ref: '#/components/schemas/Dokument'
-                datei:
-                  type: string
-                  format: binary
-            encoding:
-              dokumentmodel:
-                contentType: application/json
-              datei:
-                contentType: application/pdf, application/msword, application/odt
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Dokument'
-  /plan/{planId}/dokument/{id}:
-    get:
-      tags:
-        - edit
-      operationId: getDokumentById
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be returned
-          required: true
-          schema:
-            type: string
-        - name: id
-          in: path
-          description: id of the GML element to be returned
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/pdf:
-              schema:
-                type: string
-                format: binary
-    put:
-      tags:
-        - edit
-      operationId: replaceDokumentById
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be returned
-          required: true
-          schema:
-            type: string
-        - name: id
-          in: path
-          description: id of the GML element to be updated
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/pdf:
-            schema:
-              type: string
-              format: binary
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Dokument'
-    delete:
-      tags:
-        - edit
-      operationId: deleteDokumentById
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be deleted
-          required: true
-          schema:
-            type: string
-        - name: id
-          in: path
-          description: id of the GML element to be deleted
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Dokument'
-  /plan/{planId}/text/:
-    get:
-      tags:
-        - edit
-      operationId: getTexte
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be returned
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Text'
-    post:
-      tags:
-        - edit
-      operationId: addText
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be returned
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                textmodel:
-                  $ref: '#/components/schemas/Text'
-                datei:
-                  type: string
-                  format: binary
-            encoding:
-              textmodel:
-                contentType: application/json
-              datei:
-                contentType: application/pdf, application/msword, application/odt
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Text'
-  /plan/{planId}/text/{id}:
-    get:
-      tags:
-        - edit
-      operationId: getTextById
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be returned
-          required: true
-          schema:
-            type: string
-        - name: id
-          in: path
-          description: id of the GML element to be returned
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Text'
-    put:
-      tags:
-        - edit
-      operationId: replaceTextById
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be updated
-          required: true
-          schema:
-            type: string
-        - name: id
-          in: path
-          description: id of the GML element to be updated
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/pdf:
-            schema:
-              type: string
-              format: binary
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Text'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Text'
-    delete:
-      tags:
-        - edit
-      operationId: deleteTextById
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be deleted
-          required: true
-          schema:
-            type: string
-        - name: id
-          in: path
-          description: id of the GML element to be deleted
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Text'
-  /plan/{planId}/rasterbasis:
-    get:
-      tags:
-        - edit
-      operationId: getRasterBasis
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be returned
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Rasterbasis'
-    post:
-      tags:
-        - edit
-      operationId: addRasterBasis
-      parameters:
-        - name: planId
-          in: path
-          description: planId of the plan to be returned
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                rasterbasismodel:
-                  $ref: '#/components/schemas/Rasterbasis'
-                rasterdatei:
-                  type: string
-                  format: binary
-                georeferenzdatei:
-                  type: string
-                  format: binary
-            encoding:
-              rasterbasismodel:
-                contentType: application/json
-              rasterdatei:
-                contentType: image/tiff, image/png
-              georeferenzdatei:
-                contentType: text/plain
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Rasterbasis'
+                  $ref: '#/components/schemas/PlanInfo'
+        '404':
+          description: Invalid plan name, plan not found
   /plan/{planId}/rasterbasis/{id}:
     get:
       tags:
@@ -717,68 +699,86 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rasterbasis'
-  /info:
+  /plan/{planId}/dokument/{id}:
     get:
-      summary: Show system and application configuration
-      description: Returns the system and application configuration
-      operationId: showConfig
+      tags:
+        - edit
+      operationId: getDokumentById
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: id of the GML element to be returned
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+    put:
+      tags:
+        - edit
+      operationId: replaceDokumentById
+      parameters:
+        - name: planId
+          in: path
+          description: planId of the plan to be returned
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: id of the GML element to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/pdf:
+            schema:
+              type: string
+              format: binary
       responses:
         '200':
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ManagerSystemConfig'
-  /plan/name/{planName}:
-    get:
+                $ref: '#/components/schemas/Dokument'
+    delete:
       tags:
-        - search
-      summary: Get plan identified by the given planName
-      description: Returns a list of plans which match exactly the given planName
-      operationId: getByName
+        - edit
+      operationId: deleteDokumentById
       parameters:
-        - name: planName
+        - name: planId
           in: path
-          description: planName of the plan to be returned
+          description: planId of the plan to be deleted
           required: true
           schema:
-            pattern: ^[A-Za-z0-9_-]*$
             type: string
-          example: bplan_123, fplan-123, rplan20200803
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PlanInfo'
-        '404':
-          description: Invalid plan name, plan not found
-  /plans:
-    get:
-      tags:
-        - search
-      summary: Search for plan by name
-      description: Returns a list of plans where the plan name contains the query string case insensitve
-      operationId: findByName
-      parameters:
-        - name: planName
-          in: query
-          description: The name of the plan to search for
+        - name: id
+          in: path
+          description: id of the GML element to be deleted
+          required: true
           schema:
             type: string
-          example: bplan_123, fplan-123, rplan20200803
       responses:
         '200':
-          description: OK
+          description: successful operation
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PlanInfo'
+                $ref: '#/components/schemas/Dokument'
   /:
     get:
       summary: OpenAPI document
@@ -844,6 +844,47 @@ components:
         source:
           type: string
           example: https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.9.14.zip
+    Aenderung:
+      type: object
+      properties:
+        planName:
+          type: string
+        rechtscharakter:
+          type: string
+        nummer:
+          type: string
+    Aenderungen:
+      type: object
+      properties:
+        aendert:
+          type: array
+          items:
+            $ref: '#/components/schemas/Aenderung'
+        wurdeGeaendertVon:
+          type: array
+          items:
+            $ref: '#/components/schemas/Aenderung'
+    Basisdaten:
+      type: object
+      properties:
+        name:
+          type: string
+        beschreibung:
+          type: string
+        planArt:
+          type: string
+        sonstPlanArt:
+          type: string
+        verfahren:
+          type: string
+        rechtsstand:
+          type: string
+        rechtsverordnungsDatum:
+          type: string
+        technHerstellDatum:
+          type: string
+        untergangsDatum:
+          type: string
     StatusMessage:
       type: object
       properties:
@@ -1086,67 +1127,6 @@ components:
           type: array
           items:
             type: string
-    Basisdaten:
-      type: object
-      properties:
-        name:
-          type: string
-        beschreibung:
-          type: string
-        planArt:
-          type: string
-        sonstPlanArt:
-          type: string
-        verfahren:
-          type: string
-        rechtsstand:
-          type: string
-        rechtsverordnungsDatum:
-          type: string
-        technHerstellDatum:
-          type: string
-        untergangsDatum:
-          type: string
-    Zeitraum:
-      type: object
-      properties:
-        start:
-          type: string
-        ende:
-          type: string
-    Aenderungen:
-      type: object
-      properties:
-        aendert:
-          type: array
-          items:
-            $ref: '#/components/schemas/Aenderung'
-        wurdeGeaendertVon:
-          type: array
-          items:
-            $ref: '#/components/schemas/Aenderung'
-    Aenderung:
-      type: object
-      properties:
-        planName:
-          type: string
-        rechtscharakter:
-          type: string
-        nummer:
-          type: string
-    Text:
-      type: object
-      properties:
-        schluessel:
-          type: string
-        gesetzlicheGrundlage:
-          type: string
-        text:
-          type: string
-        refText:
-          $ref: '#/components/schemas/Referenz'
-        rechtscharakter:
-          type: string
     Dokument:
       allOf:
         - $ref: '#/components/schemas/Referenz'
@@ -1154,6 +1134,13 @@ components:
           properties:
             typ:
               type: string
+    Zeitraum:
+      type: object
+      properties:
+        start:
+          type: string
+        ende:
+          type: string
     Rasterbasis:
       allOf:
         - $ref: '#/components/schemas/Referenz'
@@ -1177,4 +1164,17 @@ components:
         beschreibung:
           type: string
         datum:
+          type: string
+    Text:
+      type: object
+      properties:
+        schluessel:
+          type: string
+        gesetzlicheGrundlage:
+          type: string
+        text:
+          type: string
+        refText:
+          $ref: '#/components/schemas/Referenz'
+        rechtscharakter:
           type: string
