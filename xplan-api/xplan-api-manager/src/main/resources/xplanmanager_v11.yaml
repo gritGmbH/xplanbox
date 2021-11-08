@@ -23,7 +23,7 @@ tags:
       description: xPlanBox
       url: ''
 paths:
-  /plan/{planId}/aenderung/:
+  /plan/{planId}/aenderungen:
     get:
       tags:
         - edit
@@ -31,7 +31,7 @@ paths:
       parameters:
         - name: planId
           in: path
-          description: planId of the plan basisdaten to be returned
+          description: planId of the plan to be returned
           required: true
           schema:
             type: string
@@ -43,6 +43,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Aenderungen'
+        '404':
+          description: Invalid plan ID, plan not found
     put:
       tags:
         - edit
@@ -54,6 +56,7 @@ paths:
           required: true
           schema:
             type: string
+          example: 123
       requestBody:
         content:
           application/json:
@@ -66,7 +69,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Aenderungen'
-  /plan/{planId}/text/:
+        '404':
+          description: Invalid plan ID, plan not found
+  /plan/{planId}/text:
     get:
       tags:
         - edit
@@ -78,6 +83,7 @@ paths:
           required: true
           schema:
             type: string
+          example: 123
       responses:
         '200':
           description: successful operation
@@ -87,6 +93,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Text'
+        '404':
+          description: Invalid plan ID, plan not found
     post:
       tags:
         - edit
@@ -94,10 +102,11 @@ paths:
       parameters:
         - name: planId
           in: path
-          description: planId of the plan to be returned
+          description: ID of the plan to add dokumente
           required: true
           schema:
             type: string
+          example: 123
       requestBody:
         content:
           multipart/form-data:
@@ -121,6 +130,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Text'
+        '404':
+          description: Invalid plan ID, plan not found
   /plans:
     get:
       tags:
@@ -144,7 +155,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PlanInfo'
-  /plan/{planId}/gueltigkeit/:
+  /plan/{planId}/gueltigkeit:
     get:
       tags:
         - edit
@@ -164,6 +175,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Zeitraum'
+        '404':
+          description: Invalid plan ID, plan not found
     put:
       tags:
         - edit
@@ -175,6 +188,7 @@ paths:
           required: true
           schema:
             type: string
+          example: 123
       requestBody:
         content:
           application/json:
@@ -187,6 +201,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Zeitraum'
+        '404':
+          description: Invalid plan ID, plan not found
   /plan/{planId}/rasterbasis:
     get:
       tags:
@@ -199,6 +215,7 @@ paths:
           required: true
           schema:
             type: string
+          example: 123
       responses:
         '200':
           description: successful operation
@@ -208,6 +225,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Rasterbasis'
+        '404':
+          description: Invalid plan ID, plan not found
     post:
       tags:
         - edit
@@ -215,10 +234,11 @@ paths:
       parameters:
         - name: planId
           in: path
-          description: planId of the plan to be returned
+          description: ID of the plan to add dokumente
           required: true
           schema:
             type: string
+          example: 123
       requestBody:
         content:
           multipart/form-data:
@@ -247,6 +267,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rasterbasis'
+        '404':
+          description: Invalid plan ID, plan not found
   /plan/{planId}/text/{id}:
     get:
       tags:
@@ -259,12 +281,14 @@ paths:
           required: true
           schema:
             type: string
+          example: 123
         - name: id
           in: path
-          description: id of the GML element to be returned
+          description: id of the Text to be returned (GML Id of the feature)
           required: true
           schema:
             type: string
+          example: GML_ID_123
       responses:
         '200':
           description: successful operation
@@ -272,6 +296,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Text'
+        '404':
+          description: Invalid plan ID or Text ID, plan or Text not found
     put:
       tags:
         - edit
@@ -283,12 +309,14 @@ paths:
           required: true
           schema:
             type: string
+          example: 123
         - name: id
           in: path
-          description: id of the GML element to be updated
+          description: id of the Text to be updated (GML Id of the feature)
           required: true
           schema:
             type: string
+          example: GML_ID_123
       requestBody:
         content:
           application/pdf:
@@ -305,6 +333,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Text'
+        '404':
+          description: Invalid plan ID or Text ID, plan or Text not found
     delete:
       tags:
         - edit
@@ -316,12 +346,14 @@ paths:
           required: true
           schema:
             type: string
+          example: 123
         - name: id
           in: path
-          description: id of the GML element to be deleted
+          description: id of the Text to be deleted (GML Id of the feature)
           required: true
           schema:
             type: string
+          example: GML_ID_123
       responses:
         '200':
           description: successful operation
@@ -329,6 +361,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Text'
+        '404':
+          description: Invalid plan ID or Text ID, plan or Text not found
   /plan:
     post:
       tags:
@@ -414,7 +448,7 @@ paths:
                 $ref: '#/components/schemas/ValidationReport'
         '406':
           description: Invalid content only ZIP with XPlanGML is accepted
-  /plan/{planId}/basisdaten/:
+  /plan/{planId}/basisdaten:
     get:
       tags:
         - edit
@@ -434,6 +468,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Basisdaten'
+        '404':
+          description: Invalid plan ID, plan not found
     put:
       tags:
         - edit
@@ -445,6 +481,7 @@ paths:
           required: true
           schema:
             type: string
+          example: 123
       requestBody:
         content:
           application/json:
@@ -457,7 +494,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Basisdaten'
-  /plan/{planId}/dokument/:
+        '404':
+          description: Invalid plan ID, plan not found
+  /plan/{planId}/dokument:
     get:
       tags:
         - edit
@@ -465,10 +504,11 @@ paths:
       parameters:
         - name: planId
           in: path
-          description: planId of the plan to be returned
+          description: planId of the plan to return dokumente
           required: true
           schema:
             type: string
+          example: 123
       responses:
         '200':
           description: successful operation
@@ -478,6 +518,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Dokument'
+        '404':
+          description: Invalid plan ID, plan not found
     post:
       tags:
         - edit
@@ -485,10 +527,11 @@ paths:
       parameters:
         - name: planId
           in: path
-          description: planId of the plan to be returned
+          description: ID of the plan to add dokumente
           required: true
           schema:
             type: string
+          example: 123
       requestBody:
         content:
           multipart/form-data:
@@ -512,6 +555,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Dokument'
+        '404':
+          description: Invalid plan ID or dokument ID, plan or dokument not found
   /plan/{planId}:
     get:
       tags:
@@ -621,12 +666,14 @@ paths:
           required: true
           schema:
             type: string
+          example: 123
         - name: id
           in: path
-          description: id of the GML element to be returned
+          description: 'id of the Rasterbasis to be returned (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed'
           required: true
           schema:
             type: string
+          example: Referenz123-
       responses:
         '200':
           description: successful operation
@@ -634,6 +681,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rasterbasis'
+        '404':
+          description: Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found
     put:
       tags:
         - edit
@@ -645,12 +694,14 @@ paths:
           required: true
           schema:
             type: string
+          example: 123
         - name: id
           in: path
-          description: id of the GML element to be updated
+          description: 'id of the Rasterbasis to be updated (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed'
           required: true
           schema:
             type: string
+          example: Referenz123-
       requestBody:
         content:
           multipart/form-data:
@@ -675,6 +726,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rasterbasis'
+        '404':
+          description: Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found
     delete:
       tags:
         - edit
@@ -686,12 +739,14 @@ paths:
           required: true
           schema:
             type: string
+          example: 123
         - name: id
           in: path
-          description: id of the GML element to be deleted
+          description: 'id of the Rasterbasis to be deleted (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed'
           required: true
           schema:
             type: string
+          example: Referenz123-
       responses:
         '200':
           description: successful operation
@@ -699,6 +754,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rasterbasis'
+        '404':
+          description: Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found
   /plan/{planId}/dokument/{id}:
     get:
       tags:
@@ -707,16 +764,18 @@ paths:
       parameters:
         - name: planId
           in: path
-          description: planId of the plan to be returned
+          description: planId of the plan to get dokument
           required: true
           schema:
             type: string
+          example: 123
         - name: id
           in: path
-          description: id of the GML element to be returned
+          description: 'id of the Dokument to be returned (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)'
           required: true
           schema:
             type: string
+          example: Legende123-
       responses:
         '200':
           description: successful operation
@@ -725,6 +784,8 @@ paths:
               schema:
                 type: string
                 format: binary
+        '404':
+          description: Invalid plan ID or dokument ID, plan or dokument not found
     put:
       tags:
         - edit
@@ -732,16 +793,18 @@ paths:
       parameters:
         - name: planId
           in: path
-          description: planId of the plan to be returned
+          description: planId of the plan to replace dokument
           required: true
           schema:
             type: string
+          example: 123
         - name: id
           in: path
-          description: id of the GML element to be updated
+          description: 'id of the Dokument to be updated (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)'
           required: true
           schema:
             type: string
+          example: Legende123-
       requestBody:
         content:
           application/pdf:
@@ -755,6 +818,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Dokument'
+        '404':
+          description: Invalid plan ID or dokument ID, plan or dokument not found
     delete:
       tags:
         - edit
@@ -762,16 +827,18 @@ paths:
       parameters:
         - name: planId
           in: path
-          description: planId of the plan to be deleted
+          description: planId of the plan to delete dokument
           required: true
           schema:
             type: string
+          example: 123
         - name: id
           in: path
-          description: id of the GML element to be deleted
+          description: 'id of the Dokument to be deleted (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)'
           required: true
           schema:
             type: string
+          example: Legende123-
       responses:
         '200':
           description: successful operation
@@ -779,6 +846,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Dokument'
+        '404':
+          description: Invalid plan ID or dokument ID, plan or dokument not found
   /:
     get:
       summary: OpenAPI document
@@ -850,7 +919,8 @@ components:
         planName:
           type: string
         rechtscharakter:
-          type: string
+          type: integer
+          format: int32
         nummer:
           type: string
     Aenderungen:
@@ -864,27 +934,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Aenderung'
-    Basisdaten:
-      type: object
-      properties:
-        name:
-          type: string
-        beschreibung:
-          type: string
-        planArt:
-          type: string
-        sonstPlanArt:
-          type: string
-        verfahren:
-          type: string
-        rechtsstand:
-          type: string
-        rechtsverordnungsDatum:
-          type: string
-        technHerstellDatum:
-          type: string
-        untergangsDatum:
-          type: string
     StatusMessage:
       type: object
       properties:
@@ -1127,11 +1176,41 @@ components:
           type: array
           items:
             type: string
+    Basisdaten:
+      type: object
+      properties:
+        name:
+          type: string
+        beschreibung:
+          type: string
+        planArt:
+          type: integer
+          format: int32
+        sonstPlanArt:
+          type: integer
+          format: int32
+        verfahren:
+          type: integer
+          format: int32
+        rechtsstand:
+          type: integer
+          format: int32
+        rechtsverordnungsDatum:
+          type: string
+          format: date-time
+        technHerstellDatum:
+          type: string
+          format: date-time
+        untergangsDatum:
+          type: string
+          format: date-time
     Dokument:
       allOf:
         - $ref: '#/components/schemas/Referenz'
         - type: object
           properties:
+            id:
+              type: string
             typ:
               type: string
     Zeitraum:
@@ -1139,11 +1218,17 @@ components:
       properties:
         start:
           type: string
+          format: date-time
         ende:
           type: string
+          format: date-time
     Rasterbasis:
       allOf:
         - $ref: '#/components/schemas/Referenz'
+        - type: object
+          properties:
+            id:
+              type: string
     Referenz:
       type: object
       properties:
@@ -1165,9 +1250,12 @@ components:
           type: string
         datum:
           type: string
+          format: date-time
     Text:
       type: object
       properties:
+        id:
+          type: string
         schluessel:
           type: string
         gesetzlicheGrundlage:
@@ -1177,4 +1265,5 @@ components:
         refText:
           $ref: '#/components/schemas/Referenz'
         rechtscharakter:
-          type: string
+          type: integer
+          format: int32

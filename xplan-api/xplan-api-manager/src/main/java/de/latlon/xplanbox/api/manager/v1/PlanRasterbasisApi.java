@@ -40,9 +40,10 @@ public class PlanRasterbasisApi {
     @GET
     @Produces({ "application/json" })
     @Operation(operationId = "getRasterBasis", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Rasterbasis.class)))) })
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Rasterbasis.class)))),
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
     public List<Rasterbasis> getRasterBasis(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId )
+                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId )
                     throws Exception {
         return editRasterbasisHandler.retrieveRasterbasis( planId );
     }
@@ -51,7 +52,8 @@ public class PlanRasterbasisApi {
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
     @Operation(operationId = "addRasterBasis", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))) }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
                     @Encoding(name = "rasterbasismodel", contentType = "application/json"),
                     @Encoding(name = "datei", contentType = "application/pdf, application/msword, application/odt") })))
     public Rasterbasis addRasterBasis( @PathParam("planId")
@@ -69,10 +71,11 @@ public class PlanRasterbasisApi {
     @Path("/{id}")
     @Produces({ "application/json" })
     @Operation(operationId = "getRasterbasisById", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))) })
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found") })
     public Rasterbasis getRasterbasisById(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be returned (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed") String id )
+                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId,
+                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be returned (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed", example = "Referenz123-") String id )
                     throws Exception {
         return editRasterbasisHandler.retrieveRasterbasis( planId, id );
     }
@@ -82,13 +85,14 @@ public class PlanRasterbasisApi {
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
     @Operation(operationId = "replaceRasterbasisById", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))) }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
                     @Encoding(name = "rasterbasismodel", contentType = "application/json"),
                     @Encoding(name = "rasterdatei", contentType = "application/pdf, application/msword, application/odt"),
                     @Encoding(name = "georeferenzdatei", contentType = "text/plain") })))
     public Rasterbasis replaceRasterbasisById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be updated", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be updated (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed") String id,
+                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be updated (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed", example = "Referenz123-") String id,
                     @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
                     @FormDataParam("rasterdatei") File rasterdatei,
                     @FormDataParam("georeferenzdatei") File georeferenzdatei )
@@ -101,10 +105,11 @@ public class PlanRasterbasisApi {
     @Path("/{id}")
     @Produces({ "application/json" })
     @Operation(operationId = "deleteRasterbasisById", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))) })
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found") })
     public Rasterbasis deleteRasterbasisById(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be deleted") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be deleted (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed") String id )
+                    @PathParam("planId") @Parameter(description = "planId of the plan to be deleted", example = "123") String planId,
+                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be deleted (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed", example = "Referenz123-") String id )
                     throws Exception {
         return editRasterbasisHandler.deleteRasterbasis( planId, id );
     }

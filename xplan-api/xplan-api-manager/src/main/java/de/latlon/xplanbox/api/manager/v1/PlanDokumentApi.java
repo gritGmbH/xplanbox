@@ -43,7 +43,7 @@ public class PlanDokumentApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Dokument.class)))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
     public List<Dokument> getDokumente(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to return dokumente") String planId )
+                    @PathParam("planId") @Parameter(description = "planId of the plan to return dokumente", example = "123") String planId )
                     throws Exception {
         return editHandler.retrieveDokumente( planId );
     }
@@ -73,8 +73,8 @@ public class PlanDokumentApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found") })
     public Dokument getDokumentById(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to get dokument") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Dokument to be returned (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)") String id )
+                    @PathParam("planId") @Parameter(description = "planId of the plan to get dokument", example = "123") String planId,
+                    @PathParam("id") @Parameter(description = "id of the Dokument to be returned (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)", example = "Legende123-") String id )
                     throws Exception {
         return editHandler.retrieveDokument( planId, id );
     }
@@ -92,7 +92,7 @@ public class PlanDokumentApi {
     })))
     public Dokument replaceDokumentById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to replace dokument", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Dokument to be updated (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)") String id,
+                    @PathParam("id") @Parameter(description = "id of the Dokument to be updated (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)", example = "Legende123-") String id,
                     @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
                     @FormDataParam("datei") File file
     )
@@ -108,8 +108,8 @@ public class PlanDokumentApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found") })
     public Dokument deleteDokumentById(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to delete dokument") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Dokument to be deleted (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)") String id )
+                    @PathParam("planId") @Parameter(description = "planId of the plan to delete dokument", example = "123") String planId,
+                    @PathParam("id") @Parameter(description = "id of the Dokument to be deleted (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)", example = "Legende123-") String id )
                     throws Exception {
         return editHandler.deleteDokument( planId, id );
     }

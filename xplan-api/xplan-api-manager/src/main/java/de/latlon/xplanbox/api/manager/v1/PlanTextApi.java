@@ -40,9 +40,10 @@ public class PlanTextApi {
     @GET
     @Produces({ "application/json" })
     @Operation(operationId = "getTexte", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Text.class)))) })
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Text.class)))),
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
     public List<Text> getTexte(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId )
+                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId )
                     throws Exception {
         return editTextHandler.retrieveTexte( planId );
     }
@@ -51,7 +52,8 @@ public class PlanTextApi {
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
     @Operation(operationId = "addText", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))) }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))),
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
                     @Encoding(name = "textmodel", contentType = "application/json"),
                     @Encoding(name = "datei", contentType = "application/pdf, application/msword, application/odt") })))
     public Text addText( @PathParam("planId")
@@ -68,10 +70,11 @@ public class PlanTextApi {
     @Path("/{id}")
     @Produces({ "application/json" })
     @Operation(operationId = "getTextById", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))) })
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))),
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found") })
     public Text getTextById(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Text to be returned (GML Id of the feature)") String id )
+                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId,
+                    @PathParam("id") @Parameter(description = "id of the Text to be returned (GML Id of the feature)", example = "GML_ID_123") String id )
                     throws Exception {
         return editTextHandler.retrieveText( planId, id );
     }
@@ -81,12 +84,13 @@ public class PlanTextApi {
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
     @Operation(operationId = "replaceTextById", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))) }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))),
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
                     @Encoding(name = "textmodel", contentType = "application/json"),
                     @Encoding(name = "datei", contentType = "application/pdf, application/msword, application/odt") })))
     public Text replaceTextById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be updated", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Text to be updated (GML Id of the feature)") String id,
+                    @PathParam("id") @Parameter(description = "id of the Text to be updated (GML Id of the feature)", example = "GML_ID_123") String id,
                     @FormDataParam("textmodel") FormDataBodyPart textmodel,
                     @FormDataParam("datei") File file )
                     throws Exception {
@@ -98,10 +102,11 @@ public class PlanTextApi {
     @Path("/{id}")
     @Produces({ "application/json" })
     @Operation(operationId = "deleteTextById", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))) })
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))),
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found") })
     public Text deleteTextById(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be deleted") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Text to be deleted (GML Id of the feature)") String id )
+                    @PathParam("planId") @Parameter(description = "planId of the plan to be deleted", example = "123") String planId,
+                    @PathParam("id") @Parameter(description = "id of the Text to be deleted (GML Id of the feature)", example = "GML_ID_123") String id )
                     throws Exception {
         return editTextHandler.deleteText( planId, id );
     }

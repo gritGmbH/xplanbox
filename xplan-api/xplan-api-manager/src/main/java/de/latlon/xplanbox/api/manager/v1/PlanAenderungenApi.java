@@ -2,7 +2,6 @@ package de.latlon.xplanbox.api.manager.v1;
 
 import de.latlon.xplanbox.api.manager.handler.EditAenderungenHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Aenderungen;
-import de.latlon.xplanbox.api.manager.v1.model.Basisdaten;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -34,9 +33,10 @@ public class PlanAenderungenApi {
     @GET
     @Produces({ "application/json" })
     @Operation(operationId = "getAenderung", tags = { "edit", }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Aenderungen.class))) })
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Aenderungen.class))),
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
     public Aenderungen getAenderung(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId )
+                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId )
                     throws Exception {
         return editAenderungenHandler.retrieveAenderungen( planId );
     }
@@ -45,10 +45,11 @@ public class PlanAenderungenApi {
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     @Operation(operationId = "replaceAenderung", tags = { "edit", }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Basisdaten.class))) }, requestBody = @RequestBody(content = {
-                    @Content(mediaType = "application/json", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")) }))
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Aenderungen.class))),
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") }, requestBody = @RequestBody(content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Aenderungen.class)) }))
     public Aenderungen replaceAenderung(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId,
+                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId,
                     @Valid Aenderungen aenderungen )
                     throws Exception {
         return editAenderungenHandler.replaceAenderungen( planId, aenderungen );

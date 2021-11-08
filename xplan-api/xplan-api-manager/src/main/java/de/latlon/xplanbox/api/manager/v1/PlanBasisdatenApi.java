@@ -33,9 +33,10 @@ public class PlanBasisdatenApi {
     @GET
     @Produces({ "application/json" })
     @Operation(operationId = "getBasisdaten", tags = { "edit", }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Basisdaten.class))) })
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Basisdaten.class))),
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
     public Basisdaten getBasisdaten(
-                    @PathParam("planId") @Parameter(description = "planId of the plan basisdaten to be returned") String planId )
+                    @PathParam("planId") @Parameter(description = "planId of the plan basisdaten to be returned", example = "123") String planId )
                     throws Exception {
         return editBasisdatenHandler.retrieveBasisdaten( planId );
     }
@@ -44,10 +45,11 @@ public class PlanBasisdatenApi {
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     @Operation(operationId = "replaceBasisdaten", tags = { "edit", }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Basisdaten.class))) }, requestBody = @RequestBody(content = {
-                    @Content(mediaType = "application/json", schema = @Schema(type = "string", format = "binary", description = "XPlanArchive (application/zip) file to upload")) }))
+                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Basisdaten.class))),
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") }, requestBody = @RequestBody(content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Basisdaten.class)) }))
     public Basisdaten replaceBasisdaten(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned") String planId,
+                    @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId,
                     @Valid Basisdaten basisdaten )
                     throws Exception {
         return editBasisdatenHandler.replaceBasisdaten( planId, basisdaten );
