@@ -319,13 +319,20 @@ paths:
           example: GML_ID_123
       requestBody:
         content:
-          application/pdf:
+          multipart/form-data:
             schema:
-              type: string
-              format: binary
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Text'
+              type: object
+              properties:
+                textmodel:
+                  $ref: '#/components/schemas/Text'
+                datei:
+                  type: string
+                  format: binary
+            encoding:
+              textmodel:
+                contentType: application/json
+              datei:
+                contentType: application/pdf, application/msword, application/odt
       responses:
         '200':
           description: successful operation
@@ -708,6 +715,8 @@ paths:
             schema:
               type: object
               properties:
+                rasterbasismodel:
+                  $ref: '#/components/schemas/Rasterbasis'
                 rasterdatei:
                   type: string
                   format: binary
@@ -715,6 +724,8 @@ paths:
                   type: string
                   format: binary
             encoding:
+              rasterbasismodel:
+                contentType: application/json
               rasterdatei:
                 contentType: image/tiff, image/png
               georeferenzdatei:
@@ -780,10 +791,9 @@ paths:
         '200':
           description: successful operation
           content:
-            application/pdf:
+            application/json:
               schema:
-                type: string
-                format: binary
+                $ref: '#/components/schemas/Dokument'
         '404':
           description: Invalid plan ID or dokument ID, plan or dokument not found
     put:
@@ -807,10 +817,20 @@ paths:
           example: Legende123-
       requestBody:
         content:
-          application/pdf:
+          multipart/form-data:
             schema:
-              type: string
-              format: binary
+              type: object
+              properties:
+                dokumentmodel:
+                  $ref: '#/components/schemas/Dokument'
+                datei:
+                  type: string
+                  format: binary
+            encoding:
+              dokumentmodel:
+                contentType: application/json
+              datei:
+                contentType: application/pdf, application/msword, application/odt
       responses:
         '200':
           description: successful operation

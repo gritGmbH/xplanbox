@@ -55,7 +55,8 @@ public class PlanRasterbasisApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
                     @Encoding(name = "rasterbasismodel", contentType = "application/json"),
-                    @Encoding(name = "datei", contentType = "application/pdf, application/msword, application/odt") })))
+                    @Encoding(name = "rasterdatei", contentType = "image/tiff, image/png"),
+                    @Encoding(name = "georeferenzdatei", contentType = "text/plain") })))
     public Rasterbasis addRasterBasis( @PathParam("planId")
                                        @Parameter(description = "ID of the plan to add dokumente", example = "123")
                                                        String planId,
@@ -88,7 +89,7 @@ public class PlanRasterbasisApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
                     @Encoding(name = "rasterbasismodel", contentType = "application/json"),
-                    @Encoding(name = "rasterdatei", contentType = "application/pdf, application/msword, application/odt"),
+                    @Encoding(name = "rasterdatei", contentType = "image/tiff, image/png"),
                     @Encoding(name = "georeferenzdatei", contentType = "text/plain") })))
     public Rasterbasis replaceRasterbasisById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be updated", example = "123") String planId,
