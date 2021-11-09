@@ -205,10 +205,13 @@ public class XPlanToEditFactory {
     }
 
     private void parseRasterBasisRefScan( XPlanToEdit xPlanToEdit, Property property ) {
-        RasterBasis rasterBasis = new RasterBasis();
+        RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
+        if ( rasterBasis == null ) {
+            rasterBasis = new RasterBasis();
+            xPlanToEdit.setRasterBasis( rasterBasis );
+        }
         RasterReference rasterReference = parseRasterReference( property, SCAN );
         rasterBasis.addRasterReference( rasterReference );
-        xPlanToEdit.setRasterBasis( rasterBasis );
     }
 
     private void parseRasterBasis( Property property, XPlanToEdit xPlanToEdit, String version ) {
