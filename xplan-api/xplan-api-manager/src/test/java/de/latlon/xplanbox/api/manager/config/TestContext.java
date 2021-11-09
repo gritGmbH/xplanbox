@@ -187,13 +187,16 @@ public class TestContext {
     public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
                              ManagerConfiguration managerConfiguration ) throws Exception {
         XPlanDao xplanDao = mock( XPlanDao.class );
+        XPlan mockPlan3 = new XPlan("bplan_30", "3", "BP_Plan", "XPLAN_3");
         XPlan mockPlan41 = new XPlan("bplan_51", "123", "BP_Plan", "XPLAN_41");
         XPlan mockPlan51 = new XPlan("bplan_41", "2", "BP_Plan", "XPLAN_51");
+        mockPlan3.setXplanMetadata( new AdditionalPlanData( FESTGESTELLT ) );
         mockPlan41.setXplanMetadata( new AdditionalPlanData( FESTGESTELLT ) );
         mockPlan51.setXplanMetadata( new AdditionalPlanData( FESTGESTELLT ) );
         when(xplanDao.getXPlanById(1)).thenReturn(mockPlan41);
         when(xplanDao.getXPlanById(123)).thenReturn(mockPlan41);
         when(xplanDao.getXPlanById(2)).thenReturn(mockPlan51);
+        when(xplanDao.getXPlanById(3)).thenReturn(mockPlan3);
         when(xplanDao.retrieveXPlanArtefact( "2" )).thenReturn(
                         getClass().getResourceAsStream( "/xplan51.gml" ) ).thenReturn(
                         getClass().getResourceAsStream( "/xplan51.gml" ) );
