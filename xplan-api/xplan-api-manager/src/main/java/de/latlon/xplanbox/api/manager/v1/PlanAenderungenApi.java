@@ -34,7 +34,8 @@ public class PlanAenderungenApi {
     @Produces({ "application/json" })
     @Operation(operationId = "getAenderung", tags = { "edit", }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Aenderungen.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Aenderungen getAenderung(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId )
                     throws Exception {
@@ -46,7 +47,8 @@ public class PlanAenderungenApi {
     @Produces({ "application/json" })
     @Operation(operationId = "replaceAenderung", tags = { "edit", }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Aenderungen.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") }, requestBody = @RequestBody(content = {
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") }, requestBody = @RequestBody(content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Aenderungen.class)) }))
     public Aenderungen replaceAenderung(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId,

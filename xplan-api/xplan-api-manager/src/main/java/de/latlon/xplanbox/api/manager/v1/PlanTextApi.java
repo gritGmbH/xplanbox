@@ -41,7 +41,8 @@ public class PlanTextApi {
     @Produces({ "application/json" })
     @Operation(operationId = "getTexte", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Text.class)))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public List<Text> getTexte(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId )
                     throws Exception {
@@ -53,7 +54,8 @@ public class PlanTextApi {
     @Produces({ "application/json" })
     @Operation(operationId = "addText", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
                     @Encoding(name = "textmodel", contentType = "application/json"),
                     @Encoding(name = "datei", contentType = "application/pdf, application/msword, application/odt") })))
     public Text addText( @PathParam("planId")
@@ -71,7 +73,8 @@ public class PlanTextApi {
     @Produces({ "application/json" })
     @Operation(operationId = "getTextById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found") })
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Text getTextById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId,
                     @PathParam("id") @Parameter(description = "id of the Text to be returned (GML Id of the feature)", example = "GML_ID_123") String id )
@@ -85,7 +88,8 @@ public class PlanTextApi {
     @Produces({ "application/json" })
     @Operation(operationId = "replaceTextById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
                     @Encoding(name = "textmodel", contentType = "application/json"),
                     @Encoding(name = "datei", contentType = "application/pdf, application/msword, application/odt") })))
     public Text replaceTextById(
@@ -103,7 +107,8 @@ public class PlanTextApi {
     @Produces({ "application/json" })
     @Operation(operationId = "deleteTextById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found") })
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Text deleteTextById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be deleted", example = "123") String planId,
                     @PathParam("id") @Parameter(description = "id of the Text to be deleted (GML Id of the feature)", example = "GML_ID_123") String id )

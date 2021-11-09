@@ -41,7 +41,8 @@ public class PlanRasterbasisApi {
     @Produces({ "application/json" })
     @Operation(operationId = "getRasterBasis", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Rasterbasis.class)))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public List<Rasterbasis> getRasterBasis(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId )
                     throws Exception {
@@ -53,7 +54,8 @@ public class PlanRasterbasisApi {
     @Produces({ "application/json" })
     @Operation(operationId = "addRasterBasis", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
                     @Encoding(name = "rasterbasismodel", contentType = "application/json"),
                     @Encoding(name = "rasterdatei", contentType = "image/tiff, image/png"),
                     @Encoding(name = "georeferenzdatei", contentType = "text/plain") })))
@@ -73,7 +75,8 @@ public class PlanRasterbasisApi {
     @Produces({ "application/json" })
     @Operation(operationId = "getRasterbasisById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found") })
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Rasterbasis getRasterbasisById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId,
                     @PathParam("id") @Parameter(description = "id of the Rasterbasis to be returned (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed", example = "Referenz123-") String id )
@@ -87,7 +90,8 @@ public class PlanRasterbasisApi {
     @Produces({ "application/json" })
     @Operation(operationId = "replaceRasterbasisById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
                     @Encoding(name = "rasterbasismodel", contentType = "application/json"),
                     @Encoding(name = "rasterdatei", contentType = "image/tiff, image/png"),
                     @Encoding(name = "georeferenzdatei", contentType = "text/plain") })))
@@ -107,7 +111,8 @@ public class PlanRasterbasisApi {
     @Produces({ "application/json" })
     @Operation(operationId = "deleteRasterbasisById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found") })
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Rasterbasis deleteRasterbasisById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be deleted", example = "123") String planId,
                     @PathParam("id") @Parameter(description = "id of the Rasterbasis to be deleted (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed", example = "Referenz123-") String id )

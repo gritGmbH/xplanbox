@@ -43,6 +43,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Aenderungen'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID, plan not found
     put:
@@ -69,6 +71,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Aenderungen'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID, plan not found
   /plan/{planId}/text:
@@ -93,6 +97,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Text'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID, plan not found
     post:
@@ -130,6 +136,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Text'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID, plan not found
   /plans:
@@ -175,6 +183,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Zeitraum'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID, plan not found
     put:
@@ -201,6 +211,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Zeitraum'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID, plan not found
   /plan/{planId}/rasterbasis:
@@ -225,6 +237,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Rasterbasis'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID, plan not found
     post:
@@ -267,6 +281,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rasterbasis'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID, plan not found
   /plan/{planId}/text/{id}:
@@ -296,6 +312,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Text'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID or Text ID, plan or Text not found
     put:
@@ -340,6 +358,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Text'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID or Text ID, plan or Text not found
     delete:
@@ -368,6 +388,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Text'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID or Text ID, plan or Text not found
   /plan:
@@ -475,6 +497,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Basisdaten'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID, plan not found
     put:
@@ -501,6 +525,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Basisdaten'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID, plan not found
   /plan/{planId}/dokument:
@@ -525,6 +551,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Dokument'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID, plan not found
     post:
@@ -562,6 +590,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Dokument'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID or dokument ID, plan or dokument not found
   /plan/{planId}:
@@ -688,6 +718,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rasterbasis'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found
     put:
@@ -737,6 +769,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rasterbasis'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found
     delete:
@@ -765,6 +799,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rasterbasis'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found
   /plan/{planId}/dokument/{id}:
@@ -794,6 +830,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Dokument'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID or dokument ID, plan or dokument not found
     put:
@@ -838,6 +876,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Dokument'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID or dokument ID, plan or dokument not found
     delete:
@@ -866,6 +906,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Dokument'
+        '400':
+          description: Unsupported Plan type or version
         '404':
           description: Invalid plan ID or dokument ID, plan or dokument not found
   /:

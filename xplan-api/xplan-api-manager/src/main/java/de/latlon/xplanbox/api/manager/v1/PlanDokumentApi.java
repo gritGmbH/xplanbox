@@ -41,7 +41,8 @@ public class PlanDokumentApi {
     @Produces({ "application/json" })
     @Operation(operationId = "getDokumente", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Dokument.class)))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public List<Dokument> getDokumente(
                     @PathParam("planId") @Parameter(description = "planId of the plan to return dokumente", example = "123") String planId )
                     throws Exception {
@@ -53,7 +54,8 @@ public class PlanDokumentApi {
     @Produces({ "application/json" })
     @Operation(operationId = "addDokument", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
                     @Encoding(name = "dokumentmodel", contentType = "application/json"),
                     @Encoding(name = "datei", contentType = "application/pdf, application/msword, application/odt") })))
     public Dokument addDokument( @PathParam("planId")
@@ -71,7 +73,8 @@ public class PlanDokumentApi {
     @Produces({ "application/json" })
     @Operation(operationId = "getDokumentById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found") })
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Dokument getDokumentById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to get dokument", example = "123") String planId,
                     @PathParam("id") @Parameter(description = "id of the Dokument to be returned (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)", example = "Legende123-") String id )
@@ -85,7 +88,8 @@ public class PlanDokumentApi {
     @Produces({ "application/json" })
     @Operation(operationId = "replaceDokumentById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found")
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version")
     }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
                     @Encoding(name = "dokumentmodel", contentType = "application/json"),
                     @Encoding(name = "datei", contentType = "application/pdf, application/msword, application/odt")
@@ -106,7 +110,8 @@ public class PlanDokumentApi {
     @Produces({ "application/json" })
     @Operation(operationId = "deleteDokumentById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found") })
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Dokument deleteDokumentById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to delete dokument", example = "123") String planId,
                     @PathParam("id") @Parameter(description = "id of the Dokument to be deleted (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)", example = "Legende123-") String id )

@@ -34,7 +34,8 @@ public class PlanGueltigkeitApi {
     @Produces({ "application/json" })
     @Operation(operationId = "getGueltigkeit", tags = { "edit", }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Zeitraum.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Zeitraum getGueltigkeit(
                     @PathParam("planId") @Parameter(description = "planId of the plan basisdaten to be returned", example = "123") String planId )
                     throws Exception {
@@ -46,7 +47,8 @@ public class PlanGueltigkeitApi {
     @Produces({ "application/json" })
     @Operation(operationId = "replaceGueltigkeit", tags = { "edit", }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Zeitraum.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") }, requestBody = @RequestBody(content = {
+                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") }, requestBody = @RequestBody(content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Zeitraum.class)) }))
     public Zeitraum replaceGueltigkeit(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId,
