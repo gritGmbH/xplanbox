@@ -79,7 +79,7 @@ public class PlanRasterbasisApi {
                     @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Rasterbasis getRasterbasisById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be returned", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be returned (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed", example = "Referenz123-") String id )
+                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be returned (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed", example = "Referenz123-") String id )
                     throws Exception {
         return editRasterbasisHandler.retrieveRasterbasis( planId, id );
     }
@@ -97,7 +97,7 @@ public class PlanRasterbasisApi {
                     @Encoding(name = "georeferenzdatei", contentType = "text/plain") })))
     public Rasterbasis replaceRasterbasisById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be updated", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be updated (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed", example = "Referenz123-") String id,
+                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be updated (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed", example = "Referenz123-") String id,
                     @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
                     @FormDataParam("rasterdatei") File rasterdatei,
                     @FormDataParam("georeferenzdatei") File georeferenzdatei )
@@ -115,7 +115,7 @@ public class PlanRasterbasisApi {
                     @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Rasterbasis deleteRasterbasisById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be deleted", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be deleted (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed", example = "Referenz123-") String id )
+                    @PathParam("id") @Parameter(description = "id of the Rasterbasis to be deleted (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed", example = "Referenz123-") String id )
                     throws Exception {
         return editRasterbasisHandler.deleteRasterbasis( planId, id );
     }

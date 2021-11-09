@@ -170,8 +170,6 @@ public class EditRasterbasisHandler extends EditHandler {
     }
 
     private static String createRasterBasisId( RasterReference rasterReference ) {
-        if ( rasterReference.getFeatureId() != null )
-            return rasterReference.getFeatureId();
         StringBuilder id = new StringBuilder();
         if ( rasterReference.getReferenzName() != null )
             id.append( rasterReference.getReferenzName() );

@@ -706,7 +706,7 @@ paths:
           example: 123
         - name: id
           in: path
-          description: 'id of the Rasterbasis to be returned (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed'
+          description: 'id of the Rasterbasis to be returned (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed'
           required: true
           schema:
             type: string
@@ -736,7 +736,7 @@ paths:
           example: 123
         - name: id
           in: path
-          description: 'id of the Rasterbasis to be updated (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed'
+          description: 'id of the Rasterbasis to be updated (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed'
           required: true
           schema:
             type: string
@@ -787,7 +787,7 @@ paths:
           example: 123
         - name: id
           in: path
-          description: 'id of the Rasterbasis to be deleted (GML ID if available, or the ID follows the pattern: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed'
+          description: 'id of the Rasterbasis to be deleted (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed'
           required: true
           schema:
             type: string
