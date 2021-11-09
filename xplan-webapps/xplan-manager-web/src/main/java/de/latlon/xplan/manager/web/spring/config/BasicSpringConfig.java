@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -37,6 +37,7 @@ import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.server.service.ManagerReportProvider;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.validator.ValidatorException;
@@ -63,13 +64,14 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 
+import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_WMS_WORKSPACE;
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLAN_MANAGER_WORKSPACE;
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
 import static java.nio.file.Paths.get;
 
 /**
  * Basic XPlanManagerWeb Application Configuration.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
 @Configuration
@@ -91,7 +93,7 @@ public class BasicSpringConfig {
     public SemanticValidator semanticValidator( ManagerConfiguration managerConfiguration, Path rulesPath )
                     throws URISyntaxException, ValidatorException {
         return new XQuerySemanticValidator( new XQuerySemanticValidatorConfigurationRetriever( rulesPath ),
-                        managerConfiguration.getSemanticConformityLinkConfiguration() );
+                                            managerConfiguration.getSemanticConformityLinkConfiguration() );
     }
 
     @Bean
@@ -102,12 +104,29 @@ public class BasicSpringConfig {
     }
 
     @Bean
+    public XPlanDao xPlanDao( ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper,
+                              ManagerConfiguration managerConfiguration ) {
+        return new XPlanDao( managerWorkspaceWrapper, categoryMapper, managerConfiguration );
+    }
+
+    @Bean
+    public DeegreeWorkspaceWrapper deegreeWorkspaceWrapper() {
+        return new DeegreeWorkspaceWrapper( DEFAULT_XPLANSYN_WMS_WORKSPACE );
+    }
+
+    @Bean
+    public WmsWorkspaceWrapper wmsWorkspaceWrapper( DeegreeWorkspaceWrapper deegreeWorkspaceWrapper )
+                    throws WorkspaceException {
+        return new WmsWorkspaceWrapper( deegreeWorkspaceWrapper.getWorkspaceInstance() );
+    }
+
+    @Bean
     public XPlanManager xPlanManager( XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
                                       ManagerWorkspaceWrapper managerWorkspaceWrapper,
                                       WorkspaceReloader workspaceReloader,
                                       InspirePluTransformator inspirePluTransformator,
                                       XPlanGmlTransformer xPlanGmlTransformer,
-                                      WmsWorkspaceWrapper wmsWorkspaceWrapper)
+                                      WmsWorkspaceWrapper wmsWorkspaceWrapper )
                     throws Exception {
         return new XPlanManager( xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
                                  inspirePluTransformator, xPlanGmlTransformer, wmsWorkspaceWrapper );
@@ -153,17 +172,17 @@ public class BasicSpringConfig {
     }
 
     @Bean
-    public ManagerConfiguration managerConfiguration(PropertiesLoader managerPropertiesLoader)
+    public ManagerConfiguration managerConfiguration( PropertiesLoader managerPropertiesLoader )
                     throws ConfigurationException {
         return new ManagerConfiguration( managerPropertiesLoader );
     }
 
     @Bean
     public ManagerWorkspaceWrapper managerWorkspaceWrapper( ManagerConfiguration managerConfiguration )
-            throws WorkspaceException {
+                    throws WorkspaceException {
         DeegreeWorkspace managerWorkspace = instantiateWorkspace( DEFAULT_XPLAN_MANAGER_WORKSPACE );
         ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(
-                managerWorkspace, managerConfiguration );
+                        managerWorkspace, managerConfiguration );
         return managerWorkspaceWrapper;
     }
 
@@ -207,7 +226,7 @@ public class BasicSpringConfig {
 
     @Bean
     public Path rulesPath( ValidatorConfiguration validatorConfiguration )
-                            throws URISyntaxException {
+                    throws URISyntaxException {
         Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
         if ( validationRulesDirectory != null )
             return validationRulesDirectory;
