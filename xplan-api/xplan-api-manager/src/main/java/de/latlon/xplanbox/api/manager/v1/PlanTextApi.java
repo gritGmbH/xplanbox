@@ -6,9 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Encoding;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
@@ -55,13 +53,13 @@ public class PlanTextApi {
     @Operation(operationId = "addText", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
-                    @Encoding(name = "textmodel", contentType = "application/json"),
-                    @Encoding(name = "datei", contentType = "application/pdf, application/msword, application/odt") })))
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Text addText( @PathParam("planId")
                          @Parameter(description = "ID of the plan to add dokumente", example = "123")
                                          String planId,
+                         @Parameter(schema = @Schema(implementation = Text.class))
                          @FormDataParam("textmodel") FormDataBodyPart textmodel,
+                         @Parameter(schema = @Schema(type = "string", format = "binary"))
                          @FormDataParam("datei") File file )
                     throws Exception {
         Text text = textmodel.getValueAs( Text.class );
@@ -89,13 +87,13 @@ public class PlanTextApi {
     @Operation(operationId = "replaceTextById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
-                    @Encoding(name = "textmodel", contentType = "application/json"),
-                    @Encoding(name = "datei", contentType = "application/pdf, application/msword, application/odt") })))
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Text replaceTextById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be updated", example = "123") String planId,
                     @PathParam("id") @Parameter(description = "id of the Text to be updated (GML Id of the feature)", example = "GML_ID_123") String id,
+                    @Parameter(schema = @Schema(implementation = Text.class))
                     @FormDataParam("textmodel") FormDataBodyPart textmodel,
+                    @Parameter(schema = @Schema(type = "string", format = "binary"))
                     @FormDataParam("datei") File file )
                     throws Exception {
         Text text = textmodel.getValueAs( Text.class );

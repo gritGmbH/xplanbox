@@ -62,7 +62,6 @@ public class DefaultApiTest extends JerseyTest {
     public void verifyThat_Response_ContainsOpenApiDocument() {
         final String response = target( "/" ).request( APPLICATION_JSON ).get( String.class );
 
-        System.out.println( response );
         assertThat( response, containsString( "\"openapi\":\"3.0.1\"" ) );
     }
 }

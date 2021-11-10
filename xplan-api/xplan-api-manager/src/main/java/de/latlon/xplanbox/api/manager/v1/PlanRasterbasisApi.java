@@ -6,9 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Encoding;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
@@ -55,15 +53,15 @@ public class PlanRasterbasisApi {
     @Operation(operationId = "addRasterBasis", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
-                    @Encoding(name = "rasterbasismodel", contentType = "application/json"),
-                    @Encoding(name = "rasterdatei", contentType = "image/tiff, image/png"),
-                    @Encoding(name = "georeferenzdatei", contentType = "text/plain") })))
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Rasterbasis addRasterBasis( @PathParam("planId")
                                        @Parameter(description = "ID of the plan to add dokumente", example = "123")
                                                        String planId,
+                                       @Parameter(schema = @Schema(implementation = Rasterbasis.class))
                                        @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
+                                       @Parameter(schema = @Schema(type = "string", format = "binary"))
                                        @FormDataParam("rasterdatei") File rasterdatei,
+                                       @Parameter(schema = @Schema(type = "string", format = "binary"))
                                        @FormDataParam("georeferenzdatei") File georeferenzdatei )
                     throws Exception {
         Rasterbasis rasterbasis = rasterbasismodel.getValueAs( Rasterbasis.class );
@@ -91,15 +89,15 @@ public class PlanRasterbasisApi {
     @Operation(operationId = "replaceRasterbasisById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
-                    @Encoding(name = "rasterbasismodel", contentType = "application/json"),
-                    @Encoding(name = "rasterdatei", contentType = "image/tiff, image/png"),
-                    @Encoding(name = "georeferenzdatei", contentType = "text/plain") })))
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Rasterbasis replaceRasterbasisById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be updated", example = "123") String planId,
                     @PathParam("id") @Parameter(description = "id of the Rasterbasis to be updated (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed", example = "Referenz123-") String id,
+                    @Parameter(schema = @Schema(implementation = Rasterbasis.class))
                     @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
+                    @Parameter(schema = @Schema(type = "string", format = "binary"))
                     @FormDataParam("rasterdatei") File rasterdatei,
+                    @Parameter(schema = @Schema(type = "string", format = "binary"))
                     @FormDataParam("georeferenzdatei") File georeferenzdatei )
                     throws Exception {
         Rasterbasis rasterbasis = rasterbasismodel.getValueAs( Rasterbasis.class );

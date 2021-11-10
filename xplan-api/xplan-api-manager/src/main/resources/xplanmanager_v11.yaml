@@ -125,10 +125,10 @@ paths:
                   type: string
                   format: binary
             encoding:
-              textmodel:
-                contentType: application/json
               datei:
                 contentType: application/pdf, application/msword, application/odt
+              textmodel:
+                contentType: application/json
       responses:
         '200':
           description: successful operation
@@ -268,12 +268,12 @@ paths:
                   type: string
                   format: binary
             encoding:
-              rasterbasismodel:
-                contentType: application/json
               rasterdatei:
                 contentType: image/tiff, image/png
               georeferenzdatei:
                 contentType: text/plain
+              rasterbasismodel:
+                contentType: application/json
       responses:
         '200':
           description: successful operation
@@ -347,10 +347,10 @@ paths:
                   type: string
                   format: binary
             encoding:
-              textmodel:
-                contentType: application/json
               datei:
                 contentType: application/pdf, application/msword, application/odt
+              textmodel:
+                contentType: application/json
       responses:
         '200':
           description: successful operation
@@ -579,10 +579,10 @@ paths:
                   type: string
                   format: binary
             encoding:
-              dokumentmodel:
-                contentType: application/json
               datei:
                 contentType: application/pdf, application/msword, application/odt
+              dokumentmodel:
+                contentType: application/json
       responses:
         '200':
           description: successful operation
@@ -756,12 +756,12 @@ paths:
                   type: string
                   format: binary
             encoding:
-              rasterbasismodel:
-                contentType: application/json
               rasterdatei:
                 contentType: image/tiff, image/png
               georeferenzdatei:
                 contentType: text/plain
+              rasterbasismodel:
+                contentType: application/json
       responses:
         '200':
           description: successful operation
@@ -865,10 +865,10 @@ paths:
                   type: string
                   format: binary
             encoding:
-              dokumentmodel:
-                contentType: application/json
               datei:
                 contentType: application/pdf, application/msword, application/odt
+              dokumentmodel:
+                contentType: application/json
       responses:
         '200':
           description: successful operation

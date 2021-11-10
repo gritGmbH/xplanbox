@@ -6,9 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Encoding;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
@@ -55,13 +53,13 @@ public class PlanDokumentApi {
     @Operation(operationId = "addDokument", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
-                    @Encoding(name = "dokumentmodel", contentType = "application/json"),
-                    @Encoding(name = "datei", contentType = "application/pdf, application/msword, application/odt") })))
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Dokument addDokument( @PathParam("planId")
                                  @Parameter(description = "ID of the plan to add dokumente", example = "123")
                                                  String planId,
+                                 @Parameter(schema = @Schema(implementation = Dokument.class))
                                  @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
+                                 @Parameter(schema = @Schema(type = "string", format = "binary"))
                                  @FormDataParam("datei") File file )
                     throws Exception {
         Dokument dokument = dokumentmodel.getValueAs( Dokument.class );
@@ -90,14 +88,13 @@ public class PlanDokumentApi {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found"),
                     @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version")
-    }, requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", encoding = {
-                    @Encoding(name = "dokumentmodel", contentType = "application/json"),
-                    @Encoding(name = "datei", contentType = "application/pdf, application/msword, application/odt")
-    })))
+    })
     public Dokument replaceDokumentById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to replace dokument", example = "123") String planId,
                     @PathParam("id") @Parameter(description = "id of the Dokument to be updated (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)", example = "Legende123-") String id,
+                    @Parameter(schema = @Schema(implementation = Dokument.class))
                     @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
+                    @Parameter(schema = @Schema(type = "string", format = "binary"))
                     @FormDataParam("datei") File file
     )
                     throws Exception {
