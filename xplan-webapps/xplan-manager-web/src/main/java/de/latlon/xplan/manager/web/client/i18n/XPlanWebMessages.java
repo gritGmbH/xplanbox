@@ -435,10 +435,6 @@ public interface XPlanWebMessages extends Messages {
 
     String publishingPluButtonTooltipAlreadyPublished();
 
-    String patternMissmatch( String pattern );
-
-    String planNameMismatch();
-
     String planNameAndStatusDialogHeader();
 
     String duplicatePlanName( String planName, String planStatus );

@@ -72,10 +72,6 @@ public class MandatoryTextBox extends TextBox implements Validable {
 
     private static final XPlanWebMessages MESSAGES = GWT.create( XPlanWebMessages.class );
 
-    private String pattern;
-
-    private String patternMismatchValidationError;
-
     public MandatoryTextBox() {
         addValueChangeHandler( new ValueChangeHandler<String>() {
             @Override
@@ -104,33 +100,16 @@ public class MandatoryTextBox extends TextBox implements Validable {
         return value != null;
     }
 
-    public void setPattern( String pattern ) {
-        this.pattern = pattern;
-    }
-
-    public void setPatternMismatchValidationError( String patternMismatchValidationError ) {
-        this.patternMismatchValidationError = patternMismatchValidationError;
-    }
-
     private String validateAndParse() {
         reset();
         String value = super.getText();
         if ( value != null && value.length() > 0 ) {
-            if ( pattern == null )
-                return value;
-            if ( value.matches( pattern ) ) {
-                return value;
-            } else {
-                addStyleName( EDITOR_VALIDATION_ERROR );
-                setTitle( patternMismatchValidationError != null ?
-                          patternMismatchValidationError :
-                          MESSAGES.patternMissmatch( pattern ) );
-            }
+            return value;
         } else {
             addStyleName( EDITOR_VALIDATION_ERROR );
             setTitle( MESSAGES.editInputRequired() );
+            return null;
         }
-        return null;
     }
 
     private void reset() {
