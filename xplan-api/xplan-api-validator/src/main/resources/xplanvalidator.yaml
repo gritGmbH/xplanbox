@@ -55,6 +55,7 @@ paths:
           in: header
           description: Name of the file to be uploaded
           schema:
+            pattern: '^[A-Za-z0-9()_-]*$'
             type: string
           example: File names such as xplan.gml, xplan.xml, xplan.zip
         - name: name
