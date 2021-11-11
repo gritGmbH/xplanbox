@@ -130,6 +130,8 @@ public class EditRasterbasisHandler extends EditHandler {
         RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
         RasterReference rasterReferenceToDelete = getRasterReferenceById( planId, rasterbasisId, rasterBasis );
         rasterBasis.getRasterReferences().remove( rasterReferenceToDelete );
+        if ( rasterBasis.getRasterReferences().isEmpty() )
+            xPlanToEdit.setRasterBasis( null );
         manager.editPlan( plan, xPlanToEdit, false, Collections.emptyList() );
         return Rasterbasis.fromRasterReference( rasterbasisId, rasterReferenceToDelete );
     }
