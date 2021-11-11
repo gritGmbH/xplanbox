@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.manager.v1;
 
+import de.latlon.xplanbox.api.manager.exception.MissingRequestEntity;
 import de.latlon.xplanbox.api.manager.handler.EditRasterbasisHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Rasterbasis;
 import io.swagger.v3.oas.annotations.Operation;
@@ -53,17 +54,20 @@ public class PlanRasterbasisApi {
     @Operation(operationId = "addRasterBasis", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version or rasterbasismodel is missing") })
     public Rasterbasis addRasterBasis( @PathParam("planId")
                                        @Parameter(description = "ID of the plan to add dokumente", example = "123")
                                                        String planId,
-                                       @Parameter(schema = @Schema(implementation = Rasterbasis.class))
+                                       @Parameter(schema = @Schema(implementation = Rasterbasis.class), required = true)
                                        @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
                                        @Parameter(schema = @Schema(type = "string", format = "binary"))
                                        @FormDataParam("rasterdatei") File rasterdatei,
                                        @Parameter(schema = @Schema(type = "string", format = "binary"))
                                        @FormDataParam("georeferenzdatei") File georeferenzdatei )
                     throws Exception {
+        if ( rasterbasismodel == null ) {
+            throw new MissingRequestEntity( "Multipart attachment 'rasterbasismodel' is missing." );
+        }
         Rasterbasis rasterbasis = rasterbasismodel.getValueAs( Rasterbasis.class );
         return editRasterbasisHandler.addRasterbasis( planId, rasterbasis, rasterdatei, georeferenzdatei );
     }
@@ -89,17 +93,20 @@ public class PlanRasterbasisApi {
     @Operation(operationId = "replaceRasterbasisById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version or rasterbasismodel is missing") })
     public Rasterbasis replaceRasterbasisById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be updated", example = "123") String planId,
                     @PathParam("id") @Parameter(description = "id of the Rasterbasis to be updated (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed", example = "Referenz123-") String id,
-                    @Parameter(schema = @Schema(implementation = Rasterbasis.class))
+                    @Parameter(schema = @Schema(implementation = Rasterbasis.class), required = true)
                     @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
                     @Parameter(schema = @Schema(type = "string", format = "binary"))
                     @FormDataParam("rasterdatei") File rasterdatei,
                     @Parameter(schema = @Schema(type = "string", format = "binary"))
                     @FormDataParam("georeferenzdatei") File georeferenzdatei )
                     throws Exception {
+        if ( rasterbasismodel == null ) {
+            throw new MissingRequestEntity( "Multipart attachment 'rasterbasismodel' is missing." );
+        }
         Rasterbasis rasterbasis = rasterbasismodel.getValueAs( Rasterbasis.class );
         return editRasterbasisHandler.replaceRasterbasis( planId, id, rasterbasis, rasterdatei, georeferenzdatei );
     }

@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.manager.v1;
 
+import de.latlon.xplanbox.api.manager.exception.MissingRequestEntity;
 import de.latlon.xplanbox.api.manager.handler.EditTextHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Text;
 import io.swagger.v3.oas.annotations.Operation;
@@ -53,15 +54,18 @@ public class PlanTextApi {
     @Operation(operationId = "addText", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version or textmodel is missing") })
     public Text addText( @PathParam("planId")
-                         @Parameter(description = "ID of the plan to add dokumente", example = "123")
+                         @Parameter(description = "ID of the plan to add texte", example = "123")
                                          String planId,
-                         @Parameter(schema = @Schema(implementation = Text.class))
+                         @Parameter(schema = @Schema(implementation = Text.class), required = true)
                          @FormDataParam("textmodel") FormDataBodyPart textmodel,
                          @Parameter(schema = @Schema(type = "string", format = "binary"))
                          @FormDataParam("datei") File file )
                     throws Exception {
+        if ( textmodel == null ) {
+            throw new MissingRequestEntity( "Multipart attachment 'textmodel' is missing." );
+        }
         Text text = textmodel.getValueAs( Text.class );
         return editTextHandler.addText( planId, text, file );
     }
@@ -87,15 +91,18 @@ public class PlanTextApi {
     @Operation(operationId = "replaceTextById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Text.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version  or textmodel is missing") })
     public Text replaceTextById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to be updated", example = "123") String planId,
                     @PathParam("id") @Parameter(description = "id of the Text to be updated (GML Id of the feature)", example = "GML_ID_123") String id,
-                    @Parameter(schema = @Schema(implementation = Text.class))
+                    @Parameter(schema = @Schema(implementation = Text.class), required = true)
                     @FormDataParam("textmodel") FormDataBodyPart textmodel,
                     @Parameter(schema = @Schema(type = "string", format = "binary"))
                     @FormDataParam("datei") File file )
                     throws Exception {
+        if ( textmodel == null ) {
+            throw new MissingRequestEntity( "Multipart attachment 'textmodel' is missing." );
+        }
         Text text = textmodel.getValueAs( Text.class );
         return editTextHandler.replaceText( planId, id, text, file );
     }

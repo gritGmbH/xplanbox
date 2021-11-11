@@ -108,7 +108,7 @@ paths:
       parameters:
         - name: planId
           in: path
-          description: ID of the plan to add dokumente
+          description: ID of the plan to add texte
           required: true
           schema:
             type: string
@@ -117,6 +117,8 @@ paths:
         content:
           multipart/form-data:
             schema:
+              required:
+                - textmodel
               type: object
               properties:
                 textmodel:
@@ -137,7 +139,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Text'
         '400':
-          description: Unsupported Plan type or version
+          description: Unsupported Plan type or version or textmodel is missing
         '404':
           description: Invalid plan ID, plan not found
   /plans:
@@ -257,6 +259,8 @@ paths:
         content:
           multipart/form-data:
             schema:
+              required:
+                - rasterbasismodel
               type: object
               properties:
                 rasterbasismodel:
@@ -282,7 +286,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Rasterbasis'
         '400':
-          description: Unsupported Plan type or version
+          description: Unsupported Plan type or version or rasterbasismodel is missing
         '404':
           description: Invalid plan ID, plan not found
   /plan/{planId}/text/{id}:
@@ -339,6 +343,8 @@ paths:
         content:
           multipart/form-data:
             schema:
+              required:
+                - textmodel
               type: object
               properties:
                 textmodel:
@@ -359,7 +365,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Text'
         '400':
-          description: Unsupported Plan type or version
+          description: Unsupported Plan type or version  or textmodel is missing
         '404':
           description: Invalid plan ID or Text ID, plan or Text not found
     delete:
@@ -571,6 +577,8 @@ paths:
         content:
           multipart/form-data:
             schema:
+              required:
+                - dokumentmodel
               type: object
               properties:
                 dokumentmodel:
@@ -591,7 +599,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Dokument'
         '400':
-          description: Unsupported Plan type or version
+          description: Unsupported Plan type or version or dokumentmodel is missing
         '404':
           description: Invalid plan ID or dokument ID, plan or dokument not found
   /plan/{planId}:
@@ -745,6 +753,8 @@ paths:
         content:
           multipart/form-data:
             schema:
+              required:
+                - rasterbasismodel
               type: object
               properties:
                 rasterbasismodel:
@@ -770,7 +780,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Rasterbasis'
         '400':
-          description: Unsupported Plan type or version
+          description: Unsupported Plan type or version or rasterbasismodel is missing
         '404':
           description: Invalid plan ID or Rasterbasis ID, plan or Rasterbasis not found
     delete:
@@ -857,6 +867,8 @@ paths:
         content:
           multipart/form-data:
             schema:
+              required:
+                - dokumentmodel
               type: object
               properties:
                 dokumentmodel:
@@ -877,7 +889,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Dokument'
         '400':
-          description: Unsupported Plan type or version
+          description: Unsupported Plan type or version or dokumentmodel is missing
         '404':
           description: Invalid plan ID or dokument ID, plan or dokument not found
     delete:

@@ -1,5 +1,6 @@
 package de.latlon.xplanbox.api.manager.v1;
 
+import de.latlon.xplanbox.api.manager.exception.MissingRequestEntity;
 import de.latlon.xplanbox.api.manager.handler.EditDokumentHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Dokument;
 import io.swagger.v3.oas.annotations.Operation;
@@ -53,15 +54,18 @@ public class PlanDokumentApi {
     @Operation(operationId = "addDokument", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version or dokumentmodel is missing") })
     public Dokument addDokument( @PathParam("planId")
                                  @Parameter(description = "ID of the plan to add dokumente", example = "123")
                                                  String planId,
-                                 @Parameter(schema = @Schema(implementation = Dokument.class))
+                                 @Parameter(schema = @Schema(implementation = Dokument.class), required = true)
                                  @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
                                  @Parameter(schema = @Schema(type = "string", format = "binary"))
                                  @FormDataParam("datei") File file )
                     throws Exception {
+        if ( dokumentmodel == null ) {
+            throw new MissingRequestEntity( "Multipart attachment 'dokumentmodel' is missing." );
+        }
         Dokument dokument = dokumentmodel.getValueAs( Dokument.class );
         return editHandler.addDokument( planId, dokument, file );
     }
@@ -87,17 +91,20 @@ public class PlanDokumentApi {
     @Operation(operationId = "replaceDokumentById", tags = { "edit" }, responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))),
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version")
+                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version or dokumentmodel is missing")
     })
     public Dokument replaceDokumentById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to replace dokument", example = "123") String planId,
                     @PathParam("id") @Parameter(description = "id of the Dokument to be updated (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)", example = "Legende123-") String id,
-                    @Parameter(schema = @Schema(implementation = Dokument.class))
+                    @Parameter(schema = @Schema(implementation = Dokument.class), required = true)
                     @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
                     @Parameter(schema = @Schema(type = "string", format = "binary"))
                     @FormDataParam("datei") File file
     )
                     throws Exception {
+        if ( dokumentmodel == null ) {
+            throw new MissingRequestEntity( "Multipart attachment 'dokumentmodel' is missing." );
+        }
         Dokument dokument = dokumentmodel.getValueAs( Dokument.class );
         return editHandler.replaceDokument( planId, id, dokument, file );
     }
