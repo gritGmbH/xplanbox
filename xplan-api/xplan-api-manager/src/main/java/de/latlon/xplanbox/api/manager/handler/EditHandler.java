@@ -6,8 +6,14 @@ import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanToEdit;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -26,6 +32,27 @@ public class EditHandler {
         LOG.info( "Find plan by Id '{}'", planId );
         int id = Integer.parseInt( planId );
         return findPlanById( id );
+    }
+
+    /**
+     * Stores the passed content as tmp file with the passed filename.
+     *
+     * @param content
+     *                 may be <code>null</code>
+     * @param fileMetadata
+     *                 name of the file, never <code>null</code> if content is <code>not null</code>
+     * @return the file, <code>null</code> if content is <code>null</code>
+     * @throws IOException
+     */
+    public File storeAsFile( InputStream content, FormDataContentDisposition fileMetadata )
+                    throws IOException {
+        if ( content == null )
+            return null;
+        java.nio.file.Path tmpDir = Files.createTempDirectory( "postDokument" );
+        java.nio.file.Path targetFile = tmpDir.resolve( fileMetadata.getFileName() );
+        Files.copy( content, targetFile );
+        content.close();
+        return targetFile.toFile();
     }
 
     private XPlan findPlanById( int id )

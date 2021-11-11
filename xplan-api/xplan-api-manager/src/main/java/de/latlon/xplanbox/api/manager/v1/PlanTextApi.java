@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,6 +23,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -61,12 +63,15 @@ public class PlanTextApi {
                          @Parameter(schema = @Schema(implementation = Text.class), required = true)
                          @FormDataParam("textmodel") FormDataBodyPart textmodel,
                          @Parameter(schema = @Schema(type = "string", format = "binary"))
-                         @FormDataParam("datei") File file )
+                         @FormDataParam("datei") InputStream datei,
+                         @Parameter(hidden = true)
+                         @FormDataParam("datei") FormDataContentDisposition dateiMeta )
                     throws Exception {
         if ( textmodel == null ) {
             throw new MissingRequestEntity( "Multipart attachment 'textmodel' is missing." );
         }
         Text text = textmodel.getValueAs( Text.class );
+        File file = editTextHandler.storeAsFile( datei, dateiMeta );
         return editTextHandler.addText( planId, text, file );
     }
 
@@ -98,12 +103,16 @@ public class PlanTextApi {
                     @Parameter(schema = @Schema(implementation = Text.class), required = true)
                     @FormDataParam("textmodel") FormDataBodyPart textmodel,
                     @Parameter(schema = @Schema(type = "string", format = "binary"))
-                    @FormDataParam("datei") File file )
+                    @FormDataParam("datei") InputStream datei,
+                    @Parameter(hidden = true)
+                    @FormDataParam("datei") FormDataContentDisposition dateiMeta
+    )
                     throws Exception {
         if ( textmodel == null ) {
             throw new MissingRequestEntity( "Multipart attachment 'textmodel' is missing." );
         }
         Text text = textmodel.getValueAs( Text.class );
+        File file = editTextHandler.storeAsFile( datei, dateiMeta );
         return editTextHandler.replaceText( planId, id, text, file );
     }
 

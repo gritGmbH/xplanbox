@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,6 +23,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -61,15 +63,21 @@ public class PlanRasterbasisApi {
                                        @Parameter(schema = @Schema(implementation = Rasterbasis.class), required = true)
                                        @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
                                        @Parameter(schema = @Schema(type = "string", format = "binary"))
-                                       @FormDataParam("rasterdatei") File rasterdatei,
+                                       @FormDataParam("rasterdatei") InputStream rasterdatei,
+                                       @Parameter(hidden = true)
+                                       @FormDataParam("rasterdatei") FormDataContentDisposition rasterdateiMeta,
                                        @Parameter(schema = @Schema(type = "string", format = "binary"))
-                                       @FormDataParam("georeferenzdatei") File georeferenzdatei )
+                                       @FormDataParam("georeferenzdatei") InputStream georeferenzdatei,
+                                       @Parameter(hidden = true)
+                                       @FormDataParam("georeferenzdatei") FormDataContentDisposition georeferenzdateiMeta )
                     throws Exception {
         if ( rasterbasismodel == null ) {
             throw new MissingRequestEntity( "Multipart attachment 'rasterbasismodel' is missing." );
         }
         Rasterbasis rasterbasis = rasterbasismodel.getValueAs( Rasterbasis.class );
-        return editRasterbasisHandler.addRasterbasis( planId, rasterbasis, rasterdatei, georeferenzdatei );
+        File rasterfile = editRasterbasisHandler.storeAsFile( rasterdatei, rasterdateiMeta );
+        File georeferenzfile = editRasterbasisHandler.storeAsFile( georeferenzdatei, georeferenzdateiMeta );
+        return editRasterbasisHandler.addRasterbasis( planId, rasterbasis, rasterfile, georeferenzfile );
     }
 
     @GET
@@ -100,15 +108,21 @@ public class PlanRasterbasisApi {
                     @Parameter(schema = @Schema(implementation = Rasterbasis.class), required = true)
                     @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
                     @Parameter(schema = @Schema(type = "string", format = "binary"))
-                    @FormDataParam("rasterdatei") File rasterdatei,
+                    @FormDataParam("rasterdatei") InputStream rasterdatei,
+                    @Parameter(hidden = true)
+                    @FormDataParam("rasterdatei") FormDataContentDisposition rasterdateiMeta,
                     @Parameter(schema = @Schema(type = "string", format = "binary"))
-                    @FormDataParam("georeferenzdatei") File georeferenzdatei )
+                    @FormDataParam("georeferenzdatei") InputStream georeferenzdatei,
+                    @Parameter(hidden = true)
+                    @FormDataParam("georeferenzdatei") FormDataContentDisposition georeferenzdateiMeta )
                     throws Exception {
         if ( rasterbasismodel == null ) {
             throw new MissingRequestEntity( "Multipart attachment 'rasterbasismodel' is missing." );
         }
         Rasterbasis rasterbasis = rasterbasismodel.getValueAs( Rasterbasis.class );
-        return editRasterbasisHandler.replaceRasterbasis( planId, id, rasterbasis, rasterdatei, georeferenzdatei );
+        File rasterfile = editRasterbasisHandler.storeAsFile( rasterdatei, rasterdateiMeta );
+        File georeferenzfile = editRasterbasisHandler.storeAsFile( georeferenzdatei, georeferenzdateiMeta );
+        return editRasterbasisHandler.replaceRasterbasis( planId, id, rasterbasis, rasterfile, georeferenzfile );
     }
 
     @DELETE
