@@ -199,8 +199,7 @@ public class PlanApi {
                             @Context
                                                     Request request,
                             @PathParam("planName")
-                            @Parameter(description = "planName of the plan to be returned", example = "bplan_123, fplan-123, rplan20200803", schema = @Schema(pattern = "^[A-Za-z0-9_-]*$"))
-                                                    String planName )
+                            @Parameter(description = "planName of the plan to be returned", example = "bplan_123, fplan-123, rplan20200803") String planName )
                             throws Exception {
         List<XPlan> plans = planHandler.findPlansByName( planName );
         List<PlanInfo> planInfos = plans.stream().map( xPlan -> {

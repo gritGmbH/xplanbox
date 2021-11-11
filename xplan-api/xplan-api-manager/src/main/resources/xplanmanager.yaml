@@ -121,7 +121,6 @@ paths:
           description: planName of the plan to be returned
           required: true
           schema:
-            pattern: '^[A-Za-z0-9_-]*$'
             type: string
           example: 'bplan_123, fplan-123, rplan20200803'
       responses:
