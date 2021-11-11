@@ -83,7 +83,7 @@ public class EditRasterbasisHandler extends EditHandler {
 
         List<File> uploadedArtefacts = createUploadedArtefactsList( referenz, geoReferenz );
         manager.editPlan( plan, xPlanToEdit, false, uploadedArtefacts );
-        return rasterbasisModel;
+        return rasterbasisModel.id( createRasterBasisId( rasterReferenceToAdd ) );
     }
 
     /**
@@ -112,7 +112,7 @@ public class EditRasterbasisHandler extends EditHandler {
         rasterBasis.getRasterReferences().add( rasterReferenceToAdd );
         List<File> uploadedArtefacts = createUploadedArtefactsList( referenz, geoReferenz );
         manager.editPlan( plan, xPlanToEdit, false, uploadedArtefacts );
-        return rasterbasisModel;
+        return rasterbasisModel.id( createRasterBasisId( rasterReferenceToAdd ) );
     }
 
     /**

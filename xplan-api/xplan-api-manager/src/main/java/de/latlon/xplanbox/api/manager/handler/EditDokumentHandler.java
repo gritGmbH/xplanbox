@@ -77,7 +77,7 @@ public class EditDokumentHandler extends EditHandler {
 
         List<File> uploadedArtefacts = file != null ? Collections.singletonList( file ) : Collections.emptyList();
         manager.editPlan( plan, xPlanToEdit, false, uploadedArtefacts );
-        return dokumentModel;
+        return dokumentModel.id( createDokumentId( referenceToAdd ) );
     }
 
     /**
@@ -104,7 +104,7 @@ public class EditDokumentHandler extends EditHandler {
         references.add( referenceToAdd );
         List<File> uploadedArtefacts = file != null ? Collections.singletonList( file ) : Collections.emptyList();
         manager.editPlan( plan, xPlanToEdit, false, uploadedArtefacts );
-        return dokumentModel;
+        return dokumentModel.id( createDokumentId( referenceToAdd ) );
     }
 
     /**

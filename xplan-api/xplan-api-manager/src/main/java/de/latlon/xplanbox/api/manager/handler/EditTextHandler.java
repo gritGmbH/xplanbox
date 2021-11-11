@@ -73,7 +73,7 @@ public class EditTextHandler extends EditHandler {
 
         List<File> uploadedArtefacts = file != null ? Collections.singletonList( file ) : Collections.emptyList();
         manager.editPlan( plan, xPlanToEdit, false, uploadedArtefacts );
-        return textModel;
+        return textModel.id( createTextId( textToAdd ) );
     }
 
     /**
@@ -100,7 +100,7 @@ public class EditTextHandler extends EditHandler {
         texts.add( textToAdd );
         List<File> uploadedArtefacts = file != null ? Collections.singletonList( file ) : Collections.emptyList();
         manager.editPlan( plan, xPlanToEdit, false, uploadedArtefacts );
-        return textModel;
+        return textModel.id( createTextId( textToAdd ) );
     }
 
     /**
