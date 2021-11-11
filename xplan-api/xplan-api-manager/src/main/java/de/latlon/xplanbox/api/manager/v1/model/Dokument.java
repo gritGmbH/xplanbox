@@ -32,6 +32,9 @@ public class Dokument extends Referenz {
 
     public static Dokument fromReference( String dokumentId, Reference reference ) {
         Dokument dokument = new Dokument().id( dokumentId );
+        if ( reference.getType() != null ) {
+            dokument.typ( reference.getType().getSpezExterneReferenceType() );
+        }
         dokument.art( reference.getArt() != null ? reference.getArt().getCode() : null ).beschreibung(
                         reference.getBeschreibung() ).datum( reference.getDatum() ).georefMimeType(
                         reference.getGeorefMimeType() != null ?
