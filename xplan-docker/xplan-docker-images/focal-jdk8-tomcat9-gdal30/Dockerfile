@@ -3,6 +3,7 @@ FROM ubuntu:focal
 MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
+ARG TOMCAT_VERSION="9.0.54"
 # set environment variables
 ENV CATALINA_OPTS="-Xmx8192m -DXPLANBOX_CONFIG=/root/xplan-manager-config/"
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
@@ -18,9 +19,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt -y install openjdk-8-jdk
 
 # install tomcat
 RUN mkdir /usr/local/tomcat
-RUN wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.50/bin/apache-tomcat-9.0.50.tar.gz -O /tmp/tomcat.tar.gz
+RUN wget https://downloads.apache.org/tomcat/tomcat-9/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tar.gz
 RUN cd /tmp && tar xvfz tomcat.tar.gz
-RUN cp -Rv /tmp/apache-tomcat-9.0.50/* /usr/local/tomcat/
+RUN cp -Rv /tmp/apache-tomcat-${TOMCAT_VERSION}/* /usr/local/tomcat/
 EXPOSE 8080
 
 # install gdal plus jni
