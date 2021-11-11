@@ -76,8 +76,11 @@ public class OpenApiFilter extends AbstractSpecFilter {
     }
 
     private String createNewKey( String s ) {
-        int index = ordinalIndexOf( s, "/", 4 );
-        return s.substring( index );
+        if ( s.startsWith( "/xvalidator/api/v" ) || s.startsWith( "/xmanager/api/v" ) ) {
+            int index = ordinalIndexOf( s, "/", 4 );
+            return s.substring( index );
+        }
+        return s;
     }
 
 }
