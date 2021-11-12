@@ -84,7 +84,7 @@ public class PlanDokumentApi {
                     @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Dokument getDokumentById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to get dokument", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Dokument to be returned (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)", example = "Legende123-") String id )
+                    @PathParam("id") @Parameter(description = "id of the Dokument to be returned (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)", example = "Legende123-") String id )
                     throws Exception {
         return editDokumentHandler.retrieveDokument( planId, id );
     }
@@ -100,7 +100,7 @@ public class PlanDokumentApi {
     })
     public Dokument replaceDokumentById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to replace dokument", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Dokument to be updated (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)", example = "Legende123-") String id,
+                    @PathParam("id") @Parameter(description = "id of the Dokument to be updated (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)", example = "Legende123-") String id,
                     @Parameter(schema = @Schema(implementation = Dokument.class), required = true)
                     @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
                     @Parameter(schema = @Schema(type = "string", format = "binary"))
@@ -126,7 +126,7 @@ public class PlanDokumentApi {
                     @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Dokument deleteDokumentById(
                     @PathParam("planId") @Parameter(description = "planId of the plan to delete dokument", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Dokument to be deleted (Pattern of the ID: referenzName-referenzURL, other characters than a-z, A-Z, 0-9, _, - are removed)", example = "Legende123-") String id )
+                    @PathParam("id") @Parameter(description = "id of the Dokument to be deleted (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)", example = "Legende123-") String id )
                     throws Exception {
         return editDokumentHandler.deleteDokument( planId, id );
     }

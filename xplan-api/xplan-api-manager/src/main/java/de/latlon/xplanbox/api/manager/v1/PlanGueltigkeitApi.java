@@ -37,7 +37,7 @@ public class PlanGueltigkeitApi {
                     @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
                     @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
     public Zeitraum getGueltigkeit(
-                    @PathParam("planId") @Parameter(description = "planId of the plan basisdaten to be returned", example = "123") String planId )
+                    @PathParam("planId") @Parameter(description = "planId of the plan gueltigkeit to be returned", example = "123") String planId )
                     throws Exception {
         return editGueltigkeitHandler.retrieveGueltigkeit( planId );
     }

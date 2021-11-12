@@ -140,11 +140,11 @@ public class XPlanManager {
 
     /**
      * @param xPlanDao
-     *                 mandatory XPlanDao
+     *                 mandatory XPlan data access object
      * @param archiveCreator
-     *                 archive creator
+     *                 mandatory archive creator
      * @param managerWorkspaceWrapper
-     *                 manager workspace configuration
+     *                mandatory manager workspace configuration
      * @param workspaceReloader
      *                 reloads a deegree workspace, if <code>null</code>, no workspace is reloaded
      * @param inspirePluTransformator
@@ -152,7 +152,7 @@ public class XPlanManager {
      * @param xPlanGmlTransformer
      *                 transforms between different versions of XPlanGML, may be <code>null</code>
      * @param wmsWorkspaceWrapper
-     *                 wms workspace configuration
+     *                 mandatory WMS workspace configuration
      * @throws Exception if mandatory arguments are missing or something went wrong
      */
     public XPlanManager( XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
