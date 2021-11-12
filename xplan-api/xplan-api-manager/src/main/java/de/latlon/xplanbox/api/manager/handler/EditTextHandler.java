@@ -10,6 +10,7 @@ import javax.inject.Singleton;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -68,12 +69,18 @@ public class EditTextHandler extends EditHandler {
         XPlan plan = findPlanById( planId );
         XPlanToEdit xPlanToEdit = manager.getXPlanToEdit( plan );
         List<de.latlon.xplan.manager.web.shared.edit.Text> texts = xPlanToEdit.getTexts();
+        List<String> textIdsBeforeInsert = texts.stream().filter( t -> t.getFeatureId() != null ).map(
+                        t -> t.getFeatureId() ).collect(
+                        Collectors.toList() );
         de.latlon.xplan.manager.web.shared.edit.Text textToAdd = textModel.toText();
         texts.add( textToAdd );
 
         List<File> uploadedArtefacts = file != null ? Collections.singletonList( file ) : Collections.emptyList();
         manager.editPlan( plan, xPlanToEdit, false, uploadedArtefacts );
-        return textModel.id( createTextId( textToAdd ) );
+        Optional<de.latlon.xplan.manager.web.shared.edit.Text> insertedText = manager.getXPlanToEdit(
+                        findPlanById( planId ) ).getTexts().stream().filter( t -> !textIdsBeforeInsert.contains(
+                        t.getFeatureId() ) ).findFirst();
+        return Text.fromText( insertedText.get() );
     }
 
     /**
@@ -97,10 +104,11 @@ public class EditTextHandler extends EditHandler {
         de.latlon.xplan.manager.web.shared.edit.Text textToReplace = getOldTextById( planId, textId, texts );
         texts.remove( textToReplace );
         de.latlon.xplan.manager.web.shared.edit.Text textToAdd = textModel.toText();
+        textToAdd.setFeatureId( textId );
         texts.add( textToAdd );
         List<File> uploadedArtefacts = file != null ? Collections.singletonList( file ) : Collections.emptyList();
         manager.editPlan( plan, xPlanToEdit, false, uploadedArtefacts );
-        return textModel.id( createTextId( textToAdd ) );
+        return textModel.id( textToReplace.getFeatureId() );
     }
 
     /**

@@ -199,7 +199,8 @@ public class TestContext {
         when(xplanDao.getXPlanById(3)).thenReturn(mockPlan3);
         when(xplanDao.retrieveXPlanArtefact( "2" )).thenReturn(
                         getClass().getResourceAsStream( "/xplan51.gml" ) ).thenReturn(
-                        getClass().getResourceAsStream( "/xplan51.gml" ) );
+                        getClass().getResourceAsStream( "/xplan51.gml" ) ).thenReturn(
+                        getClass().getResourceAsStream( "/xplan51-edited.gml" ) );
         List<XPlan> mockList = new ArrayList<>();
         mockList.add(mockPlan41);
         when(xplanDao.getXPlanByName("bplan_41")).thenReturn(mockList);

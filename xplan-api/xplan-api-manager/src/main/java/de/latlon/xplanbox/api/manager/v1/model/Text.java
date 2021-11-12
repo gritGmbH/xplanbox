@@ -37,6 +37,10 @@ public class Text {
     @DecimalMax("99999")
     private @Valid Integer rechtscharakter;
 
+    public static Text fromText( de.latlon.xplan.manager.web.shared.edit.Text oldText ) {
+        return fromText( oldText.getFeatureId(), oldText );
+    }
+
     public static Text fromText( String textId, de.latlon.xplan.manager.web.shared.edit.Text oldText ) {
         Referenz referenz = new Referenz().art(
                         oldText.getArt() != null ? oldText.getArt().getCode() : null ).beschreibung(
