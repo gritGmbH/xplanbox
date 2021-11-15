@@ -54,7 +54,7 @@ public class XQuerySemanticValidatorConfigurationRetrieverTest {
         SemanticValidatorConfiguration configuration = configurationRetriever.retrieveConfiguration();
         List<SemanticValidatorRule> rules = configuration.getAllRules();
 
-        assertThat( rules.size(), is( 10 ) );
+        assertThat( rules.size(), is( 11 ) );
     }
 
     @Test
@@ -65,9 +65,9 @@ public class XQuerySemanticValidatorConfigurationRetrieverTest {
             new XQuerySemanticValidatorConfigurationRetriever( rulesPath );
         SemanticValidatorConfiguration configuration = retriever.retrieveConfiguration();
 
-        assertThat( configuration.getRules( singletonList( IGNORE_XP ) ).size(), is( 8 ) );
-        assertThat( configuration.getRules( singletonList( IGNORE_SO ) ).size(), is( 9 ) );
-        assertThat( configuration.getRules( XPLAN_40, singletonList( NONE ) ).size(), is( 7 ) );
+        assertThat( configuration.getRules( singletonList( IGNORE_XP ) ).size(), is( 9 ) );
+        assertThat( configuration.getRules( singletonList( IGNORE_SO ) ).size(), is( 10 ) );
+        assertThat( configuration.getRules( XPLAN_40, singletonList( NONE ) ).size(), is( 8 ) );
     }
 
 }

@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.util.List;
 
 import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
+import de.latlon.xplan.validator.semantic.report.InvalidRuleResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -123,10 +124,8 @@ public class XQuerySemanticValidator implements SemanticValidator {
                                   SemanticValidatorRule semanticValidatorRule ) {
         String name = semanticValidatorRule.getName();
         try {
-            List<String> invalidFeatures = semanticValidatorRule.validate( archive );
-            XPlanVersion version = semanticValidatorRule.getXPlanVersion();
-            String message = RulesMessagesAccessor.retrieveMessageForRule( name, version );
-            return result.addRule( name, message, invalidFeatures );
+            List<InvalidRuleResult> invalidFeatures = semanticValidatorRule.validate( archive );
+            return result.addRule( name, invalidFeatures );
         } catch ( ValidatorException e ) {
             LOG.error( "Error while semantically validating validation rule " + name, e );
         }

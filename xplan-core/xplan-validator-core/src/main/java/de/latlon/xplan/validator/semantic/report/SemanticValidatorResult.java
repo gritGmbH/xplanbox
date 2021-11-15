@@ -22,6 +22,7 @@
 package de.latlon.xplan.validator.semantic.report;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -82,6 +83,13 @@ public class SemanticValidatorResult extends ValidatorResult {
         return isValid;
     }
 
+    public boolean addRule( String name, List<InvalidRuleResult> invalidFeatures ) {
+        boolean isValid = invalidFeatures.isEmpty();
+        // TODO
+        rules.add( new RuleResult( name, isValid, "TODO", Collections.emptyList() ) );
+        return isValid;
+    }
+
     /**
      * @return all {@link RuleResult}s.
      */
@@ -108,5 +116,4 @@ public class SemanticValidatorResult extends ValidatorResult {
     public String toString() {
         return "SemanticValidatorResult{" + "rules=" + rules + '}';
     }
-
 }
