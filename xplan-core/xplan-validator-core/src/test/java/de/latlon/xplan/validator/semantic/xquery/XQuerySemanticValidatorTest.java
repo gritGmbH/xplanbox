@@ -57,7 +57,7 @@ import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 @RunWith(JUnitParamsRunner.class)
 public class XQuerySemanticValidatorTest {
 
-    @Parameters({ "xplan41/BP2070.zip,9 ", "xplan41/nsm/nsm_niedersachsen_lrop_small.zip,9", "xplan50/BP2070.zip,6", "xplan51/BP2070.zip,6" })
+    @Parameters({ "xplan41/BP2070.zip,10 ", "xplan41/nsm/nsm_niedersachsen_lrop_small.zip,10", "xplan50/BP2070.zip,7", "xplan51/BP2070.zip,7" })
     @Test
     public void testValidateSemantic( String testResource, int expectedNumberOfRules )
                             throws Exception {

@@ -23,9 +23,9 @@ package de.latlon.xplan.validator.semantic;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
+import de.latlon.xplan.validator.semantic.report.InvalidFeatureResult;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ public interface SemanticValidatorRule {
      *            the archive to validate, never <code>null</code>
      * @return list of GML Ids of the invalid features, empty if the all features are valid
      */
-    List<String> validate( SemanticValidableXPlanArchive archive )
+    List<InvalidFeatureResult> validate( SemanticValidableXPlanArchive archive )
                             throws ValidatorException;
 
     /**
