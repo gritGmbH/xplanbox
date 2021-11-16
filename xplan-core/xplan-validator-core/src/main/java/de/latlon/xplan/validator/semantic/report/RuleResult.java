@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -22,6 +22,9 @@
 package de.latlon.xplan.validator.semantic.report;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
 
 /**
  * contains the validator result of the rules of the semantic validation
@@ -32,43 +35,46 @@ public class RuleResult implements Comparable {
 
     private final String name;
 
-    private final boolean isValid;
-
     private final String message;
 
-  private final List<String> invalidFeatures;
+    private final List<InvalidFeaturesResult> invalidFeaturesResults;
 
-  protected RuleResult( String name, boolean isValid, String message, List<String> invalidFeatures ) {
-    this.name = name;
-    this.isValid = isValid;
-    this.message = message;
-    this.invalidFeatures = invalidFeatures;
-  }
+    protected RuleResult( String name, String message, List<InvalidFeaturesResult> invalidFeaturesResults ) {
+        this.name = name;
+        this.message = message;
+        this.invalidFeaturesResults = invalidFeaturesResults;
+    }
 
     public String getName() {
         return name;
     }
 
     public boolean isValid() {
-        return isValid;
+        return getInvalidFeaturesResultsByType( ERROR ).isEmpty();
     }
 
     public String getMessage() {
         return message;
     }
 
-  public List<String> getInvalidFeatures() {
-    return invalidFeatures;
-  }
+    public List<InvalidFeaturesResult> getInvalidFeaturesResults() {
+        return invalidFeaturesResults;
+    }
 
-  @Override
-  public String toString() {
-    return "RuleResult{" +
-           "name='" + name + '\'' +
-           ", isValid=" + isValid +
-           ", message='" + message + '\'' +
-           '}';
-  }
+    public List<InvalidFeaturesResult> getInvalidFeaturesResultsByType( ValidationResultType validationResultType ) {
+        return invalidFeaturesResults.stream().filter(
+                        invalidRuleResult -> invalidRuleResult.getResultType().equals( validationResultType ) ).collect(
+                        Collectors.toList() );
+    }
+
+    @Override
+    public String toString() {
+        return "RuleResult{" +
+               "name='" + name + '\'' +
+               ", isValid=" + isValid() +
+               ", message='" + message + '\'' +
+               '}';
+    }
 
     @Override
     public int compareTo( Object o ) {

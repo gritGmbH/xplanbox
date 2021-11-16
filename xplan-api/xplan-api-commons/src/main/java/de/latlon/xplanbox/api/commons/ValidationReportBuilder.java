@@ -21,26 +21,27 @@
  */
 package de.latlon.xplanbox.api.commons;
 
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import de.latlon.xplanbox.api.commons.v1.model.PlanInfoBbox;
 import de.latlon.xplanbox.api.commons.v1.model.RulesMetadata;
+import de.latlon.xplanbox.api.commons.v1.model.SemanticInvalidRuleResult;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResult;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultGeometrisch;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSemantisch;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSemantischRules;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSyntaktisch;
-import de.latlon.xplanbox.api.commons.v1.model.VersionEnum;
 import org.deegree.geometry.Envelope;
 
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
+import static de.latlon.xplan.validator.semantic.report.ValidationResultType.WARNING;
 import static de.latlon.xplanbox.api.commons.v1.model.VersionEnum.fromXPlanVersion;
 
 /**
@@ -124,11 +125,20 @@ public class ValidationReportBuilder {
         if ( validatorReport != null && validatorReport.getSemanticValidatorResult() != null ) {
             SemanticValidatorResult result = validatorReport.getSemanticValidatorResult();
             List<ValidationReportValidationResultSemantischRules> rules = result.getRules().stream().map(
-                                    ruleResult -> new ValidationReportValidationResultSemantischRules().isValid(
-                                                            ruleResult.isValid() ).name( ruleResult.getName() ).message(
-                                                            ruleResult.getMessage() ).invalidFeatures(
-                                                            ruleResult.getInvalidFeatures() ) ).collect(
-                                    Collectors.toList() );
+                            ruleResult -> new ValidationReportValidationResultSemantischRules().isValid(
+                                            ruleResult.isValid() ).name( ruleResult.getName() ).message(
+                                            ruleResult.getMessage() ).warnedFeatures(
+                                            ruleResult.getInvalidFeaturesResultsByType( WARNING ).stream().map(
+                                                            invalidRuleResult -> new SemanticInvalidRuleResult().message(
+                                                                            invalidRuleResult.getMessage() ).invalidGmlIds(
+                                                                            invalidRuleResult.getGmlIds() ) ).collect(
+                                                            Collectors.toList() ) ).erroredFeatures(
+                                            ruleResult.getInvalidFeaturesResultsByType( ERROR ).stream().map(
+                                                            invalidRuleResult -> new SemanticInvalidRuleResult().message(
+                                                                            invalidRuleResult.getMessage() ).invalidGmlIds(
+                                                                            invalidRuleResult.getGmlIds() ) ).collect(
+                                                            Collectors.toList() ) ) ).collect(
+                            Collectors.toList() );
             return new ValidationReportValidationResultSemantisch().valid( result.isValid() ).rules( rules );
         }
         return null;

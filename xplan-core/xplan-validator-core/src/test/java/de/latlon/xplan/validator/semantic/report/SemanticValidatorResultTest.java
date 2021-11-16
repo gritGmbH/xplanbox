@@ -64,7 +64,8 @@ public class SemanticValidatorResultTest {
     @Test
     public void getRulesWithInvalid() {
         SemanticValidatorResult result = retrieveResultWithRules();
-        result.addRule( NAME_INVALID, "invalid", Collections.singletonList( "id_i" )  );
+        InvalidFeaturesResult id_2 =  new InvalidFeaturesResult( "id_2" );
+        result.addRule( NAME_INVALID, "invalid", Collections.singletonList( id_2 )  );
 
         List<RuleResult> rules = result.getRules();
 
@@ -74,7 +75,8 @@ public class SemanticValidatorResultTest {
     private SemanticValidatorResult retrieveResultWithRules() {
         SemanticValidatorResult result = new SemanticValidatorResult();
         result.addRule( NAME_1, "message1", Collections.emptyList() );
-        result.addRule( NAME_2, "message2", Collections.singletonList( "id_2" ) );
+        InvalidFeaturesResult id_2 =  new InvalidFeaturesResult( "id_2" );
+        result.addRule( NAME_2, "message2", Collections.singletonList( id_2 ) );
         result.addRule( NAME_3, "message3", Collections.emptyList() );
         result.addRule( NAME_4, "message4", Collections.emptyList() );
         result.addRule( NAME_5, "message5", Collections.emptyList() );

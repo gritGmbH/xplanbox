@@ -6,11 +6,11 @@ import java.util.List;
 import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
 
 /**
- * Indicates an invalid feature.
+ * Indicates invalid features.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class InvalidFeatureResult {
+public class InvalidFeaturesResult {
 
     private static final String UNKNOWN_GML_ID = "unbekannt";
 
@@ -26,7 +26,7 @@ public class InvalidFeatureResult {
      * @param message
      *                 the error message, should not be <code>null</code>
      */
-    public InvalidFeatureResult( String message ) {
+    public InvalidFeaturesResult( String message ) {
         this( UNKNOWN_GML_ID, message );
     }
 
@@ -38,7 +38,7 @@ public class InvalidFeatureResult {
      * @param message
      *                 the error message, should not be <code>null</code>
      */
-    public InvalidFeatureResult( String gmlId, String message ) {
+    public InvalidFeaturesResult( String gmlId, String message ) {
         this( gmlId, ERROR, message );
     }
 
@@ -50,7 +50,7 @@ public class InvalidFeatureResult {
      * @param message
      *                 the message, should not be <code>null</code>
      */
-    public InvalidFeatureResult( String gmlId, ValidationResultType resultType, String message ) {
+    public InvalidFeaturesResult( String gmlId, ValidationResultType resultType, String message ) {
         this.resultType = resultType;
         this.message = message;
         addGmlId( gmlId );

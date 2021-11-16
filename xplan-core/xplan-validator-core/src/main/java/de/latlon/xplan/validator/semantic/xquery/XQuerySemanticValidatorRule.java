@@ -27,7 +27,7 @@ import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.semantic.SemanticValidatorRule;
 import de.latlon.xplan.validator.semantic.configuration.RulesMessagesAccessor;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
-import de.latlon.xplan.validator.semantic.report.InvalidFeatureResult;
+import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
 import de.latlon.xplan.validator.semantic.report.ValidationResultType;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.ma.arrays.SimpleArrayItem;
@@ -94,7 +94,7 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
     }
 
     @Override
-    public List<InvalidFeatureResult> validate( SemanticValidableXPlanArchive archive )
+    public List<InvalidFeaturesResult> validate( SemanticValidableXPlanArchive archive )
                     throws ValidatorException {
         final Properties props = createProperties();
         try ( Writer writer = new StringWriter() ) {
@@ -147,10 +147,10 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
         return new StreamSource( mainFileInputStream );
     }
 
-    private List<InvalidFeatureResult> evaluateXQueryResult( SequenceIterator iterator )
+    private List<InvalidFeaturesResult> evaluateXQueryResult( SequenceIterator iterator )
                     throws XPathException, ValidatorException {
         Item next;
-        MultiKeyMap<String, InvalidFeatureResult> results = new MultiKeyMap<>();
+        MultiKeyMap<String, InvalidFeaturesResult> results = new MultiKeyMap<>();
         while ( ( next = iterator.next() ) != null ) {
             if ( next instanceof SimpleArrayItem ) {
                 evaluateWarningErrorResult( (SimpleArrayItem) next, results );
@@ -159,7 +159,7 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
                 if ( resultOrGmlId.equalsIgnoreCase( "true" ) )
                     return Collections.emptyList();
                 if ( resultOrGmlId.equalsIgnoreCase( "false" ) )
-                    return Collections.singletonList( new InvalidFeatureResult( defaultMessage ) );
+                    return Collections.singletonList( new InvalidFeaturesResult( defaultMessage ) );
                 evaludateInvalidGmlIdResult( resultOrGmlId, results );
             }
         }
@@ -167,17 +167,17 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
     }
 
     private void evaludateInvalidGmlIdResult( String gmlId,
-                                              MultiKeyMap<String, InvalidFeatureResult> results ) {
+                                              MultiKeyMap<String, InvalidFeaturesResult> results ) {
         if ( results.containsKey( ERROR.name(), defaultMessage ) ) {
             results.get( ERROR.name(), defaultMessage ).addGmlId( gmlId );
         } else {
-            InvalidFeatureResult invalidRuleResult = new InvalidFeatureResult( gmlId, defaultMessage );
+            InvalidFeaturesResult invalidRuleResult = new InvalidFeaturesResult( gmlId, defaultMessage );
             results.put( ERROR.name(), defaultMessage, invalidRuleResult );
         }
     }
 
     private void evaluateWarningErrorResult( SimpleArrayItem next,
-                                             MultiKeyMap<String, InvalidFeatureResult> results )
+                                             MultiKeyMap<String, InvalidFeaturesResult> results )
                     throws ValidatorException, XPathException {
         SimpleArrayItem arrayItem = next;
         if ( arrayItem.arrayLength() == 3 ) {
@@ -188,8 +188,8 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
             if ( results.containsKey( validationResultType.name(), message ) ) {
                 results.get( validationResultType.name(), message ).addGmlId( gmlId );
             } else {
-                InvalidFeatureResult invalidRuleResult = new InvalidFeatureResult( gmlId, validationResultType,
-                                                                                   message );
+                InvalidFeaturesResult invalidRuleResult = new InvalidFeaturesResult( gmlId, validationResultType,
+                                                                                     message );
                 results.put( validationResultType.name(), message, invalidRuleResult );
             }
         } else {

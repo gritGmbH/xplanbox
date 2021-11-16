@@ -25,6 +25,7 @@ import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorReport;
+import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.junit.Test;
@@ -120,7 +121,8 @@ public class HtmlReportGeneratorTest {
         ValidatorReport validatorReport = createValidationReport();
         SemanticValidatorResult semanticValidatorResult = new SemanticValidatorResult();
         semanticValidatorResult.addRule( "1.1", "Test valid", Collections.emptyList() );
-        semanticValidatorResult.addRule( "1.2", "Test in valid", Collections.singletonList( "id_12" ) );
+        InvalidFeaturesResult id_12 = new InvalidFeaturesResult( "id_12" );
+        semanticValidatorResult.addRule( "1.2", "Test in valid",Collections.singletonList(  id_12 ));
         validatorReport.setSemanticValidatorResult( semanticValidatorResult );
         return validatorReport;
     }
@@ -153,7 +155,8 @@ public class HtmlReportGeneratorTest {
 
         SemanticValidatorResult semanticValidatorResult = new SemanticValidatorResult();
         semanticValidatorResult.addRule( "1.1", "Test valid", Collections.emptyList() );
-        semanticValidatorResult.addRule( "1.2", "Test in valid", Collections.singletonList( "id_12" ) );
+        InvalidFeaturesResult id_12 = new InvalidFeaturesResult( "id_12" );
+        semanticValidatorResult.addRule( "1.2", "Test in valid", Collections.singletonList( id_12 ) );
         validatorReport.setSemanticValidatorResult( semanticValidatorResult );
 
         GeometricValidatorResult geometricValidatorResult = new GeometricValidatorResult( SYNTAX_ERRORS );

@@ -40,6 +40,7 @@ import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
@@ -369,9 +370,15 @@ public class XPlanValidator {
             if ( ruleResult.isValid() ) {
                 LOG.info( "  - Erfolgreich: {}", ruleResult.getMessage() );
             } else {
-                List<String> invalidFeatures = ruleResult.getInvalidFeatures();
-                LOG.info( "  - Fehler: {}, fehlerhafte Features: {}", ruleResult.getMessage(),
-                          invalidFeatures.stream().collect( Collectors.joining( ", " ) ) );
+                List<InvalidFeaturesResult> invalidFeatures = ruleResult.getInvalidFeaturesResults();
+                invalidFeatures.stream().forEach(
+                                invalidRuleResult -> {
+                                    String gmlIds = invalidRuleResult.getGmlIds().stream().collect(
+                                                    Collectors.joining( ", " ) );
+                                    LOG.info( "  - {}: {}, Features: {}", invalidRuleResult.getResultType(),
+                                              invalidRuleResult.getMessage(), gmlIds );
+                                }
+                );
             }
         }
     }

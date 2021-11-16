@@ -23,6 +23,8 @@ package de.latlon.xplan.validator.report.xml;
 
 import static de.latlon.xplan.validator.report.ReportUtils.createValidLabel;
 import static de.latlon.xplan.validator.report.ReportUtils.asLabel;
+import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
+import static de.latlon.xplan.validator.semantic.report.ValidationResultType.WARNING;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -48,6 +50,7 @@ import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.WarningsType;
 import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
@@ -160,7 +163,8 @@ public class JaxbConverter {
                 ruleXML.setName( rule.getName() );
                 ruleXML.setIsValid( rule.isValid() );
                 ruleXML.setMessage( rule.getMessage() );
-                addInvalidFeatures( ruleXML, rule.getInvalidFeatures() );
+                addWarnedFeatures( ruleXML, rule.getInvalidFeaturesResultsByType( WARNING ) );
+                addErroredFeatures( ruleXML, rule.getInvalidFeaturesResultsByType( ERROR ) );
                 rulesListXML.add( ruleXML );
             }
             semType.setRules( rulesXML );
@@ -173,13 +177,30 @@ public class JaxbConverter {
         val.setSem( semType );
     }
 
-    private void addInvalidFeatures( RuleType ruleXML, List<String> invalidFeatures ) {
+    private void addWarnedFeatures( RuleType ruleXML, List<InvalidFeaturesResult> warnedFeatures ) {
         ObjectFactory objectFactory = new ObjectFactory();
-        for ( String invalidFeature : invalidFeatures ) {
-            InvalidFeaturesType invalidFeaturesType = objectFactory.createInvalidFeaturesType();
-            invalidFeaturesType.setGmlid( invalidFeature );
-            ruleXML.getInvalidFeatures().add( invalidFeaturesType );
+        for ( InvalidFeaturesResult warnedFeature : warnedFeatures ) {
+            InvalidFeaturesType invalidFeaturesType = createInvalidFeaturesType( objectFactory,
+                                                                                 warnedFeature );
+            ruleXML.getWarnedFeatures().add( invalidFeaturesType );
         }
+    }
+
+    private void addErroredFeatures( RuleType ruleXML, List<InvalidFeaturesResult> warnedFeatures ) {
+        ObjectFactory objectFactory = new ObjectFactory();
+        for ( InvalidFeaturesResult warnedFeature : warnedFeatures ) {
+            InvalidFeaturesType invalidFeaturesType = createInvalidFeaturesType( objectFactory,
+                                                                                 warnedFeature );
+            ruleXML.getErroredFeatures().add( invalidFeaturesType );
+        }
+    }
+
+    private InvalidFeaturesType createInvalidFeaturesType( ObjectFactory objectFactory,
+                                                           InvalidFeaturesResult invalidFeaturesResult ) {
+        InvalidFeaturesType invalidFeaturesType = objectFactory.createInvalidFeaturesType();
+        invalidFeaturesType.setMessage( invalidFeaturesResult.getMessage() );
+        invalidFeaturesType.getGmlids().addAll( invalidFeaturesResult.getGmlIds() );
+        return invalidFeaturesType;
     }
 
     private void convertResultToJaxb( SyntacticValidatorResult result, ValidationType val ) {
