@@ -9,7 +9,7 @@ let $ids := (
   for $h in //BP_BaugebietsTeilFlaeche
     return
       if ($h/besondereArtDerBaulNutzung = '1700') then (
-        [$h/@gml:id/string(), 'W' , 'Referenz in XP_VerbundenerPlan kann im vorliegenden XPlanGML-Dokument nicht aufgelöst werden']
+        [$h/@gml:id/string(), 'W' , 'Beispiel fuer Warnung']
       ) else (
         $h/@gml:id/string()
       )

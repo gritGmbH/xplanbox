@@ -69,7 +69,7 @@ public class XQuerySemanticValidatorRuleTest {
         XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule( xqery, "name",
                                                                                      XPLAN_41, NONE );
         List<InvalidFeatureResult> invalidFeatures = validatorRule.validate( retrieveArchive( "xplan41/BP2070.zip" ) );
-        assertThat( invalidFeatures.size(), is( 37 ) );
+        assertThat( invalidFeatures.size(), is( 1 ) );
     }
 
     @Test
@@ -90,13 +90,13 @@ public class XQuerySemanticValidatorRuleTest {
         XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule( xqery, "name",
                                                                                      XPLAN_41, NONE );
         List<InvalidFeatureResult> invalidFeatures = validatorRule.validate( retrieveArchive( "xplan41/BP2070.zip" ) );
-        assertThat( invalidFeatures.size(), is( 37 ) );
+        assertThat( invalidFeatures.size(), is( 2 ) );
         assertThat( invalidFeatures.stream().filter(
                                     invalidFeature -> invalidFeature.getResultType() == WARNING ).count(),
-                    is( 24l ) );
+                    is( 1l ) );
         assertThat( invalidFeatures.stream().filter(
                                     invalidFeature -> invalidFeature.getResultType() == ERROR ).count(),
-                    is( 13l ) );
+                    is( 1l ) );
     }
 
     @Test

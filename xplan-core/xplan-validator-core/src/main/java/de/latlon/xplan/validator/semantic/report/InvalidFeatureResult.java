@@ -1,5 +1,8 @@
 package de.latlon.xplan.validator.semantic.report;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
 
 /**
@@ -11,7 +14,7 @@ public class InvalidFeatureResult {
 
     private static final String UNKNOWN_GML_ID = "unbekannt";
 
-    private final String gmlId;
+    private final List<String> gmlIds = new ArrayList<>();
 
     private final ValidationResultType resultType;
 
@@ -48,16 +51,20 @@ public class InvalidFeatureResult {
      *                 the message, should not be <code>null</code>
      */
     public InvalidFeatureResult( String gmlId, ValidationResultType resultType, String message ) {
-        this.gmlId = gmlId;
         this.resultType = resultType;
         this.message = message;
+        addGmlId( gmlId );
+    }
+
+    public void addGmlId( String gmlId ) {
+        this.gmlIds.add( gmlId );
     }
 
     /**
      * @return the gmlId of the feature, never <code>null</code>
      */
-    public String getGmlId() {
-        return gmlId;
+    public List<String> getGmlIds() {
+        return gmlIds;
     }
 
     /**
@@ -73,5 +80,4 @@ public class InvalidFeatureResult {
     public String getMessage() {
         return message;
     }
-
 }

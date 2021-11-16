@@ -39,6 +39,7 @@ import net.sf.saxon.query.DynamicQueryContext;
 import net.sf.saxon.query.StaticQueryContext;
 import net.sf.saxon.query.XQueryExpression;
 import net.sf.saxon.trans.XPathException;
+import org.apache.commons.collections4.map.MultiKeyMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,10 +51,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.NONE;
 import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
@@ -149,30 +150,48 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
     private List<InvalidFeatureResult> evaluateXQueryResult( SequenceIterator iterator )
                     throws XPathException, ValidatorException {
         Item next;
-        List<InvalidFeatureResult> res = new ArrayList<>();
+        MultiKeyMap<String, InvalidFeatureResult> results = new MultiKeyMap<>();
         while ( ( next = iterator.next() ) != null ) {
             if ( next instanceof SimpleArrayItem ) {
-                InvalidFeatureResult invalidRuleResult = evaluateWarningErrorResult( (SimpleArrayItem) next );
-                res.add( invalidRuleResult );
+                evaluateWarningErrorResult( (SimpleArrayItem) next, results );
             } else {
                 String resultOrGmlId = next.getStringValue();
                 if ( resultOrGmlId.equalsIgnoreCase( "true" ) )
                     return Collections.emptyList();
                 if ( resultOrGmlId.equalsIgnoreCase( "false" ) )
                     return Collections.singletonList( new InvalidFeatureResult( defaultMessage ) );
-                res.add( new InvalidFeatureResult( resultOrGmlId, defaultMessage ) );
+                evaludateInvalidGmlIdResult( resultOrGmlId, results );
             }
         }
-        return res;
+        return results.values().stream().collect( Collectors.toList());
     }
 
-    private InvalidFeatureResult evaluateWarningErrorResult( SimpleArrayItem next )
+    private void evaludateInvalidGmlIdResult( String gmlId,
+                                              MultiKeyMap<String, InvalidFeatureResult> results ) {
+        if ( results.containsKey( ERROR.name(), defaultMessage ) ) {
+            results.get( ERROR.name(), defaultMessage ).addGmlId( gmlId );
+        } else {
+            InvalidFeatureResult invalidRuleResult = new InvalidFeatureResult( gmlId, defaultMessage );
+            results.put( ERROR.name(), defaultMessage, invalidRuleResult );
+        }
+    }
+
+    private void evaluateWarningErrorResult( SimpleArrayItem next,
+                                             MultiKeyMap<String, InvalidFeatureResult> results )
                     throws ValidatorException, XPathException {
         SimpleArrayItem arrayItem = next;
         if ( arrayItem.arrayLength() == 3 ) {
-            return new InvalidFeatureResult( asString( arrayItem.get( 0 ) ),
-                                             asValidationResultType( arrayItem.get( 1 ) ),
-                                             asString( arrayItem.get( 2 ) ) );
+            String gmlId = asString( arrayItem.get( 0 ) );
+            ValidationResultType validationResultType = asValidationResultType( arrayItem.get( 1 ) );
+            String message = asString( arrayItem.get( 2 ) );
+
+            if ( results.containsKey( validationResultType.name(), message ) ) {
+                results.get( validationResultType.name(), message ).addGmlId( gmlId );
+            } else {
+                InvalidFeatureResult invalidRuleResult = new InvalidFeatureResult( gmlId, validationResultType,
+                                                                                   message );
+                results.put( validationResultType.name(), message, invalidRuleResult );
+            }
         } else {
             throw new ValidatorException(
                             "Semantic validation result array must have exact 3 items. Result array is: "
