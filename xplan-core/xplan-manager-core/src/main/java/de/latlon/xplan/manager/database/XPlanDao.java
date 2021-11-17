@@ -1417,21 +1417,7 @@ public class XPlanDao {
             Map<String, File> artefactsToUpdate = new HashMap<String, File>();
             Map<String, File> artefactsToInsert = new HashMap<String, File>();
             for ( String refFileName : referenceFileNames ) {
-                LOG.debug( "Handle reference with name '{}'.", refFileName );
-                File uploadedFile = retrieveUploadedArtefact( refFileName, uploadedArtefacts );
-                boolean isStoredInArtefactsTable = artefactFileNames.contains( refFileName );
-                if ( uploadedFile != null ) {
-                    LOG.debug( "Reference was uploaded, update in DB required." );
-                    if ( isStoredInArtefactsTable ) {
-                        artefactsToUpdate.put( refFileName, uploadedFile );
-                    } else {
-                        artefactsToInsert.put( refFileName, uploadedFile );
-                    }
-                } else if ( isStoredInArtefactsTable ) {
-                    LOG.debug( "Reference was not changed" );
-                } else {
-                    throw new Exception( "Could not find referenced artefact with name " + refFileName );
-                }
+                updateArtefactIfRequired( uploadedArtefacts, artefactFileNames, artefactsToUpdate, artefactsToInsert, refFileName );
             }
             executeUpdateArtefacts( conn, id, artefactsToUpdate );
             executeInsertArtefacts( conn, id, artefactsToInsert );
@@ -1441,6 +1427,31 @@ public class XPlanDao {
             LOG.info( "OK [" + elapsed + " ms]" );
         } catch ( SQLException e ) {
             throw new Exception( "Fehler beim Aktualisieren der XPlan-Artefakte in DB: " + e.getLocalizedMessage(), e );
+        }
+    }
+
+    private void updateArtefactIfRequired( List<File> uploadedArtefacts, List<String> artefactFileNames,
+                                           Map<String, File> artefactsToUpdate, Map<String, File> artefactsToInsert,
+                                           String refFileName )
+                    throws Exception {
+        LOG.debug( "Handle reference '{}'.", refFileName );
+        if ( refFileName.startsWith( "http" ) ) {
+            LOG.debug( "Found http reference, update of artefacts is not required." );
+            return;
+        }
+        File uploadedFile = retrieveUploadedArtefact( refFileName, uploadedArtefacts );
+        boolean isStoredInArtefactsTable = artefactFileNames.contains( refFileName );
+        if ( uploadedFile != null ) {
+            LOG.debug( "Reference was uploaded, update in DB required." );
+            if ( isStoredInArtefactsTable ) {
+                artefactsToUpdate.put( refFileName, uploadedFile );
+            } else {
+                artefactsToInsert.put( refFileName, uploadedFile );
+            }
+        } else if ( isStoredInArtefactsTable ) {
+            LOG.debug( "Reference was not changed" );
+        } else {
+            throw new Exception( "Could not find referenced artefact with name " + refFileName );
         }
     }
 
