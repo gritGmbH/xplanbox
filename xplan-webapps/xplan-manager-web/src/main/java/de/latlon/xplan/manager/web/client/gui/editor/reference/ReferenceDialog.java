@@ -55,8 +55,10 @@
 ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.client.gui.editor.reference;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBoxWithRasterUpload;
@@ -81,6 +83,8 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
 
     private final TypeCodeListBox<ReferenceType> refType;
 
+    private final TextBox refLink;
+
     /**
      * Instantiates a {@link TextDialog} to create a new {@link Change}
      */
@@ -91,6 +95,7 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
     private ReferenceDialog( EditVersion version, String title ) {
         super( version, title );
         refType = createRefType( version );
+        refLink = createRefLink();
         initDialog( createFormContent() );
     }
 
@@ -99,7 +104,11 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
      */
     public Reference getReference() {
         Reference ref = new Reference();
-        ref.setReference( reference.getFilename() );
+        if ( !isNullOrEmpty( refLink.getValue() ) ) {
+            ref.setReference( refLink.getValue() );
+        } else {
+            ref.setReference( reference.getFilename() );
+        }
         ref.setGeoReference( georeference.getFilename() );
         ref.setType( refType.getValueAsEnum() );
         return ref;
@@ -113,15 +122,36 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
 
         layout.setWidget( 1, 1, new Label( MESSAGES.editCaptionReferencesReference() ) );
         layout.setWidget( 1, 2, reference );
+        layout.setWidget( 2, 1, new Label( MESSAGES.editCaptionReferencesReferenceLink() ) );
+        layout.setWidget( 2, 2, refLink );
         // #3305 - georeference is not needed.
         // if ( !XPLAN_3.equals( version ) ) {
         // layout.setWidget( 2, 1, new Label( MESSAGES.editCaptionReferencesGeoReference() ) );
         // layout.setWidget( 2, 2, georeference );
         // }
-        layout.setWidget( 2, 1, new Label( MESSAGES.editCaptionReferencesType() ) );
-        layout.setWidget( 2, 2, refType );
+        layout.setWidget( 3, 1, new Label( MESSAGES.editCaptionReferencesType() ) );
+        layout.setWidget( 3, 2, refType );
 
         return layout;
+    }
+
+    @Override
+    public boolean isValid() {
+        String refLink = this.refLink.getValue();
+        String referenceFileName = this.reference.getFilename();
+        if ( isNullOrEmpty( refLink ) && isNullOrEmpty( referenceFileName ) ) {
+            return false;
+        } else if ( !isNullOrEmpty( refLink ) && !isNullOrEmpty( referenceFileName ) ) {
+            return false;
+        } else if ( !isNullOrEmpty( referenceFileName ) ) {
+            return super.isValid();
+        } else {
+            return refLink.startsWith( "http" );
+        }
+    }
+
+    private boolean isNullOrEmpty( String refLink ) {
+        return refLink == null || refLink.isEmpty();
     }
 
     private TypeCodeListBox<ReferenceType> createRefType( EditVersion version ) {
@@ -131,6 +161,12 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
                 unsupportedReferenceTypes.add( referenceType );
         }
         return new TypeCodeListBox<ReferenceType>( ReferenceType.class, unsupportedReferenceTypes, false );
+    }
+
+    private TextBox createRefLink() {
+        TextBox textBox = new TextBox();
+        textBox.setWidth( "175px" );
+        return textBox;
     }
 
 }

@@ -353,6 +353,8 @@ public interface XPlanWebMessages extends Messages {
 
     String editCaptionReferencesReference();
 
+    String editCaptionReferencesReferenceLink();
+
     String editCaptionReferencesGeoReference();
 
     String editCaptionReferencesType();
