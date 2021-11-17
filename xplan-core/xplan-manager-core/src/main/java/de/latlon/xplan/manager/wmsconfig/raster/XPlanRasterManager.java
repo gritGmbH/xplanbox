@@ -462,17 +462,20 @@ public class XPlanRasterManager {
         List<ArchiveEntry> entries = new ArrayList<ArchiveEntry>();
         for ( String scanFile : scanFiles ) {
             if ( scanFile != null ) {
-                ArchiveEntry entry = archive.getEntry( scanFile );
-                if ( entry == null ) {
-                    throw new RuntimeException( "Rasterscan-Datei:" + scanFile + " ist nicht im Archiv vorhanden." );
-                }
-                if ( geotiff.equals( getRasterConfigurationTypeFromManagerConfig() ) ) {
-                    String name = entry.getName().toLowerCase();
-                    if ( !name.endsWith( "tif" ) && !name.endsWith( "tiff" ) ) {
-                        LOG.info( "Ignoriere Datei '{}'. Keine TIFF-Datei.", entry.getName() );
+                if ( !scanFile.startsWith( "http" ) ) {
+                    ArchiveEntry entry = archive.getEntry( scanFile );
+                    if ( entry == null ) {
+                        throw new RuntimeException(
+                                        "Rasterscan-Datei:" + scanFile + " ist nicht im Archiv vorhanden." );
                     }
+                    if ( geotiff.equals( getRasterConfigurationTypeFromManagerConfig() ) ) {
+                        String name = entry.getName().toLowerCase();
+                        if ( !name.endsWith( "tif" ) && !name.endsWith( "tiff" ) ) {
+                            LOG.info( "Ignoriere Datei '{}'. Keine TIFF-Datei.", entry.getName() );
+                        }
+                    }
+                    entries.add( entry );
                 }
-                entries.add( entry );
             }
         }
         return entries;
