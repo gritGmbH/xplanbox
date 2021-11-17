@@ -9,7 +9,8 @@ In diesem Repository werden alle Ressourcen zur xPlanBox Produktversion verwalte
 
 |xPlanBox Version |Auslieferung                   |REST API | 
 |:--------------- |:----------------------------- |:------- |
-| 5.0             | **OSS Version für OZG**       | v1(*) |
+| 4.4             | Erweiterungen von API und Web | v1(*)   |
+| 5.0             | **OSS Version für OZG**       | v1(*)   |
 
 (*) nach Bedarf evt. zusätzlich v2
 (S) SNAPSHOT
