@@ -87,6 +87,17 @@ public class Text extends AbstractReference {
     /**
      * @param featureId
      *                 id of the feature member, never <code>null</code>
+     * @param reference
+     *                 reference, may be <code>null</code>
+     */
+    public Text( String featureId, String reference  ) {
+        super( reference, null );
+        this.featureId = featureId;
+    }
+
+    /**
+     * @param featureId
+     *                 id of the feature member, never <code>null</code>
      * @param key
      *                 key, may be <code>null</code>
      * @param basis

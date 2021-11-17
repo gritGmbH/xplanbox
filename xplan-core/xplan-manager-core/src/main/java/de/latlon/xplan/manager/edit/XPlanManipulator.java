@@ -189,10 +189,10 @@ public class XPlanManipulator {
     }
 
     private void modifyBPBereich( GmlDocumentIdContext context, XPlanVersion version, FeatureCollection planToEdit,
-                                  Feature feature, XPlanToEdit changes, AppSchema schema, List<Feature> featuresToAdd,
+                                  Feature bpBereichFeature, XPlanToEdit changes, AppSchema schema, List<Feature> featuresToAdd,
                                   List<Feature> featuresToRemove, List<String> referencesToRemove,
                                   String previouslyReferencedRasterBasisFeatureId ) {
-        modifyRasterBasis( context, version, planToEdit, feature, schema, changes.getRasterBasis(), featuresToAdd,
+        modifyRasterBasis( context, version, planToEdit, bpBereichFeature, schema, changes.getRasterBasis(), featuresToAdd,
                            featuresToRemove, referencesToRemove, previouslyReferencedRasterBasisFeatureId );
     }
 
@@ -263,13 +263,28 @@ public class XPlanManipulator {
     }
 
     private void modifyRasterBasis( GmlDocumentIdContext context, XPlanVersion version, FeatureCollection planToEdit,
-                                    Feature feature, AppSchema schema, RasterBasis rasterBasis,
+                                    Feature bpBereichFeature, AppSchema schema, RasterBasis rasterBasis,
                                     List<Feature> featuresToAdd, List<Feature> featuresToRemove,
                                     List<String> referencesToRemove, String previouslyReferencedRasterBasisFeatureId ) {
-        String namespaceUri = feature.getName().getNamespaceURI();
-        QName propName = new QName( namespaceUri, "rasterBasis" );
+        String namespaceUri = bpBereichFeature.getName().getNamespaceURI();
+        if ( XPLAN_51.equals( version ) || XPLAN_52.equals( version ) || XPLAN_53.equals( version ) ) {
+            modifyRasterBasis_XPlan51( context, version, planToEdit, bpBereichFeature, schema, rasterBasis,
+                                       featuresToRemove, referencesToRemove,
+                                       previouslyReferencedRasterBasisFeatureId, namespaceUri );
+        } else {
+            modifyRasterBasis( context, version, planToEdit, bpBereichFeature, schema, rasterBasis, featuresToAdd,
+                               featuresToRemove,
+                               referencesToRemove, previouslyReferencedRasterBasisFeatureId, namespaceUri );
+            removeProperties( bpBereichFeature, new QName( namespaceUri, "refScan" ) );
+        }
+    }
 
-        List<Property> properties = new ArrayList<>();
+    private void modifyRasterBasis( GmlDocumentIdContext context, XPlanVersion version, FeatureCollection planToEdit,
+                                    Feature bpBereichFeature, AppSchema schema, RasterBasis rasterBasis,
+                                    List<Feature> featuresToAdd, List<Feature> featuresToRemove,
+                                    List<String> referencesToRemove, String previouslyReferencedRasterBasisFeatureId,
+                                    String namespaceUri ) {
+
         if ( rasterBasis == null ) {
             QName rasterBasisElementName = getRasterBasisElementName( version, namespaceUri );
             Feature oldRasterBasisFeature = detectFeatureById( planToEdit, rasterBasisElementName,
@@ -278,24 +293,82 @@ public class XPlanManipulator {
                 featuresToRemove.add( oldRasterBasisFeature );
                 referencesToRemove.add( previouslyReferencedRasterBasisFeatureId );
             }
-            removeProperties( feature, new QName( namespaceUri, "refScan" ) );
         } else {
             String gmlid = rasterBasis.getFeatureId();
-            if ( gmlid != null ) {
+            modifyRasterBasisReferences( context, version, planToEdit, bpBereichFeature, schema, featuresToAdd,
+                                         featuresToRemove,
+                                         namespaceUri, gmlid, rasterBasis );
+        }
+    }
+
+    private void modifyRasterBasis_XPlan51( GmlDocumentIdContext context, XPlanVersion version,
+                                            FeatureCollection planToEdit, Feature bpBereichFeature,
+                                            AppSchema schema, RasterBasis rasterBasis,
+                                            List<Feature> featuresToRemove,
+                                            List<String> referencesToRemove,
+                                            String previouslyReferencedRasterBasisFeatureId, String namespaceUri ) {
+        if ( rasterBasis == null ) {
+            QName rasterBasisElementName = getRasterBasisElementName( version, namespaceUri );
+            Feature oldRasterBasisFeature = detectFeatureById( planToEdit, rasterBasisElementName,
+                                                               previouslyReferencedRasterBasisFeatureId );
+            if ( oldRasterBasisFeature != null ) {
+                featuresToRemove.add( oldRasterBasisFeature );
+                referencesToRemove.add( previouslyReferencedRasterBasisFeatureId );
+            }
+            removeProperties( bpBereichFeature, new QName( namespaceUri, "refScan" ) );
+        } else {
+            List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
+            
+            // XP_Rasterdarstellung.refScan --> XP_Bereich.refScan 
+            List<RasterReference> scans = collectRasterReferencesByType( rasterReferences, SCAN );
+
+            String rasterBasisGmlId = rasterBasis.getFeatureId();
+            if ( rasterBasisGmlId != null ) {
                 QName rasterBasisElementName = getRasterBasisElementName( version, namespaceUri );
-                Feature oldRasterBasisFeature = detectFeatureById( planToEdit, rasterBasisElementName, gmlid );
+                Feature oldRasterBasisFeature = detectFeatureById( planToEdit, rasterBasisElementName, rasterBasisGmlId );
                 if ( oldRasterBasisFeature != null )
                     featuresToRemove.add( oldRasterBasisFeature );
-            } else {
-                gmlid = generateGmlId( propName );
             }
-            Property linkProp = createPropertyWithHrefAttribute( context, feature.getType(), propName, gmlid );
-            addProperty( properties, linkProp );
-            createAndAddRasterBasisFeature( context, version, planToEdit, schema, namespaceUri, rasterBasis, gmlid,
-                                            featuresToAdd, featuresToRemove );
-            addOrReplaceProperties( version, feature, propName, properties );
-            removeProperties( feature, new QName( namespaceUri, "refScan" ) );
+
+            QName rasterBasisFeatureTypeName = getRasterBasisElementName( version, namespaceUri );
+            FeatureType rasterBasisFeatureType = schema.getFeatureType( rasterBasisFeatureTypeName );
+
+            if ( !scans.isEmpty() ) {
+                List<Property> properties = new ArrayList<>();
+                for ( RasterReference scan : scans ) {
+                    QName refPropName = new QName( namespaceUri, "refScan" );
+                    String externeReferenzFeatureTypeName = "XP_ExterneReferenz";
+                    createAndAddExterneReferenz( context, version, schema, namespaceUri, scan,
+                                                 rasterBasisFeatureType, properties, refPropName,
+                                                 externeReferenzFeatureTypeName, null );
+
+                }
+                QName propName = new QName( namespaceUri, "refScan" );
+                addOrReplaceProperties( version, bpBereichFeature, propName, properties );
+            }
+            removeProperties( bpBereichFeature, new QName( namespaceUri, "rasterBasis" ) );
         }
+    }
+
+    private void modifyRasterBasisReferences( GmlDocumentIdContext context, XPlanVersion version, FeatureCollection planToEdit,
+                                              Feature bpBereichFeature, AppSchema schema, List<Feature> featuresToAdd,
+                                              List<Feature> featuresToRemove, String namespaceUri,
+                                               String rasterBasisGmlId, RasterBasis rasterBasis ) {
+        QName propName = new QName( namespaceUri, "rasterBasis" );
+        if ( rasterBasisGmlId != null ) {
+            QName rasterBasisElementName = getRasterBasisElementName( version, namespaceUri );
+            Feature oldRasterBasisFeature = detectFeatureById( planToEdit, rasterBasisElementName, rasterBasisGmlId );
+            if ( oldRasterBasisFeature != null )
+                featuresToRemove.add( oldRasterBasisFeature );
+        } else {
+            rasterBasisGmlId = generateGmlId( propName );
+        }
+        Property linkProp = createPropertyWithHrefAttribute( context, bpBereichFeature.getType(), propName, rasterBasisGmlId );
+        List<Property> properties = new ArrayList<>();
+        addProperty( properties, linkProp );
+        createAndAddRasterBasisFeature( context, version, planToEdit, schema, namespaceUri, rasterBasis, rasterBasisGmlId,
+                                        featuresToAdd, featuresToRemove );
+        addOrReplaceProperties( version, bpBereichFeature, propName, properties );
     }
 
     private boolean isNotLongerReferenced( List<Text> texts, String previouslyReferencedTextFeatureId ) {
@@ -475,38 +548,56 @@ public class XPlanManipulator {
             }
         }
         if ( !texts.isEmpty() ) {
-            QName refPropName = new QName( namespaceUri, "refText" );
-            RasterReference text = texts.get( 0 );
-            Feature refFeature = createAndAddExterneReferenz( context, version, schema, namespaceUri, text,
+            createAndAddRasterBasisTexts( context, version, planToEdit, schema, namespaceUri, featuresToAdd, featuresToRemove,
+                       rasterBasisFeatureType,
+                       texts, props );
+        }
+
+        if ( !legends.isEmpty() ) {
+            createAndAddRasterBasisLegends( context, version, planToEdit, schema, namespaceUri, featuresToAdd, featuresToRemove,
+                       rasterBasisFeatureType,
+                       legends, props );
+        }
+        if ( !props.isEmpty() )
+            featuresToAdd.add( rasterBasisFeatureType.newFeature( gmlid, props, null ) );
+    }
+
+    private void createAndAddRasterBasisTexts( GmlDocumentIdContext context, XPlanVersion version, FeatureCollection planToEdit,
+                            AppSchema schema, String namespaceUri, List<Feature> featuresToAdd,
+                            List<Feature> featuresToRemove, FeatureType rasterBasisFeatureType,
+                            List<RasterReference> texts, List<Property> props ) {
+        QName refPropName = new QName( namespaceUri, "refText" );
+        RasterReference text = texts.get( 0 );
+        Feature refFeature = createAndAddExterneReferenz( context, version, schema, namespaceUri, text,
+                                                          rasterBasisFeatureType, props, refPropName,
+                                                          "XP_ExterneReferenz", null );
+        if ( text.getFeatureId() != null ) {
+            QName externeReferenz = new QName( namespaceUri, "XP_ExterneReferenz" );
+            Feature oldReferenceFeature = detectFeatureById( planToEdit, externeReferenz, text.getFeatureId() );
+            featuresToRemove.add( oldReferenceFeature );
+        }
+        if ( refFeature != null )
+            featuresToAdd.add( refFeature );
+    }
+
+    private void createAndAddRasterBasisLegends( GmlDocumentIdContext context, XPlanVersion version, FeatureCollection planToEdit,
+                            AppSchema schema, String namespaceUri, List<Feature> featuresToAdd,
+                            List<Feature> featuresToRemove, FeatureType rasterBasisFeatureType,
+                            List<RasterReference> legends, List<Property> props ) {
+        for ( RasterReference legend : legends ) {
+            QName refPropName = new QName( namespaceUri, "refLegende" );
+            Feature refFeature = createAndAddExterneReferenz( context, version, schema, namespaceUri, legend,
                                                               rasterBasisFeatureType, props, refPropName,
                                                               "XP_ExterneReferenz", null );
-            if ( text.getFeatureId() != null ) {
+            if ( legend.getFeatureId() != null ) {
                 QName externeReferenz = new QName( namespaceUri, "XP_ExterneReferenz" );
-                Feature oldReferenceFeature = detectFeatureById( planToEdit, externeReferenz, text.getFeatureId() );
+                Feature oldReferenceFeature = detectFeatureById( planToEdit, externeReferenz,
+                                                                 legend.getFeatureId() );
                 featuresToRemove.add( oldReferenceFeature );
             }
             if ( refFeature != null )
                 featuresToAdd.add( refFeature );
         }
-
-        if ( !legends.isEmpty() ) {
-            for ( RasterReference legend : legends ) {
-                QName refPropName = new QName( namespaceUri, "refLegende" );
-                Feature refFeature = createAndAddExterneReferenz( context, version, schema, namespaceUri, legend,
-                                                                  rasterBasisFeatureType, props, refPropName,
-                                                                  "XP_ExterneReferenz", null );
-                if ( legend.getFeatureId() != null ) {
-                    QName externeReferenz = new QName( namespaceUri, "XP_ExterneReferenz" );
-                    Feature oldReferenceFeature = detectFeatureById( planToEdit, externeReferenz,
-                                                                     legend.getFeatureId() );
-                    featuresToRemove.add( oldReferenceFeature );
-                }
-                if ( refFeature != null )
-                    featuresToAdd.add( refFeature );
-            }
-        }
-        if ( !props.isEmpty() )
-            featuresToAdd.add( rasterBasisFeatureType.newFeature( gmlid, props, null ) );
     }
 
     private Feature createAndAddExterneReferenz( GmlDocumentIdContext context, XPlanVersion version, AppSchema schema,

@@ -142,9 +142,9 @@ erfolgt ist, wird überschrieben.
 
 * texte
 
-*Referenzen*
+*Dokumente*
 
-Abhängig von der XPlanGML Version können folgende Referenzen editiert werden:
+Abhängig von der XPlanGML Version können folgende Dokumente editiert werden:
 
 XPlanGML 3.0:
 
@@ -174,7 +174,9 @@ vorgenommen. Bei invaliden Dateien bekommt der Nutzer eine
 Entscheidungsoption wie mit diesen Daten umgegangen werden soll.
 Anschließend erfolgt die Aktualisierung der Daten.
 
-Wie im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2 und 5.3 zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über den Feature Type XP_Rasterdarstellung unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
+Wie im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2 und 5.3 zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über das Element `<refScan/>` unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
+
+Die ebenfalls in diesem Abschnitt editierbaren Referenzen auf Texte (refText) und Legenden (refLegende) müssen in den Versionen 5.1, 5.2 und 5.3 über die Abschnitte `Texte` und `Dokumente` editiert werden.
 
 NOTE: Die Editierfunktion steht nur für BPläne in den XPlanGML Versionen
 3.0, 4.1, 5.0, 5.1, 5.2 und 5.3 zur Verfügung.

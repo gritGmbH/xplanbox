@@ -10146,6 +10146,20 @@
           <xplan:referenzURL>B-Plan_Klingmuehl_Heideweg_Karte.tif</xplan:referenzURL>
         </xplan:XP_ExterneReferenz>
       </xplan:refScan>
+      <xplan:refText>
+        <xplan:XP_ExterneReferenz>
+          <xplan:art>Dokument</xplan:art>
+          <xplan:referenzName>Dokument</xplan:referenzName>
+          <xplan:referenzURL>Dokument.pdf</xplan:referenzURL>
+        </xplan:XP_ExterneReferenz>
+      </xplan:refText>
+      <xplan:refLegende>
+        <xplan:XP_ExterneReferenz>
+          <xplan:art>Dokument</xplan:art>
+          <xplan:referenzName>Legende</xplan:referenzName>
+          <xplan:referenzURL>Legende.pdf</xplan:referenzURL>
+        </xplan:XP_ExterneReferenz>
+      </xplan:refLegende>
     </xplan:XP_Rasterdarstellung>
   </gml:featureMember>
   <gml:featureMember>
