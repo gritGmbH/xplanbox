@@ -8,8 +8,6 @@ include::planliste.adoc[]
 
 include::codelisten.adoc[]
 
-include::XPlanRessourcen.adoc[]
-
 include::kartenvorschau.adoc[]
 
 include::export.adoc[]
@@ -17,8 +15,6 @@ include::export.adoc[]
 include::koordinatensystem.adoc[]
 
 include::verfahrensdatenbank.adoc[]
-
-include::validierung.adoc[]
 
 include::planstatus.adoc[]
 
@@ -38,18 +34,12 @@ include::gdal.adoc[]
 
 include::ldap.adoc[]
 
-include::XPlanDienste.adoc[]
-
 include::hale.adoc[]
 
 include::inspireplu.adoc[]
-
-include::logging.adoc[]
-
-include::migration.adoc[]
 
 include::massstabsbereich.adoc[]
 
 include::daten-dienste-kopplung.adoc[]
 
-include::validierungsregeln.adoc[]
+include::XPlanRessourcen.adoc[]

@@ -153,7 +153,7 @@ Der Kopf des Validierungsberichts gibt Ihnen einen Überblick über die formalen
 [.bordered]
 image::validator/Validierungsbericht_2.png[Validierungsbericht]
 
-Externe Referenzen zeigen an, ob Rasterdaten in Form von PNG und PGW Dateien vorhanden sind.
+Externe Referenzen zeigen an, ob Rasterdaten in Form von PNG- und PGW-Dateien vorhanden sind.
 
 *2) Semantische Validierung – valide*
 

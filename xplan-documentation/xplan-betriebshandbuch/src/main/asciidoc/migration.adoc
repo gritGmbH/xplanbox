@@ -1,0 +1,50 @@
+[[migration-der-anwendung-beispiele]]
+=== Migration der Anwendung (Beispiele)
+
+Bei einer Migration der xPlanBox auf einen anderen Server, bei dem sich der Hostname des Servers ändert, muss die URL in mehreren Konfigurationen angepasst werden, damit die Funktionalität der Anwendungen gewährleistet ist. Dabei müssen folgende Anpassungen erfolgen:
+
+[[fuer-den-xplanmanager]]
+==== Für den XPlanManager:
+
+* _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_
+* _<XPLANBOX_CONFIG>/managerConfiguration.properties_
+
+*Anpassungen in der Datei managerWebConfiguration.properties:*
+
+In dieser Datei müssen Anpassungen an der URL erfolgen, damit die
+Kartenvorschau im XPlanManager funktioniert. Dazu muss der Wert des
+Schlüssels `wmsUrl` angepasst werden:
+
+----
+wmsUrl=http://<host>:<port>/xplan-wms/services
+----
+
+Für mehr Details siehe Kapitel <<kartenvorschau>>.
+
+*Anpassungen in der Datei managerConfiguration.properties:*
+
+Für einen Workspace-Reload, muss der XPlanManager den XPlanWMS
+erreichen können. Es muss daher der Wert des Schlüssels
+`workspaceReloadUrls` angepasst werden:
+
+----
+#workspace reloader configuration
+workspaceReloadUrls=http://<host>:<port>/<service>/
+workspaceReloadUser=<user>
+workspaceReloadPassword=<passwort>
+----
+
+NOTE: Werden der XPlanWMS und der XPlanManager auf dem selben Server
+betrieben, so können die Dienste über den Hostnamen _localhost_
+kommunizieren.
+
+[[fuer-den-xplanwms]]
+==== Für den XPlanWMS:
+
+* _html.gfi_ (im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace/services_)
+
+*Anpassungen in der Datei html.gfi:*
+
+Dazu muss der Wert des Variable `WMS_URL` in der Datei angepasst werden.
+
+Für mehr Details siehe Kapitel <<konfiguration_xplanwms>>.
