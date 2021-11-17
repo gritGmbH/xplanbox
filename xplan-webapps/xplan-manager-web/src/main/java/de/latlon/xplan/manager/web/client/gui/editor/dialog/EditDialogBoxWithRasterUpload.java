@@ -61,6 +61,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FormPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
@@ -82,6 +83,10 @@ public abstract class EditDialogBoxWithRasterUpload extends EditDialogBox implem
 
     protected final PreserveExistingFileUpload georeference = new PreserveExistingFileUpload( "geoReferenceArtefact",
                     isGeoreferenceUrlMandatory() );
+
+    protected final UrlTextBox referenceLink = createReferenceLink();
+
+    protected final UrlTextBox georeferenceLink = createReferenceLink();
 
     final FormPanel form = new FormPanel();
 
@@ -115,7 +120,7 @@ public abstract class EditDialogBoxWithRasterUpload extends EditDialogBox implem
 
     @Override
     public boolean isValid() {
-        return areComponentsValid( reference, georeference );
+        return areComponentsValid( reference, georeference, referenceLink, georeferenceLink );
     }
 
     protected Widget createFormPanel( Widget contentPanel ) {
@@ -183,6 +188,10 @@ public abstract class EditDialogBoxWithRasterUpload extends EditDialogBox implem
         return isValid;
     }
 
+    protected boolean isNullOrEmpty( String value ) {
+        return value == null || value.isEmpty();
+    }
+
     private boolean notTheSameName( String referenceName, String georeferenceFilename ) {
         String referenceNameWithoutSuffix = referenceName.substring( 0, referenceName.lastIndexOf( "." ) );
         String georeferenceNameWithoutSuffix = georeferenceFilename.substring( 0, georeferenceFilename.lastIndexOf(
@@ -199,6 +208,12 @@ public abstract class EditDialogBoxWithRasterUpload extends EditDialogBox implem
     private void showUploadingDialogBox() {
         uploading.center();
         uploading.show();
+    }
+
+    private UrlTextBox createReferenceLink() {
+        UrlTextBox textBox = new UrlTextBox();
+        textBox.setWidth( "200px" );
+        return textBox;
     }
 
 }

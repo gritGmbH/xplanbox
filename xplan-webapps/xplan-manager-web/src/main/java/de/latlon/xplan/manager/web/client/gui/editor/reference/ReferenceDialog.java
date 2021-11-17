@@ -83,8 +83,6 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
 
     private final TypeCodeListBox<ReferenceType> refType;
 
-    private final TextBox refLink;
-
     /**
      * Instantiates a {@link TextDialog} to create a new {@link Change}
      */
@@ -95,7 +93,6 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
     private ReferenceDialog( EditVersion version, String title ) {
         super( version, title );
         refType = createRefType( version );
-        refLink = createRefLink();
         initDialog( createFormContent() );
     }
 
@@ -104,14 +101,34 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
      */
     public Reference getReference() {
         Reference ref = new Reference();
-        if ( !isNullOrEmpty( refLink.getValue() ) ) {
-            ref.setReference( refLink.getValue() );
-        } else {
+        if ( reference.isFileSelected() ) {
             ref.setReference( reference.getFilename() );
+        } else {
+            ref.setReference( referenceLink.getValue() );
         }
         ref.setGeoReference( georeference.getFilename() );
         ref.setType( refType.getValueAsEnum() );
         return ref;
+    }
+
+    @Override
+    public boolean isValid() {
+        boolean valid = super.isValid();
+        String refLinkValue = this.referenceLink.getValue();
+        List<String> validationFailures = new ArrayList<String>();
+        if ( isNullOrEmpty( refLinkValue ) && !this.reference.isFileSelected() ) {
+            valid = false;
+            validationFailures.add( MESSAGES.editCaptionReferenceUrlOrFile() );
+        } else if ( !isNullOrEmpty( refLinkValue ) && this.reference.isFileSelected() ) {
+            valid = false;
+            validationFailures.add( MESSAGES.editCaptionRasterBasisReferenceNameOrUrl() );
+        }
+        return valid;
+    }
+
+    @Override
+    protected boolean isReferenceUrlMandatory() {
+        return false;
     }
 
     private Widget createFormContent() {
@@ -123,7 +140,7 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
         layout.setWidget( 1, 1, new Label( MESSAGES.editCaptionReferencesReference() ) );
         layout.setWidget( 1, 2, reference );
         layout.setWidget( 2, 1, new Label( MESSAGES.editCaptionReferencesReferenceLink() ) );
-        layout.setWidget( 2, 2, refLink );
+        layout.setWidget( 2, 2, referenceLink );
         // #3305 - georeference is not needed.
         // if ( !XPLAN_3.equals( version ) ) {
         // layout.setWidget( 2, 1, new Label( MESSAGES.editCaptionReferencesGeoReference() ) );
@@ -135,25 +152,6 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
         return layout;
     }
 
-    @Override
-    public boolean isValid() {
-        String refLink = this.refLink.getValue();
-        String referenceFileName = this.reference.getFilename();
-        if ( isNullOrEmpty( refLink ) && isNullOrEmpty( referenceFileName ) ) {
-            return false;
-        } else if ( !isNullOrEmpty( refLink ) && !isNullOrEmpty( referenceFileName ) ) {
-            return false;
-        } else if ( !isNullOrEmpty( referenceFileName ) ) {
-            return super.isValid();
-        } else {
-            return refLink.startsWith( "http" );
-        }
-    }
-
-    private boolean isNullOrEmpty( String refLink ) {
-        return refLink == null || refLink.isEmpty();
-    }
-
     private TypeCodeListBox<ReferenceType> createRefType( EditVersion version ) {
         List<ReferenceType> unsupportedReferenceTypes = new ArrayList<ReferenceType>();
         for ( ReferenceType referenceType : ReferenceType.values() ) {
@@ -161,12 +159,6 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
                 unsupportedReferenceTypes.add( referenceType );
         }
         return new TypeCodeListBox<ReferenceType>( ReferenceType.class, unsupportedReferenceTypes, false );
-    }
-
-    private TextBox createRefLink() {
-        TextBox textBox = new TextBox();
-        textBox.setWidth( "175px" );
-        return textBox;
     }
 
 }
