@@ -4,6 +4,7 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import de.latlon.xplanbox.api.manager.exception.DuplicateDokument;
 import de.latlon.xplanbox.api.manager.exception.InvalidDokumentId;
 import de.latlon.xplanbox.api.manager.v1.model.Dokument;
 import de.latlon.xplanbox.api.manager.v1.model.Referenz;
@@ -71,13 +72,15 @@ public class EditDokumentHandler extends EditHandler {
                     throws Exception {
         XPlan plan = findPlanById( planId );
         XPlanToEdit xPlanToEdit = manager.getXPlanToEdit( plan );
-        List<Reference> references = xPlanToEdit.getReferences();
         Reference referenceToAdd = Dokument.toReference( dokumentModel );
-        references.add( referenceToAdd );
+        String newDokumentId = createDokumentId( referenceToAdd );
+        checkDokumentId( planId, dokumentModel, newDokumentId );
 
+        List<Reference> references = xPlanToEdit.getReferences();
+        references.add( referenceToAdd );
         List<File> uploadedArtefacts = file != null ? Collections.singletonList( file ) : Collections.emptyList();
         manager.editPlan( plan, xPlanToEdit, false, uploadedArtefacts );
-        return dokumentModel.id( createDokumentId( referenceToAdd ) );
+        return dokumentModel.id( newDokumentId );
     }
 
     /**
@@ -155,5 +158,16 @@ public class EditDokumentHandler extends EditHandler {
         if ( reference.getReference() != null )
             id.append( reference.getReference() );
         return id.toString().replaceAll( "[^a-zA-Z0-9\\-_]", "" );
+    }
+
+    private void checkDokumentId( String planId, Dokument dokumentModel, String newDokumentId )
+                    throws Exception {
+        List<Dokument> dokumente = retrieveDokumente( planId );
+        long noOfDokumenteWithNewId = dokumente.stream().filter(
+                        dokument -> newDokumentId.equals( dokument.getId() ) ).count();
+        if ( noOfDokumenteWithNewId > 0 ) {
+            throw new DuplicateDokument( planId, newDokumentId, dokumentModel.getReferenzName(),
+                                         dokumentModel.getReferenzURL() );
+        }
     }
 }
