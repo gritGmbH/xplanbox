@@ -1,4 +1,4 @@
-[[konfiguration-manager]]
+[[konfiguration-dienste]]
 == Konfiguration des XPlanWMS und XPlanWFS
 
 In den nachfolgenden Kapiteln wird die Konfiguration der WFS- und WMS-Dienste der xPlanBox erläutert:
