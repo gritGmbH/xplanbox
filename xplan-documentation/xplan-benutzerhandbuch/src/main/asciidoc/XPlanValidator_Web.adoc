@@ -25,9 +25,10 @@ Bitte beachten Sie die Anforderungen an den Dateinamen. Der Dateiname darf nur f
  * Kleinbuchstaben von `a-z`
  * Großbuchstaben von `A-Z`
  * Zahlen von `0-9`
- * Bindestrich `-`
- * Unterstrich `_`
+ * Bindestriche `-`
+ * Unterstriche `_`
  * Klammern `(` und `)`
+ * Punkte `.`
 
 Sonderzeichen wie z.B. Umlaute, Zeilenumbrüche und Leerzeichen sind nicht erlaubt.
 ====

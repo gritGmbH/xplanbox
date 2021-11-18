@@ -100,7 +100,7 @@ public class ValidateApi {
                             @Context
                                                     Request request, @Valid File body,
                             @HeaderParam("X-Filename")
-                            @Parameter(description = "Name of the file to be uploaded", example = "File names such as xplan.gml, xplan.xml, xplan.zip", schema = @Schema(pattern = "^[A-Za-z0-9()_-]*$"))
+                            @Parameter(description = "Name of the file to be uploaded", example = "File names such as xplan.gml, xplan.xml, xplan.zip", schema = @Schema(pattern = "^[A-Za-z0-9.()_-]*$"))
                                             String xFilename,
                             @QueryParam("name")
                             @Parameter(description = "Name of the validation", example = "xplan-1, Prüfbericht_Torstrasse_10, report#4223")

@@ -176,7 +176,7 @@ public class XPlanValidatorWeb implements EntryPoint {
 
             private boolean isValidFileName() {
                 String fileName = getFilename( upload );
-                return fileName.matches( "[a-zA-Z0-9()_-]*" );
+                return fileName.matches( "[a-zA-Z0-9.()_-]*" );
             }
 
             private void showInvalidFile( String message ) {

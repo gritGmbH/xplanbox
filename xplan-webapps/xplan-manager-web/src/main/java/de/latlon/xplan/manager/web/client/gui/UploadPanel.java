@@ -344,7 +344,7 @@ public class UploadPanel extends DecoratorPanel {
 
             private boolean isValidFileName( final FileUpload upload ) {
                 String fileName = getFilename( upload );
-                return fileName.matches( "[a-zA-Z0-9()_-]*" );
+                return fileName.matches( "[a-zA-Z0-9.()_-]*" );
             }
 
             private void showInvalidFileDialog( String message ) {
