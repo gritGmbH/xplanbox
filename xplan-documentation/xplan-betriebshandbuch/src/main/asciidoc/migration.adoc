@@ -1,5 +1,5 @@
-[[migration-der-anwendung-beispiele]]
-=== Migration der Anwendung (Beispiele)
+[[migration-der-anwendung]]
+=== Migration der Anwendung
 
 Bei einer Migration der xPlanBox auf einen anderen Server, bei dem sich der Hostname des Servers ändert, muss die URL in mehreren Konfigurationen angepasst werden, damit die Funktionalität der Anwendungen gewährleistet ist. Dabei müssen folgende Anpassungen erfolgen:
 
