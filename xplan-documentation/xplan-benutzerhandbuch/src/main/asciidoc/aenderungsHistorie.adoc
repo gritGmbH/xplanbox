@@ -2,6 +2,13 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
+[[Aenderungshistorie-4.4]]
+=== Version 4.4
+==== Erweiterungen
+- Unterstützung von Links für externe Dokumente in XPlanManager und XPlanWMS GetFeatureInfo
+
+==== Fehlerbehebungen
+
 [[Aenderungshistorie-4.3]]
 === Version 4.3
 
