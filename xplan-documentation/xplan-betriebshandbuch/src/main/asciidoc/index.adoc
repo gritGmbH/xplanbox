@@ -30,7 +30,13 @@ include::konfiguration/validator/main.adoc[]
 
 include::konfiguration/rest-api/main.adoc[]
 
+include::konfiguration/dienste/main.adoc[]
+
+include::logging.adoc[]
+
 include::aktualisierung.adoc[]
+
+include::migration.adoc[]
 
 include::weiterfuehrendeInformationen.adoc[]
 

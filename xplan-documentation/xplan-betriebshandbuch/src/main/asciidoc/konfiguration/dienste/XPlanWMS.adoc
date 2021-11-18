@@ -1,0 +1,14 @@
+[[konfiguration_xplanwms]]
+=== XPlanWMS
+Nach der Installation ist in der Datei _html.gfi_ im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace/services_ die Anpassung der URL des XPlanWMS vorzunehmen.
+
+Damit die Links auf Dokumente in der WMS GetFeatureInfo Ausgabe
+auch bei externen Aufrufen funktionsfähig sind, muss eine Anpassung der URL in der Datei _html.gfi_
+erfolgen. Die URL der Variable `WMS_URL` muss auf die öffentliche URL des XPlanWMS geändert werden, über die die Anhänge aus dem XPlanArchiv über die Operation GetAttachment des XPlanWMS bereitgestellt werden.
+
+Vorgabewert in der Datei _html.gfi_:
+----
+var WMS_URL = "http://localhost:8080/xplan-wms";
+----
+
+Eine Übersicht der weiteren Konfigurationsdateien des XPlanWMS ist im Kapitel <<appendix_xplanwms-workspace>> zu finden.

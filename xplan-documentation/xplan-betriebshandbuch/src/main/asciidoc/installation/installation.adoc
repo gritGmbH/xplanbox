@@ -2,7 +2,7 @@
 === Anwendung installieren
 
 [[konfiguration]]
-==== Konfiguration
+==== Konfigurationsdateien der Anwendungskomponenten
 
 Die ZIP-Archive mit den Konfigurationen (s. <<installationskomponenten>>) müssen in das
 Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ (Vorgabewert ist das _.deegree_ im Home-Verzeichnis des Nutzers, s. <<vorbereitung-der-installation>>) kopiert und entpackt werden:
