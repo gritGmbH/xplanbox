@@ -6,7 +6,6 @@ import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplanbox.api.manager.exception.DuplicateRasterbasis;
 import de.latlon.xplanbox.api.manager.exception.InvalidRasterbasisId;
-import de.latlon.xplanbox.api.manager.v1.model.Dokument;
 import de.latlon.xplanbox.api.manager.v1.model.Rasterbasis;
 import org.springframework.stereotype.Component;
 
@@ -111,12 +110,15 @@ public class EditRasterbasisHandler extends EditHandler {
         XPlanToEdit xPlanToEdit = manager.getXPlanToEdit( plan );
         RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
         RasterReference rasterReferenceToReplace = getRasterReferenceById( planId, rasterbasisId, rasterBasis );
-        rasterBasis.getRasterReferences().remove( rasterReferenceToReplace );
         RasterReference rasterReferenceToAdd = rasterbasisModel.toRasterReference();
+        String newRasterbasisId = createRasterbasisId( rasterReferenceToAdd );
+        checkRasterbasisId( planId, rasterbasisId, rasterbasisModel, newRasterbasisId );
+
+        rasterBasis.getRasterReferences().remove( rasterReferenceToReplace );
         rasterBasis.getRasterReferences().add( rasterReferenceToAdd );
         List<File> uploadedArtefacts = createUploadedArtefactsList( referenz, geoReferenz );
         manager.editPlan( plan, xPlanToEdit, false, uploadedArtefacts );
-        return rasterbasisModel.id( createRasterbasisId( rasterReferenceToAdd ) );
+        return rasterbasisModel.id( newRasterbasisId );
     }
 
     /**
@@ -194,5 +196,14 @@ public class EditRasterbasisHandler extends EditHandler {
             throw new DuplicateRasterbasis( planId, newRasterbasisId, rasterbasisModel.getReferenzName(),
                                             rasterbasisModel.getReferenzURL() );
         }
+    }
+
+    private void checkRasterbasisId( String planId, String rasterbasisId, Rasterbasis rasterbasisModel,
+                                     String newRasterbasisId )
+                    throws Exception {
+        if ( rasterbasisId.equals( newRasterbasisId ) ) {
+            return;
+        }
+        checkRasterbasisId( planId, rasterbasisModel, newRasterbasisId );
     }
 }

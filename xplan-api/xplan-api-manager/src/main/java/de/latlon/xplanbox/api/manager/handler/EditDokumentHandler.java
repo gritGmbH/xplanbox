@@ -102,12 +102,15 @@ public class EditDokumentHandler extends EditHandler {
         XPlanToEdit xPlanToEdit = manager.getXPlanToEdit( plan );
         List<Reference> references = xPlanToEdit.getReferences();
         Reference referenceToReplace = getReferenceById( planId, dokumentId, references );
-        references.remove( referenceToReplace );
         Reference referenceToAdd = Dokument.toReference( dokumentModel );
+        String newDokumentId = createDokumentId( referenceToAdd );
+        checkDokumentId( planId, dokumentId, dokumentModel, newDokumentId);
+
+        references.remove( referenceToReplace );
         references.add( referenceToAdd );
         List<File> uploadedArtefacts = file != null ? Collections.singletonList( file ) : Collections.emptyList();
         manager.editPlan( plan, xPlanToEdit, false, uploadedArtefacts );
-        return dokumentModel.id( createDokumentId( referenceToAdd ) );
+        return dokumentModel.id( newDokumentId );
     }
 
     /**
@@ -170,4 +173,13 @@ public class EditDokumentHandler extends EditHandler {
                                          dokumentModel.getReferenzURL() );
         }
     }
+
+    private void checkDokumentId( String planId, String dokumentId, Dokument dokumentModel, String newDokumentId )
+                    throws Exception {
+        if ( dokumentId.equals( newDokumentId ) ) {
+            return;
+        }
+        checkDokumentId( planId, dokumentModel, newDokumentId );
+    }
+
 }
