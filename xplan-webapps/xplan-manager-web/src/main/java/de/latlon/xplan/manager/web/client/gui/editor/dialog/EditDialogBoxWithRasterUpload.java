@@ -86,8 +86,6 @@ public abstract class EditDialogBoxWithRasterUpload extends EditDialogBox implem
 
     protected final UrlTextBox referenceLink = createReferenceLink();
 
-    protected final UrlTextBox georeferenceLink = createReferenceLink();
-
     final FormPanel form = new FormPanel();
 
     private final DialogBox uploading = createUploadingDialogBox();
@@ -120,7 +118,7 @@ public abstract class EditDialogBoxWithRasterUpload extends EditDialogBox implem
 
     @Override
     public boolean isValid() {
-        return areComponentsValid( reference, georeference, referenceLink, georeferenceLink );
+        return areComponentsValid( reference, georeference, referenceLink );
     }
 
     protected Widget createFormPanel( Widget contentPanel ) {

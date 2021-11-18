@@ -59,7 +59,6 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
@@ -159,17 +158,9 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
         else
             rasterReference = new RasterReference();
         rasterReference.setType( refType.getValueAsEnum() );
-        if ( isNullOrEmpty( referenceLink.getValue() ) ) {
-            rasterReference.setReference( reference.getFilename() );
-        } else {
-            rasterReference.setReference( referenceLink.getValue() );
-        }
+        rasterReference.setReference( reference.getFilename() );
         rasterReference.setReferenzMimeType( refMimeType.getValueAsEnum() );
-        if ( isNullOrEmpty( georeferenceLink.getValue() ) ) {
-            rasterReference.setGeoReference( georeference.getFilename() );
-        } else {
-            rasterReference.setGeoReference( georeferenceLink.getValue() );
-        }
+        rasterReference.setGeoReference( georeference.getFilename() );
         rasterReference.setGeorefMimeType( georefMimeType.getValueAsEnum() );
         rasterReference.setArt( artType.getValueAsEnum() );
         rasterReference.setBeschreibung( beschreibung.getValue() );
@@ -190,14 +181,10 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
         layout.setWidget( rowIndex++, 2, refType );
         layout.setWidget( rowIndex, 1, new Label( MESSAGES.editCaptionRasterBasisReference() ) );
         layout.setWidget( rowIndex++, 2, reference );
-        layout.setWidget( rowIndex, 1, new Label( MESSAGES.editCaptionRasterBasisReferenceLink() ) );
-        layout.setWidget( rowIndex++, 2, referenceLink );
         layout.setWidget( rowIndex, 1, new Label( MESSAGES.editCaptionRasterBasisReferenzMimeType() ) );
         layout.setWidget( rowIndex++, 2, refMimeType );
         layout.setWidget( rowIndex, 1, new Label( MESSAGES.editCaptionRasterBasisGeoReference() ) );
         layout.setWidget( rowIndex++, 2, georeference );
-        layout.setWidget( rowIndex, 1, new Label( MESSAGES.editCaptionRasterBasisGeoReferenceLink() ) );
-        layout.setWidget( rowIndex++, 2, georeferenceLink );
         layout.setWidget( rowIndex, 1, new Label( MESSAGES.editCaptionRasterBasisGeorefMimeType() ) );
         layout.setWidget( rowIndex++, 2, georefMimeType );
         if ( !XPLAN_3.equals( version ) ) {
@@ -244,19 +231,9 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
     private void setRasterReferenceValues() {
         if ( originalRasterReference != null ) {
             refType.selectItem( originalRasterReference.getType() );
-            String referenceValue = originalRasterReference.getReference();
-            if ( referenceValue != null && referenceValue.startsWith( "http" ) ) {
-                referenceLink.setValue( referenceValue );
-            } else {
-                reference.setNameOfExistingFile( referenceValue );
-            }
+            reference.setNameOfExistingFile( originalRasterReference.getReference() );
             refMimeType.selectItem( originalRasterReference.getReferenzMimeType() );
-            String georeferenceValue = originalRasterReference.getGeoReference();
-            if ( georeferenceValue != null && georeferenceValue.startsWith( "http" ) ) {
-                georeferenceLink.setValue( georeferenceValue );
-            } else {
-                georeference.setNameOfExistingFile( georeferenceValue );
-            }
+            georeference.setNameOfExistingFile( originalRasterReference.getGeoReference() );
             georefMimeType.selectItem( originalRasterReference.getGeorefMimeType() );
             artType.selectItem( originalRasterReference.getArt() );
             referenzName.setValue( originalRasterReference.getReferenzName() );
@@ -293,8 +270,8 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
         boolean valid = super.isValid();
         List<String> validationFailures = new ArrayList<String>();
 
-        if ( isNullOrEmpty( referenzName.getValue() ) && !reference.isFileSelected() && isNullOrEmpty(
-                        referenceLink.getValue() ) ) {
+        if ( ( referenzName.getValue() == null || !( referenzName.getValue().length() > 0 ) )
+             && !reference.isFileSelected() ) {
             valid = false;
             validationFailures.add( MESSAGES.editCaptionRasterBasisReferenceNameOrUrl() );
         }
