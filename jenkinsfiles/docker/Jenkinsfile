@@ -5,6 +5,10 @@ pipeline {
     DEPLOY_CREDENTIAL = '26707569-2c7c-4517-9a60-350b6c5041ca'
   }
   agent any
+  tools {
+    maven 'maven361'
+    jdk 'openjdk8'
+  }
   parameters {
     string(description: 'Version of the Docker Image', name: 'VERSION', defaultValue: '4.4-SNAPSHOT')
     string(description: 'Version of the Docker Image', name: 'BRANCH', defaultValue: 'master')
