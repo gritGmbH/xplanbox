@@ -9,8 +9,8 @@ In diesem Repository werden alle Ressourcen zur xPlanBox Produktversion verwalte
 
 |xPlanBox Version |Auslieferung                   |REST API | 
 |:--------------- |:----------------------------- |:------- |
-| 4.4             | Erweiterungen von API und Web | v1(*)   |
-| 5.0             | **OSS Version für OZG**       | v1(*)   |
+| 5.0             | Unterstützung von Java 11 und XPlanGML 5.4 | v1(*) |
+| 6.0             | **OSS Version für OZG**       | v1(*)   |
 
 (*) nach Bedarf evt. zusätzlich v2
 (S) SNAPSHOT
