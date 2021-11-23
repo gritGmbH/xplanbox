@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -62,11 +62,9 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplanbox.api.commons.handler.SystemConfigHandler;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -84,8 +82,18 @@ public class ApplicationContext {
     private static final String RULES_DIRECTORY = "/rules";
 
     @Bean
+    public XPlanManager xPlanManager( XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
+                                      ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
+                                      InspirePluTransformator inspirePluTransformator,
+                                      XPlanGmlTransformer xPlanGmlTransformer, WmsWorkspaceWrapper wmsWorkspaceWrapper )
+                    throws Exception {
+        return new XPlanManager( xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
+                                 inspirePluTransformator, xPlanGmlTransformer, wmsWorkspaceWrapper );
+    }
+
+    @Bean
     public SystemConfigHandler systemConfigHandler(
-                            XQuerySemanticValidatorConfigurationRetriever configurationRetriever ) {
+                    XQuerySemanticValidatorConfigurationRetriever configurationRetriever ) {
         return new SystemConfigHandler( configurationRetriever );
     }
 
@@ -102,14 +110,14 @@ public class ApplicationContext {
     @Bean
     public SemanticValidator semanticValidator( ManagerConfiguration managerConfiguration,
                                                 XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever )
-                            throws URISyntaxException, ValidatorException {
+                    throws URISyntaxException, ValidatorException {
         return new XQuerySemanticValidator( xQuerySemanticValidatorConfigurationRetriever,
                                             managerConfiguration.getSemanticConformityLinkConfiguration() );
     }
 
     @Bean
     public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(
-                            Path rulesPath ) {
+                    Path rulesPath ) {
         return new XQuerySemanticValidatorConfigurationRetriever( rulesPath );
     }
 
@@ -128,18 +136,25 @@ public class ApplicationContext {
 
     @Bean
     public ManagerWorkspaceWrapper managerWorkspaceWrapper( ManagerConfiguration managerConfiguration )
-                            throws WorkspaceException {
+                    throws WorkspaceException {
         DeegreeWorkspace managerWorkspace = instantiateWorkspace( DEFAULT_XPLAN_MANAGER_WORKSPACE );
         ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(
-                                managerWorkspace.getNewWorkspace(), managerConfiguration );
+                        managerWorkspace, managerConfiguration );
         return managerWorkspaceWrapper;
     }
 
     @Bean
-    public XPlanRasterManager xPlanRasterManager( ManagerConfiguration managerConfiguration )
-                            throws WorkspaceException {
+    public WmsWorkspaceWrapper wmsWorkspaceWrapper()
+            throws WorkspaceException {
         DeegreeWorkspaceWrapper wmsWorkspace = new DeegreeWorkspaceWrapper( DEFAULT_XPLANSYN_WMS_WORKSPACE );
         WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper( wmsWorkspace.getWorkspaceInstance() );
+        return wmsWorkspaceWrapper;
+    }
+
+    @Bean
+    public XPlanRasterManager xPlanRasterManager( WmsWorkspaceWrapper wmsWorkspaceWrapper,
+                                                  ManagerConfiguration managerConfiguration )
+                    throws WorkspaceException {
         return new XPlanRasterManager( wmsWorkspaceWrapper, managerConfiguration );
     }
 
@@ -150,7 +165,7 @@ public class ApplicationContext {
                                                   ManagerConfiguration managerConfiguration,
                                                   WorkspaceReloader workspaceReloader,
                                                   XPlanGmlTransformer xPlanGmlTransformer )
-                            throws Exception {
+                    throws Exception {
         SortConfiguration sortConfiguration = createSortConfiguration( managerConfiguration );
         SortPropertyReader sortPropertyReader = new SortPropertyReader( sortConfiguration );
 
@@ -173,13 +188,13 @@ public class ApplicationContext {
 
     @Bean
     public InternalIdRetriever internalIdRetriever( ManagerConfiguration managerConfiguration )
-                            throws Exception {
+                    throws Exception {
         return new InternalIdRetriever( managerConfiguration.getInternalIdRetrieverConfiguration() );
     }
 
     @Bean
     public ReportArchiveGenerator reportArchiveGenerator()
-                            throws IOException, ConfigurationException {
+                    throws IOException, ConfigurationException {
         return new ReportArchiveGenerator( validatorConfiguration() );
     }
 
@@ -190,25 +205,25 @@ public class ApplicationContext {
 
     @Bean
     public XPlanArchiveCreator archiveCreator( CategoryMapper categoryMapper )
-                            throws ConfigurationException {
+                    throws ConfigurationException {
         return new XPlanArchiveCreator( categoryMapper );
     }
 
     @Bean
     public CategoryMapper categoryMapper( ManagerConfiguration managerConfiguration )
-                            throws ConfigurationException {
+                    throws ConfigurationException {
         return new CategoryMapper( managerConfiguration );
     }
 
     @Bean
     public ManagerConfiguration managerConfiguration( PropertiesLoader managerPropertiesLoader )
-                            throws ConfigurationException {
+                    throws ConfigurationException {
         return new ManagerConfiguration( managerPropertiesLoader );
     }
 
     @Bean
     public ManagerApiConfiguration managerApiConfiguration( PropertiesLoader managerPropertiesLoader )
-                            throws ConfigurationException {
+                    throws ConfigurationException {
         return new ManagerApiConfiguration( managerPropertiesLoader );
     }
 
@@ -232,7 +247,7 @@ public class ApplicationContext {
         Path pathToHaleProjectDirectory = managerConfiguration.getPathToHaleProjectDirectory();
         if ( pathToHaleCli != null && pathToHaleProjectDirectory != null ) {
             HaleXplan41ToXplan51Transformer haleXplan41ToXplan51Transformer = new HaleXplan41ToXplan51Transformer(
-                                    pathToHaleCli, pathToHaleProjectDirectory );
+                            pathToHaleCli, pathToHaleProjectDirectory );
             return new XPlanGmlTransformer( haleXplan41ToXplan51Transformer );
         }
         return null;
@@ -240,7 +255,7 @@ public class ApplicationContext {
 
     @Bean
     public ValidatorConfiguration validatorConfiguration()
-                            throws IOException, ConfigurationException {
+                    throws IOException, ConfigurationException {
         ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
         return validatorConfigurationParser.parse( new SystemPropertyPropertiesLoader( ValidatorConfiguration.class ) );
     }
@@ -252,7 +267,7 @@ public class ApplicationContext {
 
     @Bean
     public Path rulesPath( ValidatorConfiguration validatorConfiguration )
-                            throws URISyntaxException {
+                    throws URISyntaxException {
         Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
         if ( validationRulesDirectory != null )
             return validationRulesDirectory;

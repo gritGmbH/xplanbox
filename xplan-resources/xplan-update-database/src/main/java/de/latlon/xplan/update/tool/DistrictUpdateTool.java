@@ -89,22 +89,22 @@ public class DistrictUpdateTool {
 
     private void run( String workspaceName, String configurationDirectory )
                     throws Exception {
-        Workspace workspace = initWorkspace( workspaceName );
+        DeegreeWorkspace workspace = initWorkspace( workspaceName );
         XPlanDao xplanDao = createXplanDao( workspace, configurationDirectory );
         DistrictUpdater updater = new DistrictUpdater( xplanDao );
         updater.updateDistricts();
     }
 
-    private static Workspace initWorkspace( String workspaceName )
+    private static DeegreeWorkspace initWorkspace( String workspaceName )
                             throws ResourceInitException {
         DeegreeWorkspace workspace = DeegreeWorkspace.getInstance( workspaceName );
         File location = workspace.getLocation();
         LOG.info( "Initialise Workspace " + location );
         workspace.initAll();
-        return workspace.getNewWorkspace();
+        return workspace;
     }
 
-    private static XPlanDao createXplanDao( Workspace workspace, String configurationFilePathVariable )
+    private static XPlanDao createXplanDao( DeegreeWorkspace workspace, String configurationFilePathVariable )
                     throws ConfigurationException {
         Path file = configurationFilePathVariable != null ? Paths.get( configurationFilePathVariable ) : null;
         ConfigurationDirectoryPropertiesLoader loader = new ConfigurationDirectoryPropertiesLoader( file );

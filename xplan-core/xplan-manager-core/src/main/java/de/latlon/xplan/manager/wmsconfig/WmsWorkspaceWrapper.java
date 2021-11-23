@@ -158,7 +158,7 @@ public class WmsWorkspaceWrapper {
 
     private File createConfig( String type ) {
         File configFile = new File( workspace.getLocation(), format( "themes/%sraster.xml", type ) );
-        if ( !configFile.isFile() ) {
+        if ( !configFile.isFile() || !configFile.canRead() ) {
             throw new RuntimeException( "Datei '" + configFile + "' ist nicht vorhanden." );
         }
         return configFile;

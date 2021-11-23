@@ -102,6 +102,8 @@ import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.PLANMITGEOREFERENZ;
@@ -206,6 +208,27 @@ public class XPlanManipulatorTest {
 
         assertThat( featureCollection, hasPropertyCount( version, "BP_Plan", "texte", 2 ) );
         assertThat( featureCollection, hasFeatureCount( version, "BP_TextAbschnitt", 2 ) );
+
+        assertThatPlanIsSchemaValid( featureCollection, version );
+    }
+
+    @Test
+    public void testModifyXPlan_XPlan51_ModifyTextKeepFeatureId()
+                    throws Exception {
+        XPlanVersion version = XPLAN_51;
+        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, null );
+        FeatureCollection featureCollection = readXPlanGml( version, "xplan51/V4_1_ID_103.gml", schema );
+
+        XPlanToEdit editedXplan = createSimpleXPlan();
+        String featureIdUnderTest = "FEATURE_0f870967-bd6f-4367-9150-8a255f0290ad";
+        editedXplan.getTexts().add( new Text( featureIdUnderTest, "key", "base", "BeschreibungstextNeu",
+                                              HINWEIS, "B-Plan_Klingmuehl_Heideweg_Text",
+                                              "B-Plan_Klingmuehl_Heideweg_Text.pdf" ) );
+
+        planManipulator.modifyXPlan( featureCollection, editedXplan, version, BP_Plan, schema );
+
+        assertThat( featureCollection, hasPropertyCount( version, "BP_Plan", "texte", 1 ) );
+        assertThat( featureCollection, hasFeatureWithId( version, "BP_TextAbschnitt", featureIdUnderTest ) );
 
         assertThatPlanIsSchemaValid( featureCollection, version );
     }
@@ -1064,11 +1087,9 @@ System.out.println( exportedPlan );
 
             @Override
             public void describeTo( Description description ) {
-                description.appendText( "Expcted is a feature with name " );
-                description.appendValue( expectedFeature );
-                description.appendText( " with exact " );
+                description.appendText( "Expcted are " );
                 description.appendValue( numberOfOccurences );
-                description.appendText( " property/properties with name " );
+                description.appendText( " features with name " );
                 description.appendValue( expectedFeature );
             }
         };

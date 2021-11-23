@@ -1,0 +1,16 @@
+{
+  "aendert": [
+    {
+      "planName": "string",
+      "rechtscharakter": 1000,
+      "nummer": "1000"
+    }
+  ],
+  "wurdeGeaendertVon": [
+    {
+      "planName": "string",
+      "rechtscharakter": 2000,
+      "nummer": "2000"
+    }
+  ]
+}

@@ -32,8 +32,10 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * attributes derived from XPlanGML data model
- **/
+ * Datatype for PlanInfoXplanModelData with attributes derived from XPlanGML data model.
+ *
+ * @since 4.0
+ */
 @Schema(description = "attributes derived from XPlanGML data model")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
 @XmlRootElement

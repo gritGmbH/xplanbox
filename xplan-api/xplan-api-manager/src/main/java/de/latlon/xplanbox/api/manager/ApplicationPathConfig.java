@@ -24,6 +24,7 @@ package de.latlon.xplanbox.api.manager;
 import de.latlon.xplanbox.api.commons.ObjectMapperContextResolver;
 import de.latlon.xplanbox.api.commons.openapi.OpenApiFilter;
 import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
+import de.latlon.xplanbox.api.manager.openapi.ManagerOpenApiFilter;
 import de.latlon.xplanbox.api.manager.v1.DefaultApi;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.models.ExternalDocumentation;
@@ -33,6 +34,9 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.tags.Tag;
+import org.glassfish.jersey.media.multipart.MultiPart;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
+import org.glassfish.jersey.media.multipart.internal.MultiPartReaderClientSide;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 
@@ -50,9 +54,9 @@ import static org.slf4j.LoggerFactory.getLogger;
 /**
  * Application configuration for XPlanManager REST API.
  * Example mapping for proxy mapping:
- * http://xplanbox.lat-lon.de/xmanager/api/vi/ -> http://host:8080/xplan-api-validator/xmanager/api/v1/
- * Public address: http://xplanbox.lat-lon.de/xmanager/
- * Internal address: http://host:8080/xplan-api-validator/xmanager/
+ * http://xplanbox.lat-lon.de/xmanager/api/vi/ -> http://host:8080/xplan-api-manager/xmanager/api/v1/
+ * Public address: http://xplanbox.lat-lon.de/xmanager/api/v1
+ * Internal address: http://host:8080/xplan-api-manager/xmanager/api/v1
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
@@ -73,9 +77,10 @@ public class ApplicationPathConfig extends ResourceConfig {
         packages( "de.latlon.xplanbox.api.manager.v1" );
         packages( "de.latlon.xplanbox.api.manager.exception" );
         packages( "de.latlon.xplanbox.api.commons.exception" );
+        packages( "org.glassfish.jersey.examples.multipart" );
         OpenAPI openApi = new OpenAPI();
         openApi.setInfo( new Info().title( "XPlanManagerAPI" )
-                                   .version( "1.0.0" )
+                                   .version( "1.1.0" )
                                    .description( "XPlanManager REST API" )
                                    .termsOfService( getTermsOfService( managerApiConfiguration ) )
                                    .license(new License().name( "Apache 2.0" )
@@ -87,11 +92,12 @@ public class ApplicationPathConfig extends ResourceConfig {
 
         DefaultApi openApiResource = new DefaultApi();
         SwaggerConfiguration oasConfig = new SwaggerConfiguration().openAPI( openApi ).filterClass(
-                                OpenApiFilter.class.getCanonicalName() ).prettyPrint( true ).resourcePackages(
+                                ManagerOpenApiFilter.class.getCanonicalName() ).prettyPrint( true ).resourcePackages(
                                 Stream.of( "de.latlon.xplanbox.api.manager.v1" ).collect( Collectors.toSet() ) );
 
         openApiResource.setOpenApiConfiguration( oasConfig );
         register( openApiResource );
+        register( MultiPartFeature.class );
         LOG.info( "XPlanApiManager successfully initialized" );
     }
 
@@ -117,8 +123,8 @@ public class ApplicationPathConfig extends ResourceConfig {
 
     private void addContact( OpenAPI openApi, ManagerApiConfiguration managerApiConfiguration ) {
         if ( managerApiConfiguration != null && managerApiConfiguration.getContactEMailAdress() != null ) {
-            String contactEMailAdress = managerApiConfiguration.getContactEMailAdress();
-            openApi.getInfo().setContact( new Contact().email( contactEMailAdress ) );
+            String contactEMailAddress = managerApiConfiguration.getContactEMailAdress();
+            openApi.getInfo().setContact( new Contact().email( contactEMailAddress ) );
         }
     }
 

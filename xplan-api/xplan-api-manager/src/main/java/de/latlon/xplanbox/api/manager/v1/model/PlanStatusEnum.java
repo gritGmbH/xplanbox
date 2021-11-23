@@ -24,6 +24,11 @@ package de.latlon.xplanbox.api.manager.v1.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
+/**
+ * Enumeration for plan status.
+ *
+ * @since 4.0
+ */
 public enum PlanStatusEnum {
 
     FESTGESTELLT( String.valueOf( "FESTGESTELLT" ) ), IN_AUFSTELLUNG( String.valueOf( "IN_AUFSTELLUNG" ) ), ARCHIVIERT(

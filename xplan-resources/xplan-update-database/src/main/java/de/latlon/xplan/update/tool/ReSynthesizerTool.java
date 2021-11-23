@@ -104,7 +104,7 @@ public class ReSynthesizerTool {
 
     private ReSynthesizer createReSynthesizer( String workspaceName, String configurationDirectory )
                     throws ResourceInitException, ConfigurationException {
-        Workspace workspace = initWorkspace( workspaceName );
+        DeegreeWorkspace workspace = initWorkspace( workspaceName );
         ManagerConfiguration managerConfiguration = createManagerConfiguration( configurationDirectory );
         XPlanDao xplanDao = createXplanDao( workspace, managerConfiguration );
         XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(
@@ -113,16 +113,16 @@ public class ReSynthesizerTool {
         return new ReSynthesizer( xplanDao, xPlanSynthesizer, sortPropertyReader );
     }
 
-    private static Workspace initWorkspace( String workspaceName )
+    private static DeegreeWorkspace initWorkspace( String workspaceName )
                     throws ResourceInitException {
         DeegreeWorkspace workspace = DeegreeWorkspace.getInstance( workspaceName );
         File location = workspace.getLocation();
         LOG.info( "Initialise Workspace " + location );
         workspace.initAll();
-        return workspace.getNewWorkspace();
+        return workspace;
     }
 
-    private static XPlanDao createXplanDao( Workspace workspace, ManagerConfiguration managerConfiguration ) {
+    private static XPlanDao createXplanDao( DeegreeWorkspace workspace, ManagerConfiguration managerConfiguration ) {
         CategoryMapper categoryMapper = new CategoryMapper( managerConfiguration );
         ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper( workspace,
                                                                                        managerConfiguration );

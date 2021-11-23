@@ -121,7 +121,7 @@ public class DatabaseUpdateTool {
 
     private void run( String workspaceName, String configurationFilePathVariable, List<UPDATE_VERSION> version )
                     throws Exception {
-        Workspace workspace = initWorkspace( workspaceName );
+        DeegreeWorkspace workspace = initWorkspace( workspaceName );
         ManagerConfiguration managerConfiguration = new ManagerConfiguration( null );
         ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper( workspace,
                                                                                        managerConfiguration );
@@ -139,11 +139,11 @@ public class DatabaseUpdateTool {
         return new XPlanDao( managerWorkspaceWrapper, categoryMapper, managerConfiguration );
     }
 
-    private static Workspace initWorkspace( String workspaceName )
+    private static DeegreeWorkspace initWorkspace( String workspaceName )
                     throws ResourceInitException {
         DeegreeWorkspace workspace = DeegreeWorkspace.getInstance( workspaceName );
         workspace.initAll();
-        return workspace.getNewWorkspace();
+        return workspace;
     }
 
     private static List<UPDATE_VERSION> parseUpdateVersion( CommandLine cmdline ) {
