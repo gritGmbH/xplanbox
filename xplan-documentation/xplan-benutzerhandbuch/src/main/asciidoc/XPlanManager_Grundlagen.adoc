@@ -12,7 +12,8 @@ XPlanWFS und XPlanWMS abgerufen werden. Im folgenden Abschnitt werden die Anford
 Das XPlanArchiv ist eine ZIP-Datei mit folgendem Aufbau:
 
  * Im Basisverzeichnis muss das XPlanGML-Instanzdokument mit dem Dateinamen __xplan.gml__ vorhanden sein.
- * Rasterdaten sowie alle anderen im __xplan.gml__ referenzierten Anhänge müssen ebenfalls im Basisverzeichnis der ZIP-Datei liegen.
+ * Rasterdaten, die im __xplan.gml__ referenziert sind, müssen ebenfalls im Basisverzeichnis der ZIP-Datei liegen, siehe dazu auch <<referenzierung-von-rasterdaten-im-xplangml>>.
+ * Alle anderen im __xplan.gml__ referenzierten Anhänge müssen entweder im Basisverzeichnis der ZIP-Datei liegen oder werden über einen Link auf eine externe Datei (URL) referenziert.
 
 NOTE: *Wichtig*: Dateinamen dürfen keine Sonderzeichen wie z. B. `&`, `#` , `/`, `\`, `"`, `'` (doppeltes oder einfaches Anführungszeichen),
 Leerzeichen oder auch Umlaute beinhalten. Gross- und Kleinschreibung in den Dateinamen (auch der Dateiendung) werden berücksichtigt

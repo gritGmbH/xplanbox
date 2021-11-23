@@ -11,6 +11,47 @@ verwendet.
 Zur erfolgreichen Installation der Software-Komponenten müssen die in
 diesem Kapitel beschriebenen Voraussetzungen erfüllt werden.
 
+[[systemvoraussetzungen]]
+=== Systemvoraussetzungen
+
+[[server]]
+==== Server
+
+[[minimale-systemvoraussetzung]]
+===== Minimale Systemvoraussetzung
+
+* CPU: 8 CPUs bzw. 8 Kernen (64 Bit) mit minimal 2,5-GHz-Prozessorgeschwindigkeit
+* Arbeitsspeicher: 16 GB RAM
+* Netzwerkadapter: Gigabit-Ethernet-Adapter (10/100/1000baseT PHY/MAC)
+* Festplattensystem: Journaling-Dateisystem (Kapazität nach Bedarf,
+Minimum 500 GB)
+
+NOTE: Die Anwendung xPlanBox benötigt min. 800 MB Festplattenspeicherplatz.
+Wachsende Daten über die Laufzeit sind die Datenhaltung für die Pläne
+inkl. der Anhänge und die Systemlogdateien. Zur Kapazitätsplanung kann folgende Abschätzung gegeben werden: Der Festplattenspeicherplatz für die Daten ist erforderlich auf dem Server mit der <<XPlanDB>> und der Tomcat-Instanz mit dem <<XPlanManager>>. Folgende Formel kann bei der   Kapazitätsplanung zur Hilfe gezogen werden: _Größe eines XPlanArchivs (inkl. der Anhänge) * Anzahl der XPlanArchive * 2_. Wenn also zum Beispiel 100 Pläne mit einer durchschnittlichen Größe von 50 MB inkl. der Anhänge importiert werden sollen, dann sind ca. 10 GB Festplattenspeicherplatz je Server notwendig.
+
+[[empfohlene-systemkonfiguration]]
+===== Empfohlene Systemkonfiguration
+
+* CPU: 16 CPUs bzw. 16 Kernen (64 Bit) mit 3,2-GHz-Prozessorgeschwindigkeit
+* Arbeitsspeicher: 32 GB RAM
+* Netzwerkadapter: Gigabit-Ethernet-Adapter (10/100/1000baseT PHY/MAC)
+* Festplattensystem: RAID-10 (Kapazität nach Bedarf, Minimum 500 GB)
+optional mit SSD
+
+NOTE: Hohe Datentransferraten sind bei Bereitstellung von großen
+Datenbeständen sowohl von Raster- als auch Vektordaten
+notwendig, u.a. um die Vorgaben der INSPIRE-Richtlinien zu erfüllen.
+
+[[client]]
+==== Client
+
+* CPU: 2 CPU mit mindestens 2,0-GHz-Prozessor
+* Arbeitsspeicher: 4 GB RAM
+
+NOTE: Weitere Informationen zu den Systemvoraussetzungen bei den unterstützten
+Browsern: Microsoft Edge (79.0+), Mozilla Firefox (80.0+), Google Chrome (85.0+)
+
 [[betriebssystem]]
 === Betriebssystem
 
@@ -65,45 +106,3 @@ NOTE: Erforderlich ist GDAL 3.0.
 Optional kann die Installation von https://github.com/halestudio/hale-cli/[HALE CLI] erforderlich sein. HALE CLI wird benötigt, wenn die Bereitstellung von Plänen in XPlanGML, die im XPlanManager verwaltet werden, im INSPIRE Planned Land Use (PLU) Datenthema, genutzt werden soll. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-hale-cli>>.
 
 NOTE: Erforderlich ist HALE CLI 3.4.0+.
-
-[[systemvoraussetzungen]]
-=== Systemvoraussetzungen
-
-[[server]]
-==== Server
-
-[[minimale-systemvoraussetzung]]
-===== Minimale Systemvoraussetzung
-
-
-* CPU: 8 CPUs bzw. 8 Kernen (64 Bit) mit minimal 2,5-GHz-Prozessorgeschwindigkeit
-* Arbeitsspeicher: 16 GB RAM
-* Netzwerkadapter: Gigabit-Ethernet-Adapter (10/100/1000baseT PHY/MAC)
-* Festplattensystem: Journaling-Dateisystem (Kapazität nach Bedarf,
-Minimum 500 GB)
-
-NOTE: Die Anwendung xPlanBox benötigt min. 800 MB Festplattenspeicherplatz.
-Wachsende Daten über die Laufzeit sind die Datenhaltung für die Pläne
-inkl. der Anhänge und die Systemlogdateien. Zur Kapazitätsplanung kann folgende Abschätzung gegeben werden: Der Festplattenspeicherplatz für die Daten ist erforderlich auf dem Server mit der <<XPlanDB>> und der Tomcat-Instanz mit dem <<XPlanManager>>. Folgende Formel kann bei der   Kapazitätsplanung zur Hilfe gezogen werden: _Größe eines XPlanArchivs (inkl. der Anhänge) * Anzahl der XPlanArchive * 2_. Wenn also zum Beispiel 100 Pläne mit einer durchschnittlichen Größe von 50 MB inkl. der Anhänge importiert werden sollen, dann sind ca. 10 GB Festplattenspeicherplatz je Server notwendig.
-
-[[empfohlene-systemkonfiguration]]
-===== Empfohlene Systemkonfiguration
-
-* CPU: 16 CPUs bzw. 16 Kernen (64 Bit) mit 3,2-GHz-Prozessorgeschwindigkeit
-* Arbeitsspeicher: 32 GB RAM
-* Netzwerkadapter: Gigabit-Ethernet-Adapter (10/100/1000baseT PHY/MAC)
-* Festplattensystem: RAID-10 (Kapazität nach Bedarf, Minimum 500 GB)
-optional mit SSD
-
-NOTE: Hohe Datentransferraten sind bei Bereitstellung von großen
-Datenbeständen sowohl von Raster- als auch Vektordaten
-notwendig, u.a. um die Vorgaben der INSPIRE-Richtlinien zu erfüllen.
-
-[[client]]
-==== Client
-
-* CPU: 2 CPU mit mindestens 2,0-GHz-Prozessor
-* Arbeitsspeicher: 4 GB RAM
-
-NOTE: Weitere Informationen zu den Systemvoraussetzungen bei den unterstützten
-Browsern: Microsoft Edge (79.0+), Mozilla Firefox (80.0+), Google Chrome (85.0+)
