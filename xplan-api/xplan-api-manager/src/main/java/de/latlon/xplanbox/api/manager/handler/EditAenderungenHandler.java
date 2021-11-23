@@ -19,36 +19,30 @@ import java.util.List;
 @Singleton
 public class EditAenderungenHandler extends EditHandler {
 
-    /**
-     * @param planId
-     *                 the ID of the plan, never <code>null</code>
-     * @return all Aenderungen of the plan, never <code>null</code>
-     * @throws Exception
-     */
-    public Aenderungen retrieveAenderungen( String planId )
-                    throws Exception {
-        XPlan plan = findPlanById( planId );
-        XPlanToEdit xPlanToEdit = manager.getXPlanToEdit( plan );
-        List<Change> changes = xPlanToEdit.getChanges();
-        return Aenderungen.fromChanges( changes );
-    }
+	/**
+	 * @param planId the ID of the plan, never <code>null</code>
+	 * @return all Aenderungen of the plan, never <code>null</code>
+	 * @throws Exception
+	 */
+	public Aenderungen retrieveAenderungen(String planId) throws Exception {
+		XPlan plan = findPlanById(planId);
+		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
+		List<Change> changes = xPlanToEdit.getChanges();
+		return Aenderungen.fromChanges(changes);
+	}
 
-    /**
-     * @param planId
-     *                 the ID of the plan, never <code>null</code>
-     * @param aenderungen
-     *                 the Aenderungen to update, never <code>null</code>
-     * @return the replaced Aenderungen. nerver <code>null</code>
-     * @throws Exception
-     */
-    public Aenderungen replaceAenderungen( String planId,
-                                           Aenderungen aenderungen )
-                    throws Exception {
-        XPlan plan = findPlanById( planId );
-        XPlanToEdit xPlanToEdit = manager.getXPlanToEdit( plan );
-        xPlanToEdit.setChanges( aenderungen.toChanges() );
-        manager.editPlan( plan, xPlanToEdit, false, Collections.emptyList() );
-        return aenderungen;
-    }
+	/**
+	 * @param planId the ID of the plan, never <code>null</code>
+	 * @param aenderungen the Aenderungen to update, never <code>null</code>
+	 * @return the replaced Aenderungen. nerver <code>null</code>
+	 * @throws Exception
+	 */
+	public Aenderungen replaceAenderungen(String planId, Aenderungen aenderungen) throws Exception {
+		XPlan plan = findPlanById(planId);
+		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
+		xPlanToEdit.setChanges(aenderungen.toChanges());
+		manager.editPlan(plan, xPlanToEdit, false, Collections.emptyList());
+		return aenderungen;
+	}
 
 }

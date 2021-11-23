@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -60,89 +60,89 @@ import static java.util.stream.Collectors.joining;
  */
 public class PlanwerkController extends WMSController {
 
-    private static final Logger LOG = LoggerFactory.getLogger( PlanwerkController.class );
+	private static final Logger LOG = LoggerFactory.getLogger(PlanwerkController.class);
 
-    private static final String PARAM_NAME_MANAGERID = "PLANWERK_MANAGERID";
+	private static final String PARAM_NAME_MANAGERID = "PLANWERK_MANAGERID";
 
-    private final Planwerk planwerk;
+	private final Planwerk planwerk;
 
-    public PlanwerkController( PlanwerkMetadata metadata, Workspace workspace, DeegreeWMS deegreeWMSConfig,
-                               Planwerk planwerk ) {
-        super( metadata, workspace, deegreeWMSConfig );
-        this.planwerk = planwerk;
-    }
+	public PlanwerkController(PlanwerkMetadata metadata, Workspace workspace, DeegreeWMS deegreeWMSConfig,
+			Planwerk planwerk) {
+		super(metadata, workspace, deegreeWMSConfig);
+		this.planwerk = planwerk;
+	}
 
-    @Override
-    public void init( DeegreeServicesMetadataType serviceMetadata, DeegreeServiceControllerType mainConfig,
-                      Object controllerConf ) {
-        super.init( serviceMetadata, mainConfig, controllerConf );
-        OWSMetadataProvider wmsMetadataProvider = workspace.getResource( OWSMetadataProviderProvider.class,
-                                                                         planwerk.getPlanwerkWms() + "_metadata" );
-        MetadataProviderWrapper metadataProvider = new MetadataProviderWrapper( wmsMetadataProvider, planwerk );
-        setMetadataProvider( metadataProvider );
-    }
+	@Override
+	public void init(DeegreeServicesMetadataType serviceMetadata, DeegreeServiceControllerType mainConfig,
+			Object controllerConf) {
+		super.init(serviceMetadata, mainConfig, controllerConf);
+		OWSMetadataProvider wmsMetadataProvider = workspace.getResource(OWSMetadataProviderProvider.class,
+				planwerk.getPlanwerkWms() + "_metadata");
+		MetadataProviderWrapper metadataProvider = new MetadataProviderWrapper(wmsMetadataProvider, planwerk);
+		setMetadataProvider(metadataProvider);
+	}
 
-    @Override
-    public void doKVP( Map<String, String> map, HttpServletRequest request, HttpResponseBuffer response,
-                       List<FileItem> multiParts )
-                    throws ServletException, IOException {
-        addManagerIdParameter( map );
-        super.doKVP( map, request, response, multiParts );
-    }
+	@Override
+	public void doKVP(Map<String, String> map, HttpServletRequest request, HttpResponseBuffer response,
+			List<FileItem> multiParts) throws ServletException, IOException {
+		addManagerIdParameter(map);
+		super.doKVP(map, request, response, multiParts);
+	}
 
-    @Override
-    public MetadataMerger getMetadataMerger() {
-        return new MetadataMerger() {
-            @Override
-            public SpatialMetadata mergeSpatialMetadata( List<Theme> themes ) {
-                return createPlanwerkSpatialMetadata( themes );
-            }
+	@Override
+	public MetadataMerger getMetadataMerger() {
+		return new MetadataMerger() {
+			@Override
+			public SpatialMetadata mergeSpatialMetadata(List<Theme> themes) {
+				return createPlanwerkSpatialMetadata(themes);
+			}
 
-            @Override
-            public LayerMetadata mergeLayerMetadata( Theme theme ) {
-                DefaultMetadataMerger defaultMetadataMerger = new DefaultMetadataMerger();
-                LayerMetadata layerMetadata = defaultMetadataMerger.mergeLayerMetadata( theme );
-                layerMetadata.setSpatialMetadata( createPlanwerkSpatialMetadata( theme ) );
-                return layerMetadata;
-            }
+			@Override
+			public LayerMetadata mergeLayerMetadata(Theme theme) {
+				DefaultMetadataMerger defaultMetadataMerger = new DefaultMetadataMerger();
+				LayerMetadata layerMetadata = defaultMetadataMerger.mergeLayerMetadata(theme);
+				layerMetadata.setSpatialMetadata(createPlanwerkSpatialMetadata(theme));
+				return layerMetadata;
+			}
 
-            private SpatialMetadata createPlanwerkSpatialMetadata( Theme theme ) {
-                List<ICRS> coordinateSystems = theme.getLayerMetadata().getSpatialMetadata().getCoordinateSystems();
-                return new SpatialMetadata( parseBboxFromWkt( planwerk.getEnvelope() ), coordinateSystems );
-            }
+			private SpatialMetadata createPlanwerkSpatialMetadata(Theme theme) {
+				List<ICRS> coordinateSystems = theme.getLayerMetadata().getSpatialMetadata().getCoordinateSystems();
+				return new SpatialMetadata(parseBboxFromWkt(planwerk.getEnvelope()), coordinateSystems);
+			}
 
-            private SpatialMetadata createPlanwerkSpatialMetadata( List<Theme> themes ) {
-                List<ICRS> coordinateSystems = getCrs( themes );
-                return new SpatialMetadata( parseBboxFromWkt( planwerk.getEnvelope() ), coordinateSystems );
-            }
+			private SpatialMetadata createPlanwerkSpatialMetadata(List<Theme> themes) {
+				List<ICRS> coordinateSystems = getCrs(themes);
+				return new SpatialMetadata(parseBboxFromWkt(planwerk.getEnvelope()), coordinateSystems);
+			}
 
-            private List<ICRS> getCrs( List<Theme> themes ) {
-                if ( themes.isEmpty() )
-                    return Collections.emptyList();
-                Theme firstTheme = themes.get( 0 );
-                return firstTheme.getLayerMetadata().getSpatialMetadata().getCoordinateSystems();
-            }
-        };
-    }
+			private List<ICRS> getCrs(List<Theme> themes) {
+				if (themes.isEmpty())
+					return Collections.emptyList();
+				Theme firstTheme = themes.get(0);
+				return firstTheme.getLayerMetadata().getSpatialMetadata().getCoordinateSystems();
+			}
+		};
+	}
 
-    private void addManagerIdParameter( Map<String, String> map ) {
-        List<Integer> managerIds = planwerk.getManagerId();
-        String ids = managerIds.stream().map( managerId -> managerId.toString() ).collect( joining( "," ) );
-        map.put( PARAM_NAME_MANAGERID, ids );
-    }
+	private void addManagerIdParameter(Map<String, String> map) {
+		List<Integer> managerIds = planwerk.getManagerId();
+		String ids = managerIds.stream().map(managerId -> managerId.toString()).collect(joining(","));
+		map.put(PARAM_NAME_MANAGERID, ids);
+	}
 
-    private Envelope parseBboxFromWkt( String bboxAsWkt ) {
-        if ( bboxAsWkt != null && !bboxAsWkt.isEmpty() ) {
-            try {
-                String crs = "epsg:4326";
-                WKTReader reader = new WKTReader( CRSManager.lookup( crs ) );
-                Geometry geometry = reader.read( bboxAsWkt );
-                return geometry.getEnvelope();
-            } catch ( UnknownCRSException | ParseException e ) {
-                LOG.error( "Could not create envelope from " + bboxAsWkt, e );
-            }
-        }
-        return null;
-    }
+	private Envelope parseBboxFromWkt(String bboxAsWkt) {
+		if (bboxAsWkt != null && !bboxAsWkt.isEmpty()) {
+			try {
+				String crs = "epsg:4326";
+				WKTReader reader = new WKTReader(CRSManager.lookup(crs));
+				Geometry geometry = reader.read(bboxAsWkt);
+				return geometry.getEnvelope();
+			}
+			catch (UnknownCRSException | ParseException e) {
+				LOG.error("Could not create envelope from " + bboxAsWkt, e);
+			}
+		}
+		return null;
+	}
 
 }

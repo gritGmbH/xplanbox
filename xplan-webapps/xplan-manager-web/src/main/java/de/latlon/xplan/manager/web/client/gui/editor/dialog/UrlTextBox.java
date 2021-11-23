@@ -8,13 +8,13 @@ import de.latlon.xplan.manager.web.client.gui.widget.Validable;
  */
 public class UrlTextBox extends TextBox implements Validable {
 
-    @Override
-    public boolean isValid() {
-        String value = getValue();
-        if ( value != null && !value.isEmpty() ) {
-            return value.startsWith( "http" );
-        }
-        return true;
-    }
+	@Override
+	public boolean isValid() {
+		String value = getValue();
+		if (value != null && !value.isEmpty()) {
+			return value.startsWith("http");
+		}
+		return true;
+	}
 
 }

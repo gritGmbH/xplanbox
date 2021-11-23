@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -41,61 +41,59 @@ import static net.sf.dynamicreports.report.builder.DynamicReports.*;
  */
 public class Templates {
 
-    static final StyleBuilder simpleStyle;
+	static final StyleBuilder simpleStyle;
 
-    private static final StyleBuilder boldStyle;
+	private static final StyleBuilder boldStyle;
 
-    private static final StyleBuilder boldCenterStyle;
+	private static final StyleBuilder boldCenterStyle;
 
-    static final StyleBuilder root20LeftIndentStyle;
+	static final StyleBuilder root20LeftIndentStyle;
 
-    static final StyleBuilder bold14LeftStyle;
+	static final StyleBuilder bold14LeftStyle;
 
-    static final StyleBuilder bold18LeftStyle;
+	static final StyleBuilder bold18LeftStyle;
 
-    private static final StyleBuilder bold22LeftStyle;
+	private static final StyleBuilder bold22LeftStyle;
 
-    static {
-        simpleStyle = stl.style().setPadding( 2 );
-        root20LeftIndentStyle = stl.style( simpleStyle ).setLeftIndent( 20 );
-        boldStyle = stl.style( simpleStyle ).bold();
-        StyleBuilder boldLeftStyle = stl.style( boldStyle ).setAlignment( HorizontalAlignment.LEFT,
-                                                                          VerticalAlignment.MIDDLE );
-        boldCenterStyle = stl.style( boldStyle ).setAlignment( HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE );
-        bold14LeftStyle = stl.style( boldLeftStyle ).setFontSize( 14 );
-        bold18LeftStyle = stl.style( boldLeftStyle ).setFontSize( 18 );
-        bold22LeftStyle = stl.style( boldLeftStyle ).setFontSize( 22 );
-    }
+	static {
+		simpleStyle = stl.style().setPadding(2);
+		root20LeftIndentStyle = stl.style(simpleStyle).setLeftIndent(20);
+		boldStyle = stl.style(simpleStyle).bold();
+		StyleBuilder boldLeftStyle = stl.style(boldStyle).setAlignment(HorizontalAlignment.LEFT,
+				VerticalAlignment.MIDDLE);
+		boldCenterStyle = stl.style(boldStyle).setAlignment(HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE);
+		bold14LeftStyle = stl.style(boldLeftStyle).setFontSize(14);
+		bold18LeftStyle = stl.style(boldLeftStyle).setFontSize(18);
+		bold22LeftStyle = stl.style(boldLeftStyle).setFontSize(22);
+	}
 
-    /**
-     * @return the template, never <code>null</code>
-     */
-    static ReportTemplateBuilder createTemplate() {
-        TableOfContentsCustomizerBuilder tableOfContentsCustomizer = tableOfContentsCustomizer().
-              setHeadingStyle( 0, boldStyle );
-        MarginBuilder pargeMargin = margin().setLeft( 30 ).setRight( 30 ).setTop( 30 ).setBottom( 30 );
-        return template().setLocale( Locale.GERMAN ).setPageMargin( pargeMargin ).highlightDetailEvenRows()
-              .crosstabHighlightEvenRows().setTableOfContentsCustomizer( tableOfContentsCustomizer );
-    }
+	/**
+	 * @return the template, never <code>null</code>
+	 */
+	static ReportTemplateBuilder createTemplate() {
+		TableOfContentsCustomizerBuilder tableOfContentsCustomizer = tableOfContentsCustomizer().setHeadingStyle(0,
+				boldStyle);
+		MarginBuilder pargeMargin = margin().setLeft(30).setRight(30).setTop(30).setBottom(30);
+		return template().setLocale(Locale.GERMAN).setPageMargin(pargeMargin).highlightDetailEvenRows()
+				.crosstabHighlightEvenRows().setTableOfContentsCustomizer(tableOfContentsCustomizer);
+	}
 
-    /**
-     * Create a title component
-     *
-     * @param title the title
-     * @return the title component, never <code>null</code>
-     */
-    static ComponentBuilder<?, ?> createTitleComponent( String title ) {
-        return cmp.horizontalList().add( cmp.verticalList( cmp.text( title ).setStyle( bold22LeftStyle ) ) ).newRow()
-              .add( cmp.line() ).newRow().add( cmp.verticalGap( 10 ) );
-    }
+	/**
+	 * Create a title component
+	 * @param title the title
+	 * @return the title component, never <code>null</code>
+	 */
+	static ComponentBuilder<?, ?> createTitleComponent(String title) {
+		return cmp.horizontalList().add(cmp.verticalList(cmp.text(title).setStyle(bold22LeftStyle))).newRow()
+				.add(cmp.line()).newRow().add(cmp.verticalGap(10));
+	}
 
-    /**
-     * Creates a footer component with page number
-     *
-     * @return the footer component, never <code>null</code>
-     */
-    static ComponentBuilder<?, ?> createFooter() {
-        return cmp.pageXslashY().setStyle( stl.style( boldCenterStyle ).setTopBorder( stl.pen1Point() ) );
-    }
+	/**
+	 * Creates a footer component with page number
+	 * @return the footer component, never <code>null</code>
+	 */
+	static ComponentBuilder<?, ?> createFooter() {
+		return cmp.pageXslashY().setStyle(stl.style(boldCenterStyle).setTopBorder(stl.pen1Point()));
+	}
 
 }

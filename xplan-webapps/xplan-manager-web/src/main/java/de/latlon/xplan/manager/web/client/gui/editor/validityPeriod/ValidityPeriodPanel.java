@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -71,43 +71,43 @@ import de.latlon.xplan.manager.web.shared.edit.ValidityPeriod;
 
 /**
  * CaptionPanel with editor for the validity period section.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
 public class ValidityPeriodPanel extends CaptionPanel implements Validable {
 
-    private static final XPlanWebMessages MESSAGES = GWT.create( XPlanWebMessages.class );
+	private static final XPlanWebMessages MESSAGES = GWT.create(XPlanWebMessages.class);
 
-    private final ValidityPeriodInput validityPeriodInput = new ValidityPeriodInput();
+	private final ValidityPeriodInput validityPeriodInput = new ValidityPeriodInput();
 
-    public ValidityPeriodPanel() {
-        setCaptionText( MESSAGES.editCaptionValidityPeriod() );
-        add( createValidityPeriodPanelLayout() );
-    }
+	public ValidityPeriodPanel() {
+		setCaptionText(MESSAGES.editCaptionValidityPeriod());
+		add(createValidityPeriodPanelLayout());
+	}
 
-    @Override
-    public boolean isValid() {
-        return validityPeriodInput.isValid();
-    }
+	@Override
+	public boolean isValid() {
+		return validityPeriodInput.isValid();
+	}
 
-    public void setValidityPeriod( ValidityPeriod validityPeriod ) {
-        if ( validityPeriod != null ) {
-            validityPeriodInput.setStartDateTime( validityPeriod.getStart() );
-            validityPeriodInput.setEndDateTime( validityPeriod.getEnd() );
-        }
-    }
+	public void setValidityPeriod(ValidityPeriod validityPeriod) {
+		if (validityPeriod != null) {
+			validityPeriodInput.setStartDateTime(validityPeriod.getStart());
+			validityPeriodInput.setEndDateTime(validityPeriod.getEnd());
+		}
+	}
 
-    public ValidityPeriod retrieveValidityPeriodToEdit() {
-        Date startDate = validityPeriodInput.retrieveStartDateTime();
-        Date endDate = validityPeriodInput.retrieveEndDateTime();
-        return new ValidityPeriod( startDate, endDate );
-    }
+	public ValidityPeriod retrieveValidityPeriodToEdit() {
+		Date startDate = validityPeriodInput.retrieveStartDateTime();
+		Date endDate = validityPeriodInput.retrieveEndDateTime();
+		return new ValidityPeriod(startDate, endDate);
+	}
 
-    private Widget createValidityPeriodPanelLayout() {
-        VerticalPanel panel = new VerticalPanel();
-        panel.setHorizontalAlignment( ALIGN_CENTER );
-        panel.add( validityPeriodInput );
-        return panel;
-    }
+	private Widget createValidityPeriodPanelLayout() {
+		VerticalPanel panel = new VerticalPanel();
+		panel.setHorizontalAlignment(ALIGN_CENTER);
+		panel.add(validityPeriodInput);
+		return panel;
+	}
 
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -39,106 +39,98 @@ import de.latlon.xplan.manager.web.shared.XPlan;
  */
 public class CategoryFilterTest {
 
-    private static final boolean NEGATIVE = true;
+	private static final boolean NEGATIVE = true;
 
-    private static final boolean POSITIVE = false;
+	private static final boolean POSITIVE = false;
 
-    private static final String CATEGORY = "category";
+	private static final String CATEGORY = "category";
 
-    private static final String CATEGORY_LOWER_UPPER_CASE = "caTegOry";
+	private static final String CATEGORY_LOWER_UPPER_CASE = "caTegOry";
 
-    private final CategoryFilter categoryFilter = new CategoryFilter( CATEGORY );
+	private final CategoryFilter categoryFilter = new CategoryFilter(CATEGORY);
 
-    private final CategoryFilter categoryListNegativeFilter = new CategoryFilter( createCategoryList(), NEGATIVE );
+	private final CategoryFilter categoryListNegativeFilter = new CategoryFilter(createCategoryList(), NEGATIVE);
 
-    private final CategoryFilter categoryListPositiveFilter = new CategoryFilter( createCategoryList(), POSITIVE );
+	private final CategoryFilter categoryListPositiveFilter = new CategoryFilter(createCategoryList(), POSITIVE);
 
-    @Test
-    public void testIsMatchingWithFilterCategoryShouldMatch()
-                            throws Exception {
-        boolean matching = categoryFilter.isMatching( createPlanWithCategory() );
+	@Test
+	public void testIsMatchingWithFilterCategoryShouldMatch() throws Exception {
+		boolean matching = categoryFilter.isMatching(createPlanWithCategory());
 
-        assertThat( matching, is( true ) );
-    }
+		assertThat(matching, is(true));
+	}
 
-    @Test
-    public void testIsMatchingWithFilterCategoryAndLowerUpperPlanShouldMatch()
-                            throws Exception {
-        boolean matching = categoryFilter.isMatching( createPlanWithLowerUpperCategory() );
+	@Test
+	public void testIsMatchingWithFilterCategoryAndLowerUpperPlanShouldMatch() throws Exception {
+		boolean matching = categoryFilter.isMatching(createPlanWithLowerUpperCategory());
 
-        assertThat( matching, is( true ) );
-    }
+		assertThat(matching, is(true));
+	}
 
-    @Test
-    public void testIsMatchingWithoutFilterCategoryShouldNotMatch()
-                            throws Exception {
-        boolean matching = categoryFilter.isMatching( createPlan( "UNKNOWN" ) );
+	@Test
+	public void testIsMatchingWithoutFilterCategoryShouldNotMatch() throws Exception {
+		boolean matching = categoryFilter.isMatching(createPlan("UNKNOWN"));
 
-        assertThat( matching, is( false ) );
-    }
+		assertThat(matching, is(false));
+	}
 
-    @Test
-    public void testIsMatchingWithCategoryListPositiveShouldMatch()
-                            throws Exception {
-        boolean matching = categoryListPositiveFilter.isMatching( createPlanWithCategory() );
+	@Test
+	public void testIsMatchingWithCategoryListPositiveShouldMatch() throws Exception {
+		boolean matching = categoryListPositiveFilter.isMatching(createPlanWithCategory());
 
-        assertThat( matching, is( true ) );
-    }
+		assertThat(matching, is(true));
+	}
 
-    @Test
-    public void testIsMatchingWithCategoryListNegativeShouldNotMatch()
-                            throws Exception {
-        boolean matching = categoryListNegativeFilter.isMatching( createPlanWithCategory() );
+	@Test
+	public void testIsMatchingWithCategoryListNegativeShouldNotMatch() throws Exception {
+		boolean matching = categoryListNegativeFilter.isMatching(createPlanWithCategory());
 
-        assertThat( matching, is( false ) );
-    }
+		assertThat(matching, is(false));
+	}
 
-    @Test
-    public void testIsMatchingWithNullCategoryFilterShouldMatch()
-                            throws Exception {
-        CategoryFilter nullFilter = new CategoryFilter( null );
-        boolean matching = nullFilter.isMatching( createPlanWithCategory() );
+	@Test
+	public void testIsMatchingWithNullCategoryFilterShouldMatch() throws Exception {
+		CategoryFilter nullFilter = new CategoryFilter(null);
+		boolean matching = nullFilter.isMatching(createPlanWithCategory());
 
-        assertThat( matching, CoreMatchers.is( true ) );
-    }
+		assertThat(matching, CoreMatchers.is(true));
+	}
 
-    @Test
-    public void testIsMatchingWithEmptyCategoryAndPositiveFilterShouldMatch()
-                            throws Exception {
-        CategoryFilter emptyFilter = new CategoryFilter( Collections.<String> emptyList(), POSITIVE );
-        boolean matching = emptyFilter.isMatching( createPlanWithCategory() );
+	@Test
+	public void testIsMatchingWithEmptyCategoryAndPositiveFilterShouldMatch() throws Exception {
+		CategoryFilter emptyFilter = new CategoryFilter(Collections.<String>emptyList(), POSITIVE);
+		boolean matching = emptyFilter.isMatching(createPlanWithCategory());
 
-        assertThat( matching, CoreMatchers.is( true ) );
-    }
+		assertThat(matching, CoreMatchers.is(true));
+	}
 
-    @Test
-    public void testIsMatchingWithEmptyCategoryAndNegativFilterShouldMatch()
-                            throws Exception {
-        CategoryFilter emptyFilter = new CategoryFilter( Collections.<String> emptyList(), NEGATIVE );
-        boolean matching = emptyFilter.isMatching( createPlanWithCategory() );
+	@Test
+	public void testIsMatchingWithEmptyCategoryAndNegativFilterShouldMatch() throws Exception {
+		CategoryFilter emptyFilter = new CategoryFilter(Collections.<String>emptyList(), NEGATIVE);
+		boolean matching = emptyFilter.isMatching(createPlanWithCategory());
 
-        assertThat( matching, CoreMatchers.is( true ) );
-    }
+		assertThat(matching, CoreMatchers.is(true));
+	}
 
-    private List<String> createCategoryList() {
-        ArrayList<String> categories = new ArrayList<String>();
-        categories.add( "cate1" );
-        categories.add( CATEGORY );
-        return categories;
-    }
+	private List<String> createCategoryList() {
+		ArrayList<String> categories = new ArrayList<String>();
+		categories.add("cate1");
+		categories.add(CATEGORY);
+		return categories;
+	}
 
-    private XPlan createPlanWithCategory() {
-        return createPlan( CATEGORY );
-    }
+	private XPlan createPlanWithCategory() {
+		return createPlan(CATEGORY);
+	}
 
-    private XPlan createPlanWithLowerUpperCategory() {
-        return createPlan( CATEGORY_LOWER_UPPER_CASE );
-    }
+	private XPlan createPlanWithLowerUpperCategory() {
+		return createPlan(CATEGORY_LOWER_UPPER_CASE);
+	}
 
-    private XPlan createPlan( String category ) {
-        XPlan xPlan = new XPlan( "name", "id", "type" );
-        xPlan.setDistrict( category );
-        return xPlan;
-    }
+	private XPlan createPlan(String category) {
+		XPlan xPlan = new XPlan("name", "id", "type");
+		xPlan.setDistrict(category);
+		return xPlan;
+	}
 
 }

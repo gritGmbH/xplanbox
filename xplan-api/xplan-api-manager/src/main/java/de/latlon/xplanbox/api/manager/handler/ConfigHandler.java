@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -43,37 +43,37 @@ import static org.slf4j.LoggerFactory.getLogger;
 @Singleton
 public class ConfigHandler {
 
-    private static final Logger LOG = getLogger( ConfigHandler.class );
+	private static final Logger LOG = getLogger(ConfigHandler.class);
 
-    @Autowired
-    private SystemConfigHandler systemConfigHandler;
+	@Autowired
+	private SystemConfigHandler systemConfigHandler;
 
-    @Autowired
-    private ManagerConfiguration managerConfiguration;
+	@Autowired
+	private ManagerConfiguration managerConfiguration;
 
-    @Autowired
-    private ManagerApiConfiguration managerApiConfiguration;
+	@Autowired
+	private ManagerApiConfiguration managerApiConfiguration;
 
-    public ManagerSystemConfig describeManagerSystem()
-                            throws IOException {
-        LOG.debug( "Generating manager config information" );
-        String rasterCrs = managerConfiguration.getRasterConfigurationCrs();
-        WorkspaceRasterLayerManager.RasterConfigurationType rasterType = managerConfiguration.getRasterConfigurationType();
-        DefaultValidationConfiguration defaultValidationConfiguration = managerApiConfiguration.getDefaultValidationConfiguration();
+	public ManagerSystemConfig describeManagerSystem() throws IOException {
+		LOG.debug("Generating manager config information");
+		String rasterCrs = managerConfiguration.getRasterConfigurationCrs();
+		WorkspaceRasterLayerManager.RasterConfigurationType rasterType = managerConfiguration
+				.getRasterConfigurationType();
+		DefaultValidationConfiguration defaultValidationConfiguration = managerApiConfiguration
+				.getDefaultValidationConfiguration();
 
-        return (ManagerSystemConfig) new ManagerSystemConfig().rasterCrs( rasterCrs ).rasterType(
-                                rasterType.name() ).skipSemantisch(
-                                defaultValidationConfiguration.isSkipSemantisch() ).skipGeometrisch(
-                                defaultValidationConfiguration.isSkipGeometrisch() ).skipFlaechenschluss(
-                                defaultValidationConfiguration.isSkipFlaechenschluss() ).skipGeltungsbereich(
-                                defaultValidationConfiguration.isSkipGeltungsbereich() ).rulesMetadata(
-                                systemConfigHandler.getRulesMetadata() ).supportedXPlanGmlVersions(
-                                systemConfigHandler.allSupportedVersions() ).version( parseVersion() );
-    }
+		return (ManagerSystemConfig) new ManagerSystemConfig().rasterCrs(rasterCrs).rasterType(rasterType.name())
+				.skipSemantisch(defaultValidationConfiguration.isSkipSemantisch())
+				.skipGeometrisch(defaultValidationConfiguration.isSkipGeometrisch())
+				.skipFlaechenschluss(defaultValidationConfiguration.isSkipFlaechenschluss())
+				.skipGeltungsbereich(defaultValidationConfiguration.isSkipGeltungsbereich())
+				.rulesMetadata(systemConfigHandler.getRulesMetadata())
+				.supportedXPlanGmlVersions(systemConfigHandler.allSupportedVersions()).version(parseVersion());
+	}
 
-    public String parseVersion() {
-        Package thisPackage = getClass().getPackage();
-        return thisPackage.getImplementationVersion();
-    }
+	public String parseVersion() {
+		Package thisPackage = getClass().getPackage();
+		return thisPackage.getImplementationVersion();
+	}
 
 }

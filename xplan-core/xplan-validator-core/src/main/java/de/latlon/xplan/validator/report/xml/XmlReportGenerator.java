@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -39,41 +39,41 @@ import java.io.OutputStream;
  */
 public class XmlReportGenerator {
 
-    private final JaxbConverter jaxbConverter = new JaxbConverter();
+	private final JaxbConverter jaxbConverter = new JaxbConverter();
 
-    /**
-     * write the complete Report to an OutputStream in XML-Format ( according to validationReport.xsd ) using JAXB
-     *
-     * @param report         the validation report to serialize, never <code>null</code>
-     * @param os             the OutputStream where the XML-Content is written into, never <code>null</code>
-     * @throws ReportGenerationException if the generation of the XML report failed
-     * @throws IllegalArgumentException  if on of the parameters is <code>null</code>
-     */
-    public void generateXmlReport( ValidatorReport report, OutputStream os )
-          throws ReportGenerationException {
-        checkParameters( report, os );
+	/**
+	 * write the complete Report to an OutputStream in XML-Format ( according to
+	 * validationReport.xsd ) using JAXB
+	 * @param report the validation report to serialize, never <code>null</code>
+	 * @param os the OutputStream where the XML-Content is written into, never
+	 * <code>null</code>
+	 * @throws ReportGenerationException if the generation of the XML report failed
+	 * @throws IllegalArgumentException if on of the parameters is <code>null</code>
+	 */
+	public void generateXmlReport(ValidatorReport report, OutputStream os) throws ReportGenerationException {
+		checkParameters(report, os);
 
-        ValidationReport validationReport = jaxbConverter.convertValidationReport( report );
-        marshal( os, validationReport );
-    }
+		ValidationReport validationReport = jaxbConverter.convertValidationReport(report);
+		marshal(os, validationReport);
+	}
 
-    private void marshal( OutputStream os, ValidationReport validationReport )
-          throws ReportGenerationException {
-        try {
-            JAXBContext jc = JAXBContext.newInstance( "de.latlon.xplan.validator.report" );
-            Marshaller marshaller = jc.createMarshaller();
-            marshaller.setProperty( Marshaller.JAXB_FORMATTED_OUTPUT, true );
-            marshaller.marshal( validationReport, os );
-        } catch ( JAXBException e ) {
-            throw new ReportGenerationException( "XML-Report generation failed!", e );
-        }
-    }
+	private void marshal(OutputStream os, ValidationReport validationReport) throws ReportGenerationException {
+		try {
+			JAXBContext jc = JAXBContext.newInstance("de.latlon.xplan.validator.report");
+			Marshaller marshaller = jc.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			marshaller.marshal(validationReport, os);
+		}
+		catch (JAXBException e) {
+			throw new ReportGenerationException("XML-Report generation failed!", e);
+		}
+	}
 
-    private void checkParameters( ValidatorReport report, OutputStream os ) {
-        if ( report == null )
-            throw new IllegalArgumentException( "ValidationReport must not be null" );
-        if ( os == null )
-            throw new IllegalArgumentException( "OutputStream must not be null" );
-    }
+	private void checkParameters(ValidatorReport report, OutputStream os) {
+		if (report == null)
+			throw new IllegalArgumentException("ValidationReport must not be null");
+		if (os == null)
+			throw new IllegalArgumentException("OutputStream must not be null");
+	}
 
 }

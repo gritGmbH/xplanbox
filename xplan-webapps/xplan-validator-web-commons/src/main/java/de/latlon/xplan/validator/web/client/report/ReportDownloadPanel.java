@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -47,88 +47,89 @@ import de.latlon.xplan.validator.web.shared.ValidationSummary;
 
 /**
  * Encapulates the download options.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class ReportDownloadPanel extends CaptionPanel {
 
-    private static final ValidatorWebCommonsMessages messages = GWT.create( ValidatorWebCommonsMessages.class );
+	private static final ValidatorWebCommonsMessages messages = GWT.create(ValidatorWebCommonsMessages.class);
 
-    private final CheckBox htmlCheckBox = new CheckBox( messages.reportDownloadHtml() );
+	private final CheckBox htmlCheckBox = new CheckBox(messages.reportDownloadHtml());
 
-    private final CheckBox xmlCheckBox = new CheckBox( messages.reportDownloadXml() );
+	private final CheckBox xmlCheckBox = new CheckBox(messages.reportDownloadXml());
 
-    private final CheckBox pdfCheckBox = new CheckBox( messages.reportDownloadPdf() );
+	private final CheckBox pdfCheckBox = new CheckBox(messages.reportDownloadPdf());
 
-    private final CheckBox shpCheckBox = new CheckBox( messages.reportDownloadShp() );
+	private final CheckBox shpCheckBox = new CheckBox(messages.reportDownloadShp());
 
-    private final CheckBox pngCheckBox = new CheckBox( messages.reportDownloadPng() );
+	private final CheckBox pngCheckBox = new CheckBox(messages.reportDownloadPng());
 
-    private final ReportUrlBuilder urlBuilder = new ReportUrlBuilder();
+	private final ReportUrlBuilder urlBuilder = new ReportUrlBuilder();
 
-    private ValidationSummary validationSummary;
+	private ValidationSummary validationSummary;
 
-    public ReportDownloadPanel( ValidationSummary validationSummary ) {
-        super( messages.reportDownloadBoxTitle() );
-        this.validationSummary = validationSummary;
-        initPanel();
-    }
+	public ReportDownloadPanel(ValidationSummary validationSummary) {
+		super(messages.reportDownloadBoxTitle());
+		this.validationSummary = validationSummary;
+		initPanel();
+	}
 
-    private void initPanel() {
-        VerticalPanel mainPanel = new VerticalPanel();
-        mainPanel.setSpacing( 10 );
+	private void initPanel() {
+		VerticalPanel mainPanel = new VerticalPanel();
+		mainPanel.setSpacing(10);
 
-        mainPanel.add( htmlCheckBox );
-        mainPanel.add( pdfCheckBox );
-        mainPanel.add( xmlCheckBox );
+		mainPanel.add(htmlCheckBox);
+		mainPanel.add(pdfCheckBox);
+		mainPanel.add(xmlCheckBox);
 
-        mainPanel.add( createGeometryErrorSeperator() );
+		mainPanel.add(createGeometryErrorSeperator());
 
-        mainPanel.add( shpCheckBox );
-        mainPanel.add( pngCheckBox );
+		mainPanel.add(shpCheckBox);
+		mainPanel.add(pngCheckBox);
 
-        mainPanel.add( createDownloadButton() );
+		mainPanel.add(createDownloadButton());
 
-        setContentWidget( mainPanel );
-    }
+		setContentWidget(mainPanel);
+	}
 
-    private Widget createGeometryErrorSeperator() {
-        Label label = new Label( messages.reportDownloadGeometryErrors() );
-        return label;
-    }
+	private Widget createGeometryErrorSeperator() {
+		Label label = new Label(messages.reportDownloadGeometryErrors());
+		return label;
+	}
 
-    private Widget createDownloadButton() {
-        Button download = new Button( messages.reportDownloadButtonTitle() );
-        download.addClickHandler( new ClickHandler() {
-            @Override
-            public void onClick( ClickEvent event ) {
-                List<ArtifactType> selectedArtifacts = getSelectedArtifacts();
-                if ( selectedArtifacts.size() > 0 ) {
-                    String zipUrl = urlBuilder.createZipUrl( validationSummary, selectedArtifacts );
-                    GWT.log( "Requested URL to receive the zip file with reports: " + zipUrl );
-                    Window.open( zipUrl, "", "" );
-                } else {
-                    Window.alert( messages.reportDownloadNoArtefactsSelected() );
-                }
-            }
-        } );
-        return download;
-    }
+	private Widget createDownloadButton() {
+		Button download = new Button(messages.reportDownloadButtonTitle());
+		download.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				List<ArtifactType> selectedArtifacts = getSelectedArtifacts();
+				if (selectedArtifacts.size() > 0) {
+					String zipUrl = urlBuilder.createZipUrl(validationSummary, selectedArtifacts);
+					GWT.log("Requested URL to receive the zip file with reports: " + zipUrl);
+					Window.open(zipUrl, "", "");
+				}
+				else {
+					Window.alert(messages.reportDownloadNoArtefactsSelected());
+				}
+			}
+		});
+		return download;
+	}
 
-    private List<ArtifactType> getSelectedArtifacts() {
-        List<ArtifactType> selectedArtifacts = new ArrayList<ArtifactType>();
-        if ( htmlCheckBox.getValue() )
-            selectedArtifacts.add( HTML );
-        if ( xmlCheckBox.getValue() )
-            selectedArtifacts.add( XML );
-        if ( pdfCheckBox.getValue() )
-            selectedArtifacts.add( PDF );
-        if ( shpCheckBox.getValue() )
-            selectedArtifacts.add( SHP );
-        if ( pngCheckBox.getValue() )
-            selectedArtifacts.add( PNG );
-        return selectedArtifacts;
-    }
+	private List<ArtifactType> getSelectedArtifacts() {
+		List<ArtifactType> selectedArtifacts = new ArrayList<ArtifactType>();
+		if (htmlCheckBox.getValue())
+			selectedArtifacts.add(HTML);
+		if (xmlCheckBox.getValue())
+			selectedArtifacts.add(XML);
+		if (pdfCheckBox.getValue())
+			selectedArtifacts.add(PDF);
+		if (shpCheckBox.getValue())
+			selectedArtifacts.add(SHP);
+		if (pngCheckBox.getValue())
+			selectedArtifacts.add(PNG);
+		return selectedArtifacts;
+	}
 
 }

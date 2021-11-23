@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -26,33 +26,34 @@ package de.latlon.xplan.manager.web.shared.edit;
  */
 public enum TextRechtscharacterType {
 
-    FESTSETZUNG( 1000 ),
+	FESTSETZUNG(1000),
 
-    NACHRICHTLICHEUEBERNAHME( 2000 ),
+	NACHRICHTLICHEUEBERNAHME(2000),
 
-    HINWEIS( 3000 ),
+	HINWEIS(3000),
 
-    VERMERK( 4000 ),
+	VERMERK(4000),
 
-    KENNZEICHNUNG( 5000 ),
+	KENNZEICHNUNG(5000),
 
-    UNBEKANNT( 9998 );
+	UNBEKANNT(9998);
 
-    private final int code;
+	private final int code;
 
-    TextRechtscharacterType( int code ) {
-        this.code = code;
-    }
+	TextRechtscharacterType(int code) {
+		this.code = code;
+	}
 
-    public static TextRechtscharacterType fromCode( int code ) {
-        for ( TextRechtscharacterType rechtscharacterType : values() ) {
-            if ( rechtscharacterType.code == code )
-                return rechtscharacterType;
-        }
-        throw new IllegalArgumentException( "Could not find rechtscharacter with code " + code );
-    }
+	public static TextRechtscharacterType fromCode(int code) {
+		for (TextRechtscharacterType rechtscharacterType : values()) {
+			if (rechtscharacterType.code == code)
+				return rechtscharacterType;
+		}
+		throw new IllegalArgumentException("Could not find rechtscharacter with code " + code);
+	}
 
-    public int getCode() {
-        return code;
-    }
+	public int getCode() {
+		return code;
+	}
+
 }

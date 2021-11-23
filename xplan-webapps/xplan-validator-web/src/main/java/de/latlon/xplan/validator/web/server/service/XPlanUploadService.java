@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -45,73 +45,76 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 
 /**
  * Stores an uploaded zip file into a tmp directory
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 @SuppressWarnings("serial")
 public class XPlanUploadService extends RemoteServiceServlet {
 
-    private static final Logger LOG = LoggerFactory.getLogger( XPlanUploadService.class );
+	private static final Logger LOG = LoggerFactory.getLogger(XPlanUploadService.class);
 
-    private static final ResourceBundle bundle = ResourceBundle.getBundle( "de.latlon.xplan.validator.web.client.XPlanValidatorWebMessages" );
+	private static final ResourceBundle bundle = ResourceBundle
+			.getBundle("de.latlon.xplan.validator.web.client.XPlanValidatorWebMessages");
 
-    private static final int FIRST = 0;
+	private static final int FIRST = 0;
 
-    private final PlanArchiveManager planArchiveManager = new PlanArchiveManager();
+	private final PlanArchiveManager planArchiveManager = new PlanArchiveManager();
 
-    @Override
-    protected void service( HttpServletRequest request, HttpServletResponse response )
-                    throws ServletException, IOException {
-        boolean isMultiPart = isMultipartContent( new ServletRequestContext( request ) );
-        if ( !isMultiPart )
-            super.service( request, response );
-        else {
-            handleMultiPart( request, response );
-        }
-    }
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		boolean isMultiPart = isMultipartContent(new ServletRequestContext(request));
+		if (!isMultiPart)
+			super.service(request, response);
+		else {
+			handleMultiPart(request, response);
+		}
+	}
 
-    private void handleMultiPart( HttpServletRequest request, HttpServletResponse response ) {
-        ServletFileUpload upload = new ServletFileUpload( new DiskFileItemFactory() );
-        try {
-            FileItem uploadedFileItem = retrieveFirstUploadedFile( request, upload );
-            if ( checkUploadConditions( uploadedFileItem ) ) {
-                String fileName = uploadedFileItem.getName();
-                XPlan plan = createPlan( uploadedFileItem, fileName );
+	private void handleMultiPart(HttpServletRequest request, HttpServletResponse response) {
+		ServletFileUpload upload = new ServletFileUpload(new DiskFileItemFactory());
+		try {
+			FileItem uploadedFileItem = retrieveFirstUploadedFile(request, upload);
+			if (checkUploadConditions(uploadedFileItem)) {
+				String fileName = uploadedFileItem.getName();
+				XPlan plan = createPlan(uploadedFileItem, fileName);
 
-                planArchiveManager.writePlanToSession( request.getSession( true ), plan );
-                planArchiveManager.writeXPlanArchiveToFileSystem( uploadedFileItem, plan );
-                populateResponse( response, uploadedFileItem, fileName );
-                LOG.debug( "Plan was successfully loaded." );
-            } else {
-                super.service( request, response );
-            }
-        } catch ( Exception e ) {
-            LOG.error( "An error occurred during uploading a plan!", e );
-        }
-    }
+				planArchiveManager.writePlanToSession(request.getSession(true), plan);
+				planArchiveManager.writeXPlanArchiveToFileSystem(uploadedFileItem, plan);
+				populateResponse(response, uploadedFileItem, fileName);
+				LOG.debug("Plan was successfully loaded.");
+			}
+			else {
+				super.service(request, response);
+			}
+		}
+		catch (Exception e) {
+			LOG.error("An error occurred during uploading a plan!", e);
+		}
+	}
 
-    private FileItem retrieveFirstUploadedFile( HttpServletRequest request, ServletFileUpload upload )
-                    throws FileUploadException {
-        return upload.parseRequest( request ).get( FIRST );
-    }
+	private FileItem retrieveFirstUploadedFile(HttpServletRequest request, ServletFileUpload upload)
+			throws FileUploadException {
+		return upload.parseRequest(request).get(FIRST);
+	}
 
-    private XPlan createPlan( FileItem uploadedFileItem, String fileName ) {
-        return new XPlan( fileName, randomUUID().toString(), uploadedFileItem.getContentType() );
-    }
+	private XPlan createPlan(FileItem uploadedFileItem, String fileName) {
+		return new XPlan(fileName, randomUUID().toString(), uploadedFileItem.getContentType());
+	}
 
-    private void populateResponse( HttpServletResponse response, FileItem uploadedFileItem, String fileName )
-                    throws IOException {
-        String message = format( bundle.getString( "loadedPlan" ), fileName, uploadedFileItem.getSize() );
+	private void populateResponse(HttpServletResponse response, FileItem uploadedFileItem, String fileName)
+			throws IOException {
+		String message = format(bundle.getString("loadedPlan"), fileName, uploadedFileItem.getSize());
 
-        response.setStatus( HttpServletResponse.SC_CREATED );
-        response.getWriter().println( message );
-        response.flushBuffer();
-    }
+		response.setStatus(HttpServletResponse.SC_CREATED);
+		response.getWriter().println(message);
+		response.flushBuffer();
+	}
 
-    private boolean checkUploadConditions( FileItem uploadedFileItem ) {
-        return uploadedFileItem != null && uploadedFileItem.getFieldName() != null
-               && "uploadPlanItem".equalsIgnoreCase( uploadedFileItem.getFieldName() );
-    }
+	private boolean checkUploadConditions(FileItem uploadedFileItem) {
+		return uploadedFileItem != null && uploadedFileItem.getFieldName() != null
+				&& "uploadPlanItem".equalsIgnoreCase(uploadedFileItem.getFieldName());
+	}
 
 }

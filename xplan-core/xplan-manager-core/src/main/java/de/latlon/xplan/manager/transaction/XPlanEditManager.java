@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -74,124 +74,122 @@ import static org.deegree.cs.persistence.CRSManager.lookup;
  */
 public class XPlanEditManager extends XPlanTransactionManager {
 
-    private static final Logger LOG = LoggerFactory.getLogger( XPlanEditManager.class );
+	private static final Logger LOG = LoggerFactory.getLogger(XPlanEditManager.class);
 
-    public XPlanEditManager( XPlanSynthesizer xPlanSynthesizer, XPlanGmlTransformer xPlanGmlTransformer,
-                             XPlanDao xplanDao, XPlanExporter xPlanExporter, XPlanRasterManager xPlanRasterManager,
-                             WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
-                             ManagerWorkspaceWrapper managerWorkspaceWrapper, SortPropertyReader sortPropertyReader )
-                    throws DataServiceCouplingException {
-        super( xPlanSynthesizer, xPlanGmlTransformer, xplanDao, xPlanExporter, xPlanRasterManager, workspaceReloader,
-               managerConfiguration, managerWorkspaceWrapper, sortPropertyReader );
-    }
+	public XPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanGmlTransformer xPlanGmlTransformer,
+			XPlanDao xplanDao, XPlanExporter xPlanExporter, XPlanRasterManager xPlanRasterManager,
+			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
+			ManagerWorkspaceWrapper managerWorkspaceWrapper, SortPropertyReader sortPropertyReader)
+			throws DataServiceCouplingException {
+		super(xPlanSynthesizer, xPlanGmlTransformer, xplanDao, xPlanExporter, xPlanRasterManager, workspaceReloader,
+				managerConfiguration, managerWorkspaceWrapper, sortPropertyReader);
+	}
 
-    public void editPlan( XPlan oldXplan, XPlanToEdit xPlanToEdit, boolean makeRasterConfig,
-                          List<File> uploadedArtefacts )
-                    throws Exception {
-        InputStream originalPlan = null;
-        try {
-            String planId = oldXplan.getId();
-            LOG.info( "- Editiere Plan mit ID {}", planId );
-            LOG.debug( "zu editierender Plan: {}", xPlanToEdit );
-            String oldPlanName = oldXplan.getName();
-            XPlanVersion version = XPlanVersion.valueOf( oldXplan.getVersion() );
-            XPlanType type = XPlanType.valueOf( oldXplan.getType() );
-            XPlanAde ade = oldXplan.getAde() != null ? XPlanAde.valueOf( oldXplan.getAde() ) : null;
-            PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
-            AppSchema appSchema = managerWorkspaceWrapper.lookupStore( version, ade, oldPlanStatus ).getSchema();
-            originalPlan = xplanDao.retrieveXPlanArtefact( planId );
-            XPlanFeatureCollection originalPlanFC = parseXPlanFeatureCollection( originalPlan, type, version,
-                                                                                 appSchema );
-            String oldDescription = retrieveDescription( originalPlanFC.getFeatures(), type );
-            String oldLegislationStatus = FeatureCollectionUtils.retrieveLegislationStatus(
-                            originalPlanFC.getFeatures(), type );
-            FeatureCollection featuresToModify = originalPlanFC.getFeatures();
-            ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan( featuresToModify );
-            planModifier.modifyXPlan( featuresToModify, xPlanToEdit, version, type, appSchema );
-            FeatureCollection modifiedFeatures = renewFeatureCollection( version, appSchema, featuresToModify );
-            ExternalReferenceInfo externalReferencesModified = new ExternalReferenceScanner().scan( modifiedFeatures );
+	public void editPlan(XPlan oldXplan, XPlanToEdit xPlanToEdit, boolean makeRasterConfig,
+			List<File> uploadedArtefacts) throws Exception {
+		InputStream originalPlan = null;
+		try {
+			String planId = oldXplan.getId();
+			LOG.info("- Editiere Plan mit ID {}", planId);
+			LOG.debug("zu editierender Plan: {}", xPlanToEdit);
+			String oldPlanName = oldXplan.getName();
+			XPlanVersion version = XPlanVersion.valueOf(oldXplan.getVersion());
+			XPlanType type = XPlanType.valueOf(oldXplan.getType());
+			XPlanAde ade = oldXplan.getAde() != null ? XPlanAde.valueOf(oldXplan.getAde()) : null;
+			PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
+			AppSchema appSchema = managerWorkspaceWrapper.lookupStore(version, ade, oldPlanStatus).getSchema();
+			originalPlan = xplanDao.retrieveXPlanArtefact(planId);
+			XPlanFeatureCollection originalPlanFC = parseXPlanFeatureCollection(originalPlan, type, version, appSchema);
+			String oldDescription = retrieveDescription(originalPlanFC.getFeatures(), type);
+			String oldLegislationStatus = FeatureCollectionUtils.retrieveLegislationStatus(originalPlanFC.getFeatures(),
+					type);
+			FeatureCollection featuresToModify = originalPlanFC.getFeatures();
+			ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan(featuresToModify);
+			planModifier.modifyXPlan(featuresToModify, xPlanToEdit, version, type, appSchema);
+			FeatureCollection modifiedFeatures = renewFeatureCollection(version, appSchema, featuresToModify);
+			ExternalReferenceInfo externalReferencesModified = new ExternalReferenceScanner().scan(modifiedFeatures);
 
-            byte[] xPlanGml = createXPlanGml( version, modifiedFeatures );
-            ExternalReferenceInfo externalReferenceInfoToUpdate = createExternalRefAddedOrUpdated(
-                            externalReferencesModified, uploadedArtefacts );
-            ExternalReferenceInfo externalReferenceInfoToRemove = createExternalRefRemovedOrUpdated(
-                            externalReferencesModified, uploadedArtefacts, externalReferencesOriginal );
-            Set<String> removedRefs = collectRemovedRefs( externalReferencesModified, externalReferencesOriginal );
+			byte[] xPlanGml = createXPlanGml(version, modifiedFeatures);
+			ExternalReferenceInfo externalReferenceInfoToUpdate = createExternalRefAddedOrUpdated(
+					externalReferencesModified, uploadedArtefacts);
+			ExternalReferenceInfo externalReferenceInfoToRemove = createExternalRefRemovedOrUpdated(
+					externalReferencesModified, uploadedArtefacts, externalReferencesOriginal);
+			Set<String> removedRefs = collectRemovedRefs(externalReferencesModified, externalReferencesOriginal);
 
-            XPlanFeatureCollection modifiedPlanFc = new XPlanFeatureCollectionBuilder( modifiedFeatures,
-                                                                                       type ).withExternalReferenceInfo(
-                            externalReferenceInfoToUpdate ).build();
-            reassignFids( modifiedPlanFc );
-            FeatureCollection synFc = createSynFeatures( modifiedPlanFc, version );
-            String internalId = xplanDao.retrieveInternalId( planId, type );
-            if ( internalId != null ) {
-                AppSchema synSchema = managerWorkspaceWrapper.lookupStore( XPLAN_SYN, null, oldPlanStatus ).getSchema();
-                featureCollectionManipulator.addInternalId( synFc, synSchema, internalId );
-            }
+			XPlanFeatureCollection modifiedPlanFc = new XPlanFeatureCollectionBuilder(modifiedFeatures, type)
+					.withExternalReferenceInfo(externalReferenceInfoToUpdate).build();
+			reassignFids(modifiedPlanFc);
+			FeatureCollection synFc = createSynFeatures(modifiedPlanFc, version);
+			String internalId = xplanDao.retrieveInternalId(planId, type);
+			if (internalId != null) {
+				AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, null, oldPlanStatus).getSchema();
+				featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);
+			}
 
-            // TODO: Validation required?
-            PlanStatus newPlanStatus = detectNewPlanStatus( xPlanToEdit, oldLegislationStatus, oldPlanStatus );
-            AdditionalPlanData xPlanMetadata = new AdditionalPlanData( newPlanStatus,
-                                                                       xPlanToEdit.getValidityPeriod().getStart(),
-                                                                       xPlanToEdit.getValidityPeriod().getEnd() );
-            Date sortDate = sortPropertyReader.readSortDate( type, version, modifiedFeatures );
-            xplanDao.update( oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, xPlanToEdit, sortDate,
-                             uploadedArtefacts, removedRefs );
-            LOG.info( "XPlanGML wurde erfolgreich editiert. ID: {}", planId );
+			// TODO: Validation required?
+			PlanStatus newPlanStatus = detectNewPlanStatus(xPlanToEdit, oldLegislationStatus, oldPlanStatus);
+			AdditionalPlanData xPlanMetadata = new AdditionalPlanData(newPlanStatus,
+					xPlanToEdit.getValidityPeriod().getStart(), xPlanToEdit.getValidityPeriod().getEnd());
+			Date sortDate = sortPropertyReader.readSortDate(type, version, modifiedFeatures);
+			xplanDao.update(oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, xPlanToEdit, sortDate,
+					uploadedArtefacts, removedRefs);
+			LOG.info("XPlanGML wurde erfolgreich editiert. ID: {}", planId);
 
-            startCreationIfPlanNameHasChanged( planId, type, modifiedPlanFc, oldPlanName, oldDescription );
+			startCreationIfPlanNameHasChanged(planId, type, modifiedPlanFc, oldPlanName, oldDescription);
 
-            xPlanRasterManager.removeRasterLayers( planId, externalReferenceInfoToRemove );
-            if ( makeRasterConfig ) {
-                XPlanArchiveContentAccess archive = new XPlanPartArchive( uploadedArtefacts );
-                createRasterConfiguration( archive, modifiedPlanFc, parseInt( planId ), BP_Plan, oldPlanStatus,
-                                           newPlanStatus, sortDate );
-                reloadWorkspace();
-            } else {
-                xPlanRasterManager.updateRasterLayers( parseInt( planId ), type, oldPlanStatus, newPlanStatus );
-            }
-            LOG.info( "Rasterkonfiguration für den Plan mit der ID {} wurde ausgetauscht (falls vorhanden).", planId );
-        } finally {
-            closeQuietly( originalPlan );
-        }
-    }
+			xPlanRasterManager.removeRasterLayers(planId, externalReferenceInfoToRemove);
+			if (makeRasterConfig) {
+				XPlanArchiveContentAccess archive = new XPlanPartArchive(uploadedArtefacts);
+				createRasterConfiguration(archive, modifiedPlanFc, parseInt(planId), BP_Plan, oldPlanStatus,
+						newPlanStatus, sortDate);
+				reloadWorkspace();
+			}
+			else {
+				xPlanRasterManager.updateRasterLayers(parseInt(planId), type, oldPlanStatus, newPlanStatus);
+			}
+			LOG.info("Rasterkonfiguration für den Plan mit der ID {} wurde ausgetauscht (falls vorhanden).", planId);
+		}
+		finally {
+			closeQuietly(originalPlan);
+		}
+	}
 
-    private PlanStatus detectNewPlanStatus( XPlanToEdit xPlanToEdit, String oldLegislationStatus,
-                                            PlanStatus oldPlanStatus ) {
-        int newLegislationStatusCode = xPlanToEdit.getBaseData().getLegislationStatusCode();
-        int oldLegislationStatusCode = -1;
-        try {
-            if ( oldLegislationStatus != null )
-                oldLegislationStatusCode = Integer.parseInt( oldLegislationStatus );
-        } catch ( NumberFormatException e ) {
-            LOG.warn( "Could not parse legislation status code {} as integer", oldLegislationStatus );
-        }
-        if ( newLegislationStatusCode != oldLegislationStatusCode )
-            return PlanStatus.findByLegislationStatusCode( newLegislationStatusCode );
-        return oldPlanStatus;
-    }
+	private PlanStatus detectNewPlanStatus(XPlanToEdit xPlanToEdit, String oldLegislationStatus,
+			PlanStatus oldPlanStatus) {
+		int newLegislationStatusCode = xPlanToEdit.getBaseData().getLegislationStatusCode();
+		int oldLegislationStatusCode = -1;
+		try {
+			if (oldLegislationStatus != null)
+				oldLegislationStatusCode = Integer.parseInt(oldLegislationStatus);
+		}
+		catch (NumberFormatException e) {
+			LOG.warn("Could not parse legislation status code {} as integer", oldLegislationStatus);
+		}
+		if (newLegislationStatusCode != oldLegislationStatusCode)
+			return PlanStatus.findByLegislationStatusCode(newLegislationStatusCode);
+		return oldPlanStatus;
+	}
 
-    private void startCreationIfPlanNameHasChanged( String planId, XPlanType type,
-                                                    XPlanFeatureCollection modifiedPlanFc, String oldPlanName,
-                                                    String oldDescription )
-                    throws UnknownCRSException {
-        String newPlanName = retrievePlanName( modifiedPlanFc.getFeatures(), type );
-        String newDescription = retrieveDescription( modifiedPlanFc.getFeatures(), type );
-        if ( hasChanged( oldPlanName, newPlanName ) || hasChanged( oldDescription, newDescription ) ) {
-            startCreationOfDataServicesCoupling( Integer.parseInt( planId ), modifiedPlanFc,
-                                                 lookup( managerConfiguration.getRasterConfigurationCrs() ) );
-        } else {
-            LOG.info( "Plan name does not change, creation of the service record is not required." );
-        }
-    }
+	private void startCreationIfPlanNameHasChanged(String planId, XPlanType type, XPlanFeatureCollection modifiedPlanFc,
+			String oldPlanName, String oldDescription) throws UnknownCRSException {
+		String newPlanName = retrievePlanName(modifiedPlanFc.getFeatures(), type);
+		String newDescription = retrieveDescription(modifiedPlanFc.getFeatures(), type);
+		if (hasChanged(oldPlanName, newPlanName) || hasChanged(oldDescription, newDescription)) {
+			startCreationOfDataServicesCoupling(Integer.parseInt(planId), modifiedPlanFc,
+					lookup(managerConfiguration.getRasterConfigurationCrs()));
+		}
+		else {
+			LOG.info("Plan name does not change, creation of the service record is not required.");
+		}
+	}
 
-    private boolean hasChanged( String oldValue, String newValue ) {
-        if ( newValue == null )
-            if ( oldValue == null )
-                return false;
-            else
-                return true;
-        return !newValue.equals( oldValue );
-    }
+	private boolean hasChanged(String oldValue, String newValue) {
+		if (newValue == null)
+			if (oldValue == null)
+				return false;
+			else
+				return true;
+		return !newValue.equals(oldValue);
+	}
 
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -86,209 +86,202 @@ import org.mockito.ArgumentCaptor;
  */
 public class PlanFilterTest {
 
-    private static final String HEIGHT = "height";
+	private static final String HEIGHT = "height";
 
-    private static final String WIDTH = "width";
+	private static final String WIDTH = "width";
 
-    private static final String BBOX = "bbox";
+	private static final String BBOX = "bbox";
 
-    private static final String SRS = "srs";
+	private static final String SRS = "srs";
 
-    private static final String BP_LAYERS = "b1_layer,b2_layer";
+	private static final String BP_LAYERS = "b1_layer,b2_layer";
 
-    private static final String LP_LAYERS = "l_layer";
+	private static final String LP_LAYERS = "l_layer";
 
-    private static PlanFilter filter;
+	private static PlanFilter filter;
 
-    @BeforeClass
-    public static void initFilter()
-                    throws ServletException {
-        filter = new PlanFilter();
-        filter.init( mockFilterConfig() );
-    }
+	@BeforeClass
+	public static void initFilter() throws ServletException {
+		filter = new PlanFilter();
+		filter.init(mockFilterConfig());
+	}
 
-    @Test
-    public void testDoFilter()
-                    throws Exception {
-        FilterChain chain = mockChain();
-        ServletResponse response = mockResponse();
-        filter.doFilter( mockRequest( "bp_plan" ), response, chain );
+	@Test
+	public void testDoFilter() throws Exception {
+		FilterChain chain = mockChain();
+		ServletResponse response = mockResponse();
+		filter.doFilter(mockRequest("bp_plan"), response, chain);
 
-        ArgumentCaptor<ServletRequest> requestArgumentCaptor = ArgumentCaptor.forClass( ServletRequest.class );
+		ArgumentCaptor<ServletRequest> requestArgumentCaptor = ArgumentCaptor.forClass(ServletRequest.class);
 
-        verify( chain ).doFilter( requestArgumentCaptor.capture(), eq( response ) );
+		verify(chain).doFilter(requestArgumentCaptor.capture(), eq(response));
 
-        ServletRequest request = requestArgumentCaptor.getValue();
+		ServletRequest request = requestArgumentCaptor.getValue();
 
-        assertThat( request.getParameter( SRS ), is( "epsg:4326" ) );
-        assertThat( request.getParameter( BBOX ), is( "18,53,19,54" ) );
-        assertThat( request.getParameter( WIDTH ), is( "27" ) );
-        assertThat( request.getParameter( HEIGHT ), is( "72" ) );
+		assertThat(request.getParameter(SRS), is("epsg:4326"));
+		assertThat(request.getParameter(BBOX), is("18,53,19,54"));
+		assertThat(request.getParameter(WIDTH), is("27"));
+		assertThat(request.getParameter(HEIGHT), is("72"));
 
-        assertThat( request.getParameter( "SERVICE" ), is( "WMS" ) );
-        assertThat( request.getParameter( "VERSION" ), is( "1.1.1" ) );
-        assertThat( request.getParameter( "REQUEST" ), is( "GetMap" ) );
-        assertThat( request.getParameter( "TRANSPARENT" ), is( "true" ) );
+		assertThat(request.getParameter("SERVICE"), is("WMS"));
+		assertThat(request.getParameter("VERSION"), is("1.1.1"));
+		assertThat(request.getParameter("REQUEST"), is("GetMap"));
+		assertThat(request.getParameter("TRANSPARENT"), is("true"));
 
-        assertThat( request.getParameter( "LAYERS" ), is( BP_LAYERS ) );
-    }
+		assertThat(request.getParameter("LAYERS"), is(BP_LAYERS));
+	}
 
-    @Test(expected = ServletException.class)
-    public void testDoFilterUnknownType()
-                    throws Exception {
-        FilterChain chain = mockChain();
-        ServletResponse response = mockResponse();
-        filter.doFilter( mockRequest( "rplan" ), response, chain );
-    }
+	@Test(expected = ServletException.class)
+	public void testDoFilterUnknownType() throws Exception {
+		FilterChain chain = mockChain();
+		ServletResponse response = mockResponse();
+		filter.doFilter(mockRequest("rplan"), response, chain);
+	}
 
-    @Test
-    public void testDoFilterMissingType()
-                    throws Exception {
-        FilterChain chain = mockChain();
-        ServletResponse response = mockResponse();
-        HttpServletRequest originalRequest = mockWmsRequest();
-        filter.doFilter( originalRequest, response, chain );
+	@Test
+	public void testDoFilterMissingType() throws Exception {
+		FilterChain chain = mockChain();
+		ServletResponse response = mockResponse();
+		HttpServletRequest originalRequest = mockWmsRequest();
+		filter.doFilter(originalRequest, response, chain);
 
-        ArgumentCaptor<HttpServletRequest> requestArgumentCaptor = ArgumentCaptor.forClass( HttpServletRequest.class );
+		ArgumentCaptor<HttpServletRequest> requestArgumentCaptor = ArgumentCaptor.forClass(HttpServletRequest.class);
 
-        verify( chain ).doFilter( requestArgumentCaptor.capture(), eq( response ) );
+		verify(chain).doFilter(requestArgumentCaptor.capture(), eq(response));
 
-        HttpServletRequest request = requestArgumentCaptor.getValue();
-        assertThat( request, is( originalRequest ) );
-    }
+		HttpServletRequest request = requestArgumentCaptor.getValue();
+		assertThat(request, is(originalRequest));
+	}
 
-    @Test(expected = ServletException.class)
-    public void testDoFilterMissingSrs()
-                    throws Exception {
-        FilterChain chain = mockChain();
-        ServletResponse response = mockResponse();
-        filter.doFilter( mockRequestMissingSrs(), response, chain );
-    }
+	@Test(expected = ServletException.class)
+	public void testDoFilterMissingSrs() throws Exception {
+		FilterChain chain = mockChain();
+		ServletResponse response = mockResponse();
+		filter.doFilter(mockRequestMissingSrs(), response, chain);
+	}
 
-    @Test(expected = ServletException.class)
-    public void testDoFilterMissingBbox()
-                    throws Exception {
-        FilterChain chain = mockChain();
-        ServletResponse response = mockResponse();
-        filter.doFilter( mockRequestMissingBbox(), response, chain );
-    }
+	@Test(expected = ServletException.class)
+	public void testDoFilterMissingBbox() throws Exception {
+		FilterChain chain = mockChain();
+		ServletResponse response = mockResponse();
+		filter.doFilter(mockRequestMissingBbox(), response, chain);
+	}
 
-    @Test(expected = ServletException.class)
-    public void testDoFilterMissingWidth()
-                    throws Exception {
-        FilterChain chain = mockChain();
-        ServletResponse response = mockResponse();
-        filter.doFilter( mockRequestMissingWidth(), response, chain );
-    }
+	@Test(expected = ServletException.class)
+	public void testDoFilterMissingWidth() throws Exception {
+		FilterChain chain = mockChain();
+		ServletResponse response = mockResponse();
+		filter.doFilter(mockRequestMissingWidth(), response, chain);
+	}
 
-    @Test(expected = ServletException.class)
-    public void testDoFilterMissingHeight()
-                    throws Exception {
-        FilterChain chain = mockChain();
-        ServletResponse response = mockResponse();
-        filter.doFilter( mockRequestMissingHeight(), response, chain );
-    }
+	@Test(expected = ServletException.class)
+	public void testDoFilterMissingHeight() throws Exception {
+		FilterChain chain = mockChain();
+		ServletResponse response = mockResponse();
+		filter.doFilter(mockRequestMissingHeight(), response, chain);
+	}
 
-    private static FilterConfig mockFilterConfig() {
-        FilterConfig mockedFilterConfig = mock( FilterConfig.class );
-        when( mockedFilterConfig.getInitParameter( "bpLayers" ) ).thenReturn( BP_LAYERS );
-        when( mockedFilterConfig.getInitParameter( "fpLayers" ) ).thenReturn( LP_LAYERS );
-        when( mockedFilterConfig.getInitParameter( "lpLayers" ) ).thenReturn( null );
-        when( mockedFilterConfig.getInitParameter( "rpLayers" ) ).thenReturn( "" );
-        return mockedFilterConfig;
-    }
+	private static FilterConfig mockFilterConfig() {
+		FilterConfig mockedFilterConfig = mock(FilterConfig.class);
+		when(mockedFilterConfig.getInitParameter("bpLayers")).thenReturn(BP_LAYERS);
+		when(mockedFilterConfig.getInitParameter("fpLayers")).thenReturn(LP_LAYERS);
+		when(mockedFilterConfig.getInitParameter("lpLayers")).thenReturn(null);
+		when(mockedFilterConfig.getInitParameter("rpLayers")).thenReturn("");
+		return mockedFilterConfig;
+	}
 
-    private HttpServletRequest mockRequest( String type ) {
-        HttpServletRequest mockedRequest = mock( HttpServletRequest.class );
-        Map<String, String[]> map = new HashMap<String, String[]>();
-        addParameter( mockedRequest, map, PlanFilter.TYPE_PARAM, type );
-        addParameter( mockedRequest, map, BBOX, "18,53,19,54" );
-        addParameter( mockedRequest, map, SRS, "epsg:4326" );
-        addParameter( mockedRequest, map, WIDTH, "27" );
-        addParameter( mockedRequest, map, HEIGHT, "72" );
-        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( PlanFilter.TYPE_PARAM, SRS, BBOX, WIDTH, HEIGHT ) );
-        when( mockedRequest.getParameterMap() ).thenReturn( map );
-        return mockedRequest;
-    }
+	private HttpServletRequest mockRequest(String type) {
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		addParameter(mockedRequest, map, PlanFilter.TYPE_PARAM, type);
+		addParameter(mockedRequest, map, BBOX, "18,53,19,54");
+		addParameter(mockedRequest, map, SRS, "epsg:4326");
+		addParameter(mockedRequest, map, WIDTH, "27");
+		addParameter(mockedRequest, map, HEIGHT, "72");
+		when(mockedRequest.getParameterNames())
+				.thenReturn(asEnumeration(PlanFilter.TYPE_PARAM, SRS, BBOX, WIDTH, HEIGHT));
+		when(mockedRequest.getParameterMap()).thenReturn(map);
+		return mockedRequest;
+	}
 
-    private HttpServletRequest mockWmsRequest() {
-        HttpServletRequest mockedRequest = mock( HttpServletRequest.class );
-        Map<String, String[]> map = new HashMap<String, String[]>();
-        addParameter( mockedRequest, map, "request", "GetCapabilities" );
-        addParameter( mockedRequest, map, "service", "WMS" );
-        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( "request", "service" ) );
-        when( mockedRequest.getParameterMap() ).thenReturn( map );
-        return mockedRequest;
-    }
+	private HttpServletRequest mockWmsRequest() {
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		addParameter(mockedRequest, map, "request", "GetCapabilities");
+		addParameter(mockedRequest, map, "service", "WMS");
+		when(mockedRequest.getParameterNames()).thenReturn(asEnumeration("request", "service"));
+		when(mockedRequest.getParameterMap()).thenReturn(map);
+		return mockedRequest;
+	}
 
-    private HttpServletRequest mockRequestMissingSrs() {
-        HttpServletRequest mockedRequest = mock( HttpServletRequest.class );
-        Map<String, String[]> map = new HashMap<String, String[]>();
-        addParameter( mockedRequest, map, PlanFilter.TYPE_PARAM, "bplan" );
-        addParameter( mockedRequest, map, BBOX, "18,53,19,54" );
-        addParameter( mockedRequest, map, WIDTH, "27" );
-        addParameter( mockedRequest, map, HEIGHT, "72" );
-        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( PlanFilter.TYPE_PARAM, BBOX, WIDTH, HEIGHT ) );
-        when( mockedRequest.getParameterMap() ).thenReturn( map );
-        return mockedRequest;
-    }
+	private HttpServletRequest mockRequestMissingSrs() {
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		addParameter(mockedRequest, map, PlanFilter.TYPE_PARAM, "bplan");
+		addParameter(mockedRequest, map, BBOX, "18,53,19,54");
+		addParameter(mockedRequest, map, WIDTH, "27");
+		addParameter(mockedRequest, map, HEIGHT, "72");
+		when(mockedRequest.getParameterNames()).thenReturn(asEnumeration(PlanFilter.TYPE_PARAM, BBOX, WIDTH, HEIGHT));
+		when(mockedRequest.getParameterMap()).thenReturn(map);
+		return mockedRequest;
+	}
 
-    private HttpServletRequest mockRequestMissingBbox() {
-        HttpServletRequest mockedRequest = mock( HttpServletRequest.class );
-        Map<String, String[]> map = new HashMap<String, String[]>();
-        addParameter( mockedRequest, map, PlanFilter.TYPE_PARAM, "bplan" );
-        addParameter( mockedRequest, map, SRS, "epsg:4326" );
-        addParameter( mockedRequest, map, WIDTH, "27" );
-        addParameter( mockedRequest, map, HEIGHT, "72" );
-        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( PlanFilter.TYPE_PARAM, SRS, WIDTH, HEIGHT ) );
-        when( mockedRequest.getParameterMap() ).thenReturn( map );
-        return mockedRequest;
-    }
+	private HttpServletRequest mockRequestMissingBbox() {
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		addParameter(mockedRequest, map, PlanFilter.TYPE_PARAM, "bplan");
+		addParameter(mockedRequest, map, SRS, "epsg:4326");
+		addParameter(mockedRequest, map, WIDTH, "27");
+		addParameter(mockedRequest, map, HEIGHT, "72");
+		when(mockedRequest.getParameterNames()).thenReturn(asEnumeration(PlanFilter.TYPE_PARAM, SRS, WIDTH, HEIGHT));
+		when(mockedRequest.getParameterMap()).thenReturn(map);
+		return mockedRequest;
+	}
 
-    private HttpServletRequest mockRequestMissingWidth() {
-        HttpServletRequest mockedRequest = mock( HttpServletRequest.class );
-        Map<String, String[]> map = new HashMap<String, String[]>();
-        addParameter( mockedRequest, map, PlanFilter.TYPE_PARAM, "bplan" );
-        addParameter( mockedRequest, map, BBOX, "18,53,19,54" );
-        addParameter( mockedRequest, map, SRS, "epsg:4326" );
-        addParameter( mockedRequest, map, HEIGHT, "72" );
-        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( PlanFilter.TYPE_PARAM, SRS, BBOX, HEIGHT ) );
-        when( mockedRequest.getParameterMap() ).thenReturn( map );
-        return mockedRequest;
-    }
+	private HttpServletRequest mockRequestMissingWidth() {
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		addParameter(mockedRequest, map, PlanFilter.TYPE_PARAM, "bplan");
+		addParameter(mockedRequest, map, BBOX, "18,53,19,54");
+		addParameter(mockedRequest, map, SRS, "epsg:4326");
+		addParameter(mockedRequest, map, HEIGHT, "72");
+		when(mockedRequest.getParameterNames()).thenReturn(asEnumeration(PlanFilter.TYPE_PARAM, SRS, BBOX, HEIGHT));
+		when(mockedRequest.getParameterMap()).thenReturn(map);
+		return mockedRequest;
+	}
 
-    private HttpServletRequest mockRequestMissingHeight() {
-        HttpServletRequest mockedRequest = mock( HttpServletRequest.class );
-        Map<String, String[]> map = new HashMap<String, String[]>();
-        addParameter( mockedRequest, map, PlanFilter.TYPE_PARAM, "bplan" );
-        addParameter( mockedRequest, map, BBOX, "18,53,19,54" );
-        addParameter( mockedRequest, map, SRS, "epsg:4326" );
-        addParameter( mockedRequest, map, WIDTH, "27" );
-        when( mockedRequest.getParameterNames() ).thenReturn( asEnumeration( PlanFilter.TYPE_PARAM, SRS, BBOX, WIDTH ) );
-        when( mockedRequest.getParameterMap() ).thenReturn( map );
-        return mockedRequest;
-    }
+	private HttpServletRequest mockRequestMissingHeight() {
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		addParameter(mockedRequest, map, PlanFilter.TYPE_PARAM, "bplan");
+		addParameter(mockedRequest, map, BBOX, "18,53,19,54");
+		addParameter(mockedRequest, map, SRS, "epsg:4326");
+		addParameter(mockedRequest, map, WIDTH, "27");
+		when(mockedRequest.getParameterNames()).thenReturn(asEnumeration(PlanFilter.TYPE_PARAM, SRS, BBOX, WIDTH));
+		when(mockedRequest.getParameterMap()).thenReturn(map);
+		return mockedRequest;
+	}
 
-    private void addParameter( HttpServletRequest mockedRequest, Map<String, String[]> map, String parameterName,
-                               String parameterValue ) {
-        when( mockedRequest.getParameter( parameterName ) ).thenReturn( parameterValue );
-        map.put( parameterName, new String[] { parameterValue } );
-    }
+	private void addParameter(HttpServletRequest mockedRequest, Map<String, String[]> map, String parameterName,
+			String parameterValue) {
+		when(mockedRequest.getParameter(parameterName)).thenReturn(parameterValue);
+		map.put(parameterName, new String[] { parameterValue });
+	}
 
-    private ServletResponse mockResponse() {
-        return mock( ServletResponse.class );
-    }
+	private ServletResponse mockResponse() {
+		return mock(ServletResponse.class);
+	}
 
-    private FilterChain mockChain() {
-        return mock( FilterChain.class );
-    }
+	private FilterChain mockChain() {
+		return mock(FilterChain.class);
+	}
 
-    private Enumeration<String> asEnumeration( String... value ) {
-        List<String> enumerationEntries = new ArrayList<String>();
-        for ( String entry : value ) {
-            enumerationEntries.add( entry );
-        }
-        return Collections.enumeration( enumerationEntries );
-    }
+	private Enumeration<String> asEnumeration(String... value) {
+		List<String> enumerationEntries = new ArrayList<String>();
+		for (String entry : value) {
+			enumerationEntries.add(entry);
+		}
+		return Collections.enumeration(enumerationEntries);
+	}
 
 }

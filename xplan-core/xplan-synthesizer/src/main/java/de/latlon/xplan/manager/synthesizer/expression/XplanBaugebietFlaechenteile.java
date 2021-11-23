@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -84,75 +84,76 @@ import org.slf4j.LoggerFactory;
  * <p>
  * This is only used for feature type BP_Baugebiet.
  * </p>
- * 
+ *
  * @author <a href="mailto:ionita@lat-lon.de">Andrei Ionita</a>
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider</a>
- * 
  * @since 1.0
  */
 public class XplanBaugebietFlaechenteile implements Expression {
 
-    private static final Logger LOG = LoggerFactory.getLogger( XplanBaugebietFlaechenteile.class );
+	private static final Logger LOG = LoggerFactory.getLogger(XplanBaugebietFlaechenteile.class);
 
-    // i.e. meters, as the targeted CRS should always be in meters
-    private final double MAX_ERROR = 1.0;
+	// i.e. meters, as the targeted CRS should always be in meters
+	private final double MAX_ERROR = 1.0;
 
-    // yep, not configurable (yet)
-    private final int MAX_NUM_POINTS = 500;
+	// yep, not configurable (yet)
+	private final int MAX_NUM_POINTS = 500;
 
-    @Override
-    public Geometry evaluate( Feature feature, FeatureCollection features ) {
-        List<Surface> members = new ArrayList<Surface>();
-        String ns = feature.getName().getNamespaceURI();
-        List<Property> props = feature.getProperties( new QName( ns, "flaechenteil" ) );
-        for ( Property prop : props ) {
-            Feature refFeature = getPropertyFeatureValue( prop );
-            TypedObjectNode position = getPropertyValue( refFeature, new QName( ns, "position" ) );
-            if ( !( position instanceof Geometry ) ) {
-                LOG.warn( "The flaechenteil property does NOT contain a Geometry as it should, but "
-                          + refFeature.getName() );
-                return null;
-            }
-            Geometry geom = (Geometry) position;
-            if ( geom instanceof Surface ) {
-                members.add( (Surface) geom );
-            } else if ( geom instanceof MultiSurface ) {
-                @SuppressWarnings("unchecked")
-                MultiSurface<Surface> multiSurface = (MultiSurface<Surface>) geom;
-                for ( Surface surfMember : multiSurface ) {
-                    members.add( surfMember );
-                }
-            }
-        }
-        if ( members.isEmpty() ) {
-            return null;
-        }
-        Surface sampleMember = members.get( 0 );
-        DefaultMultiSurface geometry = new DefaultMultiSurface( null, sampleMember.getCoordinateSystem(),
-                                                                sampleMember.getPrecision(), members );
-        Geometry sfs = makeSfsCompliant( geometry );
-        sfs = homogenizeMultiGeometry( sfs );
-        return sfs;
-    }
+	@Override
+	public Geometry evaluate(Feature feature, FeatureCollection features) {
+		List<Surface> members = new ArrayList<Surface>();
+		String ns = feature.getName().getNamespaceURI();
+		List<Property> props = feature.getProperties(new QName(ns, "flaechenteil"));
+		for (Property prop : props) {
+			Feature refFeature = getPropertyFeatureValue(prop);
+			TypedObjectNode position = getPropertyValue(refFeature, new QName(ns, "position"));
+			if (!(position instanceof Geometry)) {
+				LOG.warn("The flaechenteil property does NOT contain a Geometry as it should, but "
+						+ refFeature.getName());
+				return null;
+			}
+			Geometry geom = (Geometry) position;
+			if (geom instanceof Surface) {
+				members.add((Surface) geom);
+			}
+			else if (geom instanceof MultiSurface) {
+				@SuppressWarnings("unchecked")
+				MultiSurface<Surface> multiSurface = (MultiSurface<Surface>) geom;
+				for (Surface surfMember : multiSurface) {
+					members.add(surfMember);
+				}
+			}
+		}
+		if (members.isEmpty()) {
+			return null;
+		}
+		Surface sampleMember = members.get(0);
+		DefaultMultiSurface geometry = new DefaultMultiSurface(null, sampleMember.getCoordinateSystem(),
+				sampleMember.getPrecision(), members);
+		Geometry sfs = makeSfsCompliant(geometry);
+		sfs = homogenizeMultiGeometry(sfs);
+		return sfs;
+	}
 
-    private Geometry makeSfsCompliant( Geometry geometry ) {
-        SFSProfiler simplifier = new SFSProfiler( new MaxErrorCriterion( MAX_ERROR, MAX_NUM_POINTS ) );
-        if ( geometry.getCoordinateSystem() == null ) {
-            // should never happen
-            throw new RuntimeException( "Interner Fehler. Geometrie ohne CRS." );
-        }
-        return simplifier.simplify( geometry );
-    }
+	private Geometry makeSfsCompliant(Geometry geometry) {
+		SFSProfiler simplifier = new SFSProfiler(new MaxErrorCriterion(MAX_ERROR, MAX_NUM_POINTS));
+		if (geometry.getCoordinateSystem() == null) {
+			// should never happen
+			throw new RuntimeException("Interner Fehler. Geometrie ohne CRS.");
+		}
+		return simplifier.simplify(geometry);
+	}
 
-    private Geometry homogenizeMultiGeometry( Geometry geom ) {
-        if ( geom instanceof MultiGeometry<?> &&
-             ( (MultiGeometry<?>) geom ).getMultiGeometryType() == MULTI_GEOMETRY ) {
-            try {
-                return Geometries.homogenize( (MultiGeometry<?>) geom );
-            } catch ( IllegalArgumentException e ) {
-                throw new RuntimeException( "Heterogene MultiGeometry gefunden. Dies wird nicht unterstützt." );
-            }
-        }
-        return geom;
-    }
+	private Geometry homogenizeMultiGeometry(Geometry geom) {
+		if (geom instanceof MultiGeometry<?> && ((MultiGeometry<?>) geom).getMultiGeometryType() == MULTI_GEOMETRY) {
+			try {
+				return Geometries.homogenize((MultiGeometry<?>) geom);
+			}
+			catch (IllegalArgumentException e) {
+				throw new RuntimeException("Heterogene MultiGeometry gefunden. Dies wird nicht unterstützt.");
+			}
+		}
+		return geom;
+	}
+
 }

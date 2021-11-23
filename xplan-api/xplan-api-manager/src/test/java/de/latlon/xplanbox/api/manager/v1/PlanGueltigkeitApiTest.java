@@ -28,34 +28,33 @@ import static org.junit.Assert.assertThat;
  */
 public class PlanGueltigkeitApiTest extends JerseyTest {
 
-    @Override
-    protected Application configure() {
-        enable( TestProperties.LOG_TRAFFIC );
-        final ResourceConfig resourceConfig = new ResourceConfig( PlanGueltigkeitApi.class );
-        resourceConfig.register( XPlanApiExceptionMapper.class );
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext( ApplicationContext.class,
-                                                                                             TestContext.class );
-        resourceConfig.property( "contextConfig", context );
-        return resourceConfig;
-    }
+	@Override
+	protected Application configure() {
+		enable(TestProperties.LOG_TRAFFIC);
+		final ResourceConfig resourceConfig = new ResourceConfig(PlanGueltigkeitApi.class);
+		resourceConfig.register(XPlanApiExceptionMapper.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContext.class,
+				TestContext.class);
+		resourceConfig.property("contextConfig", context);
+		return resourceConfig;
+	}
 
-    @Test
-    public void verifyThat_getGueltigkeit_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/2/gueltigkeit" ).request( APPLICATION_JSON ).get();
+	@Test
+	public void verifyThat_getGueltigkeit_returnsCorrectStatusCodeForValidMediaType() {
+		Response response = target("/plan/2/gueltigkeit").request(APPLICATION_JSON).get();
 
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
 
-    @Test
-    public void verifyThat_replaceGueltigkeit_returnsCorrectStatusCodeForValidMediaType()
-                    throws URISyntaxException, IOException {
-        final byte[] data = Files.readAllBytes( Paths.get( getClass().getResource( "gueltigkeit.json" ).toURI() ) );
+	@Test
+	public void verifyThat_replaceGueltigkeit_returnsCorrectStatusCodeForValidMediaType()
+			throws URISyntaxException, IOException {
+		final byte[] data = Files.readAllBytes(Paths.get(getClass().getResource("gueltigkeit.json").toURI()));
 
-        Response response = target( "/plan/2/gueltigkeit" ).request()
-                                                           .put( Entity.entity( data, APPLICATION_JSON_TYPE ) );
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
+		Response response = target("/plan/2/gueltigkeit").request().put(Entity.entity(data, APPLICATION_JSON_TYPE));
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
 
 }

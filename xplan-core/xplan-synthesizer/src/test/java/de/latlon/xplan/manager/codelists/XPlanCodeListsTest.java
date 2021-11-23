@@ -70,66 +70,64 @@ import static org.junit.Assert.assertThat;
  */
 public class XPlanCodeListsTest {
 
-    @Test
-    public void testGetDescription_XPlan42() {
-        XPlanVersion version = XPlanVersion.XPLAN_41;
-        XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get( version );
-        String legislationStatusTranslation = xPlanCodeLists.getDescription( "BP_Rechtsstand", "4000" );
+	@Test
+	public void testGetDescription_XPlan42() {
+		XPlanVersion version = XPlanVersion.XPLAN_41;
+		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
+		String legislationStatusTranslation = xPlanCodeLists.getDescription("BP_Rechtsstand", "4000");
 
-        assertThat( legislationStatusTranslation, is( "InkraftGetreten" ) );
-    }
+		assertThat(legislationStatusTranslation, is("InkraftGetreten"));
+	}
 
-    @Test
-    public void testGetDescription_XPlan52() {
-        XPlanVersion version = XPlanVersion.XPLAN_52;
-        XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get( version );
-        String legislationStatusTranslation = xPlanCodeLists.getDescription( "BP_Rechtsstand", "4000" );
+	@Test
+	public void testGetDescription_XPlan52() {
+		XPlanVersion version = XPlanVersion.XPLAN_52;
+		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
+		String legislationStatusTranslation = xPlanCodeLists.getDescription("BP_Rechtsstand", "4000");
 
-        assertThat( legislationStatusTranslation, is( "InkraftGetreten" ) );
-    }
+		assertThat(legislationStatusTranslation, is("InkraftGetreten"));
+	}
 
-    @Test
-    public void testGetDescription_XPlan53() {
-        XPlanVersion version = XPlanVersion.XPLAN_53;
-        XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get( version );
-        String legislationStatusTranslation = xPlanCodeLists.getDescription( "BP_Rechtsstand", "4000" );
+	@Test
+	public void testGetDescription_XPlan53() {
+		XPlanVersion version = XPlanVersion.XPLAN_53;
+		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
+		String legislationStatusTranslation = xPlanCodeLists.getDescription("BP_Rechtsstand", "4000");
 
-        assertThat( legislationStatusTranslation, is( "InkraftGetreten" ) );
-    }
+		assertThat(legislationStatusTranslation, is("InkraftGetreten"));
+	}
 
-    @Test
-    public void testParseXPlan3()
-                            throws Exception {
-        URL codeListFile = XPlanCodeListsTest.class.getResource( "../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan3.xml" );
-        XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists( codeListFile, GML_30 );
+	@Test
+	public void testParseXPlan3() throws Exception {
+		URL codeListFile = XPlanCodeListsTest.class
+				.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan3.xml");
+		XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists(codeListFile, GML_30);
 
-        Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
-        assertThat( codesToDescriptions.size(), is( 1 ) );
-        assertThat( codesToDescriptions.values().iterator().next().size(), is( 14 ) );
-    }
+		Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
+		assertThat(codesToDescriptions.size(), is(1));
+		assertThat(codesToDescriptions.values().iterator().next().size(), is(14));
+	}
 
-    @Test
-    public void testParseXPlan4()
-                            throws Exception {
-        URL codeListFile = XPlanCodeListsTest.class.getResource(
-                                "../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan4.xml" );
-        XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists( codeListFile, GML_30 );
+	@Test
+	public void testParseXPlan4() throws Exception {
+		URL codeListFile = XPlanCodeListsTest.class
+				.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan4.xml");
+		XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists(codeListFile, GML_30);
 
-        Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
-        assertThat( codesToDescriptions.size(), is( 1 ) );
-        assertThat( codesToDescriptions.values().iterator().next().size(), is( 3 ) );
-    }
+		Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
+		assertThat(codesToDescriptions.size(), is(1));
+		assertThat(codesToDescriptions.values().iterator().next().size(), is(3));
+	}
 
-    @Test
-    public void testParseXPlan5()
-                            throws Exception {
-        URL codeListFile = XPlanCodeListsTest.class.getResource(
-                                "../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan5.xml" );
-        XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists( codeListFile );
+	@Test
+	public void testParseXPlan5() throws Exception {
+		URL codeListFile = XPlanCodeListsTest.class
+				.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan5.xml");
+		XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists(codeListFile);
 
-        Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
-        assertThat( codesToDescriptions.size(), is( 1 ) );
-        assertThat( codesToDescriptions.values().iterator().next().size(), is( 15 ) );
-    }
+		Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
+		assertThat(codesToDescriptions.size(), is(1));
+		assertThat(codesToDescriptions.values().iterator().next().size(), is(15));
+	}
 
 }

@@ -45,134 +45,120 @@ import static org.junit.Assert.assertThat;
  */
 public class XmlReportGeneratorTest {
 
-    private static final String PLAN_NAME = "PLAN_NAME";
+	private static final String PLAN_NAME = "PLAN_NAME";
 
-    private static final String VALIDATION_NAME = "VALIDATION_NAME";
+	private static final String VALIDATION_NAME = "VALIDATION_NAME";
 
-    @Test
-    public void testGenerateXmlReport()
-                            throws Exception {
-        XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        xmlReportGenerator.generateXmlReport( createValidatorReport(), os );
-        String xml = os.toString();
+	@Test
+	public void testGenerateXmlReport() throws Exception {
+		XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		xmlReportGenerator.generateXmlReport(createValidatorReport(), os);
+		String xml = os.toString();
 
-        assertThat( xml , EvaluateXPathMatcher.hasXPath( "/ValidationReport/name", equalTo( VALIDATION_NAME ) ) );
-        assertThat( xml , EvaluateXPathMatcher.hasXPath( "/ValidationReport/Plan/name", equalTo( PLAN_NAME ) ) );
-        assertThat( xml , HasXPathMatcher.hasXPath( "/ValidationReport/Validation" ) );
-    }
+		assertThat(xml, EvaluateXPathMatcher.hasXPath("/ValidationReport/name", equalTo(VALIDATION_NAME)));
+		assertThat(xml, EvaluateXPathMatcher.hasXPath("/ValidationReport/Plan/name", equalTo(PLAN_NAME)));
+		assertThat(xml, HasXPathMatcher.hasXPath("/ValidationReport/Validation"));
+	}
 
-    @Test
-    public void testGenerateXmlReport_CheckSyntacticDetailsHint()
-                            throws Exception {
-        XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        xmlReportGenerator.generateXmlReport( createValidatorReportWithSyntacticDetailHint(), os );
-        String xml = os.toString();
+	@Test
+	public void testGenerateXmlReport_CheckSyntacticDetailsHint() throws Exception {
+		XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		xmlReportGenerator.generateXmlReport(createValidatorReportWithSyntacticDetailHint(), os);
+		String xml = os.toString();
 
-        assertThat( xml, EvaluateXPathMatcher.hasXPath( "/ValidationReport/Validation/Syn/details", equalTo( "detailsHint" ) ) );
-    }
+		assertThat(xml,
+				EvaluateXPathMatcher.hasXPath("/ValidationReport/Validation/Syn/details", equalTo("detailsHint")));
+	}
 
-    @Test
-    public void testGenerateXmlReport_CheckSemanticsResults()
-                            throws Exception {
-        XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        xmlReportGenerator.generateXmlReport( createValidatorReportWithSemanticFailures(), os );
-        String xml = os.toString();
+	@Test
+	public void testGenerateXmlReport_CheckSemanticsResults() throws Exception {
+		XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		xmlReportGenerator.generateXmlReport(createValidatorReportWithSemanticFailures(), os);
+		String xml = os.toString();
 
-        assertThat( xml, EvaluateXPathMatcher.hasXPath( "/ValidationReport/Validation/Sem/result",
-                                                        equalTo( "nicht valide" ) ) );
-        assertThat( xml, EvaluateXPathMatcher.hasXPath( "count(/ValidationReport/Validation/Sem/Rules/Rule)",
-                                                        equalTo( "2" ) ) );
-        assertThat( xml,
-                    EvaluateXPathMatcher.hasXPath( "/ValidationReport/Validation/Sem/Rules/Rule[1]/name",
-                                                   equalTo( "1.1" ) ) );
-        assertThat( xml,
-                    EvaluateXPathMatcher.hasXPath( "/ValidationReport/Validation/Sem/Rules/Rule[2]/name",
-                                                   equalTo( "1.2" ) ) );
-    }
+		assertThat(xml,
+				EvaluateXPathMatcher.hasXPath("/ValidationReport/Validation/Sem/result", equalTo("nicht valide")));
+		assertThat(xml,
+				EvaluateXPathMatcher.hasXPath("count(/ValidationReport/Validation/Sem/Rules/Rule)", equalTo("2")));
+		assertThat(xml,
+				EvaluateXPathMatcher.hasXPath("/ValidationReport/Validation/Sem/Rules/Rule[1]/name", equalTo("1.1")));
+		assertThat(xml,
+				EvaluateXPathMatcher.hasXPath("/ValidationReport/Validation/Sem/Rules/Rule[2]/name", equalTo("1.2")));
+	}
 
-    @Test
-    public void testGenerateXmlReport_OrderOfValidations()
-                    throws Exception {
-        XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        xmlReportGenerator.generateXmlReport( createValidatorReportWithAllTypes(), os );
-        String xml = os.toString();
+	@Test
+	public void testGenerateXmlReport_OrderOfValidations() throws Exception {
+		XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		xmlReportGenerator.generateXmlReport(createValidatorReportWithAllTypes(), os);
+		String xml = os.toString();
 
-        assertThat( xml, HasXPathMatcher.hasXPath( "/ValidationReport/Validation/Sem" ) );
-        assertThat( xml, HasXPathMatcher.hasXPath( "/ValidationReport/Validation/*[local-name()= 'Sem']" ) );
-        assertThat( xml,
-                    EvaluateXPathMatcher.hasXPath(
-                                    "count(/ValidationReport/Validation/*[local-name()= 'Sem']/preceding-sibling::*)+1.",
-                                    equalTo( "1" ) ) );
-        assertThat( xml,
-                    EvaluateXPathMatcher.hasXPath(
-                                    "count(/ValidationReport/Validation/*[local-name()= 'Geom']/preceding-sibling::*)+1.",
-                                    equalTo( "2" ) ) );
-        assertThat( xml,
-                    EvaluateXPathMatcher.hasXPath(
-                                    "count(/ValidationReport/Validation/*[local-name()= 'Syn']/preceding-sibling::*)+1.",
-                                    equalTo( "3" ) ) );
-    }
+		assertThat(xml, HasXPathMatcher.hasXPath("/ValidationReport/Validation/Sem"));
+		assertThat(xml, HasXPathMatcher.hasXPath("/ValidationReport/Validation/*[local-name()= 'Sem']"));
+		assertThat(xml, EvaluateXPathMatcher.hasXPath(
+				"count(/ValidationReport/Validation/*[local-name()= 'Sem']/preceding-sibling::*)+1.", equalTo("1")));
+		assertThat(xml, EvaluateXPathMatcher.hasXPath(
+				"count(/ValidationReport/Validation/*[local-name()= 'Geom']/preceding-sibling::*)+1.", equalTo("2")));
+		assertThat(xml, EvaluateXPathMatcher.hasXPath(
+				"count(/ValidationReport/Validation/*[local-name()= 'Syn']/preceding-sibling::*)+1.", equalTo("3")));
+	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testGenerateXmlReportWithNullReport() throws Exception {
+		XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
+		xmlReportGenerator.generateXmlReport(null, new ByteArrayOutputStream());
+	}
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testGenerateXmlReportWithNullReport()
-                            throws Exception {
-        XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        xmlReportGenerator.generateXmlReport( null, new ByteArrayOutputStream(  ) );
-    }
+	@Test(expected = IllegalArgumentException.class)
+	public void testGenerateXmlReportWithNullOutputStream() throws Exception {
+		XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
+		xmlReportGenerator.generateXmlReport(createValidatorReport(), null);
+	}
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testGenerateXmlReportWithNullOutputStream()
-                            throws Exception {
-        XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-        xmlReportGenerator.generateXmlReport( createValidatorReport(), null );
-    }
+	private ValidatorReport createValidatorReport() {
+		ValidatorReport validatorReport = new ValidatorReport();
+		validatorReport.setPlanName(PLAN_NAME);
+		validatorReport.setValidationName(VALIDATION_NAME);
+		return validatorReport;
+	}
 
-    private ValidatorReport createValidatorReport() {
-        ValidatorReport validatorReport = new ValidatorReport();
-        validatorReport.setPlanName( PLAN_NAME );
-        validatorReport.setValidationName( VALIDATION_NAME );
-        return validatorReport;
-    }
+	private ValidatorReport createValidatorReportWithSyntacticDetailHint() {
+		ValidatorReport validatorReport = createValidatorReport();
+		List<String> messages = Collections.singletonList("Error in xml...");
+		ValidatorDetail detail = new ValidatorDetail("detailsHint");
+		SyntacticValidatorResult syntacticValidatorResult = new SyntacticValidatorResult(messages, false, detail);
+		validatorReport.setSyntacticValidatorResult(syntacticValidatorResult);
+		return validatorReport;
+	}
 
-    private ValidatorReport createValidatorReportWithSyntacticDetailHint() {
-        ValidatorReport validatorReport = createValidatorReport();
-        List<String> messages = Collections.singletonList( "Error in xml..." );
-        ValidatorDetail detail = new ValidatorDetail( "detailsHint" );
-        SyntacticValidatorResult syntacticValidatorResult = new SyntacticValidatorResult( messages, false, detail );
-        validatorReport.setSyntacticValidatorResult( syntacticValidatorResult );
-        return validatorReport;
-    }
+	private ValidatorReport createValidatorReportWithSemanticFailures() {
+		ValidatorReport validatorReport = createValidatorReport();
+		SemanticValidatorResult semanticValidatorResult = new SemanticValidatorResult();
+		semanticValidatorResult.addRule("1.1", "Test valid", Collections.emptyList());
+		InvalidFeaturesResult id_12 = new InvalidFeaturesResult("id_12");
+		semanticValidatorResult.addRule("1.2", "Test in valid", Collections.singletonList(id_12));
+		validatorReport.setSemanticValidatorResult(semanticValidatorResult);
+		return validatorReport;
+	}
 
-    private ValidatorReport createValidatorReportWithSemanticFailures() {
-        ValidatorReport validatorReport = createValidatorReport();
-        SemanticValidatorResult semanticValidatorResult = new SemanticValidatorResult();
-        semanticValidatorResult.addRule( "1.1", "Test valid", Collections.emptyList() );
-        InvalidFeaturesResult id_12 = new InvalidFeaturesResult( "id_12" );
-        semanticValidatorResult.addRule( "1.2", "Test in valid", Collections.singletonList( id_12 ) );
-        validatorReport.setSemanticValidatorResult( semanticValidatorResult );
-        return validatorReport;
-    }
+	private ValidatorReport createValidatorReportWithAllTypes() {
+		ValidatorReport validatorReport = createValidatorReport();
+		SyntacticValidatorResult syntacticValidatorResult = new SyntacticValidatorResult(Collections.emptyList(), true,
+				null);
+		validatorReport.setSyntacticValidatorResult(syntacticValidatorResult);
 
-    private ValidatorReport createValidatorReportWithAllTypes() {
-        ValidatorReport validatorReport = createValidatorReport();
-        SyntacticValidatorResult syntacticValidatorResult = new SyntacticValidatorResult( Collections.emptyList(), true,
-                                                                                          null );
-        validatorReport.setSyntacticValidatorResult( syntacticValidatorResult );
+		SemanticValidatorResult semanticValidatorResult = new SemanticValidatorResult();
+		semanticValidatorResult.addRule("1.1", "Test valid", Collections.emptyList());
+		InvalidFeaturesResult id_12 = new InvalidFeaturesResult("id_12");
+		semanticValidatorResult.addRule("1.2", "Test in valid", Collections.singletonList(id_12));
+		validatorReport.setSemanticValidatorResult(semanticValidatorResult);
 
-        SemanticValidatorResult semanticValidatorResult = new SemanticValidatorResult();
-        semanticValidatorResult.addRule( "1.1", "Test valid", Collections.emptyList() );
-        InvalidFeaturesResult id_12 = new InvalidFeaturesResult( "id_12" );
-        semanticValidatorResult.addRule( "1.2", "Test in valid", Collections.singletonList( id_12 ) );
-        validatorReport.setSemanticValidatorResult( semanticValidatorResult );
-
-        GeometricValidatorResult geometricValidatorResult = new GeometricValidatorResult( SYNTAX_ERRORS );
-        validatorReport.setGeometricValidatorResult( geometricValidatorResult );
-        return validatorReport;
-    }
+		GeometricValidatorResult geometricValidatorResult = new GeometricValidatorResult(SYNTAX_ERRORS);
+		validatorReport.setGeometricValidatorResult(geometricValidatorResult);
+		return validatorReport;
+	}
 
 }

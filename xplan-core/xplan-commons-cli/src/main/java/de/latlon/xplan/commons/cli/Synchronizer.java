@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -28,28 +28,19 @@ import java.sql.Connection;
  */
 public interface Synchronizer {
 
-    /**
-     * Synchronizes the plan with the passed id.
-     *
-     * @param oldid
-     *                 of the entry in the log table, never <code>null</code>
-     * @param newid
-     *                 of the entry in the log table, never <code>null</code>
-     * @param conn
-     *                 the database connection, never <code>null</code>
-     * @param xPlanManagerId
-     *                 the id of the plan, never <code>null</code>
-     * @param planVersion
-     *                 the version of the plan, never <code>null</code>
-     * @param oldPlanStatus
-     *                 the old status of the plan, never <code>null</code>
-     * @param lastnew
-     *                 the new status of the plan, never <code>null</code>
-     * @param operation
-     *                 the operation, never <code>null</code>
-     * @throws SynchronizationException
-     */
-    void synchronize( Connection conn, int oldid, int newid, int xPlanManagerId, String planVersion,
-                      String oldPlanStatus, String lastnew, Operation operation )
-                    throws SynchronizationException;
+	/**
+	 * Synchronizes the plan with the passed id.
+	 * @param oldid of the entry in the log table, never <code>null</code>
+	 * @param newid of the entry in the log table, never <code>null</code>
+	 * @param conn the database connection, never <code>null</code>
+	 * @param xPlanManagerId the id of the plan, never <code>null</code>
+	 * @param planVersion the version of the plan, never <code>null</code>
+	 * @param oldPlanStatus the old status of the plan, never <code>null</code>
+	 * @param lastnew the new status of the plan, never <code>null</code>
+	 * @param operation the operation, never <code>null</code>
+	 * @throws SynchronizationException
+	 */
+	void synchronize(Connection conn, int oldid, int newid, int xPlanManagerId, String planVersion,
+			String oldPlanStatus, String lastnew, Operation operation) throws SynchronizationException;
+
 }

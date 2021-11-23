@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -52,89 +52,87 @@ import java.nio.file.Paths;
  */
 public class DistrictUpdateTool {
 
-    private static final Logger LOG = LoggerFactory.getLogger( DistrictUpdateTool.class );
+	private static final Logger LOG = LoggerFactory.getLogger(DistrictUpdateTool.class);
 
-    private static final String OPT_WORKSPACE_NAME = "workspaceName";
+	private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
-    private static final String OPT_CONFIG_DIR = "configurationDirectory";
+	private static final String OPT_CONFIG_DIR = "configurationDirectory";
 
-    /**
-     * @param args
-     *                 may be null
-     */
-    public static void main( String[] args ) {
-        if ( ( args.length > 0 && ( args[0].contains( "help" ) || args[0].contains( "?" ) ) ) ) {
-            printHelp( initOptions() );
-        }
+	/**
+	 * @param args may be null
+	 */
+	public static void main(String[] args) {
+		if ((args.length > 0 && (args[0].contains("help") || args[0].contains("?")))) {
+			printHelp(initOptions());
+		}
 
-        try {
-            CommandLine cmdline = new PosixParser().parse( initOptions(), args );
-            try {
-                String workspaceName = cmdline.getOptionValue( OPT_WORKSPACE_NAME );
-                if ( workspaceName == null || workspaceName.isEmpty() )
-                    workspaceName = "xplan-manager-workspace";
-                String configurationDirectory = cmdline.getOptionValue( OPT_CONFIG_DIR );
+		try {
+			CommandLine cmdline = new PosixParser().parse(initOptions(), args);
+			try {
+				String workspaceName = cmdline.getOptionValue(OPT_WORKSPACE_NAME);
+				if (workspaceName == null || workspaceName.isEmpty())
+					workspaceName = "xplan-manager-workspace";
+				String configurationDirectory = cmdline.getOptionValue(OPT_CONFIG_DIR);
 
-                DistrictUpdateTool tool = new DistrictUpdateTool();
-                tool.run( workspaceName, configurationDirectory );
-            } catch ( Exception e ) {
-                LOG.error( "DistrictUpdateTool could not be executed!", e );
-            }
-        } catch ( ParseException exp ) {
-            System.err.println( "Could nor parse command line" );
-            exp.printStackTrace();
-        }
+				DistrictUpdateTool tool = new DistrictUpdateTool();
+				tool.run(workspaceName, configurationDirectory);
+			}
+			catch (Exception e) {
+				LOG.error("DistrictUpdateTool could not be executed!", e);
+			}
+		}
+		catch (ParseException exp) {
+			System.err.println("Could nor parse command line");
+			exp.printStackTrace();
+		}
 
-    }
+	}
 
-    private void run( String workspaceName, String configurationDirectory )
-                    throws Exception {
-        DeegreeWorkspace workspace = initWorkspace( workspaceName );
-        XPlanDao xplanDao = createXplanDao( workspace, configurationDirectory );
-        DistrictUpdater updater = new DistrictUpdater( xplanDao );
-        updater.updateDistricts();
-    }
+	private void run(String workspaceName, String configurationDirectory) throws Exception {
+		DeegreeWorkspace workspace = initWorkspace(workspaceName);
+		XPlanDao xplanDao = createXplanDao(workspace, configurationDirectory);
+		DistrictUpdater updater = new DistrictUpdater(xplanDao);
+		updater.updateDistricts();
+	}
 
-    private static DeegreeWorkspace initWorkspace( String workspaceName )
-                            throws ResourceInitException {
-        DeegreeWorkspace workspace = DeegreeWorkspace.getInstance( workspaceName );
-        File location = workspace.getLocation();
-        LOG.info( "Initialise Workspace " + location );
-        workspace.initAll();
-        return workspace;
-    }
+	private static DeegreeWorkspace initWorkspace(String workspaceName) throws ResourceInitException {
+		DeegreeWorkspace workspace = DeegreeWorkspace.getInstance(workspaceName);
+		File location = workspace.getLocation();
+		LOG.info("Initialise Workspace " + location);
+		workspace.initAll();
+		return workspace;
+	}
 
-    private static XPlanDao createXplanDao( DeegreeWorkspace workspace, String configurationFilePathVariable )
-                    throws ConfigurationException {
-        Path file = configurationFilePathVariable != null ? Paths.get( configurationFilePathVariable ) : null;
-        ConfigurationDirectoryPropertiesLoader loader = new ConfigurationDirectoryPropertiesLoader( file );
-        ManagerConfiguration managerConfiguration = new ManagerConfiguration( loader );
-        CategoryMapper categoryMapper = new CategoryMapper( managerConfiguration );
-        ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper( workspace,
-                                                                                       managerConfiguration );
-        return new XPlanDao( managerWorkspaceWrapper, categoryMapper, managerConfiguration );
-    }
+	private static XPlanDao createXplanDao(DeegreeWorkspace workspace, String configurationFilePathVariable)
+			throws ConfigurationException {
+		Path file = configurationFilePathVariable != null ? Paths.get(configurationFilePathVariable) : null;
+		ConfigurationDirectoryPropertiesLoader loader = new ConfigurationDirectoryPropertiesLoader(file);
+		ManagerConfiguration managerConfiguration = new ManagerConfiguration(loader);
+		CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
+		ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(workspace, managerConfiguration);
+		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+	}
 
-    private static Options initOptions() {
-        Options opts = new Options();
+	private static Options initOptions() {
+		Options opts = new Options();
 
-        Option opt = new Option( "w", OPT_WORKSPACE_NAME, true,
-                                 "Default: xplan-manager-workspace. Name of the manager workspace pointing to the database to update "
-                                 + "(must be located in the deegree workspace directory, usually .deegree)" );
-        opt.setRequired( false );
-        opts.addOption( opt );
+		Option opt = new Option("w", OPT_WORKSPACE_NAME, true,
+				"Default: xplan-manager-workspace. Name of the manager workspace pointing to the database to update "
+						+ "(must be located in the deegree workspace directory, usually .deegree)");
+		opt.setRequired(false);
+		opts.addOption(opt);
 
-        opt = new Option( "c", OPT_CONFIG_DIR, true, "the directory containing the manager configuration" );
-        opt.setRequired( false );
-        opts.addOption( opt );
+		opt = new Option("c", OPT_CONFIG_DIR, true, "the directory containing the manager configuration");
+		opt.setRequired(false);
+		opts.addOption(opt);
 
-        CommandUtils.addDefaultOptions( opts );
-        return opts;
-    }
+		CommandUtils.addDefaultOptions(opts);
+		return opts;
+	}
 
-    private static void printHelp( Options options ) {
-        String help = "Update column district of table xplanmgr.plans.";
-        CommandUtils.printHelp( options, DistrictUpdateTool.class.getSimpleName(), help, null );
-    }
+	private static void printHelp(Options options) {
+		String help = "Update column district of table xplanmgr.plans.";
+		CommandUtils.printHelp(options, DistrictUpdateTool.class.getSimpleName(), help, null);
+	}
 
 }

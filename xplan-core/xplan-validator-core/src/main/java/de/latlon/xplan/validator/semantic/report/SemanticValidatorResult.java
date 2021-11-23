@@ -37,77 +37,74 @@ import java.util.stream.Collectors;
  */
 public class SemanticValidatorResult extends ValidatorResult {
 
-    private static final String VALIDATION_TYPE_NAME = "Semantische Validierung";
+	private static final String VALIDATION_TYPE_NAME = "Semantische Validierung";
 
-    private final List<RuleResult> rules = new ArrayList<>();
+	private final List<RuleResult> rules = new ArrayList<>();
 
-    private RulesMetadata rulesMetadata;
+	private RulesMetadata rulesMetadata;
 
-    public SemanticValidatorResult( SkipCode skipCode ) {
-        super( skipCode );
-    }
+	public SemanticValidatorResult(SkipCode skipCode) {
+		super(skipCode);
+	}
 
-    /**
-     * Instantiates a new {@link SemanticValidatorResult} without detailsHint.
-     */
-    public SemanticValidatorResult() {
-        this( (ValidatorDetail) null );
-    }
+	/**
+	 * Instantiates a new {@link SemanticValidatorResult} without detailsHint.
+	 */
+	public SemanticValidatorResult() {
+		this((ValidatorDetail) null);
+	}
 
-    /**
-     * @param detail
-     *                 some details about the validation, may be <code>null</code>
-     */
-    public SemanticValidatorResult( ValidatorDetail detail ) {
-        super( detail );
-    }
+	/**
+	 * @param detail some details about the validation, may be <code>null</code>
+	 */
+	public SemanticValidatorResult(ValidatorDetail detail) {
+		super(detail);
+	}
 
-    @Override
-    public String getType() {
-        return VALIDATION_TYPE_NAME;
-    }
+	@Override
+	public String getType() {
+		return VALIDATION_TYPE_NAME;
+	}
 
-    /**
-     * Creates a new {@link RuleResult} from the passed values and added them to the list of rules.
-     *
-     * @param name
-     *                 the name of the rule, should not be <code>null</code>
-     * @param defaultMessage
-     *                 defaultMessage of the rule, if missing in InvalidFeatureResult
-     * @param invalidFeaturesResults
-     *                 list of features with errors or warnings,
-     * @return
-     */
-    public boolean addRule( String name, String defaultMessage, List<InvalidFeaturesResult> invalidFeaturesResults ) {
-        RuleResult ruleResult = new RuleResult( name, defaultMessage, invalidFeaturesResults );
-        rules.add( ruleResult );
-        return ruleResult.isValid();
-    }
+	/**
+	 * Creates a new {@link RuleResult} from the passed values and added them to the list
+	 * of rules.
+	 * @param name the name of the rule, should not be <code>null</code>
+	 * @param defaultMessage defaultMessage of the rule, if missing in
+	 * InvalidFeatureResult
+	 * @param invalidFeaturesResults list of features with errors or warnings,
+	 * @return
+	 */
+	public boolean addRule(String name, String defaultMessage, List<InvalidFeaturesResult> invalidFeaturesResults) {
+		RuleResult ruleResult = new RuleResult(name, defaultMessage, invalidFeaturesResults);
+		rules.add(ruleResult);
+		return ruleResult.isValid();
+	}
 
-    /**
-     * @return all {@link RuleResult}s.
-     */
-    public List<RuleResult> getRules() {
-        return rules.stream().sorted().collect( Collectors.toList() );
-    }
+	/**
+	 * @return all {@link RuleResult}s.
+	 */
+	public List<RuleResult> getRules() {
+		return rules.stream().sorted().collect(Collectors.toList());
+	}
 
-    /**
-     * @param rulesMetadata
-     *                 may be <code>null</code>
-     */
-    public void setRulesMetadata( RulesMetadata rulesMetadata ) {
-        this.rulesMetadata = rulesMetadata;
-    }
+	/**
+	 * @param rulesMetadata may be <code>null</code>
+	 */
+	public void setRulesMetadata(RulesMetadata rulesMetadata) {
+		this.rulesMetadata = rulesMetadata;
+	}
 
-    /**
-     * @return the {@link RulesMetadata}, may be <code>null</code>
-     */
-    public RulesMetadata getRulesMetadata() {
-        return rulesMetadata;
-    }
+	/**
+	 * @return the {@link RulesMetadata}, may be <code>null</code>
+	 */
+	public RulesMetadata getRulesMetadata() {
+		return rulesMetadata;
+	}
 
-    @Override
-    public String toString() {
-        return "SemanticValidatorResult{" + "rules=" + rules + '}';
-    }
+	@Override
+	public String toString() {
+		return "SemanticValidatorResult{" + "rules=" + rules + '}';
+	}
+
 }

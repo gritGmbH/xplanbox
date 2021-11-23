@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -88,175 +88,174 @@ import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_53
  */
 public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
 
-    /**
-     * @param version
-     *            of the plan to edit, never <code>null</code>
-     */
-    public TextsPanel( EditVersion version ) {
-        super( version, MESSAGES.editCaptionTexts() );
-        add( createGui() );
-    }
+	/**
+	 * @param version of the plan to edit, never <code>null</code>
+	 */
+	public TextsPanel(EditVersion version) {
+		super(version, MESSAGES.editCaptionTexts());
+		add(createGui());
+	}
 
-    @Override
-    protected void initColumns( CellTable<Text> textsList ) {
-        addKeyColumn( textsList );
-        addBasisColumn( textsList );
-        addTextColumn( textsList );
-        // #3305 - georeference is not needed.
-        // if ( !XPLAN_3.equals( version ) )
-        // addGeoReferenceColumn( textsList );
-        if ( XPLAN_50.equals( version ) || XPLAN_51.equals( version ) || XPLAN_52.equals( version ) || XPLAN_53.equals(
-                                version ) ) {
-            addRechtscharakterColumn( textsList );
-        }
-        addReferenceColumn( textsList );
+	@Override
+	protected void initColumns(CellTable<Text> textsList) {
+		addKeyColumn(textsList);
+		addBasisColumn(textsList);
+		addTextColumn(textsList);
+		// #3305 - georeference is not needed.
+		// if ( !XPLAN_3.equals( version ) )
+		// addGeoReferenceColumn( textsList );
+		if (XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version)
+				|| XPLAN_53.equals(version)) {
+			addRechtscharakterColumn(textsList);
+		}
+		addReferenceColumn(textsList);
 
-        TextHeader actionHeader = new TextHeader( MESSAGES.actions() );
-        addEditColumn( textsList, actionHeader );
-        addRemoveColumn( textsList, actionHeader );
-    }
+		TextHeader actionHeader = new TextHeader(MESSAGES.actions());
+		addEditColumn(textsList, actionHeader);
+		addRemoveColumn(textsList, actionHeader);
+	}
 
-    private Widget createGui() {
-        VerticalPanel panel = new VerticalPanel();
-        panel.setSpacing( 5 );
-        panel.setHorizontalAlignment( ALIGN_CENTER );
-        panel.add( getTable() );
-        panel.add( createNewButton() );
-        return panel;
-    }
+	private Widget createGui() {
+		VerticalPanel panel = new VerticalPanel();
+		panel.setSpacing(5);
+		panel.setHorizontalAlignment(ALIGN_CENTER);
+		panel.add(getTable());
+		panel.add(createNewButton());
+		return panel;
+	}
 
-    private Button createNewButton() {
-        Button newButton = new Button( MESSAGES.editCaptionNewText(), new ClickHandler() {
-            public void onClick( ClickEvent event ) {
-                final TextDialog textDialog = new TextDialog( version );
-                textDialog.addSaveHandler( new SavedHandler() {
-                    @Override
-                    public void changesSaved() {
-                        Text newText = textDialog.getEditedText();
-                        List<Text> texts = getValues();
-                        texts.add( newText );
-                        textDialog.hide();
-                    }
-                } );
-                textDialog.center();
-                textDialog.show();
-            }
-        } );
-        return newButton;
-    }
+	private Button createNewButton() {
+		Button newButton = new Button(MESSAGES.editCaptionNewText(), new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				final TextDialog textDialog = new TextDialog(version);
+				textDialog.addSaveHandler(new SavedHandler() {
+					@Override
+					public void changesSaved() {
+						Text newText = textDialog.getEditedText();
+						List<Text> texts = getValues();
+						texts.add(newText);
+						textDialog.hide();
+					}
+				});
+				textDialog.center();
+				textDialog.show();
+			}
+		});
+		return newButton;
+	}
 
-    private void addKeyColumn( CellTable<Text> table ) {
-        TextColumn<Text> keyColumn = new TextColumn<Text>() {
-            @Override
-            public String getValue( Text textData ) {
-                return shortText( textData.getKey() );
-            }
-        };
-        keyColumn.setCellStyleNames( "editTextsColumn keyColumn" );
-        table.addColumn( keyColumn, MESSAGES.editCaptionTextsKey() );
-    }
+	private void addKeyColumn(CellTable<Text> table) {
+		TextColumn<Text> keyColumn = new TextColumn<Text>() {
+			@Override
+			public String getValue(Text textData) {
+				return shortText(textData.getKey());
+			}
+		};
+		keyColumn.setCellStyleNames("editTextsColumn keyColumn");
+		table.addColumn(keyColumn, MESSAGES.editCaptionTextsKey());
+	}
 
-    private void addBasisColumn( CellTable<Text> table ) {
-        TextColumn<Text> basisColumn = new TextColumn<Text>() {
-            @Override
-            public String getValue( Text textData ) {
-                return shortText( textData.getBasis() );
-            }
-        };
-        basisColumn.setCellStyleNames( "editTextsColumn basisColumn" );
-        table.addColumn( basisColumn, MESSAGES.editCaptionTextsBasis() );
-    }
+	private void addBasisColumn(CellTable<Text> table) {
+		TextColumn<Text> basisColumn = new TextColumn<Text>() {
+			@Override
+			public String getValue(Text textData) {
+				return shortText(textData.getBasis());
+			}
+		};
+		basisColumn.setCellStyleNames("editTextsColumn basisColumn");
+		table.addColumn(basisColumn, MESSAGES.editCaptionTextsBasis());
+	}
 
-    private void addTextColumn( CellTable<Text> table ) {
-        TextColumn<Text> textColumn = new TextColumn<Text>() {
-            @Override
-            public String getValue( Text textData ) {
-                return shortText( textData.getText() );
-            }
-        };
-        textColumn.setCellStyleNames( "editTextsColumn textColumn" );
-        table.addColumn( textColumn, MESSAGES.editCaptionTextsText() );
-    }
+	private void addTextColumn(CellTable<Text> table) {
+		TextColumn<Text> textColumn = new TextColumn<Text>() {
+			@Override
+			public String getValue(Text textData) {
+				return shortText(textData.getText());
+			}
+		};
+		textColumn.setCellStyleNames("editTextsColumn textColumn");
+		table.addColumn(textColumn, MESSAGES.editCaptionTextsText());
+	}
 
-    private void addReferenceColumn( CellTable<Text> table ) {
-        TextColumn<Text> referenceColumn = new TextColumn<Text>() {
-            @Override
-            public String getValue( Text textData ) {
-                return textData.getReference();
-            }
-        };
-        referenceColumn.setCellStyleNames( "editTextsColumn referenceColumn" );
-        table.addColumn( referenceColumn, MESSAGES.editCaptionTextsReference() );
-    }
+	private void addReferenceColumn(CellTable<Text> table) {
+		TextColumn<Text> referenceColumn = new TextColumn<Text>() {
+			@Override
+			public String getValue(Text textData) {
+				return textData.getReference();
+			}
+		};
+		referenceColumn.setCellStyleNames("editTextsColumn referenceColumn");
+		table.addColumn(referenceColumn, MESSAGES.editCaptionTextsReference());
+	}
 
-    private void addRechtscharakterColumn (CellTable<Text> table ){
-        TextColumn<Text> textColumn = new TextColumn<Text>() {
-            @Override
-            public String getValue( Text textData ) {
-                return TYPE_CODELIST_PROVIDER.translate( TextRechtscharacterType.class, textData.getRechtscharakter() );
-            }
-        };
-        textColumn.setCellStyleNames( "editTextsColumn rechtscharakterColumn" );
-        table.addColumn( textColumn, MESSAGES.editCaptionReferencesType() );
-    }
+	private void addRechtscharakterColumn(CellTable<Text> table) {
+		TextColumn<Text> textColumn = new TextColumn<Text>() {
+			@Override
+			public String getValue(Text textData) {
+				return TYPE_CODELIST_PROVIDER.translate(TextRechtscharacterType.class, textData.getRechtscharakter());
+			}
+		};
+		textColumn.setCellStyleNames("editTextsColumn rechtscharakterColumn");
+		table.addColumn(textColumn, MESSAGES.editCaptionReferencesType());
+	}
 
-    // #3305 - georeference is not needed.
-    // private void addGeoReferenceColumn( CellTable<Text> table ) {
-    // TextColumn<Text> geoReferenceColumn = new TextColumn<Text>() {
-    // @Override
-    // public String getValue( Text textData ) {
-    // return textData.getGeoReference();
-    // }
-    // };
-    // geoReferenceColumn.setCellStyleNames( "editTextsColumn geoReferenceColumn" );
-    // table.addColumn( geoReferenceColumn, MESSAGES.editCaptionTextsGeoReference() );
-    // }
+	// #3305 - georeference is not needed.
+	// private void addGeoReferenceColumn( CellTable<Text> table ) {
+	// TextColumn<Text> geoReferenceColumn = new TextColumn<Text>() {
+	// @Override
+	// public String getValue( Text textData ) {
+	// return textData.getGeoReference();
+	// }
+	// };
+	// geoReferenceColumn.setCellStyleNames( "editTextsColumn geoReferenceColumn" );
+	// table.addColumn( geoReferenceColumn, MESSAGES.editCaptionTextsGeoReference() );
+	// }
 
-    private void addEditColumn( final CellTable<Text> table, TextHeader columnHeader ) {
-        ButtonCell editButtonCell = new ButtonCell();
-        final Column<Text, String> editButtonColumn = new Column<Text, String>( editButtonCell) {
-            @Override
-            public String getValue( Text object ) {
-                return "";
-            }
-        };
-        editButtonColumn.setFieldUpdater( new FieldUpdater<Text, String>() {
-            public void update( final int index, Text text, String value ) {
-                final TextDialog textDialog = new TextDialog( version, text );
-                textDialog.addSaveHandler( new SavedHandler() {
-                    @Override
-                    public void changesSaved() {
-                        Text editedtext = textDialog.getEditedText();
-                        List<Text> texts = getValues();
-                        texts.remove( index );
-                        texts.add( index, editedtext );
-                        textDialog.hide();
-                    }
-                } );
-                textDialog.center();
-                textDialog.show();
-            }
-        } );
-        editButtonColumn.setCellStyleNames( "editTextsColumn editButtonColumn" );
-        table.addColumn( editButtonColumn, columnHeader );
-    }
+	private void addEditColumn(final CellTable<Text> table, TextHeader columnHeader) {
+		ButtonCell editButtonCell = new ButtonCell();
+		final Column<Text, String> editButtonColumn = new Column<Text, String>(editButtonCell) {
+			@Override
+			public String getValue(Text object) {
+				return "";
+			}
+		};
+		editButtonColumn.setFieldUpdater(new FieldUpdater<Text, String>() {
+			public void update(final int index, Text text, String value) {
+				final TextDialog textDialog = new TextDialog(version, text);
+				textDialog.addSaveHandler(new SavedHandler() {
+					@Override
+					public void changesSaved() {
+						Text editedtext = textDialog.getEditedText();
+						List<Text> texts = getValues();
+						texts.remove(index);
+						texts.add(index, editedtext);
+						textDialog.hide();
+					}
+				});
+				textDialog.center();
+				textDialog.show();
+			}
+		});
+		editButtonColumn.setCellStyleNames("editTextsColumn editButtonColumn");
+		table.addColumn(editButtonColumn, columnHeader);
+	}
 
-    private void addRemoveColumn( final CellTable<Text> table, TextHeader columnHeader ) {
-        ButtonCell downloadButtonCell = new ButtonCell();
-        final Column<Text, String> removeButtonColumn = new Column<Text, String>( downloadButtonCell) {
-            @Override
-            public String getValue( Text object ) {
-                return "";
-            }
-        };
-        removeButtonColumn.setFieldUpdater( new FieldUpdater<Text, String>() {
-            public void update( int index, Text object, String value ) {
-                List<Text> texts = getValues();
-                texts.remove( index );
-            }
-        } );
-        removeButtonColumn.setCellStyleNames( "editTextsColumn removeButtonColumn" );
-        table.addColumn( removeButtonColumn, columnHeader );
-    }
+	private void addRemoveColumn(final CellTable<Text> table, TextHeader columnHeader) {
+		ButtonCell downloadButtonCell = new ButtonCell();
+		final Column<Text, String> removeButtonColumn = new Column<Text, String>(downloadButtonCell) {
+			@Override
+			public String getValue(Text object) {
+				return "";
+			}
+		};
+		removeButtonColumn.setFieldUpdater(new FieldUpdater<Text, String>() {
+			public void update(int index, Text object, String value) {
+				List<Text> texts = getValues();
+				texts.remove(index);
+			}
+		});
+		removeButtonColumn.setCellStyleNames("editTextsColumn removeButtonColumn");
+		table.addColumn(removeButtonColumn, columnHeader);
+	}
 
 }

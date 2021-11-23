@@ -35,100 +35,117 @@ import java.util.List;
 @Path("/plan/{planId}/dokument")
 public class PlanDokumentApi {
 
-    @Autowired
-    private EditDokumentHandler editDokumentHandler;
+	@Autowired
+	private EditDokumentHandler editDokumentHandler;
 
-    @GET
-    @Produces({ "application/json" })
-    @Operation(operationId = "getDokumente", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Dokument.class)))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
-    public List<Dokument> getDokumente(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to return dokumente", example = "123") String planId )
-                    throws Exception {
-        return editDokumentHandler.retrieveDokumente( planId );
-    }
+	@GET
+	@Produces({ "application/json" })
+	@Operation(operationId = "getDokumente", tags = { "edit" },
+			responses = {
+					@ApiResponse(responseCode = "200", description = "successful operation",
+							content = @Content(
+									array = @ArraySchema(schema = @Schema(implementation = Dokument.class)))),
+					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+					@ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+	public List<Dokument> getDokumente(@PathParam("planId") @Parameter(
+			description = "planId of the plan to return dokumente", example = "123") String planId) throws Exception {
+		return editDokumentHandler.retrieveDokumente(planId);
+	}
 
-    @POST
-    @Consumes({ "multipart/form-data" })
-    @Produces({ "application/json" })
-    @Operation(operationId = "addDokument", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version or dokumentmodel is missing") })
-    public Dokument addDokument( @PathParam("planId")
-                                 @Parameter(description = "ID of the plan to add dokumente", example = "123")
-                                                 String planId,
-                                 @Parameter(schema = @Schema(implementation = Dokument.class), required = true)
-                                 @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
-                                 @Parameter(schema = @Schema(type = "string", format = "binary"))
-                                 @FormDataParam("datei") InputStream datei,
-                                 @Parameter(hidden = true)
-                                 @FormDataParam("datei") FormDataContentDisposition dateiMeta )
-                    throws Exception {
-        if ( dokumentmodel == null ) {
-            throw new MissingRequestEntity( "Multipart attachment 'dokumentmodel' is missing." );
-        }
-        Dokument dokument = dokumentmodel.getValueAs( Dokument.class );
-        File file = editDokumentHandler.storeAsFile( datei, dateiMeta );
-        return editDokumentHandler.addDokument( planId, dokument, file );
-    }
+	@POST
+	@Consumes({ "multipart/form-data" })
+	@Produces({ "application/json" })
+	@Operation(operationId = "addDokument", tags = { "edit" },
+			responses = {
+					@ApiResponse(responseCode = "200", description = "successful operation",
+							content = @Content(schema = @Schema(implementation = Dokument.class))),
+					@ApiResponse(responseCode = "404",
+							description = "Invalid plan ID or dokument ID, plan or dokument not found"),
+					@ApiResponse(responseCode = "400",
+							description = "Unsupported Plan type or version or dokumentmodel is missing") })
+	public Dokument addDokument(
+			@PathParam("planId") @Parameter(description = "ID of the plan to add dokumente",
+					example = "123") String planId,
+			@Parameter(schema = @Schema(implementation = Dokument.class),
+					required = true) @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
+			@Parameter(schema = @Schema(type = "string", format = "binary")) @FormDataParam("datei") InputStream datei,
+			@Parameter(hidden = true) @FormDataParam("datei") FormDataContentDisposition dateiMeta) throws Exception {
+		if (dokumentmodel == null) {
+			throw new MissingRequestEntity("Multipart attachment 'dokumentmodel' is missing.");
+		}
+		Dokument dokument = dokumentmodel.getValueAs(Dokument.class);
+		File file = editDokumentHandler.storeAsFile(datei, dateiMeta);
+		return editDokumentHandler.addDokument(planId, dokument, file);
+	}
 
-    @GET
-    @Path("/{id}")
-    @Produces({ "application/json" })
-    @Operation(operationId = "getDokumentById", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
-    public Dokument getDokumentById(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to get dokument", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Dokument to be returned (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)", example = "Legende123-") String id )
-                    throws Exception {
-        return editDokumentHandler.retrieveDokument( planId, id );
-    }
+	@GET
+	@Path("/{id}")
+	@Produces({ "application/json" })
+	@Operation(operationId = "getDokumentById", tags = { "edit" },
+			responses = {
+					@ApiResponse(responseCode = "200", description = "successful operation",
+							content = @Content(schema = @Schema(implementation = Dokument.class))),
+					@ApiResponse(responseCode = "404",
+							description = "Invalid plan ID or dokument ID, plan or dokument not found"),
+					@ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+	public Dokument getDokumentById(
+			@PathParam("planId") @Parameter(description = "planId of the plan to get dokument",
+					example = "123") String planId,
+			@PathParam("id") @Parameter(
+					description = "id of the Dokument to be returned (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)",
+					example = "Legende123-") String id)
+			throws Exception {
+		return editDokumentHandler.retrieveDokument(planId, id);
+	}
 
-    @PUT
-    @Path("/{id}")
-    @Consumes({ "multipart/form-data" })
-    @Produces({ "application/json" })
-    @Operation(operationId = "replaceDokumentById", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version or dokumentmodel is missing")
-    })
-    public Dokument replaceDokumentById(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to replace dokument", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Dokument to be updated (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)", example = "Legende123-") String id,
-                    @Parameter(schema = @Schema(implementation = Dokument.class), required = true)
-                    @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
-                    @Parameter(schema = @Schema(type = "string", format = "binary"))
-                    @FormDataParam("datei") InputStream datei,
-                    @Parameter(hidden = true)
-                    @FormDataParam("datei") FormDataContentDisposition dateiMeta
-    )
-                    throws Exception {
-        if ( dokumentmodel == null ) {
-            throw new MissingRequestEntity( "Multipart attachment 'dokumentmodel' is missing." );
-        }
-        Dokument dokument = dokumentmodel.getValueAs( Dokument.class );
-        File file = editDokumentHandler.storeAsFile( datei, dateiMeta );
-        return editDokumentHandler.replaceDokument( planId, id, dokument, file );
-    }
+	@PUT
+	@Path("/{id}")
+	@Consumes({ "multipart/form-data" })
+	@Produces({ "application/json" })
+	@Operation(operationId = "replaceDokumentById", tags = { "edit" },
+			responses = {
+					@ApiResponse(responseCode = "200", description = "successful operation",
+							content = @Content(schema = @Schema(implementation = Dokument.class))),
+					@ApiResponse(responseCode = "404",
+							description = "Invalid plan ID or dokument ID, plan or dokument not found"),
+					@ApiResponse(responseCode = "400",
+							description = "Unsupported Plan type or version or dokumentmodel is missing") })
+	public Dokument replaceDokumentById(
+			@PathParam("planId") @Parameter(description = "planId of the plan to replace dokument",
+					example = "123") String planId,
+			@PathParam("id") @Parameter(
+					description = "id of the Dokument to be updated (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)",
+					example = "Legende123-") String id,
+			@Parameter(schema = @Schema(implementation = Dokument.class),
+					required = true) @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
+			@Parameter(schema = @Schema(type = "string", format = "binary")) @FormDataParam("datei") InputStream datei,
+			@Parameter(hidden = true) @FormDataParam("datei") FormDataContentDisposition dateiMeta) throws Exception {
+		if (dokumentmodel == null) {
+			throw new MissingRequestEntity("Multipart attachment 'dokumentmodel' is missing.");
+		}
+		Dokument dokument = dokumentmodel.getValueAs(Dokument.class);
+		File file = editDokumentHandler.storeAsFile(datei, dateiMeta);
+		return editDokumentHandler.replaceDokument(planId, id, dokument, file);
+	}
 
-    @DELETE
-    @Path("/{id}")
-    @Produces({ "application/json" })
-    @Operation(operationId = "deleteDokumentById", tags = { "edit" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Dokument.class))),
-                    @ApiResponse(responseCode = "404", description = "Invalid plan ID or dokument ID, plan or dokument not found"),
-                    @ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
-    public Dokument deleteDokumentById(
-                    @PathParam("planId") @Parameter(description = "planId of the plan to delete dokument", example = "123") String planId,
-                    @PathParam("id") @Parameter(description = "id of the Dokument to be deleted (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)", example = "Legende123-") String id )
-                    throws Exception {
-        return editDokumentHandler.deleteDokument( planId, id );
-    }
+	@DELETE
+	@Path("/{id}")
+	@Produces({ "application/json" })
+	@Operation(operationId = "deleteDokumentById", tags = { "edit" },
+			responses = {
+					@ApiResponse(responseCode = "200", description = "successful operation",
+							content = @Content(schema = @Schema(implementation = Dokument.class))),
+					@ApiResponse(responseCode = "404",
+							description = "Invalid plan ID or dokument ID, plan or dokument not found"),
+					@ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+	public Dokument deleteDokumentById(
+			@PathParam("planId") @Parameter(description = "planId of the plan to delete dokument",
+					example = "123") String planId,
+			@PathParam("id") @Parameter(
+					description = "id of the Dokument to be deleted (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)",
+					example = "Legende123-") String id)
+			throws Exception {
+		return editDokumentHandler.deleteDokument(planId, id);
+	}
 
 }

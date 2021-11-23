@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -51,115 +51,115 @@ import de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION;
 
 /**
  * Main entry point to update xplan data in databases. Schema must be updated already.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class DatabaseUpdateTool {
 
-    private static final String OPT_WORKSPACE_NAME = "workspaceName";
+	private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
-    private static final String OPT_CONFIG_DIR = "configurationDirectory";
+	private static final String OPT_CONFIG_DIR = "configurationDirectory";
 
-    private static final String OPT_VERSION = "updateVersion";
+	private static final String OPT_VERSION = "updateVersion";
 
-    public static void main( String[] args )
-                    throws ConfigurationException {
-        if ( ( args.length > 0 && ( args[0].contains( "help" ) || args[0].contains( "?" ) ) ) ) {
-            printHelp( initOptions() );
-        }
+	public static void main(String[] args) throws ConfigurationException {
+		if ((args.length > 0 && (args[0].contains("help") || args[0].contains("?")))) {
+			printHelp(initOptions());
+		}
 
-        try {
-            CommandLine cmdline = new PosixParser().parse( initOptions(), args );
-            try {
-                String workspaceName = cmdline.getOptionValue( OPT_WORKSPACE_NAME );
-                if ( workspaceName == null || workspaceName.isEmpty() )
-                    workspaceName = "xplan-manager-workspace";
-                String configurationDirectory = cmdline.getOptionValue( OPT_CONFIG_DIR );
+		try {
+			CommandLine cmdline = new PosixParser().parse(initOptions(), args);
+			try {
+				String workspaceName = cmdline.getOptionValue(OPT_WORKSPACE_NAME);
+				if (workspaceName == null || workspaceName.isEmpty())
+					workspaceName = "xplan-manager-workspace";
+				String configurationDirectory = cmdline.getOptionValue(OPT_CONFIG_DIR);
 
-                List<UPDATE_VERSION> version = parseUpdateVersion( cmdline );
+				List<UPDATE_VERSION> version = parseUpdateVersion(cmdline);
 
-                DatabaseUpdateTool tool = new DatabaseUpdateTool();
-                tool.run( workspaceName, configurationDirectory, version );
-            } catch ( Exception e ) {
-                e.printStackTrace();
-            }
-        } catch ( ParseException exp ) {
-            System.err.println( "Could nor parse command line" );
-            exp.printStackTrace();
-        }
+				DatabaseUpdateTool tool = new DatabaseUpdateTool();
+				tool.run(workspaceName, configurationDirectory, version);
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		catch (ParseException exp) {
+			System.err.println("Could nor parse command line");
+			exp.printStackTrace();
+		}
 
-    }
+	}
 
-    private static Options initOptions() {
-        Options opts = new Options();
+	private static Options initOptions() {
+		Options opts = new Options();
 
-        Option opt = new Option( "w", OPT_WORKSPACE_NAME, true,
-                        "Default: xplan-manager-workspace. Name of the manager workspace pointing to the database to update "
-                                        + "(must be located in the deegree workspace directory, usually .deegree)" );
-        opt.setRequired( false );
-        opts.addOption( opt );
+		Option opt = new Option("w", OPT_WORKSPACE_NAME, true,
+				"Default: xplan-manager-workspace. Name of the manager workspace pointing to the database to update "
+						+ "(must be located in the deegree workspace directory, usually .deegree)");
+		opt.setRequired(false);
+		opts.addOption(opt);
 
-        opt = new Option( "c", OPT_CONFIG_DIR, true, "the directory containing the manager configuration" );
-        opt.setRequired( false );
-        opts.addOption( opt );
+		opt = new Option("c", OPT_CONFIG_DIR, true, "the directory containing the manager configuration");
+		opt.setRequired(false);
+		opts.addOption(opt);
 
-        opt = new Option( "u", OPT_VERSION, true,
-                        "the update version(s), must be 1 (pre1.0 to 1.0) or 2 (1.0 to 1.3.1); "
-                                        + "a comma separeated list is possible; if missing all updates are executed." );
-        opt.setRequired( false );
-        opts.addOption( opt );
+		opt = new Option("u", OPT_VERSION, true,
+				"the update version(s), must be 1 (pre1.0 to 1.0) or 2 (1.0 to 1.3.1); "
+						+ "a comma separeated list is possible; if missing all updates are executed.");
+		opt.setRequired(false);
+		opts.addOption(opt);
 
-        CommandUtils.addDefaultOptions( opts );
-        return opts;
-    }
+		CommandUtils.addDefaultOptions(opts);
+		return opts;
+	}
 
-    private static void printHelp( Options options ) {
-        String help = "Update database.";
-        CommandUtils.printHelp( options, DatabaseUpdateTool.class.getSimpleName(), help, null );
-    }
+	private static void printHelp(Options options) {
+		String help = "Update database.";
+		CommandUtils.printHelp(options, DatabaseUpdateTool.class.getSimpleName(), help, null);
+	}
 
-    private void run( String workspaceName, String configurationFilePathVariable, List<UPDATE_VERSION> version )
-                    throws Exception {
-        DeegreeWorkspace workspace = initWorkspace( workspaceName );
-        ManagerConfiguration managerConfiguration = new ManagerConfiguration( null );
-        ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper( workspace,
-                                                                                       managerConfiguration );
-        XPlanDao xplanDao = createXplanDao( configurationFilePathVariable, managerWorkspaceWrapper );
-        DatabaseDataUpdater dataUpdater = new DatabaseDataUpdater( xplanDao, managerWorkspaceWrapper );
-        dataUpdater.updateData( version );
-    }
+	private void run(String workspaceName, String configurationFilePathVariable, List<UPDATE_VERSION> version)
+			throws Exception {
+		DeegreeWorkspace workspace = initWorkspace(workspaceName);
+		ManagerConfiguration managerConfiguration = new ManagerConfiguration(null);
+		ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(workspace, managerConfiguration);
+		XPlanDao xplanDao = createXplanDao(configurationFilePathVariable, managerWorkspaceWrapper);
+		DatabaseDataUpdater dataUpdater = new DatabaseDataUpdater(xplanDao, managerWorkspaceWrapper);
+		dataUpdater.updateData(version);
+	}
 
-    private static XPlanDao createXplanDao( String configurationFilePathVariable, ManagerWorkspaceWrapper managerWorkspaceWrapper )
-                    throws ConfigurationException {
-        Path file = configurationFilePathVariable != null ? Paths.get( configurationFilePathVariable ) : null;
-        ConfigurationDirectoryPropertiesLoader loader = new ConfigurationDirectoryPropertiesLoader( file );
-        ManagerConfiguration managerConfiguration = new ManagerConfiguration( loader );
-        CategoryMapper categoryMapper = new CategoryMapper( managerConfiguration );
-        return new XPlanDao( managerWorkspaceWrapper, categoryMapper, managerConfiguration );
-    }
+	private static XPlanDao createXplanDao(String configurationFilePathVariable,
+			ManagerWorkspaceWrapper managerWorkspaceWrapper) throws ConfigurationException {
+		Path file = configurationFilePathVariable != null ? Paths.get(configurationFilePathVariable) : null;
+		ConfigurationDirectoryPropertiesLoader loader = new ConfigurationDirectoryPropertiesLoader(file);
+		ManagerConfiguration managerConfiguration = new ManagerConfiguration(loader);
+		CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
+		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+	}
 
-    private static DeegreeWorkspace initWorkspace( String workspaceName )
-                    throws ResourceInitException {
-        DeegreeWorkspace workspace = DeegreeWorkspace.getInstance( workspaceName );
-        workspace.initAll();
-        return workspace;
-    }
+	private static DeegreeWorkspace initWorkspace(String workspaceName) throws ResourceInitException {
+		DeegreeWorkspace workspace = DeegreeWorkspace.getInstance(workspaceName);
+		workspace.initAll();
+		return workspace;
+	}
 
-    private static List<UPDATE_VERSION> parseUpdateVersion( CommandLine cmdline ) {
-        String updateVersion = cmdline.getOptionValue( OPT_VERSION );
-        if ( updateVersion != null && !updateVersion.isEmpty() ) {
-            List<UPDATE_VERSION> updateVersions = new ArrayList<DatabaseDataUpdater.UPDATE_VERSION>();
-            String[] versions = updateVersion.split( "," );
-            for ( String version : versions ) {
-                if ( "1".equals( version ) )
-                    updateVersions.add( FROM_PRE1_0_to_1_0 );
-                if ( "2".equals( version ) )
-                    updateVersions.add( FROM_1_0_to_1_3_1 );
-            }
-            return updateVersions;
-        }
-        return asList( UPDATE_VERSION.values() );
+	private static List<UPDATE_VERSION> parseUpdateVersion(CommandLine cmdline) {
+		String updateVersion = cmdline.getOptionValue(OPT_VERSION);
+		if (updateVersion != null && !updateVersion.isEmpty()) {
+			List<UPDATE_VERSION> updateVersions = new ArrayList<DatabaseDataUpdater.UPDATE_VERSION>();
+			String[] versions = updateVersion.split(",");
+			for (String version : versions) {
+				if ("1".equals(version))
+					updateVersions.add(FROM_PRE1_0_to_1_0);
+				if ("2".equals(version))
+					updateVersions.add(FROM_1_0_to_1_3_1);
+			}
+			return updateVersions;
+		}
+		return asList(UPDATE_VERSION.values());
 
-    }
+	}
+
 }

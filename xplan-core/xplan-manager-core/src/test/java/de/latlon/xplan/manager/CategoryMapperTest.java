@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -43,53 +43,49 @@ import de.latlon.xplan.manager.configuration.ManagerConfiguration;
  */
 public class CategoryMapperTest {
 
-    @Test
-    public void testMapToCategoryFromSingletonCategoryShoudBeFound()
-                            throws Exception {
-        CategoryMapper categoryMapper = new CategoryMapper( mockManagerConfiguration() );
-        String part = categoryMapper.mapToCategory( "A F" );
+	@Test
+	public void testMapToCategoryFromSingletonCategoryShoudBeFound() throws Exception {
+		CategoryMapper categoryMapper = new CategoryMapper(mockManagerConfiguration());
+		String part = categoryMapper.mapToCategory("A F");
 
-        assertThat( part, is( "Cat1" ) );
-    }
+		assertThat(part, is("Cat1"));
+	}
 
-    @Test
-    public void testMapToCategoryFromMultipleCategoryShoudBeFound()
-                            throws Exception {
-        CategoryMapper categoryMapper = new CategoryMapper( mockManagerConfiguration() );
-        String part = categoryMapper.mapToCategory( "1" );
+	@Test
+	public void testMapToCategoryFromMultipleCategoryShoudBeFound() throws Exception {
+		CategoryMapper categoryMapper = new CategoryMapper(mockManagerConfiguration());
+		String part = categoryMapper.mapToCategory("1");
 
-        assertThat( part, is( "Cat2" ) );
-    }
+		assertThat(part, is("Cat2"));
+	}
 
-    @Test
-    public void testMapToCategoryWithNullPartShoudReturnNull()
-                            throws Exception {
-        CategoryMapper categoryMapper = new CategoryMapper( mockManagerConfiguration() );
-        String part = categoryMapper.mapToCategory( null );
+	@Test
+	public void testMapToCategoryWithNullPartShoudReturnNull() throws Exception {
+		CategoryMapper categoryMapper = new CategoryMapper(mockManagerConfiguration());
+		String part = categoryMapper.mapToCategory(null);
 
-        assertThat( part, is( nullValue() ) );
-    }
+		assertThat(part, is(nullValue()));
+	}
 
-    @Test
-    public void testMapToCategoryWithUnknownPartShoudNotBeFound()
-                            throws Exception {
-        CategoryMapper categoryMapper = new CategoryMapper( mockManagerConfiguration() );
-        String part = categoryMapper.mapToCategory( "notKnown" );
+	@Test
+	public void testMapToCategoryWithUnknownPartShoudNotBeFound() throws Exception {
+		CategoryMapper categoryMapper = new CategoryMapper(mockManagerConfiguration());
+		String part = categoryMapper.mapToCategory("notKnown");
 
-        assertThat( part, is( nullValue() ) );
-    }
+		assertThat(part, is(nullValue()));
+	}
 
-    private ManagerConfiguration mockManagerConfiguration() {
-        ManagerConfiguration managerConfiguration = mock( ManagerConfiguration.class );
-        Map<String, List<String>> mapping = new HashMap<String, List<String>>();
-        mapping.put( "Cat1", Collections.singletonList( "A F" ) );
-        List<String> cat2Parts = new ArrayList<String>();
-        cat2Parts.add( "1" );
-        cat2Parts.add( "7" );
-        mapping.put( "Cat2", cat2Parts );
-        Mockito.when( managerConfiguration.getCategoryMapping() ).thenReturn( mapping );
+	private ManagerConfiguration mockManagerConfiguration() {
+		ManagerConfiguration managerConfiguration = mock(ManagerConfiguration.class);
+		Map<String, List<String>> mapping = new HashMap<String, List<String>>();
+		mapping.put("Cat1", Collections.singletonList("A F"));
+		List<String> cat2Parts = new ArrayList<String>();
+		cat2Parts.add("1");
+		cat2Parts.add("7");
+		mapping.put("Cat2", cat2Parts);
+		Mockito.when(managerConfiguration.getCategoryMapping()).thenReturn(mapping);
 
-        return managerConfiguration;
-    }
+		return managerConfiguration;
+	}
 
 }

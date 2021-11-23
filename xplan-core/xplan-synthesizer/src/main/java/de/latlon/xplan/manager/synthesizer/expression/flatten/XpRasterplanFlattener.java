@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -37,63 +37,66 @@ import org.slf4j.LoggerFactory;
 
 public class XpRasterplanFlattener extends AbstractFlattener {
 
-    private static final Logger LOG = LoggerFactory.getLogger( XpRasterplanFlattener.class );
+	private static final Logger LOG = LoggerFactory.getLogger(XpRasterplanFlattener.class);
 
-    @Override
-    public boolean accepts( TypedObjectNode node ) {
-        if ( node instanceof Feature ) {
-            Feature feature = (Feature) node;
-            FeatureType ft = feature.getType();
-            AppSchema schema = feature.getType().getSchema();
-            String ns = feature.getName().getNamespaceURI();
-            FeatureType rasterAenderungFt = schema.getFeatureType( new QName( ns, "XP_RasterplanAenderung" ) );
-            if ( rasterAenderungFt != null && schema.isSubType( rasterAenderungFt, ft ) ) {
-                return true;
-            }
-            FeatureType rasterBasisFt = schema.getFeatureType( new QName( ns, "XP_RasterplanBasis" ) );
-            if ( rasterBasisFt != null && schema.isSubType( rasterBasisFt, ft ) ) {
-                return true;
-            }
-            FeatureType rasterDarstellungFt = schema.getFeatureType( new QName( ns, "XP_Rasterdarstellung" ) );
-            if ( rasterDarstellungFt != null && schema.isSubType( rasterDarstellungFt, ft ) ) {
-                return true;
-            }
-        }
-        return false;
-    }
+	@Override
+	public boolean accepts(TypedObjectNode node) {
+		if (node instanceof Feature) {
+			Feature feature = (Feature) node;
+			FeatureType ft = feature.getType();
+			AppSchema schema = feature.getType().getSchema();
+			String ns = feature.getName().getNamespaceURI();
+			FeatureType rasterAenderungFt = schema.getFeatureType(new QName(ns, "XP_RasterplanAenderung"));
+			if (rasterAenderungFt != null && schema.isSubType(rasterAenderungFt, ft)) {
+				return true;
+			}
+			FeatureType rasterBasisFt = schema.getFeatureType(new QName(ns, "XP_RasterplanBasis"));
+			if (rasterBasisFt != null && schema.isSubType(rasterBasisFt, ft)) {
+				return true;
+			}
+			FeatureType rasterDarstellungFt = schema.getFeatureType(new QName(ns, "XP_Rasterdarstellung"));
+			if (rasterDarstellungFt != null && schema.isSubType(rasterDarstellungFt, ft)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-    @Override
-    public String flatten( TypedObjectNode rasterPlanFeatureEl ) {
-        Feature feature = (Feature) rasterPlanFeatureEl;
-        String ns = feature.getName().getNamespaceURI();
-        QName refName = new QName( ns, "refScan" );
-        List<Property> props = feature.getProperties( refName );
-        String s = "";
-        for ( Property prop : props ) {
-            TypedObjectNode value = prop.getValue();
-            if ( value != null ) {
-                if ( value instanceof FeatureReference ) {
-                    Feature xpExterneReferenzPlan = ( (FeatureReference) value ).getReferencedObject();
-                    s += new XpExterneReferenzFlattener( xpExterneReferenzPlan ).flatten( xpExterneReferenzPlan );
-                } else if ( value instanceof ElementNode ) {
-                    ElementNode elNode = (ElementNode) value;
-                    s += new XpExterneReferenzFlattener( feature ).flatten( getFirstChild( elNode ) );
-                } else {
-                    LOG.warn( "Flattening of nodes from class {} is not supported yet!", value.getClass() );
-                }
-            }
-        }
-        return s;
-    }
+	@Override
+	public String flatten(TypedObjectNode rasterPlanFeatureEl) {
+		Feature feature = (Feature) rasterPlanFeatureEl;
+		String ns = feature.getName().getNamespaceURI();
+		QName refName = new QName(ns, "refScan");
+		List<Property> props = feature.getProperties(refName);
+		String s = "";
+		for (Property prop : props) {
+			TypedObjectNode value = prop.getValue();
+			if (value != null) {
+				if (value instanceof FeatureReference) {
+					Feature xpExterneReferenzPlan = ((FeatureReference) value).getReferencedObject();
+					s += new XpExterneReferenzFlattener(xpExterneReferenzPlan).flatten(xpExterneReferenzPlan);
+				}
+				else if (value instanceof ElementNode) {
+					ElementNode elNode = (ElementNode) value;
+					s += new XpExterneReferenzFlattener(feature).flatten(getFirstChild(elNode));
+				}
+				else {
+					LOG.warn("Flattening of nodes from class {} is not supported yet!", value.getClass());
+				}
+			}
+		}
+		return s;
+	}
 
-    private TypedObjectNode getFirstChild( ElementNode elNode ) {
-        TypedObjectNode value;
-        if ( elNode.getChildren().size() == 1 && elNode.getChildren().get( 0 ) instanceof ElementNode ) {
-            value = elNode.getChildren().get( 0 );
-        } else {
-            throw new IllegalArgumentException();
-        }
-        return value;
-    }
+	private TypedObjectNode getFirstChild(ElementNode elNode) {
+		TypedObjectNode value;
+		if (elNode.getChildren().size() == 1 && elNode.getChildren().get(0) instanceof ElementNode) {
+			value = elNode.getChildren().get(0);
+		}
+		else {
+			throw new IllegalArgumentException();
+		}
+		return value;
+	}
 
 }

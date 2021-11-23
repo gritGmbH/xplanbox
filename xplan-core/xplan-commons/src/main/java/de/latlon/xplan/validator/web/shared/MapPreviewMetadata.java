@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -28,42 +28,43 @@ import java.io.Serializable;
  */
 public class MapPreviewMetadata implements Serializable {
 
-    private String configFileName;
+	private String configFileName;
 
-    private XPlanEnvelope bbox;
+	private XPlanEnvelope bbox;
 
-    private String validationName;
+	private String validationName;
 
-    public MapPreviewMetadata() {
-    }
+	public MapPreviewMetadata() {
+	}
 
-    public MapPreviewMetadata( String configFileName, String validationName, XPlanEnvelope bbox ) {
-        this.configFileName = configFileName;
-        this.validationName = validationName;
-        this.bbox = bbox;
-    }
+	public MapPreviewMetadata(String configFileName, String validationName, XPlanEnvelope bbox) {
+		this.configFileName = configFileName;
+		this.validationName = validationName;
+		this.bbox = bbox;
+	}
 
-    public String getConfigFileName() {
-        return configFileName;
-    }
+	public String getConfigFileName() {
+		return configFileName;
+	}
 
-    public String getValidationName() {
-        return validationName;
-    }
+	public String getValidationName() {
+		return validationName;
+	}
 
-    public XPlanEnvelope getBbox() {
-        return bbox;
-    }
+	public XPlanEnvelope getBbox() {
+		return bbox;
+	}
 
-    public void setConfigFileName( String configFileName ) {
-        this.configFileName = configFileName;
-    }
+	public void setConfigFileName(String configFileName) {
+		this.configFileName = configFileName;
+	}
 
-    public void setValidationName( String validationName ) {
-        this.validationName = validationName;
-    }
+	public void setValidationName(String validationName) {
+		this.validationName = validationName;
+	}
 
-    public void setBbox( XPlanEnvelope bbox ) {
-        this.bbox = bbox;
-    }
+	public void setBbox(XPlanEnvelope bbox) {
+		this.bbox = bbox;
+	}
+
 }

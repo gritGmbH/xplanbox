@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -46,35 +46,36 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-@RunWith( SpringJUnit4ClassRunner.class )
-@ContextConfiguration( classes = { XPlanValidatorWebContextConfig.class, XPlanValidatorWebSpringConfig.class,
-        TestConfig.class } )
-@ActiveProfiles( profiles = "test" )
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(
+		classes = { XPlanValidatorWebContextConfig.class, XPlanValidatorWebSpringConfig.class, TestConfig.class })
+@ActiveProfiles(profiles = "test")
 @WebAppConfiguration
 public class ReportControllerTest {
 
-    private MockMvc mockMvc;
+	private MockMvc mockMvc;
 
-    @Autowired
-    private ReportController reportController;
+	@Autowired
+	private ReportController reportController;
 
-    @Autowired
-    private ReportProvider mockReportProvider;
+	@Autowired
+	private ReportProvider mockReportProvider;
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
+	@Autowired
+	private WebApplicationContext webApplicationContext;
 
-    @Before
-    public void setUp() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-    }
+	@Before
+	public void setUp() {
+		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+	}
 
-    @Test
-    public void verifyThatControllerResponseIsOk_WhenValidRequestIsSend() throws Exception {
-        doNothing().when(mockReportProvider).writeHtmlReport(isA(HttpServletResponse.class), isA(String.class), isA(String.class));
-        assertThat(this.reportController, is(notNullValue()));
-        mockMvc.perform(get("/report/html/42?validationName=foo")).andExpect(status().isOk());
-        verify(mockReportProvider, times(1)).writeHtmlReport(
-                any(HttpServletResponse.class), eq("42"), eq(("foo")));
-    }
+	@Test
+	public void verifyThatControllerResponseIsOk_WhenValidRequestIsSend() throws Exception {
+		doNothing().when(mockReportProvider).writeHtmlReport(isA(HttpServletResponse.class), isA(String.class),
+				isA(String.class));
+		assertThat(this.reportController, is(notNullValue()));
+		mockMvc.perform(get("/report/html/42?validationName=foo")).andExpect(status().isOk());
+		verify(mockReportProvider, times(1)).writeHtmlReport(any(HttpServletResponse.class), eq("42"), eq(("foo")));
+	}
+
 }

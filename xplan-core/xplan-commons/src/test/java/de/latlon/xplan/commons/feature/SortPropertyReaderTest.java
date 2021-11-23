@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -90,89 +90,83 @@ import de.latlon.xplan.commons.configuration.SortConfiguration;
  */
 public class SortPropertyReaderTest {
 
-    @Test
-    public void testReadSortDate()
-                    throws Exception {
-        SortConfiguration sortConfiguration = createSortConfiguration( "BP_Plan", "technHerstellDatum" );
-        SortPropertyReader sortPropertyReader = new SortPropertyReader( sortConfiguration );
-        Date readSortDate = sortPropertyReader.readSortDate( BP_Plan, XPLAN_40, readFeatureCollection() );
+	@Test
+	public void testReadSortDate() throws Exception {
+		SortConfiguration sortConfiguration = createSortConfiguration("BP_Plan", "technHerstellDatum");
+		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
+		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_40, readFeatureCollection());
 
-        assertThat( readSortDate, is( asDate( "2001-08-06" ) ) );
-    }
+		assertThat(readSortDate, is(asDate("2001-08-06")));
+	}
 
-    @Test
-    public void testReadSortDate_UnmatchingType()
-                    throws Exception {
-        SortConfiguration sortConfiguration = createSortConfiguration( "BP_Plan", "technHerstellDatum" );
-        SortPropertyReader sortPropertyReader = new SortPropertyReader( sortConfiguration );
-        Date readSortDate = sortPropertyReader.readSortDate( FP_Plan, XPLAN_40, readFeatureCollection() );
+	@Test
+	public void testReadSortDate_UnmatchingType() throws Exception {
+		SortConfiguration sortConfiguration = createSortConfiguration("BP_Plan", "technHerstellDatum");
+		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
+		Date readSortDate = sortPropertyReader.readSortDate(FP_Plan, XPLAN_40, readFeatureCollection());
 
-        assertThat( readSortDate, nullValue() );
-    }
+		assertThat(readSortDate, nullValue());
+	}
 
-    @Test
-    public void testReadSortDate_UnmatchingVersion()
-                    throws Exception {
-        SortConfiguration sortConfiguration = createSortConfiguration( "BP_Plan", "technHerstellDatum" );
-        SortPropertyReader sortPropertyReader = new SortPropertyReader( sortConfiguration );
-        Date readSortDate = sortPropertyReader.readSortDate( BP_Plan, XPLAN_3, readFeatureCollection() );
+	@Test
+	public void testReadSortDate_UnmatchingVersion() throws Exception {
+		SortConfiguration sortConfiguration = createSortConfiguration("BP_Plan", "technHerstellDatum");
+		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
+		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_3, readFeatureCollection());
 
-        assertThat( readSortDate, nullValue() );
-    }
+		assertThat(readSortDate, nullValue());
+	}
 
-    @Test
-    public void testReadSortDate_UnavailableFeatureType()
-                    throws Exception {
-        SortConfiguration sortConfiguration = createSortConfiguration( "BP_PlanNotThere", "technHerstellDatum" );
-        SortPropertyReader sortPropertyReader = new SortPropertyReader( sortConfiguration );
-        Date readSortDate = sortPropertyReader.readSortDate( BP_Plan, XPLAN_3, readFeatureCollection() );
+	@Test
+	public void testReadSortDate_UnavailableFeatureType() throws Exception {
+		SortConfiguration sortConfiguration = createSortConfiguration("BP_PlanNotThere", "technHerstellDatum");
+		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
+		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_3, readFeatureCollection());
 
-        assertThat( readSortDate, nullValue() );
-    }
+		assertThat(readSortDate, nullValue());
+	}
 
-    @Test
-    public void testReadSortDate_UnavailableProperty()
-                    throws Exception {
-        SortConfiguration sortConfiguration = createSortConfiguration( "BP_Plan", "notThereDatum" );
-        SortPropertyReader sortPropertyReader = new SortPropertyReader( sortConfiguration );
-        Date readSortDate = sortPropertyReader.readSortDate( BP_Plan, XPLAN_3, readFeatureCollection() );
+	@Test
+	public void testReadSortDate_UnavailableProperty() throws Exception {
+		SortConfiguration sortConfiguration = createSortConfiguration("BP_Plan", "notThereDatum");
+		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
+		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_3, readFeatureCollection());
 
-        assertThat( readSortDate, nullValue() );
-    }
+		assertThat(readSortDate, nullValue());
+	}
 
-    @Test(expected = NullPointerException.class)
-    public void testReadSortDate_NullSortConfiguration()
-                    throws Exception {
-        new SortPropertyReader( null );
-    }
+	@Test(expected = NullPointerException.class)
+	public void testReadSortDate_NullSortConfiguration() throws Exception {
+		new SortPropertyReader(null);
+	}
 
-    private SortConfiguration createSortConfiguration( String featureType, String propertyName ) {
-        SortConfiguration mockedSortConfig = mock( SortConfiguration.class );
-        when( mockedSortConfig.retrieveFeatureType( BP_Plan, XPLAN_40 ) ).thenReturn( featureType );
-        when( mockedSortConfig.retrievePropertyName( BP_Plan, XPLAN_40 ) ).thenReturn( propertyName );
-        return mockedSortConfig;
-    }
+	private SortConfiguration createSortConfiguration(String featureType, String propertyName) {
+		SortConfiguration mockedSortConfig = mock(SortConfiguration.class);
+		when(mockedSortConfig.retrieveFeatureType(BP_Plan, XPLAN_40)).thenReturn(featureType);
+		when(mockedSortConfig.retrievePropertyName(BP_Plan, XPLAN_40)).thenReturn(propertyName);
+		return mockedSortConfig;
+	}
 
-    private FeatureCollection readFeatureCollection()
-                    throws Exception {
-        String name = "xplan51/BP2070.zip";
-        XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
-        XPlanVersion version = archive.getVersion();
-        XPlanAde ade = archive.getAde();
-        XMLStreamReader xmlReader = archive.getMainFileXmlReader();
-        GMLStreamReader gmlReader = createGMLStreamReader( version.getGmlVersion(), xmlReader );
-        gmlReader.setApplicationSchema( XPlanSchemas.getInstance().getAppSchema( version, ade ) );
-        FeatureCollection fc = gmlReader.readFeatureCollection();
-        gmlReader.getIdContext().resolveLocalRefs();
-        gmlReader.close();
-        xmlReader.close();
-        return fc;
-    }
+	private FeatureCollection readFeatureCollection() throws Exception {
+		String name = "xplan51/BP2070.zip";
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
+				ResourceAccessor.readResourceStream(name));
+		XPlanVersion version = archive.getVersion();
+		XPlanAde ade = archive.getAde();
+		XMLStreamReader xmlReader = archive.getMainFileXmlReader();
+		GMLStreamReader gmlReader = createGMLStreamReader(version.getGmlVersion(), xmlReader);
+		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version, ade));
+		FeatureCollection fc = gmlReader.readFeatureCollection();
+		gmlReader.getIdContext().resolveLocalRefs();
+		gmlReader.close();
+		xmlReader.close();
+		return fc;
+	}
 
-    private Date asDate( String string )
-                    throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "yyyy-MM-dd" );
-        return simpleDateFormat.parse( string );
-    }
+	private Date asDate(String string) throws ParseException {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		return simpleDateFormat.parse(string);
+	}
+
 }

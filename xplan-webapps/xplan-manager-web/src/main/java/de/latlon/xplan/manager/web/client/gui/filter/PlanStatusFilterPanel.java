@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -38,74 +38,74 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 
 /**
  * GUI component containing the plan status filter of the plan list.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class PlanStatusFilterPanel extends AbstractFilterPanel implements ResetableFilterPanel {
 
-    private final XPlanWebMessages messages = GWT.create( XPlanWebMessages.class );
+	private final XPlanWebMessages messages = GWT.create(XPlanWebMessages.class);
 
-    private final ListBox planStatusListBox;
+	private final ListBox planStatusListBox;
 
-    public PlanStatusFilterPanel( FilterExecutor filterExecutor ) {
-        super( filterExecutor );
-        planStatusListBox = createPlanStatusListBox();
-        createUi();
-    }
+	public PlanStatusFilterPanel(FilterExecutor filterExecutor) {
+		super(filterExecutor);
+		planStatusListBox = createPlanStatusListBox();
+		createUi();
+	}
 
-    @Override
-    public void reset() {
-        planStatusListBox.setSelectedIndex( 0 );
-        updateFilter( null );
-    }
+	@Override
+	public void reset() {
+		planStatusListBox.setSelectedIndex(0);
+		updateFilter(null);
+	}
 
-    private void createUi() {
-        Widget layout = createLayout();
-        this.setWidget( layout );
-    }
+	private void createUi() {
+		Widget layout = createLayout();
+		this.setWidget(layout);
+	}
 
-    private Widget createLayout() {
-        FlexTable layout = new FlexTable();
-        FlexTable.FlexCellFormatter formatter = layout.getFlexCellFormatter();
-        formatter.setHorizontalAlignment( 1, 1, ALIGN_LEFT );
-        layout.setCellSpacing( 5 );
-        layout.setWidget( 1, 1, createPlanStatusLabel() );
-        layout.setWidget( 2, 1, planStatusListBox );
-        return layout;
-    }
+	private Widget createLayout() {
+		FlexTable layout = new FlexTable();
+		FlexTable.FlexCellFormatter formatter = layout.getFlexCellFormatter();
+		formatter.setHorizontalAlignment(1, 1, ALIGN_LEFT);
+		layout.setCellSpacing(5);
+		layout.setWidget(1, 1, createPlanStatusLabel());
+		layout.setWidget(2, 1, planStatusListBox);
+		return layout;
+	}
 
-    private Widget createPlanStatusLabel() {
-        return new Label( messages.filterPlanStatusLabel() );
-    }
+	private Widget createPlanStatusLabel() {
+		return new Label(messages.filterPlanStatusLabel());
+	}
 
-    private ListBox createPlanStatusListBox() {
-        final ListBox planStatusListBox = new ListBox();
-        planStatusListBox.addChangeHandler( new ChangeHandler() {
+	private ListBox createPlanStatusListBox() {
+		final ListBox planStatusListBox = new ListBox();
+		planStatusListBox.addChangeHandler(new ChangeHandler() {
 
-            @Override
-            public void onChange( ChangeEvent event ) {
-                PlanFilter filter = createFilter( planStatusListBox );
-                updateAndExecuteFilter( filter );
-            }
+			@Override
+			public void onChange(ChangeEvent event) {
+				PlanFilter filter = createFilter(planStatusListBox);
+				updateAndExecuteFilter(filter);
+			}
 
-            private PlanStatusFilter createFilter( final ListBox planStatusListBox ) {
-                int selectedIndex = planStatusListBox.getSelectedIndex();
-                if ( selectedIndex <= 0 )
-                    return new PlanStatusFilter( null );
-                return new PlanStatusFilter( planStatusListBox.getValue( selectedIndex ) );
-            }
-        } );
-        planStatusListBox.setTitle( messages.filterPlanStatusTooltip() );
-        addItems( planStatusListBox );
-        return planStatusListBox;
-    }
+			private PlanStatusFilter createFilter(final ListBox planStatusListBox) {
+				int selectedIndex = planStatusListBox.getSelectedIndex();
+				if (selectedIndex <= 0)
+					return new PlanStatusFilter(null);
+				return new PlanStatusFilter(planStatusListBox.getValue(selectedIndex));
+			}
+		});
+		planStatusListBox.setTitle(messages.filterPlanStatusTooltip());
+		addItems(planStatusListBox);
+		return planStatusListBox;
+	}
 
-    private void addItems( ListBox planStatusListBox ) {
-        planStatusListBox.addItem( messages.filterPlanStatusSelectionAll() );
-        for ( PlanStatus planStatus : PlanStatus.values() ) {
-            planStatusListBox.addItem( planStatus.getMessage() );
-        }
-    }
+	private void addItems(ListBox planStatusListBox) {
+		planStatusListBox.addItem(messages.filterPlanStatusSelectionAll());
+		for (PlanStatus planStatus : PlanStatus.values()) {
+			planStatusListBox.addItem(planStatus.getMessage());
+		}
+	}
 
 }

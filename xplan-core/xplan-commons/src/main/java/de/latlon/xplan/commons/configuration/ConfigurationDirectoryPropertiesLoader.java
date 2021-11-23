@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -33,72 +33,68 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
+ *
  * Retrieves a configuration from a specified path.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class ConfigurationDirectoryPropertiesLoader extends AbstractPropertiesLoader {
 
-    private static final Logger LOG = LoggerFactory.getLogger( ConfigurationDirectoryPropertiesLoader.class );
+	private static final Logger LOG = LoggerFactory.getLogger(ConfigurationDirectoryPropertiesLoader.class);
 
-    private final Path directoryContainingTheConfig;
+	private final Path directoryContainingTheConfig;
 
-    private final Class<?> defaultBaseClass;
+	private final Class<?> defaultBaseClass;
 
-    /**
-     * Instantiates a {@link ConfigurationDirectoryPropertiesLoader} loading properties from files in the specified
-     * directory.
-     * 
-     * @param directoryContainingTheConfig
-     *            the directory containing the configuration, may be <code>null</code> if the configuration should be
-     *            retrieved from classpath
-     * @param defaultBaseClass
-     *            fallback to retrieve properties file from, if system property is not available, may be
-     *            <code>null</code> (this class is used then)
-     */
-    public ConfigurationDirectoryPropertiesLoader( Path directoryContainingTheConfig, Class<?> defaultBaseClass ) {
-        this.directoryContainingTheConfig = directoryContainingTheConfig;
-        if ( defaultBaseClass != null )
-            this.defaultBaseClass = defaultBaseClass;
-        else
-            this.defaultBaseClass = this.getClass();
-    }
+	/**
+	 * Instantiates a {@link ConfigurationDirectoryPropertiesLoader} loading properties
+	 * from files in the specified directory.
+	 * @param directoryContainingTheConfig the directory containing the configuration, may
+	 * be <code>null</code> if the configuration should be retrieved from classpath
+	 * @param defaultBaseClass fallback to retrieve properties file from, if system
+	 * property is not available, may be <code>null</code> (this class is used then)
+	 */
+	public ConfigurationDirectoryPropertiesLoader(Path directoryContainingTheConfig, Class<?> defaultBaseClass) {
+		this.directoryContainingTheConfig = directoryContainingTheConfig;
+		if (defaultBaseClass != null)
+			this.defaultBaseClass = defaultBaseClass;
+		else
+			this.defaultBaseClass = this.getClass();
+	}
 
-    /**
-     * Instantiates a {@link ConfigurationDirectoryPropertiesLoader} loading properties from files in the specified
-     * directory.
-     * 
-     * @param directoryContainingTheConfig
-     *            the directory containing the configuration, may be <code>null</code> if the configuration should be
-     *            retrieved from classpath
-     */
-    public ConfigurationDirectoryPropertiesLoader( Path directoryContainingTheConfig ) {
-        this( directoryContainingTheConfig, null );
-    }
+	/**
+	 * Instantiates a {@link ConfigurationDirectoryPropertiesLoader} loading properties
+	 * from files in the specified directory.
+	 * @param directoryContainingTheConfig the directory containing the configuration, may
+	 * be <code>null</code> if the configuration should be retrieved from classpath
+	 */
+	public ConfigurationDirectoryPropertiesLoader(Path directoryContainingTheConfig) {
+		this(directoryContainingTheConfig, null);
+	}
 
-    @Override
-    InputStream retrieveAsStream( String configurationFileName ) {
-        if ( directoryContainingTheConfig != null ) {
-            LOG.info( "Configuration directory is {}", directoryContainingTheConfig );
-            Path pathToConfigFile = directoryContainingTheConfig.resolve( configurationFileName );
-            LOG.info( "Configuration is read from file {}", pathToConfigFile );
-            try {
-                return Files.newInputStream( pathToConfigFile );
-            } catch ( IOException e ) {
-                LOG.info( "Configuration does not exist: {}", e.getMessage() );
-                LOG.info( "Internal {} configuration is used.", configurationFileName );
-                return defaultBaseClass.getResourceAsStream( configurationFileName );
-            }
-        }
-        LOG.info( "Internal {} configuration is used.", configurationFileName );
-        return defaultBaseClass.getResourceAsStream( configurationFileName );
-    }
+	@Override
+	InputStream retrieveAsStream(String configurationFileName) {
+		if (directoryContainingTheConfig != null) {
+			LOG.info("Configuration directory is {}", directoryContainingTheConfig);
+			Path pathToConfigFile = directoryContainingTheConfig.resolve(configurationFileName);
+			LOG.info("Configuration is read from file {}", pathToConfigFile);
+			try {
+				return Files.newInputStream(pathToConfigFile);
+			}
+			catch (IOException e) {
+				LOG.info("Configuration does not exist: {}", e.getMessage());
+				LOG.info("Internal {} configuration is used.", configurationFileName);
+				return defaultBaseClass.getResourceAsStream(configurationFileName);
+			}
+		}
+		LOG.info("Internal {} configuration is used.", configurationFileName);
+		return defaultBaseClass.getResourceAsStream(configurationFileName);
+	}
 
-    @Override
-    public Path getConfigDirectory() {
-        return directoryContainingTheConfig;
-    }
+	@Override
+	public Path getConfigDirectory() {
+		return directoryContainingTheConfig;
+	}
 
 }

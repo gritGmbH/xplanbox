@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -65,92 +65,84 @@ import java.util.Date;
  */
 public class RasterReference extends AbstractReference {
 
-    private RasterReferenceType type;
+	private RasterReferenceType type;
 
-    private String featureId;
+	private String featureId;
 
-    public RasterReference() {
-    }
+	public RasterReference() {
+	}
 
-    /**
-     * Instantiates a new {@link RasterReference} as copy of the passed.
-     *
-     * @param rasterReference
-     *                         to copy, never <code>null</code>
-     */
-    public RasterReference( RasterReference rasterReference ) {
-        this( rasterReference.getFeatureId(), rasterReference.getReference(), rasterReference.getGeoReference(),
-              rasterReference.getType(), rasterReference.getGeorefMimeType(), rasterReference.getArt(),
-              rasterReference.getInformationssystemURL(), rasterReference.getReferenzName(),
-              rasterReference.getReferenzMimeType(), rasterReference.getBeschreibung(), rasterReference.getDatum() );
-    }
+	/**
+	 * Instantiates a new {@link RasterReference} as copy of the passed.
+	 * @param rasterReference to copy, never <code>null</code>
+	 */
+	public RasterReference(RasterReference rasterReference) {
+		this(rasterReference.getFeatureId(), rasterReference.getReference(), rasterReference.getGeoReference(),
+				rasterReference.getType(), rasterReference.getGeorefMimeType(), rasterReference.getArt(),
+				rasterReference.getInformationssystemURL(), rasterReference.getReferenzName(),
+				rasterReference.getReferenzMimeType(), rasterReference.getBeschreibung(), rasterReference.getDatum());
+	}
 
-    /**
-     * @param reference
-     *                         reference, may be <code>null</code>
-     * @param geoReference
-     *                         geoReference, may be <code>null</code>
-     * @param type
-     *                         type, should not be <code>null</code>
-     */
-    public RasterReference( String reference, String geoReference, RasterReferenceType type, MimeTypes georefMimeType,
-                            ExterneReferenzArt art, String informationssystemURL, String referenzName,
-                            MimeTypes referenzMimeType, String beschreibung, Date datum ) {
-        this( null, reference, geoReference, type, georefMimeType, art, informationssystemURL, referenzName,
-              referenzMimeType, beschreibung, datum );
-    }
+	/**
+	 * @param reference reference, may be <code>null</code>
+	 * @param geoReference geoReference, may be <code>null</code>
+	 * @param type type, should not be <code>null</code>
+	 */
+	public RasterReference(String reference, String geoReference, RasterReferenceType type, MimeTypes georefMimeType,
+			ExterneReferenzArt art, String informationssystemURL, String referenzName, MimeTypes referenzMimeType,
+			String beschreibung, Date datum) {
+		this(null, reference, geoReference, type, georefMimeType, art, informationssystemURL, referenzName,
+				referenzMimeType, beschreibung, datum);
+	}
 
-    /**
-     * @param featureId
-     *                         the id of the feature containing this reference, may be <code>null</code>
-     * @param reference
-     *                         reference, may be <code>null</code>
-     * @param geoReference
-     *                         geoReference, may be <code>null</code>
-     * @param type
-     *                         type, should not be <code>null</code>
-     */
-    public RasterReference( String featureId, String reference, String geoReference, RasterReferenceType type,
-                            MimeTypes georefMimeType, ExterneReferenzArt art, String informationssystemURL,
-                            String referenzName, MimeTypes referenzMimeType, String beschreibung, Date datum ) {
-        super( reference, geoReference, georefMimeType, art, informationssystemURL, referenzName, referenzMimeType,
-               beschreibung, datum );
-        this.featureId = featureId;
-        this.type = type;
-    }
+	/**
+	 * @param featureId the id of the feature containing this reference, may be
+	 * <code>null</code>
+	 * @param reference reference, may be <code>null</code>
+	 * @param geoReference geoReference, may be <code>null</code>
+	 * @param type type, should not be <code>null</code>
+	 */
+	public RasterReference(String featureId, String reference, String geoReference, RasterReferenceType type,
+			MimeTypes georefMimeType, ExterneReferenzArt art, String informationssystemURL, String referenzName,
+			MimeTypes referenzMimeType, String beschreibung, Date datum) {
+		super(reference, geoReference, georefMimeType, art, informationssystemURL, referenzName, referenzMimeType,
+				beschreibung, datum);
+		this.featureId = featureId;
+		this.type = type;
+	}
 
-    /**
-     * @return the type, may be <code>null</code>
-     */
-    public RasterReferenceType getType() {
-        return type;
-    }
+	/**
+	 * @return the type, may be <code>null</code>
+	 */
+	public RasterReferenceType getType() {
+		return type;
+	}
 
-    /**
-     * @param type
-     *                         the type to set, may be <code>null</code>
-     */
-    public void setType( RasterReferenceType type ) {
-        this.type = type;
-    }
+	/**
+	 * @param type the type to set, may be <code>null</code>
+	 */
+	public void setType(RasterReferenceType type) {
+		this.type = type;
+	}
 
-    /**
-     * @return the id of the feature containing this reference, may be <code>null</code>
-     */
-    public String getFeatureId() {
-        return featureId;
-    }
+	/**
+	 * @return the id of the feature containing this reference, may be <code>null</code>
+	 */
+	public String getFeatureId() {
+		return featureId;
+	}
 
-    /**
-     * @param featureId
-     *                         the id of the feature containing this reference, may be <code>null</code>
-     */
-    public void setFeatureId( String featureId ) {
-        this.featureId = featureId;
-    }
+	/**
+	 * @param featureId the id of the feature containing this reference, may be
+	 * <code>null</code>
+	 */
+	public void setFeatureId(String featureId) {
+		this.featureId = featureId;
+	}
 
-    @Override
-    public String toString() {
-        return "RasterReference{" + "type=" + type + ", featureId='" + featureId + '\'' + '}';
-    }
+	@Override
+	public String toString() {
+		return "RasterReference{" + "type=" + type + ", featureId='" + featureId + '\'' + '}';
+	}
+
 }

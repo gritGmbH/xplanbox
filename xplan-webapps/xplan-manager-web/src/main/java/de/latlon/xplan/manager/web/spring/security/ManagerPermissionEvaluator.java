@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -31,54 +31,55 @@ import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.core.Authentication;
 
 /**
- * Evaluates if an authentication with {@link DistrictGrantedAuthority} has permission to a XPlanArchive.
- * 
+ * Evaluates if an authentication with {@link DistrictGrantedAuthority} has permission to
+ * a XPlanArchive.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class ManagerPermissionEvaluator implements PermissionEvaluator {
 
-    private static final Logger LOG = LoggerFactory.getLogger( ManagerPermissionEvaluator.class );
+	private static final Logger LOG = LoggerFactory.getLogger(ManagerPermissionEvaluator.class);
 
-    private final Map<String, Permission> permissionNameToPermissions;
+	private final Map<String, Permission> permissionNameToPermissions;
 
-    public ManagerPermissionEvaluator( Map<String, Permission> permissionNameToPermissionMap ) {
-        if ( permissionNameToPermissionMap != null )
-            this.permissionNameToPermissions = permissionNameToPermissionMap;
-        else
-            this.permissionNameToPermissions = new HashMap<String, Permission>();
-    }
+	public ManagerPermissionEvaluator(Map<String, Permission> permissionNameToPermissionMap) {
+		if (permissionNameToPermissionMap != null)
+			this.permissionNameToPermissions = permissionNameToPermissionMap;
+		else
+			this.permissionNameToPermissions = new HashMap<String, Permission>();
+	}
 
-    @Override
-    public boolean hasPermission( Authentication authentication, Object targetDomainObject, Object permission ) {
-        if ( canHandle( authentication, targetDomainObject, permission ) ) {
-            LOG.info( "Check permission for authentication {} and target {}", authentication, targetDomainObject );
-            return checkPermission( authentication, targetDomainObject, (String) permission );
-        }
-        return false;
-    }
+	@Override
+	public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permission) {
+		if (canHandle(authentication, targetDomainObject, permission)) {
+			LOG.info("Check permission for authentication {} and target {}", authentication, targetDomainObject);
+			return checkPermission(authentication, targetDomainObject, (String) permission);
+		}
+		return false;
+	}
 
-    @Override
-    public boolean hasPermission( Authentication authentication, Serializable targetId, String targetType,
-                                  Object permission ) {
-        throw new UnsupportedOperationException( "Call method without targetId!" );
-    }
+	@Override
+	public boolean hasPermission(Authentication authentication, Serializable targetId, String targetType,
+			Object permission) {
+		throw new UnsupportedOperationException("Call method without targetId!");
+	}
 
-    private boolean canHandle( Authentication authentication, Object targetDomainObject, Object permission ) {
-        return targetDomainObject != null && authentication != null && permission instanceof String;
-    }
+	private boolean canHandle(Authentication authentication, Object targetDomainObject, Object permission) {
+		return targetDomainObject != null && authentication != null && permission instanceof String;
+	}
 
-    private boolean checkPermission( Authentication authentication, Object targetDomainObject, String permissionKey ) {
-        verifyPermissionIsDefined( permissionKey );
-        Permission permission = permissionNameToPermissions.get( permissionKey );
-        return permission.isAllowed( authentication, targetDomainObject );
-    }
+	private boolean checkPermission(Authentication authentication, Object targetDomainObject, String permissionKey) {
+		verifyPermissionIsDefined(permissionKey);
+		Permission permission = permissionNameToPermissions.get(permissionKey);
+		return permission.isAllowed(authentication, targetDomainObject);
+	}
 
-    private void verifyPermissionIsDefined( String permissionKey ) {
-        if ( !permissionNameToPermissions.containsKey( permissionKey ) ) {
-            throw new UnsupportedOperationException( "The permission key is not defined! " );
-        }
+	private void verifyPermissionIsDefined(String permissionKey) {
+		if (!permissionNameToPermissions.containsKey(permissionKey)) {
+			throw new UnsupportedOperationException("The permission key is not defined! ");
+		}
 
-    }
+	}
 
 }

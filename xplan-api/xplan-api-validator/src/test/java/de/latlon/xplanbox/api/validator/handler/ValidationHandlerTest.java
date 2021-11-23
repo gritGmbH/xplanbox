@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -55,80 +55,75 @@ import static org.mockito.Mockito.when;
 @ContextConfiguration(classes = { ApplicationContext.class })
 public class ValidationHandlerTest {
 
-    @Autowired
-    private ValidationHandler validationHandler;
+	@Autowired
+	private ValidationHandler validationHandler;
 
-    @Rule
-    public final TemporaryFolder folder = new TemporaryFolder();
+	@Rule
+	public final TemporaryFolder folder = new TemporaryFolder();
 
-    @Test
-    public void verifyThat_FromZip_ArchiveCanBeCreated()
-                            throws URISyntaxException, InvalidXPlanGmlOrArchive {
-        final File file = new File( ValidationHandlerTest.class.getResource( "/bplan_valid_41.zip" ).toURI() );
-        XPlanArchive archive = validationHandler.createArchiveFromZip( file, "bplan_valid_41" );
-        assertNotNull( archive );
-    }
+	@Test
+	public void verifyThat_FromZip_ArchiveCanBeCreated() throws URISyntaxException, InvalidXPlanGmlOrArchive {
+		final File file = new File(ValidationHandlerTest.class.getResource("/bplan_valid_41.zip").toURI());
+		XPlanArchive archive = validationHandler.createArchiveFromZip(file, "bplan_valid_41");
+		assertNotNull(archive);
+	}
 
-    @Test
-    public void verifyThat_FromGml_ArchiveCanBeCreated()
-                            throws URISyntaxException, InvalidXPlanGmlOrArchive {
-        final File file = new File( ValidationHandlerTest.class.getResource( "/xplan.gml" ).toURI() );
-        XPlanArchive archive = validationHandler.createArchiveFromGml( file, "bplan_valid_41" );
-        assertNotNull( archive );
-    }
+	@Test
+	public void verifyThat_FromGml_ArchiveCanBeCreated() throws URISyntaxException, InvalidXPlanGmlOrArchive {
+		final File file = new File(ValidationHandlerTest.class.getResource("/xplan.gml").toURI());
+		XPlanArchive archive = validationHandler.createArchiveFromGml(file, "bplan_valid_41");
+		assertNotNull(archive);
+	}
 
-    @Test(expected = InvalidXPlanGmlOrArchive.class)
-    public void verifyThat_FromGml_ZipArchiveCanBeCreated()
-                            throws URISyntaxException, InvalidXPlanGmlOrArchive {
-        final File file = new File( ValidationHandlerTest.class.getResource( "/xplan.gml" ).toURI() );
-        validationHandler.createArchiveFromZip( file, "bplan_valid_41" );
-    }
+	@Test(expected = InvalidXPlanGmlOrArchive.class)
+	public void verifyThat_FromGml_ZipArchiveCanBeCreated() throws URISyntaxException, InvalidXPlanGmlOrArchive {
+		final File file = new File(ValidationHandlerTest.class.getResource("/xplan.gml").toURI());
+		validationHandler.createArchiveFromZip(file, "bplan_valid_41");
+	}
 
-    @Test(expected = InvalidXPlanGmlOrArchive.class)
-    public void verifyThat_FromZip_GmlArchiveCanBeCreated()
-                            throws URISyntaxException, InvalidXPlanGmlOrArchive {
-        final File file = new File( ValidationHandlerTest.class.getResource( "/bplan_valid_41.zip" ).toURI() );
-        validationHandler.createArchiveFromGml( file, "bplan_valid_41" );
-    }
+	@Test(expected = InvalidXPlanGmlOrArchive.class)
+	public void verifyThat_FromZip_GmlArchiveCanBeCreated() throws URISyntaxException, InvalidXPlanGmlOrArchive {
+		final File file = new File(ValidationHandlerTest.class.getResource("/bplan_valid_41.zip").toURI());
+		validationHandler.createArchiveFromGml(file, "bplan_valid_41");
+	}
 
-    @Test
-    public void verifyThat_ValidPlan_ReturnsValidReport()
-                            throws ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
-        final File file = new File( ValidationHandlerTest.class.getResource( "/bplan_valid_41.zip" ).toURI() );
-        final ValidationSettings settings = Mockito.mock( ValidationSettings.class );
+	@Test
+	public void verifyThat_ValidPlan_ReturnsValidReport()
+			throws ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
+		final File file = new File(ValidationHandlerTest.class.getResource("/bplan_valid_41.zip").toURI());
+		final ValidationSettings settings = Mockito.mock(ValidationSettings.class);
 
-        XPlanArchive archive = validationHandler.createArchiveFromZip( file, "bplan_valid_41" );
-        ValidatorReport report = validationHandler.validate( archive, "noName", settings );
-        assertTrue( report.isReportValid() );
-    }
+		XPlanArchive archive = validationHandler.createArchiveFromZip(file, "bplan_valid_41");
+		ValidatorReport report = validationHandler.validate(archive, "noName", settings);
+		assertTrue(report.isReportValid());
+	}
 
-    @Test
-    public void verifyThat_PathToReport_ContainsReportName()
-                            throws IOException {
-        final ValidatorReport report = Mockito.mock( ValidatorReport.class );
-        when( report.getValidationName() ).thenReturn( "mockReport" );
+	@Test
+	public void verifyThat_PathToReport_ContainsReportName() throws IOException {
+		final ValidatorReport report = Mockito.mock(ValidatorReport.class);
+		when(report.getValidationName()).thenReturn("mockReport");
 
-        Path path = validationHandler.zipReports( report );
-        assertThat( path.toString(), containsString( "mockReport" ) );
-        verify( report, atLeastOnce() ).getValidationName();
-    }
+		Path path = validationHandler.zipReports(report);
+		assertThat(path.toString(), containsString("mockReport"));
+		verify(report, atLeastOnce()).getValidationName();
+	}
 
-    @Test
-    public void verifyThat_WritePdfReport_CreatesFile()
-                            throws IOException {
-        final ValidatorReport report = Mockito.mock( ValidatorReport.class );
+	@Test
+	public void verifyThat_WritePdfReport_CreatesFile() throws IOException {
+		final ValidatorReport report = Mockito.mock(ValidatorReport.class);
 
-        File file = validationHandler.writePdfReport( report );
-        assertTrue( file.exists() );
-    }
+		File file = validationHandler.writePdfReport(report);
+		assertTrue(file.exists());
+	}
 
-    @Test
-    public void verifyThat_PlanwerkWmsUrl_IsAddedToIncompleteValidationHandler_NullIsReturned()
-                            throws URISyntaxException, InvalidXPlanGmlOrArchive {
-        final File file = new File( ValidationHandlerTest.class.getResource( "/xplan.gml" ).toURI() );
+	@Test
+	public void verifyThat_PlanwerkWmsUrl_IsAddedToIncompleteValidationHandler_NullIsReturned()
+			throws URISyntaxException, InvalidXPlanGmlOrArchive {
+		final File file = new File(ValidationHandlerTest.class.getResource("/xplan.gml").toURI());
 
-        XPlanArchive archive = validationHandler.createArchiveFromGml( file, "xplan" );
-        URI wmsUrl = validationHandler.addToWms( archive );
-        assertNull( wmsUrl );
-    }
+		XPlanArchive archive = validationHandler.createArchiveFromGml(file, "xplan");
+		URI wmsUrl = validationHandler.addToWms(archive);
+		assertNull(wmsUrl);
+	}
+
 }

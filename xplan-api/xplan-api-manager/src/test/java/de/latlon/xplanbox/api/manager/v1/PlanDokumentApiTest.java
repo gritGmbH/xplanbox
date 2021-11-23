@@ -49,86 +49,82 @@ import static org.junit.Assert.assertThat;
 
 public class PlanDokumentApiTest extends JerseyTest {
 
-    @Override
-    protected Application configure() {
-        enable( TestProperties.LOG_TRAFFIC );
-        final ResourceConfig resourceConfig = new ResourceConfig( PlanDokumentApi.class );
-        resourceConfig.register( XPlanApiExceptionMapper.class );
-        resourceConfig.packages( "org.glassfish.jersey.examples.multipart" );
-        resourceConfig.register( MultiPartFeature.class );
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext( ApplicationContext.class,
-                                                                                             TestContext.class );
-        resourceConfig.property( "contextConfig", context );
-        return resourceConfig;
-    }
+	@Override
+	protected Application configure() {
+		enable(TestProperties.LOG_TRAFFIC);
+		final ResourceConfig resourceConfig = new ResourceConfig(PlanDokumentApi.class);
+		resourceConfig.register(XPlanApiExceptionMapper.class);
+		resourceConfig.packages("org.glassfish.jersey.examples.multipart");
+		resourceConfig.register(MultiPartFeature.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContext.class,
+				TestContext.class);
+		resourceConfig.property("contextConfig", context);
+		return resourceConfig;
+	}
 
-    @Override
-    protected void configureClient( ClientConfig config ) {
-        config.register( MultiPartFeature.class );
-    }
+	@Override
+	protected void configureClient(ClientConfig config) {
+		config.register(MultiPartFeature.class);
+	}
 
-    @Test
-    public void verifyThat_getDokumente_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/2/dokument" ).request( APPLICATION_JSON ).get();
+	@Test
+	public void verifyThat_getDokumente_returnsCorrectStatusCodeForValidMediaType() {
+		Response response = target("/plan/2/dokument").request(APPLICATION_JSON).get();
 
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
 
-    @Test
-    public void verifyThat_addDokument_returnsCorrectStatusCodeForValidMediaType()
-                    throws URISyntaxException {
-        FileDataBodyPart dokumentmodel = createFileDataBodyPart( "dokumentmodel", "dokumentmodel.json",
-                                                                 MediaType.APPLICATION_JSON_TYPE );
-        FileDataBodyPart filePart = createFileDataBodyPart( "datei", "datei.pdf", null );
-        FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart()
-                        .bodyPart( filePart ).bodyPart( dokumentmodel );
+	@Test
+	public void verifyThat_addDokument_returnsCorrectStatusCodeForValidMediaType() throws URISyntaxException {
+		FileDataBodyPart dokumentmodel = createFileDataBodyPart("dokumentmodel", "dokumentmodel.json",
+				MediaType.APPLICATION_JSON_TYPE);
+		FileDataBodyPart filePart = createFileDataBodyPart("datei", "datei.pdf", null);
+		FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart().bodyPart(filePart)
+				.bodyPart(dokumentmodel);
 
-        Response response = target( "/plan/2/dokument" ).request()
-                                                        .post( Entity.entity( multipart, multipart.getMediaType() ) );
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
+		Response response = target("/plan/2/dokument").request()
+				.post(Entity.entity(multipart, multipart.getMediaType()));
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
 
-    @Test
-    public void verifyThat_getDokumentById_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target(
-                        "/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf" ).request(
-                        APPLICATION_JSON ).get();
+	@Test
+	public void verifyThat_getDokumentById_returnsCorrectStatusCodeForValidMediaType() {
+		Response response = target("/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf")
+				.request(APPLICATION_JSON).get();
 
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
 
-    @Test
-    public void verifyThat_replaceDokumentById_returnsCorrectStatusCodeForValidMediaType()
-                    throws URISyntaxException {
-        FileDataBodyPart dokumentmodel = createFileDataBodyPart( "dokumentmodel", "dokumentmodel.json",
-                                                                 MediaType.APPLICATION_JSON_TYPE );
-        FileDataBodyPart filePart = createFileDataBodyPart( "datei", "datei.pdf", null );
-        FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart()
-                        .bodyPart( filePart ).bodyPart( dokumentmodel );
+	@Test
+	public void verifyThat_replaceDokumentById_returnsCorrectStatusCodeForValidMediaType() throws URISyntaxException {
+		FileDataBodyPart dokumentmodel = createFileDataBodyPart("dokumentmodel", "dokumentmodel.json",
+				MediaType.APPLICATION_JSON_TYPE);
+		FileDataBodyPart filePart = createFileDataBodyPart("datei", "datei.pdf", null);
+		FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart().bodyPart(filePart)
+				.bodyPart(dokumentmodel);
 
-        Response response = target( "/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf" ).request()
-                                                        .put( Entity.entity( multipart, multipart.getMediaType() ) );
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
+		Response response = target("/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf")
+				.request().put(Entity.entity(multipart, multipart.getMediaType()));
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
 
-    @Test
-    public void verifyThat_deleteDokumentById_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target(
-                        "/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf" ).request(
-                        APPLICATION_JSON ).delete();
+	@Test
+	public void verifyThat_deleteDokumentById_returnsCorrectStatusCodeForValidMediaType() {
+		Response response = target("/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf")
+				.request(APPLICATION_JSON).delete();
 
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
 
-    private FileDataBodyPart createFileDataBodyPart( String name, String resource, MediaType mediaType )
-                    throws URISyntaxException {
-        File datei = new File( getClass().getResource( resource ).toURI() );
-        return new FileDataBodyPart( name, datei, mediaType );
-    }
+	private FileDataBodyPart createFileDataBodyPart(String name, String resource, MediaType mediaType)
+			throws URISyntaxException {
+		File datei = new File(getClass().getResource(resource).toURI());
+		return new FileDataBodyPart(name, datei, mediaType);
+	}
 
 }

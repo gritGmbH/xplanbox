@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -42,54 +42,54 @@ import java.net.URL;
  */
 public class PlanwerkResourceLocation extends DefaultResourceLocation {
 
-    private byte[] bytes;
+	private byte[] bytes;
 
-    private final WmsMetadata wmsMetadata;
+	private final WmsMetadata wmsMetadata;
 
-    public PlanwerkResourceLocation( byte[] bytes, DefaultResourceIdentifier<OWS> identifier,
-                                     WmsMetadata wmsMetadata ) {
-        super( null, identifier );
-        this.bytes = bytes;
-        this.wmsMetadata = wmsMetadata;
-    }
+	public PlanwerkResourceLocation(byte[] bytes, DefaultResourceIdentifier<OWS> identifier, WmsMetadata wmsMetadata) {
+		super(null, identifier);
+		this.bytes = bytes;
+		this.wmsMetadata = wmsMetadata;
+	}
 
-    @Override
-    public InputStream getAsStream() {
-        return new ByteArrayInputStream( bytes );
-    }
+	@Override
+	public InputStream getAsStream() {
+		return new ByteArrayInputStream(bytes);
+	}
 
-    @Override
-    public InputStream resolve( String path ) {
-        return wmsMetadata.getLocation().resolve( path );
-    }
+	@Override
+	public InputStream resolve(String path) {
+		return wmsMetadata.getLocation().resolve(path);
+	}
 
-    @Override
-    public File resolveToFile( String path ) {
-        return wmsMetadata.getLocation().resolveToFile( path );
-    }
+	@Override
+	public File resolveToFile(String path) {
+		return wmsMetadata.getLocation().resolveToFile(path);
+	}
 
-    @Override
-    public URL resolveToUrl( String path ) {
-        return wmsMetadata.getLocation().resolveToUrl( path );
-    }
+	@Override
+	public URL resolveToUrl(String path) {
+		return wmsMetadata.getLocation().resolveToUrl(path);
+	}
 
-    @Override
-    public void deactivate() {
-        wmsMetadata.getLocation().deactivate();
-    }
+	@Override
+	public void deactivate() {
+		wmsMetadata.getLocation().deactivate();
+	}
 
-    @Override
-    public void activate() {
-        wmsMetadata.getLocation().activate();
-    }
+	@Override
+	public void activate() {
+		wmsMetadata.getLocation().activate();
+	}
 
-    @Override
-    public void setContent( InputStream in ) {
-        try {
-            bytes = IOUtils.toByteArray( in );
-        } catch ( IOException e ) {
-            throw new ResourceException( e.getLocalizedMessage(), e );
-        }
-    }
+	@Override
+	public void setContent(InputStream in) {
+		try {
+			bytes = IOUtils.toByteArray(in);
+		}
+		catch (IOException e) {
+			throw new ResourceException(e.getLocalizedMessage(), e);
+		}
+	}
 
 }

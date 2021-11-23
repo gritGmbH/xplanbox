@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -42,27 +42,26 @@ import de.latlon.xplan.validator.web.shared.ArtifactType;
  */
 public class ValidatorReportProvider implements ReportProvider {
 
-    private final PlanArchiveManager planArchiveManager = new PlanArchiveManager();
+	private final PlanArchiveManager planArchiveManager = new PlanArchiveManager();
 
-    @Autowired
-    private ReportWriter reportWriter;
+	@Autowired
+	private ReportWriter reportWriter;
 
-    @Override
-    public void writeHtmlReport( HttpServletResponse response, String planUuid, String validationName )
-                            throws IOException {
-        File planDirectory = planArchiveManager.createReportDirectory( planUuid );
-        File htmlReport = reportWriter.retrieveHtmlReport( validationName, planDirectory );
-        try (FileInputStream fileInputStream = new FileInputStream( htmlReport )) {
-            copy( fileInputStream, response.getOutputStream() );
-        }
-    }
+	@Override
+	public void writeHtmlReport(HttpServletResponse response, String planUuid, String validationName)
+			throws IOException {
+		File planDirectory = planArchiveManager.createReportDirectory(planUuid);
+		File htmlReport = reportWriter.retrieveHtmlReport(validationName, planDirectory);
+		try (FileInputStream fileInputStream = new FileInputStream(htmlReport)) {
+			copy(fileInputStream, response.getOutputStream());
+		}
+	}
 
-    @Override
-    public void writeZipReport( HttpServletResponse response, String planUuid, String validationName,
-                                List<ArtifactType> artifacts )
-                            throws IOException {
-        File planDirectory = planArchiveManager.createReportDirectory( planUuid );
-        reportWriter.writeZipWithArtifacts( response.getOutputStream(), validationName, artifacts, planDirectory );
-    }
+	@Override
+	public void writeZipReport(HttpServletResponse response, String planUuid, String validationName,
+			List<ArtifactType> artifacts) throws IOException {
+		File planDirectory = planArchiveManager.createReportDirectory(planUuid);
+		reportWriter.writeZipWithArtifacts(response.getOutputStream(), validationName, artifacts, planDirectory);
+	}
 
 }

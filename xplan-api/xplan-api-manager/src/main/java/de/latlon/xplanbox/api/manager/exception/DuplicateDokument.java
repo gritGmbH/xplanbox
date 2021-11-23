@@ -9,14 +9,15 @@ import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
  */
 public class DuplicateDokument extends XPlanApiException {
 
-    private static final String EXCEPTION_MESSAGE = "Dokument with referenzName %s und referenzUrl %s of Plan with ID %s already exists, this results in a duplicate ID %s!";
+	private static final String EXCEPTION_MESSAGE = "Dokument with referenzName %s und referenzUrl %s of Plan with ID %s already exists, this results in a duplicate ID %s!";
 
-    public DuplicateDokument( String planId, String newDokumentId, String referenzName, String referenzUrl ) {
-        super( String.format( EXCEPTION_MESSAGE, referenzName, referenzUrl, planId, newDokumentId ) );
-    }
+	public DuplicateDokument(String planId, String newDokumentId, String referenzName, String referenzUrl) {
+		super(String.format(EXCEPTION_MESSAGE, referenzName, referenzUrl, planId, newDokumentId));
+	}
 
-    @Override
-    public int getStatusCode() {
-        return BAD_REQUEST.getStatusCode();
-    }
+	@Override
+	public int getStatusCode() {
+		return BAD_REQUEST.getStatusCode();
+	}
+
 }

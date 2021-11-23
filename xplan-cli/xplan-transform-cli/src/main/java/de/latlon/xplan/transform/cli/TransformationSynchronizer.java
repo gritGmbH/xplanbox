@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -63,123 +63,125 @@ import static de.latlon.xplan.transform.cli.TransformTool.LOG_TABLE_NAME;
  */
 public class TransformationSynchronizer implements Synchronizer {
 
-    private static final Logger LOG = LoggerFactory.getLogger( TransformationSynchronizer.class );
+	private static final Logger LOG = LoggerFactory.getLogger(TransformationSynchronizer.class);
 
-    private final XPlanDao xPlanDao;
+	private final XPlanDao xPlanDao;
 
-    private final TransformingValidator transformingValidator;
+	private final TransformingValidator transformingValidator;
 
-    private Path outDir;
+	private Path outDir;
 
-    public TransformationSynchronizer( XPlanDao xPlanDao, TransformingValidator transformingValidator, Path outDir ) {
-        this.xPlanDao = xPlanDao;
-        this.transformingValidator = transformingValidator;
-        this.outDir = outDir;
-    }
+	public TransformationSynchronizer(XPlanDao xPlanDao, TransformingValidator transformingValidator, Path outDir) {
+		this.xPlanDao = xPlanDao;
+		this.transformingValidator = transformingValidator;
+		this.outDir = outDir;
+	}
 
-    @Override
-    public void synchronize( Connection conn, int oldid, int newid, int xPlanManagerId, String planVersion,
-                             String oldPlanStatus, String newPlanStatus, Operation operation )
-                    throws SynchronizationException {
-        if ( !XPLAN_41.equals( XPlanVersion.valueOf( planVersion ) ) ) {
-            return;
-        }
-        LOG.info( "Synchronize plan with id {}, operation {}", xPlanManagerId, operation );
-        switch ( operation ) {
-        case INSERT:
-            insert( xPlanManagerId, newPlanStatus );
-            break;
-        case UPDATE:
-            delete( conn, oldid, xPlanManagerId, oldPlanStatus );
-            insert( xPlanManagerId, newPlanStatus );
-            break;
-        case DELETE:
-            delete( conn, oldid, xPlanManagerId, oldPlanStatus );
-            break;
-        default:
-            LOG.warn( "Unsupported operation: {}", operation );
-        }
-    }
+	@Override
+	public void synchronize(Connection conn, int oldid, int newid, int xPlanManagerId, String planVersion,
+			String oldPlanStatus, String newPlanStatus, Operation operation) throws SynchronizationException {
+		if (!XPLAN_41.equals(XPlanVersion.valueOf(planVersion))) {
+			return;
+		}
+		LOG.info("Synchronize plan with id {}, operation {}", xPlanManagerId, operation);
+		switch (operation) {
+		case INSERT:
+			insert(xPlanManagerId, newPlanStatus);
+			break;
+		case UPDATE:
+			delete(conn, oldid, xPlanManagerId, oldPlanStatus);
+			insert(xPlanManagerId, newPlanStatus);
+			break;
+		case DELETE:
+			delete(conn, oldid, xPlanManagerId, oldPlanStatus);
+			break;
+		default:
+			LOG.warn("Unsupported operation: {}", operation);
+		}
+	}
 
-    private void insert( int xPlanManagerId, String newPlanStatus )
-                    throws SynchronizationException {
-        try {
-            XPlan xPlan = xPlanDao.getXPlanById( xPlanManagerId );
+	private void insert(int xPlanManagerId, String newPlanStatus) throws SynchronizationException {
+		try {
+			XPlan xPlan = xPlanDao.getXPlanById(xPlanManagerId);
 
-            TransformationResultWriter resultTransformationWriter = new FileTransformationResultWriter( outDir );
-            TransformingValidationResult validationResult = transformingValidator.validate( xPlan,
-                                                                                            resultTransformationWriter );
-            if ( validationResult != null ) {
-                String id = xPlan.getId();
-                SyntacticValidatorResult validatorResult = validationResult.getValidatorResult();
-                if ( validatorResult.isValid() ) {
-                    LOG.info( "Plan with id {} is valid.", id );
-                    XPlanType type = XPlanType.valueOf( xPlan.getType() );
-                    PlanStatus planStatus = PlanStatus.findByMessage( newPlanStatus );
-                    XPlanAde ade = xPlan.getAde() != null ? XPlanAde.valueOf( xPlan.getAde() ) : null;
-                    XPlanFeatureCollection transformedXPlanFc = createXPlanFeatureCollection(
-                                    validationResult.getTransformationResult(), type, ade );
-                    xPlanDao.insertXPlanFeatureCollection( transformedXPlanFc, planStatus );
-                } else {
-                    LOG.warn( "Transformation of the XPlanGML 4.1 plan with id {} to XPlanGml 5.1 results in syntactically invalid GML: {}",
-                              id, validatorResult );
-                    throw new SynchronizationException(
-                                    "Transformation of the XPlanGML 4.1 plan with id {} to XPlanGml 5.1 results in syntactically invalid GML" );
-                }
-            }
-        } catch ( SynchronizationException e ) {
-            throw e;
-        } catch ( Exception e ) {
-            throw new SynchronizationException( e );
-        }
-    }
+			TransformationResultWriter resultTransformationWriter = new FileTransformationResultWriter(outDir);
+			TransformingValidationResult validationResult = transformingValidator.validate(xPlan,
+					resultTransformationWriter);
+			if (validationResult != null) {
+				String id = xPlan.getId();
+				SyntacticValidatorResult validatorResult = validationResult.getValidatorResult();
+				if (validatorResult.isValid()) {
+					LOG.info("Plan with id {} is valid.", id);
+					XPlanType type = XPlanType.valueOf(xPlan.getType());
+					PlanStatus planStatus = PlanStatus.findByMessage(newPlanStatus);
+					XPlanAde ade = xPlan.getAde() != null ? XPlanAde.valueOf(xPlan.getAde()) : null;
+					XPlanFeatureCollection transformedXPlanFc = createXPlanFeatureCollection(
+							validationResult.getTransformationResult(), type, ade);
+					xPlanDao.insertXPlanFeatureCollection(transformedXPlanFc, planStatus);
+				}
+				else {
+					LOG.warn(
+							"Transformation of the XPlanGML 4.1 plan with id {} to XPlanGml 5.1 results in syntactically invalid GML: {}",
+							id, validatorResult);
+					throw new SynchronizationException(
+							"Transformation of the XPlanGML 4.1 plan with id {} to XPlanGml 5.1 results in syntactically invalid GML");
+				}
+			}
+		}
+		catch (SynchronizationException e) {
+			throw e;
+		}
+		catch (Exception e) {
+			throw new SynchronizationException(e);
+		}
+	}
 
-    private void delete( Connection conn, int logTableId, int xPlanManagerId, String oldPlanStatus )
-                    throws SynchronizationException {
-        try {
-            List<String> fids = selectIds( conn, logTableId );
-            PlanStatus planStatus = PlanStatus.findByMessage( oldPlanStatus );
-            xPlanDao.deleteXPlanFeatureCollection( xPlanManagerId, XPlanVersion.XPLAN_51, null, planStatus, fids );
-        } catch ( Exception e ) {
-            throw new SynchronizationException( e );
-        }
-    }
+	private void delete(Connection conn, int logTableId, int xPlanManagerId, String oldPlanStatus)
+			throws SynchronizationException {
+		try {
+			List<String> fids = selectIds(conn, logTableId);
+			PlanStatus planStatus = PlanStatus.findByMessage(oldPlanStatus);
+			xPlanDao.deleteXPlanFeatureCollection(xPlanManagerId, XPlanVersion.XPLAN_51, null, planStatus, fids);
+		}
+		catch (Exception e) {
+			throw new SynchronizationException(e);
+		}
+	}
 
-    private List<String> selectIds( Connection conn, int logTableId )
-                    throws SynchronizationException {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-            StringBuilder sb = new StringBuilder();
-            sb.append( "SELECT fids FROM " ).append( LOG_TABLE_NAME ).append( " WHERE id = ? " );
-            ps = conn.prepareStatement( sb.toString() );
-            ps.setInt( 1, logTableId );
-            LOG.debug( "Execute select fids to delete: {}", ps );
+	private List<String> selectIds(Connection conn, int logTableId) throws SynchronizationException {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			StringBuilder sb = new StringBuilder();
+			sb.append("SELECT fids FROM ").append(LOG_TABLE_NAME).append(" WHERE id = ? ");
+			ps = conn.prepareStatement(sb.toString());
+			ps.setInt(1, logTableId);
+			LOG.debug("Execute select fids to delete: {}", ps);
 
-            rs = ps.executeQuery();
-            if ( rs.next() ) {
-                Array array = rs.getArray( 1 );
-                String[] fids = (String[]) array.getArray();
-                return Arrays.asList( fids );
-            }
-        } catch ( SQLException e ) {
-            throw new SynchronizationException( "Could not select fids from " + LOG_TABLE_NAME, e );
-        } finally {
-            DatabaseUtils.closeQuietly( ps, rs );
-        }
-        return Collections.emptyList();
-    }
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				Array array = rs.getArray(1);
+				String[] fids = (String[]) array.getArray();
+				return Arrays.asList(fids);
+			}
+		}
+		catch (SQLException e) {
+			throw new SynchronizationException("Could not select fids from " + LOG_TABLE_NAME, e);
+		}
+		finally {
+			DatabaseUtils.closeQuietly(ps, rs);
+		}
+		return Collections.emptyList();
+	}
 
-    private XPlanFeatureCollection createXPlanFeatureCollection( TransformationResult transformationResult,
-                                                                 XPlanType type, XPlanAde ade )
-                    throws Exception {
-        byte[] resultAsBytes = transformationResult.getTransformationResult();
-        XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
-        try ( InputStream inputStream = new ByteArrayInputStream( resultAsBytes ) ) {
-            AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema( resultVersion, ade );
-            return XPlanFeatureCollectionUtils.parseXPlanFeatureCollection( inputStream, type, resultVersion,
-                                                                            appSchema );
-        }
-    }
+	private XPlanFeatureCollection createXPlanFeatureCollection(TransformationResult transformationResult,
+			XPlanType type, XPlanAde ade) throws Exception {
+		byte[] resultAsBytes = transformationResult.getTransformationResult();
+		XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
+		try (InputStream inputStream = new ByteArrayInputStream(resultAsBytes)) {
+			AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema(resultVersion, ade);
+			return XPlanFeatureCollectionUtils.parseXPlanFeatureCollection(inputStream, type, resultVersion, appSchema);
+		}
+	}
 
 }

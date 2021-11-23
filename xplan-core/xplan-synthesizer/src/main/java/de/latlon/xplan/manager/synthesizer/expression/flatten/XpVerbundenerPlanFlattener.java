@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -35,24 +35,24 @@ import java.util.List;
  */
 public class XpVerbundenerPlanFlattener extends AbstractFlattener {
 
-    @Override
-    public boolean accepts( TypedObjectNode node ) {
-        String elName = null;
-        if ( node instanceof ElementNode ) {
-            elName = ( (ElementNode) node ).getName().getLocalPart();
-        }
-        return "XP_VerbundenerPlan".equals( elName );
-    }
+	@Override
+	public boolean accepts(TypedObjectNode node) {
+		String elName = null;
+		if (node instanceof ElementNode) {
+			elName = ((ElementNode) node).getName().getLocalPart();
+		}
+		return "XP_VerbundenerPlan".equals(elName);
+	}
 
-    @Override
-    public String flatten( TypedObjectNode xpVerbundenerPlan ) {
-        XPlanVersion version = XPlanVersionUtils.determineBaseVersion( ( (ElementNode) xpVerbundenerPlan ).getName() );
-        List<Pair<String, String>> properties = new ArrayList<>();
-        append( "Verbundener Plan", xpVerbundenerPlan, "planName", properties );
-        appendTranslatedCode( "Rechtscharakter Planänderung", xpVerbundenerPlan, "rechtscharakter", version,
-                              "XP_RechtscharakterPlanaenderung", properties );
-        append( "Nummer verbundener Plan", xpVerbundenerPlan, "nummer", properties );
-        return encode( properties );
-    }
+	@Override
+	public String flatten(TypedObjectNode xpVerbundenerPlan) {
+		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(((ElementNode) xpVerbundenerPlan).getName());
+		List<Pair<String, String>> properties = new ArrayList<>();
+		append("Verbundener Plan", xpVerbundenerPlan, "planName", properties);
+		appendTranslatedCode("Rechtscharakter Planänderung", xpVerbundenerPlan, "rechtscharakter", version,
+				"XP_RechtscharakterPlanaenderung", properties);
+		append("Nummer verbundener Plan", xpVerbundenerPlan, "nummer", properties);
+		return encode(properties);
+	}
 
 }

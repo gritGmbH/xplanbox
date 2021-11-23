@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -50,49 +50,47 @@ import static org.springframework.web.context.support.SpringBeanAutowiringSuppor
 @RemoteServiceRelativePath("mappreviewconfig")
 public class ValidatorMapPreviewConfigService extends RemoteServiceServlet implements MapPreviewConfigService {
 
-    private static final Logger LOG = LoggerFactory.getLogger( ValidatorMapPreviewConfigService.class );
+	private static final Logger LOG = LoggerFactory.getLogger(ValidatorMapPreviewConfigService.class);
 
-    private final PlanArchiveManager planArchiveManager = new PlanArchiveManager();
+	private final PlanArchiveManager planArchiveManager = new PlanArchiveManager();
 
-    protected HttpSession session;
+	protected HttpSession session;
 
-    @Autowired
-    private MapPreviewManager mapPreviewManager;
+	@Autowired
+	private MapPreviewManager mapPreviewManager;
 
-    @Override
-    public void init( ServletConfig config )
-                            throws ServletException {
-        super.init( config );
-        processInjectionBasedOnServletContext( this, config.getServletContext() );
-    }
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		processInjectionBasedOnServletContext(this, config.getServletContext());
+	}
 
-    @Override
-    public void service( final HttpServletRequest request, HttpServletResponse response )
-                            throws ServletException, IOException {
-        session = request.getSession( true );
-        super.service( request, response );
-    }
+	@Override
+	public void service(final HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		session = request.getSession(true);
+		super.service(request, response);
+	}
 
-    @Override
-    public boolean isMapPreviewAvaialable()
-                            throws MapPreviewException {
-        return mapPreviewManager != null;
-    }
+	@Override
+	public boolean isMapPreviewAvaialable() throws MapPreviewException {
+		return mapPreviewManager != null;
+	}
 
-    @Override
-    public MapPreviewMetadata createMapPreviewConfig()
-                            throws MapPreviewException {
-        if ( mapPreviewManager == null )
-            throw new MapPreviewException( "Map preview manager is not available" );
-        try {
-            XPlan planToVerify = planArchiveManager.readPlanFromSession( session );
-            File archive = planArchiveManager.retrieveXPlanArchiveFromFileSystem( planToVerify );
+	@Override
+	public MapPreviewMetadata createMapPreviewConfig() throws MapPreviewException {
+		if (mapPreviewManager == null)
+			throw new MapPreviewException("Map preview manager is not available");
+		try {
+			XPlan planToVerify = planArchiveManager.readPlanFromSession(session);
+			File archive = planArchiveManager.retrieveXPlanArchiveFromFileSystem(planToVerify);
 
-            return mapPreviewManager.createConfigurations( archive );
-        } catch ( ValidatorException | IOException | MapPreviewCreationException e ) {
-            LOG.error( "An exception occurred during validation", e );
-            throw new MapPreviewException( e.getMessage() );
-        }
-    }
+			return mapPreviewManager.createConfigurations(archive);
+		}
+		catch (ValidatorException | IOException | MapPreviewCreationException e) {
+			LOG.error("An exception occurred during validation", e);
+			throw new MapPreviewException(e.getMessage());
+		}
+	}
 
 }

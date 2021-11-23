@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -57,128 +57,123 @@ import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 
 public class PlanApiTest extends JerseyTest {
 
+	@Override
+	protected Application configure() {
+		enable(TestProperties.LOG_TRAFFIC);
+		final ResourceConfig resourceConfig = new ResourceConfig(PlanApi.class);
+		resourceConfig.register(XPlanApiExceptionMapper.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContext.class,
+				TestContext.class);
+		resourceConfig.property("contextConfig", context);
+		return resourceConfig;
+	}
 
-    @Override
-    protected Application configure() {
-        enable( TestProperties.LOG_TRAFFIC );
-        final ResourceConfig resourceConfig = new ResourceConfig( PlanApi.class );
-        resourceConfig.register( XPlanApiExceptionMapper.class );
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext( ApplicationContext.class,
-                TestContext.class );
-        resourceConfig.property("contextConfig", context );
-        return resourceConfig;
-    }
+	@Test
+	public void verifyThat_PostPlanOctetStream_ReturnsCorrectStatusCodeForValidMediaType()
+			throws IOException, URISyntaxException {
+		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/plan").request().accept(APPLICATION_JSON)
+				.post(Entity.entity(data, APPLICATION_OCTET_STREAM));
+		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
+	}
 
-    @Test
-    public void verifyThat_PostPlanOctetStream_ReturnsCorrectStatusCodeForValidMediaType() throws IOException, URISyntaxException {
-        final byte[] data = Files.readAllBytes( Paths.get(
-                                PlanApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
-        final Response response = target( "/plan" ).request().
-                                accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_OCTET_STREAM ) );
-        assertThat( response.getStatus(), is( Response.Status.CREATED.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-        assertThat( response.getHeaderString( HttpHeaders.LOCATION ), is( notNullValue() ) );
-    }
+	@Test
+	public void verifyThat_PostPlanZip_ReturnsCorrectStatusCodeForValidMediaType()
+			throws IOException, URISyntaxException {
+		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/plan").request().accept(APPLICATION_JSON)
+				.post(Entity.entity(data, APPLICATION_ZIP));
+		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
+	}
 
-    @Test
-    public void verifyThat_PostPlanZip_ReturnsCorrectStatusCodeForValidMediaType() throws IOException, URISyntaxException {
-        final byte[] data = Files.readAllBytes( Paths.get(
-                                PlanApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
-        final Response response = target( "/plan" ).request().
-                                accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_ZIP ) );
-        assertThat( response.getStatus(), is( Response.Status.CREATED.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-        assertThat( response.getHeaderString( HttpHeaders.LOCATION ), is( notNullValue() ) );
-    }
+	@Test
+	public void verifyThat_PostPlanXZip_ReturnsCorrectStatusCodeForValidMediaType()
+			throws IOException, URISyntaxException {
+		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/plan").request().accept(APPLICATION_JSON)
+				.post(Entity.entity(data, APPLICATION_X_ZIP));
+		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
+	}
 
-    @Test
-    public void verifyThat_PostPlanXZip_ReturnsCorrectStatusCodeForValidMediaType() throws IOException, URISyntaxException {
-        final byte[] data = Files.readAllBytes( Paths.get(
-                                PlanApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
-        final Response response = target( "/plan" ).request().
-                                accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_X_ZIP ) );
-        assertThat( response.getStatus(), is( Response.Status.CREATED.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-        assertThat( response.getHeaderString( HttpHeaders.LOCATION ), is( notNullValue() ) );
-    }
+	@Test
+	public void verifyThat_PostPlanXZipCompressed_ReturnsCorrectStatusCodeForValidMediaType()
+			throws IOException, URISyntaxException {
+		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/plan").request().accept(APPLICATION_JSON)
+				.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
+		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
+	}
 
-    @Test
-    public void verifyThat_PostPlanXZipCompressed_ReturnsCorrectStatusCodeForValidMediaType() throws IOException, URISyntaxException {
-        final byte[] data = Files.readAllBytes( Paths.get(
-                                PlanApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
-        final Response response = target( "/plan" ).request().
-                                accept( APPLICATION_JSON ).post( Entity.entity( data, APPLICATION_X_ZIP_COMPRESSED ) );
-        assertThat( response.getStatus(), is( Response.Status.CREATED.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-        assertThat( response.getHeaderString( HttpHeaders.LOCATION ), is( notNullValue() ) );
-    }
+	@Test
+	public void verifyThat_PostPlan_ReturnsCorrectStatusCodeForInvalidMediaType()
+			throws IOException, URISyntaxException {
+		final String data = new String(
+				Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/xplan.gml").toURI())));
+		final Response response = target("/plan").request().accept(APPLICATION_JSON)
+				.post(Entity.entity(data, TEXT_XML));
+		assertThat(response.getStatus(), is(Response.Status.UNSUPPORTED_MEDIA_TYPE.getStatusCode()));
+	}
 
-    @Test
-    public void verifyThat_PostPlan_ReturnsCorrectStatusCodeForInvalidMediaType() throws IOException, URISyntaxException {
-        final String data = new String( Files.readAllBytes( Paths.get(
-                PlanApiTest.class.getResource( "/xplan.gml" ).toURI() ) ) );
-        final Response response = target( "/plan" ).request().
-                accept( APPLICATION_JSON ).post( Entity.entity( data, TEXT_XML ) );
-        assertThat( response.getStatus(), is( Response.Status.UNSUPPORTED_MEDIA_TYPE.getStatusCode() ) );
-    }
+	@Test
+	public void verifyThat_DeletePlan_ReturnsCorrectStatus() {
+		final Response response = target("/plan/123").request().accept(APPLICATION_JSON).delete();
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
 
-    @Test
-    public void verifyThat_DeletePlan_ReturnsCorrectStatus() {
-        final Response response = target( "/plan/123" ).request().
-                accept( APPLICATION_JSON ).delete();
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
+	@Test
+	public void verifyThat_GetPlanById_AsJson_ReturnsCorrectStatusAndContent() {
+		final Response response = target("/plan/123").request().accept(APPLICATION_JSON).get();
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 
-    @Test
-    public void verifyThat_GetPlanById_AsJson_ReturnsCorrectStatusAndContent() {
-        final Response response = target( "/plan/123" ).request().
-                                accept( APPLICATION_JSON ).get();
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+		String responseBody = response.readEntity(String.class);
 
-        String responseBody = response.readEntity( String.class );
+		assertThat(responseBody, isJson());
+		assertThat(responseBody, hasJsonPath("$.version", is(XPLAN_41.name())));
+		assertThat(responseBody, hasJsonPath("$.planStatus", is(FESTGESTELLT.name())));
+		assertThat(responseBody, hasJsonPath(
+				"$.links[?(@.rel=='self' && @.href=='http:\\/\\/localhost:8080\\/xplan-api-manager\\/xmanager\\/api\\/v1\\/plan\\/123')]"));
+	}
 
-        assertThat( responseBody, isJson() );
-        assertThat( responseBody, hasJsonPath( "$.version", is( XPLAN_41.name() ) ) );
-        assertThat( responseBody, hasJsonPath( "$.planStatus", is( FESTGESTELLT.name() ) ) );
-        assertThat( responseBody,
-                    hasJsonPath( "$.links[?(@.rel=='self' && @.href=='http:\\/\\/localhost:8080\\/xplan-api-manager\\/xmanager\\/api\\/v1\\/plan\\/123')]" ) );
-    }
+	@Test
+	public void verifyThat_GetPlanById_AsXml_ReturnsCorrectStatusAndContent() {
+		final Response response = target("/plan/123").request().accept(APPLICATION_XML).get();
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_XML));
 
-    @Test
-    public void verifyThat_GetPlanById_AsXml_ReturnsCorrectStatusAndContent() {
-        final Response response = target( "/plan/123" ).request().
-                                accept( APPLICATION_XML ).get();
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_XML ) );
+		String responseBody = response.readEntity(String.class);
+		assertThat(responseBody, hasXPath("/planInfo/version", is(XPLAN_41.name())));
+		assertThat(responseBody, hasXPath("/planInfo/planStatus", is(FESTGESTELLT.name())));
+		assertThat(responseBody, hasXPath("/planInfo/links[rel='SELF']/href",
+				is("http://localhost:8080/xplan-api-manager/xmanager/api/v1/plan/123")));
+	}
 
-        String responseBody = response.readEntity( String.class );
-        assertThat( responseBody, hasXPath( "/planInfo/version", is( XPLAN_41.name() ) ) );
-        assertThat( responseBody, hasXPath( "/planInfo/planStatus", is( FESTGESTELLT.name() ) ) );
-        assertThat( responseBody, hasXPath( "/planInfo/links[rel='SELF']/href",
-                                            is( "http://localhost:8080/xplan-api-manager/xmanager/api/v1/plan/123" ) ) );
-    }
+	@Test
+	public void verifyThat_GetPlanById_AsZip_ReturnsCorrectStatusAndContent() {
+		final Response response = target("/plan/123").request().accept(APPLICATION_ZIP).get();
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_ZIP));
+	}
 
-    @Test
-    public void verifyThat_GetPlanById_AsZip_ReturnsCorrectStatusAndContent() {
-        final Response response = target( "/plan/123" ).request().
-                                accept( APPLICATION_ZIP ).get();
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_ZIP ) );
-    }
+	@Test
+	public void verifyThat_GetPlanById_ReturnsCorrectStatusCodeForWrongId() {
+		final Response response = target("/plan/42").request().accept(APPLICATION_ZIP).get();
+		assertThat(response.getStatus(), is(Response.Status.NOT_FOUND.getStatusCode()));
+	}
 
-    @Test
-    public void verifyThat_GetPlanById_ReturnsCorrectStatusCodeForWrongId() {
-        final Response response = target( "/plan/42" ).request().
-                accept( APPLICATION_ZIP ).get();
-        assertThat( response.getStatus(), is( Response.Status.NOT_FOUND.getStatusCode() ) );
-    }
+	@Test
+	public void verifyThat_GetPlanByName_ReturnsCorrectStatus() {
+		final Response response = target("/plan/name/bplan_41").request().accept(APPLICATION_JSON).get();
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
 
-    @Test
-    public void verifyThat_GetPlanByName_ReturnsCorrectStatus() {
-        final Response response = target( "/plan/name/bplan_41" ).request().
-                accept( APPLICATION_JSON ).get();
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
 }

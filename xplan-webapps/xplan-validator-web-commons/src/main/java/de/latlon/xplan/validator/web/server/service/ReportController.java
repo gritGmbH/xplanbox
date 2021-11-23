@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -42,7 +42,7 @@ import static org.springframework.http.MediaType.TEXT_HTML_VALUE;
 
 /**
  * REST-Interface providing report artefacts
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
@@ -50,35 +50,32 @@ import static org.springframework.http.MediaType.TEXT_HTML_VALUE;
 @RequestMapping(value = "/report")
 public class ReportController {
 
-    private static final Logger LOG = LoggerFactory.getLogger( ReportController.class );
+	private static final Logger LOG = LoggerFactory.getLogger(ReportController.class);
 
-    @Autowired
-    private ReportProvider reportProvider;
+	@Autowired
+	private ReportProvider reportProvider;
 
-    @RequestMapping(value = "/html/{uuid}", params = { "validationName" }, method = RequestMethod.GET, produces = TEXT_HTML_VALUE)
-    @ResponseBody
-    public void getHtmlReport( HttpServletResponse response, 
-                               @PathVariable String uuid, 
-                               @RequestParam(value = "validationName", required = true) String validationName )
-                            throws IOException {
-        response.addHeader( "Content-Type", TEXT_HTML_VALUE );
-        LOG.debug( "HTML-Report for '{}' and validationName '{}' requested.", uuid, validationName );
-        reportProvider.writeHtmlReport( response, uuid, validationName );
-        response.setContentType( "text/html" );
-    }
+	@RequestMapping(value = "/html/{uuid}", params = { "validationName" }, method = RequestMethod.GET,
+			produces = TEXT_HTML_VALUE)
+	@ResponseBody
+	public void getHtmlReport(HttpServletResponse response, @PathVariable String uuid,
+			@RequestParam(value = "validationName", required = true) String validationName) throws IOException {
+		response.addHeader("Content-Type", TEXT_HTML_VALUE);
+		LOG.debug("HTML-Report for '{}' and validationName '{}' requested.", uuid, validationName);
+		reportProvider.writeHtmlReport(response, uuid, validationName);
+		response.setContentType("text/html");
+	}
 
-    @RequestMapping(value = "/zip/{uuid}", params = { "validationName", "artifacts" }, method = RequestMethod.GET)
-    @ResponseBody
-    public void getZippedReport( HttpServletResponse response, 
-                                 @PathVariable String uuid, 
-                                 @RequestParam(value = "validationName", required = true) String validationName, 
-                                 @RequestParam(value = "artifacts", required = true) List<ArtifactType> artifacts )
-                            throws IOException {
-        LOG.debug( "ZIP-Report for '{}' with artifacts {} requested.", uuid, artifacts );
-        response.setContentType( "application/zip" );
-        response.setHeader( "Content-Disposition", "attachment; filename=\"" + validationName + "-Report.zip\"" );
+	@RequestMapping(value = "/zip/{uuid}", params = { "validationName", "artifacts" }, method = RequestMethod.GET)
+	@ResponseBody
+	public void getZippedReport(HttpServletResponse response, @PathVariable String uuid,
+			@RequestParam(value = "validationName", required = true) String validationName,
+			@RequestParam(value = "artifacts", required = true) List<ArtifactType> artifacts) throws IOException {
+		LOG.debug("ZIP-Report for '{}' with artifacts {} requested.", uuid, artifacts);
+		response.setContentType("application/zip");
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + validationName + "-Report.zip\"");
 
-        reportProvider.writeZipReport( response, uuid, validationName, artifacts );
-    }
+		reportProvider.writeZipReport(response, uuid, validationName, artifacts);
+	}
 
 }

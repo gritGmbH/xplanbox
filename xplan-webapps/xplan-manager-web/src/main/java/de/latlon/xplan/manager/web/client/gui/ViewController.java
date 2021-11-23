@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -71,97 +71,93 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 
 /**
  * Controller controlling the main views (like plan list with upload and edit views).
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class ViewController {
 
-    private final HandlerManager eventBus;
+	private final HandlerManager eventBus;
 
-    private final DeckPanel mainView;
+	private final DeckPanel mainView;
 
-    private EditorView editPanel;
+	private EditorView editPanel;
 
-    private ImportAndListView importAndOverviewPanel;
+	private ImportAndListView importAndOverviewPanel;
 
-    /**
-     * @param eventBus
-     *            required to control overall view events, never <code>null</code>
-     * @param configuration
-     *            never <code>null</code>
-     * @param authorizationInfo
-     *            never <code>null</code>
-     */
-    public ViewController( HandlerManager eventBus, ManagerWebConfiguration configuration,
-                           AuthorizationInfo authorizationInfo ) {
-        this.eventBus = eventBus;
-        this.mainView = new DeckPanel();
-        createGui( eventBus, configuration, authorizationInfo );
-        bind();
-    }
+	/**
+	 * @param eventBus required to control overall view events, never <code>null</code>
+	 * @param configuration never <code>null</code>
+	 * @param authorizationInfo never <code>null</code>
+	 */
+	public ViewController(HandlerManager eventBus, ManagerWebConfiguration configuration,
+			AuthorizationInfo authorizationInfo) {
+		this.eventBus = eventBus;
+		this.mainView = new DeckPanel();
+		createGui(eventBus, configuration, authorizationInfo);
+		bind();
+	}
 
-    /**
-     * Inits the Controller with the passed rootPanel.
-     * 
-     * @param rootPanel
-     */
-    void init( RootPanel rootPanel ) {
-        RootPanel contentPanel = detectContentPanel( rootPanel );
-        contentPanel.add( mainView );
-        showImportAndPlanList();
-    }
+	/**
+	 * Inits the Controller with the passed rootPanel.
+	 * @param rootPanel
+	 */
+	void init(RootPanel rootPanel) {
+		RootPanel contentPanel = detectContentPanel(rootPanel);
+		contentPanel.add(mainView);
+		showImportAndPlanList();
+	}
 
-    private RootPanel detectContentPanel( RootPanel rootPanel ) {
-        RootPanel contentPanel = RootPanel.get( "content" );
-        if ( contentPanel != null )
-            return contentPanel;
-        return rootPanel;
-    }
+	private RootPanel detectContentPanel(RootPanel rootPanel) {
+		RootPanel contentPanel = RootPanel.get("content");
+		if (contentPanel != null)
+			return contentPanel;
+		return rootPanel;
+	}
 
-    private void createGui( HandlerManager eventBus, ManagerWebConfiguration configuration,
-                            AuthorizationInfo authorizationInfo ) {
-        importAndOverviewPanel = new ImportAndListView( eventBus, configuration, authorizationInfo );
-        editPanel = new EditorView( eventBus );
+	private void createGui(HandlerManager eventBus, ManagerWebConfiguration configuration,
+			AuthorizationInfo authorizationInfo) {
+		importAndOverviewPanel = new ImportAndListView(eventBus, configuration, authorizationInfo);
+		editPanel = new EditorView(eventBus);
 
-        mainView.add( importAndOverviewPanel );
-        mainView.add( editPanel );
-    }
+		mainView.add(importAndOverviewPanel);
+		mainView.add(editPanel);
+	}
 
-    private void bind() {
-        eventBus.addHandler( EditorStartedEvent.TYPE, new EditorStartedEventHandler() {
+	private void bind() {
+		eventBus.addHandler(EditorStartedEvent.TYPE, new EditorStartedEventHandler() {
 
-            @Override
-            public void onEditorStarted( EditorStartedEvent event ) {
-                editPanel.setXPlanToEdit( event.getPlanId(), event.getVersion(), event.getxPlantoEdit() );
-                showEditModule();
-            }
-        } );
+			@Override
+			public void onEditorStarted(EditorStartedEvent event) {
+				editPanel.setXPlanToEdit(event.getPlanId(), event.getVersion(), event.getxPlantoEdit());
+				showEditModule();
+			}
+		});
 
-        eventBus.addHandler( EditorFinishedEvent.TYPE, new EditorFinishedEventHandler() {
+		eventBus.addHandler(EditorFinishedEvent.TYPE, new EditorFinishedEventHandler() {
 
-            @Override
-            public void onEditorFinished( EditorFinishedEvent event ) {
-                importAndOverviewPanel.updatePlanList();
-                showImportAndPlanList();
-            }
-        } );
+			@Override
+			public void onEditorFinished(EditorFinishedEvent event) {
+				importAndOverviewPanel.updatePlanList();
+				showImportAndPlanList();
+			}
+		});
 
-        eventBus.addHandler( EditorCanceledEvent.TYPE, new EditorCanceledEventHandler() {
+		eventBus.addHandler(EditorCanceledEvent.TYPE, new EditorCanceledEventHandler() {
 
-            @Override
-            public void onEditorCanceled( EditorCanceledEvent event ) {
-                showImportAndPlanList();
-            }
-        } );
-    }
+			@Override
+			public void onEditorCanceled(EditorCanceledEvent event) {
+				showImportAndPlanList();
+			}
+		});
+	}
 
-    private void showEditModule() {
-        mainView.showWidget( 1 );
-    }
+	private void showEditModule() {
+		mainView.showWidget(1);
+	}
 
-    private void showImportAndPlanList() {
-        mainView.showWidget( 0 );
-    }
+	private void showImportAndPlanList() {
+		mainView.showWidget(0);
+	}
 
 }

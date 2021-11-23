@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -26,30 +26,29 @@ import java.nio.file.Path;
 
 /**
  * Loads properties from base class.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class DefaultPropertiesLoader extends AbstractPropertiesLoader {
 
-    private Class<?> baseClass;
+	private Class<?> baseClass;
 
-    /**
-     * @param baseClass
-     *            to load resources from
-     */
-    public DefaultPropertiesLoader( Class<?> baseClass ) {
-        this.baseClass = baseClass;
-    }
+	/**
+	 * @param baseClass to load resources from
+	 */
+	public DefaultPropertiesLoader(Class<?> baseClass) {
+		this.baseClass = baseClass;
+	}
 
-    @Override
-    InputStream retrieveAsStream( String propertiesFileName ) {
-        return baseClass.getResourceAsStream( propertiesFileName );
-    }
+	@Override
+	InputStream retrieveAsStream(String propertiesFileName) {
+		return baseClass.getResourceAsStream(propertiesFileName);
+	}
 
-    @Override
-    public Path getConfigDirectory() {
-        return null;
-    }
+	@Override
+	public Path getConfigDirectory() {
+		return null;
+	}
 
 }

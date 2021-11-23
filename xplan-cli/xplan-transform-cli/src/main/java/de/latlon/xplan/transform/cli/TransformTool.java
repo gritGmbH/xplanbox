@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -60,189 +60,192 @@ import static java.nio.file.Files.isDirectory;
  */
 public class TransformTool {
 
-    private static final Logger LOG = LoggerFactory.getLogger( TransformTool.class );
+	private static final Logger LOG = LoggerFactory.getLogger(TransformTool.class);
 
-    static final String LOG_TABLE_NAME = "xplanmgr.transformToolPlanTableLog";
+	static final String LOG_TABLE_NAME = "xplanmgr.transformToolPlanTableLog";
 
-    private enum TYPE {VALIDATE, SYNC, ALL}
+	private enum TYPE {
 
-    private static final String OPT_WORKSPACE_NAME = "workspaceName";
+		VALIDATE, SYNC, ALL
 
-    private static final String OPT_CONFIG_DIR = "configurationDirectory";
+	}
 
-    private static final String OPT_TYPE = "type";
+	private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
-    private static final String OPT_OUT_DIR = "output";
+	private static final String OPT_CONFIG_DIR = "configurationDirectory";
 
-    public static void main( String[] args ) {
-        if ( args.length == 0 || ( args.length > 0 && ( args[0].contains( "help" ) || args[0].contains( "?" ) ) ) ) {
-            printHelp( initOptions() );
-        }
+	private static final String OPT_TYPE = "type";
 
-        try {
-            CommandLine cmdline = new PosixParser().parse( initOptions(), args );
-            try {
-                String workspaceName = cmdline.getOptionValue( OPT_WORKSPACE_NAME );
-                if ( workspaceName == null || workspaceName.isEmpty() )
-                    workspaceName = "xplan-manager-workspace";
-                String configurationDirectory = cmdline.getOptionValue( OPT_CONFIG_DIR );
-                TYPE type = determineType( cmdline );
-                Path outDirectory = createOutDirectory( cmdline );
+	private static final String OPT_OUT_DIR = "output";
 
-                TransformTool tool = new TransformTool();
-                tool.run( workspaceName, configurationDirectory, type, outDirectory );
-            } catch ( Exception e ) {
-                LOG.error( "TransformTool could not be executed!", e );
-            }
-        } catch ( ParseException exp ) {
-            System.err.println( "Could not parse command line" );
-            exp.printStackTrace();
-            printHelp( initOptions() );
-        }
-    }
+	public static void main(String[] args) {
+		if (args.length == 0 || (args.length > 0 && (args[0].contains("help") || args[0].contains("?")))) {
+			printHelp(initOptions());
+		}
 
-    private void run( String workspaceName, String configurationDirectory, TYPE type, Path outDirectory )
-                    throws Exception {
-        ManagerConfiguration managerConfiguration = createManagerConfiguration( configurationDirectory );
-        XPlanDao xPlanDao = createXplanDao( workspaceName, managerConfiguration );
-        HaleXplan41ToXplan51Transformer transformer = new HaleXplan41ToXplan51Transformer(
-                        managerConfiguration.getPathToHaleCli(), managerConfiguration.getPathToHaleProjectDirectory() );
-        XPlanGmlTransformer xPlanGmlTransformer = new XPlanGmlTransformer( transformer );
-        TransformingValidator validator = new TransformingValidator( xPlanDao, xPlanGmlTransformer );
-        ManagerWorkspaceWrapper managerWorkspaceWrapper = createManagerWorkspaceWrapper( workspaceName,
-                                                                                         configurationDirectory );
-        switch ( type ) {
-        case ALL:
-            sync( managerWorkspaceWrapper, ( conn ) -> {
-                TransformationSynchronizer synchronizer = new TransformationSynchronizer( xPlanDao, validator,
-                                                                                          outDirectory );
-                TransformAllExecutor allExecuter = new TransformAllExecutor( LOG_TABLE_NAME, synchronizer );
-                allExecuter.transformAll( conn );
-            } );
-            break;
-        case SYNC:
-            sync( managerWorkspaceWrapper, ( conn ) -> {
-                TransformationSynchronizer synchronizer = new TransformationSynchronizer( xPlanDao, validator,
-                                                                                          outDirectory );
-                SynchronizeExecutor executer = new SynchronizeExecutor( LOG_TABLE_NAME, synchronizer );
-                executer.synchronize( conn );
-            } );
-            break;
-        case VALIDATE:
-        default:
-            ValidateExecutor validateExecutor = new ValidateExecutor( xPlanDao, validator );
-            validateExecutor.validateAll( outDirectory );
-        }
-        LOG.info( "Results was written to {}", outDirectory );
-    }
+		try {
+			CommandLine cmdline = new PosixParser().parse(initOptions(), args);
+			try {
+				String workspaceName = cmdline.getOptionValue(OPT_WORKSPACE_NAME);
+				if (workspaceName == null || workspaceName.isEmpty())
+					workspaceName = "xplan-manager-workspace";
+				String configurationDirectory = cmdline.getOptionValue(OPT_CONFIG_DIR);
+				TYPE type = determineType(cmdline);
+				Path outDirectory = createOutDirectory(cmdline);
 
-    private void sync( ManagerWorkspaceWrapper managerWorkspaceWrapper, Consumer<Connection> connectionConsumer ) {
-        try ( Connection conn = managerWorkspaceWrapper.openConnection() ) {
-            conn.setAutoCommit( false );
-            connectionConsumer.accept( conn );
-        } catch ( SQLException e ) {
-            LOG.error( "Could not open connection: {}", e.getMessage(), e );
-        }
-    }
+				TransformTool tool = new TransformTool();
+				tool.run(workspaceName, configurationDirectory, type, outDirectory);
+			}
+			catch (Exception e) {
+				LOG.error("TransformTool could not be executed!", e);
+			}
+		}
+		catch (ParseException exp) {
+			System.err.println("Could not parse command line");
+			exp.printStackTrace();
+			printHelp(initOptions());
+		}
+	}
 
-    private static Path createOutDirectory( CommandLine cmdline )
-                    throws IOException {
-        String outDirectory = cmdline.getOptionValue( OPT_OUT_DIR );
-        if ( outDirectory != null ) {
-            Path path = Paths.get( outDirectory );
-            if ( !exists( path ) ) {
-                return createDirectory( path );
-            }
-            if ( isDirectory( path ) ) {
-                return path;
-            } else {
-                throw new IllegalArgumentException( "Passed output directory exists but is not a directory" );
-            }
-        }
+	private void run(String workspaceName, String configurationDirectory, TYPE type, Path outDirectory)
+			throws Exception {
+		ManagerConfiguration managerConfiguration = createManagerConfiguration(configurationDirectory);
+		XPlanDao xPlanDao = createXplanDao(workspaceName, managerConfiguration);
+		HaleXplan41ToXplan51Transformer transformer = new HaleXplan41ToXplan51Transformer(
+				managerConfiguration.getPathToHaleCli(), managerConfiguration.getPathToHaleProjectDirectory());
+		XPlanGmlTransformer xPlanGmlTransformer = new XPlanGmlTransformer(transformer);
+		TransformingValidator validator = new TransformingValidator(xPlanDao, xPlanGmlTransformer);
+		ManagerWorkspaceWrapper managerWorkspaceWrapper = createManagerWorkspaceWrapper(workspaceName,
+				configurationDirectory);
+		switch (type) {
+		case ALL:
+			sync(managerWorkspaceWrapper, (conn) -> {
+				TransformationSynchronizer synchronizer = new TransformationSynchronizer(xPlanDao, validator,
+						outDirectory);
+				TransformAllExecutor allExecuter = new TransformAllExecutor(LOG_TABLE_NAME, synchronizer);
+				allExecuter.transformAll(conn);
+			});
+			break;
+		case SYNC:
+			sync(managerWorkspaceWrapper, (conn) -> {
+				TransformationSynchronizer synchronizer = new TransformationSynchronizer(xPlanDao, validator,
+						outDirectory);
+				SynchronizeExecutor executer = new SynchronizeExecutor(LOG_TABLE_NAME, synchronizer);
+				executer.synchronize(conn);
+			});
+			break;
+		case VALIDATE:
+		default:
+			ValidateExecutor validateExecutor = new ValidateExecutor(xPlanDao, validator);
+			validateExecutor.validateAll(outDirectory);
+		}
+		LOG.info("Results was written to {}", outDirectory);
+	}
 
-        return createTempDirectory( "validationresults" );
-    }
+	private void sync(ManagerWorkspaceWrapper managerWorkspaceWrapper, Consumer<Connection> connectionConsumer) {
+		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
+			conn.setAutoCommit(false);
+			connectionConsumer.accept(conn);
+		}
+		catch (SQLException e) {
+			LOG.error("Could not open connection: {}", e.getMessage(), e);
+		}
+	}
 
-    private static TYPE determineType( CommandLine cmdline ) {
-        String type = cmdline.getOptionValue( OPT_TYPE );
-        if ( type == null )
-            return TYPE.VALIDATE;
-        return TYPE.valueOf( type.toUpperCase() );
-    }
+	private static Path createOutDirectory(CommandLine cmdline) throws IOException {
+		String outDirectory = cmdline.getOptionValue(OPT_OUT_DIR);
+		if (outDirectory != null) {
+			Path path = Paths.get(outDirectory);
+			if (!exists(path)) {
+				return createDirectory(path);
+			}
+			if (isDirectory(path)) {
+				return path;
+			}
+			else {
+				throw new IllegalArgumentException("Passed output directory exists but is not a directory");
+			}
+		}
 
-    private static DeegreeWorkspace initWorkspace( String workspaceName )
-                    throws ResourceInitException {
-        DeegreeWorkspace workspace = DeegreeWorkspace.getInstance( workspaceName );
-        File location = workspace.getLocation();
-        LOG.info( "Initialise Workspace " + location );
-        workspace.initAll();
-        return workspace;
-    }
+		return createTempDirectory("validationresults");
+	}
 
-    private static XPlanDao createXplanDao( String workspaceName, ManagerConfiguration managerConfiguration )
-                    throws ResourceInitException {
-        CategoryMapper categoryMapper = new CategoryMapper( managerConfiguration );
-        ManagerWorkspaceWrapper managerWorkspaceWrapper = createManagerWorkspaceWrapper( workspaceName,
-                                                                                         managerConfiguration );
-        return new XPlanDao( managerWorkspaceWrapper, categoryMapper, managerConfiguration );
-    }
+	private static TYPE determineType(CommandLine cmdline) {
+		String type = cmdline.getOptionValue(OPT_TYPE);
+		if (type == null)
+			return TYPE.VALIDATE;
+		return TYPE.valueOf(type.toUpperCase());
+	}
 
-    private static ManagerWorkspaceWrapper createManagerWorkspaceWrapper( String workspaceName,
-                                                                          String configurationDirectory )
-                    throws ResourceInitException, ConfigurationException {
-        ManagerConfiguration managerConfiguration = createManagerConfiguration( configurationDirectory );
-        DeegreeWorkspace workspace = initWorkspace( workspaceName );
-        return new ManagerWorkspaceWrapper( workspace, managerConfiguration );
-    }
+	private static DeegreeWorkspace initWorkspace(String workspaceName) throws ResourceInitException {
+		DeegreeWorkspace workspace = DeegreeWorkspace.getInstance(workspaceName);
+		File location = workspace.getLocation();
+		LOG.info("Initialise Workspace " + location);
+		workspace.initAll();
+		return workspace;
+	}
 
-    private static ManagerWorkspaceWrapper createManagerWorkspaceWrapper( String workspaceName,
-                                                                          ManagerConfiguration managerConfiguration )
-                    throws ResourceInitException {
-        DeegreeWorkspace workspace = initWorkspace( workspaceName );
-        return new ManagerWorkspaceWrapper( workspace, managerConfiguration );
-    }
+	private static XPlanDao createXplanDao(String workspaceName, ManagerConfiguration managerConfiguration)
+			throws ResourceInitException {
+		CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
+		ManagerWorkspaceWrapper managerWorkspaceWrapper = createManagerWorkspaceWrapper(workspaceName,
+				managerConfiguration);
+		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+	}
 
-    private static ManagerConfiguration createManagerConfiguration( String configurationFilePathVariable )
-                    throws ConfigurationException {
-        Path file = configurationFilePathVariable != null ? Paths.get( configurationFilePathVariable ) : null;
-        ConfigurationDirectoryPropertiesLoader loader = new ConfigurationDirectoryPropertiesLoader( file );
-        return new ManagerConfiguration( loader );
-    }
+	private static ManagerWorkspaceWrapper createManagerWorkspaceWrapper(String workspaceName,
+			String configurationDirectory) throws ResourceInitException, ConfigurationException {
+		ManagerConfiguration managerConfiguration = createManagerConfiguration(configurationDirectory);
+		DeegreeWorkspace workspace = initWorkspace(workspaceName);
+		return new ManagerWorkspaceWrapper(workspace, managerConfiguration);
+	}
 
-    private static Options initOptions() {
-        Options opts = new Options();
+	private static ManagerWorkspaceWrapper createManagerWorkspaceWrapper(String workspaceName,
+			ManagerConfiguration managerConfiguration) throws ResourceInitException {
+		DeegreeWorkspace workspace = initWorkspace(workspaceName);
+		return new ManagerWorkspaceWrapper(workspace, managerConfiguration);
+	}
 
-        Option opt = new Option( "w", OPT_WORKSPACE_NAME, true,
-                                 "Default: xplan-manager-workspace. Name of the manager workspace pointing to the database to update "
-                                 + "(must be located in the deegree workspace directory, usually .deegree)" );
-        opt.setRequired( false );
-        opts.addOption( opt );
+	private static ManagerConfiguration createManagerConfiguration(String configurationFilePathVariable)
+			throws ConfigurationException {
+		Path file = configurationFilePathVariable != null ? Paths.get(configurationFilePathVariable) : null;
+		ConfigurationDirectoryPropertiesLoader loader = new ConfigurationDirectoryPropertiesLoader(file);
+		return new ManagerConfiguration(loader);
+	}
 
-        opt = new Option( "c", OPT_CONFIG_DIR, true, "the directory containing the manager configuration" );
-        opt.setRequired( true );
-        opts.addOption( opt );
+	private static Options initOptions() {
+		Options opts = new Options();
 
-        opt = new Option( "t", OPT_TYPE, true, "one of 'VALIDATE' (default if missing), 'ALL', 'SYNC':\n"
-                                               + "   * 'VALIDATE': validates all available XPlanGML 4.1 plans and writes the results\n"
-                                               + "   * 'ALL' transforms all available XPlanGML 4.1 plans and inserts the valid plans in XPlanWFS 5.1 datastore, plans already available in 5.1 will be removed first\n"
-                                               + "   * 'SYNC' transforms the XPlanGML 4.1 plans logged in the table "
-                                               + LOG_TABLE_NAME
-                                               + " and inserts the valid plans in XPlanWFS 5.1 datastore" );
-        opt.setRequired( false );
-        opts.addOption( opt );
+		Option opt = new Option("w", OPT_WORKSPACE_NAME, true,
+				"Default: xplan-manager-workspace. Name of the manager workspace pointing to the database to update "
+						+ "(must be located in the deegree workspace directory, usually .deegree)");
+		opt.setRequired(false);
+		opts.addOption(opt);
 
-        opt = new Option( "f", OPT_OUT_DIR, true,
-                          "directory to write the validation results into, directory will be created if it not exists (if missing a new tmp directory is created)" );
-        opt.setRequired( false );
-        opts.addOption( opt );
+		opt = new Option("c", OPT_CONFIG_DIR, true, "the directory containing the manager configuration");
+		opt.setRequired(true);
+		opts.addOption(opt);
 
-        CommandUtils.addDefaultOptions( opts );
-        return opts;
-    }
+		opt = new Option("t", OPT_TYPE, true, "one of 'VALIDATE' (default if missing), 'ALL', 'SYNC':\n"
+				+ "   * 'VALIDATE': validates all available XPlanGML 4.1 plans and writes the results\n"
+				+ "   * 'ALL' transforms all available XPlanGML 4.1 plans and inserts the valid plans in XPlanWFS 5.1 datastore, plans already available in 5.1 will be removed first\n"
+				+ "   * 'SYNC' transforms the XPlanGML 4.1 plans logged in the table " + LOG_TABLE_NAME
+				+ " and inserts the valid plans in XPlanWFS 5.1 datastore");
+		opt.setRequired(false);
+		opts.addOption(opt);
 
-    private static void printHelp( Options options ) {
-        String help = "Reads all Plans from XPlanWFS 4.1 datastore, transforms them to XPlanGML 5.1 and inserts them in XPlanWFS 5.1 datastore.";
-        CommandUtils.printHelp( options, "XPlanTransformCLI", help, null );
-    }
+		opt = new Option("f", OPT_OUT_DIR, true,
+				"directory to write the validation results into, directory will be created if it not exists (if missing a new tmp directory is created)");
+		opt.setRequired(false);
+		opts.addOption(opt);
+
+		CommandUtils.addDefaultOptions(opts);
+		return opts;
+	}
+
+	private static void printHelp(Options options) {
+		String help = "Reads all Plans from XPlanWFS 4.1 datastore, transforms them to XPlanGML 5.1 and inserts them in XPlanWFS 5.1 datastore.";
+		CommandUtils.printHelp(options, "XPlanTransformCLI", help, null);
+	}
 
 }

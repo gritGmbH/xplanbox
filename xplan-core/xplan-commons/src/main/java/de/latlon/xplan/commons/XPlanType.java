@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -29,19 +29,20 @@ package de.latlon.xplan.commons;
  */
 public enum XPlanType {
 
-    BP_Plan, FP_Plan, RP_Plan, LP_Plan, SO_Plan;
+	BP_Plan, FP_Plan, RP_Plan, LP_Plan, SO_Plan;
 
-    /**
-     * @param name
-     *                 the name
-     * @return the matching entry or <code>null</code> if the XPlanType enum has no entry with the specified name
-     */
-    public static XPlanType valueOfDefaultNull( String name ) {
-        try {
-            return XPlanType.valueOf( name );
-        } catch ( IllegalArgumentException e ) {
-            return null;
-        }
-    }
+	/**
+	 * @param name the name
+	 * @return the matching entry or <code>null</code> if the XPlanType enum has no entry
+	 * with the specified name
+	 */
+	public static XPlanType valueOfDefaultNull(String name) {
+		try {
+			return XPlanType.valueOf(name);
+		}
+		catch (IllegalArgumentException e) {
+			return null;
+		}
+	}
 
 }

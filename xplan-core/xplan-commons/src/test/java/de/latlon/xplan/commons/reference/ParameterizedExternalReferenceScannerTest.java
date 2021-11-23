@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -44,31 +44,31 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 @RunWith(JUnitParamsRunner.class)
 public class ParameterizedExternalReferenceScannerTest {
 
-    @FileParameters("src/test/resources/de/latlon/xplan/commons/reference/externalReferenceScanner-test-input.csv")
-    @Test
-    public void testValidationOfSingleRule( String resourceUnderTest, int externalRefs, int rasterPlanBaseScans )
-                            throws Exception {
-        FeatureCollection fc = getMainFileAsFeatureCollection( resourceUnderTest );
-        ExternalReferenceInfo referenceInfo = new ExternalReferenceScanner().scan( fc );
-        assertEquals( externalRefs, referenceInfo.getExternalRefs().size() );
-        assertEquals( rasterPlanBaseScans, referenceInfo.getRasterPlanBaseScans().size() );
+	@FileParameters("src/test/resources/de/latlon/xplan/commons/reference/externalReferenceScanner-test-input.csv")
+	@Test
+	public void testValidationOfSingleRule(String resourceUnderTest, int externalRefs, int rasterPlanBaseScans)
+			throws Exception {
+		FeatureCollection fc = getMainFileAsFeatureCollection(resourceUnderTest);
+		ExternalReferenceInfo referenceInfo = new ExternalReferenceScanner().scan(fc);
+		assertEquals(externalRefs, referenceInfo.getExternalRefs().size());
+		assertEquals(rasterPlanBaseScans, referenceInfo.getRasterPlanBaseScans().size());
 
-    }
+	}
 
-    private FeatureCollection getMainFileAsFeatureCollection( String name )
-                            throws Exception {
-        XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
-        XPlanVersion version = archive.getVersion();
-        XPlanAde ade = archive.getAde();
-        XMLStreamReader xmlReader = archive.getMainFileXmlReader();
-        GMLStreamReader gmlReader = createGMLStreamReader( version.getGmlVersion(), xmlReader );
-        gmlReader.setApplicationSchema( XPlanSchemas.getInstance().getAppSchema( version, ade ) );
-        FeatureCollection fc = gmlReader.readFeatureCollection();
-        gmlReader.getIdContext().resolveLocalRefs();
-        gmlReader.close();
-        xmlReader.close();
-        return fc;
-    }
+	private FeatureCollection getMainFileAsFeatureCollection(String name) throws Exception {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
+				ResourceAccessor.readResourceStream(name));
+		XPlanVersion version = archive.getVersion();
+		XPlanAde ade = archive.getAde();
+		XMLStreamReader xmlReader = archive.getMainFileXmlReader();
+		GMLStreamReader gmlReader = createGMLStreamReader(version.getGmlVersion(), xmlReader);
+		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version, ade));
+		FeatureCollection fc = gmlReader.readFeatureCollection();
+		gmlReader.getIdContext().resolveLocalRefs();
+		gmlReader.close();
+		xmlReader.close();
+		return fc;
+	}
 
 }

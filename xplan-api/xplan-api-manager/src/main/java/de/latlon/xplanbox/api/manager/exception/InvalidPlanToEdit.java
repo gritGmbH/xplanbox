@@ -9,15 +9,16 @@ import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
  */
 public class InvalidPlanToEdit extends XPlanApiException {
 
-    public InvalidPlanToEdit( String message ) {
-        super( message );
-    }
+	public InvalidPlanToEdit(String message) {
+		super(message);
+	}
 
-    public InvalidPlanToEdit( String message, Exception e ) {
-        super( message, e );
-    }
+	public InvalidPlanToEdit(String message, Exception e) {
+		super(message, e);
+	}
 
-    public int getStatusCode() {
-        return BAD_REQUEST.getStatusCode();
-    }
+	public int getStatusCode() {
+		return BAD_REQUEST.getStatusCode();
+	}
+
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -36,32 +36,34 @@ import java.io.OutputStream;
  */
 public class PdfReportGenerator {
 
-    private final ReportBuilder reportBuilder = new ReportBuilder();
+	private final ReportBuilder reportBuilder = new ReportBuilder();
 
-    /**
-     * Writes the {@link ValidatorReport} to an OutputStream in PDF-Format
-     *
-     * @param report         the validation report to serialize, never <code>null</code>
-     * @param os             the OutputStream where the PDF-Content is written into, never <code>null</code>
-     * @throws ReportGenerationException if an exception occurred during writing the report
-     * @throws IllegalArgumentException  if the passed report or outputstream are <code>null</code>
-     */
-    public void createPdfReport( ValidatorReport report, OutputStream os )
-          throws ReportGenerationException {
-        checkParameters( report, os );
-        try {
-            JasperReportBuilder print = reportBuilder.createReport( report );
-            print.toPdf( os );
-        } catch ( DRException e ) {
-            throw new ReportGenerationException( e );
-        }
-    }
+	/**
+	 * Writes the {@link ValidatorReport} to an OutputStream in PDF-Format
+	 * @param report the validation report to serialize, never <code>null</code>
+	 * @param os the OutputStream where the PDF-Content is written into, never
+	 * <code>null</code>
+	 * @throws ReportGenerationException if an exception occurred during writing the
+	 * report
+	 * @throws IllegalArgumentException if the passed report or outputstream are
+	 * <code>null</code>
+	 */
+	public void createPdfReport(ValidatorReport report, OutputStream os) throws ReportGenerationException {
+		checkParameters(report, os);
+		try {
+			JasperReportBuilder print = reportBuilder.createReport(report);
+			print.toPdf(os);
+		}
+		catch (DRException e) {
+			throw new ReportGenerationException(e);
+		}
+	}
 
-    private void checkParameters( ValidatorReport report, OutputStream os ) {
-        if ( report == null )
-            throw new IllegalArgumentException( "Report must not be null!" );
-        if ( os == null )
-            throw new IllegalArgumentException( "OutputStream must not be null!" );
-    }
+	private void checkParameters(ValidatorReport report, OutputStream os) {
+		if (report == null)
+			throw new IllegalArgumentException("Report must not be null!");
+		if (os == null)
+			throw new IllegalArgumentException("OutputStream must not be null!");
+	}
 
 }

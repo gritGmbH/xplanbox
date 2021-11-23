@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -29,7 +29,7 @@ import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
 
 /**
  * Interface for manager web configuration services.
- * 
+ *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
  * @version $Revision: $, $Date: $
@@ -37,20 +37,16 @@ import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
 @RemoteServiceRelativePath("config")
 public interface ManagerWebConfigurationService extends RemoteService {
 
-    /**
-     * Retrieve the {@link ManagerWebConfiguration}
-     * 
-     * @return the configuration of the manager web
-     */
-    ManagerWebConfiguration getManagerWebConfiguration()
-                            throws ConfigurationException;
+	/**
+	 * Retrieve the {@link ManagerWebConfiguration}
+	 * @return the configuration of the manager web
+	 */
+	ManagerWebConfiguration getManagerWebConfiguration() throws ConfigurationException;
 
-    /**
-     * Retrieve the {@link de.latlon.xplan.manager.web.shared.MapPreviewConfiguration}
-     * 
-     * @return the configuration of the map preview
-     */
-    MapPreviewConfiguration getMapPreviewConfiguration()
-                            throws ConfigurationException;
+	/**
+	 * Retrieve the {@link de.latlon.xplan.manager.web.shared.MapPreviewConfiguration}
+	 * @return the configuration of the map preview
+	 */
+	MapPreviewConfiguration getMapPreviewConfiguration() throws ConfigurationException;
 
 }

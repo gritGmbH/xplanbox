@@ -36,21 +36,20 @@ import java.util.Properties;
  */
 public class ValidatorApiConfiguration extends ApiConfiguration {
 
-    private static final Logger LOG = LoggerFactory.getLogger( ValidatorApiConfiguration.class );
+	private static final Logger LOG = LoggerFactory.getLogger(ValidatorApiConfiguration.class);
 
-    private static final String VALIDATOR_API_CONFIGURATION_PROPERTIES = "validatorApiConfiguration.properties";
+	private static final String VALIDATOR_API_CONFIGURATION_PROPERTIES = "validatorApiConfiguration.properties";
 
-    public ValidatorApiConfiguration( PropertiesLoader propertiesLoader )
-                    throws ConfigurationException {
-        super( propertiesLoader, VALIDATOR_API_CONFIGURATION_PROPERTIES );
-    }
+	public ValidatorApiConfiguration(PropertiesLoader propertiesLoader) throws ConfigurationException {
+		super(propertiesLoader, VALIDATOR_API_CONFIGURATION_PROPERTIES);
+	}
 
-    protected void logProperties() {
-        LOG.info( "-------------------------------------------" );
-        LOG.info( "Configuration of the XPlanValidatorApi:" );
-        LOG.info( "-------------------------------------------" );
-        LOG.info( "  API URL: {}", getApiUrl() );
-        LOG.info( "-------------------------------------------" );
-    }
+	protected void logProperties() {
+		LOG.info("-------------------------------------------");
+		LOG.info("Configuration of the XPlanValidatorApi:");
+		LOG.info("-------------------------------------------");
+		LOG.info("  API URL: {}", getApiUrl());
+		LOG.info("-------------------------------------------");
+	}
 
 }

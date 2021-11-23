@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -40,46 +40,44 @@ import static org.mockito.Mockito.verify;
  */
 public class ManagerPermissionEvaluatorTest {
 
-    @Test
-    public void testHasPermission()
-                    throws Exception {
-        Permission permission = mock( Permission.class );
-        ManagerPermissionEvaluator evaluator = new ManagerPermissionEvaluator( createPermissions( permission ) );
-        Object targetDomainObject = "targetDomainObject";
-        Authentication authentication = createAuthentication();
-        evaluator.hasPermission( authentication, targetDomainObject, "permissionA" );
+	@Test
+	public void testHasPermission() throws Exception {
+		Permission permission = mock(Permission.class);
+		ManagerPermissionEvaluator evaluator = new ManagerPermissionEvaluator(createPermissions(permission));
+		Object targetDomainObject = "targetDomainObject";
+		Authentication authentication = createAuthentication();
+		evaluator.hasPermission(authentication, targetDomainObject, "permissionA");
 
-        verify( permission ).isAllowed( authentication, targetDomainObject );
-    }
+		verify(permission).isAllowed(authentication, targetDomainObject);
+	}
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void testHasPermissionWithUnkownPermission()
-                    throws Exception {
-        ManagerPermissionEvaluator evaluator = new ManagerPermissionEvaluator(
-                        createPermissions( mock( Permission.class ) ) );
-        Object targetDomainObject = "targetDomainObject";
-        Authentication authentication = createAuthentication();
-        evaluator.hasPermission( authentication, targetDomainObject, "permissionB" );
-    }
+	@Test(expected = UnsupportedOperationException.class)
+	public void testHasPermissionWithUnkownPermission() throws Exception {
+		ManagerPermissionEvaluator evaluator = new ManagerPermissionEvaluator(
+				createPermissions(mock(Permission.class)));
+		Object targetDomainObject = "targetDomainObject";
+		Authentication authentication = createAuthentication();
+		evaluator.hasPermission(authentication, targetDomainObject, "permissionB");
+	}
 
-    private Map<String, Permission> createPermissions( Permission permission ) {
-        Map<String, Permission> permissions = new HashMap<String, Permission>();
-        permissions.put( "permissionA", permission );
-        return permissions;
-    }
+	private Map<String, Permission> createPermissions(Permission permission) {
+		Map<String, Permission> permissions = new HashMap<String, Permission>();
+		permissions.put("permissionA", permission);
+		return permissions;
+	}
 
-    private Authentication createAuthentication() {
-        Authentication mock = mock( Authentication.class );
-        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        authorities.add( new DistrictGrantedAuthority( "role", createDistricts() ) );
-        doReturn( authorities ).when( mock ).getAuthorities();
-        return mock;
-    }
+	private Authentication createAuthentication() {
+		Authentication mock = mock(Authentication.class);
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		authorities.add(new DistrictGrantedAuthority("role", createDistricts()));
+		doReturn(authorities).when(mock).getAuthorities();
+		return mock;
+	}
 
-    private List<String> createDistricts() {
-        List<String> districts = new ArrayList<>();
-        districts.add( "dist" );
-        return districts;
-    }
+	private List<String> createDistricts() {
+		List<String> districts = new ArrayList<>();
+		districts.add("dist");
+		return districts;
+	}
 
 }

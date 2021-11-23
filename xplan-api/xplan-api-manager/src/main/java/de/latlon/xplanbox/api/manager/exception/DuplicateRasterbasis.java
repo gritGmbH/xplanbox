@@ -9,14 +9,15 @@ import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
  */
 public class DuplicateRasterbasis extends XPlanApiException {
 
-    private static final String EXCEPTION_MESSAGE = "Rasterbasis with referenzName %s und referenzUrl %s of Plan with ID %s already exists, this results in a duplicate ID %s!";
+	private static final String EXCEPTION_MESSAGE = "Rasterbasis with referenzName %s und referenzUrl %s of Plan with ID %s already exists, this results in a duplicate ID %s!";
 
-    public DuplicateRasterbasis( String planId, String newDokumentId, String referenzName, String referenzUrl ) {
-        super( String.format( EXCEPTION_MESSAGE, referenzName, referenzUrl, planId, newDokumentId ) );
-    }
+	public DuplicateRasterbasis(String planId, String newDokumentId, String referenzName, String referenzUrl) {
+		super(String.format(EXCEPTION_MESSAGE, referenzName, referenzUrl, planId, newDokumentId));
+	}
 
-    @Override
-    public int getStatusCode() {
-        return BAD_REQUEST.getStatusCode();
-    }
+	@Override
+	public int getStatusCode() {
+		return BAD_REQUEST.getStatusCode();
+	}
+
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -40,262 +40,264 @@ import java.util.Objects;
  *
  * @since 4.0
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
+		date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PlanInfo {
 
-    private @Valid Integer id;
+	private @Valid Integer id;
 
-    private @Valid String type;
+	private @Valid String type;
 
-    private @Valid VersionEnum version;
+	private @Valid VersionEnum version;
 
-    private @Valid PlanStatusEnum planStatus;
+	private @Valid PlanStatusEnum planStatus;
 
-    private @Valid Boolean raster;
+	private @Valid Boolean raster;
 
-    private @Valid Date importDate;
+	private @Valid Date importDate;
 
-    private @Valid Boolean inspirePublished;
+	private @Valid Boolean inspirePublished;
 
-    private @Valid PlanInfoBbox bbox;
+	private @Valid PlanInfoBbox bbox;
 
-    private @Valid PlanInfoXplanModelData xplanModelData;
+	private @Valid PlanInfoXplanModelData xplanModelData;
 
-    private @Valid List<Link> links = new ArrayList<Link>();
+	private @Valid List<Link> links = new ArrayList<Link>();
 
-    /**
-     * internal unique manager identifier, generated at import time
-     **/
-    public PlanInfo id( Integer id ) {
-        this.id = id;
-        return this;
-    }
+	/**
+	 * internal unique manager identifier, generated at import time
+	 **/
+	public PlanInfo id(Integer id) {
+		this.id = id;
+		return this;
+	}
 
-    @Schema(format = "int32", example = "123", description = "internal unique manager identifier, generated at import time")
-    @JsonProperty("id")
-    public Integer getId() {
-        return id;
-    }
+	@Schema(format = "int32", example = "123",
+			description = "internal unique manager identifier, generated at import time")
+	@JsonProperty("id")
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId( Integer id ) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    /**
-     *
-     **/
-    public PlanInfo type( String type ) {
-        this.type = type;
-        return this;
-    }
+	/**
+	 *
+	 **/
+	public PlanInfo type(String type) {
+		this.type = type;
+		return this;
+	}
 
-    @Schema(example = "BP_Plan", description = "")
-    @JsonProperty("type")
-    public String getType() {
-        return type;
-    }
+	@Schema(example = "BP_Plan", description = "")
+	@JsonProperty("type")
+	public String getType() {
+		return type;
+	}
 
-    public void setType( String type ) {
-        this.type = type;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    /**
-     *
-     **/
-    public PlanInfo version( VersionEnum version ) {
-        this.version = version;
-        return this;
-    }
+	/**
+	 *
+	 **/
+	public PlanInfo version(VersionEnum version) {
+		this.version = version;
+		return this;
+	}
 
-    @Schema(example = "XPLAN_51", description = "")
-    @JsonProperty("version")
-    public VersionEnum getVersion() {
-        return version;
-    }
+	@Schema(example = "XPLAN_51", description = "")
+	@JsonProperty("version")
+	public VersionEnum getVersion() {
+		return version;
+	}
 
-    public void setVersion( VersionEnum version ) {
-        this.version = version;
-    }
+	public void setVersion(VersionEnum version) {
+		this.version = version;
+	}
 
-    /**
-     *
-     **/
-    public PlanInfo planStatus( PlanStatusEnum planStatus ) {
-        this.planStatus = planStatus;
-        return this;
-    }
+	/**
+	 *
+	 **/
+	public PlanInfo planStatus(PlanStatusEnum planStatus) {
+		this.planStatus = planStatus;
+		return this;
+	}
 
-    @Schema(example = "Festgestellt")
-    @JsonProperty("planStatus")
-    public PlanStatusEnum getplanStatus() {
-        return planStatus;
-    }
+	@Schema(example = "Festgestellt")
+	@JsonProperty("planStatus")
+	public PlanStatusEnum getplanStatus() {
+		return planStatus;
+	}
 
-    public void setplanStatus( PlanStatusEnum planStatus ) {
-        this.planStatus = planStatus;
-    }
+	public void setplanStatus(PlanStatusEnum planStatus) {
+		this.planStatus = planStatus;
+	}
 
-    /**
-     *
-     **/
-    public PlanInfo raster( Boolean raster ) {
-        this.raster = raster;
-        return this;
-    }
+	/**
+	 *
+	 **/
+	public PlanInfo raster(Boolean raster) {
+		this.raster = raster;
+		return this;
+	}
 
-    @Schema(example = "true", description = "")
-    @JsonProperty("raster")
-    public Boolean getRaster() {
-        return raster;
-    }
+	@Schema(example = "true", description = "")
+	@JsonProperty("raster")
+	public Boolean getRaster() {
+		return raster;
+	}
 
-    public void setRaster( Boolean raster ) {
-        this.raster = raster;
-    }
+	public void setRaster(Boolean raster) {
+		this.raster = raster;
+	}
 
-    /**
-     *
-     **/
-    public PlanInfo importDate( Date importDate ) {
-        this.importDate = importDate;
-        return this;
-    }
+	/**
+	 *
+	 **/
+	public PlanInfo importDate(Date importDate) {
+		this.importDate = importDate;
+		return this;
+	}
 
-    @Schema(description = "")
-    @JsonProperty("importDate")
-    public Date getImportDate() {
-        return importDate;
-    }
+	@Schema(description = "")
+	@JsonProperty("importDate")
+	public Date getImportDate() {
+		return importDate;
+	}
 
-    public void setImportDate( Date importDate ) {
-        this.importDate = importDate;
-    }
+	public void setImportDate(Date importDate) {
+		this.importDate = importDate;
+	}
 
-    /**
-     *
-     **/
-    public PlanInfo inspirePublished( Boolean inspirePublished ) {
-        this.inspirePublished = inspirePublished;
-        return this;
-    }
+	/**
+	 *
+	 **/
+	public PlanInfo inspirePublished(Boolean inspirePublished) {
+		this.inspirePublished = inspirePublished;
+		return this;
+	}
 
-    @Schema(example = "false", description = "")
-    @JsonProperty("inspirePublished")
-    public Boolean getInspirePublished() {
-        return inspirePublished;
-    }
+	@Schema(example = "false", description = "")
+	@JsonProperty("inspirePublished")
+	public Boolean getInspirePublished() {
+		return inspirePublished;
+	}
 
-    public void setInspirePublished( Boolean inspirePublished ) {
-        this.inspirePublished = inspirePublished;
-    }
+	public void setInspirePublished(Boolean inspirePublished) {
+		this.inspirePublished = inspirePublished;
+	}
 
-    /**
-     *
-     **/
-    public PlanInfo bbox( PlanInfoBbox bbox ) {
-        this.bbox = bbox;
-        return this;
-    }
+	/**
+	 *
+	 **/
+	public PlanInfo bbox(PlanInfoBbox bbox) {
+		this.bbox = bbox;
+		return this;
+	}
 
-    @Schema
-    @JsonProperty("bbox")
-    public PlanInfoBbox getBbox() {
-        return bbox;
-    }
+	@Schema
+	@JsonProperty("bbox")
+	public PlanInfoBbox getBbox() {
+		return bbox;
+	}
 
-    public void setBbox( PlanInfoBbox bbox ) {
-        this.bbox = bbox;
-    }
+	public void setBbox(PlanInfoBbox bbox) {
+		this.bbox = bbox;
+	}
 
-    /**
-     *
-     **/
-    public PlanInfo xplanModelData( PlanInfoXplanModelData xplanModelData ) {
-        this.xplanModelData = xplanModelData;
-        return this;
-    }
+	/**
+	 *
+	 **/
+	public PlanInfo xplanModelData(PlanInfoXplanModelData xplanModelData) {
+		this.xplanModelData = xplanModelData;
+		return this;
+	}
 
-    @Schema
-    @JsonProperty("xplanModelData")
-    public PlanInfoXplanModelData getXplanModelData() {
-        return xplanModelData;
-    }
+	@Schema
+	@JsonProperty("xplanModelData")
+	public PlanInfoXplanModelData getXplanModelData() {
+		return xplanModelData;
+	}
 
-    public void setXplanModelData( PlanInfoXplanModelData xplanModelData ) {
-        this.xplanModelData = xplanModelData;
-    }
+	public void setXplanModelData(PlanInfoXplanModelData xplanModelData) {
+		this.xplanModelData = xplanModelData;
+	}
 
-    /**
-     * Links related to the resource such as XPlanWerkWMS or self link
-     **/
-    public PlanInfo links( List<Link> links ) {
-        this.links = links;
-        return this;
-    }
+	/**
+	 * Links related to the resource such as XPlanWerkWMS or self link
+	 **/
+	public PlanInfo links(List<Link> links) {
+		this.links = links;
+		return this;
+	}
 
-    @Schema(example = "{\"href\":\"https://xplanbox.lat-lon.de/xplan-wms/services/planwerkwms/planname/<PLANNAME>?\",\"rel\":\"planwerkwms\",\"type\":\"image/png\",\"hreflang\":\"de\",\"title\":\"Othmarschen 3\"}", description = "Links related to the resource such as XPlanWerkWMS or self link")
-    @JsonProperty("links")
-    public List<Link> getLinks() {
-        return links;
-    }
+	@Schema(example = "{\"href\":\"https://xplanbox.lat-lon.de/xplan-wms/services/planwerkwms/planname/<PLANNAME>?\",\"rel\":\"planwerkwms\",\"type\":\"image/png\",\"hreflang\":\"de\",\"title\":\"Othmarschen 3\"}",
+			description = "Links related to the resource such as XPlanWerkWMS or self link")
+	@JsonProperty("links")
+	public List<Link> getLinks() {
+		return links;
+	}
 
-    public void setLinks( List<Link> links ) {
-        this.links = links;
-    }
+	public void setLinks(List<Link> links) {
+		this.links = links;
+	}
 
-    @Override
-    public boolean equals( java.lang.Object o ) {
-        if ( this == o ) {
-            return true;
-        }
-        if ( o == null || getClass() != o.getClass() ) {
-            return false;
-        }
-        PlanInfo planInfo = (PlanInfo) o;
-        return Objects.equals( this.id, planInfo.id ) && Objects.equals( this.type, planInfo.type ) && Objects.equals(
-                                this.version, planInfo.version ) && Objects.equals( this.raster, planInfo.raster )
-               && Objects.equals( this.importDate, planInfo.importDate ) && Objects.equals( this.inspirePublished,
-                                                                                            planInfo.inspirePublished )
-               && Objects.equals( this.bbox, planInfo.bbox ) && Objects.equals( this.xplanModelData,
-                                                                                planInfo.xplanModelData )
-               && Objects.equals( this.links, planInfo.links );
-    }
+	@Override
+	public boolean equals(java.lang.Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		PlanInfo planInfo = (PlanInfo) o;
+		return Objects.equals(this.id, planInfo.id) && Objects.equals(this.type, planInfo.type)
+				&& Objects.equals(this.version, planInfo.version) && Objects.equals(this.raster, planInfo.raster)
+				&& Objects.equals(this.importDate, planInfo.importDate)
+				&& Objects.equals(this.inspirePublished, planInfo.inspirePublished)
+				&& Objects.equals(this.bbox, planInfo.bbox)
+				&& Objects.equals(this.xplanModelData, planInfo.xplanModelData)
+				&& Objects.equals(this.links, planInfo.links);
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash( id, type, version, raster, importDate, inspirePublished, bbox, xplanModelData, links );
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, type, version, raster, importDate, inspirePublished, bbox, xplanModelData, links);
+	}
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append( "class PlanInfo {\n" );
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("class PlanInfo {\n");
 
-        sb.append( "    id: " ).append( toIndentedString( id ) ).append( "\n" );
-        sb.append( "    type: " ).append( toIndentedString( type ) ).append( "\n" );
-        sb.append( "    version: " ).append( toIndentedString( version ) ).append( "\n" );
-        sb.append( "    raster: " ).append( toIndentedString( raster ) ).append( "\n" );
-        sb.append( "    importDate: " ).append( toIndentedString( importDate ) ).append( "\n" );
-        sb.append( "    inspirePublished: " ).append( toIndentedString( inspirePublished ) ).append( "\n" );
-        sb.append( "    bbox: " ).append( toIndentedString( bbox ) ).append( "\n" );
-        sb.append( "    xplanModelData: " ).append( toIndentedString( xplanModelData ) ).append( "\n" );
-        sb.append( "    links: " ).append( toIndentedString( links ) ).append( "\n" );
-        sb.append( "}" );
-        return sb.toString();
-    }
+		sb.append("    id: ").append(toIndentedString(id)).append("\n");
+		sb.append("    type: ").append(toIndentedString(type)).append("\n");
+		sb.append("    version: ").append(toIndentedString(version)).append("\n");
+		sb.append("    raster: ").append(toIndentedString(raster)).append("\n");
+		sb.append("    importDate: ").append(toIndentedString(importDate)).append("\n");
+		sb.append("    inspirePublished: ").append(toIndentedString(inspirePublished)).append("\n");
+		sb.append("    bbox: ").append(toIndentedString(bbox)).append("\n");
+		sb.append("    xplanModelData: ").append(toIndentedString(xplanModelData)).append("\n");
+		sb.append("    links: ").append(toIndentedString(links)).append("\n");
+		sb.append("}");
+		return sb.toString();
+	}
 
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString( java.lang.Object o ) {
-        if ( o == null ) {
-            return "null";
-        }
-        return o.toString().replace( "\n", "\n    " );
-    }
+	/**
+	 * Convert the given object to string with each line indented by 4 spaces (except the
+	 * first line).
+	 */
+	private String toIndentedString(java.lang.Object o) {
+		if (o == null) {
+			return "null";
+		}
+		return o.toString().replace("\n", "\n    ");
+	}
 
 }
-

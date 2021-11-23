@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -39,60 +39,56 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.findWorkspaceDire
  */
 public class XPlanDeleteManager {
 
-    private static final Logger LOG = LoggerFactory.getLogger( XPlanDeleteManager.class );
+	private static final Logger LOG = LoggerFactory.getLogger(XPlanDeleteManager.class);
 
-    private final XPlanDao xPlanDao;
+	private final XPlanDao xPlanDao;
 
-    private final XPlanRasterManager xPlanRasterManager;
+	private final XPlanRasterManager xPlanRasterManager;
 
-    private final WorkspaceReloader workspaceReloader;
+	private final WorkspaceReloader workspaceReloader;
 
-    private final ManagerConfiguration managerConfiguration;
+	private final ManagerConfiguration managerConfiguration;
 
-    public XPlanDeleteManager( XPlanDao xPlanDao, XPlanRasterManager xPlanRasterManager,
-                               WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration ) {
-        this.xPlanDao = xPlanDao;
-        this.xPlanRasterManager = xPlanRasterManager;
-        this.workspaceReloader = workspaceReloader;
-        this.managerConfiguration = managerConfiguration;
-    }
+	public XPlanDeleteManager(XPlanDao xPlanDao, XPlanRasterManager xPlanRasterManager,
+			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration) {
+		this.xPlanDao = xPlanDao;
+		this.xPlanRasterManager = xPlanRasterManager;
+		this.workspaceReloader = workspaceReloader;
+		this.managerConfiguration = managerConfiguration;
+	}
 
-    /**
-     * Removes the plan with the given ID from the XPlanManager. Includes: Database and raster data. WMS configuration is not removed.
-     *
-     * @param planId
-     */
-    public void delete( String planId )
-                            throws Exception {
-        delete( planId, false, null );
-    }
+	/**
+	 * Removes the plan with the given ID from the XPlanManager. Includes: Database and
+	 * raster data. WMS configuration is not removed.
+	 * @param planId
+	 */
+	public void delete(String planId) throws Exception {
+		delete(planId, false, null);
+	}
 
-    /**
-     * @param planId
-     *                         the plan id to delete
-     * @param removeWMSConfig
-     *                         <code>true</code> if the WMS configuration for the plan to delete should be removed,
-     *                         <code>false</code> otherwise
-     * @param workspaceFolder
-     *                         workspace folder, may be <code>null</code> if default path should be used.
-     * @throws Exception
-     */
-    public void delete( String planId, boolean removeWMSConfig, File workspaceFolder )
-                            throws Exception {
-        xPlanDao.deletePlan( planId );
-        xPlanRasterManager.removeRasterLayers( planId );
-        if ( removeWMSConfig ) {
-            new WmsWorkspaceManager( findWorkspaceDirectory( workspaceFolder ) ).deleteWmsWorkspaceFilesForId( planId );
-        }
-        reloadWorkspace();
-        LOG.info( "XPlanArchiv mit Id {} wurde gelöscht", planId );
-    }
+	/**
+	 * @param planId the plan id to delete
+	 * @param removeWMSConfig <code>true</code> if the WMS configuration for the plan to
+	 * delete should be removed, <code>false</code> otherwise
+	 * @param workspaceFolder workspace folder, may be <code>null</code> if default path
+	 * should be used.
+	 * @throws Exception
+	 */
+	public void delete(String planId, boolean removeWMSConfig, File workspaceFolder) throws Exception {
+		xPlanDao.deletePlan(planId);
+		xPlanRasterManager.removeRasterLayers(planId);
+		if (removeWMSConfig) {
+			new WmsWorkspaceManager(findWorkspaceDirectory(workspaceFolder)).deleteWmsWorkspaceFilesForId(planId);
+		}
+		reloadWorkspace();
+		LOG.info("XPlanArchiv mit Id {} wurde gelöscht", planId);
+	}
 
-    private void reloadWorkspace() {
-        if ( workspaceReloader != null ) {
-            WorkspaceReloaderConfiguration configuration = managerConfiguration.getWorkspaceReloaderConfiguration();
-            workspaceReloader.reloadWorkspace( configuration );
-        }
-    }
+	private void reloadWorkspace() {
+		if (workspaceReloader != null) {
+			WorkspaceReloaderConfiguration configuration = managerConfiguration.getWorkspaceReloaderConfiguration();
+			workspaceReloader.reloadWorkspace(configuration);
+		}
+	}
 
 }

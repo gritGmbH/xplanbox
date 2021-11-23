@@ -18,35 +18,30 @@ import java.util.Collections;
 @Singleton
 public class EditBasisdatenHandler extends EditHandler {
 
-    /**
-     * @param planId
-     *                 the ID of the plan, never <code>null</code>
-     * @return all Basisdaten of the plan, never <code>null</code>
-     * @throws Exception
-     */
-    public Basisdaten retrieveBasisdaten( String planId )
-                    throws Exception {
-        XPlan plan = findPlanById( planId );
-        XPlanToEdit xPlanToEdit = manager.getXPlanToEdit( plan );
-        BaseData baseData = xPlanToEdit.getBaseData();
-        return Basisdaten.fromBaseData( baseData );
-    }
+	/**
+	 * @param planId the ID of the plan, never <code>null</code>
+	 * @return all Basisdaten of the plan, never <code>null</code>
+	 * @throws Exception
+	 */
+	public Basisdaten retrieveBasisdaten(String planId) throws Exception {
+		XPlan plan = findPlanById(planId);
+		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
+		BaseData baseData = xPlanToEdit.getBaseData();
+		return Basisdaten.fromBaseData(baseData);
+	}
 
-    /**
-     * @param planId
-     *                 the ID of the plan, never <code>null</code>
-     * @param basisdaten
-     *                 the Basisdaten to update, never <code>null</code>
-     * @return the replaced Basisdaten. nerver <code>null</code>
-     * @throws Exception
-     */
-    public Basisdaten replaceBasisdaten( String planId,
-                                         Basisdaten basisdaten )
-                    throws Exception {
-        XPlan plan = findPlanById( planId );
-        XPlanToEdit xPlanToEdit = manager.getXPlanToEdit( plan );
-        xPlanToEdit.setBaseData( basisdaten.toBaseData() );
-        manager.editPlan( plan, xPlanToEdit, false, Collections.emptyList() );
-        return basisdaten;
-    }
+	/**
+	 * @param planId the ID of the plan, never <code>null</code>
+	 * @param basisdaten the Basisdaten to update, never <code>null</code>
+	 * @return the replaced Basisdaten. nerver <code>null</code>
+	 * @throws Exception
+	 */
+	public Basisdaten replaceBasisdaten(String planId, Basisdaten basisdaten) throws Exception {
+		XPlan plan = findPlanById(planId);
+		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
+		xPlanToEdit.setBaseData(basisdaten.toBaseData());
+		manager.editPlan(plan, xPlanToEdit, false, Collections.emptyList());
+		return basisdaten;
+	}
+
 }

@@ -7,5 +7,6 @@ package de.latlon.xplan.validator.semantic.report;
  */
 public enum ValidationResultType {
 
-    WARNING, ERROR
+	WARNING, ERROR
+
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -38,35 +38,36 @@ import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToA
  */
 public class XPlanBesondZweckbestLookup implements Expression {
 
-    private Expression besondZweckbest;
+	private Expression besondZweckbest;
 
-    private String besondZweckBestCodeList;
+	private String besondZweckBestCodeList;
 
-    public XPlanBesondZweckbestLookup( Expression zweckbest, Expression besondZweckbest, String zweckbestCodeList,
-                                       String besondZweckBestCodeList ) {
-        this.besondZweckbest = besondZweckbest;
-        this.besondZweckBestCodeList = besondZweckBestCodeList;
-    }
+	public XPlanBesondZweckbestLookup(Expression zweckbest, Expression besondZweckbest, String zweckbestCodeList,
+			String besondZweckBestCodeList) {
+		this.besondZweckbest = besondZweckbest;
+		this.besondZweckBestCodeList = besondZweckBestCodeList;
+	}
 
-    @Override
-    public TypedObjectNodeArray<PrimitiveValue> evaluate( Feature feature, FeatureCollection features ) {
-        PrimitiveValue[] normalizedCodes = null;
+	@Override
+	public TypedObjectNodeArray<PrimitiveValue> evaluate(Feature feature, FeatureCollection features) {
+		PrimitiveValue[] normalizedCodes = null;
 
-        // XPlan 3: always use value from besondereZweckbestimmung property
-        TypedObjectNodeArray<TypedObjectNode> codes = castToArray( besondZweckbest.evaluate( feature, features ) );
-        if ( codes != null && codes.getElements().length > 1 ) {
-            String xplanSynCode = codes.getElements()[0].toString();
-            String xplanSynDesc = getXPlanSyn().getDescription( besondZweckBestCodeList, xplanSynCode );
-            normalizedCodes = new PrimitiveValue[] { new PrimitiveValue( escape( xplanSynDesc ) ) };
-        }
+		// XPlan 3: always use value from besondereZweckbestimmung property
+		TypedObjectNodeArray<TypedObjectNode> codes = castToArray(besondZweckbest.evaluate(feature, features));
+		if (codes != null && codes.getElements().length > 1) {
+			String xplanSynCode = codes.getElements()[0].toString();
+			String xplanSynDesc = getXPlanSyn().getDescription(besondZweckBestCodeList, xplanSynCode);
+			normalizedCodes = new PrimitiveValue[] { new PrimitiveValue(escape(xplanSynDesc)) };
+		}
 
-        if ( normalizedCodes == null ) {
-            return null;
-        }
-        return new TypedObjectNodeArray<PrimitiveValue>( normalizedCodes );
-    }
+		if (normalizedCodes == null) {
+			return null;
+		}
+		return new TypedObjectNodeArray<PrimitiveValue>(normalizedCodes);
+	}
 
-    private String escape( String desc ) {
-        return desc.replace( "][", "][][" );
-    }
+	private String escape(String desc) {
+		return desc.replace("][", "][][");
+	}
+
 }

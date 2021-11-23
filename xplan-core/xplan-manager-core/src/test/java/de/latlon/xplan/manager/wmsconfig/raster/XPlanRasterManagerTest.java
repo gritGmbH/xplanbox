@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -93,233 +93,226 @@ import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.Rast
 @Ignore
 public class XPlanRasterManagerTest {
 
-    private static final String CONFIGURED_CRS = "epsg:4326";
+	private static final String CONFIGURED_CRS = "epsg:4326";
 
-    private static final String REF = "reference/XPlanRasterManagerTest";
+	private static final String REF = "reference/XPlanRasterManagerTest";
 
-    private static final String TIFF_EPSG4269_NAME = "XPlanRasterManagerTest_epsg4269.tiff";
+	private static final String TIFF_EPSG4269_NAME = "XPlanRasterManagerTest_epsg4269.tiff";
 
-    private static final String TIFF_EPSG4326_NAME = "XPlanRasterManagerTest_epsg4326.tiff";
+	private static final String TIFF_EPSG4326_NAME = "XPlanRasterManagerTest_epsg4326.tiff";
 
-    private static final String TIFF_NO_CRS_NAME = "XPlanRasterManagerTest_noCrs.tiff";
+	private static final String TIFF_NO_CRS_NAME = "XPlanRasterManagerTest_noCrs.tiff";
 
-    private static final String PNG_NO_CRS_NAME = "XPlanRasterManagerTest_noCrs.png";
+	private static final String PNG_NO_CRS_NAME = "XPlanRasterManagerTest_noCrs.png";
 
-    private static final String PNG_EPSG25833_NAME = "XPlanRasterManagerTest_epsg25833.png";
+	private static final String PNG_EPSG25833_NAME = "XPlanRasterManagerTest_epsg25833.png";
 
-    private static final String PNG_EPSG25833_AUX_NAME = "XPlanRasterManagerTest_epsg25833.png.aux.xml";
+	private static final String PNG_EPSG25833_AUX_NAME = "XPlanRasterManagerTest_epsg25833.png.aux.xml";
 
-    private static final String TXT_NAME = "XPlanRasterManagerTest.txt";
+	private static final String TXT_NAME = "XPlanRasterManagerTest.txt";
 
-    @Test
-    public void testEvaluateRasterdataGdalWithTiffEpsg4269()
-                    throws Exception {
-        assumeTrue( isGdalSuccessfullInitialized() );
+	@Test
+	public void testEvaluateRasterdataGdalWithTiffEpsg4269() throws Exception {
+		assumeTrue(isGdalSuccessfullInitialized());
 
-        XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( mockWmsWorkspaceWrapper(),
-                                                                        mockGdalManagerConfig() );
-        List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata( mockArchiveWithTiffEpsg4269(),
-                                                                                      mockFeatureCollection() );
-        RasterEvaluationResult result = results.get( 0 );
+		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(mockWmsWorkspaceWrapper(),
+				mockGdalManagerConfig());
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffEpsg4269(),
+				mockFeatureCollection());
+		RasterEvaluationResult result = results.get(0);
 
-        assertThat( result.getRasterName(), is( TIFF_EPSG4269_NAME ) );
-        assertThat( result.isCrsSet(), is( true ) );
-        assertThat( result.isConfiguredCrs(), is( false ) );
-        assertThat( result.isSupportedImageFormat(), is( true ) );
-    }
-    @Test
-    public void testEvaluateRasterdataGdalWithTiffEpsg4326()
-                    throws Exception {
-        assumeTrue( isGdalSuccessfullInitialized() );
+		assertThat(result.getRasterName(), is(TIFF_EPSG4269_NAME));
+		assertThat(result.isCrsSet(), is(true));
+		assertThat(result.isConfiguredCrs(), is(false));
+		assertThat(result.isSupportedImageFormat(), is(true));
+	}
 
-        XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( mockWmsWorkspaceWrapper(),
-                                                                        mockGdalManagerConfig() );
-        List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata( mockArchiveWithTiffEpsg4326(),
-                                                                                      mockFeatureCollection() );
-        RasterEvaluationResult result = results.get( 0 );
+	@Test
+	public void testEvaluateRasterdataGdalWithTiffEpsg4326() throws Exception {
+		assumeTrue(isGdalSuccessfullInitialized());
 
-        assertThat( result.getRasterName(), is( TIFF_EPSG4326_NAME ) );
-        assertThat( result.isCrsSet(), is( true ) );
-        assertThat( result.isConfiguredCrs(), is( true ) );
-        assertThat( result.isSupportedImageFormat(), is( true ) );
-    }
+		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(mockWmsWorkspaceWrapper(),
+				mockGdalManagerConfig());
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffEpsg4326(),
+				mockFeatureCollection());
+		RasterEvaluationResult result = results.get(0);
 
-    @Test
-    public void testEvaluateRasterdataGdalWithTiffNoCrs()
-                    throws Exception {
-        assumeTrue( isGdalSuccessfullInitialized() );
+		assertThat(result.getRasterName(), is(TIFF_EPSG4326_NAME));
+		assertThat(result.isCrsSet(), is(true));
+		assertThat(result.isConfiguredCrs(), is(true));
+		assertThat(result.isSupportedImageFormat(), is(true));
+	}
 
-        XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( mockWmsWorkspaceWrapper(),
-                                                                        mockGdalManagerConfig() );
-        List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata( mockArchiveWithTiffNoCrs(),
-                                                                                      mockFeatureCollection() );
-        RasterEvaluationResult result = results.get( 0 );
+	@Test
+	public void testEvaluateRasterdataGdalWithTiffNoCrs() throws Exception {
+		assumeTrue(isGdalSuccessfullInitialized());
 
-        assertThat( result.getRasterName(), is( TIFF_NO_CRS_NAME ) );
-        assertThat( result.isCrsSet(), is( false ) );
-        assertThat( result.isConfiguredCrs(), is( false ) );
-        assertThat( result.isSupportedImageFormat(), is( true ) );
-    }
+		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(mockWmsWorkspaceWrapper(),
+				mockGdalManagerConfig());
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffNoCrs(),
+				mockFeatureCollection());
+		RasterEvaluationResult result = results.get(0);
 
-    @Test
-    public void testEvaluateRasterdataGdalWithTxt()
-                    throws Exception {
-        assumeTrue( isGdalSuccessfullInitialized() );
+		assertThat(result.getRasterName(), is(TIFF_NO_CRS_NAME));
+		assertThat(result.isCrsSet(), is(false));
+		assertThat(result.isConfiguredCrs(), is(false));
+		assertThat(result.isSupportedImageFormat(), is(true));
+	}
 
-        XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( mockWmsWorkspaceWrapper(),
-                                                                        mockGdalManagerConfig() );
-        List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata( mockArchiveWithTxt(),
-                                                                                      mockFeatureCollection() );
-        RasterEvaluationResult result = results.get( 0 );
+	@Test
+	public void testEvaluateRasterdataGdalWithTxt() throws Exception {
+		assumeTrue(isGdalSuccessfullInitialized());
 
-        assertThat( result.getRasterName(), is( TXT_NAME ) );
-        assertThat( result.isCrsSet(), is( false ) );
-        assertThat( result.isConfiguredCrs(), is( false ) );
-        assertThat( result.isSupportedImageFormat(), is( false ) );
-    }
+		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(mockWmsWorkspaceWrapper(),
+				mockGdalManagerConfig());
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTxt(),
+				mockFeatureCollection());
+		RasterEvaluationResult result = results.get(0);
 
-    @Test
-    public void testEvaluateRasterdataGeotiffWithTiff()
-                    throws Exception {
-        assumeTrue( isGdalSuccessfullInitialized() );
+		assertThat(result.getRasterName(), is(TXT_NAME));
+		assertThat(result.isCrsSet(), is(false));
+		assertThat(result.isConfiguredCrs(), is(false));
+		assertThat(result.isSupportedImageFormat(), is(false));
+	}
 
-        XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( mockWmsWorkspaceWrapper(),
-                                                                        mockGeotiffManagerConfig() );
+	@Test
+	public void testEvaluateRasterdataGeotiffWithTiff() throws Exception {
+		assumeTrue(isGdalSuccessfullInitialized());
 
-        List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata( mockArchiveWithTiffNoCrs(),
-                                                                                      mockFeatureCollection() );
+		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(mockWmsWorkspaceWrapper(),
+				mockGeotiffManagerConfig());
 
-        RasterEvaluationResult result = results.get( 0 );
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffNoCrs(),
+				mockFeatureCollection());
 
-        assertThat( result.getRasterName(), is( TIFF_NO_CRS_NAME ) );
-        assertThat( result.isCrsSet(), is( false ) );
-        assertThat( result.isConfiguredCrs(), is( true ) );
-        assertThat( result.isSupportedImageFormat(), is( true ) );
-    }
+		RasterEvaluationResult result = results.get(0);
 
-    @Test
-    public void testEvaluateRasterdataGeotiffWithPng()
-                    throws Exception {
-        assumeTrue( isGdalSuccessfullInitialized() );
+		assertThat(result.getRasterName(), is(TIFF_NO_CRS_NAME));
+		assertThat(result.isCrsSet(), is(false));
+		assertThat(result.isConfiguredCrs(), is(true));
+		assertThat(result.isSupportedImageFormat(), is(true));
+	}
 
-        XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( mockWmsWorkspaceWrapper(),
-                                                                        mockGeotiffManagerConfig() );
+	@Test
+	public void testEvaluateRasterdataGeotiffWithPng() throws Exception {
+		assumeTrue(isGdalSuccessfullInitialized());
 
-        List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata( mockArchiveWithPngNoCrs(),
-                                                                                      mockFeatureCollection() );
+		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(mockWmsWorkspaceWrapper(),
+				mockGeotiffManagerConfig());
 
-        RasterEvaluationResult result = results.get( 0 );
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithPngNoCrs(),
+				mockFeatureCollection());
 
-        assertThat( result.getRasterName(), is( PNG_NO_CRS_NAME ) );
-        assertThat( result.isCrsSet(), is( false ) );
-        assertThat( result.isConfiguredCrs(), is( true ) );
-        assertThat( result.isSupportedImageFormat(), is( false ) );
-    }
+		RasterEvaluationResult result = results.get(0);
 
-    @Test
-    public void testEvaluateRasterdataGdalWithPng25833()
-                    throws Exception {
-        assumeTrue( isGdalSuccessfullInitialized() );
+		assertThat(result.getRasterName(), is(PNG_NO_CRS_NAME));
+		assertThat(result.isCrsSet(), is(false));
+		assertThat(result.isConfiguredCrs(), is(true));
+		assertThat(result.isSupportedImageFormat(), is(false));
+	}
 
-        XPlanRasterManager xPlanRasterManager = new XPlanRasterManager( mockWmsWorkspaceWrapper(),
-                                                                        mockGdalManagerConfig() );
-        List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata( mockArchiveWithPngEpsg25833(),
-                                                                                      mockFeatureCollection() );
-        RasterEvaluationResult result = results.get( 0 );
+	@Test
+	public void testEvaluateRasterdataGdalWithPng25833() throws Exception {
+		assumeTrue(isGdalSuccessfullInitialized());
 
-        assertThat( result.getRasterName(), is( PNG_EPSG25833_NAME ) );
-        assertThat( result.isCrsSet(), is( true ) );
-        assertThat( result.isConfiguredCrs(), is( false ) );
-        assertThat( result.isSupportedImageFormat(), is( true ) );
-    }
+		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(mockWmsWorkspaceWrapper(),
+				mockGdalManagerConfig());
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithPngEpsg25833(),
+				mockFeatureCollection());
+		RasterEvaluationResult result = results.get(0);
 
-    private WmsWorkspaceWrapper mockWmsWorkspaceWrapper()
-                    throws IOException {
-        WmsWorkspaceWrapper wmsWorkspaceWrapper = mock( WmsWorkspaceWrapper.class );
-        when( wmsWorkspaceWrapper.getLocation() ).thenReturn( Files.createTempDirectory( "workspace" ).toFile() );
-        return wmsWorkspaceWrapper;
-    }
+		assertThat(result.getRasterName(), is(PNG_EPSG25833_NAME));
+		assertThat(result.isCrsSet(), is(true));
+		assertThat(result.isConfiguredCrs(), is(false));
+		assertThat(result.isSupportedImageFormat(), is(true));
+	}
 
-    private XPlanArchive mockArchiveWithTiffEpsg4269() {
-        return mockArchive( TIFF_EPSG4269_NAME, "dem30_geotiff_tiled.tiff" );
-    }
+	private WmsWorkspaceWrapper mockWmsWorkspaceWrapper() throws IOException {
+		WmsWorkspaceWrapper wmsWorkspaceWrapper = mock(WmsWorkspaceWrapper.class);
+		when(wmsWorkspaceWrapper.getLocation()).thenReturn(Files.createTempDirectory("workspace").toFile());
+		return wmsWorkspaceWrapper;
+	}
 
-    private XPlanArchive mockArchiveWithTiffNoCrs() {
-        return mockArchive( TIFF_NO_CRS_NAME, "dem30.tiff" );
-    }
+	private XPlanArchive mockArchiveWithTiffEpsg4269() {
+		return mockArchive(TIFF_EPSG4269_NAME, "dem30_geotiff_tiled.tiff");
+	}
 
-    private XPlanArchive mockArchiveWithPngNoCrs() {
-        return mockArchive( PNG_NO_CRS_NAME, "png_nocrs.png" );
-    }
+	private XPlanArchive mockArchiveWithTiffNoCrs() {
+		return mockArchive(TIFF_NO_CRS_NAME, "dem30.tiff");
+	}
 
-    private XPlanArchive mockArchiveWithTiffEpsg4326() {
-        return mockArchive( TIFF_EPSG4326_NAME, "dem30_geotiff_tiled_epsg4326.tiff" );
-    }
+	private XPlanArchive mockArchiveWithPngNoCrs() {
+		return mockArchive(PNG_NO_CRS_NAME, "png_nocrs.png");
+	}
 
-    private XPlanArchive mockArchiveWithTxt() {
-        return mockArchive( TXT_NAME, "test.txt" );
-    }
+	private XPlanArchive mockArchiveWithTiffEpsg4326() {
+		return mockArchive(TIFF_EPSG4326_NAME, "dem30_geotiff_tiled_epsg4326.tiff");
+	}
 
-    private XPlanArchive mockArchive( String entryName, String resourceName ) {
-        XPlanArchive mockedArchive = mock( XPlanArchive.class );
-        ZipEntryWithContent mockedEntry = mockZipEntry( mockedArchive, entryName, resourceName );
-        when( mockedArchive.getEntry( REF ) ).thenReturn( mockedEntry );
+	private XPlanArchive mockArchiveWithTxt() {
+		return mockArchive(TXT_NAME, "test.txt");
+	}
 
-        List<ArchiveEntry> zipFileEntries = Collections.singletonList( mockedEntry );
-        doReturn( zipFileEntries ).when( mockedArchive ).getZipFileEntries();
-        return mockedArchive;
-    }
+	private XPlanArchive mockArchive(String entryName, String resourceName) {
+		XPlanArchive mockedArchive = mock(XPlanArchive.class);
+		ZipEntryWithContent mockedEntry = mockZipEntry(mockedArchive, entryName, resourceName);
+		when(mockedArchive.getEntry(REF)).thenReturn(mockedEntry);
 
-    private XPlanArchive mockArchiveWithPngEpsg25833() {
-        XPlanArchive mockedArchive = mock( XPlanArchive.class );
+		List<ArchiveEntry> zipFileEntries = Collections.singletonList(mockedEntry);
+		doReturn(zipFileEntries).when(mockedArchive).getZipFileEntries();
+		return mockedArchive;
+	}
 
-        ZipEntryWithContent mockedPngEntry = mockZipEntry( mockedArchive, PNG_EPSG25833_NAME, "png_25833.png" );
-        ZipEntryWithContent mockedAuxEntry = mockZipEntry( mockedArchive, PNG_EPSG25833_AUX_NAME,
-                                                           "png_25833.png.aux.xml" );
+	private XPlanArchive mockArchiveWithPngEpsg25833() {
+		XPlanArchive mockedArchive = mock(XPlanArchive.class);
 
-        when( mockedArchive.getEntry( REF ) ).thenReturn( mockedPngEntry );
+		ZipEntryWithContent mockedPngEntry = mockZipEntry(mockedArchive, PNG_EPSG25833_NAME, "png_25833.png");
+		ZipEntryWithContent mockedAuxEntry = mockZipEntry(mockedArchive, PNG_EPSG25833_AUX_NAME,
+				"png_25833.png.aux.xml");
 
-        List<ArchiveEntry> zipFileEntries = Arrays.asList( mockedPngEntry, mockedAuxEntry );
-        doReturn( zipFileEntries ).when( mockedArchive ).getZipFileEntries();
-        return mockedArchive;
-    }
+		when(mockedArchive.getEntry(REF)).thenReturn(mockedPngEntry);
 
-    private ZipEntryWithContent mockZipEntry( XPlanArchive mockedArchive, String name, String resource ) {
-        ZipEntryWithContent mockedEntry = mock( ZipEntryWithContent.class );
-        when( mockedEntry.getName() ).thenReturn( name );
-        InputStream resourceStream = XPlanRasterManagerTest.class.getResourceAsStream( resource );
-        when( mockedArchive.retrieveInputStreamFor( name ) ).thenReturn( resourceStream );
-        return mockedEntry;
-    }
+		List<ArchiveEntry> zipFileEntries = Arrays.asList(mockedPngEntry, mockedAuxEntry);
+		doReturn(zipFileEntries).when(mockedArchive).getZipFileEntries();
+		return mockedArchive;
+	}
 
-    private XPlanFeatureCollection mockFeatureCollection() {
-        XPlanFeatureCollection mockedFeatureCollection = mock( XPlanFeatureCollection.class );
-        ExternalReferenceInfo mockedExternalReferenceInfo = mock( ExternalReferenceInfo.class );
+	private ZipEntryWithContent mockZipEntry(XPlanArchive mockedArchive, String name, String resource) {
+		ZipEntryWithContent mockedEntry = mock(ZipEntryWithContent.class);
+		when(mockedEntry.getName()).thenReturn(name);
+		InputStream resourceStream = XPlanRasterManagerTest.class.getResourceAsStream(resource);
+		when(mockedArchive.retrieveInputStreamFor(name)).thenReturn(resourceStream);
+		return mockedEntry;
+	}
 
-        ExternalReference mockedExternalReference = mock( ExternalReference.class );
-        when( mockedExternalReference.getReferenzUrl() ).thenReturn( REF );
+	private XPlanFeatureCollection mockFeatureCollection() {
+		XPlanFeatureCollection mockedFeatureCollection = mock(XPlanFeatureCollection.class);
+		ExternalReferenceInfo mockedExternalReferenceInfo = mock(ExternalReferenceInfo.class);
 
-        List<ExternalReference> externalReferences = Collections.singletonList( mockedExternalReference );
-        when( mockedExternalReferenceInfo.getRasterPlanBaseScans() ).thenReturn( externalReferences );
-        when( mockedExternalReferenceInfo.getRasterPlanBaseAndUpdateScans() ).thenReturn( externalReferences );
+		ExternalReference mockedExternalReference = mock(ExternalReference.class);
+		when(mockedExternalReference.getReferenzUrl()).thenReturn(REF);
 
-        when( mockedFeatureCollection.getExternalReferenceInfo() ).thenReturn( mockedExternalReferenceInfo );
-        return mockedFeatureCollection;
-    }
+		List<ExternalReference> externalReferences = Collections.singletonList(mockedExternalReference);
+		when(mockedExternalReferenceInfo.getRasterPlanBaseScans()).thenReturn(externalReferences);
+		when(mockedExternalReferenceInfo.getRasterPlanBaseAndUpdateScans()).thenReturn(externalReferences);
 
-    private ManagerConfiguration mockGdalManagerConfig() {
-        return mockManagerConfig( gdal );
-    }
+		when(mockedFeatureCollection.getExternalReferenceInfo()).thenReturn(mockedExternalReferenceInfo);
+		return mockedFeatureCollection;
+	}
 
-    private ManagerConfiguration mockGeotiffManagerConfig() {
-        return mockManagerConfig( geotiff );
-    }
+	private ManagerConfiguration mockGdalManagerConfig() {
+		return mockManagerConfig(gdal);
+	}
 
-    private ManagerConfiguration mockManagerConfig( RasterConfigurationType configurationType ) {
-        ManagerConfiguration mockedConfiguration = mock( ManagerConfiguration.class );
-        when( mockedConfiguration.getRasterConfigurationType() ).thenReturn( configurationType );
-        when( mockedConfiguration.getRasterConfigurationCrs() ).thenReturn( CONFIGURED_CRS );
-        return mockedConfiguration;
-    }
+	private ManagerConfiguration mockGeotiffManagerConfig() {
+		return mockManagerConfig(geotiff);
+	}
+
+	private ManagerConfiguration mockManagerConfig(RasterConfigurationType configurationType) {
+		ManagerConfiguration mockedConfiguration = mock(ManagerConfiguration.class);
+		when(mockedConfiguration.getRasterConfigurationType()).thenReturn(configurationType);
+		when(mockedConfiguration.getRasterConfigurationCrs()).thenReturn(CONFIGURED_CRS);
+		return mockedConfiguration;
+	}
 
 }

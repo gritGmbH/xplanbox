@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -32,27 +32,24 @@ import javax.xml.stream.XMLStreamWriter;
  */
 public class XPlanGmlWriter extends GMLStreamWriter {
 
-    private final XPlanVersion xPlanVersion;
+	private final XPlanVersion xPlanVersion;
 
-    /**
-     * Creates a new {@link GMLStreamWriter} instance.
-     *
-     * @param xPlanVersion
-     *                 {@link XPlanVersion} of the output, must not be <code>null</code>
-     * @param xmlStream
-     *                 XML stream used to write the output, must not be <code>null</code>
-     * @throws XMLStreamException
-     */
-    public XPlanGmlWriter( XPlanVersion xPlanVersion, XMLStreamWriter xmlStream )
-                    throws XMLStreamException {
-        super( xPlanVersion.getGmlVersion(), xmlStream );
-        this.xPlanVersion = xPlanVersion;
-        getNamespaceBindings().put( "xplan", xPlanVersion.getNamespace() );
-    }
+	/**
+	 * Creates a new {@link GMLStreamWriter} instance.
+	 * @param xPlanVersion {@link XPlanVersion} of the output, must not be
+	 * <code>null</code>
+	 * @param xmlStream XML stream used to write the output, must not be <code>null</code>
+	 * @throws XMLStreamException
+	 */
+	public XPlanGmlWriter(XPlanVersion xPlanVersion, XMLStreamWriter xmlStream) throws XMLStreamException {
+		super(xPlanVersion.getGmlVersion(), xmlStream);
+		this.xPlanVersion = xPlanVersion;
+		getNamespaceBindings().put("xplan", xPlanVersion.getNamespace());
+	}
 
-    @Override
-    public GMLFeatureWriter getFeatureWriter() {
-        return new XPlanGmlFeatureWriter( this, xPlanVersion );
-    }
+	@Override
+	public GMLFeatureWriter getFeatureWriter() {
+		return new XPlanGmlFeatureWriter(this, xPlanVersion);
+	}
 
 }

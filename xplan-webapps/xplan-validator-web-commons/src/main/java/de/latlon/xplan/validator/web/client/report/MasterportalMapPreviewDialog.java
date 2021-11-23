@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -38,82 +38,83 @@ import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
  */
 public class MasterportalMapPreviewDialog extends DialogBox {
 
-    private static final String FRAME_WIDTH = "800px";
+	private static final String FRAME_WIDTH = "800px";
 
-    private static final String FRAME_HEIGHT = "630px";
+	private static final String FRAME_HEIGHT = "630px";
 
-    private final ValidatorWebCommonsMessages messages = GWT.create( ValidatorWebCommonsMessages.class );
+	private final ValidatorWebCommonsMessages messages = GWT.create(ValidatorWebCommonsMessages.class);
 
-    private final MapPreviewMetadata mapPreviewMetadata;
+	private final MapPreviewMetadata mapPreviewMetadata;
 
-    public MasterportalMapPreviewDialog( MapPreviewMetadata mapPreviewMetadata ) {
-        super( false );
-        this.mapPreviewMetadata = mapPreviewMetadata;
-        initDialog();
-    }
+	public MasterportalMapPreviewDialog(MapPreviewMetadata mapPreviewMetadata) {
+		super(false);
+		this.mapPreviewMetadata = mapPreviewMetadata;
+		initDialog();
+	}
 
-    private void initDialog() {
-        setText( messages.mapPreviewDialogTitle( mapPreviewMetadata.getValidationName() ) );
-        VerticalPanel dialogBoxContent = createDialogBoxContent();
-        createAndAddMap( dialogBoxContent );
-        createAndAddCloseButton( dialogBoxContent );
-        setWidget( dialogBoxContent );
-    }
+	private void initDialog() {
+		setText(messages.mapPreviewDialogTitle(mapPreviewMetadata.getValidationName()));
+		VerticalPanel dialogBoxContent = createDialogBoxContent();
+		createAndAddMap(dialogBoxContent);
+		createAndAddCloseButton(dialogBoxContent);
+		setWidget(dialogBoxContent);
+	}
 
-    private VerticalPanel createDialogBoxContent() {
-        VerticalPanel dialogBoxContent = new VerticalPanel();
-        dialogBoxContent.setHorizontalAlignment( VerticalPanel.ALIGN_CENTER );
-        dialogBoxContent.setSpacing( 20 );
-        return dialogBoxContent;
-    }
+	private VerticalPanel createDialogBoxContent() {
+		VerticalPanel dialogBoxContent = new VerticalPanel();
+		dialogBoxContent.setHorizontalAlignment(VerticalPanel.ALIGN_CENTER);
+		dialogBoxContent.setSpacing(20);
+		return dialogBoxContent;
+	}
 
-    private void createAndAddMap( final VerticalPanel dialogBoxContent ) {
-        Frame mapFrame = new Frame();
-        mapFrame.setWidth( FRAME_WIDTH );
-        mapFrame.setHeight( FRAME_HEIGHT );
-        mapFrame.setUrl( createUrl() );
-        dialogBoxContent.add( mapFrame );
-    }
+	private void createAndAddMap(final VerticalPanel dialogBoxContent) {
+		Frame mapFrame = new Frame();
+		mapFrame.setWidth(FRAME_WIDTH);
+		mapFrame.setHeight(FRAME_HEIGHT);
+		mapFrame.setUrl(createUrl());
+		dialogBoxContent.add(mapFrame);
+	}
 
-    private String createUrl() {
-        StringBuilder sb = new StringBuilder();
-        sb.append( "./masterportal?" );
-        sb.append( "style=simple&" );
-        sb.append( "zoomToExtent=" );
-        XPlanEnvelope bbox = mapPreviewMetadata.getBbox();
-        sb.append( bbox.getMinX() ).append( "," );
-        sb.append( bbox.getMinY() ).append( "," );
-        sb.append( bbox.getMaxX() ).append( "," );
-        sb.append( bbox.getMaxY() ).append( "&" );
-        sb.append( "projection=" ).append( bbox.getCrs() ).append( "&" );
-        sb.append( "config=" ).append( mapPreviewMetadata.getConfigFileName() );
-        return sb.toString();
-    }
+	private String createUrl() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("./masterportal?");
+		sb.append("style=simple&");
+		sb.append("zoomToExtent=");
+		XPlanEnvelope bbox = mapPreviewMetadata.getBbox();
+		sb.append(bbox.getMinX()).append(",");
+		sb.append(bbox.getMinY()).append(",");
+		sb.append(bbox.getMaxX()).append(",");
+		sb.append(bbox.getMaxY()).append("&");
+		sb.append("projection=").append(bbox.getCrs()).append("&");
+		sb.append("config=").append(mapPreviewMetadata.getConfigFileName());
+		return sb.toString();
+	}
 
-    private void createAndAddCloseButton( VerticalPanel dialogBoxContent ) {
-        SimplePanel simplePanel = createButtonPanel( messages.validationPopupClose(), createCloseHandler() );
-        dialogBoxContent.add( simplePanel );
-    }
+	private void createAndAddCloseButton(VerticalPanel dialogBoxContent) {
+		SimplePanel simplePanel = createButtonPanel(messages.validationPopupClose(), createCloseHandler());
+		dialogBoxContent.add(simplePanel);
+	}
 
-    private ClickHandler createCloseHandler() {
-        return new ClickHandler() {
-            @Override
-            public void onClick( ClickEvent event ) {
-                MasterportalMapPreviewDialog.this.hide();
-            }
-        };
-    }
+	private ClickHandler createCloseHandler() {
+		return new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				MasterportalMapPreviewDialog.this.hide();
+			}
+		};
+	}
 
-    private SimplePanel createButtonPanel( String message, ClickHandler clickHandler ) {
-        Button button = new Button();
-        button.setText( message );
-        button.addClickHandler( clickHandler );
-        return addButtonToSimplePanel( button );
-    }
+	private SimplePanel createButtonPanel(String message, ClickHandler clickHandler) {
+		Button button = new Button();
+		button.setText(message);
+		button.addClickHandler(clickHandler);
+		return addButtonToSimplePanel(button);
+	}
 
-    private SimplePanel addButtonToSimplePanel( Button button ) {
-        SimplePanel simplePanel = new SimplePanel();
-        simplePanel.add( button );
-        return simplePanel;
-    }
+	private SimplePanel addButtonToSimplePanel(Button button) {
+		SimplePanel simplePanel = new SimplePanel();
+		simplePanel.add(button);
+		return simplePanel;
+	}
+
 }

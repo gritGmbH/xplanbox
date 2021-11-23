@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -80,134 +80,136 @@ import de.latlon.xplan.manager.web.shared.edit.ChangeType;
 
 /**
  * Subpanel to edit changes of XPlan version 3.0
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class ChangesXplan30Panel extends AbstractEditorSubPanelWithTable<Change> {
 
-    /**
-     * Instantiates a panel to edit changes of XPlan version 3.0
-     */
-    public ChangesXplan30Panel() {
-        super( XPLAN_3, MESSAGES.editCaptionChanges() );
-        add( createGui() );
-    }
+	/**
+	 * Instantiates a panel to edit changes of XPlan version 3.0
+	 */
+	public ChangesXplan30Panel() {
+		super(XPLAN_3, MESSAGES.editCaptionChanges());
+		add(createGui());
+	}
 
-    @Override
-    protected void initColumns( CellTable<Change> changesList ) {
-        addTextColumn( changesList );
-        addTypeColumn( changesList );
+	@Override
+	protected void initColumns(CellTable<Change> changesList) {
+		addTextColumn(changesList);
+		addTypeColumn(changesList);
 
-        TextHeader actionHeader = new TextHeader( MESSAGES.actions() );
-        addEditColumn( changesList, actionHeader );
-        addRemoveColumn( changesList, actionHeader );
-    }
+		TextHeader actionHeader = new TextHeader(MESSAGES.actions());
+		addEditColumn(changesList, actionHeader);
+		addRemoveColumn(changesList, actionHeader);
+	}
 
-    private Widget createGui() {
-        VerticalPanel panel = new VerticalPanel();
-        panel.setSpacing( 5 );
-        panel.setHorizontalAlignment( ALIGN_CENTER );
-        panel.add( getTable() );
-        panel.add( createNewButton() );
-        return panel;
-    }
+	private Widget createGui() {
+		VerticalPanel panel = new VerticalPanel();
+		panel.setSpacing(5);
+		panel.setHorizontalAlignment(ALIGN_CENTER);
+		panel.add(getTable());
+		panel.add(createNewButton());
+		return panel;
+	}
 
-    private Button createNewButton() {
-        Button newButton = new Button( MESSAGES.editCaptionNewChange(), new ClickHandler() {
-            public void onClick( ClickEvent event ) {
-                final ChangesXplan30Dialog changesDialog = new ChangesXplan30Dialog( version );
-                changesDialog.addSaveHandler( new SavedHandler() {
-                    @Override
-                    public void changesSaved() {
-                        if ( changesDialog.isValid() ) {
-                            Change newChange = changesDialog.getChange();
-                            List<Change> changes = getValues();
-                            changes.add( newChange );
-                            changesDialog.hide();
-                        } else {
-                            Window.alert( MESSAGES.editInvalidInput() );
-                        }
-                    }
-                } );
-                changesDialog.center();
-                changesDialog.show();
-            }
-        } );
-        return newButton;
-    }
+	private Button createNewButton() {
+		Button newButton = new Button(MESSAGES.editCaptionNewChange(), new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				final ChangesXplan30Dialog changesDialog = new ChangesXplan30Dialog(version);
+				changesDialog.addSaveHandler(new SavedHandler() {
+					@Override
+					public void changesSaved() {
+						if (changesDialog.isValid()) {
+							Change newChange = changesDialog.getChange();
+							List<Change> changes = getValues();
+							changes.add(newChange);
+							changesDialog.hide();
+						}
+						else {
+							Window.alert(MESSAGES.editInvalidInput());
+						}
+					}
+				});
+				changesDialog.center();
+				changesDialog.show();
+			}
+		});
+		return newButton;
+	}
 
-    private void addTextColumn( CellTable<Change> table ) {
-        TextColumn<Change> planNameColumn = new TextColumn<Change>() {
-            @Override
-            public String getValue( Change changeData ) {
-                return shortText( changeData.getPlanName() );
-            }
-        };
-        planNameColumn.setCellStyleNames( "editChangesColumn changeTextColumn" );
-        table.addColumn( planNameColumn, MESSAGES.editCaptionChangesText());
-    }
+	private void addTextColumn(CellTable<Change> table) {
+		TextColumn<Change> planNameColumn = new TextColumn<Change>() {
+			@Override
+			public String getValue(Change changeData) {
+				return shortText(changeData.getPlanName());
+			}
+		};
+		planNameColumn.setCellStyleNames("editChangesColumn changeTextColumn");
+		table.addColumn(planNameColumn, MESSAGES.editCaptionChangesText());
+	}
 
-    private void addTypeColumn( CellTable<Change> table ) {
-        TextColumn<Change> typeColumn = new TextColumn<Change>() {
-            @Override
-            public String getValue( Change changeData ) {
-                return TYPE_CODELIST_PROVIDER.translate( ChangeType.class, changeData.getType() );
-            }
-        };
-        typeColumn.setCellStyleNames( "editChangesColumn typeColumn" );
-        table.addColumn( typeColumn, MESSAGES.editCaptionChangesType() );
-    }
+	private void addTypeColumn(CellTable<Change> table) {
+		TextColumn<Change> typeColumn = new TextColumn<Change>() {
+			@Override
+			public String getValue(Change changeData) {
+				return TYPE_CODELIST_PROVIDER.translate(ChangeType.class, changeData.getType());
+			}
+		};
+		typeColumn.setCellStyleNames("editChangesColumn typeColumn");
+		table.addColumn(typeColumn, MESSAGES.editCaptionChangesType());
+	}
 
-    private void addEditColumn( final CellTable<Change> table, TextHeader columnHeader ) {
-        ButtonCell editButtonCell = new ButtonCell();
-        final Column<Change, String> editButtonColumn = new Column<Change, String>( editButtonCell) {
-            @Override
-            public String getValue( Change object ) {
-                return "";
-            }
-        };
-        editButtonColumn.setFieldUpdater( new FieldUpdater<Change, String>() {
-            public void update( final int index, Change change, String value ) {
-                final ChangesXplan30Dialog changesDialog = new ChangesXplan30Dialog( change );
-                changesDialog.addSaveHandler( new SavedHandler() {
-                    @Override
-                    public void changesSaved() {
-                        if ( changesDialog.isValid() ) {
-                            Change updatedChange = changesDialog.getChange();
-                            List<Change> changes = getValues();
-                            changes.remove( index );
-                            changes.add( index, updatedChange );
-                            changesDialog.hide();
-                        } else {
-                            Window.alert( MESSAGES.editInvalidInput() );
-                        }
-                    }
-                } );
-                changesDialog.center();
-                changesDialog.show();
-            }
-        } );
-        editButtonColumn.setCellStyleNames( "editChangesColumn editButtonColumn" );
-        table.addColumn( editButtonColumn, columnHeader );
-    }
+	private void addEditColumn(final CellTable<Change> table, TextHeader columnHeader) {
+		ButtonCell editButtonCell = new ButtonCell();
+		final Column<Change, String> editButtonColumn = new Column<Change, String>(editButtonCell) {
+			@Override
+			public String getValue(Change object) {
+				return "";
+			}
+		};
+		editButtonColumn.setFieldUpdater(new FieldUpdater<Change, String>() {
+			public void update(final int index, Change change, String value) {
+				final ChangesXplan30Dialog changesDialog = new ChangesXplan30Dialog(change);
+				changesDialog.addSaveHandler(new SavedHandler() {
+					@Override
+					public void changesSaved() {
+						if (changesDialog.isValid()) {
+							Change updatedChange = changesDialog.getChange();
+							List<Change> changes = getValues();
+							changes.remove(index);
+							changes.add(index, updatedChange);
+							changesDialog.hide();
+						}
+						else {
+							Window.alert(MESSAGES.editInvalidInput());
+						}
+					}
+				});
+				changesDialog.center();
+				changesDialog.show();
+			}
+		});
+		editButtonColumn.setCellStyleNames("editChangesColumn editButtonColumn");
+		table.addColumn(editButtonColumn, columnHeader);
+	}
 
-    private void addRemoveColumn( final CellTable<Change> table, TextHeader columnHeader ) {
-        ButtonCell downloadButtonCell = new ButtonCell();
-        final Column<Change, String> removeButtonColumn = new Column<Change, String>( downloadButtonCell) {
-            @Override
-            public String getValue( Change object ) {
-                return "";
-            }
-        };
-        removeButtonColumn.setFieldUpdater( new FieldUpdater<Change, String>() {
-            public void update( int index, Change object, String value ) {
-                List<Change> changes = getValues();
-                changes.remove( index );
-            }
-        } );
-        removeButtonColumn.setCellStyleNames( "editChangesColumn removeButtonColumn" );
-        table.addColumn( removeButtonColumn, columnHeader );
-    }
+	private void addRemoveColumn(final CellTable<Change> table, TextHeader columnHeader) {
+		ButtonCell downloadButtonCell = new ButtonCell();
+		final Column<Change, String> removeButtonColumn = new Column<Change, String>(downloadButtonCell) {
+			@Override
+			public String getValue(Change object) {
+				return "";
+			}
+		};
+		removeButtonColumn.setFieldUpdater(new FieldUpdater<Change, String>() {
+			public void update(int index, Change object, String value) {
+				List<Change> changes = getValues();
+				changes.remove(index);
+			}
+		});
+		removeButtonColumn.setCellStyleNames("editChangesColumn removeButtonColumn");
+		table.addColumn(removeButtonColumn, columnHeader);
+	}
 
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -33,37 +33,33 @@ import java.math.BigDecimal;
  */
 public class FlaechenschlussTolerance {
 
-    public static final double ALLOWEDDISTANCE_METRE = 0.002;
+	public static final double ALLOWEDDISTANCE_METRE = 0.002;
 
-    /**
-     * Calculate allowed distance.
-     *
-     * @param coordinateSystem
-     *                         ma< be <code>null</code>
-     * @return never <code>null</code>
-     */
-    public static Measure calculateAllowedDistance( ICRS coordinateSystem ) {
-        double allowedDistanceValue = calculateAllowedDistanceValue( coordinateSystem );
-        return new Measure( BigDecimal.valueOf( allowedDistanceValue ), "m" );
-    }
+	/**
+	 * Calculate allowed distance.
+	 * @param coordinateSystem ma< be <code>null</code>
+	 * @return never <code>null</code>
+	 */
+	public static Measure calculateAllowedDistance(ICRS coordinateSystem) {
+		double allowedDistanceValue = calculateAllowedDistanceValue(coordinateSystem);
+		return new Measure(BigDecimal.valueOf(allowedDistanceValue), "m");
+	}
 
-    /**
-     * Calculate allowed distance.
-     *
-     * @param coordinateSystem
-     *                         may be <code>null</code>
-     * @return the allowed distance
-     */
-    public static double calculateAllowedDistanceValue( ICRS coordinateSystem ) {
-        if ( coordinateSystem != null ) {
-            IUnit[] units = coordinateSystem.getUnits();
-            if ( units != null && units.length > 0 ) {
-                if ( units[0].canConvert( Unit.METRE ) ) {
-                    return units[0].convert( ALLOWEDDISTANCE_METRE, Unit.METRE );
-                }
-            }
-        }
-        return ALLOWEDDISTANCE_METRE;
-    }
+	/**
+	 * Calculate allowed distance.
+	 * @param coordinateSystem may be <code>null</code>
+	 * @return the allowed distance
+	 */
+	public static double calculateAllowedDistanceValue(ICRS coordinateSystem) {
+		if (coordinateSystem != null) {
+			IUnit[] units = coordinateSystem.getUnits();
+			if (units != null && units.length > 0) {
+				if (units[0].canConvert(Unit.METRE)) {
+					return units[0].convert(ALLOWEDDISTANCE_METRE, Unit.METRE);
+				}
+			}
+		}
+		return ALLOWEDDISTANCE_METRE;
+	}
 
 }

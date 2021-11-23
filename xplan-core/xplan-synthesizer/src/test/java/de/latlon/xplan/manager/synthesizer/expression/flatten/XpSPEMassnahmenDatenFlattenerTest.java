@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -38,13 +38,13 @@ import static org.junit.Assert.assertEquals;
  */
 public class XpSPEMassnahmenDatenFlattenerTest {
 
-    @Test
-    public void testFlatten() {
-        FeatureCollection features = getTestFeatures( XPLAN_51, "flatten/XpSPEMassnahmenDaten.xml" );
-        Feature feature = getTestFeature( features, "BP_SCHUTZPFLENTWFLAECHE" );
-        XplanFlattenProperty expr = new XplanFlattenProperty( new Xpath( "xplan:massnahme" ) );
-        PrimitiveValue value = expr.evaluate( feature, features );
-        assertEquals( "[Maßnahme: Trockenrasen]", value.toString() );
-    }
+	@Test
+	public void testFlatten() {
+		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpSPEMassnahmenDaten.xml");
+		Feature feature = getTestFeature(features, "BP_SCHUTZPFLENTWFLAECHE");
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:massnahme"));
+		PrimitiveValue value = expr.evaluate(feature, features);
+		assertEquals("[Maßnahme: Trockenrasen]", value.toString());
+	}
 
 }

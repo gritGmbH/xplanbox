@@ -18,35 +18,30 @@ import java.util.Collections;
 @Singleton
 public class EditGueltigkeitHandler extends EditHandler {
 
-    /**
-     * @param planId
-     *                 the ID of the plan, never <code>null</code>
-     * @return all Zeitraum of the plan, never <code>null</code>
-     * @throws Exception
-     */
-    public Zeitraum retrieveGueltigkeit( String planId )
-                    throws Exception {
-        XPlan plan = findPlanById( planId );
-        XPlanToEdit xPlanToEdit = manager.getXPlanToEdit( plan );
-        ValidityPeriod validityPeriod = xPlanToEdit.getValidityPeriod();
-        return Zeitraum.fromValidityPeriod( validityPeriod );
-    }
+	/**
+	 * @param planId the ID of the plan, never <code>null</code>
+	 * @return all Zeitraum of the plan, never <code>null</code>
+	 * @throws Exception
+	 */
+	public Zeitraum retrieveGueltigkeit(String planId) throws Exception {
+		XPlan plan = findPlanById(planId);
+		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
+		ValidityPeriod validityPeriod = xPlanToEdit.getValidityPeriod();
+		return Zeitraum.fromValidityPeriod(validityPeriod);
+	}
 
-    /**
-     * @param planId
-     *                 the ID of the plan, never <code>null</code>
-     * @param gueltigkeit
-     *                 the Zeitraum to update, never <code>null</code>     * @return the replaced Zeitraum. nerver <code>null</code>
-     * @throws Exception
-     */
-    public Zeitraum replaceGueltigkeit( String planId,
-                                        Zeitraum gueltigkeit )
-                    throws Exception {
-        XPlan plan = findPlanById( planId );
-        XPlanToEdit xPlanToEdit = manager.getXPlanToEdit( plan );
-        xPlanToEdit.setValidityPeriod( gueltigkeit.toValidityPeriod() );
-        manager.editPlan( plan, xPlanToEdit, false, Collections.emptyList() );
-        return gueltigkeit;
-    }
+	/**
+	 * @param planId the ID of the plan, never <code>null</code>
+	 * @param gueltigkeit the Zeitraum to update, never <code>null</code> * @return the
+	 * replaced Zeitraum. nerver <code>null</code>
+	 * @throws Exception
+	 */
+	public Zeitraum replaceGueltigkeit(String planId, Zeitraum gueltigkeit) throws Exception {
+		XPlan plan = findPlanById(planId);
+		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
+		xPlanToEdit.setValidityPeriod(gueltigkeit.toValidityPeriod());
+		manager.editPlan(plan, xPlanToEdit, false, Collections.emptyList());
+		return gueltigkeit;
+	}
 
 }

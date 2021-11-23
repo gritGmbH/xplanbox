@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -64,55 +64,51 @@ import org.slf4j.Logger;
 import de.latlon.xplan.commons.XPlanVersion;
 
 /**
- * Contains the configuration of links to documents containing details about semantic conformity.
- * 
+ * Contains the configuration of links to documents containing details about semantic
+ * conformity.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
 public class SemanticConformityLinkConfiguration {
 
-    private final Map<XPlanVersion, String> versionToLink = new HashMap<>();
+	private final Map<XPlanVersion, String> versionToLink = new HashMap<>();
 
-    /**
-     * Adds a new link to this {@link SemanticConformityLinkConfiguration}. If a configuration option with the same
-     * version was already added, the new one overwrites the existing.
-     * 
-     * @param version
-     *            the version of the plan, never <code>null</code>
-     * @param link
-     *            the link to the document, may be <code>null</code> if not configured
-     * @throws NullPointerException
-     *             if planType of version is <code>null</code>
-     */
-    public void addLink( XPlanVersion version, String link ) {
-        if ( version == null )
-            throw new NullPointerException( "version must never be null" );
-        versionToLink.put( version, link );
-    }
+	/**
+	 * Adds a new link to this {@link SemanticConformityLinkConfiguration}. If a
+	 * configuration option with the same version was already added, the new one
+	 * overwrites the existing.
+	 * @param version the version of the plan, never <code>null</code>
+	 * @param link the link to the document, may be <code>null</code> if not configured
+	 * @throws NullPointerException if planType of version is <code>null</code>
+	 */
+	public void addLink(XPlanVersion version, String link) {
+		if (version == null)
+			throw new NullPointerException("version must never be null");
+		versionToLink.put(version, link);
+	}
 
-    /**
-     * @param version
-     *            the version of the plan, may be <code>null</code>
-     * @return
-     * @return the link assigned to the passed version, may be <code>null</code> if not configured
-     */
-    public String retrieveLink( XPlanVersion version ) {
-        return versionToLink.get( version );
-    }
+	/**
+	 * @param version the version of the plan, may be <code>null</code>
+	 * @return
+	 * @return the link assigned to the passed version, may be <code>null</code> if not
+	 * configured
+	 */
+	public String retrieveLink(XPlanVersion version) {
+		return versionToLink.get(version);
+	}
 
-    /**
-     * Logs the configuration on info level.
-     * 
-     * @param log
-     *            to log into, never <code>null</code>
-     */
-    public void logConfiguration( Logger log ) {
-        log.info( "  SemanticConformityLinkConfiguration" );
-        for ( Entry<XPlanVersion, String> versionToLinkEntry : versionToLink.entrySet() ) {
-            XPlanVersion version = versionToLinkEntry.getKey();
-            String link = versionToLinkEntry.getValue();
-            log.info( "   - {}: {}", version, link );
-        }
+	/**
+	 * Logs the configuration on info level.
+	 * @param log to log into, never <code>null</code>
+	 */
+	public void logConfiguration(Logger log) {
+		log.info("  SemanticConformityLinkConfiguration");
+		for (Entry<XPlanVersion, String> versionToLinkEntry : versionToLink.entrySet()) {
+			XPlanVersion version = versionToLinkEntry.getKey();
+			String link = versionToLinkEntry.getValue();
+			log.info("   - {}: {}", version, link);
+		}
 
-    }
+	}
 
 }

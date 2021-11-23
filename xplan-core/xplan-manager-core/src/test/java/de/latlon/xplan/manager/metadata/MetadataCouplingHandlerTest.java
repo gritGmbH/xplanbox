@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -57,107 +57,99 @@ import static org.mockito.Mockito.when;
  */
 public class MetadataCouplingHandlerTest {
 
-    @Test
-    public void testProcessMetadataCoupling()
-                    throws Exception {
-        PlanRecordMetadata planRecordMetadata = new PlanRecordMetadata( "id", "http://test.de/id" );
-        String planName = "TestPlan1";
-        CoupledResourceConfiguration config = createConfig();
-        XPlanDao xPlanDao = mock( XPlanDao.class );
-        CswClient cswClient = mockCswClient( planRecordMetadata, planName );
-        MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler( xPlanDao, config, cswClient );
+	@Test
+	public void testProcessMetadataCoupling() throws Exception {
+		PlanRecordMetadata planRecordMetadata = new PlanRecordMetadata("id", "http://test.de/id");
+		String planName = "TestPlan1";
+		CoupledResourceConfiguration config = createConfig();
+		XPlanDao xPlanDao = mock(XPlanDao.class);
+		CswClient cswClient = mockCswClient(planRecordMetadata, planName);
+		MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler(xPlanDao, config, cswClient);
 
-        int planId = 1;
-        metadataCouplingHandler.processMetadataCoupling( planId, planName, mockPlanwerkServiceMetadata( planName ) );
+		int planId = 1;
+		metadataCouplingHandler.processMetadataCoupling(planId, planName, mockPlanwerkServiceMetadata(planName));
 
-        Path directoryToStoreMetadata = config.getDirectoryToStoreMetadata();
-        assertThat( numberOfCreatedRecords( directoryToStoreMetadata ), is( 1l ) );
+		Path directoryToStoreMetadata = config.getDirectoryToStoreMetadata();
+		assertThat(numberOfCreatedRecords(directoryToStoreMetadata), is(1l));
 
-        assertThat( theRecordIn( directoryToStoreMetadata ),
-                    HasXPathMatcher.hasXPath( "//gmd:MD_Metadata/gmd:dateStamp/gco:Date" ).withNamespaceContext(
-                                    nsContext() ) );
+		assertThat(theRecordIn(directoryToStoreMetadata),
+				HasXPathMatcher.hasXPath("//gmd:MD_Metadata/gmd:dateStamp/gco:Date").withNamespaceContext(nsContext()));
 
-        verify( xPlanDao, times( 1 ) ).insertOrReplacePlanWerkWmsMetadata( eq( planId ), eq( planName ), anyString(),
-                                                                           anyString(), anyString() );
-    }
+		verify(xPlanDao, times(1)).insertOrReplacePlanWerkWmsMetadata(eq(planId), eq(planName), anyString(),
+				anyString(), anyString());
+	}
 
-    @Test
-    public void testProcessMetadataCoupling_UnavailableRecord()
-                    throws Exception {
-        String planName = "TestPlan2";
-        CoupledResourceConfiguration config = createConfig();
-        XPlanDao xPlanDao = mock( XPlanDao.class );
-        CswClient cswClient = mockCswClient( null, planName );
-        MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler( xPlanDao, config, cswClient );
+	@Test
+	public void testProcessMetadataCoupling_UnavailableRecord() throws Exception {
+		String planName = "TestPlan2";
+		CoupledResourceConfiguration config = createConfig();
+		XPlanDao xPlanDao = mock(XPlanDao.class);
+		CswClient cswClient = mockCswClient(null, planName);
+		MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler(xPlanDao, config, cswClient);
 
-        int planId = 1;
-        metadataCouplingHandler.processMetadataCoupling( planId, planName, mockPlanwerkServiceMetadata( planName ) );
+		int planId = 1;
+		metadataCouplingHandler.processMetadataCoupling(planId, planName, mockPlanwerkServiceMetadata(planName));
 
-        Path directoryToStoreMetadata = config.getDirectoryToStoreMetadata();
-        assertThat( numberOfCreatedRecords( directoryToStoreMetadata ), is( 0l ) );
-        verify( xPlanDao, times( 1 ) ).insertOrReplacePlanWerkWmsMetadata( anyInt(), anyString(), anyString(), anyString(),
-                                                                           anyString() );
-    }
+		Path directoryToStoreMetadata = config.getDirectoryToStoreMetadata();
+		assertThat(numberOfCreatedRecords(directoryToStoreMetadata), is(0l));
+		verify(xPlanDao, times(1)).insertOrReplacePlanWerkWmsMetadata(anyInt(), anyString(), anyString(), anyString(),
+				anyString());
+	}
 
-    private Object numberOfCreatedRecords( Path directoryToStoreMetadata )
-                    throws IOException {
-        return Files.list( directoryToStoreMetadata ).count();
-    }
+	private Object numberOfCreatedRecords(Path directoryToStoreMetadata) throws IOException {
+		return Files.list(directoryToStoreMetadata).count();
+	}
 
-    private String theRecordIn( Path createdMetadataRecords )
-                    throws IOException {
-        Path metadataRecord = Files.list( createdMetadataRecords ).findFirst().get();
-        byte[] bytes = Files.readAllBytes( metadataRecord );
-        return new String( bytes );
-    }
+	private String theRecordIn(Path createdMetadataRecords) throws IOException {
+		Path metadataRecord = Files.list(createdMetadataRecords).findFirst().get();
+		byte[] bytes = Files.readAllBytes(metadataRecord);
+		return new String(bytes);
+	}
 
-    private PlanwerkServiceMetadata mockPlanwerkServiceMetadata( String planName )
-                    throws UnknownCRSException {
-        PlanwerkServiceMetadata metadata = mock( PlanwerkServiceMetadata.class );
-        when( metadata.getTitle() ).thenReturn( planName );
-        Envelope bbox = new SimpleGeometryFactory().createEnvelope( 5, 45, 8, 46, CRSManager.lookup( "EPSG:4326" ) );
-        when( metadata.getEnvelope() ).thenReturn( bbox );
-        return metadata;
-    }
+	private PlanwerkServiceMetadata mockPlanwerkServiceMetadata(String planName) throws UnknownCRSException {
+		PlanwerkServiceMetadata metadata = mock(PlanwerkServiceMetadata.class);
+		when(metadata.getTitle()).thenReturn(planName);
+		Envelope bbox = new SimpleGeometryFactory().createEnvelope(5, 45, 8, 46, CRSManager.lookup("EPSG:4326"));
+		when(metadata.getEnvelope()).thenReturn(bbox);
+		return metadata;
+	}
 
-    private CswClient mockCswClient( PlanRecordMetadata coupledResource, String planName )
-                    throws DataServiceCouplingException {
-        CswClient cswClient = mock( CswClient.class );
-        when( cswClient.requestMetadataRecord( planName ) ).thenReturn( coupledResource );
-        return cswClient;
-    }
+	private CswClient mockCswClient(PlanRecordMetadata coupledResource, String planName)
+			throws DataServiceCouplingException {
+		CswClient cswClient = mock(CswClient.class);
+		when(cswClient.requestMetadataRecord(planName)).thenReturn(coupledResource);
+		return cswClient;
+	}
 
-    private CoupledResourceConfiguration createConfig()
-                    throws IOException {
-        String cswUrlProvidingDatasetMetadata = "http://test.de";
+	private CoupledResourceConfiguration createConfig() throws IOException {
+		String cswUrlProvidingDatasetMetadata = "http://test.de";
 
-        Path metadataConfigDirectory = createDirectoryWithTemplate();
+		Path metadataConfigDirectory = createDirectoryWithTemplate();
 
-        Path directoryToStoreMetadata = Files.createTempDirectory( "directoryToStoreMetadataTest" );
+		Path directoryToStoreMetadata = Files.createTempDirectory("directoryToStoreMetadataTest");
 
-        String planWerkBaseUrl = "http://localhost:8080/xplan-planwerk-wms";
-        return new CoupledResourceConfiguration( cswUrlProvidingDatasetMetadata, metadataConfigDirectory,
-                                                 directoryToStoreMetadata, planWerkBaseUrl, 750, 750 );
-    }
+		String planWerkBaseUrl = "http://localhost:8080/xplan-planwerk-wms";
+		return new CoupledResourceConfiguration(cswUrlProvidingDatasetMetadata, metadataConfigDirectory,
+				directoryToStoreMetadata, planWerkBaseUrl, 750, 750);
+	}
 
-    private Path createDirectoryWithTemplate()
-                    throws IOException {
-        InputStream resourceAsStream = MetadataCouplingHandlerTest.class.getResourceAsStream(
-                        "iso-service-metadata-example-template.xml" );
-        Path metadataConfigDirectory = Files.createTempDirectory( "metadataConfigDirectoryTest" );
-        Path target = Files.createFile( metadataConfigDirectory.resolve( "service-iso-metadata-template.xml" ) );
-        OutputStream output = Files.newOutputStream( target );
-        IOUtils.copy( resourceAsStream, output );
-        output.close();
-        resourceAsStream.close();
-        return metadataConfigDirectory;
-    }
+	private Path createDirectoryWithTemplate() throws IOException {
+		InputStream resourceAsStream = MetadataCouplingHandlerTest.class
+				.getResourceAsStream("iso-service-metadata-example-template.xml");
+		Path metadataConfigDirectory = Files.createTempDirectory("metadataConfigDirectoryTest");
+		Path target = Files.createFile(metadataConfigDirectory.resolve("service-iso-metadata-template.xml"));
+		OutputStream output = Files.newOutputStream(target);
+		IOUtils.copy(resourceAsStream, output);
+		output.close();
+		resourceAsStream.close();
+		return metadataConfigDirectory;
+	}
 
-    private Map<String, String> nsContext() {
-        Map<String, String> nsContext = new HashMap<>();
-        nsContext.put( "gmd", "http://www.isotc211.org/2005/gmd" );
-        nsContext.put( "gco", "http://www.isotc211.org/2005/gco" );
-        return nsContext;
-    }
+	private Map<String, String> nsContext() {
+		Map<String, String> nsContext = new HashMap<>();
+		nsContext.put("gmd", "http://www.isotc211.org/2005/gmd");
+		nsContext.put("gco", "http://www.isotc211.org/2005/gco");
+		return nsContext;
+	}
 
 }

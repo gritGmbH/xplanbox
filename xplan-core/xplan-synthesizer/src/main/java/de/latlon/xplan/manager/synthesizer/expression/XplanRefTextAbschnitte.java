@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -72,20 +72,19 @@ import java.util.List;
 import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValue;
 
 /**
- * Returns a textual representation of the "XP_TextAbschnitt" features that use external references and are referenced
- * via the "texte" property of an "XP_Plan" feature.
+ * Returns a textual representation of the "XP_TextAbschnitt" features that use external
+ * references and are referenced via the "texte" property of an "XP_Plan" feature.
  *
  * @author <a href="mailto:ionita@lat-lon.de">Andrei Ionita</a>
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider</a>
- *
  * @since 1.0
  */
 public class XplanRefTextAbschnitte implements Expression {
 
-    private static final Logger LOG = LoggerFactory.getLogger( XplanRefTextAbschnitte.class );
+	private static final Logger LOG = LoggerFactory.getLogger(XplanRefTextAbschnitte.class);
 
 	@Override
-	public PrimitiveValue evaluate( Feature feature, FeatureCollection features ) {
+	public PrimitiveValue evaluate(Feature feature, FeatureCollection features) {
 		StringBuilder s = new StringBuilder();
 		QName textePropName = new QName(feature.getName().getNamespaceURI(), "texte");
 		List<Property> props = feature.getProperties(textePropName);
@@ -95,9 +94,9 @@ public class XplanRefTextAbschnitte implements Expression {
 				append(s, ref.getReferencedObject());
 			}
 		}
-        if ( s.toString().isEmpty() )
-            return null;
-        return new PrimitiveValue( s.toString() );
+		if (s.toString().isEmpty())
+			return null;
+		return new PrimitiveValue(s.toString());
 	}
 
 	private void append(StringBuilder s, Feature textAbschnitt) {
@@ -106,13 +105,16 @@ public class XplanRefTextAbschnitte implements Expression {
 		if (refTextValue != null) {
 			if (refTextValue instanceof FeatureReference) {
 				Feature extRef = ((FeatureReference) refTextValue).getReferencedObject();
-				s.append( new XpExterneReferenzFlattener(extRef).flatten(extRef));
-			} else if (refTextValue instanceof ElementNode) {
+				s.append(new XpExterneReferenzFlattener(extRef).flatten(extRef));
+			}
+			else if (refTextValue instanceof ElementNode) {
 				ElementNode extRef = (ElementNode) refTextValue;
-				s.append( new XpExterneReferenzFlattener(textAbschnitt).flatten(extRef));
-            } else {
-                LOG.warn( "Creating a String value from class {} is not supported.", refTextValue.getClass() );
+				s.append(new XpExterneReferenzFlattener(textAbschnitt).flatten(extRef));
+			}
+			else {
+				LOG.warn("Creating a String value from class {} is not supported.", refTextValue.getClass());
 			}
 		}
 	}
+
 }

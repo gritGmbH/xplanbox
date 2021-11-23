@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -40,80 +40,80 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 
 /**
  * GUI component containing the category filter of the plan list.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class CategoryFilterPanel extends AbstractFilterPanel implements ResetableFilterPanel {
 
-    private final XPlanWebMessages messages = GWT.create( XPlanWebMessages.class );
+	private final XPlanWebMessages messages = GWT.create(XPlanWebMessages.class);
 
-    private final DynamicXPlanWebMessages dynamicMmessages = GWT.create( DynamicXPlanWebMessages.class );
+	private final DynamicXPlanWebMessages dynamicMmessages = GWT.create(DynamicXPlanWebMessages.class);
 
-    private final ListBox categoryListBox;
+	private final ListBox categoryListBox;
 
-    public CategoryFilterPanel( FilterExecutor filterExecutor, ManagerWebConfiguration configuration ) {
-        super( filterExecutor );
-        categoryListBox = createCategoryListBox( configuration );
-        createUi();
-    }
+	public CategoryFilterPanel(FilterExecutor filterExecutor, ManagerWebConfiguration configuration) {
+		super(filterExecutor);
+		categoryListBox = createCategoryListBox(configuration);
+		createUi();
+	}
 
-    @Override
-    public void reset() {
-        categoryListBox.setSelectedIndex( 0 );
-        updateFilter( null );
-    }
+	@Override
+	public void reset() {
+		categoryListBox.setSelectedIndex(0);
+		updateFilter(null);
+	}
 
-    private void createUi() {
-        Widget layout = createLayout();
-        this.setWidget( layout );
-    }
+	private void createUi() {
+		Widget layout = createLayout();
+		this.setWidget(layout);
+	}
 
-    private Widget createLayout() {
-        FlexTable layout = new FlexTable();
-        FlexTable.FlexCellFormatter formatter = layout.getFlexCellFormatter();
-        formatter.setHorizontalAlignment( 1, 1, ALIGN_LEFT );
-        layout.setCellSpacing( 5 );
-        layout.setWidget( 1, 1, createCategoryLabel() );
-        layout.setWidget( 2, 1, categoryListBox );
-        return layout;
-    }
+	private Widget createLayout() {
+		FlexTable layout = new FlexTable();
+		FlexTable.FlexCellFormatter formatter = layout.getFlexCellFormatter();
+		formatter.setHorizontalAlignment(1, 1, ALIGN_LEFT);
+		layout.setCellSpacing(5);
+		layout.setWidget(1, 1, createCategoryLabel());
+		layout.setWidget(2, 1, categoryListBox);
+		return layout;
+	}
 
-    private Widget createCategoryLabel() {
-        return new Label( dynamicMmessages.filterCommunityLabel() );
-    }
+	private Widget createCategoryLabel() {
+		return new Label(dynamicMmessages.filterCommunityLabel());
+	}
 
-    private ListBox createCategoryListBox( final ManagerWebConfiguration configuration ) {
-        final ListBox categoryListBox = new ListBox();
-        categoryListBox.addChangeHandler( new ChangeHandler() {
+	private ListBox createCategoryListBox(final ManagerWebConfiguration configuration) {
+		final ListBox categoryListBox = new ListBox();
+		categoryListBox.addChangeHandler(new ChangeHandler() {
 
-            @Override
-            public void onChange( ChangeEvent event ) {
-                PlanFilter categoryFilter = createCategoryFilter( categoryListBox );
-                updateAndExecuteFilter( categoryFilter );
-            }
+			@Override
+			public void onChange(ChangeEvent event) {
+				PlanFilter categoryFilter = createCategoryFilter(categoryListBox);
+				updateAndExecuteFilter(categoryFilter);
+			}
 
-            private CategoryFilter createCategoryFilter( final ListBox categoryListBox ) {
-                int selectedIndex = categoryListBox.getSelectedIndex();
-                if ( selectedIndex <= 0 )
-                    return new CategoryFilter( null );
-                else if ( selectedIndex == categoryListBox.getItemCount() - 1 ) {
-                    return new CategoryFilter( asList( configuration.getCategoryFilterValues() ), true );
-                }
-                return new CategoryFilter( categoryListBox.getValue( selectedIndex ) );
-            }
-        } );
-        categoryListBox.setTitle( dynamicMmessages.filterCommunityTooltip() );
-        addItems( categoryListBox, configuration );
-        return categoryListBox;
-    }
+			private CategoryFilter createCategoryFilter(final ListBox categoryListBox) {
+				int selectedIndex = categoryListBox.getSelectedIndex();
+				if (selectedIndex <= 0)
+					return new CategoryFilter(null);
+				else if (selectedIndex == categoryListBox.getItemCount() - 1) {
+					return new CategoryFilter(asList(configuration.getCategoryFilterValues()), true);
+				}
+				return new CategoryFilter(categoryListBox.getValue(selectedIndex));
+			}
+		});
+		categoryListBox.setTitle(dynamicMmessages.filterCommunityTooltip());
+		addItems(categoryListBox, configuration);
+		return categoryListBox;
+	}
 
-    private void addItems( ListBox categoryListBox, ManagerWebConfiguration configuration ) {
-        categoryListBox.addItem( dynamicMmessages.filterCommunitySelectionAll() );
-        for ( String category : configuration.getCategoryFilterValues() ) {
-            categoryListBox.addItem( category );
-        }
-        categoryListBox.addItem( dynamicMmessages.filterCommunitySelectionOther() );
-    }
+	private void addItems(ListBox categoryListBox, ManagerWebConfiguration configuration) {
+		categoryListBox.addItem(dynamicMmessages.filterCommunitySelectionAll());
+		for (String category : configuration.getCategoryFilterValues()) {
+			categoryListBox.addItem(category);
+		}
+		categoryListBox.addItem(dynamicMmessages.filterCommunitySelectionOther());
+	}
 
 }

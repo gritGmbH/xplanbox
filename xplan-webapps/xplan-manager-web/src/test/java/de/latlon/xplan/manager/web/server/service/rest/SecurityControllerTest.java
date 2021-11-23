@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -47,83 +47,83 @@ import de.latlon.xplan.manager.web.spring.security.DistrictGrantedAuthority;
 
 /**
  * Tests for {@link de.latlon.xplan.manager.web.server.service.rest.SecurityController}.
- * 
+ *
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @version $Revision: $, $Date: $
  */
 public class SecurityControllerTest {
 
-    @Test
-    public void testRetrieveAuthorizationInfo_WithEnabledSecurityShouldReturnDistricts()
-                    throws Exception {
-        SecurityController controllerWithEnabledSecurity = createSecurityController( true,
-                                                                                     createAuthoritiesWithoutSuperUser() );
-        AuthorizationInfo authorizationInfo = controllerWithEnabledSecurity.retrieveAuthorizationInfo( mock( HttpServletResponse.class ) );
-        List<String> districts = authorizationInfo.getAuthorizedDistricts();
-        boolean isSuperUser = authorizationInfo.isSuperUser();
+	@Test
+	public void testRetrieveAuthorizationInfo_WithEnabledSecurityShouldReturnDistricts() throws Exception {
+		SecurityController controllerWithEnabledSecurity = createSecurityController(true,
+				createAuthoritiesWithoutSuperUser());
+		AuthorizationInfo authorizationInfo = controllerWithEnabledSecurity
+				.retrieveAuthorizationInfo(mock(HttpServletResponse.class));
+		List<String> districts = authorizationInfo.getAuthorizedDistricts();
+		boolean isSuperUser = authorizationInfo.isSuperUser();
 
-        assertTrue( districts.contains( "district1" ) );
-        assertTrue( districts.contains( "district2" ) );
-        assertTrue( districts.contains( "district3" ) );
-        assertThat( districts.size(), is( 3 ) );
-        assertThat( isSuperUser, is( false ) );
-    }
+		assertTrue(districts.contains("district1"));
+		assertTrue(districts.contains("district2"));
+		assertTrue(districts.contains("district3"));
+		assertThat(districts.size(), is(3));
+		assertThat(isSuperUser, is(false));
+	}
 
-    @Test
-    public void testRetrieveAuthorizationInfo_WithEnabledSecurityShouldReturnSuperUser()
-                    throws Exception {
-        SecurityController controllerWithEnabledSecurity = createSecurityController( true,
-                                                                                     createAuthoritiesWithSuperUser() );
-        AuthorizationInfo authorizationInfo = controllerWithEnabledSecurity.retrieveAuthorizationInfo( mock( HttpServletResponse.class ) );
-        List<String> districts = authorizationInfo.getAuthorizedDistricts();
-        boolean isSuperUser = authorizationInfo.isSuperUser();
+	@Test
+	public void testRetrieveAuthorizationInfo_WithEnabledSecurityShouldReturnSuperUser() throws Exception {
+		SecurityController controllerWithEnabledSecurity = createSecurityController(true,
+				createAuthoritiesWithSuperUser());
+		AuthorizationInfo authorizationInfo = controllerWithEnabledSecurity
+				.retrieveAuthorizationInfo(mock(HttpServletResponse.class));
+		List<String> districts = authorizationInfo.getAuthorizedDistricts();
+		boolean isSuperUser = authorizationInfo.isSuperUser();
 
-        assertTrue( districts.contains( "district1" ) );
-        assertTrue( districts.contains( "district2" ) );
-        assertTrue( districts.contains( "district3" ) );
-        assertThat( districts.size(), is( 3 ) );
-        assertThat( isSuperUser, is( true ) );
-    }
+		assertTrue(districts.contains("district1"));
+		assertTrue(districts.contains("district2"));
+		assertTrue(districts.contains("district3"));
+		assertThat(districts.size(), is(3));
+		assertThat(isSuperUser, is(true));
+	}
 
-    @Test
-    public void testRetrieveAuthorizationInfo_WithDisabledSecurityShouldReturnSuperUserPermissions()
-                    throws Exception {
-        AuthorizationManager securityManager = new AuthorizationManager( false );
-        SecurityController controllerWithDisabledSecurity = new SecurityController( securityManager );
-        AuthorizationInfo authorizationInfo = controllerWithDisabledSecurity.retrieveAuthorizationInfo( mock( HttpServletResponse.class ) );
+	@Test
+	public void testRetrieveAuthorizationInfo_WithDisabledSecurityShouldReturnSuperUserPermissions() throws Exception {
+		AuthorizationManager securityManager = new AuthorizationManager(false);
+		SecurityController controllerWithDisabledSecurity = new SecurityController(securityManager);
+		AuthorizationInfo authorizationInfo = controllerWithDisabledSecurity
+				.retrieveAuthorizationInfo(mock(HttpServletResponse.class));
 
-        assertThat( authorizationInfo.getAuthorizedDistricts(), is( Collections.<String>emptyList() ) );
-        assertThat( authorizationInfo.isSuperUser(), is( true ) );
-    }
+		assertThat(authorizationInfo.getAuthorizedDistricts(), is(Collections.<String>emptyList()));
+		assertThat(authorizationInfo.isSuperUser(), is(true));
+	}
 
-    private SecurityController createSecurityController( boolean isSecurityEnabled,
-                                                         List<DistrictGrantedAuthority> authorities ) {
-        AuthorizationManager securityManager = spy( new AuthorizationManager( isSecurityEnabled ) );
-        Authentication authentication = mock( Authentication.class );
-        when( securityManager.retrieveAuthentication() ).thenReturn( authentication );
-        doReturn( authorities ).when( authentication ).getAuthorities();
-        return new SecurityController( securityManager );
-    }
+	private SecurityController createSecurityController(boolean isSecurityEnabled,
+			List<DistrictGrantedAuthority> authorities) {
+		AuthorizationManager securityManager = spy(new AuthorizationManager(isSecurityEnabled));
+		Authentication authentication = mock(Authentication.class);
+		when(securityManager.retrieveAuthentication()).thenReturn(authentication);
+		doReturn(authorities).when(authentication).getAuthorities();
+		return new SecurityController(securityManager);
+	}
 
-    private List<DistrictGrantedAuthority> createAuthoritiesWithoutSuperUser() {
-        List<String> districts = new ArrayList<String>();
-        districts.add( "district1" );
-        districts.add( "district2" );
-        DistrictGrantedAuthority authority1 = new DistrictGrantedAuthority( ROLE_USER.toString(), districts );
-        DistrictGrantedAuthority authority2 = new DistrictGrantedAuthority( ROLE_USER.toString(),
-                        singletonList( "district3" ) );
-        List<DistrictGrantedAuthority> authorities = new ArrayList<DistrictGrantedAuthority>();
-        authorities.add( authority1 );
-        authorities.add( authority2 );
-        return authorities;
-    }
+	private List<DistrictGrantedAuthority> createAuthoritiesWithoutSuperUser() {
+		List<String> districts = new ArrayList<String>();
+		districts.add("district1");
+		districts.add("district2");
+		DistrictGrantedAuthority authority1 = new DistrictGrantedAuthority(ROLE_USER.toString(), districts);
+		DistrictGrantedAuthority authority2 = new DistrictGrantedAuthority(ROLE_USER.toString(),
+				singletonList("district3"));
+		List<DistrictGrantedAuthority> authorities = new ArrayList<DistrictGrantedAuthority>();
+		authorities.add(authority1);
+		authorities.add(authority2);
+		return authorities;
+	}
 
-    private List<DistrictGrantedAuthority> createAuthoritiesWithSuperUser() {
-        List<DistrictGrantedAuthority> authorities = createAuthoritiesWithoutSuperUser();
-        DistrictGrantedAuthority authority = new DistrictGrantedAuthority( ROLE_SUPERUSER.toString(),
-                        Collections.<String>emptyList() );
-        authorities.add( authority );
-        return authorities;
-    }
+	private List<DistrictGrantedAuthority> createAuthoritiesWithSuperUser() {
+		List<DistrictGrantedAuthority> authorities = createAuthoritiesWithoutSuperUser();
+		DistrictGrantedAuthority authority = new DistrictGrantedAuthority(ROLE_SUPERUSER.toString(),
+				Collections.<String>emptyList());
+		authorities.add(authority);
+		return authorities;
+	}
 
 }

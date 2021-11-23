@@ -69,156 +69,154 @@ import static java.lang.String.format;
  */
 public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
 
-    private static final Logger LOG = LoggerFactory.getLogger( XQuerySemanticValidatorRule.class );
+	private static final Logger LOG = LoggerFactory.getLogger(XQuerySemanticValidatorRule.class);
 
-    private final Configuration configuration = new Configuration();
+	private final Configuration configuration = new Configuration();
 
-    private final XQueryExpression expression;
+	private final XQueryExpression expression;
 
-    private final String name;
+	private final String name;
 
-    private XPlanVersion version;
+	private XPlanVersion version;
 
-    private SemanticValidationOptions ignoredOption;
+	private SemanticValidationOptions ignoredOption;
 
-    private String defaultMessage;
+	private String defaultMessage;
 
-    public XQuerySemanticValidatorRule( InputStream statementStream, String name, XPlanVersion version,
-                                        SemanticValidationOptions validationOption )
-                    throws IOException, XPathException {
-        this.version = version;
-        this.ignoredOption = validationOption;
-        this.expression = compileStatement( statementStream );
-        this.name = name;
-        this.defaultMessage = RulesMessagesAccessor.retrieveMessageForRule( name, version );
-    }
+	public XQuerySemanticValidatorRule(InputStream statementStream, String name, XPlanVersion version,
+			SemanticValidationOptions validationOption) throws IOException, XPathException {
+		this.version = version;
+		this.ignoredOption = validationOption;
+		this.expression = compileStatement(statementStream);
+		this.name = name;
+		this.defaultMessage = RulesMessagesAccessor.retrieveMessageForRule(name, version);
+	}
 
-    @Override
-    public List<InvalidFeaturesResult> validate( SemanticValidableXPlanArchive archive )
-                    throws ValidatorException {
-        final Properties props = createProperties();
-        try ( Writer writer = new StringWriter() ) {
-            final DynamicQueryContext dynamicContext = createDynamicQueryContext( archive );
-            expression.run( dynamicContext, new StreamResult( writer ), props );
-            final SequenceIterator iterator = expression.iterator( dynamicContext );
-            return evaluateXQueryResult( iterator );
-        } catch ( XPathException | IOException e ) {
-            LOG.warn( format( "Could not validate rule %s, reason:%s", this.getName(), e.getMessage() ) );
-            LOG.debug( "Exception: ", e );
-            throw new ValidatorException( "Rule could not be validated!", e );
-        }
-    }
+	@Override
+	public List<InvalidFeaturesResult> validate(SemanticValidableXPlanArchive archive) throws ValidatorException {
+		final Properties props = createProperties();
+		try (Writer writer = new StringWriter()) {
+			final DynamicQueryContext dynamicContext = createDynamicQueryContext(archive);
+			expression.run(dynamicContext, new StreamResult(writer), props);
+			final SequenceIterator iterator = expression.iterator(dynamicContext);
+			return evaluateXQueryResult(iterator);
+		}
+		catch (XPathException | IOException e) {
+			LOG.warn(format("Could not validate rule %s, reason:%s", this.getName(), e.getMessage()));
+			LOG.debug("Exception: ", e);
+			throw new ValidatorException("Rule could not be validated!", e);
+		}
+	}
 
-    @Override
-    public XPlanVersion getXPlanVersion() {
-        return version;
-    }
+	@Override
+	public XPlanVersion getXPlanVersion() {
+		return version;
+	}
 
-    @Override
-    public String getName() {
-        return name;
-    }
+	@Override
+	public String getName() {
+		return name;
+	}
 
-    @Override
-    public boolean isIgnoredByOption( SemanticValidationOptions option ) {
-        if ( option == null || NONE.equals( option ) )
-            return false;
-        return ignoredOption != null && ignoredOption.equals( option );
-    }
+	@Override
+	public boolean isIgnoredByOption(SemanticValidationOptions option) {
+		if (option == null || NONE.equals(option))
+			return false;
+		return ignoredOption != null && ignoredOption.equals(option);
+	}
 
-    private Properties createProperties() {
-        final Properties props = new Properties();
-        props.setProperty( OutputKeys.METHOD, "text" );
-        return props;
-    }
+	private Properties createProperties() {
+		final Properties props = new Properties();
+		props.setProperty(OutputKeys.METHOD, "text");
+		return props;
+	}
 
-    private DynamicQueryContext createDynamicQueryContext( SemanticValidableXPlanArchive archive )
-                    throws XPathException {
-        Source source = getSource( archive );
-        TreeInfo treeInfo = configuration.buildDocumentTree( source );
-        Item item = treeInfo.getRootNode();
-        DynamicQueryContext dynamicContext = new DynamicQueryContext( configuration );
-        dynamicContext.setContextItem( item );
-        return dynamicContext;
-    }
+	private DynamicQueryContext createDynamicQueryContext(SemanticValidableXPlanArchive archive) throws XPathException {
+		Source source = getSource(archive);
+		TreeInfo treeInfo = configuration.buildDocumentTree(source);
+		Item item = treeInfo.getRootNode();
+		DynamicQueryContext dynamicContext = new DynamicQueryContext(configuration);
+		dynamicContext.setContextItem(item);
+		return dynamicContext;
+	}
 
-    private Source getSource( SemanticValidableXPlanArchive archive ) {
-        InputStream mainFileInputStream = archive.getMainFileInputStream();
-        return new StreamSource( mainFileInputStream );
-    }
+	private Source getSource(SemanticValidableXPlanArchive archive) {
+		InputStream mainFileInputStream = archive.getMainFileInputStream();
+		return new StreamSource(mainFileInputStream);
+	}
 
-    private List<InvalidFeaturesResult> evaluateXQueryResult( SequenceIterator iterator )
-                    throws XPathException, ValidatorException {
-        Item next;
-        MultiKeyMap<String, InvalidFeaturesResult> results = new MultiKeyMap<>();
-        while ( ( next = iterator.next() ) != null ) {
-            if ( next instanceof SimpleArrayItem ) {
-                evaluateWarningErrorResult( (SimpleArrayItem) next, results );
-            } else {
-                String resultOrGmlId = next.getStringValue();
-                if ( resultOrGmlId.equalsIgnoreCase( "true" ) )
-                    return Collections.emptyList();
-                if ( resultOrGmlId.equalsIgnoreCase( "false" ) )
-                    return Collections.singletonList( new InvalidFeaturesResult( defaultMessage ) );
-                evaludateInvalidGmlIdResult( resultOrGmlId, results );
-            }
-        }
-        return results.values().stream().collect( Collectors.toList());
-    }
+	private List<InvalidFeaturesResult> evaluateXQueryResult(SequenceIterator iterator)
+			throws XPathException, ValidatorException {
+		Item next;
+		MultiKeyMap<String, InvalidFeaturesResult> results = new MultiKeyMap<>();
+		while ((next = iterator.next()) != null) {
+			if (next instanceof SimpleArrayItem) {
+				evaluateWarningErrorResult((SimpleArrayItem) next, results);
+			}
+			else {
+				String resultOrGmlId = next.getStringValue();
+				if (resultOrGmlId.equalsIgnoreCase("true"))
+					return Collections.emptyList();
+				if (resultOrGmlId.equalsIgnoreCase("false"))
+					return Collections.singletonList(new InvalidFeaturesResult(defaultMessage));
+				evaludateInvalidGmlIdResult(resultOrGmlId, results);
+			}
+		}
+		return results.values().stream().collect(Collectors.toList());
+	}
 
-    private void evaludateInvalidGmlIdResult( String gmlId,
-                                              MultiKeyMap<String, InvalidFeaturesResult> results ) {
-        if ( results.containsKey( ERROR.name(), defaultMessage ) ) {
-            results.get( ERROR.name(), defaultMessage ).addGmlId( gmlId );
-        } else {
-            InvalidFeaturesResult invalidRuleResult = new InvalidFeaturesResult( gmlId, defaultMessage );
-            results.put( ERROR.name(), defaultMessage, invalidRuleResult );
-        }
-    }
+	private void evaludateInvalidGmlIdResult(String gmlId, MultiKeyMap<String, InvalidFeaturesResult> results) {
+		if (results.containsKey(ERROR.name(), defaultMessage)) {
+			results.get(ERROR.name(), defaultMessage).addGmlId(gmlId);
+		}
+		else {
+			InvalidFeaturesResult invalidRuleResult = new InvalidFeaturesResult(gmlId, defaultMessage);
+			results.put(ERROR.name(), defaultMessage, invalidRuleResult);
+		}
+	}
 
-    private void evaluateWarningErrorResult( SimpleArrayItem next,
-                                             MultiKeyMap<String, InvalidFeaturesResult> results )
-                    throws ValidatorException, XPathException {
-        SimpleArrayItem arrayItem = next;
-        if ( arrayItem.arrayLength() == 3 ) {
-            String gmlId = asString( arrayItem.get( 0 ) );
-            ValidationResultType validationResultType = asValidationResultType( arrayItem.get( 1 ) );
-            String message = asString( arrayItem.get( 2 ) );
+	private void evaluateWarningErrorResult(SimpleArrayItem next, MultiKeyMap<String, InvalidFeaturesResult> results)
+			throws ValidatorException, XPathException {
+		SimpleArrayItem arrayItem = next;
+		if (arrayItem.arrayLength() == 3) {
+			String gmlId = asString(arrayItem.get(0));
+			ValidationResultType validationResultType = asValidationResultType(arrayItem.get(1));
+			String message = asString(arrayItem.get(2));
 
-            if ( results.containsKey( validationResultType.name(), message ) ) {
-                results.get( validationResultType.name(), message ).addGmlId( gmlId );
-            } else {
-                InvalidFeaturesResult invalidRuleResult = new InvalidFeaturesResult( gmlId, validationResultType,
-                                                                                     message );
-                results.put( validationResultType.name(), message, invalidRuleResult );
-            }
-        } else {
-            throw new ValidatorException(
-                            "Semantic validation result array must have exact 3 items. Result array is: "
-                            + arrayItem );
-        }
-    }
+			if (results.containsKey(validationResultType.name(), message)) {
+				results.get(validationResultType.name(), message).addGmlId(gmlId);
+			}
+			else {
+				InvalidFeaturesResult invalidRuleResult = new InvalidFeaturesResult(gmlId, validationResultType,
+						message);
+				results.put(validationResultType.name(), message, invalidRuleResult);
+			}
+		}
+		else {
+			throw new ValidatorException(
+					"Semantic validation result array must have exact 3 items. Result array is: " + arrayItem);
+		}
+	}
 
-    private ValidationResultType asValidationResultType( Sequence sequence ) {
-        String s = asString( sequence );
-        switch ( s ) {
-        case "W":
-            return WARNING;
-        default:
-            return ERROR;
-        }
-    }
+	private ValidationResultType asValidationResultType(Sequence sequence) {
+		String s = asString(sequence);
+		switch (s) {
+		case "W":
+			return WARNING;
+		default:
+			return ERROR;
+		}
+	}
 
-    private String asString( Sequence sequence ) {
-        if ( sequence instanceof Item )
-            return ( (Item) sequence ).getStringValue();
-        return sequence.toString();
-    }
+	private String asString(Sequence sequence) {
+		if (sequence instanceof Item)
+			return ((Item) sequence).getStringValue();
+		return sequence.toString();
+	}
 
-    private XQueryExpression compileStatement( InputStream statementStream )
-                    throws IOException, XPathException {
-        final StaticQueryContext staticQueryContext = configuration.newStaticQueryContext();
-        return staticQueryContext.compileQuery( statementStream, "UTF-8" );
-    }
+	private XQueryExpression compileStatement(InputStream statementStream) throws IOException, XPathException {
+		final StaticQueryContext staticQueryContext = configuration.newStaticQueryContext();
+		return staticQueryContext.compileQuery(statementStream, "UTF-8");
+	}
 
 }

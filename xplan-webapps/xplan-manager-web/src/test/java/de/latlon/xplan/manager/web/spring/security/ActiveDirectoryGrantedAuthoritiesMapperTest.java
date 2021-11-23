@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -50,223 +50,212 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
  */
 public class ActiveDirectoryGrantedAuthoritiesMapperTest {
 
-    @Test
-    public void testMapAuthorities()
-                    throws Exception {
-        ActiveDirectoryGrantedAuthoritiesMapper mapper = new ActiveDirectoryGrantedAuthoritiesMapper(
-                        singletonList( "empty" ), singletonList( "empty" ), createGroupsAndDistricts(),
-                        new NullRoleHierarchy() );
-        Collection<? extends GrantedAuthority> mappedAuthorities = mapper.mapAuthorities( createAuthorities() );
+	@Test
+	public void testMapAuthorities() throws Exception {
+		ActiveDirectoryGrantedAuthoritiesMapper mapper = new ActiveDirectoryGrantedAuthoritiesMapper(
+				singletonList("empty"), singletonList("empty"), createGroupsAndDistricts(), new NullRoleHierarchy());
+		Collection<? extends GrantedAuthority> mappedAuthorities = mapper.mapAuthorities(createAuthorities());
 
-        assertThat( mappedAuthorities.size(), is( 1 ) );
-        assertThat( mappedAuthorities, containsDistrictAuthority( singletonList( "District" ) ) );
-    }
+		assertThat(mappedAuthorities.size(), is(1));
+		assertThat(mappedAuthorities, containsDistrictAuthority(singletonList("District")));
+	}
 
-    @Test
-    public void testMapAuthoritiesWithEmptyMap()
-                    throws Exception {
-        ActiveDirectoryGrantedAuthoritiesMapper mapper = new ActiveDirectoryGrantedAuthoritiesMapper(
-                        singletonList( "empty" ), singletonList( "empty" ),
-                        Collections.<String, List<String>>emptyMap(), new NullRoleHierarchy() );
-        Collection<? extends GrantedAuthority> mappedAuthorities = mapper.mapAuthorities( createAuthorities() );
+	@Test
+	public void testMapAuthoritiesWithEmptyMap() throws Exception {
+		ActiveDirectoryGrantedAuthoritiesMapper mapper = new ActiveDirectoryGrantedAuthoritiesMapper(
+				singletonList("empty"), singletonList("empty"), Collections.<String, List<String>>emptyMap(),
+				new NullRoleHierarchy());
+		Collection<? extends GrantedAuthority> mappedAuthorities = mapper.mapAuthorities(createAuthorities());
 
-        assertThat( mappedAuthorities.size(), is( 0 ) );
-    }
+		assertThat(mappedAuthorities.size(), is(0));
+	}
 
-    @Test
-    public void testMapAuthoritiesWithNullMap()
-                    throws Exception {
-        ActiveDirectoryGrantedAuthoritiesMapper mapper = new ActiveDirectoryGrantedAuthoritiesMapper(
-                        singletonList( "empty" ), singletonList( "empty" ), null, new NullRoleHierarchy() );
-        Collection<? extends GrantedAuthority> mappedAuthorities = mapper.mapAuthorities( createAuthorities() );
+	@Test
+	public void testMapAuthoritiesWithNullMap() throws Exception {
+		ActiveDirectoryGrantedAuthoritiesMapper mapper = new ActiveDirectoryGrantedAuthoritiesMapper(
+				singletonList("empty"), singletonList("empty"), null, new NullRoleHierarchy());
+		Collection<? extends GrantedAuthority> mappedAuthorities = mapper.mapAuthorities(createAuthorities());
 
-        assertThat( mappedAuthorities.size(), is( 0 ) );
-    }
+		assertThat(mappedAuthorities.size(), is(0));
+	}
 
-    @Test
-    public void testMapAuthoritiesWithSuperUser()
-                    throws Exception {
-        ActiveDirectoryGrantedAuthoritiesMapper mapper = new ActiveDirectoryGrantedAuthoritiesMapper(
-                        singletonList( "super" ), singletonList( "empty" ), createGroupsAndDistricts(),
-                        new NullRoleHierarchy() );
-        Collection<? extends GrantedAuthority> mappedAuthorities = mapper.mapAuthorities( createAuthorities() );
+	@Test
+	public void testMapAuthoritiesWithSuperUser() throws Exception {
+		ActiveDirectoryGrantedAuthoritiesMapper mapper = new ActiveDirectoryGrantedAuthoritiesMapper(
+				singletonList("super"), singletonList("empty"), createGroupsAndDistricts(), new NullRoleHierarchy());
+		Collection<? extends GrantedAuthority> mappedAuthorities = mapper.mapAuthorities(createAuthorities());
 
-        assertThat( mappedAuthorities.size(), is( 2 ) );
-        assertThat( mappedAuthorities, containsDistrictAuthority( singletonList( "District" ) ) );
-        assertThat( mappedAuthorities, containsSuperUser() );
-    }
+		assertThat(mappedAuthorities.size(), is(2));
+		assertThat(mappedAuthorities, containsDistrictAuthority(singletonList("District")));
+		assertThat(mappedAuthorities, containsSuperUser());
+	}
 
-    @Test
-    public void testMapAuthoritiesWithEditor()
-                    throws Exception {
-        ActiveDirectoryGrantedAuthoritiesMapper mapper = new ActiveDirectoryGrantedAuthoritiesMapper(
-                        singletonList( "empty" ), singletonList( "editor" ), createGroupsAndDistricts(),
-                        new NullRoleHierarchy() );
-        Collection<? extends GrantedAuthority> mappedAuthorities = mapper.mapAuthorities( createAuthorities() );
+	@Test
+	public void testMapAuthoritiesWithEditor() throws Exception {
+		ActiveDirectoryGrantedAuthoritiesMapper mapper = new ActiveDirectoryGrantedAuthoritiesMapper(
+				singletonList("empty"), singletonList("editor"), createGroupsAndDistricts(), new NullRoleHierarchy());
+		Collection<? extends GrantedAuthority> mappedAuthorities = mapper.mapAuthorities(createAuthorities());
 
-        assertThat( mappedAuthorities.size(), is( 2 ) );
-        assertThat( mappedAuthorities, containsDistrictAuthority( singletonList( "District" ) ) );
-        assertThat( mappedAuthorities, containsEditor() );
-    }
+		assertThat(mappedAuthorities.size(), is(2));
+		assertThat(mappedAuthorities, containsDistrictAuthority(singletonList("District")));
+		assertThat(mappedAuthorities, containsEditor());
+	}
 
-    @Test
-    public void testMapAuthoritiesWithNull()
-                    throws Exception {
-        ActiveDirectoryGrantedAuthoritiesMapper mapper = new ActiveDirectoryGrantedAuthoritiesMapper( null, null, null,
-                        new NullRoleHierarchy() );
-        Collection<? extends GrantedAuthority> mappedAuthorities = mapper.mapAuthorities( createAuthorities() );
+	@Test
+	public void testMapAuthoritiesWithNull() throws Exception {
+		ActiveDirectoryGrantedAuthoritiesMapper mapper = new ActiveDirectoryGrantedAuthoritiesMapper(null, null, null,
+				new NullRoleHierarchy());
+		Collection<? extends GrantedAuthority> mappedAuthorities = mapper.mapAuthorities(createAuthorities());
 
-        assertThat( mappedAuthorities.size(), is( 0 ) );
-        assertThat( mappedAuthorities, notContainsSuperUser() );
-        assertThat( mappedAuthorities, notContainsEditor() );
-    }
+		assertThat(mappedAuthorities.size(), is(0));
+		assertThat(mappedAuthorities, notContainsSuperUser());
+		assertThat(mappedAuthorities, notContainsEditor());
+	}
 
-    @Test
-    public void testMapAuthoritiesWithHierarchy()
-                    throws Exception {
-        createRoleHierarchy();
-        ActiveDirectoryGrantedAuthoritiesMapper mapper = new ActiveDirectoryGrantedAuthoritiesMapper(
-                        singletonList( "empty" ), singletonList( "empty" ), createGroupsAndDistricts(),
-                        createRoleHierarchy() );
-        Collection<? extends GrantedAuthority> mappedAuthorities = mapper.mapAuthorities( createAuthorities() );
+	@Test
+	public void testMapAuthoritiesWithHierarchy() throws Exception {
+		createRoleHierarchy();
+		ActiveDirectoryGrantedAuthoritiesMapper mapper = new ActiveDirectoryGrantedAuthoritiesMapper(
+				singletonList("empty"), singletonList("empty"), createGroupsAndDistricts(), createRoleHierarchy());
+		Collection<? extends GrantedAuthority> mappedAuthorities = mapper.mapAuthorities(createAuthorities());
 
-        assertThat( mappedAuthorities.size(), is( 2 ) );
-        assertThat( mappedAuthorities, containsDistrictAuthority( singletonList( "District" ) ) );
-        assertThat( mappedAuthorities, containsDistrictAuthority( singletonList( "SecondLevelHierarchy" ) ) );
-    }
+		assertThat(mappedAuthorities.size(), is(2));
+		assertThat(mappedAuthorities, containsDistrictAuthority(singletonList("District")));
+		assertThat(mappedAuthorities, containsDistrictAuthority(singletonList("SecondLevelHierarchy")));
+	}
 
-    private Collection<? extends GrantedAuthority> createAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add( new SimpleGrantedAuthority( "dist" ) );
-        authorities.add( new SimpleGrantedAuthority( "test" ) );
-        authorities.add( new SimpleGrantedAuthority( "super" ) );
-        authorities.add( new SimpleGrantedAuthority( "editor" ) );
-        authorities.add( new SimpleGrantedAuthority( "firstLevelHierarchy" ) );
-        return authorities;
-    }
+	private Collection<? extends GrantedAuthority> createAuthorities() {
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority("dist"));
+		authorities.add(new SimpleGrantedAuthority("test"));
+		authorities.add(new SimpleGrantedAuthority("super"));
+		authorities.add(new SimpleGrantedAuthority("editor"));
+		authorities.add(new SimpleGrantedAuthority("firstLevelHierarchy"));
+		return authorities;
+	}
 
-    private Map<String, List<String>> createGroupsAndDistricts() {
-        Map<String, List<String>> districts = new HashMap<>();
-        districts.put( "dist", singletonList( "District" ) );
-        districts.put( "area", singletonList( "Area" ) );
-        districts.put( "secondLevelHierarchy", singletonList( "SecondLevelHierarchy" ) );
-        return districts;
-    }
+	private Map<String, List<String>> createGroupsAndDistricts() {
+		Map<String, List<String>> districts = new HashMap<>();
+		districts.put("dist", singletonList("District"));
+		districts.put("area", singletonList("Area"));
+		districts.put("secondLevelHierarchy", singletonList("SecondLevelHierarchy"));
+		return districts;
+	}
 
-    private RoleHierarchy createRoleHierarchy() {
-        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-        roleHierarchy.setHierarchy( "firstLevelHierarchy > secondLevelHierarchy" );
-        return roleHierarchy;
-    }
+	private RoleHierarchy createRoleHierarchy() {
+		RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+		roleHierarchy.setHierarchy("firstLevelHierarchy > secondLevelHierarchy");
+		return roleHierarchy;
+	}
 
-    private Matcher<Collection<? extends GrantedAuthority>> containsDistrictAuthority( final List<String> district ) {
-        return new BaseMatcher<Collection<? extends GrantedAuthority>>() {
+	private Matcher<Collection<? extends GrantedAuthority>> containsDistrictAuthority(final List<String> district) {
+		return new BaseMatcher<Collection<? extends GrantedAuthority>>() {
 
-            @Override
-            public boolean matches( Object item ) {
-                @SuppressWarnings("unchecked")
-                Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) item;
-                for ( GrantedAuthority authority : authorities ) {
-                    if ( authority instanceof DistrictGrantedAuthority
-                         && district.equals( ( (DistrictGrantedAuthority) authority ).getDistricts() ) )
-                        return true;
-                }
-                return false;
-            }
+			@Override
+			public boolean matches(Object item) {
+				@SuppressWarnings("unchecked")
+				Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) item;
+				for (GrantedAuthority authority : authorities) {
+					if (authority instanceof DistrictGrantedAuthority
+							&& district.equals(((DistrictGrantedAuthority) authority).getDistricts()))
+						return true;
+				}
+				return false;
+			}
 
-            @Override
-            public void describeTo( Description description ) {
-                description.appendText( "List should contain one DistrictGrantedAuthority with district " + district );
-            }
-        };
-    }
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("List should contain one DistrictGrantedAuthority with district " + district);
+			}
+		};
+	}
 
-    private Matcher<Collection<? extends GrantedAuthority>> containsSuperUser() {
-        return new BaseMatcher<Collection<? extends GrantedAuthority>>() {
+	private Matcher<Collection<? extends GrantedAuthority>> containsSuperUser() {
+		return new BaseMatcher<Collection<? extends GrantedAuthority>>() {
 
-            @Override
-            public boolean matches( Object item ) {
-                @SuppressWarnings("unchecked")
-                Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) item;
-                for ( GrantedAuthority authority : authorities ) {
-                    if ( authority instanceof DistrictGrantedAuthority
-                         && ROLE_SUPERUSER.toString().equals( authority.getAuthority() ) )
-                        return true;
-                }
-                return false;
-            }
+			@Override
+			public boolean matches(Object item) {
+				@SuppressWarnings("unchecked")
+				Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) item;
+				for (GrantedAuthority authority : authorities) {
+					if (authority instanceof DistrictGrantedAuthority
+							&& ROLE_SUPERUSER.toString().equals(authority.getAuthority()))
+						return true;
+				}
+				return false;
+			}
 
-            @Override
-            public void describeTo( Description description ) {
-                description.appendText( "List should contain at least one super user!" );
-            }
-        };
-    }
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("List should contain at least one super user!");
+			}
+		};
+	}
 
-    private Matcher<Collection<? extends GrantedAuthority>> notContainsSuperUser() {
-        return new BaseMatcher<Collection<? extends GrantedAuthority>>() {
+	private Matcher<Collection<? extends GrantedAuthority>> notContainsSuperUser() {
+		return new BaseMatcher<Collection<? extends GrantedAuthority>>() {
 
-            @Override
-            public boolean matches( Object item ) {
-                @SuppressWarnings("unchecked")
-                Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) item;
-                for ( GrantedAuthority authority : authorities ) {
-                    if ( authority instanceof DistrictGrantedAuthority
-                         && ROLE_SUPERUSER.toString().equals( authority.getAuthority() ) )
-                        return false;
-                }
-                return true;
-            }
+			@Override
+			public boolean matches(Object item) {
+				@SuppressWarnings("unchecked")
+				Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) item;
+				for (GrantedAuthority authority : authorities) {
+					if (authority instanceof DistrictGrantedAuthority
+							&& ROLE_SUPERUSER.toString().equals(authority.getAuthority()))
+						return false;
+				}
+				return true;
+			}
 
-            @Override
-            public void describeTo( Description description ) {
-                description.appendText( "List should not contain a super user!" );
-            }
-        };
-    }
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("List should not contain a super user!");
+			}
+		};
+	}
 
-    private Matcher<Collection<? extends GrantedAuthority>> containsEditor() {
-        return new BaseMatcher<Collection<? extends GrantedAuthority>>() {
+	private Matcher<Collection<? extends GrantedAuthority>> containsEditor() {
+		return new BaseMatcher<Collection<? extends GrantedAuthority>>() {
 
-            @Override
-            public boolean matches( Object item ) {
-                @SuppressWarnings("unchecked")
-                Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) item;
-                for ( GrantedAuthority authority : authorities ) {
-                    if ( authority instanceof DistrictGrantedAuthority
-                         && ROLE_EDITOR.toString().equals( authority.getAuthority() ) )
-                        return true;
-                }
-                return false;
-            }
+			@Override
+			public boolean matches(Object item) {
+				@SuppressWarnings("unchecked")
+				Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) item;
+				for (GrantedAuthority authority : authorities) {
+					if (authority instanceof DistrictGrantedAuthority
+							&& ROLE_EDITOR.toString().equals(authority.getAuthority()))
+						return true;
+				}
+				return false;
+			}
 
-            @Override
-            public void describeTo( Description description ) {
-                description.appendText( "List should contain at least one editor!" );
-            }
-        };
-    }
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("List should contain at least one editor!");
+			}
+		};
+	}
 
-    private Matcher<Collection<? extends GrantedAuthority>> notContainsEditor() {
-        return new BaseMatcher<Collection<? extends GrantedAuthority>>() {
+	private Matcher<Collection<? extends GrantedAuthority>> notContainsEditor() {
+		return new BaseMatcher<Collection<? extends GrantedAuthority>>() {
 
-            @Override
-            public boolean matches( Object item ) {
-                @SuppressWarnings("unchecked")
-                Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) item;
-                for ( GrantedAuthority authority : authorities ) {
-                    if ( authority instanceof DistrictGrantedAuthority
-                         && ROLE_EDITOR.toString().equals( authority.getAuthority() ) )
-                        return false;
-                }
-                return true;
-            }
+			@Override
+			public boolean matches(Object item) {
+				@SuppressWarnings("unchecked")
+				Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) item;
+				for (GrantedAuthority authority : authorities) {
+					if (authority instanceof DistrictGrantedAuthority
+							&& ROLE_EDITOR.toString().equals(authority.getAuthority()))
+						return false;
+				}
+				return true;
+			}
 
-            @Override
-            public void describeTo( Description description ) {
-                description.appendText( "List should not contain an editor!" );
-            }
-        };
-    }
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("List should not contain an editor!");
+			}
+		};
+	}
 
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -46,37 +46,34 @@ import static org.junit.Assert.assertThat;
  */
 public class ValidatorWmsManagerTest {
 
-    private static Path workspaceLocation;
+	private static Path workspaceLocation;
 
-    @BeforeClass
-    public static void initWorkspace()
-                            throws IOException {
-        workspaceLocation = Files.createTempDirectory( "ValidatorWmsManagerTest" );
-    }
+	@BeforeClass
+	public static void initWorkspace() throws IOException {
+		workspaceLocation = Files.createTempDirectory("ValidatorWmsManagerTest");
+	}
 
-    @Test
-    public void testInsert()
-                            throws Exception {
-        XPlanSynthesizer synthesizer = new XPlanSynthesizer();
-        ValidatorWmsManager validatorWmsManager = new ValidatorWmsManager( synthesizer, workspaceLocation );
+	@Test
+	public void testInsert() throws Exception {
+		XPlanSynthesizer synthesizer = new XPlanSynthesizer();
+		ValidatorWmsManager validatorWmsManager = new ValidatorWmsManager(synthesizer, workspaceLocation);
 
-        XPlanFeatureCollection featureCollection = parseFeatureCollection( "xplan51/BP2070.zip" );
-        validatorWmsManager.insert( featureCollection );
+		XPlanFeatureCollection featureCollection = parseFeatureCollection("xplan51/BP2070.zip");
+		validatorWmsManager.insert(featureCollection);
 
-        List<Path> dataFiles = Files.list( workspaceLocation.resolve( "data" ) ).collect( Collectors.toList() );
-        assertThat( dataFiles.size(), is( 1 ) );
-    }
+		List<Path> dataFiles = Files.list(workspaceLocation.resolve("data")).collect(Collectors.toList());
+		assertThat(dataFiles.size(), is(1));
+	}
 
-    private XPlanFeatureCollection parseFeatureCollection( String name )
-                            throws Exception {
-        XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip( name,
-                                                                         ResourceAccessor.readResourceStream( name ) );
-        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( archive.getVersion(), archive.getAde() );
-        GeometricValidatorImpl geometricValidator = new GeometricValidatorImpl();
-        return geometricValidator.retrieveGeometricallyValidXPlanFeatures( archive, archive.getCrs(), schema, true,
-                                                                           null );
+	private XPlanFeatureCollection parseFeatureCollection(String name) throws Exception {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
+				ResourceAccessor.readResourceStream(name));
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(archive.getVersion(), archive.getAde());
+		GeometricValidatorImpl geometricValidator = new GeometricValidatorImpl();
+		return geometricValidator.retrieveGeometricallyValidXPlanFeatures(archive, archive.getCrs(), schema, true,
+				null);
 
-    }
+	}
 
 }

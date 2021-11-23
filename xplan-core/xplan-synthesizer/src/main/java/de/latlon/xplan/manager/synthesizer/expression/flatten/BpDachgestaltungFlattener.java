@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -35,26 +35,26 @@ import java.util.List;
  */
 public class BpDachgestaltungFlattener extends AbstractFlattener {
 
-    @Override
-    public boolean accepts( TypedObjectNode node ) {
-        String elName = null;
-        if ( node instanceof ElementNode ) {
-            elName = ( (ElementNode) node ).getName().getLocalPart();
-        }
-        return "BP_Dachgestaltung".equals( elName );
-    }
+	@Override
+	public boolean accepts(TypedObjectNode node) {
+		String elName = null;
+		if (node instanceof ElementNode) {
+			elName = ((ElementNode) node).getName().getLocalPart();
+		}
+		return "BP_Dachgestaltung".equals(elName);
+	}
 
-    @Override
-    public String flatten( TypedObjectNode bpDachgestaltung ) {
-        XPlanVersion version = XPlanVersionUtils.determineBaseVersion( ( (ElementNode) bpDachgestaltung ).getName() );
-        List<Pair<String, String>> properties = new ArrayList<>();
-        append( "Dachneigung", bpDachgestaltung, "DN", properties );
-        append( "Dachneigung Min", bpDachgestaltung, "DNmin", properties );
-        append( "Dachneigung Max", bpDachgestaltung, "DNmax", properties );
-        append( "Dachneigung Zwingend", bpDachgestaltung, "DNzwingend", properties );
-        appendTranslatedCode( "Dachform", bpDachgestaltung, "dachform", version, "BP_Dachform", properties );
-        append( "Detaillierte Dachform", bpDachgestaltung, "detaillierteDachform", properties );
-        return encode( properties );
-    }
+	@Override
+	public String flatten(TypedObjectNode bpDachgestaltung) {
+		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(((ElementNode) bpDachgestaltung).getName());
+		List<Pair<String, String>> properties = new ArrayList<>();
+		append("Dachneigung", bpDachgestaltung, "DN", properties);
+		append("Dachneigung Min", bpDachgestaltung, "DNmin", properties);
+		append("Dachneigung Max", bpDachgestaltung, "DNmax", properties);
+		append("Dachneigung Zwingend", bpDachgestaltung, "DNzwingend", properties);
+		appendTranslatedCode("Dachform", bpDachgestaltung, "dachform", version, "BP_Dachform", properties);
+		append("Detaillierte Dachform", bpDachgestaltung, "detaillierteDachform", properties);
+		return encode(properties);
+	}
 
 }

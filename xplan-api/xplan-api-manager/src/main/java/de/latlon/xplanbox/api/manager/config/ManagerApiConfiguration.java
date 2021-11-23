@@ -35,76 +35,73 @@ import java.util.Properties;
  */
 public class ManagerApiConfiguration extends ApiConfiguration {
 
-    private static final Logger LOG = LoggerFactory.getLogger( ManagerApiConfiguration.class );
+	private static final Logger LOG = LoggerFactory.getLogger(ManagerApiConfiguration.class);
 
-    private static final String MANAGER_API_CONFIGURATION_PROPERTIES = "managerApiConfiguration.properties";
+	private static final String MANAGER_API_CONFIGURATION_PROPERTIES = "managerApiConfiguration.properties";
 
-    private static final String WMS_URL = "wmsUrl";
+	private static final String WMS_URL = "wmsUrl";
 
-    private URI wmsUrl;
+	private URI wmsUrl;
 
-    private DefaultValidationConfiguration defaultValidationConfiguration;
+	private DefaultValidationConfiguration defaultValidationConfiguration;
 
-    public ManagerApiConfiguration( PropertiesLoader propertiesLoader )
-                    throws ConfigurationException {
-        super( propertiesLoader, MANAGER_API_CONFIGURATION_PROPERTIES );
-    }
+	public ManagerApiConfiguration(PropertiesLoader propertiesLoader) throws ConfigurationException {
+		super(propertiesLoader, MANAGER_API_CONFIGURATION_PROPERTIES);
+	}
 
-    /**
-     * @return the configured WMS url, may be <code>null</code>
-     */
-    public URI getWmsUrl() {
-        return this.wmsUrl;
-    }
+	/**
+	 * @return the configured WMS url, may be <code>null</code>
+	 */
+	public URI getWmsUrl() {
+		return this.wmsUrl;
+	}
 
-    /**
-     * @return the default validation configuration, never <code>null</code>
-     */
-    public DefaultValidationConfiguration getDefaultValidationConfiguration() {
-        return defaultValidationConfiguration;
-    }
+	/**
+	 * @return the default validation configuration, never <code>null</code>
+	 */
+	public DefaultValidationConfiguration getDefaultValidationConfiguration() {
+		return defaultValidationConfiguration;
+	}
 
-    @Override
-    protected void loadProperties( Properties properties )
-                    throws ConfigurationException {
-        wmsUrl = parseUri( properties, WMS_URL );
-        defaultValidationConfiguration = parseDefaultValidationConfiguration( properties );
-    }
+	@Override
+	protected void loadProperties(Properties properties) throws ConfigurationException {
+		wmsUrl = parseUri(properties, WMS_URL);
+		defaultValidationConfiguration = parseDefaultValidationConfiguration(properties);
+	}
 
-    @Override
-    protected void loadDefaultProperties() {
-        defaultValidationConfiguration = new DefaultValidationConfiguration();
-    }
+	@Override
+	protected void loadDefaultProperties() {
+		defaultValidationConfiguration = new DefaultValidationConfiguration();
+	}
 
-    protected void validateProperties()
-                    throws ConfigurationException {
-        if ( getApiUrl() == null )
-            throw new ConfigurationException(
-                            "The configuration option 'apiUrl' in the managerApiConfiguration.properties is required" );
-    }
+	protected void validateProperties() throws ConfigurationException {
+		if (getApiUrl() == null)
+			throw new ConfigurationException(
+					"The configuration option 'apiUrl' in the managerApiConfiguration.properties is required");
+	}
 
-    protected void logProperties() {
-        LOG.info( "-------------------------------------------" );
-        LOG.info( "Configuration of the XPlanManagerApi:" );
-        LOG.info( "-------------------------------------------" );
-        LOG.info( "  API URL: {}", getApiUrl() );
-        LOG.info( "  WMS URL: {}", wmsUrl );
-        LOG.info( "-------------------------------------------" );
-        LOG.info( "  default validation configuration" );
-        LOG.info( "   - skip semantisch: {}", defaultValidationConfiguration.isSkipSemantisch() );
-        LOG.info( "   - skip geometrisch: {}", defaultValidationConfiguration.isSkipGeometrisch() );
-        LOG.info( "   - skip Flaechenschluss: {}", defaultValidationConfiguration.isSkipFlaechenschluss() );
-        LOG.info( "   - skip Geltungsbereich: {}", defaultValidationConfiguration.isSkipGeltungsbereich() );
-        LOG.info( "-------------------------------------------" );
-    }
+	protected void logProperties() {
+		LOG.info("-------------------------------------------");
+		LOG.info("Configuration of the XPlanManagerApi:");
+		LOG.info("-------------------------------------------");
+		LOG.info("  API URL: {}", getApiUrl());
+		LOG.info("  WMS URL: {}", wmsUrl);
+		LOG.info("-------------------------------------------");
+		LOG.info("  default validation configuration");
+		LOG.info("   - skip semantisch: {}", defaultValidationConfiguration.isSkipSemantisch());
+		LOG.info("   - skip geometrisch: {}", defaultValidationConfiguration.isSkipGeometrisch());
+		LOG.info("   - skip Flaechenschluss: {}", defaultValidationConfiguration.isSkipFlaechenschluss());
+		LOG.info("   - skip Geltungsbereich: {}", defaultValidationConfiguration.isSkipGeltungsbereich());
+		LOG.info("-------------------------------------------");
+	}
 
-    private DefaultValidationConfiguration parseDefaultValidationConfiguration( Properties loadProperties ) {
-        boolean skipSemantisch = parseBoolean( loadProperties, "skipSemantisch", false );
-        boolean skipGeometrisch = parseBoolean( loadProperties, "skipGeometrisch", false );
-        boolean skipFlaechenschluss = parseBoolean( loadProperties, "skipFlaechenschluss", false );
-        boolean skipGeltungsbereich = parseBoolean( loadProperties, "skipGeltungsbereich", false );
-        return new DefaultValidationConfiguration( skipSemantisch, skipGeometrisch, skipFlaechenschluss,
-                                                   skipGeltungsbereich );
-    }
+	private DefaultValidationConfiguration parseDefaultValidationConfiguration(Properties loadProperties) {
+		boolean skipSemantisch = parseBoolean(loadProperties, "skipSemantisch", false);
+		boolean skipGeometrisch = parseBoolean(loadProperties, "skipGeometrisch", false);
+		boolean skipFlaechenschluss = parseBoolean(loadProperties, "skipFlaechenschluss", false);
+		boolean skipGeltungsbereich = parseBoolean(loadProperties, "skipGeltungsbereich", false);
+		return new DefaultValidationConfiguration(skipSemantisch, skipGeometrisch, skipFlaechenschluss,
+				skipGeltungsbereich);
+	}
 
 }

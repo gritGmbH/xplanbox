@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -45,42 +45,40 @@ import static org.apache.commons.io.IOUtils.write;
  */
 public class CsvTransformationResultWriter implements TransformationResultWriter {
 
-    private static final Logger LOG = LoggerFactory.getLogger( CsvTransformationResultWriter.class );
+	private static final Logger LOG = LoggerFactory.getLogger(CsvTransformationResultWriter.class);
 
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern( "yyyy-MM-dd-HH-mm" );
+	private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm");
 
-    private final CSVPrinter resultWriter;
+	private final CSVPrinter resultWriter;
 
-    private Path outDir;
+	private Path outDir;
 
-    public CsvTransformationResultWriter( Path outDir )
-                    throws IOException {
-        this.outDir = outDir;
-        String fileName = "validationResults_" + dateTimeFormatter.format( LocalDateTime.now() ) + ".csv";
-        BufferedWriter writer = Files.newBufferedWriter( outDir.resolve( fileName ) );
-        resultWriter = new CSVPrinter( writer,
-                                       CSVFormat.DEFAULT.withHeader( "ID", "Name", "IsValid", "RefTranformedGML",
-                                                                     "ValidationResult" ) );
-    }
+	public CsvTransformationResultWriter(Path outDir) throws IOException {
+		this.outDir = outDir;
+		String fileName = "validationResults_" + dateTimeFormatter.format(LocalDateTime.now()) + ".csv";
+		BufferedWriter writer = Files.newBufferedWriter(outDir.resolve(fileName));
+		resultWriter = new CSVPrinter(writer,
+				CSVFormat.DEFAULT.withHeader("ID", "Name", "IsValid", "RefTranformedGML", "ValidationResult"));
+	}
 
-    @Override
-    public void writeResult( String id, String name, SyntacticValidatorResult validatorResult,
-                             TransformationResult transformationResult ) {
-        String fileName = id + "_transformedGml_" + dateTimeFormatter.format( LocalDateTime.now() ) + ".xml";
-        Path gmlFile = outDir.resolve( fileName );
-        try ( OutputStream gmlOutputStream = newOutputStream( gmlFile ) ) {
-            write( transformationResult.getTransformationResult(), gmlOutputStream );
-            String validationResult = validatorResult.getMessages().stream().collect( Collectors.joining( "," ) );
-            resultWriter.printRecord( id, name, validatorResult.isValid(), gmlFile, validationResult );
-        } catch ( IOException e ) {
-            LOG.warn( "Could not write results to csv file" );
-        }
-    }
+	@Override
+	public void writeResult(String id, String name, SyntacticValidatorResult validatorResult,
+			TransformationResult transformationResult) {
+		String fileName = id + "_transformedGml_" + dateTimeFormatter.format(LocalDateTime.now()) + ".xml";
+		Path gmlFile = outDir.resolve(fileName);
+		try (OutputStream gmlOutputStream = newOutputStream(gmlFile)) {
+			write(transformationResult.getTransformationResult(), gmlOutputStream);
+			String validationResult = validatorResult.getMessages().stream().collect(Collectors.joining(","));
+			resultWriter.printRecord(id, name, validatorResult.isValid(), gmlFile, validationResult);
+		}
+		catch (IOException e) {
+			LOG.warn("Could not write results to csv file");
+		}
+	}
 
-    @Override
-    public void close()
-                    throws IOException {
-        resultWriter.close();
-    }
+	@Override
+	public void close() throws IOException {
+		resultWriter.close();
+	}
 
 }

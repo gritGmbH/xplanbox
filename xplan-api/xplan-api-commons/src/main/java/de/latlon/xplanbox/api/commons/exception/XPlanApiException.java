@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -28,20 +28,20 @@ import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
  */
 public abstract class XPlanApiException extends Exception {
 
-    public XPlanApiException( String message ) {
-        super( message );
-    }
+	public XPlanApiException(String message) {
+		super(message);
+	}
 
-    public XPlanApiException( String message, Exception e ) {
-        super( message, e );
-    }
+	public XPlanApiException(String message, Exception e) {
+		super(message, e);
+	}
 
-    public int getStatusCode() {
-        return INTERNAL_SERVER_ERROR.getStatusCode();
-    }
+	public int getStatusCode() {
+		return INTERNAL_SERVER_ERROR.getStatusCode();
+	}
 
-    public Object getResponseEntity() {
-        return null;
-    }
+	public Object getResponseEntity() {
+		return null;
+	}
 
 }

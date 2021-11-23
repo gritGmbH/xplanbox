@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -56,127 +56,127 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 
 /**
  * GUI component containing the search filter of the plan list.
- * 
+ *
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @version $Revision: $, $Date: $
  */
 public class SearchFilterPanel extends AbstractFilterPanel implements ResetableFilterPanel {
 
-    private static final XPlanWebMessages messages = GWT.create( XPlanWebMessages.class );
+	private static final XPlanWebMessages messages = GWT.create(XPlanWebMessages.class);
 
-    private final Map<String, PlanListColumnType> labelsToColumns;
+	private final Map<String, PlanListColumnType> labelsToColumns;
 
-    private final ListBox listBox;
+	private final ListBox listBox;
 
-    private final TextBox textBox;
+	private final TextBox textBox;
 
-    public SearchFilterPanel( FilterExecutor filterExecutor, ManagerWebConfiguration configuration ) {
-        super( filterExecutor );
-        labelsToColumns = initColumns( configuration );
-        this.listBox = createListBox();
-        this.textBox = createTextBox();
-        createUi();
-    }
+	public SearchFilterPanel(FilterExecutor filterExecutor, ManagerWebConfiguration configuration) {
+		super(filterExecutor);
+		labelsToColumns = initColumns(configuration);
+		this.listBox = createListBox();
+		this.textBox = createTextBox();
+		createUi();
+	}
 
-    @Override
-    public void reset() {
-        listBox.setSelectedIndex( 0 );
-        textBox.setValue( null );
-        updateFilter( null );
-    }
+	@Override
+	public void reset() {
+		listBox.setSelectedIndex(0);
+		textBox.setValue(null);
+		updateFilter(null);
+	}
 
-    private void createUi() {
-        Widget layout = createLayout();
-        this.setWidget( layout );
-    }
+	private void createUi() {
+		Widget layout = createLayout();
+		this.setWidget(layout);
+	}
 
-    private Widget createLayout() {
-        FlexTable layout = new FlexTable();
-        FlexTable.FlexCellFormatter formatter = layout.getFlexCellFormatter();
-        formatter.setHorizontalAlignment( 1, 1, ALIGN_LEFT );
-        layout.setCellSpacing( 5 );
-        layout.setWidget( 1, 1, new Label( messages.searchLabel() ) );
-        layout.setWidget( 2, 1, listBox );
-        layout.setWidget( 2, 2, textBox );
-        layout.setWidget( 2, 3, createButton() );
-        return layout;
-    }
+	private Widget createLayout() {
+		FlexTable layout = new FlexTable();
+		FlexTable.FlexCellFormatter formatter = layout.getFlexCellFormatter();
+		formatter.setHorizontalAlignment(1, 1, ALIGN_LEFT);
+		layout.setCellSpacing(5);
+		layout.setWidget(1, 1, new Label(messages.searchLabel()));
+		layout.setWidget(2, 1, listBox);
+		layout.setWidget(2, 2, textBox);
+		layout.setWidget(2, 3, createButton());
+		return layout;
+	}
 
-    private ListBox createListBox() {
-        ListBox listBox = new ListBox();
-        listBox.addItem( messages.searchOnAllColumns() );
-        for ( String column : labelsToColumns.keySet() ) {
-            listBox.addItem( column );
-        }
-        return listBox;
-    }
+	private ListBox createListBox() {
+		ListBox listBox = new ListBox();
+		listBox.addItem(messages.searchOnAllColumns());
+		for (String column : labelsToColumns.keySet()) {
+			listBox.addItem(column);
+		}
+		return listBox;
+	}
 
-    private TextBox createTextBox() {
-        TextBox textBox = new TextBox();
-        textBox.setTitle( messages.filterFreeTextTooltip() );
-        textBox.addKeyDownHandler( createKeyDownHandler() );
-        return textBox;
-    }
+	private TextBox createTextBox() {
+		TextBox textBox = new TextBox();
+		textBox.setTitle(messages.filterFreeTextTooltip());
+		textBox.addKeyDownHandler(createKeyDownHandler());
+		return textBox;
+	}
 
-    private KeyDownHandler createKeyDownHandler() {
-        return new KeyDownHandler() {
-            @Override
-            public void onKeyDown( KeyDownEvent event ) {
-                if ( event.getNativeKeyCode() == KeyCodes.KEY_ENTER )
-                    performSearch();
-            }
-        };
-    }
+	private KeyDownHandler createKeyDownHandler() {
+		return new KeyDownHandler() {
+			@Override
+			public void onKeyDown(KeyDownEvent event) {
+				if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER)
+					performSearch();
+			}
+		};
+	}
 
-    private Button createButton() {
-        Button button = new Button( messages.searchButton() );
-        button.addClickHandler( createClickHandler() );
-        return button;
-    }
+	private Button createButton() {
+		Button button = new Button(messages.searchButton());
+		button.addClickHandler(createClickHandler());
+		return button;
+	}
 
-    private ClickHandler createClickHandler() {
-        return new ClickHandler() {
-            @Override
-            public void onClick( ClickEvent event ) {
-                performSearch();
-            }
-        };
-    }
+	private ClickHandler createClickHandler() {
+		return new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				performSearch();
+			}
+		};
+	}
 
-    private void performSearch() {
-        String searchString = textBox.getValue();
-        PlanListColumnType searchColumn = detectSearchColumn( listBox );
-        PlanFilter freeTextFilter = new FreeTextFilter( searchColumn, searchString );
-        updateAndExecuteFilter( freeTextFilter );
-    }
+	private void performSearch() {
+		String searchString = textBox.getValue();
+		PlanListColumnType searchColumn = detectSearchColumn(listBox);
+		PlanFilter freeTextFilter = new FreeTextFilter(searchColumn, searchString);
+		updateAndExecuteFilter(freeTextFilter);
+	}
 
-    private PlanListColumnType detectSearchColumn( final ListBox listBox ) {
-        int selectedIndex = listBox.getSelectedIndex();
-        if ( selectedIndex > 0 ) {
-            String selectedValue = listBox.getValue( selectedIndex );
-            return labelsToColumns.get( selectedValue );
-        }
-        return null;
-    }
+	private PlanListColumnType detectSearchColumn(final ListBox listBox) {
+		int selectedIndex = listBox.getSelectedIndex();
+		if (selectedIndex > 0) {
+			String selectedValue = listBox.getValue(selectedIndex);
+			return labelsToColumns.get(selectedValue);
+		}
+		return null;
+	}
 
-    private Map<String, PlanListColumnType> initColumns( ManagerWebConfiguration configuration ) {
-        Map<String, PlanListColumnType> labelsToColumns = new HashMap<String, PlanListColumnType>();
-        addColumn( labelsToColumns, messages.idColumn(), ID, configuration );
-        addColumn( labelsToColumns, messages.numberColumn(), NUMBER, configuration );
-        addColumn( labelsToColumns, messages.nameColumn(), NAME, configuration );
-        addColumn( labelsToColumns, messages.planArt(), TYPE, configuration );
-        addColumn( labelsToColumns, messages.sonstPlanArt(), ADDITIONALTYPE, configuration );
-        addColumn( labelsToColumns, messages.legislationStatus(), LEGISLATIONSTATUS, configuration );
-        addColumn( labelsToColumns, messages.releaseDate(), RELEASEDATE, configuration );
-        addColumn( labelsToColumns, messages.importDate(), IMPORTDATE, configuration );
-        addColumn( labelsToColumns, messages.ade(), ADE, configuration );
-        return labelsToColumns;
-    }
+	private Map<String, PlanListColumnType> initColumns(ManagerWebConfiguration configuration) {
+		Map<String, PlanListColumnType> labelsToColumns = new HashMap<String, PlanListColumnType>();
+		addColumn(labelsToColumns, messages.idColumn(), ID, configuration);
+		addColumn(labelsToColumns, messages.numberColumn(), NUMBER, configuration);
+		addColumn(labelsToColumns, messages.nameColumn(), NAME, configuration);
+		addColumn(labelsToColumns, messages.planArt(), TYPE, configuration);
+		addColumn(labelsToColumns, messages.sonstPlanArt(), ADDITIONALTYPE, configuration);
+		addColumn(labelsToColumns, messages.legislationStatus(), LEGISLATIONSTATUS, configuration);
+		addColumn(labelsToColumns, messages.releaseDate(), RELEASEDATE, configuration);
+		addColumn(labelsToColumns, messages.importDate(), IMPORTDATE, configuration);
+		addColumn(labelsToColumns, messages.ade(), ADE, configuration);
+		return labelsToColumns;
+	}
 
-    private void addColumn( Map<String, PlanListColumnType> labelsToColumns, String label,
-                            PlanListColumnType columnType, ManagerWebConfiguration configuration ) {
-        if ( configuration.isColumnVisible( columnType ) )
-            labelsToColumns.put( label, columnType );
-    }
+	private void addColumn(Map<String, PlanListColumnType> labelsToColumns, String label, PlanListColumnType columnType,
+			ManagerWebConfiguration configuration) {
+		if (configuration.isColumnVisible(columnType))
+			labelsToColumns.put(label, columnType);
+	}
 
 }

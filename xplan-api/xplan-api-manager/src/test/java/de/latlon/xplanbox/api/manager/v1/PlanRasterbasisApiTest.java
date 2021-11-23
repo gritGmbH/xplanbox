@@ -50,92 +50,91 @@ import static org.junit.Assert.assertThat;
 
 public class PlanRasterbasisApiTest extends JerseyTest {
 
-    @Override
-    protected Application configure() {
-        enable( TestProperties.LOG_TRAFFIC );
-        final ResourceConfig resourceConfig = new ResourceConfig( PlanRasterbasisApi.class );
-        resourceConfig.register( XPlanApiExceptionMapper.class );
-        resourceConfig.packages( "org.glassfish.jersey.examples.multipart" );
-        resourceConfig.register( MultiPartFeature.class );
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext( ApplicationContext.class,
-                                                                                             TestContext.class );
-        resourceConfig.property( "contextConfig", context );
-        return resourceConfig;
-    }
+	@Override
+	protected Application configure() {
+		enable(TestProperties.LOG_TRAFFIC);
+		final ResourceConfig resourceConfig = new ResourceConfig(PlanRasterbasisApi.class);
+		resourceConfig.register(XPlanApiExceptionMapper.class);
+		resourceConfig.packages("org.glassfish.jersey.examples.multipart");
+		resourceConfig.register(MultiPartFeature.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContext.class,
+				TestContext.class);
+		resourceConfig.property("contextConfig", context);
+		return resourceConfig;
+	}
 
-    @Override
-    protected void configureClient( ClientConfig config ) {
-        config.register( MultiPartFeature.class );
-    }
+	@Override
+	protected void configureClient(ClientConfig config) {
+		config.register(MultiPartFeature.class);
+	}
 
-    @Test
-    public void verifyThat_getRasterbasise_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/2/rasterbasis" ).request( APPLICATION_JSON ).get();
+	@Test
+	public void verifyThat_getRasterbasise_returnsCorrectStatusCodeForValidMediaType() {
+		Response response = target("/plan/2/rasterbasis").request(APPLICATION_JSON).get();
 
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
 
-    @Test
-    public void verifyThat_addRasterbasis_returnsCorrectStatusCodeForValidMediaType()
-                    throws URISyntaxException {
-        FileDataBodyPart rasterbasismodel = createFileDataBodyPart( "rasterbasismodel", "rasterbasismodel.json",
-                                                                    APPLICATION_JSON_TYPE );
-        FileDataBodyPart rasterFilePart = createFileDataBodyPart( "rasterdatei", "datei.pdf", null );
-        FileDataBodyPart geoRefFilePart = createFileDataBodyPart( "georeferenzdatei", "georeferenz.txt",
-                                                                  TEXT_PLAIN_TYPE );
-        FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart()
-                        .bodyPart( rasterbasismodel ).bodyPart( rasterFilePart ).bodyPart( geoRefFilePart );
+	@Test
+	public void verifyThat_addRasterbasis_returnsCorrectStatusCodeForValidMediaType() throws URISyntaxException {
+		FileDataBodyPart rasterbasismodel = createFileDataBodyPart("rasterbasismodel", "rasterbasismodel.json",
+				APPLICATION_JSON_TYPE);
+		FileDataBodyPart rasterFilePart = createFileDataBodyPart("rasterdatei", "datei.pdf", null);
+		FileDataBodyPart geoRefFilePart = createFileDataBodyPart("georeferenzdatei", "georeferenz.txt",
+				TEXT_PLAIN_TYPE);
+		FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart().bodyPart(rasterbasismodel)
+				.bodyPart(rasterFilePart).bodyPart(geoRefFilePart);
 
-        Response response = target( "/plan/2/rasterbasis" ).request()
-                                                           .post( Entity.entity( multipart,
-                                                                                 multipart.getMediaType() ) );
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
+		Response response = target("/plan/2/rasterbasis").request()
+				.post(Entity.entity(multipart, multipart.getMediaType()));
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 
-    }
+	}
 
-    @Test
-    public void verifyThat_getRasterbasisById_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif" ).request(
-                        APPLICATION_JSON ).get();
+	@Test
+	public void verifyThat_getRasterbasisById_returnsCorrectStatusCodeForValidMediaType() {
+		Response response = target(
+				"/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif")
+						.request(APPLICATION_JSON).get();
 
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
 
-    @Test
-    public void verifyThat_replaceRasterbasisById_returnsCorrectStatusCodeForValidMediaType()
-                    throws URISyntaxException {
-        FileDataBodyPart rasterbasismodel = createFileDataBodyPart( "rasterbasismodel", "rasterbasismodel.json",
-                                                                    APPLICATION_JSON_TYPE );
-        FileDataBodyPart rasterFilePart = createFileDataBodyPart( "rasterdatei", "datei.pdf", null );
-        FileDataBodyPart geoRefFilePart = createFileDataBodyPart( "georeferenzdatei", "georeferenz.txt",
-                                                                  TEXT_PLAIN_TYPE );
-        FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart()
-                        .bodyPart( rasterbasismodel ).bodyPart( rasterFilePart ).bodyPart( geoRefFilePart );
+	@Test
+	public void verifyThat_replaceRasterbasisById_returnsCorrectStatusCodeForValidMediaType()
+			throws URISyntaxException {
+		FileDataBodyPart rasterbasismodel = createFileDataBodyPart("rasterbasismodel", "rasterbasismodel.json",
+				APPLICATION_JSON_TYPE);
+		FileDataBodyPart rasterFilePart = createFileDataBodyPart("rasterdatei", "datei.pdf", null);
+		FileDataBodyPart geoRefFilePart = createFileDataBodyPart("georeferenzdatei", "georeferenz.txt",
+				TEXT_PLAIN_TYPE);
+		FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart().bodyPart(rasterbasismodel)
+				.bodyPart(rasterFilePart).bodyPart(geoRefFilePart);
 
-        Response response = target( "/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif" ).request()
-                                                                                                        .put( Entity.entity(
-                                                                                                                        multipart,
-                                                                                                                        multipart.getMediaType() ) );
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
+		Response response = target(
+				"/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif").request()
+						.put(Entity.entity(multipart, multipart.getMediaType()));
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
 
-    @Test
-    public void verifyThat_deleteRasterbasisById_returnsCorrectStatusCodeForValidMediaType() {
-        Response response = target( "/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif" ).request(
-                        APPLICATION_JSON ).delete();
+	@Test
+	public void verifyThat_deleteRasterbasisById_returnsCorrectStatusCodeForValidMediaType() {
+		Response response = target(
+				"/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif")
+						.request(APPLICATION_JSON).delete();
 
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
 
-    private FileDataBodyPart createFileDataBodyPart( String name, String resource, MediaType mediaType )
-                    throws URISyntaxException {
-        File datei = new File( getClass().getResource( resource ).toURI() );
-        return new FileDataBodyPart( name, datei, mediaType );
-    }
+	private FileDataBodyPart createFileDataBodyPart(String name, String resource, MediaType mediaType)
+			throws URISyntaxException {
+		File datei = new File(getClass().getResource(resource).toURI());
+		return new FileDataBodyPart(name, datei, mediaType);
+	}
 
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -36,42 +36,43 @@ import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersio
 
 public class XpGenerAttributFlattener extends AbstractFlattener {
 
-    @Override
-    public boolean accepts( TypedObjectNode node ) {
-        if ( node instanceof Feature ) {
-            return isGenerAttribut( (Feature) node );
-        } else if ( node instanceof ElementNode ) {
-            XSElementDeclaration elDecl = ( (ElementNode) node ).getXSType();
-            return isGenerAttribut( elDecl );
-        }
-        return false;
-    }
+	@Override
+	public boolean accepts(TypedObjectNode node) {
+		if (node instanceof Feature) {
+			return isGenerAttribut((Feature) node);
+		}
+		else if (node instanceof ElementNode) {
+			XSElementDeclaration elDecl = ((ElementNode) node).getXSType();
+			return isGenerAttribut(elDecl);
+		}
+		return false;
+	}
 
-    private boolean isGenerAttribut( Feature feature ) {
-        XPlanVersion version = determineBaseVersion( feature.getName() );
-        if ( !XPLAN_3.equals( version ) ) {
-            return false;
-        }
-        FeatureType ft = feature.getType();
-        AppSchema schema = ft.getSchema();
-        String ns = feature.getName().getNamespaceURI();
-        FeatureType generAttributFt = schema.getFeatureType( new QName( ns, "XP_GenerAttribut" ) );
-        return schema.isSubType( generAttributFt, ft );
-    }
+	private boolean isGenerAttribut(Feature feature) {
+		XPlanVersion version = determineBaseVersion(feature.getName());
+		if (!XPLAN_3.equals(version)) {
+			return false;
+		}
+		FeatureType ft = feature.getType();
+		AppSchema schema = ft.getSchema();
+		String ns = feature.getName().getNamespaceURI();
+		FeatureType generAttributFt = schema.getFeatureType(new QName(ns, "XP_GenerAttribut"));
+		return schema.isSubType(generAttributFt, ft);
+	}
 
-    private boolean isGenerAttribut( XSElementDeclaration elDecl ) {
-        if ( "XP_GenerAttribut".equals( elDecl.getName() ) ) {
-            return true;
-        }
-        return elDecl.getSubstitutionGroupAffiliation() != null
-               && isGenerAttribut( elDecl.getSubstitutionGroupAffiliation() );
-    }
+	private boolean isGenerAttribut(XSElementDeclaration elDecl) {
+		if ("XP_GenerAttribut".equals(elDecl.getName())) {
+			return true;
+		}
+		return elDecl.getSubstitutionGroupAffiliation() != null
+				&& isGenerAttribut(elDecl.getSubstitutionGroupAffiliation());
+	}
 
-    @Override
-    public String flatten( TypedObjectNode xpGenerAttribut ) {
-        TypedObjectNode name = getPropertyValue( xpGenerAttribut, "name" );
-        TypedObjectNode wert = getPropertyValue( xpGenerAttribut, "wert" );
-        return "[\"" + name + "\"=\"" + wert + "\"]";
-    }
+	@Override
+	public String flatten(TypedObjectNode xpGenerAttribut) {
+		TypedObjectNode name = getPropertyValue(xpGenerAttribut, "name");
+		TypedObjectNode wert = getPropertyValue(xpGenerAttribut, "wert");
+		return "[\"" + name + "\"=\"" + wert + "\"]";
+	}
 
 }

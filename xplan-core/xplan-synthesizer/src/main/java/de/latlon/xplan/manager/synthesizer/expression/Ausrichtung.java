@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -33,76 +33,77 @@ import org.deegree.feature.property.SimpleProperty;
  */
 public class Ausrichtung implements Expression {
 
-    private static final double AUSRICHTUNG_DEFAULT = 0.0;
+	private static final double AUSRICHTUNG_DEFAULT = 0.0;
 
-    private enum AUSRICHTUNG {
+	private enum AUSRICHTUNG {
 
-        /* HORIZONTAL */
-        LINKS( "linksbündig", 0.0 ),
+		/* HORIZONTAL */
+		LINKS("linksbündig", 0.0),
 
-        RECHTS( "rechtsbündig", 1.0 ),
+		RECHTS("rechtsbündig", 1.0),
 
-        ZENTRUM( "zentrisch", 0.5 ),
+		ZENTRUM("zentrisch", 0.5),
 
-        /* VERTIKAL*/
-        BASIS( "Basis", 0.0 ),
+		/* VERTIKAL */
+		BASIS("Basis", 0.0),
 
-        MITTE( "Mitte", 0.5 ),
+		MITTE("Mitte", 0.5),
 
-        OBEN( "Oben", 1.0 );
+		OBEN("Oben", 1.0);
 
-        private final String codelistName;
+		private final String codelistName;
 
-        private final double anchor;
+		private final double anchor;
 
-        AUSRICHTUNG( String codelistName, double anchorX ) {
-            this.codelistName = codelistName;
-            this.anchor = anchorX;
-        }
+		AUSRICHTUNG(String codelistName, double anchorX) {
+			this.codelistName = codelistName;
+			this.anchor = anchorX;
+		}
 
-        public static AUSRICHTUNG valueOfCodelistName( String codelistName ) {
-            for ( AUSRICHTUNG ausrichtung : values() ) {
-                if ( ausrichtung.codelistName.equals( codelistName ) ) {
-                    return ausrichtung;
-                }
-            }
-            return null;
-        }
-    }
+		public static AUSRICHTUNG valueOfCodelistName(String codelistName) {
+			for (AUSRICHTUNG ausrichtung : values()) {
+				if (ausrichtung.codelistName.equals(codelistName)) {
+					return ausrichtung;
+				}
+			}
+			return null;
+		}
 
-    private final Expression exp;
+	}
 
-    public Ausrichtung( Expression exp ) {
-        this.exp = exp;
-    }
+	private final Expression exp;
 
-    @Override
-    public TypedObjectNode evaluate( Feature feature, FeatureCollection features ) {
-        TypedObjectNode property = exp.evaluate( feature, features );
-        if ( property != null ) {
-            if ( property instanceof SimpleProperty ) {
-                return asTypedObjectNode( ( (SimpleProperty) property ).getValue() );
-            }
-            if ( property instanceof GenericXMLElement ) {
-                return asTypedObjectNode( ( (GenericXMLElement) property ).getValue() );
-            }
-        }
-        return asTypedObjectNode( AUSRICHTUNG_DEFAULT );
-    }
+	public Ausrichtung(Expression exp) {
+		this.exp = exp;
+	}
 
-    private TypedObjectNode asTypedObjectNode( PrimitiveValue property ) {
-        if ( property != null ) {
-            String asText = property.getAsText();
-            AUSRICHTUNG ausrichtung = AUSRICHTUNG.valueOfCodelistName( asText );
-            if ( ausrichtung != null ) {
-                return asTypedObjectNode( ausrichtung.anchor );
-            }
-        }
-        return asTypedObjectNode( AUSRICHTUNG_DEFAULT );
-    }
+	@Override
+	public TypedObjectNode evaluate(Feature feature, FeatureCollection features) {
+		TypedObjectNode property = exp.evaluate(feature, features);
+		if (property != null) {
+			if (property instanceof SimpleProperty) {
+				return asTypedObjectNode(((SimpleProperty) property).getValue());
+			}
+			if (property instanceof GenericXMLElement) {
+				return asTypedObjectNode(((GenericXMLElement) property).getValue());
+			}
+		}
+		return asTypedObjectNode(AUSRICHTUNG_DEFAULT);
+	}
 
-    private TypedObjectNode asTypedObjectNode( double anchor ) {
-        return Expressions.toPrimitiveValue( anchor );
-    }
+	private TypedObjectNode asTypedObjectNode(PrimitiveValue property) {
+		if (property != null) {
+			String asText = property.getAsText();
+			AUSRICHTUNG ausrichtung = AUSRICHTUNG.valueOfCodelistName(asText);
+			if (ausrichtung != null) {
+				return asTypedObjectNode(ausrichtung.anchor);
+			}
+		}
+		return asTypedObjectNode(AUSRICHTUNG_DEFAULT);
+	}
+
+	private TypedObjectNode asTypedObjectNode(double anchor) {
+		return Expressions.toPrimitiveValue(anchor);
+	}
 
 }

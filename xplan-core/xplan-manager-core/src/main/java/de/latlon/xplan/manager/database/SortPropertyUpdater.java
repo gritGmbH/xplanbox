@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -72,64 +72,60 @@ import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 
 /**
  * Updates the sort property.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
 public class SortPropertyUpdater {
 
-    private static final Logger LOG = LoggerFactory.getLogger( SortPropertyUpdater.class );
+	private static final Logger LOG = LoggerFactory.getLogger(SortPropertyUpdater.class);
 
-    private final SortPropertyReader sortPropertyReader;
+	private final SortPropertyReader sortPropertyReader;
 
-    private final XPlanDao dao;
+	private final XPlanDao dao;
 
-    private final XPlanRasterManager xPlanRasterManager;
+	private final XPlanRasterManager xPlanRasterManager;
 
-    /**
-     * @param sortPropertyReader
-     *            used to read the sort property from a feature collection, never <code>null</code>
-     * @param dao
-     *            used to access the database, never <code>null</code>
-     * @param xPlanRasterManager
-     *            used to update the raster configuration, never <code>null</code>
-     */
-    public SortPropertyUpdater( SortPropertyReader sortPropertyReader, XPlanDao dao,
-                                XPlanRasterManager xPlanRasterManager ) {
-        this.sortPropertyReader = sortPropertyReader;
-        this.dao = dao;
-        this.xPlanRasterManager = xPlanRasterManager;
-    }
+	/**
+	 * @param sortPropertyReader used to read the sort property from a feature collection,
+	 * never <code>null</code>
+	 * @param dao used to access the database, never <code>null</code>
+	 * @param xPlanRasterManager used to update the raster configuration, never
+	 * <code>null</code>
+	 */
+	public SortPropertyUpdater(SortPropertyReader sortPropertyReader, XPlanDao dao,
+			XPlanRasterManager xPlanRasterManager) {
+		this.sortPropertyReader = sortPropertyReader;
+		this.dao = dao;
+		this.xPlanRasterManager = xPlanRasterManager;
+	}
 
-    /**
-     * Retrieves all plans from the manager store, parses the date from the plan with the help of the
-     * {@link SortPropertyReader} and updates the sort property in the syn schema data and reorders the wms
-     * rasterlayers.
-     */
-    public void updateSortProperty()
-                    throws Exception {
-        Map<String, Date> planId2sortDate = updateColumnsInDB();
-        updateWmsRasterLayerOrder( planId2sortDate );
-    }
+	/**
+	 * Retrieves all plans from the manager store, parses the date from the plan with the
+	 * help of the {@link SortPropertyReader} and updates the sort property in the syn
+	 * schema data and reorders the wms rasterlayers.
+	 */
+	public void updateSortProperty() throws Exception {
+		Map<String, Date> planId2sortDate = updateColumnsInDB();
+		updateWmsRasterLayerOrder(planId2sortDate);
+	}
 
-    private Map<String, Date> updateColumnsInDB()
-                    throws Exception {
-        Map<String, Date> planId2sortDate = new HashMap<String, Date>();
-        List<XPlan> plans = dao.getXPlanList( false );
-        for ( XPlan plan : plans ) {
-            LOG.debug( "Update sort column value for plan with id {}", plan.getId() );
-            FeatureCollection featureCollection = dao.retrieveFeatureCollection( plan );
-            XPlanType planType = XPlanType.valueOf( plan.getType() );
-            XPlanVersion version = XPlanVersion.valueOf( plan.getVersion() );
-            Date sortDate = sortPropertyReader.readSortDate( planType, version, featureCollection );
-            planId2sortDate.put( plan.getId(), sortDate );
-            dao.updateSortProperty( sortDate, plan );
-        }
-        return planId2sortDate;
-    }
+	private Map<String, Date> updateColumnsInDB() throws Exception {
+		Map<String, Date> planId2sortDate = new HashMap<String, Date>();
+		List<XPlan> plans = dao.getXPlanList(false);
+		for (XPlan plan : plans) {
+			LOG.debug("Update sort column value for plan with id {}", plan.getId());
+			FeatureCollection featureCollection = dao.retrieveFeatureCollection(plan);
+			XPlanType planType = XPlanType.valueOf(plan.getType());
+			XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
+			Date sortDate = sortPropertyReader.readSortDate(planType, version, featureCollection);
+			planId2sortDate.put(plan.getId(), sortDate);
+			dao.updateSortProperty(sortDate, plan);
+		}
+		return planId2sortDate;
+	}
 
-    private void updateWmsRasterLayerOrder( Map<String, Date> planId2sortDate )
-                    throws Exception {
-        xPlanRasterManager.reorderWmsLayers( planId2sortDate );
-    }
+	private void updateWmsRasterLayerOrder(Map<String, Date> planId2sortDate) throws Exception {
+		xPlanRasterManager.reorderWmsLayers(planId2sortDate);
+	}
 
 }

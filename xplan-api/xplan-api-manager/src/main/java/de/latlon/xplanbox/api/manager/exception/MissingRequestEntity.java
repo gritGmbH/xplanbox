@@ -9,12 +9,12 @@ import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
  */
 public class MissingRequestEntity extends XPlanApiException {
 
-    public MissingRequestEntity( String message ) {
-        super( message );
-    }
+	public MissingRequestEntity(String message) {
+		super(message);
+	}
 
-    public int getStatusCode() {
-        return BAD_REQUEST.getStatusCode();
-    }
+	public int getStatusCode() {
+		return BAD_REQUEST.getStatusCode();
+	}
 
 }

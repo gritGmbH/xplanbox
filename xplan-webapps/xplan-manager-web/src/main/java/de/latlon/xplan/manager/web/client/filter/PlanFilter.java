@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -25,21 +25,19 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 
 /**
  * Common interface for all filters, checking if a plan is visible or not.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public interface PlanFilter {
 
-    /**
-     * Checks if the passed plan matches this filter or not.
-     * 
-     * @param plan
-     *            to check, never <code>null</code>
-     * @return <code>true</code> if the plan matches this filter, <code>false</code> otherwise
-     * @throws NullPointerException
-     *             - plan is <code>null</code>
-     */
-    boolean isMatching( XPlan plan );
+	/**
+	 * Checks if the passed plan matches this filter or not.
+	 * @param plan to check, never <code>null</code>
+	 * @return <code>true</code> if the plan matches this filter, <code>false</code>
+	 * otherwise
+	 * @throws NullPointerException - plan is <code>null</code>
+	 */
+	boolean isMatching(XPlan plan);
 
 }

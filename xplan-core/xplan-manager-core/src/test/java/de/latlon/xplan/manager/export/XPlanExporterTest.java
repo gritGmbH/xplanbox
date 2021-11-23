@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -97,275 +97,253 @@ import static org.mockito.Mockito.when;
  */
 public class XPlanExporterTest {
 
-    private static final String MAIN_FILE_REEXPORTED = MAIN_FILE_REEXPORTED_PREFIX + MAIN_FILE_REEXPORTED_SUFFIX;
+	private static final String MAIN_FILE_REEXPORTED = MAIN_FILE_REEXPORTED_PREFIX + MAIN_FILE_REEXPORTED_SUFFIX;
 
-    private static final String MAIN_FILE_REEXPORTED_1 = MAIN_FILE_REEXPORTED_PREFIX + "-1"
-                                                         + MAIN_FILE_REEXPORTED_SUFFIX;
+	private static final String MAIN_FILE_REEXPORTED_1 = MAIN_FILE_REEXPORTED_PREFIX + "-1"
+			+ MAIN_FILE_REEXPORTED_SUFFIX;
 
-    private static final String MAIN_FILE_REEXPORTED_2 = MAIN_FILE_REEXPORTED_PREFIX + "-2"
-                                                         + MAIN_FILE_REEXPORTED_SUFFIX;
+	private static final String MAIN_FILE_REEXPORTED_2 = MAIN_FILE_REEXPORTED_PREFIX + "-2"
+			+ MAIN_FILE_REEXPORTED_SUFFIX;
 
-    private static final String MAIN_FILE_REEXPORTED_3 = MAIN_FILE_REEXPORTED_PREFIX + "-3"
-                                                         + MAIN_FILE_REEXPORTED_SUFFIX;
+	private static final String MAIN_FILE_REEXPORTED_3 = MAIN_FILE_REEXPORTED_PREFIX + "-3"
+			+ MAIN_FILE_REEXPORTED_SUFFIX;
 
-    private static final String MAIN_FILE_REEXPORTED_WITH_TEXT = MAIN_FILE_REEXPORTED_PREFIX + "-zz"
-                                                                 + MAIN_FILE_REEXPORTED_SUFFIX;
+	private static final String MAIN_FILE_REEXPORTED_WITH_TEXT = MAIN_FILE_REEXPORTED_PREFIX + "-zz"
+			+ MAIN_FILE_REEXPORTED_SUFFIX;
 
-    private static final String MAIN_FILE_REEXPORTED_38 = MAIN_FILE_REEXPORTED_PREFIX + "-38"
-                                                          + MAIN_FILE_REEXPORTED_SUFFIX;
+	private static final String MAIN_FILE_REEXPORTED_38 = MAIN_FILE_REEXPORTED_PREFIX + "-38"
+			+ MAIN_FILE_REEXPORTED_SUFFIX;
 
-    private static final String MAIN_FILE_REEXPORTED_39 = MAIN_FILE_REEXPORTED_PREFIX + "-39"
-                                                          + MAIN_FILE_REEXPORTED_SUFFIX;
+	private static final String MAIN_FILE_REEXPORTED_39 = MAIN_FILE_REEXPORTED_PREFIX + "-39"
+			+ MAIN_FILE_REEXPORTED_SUFFIX;
 
-    private XPlanExporter exporter = new XPlanExporter( mockManagerConfiguration( true ) );
+	private XPlanExporter exporter = new XPlanExporter(mockManagerConfiguration(true));
 
-    @Test
-    public void testExport()
-                    throws Exception {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        XPlanArtefactIterator artefacts = mockArtefactIterator();
-        XPlanArchiveContent contents = createContents( artefacts );
-        exporter.export( outputStream, contents );
+	@Test
+	public void testExport() throws Exception {
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		XPlanArtefactIterator artefacts = mockArtefactIterator();
+		XPlanArchiveContent contents = createContents(artefacts);
+		exporter.export(outputStream, contents);
 
-        List<String> exportedFiles = readExportedContent( outputStream );
+		List<String> exportedFiles = readExportedContent(outputStream);
 
-        assertThat( exportedFiles.size(), is( 3 ) );
-        assertThat( exportedFiles, hasItems( "1.xml", "2.xml", MAIN_FILE_REEXPORTED ) );
-    }
+		assertThat(exportedFiles.size(), is(3));
+		assertThat(exportedFiles, hasItems("1.xml", "2.xml", MAIN_FILE_REEXPORTED));
+	}
 
-    @Test
-    public void testExportWithDeactivatedReexported()
-                    throws Exception {
-        XPlanExporter xplanExporter = new XPlanExporter( mockManagerConfiguration( false ) );
+	@Test
+	public void testExportWithDeactivatedReexported() throws Exception {
+		XPlanExporter xplanExporter = new XPlanExporter(mockManagerConfiguration(false));
 
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        XPlanArtefactIterator artefacts = mockArtefactIterator();
-        XPlanArchiveContent contents = createContents( artefacts );
-        xplanExporter.export( outputStream, contents );
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		XPlanArtefactIterator artefacts = mockArtefactIterator();
+		XPlanArchiveContent contents = createContents(artefacts);
+		xplanExporter.export(outputStream, contents);
 
-        List<String> exportedFiles = readExportedContent( outputStream );
+		List<String> exportedFiles = readExportedContent(outputStream);
 
-        assertThat( exportedFiles.size(), is( 2 ) );
-        assertThat( exportedFiles, hasItems( "1.xml", "2.xml" ) );
-    }
+		assertThat(exportedFiles.size(), is(2));
+		assertThat(exportedFiles, hasItems("1.xml", "2.xml"));
+	}
 
-    @Test
-    public void testExportWithNullManagerConfiguration()
-                    throws Exception {
-        XPlanExporter xplanExporter = new XPlanExporter( null );
+	@Test
+	public void testExportWithNullManagerConfiguration() throws Exception {
+		XPlanExporter xplanExporter = new XPlanExporter(null);
 
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        XPlanArtefactIterator artefacts = mockArtefactIterator();
-        XPlanArchiveContent contents = createContents( artefacts );
-        xplanExporter.export( outputStream, contents );
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		XPlanArtefactIterator artefacts = mockArtefactIterator();
+		XPlanArchiveContent contents = createContents(artefacts);
+		xplanExporter.export(outputStream, contents);
 
-        List<String> exportedFiles = readExportedContent( outputStream );
+		List<String> exportedFiles = readExportedContent(outputStream);
 
-        assertThat( exportedFiles.size(), is( 2 ) );
-        assertThat( exportedFiles, hasItems( "1.xml", "2.xml" ) );
-    }
+		assertThat(exportedFiles.size(), is(2));
+		assertThat(exportedFiles, hasItems("1.xml", "2.xml"));
+	}
 
-    @Test
-    public void testExportWithReexported()
-                    throws Exception {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        XPlanArtefactIterator artefacts = mockArtefactIteratorWithReexported();
-        XPlanArchiveContent contents = createContents( artefacts );
-        exporter.export( outputStream, contents );
+	@Test
+	public void testExportWithReexported() throws Exception {
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		XPlanArtefactIterator artefacts = mockArtefactIteratorWithReexported();
+		XPlanArchiveContent contents = createContents(artefacts);
+		exporter.export(outputStream, contents);
 
-        List<String> exportedFiles = readExportedContent( outputStream );
+		List<String> exportedFiles = readExportedContent(outputStream);
 
-        assertThat( exportedFiles.size(), is( 4 ) );
-        assertThat( exportedFiles, hasItems( "1.xml", "2.xml", MAIN_FILE_REEXPORTED, MAIN_FILE_REEXPORTED_1 ) );
-    }
+		assertThat(exportedFiles.size(), is(4));
+		assertThat(exportedFiles, hasItems("1.xml", "2.xml", MAIN_FILE_REEXPORTED, MAIN_FILE_REEXPORTED_1));
+	}
 
-    @Test
-    public void testExportWithMultipleReexported()
-                    throws Exception {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        XPlanArtefactIterator artefacts = mockArtefactIteratorWithMultipleReexported();
-        XPlanArchiveContent contents = createContents( artefacts );
-        exporter.export( outputStream, contents );
+	@Test
+	public void testExportWithMultipleReexported() throws Exception {
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		XPlanArtefactIterator artefacts = mockArtefactIteratorWithMultipleReexported();
+		XPlanArchiveContent contents = createContents(artefacts);
+		exporter.export(outputStream, contents);
 
-        List<String> exportedFiles = readExportedContent( outputStream );
+		List<String> exportedFiles = readExportedContent(outputStream);
 
-        assertThat( exportedFiles.size(), is( 6 ) );
-        assertThat( exportedFiles, hasItems( "1.xml", "2.xml", MAIN_FILE_REEXPORTED, MAIN_FILE_REEXPORTED_1,
-                                             MAIN_FILE_REEXPORTED_2, MAIN_FILE_REEXPORTED_3 ) );
-    }
+		assertThat(exportedFiles.size(), is(6));
+		assertThat(exportedFiles, hasItems("1.xml", "2.xml", MAIN_FILE_REEXPORTED, MAIN_FILE_REEXPORTED_1,
+				MAIN_FILE_REEXPORTED_2, MAIN_FILE_REEXPORTED_3));
+	}
 
-    @Test
-    public void testExportWithMultipleReexportedNotInOrder()
-                    throws Exception {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        XPlanArtefactIterator artefacts = mockArtefactIteratorWithMultipleReexportedNotInOrder();
-        XPlanArchiveContent contents = createContents( artefacts );
-        exporter.export( outputStream, contents );
+	@Test
+	public void testExportWithMultipleReexportedNotInOrder() throws Exception {
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		XPlanArtefactIterator artefacts = mockArtefactIteratorWithMultipleReexportedNotInOrder();
+		XPlanArchiveContent contents = createContents(artefacts);
+		exporter.export(outputStream, contents);
 
-        List<String> exportedFiles = readExportedContent( outputStream );
+		List<String> exportedFiles = readExportedContent(outputStream);
 
-        assertThat( exportedFiles.size(), is( 8 ) );
-        assertThat( exportedFiles,
-                    hasItems( "1.xml", "2.xml", MAIN_FILE_REEXPORTED, MAIN_FILE_REEXPORTED_1, MAIN_FILE_REEXPORTED_2,
-                              MAIN_FILE_REEXPORTED_3, MAIN_FILE_REEXPORTED_38, MAIN_FILE_REEXPORTED_39 ) );
-    }
+		assertThat(exportedFiles.size(), is(8));
+		assertThat(exportedFiles, hasItems("1.xml", "2.xml", MAIN_FILE_REEXPORTED, MAIN_FILE_REEXPORTED_1,
+				MAIN_FILE_REEXPORTED_2, MAIN_FILE_REEXPORTED_3, MAIN_FILE_REEXPORTED_38, MAIN_FILE_REEXPORTED_39));
+	}
 
-    @Test
-    public void testExportWithMultipleReexportedWithText()
-                    throws Exception {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        XPlanArtefactIterator artefacts = mockArtefactIteratorWithMultipleReexportedWithText();
-        XPlanArchiveContent contents = createContents( artefacts );
-        exporter.export( outputStream, contents );
+	@Test
+	public void testExportWithMultipleReexportedWithText() throws Exception {
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		XPlanArtefactIterator artefacts = mockArtefactIteratorWithMultipleReexportedWithText();
+		XPlanArchiveContent contents = createContents(artefacts);
+		exporter.export(outputStream, contents);
 
-        List<String> exportedFiles = readExportedContent( outputStream );
+		List<String> exportedFiles = readExportedContent(outputStream);
 
-        assertThat( exportedFiles.size(), is( 5 ) );
-        assertThat( exportedFiles, hasItems( "1.xml", "2.xml", MAIN_FILE_REEXPORTED, MAIN_FILE_REEXPORTED_WITH_TEXT,
-                                             MAIN_FILE_REEXPORTED_1 ) );
-    }
+		assertThat(exportedFiles.size(), is(5));
+		assertThat(exportedFiles, hasItems("1.xml", "2.xml", MAIN_FILE_REEXPORTED, MAIN_FILE_REEXPORTED_WITH_TEXT,
+				MAIN_FILE_REEXPORTED_1));
+	}
 
-    @Test
-    public void testExport_SchemaConform()
-                    throws Exception {
-        FeatureCollection featureCollection = readFeatureCollection( "xplan41/V4_1_ID_103.zip" );
+	@Test
+	public void testExport_SchemaConform() throws Exception {
+		FeatureCollection featureCollection = readFeatureCollection("xplan41/V4_1_ID_103.zip");
 
-        XPlanExporter planExporter = new XPlanExporter( mockManagerConfiguration( true ) );
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        planExporter.export( outputStream, XPLAN_41, featureCollection, null );
+		XPlanExporter planExporter = new XPlanExporter(mockManagerConfiguration(true));
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		planExporter.export(outputStream, XPLAN_41, featureCollection, null);
 
-        String exportedPlan = new String( outputStream.toByteArray() );
+		String exportedPlan = new String(outputStream.toByteArray());
 
-        assertThat( exportedPlan, ValidationMatcher.valid( Input.fromURI( XPLAN_41.getSchemaUrl().toURI() ) ) );
-    }
+		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(XPLAN_41.getSchemaUrl().toURI())));
+	}
 
-    private XPlanArchiveContent createContents( XPlanArtefactIterator artefacts )
-                    throws Exception {
-        FeatureCollection restoredFeatureCollection = readFeatureCollection( "xplan41/V4_1_ID_103.zip" );
-        return new XPlanArchiveContent( restoredFeatureCollection, artefacts, XPlanVersion.XPLAN_41 );
-    }
+	private XPlanArchiveContent createContents(XPlanArtefactIterator artefacts) throws Exception {
+		FeatureCollection restoredFeatureCollection = readFeatureCollection("xplan41/V4_1_ID_103.zip");
+		return new XPlanArchiveContent(restoredFeatureCollection, artefacts, XPlanVersion.XPLAN_41);
+	}
 
-    private ManagerConfiguration mockManagerConfiguration( boolean isExportOfReexportedActive ) {
-        ManagerConfiguration mockedManagerConfiguraion = mock( ManagerConfiguration.class );
-        when( mockedManagerConfiguraion.isExportOfReexportedActive() ).thenReturn( isExportOfReexportedActive );
-        return mockedManagerConfiguraion;
-    }
+	private ManagerConfiguration mockManagerConfiguration(boolean isExportOfReexportedActive) {
+		ManagerConfiguration mockedManagerConfiguraion = mock(ManagerConfiguration.class);
+		when(mockedManagerConfiguraion.isExportOfReexportedActive()).thenReturn(isExportOfReexportedActive);
+		return mockedManagerConfiguraion;
+	}
 
-    private XPlanArtefactIterator mockArtefactIterator()
-                    throws Exception {
-        XPlanArtefactIterator mockedIterator = mock( XPlanArtefactIterator.class );
-        when( mockedIterator.hasNext() ).thenReturn( true, true, false );
-        XPlanArtefact stream1 = stream( "1.xml" );
-        XPlanArtefact stream2 = stream( "2.xml" );
-        when( mockedIterator.next() ).thenReturn( stream1, stream2, null );
-        return mockedIterator;
-    }
+	private XPlanArtefactIterator mockArtefactIterator() throws Exception {
+		XPlanArtefactIterator mockedIterator = mock(XPlanArtefactIterator.class);
+		when(mockedIterator.hasNext()).thenReturn(true, true, false);
+		XPlanArtefact stream1 = stream("1.xml");
+		XPlanArtefact stream2 = stream("2.xml");
+		when(mockedIterator.next()).thenReturn(stream1, stream2, null);
+		return mockedIterator;
+	}
 
-    private XPlanArtefactIterator mockArtefactIteratorWithReexported()
-                    throws Exception {
-        XPlanArtefactIterator mockedIterator = mock( XPlanArtefactIterator.class );
-        when( mockedIterator.hasNext() ).thenReturn( true, true, true, false );
-        XPlanArtefact stream1 = stream( "1.xml" );
-        XPlanArtefact stream2 = stream( "2.xml" );
-        XPlanArtefact streamReexported = stream( MAIN_FILE_REEXPORTED );
-        when( mockedIterator.next() ).thenReturn( stream1, stream2, streamReexported, null );
-        return mockedIterator;
-    }
+	private XPlanArtefactIterator mockArtefactIteratorWithReexported() throws Exception {
+		XPlanArtefactIterator mockedIterator = mock(XPlanArtefactIterator.class);
+		when(mockedIterator.hasNext()).thenReturn(true, true, true, false);
+		XPlanArtefact stream1 = stream("1.xml");
+		XPlanArtefact stream2 = stream("2.xml");
+		XPlanArtefact streamReexported = stream(MAIN_FILE_REEXPORTED);
+		when(mockedIterator.next()).thenReturn(stream1, stream2, streamReexported, null);
+		return mockedIterator;
+	}
 
-    private XPlanArtefactIterator mockArtefactIteratorWithMultipleReexported()
-                    throws Exception {
-        XPlanArtefactIterator mockedIterator = mock( XPlanArtefactIterator.class );
-        when( mockedIterator.hasNext() ).thenReturn( true, true, true, true, true, false );
-        XPlanArtefact stream1 = stream( "1.xml" );
-        XPlanArtefact stream2 = stream( "2.xml" );
-        XPlanArtefact streamReexported = stream( MAIN_FILE_REEXPORTED );
-        XPlanArtefact streamReexported1 = stream( MAIN_FILE_REEXPORTED_1 );
-        XPlanArtefact streamReexported2 = stream( MAIN_FILE_REEXPORTED_2 );
-        when( mockedIterator.next() ).thenReturn( stream1, stream2, streamReexported, streamReexported1,
-                                                  streamReexported2, null );
-        return mockedIterator;
-    }
+	private XPlanArtefactIterator mockArtefactIteratorWithMultipleReexported() throws Exception {
+		XPlanArtefactIterator mockedIterator = mock(XPlanArtefactIterator.class);
+		when(mockedIterator.hasNext()).thenReturn(true, true, true, true, true, false);
+		XPlanArtefact stream1 = stream("1.xml");
+		XPlanArtefact stream2 = stream("2.xml");
+		XPlanArtefact streamReexported = stream(MAIN_FILE_REEXPORTED);
+		XPlanArtefact streamReexported1 = stream(MAIN_FILE_REEXPORTED_1);
+		XPlanArtefact streamReexported2 = stream(MAIN_FILE_REEXPORTED_2);
+		when(mockedIterator.next()).thenReturn(stream1, stream2, streamReexported, streamReexported1, streamReexported2,
+				null);
+		return mockedIterator;
+	}
 
-    private XPlanArtefactIterator mockArtefactIteratorWithMultipleReexportedNotInOrder()
-                    throws Exception {
-        XPlanArtefactIterator mockedIterator = mock( XPlanArtefactIterator.class );
-        when( mockedIterator.hasNext() ).thenReturn( true, true, true, true, true, true, true, false );
-        XPlanArtefact stream1 = stream( "1.xml" );
-        XPlanArtefact stream2 = stream( "2.xml" );
-        XPlanArtefact streamReexported = stream( MAIN_FILE_REEXPORTED );
-        XPlanArtefact streamReexported1 = stream( MAIN_FILE_REEXPORTED_1 );
-        XPlanArtefact streamReexported2 = stream( MAIN_FILE_REEXPORTED_2 );
-        XPlanArtefact streamReexported3 = stream( MAIN_FILE_REEXPORTED_3 );
-        XPlanArtefact streamReexported38 = stream( MAIN_FILE_REEXPORTED_38 );
-        when( mockedIterator.next() ).thenReturn( stream1, stream2, streamReexported, streamReexported1,
-                                                  streamReexported2, streamReexported3, streamReexported38, null );
-        return mockedIterator;
-    }
+	private XPlanArtefactIterator mockArtefactIteratorWithMultipleReexportedNotInOrder() throws Exception {
+		XPlanArtefactIterator mockedIterator = mock(XPlanArtefactIterator.class);
+		when(mockedIterator.hasNext()).thenReturn(true, true, true, true, true, true, true, false);
+		XPlanArtefact stream1 = stream("1.xml");
+		XPlanArtefact stream2 = stream("2.xml");
+		XPlanArtefact streamReexported = stream(MAIN_FILE_REEXPORTED);
+		XPlanArtefact streamReexported1 = stream(MAIN_FILE_REEXPORTED_1);
+		XPlanArtefact streamReexported2 = stream(MAIN_FILE_REEXPORTED_2);
+		XPlanArtefact streamReexported3 = stream(MAIN_FILE_REEXPORTED_3);
+		XPlanArtefact streamReexported38 = stream(MAIN_FILE_REEXPORTED_38);
+		when(mockedIterator.next()).thenReturn(stream1, stream2, streamReexported, streamReexported1, streamReexported2,
+				streamReexported3, streamReexported38, null);
+		return mockedIterator;
+	}
 
-    private XPlanArtefactIterator mockArtefactIteratorWithMultipleReexportedWithText()
-                    throws Exception {
-        XPlanArtefactIterator mockedIterator = mock( XPlanArtefactIterator.class );
-        when( mockedIterator.hasNext() ).thenReturn( true, true, true, true, false );
-        XPlanArtefact stream1 = stream( "1.xml" );
-        XPlanArtefact stream2 = stream( "2.xml" );
-        XPlanArtefact streamReexported = stream( MAIN_FILE_REEXPORTED );
-        XPlanArtefact streamReexportedWithText = stream( MAIN_FILE_REEXPORTED_WITH_TEXT );
-        when( mockedIterator.next() ).thenReturn( stream1, stream2, streamReexported, streamReexportedWithText, null );
-        return mockedIterator;
-    }
+	private XPlanArtefactIterator mockArtefactIteratorWithMultipleReexportedWithText() throws Exception {
+		XPlanArtefactIterator mockedIterator = mock(XPlanArtefactIterator.class);
+		when(mockedIterator.hasNext()).thenReturn(true, true, true, true, false);
+		XPlanArtefact stream1 = stream("1.xml");
+		XPlanArtefact stream2 = stream("2.xml");
+		XPlanArtefact streamReexported = stream(MAIN_FILE_REEXPORTED);
+		XPlanArtefact streamReexportedWithText = stream(MAIN_FILE_REEXPORTED_WITH_TEXT);
+		when(mockedIterator.next()).thenReturn(stream1, stream2, streamReexported, streamReexportedWithText, null);
+		return mockedIterator;
+	}
 
-    private XPlanArtefact stream( String name )
-                    throws IOException {
-        XPlanArtefact xPlanArtefact = mock( XPlanArtefact.class );
-        when( xPlanArtefact.getFileName() ).thenReturn( name );
-        ByteArrayInputStream content = createZippedContent( name );
-        when( xPlanArtefact.getContent() ).thenReturn( content );
-        return xPlanArtefact;
-    }
+	private XPlanArtefact stream(String name) throws IOException {
+		XPlanArtefact xPlanArtefact = mock(XPlanArtefact.class);
+		when(xPlanArtefact.getFileName()).thenReturn(name);
+		ByteArrayInputStream content = createZippedContent(name);
+		when(xPlanArtefact.getContent()).thenReturn(content);
+		return xPlanArtefact;
+	}
 
-    private List<String> readExportedContent( ByteArrayOutputStream outputStream )
-                    throws Exception {
-        List<String> exportedFiles = new ArrayList<String>();
-        ZipInputStream zipInputStream = new ZipInputStream( new ByteArrayInputStream( outputStream.toByteArray() ) );
-        ZipEntry entry;
-        while ( ( entry = zipInputStream.getNextEntry() ) != null ) {
-            exportedFiles.add( entry.getName() );
-        }
-        return exportedFiles;
-    }
+	private List<String> readExportedContent(ByteArrayOutputStream outputStream) throws Exception {
+		List<String> exportedFiles = new ArrayList<String>();
+		ZipInputStream zipInputStream = new ZipInputStream(new ByteArrayInputStream(outputStream.toByteArray()));
+		ZipEntry entry;
+		while ((entry = zipInputStream.getNextEntry()) != null) {
+			exportedFiles.add(entry.getName());
+		}
+		return exportedFiles;
+	}
 
-    private FeatureCollection readFeatureCollection( String archiveName )
-                    throws Exception {
-        XPlanArchive archive = createArchive( archiveName );
-        XPlanFeatureCollection xplanFc = readFeatures( archive );
-        return xplanFc.getFeatures();
-    }
+	private FeatureCollection readFeatureCollection(String archiveName) throws Exception {
+		XPlanArchive archive = createArchive(archiveName);
+		XPlanFeatureCollection xplanFc = readFeatures(archive);
+		return xplanFc.getFeatures();
+	}
 
-    private XPlanArchive createArchive( String testArchiveName )
-                    throws IOException {
-        XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        InputStream archiveResource = ResourceAccessor.readResourceStream( testArchiveName );
-        return archiveCreator.createXPlanArchiveFromZip( testArchiveName, archiveResource );
-    }
+	private XPlanArchive createArchive(String testArchiveName) throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+		InputStream archiveResource = ResourceAccessor.readResourceStream(testArchiveName);
+		return archiveCreator.createXPlanArchiveFromZip(testArchiveName, archiveResource);
+	}
 
-    private XPlanFeatureCollection readFeatures( XPlanArchive archive )
-                    throws Exception {
-        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( archive.getVersion(), archive.getAde() );
-        ICRS crs = CRSManager.lookup( "EPSG:31467" );
-        if ( archive.getCrs() != null )
-            crs = archive.getCrs();
-        return ( new GeometricValidatorImpl() ).retrieveGeometricallyValidXPlanFeatures( archive, crs, schema, true,
-                                                                                         null );
-    }
+	private XPlanFeatureCollection readFeatures(XPlanArchive archive) throws Exception {
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(archive.getVersion(), archive.getAde());
+		ICRS crs = CRSManager.lookup("EPSG:31467");
+		if (archive.getCrs() != null)
+			crs = archive.getCrs();
+		return (new GeometricValidatorImpl()).retrieveGeometricallyValidXPlanFeatures(archive, crs, schema, true, null);
+	}
 
-    private ByteArrayInputStream createZippedContent( String name )
-                    throws IOException {
-        InputStream is = new ByteArrayInputStream( name.getBytes() );
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        GZIPOutputStream gos = new GZIPOutputStream( bos );
-        copyLarge( is, gos );
-        gos.close();
-        return new ByteArrayInputStream( bos.toByteArray() );
-    }
+	private ByteArrayInputStream createZippedContent(String name) throws IOException {
+		InputStream is = new ByteArrayInputStream(name.getBytes());
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		GZIPOutputStream gos = new GZIPOutputStream(bos);
+		copyLarge(is, gos);
+		gos.close();
+		return new ByteArrayInputStream(bos.toByteArray());
+	}
 
 }

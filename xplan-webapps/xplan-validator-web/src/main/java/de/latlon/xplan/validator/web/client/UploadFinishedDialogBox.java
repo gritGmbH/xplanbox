@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -38,94 +38,93 @@ import de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListene
 
 /**
  * Extends the {@link DialogBox} with a button to close the dialog
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 class UploadFinishedDialogBox extends DialogBox {
 
-    private final ValidatorWebCommonsMessages messages = GWT.create( ValidatorWebCommonsMessages.class );
+	private final ValidatorWebCommonsMessages messages = GWT.create(ValidatorWebCommonsMessages.class);
 
-    private final String fileName;
+	private final String fileName;
 
-    /**
-     * @param xPlanValidatorWeb
-     *            never <code>null</code>
-     * @param htmlMessage
-     *            to show as content
-     */
-    public UploadFinishedDialogBox( XPlanValidatorWeb xPlanValidatorWeb, String htmlMessage, String fileName ) {
-        super( false );
-        this.fileName = fileName;
-        setText( messages.uploadSucessTitle() );
-        initDialog( xPlanValidatorWeb, htmlMessage );
-    }
+	/**
+	 * @param xPlanValidatorWeb never <code>null</code>
+	 * @param htmlMessage to show as content
+	 */
+	public UploadFinishedDialogBox(XPlanValidatorWeb xPlanValidatorWeb, String htmlMessage, String fileName) {
+		super(false);
+		this.fileName = fileName;
+		setText(messages.uploadSucessTitle());
+		initDialog(xPlanValidatorWeb, htmlMessage);
+	}
 
-    private void initDialog( XPlanValidatorWeb xPlanValidatorWeb, String htmlMessage ) {
-        HTML html = new HTML( htmlMessage );
-        SimplePanel contentPanel = new SimplePanel( html );
-        VerticalPanel dialogBoxContent = new VerticalPanel();
-        dialogBoxContent.setHorizontalAlignment( VerticalPanel.ALIGN_CENTER );
-        dialogBoxContent.add( contentPanel );
-        createAndAddCloseButton( dialogBoxContent, xPlanValidatorWeb );
-        setWidget( dialogBoxContent );
-    }
+	private void initDialog(XPlanValidatorWeb xPlanValidatorWeb, String htmlMessage) {
+		HTML html = new HTML(htmlMessage);
+		SimplePanel contentPanel = new SimplePanel(html);
+		VerticalPanel dialogBoxContent = new VerticalPanel();
+		dialogBoxContent.setHorizontalAlignment(VerticalPanel.ALIGN_CENTER);
+		dialogBoxContent.add(contentPanel);
+		createAndAddCloseButton(dialogBoxContent, xPlanValidatorWeb);
+		setWidget(dialogBoxContent);
+	}
 
-    private void createAndAddCloseButton( VerticalPanel dialogBoxContent, XPlanValidatorWeb xPlanValidatorWeb ) {
-        Panel holder = createButtonsPanel( xPlanValidatorWeb );
-        dialogBoxContent.add( holder );
-    }
+	private void createAndAddCloseButton(VerticalPanel dialogBoxContent, XPlanValidatorWeb xPlanValidatorWeb) {
+		Panel holder = createButtonsPanel(xPlanValidatorWeb);
+		dialogBoxContent.add(holder);
+	}
 
-    private Panel createButtonsPanel( XPlanValidatorWeb xPlanValidatorWeb ) {
-        Button nextButton = createNextButton( xPlanValidatorWeb );
-        Button cancelButton = createCancelButton();
+	private Panel createButtonsPanel(XPlanValidatorWeb xPlanValidatorWeb) {
+		Button nextButton = createNextButton(xPlanValidatorWeb);
+		Button cancelButton = createCancelButton();
 
-        HorizontalPanel buttonsPanel = new HorizontalPanel();
-        buttonsPanel.setSpacing( 20 );
-        buttonsPanel.add( cancelButton );
-        buttonsPanel.add( nextButton );
-        return buttonsPanel;
-    }
+		HorizontalPanel buttonsPanel = new HorizontalPanel();
+		buttonsPanel.setSpacing(20);
+		buttonsPanel.add(cancelButton);
+		buttonsPanel.add(nextButton);
+		return buttonsPanel;
+	}
 
-    private Button createNextButton( final XPlanValidatorWeb xPlanValidatorWeb ) {
-        Button nextButton = new Button();
-        nextButton.setText( messages.uploadFinishedNextButton() );
-        ClickHandler nextListener = new ClickHandler() {
-            @Override
-            public void onClick( ClickEvent event ) {
-                UploadFinishedDialogBox.this.hide();
-                ClickHandler cancelHandler = new ClickHandler() {
-                    @Override
-                    public void onClick( ClickEvent clickEvent ) {
-                        xPlanValidatorWeb.resetPanelToUpload();
-                    }
-                };
-                ValidatorOptionsDialog xPlanValidatorSettings = new ValidatorOptionsDialog( new ReportDownloadFinishedListener() {
-                    @Override
-                    public void downloadFinished( FinishStatus finishStatus ) {
-                        if ( NEXT.equals( finishStatus ) )
-                            xPlanValidatorWeb.resetPanelToUpload();
-                    }
+	private Button createNextButton(final XPlanValidatorWeb xPlanValidatorWeb) {
+		Button nextButton = new Button();
+		nextButton.setText(messages.uploadFinishedNextButton());
+		ClickHandler nextListener = new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				UploadFinishedDialogBox.this.hide();
+				ClickHandler cancelHandler = new ClickHandler() {
+					@Override
+					public void onClick(ClickEvent clickEvent) {
+						xPlanValidatorWeb.resetPanelToUpload();
+					}
+				};
+				ValidatorOptionsDialog xPlanValidatorSettings = new ValidatorOptionsDialog(
+						new ReportDownloadFinishedListener() {
+							@Override
+							public void downloadFinished(FinishStatus finishStatus) {
+								if (NEXT.equals(finishStatus))
+									xPlanValidatorWeb.resetPanelToUpload();
+							}
 
-                }, fileName, true, cancelHandler, true );
-                xPlanValidatorWeb.setPanel( xPlanValidatorSettings );
-            }
-        };
-        nextButton.addClickHandler( nextListener );
-        return nextButton;
-    }
+						}, fileName, true, cancelHandler, true);
+				xPlanValidatorWeb.setPanel(xPlanValidatorSettings);
+			}
+		};
+		nextButton.addClickHandler(nextListener);
+		return nextButton;
+	}
 
-    private Button createCancelButton() {
-        Button nextButton = new Button();
-        nextButton.setText( messages.uploadFinishedCancelButton() );
-        ClickHandler cancelListener = new ClickHandler() {
-            @Override
-            public void onClick( ClickEvent event ) {
-                UploadFinishedDialogBox.this.hide();
-            }
-        };
-        nextButton.addClickHandler( cancelListener );
-        return nextButton;
-    }
+	private Button createCancelButton() {
+		Button nextButton = new Button();
+		nextButton.setText(messages.uploadFinishedCancelButton());
+		ClickHandler cancelListener = new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				UploadFinishedDialogBox.this.hide();
+			}
+		};
+		nextButton.addClickHandler(cancelListener);
+		return nextButton;
+	}
 
 }

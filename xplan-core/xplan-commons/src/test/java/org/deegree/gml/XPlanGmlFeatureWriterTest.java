@@ -51,46 +51,45 @@ import static org.xmlunit.matchers.HasXPathMatcher.hasXPath;
  */
 public class XPlanGmlFeatureWriterTest {
 
-    @Test
-    public void testWrite()
-                    throws Exception {
-        XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection( "xplan41/Eidelstedt_4_V4.zip" );
-        String xPlanFeatureCollection = writeXPlanFeatureCollection( fc );
+	@Test
+	public void testWrite() throws Exception {
+		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan41/Eidelstedt_4_V4.zip");
+		String xPlanFeatureCollection = writeXPlanFeatureCollection(fc);
 
-        assertThat( xPlanFeatureCollection, hasXPath( "/xplan:XPlanAuszug").withNamespaceContext( nsContext() ) );
-    }
+		assertThat(xPlanFeatureCollection, hasXPath("/xplan:XPlanAuszug").withNamespaceContext(nsContext()));
+	}
 
-    private String writeXPlanFeatureCollection( XPlanFeatureCollection xPlanFeatureCollection )
-                    throws XMLStreamException, UnknownCRSException, org.deegree.cs.exceptions.TransformationException {
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        XMLStreamWriter xmlStream = XMLOutputFactory.newFactory().createXMLStreamWriter( os );
-        GMLStreamWriter gmlStreamWriter = new XPlanGmlWriter( XPLAN_41, xmlStream );
-        gmlStreamWriter.write( xPlanFeatureCollection.getFeatures() );
-        gmlStreamWriter.close();
-        xmlStream.close();
-        return os.toString();
-    }
+	private String writeXPlanFeatureCollection(XPlanFeatureCollection xPlanFeatureCollection)
+			throws XMLStreamException, UnknownCRSException, org.deegree.cs.exceptions.TransformationException {
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		XMLStreamWriter xmlStream = XMLOutputFactory.newFactory().createXMLStreamWriter(os);
+		GMLStreamWriter gmlStreamWriter = new XPlanGmlWriter(XPLAN_41, xmlStream);
+		gmlStreamWriter.write(xPlanFeatureCollection.getFeatures());
+		gmlStreamWriter.close();
+		xmlStream.close();
+		return os.toString();
+	}
 
-    private XPlanFeatureCollection getMainFileAsXplanFeatureCollection( String name )
-                    throws Exception {
-        XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
-        XPlanVersion version = archive.getVersion();
-        XPlanAde ade = archive.getAde();
-        XMLStreamReader xmlReader = archive.getMainFileXmlReader();
-        GMLStreamReader gmlReader = createGMLStreamReader( version.getGmlVersion(), xmlReader );
-        gmlReader.setApplicationSchema( XPlanSchemas.getInstance().getAppSchema( version, ade ) );
-        FeatureCollection fc = gmlReader.readFeatureCollection();
-        gmlReader.getIdContext().resolveLocalRefs();
-        gmlReader.close();
-        xmlReader.close();
-        return new XPlanFeatureCollectionBuilder( fc, archive.getType() ).build();
-    }
+	private XPlanFeatureCollection getMainFileAsXplanFeatureCollection(String name) throws Exception {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
+				ResourceAccessor.readResourceStream(name));
+		XPlanVersion version = archive.getVersion();
+		XPlanAde ade = archive.getAde();
+		XMLStreamReader xmlReader = archive.getMainFileXmlReader();
+		GMLStreamReader gmlReader = createGMLStreamReader(version.getGmlVersion(), xmlReader);
+		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version, ade));
+		FeatureCollection fc = gmlReader.readFeatureCollection();
+		gmlReader.getIdContext().resolveLocalRefs();
+		gmlReader.close();
+		xmlReader.close();
+		return new XPlanFeatureCollectionBuilder(fc, archive.getType()).build();
+	}
 
-    private Map<String, String> nsContext() {
-        Map<String, String> nsContext = new HashMap<>();
-        nsContext.put( "xplan", XPLAN_41.getNamespace() );
-        return nsContext;
-    }
+	private Map<String, String> nsContext() {
+		Map<String, String> nsContext = new HashMap<>();
+		nsContext.put("xplan", XPLAN_41.getNamespace());
+		return nsContext;
+	}
 
 }

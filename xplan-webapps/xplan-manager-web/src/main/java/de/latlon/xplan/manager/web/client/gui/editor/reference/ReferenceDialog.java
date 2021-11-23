@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -81,84 +81,87 @@ import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
  */
 public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
 
-    private final TypeCodeListBox<ReferenceType> refType;
+	private final TypeCodeListBox<ReferenceType> refType;
 
-    /**
-     * Instantiates a {@link TextDialog} to create a new {@link Change}
-     */
-    public ReferenceDialog( EditVersion version ) {
-        this( version, MESSAGES.editCaptionReferencesDialogNew() );
-    }
+	/**
+	 * Instantiates a {@link TextDialog} to create a new {@link Change}
+	 */
+	public ReferenceDialog(EditVersion version) {
+		this(version, MESSAGES.editCaptionReferencesDialogNew());
+	}
 
-    private ReferenceDialog( EditVersion version, String title ) {
-        super( version, title );
-        refType = createRefType( version );
-        initDialog( createFormContent() );
-    }
+	private ReferenceDialog(EditVersion version, String title) {
+		super(version, title);
+		refType = createRefType(version);
+		initDialog(createFormContent());
+	}
 
-    /**
-     * @return the actual edited {@link Reference}, may be <code>null</code>
-     */
-    public Reference getReference() {
-        Reference ref = new Reference();
-        if ( reference.isFileSelected() ) {
-            ref.setReference( reference.getFilename() );
-        } else {
-            ref.setReference( referenceLink.getValue() );
-        }
-        ref.setGeoReference( georeference.getFilename() );
-        ref.setType( refType.getValueAsEnum() );
-        return ref;
-    }
+	/**
+	 * @return the actual edited {@link Reference}, may be <code>null</code>
+	 */
+	public Reference getReference() {
+		Reference ref = new Reference();
+		if (reference.isFileSelected()) {
+			ref.setReference(reference.getFilename());
+		}
+		else {
+			ref.setReference(referenceLink.getValue());
+		}
+		ref.setGeoReference(georeference.getFilename());
+		ref.setType(refType.getValueAsEnum());
+		return ref;
+	}
 
-    @Override
-    public boolean isValid() {
-        boolean valid = super.isValid();
-        String refLinkValue = this.referenceLink.getValue();
-        List<String> validationFailures = new ArrayList<String>();
-        if ( isNullOrEmpty( refLinkValue ) && !this.reference.isFileSelected() ) {
-            valid = false;
-            validationFailures.add( MESSAGES.editCaptionReferenceUrlOrFile() );
-        } else if ( !isNullOrEmpty( refLinkValue ) && this.reference.isFileSelected() ) {
-            valid = false;
-            validationFailures.add( MESSAGES.editCaptionRasterBasisReferenceNameOrUrl() );
-        }
-        return valid;
-    }
+	@Override
+	public boolean isValid() {
+		boolean valid = super.isValid();
+		String refLinkValue = this.referenceLink.getValue();
+		List<String> validationFailures = new ArrayList<String>();
+		if (isNullOrEmpty(refLinkValue) && !this.reference.isFileSelected()) {
+			valid = false;
+			validationFailures.add(MESSAGES.editCaptionReferenceUrlOrFile());
+		}
+		else if (!isNullOrEmpty(refLinkValue) && this.reference.isFileSelected()) {
+			valid = false;
+			validationFailures.add(MESSAGES.editCaptionRasterBasisReferenceNameOrUrl());
+		}
+		return valid;
+	}
 
-    @Override
-    protected boolean isReferenceUrlMandatory() {
-        return false;
-    }
+	@Override
+	protected boolean isReferenceUrlMandatory() {
+		return false;
+	}
 
-    private Widget createFormContent() {
-        FlexTable layout = new FlexTable();
-        FlexTable.FlexCellFormatter formatter = layout.getFlexCellFormatter();
-        formatter.setHorizontalAlignment( 1, 1, ALIGN_LEFT );
-        formatter.setHorizontalAlignment( 2, 1, ALIGN_LEFT );
+	private Widget createFormContent() {
+		FlexTable layout = new FlexTable();
+		FlexTable.FlexCellFormatter formatter = layout.getFlexCellFormatter();
+		formatter.setHorizontalAlignment(1, 1, ALIGN_LEFT);
+		formatter.setHorizontalAlignment(2, 1, ALIGN_LEFT);
 
-        layout.setWidget( 1, 1, new Label( MESSAGES.editCaptionReferencesReference() ) );
-        layout.setWidget( 1, 2, reference );
-        layout.setWidget( 2, 1, new Label( MESSAGES.editCaptionReferencesReferenceLink() ) );
-        layout.setWidget( 2, 2, referenceLink );
-        // #3305 - georeference is not needed.
-        // if ( !XPLAN_3.equals( version ) ) {
-        // layout.setWidget( 2, 1, new Label( MESSAGES.editCaptionReferencesGeoReference() ) );
-        // layout.setWidget( 2, 2, georeference );
-        // }
-        layout.setWidget( 3, 1, new Label( MESSAGES.editCaptionReferencesType() ) );
-        layout.setWidget( 3, 2, refType );
+		layout.setWidget(1, 1, new Label(MESSAGES.editCaptionReferencesReference()));
+		layout.setWidget(1, 2, reference);
+		layout.setWidget(2, 1, new Label(MESSAGES.editCaptionReferencesReferenceLink()));
+		layout.setWidget(2, 2, referenceLink);
+		// #3305 - georeference is not needed.
+		// if ( !XPLAN_3.equals( version ) ) {
+		// layout.setWidget( 2, 1, new Label( MESSAGES.editCaptionReferencesGeoReference()
+		// ) );
+		// layout.setWidget( 2, 2, georeference );
+		// }
+		layout.setWidget(3, 1, new Label(MESSAGES.editCaptionReferencesType()));
+		layout.setWidget(3, 2, refType);
 
-        return layout;
-    }
+		return layout;
+	}
 
-    private TypeCodeListBox<ReferenceType> createRefType( EditVersion version ) {
-        List<ReferenceType> unsupportedReferenceTypes = new ArrayList<ReferenceType>();
-        for ( ReferenceType referenceType : ReferenceType.values() ) {
-            if ( !referenceType.isXPlanVersionSupported( version.name() ) )
-                unsupportedReferenceTypes.add( referenceType );
-        }
-        return new TypeCodeListBox<ReferenceType>( ReferenceType.class, unsupportedReferenceTypes, false );
-    }
+	private TypeCodeListBox<ReferenceType> createRefType(EditVersion version) {
+		List<ReferenceType> unsupportedReferenceTypes = new ArrayList<ReferenceType>();
+		for (ReferenceType referenceType : ReferenceType.values()) {
+			if (!referenceType.isXPlanVersionSupported(version.name()))
+				unsupportedReferenceTypes.add(referenceType);
+		}
+		return new TypeCodeListBox<ReferenceType>(ReferenceType.class, unsupportedReferenceTypes, false);
+	}
 
 }

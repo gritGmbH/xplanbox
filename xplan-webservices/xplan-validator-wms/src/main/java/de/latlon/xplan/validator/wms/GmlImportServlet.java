@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -44,62 +44,62 @@ import static de.latlon.xplan.validator.wms.GmlDeleteJob.DELETE_AFTER_KEY;
  */
 public class GmlImportServlet extends HttpServlet {
 
-    private static final Logger LOG = LoggerFactory.getLogger( GmlImportServlet.class );
+	private static final Logger LOG = LoggerFactory.getLogger(GmlImportServlet.class);
 
-    public static final String MEMORY_FEATURESTORE = "xplansyn";
+	public static final String MEMORY_FEATURESTORE = "xplansyn";
 
-    private static final String DELETE_AFTER_IN_MINUTES_INIT_PARAM = "DeleteAfterInMinutes";
+	private static final String DELETE_AFTER_IN_MINUTES_INIT_PARAM = "DeleteAfterInMinutes";
 
-    private static final int IMPORT_INTERVAL_IN_SECONDS = 1;
+	private static final int IMPORT_INTERVAL_IN_SECONDS = 1;
 
-    private static final int DELETE_INTERVAL_IN_SECONDS = 30;
+	private static final int DELETE_INTERVAL_IN_SECONDS = 30;
 
-    @Override
-    public void init( ServletConfig cfg ) {
-        String key = "org.quartz.impl.StdSchedulerFactory.KEY";
-        ServletContext servletContext = cfg.getServletContext();
-        StdSchedulerFactory factory = (StdSchedulerFactory) servletContext.getAttribute( key );
-        try {
-            int deleteAfterInMinutes = getDeleteAfterInMInutes( cfg );
-            Scheduler quartzScheduler = factory.getScheduler( "GmlImportScheduler" );
-            scheduleImportJob( quartzScheduler );
-            scheduleDeleteJob( quartzScheduler, deleteAfterInMinutes );
-            quartzScheduler.start();
-        } catch ( SchedulerException e ) {
-            LOG.error( "Scheduler could not be initialised", e );
-        }
-    }
+	@Override
+	public void init(ServletConfig cfg) {
+		String key = "org.quartz.impl.StdSchedulerFactory.KEY";
+		ServletContext servletContext = cfg.getServletContext();
+		StdSchedulerFactory factory = (StdSchedulerFactory) servletContext.getAttribute(key);
+		try {
+			int deleteAfterInMinutes = getDeleteAfterInMInutes(cfg);
+			Scheduler quartzScheduler = factory.getScheduler("GmlImportScheduler");
+			scheduleImportJob(quartzScheduler);
+			scheduleDeleteJob(quartzScheduler, deleteAfterInMinutes);
+			quartzScheduler.start();
+		}
+		catch (SchedulerException e) {
+			LOG.error("Scheduler could not be initialised", e);
+		}
+	}
 
-    private void scheduleImportJob( Scheduler quartzScheduler )
-                            throws SchedulerException {
-        JobDetail importJob = JobBuilder.newJob( GmlImportJob.class ).withIdentity( "job1", "group1" ).build();
-        Trigger importTrigger = TriggerBuilder.newTrigger().withIdentity( "trigger1",
-                                                                          "group1" ).startNow().withSchedule(
-                                SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(
-                                                        IMPORT_INTERVAL_IN_SECONDS ).repeatForever() ).build();
-        quartzScheduler.scheduleJob( importJob, importTrigger );
-    }
+	private void scheduleImportJob(Scheduler quartzScheduler) throws SchedulerException {
+		JobDetail importJob = JobBuilder.newJob(GmlImportJob.class).withIdentity("job1", "group1").build();
+		Trigger importTrigger = TriggerBuilder.newTrigger().withIdentity("trigger1", "group1").startNow()
+				.withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(IMPORT_INTERVAL_IN_SECONDS)
+						.repeatForever())
+				.build();
+		quartzScheduler.scheduleJob(importJob, importTrigger);
+	}
 
-    private void scheduleDeleteJob( Scheduler quartzScheduler, Integer deleteAfterInMInutes )
-                            throws SchedulerException {
-        JobDetail deleteJob = JobBuilder.newJob( GmlDeleteJob.class ).withIdentity( "job2", "group1" ).usingJobData(
-                                DELETE_AFTER_KEY, deleteAfterInMInutes ).build();
-        Trigger deleteTrigger = TriggerBuilder.newTrigger().withIdentity( "trigger2",
-                                                                          "group1" ).startNow().withSchedule(
-                                SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(
-                                                        DELETE_INTERVAL_IN_SECONDS ).repeatForever() ).build();
-        quartzScheduler.scheduleJob( deleteJob, deleteTrigger );
-    }
+	private void scheduleDeleteJob(Scheduler quartzScheduler, Integer deleteAfterInMInutes) throws SchedulerException {
+		JobDetail deleteJob = JobBuilder.newJob(GmlDeleteJob.class).withIdentity("job2", "group1")
+				.usingJobData(DELETE_AFTER_KEY, deleteAfterInMInutes).build();
+		Trigger deleteTrigger = TriggerBuilder.newTrigger().withIdentity("trigger2", "group1").startNow()
+				.withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(DELETE_INTERVAL_IN_SECONDS)
+						.repeatForever())
+				.build();
+		quartzScheduler.scheduleJob(deleteJob, deleteTrigger);
+	}
 
-    private Integer getDeleteAfterInMInutes( ServletConfig cfg ) {
-        String deleteAfterInMinutes = cfg.getInitParameter( DELETE_AFTER_IN_MINUTES_INIT_PARAM );
-        if ( deleteAfterInMinutes != null )
-            try {
-                return Integer.parseInt( deleteAfterInMinutes );
-            } catch ( NumberFormatException e ) {
-                LOG.warn( "Init Parameter DeleteAfterInMinutes is not a valid integer, was: {}", deleteAfterInMinutes );
-            }
-        return DEFAULT_DELETE_AFTER_IN_MINUTES;
-    }
+	private Integer getDeleteAfterInMInutes(ServletConfig cfg) {
+		String deleteAfterInMinutes = cfg.getInitParameter(DELETE_AFTER_IN_MINUTES_INIT_PARAM);
+		if (deleteAfterInMinutes != null)
+			try {
+				return Integer.parseInt(deleteAfterInMinutes);
+			}
+			catch (NumberFormatException e) {
+				LOG.warn("Init Parameter DeleteAfterInMinutes is not a valid integer, was: {}", deleteAfterInMinutes);
+			}
+		return DEFAULT_DELETE_AFTER_IN_MINUTES;
+	}
 
 }

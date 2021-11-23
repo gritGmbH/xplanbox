@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -65,56 +65,57 @@ import static de.latlon.xplan.manager.web.client.gui.StyleNames.EDITOR_VALIDATIO
 
 /**
  * {@link TextBox} with required input.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
 public class MandatoryTextBox extends TextBox implements Validable {
 
-    private static final XPlanWebMessages MESSAGES = GWT.create( XPlanWebMessages.class );
+	private static final XPlanWebMessages MESSAGES = GWT.create(XPlanWebMessages.class);
 
-    public MandatoryTextBox() {
-        addValueChangeHandler( new ValueChangeHandler<String>() {
-            @Override
-            public void onValueChange( ValueChangeEvent<String> event ) {
-                validateAndParse();
-            }
+	public MandatoryTextBox() {
+		addValueChangeHandler(new ValueChangeHandler<String>() {
+			@Override
+			public void onValueChange(ValueChangeEvent<String> event) {
+				validateAndParse();
+			}
 
-        } );
-        setValue( null );
-    }
+		});
+		setValue(null);
+	}
 
-    @Override
-    public void setText( String text ) {
-        super.setText( text );
-        validateAndParse();
-    }
+	@Override
+	public void setText(String text) {
+		super.setText(text);
+		validateAndParse();
+	}
 
-    @Override
-    public String getText() {
-        return validateAndParse();
-    }
+	@Override
+	public String getText() {
+		return validateAndParse();
+	}
 
-    @Override
-    public boolean isValid() {
-        String value = validateAndParse();
-        return value != null;
-    }
+	@Override
+	public boolean isValid() {
+		String value = validateAndParse();
+		return value != null;
+	}
 
-    private String validateAndParse() {
-        reset();
-        String value = super.getText();
-        if ( value != null && value.length() > 0 ) {
-            return value;
-        } else {
-            addStyleName( EDITOR_VALIDATION_ERROR );
-            setTitle( MESSAGES.editInputRequired() );
-            return null;
-        }
-    }
+	private String validateAndParse() {
+		reset();
+		String value = super.getText();
+		if (value != null && value.length() > 0) {
+			return value;
+		}
+		else {
+			addStyleName(EDITOR_VALIDATION_ERROR);
+			setTitle(MESSAGES.editInputRequired());
+			return null;
+		}
+	}
 
-    private void reset() {
-        removeStyleName( EDITOR_VALIDATION_ERROR );
-        setTitle( "" );
-    }
+	private void reset() {
+		removeStyleName(EDITOR_VALIDATION_ERROR);
+		setTitle("");
+	}
 
 }

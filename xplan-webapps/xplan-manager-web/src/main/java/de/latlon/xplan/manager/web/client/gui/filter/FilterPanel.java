@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -39,101 +39,101 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 
 /**
  * GUI component containing the filter tab panel of the plan list.
- * 
+ *
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @version $Revision: $, $Date: $
  */
 public class FilterPanel extends HorizontalPanel implements FilterExecutor {
 
-    private final XPlanWebMessages messages = GWT.create( XPlanWebMessages.class );
+	private final XPlanWebMessages messages = GWT.create(XPlanWebMessages.class);
 
-    private final PlanListPanel planListPanel;
+	private final PlanListPanel planListPanel;
 
-    private final List<FilterProvider> filterProviders = new ArrayList<FilterProvider>();
+	private final List<FilterProvider> filterProviders = new ArrayList<FilterProvider>();
 
-    private final List<ResetableFilterPanel> resetableFilterPanels = new ArrayList<ResetableFilterPanel>();
+	private final List<ResetableFilterPanel> resetableFilterPanels = new ArrayList<ResetableFilterPanel>();
 
-    public FilterPanel( PlanListPanel planListPanel, ManagerWebConfiguration configuration ) {
-        this.planListPanel = planListPanel;
-        createUi( configuration );
-    }
+	public FilterPanel(PlanListPanel planListPanel, ManagerWebConfiguration configuration) {
+		this.planListPanel = planListPanel;
+		createUi(configuration);
+	}
 
-    /**
-     * Resets and updates all filter panels.
-     */
-    public void resetAndFilterPlanList() {
-        for ( ResetableFilterPanel resetableFilterPanel : resetableFilterPanels ) {
-            resetableFilterPanel.reset();
-        }
-        doFilter();
-    }
+	/**
+	 * Resets and updates all filter panels.
+	 */
+	public void resetAndFilterPlanList() {
+		for (ResetableFilterPanel resetableFilterPanel : resetableFilterPanels) {
+			resetableFilterPanel.reset();
+		}
+		doFilter();
+	}
 
-    @Override
-    public void addFilterProvider( FilterProvider filterProvider ) {
-        filterProviders.add( filterProvider );
-    }
+	@Override
+	public void addFilterProvider(FilterProvider filterProvider) {
+		filterProviders.add(filterProvider);
+	}
 
-    @Override
-    public void doFilter() {
-        List<PlanFilter> filters = retrievePlanFilters();
-        planListPanel.applyFilter( filters );
-    }
+	@Override
+	public void doFilter() {
+		List<PlanFilter> filters = retrievePlanFilters();
+		planListPanel.applyFilter(filters);
+	}
 
-    private void addResetableFilterPanel( ResetableFilterPanel resetableFilterPanel ) {
-        resetableFilterPanels.add( resetableFilterPanel );
-    }
+	private void addResetableFilterPanel(ResetableFilterPanel resetableFilterPanel) {
+		resetableFilterPanels.add(resetableFilterPanel);
+	}
 
-    private void createUi( ManagerWebConfiguration configuration ) {
-        setWidth( "100%" );
-        setVerticalAlignment( ALIGN_BOTTOM );
+	private void createUi(ManagerWebConfiguration configuration) {
+		setWidth("100%");
+		setVerticalAlignment(ALIGN_BOTTOM);
 
-        CategoryFilterPanel categoryFilterPanel = new CategoryFilterPanel( this, configuration );
-        addResetableFilterPanel( categoryFilterPanel );
-        PlanStatusFilterPanel planStatusFilterPanel = new PlanStatusFilterPanel( this );
-        addResetableFilterPanel( planStatusFilterPanel );
-        SearchFilterPanel searchFilterPanel = new SearchFilterPanel( this, configuration );
-        addResetableFilterPanel( searchFilterPanel );
+		CategoryFilterPanel categoryFilterPanel = new CategoryFilterPanel(this, configuration);
+		addResetableFilterPanel(categoryFilterPanel);
+		PlanStatusFilterPanel planStatusFilterPanel = new PlanStatusFilterPanel(this);
+		addResetableFilterPanel(planStatusFilterPanel);
+		SearchFilterPanel searchFilterPanel = new SearchFilterPanel(this, configuration);
+		addResetableFilterPanel(searchFilterPanel);
 
-        Widget resetButton = createResetButtonWidget();
-        add( categoryFilterPanel );
-        add( planStatusFilterPanel );
-        add( searchFilterPanel );
-        add( resetButton );
-        getElement().setId( "filter-panel" );
-    }
+		Widget resetButton = createResetButtonWidget();
+		add(categoryFilterPanel);
+		add(planStatusFilterPanel);
+		add(searchFilterPanel);
+		add(resetButton);
+		getElement().setId("filter-panel");
+	}
 
-    private Widget createResetButtonWidget() {
-        Button button = new Button( messages.filterReset() );
-        button.addClickHandler( createClickHandler() );
-        return createResetButtonLayout( button );
-    }
+	private Widget createResetButtonWidget() {
+		Button button = new Button(messages.filterReset());
+		button.addClickHandler(createClickHandler());
+		return createResetButtonLayout(button);
+	}
 
-    private Widget createResetButtonLayout( Button button ) {
-        FlexTable layout = new FlexTable();
-        FlexTable.FlexCellFormatter formatter = layout.getFlexCellFormatter();
-        formatter.setHorizontalAlignment( 1, 1, ALIGN_LEFT );
-        layout.setCellSpacing( 5 );
-        layout.setWidget( 2, 1, button );
-        return layout;
-    }
+	private Widget createResetButtonLayout(Button button) {
+		FlexTable layout = new FlexTable();
+		FlexTable.FlexCellFormatter formatter = layout.getFlexCellFormatter();
+		formatter.setHorizontalAlignment(1, 1, ALIGN_LEFT);
+		layout.setCellSpacing(5);
+		layout.setWidget(2, 1, button);
+		return layout;
+	}
 
-    private ClickHandler createClickHandler() {
-        return new ClickHandler() {
-            @Override
-            public void onClick( ClickEvent event ) {
-                resetAndFilterPlanList();
-            }
-        };
-    }
+	private ClickHandler createClickHandler() {
+		return new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				resetAndFilterPlanList();
+			}
+		};
+	}
 
-    private List<PlanFilter> retrievePlanFilters() {
-        ArrayList<PlanFilter> planFilters = new ArrayList<PlanFilter>();
-        for ( FilterProvider filterProvider : filterProviders ) {
-            PlanFilter planFilter = filterProvider.provideFilter();
-            if ( planFilter != null )
-                planFilters.add( planFilter );
-        }
-        return planFilters;
-    }
+	private List<PlanFilter> retrievePlanFilters() {
+		ArrayList<PlanFilter> planFilters = new ArrayList<PlanFilter>();
+		for (FilterProvider filterProvider : filterProviders) {
+			PlanFilter planFilter = filterProvider.provideFilter();
+			if (planFilter != null)
+				planFilters.add(planFilter);
+		}
+		return planFilters;
+	}
 
 }

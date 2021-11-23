@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -40,44 +40,43 @@ import static org.mockito.Mockito.when;
 
 public class ValidationReportBuilderTest {
 
-    @Test
-    public void verifyThat_Builder_ReturnsInstance() {
-        ValidationReport report = new ValidationReportBuilder().build();
-        assertNotNull( report );
-    }
+	@Test
+	public void verifyThat_Builder_ReturnsInstance() {
+		ValidationReport report = new ValidationReportBuilder().build();
+		assertNotNull(report);
+	}
 
-    @Test
-    public void verifyThat_Builder_AddsFilename() {
-        ValidatorReport sourceReport = Mockito.mock( ValidatorReport.class );
-        ValidationReport report = new ValidationReportBuilder().validatorReport( sourceReport )
-                .filename( "test.xml" ).build();
-        assertThat( report.getFilename(), containsString( "test.xml" ) );
-    }
+	@Test
+	public void verifyThat_Builder_AddsFilename() {
+		ValidatorReport sourceReport = Mockito.mock(ValidatorReport.class);
+		ValidationReport report = new ValidationReportBuilder().validatorReport(sourceReport).filename("test.xml")
+				.build();
+		assertThat(report.getFilename(), containsString("test.xml"));
+	}
 
-    @Test
-    public void verifyThat_Builder_AddsVersion() {
-        ValidatorReport sourceReport = Mockito.mock( ValidatorReport.class );
-        when( sourceReport.getXPlanVersion() ).thenReturn( XPLAN_52 );
-        ValidationReport report = new ValidationReportBuilder().validatorReport( sourceReport ).build();
-        assertThat( report.getVersion(), is( VersionEnum.XPLAN_52 ));
-    }
+	@Test
+	public void verifyThat_Builder_AddsVersion() {
+		ValidatorReport sourceReport = Mockito.mock(ValidatorReport.class);
+		when(sourceReport.getXPlanVersion()).thenReturn(XPLAN_52);
+		ValidationReport report = new ValidationReportBuilder().validatorReport(sourceReport).build();
+		assertThat(report.getVersion(), is(VersionEnum.XPLAN_52));
+	}
 
-    @Test
-    public void verifyThat_Builder_AddsWmsUrl() throws URISyntaxException {
-        ValidatorReport sourceReport = Mockito.mock( ValidatorReport.class );
-        ValidationReport report = new ValidationReportBuilder().validatorReport( sourceReport )
-                .wmsUrl( new URI ("file://here") ).build();
-        assertThat( report.getWmsUrl(), is( notNullValue() ));
-    }
+	@Test
+	public void verifyThat_Builder_AddsWmsUrl() throws URISyntaxException {
+		ValidatorReport sourceReport = Mockito.mock(ValidatorReport.class);
+		ValidationReport report = new ValidationReportBuilder().validatorReport(sourceReport)
+				.wmsUrl(new URI("file://here")).build();
+		assertThat(report.getWmsUrl(), is(notNullValue()));
+	}
 
-    @Test
-    public void verifyThat_Builder_ReturnsCompleteInstance() throws URISyntaxException {
-        ValidatorReport sourceReport = Mockito.mock( ValidatorReport.class );
-        ValidationReport validationReport = new ValidationReportBuilder().validatorReport( sourceReport)
-                .filename( "test.xml" )
-                .wmsUrl( new URI("file:///no/real/file/name" ) )
-                .build();
-        assertThat( validationReport.getWmsUrl(), is( notNullValue() ) );
-        assertThat( validationReport.getFilename(), containsString("test") );
-    }
+	@Test
+	public void verifyThat_Builder_ReturnsCompleteInstance() throws URISyntaxException {
+		ValidatorReport sourceReport = Mockito.mock(ValidatorReport.class);
+		ValidationReport validationReport = new ValidationReportBuilder().validatorReport(sourceReport)
+				.filename("test.xml").wmsUrl(new URI("file:///no/real/file/name")).build();
+		assertThat(validationReport.getWmsUrl(), is(notNullValue()));
+		assertThat(validationReport.getFilename(), containsString("test"));
+	}
+
 }

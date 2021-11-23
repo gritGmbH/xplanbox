@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -58,147 +58,148 @@ import static org.deegree.cs.CRSUtils.EPSG_4326;
  */
 public class XPlanFeatureCollectionBuilder {
 
-    private final Logger LOG = LoggerFactory.getLogger( XPlanFeatureCollectionBuilder.class );
+	private final Logger LOG = LoggerFactory.getLogger(XPlanFeatureCollectionBuilder.class);
 
-    public static final String BP_RELEASE_DATE_PROP_NAME = "inkrafttretensDatum";
+	public static final String BP_RELEASE_DATE_PROP_NAME = "inkrafttretensDatum";
 
-    public static final String FP_RELEASE_DATE_PROP_NAME = "wirksamkeitsDatum";
+	public static final String FP_RELEASE_DATE_PROP_NAME = "wirksamkeitsDatum";
 
-    public static final String LP_RELEASE_DATE_PROP_NAME = "inkrafttretenDatum";
+	public static final String LP_RELEASE_DATE_PROP_NAME = "inkrafttretenDatum";
 
-    public static final String RP_RELEASE_DATE_PROP_NAME = "datumDesInkrafttretens";
+	public static final String RP_RELEASE_DATE_PROP_NAME = "datumDesInkrafttretens";
 
-    private final FeatureCollection features;
+	private final FeatureCollection features;
 
-    private final XPlanType xPlanType;
+	private final XPlanType xPlanType;
 
-    private ExternalReferenceInfo externalReferenceInfo;
+	private ExternalReferenceInfo externalReferenceInfo;
 
-    /**
-     * @param features
-     *                 to be encapsulated, never <code>null</code>
-     * @param xPlanType
-     *                 type of the plan, never <code>null</code>
-     */
-    public XPlanFeatureCollectionBuilder( FeatureCollection features, XPlanType xPlanType ) {
-        this.features = features;
-        this.xPlanType = xPlanType;
-    }
+	/**
+	 * @param features to be encapsulated, never <code>null</code>
+	 * @param xPlanType type of the plan, never <code>null</code>
+	 */
+	public XPlanFeatureCollectionBuilder(FeatureCollection features, XPlanType xPlanType) {
+		this.features = features;
+		this.xPlanType = xPlanType;
+	}
 
-    /**
-     * Sets the passed {@link ExternalReferenceInfo} instead of scanning from the {@link FeatureCollection}.
-     *
-     * @param externalReferenceInfo
-     *                 if <code>null</code> the {@link ExternalReferenceInfo} will be scanned from the {@link FeatureCollection}
-     * @return the builder instance
-     */
-    public XPlanFeatureCollectionBuilder withExternalReferenceInfo( ExternalReferenceInfo externalReferenceInfo ) {
-        this.externalReferenceInfo = externalReferenceInfo;
-        return this;
-    }
+	/**
+	 * Sets the passed {@link ExternalReferenceInfo} instead of scanning from the
+	 * {@link FeatureCollection}.
+	 * @param externalReferenceInfo if <code>null</code> the {@link ExternalReferenceInfo}
+	 * will be scanned from the {@link FeatureCollection}
+	 * @return the builder instance
+	 */
+	public XPlanFeatureCollectionBuilder withExternalReferenceInfo(ExternalReferenceInfo externalReferenceInfo) {
+		this.externalReferenceInfo = externalReferenceInfo;
+		return this;
+	}
 
-    /**
-     * Build the {@link XPlanFeatureCollection}.
-     *
-     * @return never <code>null</code>
-     */
-    public XPlanFeatureCollection build() {
-        Feature planFeature = findPlanFeature( features, xPlanType );
-        String planFeatureNamespaceUri = planFeature.getName().getNamespaceURI();
-        XPlanVersion version = XPlanVersion.valueOfNamespace( planFeatureNamespaceUri );
-        XPlanAde ade = determineAde( planFeatureNamespaceUri );
-        String name = FeatureCollectionUtils.retrievePlanName( planFeature );
-        String nummer = parsePlanNummer( planFeature );
-        String gkz = parsePlanGemeindeKennzahl( planFeature );
-        Date planReleaseDate = parsePlanReleaseDate( xPlanType, planFeature );
-        Envelope bboxIn4326 = createBboxIn4326( features );
-        if ( externalReferenceInfo == null )
-            externalReferenceInfo = new ExternalReferenceScanner().scan( features, version );
-        return new XPlanFeatureCollection( features, xPlanType, name, nummer, gkz, planReleaseDate,
-                                           externalReferenceInfo, bboxIn4326, version, ade );
-    }
+	/**
+	 * Build the {@link XPlanFeatureCollection}.
+	 * @return never <code>null</code>
+	 */
+	public XPlanFeatureCollection build() {
+		Feature planFeature = findPlanFeature(features, xPlanType);
+		String planFeatureNamespaceUri = planFeature.getName().getNamespaceURI();
+		XPlanVersion version = XPlanVersion.valueOfNamespace(planFeatureNamespaceUri);
+		XPlanAde ade = determineAde(planFeatureNamespaceUri);
+		String name = FeatureCollectionUtils.retrievePlanName(planFeature);
+		String nummer = parsePlanNummer(planFeature);
+		String gkz = parsePlanGemeindeKennzahl(planFeature);
+		Date planReleaseDate = parsePlanReleaseDate(xPlanType, planFeature);
+		Envelope bboxIn4326 = createBboxIn4326(features);
+		if (externalReferenceInfo == null)
+			externalReferenceInfo = new ExternalReferenceScanner().scan(features, version);
+		return new XPlanFeatureCollection(features, xPlanType, name, nummer, gkz, planReleaseDate,
+				externalReferenceInfo, bboxIn4326, version, ade);
+	}
 
-    private XPlanAde determineAde( String namespaceUri ) {
-        try {
-            return XPlanAde.valueOfNamespace( namespaceUri );
-        } catch ( IllegalArgumentException e ) {
-        }
-        return null;
-    }
+	private XPlanAde determineAde(String namespaceUri) {
+		try {
+			return XPlanAde.valueOfNamespace(namespaceUri);
+		}
+		catch (IllegalArgumentException e) {
+		}
+		return null;
+	}
 
-    private String parsePlanNummer( Feature planFeature ) {
-        String ns = planFeature.getName().getNamespaceURI();
-        return getPropertyStringValue( planFeature, new QName( ns, "nummer" ) );
-    }
+	private String parsePlanNummer(Feature planFeature) {
+		String ns = planFeature.getName().getNamespaceURI();
+		return getPropertyStringValue(planFeature, new QName(ns, "nummer"));
+	}
 
-    private String parsePlanGemeindeKennzahl( Feature planFeature ) {
-        String ns = planFeature.getName().getNamespaceURI();
-        List<TypedObjectNode> gkzValues = getPropertyValues( planFeature, new QName( ns, "gkz" ) );
-        if ( gkzValues.isEmpty() ) {
-            TypedObjectNodeXPathEvaluator evaluator = new TypedObjectNodeXPathEvaluator();
-            NamespaceBindings nsBindings = new NamespaceBindings();
-            nsBindings.addNamespace( "xplan", ns );
-            ValueReference propName = new ValueReference( "xplan:gemeinde/xplan:XP_Gemeinde/xplan:ags", nsBindings );
-            try {
-                TypedObjectNode[] nodes = evaluator.eval( planFeature, propName );
-                gkzValues = Arrays.asList( nodes );
-            } catch ( FilterEvaluationException e ) {
-                throw new IllegalArgumentException( e.getMessage() );
-            }
-        }
-        String gkz = "";
-        if ( !gkzValues.isEmpty() ) {
-            gkz = "" + gkzValues.get( 0 );
-            for ( int i = 1; i < gkzValues.size(); i++ ) {
-                gkz += ";" + gkzValues.get( i );
-            }
-        }
-        return gkz;
-    }
+	private String parsePlanGemeindeKennzahl(Feature planFeature) {
+		String ns = planFeature.getName().getNamespaceURI();
+		List<TypedObjectNode> gkzValues = getPropertyValues(planFeature, new QName(ns, "gkz"));
+		if (gkzValues.isEmpty()) {
+			TypedObjectNodeXPathEvaluator evaluator = new TypedObjectNodeXPathEvaluator();
+			NamespaceBindings nsBindings = new NamespaceBindings();
+			nsBindings.addNamespace("xplan", ns);
+			ValueReference propName = new ValueReference("xplan:gemeinde/xplan:XP_Gemeinde/xplan:ags", nsBindings);
+			try {
+				TypedObjectNode[] nodes = evaluator.eval(planFeature, propName);
+				gkzValues = Arrays.asList(nodes);
+			}
+			catch (FilterEvaluationException e) {
+				throw new IllegalArgumentException(e.getMessage());
+			}
+		}
+		String gkz = "";
+		if (!gkzValues.isEmpty()) {
+			gkz = "" + gkzValues.get(0);
+			for (int i = 1; i < gkzValues.size(); i++) {
+				gkz += ";" + gkzValues.get(i);
+			}
+		}
+		return gkz;
+	}
 
-    private Date parsePlanReleaseDate( XPlanType type, Feature planFeature ) {
-        String propName = detectReleaseDatePropertyName( type );
-        if ( propName != null ) {
-            QName releaseDatePropName = new QName( planFeature.getName().getNamespaceURI(), propName );
-            List<Property> releaseDateProps = planFeature.getProperties( releaseDatePropName );
-            if ( !releaseDateProps.isEmpty() ) {
-                Property releaseDateProp = releaseDateProps.get( 0 );
-                PrimitiveValue value = (PrimitiveValue) releaseDateProp.getValue();
-                if ( value != null ) {
-                    org.deegree.commons.tom.datetime.Date dateValue = (org.deegree.commons.tom.datetime.Date) value.getValue();
-                    return dateValue.getDate();
-                }
-            }
-        }
-        return null;
-    }
+	private Date parsePlanReleaseDate(XPlanType type, Feature planFeature) {
+		String propName = detectReleaseDatePropertyName(type);
+		if (propName != null) {
+			QName releaseDatePropName = new QName(planFeature.getName().getNamespaceURI(), propName);
+			List<Property> releaseDateProps = planFeature.getProperties(releaseDatePropName);
+			if (!releaseDateProps.isEmpty()) {
+				Property releaseDateProp = releaseDateProps.get(0);
+				PrimitiveValue value = (PrimitiveValue) releaseDateProp.getValue();
+				if (value != null) {
+					org.deegree.commons.tom.datetime.Date dateValue = (org.deegree.commons.tom.datetime.Date) value
+							.getValue();
+					return dateValue.getDate();
+				}
+			}
+		}
+		return null;
+	}
 
-    private Envelope createBboxIn4326( FeatureCollection fc ) {
-        try {
-            Envelope envelope = fc.getEnvelope();
-            if ( envelope != null ) {
-                GeometryTransformer geometryTransformer = new GeometryTransformer( EPSG_4326 );
-                return geometryTransformer.transform( envelope );
-            }
-        } catch ( IllegalArgumentException | UnknownCRSException | TransformationException e ) {
-            LOG.error( "Could not create transformed envelope! Reason: " + e.getMessage(), e );
-        }
-        return null;
-    }
+	private Envelope createBboxIn4326(FeatureCollection fc) {
+		try {
+			Envelope envelope = fc.getEnvelope();
+			if (envelope != null) {
+				GeometryTransformer geometryTransformer = new GeometryTransformer(EPSG_4326);
+				return geometryTransformer.transform(envelope);
+			}
+		}
+		catch (IllegalArgumentException | UnknownCRSException | TransformationException e) {
+			LOG.error("Could not create transformed envelope! Reason: " + e.getMessage(), e);
+		}
+		return null;
+	}
 
-    private String detectReleaseDatePropertyName( XPlanType type ) {
-        switch ( type ) {
-        case BP_Plan:
-            return BP_RELEASE_DATE_PROP_NAME;
-        case FP_Plan:
-            return FP_RELEASE_DATE_PROP_NAME;
-        case LP_Plan:
-            return LP_RELEASE_DATE_PROP_NAME;
-        case RP_Plan:
-            return RP_RELEASE_DATE_PROP_NAME;
-        default:
-            return null;
-        }
-    }
+	private String detectReleaseDatePropertyName(XPlanType type) {
+		switch (type) {
+		case BP_Plan:
+			return BP_RELEASE_DATE_PROP_NAME;
+		case FP_Plan:
+			return FP_RELEASE_DATE_PROP_NAME;
+		case LP_Plan:
+			return LP_RELEASE_DATE_PROP_NAME;
+		case RP_Plan:
+			return RP_RELEASE_DATE_PROP_NAME;
+		default:
+			return null;
+		}
+	}
 
 }

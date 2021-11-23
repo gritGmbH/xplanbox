@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -94,89 +94,87 @@ import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
  */
 public class XPlanManagerTest {
 
-    private File managerWorkspaceDirectory;
-    private File wmsWorkspaceDirectory;
+	private File managerWorkspaceDirectory;
 
-    @Before
-    public void createWorkspaceFiles() throws IOException {
-        managerWorkspaceDirectory = Files.createTempDirectory("manager").toFile();
-        wmsWorkspaceDirectory = Files.createTempDirectory("wms").toFile();
-        File themesDir = new File(managerWorkspaceDirectory, "themes");
-        Files.createDirectory(themesDir.toPath());
-        File file = new File(themesDir, "bplanraster.xml");
-        file.createNewFile();
-        //TODO build minimal temp workspace
-    }
+	private File wmsWorkspaceDirectory;
 
-    @After
-    public void deleteWorkspace() {
-        managerWorkspaceDirectory.delete();
-    }
+	@Before
+	public void createWorkspaceFiles() throws IOException {
+		managerWorkspaceDirectory = Files.createTempDirectory("manager").toFile();
+		wmsWorkspaceDirectory = Files.createTempDirectory("wms").toFile();
+		File themesDir = new File(managerWorkspaceDirectory, "themes");
+		Files.createDirectory(themesDir.toPath());
+		File file = new File(themesDir, "bplanraster.xml");
+		file.createNewFile();
+		// TODO build minimal temp workspace
+	}
 
-    @Test
-    public void testEvaluateRasterdata()
-                    throws Exception {
-        assumeTrue( isGdalSuccessfullInitialized() );
+	@After
+	public void deleteWorkspace() {
+		managerWorkspaceDirectory.delete();
+	}
 
-        XPlanManager xPlanManager = createXPlanManager();
-        String pathToArchive = copyPlan();
+	@Test
+	public void testEvaluateRasterdata() throws Exception {
+		assumeTrue(isGdalSuccessfullInitialized());
 
-        List<RasterEvaluationResult> results = xPlanManager.evaluateRasterdata( pathToArchive );
+		XPlanManager xPlanManager = createXPlanManager();
+		String pathToArchive = copyPlan();
 
-        assertThat( results.size(), is( 1 ) );
-        RasterEvaluationResult result = results.get( 0 );
+		List<RasterEvaluationResult> results = xPlanManager.evaluateRasterdata(pathToArchive);
 
-        assertThat( result.isCrsSet(), is( false ) );
-        assertThat( result.isConfiguredCrs(), is( false ) );
-    }
+		assertThat(results.size(), is(1));
+		RasterEvaluationResult result = results.get(0);
 
-    @Test
-    public void testDetermineLegislationStatus()
-                    throws Exception {
-        XPlanManager xPlanManager = createXPlanManager();
-        String pathToArchive = copyPlan();
+		assertThat(result.isCrsSet(), is(false));
+		assertThat(result.isConfiguredCrs(), is(false));
+	}
 
-        LegislationStatus legislationStatus = xPlanManager.determineLegislationStatus( pathToArchive );
+	@Test
+	public void testDetermineLegislationStatus() throws Exception {
+		XPlanManager xPlanManager = createXPlanManager();
+		String pathToArchive = copyPlan();
 
-        assertThat( legislationStatus.getCodeNumber(), is( 4000 ) );
-    }
+		LegislationStatus legislationStatus = xPlanManager.determineLegislationStatus(pathToArchive);
 
-    private XPlanManager createXPlanManager()
-                    throws Exception {
-        XPlanDao xPlanDao = mock( XPlanDao.class );
-        XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        ManagerConfiguration managerConfiguration = mockManagerConfig();
-        DeegreeWorkspace managerWorkspace = WorkspaceUtils.instantiateManagerWorkspace(managerWorkspaceDirectory.getAbsoluteFile());
-        ManagerWorkspaceWrapper managerWorkspaceWrapper = mock( ManagerWorkspaceWrapper.class );
-        when( managerWorkspaceWrapper.getConfiguration() ).thenReturn( managerConfiguration );
-        DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(wmsWorkspaceDirectory.getAbsoluteFile());
-        WmsWorkspaceWrapper wmsWorkspaceWrapper = mock( WmsWorkspaceWrapper.class );
-        when( wmsWorkspaceWrapper.getLocation() ).thenReturn( wmsWorkspaceDirectory.getAbsoluteFile() );
-        return new XPlanManager( xPlanDao, archiveCreator, managerWorkspaceWrapper,
-                        null, null, null,
-                         wmsWorkspaceWrapper );
-    }
+		assertThat(legislationStatus.getCodeNumber(), is(4000));
+	}
 
-    private ManagerConfiguration mockManagerConfig() {
-        ManagerConfiguration mockedConfiguration = mock( ManagerConfiguration.class );
-        when( mockedConfiguration.getRasterConfigurationType() ).thenReturn( gdal );
-        when( mockedConfiguration.getRasterConfigurationCrs() ).thenReturn( "epsg:4326" );
-        when( mockedConfiguration.getSortConfiguration() ).thenReturn( new SortConfiguration() );
-        return mockedConfiguration;
-    }
+	private XPlanManager createXPlanManager() throws Exception {
+		XPlanDao xPlanDao = mock(XPlanDao.class);
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+		ManagerConfiguration managerConfiguration = mockManagerConfig();
+		DeegreeWorkspace managerWorkspace = WorkspaceUtils
+				.instantiateManagerWorkspace(managerWorkspaceDirectory.getAbsoluteFile());
+		ManagerWorkspaceWrapper managerWorkspaceWrapper = mock(ManagerWorkspaceWrapper.class);
+		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration);
+		DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(wmsWorkspaceDirectory.getAbsoluteFile());
+		WmsWorkspaceWrapper wmsWorkspaceWrapper = mock(WmsWorkspaceWrapper.class);
+		when(wmsWorkspaceWrapper.getLocation()).thenReturn(wmsWorkspaceDirectory.getAbsoluteFile());
+		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, null, null, null,
+				wmsWorkspaceWrapper);
+	}
 
-    private String copyPlan()
-                    throws IOException {
-        InputStream resource = ResourceAccessor.readResourceStream( "xplan41/V4_1_ID_103.zip" );
-        FileOutputStream output = null;
-        try {
-            File resourceFile = File.createTempFile( "XPlanManagerTest_", ".zip" );
-            output = new FileOutputStream( resourceFile );
-            return resourceFile.getAbsolutePath();
-        } finally {
-            IOUtils.copy( resource, output );
-            IOUtils.closeQuietly( resource );
-        }
-    }
+	private ManagerConfiguration mockManagerConfig() {
+		ManagerConfiguration mockedConfiguration = mock(ManagerConfiguration.class);
+		when(mockedConfiguration.getRasterConfigurationType()).thenReturn(gdal);
+		when(mockedConfiguration.getRasterConfigurationCrs()).thenReturn("epsg:4326");
+		when(mockedConfiguration.getSortConfiguration()).thenReturn(new SortConfiguration());
+		return mockedConfiguration;
+	}
+
+	private String copyPlan() throws IOException {
+		InputStream resource = ResourceAccessor.readResourceStream("xplan41/V4_1_ID_103.zip");
+		FileOutputStream output = null;
+		try {
+			File resourceFile = File.createTempFile("XPlanManagerTest_", ".zip");
+			output = new FileOutputStream(resourceFile);
+			return resourceFile.getAbsolutePath();
+		}
+		finally {
+			IOUtils.copy(resource, output);
+			IOUtils.closeQuietly(resource);
+		}
+	}
 
 }

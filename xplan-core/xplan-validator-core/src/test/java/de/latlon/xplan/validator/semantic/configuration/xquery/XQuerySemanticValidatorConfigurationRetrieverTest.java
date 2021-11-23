@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -43,31 +43,27 @@ import static org.junit.Assert.assertThat;
  */
 public class XQuerySemanticValidatorConfigurationRetrieverTest {
 
-    @Test
-    public void testRetrieveConfigurationShouldReturnCorrectNumberOfRules()
-        throws Exception {
-        Path rulesPath =
-            get( XQuerySemanticValidatorConfigurationRetriever.class.getResource( "rules" ).toURI() );
-        XQuerySemanticValidatorConfigurationRetriever configurationRetriever =
-            new XQuerySemanticValidatorConfigurationRetriever(
-                rulesPath );
-        SemanticValidatorConfiguration configuration = configurationRetriever.retrieveConfiguration();
-        List<SemanticValidatorRule> rules = configuration.getAllRules();
+	@Test
+	public void testRetrieveConfigurationShouldReturnCorrectNumberOfRules() throws Exception {
+		Path rulesPath = get(XQuerySemanticValidatorConfigurationRetriever.class.getResource("rules").toURI());
+		XQuerySemanticValidatorConfigurationRetriever configurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
+				rulesPath);
+		SemanticValidatorConfiguration configuration = configurationRetriever.retrieveConfiguration();
+		List<SemanticValidatorRule> rules = configuration.getAllRules();
 
-        assertThat( rules.size(), is( 11 ) );
-    }
+		assertThat(rules.size(), is(11));
+	}
 
-    @Test
-    public void testRetrieveConfigurationShouldRetrieveAllFilesRecursively()
-        throws Exception {
-        Path rulesPath = get( XQuerySemanticValidatorConfigurationRetriever.class.getResource( "rules" ).toURI() );
-        XQuerySemanticValidatorConfigurationRetriever retriever =
-            new XQuerySemanticValidatorConfigurationRetriever( rulesPath );
-        SemanticValidatorConfiguration configuration = retriever.retrieveConfiguration();
+	@Test
+	public void testRetrieveConfigurationShouldRetrieveAllFilesRecursively() throws Exception {
+		Path rulesPath = get(XQuerySemanticValidatorConfigurationRetriever.class.getResource("rules").toURI());
+		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
+				rulesPath);
+		SemanticValidatorConfiguration configuration = retriever.retrieveConfiguration();
 
-        assertThat( configuration.getRules( singletonList( IGNORE_XP ) ).size(), is( 9 ) );
-        assertThat( configuration.getRules( singletonList( IGNORE_SO ) ).size(), is( 10 ) );
-        assertThat( configuration.getRules( XPLAN_40, singletonList( NONE ) ).size(), is( 8 ) );
-    }
+		assertThat(configuration.getRules(singletonList(IGNORE_XP)).size(), is(9));
+		assertThat(configuration.getRules(singletonList(IGNORE_SO)).size(), is(10));
+		assertThat(configuration.getRules(XPLAN_40, singletonList(NONE)).size(), is(8));
+	}
 
 }

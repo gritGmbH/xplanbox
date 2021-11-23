@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -52,254 +52,249 @@ import static org.deegree.commons.xml.stax.XMLStreamUtils.skipStartDocument;
  */
 public class XPlanGmlReader {
 
-    private Location crsLocation;
+	private Location crsLocation;
 
-    private Location typeLocation;
+	private Location typeLocation;
 
-    private XPlanVersion version;
+	private XPlanVersion version;
 
-    private XPlanType type;
+	private XPlanType type;
 
-    private XPlanAde ade;
+	private XPlanAde ade;
 
-    private ICRS crs;
+	private ICRS crs;
 
-    private String district;
+	private String district;
 
-    private boolean hasMultipleXPlanElements = false;
+	private boolean hasMultipleXPlanElements = false;
 
-    /**
-     * Reads the XPlan GML, pareses required information and updates the planname.
-     *
-     * @param entry
-     *                 XPlanGML to read, never <code>null</code>
-     * @return the XPlanGML as {@link MainZipEntry}, never <code>null</code>
-     * @throws XMLStreamException
-     *                 if the XPlanGML GML could not be parsed
-     */
-    public MainZipEntry createZipEntry( ArtefactEntry entry )
-                    throws XMLStreamException {
-        XMLStreamReader reader = null;
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        try {
-            InputStream stream = entry.retrieveContentAsStream();
-            reader = createReader( stream );
-            XMLStreamWriter writer = XMLOutputFactory.newInstance().createXMLStreamWriter( bos );
+	/**
+	 * Reads the XPlan GML, pareses required information and updates the planname.
+	 * @param entry XPlanGML to read, never <code>null</code>
+	 * @return the XPlanGML as {@link MainZipEntry}, never <code>null</code>
+	 * @throws XMLStreamException if the XPlanGML GML could not be parsed
+	 */
+	public MainZipEntry createZipEntry(ArtefactEntry entry) throws XMLStreamException {
+		XMLStreamReader reader = null;
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		try {
+			InputStream stream = entry.retrieveContentAsStream();
+			reader = createReader(stream);
+			XMLStreamWriter writer = XMLOutputFactory.newInstance().createXMLStreamWriter(bos);
 
-            copy( reader, writer );
-        } finally {
-            closeQuietly( reader );
-        }
-        return new MainZipEntry( bos.toByteArray(), entry.getName(), version, type, ade, crs, district, hasMultipleXPlanElements );
-    }
+			copy(reader, writer);
+		}
+		finally {
+			closeQuietly(reader);
+		}
+		return new MainZipEntry(bos.toByteArray(), entry.getName(), version, type, ade, crs, district,
+				hasMultipleXPlanElements);
+	}
 
-    /**
-     * Reads the XPlan GML, pareses required information and updates the planname.
-     *
-     * @param name of the entry, never <code>null</code>
-     * @param xplanGml
-     *                 XPlanGML to read, never <code>null</code>
-     * @return the XPlanGML as {@link MainZipEntry}, never <code>null</code>
-     * @throws XMLStreamException
-     *                 if the XPlanGML GML could not be parsed
-     */
-    public MainZipEntry createZipEntry( String name,  InputStream xplanGml )
-                            throws XMLStreamException {
-        XMLStreamReader reader = null;
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        try {
-            reader = createReader( xplanGml );
-            XMLStreamWriter writer = XMLOutputFactory.newInstance().createXMLStreamWriter( bos );
+	/**
+	 * Reads the XPlan GML, pareses required information and updates the planname.
+	 * @param name of the entry, never <code>null</code>
+	 * @param xplanGml XPlanGML to read, never <code>null</code>
+	 * @return the XPlanGML as {@link MainZipEntry}, never <code>null</code>
+	 * @throws XMLStreamException if the XPlanGML GML could not be parsed
+	 */
+	public MainZipEntry createZipEntry(String name, InputStream xplanGml) throws XMLStreamException {
+		XMLStreamReader reader = null;
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		try {
+			reader = createReader(xplanGml);
+			XMLStreamWriter writer = XMLOutputFactory.newInstance().createXMLStreamWriter(bos);
 
-            copy( reader, writer );
-        } finally {
-            closeQuietly( reader );
-        }
-        return new MainZipEntry( bos.toByteArray(), name, version, type, ade, crs, district, hasMultipleXPlanElements );
-    }
+			copy(reader, writer);
+		}
+		finally {
+			closeQuietly(reader);
+		}
+		return new MainZipEntry(bos.toByteArray(), name, version, type, ade, crs, district, hasMultipleXPlanElements);
+	}
 
-    private void copy( XMLStreamReader reader, XMLStreamWriter writer )
-                    throws XMLStreamException {
-        XMLStreamWriterFilter filter = new XPlanGmlWriterFilter();
-        filter.setDelegate( writer );
-        writeAll( reader, filter );
+	private void copy(XMLStreamReader reader, XMLStreamWriter writer) throws XMLStreamException {
+		XMLStreamWriterFilter filter = new XPlanGmlWriterFilter();
+		filter.setDelegate(writer);
+		writeAll(reader, filter);
 
-        this.district = ( (XPlanGmlWriterFilter) filter ).getDistrict();
-    }
+		this.district = ((XPlanGmlWriterFilter) filter).getDistrict();
+	}
 
-    private XMLStreamReader createReader( InputStream stream )
-                            throws XMLStreamException, FactoryConfigurationError {
-        XMLStreamReader xmlReader = XMLInputFactory.newInstance().createXMLStreamReader( stream );
-        skipStartDocument( xmlReader );
-        return xmlReader;
-    }
+	private XMLStreamReader createReader(InputStream stream) throws XMLStreamException, FactoryConfigurationError {
+		XMLStreamReader xmlReader = XMLInputFactory.newInstance().createXMLStreamReader(stream);
+		skipStartDocument(xmlReader);
+		return xmlReader;
+	}
 
-    private void writeAll( XMLStreamReader reader, XMLStreamWriter writer )
-                    throws XMLStreamException {
-        while ( reader.hasNext() ) {
-            write( reader, writer );
-            reader.next();
-        }
-        write( reader, writer );
-        writer.flush();
-    }
+	private void writeAll(XMLStreamReader reader, XMLStreamWriter writer) throws XMLStreamException {
+		while (reader.hasNext()) {
+			write(reader, writer);
+			reader.next();
+		}
+		write(reader, writer);
+		writer.flush();
+	}
 
-    private void write( XMLStreamReader reader, XMLStreamWriter writer )
-                    throws XMLStreamException {
-        switch ( reader.getEventType() ) {
-        case XMLEvent.START_ELEMENT:
-            writeStartElementWithNamespaceBindings( reader, writer );
-            break;
-        case XMLEvent.END_ELEMENT:
-            writer.writeEndElement();
-            break;
-        case XMLEvent.SPACE:
-        case XMLEvent.CHARACTERS:
-            writer.writeCharacters( reader.getTextCharacters(), reader.getTextStart(), reader.getTextLength() );
-            break;
-        case XMLEvent.PROCESSING_INSTRUCTION:
-            writer.writeProcessingInstruction( reader.getPITarget(), reader.getPIData() );
-            break;
-        case XMLEvent.CDATA:
-            writer.writeCData( reader.getText() );
-            break;
+	private void write(XMLStreamReader reader, XMLStreamWriter writer) throws XMLStreamException {
+		switch (reader.getEventType()) {
+		case XMLEvent.START_ELEMENT:
+			writeStartElementWithNamespaceBindings(reader, writer);
+			break;
+		case XMLEvent.END_ELEMENT:
+			writer.writeEndElement();
+			break;
+		case XMLEvent.SPACE:
+		case XMLEvent.CHARACTERS:
+			writer.writeCharacters(reader.getTextCharacters(), reader.getTextStart(), reader.getTextLength());
+			break;
+		case XMLEvent.PROCESSING_INSTRUCTION:
+			writer.writeProcessingInstruction(reader.getPITarget(), reader.getPIData());
+			break;
+		case XMLEvent.CDATA:
+			writer.writeCData(reader.getText());
+			break;
 
-        case XMLEvent.COMMENT:
-            writer.writeComment( reader.getText() );
-            break;
-        case XMLEvent.ENTITY_REFERENCE:
-            writer.writeEntityRef( reader.getLocalName() );
-            break;
-        case XMLEvent.START_DOCUMENT:
-            String encoding = reader.getCharacterEncodingScheme();
-            String version = reader.getVersion();
+		case XMLEvent.COMMENT:
+			writer.writeComment(reader.getText());
+			break;
+		case XMLEvent.ENTITY_REFERENCE:
+			writer.writeEntityRef(reader.getLocalName());
+			break;
+		case XMLEvent.START_DOCUMENT:
+			String encoding = reader.getCharacterEncodingScheme();
+			String version = reader.getVersion();
 
-            if ( encoding != null && version != null )
-                writer.writeStartDocument( encoding, version );
-            else if ( version != null )
-                writer.writeStartDocument( reader.getVersion() );
-            break;
-        case XMLEvent.END_DOCUMENT:
-            writer.writeEndDocument();
-            break;
-        case XMLEvent.DTD:
-            writer.writeDTD( reader.getText() );
-            break;
-        }
-    }
+			if (encoding != null && version != null)
+				writer.writeStartDocument(encoding, version);
+			else if (version != null)
+				writer.writeStartDocument(reader.getVersion());
+			break;
+		case XMLEvent.END_DOCUMENT:
+			writer.writeEndDocument();
+			break;
+		case XMLEvent.DTD:
+			writer.writeDTD(reader.getText());
+			break;
+		}
+	}
 
-    private void writeStartElementWithNamespaceBindings( XMLStreamReader reader, XMLStreamWriter writer )
-                    throws XMLStreamException {
-        writeStartElement( reader, writer );
-        writeNamespaces( reader, writer );
-        writeAttributes( reader, writer );
-    }
+	private void writeStartElementWithNamespaceBindings(XMLStreamReader reader, XMLStreamWriter writer)
+			throws XMLStreamException {
+		writeStartElement(reader, writer);
+		writeNamespaces(reader, writer);
+		writeAttributes(reader, writer);
+	}
 
-    private void writeStartElement( XMLStreamReader reader, XMLStreamWriter writer )
-                    throws XMLStreamException {
-        String localName = reader.getLocalName();
-        String namespaceURI = reader.getNamespaceURI();
+	private void writeStartElement(XMLStreamReader reader, XMLStreamWriter writer) throws XMLStreamException {
+		String localName = reader.getLocalName();
+		String namespaceURI = reader.getNamespaceURI();
 
-        setVersion( namespaceURI );
-        setType( localName, reader.getLocation() );
-        setAde( namespaceURI );
-        setCrs( reader );
+		setVersion(namespaceURI);
+		setType(localName, reader.getLocation());
+		setAde(namespaceURI);
+		setCrs(reader);
 
-        if ( namespaceURI != null && !namespaceURI.isEmpty() ) {
-            String prefix = reader.getPrefix();
-            if ( prefix != null ) {
-                writer.writeStartElement( prefix, localName, namespaceURI );
-            } else {
-                writer.writeStartElement( namespaceURI, localName );
-            }
-        } else {
-            writer.writeStartElement( localName );
-        }
-    }
+		if (namespaceURI != null && !namespaceURI.isEmpty()) {
+			String prefix = reader.getPrefix();
+			if (prefix != null) {
+				writer.writeStartElement(prefix, localName, namespaceURI);
+			}
+			else {
+				writer.writeStartElement(namespaceURI, localName);
+			}
+		}
+		else {
+			writer.writeStartElement(localName);
+		}
+	}
 
-    private void writeNamespaces( XMLStreamReader reader, XMLStreamWriter writer )
-                    throws XMLStreamException {
-        for ( int namsespaceIndex = 0, namespaceCount = reader.getNamespaceCount();
-              namsespaceIndex < namespaceCount; namsespaceIndex++ ) {
-            writer.writeNamespace( reader.getNamespacePrefix( namsespaceIndex ),
-                                   reader.getNamespaceURI( namsespaceIndex ) );
-        }
-    }
+	private void writeNamespaces(XMLStreamReader reader, XMLStreamWriter writer) throws XMLStreamException {
+		for (int namsespaceIndex = 0,
+				namespaceCount = reader.getNamespaceCount(); namsespaceIndex < namespaceCount; namsespaceIndex++) {
+			writer.writeNamespace(reader.getNamespacePrefix(namsespaceIndex), reader.getNamespaceURI(namsespaceIndex));
+		}
+	}
 
-    private void writeAttributes( XMLStreamReader reader, XMLStreamWriter writer )
-                    throws XMLStreamException {
-        for ( int namsespaceIndex = 0, attCount = reader.getAttributeCount();
-              namsespaceIndex < attCount; namsespaceIndex++ ) {
-            String attNamespace = reader.getAttributeNamespace( namsespaceIndex );
-            if ( attNamespace != null && !attNamespace.isEmpty() ) {
-                writer.writeAttribute( attNamespace, reader.getAttributeLocalName( namsespaceIndex ),
-                                       reader.getAttributeValue( namsespaceIndex ) );
-            } else {
-                writer.writeAttribute( reader.getAttributeLocalName( namsespaceIndex ),
-                                       reader.getAttributeValue( namsespaceIndex ) );
-            }
-        }
-    }
+	private void writeAttributes(XMLStreamReader reader, XMLStreamWriter writer) throws XMLStreamException {
+		for (int namsespaceIndex = 0,
+				attCount = reader.getAttributeCount(); namsespaceIndex < attCount; namsespaceIndex++) {
+			String attNamespace = reader.getAttributeNamespace(namsespaceIndex);
+			if (attNamespace != null && !attNamespace.isEmpty()) {
+				writer.writeAttribute(attNamespace, reader.getAttributeLocalName(namsespaceIndex),
+						reader.getAttributeValue(namsespaceIndex));
+			}
+			else {
+				writer.writeAttribute(reader.getAttributeLocalName(namsespaceIndex),
+						reader.getAttributeValue(namsespaceIndex));
+			}
+		}
+	}
 
-    private void setVersion( String namespaceUri ) {
-        if ( namespaceUri == null )
-            return;
-        if ( version == null ) {
-            version = XPlanVersionUtils.determineBaseVersion( namespaceUri );
-        }
-    }
+	private void setVersion(String namespaceUri) {
+		if (namespaceUri == null)
+			return;
+		if (version == null) {
+			version = XPlanVersionUtils.determineBaseVersion(namespaceUri);
+		}
+	}
 
-    private void setType( String localName, Location location ) {
-        XPlanType currentType = valueOfDefaultNull( localName );
-        if ( currentType != null ) {
-            if ( type == null ) {
-                type = currentType;
-                typeLocation = location;
-            } else {
-                hasMultipleXPlanElements = true;
-            }
-        }
-    }
+	private void setType(String localName, Location location) {
+		XPlanType currentType = valueOfDefaultNull(localName);
+		if (currentType != null) {
+			if (type == null) {
+				type = currentType;
+				typeLocation = location;
+			}
+			else {
+				hasMultipleXPlanElements = true;
+			}
+		}
+	}
 
-    private void setAde( String namespaceUri ) {
-        if ( namespaceUri == null )
-            return;
-        try {
-            if ( ade == null && XPLAN_41.equals( version ) ) {
-                ade = XPlanAde.valueOfNamespace( namespaceUri );
-            }
-        } catch ( IllegalArgumentException e ) {
-        }
-    }
+	private void setAde(String namespaceUri) {
+		if (namespaceUri == null)
+			return;
+		try {
+			if (ade == null && XPLAN_41.equals(version)) {
+				ade = XPlanAde.valueOfNamespace(namespaceUri);
+			}
+		}
+		catch (IllegalArgumentException e) {
+		}
+	}
 
-    private void setCrs( XMLStreamReader reader ) {
-        String srsName = reader.getAttributeValue( null, "srsName" );
-        if ( srsName != null ) {
-            if ( crs == null ) {
-                crs = CRSManager.getCRSRef( srsName );
-                crsLocation = reader.getLocation();
-            } else if ( !crs.getName().equals( srsName ) ) {
-                throwCrsInConflictException( reader.getLocation(), srsName );
-            }
-        }
-    }
+	private void setCrs(XMLStreamReader reader) {
+		String srsName = reader.getAttributeValue(null, "srsName");
+		if (srsName != null) {
+			if (crs == null) {
+				crs = CRSManager.getCRSRef(srsName);
+				crsLocation = reader.getLocation();
+			}
+			else if (!crs.getName().equals(srsName)) {
+				throwCrsInConflictException(reader.getLocation(), srsName);
+			}
+		}
+	}
 
-    private void throwCrsInConflictException( Location currentLocation, String currrentCrsName ) {
-        String msg = format( "Fehler: Dokument enthält widersprüchliche CRS-Informationen "
-                             + "(srsName-Attribute): '%s' (Zeile: %d, Spalte: %d) und '%s' (Zeile: %d, Spalte: %d)",
-                             crs.getName(), crsLocation.getLineNumber(), crsLocation.getColumnNumber(), currrentCrsName,
-                             currentLocation.getLineNumber(), currentLocation.getColumnNumber() );
-        throw new IllegalArgumentException( msg );
-    }
+	private void throwCrsInConflictException(Location currentLocation, String currrentCrsName) {
+		String msg = format(
+				"Fehler: Dokument enthält widersprüchliche CRS-Informationen "
+						+ "(srsName-Attribute): '%s' (Zeile: %d, Spalte: %d) und '%s' (Zeile: %d, Spalte: %d)",
+				crs.getName(), crsLocation.getLineNumber(), crsLocation.getColumnNumber(), currrentCrsName,
+				currentLocation.getLineNumber(), currentLocation.getColumnNumber());
+		throw new IllegalArgumentException(msg);
+	}
 
-    private void closeQuietly( XMLStreamReader xmlReader ) {
-        if ( xmlReader != null ) {
-            try {
-                xmlReader.close();
-            } catch ( XMLStreamException e ) {
-                // nothing to do
-            }
-        }
-    }
+	private void closeQuietly(XMLStreamReader xmlReader) {
+		if (xmlReader != null) {
+			try {
+				xmlReader.close();
+			}
+			catch (XMLStreamException e) {
+				// nothing to do
+			}
+		}
+	}
 
 }

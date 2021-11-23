@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -28,42 +28,43 @@ package de.latlon.xplan.manager.web.shared;
  */
 public class PlanNameWithStatusResult {
 
-    private String name;
+	private String name;
 
-    private String status;
+	private String status;
 
-    private boolean planWithSameNameAndStatusExists;
+	private boolean planWithSameNameAndStatusExists;
 
-    public PlanNameWithStatusResult() {
-    }
+	public PlanNameWithStatusResult() {
+	}
 
-    public PlanNameWithStatusResult( String name, String status, boolean planWithSameNameAndStatusExists ) {
-        this.name = name;
-        this.status = status;
-        this.planWithSameNameAndStatusExists = planWithSameNameAndStatusExists;
-    }
+	public PlanNameWithStatusResult(String name, String status, boolean planWithSameNameAndStatusExists) {
+		this.name = name;
+		this.status = status;
+		this.planWithSameNameAndStatusExists = planWithSameNameAndStatusExists;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName( String name ) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public void setStatus( String status ) {
-        this.status = status;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-    public boolean isPlanWithSameNameAndStatusExists() {
-        return planWithSameNameAndStatusExists;
-    }
+	public boolean isPlanWithSameNameAndStatusExists() {
+		return planWithSameNameAndStatusExists;
+	}
 
-    public void setPlanWithSameNameAndStatusExists( boolean planWithSameNameAndStatusExists ) {
-        this.planWithSameNameAndStatusExists = planWithSameNameAndStatusExists;
-    }
+	public void setPlanWithSameNameAndStatusExists(boolean planWithSameNameAndStatusExists) {
+		this.planWithSameNameAndStatusExists = planWithSameNameAndStatusExists;
+	}
+
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -59,58 +59,54 @@ import java.util.Date;
 
 /**
  * Encapsulates the validity period of a plan.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class ValidityPeriod {
 
-    private Date start;
+	private Date start;
 
-    private Date end;
+	private Date end;
 
-    public ValidityPeriod() {
-    }
+	public ValidityPeriod() {
+	}
 
-    /**
-     * @param start
-     *            may be <code>null</code>
-     * @param end
-     *            may be <code>null</code>
-     */
-    public ValidityPeriod( Date start, Date end ) {
-        this.start = start;
-        this.end = end;
-    }
+	/**
+	 * @param start may be <code>null</code>
+	 * @param end may be <code>null</code>
+	 */
+	public ValidityPeriod(Date start, Date end) {
+		this.start = start;
+		this.end = end;
+	}
 
-    /**
-     * @return the start date, may be <code>null</code>
-     */
-    public Date getStart() {
-        return start;
-    }
+	/**
+	 * @return the start date, may be <code>null</code>
+	 */
+	public Date getStart() {
+		return start;
+	}
 
-    /**
-     * @param start
-     *            the start date to set, may be <code>null</code>
-     */
-    public void setStart( Date start ) {
-        this.start = start;
-    }
+	/**
+	 * @param start the start date to set, may be <code>null</code>
+	 */
+	public void setStart(Date start) {
+		this.start = start;
+	}
 
-    /**
-     * @return the end date, may be <code>null</code>
-     */
-    public Date getEnd() {
-        return end;
-    }
+	/**
+	 * @return the end date, may be <code>null</code>
+	 */
+	public Date getEnd() {
+		return end;
+	}
 
-    /**
-     * @param end
-     *            the end date to set, may be <code>null</code>
-     */
-    public void setEnd( Date end ) {
-        this.end = end;
-    }
+	/**
+	 * @param end the end date to set, may be <code>null</code>
+	 */
+	public void setEnd(Date end) {
+		this.end = end;
+	}
 
 }
