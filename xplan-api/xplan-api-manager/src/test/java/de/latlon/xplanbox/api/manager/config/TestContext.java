@@ -53,9 +53,6 @@ import de.latlon.xplanbox.api.manager.v1.PlansApi;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.feature.persistence.FeatureStore;
 import org.glassfish.jersey.server.ResourceConfig;
-import org.mockito.internal.listeners.CollectCreatedMocks;
-import org.mockito.internal.progress.MockingProgress;
-import org.mockito.internal.progress.ThreadSafeMockingProgress;
 import org.slf4j.Logger;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.context.annotation.Bean;
@@ -270,26 +267,10 @@ public class TestContext {
 		return workspaceReloader;
 	}
 
-	private final List<Object> createdMocks = new LinkedList<Object>();
-
-	@PostConstruct
-	void initMockListener() {
-		MockingProgress progress = new ThreadSafeMockingProgress();
-		progress.setListener(new CollectCreatedMocks(createdMocks));
-	}
-
 	@PostConstruct
 	void initLoggingAdapter() {
 		SLF4JBridgeHandler.removeHandlersForRootLogger();
 		SLF4JBridgeHandler.install();
-	}
-
-	@PreDestroy
-	void showAllMocks() {
-		createdMocks.forEach(mock -> {
-			LOG.debug("Used " + mock);
-			// verifyNoMoreInteractions(mock);
-		});
 	}
 
 }
