@@ -55,8 +55,10 @@
 ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.client.gui.editor.reference;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBoxWithRasterUpload;
@@ -99,10 +101,34 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
      */
     public Reference getReference() {
         Reference ref = new Reference();
-        ref.setReference( reference.getFilename() );
+        if ( reference.isFileSelected() ) {
+            ref.setReference( reference.getFilename() );
+        } else {
+            ref.setReference( referenceLink.getValue() );
+        }
         ref.setGeoReference( georeference.getFilename() );
         ref.setType( refType.getValueAsEnum() );
         return ref;
+    }
+
+    @Override
+    public boolean isValid() {
+        boolean valid = super.isValid();
+        String refLinkValue = this.referenceLink.getValue();
+        List<String> validationFailures = new ArrayList<String>();
+        if ( isNullOrEmpty( refLinkValue ) && !this.reference.isFileSelected() ) {
+            valid = false;
+            validationFailures.add( MESSAGES.editCaptionReferenceUrlOrFile() );
+        } else if ( !isNullOrEmpty( refLinkValue ) && this.reference.isFileSelected() ) {
+            valid = false;
+            validationFailures.add( MESSAGES.editCaptionRasterBasisReferenceNameOrUrl() );
+        }
+        return valid;
+    }
+
+    @Override
+    protected boolean isReferenceUrlMandatory() {
+        return false;
     }
 
     private Widget createFormContent() {
@@ -113,13 +139,15 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
 
         layout.setWidget( 1, 1, new Label( MESSAGES.editCaptionReferencesReference() ) );
         layout.setWidget( 1, 2, reference );
+        layout.setWidget( 2, 1, new Label( MESSAGES.editCaptionReferencesReferenceLink() ) );
+        layout.setWidget( 2, 2, referenceLink );
         // #3305 - georeference is not needed.
         // if ( !XPLAN_3.equals( version ) ) {
         // layout.setWidget( 2, 1, new Label( MESSAGES.editCaptionReferencesGeoReference() ) );
         // layout.setWidget( 2, 2, georeference );
         // }
-        layout.setWidget( 2, 1, new Label( MESSAGES.editCaptionReferencesType() ) );
-        layout.setWidget( 2, 2, refType );
+        layout.setWidget( 3, 1, new Label( MESSAGES.editCaptionReferencesType() ) );
+        layout.setWidget( 3, 2, refType );
 
         return layout;
     }

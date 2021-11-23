@@ -117,7 +117,11 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
         editedText.setKey( key.getValue() );
         editedText.setBasis( basis.getValue() );
         editedText.setText( text.getValue() );
-        editedText.setReference( reference.getFilename() );
+        if ( reference.isFileSelected() ) {
+            editedText.setReference( reference.getFilename() );
+        } else {
+            editedText.setReference( referenceLink.getValue() );
+        }
         editedText.setGeoReference( georeference.getFilename() );
         if ( rechtscharakterType != null ) {
             editedText.setRechtscharakter( rechtscharakterType.getValueAsEnum() );
@@ -161,6 +165,8 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
         }
         layout.setWidget( index, 1, new Label( MESSAGES.editCaptionTextsReference() ) );
         layout.setWidget( index++, 2, reference );
+        layout.setWidget( index, 1, new Label( MESSAGES.editCaptionTextsReferenceLink() ) );
+        layout.setWidget( index++, 2, referenceLink );
         // #3305 - georeference is not needed.
         // if ( !XPLAN_3.equals( version ) ) {
         // layout.setWidget( 5, 1, new Label( MESSAGES.editCaptionTextsGeoReference() ) );
@@ -174,7 +180,12 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
             key.setText( textToSet.getKey() );
             basis.setText( textToSet.getBasis() );
             text.setText( textToSet.getText() );
-            reference.setNameOfExistingFile( textToSet.getReference() );
+            String reference = textToSet.getReference();
+            if ( reference != null && reference.startsWith( "http" ) ) {
+                this.referenceLink.setValue( reference );
+            } else {
+                this.reference.setNameOfExistingFile( reference );
+            }
             georeference.setNameOfExistingFile( textToSet.getGeoReference() );
             if ( rechtscharakterType != null ) {
                 rechtscharakterType.selectItem( textToSet.getRechtscharakter() );
