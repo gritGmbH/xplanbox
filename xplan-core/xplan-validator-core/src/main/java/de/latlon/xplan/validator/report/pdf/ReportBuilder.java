@@ -28,11 +28,13 @@ import static de.latlon.xplan.validator.report.pdf.Templates.createFooter;
 import static de.latlon.xplan.validator.report.pdf.Templates.createTemplate;
 import static de.latlon.xplan.validator.report.pdf.Templates.root20LeftIndentStyle;
 import static de.latlon.xplan.validator.report.pdf.Templates.simpleStyle;
+import static de.latlon.xplan.validator.semantic.report.ValidationResultType.WARNING;
 import static net.sf.dynamicreports.report.builder.DynamicReports.cmp;
 import static net.sf.dynamicreports.report.builder.DynamicReports.report;
 import static net.sf.dynamicreports.report.builder.DynamicReports.stl;
 
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,9 +48,9 @@ import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
-import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
 import net.sf.dynamicreports.report.builder.component.ComponentBuilder;
@@ -258,18 +260,31 @@ class ReportBuilder {
 
     private void appendSemanticValidatorRules( MultiPageListBuilder rules, List<RuleResult> ruleResults ) {
         for ( RuleResult ruleResult : ruleResults ) {
-            String label = ruleResult.isValid() ? LABEL_OK : LABEL_ERROR;
-            TextFieldBuilder<String> labelField = cmp.text( label ).setFixedWidth( 100 ).setStyle( root20LeftIndentStyle );
-            TextFieldBuilder<String> nameField = cmp.text( ruleResult.getName() ).setFixedWidth( 60 ).setStyle( simpleStyle );
-            StringBuilder message = new StringBuilder( ruleResult.getMessage() );
-            List<String> invalidFeatures = ruleResult.getInvalidFeatures();
-            if ( !invalidFeatures.isEmpty() ) {
-                message.append( "\nGML Ids der fehlerhaften Features: " );
-                message.append( invalidFeatures.stream().collect( Collectors.joining( ", " ) ) );
+            List<InvalidFeaturesResult> invalidFeaturesResults = ruleResult.getInvalidFeaturesResults();
+            if ( invalidFeaturesResults.isEmpty() ) {
+                appendSemanticValidatorRule( rules, LABEL_OK, ruleResult.getName(), ruleResult.getMessage(),
+                                             Collections.emptyList() );
+            } else {
+                for ( InvalidFeaturesResult invalidRuleResult : invalidFeaturesResults ) {
+                    String label = WARNING.equals( invalidRuleResult.getResultType() ) ? LABEL_WARNING : LABEL_ERROR;
+                    appendSemanticValidatorRule( rules, label, ruleResult.getName(), invalidRuleResult.getMessage(),
+                                                 invalidRuleResult.getGmlIds() );
+                }
             }
-            TextFieldBuilder<String> messageField = cmp.text( message.toString() ).setStyle( simpleStyle );
-            rules.add( cmp.horizontalList().add( labelField ).add( nameField ).add( messageField ) );
         }
+    }
+
+    private void appendSemanticValidatorRule( MultiPageListBuilder rules, String label, String name, String message,
+                                              List<String> gmlIds ) {
+        TextFieldBuilder<String> labelField = cmp.text( label ).setFixedWidth( 100 ).setStyle( root20LeftIndentStyle );
+        TextFieldBuilder<String> nameField = cmp.text( name ).setFixedWidth( 60 ).setStyle( simpleStyle );
+        StringBuilder messageBuilder = new StringBuilder( message );
+        if ( !gmlIds.isEmpty() ) {
+            messageBuilder.append( "\nGML Ids der fehlerhaften Features: " );
+            messageBuilder.append( gmlIds.stream().collect( Collectors.joining( ", " ) ) );
+        }
+        TextFieldBuilder<String> messageField = cmp.text( messageBuilder.toString() ).setStyle( simpleStyle );
+        rules.add( cmp.horizontalList().add( labelField ).add( nameField ).add( messageField ) );
     }
 
     private ComponentBuilder<?, ?> createMetadataSection( ValidatorReport report )

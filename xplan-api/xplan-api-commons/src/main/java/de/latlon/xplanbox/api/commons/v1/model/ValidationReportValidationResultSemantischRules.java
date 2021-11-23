@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -22,7 +22,6 @@
 package de.latlon.xplanbox.api.commons.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
@@ -43,7 +42,10 @@ public class ValidationReportValidationResultSemantischRules {
     String message;
 
     private @Valid
-    List<String> invalidFeatures = new ArrayList<String>();
+    List<SemanticInvalidRuleResult> warnedFeatures = new ArrayList<SemanticInvalidRuleResult>();
+
+    private @Valid
+    List<SemanticInvalidRuleResult> erroredFeatures = new ArrayList<SemanticInvalidRuleResult>();
 
     /**
      *
@@ -102,19 +104,37 @@ public class ValidationReportValidationResultSemantischRules {
     /**
      *
      **/
-    public ValidationReportValidationResultSemantischRules invalidFeatures( List<String> invalidFeatures ) {
-        this.invalidFeatures = invalidFeatures;
+    public ValidationReportValidationResultSemantischRules warnedFeatures(
+                    List<SemanticInvalidRuleResult> warnedFeatures ) {
+        this.warnedFeatures = warnedFeatures;
         return this;
     }
 
-    @ArraySchema(schema = @Schema(description = "GML-ID",example = "GML_b4e47d29-d21c-42ab-85b7-b12ea57e89f2"))
-    @JsonProperty("invalidFeatures")
-    public List<String> getInvalidFeatures() {
-        return invalidFeatures;
+    @JsonProperty("warnedFeatures")
+    public List<SemanticInvalidRuleResult> getWarnedFeatures() {
+        return warnedFeatures;
     }
 
-    public void setInvalidFeatures( List<String> invalidFeatures ) {
-        this.invalidFeatures = invalidFeatures;
+    public void setWarnedFeatures( List<SemanticInvalidRuleResult> warnedFeatures ) {
+        this.warnedFeatures = warnedFeatures;
+    }
+
+    /**
+     *
+     **/
+    public ValidationReportValidationResultSemantischRules erroredFeatures(
+                    List<SemanticInvalidRuleResult> erroredFeatures ) {
+        this.erroredFeatures = erroredFeatures;
+        return this;
+    }
+
+    @JsonProperty("erroredFeatures")
+    public List<SemanticInvalidRuleResult> getErroredFeatures() {
+        return erroredFeatures;
+    }
+
+    public void setErroredFeatures( List<SemanticInvalidRuleResult> erroredFeatures ) {
+        this.erroredFeatures = erroredFeatures;
     }
 
     @Override
@@ -127,15 +147,17 @@ public class ValidationReportValidationResultSemantischRules {
         }
         ValidationReportValidationResultSemantischRules validationReportValidationResultSemantischRules = (ValidationReportValidationResultSemantischRules) o;
         return Objects.equals( this.name, validationReportValidationResultSemantischRules.name ) && Objects.equals(
-                                this.isValid, validationReportValidationResultSemantischRules.isValid )
+                        this.isValid, validationReportValidationResultSemantischRules.isValid )
                && Objects.equals( this.message, validationReportValidationResultSemantischRules.message )
-               && Objects.equals( this.invalidFeatures,
-                                  validationReportValidationResultSemantischRules.invalidFeatures );
+               && Objects.equals( this.warnedFeatures,
+                                  validationReportValidationResultSemantischRules.warnedFeatures )
+               && Objects.equals( this.erroredFeatures,
+                                  validationReportValidationResultSemantischRules.erroredFeatures );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash( name, isValid, message, invalidFeatures );
+        return Objects.hash( name, isValid, message, warnedFeatures, erroredFeatures );
     }
 
     @Override
@@ -146,7 +168,8 @@ public class ValidationReportValidationResultSemantischRules {
         sb.append( "    name: " ).append( toIndentedString( name ) ).append( "\n" );
         sb.append( "    isValid: " ).append( toIndentedString( isValid ) ).append( "\n" );
         sb.append( "    message: " ).append( toIndentedString( message ) ).append( "\n" );
-        sb.append( "    invalidFeatures: " ).append( toIndentedString( invalidFeatures ) ).append( "\n" );
+        sb.append( "    warnedFeatures: " ).append( toIndentedString( warnedFeatures ) ).append( "\n" );
+        sb.append( "    erroredFeatures: " ).append( toIndentedString( erroredFeatures ) ).append( "\n" );
         sb.append( "}" );
         return sb.toString();
     }

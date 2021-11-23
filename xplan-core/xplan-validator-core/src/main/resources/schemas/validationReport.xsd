@@ -39,12 +39,14 @@
       <xs:element type="xs:string" name="name"/>
       <xs:element type="xs:boolean" name="isValid"/>
       <xs:element type="xs:string" name="message"/>
-      <xs:element type="InvalidFeaturesType" name="InvalidFeatures" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element type="InvalidFeaturesType" name="WarnedFeatures" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element type="InvalidFeaturesType" name="ErroredFeatures" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="InvalidFeaturesType">
     <xs:sequence>
-      <xs:element type="xs:string" name="gmlid"/>
+      <xs:element type="xs:string" name="message"/>
+      <xs:element type="xs:string" name="gmlid" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="RulesType">
