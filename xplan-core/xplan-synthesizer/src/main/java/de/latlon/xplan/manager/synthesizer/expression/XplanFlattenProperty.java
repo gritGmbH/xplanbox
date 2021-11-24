@@ -39,7 +39,6 @@ import de.latlon.xplan.manager.synthesizer.expression.flatten.XpVerbundenerPlanF
 import de.latlon.xplan.manager.synthesizer.expression.flatten.XpVerfahrensMerkmalFlattener;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.Reference;
-import org.deegree.commons.tom.ReferenceResolvingException;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.gml.property.Property;
@@ -53,7 +52,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimitiveValue;
@@ -73,13 +74,25 @@ public class XplanFlattenProperty implements Expression {
 
 	private final Expression exp;
 
+	private final boolean sortProperties;
+
 	private final List<Flattener> customFlatteners = new ArrayList<Flattener>();
 
 	/**
 	 * @param exp an expression that targets a property node
 	 */
 	public XplanFlattenProperty(Expression exp) {
+		this(exp, false);
+	}
+
+	/**
+	 * @param exp an expression that targets a property node
+	 * @param sortProperties <code>true</code> if the properties should be sorted
+	 * alphabetically, false otherwise
+	 */
+	public XplanFlattenProperty(Expression exp, boolean sortProperties) {
 		this.exp = exp;
+		this.sortProperties = sortProperties;
 		customFlatteners.add(new XpBegruendungAbschnittFlattener());
 		customFlatteners.add(new XpGemeindeFlattener());
 		customFlatteners.add(new XpGenerAttributFlattener());
@@ -97,18 +110,18 @@ public class XplanFlattenProperty implements Expression {
 
 	@Override
 	public PrimitiveValue evaluate(Feature feature, FeatureCollection features) {
-		String s = null;
+		List<String> flattenedValues = new ArrayList<>();
 		XpExterneReferenzFlattener extRefFlattener = new XpExterneReferenzFlattener(feature);
 		try {
 			TypedObjectNodeArray<TypedObjectNode> props = castToArray(exp.evaluate(feature, features));
 			if (props != null && props.getElements().length > 0) {
-				s = "";
 				for (TypedObjectNode o : props.getElements()) {
 					if (!(o instanceof Property)) {
 						String msg = "Trying to flatten  '" + o.getClass() + "', but it can only flatten properties.";
 						throw new IllegalArgumentException(msg);
 					}
-					s += flatten((Property) o, extRefFlattener, features);
+					String flattenedValue = flatten((Property) o, extRefFlattener, features);
+					flattenedValues.add(flattenedValue);
 				}
 			}
 		}
@@ -118,6 +131,10 @@ public class XplanFlattenProperty implements Expression {
 			LOG.error(msg, e);
 			return null;
 		}
+		if (sortProperties) {
+			Collections.sort(flattenedValues);
+		}
+		String s = flattenedValues.stream().collect(Collectors.joining());
 		return toPrimitiveValue(s);
 	}
 

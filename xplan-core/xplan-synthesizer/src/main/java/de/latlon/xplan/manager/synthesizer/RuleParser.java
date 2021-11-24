@@ -21,9 +21,6 @@
  */
 package de.latlon.xplan.manager.synthesizer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.latlon.xplan.manager.synthesizer.expression.Ausrichtung;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.LatestDate;
@@ -31,6 +28,7 @@ import de.latlon.xplan.manager.synthesizer.expression.StringConstant;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanBesondZweckbest;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanBesondZweckbestLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanCodeNormalizeExt;
+import de.latlon.xplan.manager.synthesizer.expression.XPlanExternalCodeLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanGeometry;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanGmlDescription;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanName;
@@ -41,7 +39,6 @@ import de.latlon.xplan.manager.synthesizer.expression.Xplan2CodeLookupExt;
 import de.latlon.xplan.manager.synthesizer.expression.Xplan2CodeNormalize;
 import de.latlon.xplan.manager.synthesizer.expression.XplanBaugebietFlaechenteile;
 import de.latlon.xplan.manager.synthesizer.expression.XplanBegruendungAbschnitte;
-import de.latlon.xplan.manager.synthesizer.expression.XPlanExternalCodeLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookupExt;
 import de.latlon.xplan.manager.synthesizer.expression.XplanFlattenProperty;
@@ -49,6 +46,10 @@ import de.latlon.xplan.manager.synthesizer.expression.XplanGmlName;
 import de.latlon.xplan.manager.synthesizer.expression.XplanRefTextAbschnitte;
 import de.latlon.xplan.manager.synthesizer.expression.XplanSymbolPositions;
 import de.latlon.xplan.manager.synthesizer.expression.XplanTextAbschnitte;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * The <code>RuleParser</code> class parses the Syn rules into corresponding objects.
@@ -84,6 +85,11 @@ class RuleParser {
 		return result;
 	}
 
+	private boolean asBoolean(String s) {
+		String asString = trimString(s);
+		return Boolean.getBoolean(asString.toLowerCase(Locale.ROOT));
+	}
+
 	private Object parseDefaultValue(String s) {
 		s = s.replace("\"", "");
 		try {
@@ -106,6 +112,9 @@ class RuleParser {
 	}
 
 	private Expression parseXPlanFlattenFeature(List<String> args) {
+		if (args.size() > 1) {
+			return new XplanFlattenProperty(parse(args.get(0)), asBoolean(args.get(1)));
+		}
 		return new XplanFlattenProperty(parse(args.get(0)));
 	}
 
